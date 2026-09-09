@@ -187,10 +187,10 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T10:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vplf.ca",
+            "websiteUrl": "https://www.vpl.ca/branches/central/level-9/roofgarden",
             "coordinates": [49.2801, -123.1154],
             "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
-            "description": "Architectural Roman Colosseum-inspired library featuring a free public 8th and 9th floor rooftop garden terrace with views across the Downtown skyline."
+            "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views."
         },
         {
             "id": "sun-yat-sen-park",
@@ -215,7 +215,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T09:30:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouverchinesegarden.com/tickets-checkout/",
+            "websiteUrl": "https://vancouverchinesegarden.com/visit/",
             "coordinates": [49.2798, -123.1040],
             "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
             "description": "The outer Ming Dynasty-style courtyard is completely free to enter, featuring stone pathways, jade ponds, weeping willows, and classical pavilion architecture."
@@ -243,10 +243,10 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T08:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://botanicalgarden.ubc.ca/visit/",
+            "websiteUrl": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
             "coordinates": [49.2694, -123.2562],
             "transitInfo": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange",
-            "description": "Iconic cliffside rose garden overlooking Howe Sound and the snow-capped Coast Mountains, connecting to the scenic wooden stairway of Trail 6 down to Wreck Beach."
+            "description": "Iconic cliffside rose garden on Crescent Road overlooking Howe Sound and the snow-capped Coast Mountains, connecting to the scenic wooden stairway of Trail 6 down to Wreck Beach. 100% free public admission."
         },
         {
             "id": "queen-elizabeth-quarry",
@@ -271,10 +271,10 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vandusengarden.org",
+            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
             "coordinates": [49.2417, -123.1126],
             "transitInfo": "10 min walk from King Edward Canada Line station",
-            "description": "Highest point in the City of Vancouver (152m above sea level) featuring sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas."
+            "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park."
         },
         {
             "id": "lmg-open-mic",
@@ -1896,10 +1896,10 @@ VENUE_URLS = {
     "Lynn Canyon Park": "https://ecologycentre.ca",
     "Granville Island Public Market": "https://granvilleisland.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
-    "VPL Central Library (Level 9)": "https://vplf.ca",
-    "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com",
-    "UBC Rose Garden & Trail 6": "https://visit.ubc.ca",
-    "Queen Elizabeth Park": "https://vandusengarden.org",
+    "VPL Central Library (Level 9)": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
+    "UBC Rose Garden & Trail 6": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
     "Little Mountain Gallery": "https://littlemountaingallery.ca",
     "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
@@ -1959,13 +1959,29 @@ PROHIBITED_GENERIC_URL_REDIRECTS = {
     "https://ubcfarm.ubc.ca/": "https://ubcfarm.ubc.ca/markets/",
     "https://ubcfarm.ubc.ca/food": "https://ubcfarm.ubc.ca/markets/",
     "https://ubcfarm.ubc.ca/food/": "https://ubcfarm.ubc.ca/markets/",
+    "https://vplf.ca": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://vplf.ca/": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "http://vplf.ca": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "http://vplf.ca/": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://www.vplf.ca": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://www.vplf.ca/": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://vpl.ca/roofgarden": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://www.vpl.ca/roofgarden": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "https://botanicalgarden.ubc.ca/visit/": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "https://botanicalgarden.ubc.ca/visit": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "https://visit.ubc.ca": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "https://visit.ubc.ca/": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "https://vandusengarden.org": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "https://vandusengarden.org/": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "https://vancouverchinesegarden.com/tickets-checkout/": "https://vancouverchinesegarden.com/visit/",
+    "https://vancouverchinesegarden.com/tickets-checkout": "https://vancouverchinesegarden.com/visit/",
 }
 
 def normalize_event_links(url: str, venue: str = "") -> str:
     """
     Automated URL deep-link normalizer:
     Guarantees event URLs point to verified schedule/ticketing endpoints rather than
-    live-stream players (e.g. PeerTube webcam), institutional landing pages, or dead ends.
+    live-stream players (e.g. PeerTube webcam), institutional landing pages, separate paid attractions, or dead ends.
     """
     if not url:
         return url
@@ -1985,6 +2001,22 @@ def normalize_event_links(url: str, venue: str = "") -> str:
     if "ubcfarm.ubc.ca" in cleaned.lower():
         if "/food" in cleaned.lower() or cleaned.rstrip('/') in ("https://ubcfarm.ubc.ca", "http://ubcfarm.ubc.ca"):
             return "https://ubcfarm.ubc.ca/markets/"
+
+    # Pattern-based normalization for VPL Rooftop Garden
+    if "vplf.ca" in cleaned.lower():
+        return "https://www.vpl.ca/branches/central/level-9/roofgarden"
+
+    # Pattern-based normalization for UBC Rose Garden (preventing paid Botanical Garden confusion)
+    if "botanicalgarden.ubc.ca" in cleaned.lower() and ("rose" in venue.lower() or "rose" in cleaned.lower()):
+        return "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/"
+
+    # Pattern-based normalization for Queen Elizabeth Park (preventing paid VanDusen confusion)
+    if "vandusengarden.org" in cleaned.lower() and "queen" in venue.lower():
+        return "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx"
+
+    # Pattern-based normalization for Dr. Sun Yat-Sen Public Courtyard (preventing ticket checkout confusion)
+    if "vancouverchinesegarden.com/tickets-checkout" in cleaned.lower():
+        return "https://vancouverchinesegarden.com/visit/"
 
     return cleaned
 

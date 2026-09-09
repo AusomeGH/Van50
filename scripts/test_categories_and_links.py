@@ -127,6 +127,36 @@ def run_tests():
     assert ubcf['venueUrl'] == "https://ubcfarm.ubc.ca/markets/", f"UBC Farm venue URL must be https://ubcfarm.ubc.ca/markets/, got {ubcf['venueUrl']}"
     print(f"  ✓ UBC Farm market schedule deep link verified: {ubcf['websiteUrl']} (No generic /food/ page)")
 
+    # VPL Central Rooftop Garden deep link verification
+    vpl = event_map.get('vpl-central-rooftop')
+    assert vpl is not None, "Missing vpl-central-rooftop"
+    assert vpl['websiteUrl'] == "https://www.vpl.ca/branches/central/level-9/roofgarden", f"VPL websiteUrl unexpected: {vpl['websiteUrl']}"
+    assert vpl['venueUrl'] == "https://www.vpl.ca/branches/central/level-9/roofgarden", f"VPL venueUrl unexpected: {vpl['venueUrl']}"
+    assert "vplf.ca" not in vpl['websiteUrl'], f"VPL websiteUrl cannot point to generic foundation donation site: {vpl['websiteUrl']}"
+    print(f"  ✓ VPL Central Rooftop Garden deep link verified: {vpl['websiteUrl']} (Direct Level 9 Phillips, Hager and North Garden page)")
+
+    # UBC Rose Garden & Wreck Beach Trail verification
+    ubc_rose = event_map.get('ubc-rose-garden')
+    assert ubc_rose is not None, "Missing ubc-rose-garden"
+    assert ubc_rose['websiteUrl'] == "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/", f"UBC Rose Garden websiteUrl unexpected: {ubc_rose['websiteUrl']}"
+    assert ubc_rose['venueUrl'] == "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/", f"UBC Rose Garden venueUrl unexpected: {ubc_rose['venueUrl']}"
+    assert "botanicalgarden.ubc.ca" not in ubc_rose['websiteUrl'], f"UBC Rose Garden cannot link to paid Botanical Garden: {ubc_rose['websiteUrl']}"
+    print(f"  ✓ UBC Rose Garden free attraction deep link verified: {ubc_rose['websiteUrl']} (No paid Botanical Garden confusion)")
+
+    # Queen Elizabeth Park Quarry Gardens verification
+    qe = event_map.get('queen-elizabeth-quarry')
+    assert qe is not None, "Missing queen-elizabeth-quarry"
+    assert qe['websiteUrl'] == "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx", f"QE Park websiteUrl unexpected: {qe['websiteUrl']}"
+    assert "vandusengarden.org" not in qe['websiteUrl'], f"QE Park cannot link to paid VanDusen: {qe['websiteUrl']}"
+    print(f"  ✓ Queen Elizabeth Park official civic page verified: {qe['websiteUrl']} (No paid VanDusen Botanical Garden link)")
+
+    # Dr. Sun Yat-Sen Public Courtyard verification
+    sys_park = event_map.get('sun-yat-sen-park')
+    assert sys_park is not None, "Missing sun-yat-sen-park"
+    assert sys_park['websiteUrl'] == "https://vancouverchinesegarden.com/visit/", f"Sun Yat-Sen websiteUrl unexpected: {sys_park['websiteUrl']}"
+    assert "tickets-checkout" not in sys_park['websiteUrl'], f"Sun Yat-Sen cannot link to paid ticket cart: {sys_park['websiteUrl']}"
+    print(f"  ✓ Dr. Sun Yat-Sen Public Courtyard visit guide verified: {sys_park['websiteUrl']} (No paid ticket cart)")
+
     # Ensure 0 events have prohibited generic roots
     for e in events:
         w = e.get('websiteUrl', '')
@@ -135,7 +165,8 @@ def run_tests():
         assert v.rstrip('/') != 'https://redgate.tv', f"Event {e['id']} venueUrl cannot be raw root redgate.tv"
         assert '/food' not in w, f"Event {e['id']} websiteUrl cannot contain generic /food/: {w}"
         assert '/food' not in v, f"Event {e['id']} venueUrl cannot contain generic /food/: {v}"
-    print(f"  ✓ 100% of catalog events free of dead-end webcam roots or generic food landing pages")
+        assert w.rstrip('/') != 'https://vplf.ca', f"Event {e['id']} cannot point to bare vplf.ca"
+    print(f"  ✓ 100% of catalog events free of dead-end webcam roots, generic food portals, or misleading paid gates")
 
     # Intimate recurring music titles verification
     assert event_map['2nd-floor-gastown-sharon-minemoto']['title'] == "Live Jazz & Supper Club at 2nd Floor Gastown"
