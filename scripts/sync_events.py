@@ -101,7 +101,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T07:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://en.wikipedia.org/wiki/Lynn_Canyon_Suspension_Bridge",
+            "websiteUrl": "https://ecologycentre.ca",
             "coordinates": [49.3438, -123.0189],
             "transitInfo": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate",
             "description": "Vancouver's 100% free alternative to Capilano. Sway 50 meters above roaring canyon waters, temperate rainforest boardwalks, and emerald swimming holes."
@@ -185,7 +185,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T10:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://en.wikipedia.org/wiki/Vancouver_Public_Library",
+            "websiteUrl": "https://vplf.ca",
             "coordinates": [49.2801, -123.1154],
             "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
             "description": "Architectural Roman Colosseum-inspired library featuring a free public 8th and 9th floor rooftop garden terrace with views across the Downtown skyline."
@@ -269,7 +269,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://en.wikipedia.org/wiki/Queen_Elizabeth_Park",
+            "websiteUrl": "https://vandusengarden.org",
             "coordinates": [49.2417, -123.1126],
             "transitInfo": "10 min walk from King Edward Canada Line station",
             "description": "Highest point in the City of Vancouver (152m above sea level) featuring sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas."
@@ -1250,13 +1250,13 @@ def get_curated_seed_catalog():
 
 VENUE_URLS = {
     "Stanley Park Seawall": "https://www.stanleypark.org/",
-    "Lynn Canyon Park": "https://en.wikipedia.org/wiki/Lynn_Canyon_Suspension_Bridge",
+    "Lynn Canyon Park": "https://ecologycentre.ca",
     "Granville Island Public Market": "https://granvilleisland.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
-    "VPL Central Library (Level 9)": "https://en.wikipedia.org/wiki/Vancouver_Public_Library",
+    "VPL Central Library (Level 9)": "https://vplf.ca",
     "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com",
     "UBC Rose Garden & Trail 6": "https://visit.ubc.ca",
-    "Queen Elizabeth Park": "https://en.wikipedia.org/wiki/Queen_Elizabeth_Park",
+    "Queen Elizabeth Park": "https://vandusengarden.org",
     "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
     "Little Mountain Gallery": "https://littlemountaingallery.ca",
     "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
