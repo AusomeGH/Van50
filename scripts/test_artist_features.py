@@ -24,7 +24,7 @@ def test_artist_features():
         ("anza-club-bluegrass-jam", "Pacific Bluegrass Heritage Collective"),
         ("red-gate-dead-soft", "Dead Soft, Babe Corner, Sore Points"),
         ("lanalous-the-jolts", "The Jolts, Tough Customer"),
-        ("the-roxy-fab-fourever", "The Fab Fourever & Live Party Bands")
+        ("the-roxy-fab-fourever", "Local live bands & rotating guest artists")
     ]
 
     event_map = {ev['id']: ev for ev in events}
@@ -45,7 +45,7 @@ def test_artist_features():
         ("Dead Soft", "red-gate-dead-soft"),
         ("Babe Corner", "red-gate-dead-soft"),
         ("The Jolts", "lanalous-the-jolts"),
-        ("Fab Fourever", "the-roxy-fab-fourever"),
+        ("Local live bands", "the-roxy-fab-fourever"),
         ("Roots & Bluegrass", "wise-hall-roots-revue"),
         ("Bluegrass Heritage", "anza-club-bluegrass-jam")
     ]

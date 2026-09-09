@@ -560,24 +560,44 @@ function applyFiltersAndRender() {
       if (!hasTag) return false;
     }
 
-    // 9. Text Search Query (checks title, venue, neighborhood, description, schedule, subTags, and artist/performers)
+    // 9. Smart Text Search Query (checks title, venue, aliases, address, neighborhood, description, schedule, subTags, and artist/performers)
     if (state.searchQuery) {
-      const q = state.searchQuery;
-      const subTagMatch = ev.subTags && ev.subTags.some(t => t.toLowerCase().includes(q));
-      const artistMatch = (
-        (ev.artist && ev.artist.toLowerCase().includes(q)) ||
-        (ev.performers && (Array.isArray(ev.performers) ? ev.performers.some(p => p.toLowerCase().includes(q)) : ev.performers.toLowerCase().includes(q)))
-      );
-      const match = (
-        (ev.title && ev.title.toLowerCase().includes(q)) ||
-        (ev.venue && ev.venue.toLowerCase().includes(q)) ||
-        (ev.neighborhood && ev.neighborhood.toLowerCase().includes(q)) ||
-        (ev.description && ev.description.toLowerCase().includes(q)) ||
-        (ev.dateSchedule && ev.dateSchedule.toLowerCase().includes(q)) ||
-        artistMatch ||
-        subTagMatch
-      );
-      if (!match) return false;
+      const qTokens = normalizeSearchText(state.searchQuery).split(' ').filter(Boolean);
+      if (qTokens.length > 0) {
+        const venueAliasesStr = Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : (ev.venueAliases || '');
+        const performersStr = Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || '');
+        const subTagsStr = Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '';
+        
+        // Common venue alternate names & landmarks for instant discovery
+        let extraAliases = '';
+        const vLower = (ev.venue || '').toLowerCase();
+        if (vLower.includes('2nd floor') || ev.id.includes('2nd-floor')) {
+          extraAliases += ' water street cafe water st cafe gastown jazz';
+        } else if (vLower.includes('dr. sun yat-sen') || ev.id.includes('sun-yat-sen')) {
+          extraAliases += ' chinese garden chinatown garden classical courtyard';
+        } else if (vLower.includes('nat bailey')) {
+          extraAliases += ' scotiabank field canadians baseball hillcrest park';
+        } else if (vLower.includes('stanley park')) {
+          extraAliases += ' seawall lost lagoon pitch putt';
+        }
+
+        const searchableContent = normalizeSearchText([
+          ev.title,
+          ev.venue,
+          ev.address,
+          ev.neighborhood,
+          ev.description,
+          ev.dateSchedule,
+          ev.artist,
+          performersStr,
+          subTagsStr,
+          venueAliasesStr,
+          extraAliases
+        ].filter(Boolean).join(' '));
+
+        const matchesAllTokens = qTokens.every(tok => searchableContent.includes(tok));
+        if (!matchesAllTokens) return false;
+      }
     }
 
     return true;
@@ -638,8 +658,23 @@ function applyFiltersAndRender() {
 // 4. STANDARDIZED PRICING FORMATTING UTILITY (Requirement 7)
 // ==============================================================================
 
+function normalizeSearchText(str) {
+  if (!str) return '';
+  return String(str)
+    .toLowerCase()
+    .replace(/['’`]/g, '')            // frankie's -> frankies, lanalou's -> lanalous
+    .replace(/&/g, ' and ')           // guilt & co -> guilt and co
+    .replace(/[^\w\s]/g, ' ')         // remove punctuation
+    .replace(/\s+/g, ' ')             // collapse multiple spaces
+    .trim();
+}
+
 function formatStandardPrice(ev) {
-  // 1. Multi-tier events always evaluate and display tier range first
+  // 1. If explicit priceLabel exists on the event, prioritize it (carries adult rate with concession note)
+  if (ev.priceLabel) {
+    return ev.priceLabel;
+  }
+  // 2. Multi-tier events always evaluate and display tier range first
   if (ev.tiers && ev.tiers.length > 1) {
     const minP = Math.min(...ev.tiers.map(t => t.price));
     const maxP = Math.max(...ev.tiers.map(t => t.price));
@@ -651,7 +686,7 @@ function formatStandardPrice(ev) {
     }
     return `$${minP.toFixed(2)} – $${maxP.toFixed(2)} all-in`;
   }
-  // 2. Strict Free Check: only if price is 0 AND no paid tiers exist
+  // 3. Strict Free Check: only if price is 0 AND no paid tiers exist
   if ((ev.isFree || ev.price === 0) && (!ev.tiers || !ev.tiers.some(t => t.price > 0))) {
     return 'Free ($0)';
   }
@@ -662,7 +697,7 @@ function formatStandardPrice(ev) {
     return `Free entry (~$${ev.price.toFixed(0)} food/drink)`;
   }
   // Platform ticket breakdown
-  return ev.priceLabel || `$${ev.price.toFixed(2)} all-in`;
+  return `$${ev.price.toFixed(2)} all-in`;
 }
 
 // ==============================================================================

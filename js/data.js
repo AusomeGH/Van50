@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-09T10:23:48-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-09T10:49:32-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -9,6 +9,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Stanley Park Seawall",
+    "venueAliases": [],
     "address": "Georgia St & Park Dr, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -55,7 +56,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -65,6 +66,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Lynn Canyon Park",
+    "venueAliases": [],
     "address": "3663 Park Rd, North Vancouver",
     "neighborhood": "North Shore / Burnaby",
     "price": 0.0,
@@ -111,7 +113,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -121,6 +123,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Granville Island Public Market",
+    "venueAliases": [],
     "address": "1689 Johnston St, Vancouver",
     "neighborhood": "Granville Island",
     "price": 0.0,
@@ -167,16 +170,17 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "kitsilano-showboat",
     "title": "Kitsilano Showboat: Community Summer Stage",
-    "artist": null,
+    "artist": "Local bands & community ensembles",
     "performers": null,
     "venue": "Kitsilano Beach Outdoor Amphitheatre",
+    "venueAliases": [],
     "address": "2300 Cornwall Ave, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -223,7 +227,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -233,6 +237,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "VPL Central Library (Level 9)",
+    "venueAliases": [],
     "address": "350 W Georgia St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -279,7 +284,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -289,6 +294,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Dr. Sun Yat-Sen Public Courtyard",
+    "venueAliases": [],
     "address": "578 Carrall St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 0.0,
@@ -334,7 +340,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -344,6 +350,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "UBC Rose Garden & Trail 6",
+    "venueAliases": [],
     "address": "6301 NW Marine Dr, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -390,7 +397,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -400,6 +407,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Queen Elizabeth Park",
+    "venueAliases": [],
     "address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 0.0,
@@ -446,7 +454,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -456,6 +464,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 8.09,
@@ -501,7 +510,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 8.09,
       "preTaxSticker": 7.7,
       "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
     }
   },
@@ -511,6 +520,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Bloedel Conservatory",
+    "venueAliases": [],
     "address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 9.82,
@@ -556,7 +566,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 9.82,
       "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via Showpass Vancouver Park Board ticketing portal."
     }
   },
@@ -566,6 +576,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 10.24,
@@ -624,7 +635,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 10.24,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
     }
   },
@@ -634,6 +645,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "War Memorial Gym & Thunderbird Stadium",
+    "venueAliases": [],
     "address": "6081 University Blvd, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 11.75,
@@ -679,7 +691,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 11.75,
       "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
     }
   },
@@ -689,6 +701,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Chill x Studio",
+    "venueAliases": [],
     "address": "1227 Richards St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 12.44,
@@ -733,7 +746,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 12.44,
       "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -743,6 +756,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 13.48,
@@ -788,22 +802,42 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
   {
     "id": "viff-centre-matinee",
-    "title": "VIFF Centre: Student / Youth Indie Matinee",
+    "title": "VIFF Centre: Essential Indie Cinema & Matinee",
     "artist": null,
     "performers": null,
     "venue": "VIFF Centre (Seymour Atrium)",
+    "venueAliases": [],
     "address": "1181 Seymour St, Vancouver",
     "neighborhood": "Downtown / West End",
-    "price": 13.5,
-    "priceLabel": "$13.50 all-in ($12 + $1.50 fees)",
+    "price": 16.5,
+    "priceLabel": "$16.50 all-in (Student $13.50)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "General Admission (Adult)",
+        "basePrice": 15.0,
+        "price": 16.5,
+        "label": "$16.50 all-in"
+      },
+      {
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 14.5,
+        "label": "$14.50 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 12.0,
+        "price": 13.5,
+        "label": "$13.50 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
@@ -846,9 +880,9 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "embedded_checkout_json",
-      "verifiedTotal": 13.5,
-      "feeBreakdown": "$12.00 base matinee + $1.50 Agile web fee",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedTotal": 16.5,
+      "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via VIFF Centre Agile ticketing websales portal."
     }
   },
@@ -858,17 +892,18 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Cinematheque",
+    "venueAliases": [],
     "address": "1131 Howe St, Vancouver",
     "neighborhood": "Downtown / West End",
-    "price": 11.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
+    "price": 15.0,
+    "priceLabel": "$15.00 all-in (Student $11)",
     "pricingType": "platform",
     "tiers": [
       {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
       },
       {
         "name": "Senior (65+)",
@@ -877,10 +912,10 @@ const VANCOUVER_EVENTS = [
         "label": "$13.00 all-in"
       },
       {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
       }
     ],
     "isFree": false,
@@ -920,9 +955,9 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "embedded_checkout_json",
-      "verifiedTotal": 11.0,
-      "feeBreakdown": "Multi-tier: Student ($11.00), Senior ($13.00), General ($15.00) verified via Agile websales",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via Agile websales",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via The Cinematheque Agile websales ticket search frame."
     }
   },
@@ -932,6 +967,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Portside Pub",
+    "venueAliases": [],
     "address": "7 Alexander St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 15.0,
@@ -976,7 +1012,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-      "verifiedAt": "2026-09-09T10:23:47-07:00",
+      "verifiedAt": "2026-09-09T10:49:31-07:00",
       "details": "Verified via venue booking and trivia participation policy."
     }
   },
@@ -986,6 +1022,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Rio Theatre",
+    "venueAliases": [],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive",
     "price": 36.0,
@@ -1030,7 +1067,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 36.0,
       "feeBreakdown": "$32.00 base + $4.00 Igniter convenience & box office fees",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Parsed from live ticket_types JSON payload on riotheatretickets.ca."
     }
   },
@@ -1040,6 +1077,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Fox Cabaret",
+    "venueAliases": [],
     "address": "2321 Main St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 44.0,
@@ -1084,7 +1122,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 44.0,
       "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Eventbrite checkout cart payload."
     }
   },
@@ -1094,6 +1132,7 @@ const VANCOUVER_EVENTS = [
     "artist": "Letters to Lions",
     "performers": null,
     "venue": "The Biltmore Cabaret",
+    "venueAliases": [],
     "address": "2755 Prince Edward St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 22.75,
@@ -1138,7 +1177,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 22.75,
       "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
     }
   },
@@ -1148,6 +1187,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 18.86,
@@ -1205,7 +1245,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
     }
   },
@@ -1215,6 +1255,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 18.86,
@@ -1259,7 +1300,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1269,6 +1310,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 18.86,
@@ -1314,7 +1356,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1324,6 +1366,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Little Mountain Gallery",
+    "venueAliases": [],
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 18.86,
@@ -1369,7 +1412,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1379,6 +1422,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Scotiabank Field at Nat Bailey Stadium",
+    "venueAliases": [],
     "address": "4601 Ontario St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 18.5,
@@ -1440,7 +1484,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 18.5,
       "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
     }
   },
@@ -1450,6 +1494,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Fox Cabaret",
+    "venueAliases": [],
     "address": "2321 Main St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 18.5,
@@ -1507,7 +1552,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.5,
       "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via The Fox Cabaret calendar fee schedule."
     }
   },
@@ -1517,23 +1562,24 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Revue Stage Granville Island",
+    "venueAliases": [],
     "address": "1601 Johnston St, Vancouver",
     "neighborhood": "Granville Island",
-    "price": 20.0,
-    "priceLabel": "$20.00 – $25.00 all-in",
+    "price": 25.0,
+    "priceLabel": "$25.00 all-in (Early Bird/Student $20)",
     "pricingType": "platform",
     "tiers": [
-      {
-        "name": "Early Bird / Student",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 all-in"
-      },
       {
         "name": "General Admission",
         "basePrice": 25.0,
         "price": 25.0,
         "label": "$25.00 all-in"
+      },
+      {
+        "name": "Early Bird / Student",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 all-in"
       }
     ],
     "isFree": false,
@@ -1572,10 +1618,10 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "direct_cart_scrape",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Early/Student ($20.00) and General ($25.00) verified via Eventbrite",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
-      "details": "Verified via Eventbrite page ticket listing."
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "General Admission ($25.00) and Student ($20.00) verified with inclusive fees on Eventbrite",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
+      "details": "Verified via Eventbrite Revue Stage checkout manifest."
     }
   },
   {
@@ -1584,23 +1630,24 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Tightrope Impro Theatre",
+    "venueAliases": [],
     "address": "1330 Napier St, Vancouver",
     "neighborhood": "Commercial Drive",
-    "price": 18.0,
-    "priceLabel": "$18.00 – $25.00 all-in",
+    "price": 25.0,
+    "priceLabel": "$25.00 all-in (Student $18)",
     "pricingType": "multi-tier",
     "tiers": [
-      {
-        "name": "BC Student / Youth",
-        "basePrice": 18.0,
-        "price": 18.0,
-        "label": "$18.00 verified"
-      },
       {
         "name": "General Admission",
         "basePrice": 25.0,
         "price": 25.0,
         "label": "$25.00 verified"
+      },
+      {
+        "name": "BC Student / Youth",
+        "basePrice": 18.0,
+        "price": 18.0,
+        "label": "$18.00 verified"
       }
     ],
     "isFree": false,
@@ -1639,9 +1686,9 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "direct_cart_scrape",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "Student ($18.00) and General ($25.00) verified with 0 added online fees on TicketSpice",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "General ($25.00) and Student ($18.00) verified with 0 added online fees on TicketSpice",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
     }
   },
@@ -1651,6 +1698,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Rio Theatre",
+    "venueAliases": [],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive",
     "price": 27.96,
@@ -1695,7 +1743,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$23.00 advance base + $4.96 Eventbrite fee & GST",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -1705,23 +1753,24 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Improv Centre",
+    "venueAliases": [],
     "address": "1502 Duranleau St, Vancouver",
     "neighborhood": "Granville Island",
-    "price": 28.5,
-    "priceLabel": "$28.50 – $33.50 all-in",
+    "price": 33.5,
+    "priceLabel": "$33.50 all-in (Student/Senior $28.50)",
     "pricingType": "platform",
     "tiers": [
-      {
-        "name": "Student / Senior Theatre Seat",
-        "basePrice": 28.5,
-        "price": 28.5,
-        "label": "$28.50 all-in"
-      },
       {
         "name": "Regular Theatre Seat",
         "basePrice": 33.5,
         "price": 33.5,
         "label": "$33.50 all-in"
+      },
+      {
+        "name": "Student / Senior Theatre Seat",
+        "basePrice": 28.5,
+        "price": 28.5,
+        "label": "$28.50 all-in"
       }
     ],
     "isFree": false,
@@ -1762,9 +1811,9 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "embedded_checkout_json",
-      "verifiedTotal": 28.5,
-      "feeBreakdown": "Student/Senior ($28.50) and Regular ($33.50) tiers verified via AudienceView consumer checkout",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedTotal": 33.5,
+      "feeBreakdown": "Regular Seat ($33.50) and Student/Senior ($28.50) tiers verified via AudienceView consumer checkout",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via The Improv Centre AudienceView schedule."
     }
   },
@@ -1774,6 +1823,7 @@ const VANCOUVER_EVENTS = [
     "artist": "Metal Church, Armored Saint, Livekill",
     "performers": null,
     "venue": "The Rickshaw Theatre",
+    "venueAliases": [],
     "address": "254 E Hastings St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 39.85,
@@ -1818,7 +1868,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.85,
       "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Eventbrite checkout cart."
     }
   },
@@ -1828,6 +1878,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Science World at TELUS World of Science",
+    "venueAliases": [],
     "address": "1455 Quebec St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 39.5,
@@ -1873,7 +1924,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.5,
       "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via tickets.scienceworld.ca."
     }
   },
@@ -1883,6 +1934,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "The Orpheum Theatre",
+    "venueAliases": [],
     "address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 20.0,
@@ -1928,7 +1980,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 flat ticket rate under VSO All-Access Pass program",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Vancouver Symphony Orchestra All-Access Pass terms."
     }
   },
@@ -1938,6 +1990,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Pizzeria Ludica",
+    "venueAliases": [],
     "address": "189 Keefer Pl, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 18.0,
@@ -1984,7 +2037,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.0,
       "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
     }
   },
@@ -1994,6 +2047,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Stanley Park Pitch & Putt",
+    "venueAliases": [],
     "address": "2099 Beach Ave, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 15.55,
@@ -2039,7 +2093,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 15.55,
       "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
     }
   },
@@ -2049,6 +2103,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Vancouver Art Gallery",
+    "venueAliases": [],
     "address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -2094,16 +2149,17 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "shipyards-live-night",
     "title": "The Shipyards Live: Waterfront Music & Night Market",
-    "artist": null,
+    "artist": "Local bands & rotating indie artists",
     "performers": null,
     "venue": "The Shipyards District",
+    "venueAliases": [],
     "address": "125 Victory Ship Way, North Vancouver",
     "neighborhood": "North Shore / Burnaby",
     "price": 0.0,
@@ -2149,16 +2205,17 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "kits-labour-day-concert",
     "title": "Kits Beach Labour Day Sundown Finale",
-    "artist": null,
+    "artist": "Local brass bands & musicians",
     "performers": null,
     "venue": "Kitsilano Beach Park",
+    "venueAliases": [],
     "address": "1499 Arbutus St, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -2202,7 +2259,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2212,6 +2269,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Commercial Drive & Main Street",
+    "venueAliases": [],
     "address": "Commercial Dr & Main St, Vancouver",
     "neighborhood": "Commercial Drive",
     "price": 0.0,
@@ -2259,16 +2317,17 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "khatsahlano-street-party",
     "title": "Khatsahlano Street Party: West 4th Avenue",
-    "artist": null,
+    "artist": "Local indie bands (50+ Vancouver artists)",
     "performers": null,
     "venue": "West 4th Avenue (Burrard to Macdonald)",
+    "venueAliases": [],
     "address": "West 4th Ave, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -2315,7 +2374,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2325,6 +2384,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "John Hendry Park (Trout Lake)",
+    "venueAliases": [],
     "address": "3360 Victoria Dr, Vancouver",
     "neighborhood": "Commercial Drive",
     "price": 0.0,
@@ -2371,7 +2431,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2381,6 +2441,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Kitsilano Community Centre Plaza",
+    "venueAliases": [],
     "address": "2690 Larch St, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -2427,16 +2488,21 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "guilt-and-co-live-jazz",
     "title": "Guilt & Co.: Nightly Live Jazz, Soul & Latin Music",
-    "artist": null,
+    "artist": "Local jazz & soul ensembles",
     "performers": null,
     "venue": "Guilt & Co.",
+    "venueAliases": [
+      "Guilt and Co",
+      "Guilt & Co",
+      "Guilt and Company"
+    ],
     "address": "1 Alexander St (Below Ground), Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 0.0,
@@ -2483,7 +2549,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2493,6 +2559,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "UBC Instructional Resources Centre (IRC)",
+    "venueAliases": [],
     "address": "2194 Health Sciences Mall, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -2538,7 +2605,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2548,6 +2615,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Colony Main Street",
+    "venueAliases": [],
     "address": "2904 Main St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 0.0,
@@ -2593,7 +2661,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2603,6 +2671,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "RUNVAN Clubhouse & Seawall",
+    "venueAliases": [],
     "address": "1288 W Georgia St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -2650,7 +2719,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2660,6 +2729,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Riley Park Plaza (Nat Bailey Stadium)",
+    "venueAliases": [],
     "address": "4601 Ontario St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 0.0,
@@ -2706,7 +2776,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2716,6 +2786,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Nelson Park (West End)",
+    "venueAliases": [],
     "address": "1100 Comox St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -2762,7 +2833,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2772,6 +2843,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Dude Chilling Park (Guelph Park)",
+    "venueAliases": [],
     "address": "2390 Brunswick St, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 0.0,
@@ -2818,7 +2890,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2828,6 +2900,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Vancouver Art Gallery Plaza (North)",
+    "venueAliases": [],
     "address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -2874,7 +2947,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2884,6 +2957,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "Concord Community Park (False Creek)",
+    "venueAliases": [],
     "address": "50 Pacific Blvd, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 0.0,
@@ -2930,7 +3004,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2940,6 +3014,7 @@ const VANCOUVER_EVENTS = [
     "artist": null,
     "performers": null,
     "venue": "UBC Farm (South Campus)",
+    "venueAliases": [],
     "address": "3461 Ross Dr, Vancouver",
     "neighborhood": "Kitsilano",
     "price": 0.0,
@@ -2986,7 +3061,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2996,6 +3071,11 @@ const VANCOUVER_EVENTS = [
     "artist": "The Sharon Minemoto Trio",
     "performers": null,
     "venue": "2nd Floor Gastown",
+    "venueAliases": [
+      "Water Street Cafe",
+      "Water St Cafe",
+      "The Water St Cafe"
+    ],
     "address": "300 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 12.0,
@@ -3042,7 +3122,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist charge per guest added to dining bill",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via 2nd Floor Gastown at Water St. Cafe live music terms."
     }
   },
@@ -3052,6 +3132,11 @@ const VANCOUVER_EVENTS = [
     "artist": "The Brad Turner Quartet",
     "performers": null,
     "venue": "Frankie's Jazz Club",
+    "venueAliases": [
+      "Frankies",
+      "Frankies Jazz Club",
+      "Coastal Jazz"
+    ],
     "address": "755 Beatty St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 22.0,
@@ -3097,7 +3182,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 22.0,
       "feeBreakdown": "$22.00 all-in ticket rate verified via Coastal Jazz & Blues Society box office",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Frankie's Jazz Club / Coastal Jazz box office."
     }
   },
@@ -3107,6 +3192,7 @@ const VANCOUVER_EVENTS = [
     "artist": "East Van Roots & Bluegrass Revue",
     "performers": null,
     "venue": "The WISE Hall & Lounge",
+    "venueAliases": [],
     "address": "1882 Adanac St, Vancouver",
     "neighborhood": "Commercial Drive",
     "price": 15.0,
@@ -3153,7 +3239,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 general door admission for live community hall show",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via The WISE Hall & Lounge official event door policy."
     }
   },
@@ -3163,6 +3249,7 @@ const VANCOUVER_EVENTS = [
     "artist": "Pacific Bluegrass Heritage Collective",
     "performers": null,
     "venue": "The Anza Club",
+    "venueAliases": [],
     "address": "3 W 8th Ave, Vancouver",
     "neighborhood": "Mount Pleasant",
     "price": 10.0,
@@ -3208,7 +3295,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 10.0,
       "feeBreakdown": "$10.00 general admission door rate for community jam showcase",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via The Anza Club member and guest event policy."
     }
   },
@@ -3218,6 +3305,7 @@ const VANCOUVER_EVENTS = [
     "artist": "Dead Soft, Babe Corner, Sore Points",
     "performers": null,
     "venue": "Red Gate Arts Society",
+    "venueAliases": [],
     "address": "1151 E Hastings St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 12.0,
@@ -3264,7 +3352,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 suggested door cover under Red Gate pay-what-you-can artist policy",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via Red Gate Arts Society non-profit door policy."
     }
   },
@@ -3274,6 +3362,11 @@ const VANCOUVER_EVENTS = [
     "artist": "The Jolts, Tough Customer",
     "performers": null,
     "venue": "LanaLou's",
+    "venueAliases": [
+      "Lanalous",
+      "Lana Lou's",
+      "Lana Lous"
+    ],
     "address": "362 Powell St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 12.0,
@@ -3320,16 +3413,21 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 direct band door cover collected at entrance",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via LanaLou's live music booking & door schedule."
     }
   },
   {
     "id": "the-roxy-fab-fourever",
-    "title": "The Fab Fourever & Live Party Rock Bands at The Roxy",
-    "artist": "The Fab Fourever & Live Party Bands",
+    "title": "Live Music & Weekend Party Rock at The Roxy",
+    "artist": "Local live bands & rotating guest artists",
     "performers": null,
     "venue": "The Roxy Cabaret",
+    "venueAliases": [
+      "The Roxy",
+      "Roxy Cabaret",
+      "Roxy Nightclub"
+    ],
     "address": "932 Granville St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 12.0,
@@ -3376,7 +3474,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live band cover charge collected at entrance",
-      "verifiedAt": "2026-09-09T10:23:48-07:00",
+      "verifiedAt": "2026-09-09T10:49:32-07:00",
       "details": "Verified via The Roxy Cabaret official cover policy."
     }
   }
@@ -3394,7 +3492,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "AudienceView Verified",
     "websiteUrl": "https://thecultch.com/box-office/",
     "category": "shows",
-    "flaggedAt": "2026-09-09T10:23:48-07:00",
+    "flaggedAt": "2026-09-09T10:49:32-07:00",
     "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3411,7 +3509,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://www.tightropetheatre.com/classes",
     "category": "activities",
-    "flaggedAt": "2026-09-09T10:23:48-07:00",
+    "flaggedAt": "2026-09-09T10:49:32-07:00",
     "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3428,7 +3526,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
     "category": "cinema",
-    "flaggedAt": "2026-09-09T10:23:48-07:00",
+    "flaggedAt": "2026-09-09T10:49:32-07:00",
     "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."

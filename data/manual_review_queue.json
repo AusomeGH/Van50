@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-09T10:23:48-07:00",
+    "updatedAt": "2026-09-09T10:49:32-07:00",
     "pendingCount": 3,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -18,7 +18,7 @@
       "semanticProvider": "AudienceView Verified",
       "websiteUrl": "https://thecultch.com/box-office/",
       "category": "shows",
-      "flaggedAt": "2026-09-09T10:23:48-07:00",
+      "flaggedAt": "2026-09-09T10:49:32-07:00",
       "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -35,7 +35,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://www.tightropetheatre.com/classes",
       "category": "activities",
-      "flaggedAt": "2026-09-09T10:23:48-07:00",
+      "flaggedAt": "2026-09-09T10:49:32-07:00",
       "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -52,7 +52,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
       "category": "cinema",
-      "flaggedAt": "2026-09-09T10:23:48-07:00",
+      "flaggedAt": "2026-09-09T10:49:32-07:00",
       "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
