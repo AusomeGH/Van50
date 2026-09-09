@@ -560,16 +560,17 @@ function applyFiltersAndRender() {
       if (!hasTag) return false;
     }
 
-    // 9. Text Search Query (also checks subTags)
-    if (state.searchQuery) {
-      const q = state.searchQuery;
-      const subTagMatch = ev.subTags && ev.subTags.some(t => t.toLowerCase().includes(q));
+      const artistMatch = (
+        (ev.artist && ev.artist.toLowerCase().includes(q)) ||
+        (ev.performers && (Array.isArray(ev.performers) ? ev.performers.some(p => p.toLowerCase().includes(q)) : ev.performers.toLowerCase().includes(q)))
+      );
       const match = (
         (ev.title && ev.title.toLowerCase().includes(q)) ||
         (ev.venue && ev.venue.toLowerCase().includes(q)) ||
         (ev.neighborhood && ev.neighborhood.toLowerCase().includes(q)) ||
         (ev.description && ev.description.toLowerCase().includes(q)) ||
         (ev.dateSchedule && ev.dateSchedule.toLowerCase().includes(q)) ||
+        artistMatch ||
         subTagMatch
       );
       if (!match) return false;
@@ -925,6 +926,15 @@ function renderEventCards(events) {
             ${ev.title}
           </a>
         </h2>
+        
+        <!-- Band / Artist Highlight Badge (if present) -->
+        ${(ev.artist || ev.performers) ? `
+          <div class="card-artist-badge" title="Featured band / artist lineup">
+            <span class="artist-icon">🎵</span>
+            <span class="artist-label">Featuring:</span>
+            <strong class="artist-name">${ev.artist || (Array.isArray(ev.performers) ? ev.performers.join(', ') : ev.performers)}</strong>
+          </div>
+        ` : ''}
         
         <!-- Venue Row: Official Venue Homepage Link + Google Maps Directions Link -->
         <div class="card-venue-row">
