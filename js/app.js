@@ -560,6 +560,10 @@ function applyFiltersAndRender() {
       if (!hasTag) return false;
     }
 
+    // 9. Text Search Query (checks title, venue, neighborhood, description, schedule, subTags, and artist/performers)
+    if (state.searchQuery) {
+      const q = state.searchQuery;
+      const subTagMatch = ev.subTags && ev.subTags.some(t => t.toLowerCase().includes(q));
       const artistMatch = (
         (ev.artist && ev.artist.toLowerCase().includes(q)) ||
         (ev.performers && (Array.isArray(ev.performers) ? ev.performers.some(p => p.toLowerCase().includes(q)) : ev.performers.toLowerCase().includes(q)))
