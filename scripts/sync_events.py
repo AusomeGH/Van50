@@ -1245,6 +1245,44 @@ def get_curated_seed_catalog():
 
 
 # ==============================================================================
+# CURATED VENUE OFFICIAL HOMEPAGES DIRECTORY
+# ==============================================================================
+
+VENUE_URLS = {
+    "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "Lynn Canyon Park": "https://lynncanyon.ca",
+    "Granville Island Public Market": "https://granvilleisland.com",
+    "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
+    "VPL Central Library (Level 9)": "https://www.vpl.ca",
+    "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com",
+    "UBC Rose Garden & Trail 6": "https://visit.ubc.ca",
+    "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "Bloedel Conservatory": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "Little Mountain Gallery": "https://littlemountaingallery.ca",
+    "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
+    "Chill x Studio": "https://chillxstudio.com",
+    "VIFF Centre (Seymour Atrium)": "https://viff.org",
+    "The Cinematheque": "https://thecinematheque.ca",
+    "The Portside Pub": "https://theportsidepub.com",
+    "The Rio Theatre": "https://riotheatre.ca",
+    "The Fox Cabaret": "https://www.foxcabaret.com",
+    "The Biltmore Cabaret": "https://biltmorecabaret.com",
+    "Scotiabank Field at Nat Bailey Stadium": "https://www.milb.com/vancouver",
+    "Tightrope Impro Theatre": "https://tightropetheatre.com",
+    "The Improv Centre": "https://theimprovcentre.ca",
+    "The Rickshaw Theatre": "https://rickshawtheatre.com",
+    "Science World at TELUS World of Science": "https://www.scienceworld.ca",
+    "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
+    "Pizzeria Ludica": "https://ludica.ca",
+    "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-and-putt.aspx",
+    "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
+    "The Shipyards District": "https://theshipyardsdistrict.ca",
+    "Kitsilano Beach Park": "https://vancouver.ca/parks-recreation-culture/kitsilano-beach-park.aspx",
+    "Revue Stage Granville Island": "https://theimprovcentre.ca"
+}
+
+
+# ==============================================================================
 # UNIFIED SYNCHRONIZATION PIPELINE
 # ==============================================================================
 
@@ -1337,6 +1375,7 @@ def run_sync() -> bool:
             "endIso": item.get('endIso'),
             "isSoldOut": item.get('isSoldOut', False),
             "websiteUrl": url,
+            "venueUrl": VENUE_URLS.get(item['venue'], f"https://www.google.com/search?q={urllib.parse.quote_plus(item['venue'] + ' Vancouver')}"),
             "ticketProvider": semantic_provider,
             "rawProvider": provider,
             "coordinates": item['coordinates'],
@@ -1453,6 +1492,9 @@ const CATEGORIES = [
   {{ id: "activities", label: "Games & Activities", icon: "🎲" }},
   {{ id: "trivia", label: "Drinks & Trivia", icon: "🍻" }}
 ];
+
+// Curated Venue Homepages Directory
+const VENUE_URLS = {json.dumps(VENUE_URLS, indent=2, ensure_ascii=False)};
 """
     with open(JS_PATH, 'w', encoding='utf-8') as f:
         f.write(js_content)

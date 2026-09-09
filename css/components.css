@@ -721,6 +721,19 @@
   overflow: hidden;
 }
 
+.card-title-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.card-title-link:hover,
+.card-title-link:focus-visible {
+  color: #c084fc;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .card-venue-row {
   display: flex;
   align-items: center;
@@ -729,9 +742,63 @@
   color: var(--accent-secondary);
   font-weight: 600;
   margin-bottom: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-wrap: wrap;
+}
+
+.venue-pin-icon {
+  font-size: 0.85rem;
+}
+
+.venue-link {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.venue-link:hover,
+.venue-link:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.venue-ext-arrow {
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+.venue-separator {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.card-maps-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: 0.01em;
+}
+
+.card-maps-link:hover,
+.card-maps-link:focus-visible {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #bae6fd;
+  transform: translateY(-1px);
 }
 
 .card-schedule-row {
@@ -744,9 +811,38 @@
   padding: 6px 10px;
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--accent-primary);
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   min-height: 2.2rem;
   font-weight: 500;
+}
+
+/* Dynamic Next-Two-Dates Highlight Box */
+.card-next-dates-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  margin-bottom: 12px;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  flex-wrap: wrap;
+}
+
+.next-dates-badge {
+  font-weight: 700;
+  color: #c084fc;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.next-dates-text {
+  color: #f8fafc;
+  font-weight: 600;
 }
 
 .card-desc {
@@ -1078,6 +1174,27 @@
   font-weight: 700;
   padding: 6px 12px;
   border-radius: var(--radius-full);
+}
+
+.popup-gmaps-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-top: 6px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.popup-gmaps-btn:hover {
+  background: rgba(56, 189, 248, 0.28);
+  color: #bae6fd;
 }
 
 /* ==============================================================================

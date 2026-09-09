@@ -652,8 +652,97 @@ function formatStandardPrice(ev) {
 }
 
 // ==============================================================================
-// 5. EVENT CARD RENDERING
+// 5. DYNAMIC RECURRING DATES ENGINE & EVENT CARD RENDERING
 // ==============================================================================
+
+function calculateNextTwoDates(ev) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+
+  // 1. Daily Spots
+  if (ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    const d1 = new Date(today);
+    const d2 = new Date(today);
+    d2.setDate(d2.getDate() + 1);
+    const fmt1 = d1.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const fmt2 = d2.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    return {
+      type: 'daily',
+      label: 'Open Daily',
+      dates: `Today (${fmt1}) • Tomorrow (${fmt2})`
+    };
+  }
+
+  // 2. Weekly Recurring Events
+  if (ev.frequency === 'weekly' || (ev.daysOfWeek && ev.daysOfWeek.length > 0 && !ev.daysOfWeek.includes('daily'))) {
+    const targetDays = (ev.daysOfWeek || [])
+      .map(d => DAY_MAP[d.toLowerCase()])
+      .filter(d => d !== undefined);
+
+    if (targetDays.length > 0) {
+      const dates = [];
+      for (let i = 0; i < 21; i++) {
+        const candidate = new Date(today);
+        candidate.setDate(candidate.getDate() + i);
+        if (targetDays.includes(candidate.getDay())) {
+          dates.push(candidate);
+          if (dates.length === 2) break;
+        }
+      }
+      if (dates.length > 0) {
+        const formatted = dates.map(d => {
+          const isToday = d.getTime() === today.getTime();
+          const isTomorrow = d.getTime() === (today.getTime() + 86400000);
+          const prefix = isToday ? 'Today (' : (isTomorrow ? 'Tomorrow (' : '');
+          const suffix = (isToday || isTomorrow) ? ')' : '';
+          const str = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+          return `${prefix}${str}${suffix}`;
+        });
+        return {
+          type: 'weekly',
+          label: 'Next 2 Dates',
+          dates: formatted.join(' • ')
+        };
+      }
+    }
+  }
+
+  // 3. Monthly Recurring Events
+  if (ev.frequency === 'monthly') {
+    if (ev.startIso) {
+      const start = new Date(ev.startIso);
+      if (!isNaN(start.getTime()) && start >= today) {
+        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        return {
+          type: 'monthly',
+          label: 'Next Show',
+          dates: fmt
+        };
+      }
+    }
+    return {
+      type: 'monthly',
+      label: 'Monthly Series',
+      dates: ev.dateSchedule || 'Check venue calendar'
+    };
+  }
+
+  // 4. One-off Events
+  if (ev.startIso) {
+    const start = new Date(ev.startIso);
+    if (!isNaN(start.getTime())) {
+      const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      return {
+        type: 'one-off',
+        label: 'Event Date',
+        dates: fmt
+      };
+    }
+  }
+
+  return null;
+}
 
 function renderEventCards(events) {
   const grid = document.getElementById('events-grid');
@@ -679,6 +768,20 @@ function renderEventCards(events) {
     const isSoldOut = Boolean(ev.isSoldOut);
     const standardPrice = formatStandardPrice(ev);
     
+    // Hyperlinks & Navigation Targets
+    const venueUrl = ev.venueUrl || (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
+    const gmapsQuery = encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'));
+    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+    
+    // Dynamic Next-Two-Dates calculation
+    const nextDates = calculateNextTwoDates(ev);
+    const nextDatesHtml = nextDates ? `
+      <div class="card-next-dates-box" title="Upcoming confirmed dates">
+        <span class="next-dates-badge">⚡ ${nextDates.label}:</span>
+        <span class="next-dates-text">${nextDates.dates}</span>
+      </div>
+    ` : '';
+
     // Multi-tier compact chip summary
     const tiersHtml = (ev.tiers && ev.tiers.length > 1) ? `
       <div class="card-tiers-box">
@@ -787,18 +890,32 @@ function renderEventCards(events) {
           </button>
         </div>
 
-        <!-- Event Details -->
-        <h2 class="card-title">${ev.title}</h2>
+        <!-- Event Details: Clickable Title Link -->
+        <h2 class="card-title">
+          <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link" title="Get tickets & details for ${ev.title}">
+            ${ev.title}
+          </a>
+        </h2>
         
+        <!-- Venue Row: Official Venue Homepage Link + Google Maps Directions Link -->
         <div class="card-venue-row">
-          <span>📍</span>
-          <span>${ev.venue}</span>
+          <span class="venue-pin-icon">📍</span>
+          <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-link" title="Visit ${ev.venue} official homepage">
+            ${ev.venue} <span class="venue-ext-arrow">↗</span>
+          </a>
+          <span class="venue-separator">•</span>
+          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="card-maps-link" title="Open ${ev.venue} in Google Maps">
+            Directions 🗺️
+          </a>
         </div>
 
+        <!-- Schedule Row & Dynamic Next Dates -->
         <div class="card-schedule-row">
           <span>📅</span>
           <span>${ev.dateSchedule}</span>
         </div>
+
+        ${nextDatesHtml}
 
         ${tiersHtml}
 
@@ -806,7 +923,7 @@ function renderEventCards(events) {
 
         ${subtagsHtml}
 
-        <!-- Card Footer: Standardized Checkout Price & Direct Ticket CTA (TransLink text removed) -->
+        <!-- Card Footer: Standardized Checkout Price & Direct Ticket CTA -->
         <div class="card-footer">
           <div class="price-box">
             <div class="price-breakdown-row">

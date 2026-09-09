@@ -62,13 +62,20 @@ function updateMapMarkers(events) {
 
     const marker = L.marker([lat, lng], { icon: customIcon });
 
-    // Popup content with direct link
+    const gmapsQuery = encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'));
+    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+
+    // Popup content with direct link & Google Maps navigation
     const popupHtml = `
       <div class="popup-inner-box">
         <div style="font-size: 0.68rem; font-weight: 700; color: #a855f7; text-transform: uppercase; margin-bottom: 2px;">
           ${ev.frequencyLabel || 'Vancouver Event'}
         </div>
-        <div class="popup-title">${ev.title}</div>
+        <div class="popup-title">
+          <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">
+            ${ev.title} ↗
+          </a>
+        </div>
         <div class="popup-venue">📍 ${ev.venue}</div>
         <div class="popup-price">💰 ${ev.priceLabel}</div>
         <div style="font-size: 0.74rem; color: #94a3b8; margin-bottom: 8px;">
@@ -76,6 +83,9 @@ function updateMapMarkers(events) {
         </div>
         <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" class="popup-btn">
           Get Tickets / Details ↗
+        </a>
+        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="popup-gmaps-btn">
+          🗺️ Open in Google Maps ↗
         </a>
       </div>
     `;
