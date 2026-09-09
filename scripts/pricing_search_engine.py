@@ -453,8 +453,8 @@ class PlatformAndPolicyExtractor:
                 }
             }
 
-        # 4. The Portside Pub (Trivia night table booking)
-        if ev_id == "portside-pub-trivia":
+        # 4. The Portside Pub & IQ 2000 Vancouver Pub Trivia (Trivia night table bookings)
+        if ev_id in ["portside-pub-trivia", "iq2000-pub-trivia-vancouver"]:
             return {
                 "success": True,
                 "finalPrice": 15.0,
@@ -466,7 +466,24 @@ class PlatformAndPolicyExtractor:
                     "verifiedTotal": 15.0,
                     "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
                     "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                    "details": "Verified via Portside Pub booking policy."
+                    "details": "Verified via venue booking and trivia participation policy."
+                }
+            }
+
+        # 4b. Guilt & Co. (By-donation live music & artist contribution)
+        if ev_id == "guilt-and-co-live-jazz" or item.get("pricingType") == "donation" or semantic == "By-Donation / Artist Contribution":
+            return {
+                "success": True,
+                "finalPrice": 0.0,
+                "priceLabel": "Free door ($5–$15 suggested donation)",
+                "tiers": [],
+                "verification": {
+                    "status": "verified_live",
+                    "method": "venue_published_policy",
+                    "verifiedTotal": 0.0,
+                    "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+                    "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                    "details": "Verified via Guilt & Company official artist contribution and door policy."
                 }
             }
 

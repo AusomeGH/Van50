@@ -27,20 +27,41 @@ def check_event(ev_tuple):
     final_url = url
     error = None
     
-    try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            status = resp.getcode()
-            final_url = resp.geturl()
-    except urllib.error.HTTPError as e:
-        status = e.code
-        error = str(e)
-    except urllib.error.URLError as e:
-        status = 'URL_ERROR'
-        error = str(e)
-    except Exception as e:
-        status = 'EXC'
-        error = str(e)
+    for attempt in range(2):
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                status = resp.getcode()
+                final_url = resp.geturl()
+                error = None
+                break
+        except urllib.error.HTTPError as e:
+            status = e.code
+            error = str(e)
+            if e.code in [403, 429]:
+                # Validate with native curl to check actual browser HTTP compatibility
+                import subprocess
+                try:
+                    res = subprocess.run(['curl.exe', '-sI', '-m', '5', url], capture_output=True, text=True)
+                    for line in res.stdout.splitlines():
+                        if line.startswith('HTTP/'):
+                            parts = line.split()
+                            if len(parts) > 1 and parts[1].isdigit() and int(parts[1]) in [200, 301, 302]:
+                                status = 200
+                                error = None
+                                break
+                except Exception:
+                    pass
+                if status == 200:
+                    break
+        except urllib.error.URLError as e:
+            status = 'URL_ERROR'
+            error = str(e)
+            break
+        except Exception as e:
+            status = 'EXC'
+            error = str(e)
+            break
 
     return {
         'index': i,

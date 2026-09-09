@@ -737,6 +737,26 @@ function calculateNextTwoDates(ev) {
     };
   }
 
+  // 3b. Annual & Seasonal Festivals (e.g. Car Free Day, Khatsahlano, Shipyards Live)
+  if (ev.frequency === 'annual' || ev.frequency === 'seasonal') {
+    if (ev.startIso) {
+      const start = new Date(ev.startIso);
+      if (!isNaN(start.getTime())) {
+        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        return {
+          type: 'seasonal',
+          label: ev.frequency === 'annual' ? 'Annual Festival' : 'Seasonal Event',
+          dates: fmt
+        };
+      }
+    }
+    return {
+      type: 'seasonal',
+      label: 'Festival Season',
+      dates: ev.dateSchedule || 'Annual community event'
+    };
+  }
+
   // 4. One-off Events
   if (ev.startIso) {
     const start = new Date(ev.startIso);
