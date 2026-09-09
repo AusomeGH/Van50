@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van50 — Vancouver Events & Outings ($50 or Less)</title>
+  <meta name="description" content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
+  <meta name="theme-color" content="#080c14">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Van50 — Vancouver Events & Outings Under $50">
+  <meta property="og:description" content="Curated authentic Vancouver events strictly under $50 CAD total out-of-pocket per person. Real checkout pricing with zero false advertising.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Van50 Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" id="main-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo" id="brand-home-link" aria-label="Van50 Home">
+        <span class="brand-icon">🌲</span>
+        <span class="brand-name">Van<span>50</span></span>
+        <span class="brand-badge">≤ $50 CAD</span>
+      </a>
+
+      <div class="nav-actions">
+        <button class="btn btn-roulette" id="btn-open-roulette" aria-label="Surprise Outing Generator">
+          <span>🎲 Surprise Me</span>
+        </button>
+
+        <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Itinerary">
+          <span>📌 Itinerary</span>
+          <span class="itinerary-count-badge" id="itinerary-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero-banner">
+      <h1 class="hero-title">
+        Vancouver Events &amp; Outings <span class="gradient-text">Under $50</span>
+      </h1>
+      <p class="hero-subtitle">
+        Curated local comedy, indie cinema, live music, sports, trivia, and scenic outings across Vancouver, BC.
+      </p>
+
+      <div class="central-feed-badge" id="sync-status-badge">
+        <span class="sync-dot"></span>
+        <span id="sync-status-text">100% Live Checkout Verified • Auto-Synced Daily</span>
+      </div>
+
+      <!-- Real-time Search Input -->
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search by event title, venue, or keyword..."
+          aria-label="Search events"
+        >
+      </div>
+    </section>
+
+    <!-- Filter Controls Hub -->
+    <section class="filters-hub" id="filters-hub" aria-label="Event Filters">
+      
+      <!-- Primary Controls Row 1: Category Pills & View Switcher -->
+      <div class="filter-category-row">
+        <div class="categories-bar" id="categories-bar" role="group" aria-label="Category Filters">
+          <!-- Dynamically populated from js/data.js -->
+        </div>
+
+        <div class="view-switch" role="group" aria-label="View Switcher">
+          <button class="view-btn active" id="view-cards-btn" aria-label="Card View">
+            <span>▦</span> Cards
+          </button>
+          <button class="view-btn" id="view-map-btn" aria-label="Map View">
+            <span>🗺️</span> Map
+          </button>
+        </div>
+      </div>
+
+      <!-- Primary Controls Row 2: Spend Controls, Quick Toggles & More Filters Button -->
+      <div class="spend-control-row">
+        <div class="spend-sliders-container">
+          <span class="spend-range-label">Spend:</span>
+          <span class="spend-readout-badge" id="spend-readout">$0 — $50 CAD</span>
+          
+          <!-- Single Continuous Track with Overlapping Dual Thumbs -->
+          <div class="dual-slider-box" aria-label="Spend Range Slider">
+            <div class="dual-slider-track">
+              <div class="dual-slider-highlight" id="dual-slider-highlight"></div>
+            </div>
+            <input 
+              type="range" 
+              id="min-spend-slider" 
+              class="dual-range-thumb" 
+              min="0" 
+              max="50" 
+              step="1" 
+              value="0" 
+              aria-label="Minimum spend"
+            >
+            <input 
+              type="range" 
+              id="max-spend-slider" 
+              class="dual-range-thumb" 
+              min="0" 
+              max="50" 
+              step="1" 
+              value="50" 
+              aria-label="Maximum spend"
+            >
+          </div>
+        </div>
+
+        <div class="spend-actions-group">
+          <!-- Quick Cost Filters (Free, Paid, All) -->
+          <div class="cost-quick-tabs" role="group" aria-label="Cost Quick Filters">
+            <button class="cost-quick-btn active" data-quick="all" id="quick-cost-all">All</button>
+            <button class="cost-quick-btn" data-quick="free" id="quick-cost-free">Free ($0)</button>
+            <button class="cost-quick-btn" data-quick="paid" id="quick-cost-paid">Paid</button>
+          </div>
+
+          <!-- Ticketed Events Only Toggle -->
+          <label class="scheduled-only-toggle ticketed-only-toggle" for="hide-daily-toggle" title="Hide free public walks and unticketed daily spots">
+            <input type="checkbox" id="hide-daily-toggle">
+            <span>🎟️ <strong>Ticketed events only</strong></span>
+          </label>
+
+          <!-- Collapsible More Filters Button -->
+          <button type="button" class="btn-more-filters" id="btn-toggle-more-filters" aria-expanded="false" aria-controls="more-filters-panel" title="Expand additional date, time, and neighborhood filters">
+            <span>⚡ More Filters</span>
+            <span class="more-filters-count" id="active-filters-count" style="display: none;">0</span>
+            <span class="chevron-icon">▾</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Secondary Filters Panel (When & Where) -->
+      <div class="more-filters-panel" id="more-filters-panel" style="display: none;">
+        <!-- Day of the Week Filter -->
+        <div class="days-section">
+          <div class="days-header">
+            <span><strong>Day of the Week:</strong></span>
+          </div>
+          <div class="days-pills-wrap" id="days-pills-wrap" role="group" aria-label="Filter by Day of the Week">
+            <!-- Dynamically generated day pills -->
+          </div>
+        </div>
+
+        <!-- Starting Time Filter -->
+        <div class="times-section">
+          <div class="times-header">
+            <span><strong>Starting Time:</strong></span>
+          </div>
+          <div class="time-pills-wrap" id="time-pills-wrap" role="group" aria-label="Filter by Starting Time">
+            <!-- Dynamically generated time slot pills -->
+          </div>
+        </div>
+
+        <!-- Multi-Select Neighborhood Selector -->
+        <div class="neighborhoods-section">
+          <div class="neighborhoods-header">
+            <span><strong>Neighborhoods:</strong></span>
+            <button class="btn-toggle-all-nh" id="btn-toggle-all-neighborhoods">Select All</button>
+          </div>
+          <div class="neighborhood-pills-wrap" id="neighborhood-pills-wrap" role="group" aria-label="Select Neighborhoods">
+            <!-- Dynamically generated neighborhood pills -->
+          </div>
+        </div>
+
+        <!-- Recurrence Frequency Bar -->
+        <div class="frequencies-section">
+          <div class="frequencies-header">
+            <span><strong>Recurrence Frequency:</strong></span>
+          </div>
+          <div class="frequency-pills-wrap" id="frequency-pills-wrap" role="group" aria-label="Filter by Event Recurrence">
+            <!-- Dynamically generated frequency pills -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Results Count Bar -->
+    <div class="results-count-bar" id="results-count">
+      Showing <strong>40</strong> outings under $50
+    </div>
+
+    <!-- Events Content Section -->
+    <section aria-label="Events List">
+      <!-- Cards Grid -->
+      <div class="events-grid" id="events-grid">
+        <!-- Event cards dynamically rendered by js/app.js -->
+      </div>
+
+      <!-- Map View Wrapper -->
+      <div class="map-view-wrapper" id="map-view-wrapper">
+        <div id="vancouver-map"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Surprise Outing Generator / Roulette Modal -->
+  <div class="modal-overlay" id="roulette-modal" role="dialog" aria-modal="true" aria-labelledby="roulette-modal-title">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="close-roulette-modal" aria-label="Close modal">✕</button>
+      
+      <div class="roulette-container">
+        <h2 id="roulette-modal-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">
+          Surprise Outing Generator
+        </h2>
+        <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 16px;">
+          Find a spontaneous outing in Vancouver for $50 or less matching your active filters.
+        </p>
+
+        <div class="roulette-wheel-box">
+          <div class="roulette-icon" id="roulette-icon">🎲</div>
+          <div class="roulette-result-title" id="roulette-title">Need Spontaneous Inspiration?</div>
+          <div class="roulette-result-desc" id="roulette-desc">
+            Hit spin to pick a random event from your active filters.
+          </div>
+        </div>
+
+        <button class="btn-copy-plan" id="roulette-action-btn" style="width: 100%; border: none;">
+          ✨ Spin for an Outing
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Review Queue Quarantine Modal -->
+  <div class="modal-overlay" id="review-queue-modal" role="dialog" aria-modal="true" aria-labelledby="review-queue-title">
+    <div class="modal-card" style="max-width: 660px;">
+      <button class="modal-close-btn" id="close-review-queue-btn" aria-label="Close Review Queue">✕</button>
+
+      <div class="modal-header">
+        <h2 class="modal-title" id="review-queue-title" style="color: #f59e0b;">
+          ⚠️ Manual Review Quarantine Queue
+        </h2>
+        <p class="modal-desc" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px;">
+          Events where live check-out pricing could not be programmatically verified. These items are strictly quarantined and not displayed in the public catalog until reviewed and approved.
+        </p>
+      </div>
+
+      <div id="review-queue-items-list" class="review-queue-list" style="margin-top: 16px;">
+        <!-- Dynamically rendered from MANUAL_REVIEW_QUEUE -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Outing Itinerary Drawer -->
+  <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Outing Itinerary Drawer">
+    <div class="itinerary-header">
+      <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff;">
+        📌 My Saved Outings
+      </h3>
+      <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;" aria-label="Close Itinerary">✕</button>
+    </div>
+
+    <div class="itinerary-total-card">
+      <div>
+        <div style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Total Estimated Cost</div>
+        <div id="itinerary-total-cost" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--accent-primary);">
+          $0.00 CAD
+        </div>
+      </div>
+      <div id="itinerary-budget-status" style="font-size: 0.78rem; text-align: right; max-width: 150px; color: var(--text-secondary);">
+        Add events to calculate
+      </div>
+    </div>
+
+    <div class="itinerary-list" id="itinerary-items-list">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <div style="padding-top: 14px; border-top: 1px solid var(--border-subtle); margin-top: auto;">
+      <button class="btn-copy-plan" id="copy-plan-btn" style="width: 100%; border: none;">
+        📋 Copy Itinerary (with Direct Event Links)
+      </button>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 32px 0 26px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: auto;">
+    <div class="container">
+      <p style="margin-bottom: 6px;">
+        <strong>Van50</strong> — Curated Vancouver Events &amp; Outings Guide (Under $50 CAD). Strictly local independent arts, comedy, music, and outdoors.
+      </p>
+      <p style="font-size: 0.74rem; color: var(--text-secondary); opacity: 0.85;">
+        ⚡ Single Reference Source Architecture (Auto-Synced Daily • 0 Client-Side Scraping).
+      </p>
+      <div style="margin-top: 14px;">
+        <button class="btn btn-review-queue-footer" id="btn-open-review-queue" aria-label="View Data Review Queue" title="Inspect quarantined events with unverified live checkout">
+          <span>⚠️ Data Review Queue</span>
+          <span class="review-queue-badge" id="review-queue-count">0</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/data.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/roulette.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

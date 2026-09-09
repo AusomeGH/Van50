@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-09-08T17:21:18-07:00",
+    "pendingCount": 3,
+    "description": "Events quarantined for manual user review due to unverified live checkout pricing."
+  },
+  "quarantinedEvents": [
+    {
+      "id": "cultch-theatre-series",
+      "title": "The Cultch: Contemporary Stage Performance",
+      "venue": "The Cultch (Historic Theatre)",
+      "address": "1895 Venables St, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "attemptedPrice": 25.0,
+      "attemptedPriceLabel": "$25.00 door",
+      "provider": "AudienceView",
+      "semanticProvider": "AudienceView Verified",
+      "websiteUrl": "https://thecultch.com/box-office/",
+      "category": "shows",
+      "flaggedAt": "2026-09-08T17:21:18-07:00",
+      "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "tightrope-workshop",
+      "title": "Tightrope Theatre: First Step Improv Drop-In Class",
+      "venue": "Tightrope Impro Theatre",
+      "address": "1330 Napier St, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "attemptedPrice": 40.0,
+      "attemptedPriceLabel": "$40.00 door",
+      "provider": "Independent Box Office",
+      "semanticProvider": "Independent Box Office",
+      "websiteUrl": "https://www.tightropetheatre.com/classes",
+      "category": "activities",
+      "flaggedAt": "2026-09-08T17:21:18-07:00",
+      "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "unverified-eastside-cinema",
+      "title": "Eastside Cinema Club: Unverified Community Screening",
+      "venue": "Eastside Community Hall",
+      "address": "1200 Commercial Dr, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "attemptedPrice": 15.0,
+      "attemptedPriceLabel": "$15.00 door",
+      "provider": "Independent Box Office",
+      "semanticProvider": "Independent Box Office",
+      "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
+      "category": "cinema",
+      "flaggedAt": "2026-09-08T17:21:18-07:00",
+      "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    }
+  ]
+}

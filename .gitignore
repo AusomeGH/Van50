@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local IDE / environment files
+.agents/
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
