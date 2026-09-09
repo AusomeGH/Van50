@@ -895,11 +895,17 @@ function renderEventCards(events) {
       `;
     }
 
-    // CTA button with Sold-Out handling (Requirement 8)
+    // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
     const ctaButtonHtml = isSoldOut ? `
-      <span class="btn-ticket-cta sold-out" aria-label="${ev.title} is sold out">
+      <a 
+        href="${ev.websiteUrl}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn-ticket-cta sold-out"
+        aria-label="${ev.title} is sold out - check ticket portal or waitlist"
+      >
         Sold Out (Waitlist) ↗
-      </span>
+      </a>
     ` : `
       <a 
         href="${ev.websiteUrl}" 
@@ -975,16 +981,18 @@ function renderEventCards(events) {
           </div>
         ` : ''}
         
-        <!-- Venue Row: Official Venue Homepage Link + Google Maps Directions Link -->
+        <!-- Venue Row: Clear Location Navigation (Google Maps) + Separate Official Venue Website Link -->
         <div class="card-venue-row">
-          <span class="venue-pin-icon">📍</span>
-          <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-link" title="Visit ${ev.venue} official homepage">
-            ${ev.venue} <span class="venue-ext-arrow">↗</span>
+          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
+            <span class="venue-pin-icon">📍</span>
+            <span class="venue-name">${ev.venue}</span>
+            <span class="directions-pill">Directions 🗺️</span>
           </a>
-          <span class="venue-separator">•</span>
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="card-maps-link" title="Open ${ev.venue} in Google Maps">
-            Directions 🗺️
-          </a>
+          ${venueUrl ? `
+            <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
+              <span class="website-icon">🌐</span> Venue Site ↗
+            </a>
+          ` : ''}
         </div>
 
         <!-- Schedule Row & Dynamic Next Dates -->

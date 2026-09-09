@@ -182,8 +182,8 @@ def run_tests():
     with open(JS_APP_PATH, 'r', encoding='utf-8') as f:
         app_js = f.read()
     assert 'class="card-title-link"' in app_js, "card-title-link missing in js/app.js"
-    assert 'class="venue-link"' in app_js, "venue-link missing in js/app.js"
-    assert 'class="card-maps-link"' in app_js, "card-maps-link missing in js/app.js"
+    assert 'venue-link' in app_js or 'venue-website-link' in app_js, "venue-link missing in js/app.js"
+    assert 'card-maps-link' in app_js or 'venue-location-link' in app_js, "card-maps-link missing in js/app.js"
     assert 'class="card-next-dates-box"' in app_js, "card-next-dates-box missing in js/app.js"
     assert 'calculateNextTwoDates' in app_js, "calculateNextTwoDates function missing in js/app.js"
     print("  ✓ js/app.js contains all title link, venue link, directions, and next date tags")
