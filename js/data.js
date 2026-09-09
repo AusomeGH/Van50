@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-09T10:04:13-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-09T10:12:10-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -53,7 +53,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -107,7 +107,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -161,7 +161,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -215,7 +215,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -269,7 +269,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -322,7 +322,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -376,7 +376,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -430,7 +430,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -483,7 +483,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 8.09,
       "preTaxSticker": 7.7,
       "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
     }
   },
@@ -536,7 +536,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 9.82,
       "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via Showpass Vancouver Park Board ticketing portal."
     }
   },
@@ -602,7 +602,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 10.24,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
     }
   },
@@ -655,7 +655,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 11.75,
       "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
     }
   },
@@ -707,7 +707,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 12.44,
       "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-      "verifiedAt": "2026-09-09T10:04:12-07:00",
+      "verifiedAt": "2026-09-09T10:12:08-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -760,7 +760,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
@@ -818,7 +818,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 13.5,
       "feeBreakdown": "$12.00 base matinee + $1.50 Agile web fee",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Verified via VIFF Centre Agile ticketing websales portal."
     }
   },
@@ -890,7 +890,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 11.0,
       "feeBreakdown": "Multi-tier: Student ($11.00), Senior ($13.00), General ($15.00) verified via Agile websales",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Verified via The Cinematheque Agile websales ticket search frame."
     }
   },
@@ -942,7 +942,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Verified via venue booking and trivia participation policy."
     }
   },
@@ -994,7 +994,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 36.0,
       "feeBreakdown": "$32.00 base + $4.00 Igniter convenience & box office fees",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Parsed from live ticket_types JSON payload on riotheatretickets.ca."
     }
   },
@@ -1046,7 +1046,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 44.0,
       "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Verified via Eventbrite checkout cart payload."
     }
   },
@@ -1098,7 +1098,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 22.75,
       "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
     }
   },
@@ -1163,7 +1163,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
     }
   },
@@ -1215,7 +1215,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:09-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1268,7 +1268,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1321,7 +1321,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1390,7 +1390,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 18.5,
       "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
     }
   },
@@ -1455,7 +1455,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.5,
       "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via The Fox Cabaret calendar fee schedule."
     }
   },
@@ -1520,7 +1520,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Early/Student ($20.00) and General ($25.00) verified via Eventbrite",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Eventbrite page ticket listing."
     }
   },
@@ -1585,7 +1585,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 18.0,
       "feeBreakdown": "Student ($18.00) and General ($25.00) verified with 0 added online fees on TicketSpice",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
     }
   },
@@ -1637,7 +1637,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$23.00 advance base + $4.96 Eventbrite fee & GST",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -1704,7 +1704,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 28.5,
       "feeBreakdown": "Student/Senior ($28.50) and Regular ($33.50) tiers verified via AudienceView consumer checkout",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via The Improv Centre AudienceView schedule."
     }
   },
@@ -1756,7 +1756,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.85,
       "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Eventbrite checkout cart."
     }
   },
@@ -1809,7 +1809,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.5,
       "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via tickets.scienceworld.ca."
     }
   },
@@ -1862,7 +1862,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 flat ticket rate under VSO All-Access Pass program",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Vancouver Symphony Orchestra All-Access Pass terms."
     }
   },
@@ -1916,7 +1916,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.0,
       "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
     }
   },
@@ -1969,7 +1969,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 15.55,
       "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
     }
   },
@@ -2022,7 +2022,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2075,7 +2075,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2126,7 +2126,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2181,7 +2181,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2235,7 +2235,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2289,7 +2289,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2343,7 +2343,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2397,7 +2397,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2450,7 +2450,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2503,7 +2503,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2558,7 +2558,331 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T10:04:13-07:00",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "riley-park-farmers-market",
+    "title": "Riley Park Farmers Market",
+    "venue": "Riley Park Plaza (Nat Bailey Stadium)",
+    "address": "4601 Ontario St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Saturdays)",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "🌽",
+    "subTags": [
+      "farmers-market",
+      "local-produce",
+      "riley-park",
+      "nat-bailey",
+      "food-trucks"
+    ],
+    "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
+    "startIso": "2026-09-12T10:00:00-07:00",
+    "endIso": "2026-09-12T14:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://eatlocal.org/markets/riley-park/",
+    "venueUrl": "https://eatlocal.org/markets/riley-park/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2435,
+      -123.1066
+    ],
+    "transitInfo": "#3 Main St bus or King Edward Canada Line station (12 min walk)",
+    "description": "One of Vancouver's premier outdoor flagship markets situated outside Nat Bailey Stadium, showcasing 70+ local farms, artisan cheese makers, craft brewers, and local bakers.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "west-end-farmers-market",
+    "title": "West End Farmers Market",
+    "venue": "Nelson Park (West End)",
+    "address": "1100 Comox St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Saturdays)",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "🥕",
+    "subTags": [
+      "farmers-market",
+      "west-end",
+      "nelson-park",
+      "downtown",
+      "artisan-bakers"
+    ],
+    "dateSchedule": "Weekly (Saturdays) • 9:00 AM - 2:00 PM",
+    "startIso": "2026-09-12T09:00:00-07:00",
+    "endIso": "2026-09-12T14:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://eatlocal.org/markets/west-end/",
+    "venueUrl": "https://eatlocal.org/markets/west-end/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2818,
+      -123.1302
+    ],
+    "transitInfo": "Burrard SkyTrain station or #5 / #6 Robson/Davie bus",
+    "description": "Nestled in tree-lined Nelson Park next to Mole Hill heritage houses, featuring fresh urban greens, artisan sourdough, micro-batch kombucha, and hot lunch stalls in downtown Vancouver.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "mount-pleasant-farmers-market",
+    "title": "Mount Pleasant Farmers Market",
+    "venue": "Dude Chilling Park (Guelph Park)",
+    "address": "2390 Brunswick St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Sundays)",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "🌻",
+    "subTags": [
+      "farmers-market",
+      "mount-pleasant",
+      "dude-chilling-park",
+      "craft-food",
+      "community"
+    ],
+    "dateSchedule": "Weekly (Sundays) • 10:00 AM - 2:00 PM",
+    "startIso": "2026-09-13T10:00:00-07:00",
+    "endIso": "2026-09-13T14:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://eatlocal.org/markets/mount-pleasant/",
+    "venueUrl": "https://eatlocal.org/markets/mount-pleasant/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2638,
+      -123.0954
+    ],
+    "transitInfo": "#8 Fraser bus or #9 / #99 Broadway to Fraser St",
+    "description": "Vibrant Sunday market held on the grass at Dude Chilling Park with local fruit growers, honey harvesters, plant starts, fresh donuts, and laid-back East Van park community vibes.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "downtown-farmers-market",
+    "title": "Downtown Mid-Week Farmers Market",
+    "venue": "Vancouver Art Gallery Plaza (North)",
+    "address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Wednesdays)",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "🍎",
+    "subTags": [
+      "farmers-market",
+      "downtown",
+      "art-gallery-plaza",
+      "midweek-market",
+      "grab-and-go"
+    ],
+    "dateSchedule": "Weekly (Wednesdays) • 2:00 PM - 6:00 PM",
+    "startIso": "2026-09-09T14:00:00-07:00",
+    "endIso": "2026-09-09T18:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://eatlocal.org/markets/downtown/",
+    "venueUrl": "https://eatlocal.org/markets/downtown/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2831,
+      -123.1205
+    ],
+    "transitInfo": "Vancouver City Centre or Granville SkyTrain Station (2 min walk)",
+    "description": "Convenient mid-week downtown market on the Vancouver Art Gallery plaza with fresh berries, hand-crafted pastries, gourmet food trucks, and farm-fresh produce for evening commuters.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "false-creek-farmers-market",
+    "title": "False Creek Waterfront Farmers Market",
+    "venue": "Concord Community Park (False Creek)",
+    "address": "50 Pacific Blvd, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Thursdays)",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "⛵",
+    "subTags": [
+      "farmers-market",
+      "false-creek",
+      "waterfront",
+      "thursday-market",
+      "seawall"
+    ],
+    "dateSchedule": "Weekly (Thursdays) • 3:00 PM - 7:00 PM",
+    "startIso": "2026-09-10T15:00:00-07:00",
+    "endIso": "2026-09-10T19:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://eatlocal.org/markets/false-creek/",
+    "venueUrl": "https://eatlocal.org/markets/false-creek/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2743,
+      -123.1118
+    ],
+    "transitInfo": "Stadium-Chinatown SkyTrain Station (6 min walk along seawall)",
+    "description": "Thursday evening waterfront market overlooking False Creek with BC field berries, wild BC seafood, cold-pressed juices, baked treats, and seaside sunset park views.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
+      "details": "Verified via official municipal park bylaw / published civic schedule."
+    }
+  },
+  {
+    "id": "ubc-farm-farmers-market",
+    "title": "UBC Farm Community Farmers Market",
+    "venue": "UBC Farm (South Campus)",
+    "address": "3461 Ross Dr, Vancouver",
+    "neighborhood": "Kitsilano",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "tiers": [],
+    "isFree": true,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Saturdays)",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon"
+    ],
+    "category": "activities",
+    "categoryLabel": "Activities & Fun",
+    "categoryIcon": "🚜",
+    "subTags": [
+      "farmers-market",
+      "ubc-farm",
+      "organic-certified",
+      "farm-tours",
+      "family-friendly"
+    ],
+    "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
+    "startIso": "2026-09-12T10:00:00-07:00",
+    "endIso": "2026-09-12T14:00:00-07:00",
+    "isSoldOut": false,
+    "websiteUrl": "https://ubcfarm.ubc.ca/food/",
+    "venueUrl": "https://ubcfarm.ubc.ca/food/",
+    "ticketProvider": "Free Public Access",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2526,
+      -123.2384
+    ],
+    "transitInfo": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus",
+    "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
+      "verifiedAt": "2026-09-09T10:12:10-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   }
@@ -2576,7 +2900,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "AudienceView Verified",
     "websiteUrl": "https://thecultch.com/box-office/",
     "category": "shows",
-    "flaggedAt": "2026-09-09T10:04:13-07:00",
+    "flaggedAt": "2026-09-09T10:12:10-07:00",
     "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -2593,7 +2917,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://www.tightropetheatre.com/classes",
     "category": "activities",
-    "flaggedAt": "2026-09-09T10:04:13-07:00",
+    "flaggedAt": "2026-09-09T10:12:10-07:00",
     "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -2610,7 +2934,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
     "category": "cinema",
-    "flaggedAt": "2026-09-09T10:04:13-07:00",
+    "flaggedAt": "2026-09-09T10:12:10-07:00",
     "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -2711,5 +3035,11 @@ const VENUE_URLS = {
   "Guilt & Co.": "https://www.guiltandcompany.com",
   "UBC Instructional Resources Centre (IRC)": "https://vaninstitute.ca",
   "Colony Main Street": "https://iq2000trivia.com",
-  "RUNVAN Clubhouse & Seawall": "https://runvan.org"
+  "RUNVAN Clubhouse & Seawall": "https://runvan.org",
+  "Riley Park Plaza (Nat Bailey Stadium)": "https://eatlocal.org/markets/riley-park/",
+  "Nelson Park (West End)": "https://eatlocal.org/markets/west-end/",
+  "Dude Chilling Park (Guelph Park)": "https://eatlocal.org/markets/mount-pleasant/",
+  "Vancouver Art Gallery Plaza (North)": "https://eatlocal.org/markets/downtown/",
+  "Concord Community Park (False Creek)": "https://eatlocal.org/markets/false-creek/",
+  "UBC Farm (South Campus)": "https://ubcfarm.ubc.ca/food/"
 };
