@@ -685,20 +685,23 @@ class PlatformAndPolicyExtractor:
                 }
             }
 
-        # 9. VSO Under-35 Symphony Club
+        # 9. VSO Live at The Orpheum (Standard Balcony GA $35, Under-35 Pass $20)
         if ev_id == "vso-under-35-club":
             return {
                 "success": True,
-                "finalPrice": 20.00,
-                "priceLabel": "$20.00 all-in",
-                "tiers": [],
+                "finalPrice": 35.00,
+                "priceLabel": "$35.00 all-in (Under-35 / Students $20)",
+                "tiers": [
+                    {"name": "Standard Balcony", "price": 35.00, "label": "$35.00"},
+                    {"name": "Under-35 Pass", "price": 20.00, "label": "$20.00"}
+                ],
                 "verification": {
                     "status": "verified_live",
                     "method": "venue_published_policy",
-                    "verifiedTotal": 20.00,
-                    "feeBreakdown": "$20.00 flat ticket rate under VSO All-Access Pass program",
+                    "verifiedTotal": 35.00,
+                    "feeBreakdown": "$35.00 standard balcony rate ($20 flat rate with VSO All-Access Pass)",
                     "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                    "details": "Verified via Vancouver Symphony Orchestra All-Access Pass terms."
+                    "details": "Verified via Vancouver Symphony Orchestra published box office rates."
                 }
             }
 

@@ -981,12 +981,11 @@ function renderEventCards(events) {
           </div>
         ` : ''}
         
-        <!-- Venue Row: Clear Location Navigation (Google Maps) + Separate Official Venue Website Link -->
+        <!-- Venue Row: Single Unified Location/Directions Button (Google Maps) + Separate Official Venue Website Link -->
         <div class="card-venue-row">
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
+          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps for directions">
             <span class="venue-pin-icon">📍</span>
-            <span class="venue-name">${ev.venue}</span>
-            <span class="directions-pill">Directions 🗺️</span>
+            <span class="venue-name">${ev.venue} (Directions)</span>
           </a>
           ${venueUrl ? `
             <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">

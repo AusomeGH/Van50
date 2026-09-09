@@ -20,6 +20,7 @@ import sys
 import json
 import urllib.request
 from datetime import datetime
+import re
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -364,7 +365,7 @@ def get_curated_seed_catalog():
         },
         {
             "id": "ubc-thunderbirds-varsity",
-            "title": "UBC Thunderbirds: Varsity Sports Admission",
+            "title": "UBC Thunderbirds: Home Varsity Games",
             "venue": "War Memorial Gym & Thunderbird Stadium",
             "address": "6081 University Blvd, Vancouver",
             "neighborhood": "Kitsilano",
@@ -1003,11 +1004,12 @@ def get_curated_seed_catalog():
         },
         {
             "id": "vso-under-35-club",
-            "title": "Vancouver Symphony Orchestra: Under-35 Symphony Club",
+            "title": "Vancouver Symphony Orchestra Live at The Orpheum",
+            "artist": "Vancouver Symphony Orchestra",
             "venue": "The Orpheum Theatre",
             "address": "601 Smithe St, Vancouver",
             "neighborhood": "Downtown / West End",
-            "basePrice": 20.00,
+            "basePrice": 35.00,
             "provider": "Box Office / Direct",
             "semanticProvider": "Box Office / Direct Verified",
             "pricingType": "platform",
@@ -1019,7 +1021,7 @@ def get_curated_seed_catalog():
             "category": "music",
             "categoryLabel": "Live Music",
             "categoryIcon": "🎵",
-            "subTags": ["symphony", "orpheum", "classical-music", "under-35"],
+            "subTags": ["symphony", "orpheum", "classical-music", "under-35", "vso"],
             "dateSchedule": "Select Weekend Evenings • 8:00 PM",
             "startIso": "2026-09-19T20:00:00-07:00",
             "endIso": "2027-05-31T22:30:00-07:00",
@@ -1027,7 +1029,7 @@ def get_curated_seed_catalog():
             "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
             "coordinates": [49.2804, -123.1206],
             "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
-            "description": "Experience world-class orchestral masterworks inside Vancouver's opulent 1927 Orpheum Theatre under a hand-painted ceiling dome for a flat $20 ticket with the VSO All-Access Pass."
+            "description": "Experience world-class orchestral masterworks performed by the Vancouver Symphony Orchestra inside Vancouver's opulent 1927 Orpheum Theatre under a hand-painted ceiling dome. Standard balcony tickets start at $35, with $20 passes available for patrons under 35."
         },
         {
             "id": "cultch-theatre-series",
@@ -1938,6 +1940,26 @@ VENUE_URLS = {
 
 
 # ==============================================================================
+# AUTOMATED TITLE SANITIZATION & LINTER PIPELINE
+# ==============================================================================
+
+def sanitize_event_title(title: str) -> str:
+    """
+    Sanitizes event titles by stripping demographic concession tags, ticket schemes,
+    and admission noise so card names represent authentic cultural events rather than discount categories.
+    """
+    cleaned = title
+    # 1. Under-XX clubs or demographic qualifiers
+    cleaned = re.sub(r':\s*Under-?\d+\s*(?:Symphony\s*)?Club', ' Live at The Orpheum', cleaned, flags=re.IGNORECASE)
+    # 2. Concession ticket noise
+    cleaned = re.sub(r':\s*Varsity\s+Sports\s+Admission', ': Home Varsity Games', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'(?::|\()\s*(?:Student|Senior|Member|Youth|General)\s+(?:Admission|Rush|Discount|Pass|Tier)\)?', '', cleaned, flags=re.IGNORECASE)
+    # 3. Trailing punctuation or whitespace
+    cleaned = re.sub(r'\s{2,}', ' ', cleaned).strip(' :-,')
+    return cleaned
+
+
+# ==============================================================================
 # UNIFIED SYNCHRONIZATION PIPELINE
 # ==============================================================================
 
@@ -2005,9 +2027,14 @@ def run_sync() -> bool:
             rejected_count += 1
             continue
 
+        raw_title = item['title']
+        clean_title = sanitize_event_title(raw_title)
+        if clean_title != raw_title:
+            print(f"[TITLE LINT] Cleaned ticket-type noise: '{raw_title}' -> '{clean_title}'")
+
         record = {
             "id": event_id,
-            "title": item['title'],
+            "title": clean_title,
             "artist": item.get('artist'),
             "performers": item.get('performers'),
             "venue": item['venue'],

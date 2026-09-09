@@ -780,6 +780,7 @@
   flex-wrap: wrap;
 }
 
+.venue-location-btn,
 .venue-location-link,
 .card-maps-link {
   display: inline-flex;
@@ -789,23 +790,26 @@
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-fast);
-  padding: 3px 7px;
+  padding: 4px 9px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
   max-width: 100%;
 }
 
+.venue-location-btn:hover,
+.venue-location-btn:focus-visible,
 .venue-location-link:hover,
 .venue-location-link:focus-visible,
 .card-maps-link:hover,
 .card-maps-link:focus-visible {
   color: #fff;
-  background: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.5);
   transform: translateY(-1px);
 }
 
+.venue-location-btn:hover .venue-name,
 .venue-location-link:hover .venue-name,
 .card-maps-link:hover .venue-name {
   text-decoration: underline;
@@ -821,26 +825,6 @@
   color: #f1f5f9;
   font-weight: 600;
   font-size: 0.84rem;
-}
-
-.directions-pill {
-  color: #38bdf8;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
-  background: rgba(56, 189, 248, 0.14);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  margin-left: 2px;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.venue-location-link:hover .directions-pill,
-.card-maps-link:hover .directions-pill {
-  background: rgba(56, 189, 248, 0.28);
-  border-color: rgba(56, 189, 248, 0.6);
-  color: #bae6fd;
 }
 
 .venue-website-link,
