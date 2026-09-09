@@ -25,11 +25,18 @@ function initVancouverMap() {
   }).addTo(mapInstance);
 
   markersLayer = L.layerGroup().addTo(mapInstance);
+  window.vancouverMapInstance = mapInstance;
 
-  // Re-plot when map becomes visible
+  // Re-plot when map container size changes
   window.addEventListener('resize', () => {
     if (mapInstance) mapInstance.invalidateSize();
   });
+}
+
+function invalidateVancouverMap() {
+  if (window.vancouverMapInstance) {
+    window.vancouverMapInstance.invalidateSize();
+  }
 }
 
 function updateMapMarkers(events) {

@@ -157,7 +157,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-09T19:00:00-07:00",
             "endIso": "2026-09-30T21:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://kitsilanoshowboat.com/schedule/",
+            "websiteUrl": "https://kitsilanoshowboat.com/",
             "coordinates": [49.2742, -123.1558],
             "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
             "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk."
@@ -185,7 +185,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T10:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://www.vpl.ca/central-library/levels-8-and-9",
+            "websiteUrl": "https://www.vpl.ca/",
             "coordinates": [49.2801, -123.1154],
             "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
             "description": "Architectural Roman Colosseum-inspired library featuring a free public 8th and 9th floor rooftop garden terrace with views across the Downtown skyline."

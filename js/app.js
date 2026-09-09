@@ -182,9 +182,18 @@ function setupEventListeners() {
       viewCardsBtn.classList.remove('active');
       eventsGrid.style.display = 'none';
       mapWrapper.style.display = 'block';
-      if (window.vancouverMapInstance) {
-        setTimeout(() => window.vancouverMapInstance.invalidateSize(), 200);
-      }
+
+      // Ensure Leaflet calculates real container size & renders dark tiles properly
+      setTimeout(() => {
+        if (window.vancouverMapInstance) {
+          window.vancouverMapInstance.invalidateSize();
+        } else if (typeof initVancouverMap === 'function') {
+          initVancouverMap();
+        }
+        if (typeof updateMapMarkers === 'function') {
+          updateMapMarkers(window.currentFilteredEvents || ALL_EVENTS || []);
+        }
+      }, 80);
     });
   }
 
