@@ -73,7 +73,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/seawall.aspx",
+            "websiteUrl": "https://www.stanleypark.org/",
             "coordinates": [49.2988, -123.1384],
             "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
             "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon."
@@ -101,7 +101,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T07:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://lynncanyon.ca/tour/suspension-bridge/",
+            "websiteUrl": "https://en.wikipedia.org/wiki/Lynn_Canyon_Suspension_Bridge",
             "coordinates": [49.3438, -123.0189],
             "transitInfo": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate",
             "description": "Vancouver's 100% free alternative to Capilano. Sway 50 meters above roaring canyon waters, temperate rainforest boardwalks, and emerald swimming holes."
@@ -185,7 +185,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T10:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://www.vpl.ca/",
+            "websiteUrl": "https://en.wikipedia.org/wiki/Vancouver_Public_Library",
             "coordinates": [49.2801, -123.1154],
             "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
             "description": "Architectural Roman Colosseum-inspired library featuring a free public 8th and 9th floor rooftop garden terrace with views across the Downtown skyline."
@@ -269,7 +269,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+            "websiteUrl": "https://en.wikipedia.org/wiki/Queen_Elizabeth_Park",
             "coordinates": [49.2417, -123.1126],
             "transitInfo": "10 min walk from King Edward Canada Line station",
             "description": "Highest point in the City of Vancouver (152m above sea level) featuring sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas."
@@ -1116,7 +1116,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T08:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+            "websiteUrl": "https://www.stanleypark.org/",
             "coordinates": [49.2908, -123.1448],
             "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
             "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay."
@@ -1203,7 +1203,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-01T18:00:00-07:00",
             "endIso": "2026-09-01T21:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/kitsilano-beach.aspx",
+            "websiteUrl": "https://kitsilanoshowboat.com/",
             "coordinates": [49.2724, -123.1534],
             "transitInfo": "#2 Burrard or #4 bus",
             "description": "Annual end-of-summer community musical celebration on Kitsilano Beach. (Demonstration ended event for internal tracker verification)."
@@ -1249,15 +1249,15 @@ def get_curated_seed_catalog():
 # ==============================================================================
 
 VENUE_URLS = {
-    "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "Lynn Canyon Park": "https://lynncanyon.ca",
+    "Stanley Park Seawall": "https://www.stanleypark.org/",
+    "Lynn Canyon Park": "https://en.wikipedia.org/wiki/Lynn_Canyon_Suspension_Bridge",
     "Granville Island Public Market": "https://granvilleisland.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
-    "VPL Central Library (Level 9)": "https://www.vpl.ca",
+    "VPL Central Library (Level 9)": "https://en.wikipedia.org/wiki/Vancouver_Public_Library",
     "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com",
     "UBC Rose Garden & Trail 6": "https://visit.ubc.ca",
-    "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "Bloedel Conservatory": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "Queen Elizabeth Park": "https://en.wikipedia.org/wiki/Queen_Elizabeth_Park",
+    "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
     "Little Mountain Gallery": "https://littlemountaingallery.ca",
     "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
     "Chill x Studio": "https://chillxstudio.com",
@@ -1274,10 +1274,10 @@ VENUE_URLS = {
     "Science World at TELUS World of Science": "https://www.scienceworld.ca",
     "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
     "Pizzeria Ludica": "https://ludica.ca",
-    "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-and-putt.aspx",
+    "Stanley Park Pitch & Putt": "https://www.stanleypark.org/",
     "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
     "The Shipyards District": "https://theshipyardsdistrict.ca",
-    "Kitsilano Beach Park": "https://vancouver.ca/parks-recreation-culture/kitsilano-beach-park.aspx",
+    "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
     "Revue Stage Granville Island": "https://theimprovcentre.ca"
 }
 
