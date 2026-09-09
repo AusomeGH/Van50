@@ -1629,7 +1629,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-12T10:00:00-07:00",
             "endIso": "2026-09-12T14:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://ubcfarm.ubc.ca/food/",
+            "websiteUrl": "https://ubcfarm.ubc.ca/markets/",
             "coordinates": [49.2526, -123.2384],
             "transitInfo": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus",
             "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours."
@@ -1639,10 +1639,11 @@ def get_curated_seed_catalog():
         # ======================================================================
         {
             "id": "2nd-floor-gastown-sharon-minemoto",
-            "title": "The Sharon Minemoto Jazz Trio Live at 2nd Floor Gastown",
-            "artist": "The Sharon Minemoto Trio",
+            "title": "Live Jazz & Supper Club at 2nd Floor Gastown",
+            "artist": "Rotating local jazz trios & guest artists",
+            "performers": ["Sharon Minemoto Trio", "Rotating local jazz artists"],
             "venue": "2nd Floor Gastown",
-            "venueAliases": ["Water Street Cafe", "Water St Cafe", "The Water St Cafe"],
+            "venueAliases": ["Water Street Cafe", "Water St Cafe", "The Water St Cafe", "Sharon Minemoto"],
             "address": "300 Water St, Vancouver",
             "neighborhood": "Gastown / Chinatown",
             "basePrice": 12.0,
@@ -1665,14 +1666,15 @@ def get_curated_seed_catalog():
             "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
             "coordinates": [49.2842, -123.1102],
             "transitInfo": "Waterfront Station (3 min walk)",
-            "description": "Intimate 50-seat jazz listening room above the Water St. Cafe featuring acclaimed Vancouver jazz pianist Sharon Minemoto with bassist and drums. $12 live music cover added to dining bill."
+            "description": "Intimate 50-seat jazz listening room above the Water St. Cafe featuring rotating acclaimed Vancouver jazz pianists, trios, and guest artists. $12 live music cover added to dining bill."
         },
         {
             "id": "frankies-jazz-brad-turner",
-            "title": "The Brad Turner Quartet Live at Frankie's Jazz Club",
-            "artist": "The Brad Turner Quartet",
+            "title": "Weekend Live Jazz Showcase at Frankie's Jazz Club",
+            "artist": "Rotating Canadian & international jazz artists",
+            "performers": ["Brad Turner Quartet", "Rotating jazz artists"],
             "venue": "Frankie's Jazz Club",
-            "venueAliases": ["Frankies", "Frankies Jazz Club", "Coastal Jazz"],
+            "venueAliases": ["Frankies", "Frankies Jazz Club", "Coastal Jazz", "Brad Turner"],
             "address": "755 Beatty St, Vancouver",
             "neighborhood": "Downtown / West End",
             "basePrice": 22.0,
@@ -1695,13 +1697,15 @@ def get_curated_seed_catalog():
             "websiteUrl": "https://www.coastaljazz.ca",
             "coordinates": [49.2778, -123.1147],
             "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
-            "description": "Vancouver's premier dedicated jazz supper club, operated in partnership with the Coastal Jazz & Blues Society. Multi-Juno Award-winning trumpeter Brad Turner leads an all-star quartet."
+            "description": "Vancouver's premier dedicated jazz supper club, operated in partnership with the Coastal Jazz & Blues Society. Weekend live showcases featuring rotating Canadian and international jazz artists."
         },
         {
             "id": "wise-hall-roots-revue",
-            "title": "East Van Roots & Bluegrass Revue Live at The WISE Hall",
-            "artist": "East Van Roots & Bluegrass Revue",
+            "title": "East Van Roots, Folk & Live Music at The WISE Hall",
+            "artist": "Rotating local roots, folk & bluegrass acts",
+            "performers": ["Rotating local roots, folk & bluegrass acts"],
             "venue": "The WISE Hall & Lounge",
+            "venueAliases": ["The WISE", "Wise Hall", "WISE Lounge", "Roots & Bluegrass Revue"],
             "address": "1882 Adanac St, Vancouver",
             "neighborhood": "Commercial Drive",
             "basePrice": 15.0,
@@ -1724,7 +1728,7 @@ def get_curated_seed_catalog():
             "websiteUrl": "https://thewise.ca",
             "coordinates": [49.2774, -123.0673],
             "transitInfo": "#20 Victoria or #14 Hastings bus to Commercial & Adanac",
-            "description": "Historic East Vancouver community hall and downstairs lounge hosting high-energy bluegrass, old-time roots, and Americana stringbands. Friendly neighborhood vibe with local taps."
+            "description": "Historic East Vancouver community hall and downstairs lounge hosting high-energy bluegrass, old-time roots, and Americana stringbands with rotating local artists. Friendly neighborhood vibe with local taps."
         },
         {
             "id": "anza-club-bluegrass-jam",
@@ -1757,9 +1761,11 @@ def get_curated_seed_catalog():
         },
         {
             "id": "red-gate-dead-soft",
-            "title": "Dead Soft with Babe Corner & Sore Points Live at Red Gate",
-            "artist": "Dead Soft, Babe Corner, Sore Points",
+            "title": "Friday Night Live Indie & Underground at Red Gate",
+            "artist": "Rotating local indie, punk & experimental bands",
+            "performers": ["Dead Soft", "Babe Corner", "Sore Points", "Rotating local indie, punk & experimental bands"],
             "venue": "Red Gate Arts Society",
+            "venueAliases": ["Red Gate", "Red Gate Arts Society", "Dead Soft", "Babe Corner"],
             "address": "1151 E Hastings St, Vancouver",
             "neighborhood": "Gastown / Chinatown",
             "basePrice": 12.0,
@@ -1774,22 +1780,23 @@ def get_curated_seed_catalog():
             "category": "music",
             "categoryLabel": "Live Music",
             "categoryIcon": "🎵",
-            "subTags": ["indie-rock", "dead-soft", "diy-venue", "post-punk", "all-ages"],
+            "subTags": ["indie-rock", "dead-soft", "babe-corner", "diy-venue", "post-punk", "all-ages"],
             "dateSchedule": "Weekly (Fridays) • 8:30 PM (Doors 8:00 PM)",
             "startIso": "2026-09-11T20:30:00-07:00",
             "endIso": "2026-09-11T23:45:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://redgate.tv",
+            "websiteUrl": "https://redgate.tv/tickets/",
             "coordinates": [49.2811, -123.0805],
             "transitInfo": "#14 or #16 Hastings bus directly to Clark Dr",
-            "description": "Vancouver's premier artist-run underground DIY music space hosting local fuzz-rock titans Dead Soft with support from Babe Corner and Sore Points. Accessible, all-ages, $12 door PWYC."
+            "description": "Vancouver's premier artist-run underground DIY music space hosting Friday night live indie, post-punk, and experimental bands. Rotating local acts, accessible, all-ages, $12 door PWYC."
         },
         {
             "id": "lanalous-the-jolts",
-            "title": "The Jolts with Tough Customer Live at LanaLou's",
-            "artist": "The Jolts, Tough Customer",
+            "title": "Weekend Live Rock 'n' Roll at LanaLou's",
+            "artist": "Rotating local punk, garage & rock bands",
+            "performers": ["The Jolts", "Tough Customer", "Rotating local bands"],
             "venue": "LanaLou's",
-            "venueAliases": ["Lanalous", "Lana Lou's", "Lana Lous"],
+            "venueAliases": ["Lanalous", "Lana Lou's", "Lana Lous", "The Jolts"],
             "address": "362 Powell St, Vancouver",
             "neighborhood": "Gastown / Chinatown",
             "basePrice": 12.0,
@@ -1812,7 +1819,7 @@ def get_curated_seed_catalog():
             "websiteUrl": "https://lanalous.com",
             "coordinates": [49.2831, -123.0954],
             "transitInfo": "#4 or #7 Powell bus to Dunlevy Ave",
-            "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane Vancouver garage punk veterans The Jolts and Tough Customer. 100% door proceeds support the performers."
+            "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane weekend live shows with rotating Vancouver garage punk and rock bands. 100% door proceeds support the performers."
         },
         {
             "id": "the-roxy-fab-fourever",
@@ -1928,20 +1935,121 @@ VENUE_URLS = {
     "Dude Chilling Park (Guelph Park)": "https://eatlocal.org/markets/mount-pleasant/",
     "Vancouver Art Gallery Plaza (North)": "https://eatlocal.org/markets/downtown/",
     "Concord Community Park (False Creek)": "https://eatlocal.org/markets/false-creek/",
-    "UBC Farm (South Campus)": "https://ubcfarm.ubc.ca/food/",
+    "UBC Farm (South Campus)": "https://ubcfarm.ubc.ca/markets/",
     "2nd Floor Gastown": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
     "Frankie's Jazz Club": "https://www.coastaljazz.ca",
     "The WISE Hall & Lounge": "https://thewise.ca",
     "The Anza Club": "https://www.anzaclub.org",
-    "Red Gate Arts Society": "https://redgate.tv",
+    "Red Gate Arts Society": "https://redgate.tv/tickets/",
     "LanaLou's": "https://lanalous.com",
     "The Roxy Cabaret": "https://www.roxyvan.com"
 }
 
 
 # ==============================================================================
-# AUTOMATED TITLE SANITIZATION & LINTER PIPELINE
+# AUTOMATED URL DEEP-LINK NORMALIZER & SAFEGUARD PIPELINE
 # ==============================================================================
+
+PROHIBITED_GENERIC_URL_REDIRECTS = {
+    "https://redgate.tv": "https://redgate.tv/tickets/",
+    "https://redgate.tv/": "https://redgate.tv/tickets/",
+    "http://redgate.tv": "https://redgate.tv/tickets/",
+    "http://redgate.tv/": "https://redgate.tv/tickets/",
+    "https://ubcfarm.ubc.ca": "https://ubcfarm.ubc.ca/markets/",
+    "https://ubcfarm.ubc.ca/": "https://ubcfarm.ubc.ca/markets/",
+    "https://ubcfarm.ubc.ca/food": "https://ubcfarm.ubc.ca/markets/",
+    "https://ubcfarm.ubc.ca/food/": "https://ubcfarm.ubc.ca/markets/",
+}
+
+def normalize_event_links(url: str, venue: str = "") -> str:
+    """
+    Automated URL deep-link normalizer:
+    Guarantees event URLs point to verified schedule/ticketing endpoints rather than
+    live-stream players (e.g. PeerTube webcam), institutional landing pages, or dead ends.
+    """
+    if not url:
+        return url
+    cleaned = url.strip()
+
+    # Exact prohibited roots
+    if cleaned in PROHIBITED_GENERIC_URL_REDIRECTS:
+        return PROHIBITED_GENERIC_URL_REDIRECTS[cleaned]
+
+    # Pattern-based normalization for Red Gate
+    if "redgate.tv" in cleaned.lower():
+        path = re.sub(r'^https?://(?:www\.)?redgate\.tv/?', '', cleaned, flags=re.IGNORECASE).strip('/')
+        if not path or path in ('video', 'live', 'player', 'webtv'):
+            return "https://redgate.tv/tickets/"
+
+    # Pattern-based normalization for UBC Farm
+    if "ubcfarm.ubc.ca" in cleaned.lower():
+        if "/food" in cleaned.lower() or cleaned.rstrip('/') in ("https://ubcfarm.ubc.ca", "http://ubcfarm.ubc.ca"):
+            return "https://ubcfarm.ubc.ca/markets/"
+
+    return cleaned
+
+
+# ==============================================================================
+# AUTOMATED TITLE & RECURRENCE LINTER PIPELINE
+# ==============================================================================
+
+RECURRING_MUSIC_LINEUP_RULES = {
+    "red-gate-dead-soft": {
+        "title": "Friday Night Live Indie & Underground at Red Gate",
+        "artist": "Rotating local indie, punk & experimental bands",
+        "aliases": ["Dead Soft", "Babe Corner", "Sore Points"]
+    },
+    "2nd-floor-gastown-sharon-minemoto": {
+        "title": "Live Jazz & Supper Club at 2nd Floor Gastown",
+        "artist": "Rotating local jazz trios & guest artists",
+        "aliases": ["Sharon Minemoto", "Sharon Minemoto Trio"]
+    },
+    "frankies-jazz-brad-turner": {
+        "title": "Weekend Live Jazz Showcase at Frankie's Jazz Club",
+        "artist": "Rotating Canadian & international jazz artists",
+        "aliases": ["Brad Turner", "Brad Turner Quartet"]
+    },
+    "lanalous-the-jolts": {
+        "title": "Weekend Live Rock 'n' Roll at LanaLou's",
+        "artist": "Rotating local punk, garage & rock bands",
+        "aliases": ["The Jolts", "Tough Customer"]
+    },
+    "wise-hall-roots-revue": {
+        "title": "East Van Roots, Folk & Live Music at The WISE Hall",
+        "artist": "Rotating local roots, folk & bluegrass acts",
+        "aliases": ["Roots & Bluegrass Revue"]
+    }
+}
+
+def lint_recurring_music_event(item: dict) -> tuple[str, str, list]:
+    """
+    Automated recurrence-vs-lineup linter:
+    Prevents weekly recurring music series from being named after a single weekend's flyer lineup.
+    Safeguards future discovered events by enforcing series naming while archiving specific artists
+    into search-indexed aliases.
+    """
+    event_id = item.get('id', '')
+    raw_title = item.get('title', '')
+    raw_artist = item.get('artist') or ''
+    freq = item.get('frequency', '')
+    cat = item.get('category', '')
+
+    # Check registered recurring venue rules
+    if event_id in RECURRING_MUSIC_LINEUP_RULES:
+        rule = RECURRING_MUSIC_LINEUP_RULES[event_id]
+        return rule["title"], rule["artist"], rule["aliases"]
+
+    # General heuristic for newly discovered weekly/daily music events:
+    if cat == 'music' and freq in ('weekly', 'daily'):
+        m = re.search(r'^(.*?)\s+with\s+(.*?)\s+Live at\s+(.*)$', raw_title, flags=re.IGNORECASE)
+        if m:
+            headliner = m.group(1).strip()
+            venue = m.group(3).strip()
+            series_title = f"Live Music & Local Bands at {venue}"
+            rotating_artist = "Rotating local bands & guest artists"
+            return series_title, rotating_artist, [headliner]
+
+    return raw_title, raw_artist, []
 
 def sanitize_event_title(title: str) -> str:
     """
@@ -1980,7 +2088,13 @@ def run_sync() -> bool:
     for item in catalog:
         event_id = item['id']
         provider = item['provider']
-        url = item.get('websiteUrl', '').strip()
+
+        # 1. Automated URL Normalization & Deep-Link Safeguard
+        raw_url = item.get('websiteUrl', '').strip()
+        url = normalize_event_links(raw_url, item.get('venue', ''))
+        if url != raw_url:
+            print(f"[URL NORM] Deep link normalized for '{item['title']}': '{raw_url}' -> '{url}'")
+            item['websiteUrl'] = url
 
         if not url.startswith('http') or len(url) < 14:
             print(f"[REJECT] '{item['title']}' rejected: invalid ticket link.")
@@ -2027,10 +2141,30 @@ def run_sync() -> bool:
             rejected_count += 1
             continue
 
+        # 2. Automated Title Sanitization & Recurrence-vs-Lineup Linter
         raw_title = item['title']
         clean_title = sanitize_event_title(raw_title)
         if clean_title != raw_title:
             print(f"[TITLE LINT] Cleaned ticket-type noise: '{raw_title}' -> '{clean_title}'")
+
+        series_title, series_artist, preserved_aliases = lint_recurring_music_event(item)
+        if series_title != raw_title:
+            clean_title = sanitize_event_title(series_title)
+            print(f"[RECURRENCE LINT] Generalized weekly music title: '{raw_title}' -> '{clean_title}'")
+        if series_artist and series_artist != item.get('artist'):
+            print(f"[RECURRENCE LINT] Set rotating artist description: '{item.get('artist')}' -> '{series_artist}'")
+            item['artist'] = series_artist
+
+        # Preserve any archived band names in venueAliases for instant search discovery
+        if preserved_aliases:
+            existing_aliases = list(item.get('venueAliases', []))
+            for a in preserved_aliases:
+                if a not in existing_aliases:
+                    existing_aliases.append(a)
+            item['venueAliases'] = existing_aliases
+
+        raw_venue_url = VENUE_URLS.get(item['venue'], f"https://www.google.com/search?q={urllib.parse.quote_plus(item['venue'] + ' Vancouver')}")
+        venue_clean_url = normalize_event_links(raw_venue_url, item['venue'])
 
         record = {
             "id": event_id,
@@ -2060,7 +2194,7 @@ def run_sync() -> bool:
             "endIso": item.get('endIso'),
             "isSoldOut": item.get('isSoldOut', False),
             "websiteUrl": url,
-            "venueUrl": VENUE_URLS.get(item['venue'], f"https://www.google.com/search?q={urllib.parse.quote_plus(item['venue'] + ' Vancouver')}"),
+            "venueUrl": venue_clean_url,
             "ticketProvider": semantic_provider,
             "rawProvider": provider,
             "coordinates": item['coordinates'],

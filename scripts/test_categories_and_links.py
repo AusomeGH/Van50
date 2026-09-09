@@ -107,6 +107,43 @@ def run_tests():
     print(f"[TEST 5] CSS Components Verification:")
     print(f"  ✓ Single unified button styling confirmed without nested button artifacts")
 
+    # 9. Verify Deep Links & Recurring Series Safeguards
+    print(f"[TEST 6] Deep Link & Recurring Music Series Audits:")
+    event_map = {e['id']: e for e in events}
+
+    # Red Gate deep link verification
+    rg = event_map.get('red-gate-dead-soft')
+    assert rg is not None, "Missing red-gate-dead-soft"
+    assert rg['websiteUrl'] == "https://redgate.tv/tickets/", f"Red Gate tickets URL must be https://redgate.tv/tickets/, got {rg['websiteUrl']}"
+    assert rg['venueUrl'] == "https://redgate.tv/tickets/", f"Red Gate venue URL must be https://redgate.tv/tickets/, got {rg['venueUrl']}"
+    assert rg['title'] == "Friday Night Live Indie & Underground at Red Gate", f"Red Gate title unexpected: {rg['title']}"
+    assert rg['artist'] == "Rotating local indie, punk & experimental bands", f"Red Gate artist unexpected: {rg['artist']}"
+    print(f"  ✓ Red Gate deep link verified: {rg['websiteUrl']} (No live webcam player)")
+
+    # UBC Farm deep link verification
+    ubcf = event_map.get('ubc-farm-farmers-market')
+    assert ubcf is not None, "Missing ubc-farm-farmers-market"
+    assert ubcf['websiteUrl'] == "https://ubcfarm.ubc.ca/markets/", f"UBC Farm tickets URL must be https://ubcfarm.ubc.ca/markets/, got {ubcf['websiteUrl']}"
+    assert ubcf['venueUrl'] == "https://ubcfarm.ubc.ca/markets/", f"UBC Farm venue URL must be https://ubcfarm.ubc.ca/markets/, got {ubcf['venueUrl']}"
+    print(f"  ✓ UBC Farm market schedule deep link verified: {ubcf['websiteUrl']} (No generic /food/ page)")
+
+    # Ensure 0 events have prohibited generic roots
+    for e in events:
+        w = e.get('websiteUrl', '')
+        v = e.get('venueUrl', '')
+        assert w.rstrip('/') != 'https://redgate.tv', f"Event {e['id']} websiteUrl cannot be raw root redgate.tv"
+        assert v.rstrip('/') != 'https://redgate.tv', f"Event {e['id']} venueUrl cannot be raw root redgate.tv"
+        assert '/food' not in w, f"Event {e['id']} websiteUrl cannot contain generic /food/: {w}"
+        assert '/food' not in v, f"Event {e['id']} venueUrl cannot contain generic /food/: {v}"
+    print(f"  ✓ 100% of catalog events free of dead-end webcam roots or generic food landing pages")
+
+    # Intimate recurring music titles verification
+    assert event_map['2nd-floor-gastown-sharon-minemoto']['title'] == "Live Jazz & Supper Club at 2nd Floor Gastown"
+    assert event_map['frankies-jazz-brad-turner']['title'] == "Weekend Live Jazz Showcase at Frankie's Jazz Club"
+    assert event_map['lanalous-the-jolts']['title'] == "Weekend Live Rock 'n' Roll at LanaLou's"
+    assert event_map['wise-hall-roots-revue']['title'] == "East Van Roots, Folk & Live Music at The WISE Hall"
+    print(f"  ✓ All recurring music nights verified with series titles and rotating artist lineups")
+
     print("\n======================================================================")
     print("ALL TESTS PASSED CLEANLY (0 Errors, 0 Discrepancies)!")
     print("======================================================================")

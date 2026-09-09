@@ -16,29 +16,31 @@ def test_artist_features():
 
     print(f"Loaded {len(events)} events from {EVENTS_PATH}")
     
-    # 1. Check small-venue music events have artist attributes
+    # 1. Check small-venue music events have rotating artist attributes & series titles
     expected_new_music_events = [
-        ("2nd-floor-gastown-sharon-minemoto", "The Sharon Minemoto Trio"),
-        ("frankies-jazz-brad-turner", "The Brad Turner Quartet"),
-        ("wise-hall-roots-revue", "East Van Roots & Bluegrass Revue"),
-        ("anza-club-bluegrass-jam", "Pacific Bluegrass Heritage Collective"),
-        ("red-gate-dead-soft", "Dead Soft, Babe Corner, Sore Points"),
-        ("lanalous-the-jolts", "The Jolts, Tough Customer"),
-        ("the-roxy-fab-fourever", "Local live bands & rotating guest artists")
+        ("2nd-floor-gastown-sharon-minemoto", "Live Jazz & Supper Club at 2nd Floor Gastown", "Rotating local jazz trios & guest artists"),
+        ("frankies-jazz-brad-turner", "Weekend Live Jazz Showcase at Frankie's Jazz Club", "Rotating Canadian & international jazz artists"),
+        ("wise-hall-roots-revue", "East Van Roots, Folk & Live Music at The WISE Hall", "Rotating local roots, folk & bluegrass acts"),
+        ("anza-club-bluegrass-jam", "Pacific Bluegrass & Heritage Acoustic Jam at The Anza Club", "Pacific Bluegrass Heritage Collective"),
+        ("red-gate-dead-soft", "Friday Night Live Indie & Underground at Red Gate", "Rotating local indie, punk & experimental bands"),
+        ("lanalous-the-jolts", "Weekend Live Rock 'n' Roll at LanaLou's", "Rotating local punk, garage & rock bands"),
+        ("the-roxy-fab-fourever", "Live Music & Weekend Party Rock at The Roxy", "Local live bands & rotating guest artists")
     ]
 
     event_map = {ev['id']: ev for ev in events}
     
-    print("\n[TEST 1] Verifying explicit artist attributes on all 7 new small-venue events:")
-    for eid, expected_artist in expected_new_music_events:
+    print("\n[TEST 1] Verifying explicit artist attributes & series titles on all 7 music venues:")
+    for eid, expected_title, expected_artist in expected_new_music_events:
         assert eid in event_map, f"Missing event: {eid}"
         ev = event_map[eid]
         artist = ev.get('artist')
-        assert artist == expected_artist, f"Mismatch on {eid}: got '{artist}', expected '{expected_artist}'"
-        print(f"  ✓ [{eid}] -> Artist: '{artist}' | Price: ${ev['price']:.2f} (<= $50 CAD)")
+        title = ev.get('title')
+        assert title == expected_title, f"Title mismatch on {eid}: got '{title}', expected '{expected_title}'"
+        assert artist == expected_artist, f"Artist mismatch on {eid}: got '{artist}', expected '{expected_artist}'"
+        print(f"  ✓ [{eid}] -> Title: '{title}' | Artist: '{artist}' | Price: ${ev['price']:.2f} (<= $50 CAD)")
 
-    # 2. Test search filter simulation (matching js/app.js search logic)
-    print("\n[TEST 2] Testing artist search queries (simulating js/app.js):")
+    # 2. Test search filter simulation (matching js/app.js search logic including performers and aliases)
+    print("\n[TEST 2] Testing artist search queries (simulating js/app.js searchableContent):")
     search_queries = [
         ("Sharon Minemoto", "2nd-floor-gastown-sharon-minemoto"),
         ("Brad Turner", "frankies-jazz-brad-turner"),
@@ -64,8 +66,10 @@ def test_artist_features():
             title_match = ev.get('title') and q_norm in ev['title'].lower()
             venue_match = ev.get('venue') and q_norm in ev['venue'].lower()
             subtag_match = ev.get('subTags') and any(q_norm in t.lower() for t in ev['subTags'])
+            alias_match = ev.get('venueAliases') and any(q_norm in a.lower() for a in ev['venueAliases'])
+            desc_match = ev.get('description') and q_norm in ev['description'].lower()
             
-            if artist_match or title_match or venue_match or subtag_match:
+            if artist_match or title_match or venue_match or subtag_match or alias_match or desc_match:
                 matches.append(ev['id'])
         
         assert expected_id in matches, f"Query '{q}' failed to match expected event {expected_id}. Matches: {matches}"
@@ -73,7 +77,7 @@ def test_artist_features():
 
     # 3. Test card-artist-badge rendering simulation
     print("\n[TEST 3] Testing card-artist-badge rendering simulation:")
-    for eid, expected_artist in expected_new_music_events:
+    for eid, expected_title, expected_artist in expected_new_music_events:
         ev = event_map[eid]
         artist_badge_html = f'''<div class="card-artist-badge" title="Featured band / artist lineup">
   <span class="artist-icon">🎵</span>
