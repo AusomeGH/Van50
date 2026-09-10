@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch('data/events.json');
+    const res = await fetch('data/events.json?v=4.1.0');
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
@@ -58,7 +58,7 @@ async function loadCentralReference() {
 
   // Also load quarantined manual review queue
   try {
-    const rqRes = await fetch('data/manual_review_queue.json');
+    const rqRes = await fetch('data/manual_review_queue.json?v=4.1.0');
     if (rqRes.ok) {
       const rqData = await rqRes.json();
       if (rqData.quarantinedEvents) {
