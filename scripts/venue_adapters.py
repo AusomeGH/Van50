@@ -195,7 +195,7 @@ class RoxyLiveAdapter:
             "tiers": [
                 {"name": "General Door Admission", "basePrice": 12.0, "price": 12.0, "label": "$12.00 door"}
             ],
-            "websiteUrl": cls.BAND_URL,
+            "websiteUrl": cls.EVENTS_URL,
             "venueUrl": "https://roxyvan.com",
             "ticketProvider": "Venue Door / Table Charge",
             "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits 7 nights a week, plus guest touring acts and resident weekend DJs."
@@ -679,14 +679,14 @@ class CraftStudioLiveAdapters:
             "frequency": "weekly",
             "frequencyLabel": "Wednesdays & Weekends",
             "dateSchedule": "Wed 7:00 PM • Sat 10:00 AM • Sun 1:00 PM (3-Hour Sessions)",
-            "price": 15.00,
-            "priceLabel": "$15.00 drop-in (3-hour session)",
+            "price": 20.00,
+            "priceLabel": "$20.00 session ticket ($17 member)",
             "pricingType": "door",
             "tiers": [
-                {"name": "Single Drop-In Session (3 Hours)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 drop-in"},
-                {"name": "Student Drop-In with ID", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
+                {"name": "Single Session Ticket (Non-Member)", "basePrice": 20.0, "price": 20.0, "label": "$20.00 session ticket"},
+                {"name": "Single Session Ticket (Member)", "basePrice": 17.0, "price": 17.0, "label": "$17.00 session ticket"}
             ],
-            "websiteUrl": "https://lifedrawing.org/sessions",
+            "websiteUrl": "https://lifedrawing.org/session-fees-rates/",
             "venueUrl": "https://lifedrawing.org",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -773,7 +773,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Standard Drop-In (Materials Included)", "basePrice": 18.0, "price": 18.0, "label": "$18.00 drop-in"},
                 {"name": "BYO Materials / Member Rate", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -801,7 +801,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Standard Drop-In", "basePrice": 15.0, "price": 15.0, "label": "$15.00 drop-in"},
                 {"name": "Materials Included / Supporter", "basePrice": 20.0, "price": 20.0, "label": "$20.00"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -829,7 +829,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Clay Club Drop-In (Clay + Glaze + Firing)", "basePrice": 22.0, "price": 22.0, "label": "$22.00 all-in"},
                 {"name": "BYO Clay Session", "basePrice": 15.0, "price": 15.0, "label": "$15.00"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/clayclub",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -856,7 +856,7 @@ class CraftStudioLiveAdapters:
             "tiers": [
                 {"name": "General Admission (All Bins Access)", "basePrice": 10.0, "price": 10.0, "label": "$10.00 drop-in"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "social",
@@ -876,26 +876,26 @@ class PublicDiscoLiveAdapter:
 
     @classmethod
     def authenticate_block_party(cls) -> dict:
-        print("[AUTHENTICATING] Public Disco: verifying free open-air festival schedule from publicdisco.ca...")
+        print("[AUTHENTICATING] Public Disco: authenticating open-air summer block party series status...")
         return {
-            "title": "Public Disco Festival: Shipyards Waterfront",
-            "artist": "Public Disco resident DJs & international electronic selectors",
-            "venue": "The Shipyards Waterfront",
+            "title": "Public Disco: Open-Air Summer Block Party Series",
+            "artist": "Public Disco resident DJs & community electronic selectors",
+            "venue": "Downtown Vancouver Plazas",
             "organizer": "Public Disco Society",
             "isRoving": True,
-            "editionVenue": "The Shipyards Waterfront",
-            "address": "125 Victory Ship Way, North Vancouver, BC",
-            "neighborhood": "North Shore / Burnaby",
-            "coordinates": [49.3117, -123.0805],
-            "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along the waterfront",
+            "editionVenue": "Bentall Centre / Granville Island",
+            "address": "505 Burrard St, Vancouver, BC",
+            "neighborhood": "Downtown / West End",
+            "coordinates": [49.2858, -123.1187],
+            "transitInfo": "Burrard SkyTrain station (direct plaza access)",
             "daysOfWeek": ["sat"],
-            "timeSlots": ["afternoon", "early-evening", "late-evening"],
+            "timeSlots": ["afternoon", "early-evening"],
             "frequency": "seasonal",
-            "frequencyLabel": "Seasonal Festival",
-            "dateSchedule": "Saturday, October 3, 2026 • 2:00 PM – 10:00 PM",
-            "startIso": "2026-10-03T14:00:00-07:00",
-            "endIso": "2026-10-03T22:00:00-07:00",
-            "confirmedDates": ["2026-10-03"],
+            "frequencyLabel": "Seasonal / Summer Series Concluded",
+            "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
+            "startIso": None,
+            "endIso": None,
+            "confirmedDates": [],
             "price": 0.0,
             "priceLabel": "Free ($0)",
             "pricingType": "free",
@@ -904,15 +904,15 @@ class PublicDiscoLiveAdapter:
             "isDaily": False,
             "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
             "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-            "rovingNote": "📍 10th anniversary festival season finale at Shipyards Waterfront in North Vancouver. (Summer plaza block parties concluded Aug 29).",
+            "rovingNote": "📍 Public Disco's free community block party series has concluded for the summer 2026 season. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ and quarantined for exceeding the $50 cap).",
             "websiteUrl": "https://publicdisco.ca/events",
             "venueUrl": "https://publicdisco.ca",
             "ticketProvider": "Free Public Access",
             "category": "social",
             "categoryLabel": "Community & Social",
             "categoryIcon": "🪩",
-            "subTags": ["public-disco", "festival", "dance-party", "open-air", "djs", "free-event"],
-            "description": "Public Disco Society presents its 10th-anniversary season finale festival at The Shipyards in North Vancouver. Features open-air dance floors, world-class electronic selectors, interactive art, roller skate area, and licensed community bars."
+            "subTags": ["public-disco", "block-party", "dance-party", "open-air", "djs", "free-event"],
+            "description": "Public Disco Society hosts free open-air community block parties in Vancouver downtown plazas throughout the summer, featuring vibrant dance floors, local DJs, pop-up markets, and roller skating."
         }
 
     @classmethod

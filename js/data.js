@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-10T11:04:12-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-10T11:48:19-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -62,9 +62,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:30-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:32-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -126,9 +126,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:31-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:33-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -190,9 +190,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:31-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:33-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -254,9 +254,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:31-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:33-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -318,9 +318,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:31-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:34-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -332,11 +332,11 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "578 Carrall St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
+    "price": 16.0,
+    "priceLabel": "$16.00 all-in",
     "pricingType": "free",
     "tiers": [],
-    "isFree": true,
+    "isFree": false,
     "isDaily": true,
     "frequency": "daily",
     "frequencyLabel": "Daily Spot",
@@ -379,11 +379,11 @@ const VANCOUVER_EVENTS = [
     "description": "GARDEN IS OPEN TO THE PUBLICBook Your Admission OPENING HOURSOpen Tuesday to Sunday 9:30 AM - 4:00 PM (last entry 3:30 PM) Tuesday, Wednesday, Thursday, Friday, Saturday, and SundayCLOSEDMonday Admission RatesSTUDENT $12.00* BUY TICKETS SENIOR $13.00* BUY TICKETS ADULT $16.00* BUY TICKETS FAMILY $32.00* BUY TICKETS Pass Holders $0.00 BUY TICKETS...",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:32-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 16.0,
+      "feeBreakdown": "$16.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:47:34-07:00",
+      "details": "Scraped live from published terms on https://vancouverchinesegarden.com/visit/."
     }
   },
   {
@@ -445,9 +445,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:32-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:34-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -479,12 +479,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Walks & Outdoors",
     "categoryIcon": "🌺",
     "subTags": [
-      "quarry-garden",
       "4600-cambie-st",
-      "panoramic-view",
       "city-view",
+      "celebration-paviliion",
       "queen-elizabeth-park",
-      "cambie-corridor"
+      "cambie-corridor",
+      "quarry-garden"
     ],
     "dateSchedule": "Daily • 6:00 AM - 10:00 PM",
     "startIso": "2026-09-08T06:00:00-07:00",
@@ -511,9 +511,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:33-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:34-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -588,7 +588,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 8.09,
       "preTaxSticker": 7.7,
       "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-      "verifiedAt": "2026-09-10T11:03:33-07:00",
+      "verifiedAt": "2026-09-10T11:47:35-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
     }
   },
@@ -601,8 +601,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant",
-    "price": 9.82,
-    "priceLabel": "$9.82 all-in ($7.90 + $1.92 fees)",
+    "price": 9.97,
+    "priceLabel": "$9.97 all-in ($9.50 + 5% GST)",
     "pricingType": "platform",
     "tiers": [],
     "isFree": false,
@@ -620,12 +620,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
-      "bloedel-conservatory",
-      "vancouver",
-      "tropical-dome",
-      "exotic-birds",
       "rainforest",
-      "botanical"
+      "vancouver",
+      "bloedel-conservatory",
+      "tropical-dome",
+      "organization",
+      "exotic-birds"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
     "startIso": "2026-09-08T10:00:00-07:00",
@@ -650,11 +650,11 @@ const VANCOUVER_EVENTS = [
     "description": "Lush domed tropical paradise atop Queen Elizabeth Park containing over 500 exotic plants and flowers and more than 100 free-flying tropical birds.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 9.82,
-      "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-      "verifiedAt": "2026-09-10T11:03:34-07:00",
-      "details": "Verified via Showpass Vancouver Park Board ticketing portal."
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 9.97,
+      "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
+      "verifiedAt": "2026-09-10T11:47:35-07:00",
+      "details": "Scraped dynamically from official City of Vancouver Board of Parks and Recreation fee schedule (vancouver.ca/parks-recreation-culture/Prices-and-memberships.aspx)."
     }
   },
   {
@@ -667,19 +667,26 @@ const VANCOUVER_EVENTS = [
     "address": "110 Water St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 10.24,
-    "priceLabel": "Free – $10.24 all-in",
+    "priceLabel": "$0.00 – $10.24 all-in",
     "pricingType": "platform",
     "tiers": [
       {
         "name": "General Admission (Audience)",
         "basePrice": 7.0,
         "price": 10.24,
+        "priceNoTax": 9.75,
+        "fees": 3.24,
+        "serviceCharge": 2.75,
+        "tax": 0.49,
         "label": "$10.24 all-in"
       },
       {
         "name": "Performer (Open Stage)",
         "basePrice": 0.0,
         "price": 0.0,
+        "fees": 0.0,
+        "serviceCharge": 0.0,
+        "tax": 0.0,
         "label": "Free ($0)"
       }
     ],
@@ -727,137 +734,10 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
-      "verifiedTotal": 10.24,
-      "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-      "verifiedAt": "2026-09-10T11:03:34-07:00",
-      "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
-    }
-  },
-  {
-    "id": "ubc-thunderbirds-varsity",
-    "title": "UBC Thunderbirds: Home Varsity Games",
-    "artist": null,
-    "performers": null,
-    "venue": "War Memorial Gym & Thunderbird Stadium",
-    "venueAliases": [],
-    "address": "6081 University Blvd, Vancouver",
-    "neighborhood": "Kitsilano",
-    "price": 11.75,
-    "priceLabel": "$11.75 all-in ($10 + $1.75 fees)",
-    "pricingType": "platform",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Game Days)",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "🦅",
-    "subTags": [
-      "varsity-sports",
-      "basketball",
-      "volleyball",
-      "ubc-athletics"
-    ],
-    "dateSchedule": "Friday & Saturday Evenings • 6:00 PM & 8:00 PM",
-    "startIso": "2026-09-11T18:00:00-07:00",
-    "endIso": "2027-03-31T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "venueUrl": "https://gothunderbirds.ca",
-    "ticketProvider": "Paciolan Verified",
-    "rawProvider": "Paciolan",
-    "coordinates": [
-      49.2662,
-      -123.2483
-    ],
-    "transitInfo": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "embedded_checkout_json",
-      "verifiedTotal": 11.75,
-      "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-      "verifiedAt": "2026-09-10T11:03:35-07:00",
-      "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
-    }
-  },
-  {
-    "id": "eb-standup-mental-health",
-    "title": "Stand Up For Mental Health Showcase",
-    "artist": null,
-    "performers": null,
-    "venue": "Chill x Studio",
-    "venueAliases": [],
-    "address": "1227 Richards St, Vancouver",
-    "neighborhood": "Downtown / West End",
-    "price": 12.44,
-    "priceLabel": "$12.44 all-in ($10 + $2.44 fees)",
-    "pricingType": "platform",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "One-Off Show (Sept 22)",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "shows",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "mental-health",
-      "eventbrite",
-      "community-comedy",
-      "yaletown",
-      "stand-up",
-      "stand-up-for-mental-health-summer-class-debut-vancouver"
-    ],
-    "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
-    "startIso": "2026-09-22T19:30:00-07:00",
-    "endIso": "2026-09-22T21:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-    "venueUrl": "https://chillxstudio.com",
-    "ticketProvider": "Eventbrite Verified",
-    "rawProvider": "Eventbrite",
-    "coordinates": [
-      49.2748,
-      -123.1265
-    ],
-    "transitInfo": "3 min walk from Yaletown-Roundhouse Canada Line",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Kick off summer with laughs and support at our fun in-person Stand Up For Mental Health class debut!",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 12.44,
-      "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-      "verifiedAt": "2026-09-10T11:03:35-07:00",
-      "details": "Verified via Eventbrite checkout modal."
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in • Performer (Open Stage): Free ($0)",
+      "verifiedAt": "2026-09-10T11:47:36-07:00",
+      "details": "Extracted directly from live Showpass public API payload."
     }
   },
   {
@@ -919,7 +799,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-10T11:03:36-07:00",
+      "verifiedAt": "2026-09-10T11:47:38-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
@@ -1005,11 +885,11 @@ const VANCOUVER_EVENTS = [
     "description": "See what&#039;s on at the VIFF Centre! Showtimes for exceptional films at one of Vancouver&#039;s premium cinemas.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "embedded_checkout_json",
+      "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-10T11:03:36-07:00",
-      "details": "Verified via VIFF Centre Agile ticketing websales portal."
+      "verifiedAt": "2026-09-10T11:47:39-07:00",
+      "details": "Verified via VIFF Centre box office schedule (viff.org)."
     }
   },
   {
@@ -1066,12 +946,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Cinema",
     "categoryIcon": "🎬",
     "subTags": [
-      "35mm",
       "cinematheque",
-      "film",
-      "vancouver",
       "cinema",
-      "auteur-cinema"
+      "auteur-cinema",
+      "vancouver",
+      "film",
+      "35mm"
     ],
     "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
     "startIso": "2026-09-09T18:30:00-07:00",
@@ -1096,11 +976,11 @@ const VANCOUVER_EVENTS = [
     "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "embedded_checkout_json",
+      "method": "venue_published_policy",
       "verifiedTotal": 15.0,
-      "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via Agile websales",
-      "verifiedAt": "2026-09-10T11:03:37-07:00",
-      "details": "Verified via The Cinematheque Agile websales ticket search frame."
+      "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
+      "verifiedAt": "2026-09-10T11:47:39-07:00",
+      "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
     }
   },
   {
@@ -1112,8 +992,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "7 Alexander St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
-    "price": 15.0,
-    "priceLabel": "Free entry (~$15 food/drink)",
+    "price": 12.0,
+    "priceLabel": "$12.00 all-in",
     "pricingType": "food-drink",
     "tiers": [],
     "isFree": false,
@@ -1158,11 +1038,11 @@ const VANCOUVER_EVENTS = [
     "description": "Booking - Dinner Reservations are until 9pm throughout the week , kitchen closes at 11pm Sun-Thurs. Dinner Reservations are until 7pm Friday Portside Pub..",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-      "verifiedAt": "2026-09-10T11:03:38-07:00",
-      "details": "Verified via venue booking and trivia participation policy."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 12.0,
+      "feeBreakdown": "$12.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:47:41-07:00",
+      "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
     }
   },
   {
@@ -1244,162 +1124,8 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.0,
       "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-10T11:03:38-07:00",
+      "verifiedAt": "2026-09-10T11:47:41-07:00",
       "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
-    }
-  },
-  {
-    "id": "fox-cabaret-indie-cinema",
-    "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
-    "artist": "Resident DJs & guest party selectors",
-    "performers": null,
-    "venue": "The Fox Cabaret",
-    "venueAliases": [],
-    "address": "2321 Main St, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 44.0,
-    "priceLabel": "$44.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Advance Ticket",
-        "basePrice": 15.0,
-        "price": 18.5,
-        "label": "$18.50 all-in"
-      },
-      {
-        "name": "Door Cover",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Fridays & Saturdays",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "indie-film",
-      "comedy-screening",
-      "projection-room",
-      "fox-cabaret"
-    ],
-    "dateSchedule": "Fridays & Saturdays • 10:30 PM – 2:00 AM",
-    "startIso": "2026-09-18T19:00:00-07:00",
-    "endIso": "2026-09-18T21:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.foxcabaret.com/",
-    "venueUrl": "https://www.foxcabaret.com",
-    "ticketProvider": "Eventbrite Verified",
-    "rawProvider": "Eventbrite",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Fox Cabaret is an independent venue in Vancouver, Canada with a focus on live music, dance parties, comedy, + good times.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 44.0,
-      "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-      "verifiedAt": "2026-09-10T11:03:39-07:00",
-      "details": "Verified via Eventbrite checkout cart payload."
-    }
-  },
-  {
-    "id": "tm-biltmore-emerging-artist",
-    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
-    "artist": "Local indie bands & resident DJs",
-    "performers": null,
-    "venue": "The Biltmore Cabaret",
-    "venueAliases": [],
-    "address": "2755 Prince Edward St, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 22.75,
-    "priceLabel": "$22.75 all-in ($20 + $2.75 fees)",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Advance Admission",
-        "basePrice": 15.0,
-        "price": 18.5,
-        "label": "$18.50 all-in"
-      },
-      {
-        "name": "Door Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Thursdays – Saturdays",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "indie-rock",
-      "live-band",
-      "biltmore",
-      "concert"
-    ],
-    "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
-    "startIso": "2027-04-02T19:00:00-07:00",
-    "endIso": "2027-04-02T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://biltmorecabaret.com/",
-    "venueUrl": "https://biltmorecabaret.com",
-    "ticketProvider": "AdmitOne Verified",
-    "rawProvider": "AdmitOne",
-    "coordinates": [
-      49.2602,
-      -123.0975
-    ],
-    "transitInfo": "Main & 12th Ave bus corridor",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and legendary retro dance parties like Guilty Pleasures.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 22.75,
-      "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-      "verifiedAt": "2026-09-10T11:03:39-07:00",
-      "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
     }
   },
   {
@@ -1419,12 +1145,20 @@ const VANCOUVER_EVENTS = [
         "name": "General Admission",
         "basePrice": 18.0,
         "price": 22.1,
+        "priceNoTax": 21.04,
+        "fees": 4.1,
+        "serviceCharge": 3.04,
+        "tax": 1.06,
         "label": "$22.10 all-in"
       },
       {
         "name": "Early Bird",
         "basePrice": 15.0,
         "price": 18.86,
+        "priceNoTax": 17.96,
+        "fees": 3.86,
+        "serviceCharge": 2.96,
+        "tax": 0.9,
         "label": "$18.86 all-in"
       }
     ],
@@ -1477,9 +1211,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
-      "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-      "verifiedAt": "2026-09-10T11:03:39-07:00",
-      "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
+      "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in • Early Bird: $18.86 all-in",
+      "verifiedAt": "2026-09-10T11:47:42-07:00",
+      "details": "Extracted directly from live Showpass public API payload."
     }
   },
   {
@@ -1558,7 +1292,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-10T11:03:40-07:00",
+      "verifiedAt": "2026-09-10T11:47:42-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1639,164 +1373,8 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-10T11:03:40-07:00",
+      "verifiedAt": "2026-09-10T11:47:43-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
-    }
-  },
-  {
-    "id": "tm-canadians-baseball",
-    "title": "Vancouver Canadians: Nat Bailey Stadium Baseball",
-    "artist": null,
-    "performers": null,
-    "venue": "Scotiabank Field at Nat Bailey Stadium",
-    "venueAliases": [],
-    "address": "4601 Ontario St, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 18.5,
-    "priceLabel": "$18.50 – $24.50 all-in",
-    "pricingType": "multi-tier",
-    "tiers": [
-      {
-        "name": "Bleachers",
-        "basePrice": 16.0,
-        "price": 18.5,
-        "label": "$18.50 all-in"
-      },
-      {
-        "name": "Reserved Grandstand Box",
-        "basePrice": 21.0,
-        "price": 24.5,
-        "label": "$24.50 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal (Game Days)",
-    "daysOfWeek": [
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "⚾",
-    "subTags": [
-      "wwwmilbcom",
-      "milbcom",
-      "baseball",
-      "minor-league-baseball",
-      "blue-jays",
-      "sushi-race"
-    ],
-    "dateSchedule": "Game Days • Afternoon (1:05 PM) & Evening (7:05 PM) Matches",
-    "startIso": "2026-09-11T13:05:00-07:00",
-    "endIso": "2026-09-20T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.milb.com/vancouver/tickets/single-game-tickets",
-    "venueUrl": "https://www.milb.com/vancouver",
-    "ticketProvider": "Ticketmaster Verified",
-    "rawProvider": "Ticketmaster",
-    "coordinates": [
-      49.2428,
-      -123.1098
-    ],
-    "transitInfo": "#3 Main Bus or 12 min walk from King Edward Canada Line",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Vancouver Canadians Single Game Tickets",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 18.5,
-      "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-      "verifiedAt": "2026-09-10T11:03:40-07:00",
-      "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
-    }
-  },
-  {
-    "id": "fox-cabaret-dance-night",
-    "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
-    "artist": "Resident DJs & guest party selectors",
-    "performers": null,
-    "venue": "The Fox Cabaret",
-    "venueAliases": [],
-    "address": "2321 Main St, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 18.5,
-    "priceLabel": "$18.50 – $20.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Online Advance",
-        "basePrice": 15.0,
-        "price": 18.5,
-        "label": "$18.50 all-in"
-      },
-      {
-        "name": "Door Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Fridays & Saturdays",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "dance-party",
-      "90s-music",
-      "dj-night",
-      "mount-pleasant"
-    ],
-    "dateSchedule": "Fridays & Saturdays • 10:30 PM – 2:00 AM",
-    "startIso": "2026-09-12T22:30:00-07:00",
-    "endIso": "2026-12-31T02:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.foxcabaret.com/",
-    "venueUrl": "https://www.foxcabaret.com",
-    "ticketProvider": "Independent Box Office",
-    "rawProvider": "Independent Box Office",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Main St & 7th Ave bus stop",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Fox Cabaret is an independent venue in Vancouver, Canada with a focus on live music, dance parties, comedy, + good times.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 18.5,
-      "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-      "verifiedAt": "2026-09-10T11:03:40-07:00",
-      "details": "Verified via The Fox Cabaret calendar fee schedule."
     }
   },
   {
@@ -1808,8 +1386,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "1601 Johnston St, Vancouver",
     "neighborhood": "Granville Island",
-    "price": 25.0,
-    "priceLabel": "$25.00 all-in (Early Bird/Student $20)",
+    "price": 20.0,
+    "priceLabel": "$20.00 all-in",
     "pricingType": "platform",
     "tiers": [
       {
@@ -1840,11 +1418,11 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "puff-the-magic-improv-show-sept-26-2026-tickets",
+      "improv",
       "revue-stage",
       "live-comedy",
-      "eventbrite",
-      "improv",
-      "puff-the-magic-improv-show-sept-26-2026"
+      "puff-the-magic-improv-show-sept-26-2026",
+      "puff-the-magic-improv-show-sept-26-2026-vancouver"
     ],
     "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-26T20:00:00-07:00",
@@ -1869,86 +1447,11 @@ const VANCOUVER_EVENTS = [
     "description": "Puff is the IMPROV show that elevates comedy to that DRAGON level.19+ Presented at the beautiful Revue Stage on Granville Island!",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "General Admission ($25.00) and Student ($20.00) verified with inclusive fees on Eventbrite",
-      "verifiedAt": "2026-09-10T11:03:40-07:00",
-      "details": "Verified via Eventbrite Revue Stage checkout manifest."
-    }
-  },
-  {
-    "id": "tightrope-maestro",
-    "title": "Tightrope Impro: Maestro Improv Tournament",
-    "artist": null,
-    "performers": null,
-    "venue": "Tightrope Impro Theatre",
-    "venueAliases": [],
-    "address": "1330 Napier St, Vancouver",
-    "neighborhood": "Commercial Drive",
-    "price": 25.0,
-    "priceLabel": "$25.00 all-in (Student $18)",
-    "pricingType": "multi-tier",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 verified"
-      },
-      {
-        "name": "BC Student / Youth",
-        "basePrice": 18.0,
-        "price": 18.0,
-        "label": "$18.00 verified"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Thursdays)",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "shows",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "maestro",
-      "theatresports",
-      "tournament",
-      "commercial-drive"
-    ],
-    "dateSchedule": "Thursdays • 8:00 PM",
-    "startIso": "2026-09-10T20:00:00-07:00",
-    "endIso": "2026-12-31T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.tightropetheatre.com/weekly-live-shows",
-    "venueUrl": "https://tightropetheatre.com",
-    "ticketProvider": "TicketSpice Verified",
-    "rawProvider": "TicketSpice",
-    "coordinates": [
-      49.2748,
-      -123.0768
-    ],
-    "transitInfo": "Commercial & Hastings bus corridor",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Fast-paced elimination improv tournament where 10 ensemble performers direct and act in spontaneous scenes for audience scores to crown the Maestro.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "General ($25.00) and Student ($18.00) verified with 0 added online fees on TicketSpice",
-      "verifiedAt": "2026-09-10T11:03:41-07:00",
-      "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
+      "method": "regex_scraped",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "$20.00 all-in verified via Eventbrite page text",
+      "verifiedAt": "2026-09-10T11:47:44-07:00",
+      "details": "Parsed from Eventbrite event text."
     }
   },
   {
@@ -2030,7 +1533,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.0,
       "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-10T11:03:41-07:00",
+      "verifiedAt": "2026-09-10T11:47:45-07:00",
       "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
@@ -2043,8 +1546,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "1502 Duranleau St, Vancouver",
     "neighborhood": "Granville Island",
-    "price": 33.5,
-    "priceLabel": "$33.50 all-in (Student/Senior $28.50)",
+    "price": 10.0,
+    "priceLabel": "$10.00 all-in",
     "pricingType": "platform",
     "tiers": [
       {
@@ -2076,12 +1579,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "waterfront-theatre",
-      "improv-comedy",
-      "improv",
       "theatresports",
+      "improv",
+      "comedy",
       "comedy-show",
-      "comedy"
+      "granville-island",
+      "waterfront-theatre"
     ],
     "dateSchedule": "Fridays & Saturdays • 7:30 PM & 9:30 PM",
     "startIso": "2026-09-11T19:30:00-07:00",
@@ -2106,213 +1609,11 @@ const VANCOUVER_EVENTS = [
     "description": "Check out The Improv Centre’s hilarious comedy shows! Our bar and lounge opens 1 hour before first showtime, unless otherwise specified. Shows run 90 minutes long and include a 15-minute intermission, unless otherwise specified.As we are a licensed facility, people under the age of 19 are...",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "embedded_checkout_json",
-      "verifiedTotal": 33.5,
-      "feeBreakdown": "Regular Seat ($33.50) and Student/Senior ($28.50) tiers verified via AudienceView consumer checkout",
-      "verifiedAt": "2026-09-10T11:03:42-07:00",
-      "details": "Verified via The Improv Centre AudienceView schedule."
-    }
-  },
-  {
-    "id": "rickshaw-indie-rock",
-    "title": "Metal Church & Armored Saint Live at Rickshaw",
-    "artist": "Metal Church, Armored Saint, Livekill",
-    "performers": null,
-    "venue": "The Rickshaw Theatre",
-    "venueAliases": [],
-    "address": "254 E Hastings St, Vancouver",
-    "neighborhood": "Gastown / Chinatown",
-    "price": 39.85,
-    "priceLabel": "$39.85 all-in ($35 + $4.85 fees)",
-    "pricingType": "platform",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "One-Off Show (Nov 15)",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "metal-church-and-armored-saint-with-livekill-tickets",
-      "eventbrite",
-      "heavy-metal",
-      "headliner",
-      "live-concert",
-      "rickshaw"
-    ],
-    "dateSchedule": "Sunday, Nov 15 • 6:00 PM (Doors)",
-    "startIso": "2026-11-15T18:00:00-07:00",
-    "endIso": "2026-11-15T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.eventbrite.ca/e/metal-church-and-armored-saint-with-livekill-tickets-1990053810518",
-    "venueUrl": "https://rickshawtheatre.com",
-    "ticketProvider": "Eventbrite Verified",
-    "rawProvider": "Eventbrite",
-    "coordinates": [
-      49.2813,
-      -123.0984
-    ],
-    "transitInfo": "5 min walk from Main & Hastings bus hub",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Heavy Metal Titans Metal Church and Armored Saint bring their co-headlined 'Metal Saint' tour to the Rickshaw with support from Livekill!",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 39.85,
-      "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-      "verifiedAt": "2026-09-10T11:03:42-07:00",
-      "details": "Verified via Eventbrite checkout cart."
-    }
-  },
-  {
-    "id": "science-world-after-dark",
-    "title": "Science World After Dark: 19+ Adult Night",
-    "artist": null,
-    "performers": null,
-    "venue": "Science World at TELUS World of Science",
-    "venueAliases": [],
-    "address": "1455 Quebec St, Vancouver",
-    "neighborhood": "Gastown / Chinatown",
-    "price": 39.5,
-    "priceLabel": "$39.50 all-in",
-    "pricingType": "platform",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly (3rd Thursday)",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "🧪",
-    "subTags": [
-      "19-plus",
-      "geodesic-dome",
-      "adult-science",
-      "cocktails"
-    ],
-    "dateSchedule": "Third Thursday of Month • 6:00 PM - 10:00 PM",
-    "startIso": "2026-09-17T18:00:00-07:00",
-    "endIso": "2026-09-17T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.scienceworld.ca/after-dark/",
-    "venueUrl": "https://www.scienceworld.ca",
-    "ticketProvider": "Tickets.com Verified",
-    "rawProvider": "Tickets.com",
-    "coordinates": [
-      49.2734,
-      -123.1038
-    ],
-    "transitInfo": "1 min walk from Main Street-Science World SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Join us every third Thursday of the month for a night out for adults that is a little bit out of the ordinary.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 39.5,
-      "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-      "verifiedAt": "2026-09-10T11:03:42-07:00",
-      "details": "Verified via tickets.scienceworld.ca."
-    }
-  },
-  {
-    "id": "vso-under-35-club",
-    "title": "Vancouver Symphony Orchestra Live at The Orpheum",
-    "artist": "Vancouver Symphony Orchestra",
-    "performers": null,
-    "venue": "The Orpheum Theatre",
-    "venueAliases": [],
-    "address": "601 Smithe St, Vancouver",
-    "neighborhood": "Downtown / West End",
-    "price": 35.0,
-    "priceLabel": "$35.00 all-in (Under-35 / Students $20)",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard Balcony",
-        "price": 35.0,
-        "label": "$35.00"
-      },
-      {
-        "name": "Under-35 Pass",
-        "price": 20.0,
-        "label": "$20.00"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly Concerts",
-    "daysOfWeek": [
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "symphony",
-      "orpheum",
-      "classical-music",
-      "under-35",
-      "vso"
-    ],
-    "dateSchedule": "Select Weekend Evenings • 8:00 PM",
-    "startIso": "2026-09-19T20:00:00-07:00",
-    "endIso": "2027-05-31T22:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
-    "venueUrl": "https://vancouvercivictheatres.com/venues/orpheum/",
-    "ticketProvider": "Box Office / Direct Verified",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2804,
-      -123.1206
-    ],
-    "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 35.0,
-      "feeBreakdown": "$35.00 standard balcony rate ($20 flat rate with VSO All-Access Pass)",
-      "verifiedAt": "2026-09-10T11:03:43-07:00",
-      "details": "Verified via Vancouver Symphony Orchestra published box office rates."
+      "method": "audienceview_scraped",
+      "verifiedTotal": 10.0,
+      "feeBreakdown": "$10.00 verified via AudienceView ticketing portal",
+      "verifiedAt": "2026-09-10T11:47:45-07:00",
+      "details": "Scraped from AudienceView portal on https://theimprovcentre.ca/shows/."
     }
   },
   {
@@ -2324,8 +1625,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "189 Keefer Pl, Vancouver",
     "neighborhood": "Gastown / Chinatown",
-    "price": 18.0,
-    "priceLabel": "Free entry (~$18 food/drink)",
+    "price": 8.0,
+    "priceLabel": "$8.00 game cover",
     "pricingType": "door",
     "tiers": [],
     "isFree": false,
@@ -2373,73 +1674,10 @@ const VANCOUVER_EVENTS = [
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-      "verifiedAt": "2026-09-10T11:03:45-07:00",
-      "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
-    }
-  },
-  {
-    "id": "stanley-pitch-putt",
-    "title": "Stanley Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "performers": null,
-    "venue": "Stanley Park Pitch & Putt",
-    "venueAliases": [],
-    "address": "2099 Beach Ave, Vancouver",
-    "neighborhood": "Downtown / West End",
-    "price": 15.55,
-    "priceLabel": "$15.55 door",
-    "pricingType": "door",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "⛳",
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "stanley-park",
-      "english-bay"
-    ],
-    "dateSchedule": "Daily • Daylight hours (First come, first served)",
-    "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.stanleypark.org/",
-    "venueUrl": "https://www.stanleypark.org/",
-    "ticketProvider": "City of Vancouver Park",
-    "rawProvider": "Independent Box Office",
-    "coordinates": [
-      49.2908,
-      -123.1448
-    ],
-    "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Stanley Park is a 300 acre, park in Westfield Massachusetts with gardens, green houses, pavilions, children's areas, athletic fields and miles of walking and hiking areas. The park is a great place for weddings and events.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 15.55,
-      "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-      "verifiedAt": "2026-09-10T11:03:45-07:00",
-      "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
+      "verifiedTotal": 8.0,
+      "feeBreakdown": "Game library cover / food-drink table policy (~ $8.00)",
+      "verifiedAt": "2026-09-10T11:47:49-07:00",
+      "details": "Verified via venue policy on https://www.ludica.ca/games/."
     }
   },
   {
@@ -2451,11 +1689,11 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown / West End",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
+    "price": 25.0,
+    "priceLabel": "$25.00 all-in",
     "pricingType": "free",
     "tiers": [],
-    "isFree": true,
+    "isFree": false,
     "isDaily": false,
     "frequency": "monthly",
     "frequencyLabel": "Monthly (1st Friday)",
@@ -2498,74 +1736,11 @@ const VANCOUVER_EVENTS = [
     "description": "Plan your visit to discover the Vancouver Art Gallery, one of North America’s most innovative visual arts institutions.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:47-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
-    }
-  },
-  {
-    "id": "shipyards-live-night",
-    "title": "The Shipyards Live: Waterfront Music & Night Market",
-    "artist": "Local bands & rotating indie artists",
-    "performers": null,
-    "venue": "The Shipyards District",
-    "venueAliases": [],
-    "address": "125 Victory Ship Way, North Vancouver",
-    "neighborhood": "North Shore / Burnaby",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Fridays)",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "night-market",
-      "live-music",
-      "pier-festival",
-      "lonsdale-quay"
-    ],
-    "dateSchedule": "Friday Evenings • 5:00 PM - 10:00 PM",
-    "startIso": "2026-09-11T17:00:00-07:00",
-    "endIso": "2026-09-25T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-    "venueUrl": "https://theshipyardsdistrict.ca",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.3113,
-      -123.0818
-    ],
-    "transitInfo": "5 min walk from Lonsdale Quay SeaBus terminal",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Shipyards is a popular destination, public space located on the scenic City waterfront, surrounded by restaurants, cafes, shops and services.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:48-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:47:54-07:00",
+      "details": "Scraped live from published terms on https://www.vanartgallery.bc.ca/visit/."
     }
   },
   {
@@ -2624,9 +1799,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:48-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:54-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -2689,9 +1864,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:48-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:55-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -2753,9 +1928,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:48-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:55-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -2817,9 +1992,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:49-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:56-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -2881,9 +2056,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:50-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:47:57-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -2900,7 +2075,7 @@ const VANCOUVER_EVENTS = [
     "address": "1 Alexander St (Below Ground), Vancouver",
     "neighborhood": "Gastown / Chinatown",
     "price": 0.0,
-    "priceLabel": "Free ($0)",
+    "priceLabel": "Free door ($5–$15 suggested donation)",
     "pricingType": "donation",
     "tiers": [],
     "isFree": true,
@@ -2918,12 +2093,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎵",
     "subTags": [
-      "beer",
+      "gastown",
+      "intimate-lounge",
       "soul-music",
       "live-jazz",
-      "gastown",
       "guilt--company",
-      "cocktails"
+      "beer"
     ],
     "dateSchedule": "Daily / Nightly Sets • 7:00 PM & 9:30 PM",
     "startIso": "2026-09-09T19:00:00-07:00",
@@ -2948,74 +2123,11 @@ const VANCOUVER_EVENTS = [
     "description": "Guilt & Company Home Page Calendar of Events",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_bylaw_rate",
+      "method": "venue_published_policy",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:51-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
-    }
-  },
-  {
-    "id": "vancouver-institute-lectures",
-    "title": "The Vancouver Institute: Saturday Public Lecture Series",
-    "artist": null,
-    "performers": null,
-    "venue": "UBC Instructional Resources Centre (IRC)",
-    "venueAliases": [],
-    "address": "2194 Health Sciences Mall, Vancouver",
-    "neighborhood": "Kitsilano",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Saturdays)",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🎓",
-    "subTags": [
-      "public-lecture",
-      "ubc",
-      "science-arts",
-      "free-knowledge",
-      "community-talk"
-    ],
-    "dateSchedule": "Weekly (Saturdays) • 8:15 PM",
-    "startIso": "2026-09-12T20:15:00-07:00",
-    "endIso": "2026-09-12T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://vaninstitute.ca",
-    "venueUrl": "https://vaninstitute.ca",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2647,
-      -123.2492
-    ],
-    "transitInfo": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Founded in 1916, Vancouver's longest-running free public lecture series bringing global scientists, authors, and thinkers to UBC IRC Lecture Hall No. 2 every Saturday evening during academic terms.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:51-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+      "verifiedAt": "2026-09-10T11:47:57-07:00",
+      "details": "Verified via venue official artist contribution and door policy."
     }
   },
   {
@@ -3027,11 +2139,11 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "2904 Main St, Vancouver",
     "neighborhood": "Mount Pleasant",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
+    "price": 15.0,
+    "priceLabel": "Free entry (~$15 food/drink)",
     "pricingType": "free",
     "tiers": [],
-    "isFree": true,
+    "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
     "frequencyLabel": "Weekly (Tuesdays)",
@@ -3074,11 +2186,11 @@ const VANCOUVER_EVENTS = [
     "description": "Vancouver's most popular multimedia pub quiz featuring high-energy pop culture rounds, music clues, visual puzzles, and gift card prizes. Free trivia admission with table food & beverage spend.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:54-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "method": "venue_published_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "Game library cover / food-drink table policy (~ $15.00)",
+      "verifiedAt": "2026-09-10T11:48:00-07:00",
+      "details": "Verified via venue policy on https://iq2000trivia.com."
     }
   },
   {
@@ -3141,9 +2253,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:55-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:00-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3205,9 +2317,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:55-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:01-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3269,9 +2381,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:56-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:02-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3333,9 +2445,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:57-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:03-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3397,9 +2509,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:58-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:04-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3461,9 +2573,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:03:59-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:05-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3525,9 +2637,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-10T11:04:00-07:00",
-      "details": "Verified via official municipal park bylaw / published civic schedule."
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:06-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -3612,250 +2724,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 live music artist charge per guest added to dining bill",
-      "verifiedAt": "2026-09-10T11:04:00-07:00",
-      "details": "Verified via 2nd Floor Gastown at Water St. Cafe live music terms."
-    }
-  },
-  {
-    "id": "frankies-jazz-brad-turner",
-    "title": "Weekend Live Jazz Showcase at Frankie's Jazz Club",
-    "artist": "Rotating Canadian & international jazz artists",
-    "performers": [
-      "Brad Turner Quartet",
-      "Rotating jazz artists"
-    ],
-    "venue": "Frankie's Jazz Club",
-    "venueAliases": [
-      "Frankies",
-      "Frankies Jazz Club",
-      "Coastal Jazz",
-      "Brad Turner",
-      "Brad Turner Quartet"
-    ],
-    "address": "755 Beatty St, Vancouver",
-    "neighborhood": "Downtown / West End",
-    "price": 22.0,
-    "priceLabel": "$22.00 all-in (Tiers $20 – $25)",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard Admission",
-        "basePrice": 20.0,
-        "price": 22.0,
-        "label": "$22.00 all-in"
-      },
-      {
-        "name": "Premium / Weekend Set",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Wednesday – Sunday",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "live-jazz",
-      "brad-turner",
-      "downtown",
-      "listening-room",
-      "bebop"
-    ],
-    "dateSchedule": "Wednesday – Sunday • 8:00 PM Sets (Doors 7:00 PM)",
-    "startIso": "2026-09-12T20:00:00-07:00",
-    "endIso": "2026-09-12T22:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
-    "venueUrl": "https://www.coastaljazz.ca",
-    "ticketProvider": "Box Office / Direct Verified",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2778,
-      -123.1147
-    ],
-    "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Purchase tickets for upcoming shows at Frankie's Jazz Club.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 22.0,
-      "feeBreakdown": "$20.00 base + $2.00 service fee verified via Turntable Tickets",
-      "verifiedAt": "2026-09-10T11:04:01-07:00",
-      "details": "Verified via Frankie's Jazz Club Turntable Tickets portal (frankiesjazzclub.turntabletickets.com)."
-    }
-  },
-  {
-    "id": "wise-hall-roots-revue",
-    "title": "East Van Roots, Folk & Live Music at The WISE Hall",
-    "artist": "Rotating local roots, folk & bluegrass acts",
-    "performers": [
-      "Rotating local roots, folk & bluegrass acts"
-    ],
-    "venue": "The WISE Hall & Lounge",
-    "venueAliases": [
-      "The WISE",
-      "Wise Hall",
-      "WISE Lounge",
-      "Roots & Bluegrass Revue"
-    ],
-    "address": "1882 Adanac St, Vancouver",
-    "neighborhood": "Commercial Drive",
-    "price": 15.0,
-    "priceLabel": "$15.00 door",
-    "pricingType": "door",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Thursdays – Saturdays",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "bluegrass",
-      "roots-revue",
-      "commercial-drive",
-      "community-hall",
-      "folk"
-    ],
-    "dateSchedule": "Thursday – Saturday • 8:00 PM (Doors 7:00 PM)",
-    "startIso": "2026-09-12T20:00:00-07:00",
-    "endIso": "2026-09-12T23:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://wisehall.ca",
-    "venueUrl": "https://thewise.ca",
-    "ticketProvider": "Venue Door / Table Charge",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2774,
-      -123.0673
-    ],
-    "transitInfo": "#20 Victoria or #14 Hastings bus to Commercial & Adanac",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Beloved community cultural institution off Commercial Drive. Features wood-floor acoustics, friendly community lounge, and live roots, blues, and indie showcases.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "$15.00 general door admission for live community hall show",
-      "verifiedAt": "2026-09-10T11:04:01-07:00",
-      "details": "Verified via The WISE Hall & Lounge official event door policy."
-    }
-  },
-  {
-    "id": "anza-club-bluegrass-jam",
-    "title": "Pacific Bluegrass & Heritage Acoustic Jam at The Anza Club",
-    "artist": "Pacific Bluegrass Heritage Collective",
-    "performers": null,
-    "venue": "The Anza Club",
-    "venueAliases": [],
-    "address": "3 W 8th Ave, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 10.0,
-    "priceLabel": "$10.00 door",
-    "pricingType": "door",
-    "tiers": [
-      {
-        "name": "Jam Admission",
-        "basePrice": 10.0,
-        "price": 10.0,
-        "label": "$10.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Mondays & Thursdays",
-    "daysOfWeek": [
-      "mon",
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "bluegrass",
-      "acoustic-jam",
-      "mount-pleasant",
-      "celtic",
-      "social-club"
-    ],
-    "dateSchedule": "Mondays & Thursdays • 7:30 PM – 10:30 PM",
-    "startIso": "2026-09-14T19:30:00-07:00",
-    "endIso": "2026-09-14T22:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://anzaclub.org",
-    "venueUrl": "https://www.anzaclub.org",
-    "ticketProvider": "Venue Door / Table Charge",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2638,
-      -123.1068
-    ],
-    "transitInfo": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Historic Australian New Zealand Association social club in Mount Pleasant. Hosts authentic acoustic bluegrass jams, open mics, darts, and craft beers.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 10.0,
-      "feeBreakdown": "$10.00 general admission door rate for community jam showcase",
-      "verifiedAt": "2026-09-10T11:04:02-07:00",
-      "details": "Verified via The Anza Club member and guest event policy."
+      "feeBreakdown": "$12.00 live music artist cover charge",
+      "verifiedAt": "2026-09-10T11:48:06-07:00",
+      "details": "Verified via 2nd Floor Gastown published performance terms on https://www.waterstreetcafe.ca/2nd-floor-gastown."
     }
   },
   {
@@ -3878,8 +2749,8 @@ const VANCOUVER_EVENTS = [
     ],
     "address": "1151 E Hastings St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
-    "price": 12.0,
-    "priceLabel": "$12.00 door (PWYC)",
+    "price": 15.0,
+    "priceLabel": "$15.00 door",
     "pricingType": "door",
     "tiers": [
       {
@@ -3935,94 +2806,11 @@ const VANCOUVER_EVENTS = [
     "description": "Artist-run non-profit community arts space on Main Street. Hosts cutting-edge experimental, post-punk, noise, and independent music showcases where no one is turned away for lack of funds.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 suggested door cover under Red Gate pay-what-you-can artist policy",
-      "verifiedAt": "2026-09-10T11:04:02-07:00",
-      "details": "Verified via Red Gate Arts Society non-profit door policy."
-    }
-  },
-  {
-    "id": "lanalous-the-jolts",
-    "title": "Weekend Live Rock 'n' Roll at LanaLou's",
-    "artist": "Rotating local punk, garage & rock bands",
-    "performers": [
-      "The Jolts",
-      "Tough Customer",
-      "Rotating local bands"
-    ],
-    "venue": "LanaLou's",
-    "venueAliases": [
-      "Lanalous",
-      "Lana Lou's",
-      "Lana Lous",
-      "The Jolts",
-      "Tough Customer"
-    ],
-    "address": "362 Powell St, Vancouver",
-    "neighborhood": "Gastown / Chinatown",
-    "price": 12.0,
-    "priceLabel": "$12.00 door",
-    "pricingType": "door",
-    "tiers": [
-      {
-        "name": "Door Admission",
-        "basePrice": 12.0,
-        "price": 12.0,
-        "label": "$12.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Thursdays – Saturdays",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "punk-rock",
-      "the-jolts",
-      "garage-rock",
-      "strathcona",
-      "all-ages"
-    ],
-    "dateSchedule": "Thursday – Saturday • 8:00 PM (Doors 7:30 PM)",
-    "startIso": "2026-09-12T20:00:00-07:00",
-    "endIso": "2026-09-12T23:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://lanalous.com",
-    "venueUrl": "https://lanalous.com",
-    "ticketProvider": "Venue Door / Table Charge",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2831,
-      -123.0954
-    ],
-    "transitInfo": "#4 or #7 Powell bus to Dunlevy Ave",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane weekend live shows with rotating Vancouver garage punk, indie, and alternative bands. 100% door proceeds support the artists.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 direct band door cover collected at entrance",
-      "verifiedAt": "2026-09-10T11:04:02-07:00",
-      "details": "Verified via LanaLou's live music booking & door schedule."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "$15.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:48:09-07:00",
+      "details": "Scraped live from published terms on https://redgate.tv/tickets/."
     }
   },
   {
@@ -4038,8 +2826,8 @@ const VANCOUVER_EVENTS = [
     ],
     "address": "932 Granville St, Vancouver",
     "neighborhood": "Downtown / West End",
-    "price": 12.0,
-    "priceLabel": "$12.00 door cover ($10 – $15)",
+    "price": 6.0,
+    "priceLabel": "$6.00 door",
     "pricingType": "door",
     "tiers": [
       {
@@ -4082,7 +2870,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-10T03:00:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://roxyvan.com/band",
+    "websiteUrl": "https://roxyvan.com/events",
     "venueUrl": "https://www.roxyvan.com",
     "ticketProvider": "Venue Door / Table Charge",
     "rawProvider": "Box Office / Direct",
@@ -4100,11 +2888,11 @@ const VANCOUVER_EVENTS = [
     "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits 7 nights a week, plus guest touring acts and resident weekend DJs.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 live band cover charge collected at entrance",
-      "verifiedAt": "2026-09-10T11:04:04-07:00",
-      "details": "Verified via The Roxy Cabaret official cover policy and live residency schedule."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 6.0,
+      "feeBreakdown": "$6.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:48:11-07:00",
+      "details": "Scraped live from published terms on https://roxyvan.com/events."
     }
   },
   {
@@ -4186,7 +2974,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-10T11:04:05-07:00",
+      "verifiedAt": "2026-09-10T11:48:11-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     }
   },
@@ -4204,20 +2992,38 @@ const VANCOUVER_EVENTS = [
     "address": "932 Granville St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 14.16,
-    "priceLabel": "$14.16 all-in ($12 advance / $15 door)",
+    "priceLabel": "$14.16 all-in",
     "pricingType": "platform",
     "tiers": [
       {
-        "name": "Advance Ticket",
+        "name": "GHULO",
         "basePrice": 12.0,
         "price": 14.16,
+        "priceNoTax": 13.49,
+        "fees": 2.16,
+        "serviceCharge": 1.49,
+        "tax": 0.67,
         "label": "$14.16 all-in"
       },
       {
-        "name": "Door Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 door"
+        "name": "FOCUS YOUR AUDIO",
+        "basePrice": 12.0,
+        "price": 14.16,
+        "priceNoTax": 13.49,
+        "fees": 2.16,
+        "serviceCharge": 1.49,
+        "tax": 0.67,
+        "label": "$14.16 all-in"
+      },
+      {
+        "name": "BOTH BANDS",
+        "basePrice": 12.0,
+        "price": 14.16,
+        "priceNoTax": 13.49,
+        "fees": 2.16,
+        "serviceCharge": 1.49,
+        "tax": 0.67,
+        "label": "$14.16 all-in"
       }
     ],
     "isFree": false,
@@ -4267,9 +3073,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 14.16,
-      "feeBreakdown": "$12.00 base + $2.16 Showpass fees ($15 door)",
-      "verifiedAt": "2026-09-10T11:04:05-07:00",
-      "details": "Verified via The Roxy Cabaret & Live Acts Canada weekly showcase ticket policy."
+      "feeBreakdown": "Live multi-tier Showpass checkout: GHULO: $14.16 all-in • FOCUS YOUR AUDIO: $14.16 all-in • BOTH BANDS: $14.16 all-in",
+      "verifiedAt": "2026-09-10T11:48:12-07:00",
+      "details": "Extracted directly from live Showpass public API payload."
     }
   },
   {
@@ -4281,8 +3087,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "1612 W 3rd Ave, Vancouver",
     "neighborhood": "Kitsilano",
-    "price": 24.0,
-    "priceLabel": "$24.00 all-in (Piece + Glaze + Firing)",
+    "price": 25.0,
+    "priceLabel": "$25.00 all-in",
     "pricingType": "door",
     "tiers": [
       {
@@ -4353,11 +3159,11 @@ const VANCOUVER_EVENTS = [
     "description": "No reservations or pre-payment needed. Space is first come first served. We do not take reservations for groups of 1 - 3 people*. For groups of 4 or more, we do recommend a reservation. Reservations are made by emailing hello@cafeauclay.com with the day, time and number of people in your group. Hours: Monday - Thursd",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 24.0,
-      "feeBreakdown": "$24.00 all-in ceramic piece includes up to 2 hours studio time, paints, glazes, and firing",
-      "verifiedAt": "2026-09-10T11:04:06-07:00",
-      "details": "Verified via Café au Clay Studios published studio rates (cafeauclay.com)."
+      "method": "schema_jsonld",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 verified via host Schema.org product/event payload",
+      "verifiedAt": "2026-09-10T11:48:12-07:00",
+      "details": "Extracted directly from host Schema.org markup on https://cafeauclay.com/products/drop-in-pottery-painting."
     }
   },
   {
@@ -4369,21 +3175,21 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "1011 Main St, Vancouver",
     "neighborhood": "Gastown / Chinatown",
-    "price": 15.0,
-    "priceLabel": "$15.00 drop-in (3-hour session)",
+    "price": 20.0,
+    "priceLabel": "$20.00 door",
     "pricingType": "door",
     "tiers": [
       {
-        "name": "Single Drop-In Session (3 Hours)",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 drop-in"
+        "name": "Single Session Ticket (Non-Member)",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 session ticket"
       },
       {
-        "name": "Student Drop-In with ID",
-        "basePrice": 12.0,
-        "price": 12.0,
-        "label": "$12.00 drop-in"
+        "name": "Single Session Ticket (Member)",
+        "basePrice": 17.0,
+        "price": 17.0,
+        "label": "$17.00 session ticket"
       }
     ],
     "isFree": false,
@@ -4415,7 +3221,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-10T22:00:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://lifedrawing.org/sessions",
+    "websiteUrl": "https://lifedrawing.org/session-fees-rates/",
     "venueUrl": "https://lifedrawing.org/sessions",
     "ticketProvider": "Walk-in / Cash or Card at Door",
     "rawProvider": "Box Office / Direct",
@@ -4430,14 +3236,14 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Vancouver's historic non-profit, volunteer-run life drawing studio on Main Street. Offers uninstructed 3-hour drop-in figure drawing sessions with live models for artists and beginners of all levels in a supportive space.",
+    "description": "Member rates, session tickets, and ticket pack pricing for the Vancouver Life Drawing Society, Basic Inquiry",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "$15.00 single session drop-in fee ($12 for students)",
-      "verifiedAt": "2026-09-10T11:04:07-07:00",
-      "details": "Verified via Vancouver Life Drawing Society published drop-in policy (lifedrawing.org)."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "$20.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:48:13-07:00",
+      "details": "Scraped live from published terms on https://lifedrawing.org/session-fees-rates/."
     }
   },
   {
@@ -4449,8 +3255,8 @@ const VANCOUVER_EVENTS = [
     "venueAliases": [],
     "address": "2202 Clark Dr, Vancouver",
     "neighborhood": "Commercial Drive",
-    "price": 26.25,
-    "priceLabel": "$26.25 all-in ($25 + GST)",
+    "price": 25.0,
+    "priceLabel": "$25.00 door",
     "pricingType": "door",
     "tiers": [
       {
@@ -4507,11 +3313,11 @@ const VANCOUVER_EVENTS = [
     "description": "Open studio hours and information for drop ins and make up classes at the Hand Eye Ceramics pottery studio.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 26.25,
-      "feeBreakdown": "$25.00 open studio session + $1.25 GST (5%) = $26.25 all-in",
-      "verifiedAt": "2026-09-10T11:04:07-07:00",
-      "details": "Verified via Hand Eye Ceramics published open studio drop-in schedule (handeyeceramics.com/open-studio)."
+      "method": "scraped_page_policy",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-10T11:48:14-07:00",
+      "details": "Scraped live from published terms on https://handeyeceramics.com/open-studio."
     }
   },
   {
@@ -4567,7 +3373,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-10T21:30:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://www.slicevancouver.ca/events",
+    "websiteUrl": "https://www.slicevancouver.ca/shop",
     "venueUrl": "https://www.slicevancouver.ca",
     "ticketProvider": "Walk-in / Studio Registration",
     "rawProvider": "Direct Studio Drop-In / Walk-in",
@@ -4582,14 +3388,14 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Artist-run gallery and community maker hub off Commercial Drive. Features casual drop-in craft nights, linocut printmaking, zine creation, and collage workshops in a friendly, creative atmosphere.",
+    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 community craft night drop-in includes materials and tools",
-      "verifiedAt": "2026-09-10T11:04:09-07:00",
-      "details": "Verified via Slice of Life Gallery & Studios event booking schedule."
+      "feeBreakdown": "$18.00 studio drop-in rate published via Slice of Life studio terms",
+      "verifiedAt": "2026-09-10T11:48:15-07:00",
+      "details": "Verified via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop."
     }
   },
   {
@@ -4645,7 +3451,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-13T13:00:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://www.slicevancouver.ca/events",
+    "websiteUrl": "https://www.slicevancouver.ca/shop",
     "venueUrl": "https://www.slicevancouver.ca",
     "ticketProvider": "Gallery Walk-In / Cash or Card",
     "rawProvider": "Direct Studio Drop-In / Walk-in",
@@ -4660,14 +3466,14 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Uninstructed community life drawing sessions inside Slice of Life's sunlit gallery. Features diverse professional models, relaxed beats, drawing boards, and a welcoming crowd of illustrators and sketchers.",
+    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
-      "feeBreakdown": "$15.00 uninstructed figure drawing drop-in",
-      "verifiedAt": "2026-09-10T11:04:09-07:00",
-      "details": "Verified via Slice of Life Life Drawing Club schedule."
+      "feeBreakdown": "$15.00 studio drop-in rate published via Slice of Life studio terms",
+      "verifiedAt": "2026-09-10T11:48:15-07:00",
+      "details": "Verified via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop."
     }
   },
   {
@@ -4723,7 +3529,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-13T16:30:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://www.slicevancouver.ca/events",
+    "websiteUrl": "https://www.slicevancouver.ca/clayclub",
     "venueUrl": "https://www.slicevancouver.ca",
     "ticketProvider": "Gallery Walk-In / Cash or Card",
     "rawProvider": "Direct Studio Drop-In / Walk-in",
@@ -4743,9 +3549,9 @@ const VANCOUVER_EVENTS = [
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 22.0,
-      "feeBreakdown": "$22.00 includes 1-2 lbs clay, studio underglazes, and firing",
-      "verifiedAt": "2026-09-10T11:04:09-07:00",
-      "details": "Verified via Slice of Life Clay Club Sunday/Monday drop-in schedule."
+      "feeBreakdown": "$22.00 studio drop-in rate published via Slice of Life studio terms",
+      "verifiedAt": "2026-09-10T11:48:15-07:00",
+      "details": "Verified via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/clayclub."
     }
   },
   {
@@ -4794,7 +3600,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-09-15T21:30:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://www.slicevancouver.ca/events",
+    "websiteUrl": "https://www.slicevancouver.ca/shop",
     "venueUrl": "https://www.slicevancouver.ca",
     "ticketProvider": "Gallery Walk-In / Cash or Card",
     "rawProvider": "Direct Studio Drop-In / Walk-in",
@@ -4809,25 +3615,25 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Slice of Life's beloved weekly Tuesday LEGO night for adults. Sift through thousands of categorized bricks, participate in optional timed build challenges, or chill with friends and build freely over gallery drinks and tunes.",
+    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 10.0,
-      "feeBreakdown": "$10.00 drop-in for Tuesday LEGO social",
-      "verifiedAt": "2026-09-10T11:04:09-07:00",
-      "details": "Verified via Slice of Life 'If You Build It' event schedule."
+      "feeBreakdown": "$10.00 studio drop-in rate published via Slice of Life studio terms",
+      "verifiedAt": "2026-09-10T11:48:15-07:00",
+      "details": "Verified via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop."
     }
   },
   {
     "id": "public-disco-block-party",
-    "title": "Public Disco Festival: Shipyards Waterfront",
-    "artist": "Public Disco resident DJs & international electronic selectors",
+    "title": "Public Disco: Open-Air Summer Block Party Series",
+    "artist": "Public Disco resident DJs & community electronic selectors",
     "performers": null,
-    "venue": "The Shipyards Waterfront",
+    "venue": "Downtown Vancouver Plazas",
     "venueAliases": [],
-    "address": "125 Victory Ship Way, North Vancouver, BC",
-    "neighborhood": "North Shore / Burnaby",
+    "address": "505 Burrard St, Vancouver, BC",
+    "neighborhood": "Downtown / West End",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
@@ -4835,140 +3641,53 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "isDaily": false,
     "frequency": "seasonal",
-    "frequencyLabel": "Seasonal Festival",
+    "frequencyLabel": "Seasonal / Summer Series Concluded",
     "daysOfWeek": [
       "sat"
     ],
     "timeSlots": [
       "afternoon",
-      "early-evening",
-      "late-evening"
+      "early-evening"
     ],
     "category": "social",
     "categoryLabel": "Community & Social",
     "categoryIcon": "🪩",
     "subTags": [
       "public-disco",
-      "festival",
+      "block-party",
       "dance-party",
       "open-air",
       "djs",
       "free-event"
     ],
-    "dateSchedule": "Saturday, October 3, 2026 • 2:00 PM – 10:00 PM",
-    "startIso": "2026-10-03T14:00:00-07:00",
-    "endIso": "2026-10-03T22:00:00-07:00",
-    "confirmedDates": [
-      "2026-10-03"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://publicdisco.ca/events",
-    "venueUrl": "https://www.google.com/search?q=The+Shipyards+Waterfront+Vancouver",
-    "ticketProvider": "Free Civic Admission",
-    "rawProvider": "Free Public Access",
-    "coordinates": [
-      49.3117,
-      -123.0805
-    ],
-    "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along the waterfront",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "The Shipyards Waterfront",
-    "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
-    "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-    "rovingNote": "📍 10th anniversary festival season finale at Shipyards Waterfront in North Vancouver. (Summer plaza block parties concluded Aug 29).",
-    "description": "Dance Music Events in Vancouver, Canada",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) open-air daytime community event (City plaza grant supported)",
-      "verifiedAt": "2026-09-10T11:04:10-07:00",
-      "details": "Verified via Public Disco Society published seasonal programming (publicdisco.ca)."
-    }
-  },
-  {
-    "id": "public-disco-warehouse-party",
-    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "artist": "Public Disco selectors & guest live electronic artists",
-    "performers": null,
-    "venue": "The Birdhouse",
-    "venueAliases": [],
-    "address": "44 W 4th Ave, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 20.0,
-    "priceLabel": "$20.00 advance ($15 – $25)",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Tier 1 Early Bird",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00"
-      },
-      {
-        "name": "Tier 2 General Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00"
-      },
-      {
-        "name": "Door / Late Night",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal / Awaiting Schedule",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Music & Concerts",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "public-disco",
-      "electronic",
-      "house-music",
-      "dance-party",
-      "warehouse",
-      "mount-pleasant"
-    ],
-    "dateSchedule": "Awaiting next announced edition • Follow @publicdisco",
+    "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
     "startIso": null,
     "endIso": null,
     "confirmedDates": [],
     "isSoldOut": false,
     "websiteUrl": "https://publicdisco.ca/events",
-    "venueUrl": "https://www.birdhouse.ca",
-    "ticketProvider": "Online Advance & Door Tickets",
-    "rawProvider": "Eventbrite / Public Disco",
+    "venueUrl": "https://www.google.com/search?q=Downtown+Vancouver+Plazas+Vancouver",
+    "ticketProvider": "Free Civic Admission",
+    "rawProvider": "Free Public Access",
     "coordinates": [
-      49.2678,
-      -123.1065
+      49.2858,
+      -123.1187
     ],
-    "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
+    "transitInfo": "Burrard SkyTrain station (direct plaza access)",
     "organizer": "Public Disco Society",
     "isRoving": true,
-    "editionVenue": "The Birdhouse",
-    "agePolicy": "19+ (Valid Government Photo ID Required)",
-    "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
-    "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
+    "editionVenue": "Downtown Vancouver Plazas",
+    "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
+    "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
+    "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
     "description": "Dance Music Events in Vancouver, Canada",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "$20.00 general admission ($15 early / $25 door)",
-      "verifiedAt": "2026-09-10T11:04:10-07:00",
-      "details": "Verified via Public Disco Society Eventbrite ticketing portal."
+      "method": "official_bylaw_rate",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+      "verifiedAt": "2026-09-10T11:48:17-07:00",
+      "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
   {
@@ -5043,7 +3762,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 30.0,
       "feeBreakdown": "Live RA listing price: $30.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5121,7 +3840,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 30.0,
       "feeBreakdown": "Live RA listing price: $30.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5195,7 +3914,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5273,7 +3992,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 30.0,
       "feeBreakdown": "Live RA listing price: $30.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5347,7 +4066,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 35.0,
       "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5426,7 +4145,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 32.5,
       "feeBreakdown": "Live RA listing price: $32.50 all-in",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5500,7 +4219,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -5574,12 +4293,80 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-10T11:04:11-07:00",
+      "verifiedAt": "2026-09-10T11:48:18-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   }
 ];
 const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "ubc-thunderbirds-varsity",
+    "title": "UBC Thunderbirds: Home Varsity Games",
+    "venue": "War Memorial Gym & Thunderbird Stadium",
+    "address": "6081 University Blvd, Vancouver",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 10.0,
+    "attemptedPriceLabel": "$10.00 door",
+    "provider": "Paciolan",
+    "semanticProvider": "Paciolan Verified",
+    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "category": "activities",
+    "flaggedAt": "2026-09-10T11:47:37-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "eb-standup-mental-health",
+    "title": "Stand Up For Mental Health Showcase",
+    "venue": "Chill x Studio",
+    "address": "1227 Richards St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 10.0,
+    "attemptedPriceLabel": "$10.00 door",
+    "provider": "Eventbrite",
+    "semanticProvider": "Eventbrite Verified",
+    "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+    "category": "shows",
+    "flaggedAt": "2026-09-10T11:47:38-07:00",
+    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "fox-cabaret-indie-cinema",
+    "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 39.0,
+    "attemptedPriceLabel": "$39.00 door",
+    "provider": "Eventbrite",
+    "semanticProvider": "Eventbrite Verified",
+    "websiteUrl": "https://www.foxcabaret.com/",
+    "category": "cinema",
+    "flaggedAt": "2026-09-10T11:47:42-07:00",
+    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.foxcabaret.com/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "tm-biltmore-emerging-artist",
+    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "venue": "The Biltmore Cabaret",
+    "address": "2755 Prince Edward St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "AdmitOne",
+    "semanticProvider": "AdmitOne Verified",
+    "websiteUrl": "https://biltmorecabaret.com/",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:47:42-07:00",
+    "flagReason": "Could not parse live ticket prices from AdmitOne page (https://biltmorecabaret.com/)",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
   {
     "id": "lmg-decolonized-comedy",
     "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
@@ -5592,8 +4379,110 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Showpass Verified",
     "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "category": "shows",
-    "flaggedAt": "2026-09-10T11:03:40-07:00",
-    "flagReason": "Showpass returned no ticket types",
+    "flaggedAt": "2026-09-10T11:47:43-07:00",
+    "flagReason": "Showpass API returned no active ticket types for 'who-wants-to-be-decolonized-5'",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "tm-canadians-baseball",
+    "title": "Vancouver Canadians: Nat Bailey Stadium Baseball",
+    "venue": "Scotiabank Field at Nat Bailey Stadium",
+    "address": "4601 Ontario St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 16.0,
+    "attemptedPriceLabel": "$16.00 door",
+    "provider": "Ticketmaster",
+    "semanticProvider": "Ticketmaster Verified",
+    "websiteUrl": "https://www.milb.com/vancouver/tickets/single-game-tickets",
+    "category": "activities",
+    "flaggedAt": "2026-09-10T11:47:44-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.milb.com/vancouver/tickets/single-game-tickets",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "fox-cabaret-dance-night",
+    "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Independent Box Office",
+    "semanticProvider": "Independent Box Office",
+    "websiteUrl": "https://www.foxcabaret.com/",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:47:44-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.foxcabaret.com/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "tightrope-maestro",
+    "title": "Tightrope Impro: Maestro Improv Tournament",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 25.0,
+    "attemptedPriceLabel": "$25.00 door",
+    "provider": "TicketSpice",
+    "semanticProvider": "TicketSpice Verified",
+    "websiteUrl": "https://www.tightropetheatre.com/weekly-live-shows",
+    "category": "shows",
+    "flaggedAt": "2026-09-10T11:47:44-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.tightropetheatre.com/weekly-live-shows",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "rickshaw-indie-rock",
+    "title": "Metal Church & Armored Saint Live at Rickshaw",
+    "venue": "The Rickshaw Theatre",
+    "address": "254 E Hastings St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 35.0,
+    "attemptedPriceLabel": "$35.00 door",
+    "provider": "Eventbrite",
+    "semanticProvider": "Eventbrite Verified",
+    "websiteUrl": "https://www.eventbrite.ca/e/metal-church-and-armored-saint-with-livekill-tickets-1990053810518",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:47:46-07:00",
+    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/metal-church-and-armored-saint-with-livekill-tickets-1990053810518",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "science-world-after-dark",
+    "title": "Science World After Dark: 19+ Adult Night",
+    "venue": "Science World at TELUS World of Science",
+    "address": "1455 Quebec St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 39.5,
+    "attemptedPriceLabel": "$39.50 door",
+    "provider": "Tickets.com",
+    "semanticProvider": "Tickets.com Verified",
+    "websiteUrl": "https://www.scienceworld.ca/after-dark/",
+    "category": "activities",
+    "flaggedAt": "2026-09-10T11:47:46-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.scienceworld.ca/after-dark/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "vso-under-35-club",
+    "title": "Vancouver Symphony Orchestra Live at The Orpheum",
+    "venue": "The Orpheum Theatre",
+    "address": "601 Smithe St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 35.0,
+    "attemptedPriceLabel": "$35.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Box Office / Direct Verified",
+    "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:47:47-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.vancouversymphony.ca/all-access-pass/",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
@@ -5609,8 +4498,8 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "AudienceView Verified",
     "websiteUrl": "https://thecultch.com/box-office/",
     "category": "shows",
-    "flaggedAt": "2026-09-10T11:03:43-07:00",
-    "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
+    "flaggedAt": "2026-09-10T11:47:47-07:00",
+    "flagReason": "Generic box office info page (https://thecultch.com/box-office/) without specific production checkout cart payload.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
@@ -5626,8 +4515,127 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://www.tightropetheatre.com/classes",
     "category": "activities",
-    "flaggedAt": "2026-09-10T11:03:43-07:00",
-    "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
+    "flaggedAt": "2026-09-10T11:47:47-07:00",
+    "flagReason": "Live scraped rate ($55.00 CAD) strictly exceeds the $50.00 budget limit.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "stanley-pitch-putt",
+    "title": "Stanley Park Pitch & Putt: 18-Hole Round",
+    "venue": "Stanley Park Pitch & Putt",
+    "address": "2099 Beach Ave, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 15.55,
+    "attemptedPriceLabel": "$15.55 door",
+    "provider": "Independent Box Office",
+    "semanticProvider": "City of Vancouver Park",
+    "websiteUrl": "https://www.stanleypark.org/",
+    "category": "activities",
+    "flaggedAt": "2026-09-10T11:47:49-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.stanleypark.org/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "shipyards-live-night",
+    "title": "The Shipyards Live: Waterfront Music & Night Market",
+    "venue": "The Shipyards District",
+    "address": "125 Victory Ship Way, North Vancouver",
+    "neighborhood": "North Shore / Burnaby",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "$0.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:47:54-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "vancouver-institute-lectures",
+    "title": "The Vancouver Institute: Saturday Public Lecture Series",
+    "venue": "UBC Instructional Resources Centre (IRC)",
+    "address": "2194 Health Sciences Mall, Vancouver",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "$0.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://vaninstitute.ca",
+    "category": "arts",
+    "flaggedAt": "2026-09-10T11:47:58-07:00",
+    "flagReason": "Primary venue link failed to load or returned 404: https://vaninstitute.ca",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "frankies-jazz-brad-turner",
+    "title": "Live Jazz Showcase at Frankie's Jazz Club",
+    "venue": "Frankie's Jazz Club",
+    "address": "755 Beatty St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 22.0,
+    "attemptedPriceLabel": "$22.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Box Office / Direct Verified",
+    "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:48:07-07:00",
+    "flagReason": "Could not parse price from Turntable Tickets page",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "wise-hall-roots-revue",
+    "title": "East Van Roots, Folk & Live Music at The WISE Hall",
+    "venue": "The WISE Hall & Lounge",
+    "address": "1882 Adanac St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://wisehall.ca",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:48:08-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://wisehall.ca",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "anza-club-bluegrass-jam",
+    "title": "Pacific Bluegrass & Heritage Acoustic Jam at The Anza Club",
+    "venue": "The Anza Club",
+    "address": "3 W 8th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 10.0,
+    "attemptedPriceLabel": "$10.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://anzaclub.org",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:48:09-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://anzaclub.org",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "lanalous-the-jolts",
+    "title": "Weekend Live Rock 'n' Roll at LanaLou's",
+    "venue": "LanaLou's",
+    "address": "362 Powell St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 12.0,
+    "attemptedPriceLabel": "$12.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://lanalous.com",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:48:09-07:00",
+    "flagReason": "Primary venue link failed to load or returned 404: https://lanalous.com",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
@@ -5643,7 +4651,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
     "category": "cinema",
-    "flaggedAt": "2026-09-10T11:04:05-07:00",
+    "flaggedAt": "2026-09-10T11:48:12-07:00",
     "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -5660,8 +4668,42 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Studio Booking / Walk-in",
     "websiteUrl": "https://claymatesceramicsstudio.com",
     "category": "crafts",
-    "flaggedAt": "2026-09-10T11:04:08-07:00",
-    "flagReason": "Pottery courses at Claymates are multi-week intensives ($175+) exceeding the $50 cap; studio requires full multi-session enrollment or monthly membership ($175+). Quarantined in favor of Hand Eye Ceramics ($26.25 all-in drop-in).",
+    "flaggedAt": "2026-09-10T11:48:15-07:00",
+    "flagReason": "Pottery courses at Claymates are multi-week intensives ($175+) exceeding the $50 cap; studio requires full multi-session enrollment or monthly membership ($175+). Quarantined in favor of Hand Eye Ceramics ($25 drop-in).",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "public-disco-festival-oct3",
+    "title": "Public Disco: Open-Air Summer Block Party Series",
+    "venue": "Downtown Vancouver Plazas",
+    "address": "505 Burrard St, Vancouver, BC",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "$0.00 door",
+    "provider": "AdmitOne",
+    "semanticProvider": "AdmitOne Verified",
+    "websiteUrl": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4",
+    "category": "social",
+    "flaggedAt": "2026-09-10T11:48:17-07:00",
+    "flagReason": "Live AdmitOne ticket price ($57.50 CAD) strictly exceeds the $50.00 budget limit.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "public-disco-warehouse-party",
+    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "venue": "The Birdhouse",
+    "address": "44 W 4th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 20.0,
+    "attemptedPriceLabel": "$20.00 door",
+    "provider": "Eventbrite / Public Disco",
+    "semanticProvider": "Online Advance & Door Tickets",
+    "websiteUrl": "https://publicdisco.ca/events",
+    "category": "music",
+    "flaggedAt": "2026-09-10T11:48:17-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://publicdisco.ca/events",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   }

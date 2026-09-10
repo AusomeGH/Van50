@@ -1853,7 +1853,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-09T20:00:00-07:00",
             "endIso": "2026-09-10T03:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://roxyvan.com/band",
+            "websiteUrl": "https://roxyvan.com/events",
             "coordinates": [49.2804, -123.1215],
             "transitInfo": "Granville SkyTrain Station (4 min walk)",
             "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits 7 nights a week, plus guest touring acts and resident weekend DJs."
@@ -1993,7 +1993,7 @@ def get_curated_seed_catalog():
             "venue": "Basic Inquiry Life Drawing Society",
             "address": "1011 Main St, Vancouver",
             "neighborhood": "Gastown / Chinatown",
-            "basePrice": 15.00,
+            "basePrice": 20.00,
             "provider": "Box Office / Direct",
             "semanticProvider": "Walk-in / Cash or Card at Door",
             "pricingType": "paid",
@@ -2010,7 +2010,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-10T19:00:00-07:00",
             "endIso": "2026-09-10T22:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://lifedrawing.org/sessions",
+            "websiteUrl": "https://lifedrawing.org/session-fees-rates/",
             "coordinates": [49.2789, -123.1001],
             "transitInfo": "Main Street–Science World SkyTrain station (3 min walk)",
             "description": "Vancouver's historic artist-run life drawing society. Drop-in uninstructed figure drawing sessions with professional models, easels, and drawing horses in an authentic Chinatown studio."
@@ -2094,7 +2094,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-10T18:30:00-07:00",
             "endIso": "2026-09-10T21:30:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "coordinates": [49.2764, -123.0716],
             "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
             "description": "East Van community craft gathering with printmaking, linocut stamping, collage, and zine-making materials provided. Relaxed, social creative vibe for beginners and pros alike."
@@ -2122,7 +2122,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-13T10:30:00-07:00",
             "endIso": "2026-09-13T13:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "coordinates": [49.2764, -123.0716],
             "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
             "description": "Uninstructed community life drawing sessions inside Slice of Life's sunlit gallery. Features diverse professional models, relaxed beats, drawing boards, and a welcoming crowd of illustrators and sketchers."
@@ -2150,7 +2150,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-13T14:00:00-07:00",
             "endIso": "2026-09-13T16:30:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/clayclub",
             "coordinates": [49.2764, -123.0716],
             "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
             "description": "Casual Sunday afternoon and Monday evening clay social. Grab terracotta or stoneware clay, learn hand-building pinching and coiling techniques, and create mugs, dishes, or sculptures with studio underglazes and firing included."
@@ -2178,24 +2178,57 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-15T19:00:00-07:00",
             "endIso": "2026-09-15T21:30:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "websiteUrl": "https://www.slicevancouver.ca/shop",
             "coordinates": [49.2764, -123.0716],
             "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
             "description": "Slice of Life's beloved weekly Tuesday LEGO night for adults. Sift through thousands of categorized bricks, participate in optional timed build challenges, or chill with friends and build freely over gallery drinks and tunes."
         },
         {
             "id": "public-disco-block-party",
-            "title": "Public Disco Festival: Shipyards Waterfront",
-            "venue": "The Shipyards Waterfront",
+            "title": "Public Disco: Open-Air Summer Block Party Series",
+            "venue": "Downtown Vancouver Plazas",
             "organizer": "Public Disco Society",
             "isRoving": True,
-            "editionVenue": "The Shipyards Waterfront",
-            "address": "125 Victory Ship Way, North Vancouver, BC",
-            "neighborhood": "North Shore / Burnaby",
+            "editionVenue": "Bentall Centre / Granville Island",
+            "address": "505 Burrard St, Vancouver, BC",
+            "neighborhood": "Downtown / West End",
             "basePrice": 0.00,
             "provider": "Free Public Access",
             "semanticProvider": "Free Civic Admission",
             "pricingType": "free",
+            "isDaily": False,
+            "frequency": "seasonal",
+            "frequencyLabel": "Seasonal / Summer Series Concluded",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "category": "social",
+            "categoryLabel": "Community & Social",
+            "categoryIcon": "🪩",
+            "subTags": ["public-disco", "block-party", "dance-party", "open-air", "djs", "free-event"],
+            "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
+            "startIso": None,
+            "endIso": None,
+            "confirmedDates": [],
+            "isSoldOut": False,
+            "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
+            "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
+            "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD on AdmitOne and quarantined for exceeding the $50 cap).",
+            "websiteUrl": "https://publicdisco.ca/events",
+            "coordinates": [49.2858, -123.1187],
+            "transitInfo": "Burrard SkyTrain station (direct plaza access)",
+            "description": "Public Disco Society hosts free open-air community block parties in Vancouver downtown plazas throughout the summer, featuring vibrant dance floors, local DJs, pop-up markets, and roller skating."
+        },
+        {
+            "id": "public-disco-festival-oct3",
+            "title": "Public Disco Festival: Shipyards Waterfront",
+            "venue": "The Shipyards Waterfront",
+            "organizer": "Public Disco Society",
+            "address": "125 Victory Ship Way, North Vancouver, BC",
+            "neighborhood": "North Shore / Burnaby",
+            "basePrice": 57.50,
+            "provider": "AdmitOne",
+            "semanticProvider": "AdmitOne Verified",
+            "pricingType": "platform",
             "isDaily": False,
             "frequency": "seasonal",
             "frequencyLabel": "Seasonal Festival",
@@ -2204,19 +2237,18 @@ def get_curated_seed_catalog():
             "category": "social",
             "categoryLabel": "Community & Social",
             "categoryIcon": "🪩",
-            "subTags": ["public-disco", "festival", "dance-party", "open-air", "djs", "free-event"],
+            "subTags": ["public-disco", "festival", "dance-party", "open-air", "djs"],
             "dateSchedule": "Saturday, October 3, 2026 • 2:00 PM – 10:00 PM",
             "startIso": "2026-10-03T14:00:00-07:00",
             "endIso": "2026-10-03T22:00:00-07:00",
             "confirmedDates": ["2026-10-03"],
             "isSoldOut": False,
-            "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
-            "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-            "rovingNote": "📍 10th anniversary festival season finale at Shipyards Waterfront in North Vancouver. (Summer plaza block parties concluded Aug 29).",
-            "websiteUrl": "https://publicdisco.ca/events",
+            "agePolicy": "19+ (Valid Photo ID Required)",
+            "admissionPolicy": "Ticketed Festival ($57.50 – $75.00 CAD via AdmitOne)",
+            "websiteUrl": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4",
             "coordinates": [49.3117, -123.0805],
             "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along the waterfront",
-            "description": "Public Disco Society presents its 10th-anniversary season finale festival at The Shipyards in North Vancouver. Features open-air dance floors, world-class electronic selectors, interactive art, roller skate area, and licensed community bars."
+            "description": "Public Disco Society 10th anniversary full-day, two-stage electronic music festival at the Shipyards District in North Vancouver. (Ticketed at $57.50+ CAD)."
         },
         {
             "id": "public-disco-warehouse-party",
@@ -2562,8 +2594,26 @@ def run_sync() -> bool:
 
         # Budget Cap Check (<= $50 CAD)
         if final_price > 50.00:
-            print(f"[REJECT] '{item['title']}' rejected: ${final_price:.2f} > $50.00 CAD")
+            print(f"[REJECT & QUARANTINE] '{item['title']}' rejected: ${final_price:.2f} > $50.00 CAD")
             rejected_count += 1
+            quarantined_item = {
+                "id": event_id,
+                "title": item['title'],
+                "venue": item['venue'],
+                "address": item.get('address', ''),
+                "neighborhood": item.get('neighborhood', ''),
+                "attemptedPrice": final_price,
+                "attemptedPriceLabel": price_label,
+                "provider": provider,
+                "semanticProvider": semantic_provider,
+                "websiteUrl": url,
+                "category": cat,
+                "flaggedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                "flagReason": f"Verified admission price (${final_price:.2f} CAD) strictly exceeds the $50.00 budget limit.",
+                "reviewStatus": "pending_manual_review",
+                "notes": "Event price exceeds the strict Van50 <= $50.00 CAD out-of-pocket cap."
+            }
+            quarantined_events.append(quarantined_item)
             continue
 
         # 2. Automated Title Sanitization & Recurrence-vs-Lineup Linter
