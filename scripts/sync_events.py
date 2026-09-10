@@ -36,6 +36,7 @@ JS_DIR = os.path.join(BASE_DIR, 'js')
 JSON_PATH = os.path.join(DATA_DIR, 'events.json')
 JS_PATH = os.path.join(JS_DIR, 'data.js')
 MANUAL_REVIEW_PATH = os.path.join(DATA_DIR, 'manual_review_queue.json')
+DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, 'discovery_sources.json')
 
 # ==============================================================================
 # LIVE PRICING SEARCH ENGINE IMPORT
@@ -2246,6 +2247,14 @@ def run_sync() -> bool:
     print(f"Semantic Providers Breakdown: {providers_count}")
 
     timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+    discovery_sources = []
+    if os.path.exists(DISCOVERY_SOURCES_PATH):
+        try:
+            with open(DISCOVERY_SOURCES_PATH, 'r', encoding='utf-8') as f:
+                discovery_sources = json.load(f).get('sources', [])
+        except Exception as e:
+            print(f"[WARN] Failed to load discovery sources: {e}")
+
     database = {
         "metadata": {
             "version": "4.1.0",
@@ -2257,6 +2266,7 @@ def run_sync() -> bool:
             "feeInclusive": True,
             "totalEvents": len(verified_events),
             "providersCount": len(providers_count),
+            "discoverySourcesCount": len(discovery_sources),
             "quarantinedCount": len(quarantined_events)
         },
         "events": verified_events
@@ -2347,6 +2357,9 @@ const CATEGORIES = [
 
 // Curated Venue Homepages Directory
 const VENUE_URLS = {json.dumps(VENUE_URLS, indent=2, ensure_ascii=False)};
+
+// Curated Discovery Sources Directory
+const DISCOVERY_SOURCES = {json.dumps(discovery_sources, indent=2, ensure_ascii=False)};
 """
     with open(JS_PATH, 'w', encoding='utf-8') as f:
         f.write(js_content)

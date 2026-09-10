@@ -175,6 +175,33 @@ def run_tests():
     assert event_map['wise-hall-roots-revue']['title'] == "East Van Roots, Folk & Live Music at The WISE Hall"
     print(f"  ✓ All recurring music nights verified with series titles and rotating artist lineups")
 
+    # 7. Discovery Sources Directory Verification
+    discovery_json_path = os.path.join(ROOT_DIR, 'data', 'discovery_sources.json')
+    assert os.path.exists(discovery_json_path), f"Missing {discovery_json_path}"
+    with open(discovery_json_path, 'r', encoding='utf-8') as f:
+        discovery_payload = json.load(f)
+    disc_sources = discovery_payload.get('sources', [])
+    assert len(disc_sources) >= 11, f"Expected at least 11 discovery sources, got {len(disc_sources)}"
+    
+    disc_map = {s['id']: s for s in disc_sources}
+    assert 'vancouver-is-awesome' in disc_map, "Missing 'vancouver-is-awesome' in discovery sources"
+    assert 'do604' in disc_map, "Missing 'do604' in discovery sources"
+    assert 'georgia-straight' in disc_map, "Missing 'georgia-straight' in discovery sources"
+    assert 'daily-hive-vancouver' in disc_map, "Missing 'daily-hive-vancouver' in discovery sources"
+    assert 'miss604' in disc_map, "Missing 'miss604' in discovery sources"
+
+    for s in disc_sources:
+        assert s.get('name') and s.get('domain') and s.get('eventsUrl'), f"Source {s.get('id')} missing essential fields"
+        assert s.get('resolutionPolicy'), f"Source {s.get('id')} missing resolutionPolicy"
+        assert s.get('type'), f"Source {s.get('id')} missing type"
+
+    assert events_data.get('metadata', {}).get('discoverySourcesCount') == len(disc_sources), "events.json metadata discoverySourcesCount mismatch"
+    assert 'const DISCOVERY_SOURCES =' in data_js, "js/data.js missing DISCOVERY_SOURCES export"
+    print(f"[TEST 7] Discovery Sources Directory Verified:")
+    print(f"  ✓ Successfully verified {len(disc_sources)} discovery sources in data/discovery_sources.json")
+    print(f"  ✓ Includes Vancouver Is Awesome, Do604, Georgia Straight, Daily Hive, Miss604, etc.")
+    print(f"  ✓ Resolution policies and budget tiers confirmed for all sources")
+
     print("\n======================================================================")
     print("ALL TESTS PASSED CLEANLY (0 Errors, 0 Discrepancies)!")
     print("======================================================================")

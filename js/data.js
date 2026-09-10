@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-09T11:55:52-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-09T17:13:02-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -56,7 +56,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -113,7 +113,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -170,7 +170,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -227,7 +227,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -284,7 +284,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -340,7 +340,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -397,7 +397,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -454,7 +454,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -510,7 +510,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 8.09,
       "preTaxSticker": 7.7,
       "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
     }
   },
@@ -566,7 +566,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 9.82,
       "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via Showpass Vancouver Park Board ticketing portal."
     }
   },
@@ -635,7 +635,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 10.24,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
     }
   },
@@ -691,7 +691,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 11.75,
       "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
     }
   },
@@ -746,7 +746,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 12.44,
       "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -802,7 +802,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
@@ -882,7 +882,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via VIFF Centre Agile ticketing websales portal."
     }
   },
@@ -957,7 +957,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 15.0,
       "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via Agile websales",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via The Cinematheque Agile websales ticket search frame."
     }
   },
@@ -1012,7 +1012,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-      "verifiedAt": "2026-09-09T11:55:51-07:00",
+      "verifiedAt": "2026-09-09T17:13:01-07:00",
       "details": "Verified via venue booking and trivia participation policy."
     }
   },
@@ -1067,7 +1067,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 36.0,
       "feeBreakdown": "$32.00 base + $4.00 Igniter convenience & box office fees",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Parsed from live ticket_types JSON payload on riotheatretickets.ca."
     }
   },
@@ -1122,7 +1122,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 44.0,
       "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Eventbrite checkout cart payload."
     }
   },
@@ -1177,7 +1177,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 22.75,
       "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
     }
   },
@@ -1245,7 +1245,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
     }
   },
@@ -1300,7 +1300,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1356,7 +1356,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1412,7 +1412,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1484,7 +1484,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 18.5,
       "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
     }
   },
@@ -1552,7 +1552,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.5,
       "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via The Fox Cabaret calendar fee schedule."
     }
   },
@@ -1620,7 +1620,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 25.0,
       "feeBreakdown": "General Admission ($25.00) and Student ($20.00) verified with inclusive fees on Eventbrite",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Eventbrite Revue Stage checkout manifest."
     }
   },
@@ -1688,7 +1688,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 25.0,
       "feeBreakdown": "General ($25.00) and Student ($18.00) verified with 0 added online fees on TicketSpice",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
     }
   },
@@ -1743,7 +1743,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$23.00 advance base + $4.96 Eventbrite fee & GST",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -1813,7 +1813,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 33.5,
       "feeBreakdown": "Regular Seat ($33.50) and Student/Senior ($28.50) tiers verified via AudienceView consumer checkout",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via The Improv Centre AudienceView schedule."
     }
   },
@@ -1868,7 +1868,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.85,
       "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Eventbrite checkout cart."
     }
   },
@@ -1924,7 +1924,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.5,
       "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via tickets.scienceworld.ca."
     }
   },
@@ -1992,7 +1992,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 35.0,
       "feeBreakdown": "$35.00 standard balcony rate ($20 flat rate with VSO All-Access Pass)",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Vancouver Symphony Orchestra published box office rates."
     }
   },
@@ -2049,7 +2049,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.0,
       "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
     }
   },
@@ -2105,7 +2105,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 15.55,
       "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
     }
   },
@@ -2161,7 +2161,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2217,7 +2217,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2271,7 +2271,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2329,7 +2329,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2386,7 +2386,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2443,7 +2443,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2500,7 +2500,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2561,7 +2561,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2617,7 +2617,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2673,7 +2673,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2731,7 +2731,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2788,7 +2788,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2845,7 +2845,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2902,7 +2902,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2959,7 +2959,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3016,7 +3016,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3073,7 +3073,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3139,7 +3139,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist charge per guest added to dining bill",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via 2nd Floor Gastown at Water St. Cafe live music terms."
     }
   },
@@ -3204,7 +3204,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 22.0,
       "feeBreakdown": "$22.00 all-in ticket rate verified via Coastal Jazz & Blues Society box office",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Frankie's Jazz Club / Coastal Jazz box office."
     }
   },
@@ -3268,7 +3268,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 general door admission for live community hall show",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via The WISE Hall & Lounge official event door policy."
     }
   },
@@ -3324,7 +3324,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 10.0,
       "feeBreakdown": "$10.00 general admission door rate for community jam showcase",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via The Anza Club member and guest event policy."
     }
   },
@@ -3393,7 +3393,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 suggested door cover under Red Gate pay-what-you-can artist policy",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via Red Gate Arts Society non-profit door policy."
     }
   },
@@ -3460,7 +3460,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 direct band door cover collected at entrance",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via LanaLou's live music booking & door schedule."
     }
   },
@@ -3521,7 +3521,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live band cover charge collected at entrance",
-      "verifiedAt": "2026-09-09T11:55:52-07:00",
+      "verifiedAt": "2026-09-09T17:13:02-07:00",
       "details": "Verified via The Roxy Cabaret official cover policy."
     }
   }
@@ -3539,7 +3539,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "AudienceView Verified",
     "websiteUrl": "https://thecultch.com/box-office/",
     "category": "shows",
-    "flaggedAt": "2026-09-09T11:55:52-07:00",
+    "flaggedAt": "2026-09-09T17:13:02-07:00",
     "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3556,7 +3556,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://www.tightropetheatre.com/classes",
     "category": "activities",
-    "flaggedAt": "2026-09-09T11:55:52-07:00",
+    "flaggedAt": "2026-09-09T17:13:02-07:00",
     "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3573,7 +3573,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
     "category": "cinema",
-    "flaggedAt": "2026-09-09T11:55:52-07:00",
+    "flaggedAt": "2026-09-09T17:13:02-07:00",
     "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3690,3 +3690,213 @@ const VENUE_URLS = {
   "LanaLou's": "https://lanalous.com",
   "The Roxy Cabaret": "https://www.roxyvan.com"
 };
+
+// Curated Discovery Sources Directory
+const DISCOVERY_SOURCES = [
+  {
+    "id": "vancouver-is-awesome",
+    "name": "Vancouver Is Awesome",
+    "domain": "vancouverisawesome.com",
+    "eventsUrl": "https://www.vancouverisawesome.com/events",
+    "rssUrl": "https://www.vancouverisawesome.com/rss",
+    "type": "editorial_aggregator",
+    "typeLabel": "Editorial News & Community Calendar",
+    "focus": "Community culture, trending local happenings, weekend roundups, seasonal festivals",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or box office portal. Never use VIA article URL as final card destination.",
+    "status": "active"
+  },
+  {
+    "id": "do604",
+    "name": "Do604",
+    "domain": "do604.com",
+    "eventsUrl": "https://do604.com/events",
+    "rssUrl": "https://do604.com/events.rss",
+    "type": "nightlife_and_gigs_aggregator",
+    "typeLabel": "Live Music & Nightlife Directory",
+    "focus": "Live music, cover bands, indie rock, DJ & retro dance nights, brewery trivia, comedy, and RSVP giveaways",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "html_calendar_and_rss",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
+    "status": "active"
+  },
+  {
+    "id": "georgia-straight",
+    "name": "The Georgia Straight",
+    "domain": "straight.com",
+    "eventsUrl": "https://www.straight.com/listings",
+    "rssUrl": "https://www.straight.com/rss/listings",
+    "type": "cultural_directory",
+    "typeLabel": "Arts, Culture & Community Listings",
+    "focus": "Grassroots arts, live theatre, dance, jazz sessions, comedy showcases, and community submissions",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "arts",
+      "cinema"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
+    "status": "active"
+  },
+  {
+    "id": "daily-hive-vancouver",
+    "name": "Daily Hive Vancouver",
+    "domain": "dailyhive.com",
+    "eventsUrl": "https://dailyhive.com/vancouver/events",
+    "rssUrl": "https://dailyhive.com/vancouver/feed",
+    "type": "editorial_lifestyle_aggregator",
+    "typeLabel": "Lifestyle & Pop-Up Event Coverage",
+    "focus": "Weekly 'Free & cheap things to do in Vancouver' roundups, night markets, food festivals, and seasonal pop-ups",
+    "bestForCategories": [
+      "activities",
+      "outdoors",
+      "shows"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Scan weekly weekend editorial lists, extract venue and dates, and resolve to official venue pages.",
+    "status": "active"
+  },
+  {
+    "id": "miss604",
+    "name": "Miss604 (Rebecca Bollwitt)",
+    "domain": "miss604.com",
+    "eventsUrl": "https://miss604.com/category/events",
+    "rssUrl": "https://miss604.com/feed",
+    "type": "independent_civic_guide",
+    "typeLabel": "Independent Vancouver Events & Heritage Guide",
+    "focus": "Civic gatherings, free outdoor festivals, park events, farmers markets, heritage and community activities",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_blog_roundups",
+    "targetBudgetTier": "Free & budget ($0 - $25 CAD)",
+    "resolutionPolicy": "Extract structured bullet points from weekly 'Things to Do in Vancouver This Weekend' post published every Thursday; link directly to official host organization.",
+    "status": "active"
+  },
+  {
+    "id": "destination-vancouver",
+    "name": "Destination Vancouver",
+    "domain": "destinationvancouver.com",
+    "eventsUrl": "https://www.destinationvancouver.com/events/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Official Tourism & Civic Festival Calendar",
+    "focus": "Major city-wide street festivals (Khatsahlano, Car Free Days, Greek Day, Italian Day), fireworks, cultural celebrations",
+    "bestForCategories": [
+      "outdoors",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "Free & civic ($0 CAD)",
+    "resolutionPolicy": "High authority; use official festival domains and municipal event landing pages linked on each listing.",
+    "status": "active"
+  },
+  {
+    "id": "live-music-vancouver",
+    "name": "Live Music Vancouver",
+    "domain": "livemusicvancouver.com",
+    "eventsUrl": "https://www.livemusicvancouver.com/",
+    "rssUrl": null,
+    "type": "pub_and_club_gig_guide",
+    "typeLabel": "Local Pub & Bar Music Schedule",
+    "focus": "Vancouver bar and pub live music circuit (The Roxy, Blarney Stone, Rickshaw, LanaLou's, Fairview)",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "$0 - $20 CAD door",
+    "resolutionPolicy": "Extract gig date and performer, then match to venue's official ticket portal or verified door policy.",
+    "status": "active"
+  },
+  {
+    "id": "songkick-vancouver",
+    "name": "Songkick Vancouver",
+    "domain": "songkick.com",
+    "eventsUrl": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+    "rssUrl": null,
+    "type": "concert_and_gig_aggregator",
+    "typeLabel": "Concert & Touring Gig Directory",
+    "focus": "Live band tours, local venue shows, cover showcases, recurring club gigs",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract platform ticketing links (Ticketweb, Eventbrite, AXS, Showpass) and calculate all-in fees.",
+    "status": "active"
+  },
+  {
+    "id": "bandsintown-vancouver",
+    "name": "Bandsintown Vancouver",
+    "domain": "bandsintown.com",
+    "eventsUrl": "https://www.bandsintown.com/c/vancouver-canada",
+    "rssUrl": null,
+    "type": "concert_and_tour_aggregator",
+    "typeLabel": "Live Music & Artist Tour Tracker",
+    "focus": "Concerts, emerging artists, local stage performances across Metro Vancouver",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Follow primary ticket provider link to obtain actual cart price and fee breakdown.",
+    "status": "active"
+  },
+  {
+    "id": "showpass-discover-vancouver",
+    "name": "Showpass Discover (Vancouver)",
+    "domain": "showpass.com",
+    "eventsUrl": "https://www.showpass.com/discover/?location=Vancouver",
+    "apiUrl": "https://www.showpass.com/api/public/events/?location=Vancouver",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Showpass)",
+    "focus": "Independent comedy, dance parties, community performances, seasonal attractions (e.g. Fox Cabaret, Bloedel, Little Mountain Gallery)",
+    "bestForCategories": [
+      "shows",
+      "music",
+      "activities"
+    ],
+    "harvestMethod": "direct_api",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Zero middleman: event is already on Showpass; query API directly for instant price verification.",
+    "status": "active"
+  },
+  {
+    "id": "eventbrite-vancouver",
+    "name": "Eventbrite Vancouver",
+    "domain": "eventbrite.ca",
+    "eventsUrl": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+    "apiUrl": "https://www.eventbrite.ca/api/v3/destination/events/?place_id=85633041",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Eventbrite)",
+    "focus": "Free community workshops, underground music, indie showcases, pop-up markets, neighborhood festivals",
+    "bestForCategories": [
+      "activities",
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "direct_api_and_search",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
+    "status": "active"
+  }
+];
