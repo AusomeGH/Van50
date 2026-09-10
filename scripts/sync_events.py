@@ -22,7 +22,7 @@ import urllib.request
 from datetime import datetime
 import re
 
-sys.stdout.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -44,6 +44,8 @@ DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, 'discovery_sources.json')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pricing_search_engine import EventPricingSearchEngine
 from venue_adapters import VenueAdapterRegistry
+from dynamic_enricher import DynamicEnricher
+from ra_events_adapter import ResidentAdvisorAdapter
 
 
 
@@ -2183,37 +2185,38 @@ def get_curated_seed_catalog():
         },
         {
             "id": "public-disco-block-party",
-            "title": "Public Disco: Free Open-Air Plaza Dance Party",
-            "venue": "Bentall Centre Dunsmuir Plaza",
+            "title": "Public Disco Festival: Shipyards Waterfront",
+            "venue": "The Shipyards Waterfront",
             "organizer": "Public Disco Society",
             "isRoving": True,
-            "editionVenue": "Bentall Centre Dunsmuir Plaza",
-            "address": "1055 Dunsmuir St, Vancouver",
-            "neighborhood": "Downtown / West End",
+            "editionVenue": "The Shipyards Waterfront",
+            "address": "125 Victory Ship Way, North Vancouver, BC",
+            "neighborhood": "North Shore / Burnaby",
             "basePrice": 0.00,
             "provider": "Free Public Access",
             "semanticProvider": "Free Civic Admission",
             "pricingType": "free",
             "isDaily": False,
             "frequency": "seasonal",
-            "frequencyLabel": "Summer & Fall Weekends",
-            "daysOfWeek": ["sat", "sun"],
-            "timeSlots": ["afternoon", "early-evening"],
+            "frequencyLabel": "Seasonal Festival",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["afternoon", "early-evening", "late-evening"],
             "category": "social",
             "categoryLabel": "Community & Social",
             "categoryIcon": "🪩",
-            "subTags": ["public-disco", "dance-party", "open-air", "djs", "free-event", "block-party"],
-            "dateSchedule": "Saturdays & Sundays • 2:00 PM – 9:00 PM (Rotating Plazas)",
-            "startIso": "2026-09-12T14:00:00-07:00",
-            "endIso": "2026-09-12T21:00:00-07:00",
+            "subTags": ["public-disco", "festival", "dance-party", "open-air", "djs", "free-event"],
+            "dateSchedule": "Saturday, October 3, 2026 • 2:00 PM – 10:00 PM",
+            "startIso": "2026-10-03T14:00:00-07:00",
+            "endIso": "2026-10-03T22:00:00-07:00",
+            "confirmedDates": ["2026-10-03"],
             "isSoldOut": False,
-            "agePolicy": "All-Ages (Licensed 19+ Beer Garden with ID)",
+            "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
             "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-            "rovingNote": "Flagship summer/fall outdoor plaza edition at Bentall Centre; rotating editions at Granville Island Lot 55 & Dude Chilling Park.",
+            "rovingNote": "📍 10th anniversary festival season finale at Shipyards Waterfront in North Vancouver. (Summer plaza block parties concluded Aug 29).",
             "websiteUrl": "https://publicdisco.ca/events",
-            "coordinates": [49.2847, -123.1192],
-            "transitInfo": "Burrard SkyTrain Station (direct plaza level access)",
-            "description": "Beloved Vancouver non-profit transforming urban public spaces into vibrant, inclusive daytime dance floors. Features local house/disco DJs, interactive art installations, licensed patio bar, and lawn games with 100% free community admission."
+            "coordinates": [49.3117, -123.0805],
+            "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along the waterfront",
+            "description": "Public Disco Society presents its 10th-anniversary season finale festival at The Shipyards in North Vancouver. Features open-air dance floors, world-class electronic selectors, interactive art, roller skate area, and licensed community bars."
         },
         {
             "id": "public-disco-warehouse-party",
@@ -2229,17 +2232,18 @@ def get_curated_seed_catalog():
             "semanticProvider": "Online Advance & Door Tickets",
             "pricingType": "paid",
             "isDaily": False,
-            "frequency": "monthly",
-            "frequencyLabel": "Monthly Weekend Nights",
+            "frequency": "seasonal",
+            "frequencyLabel": "Seasonal / Awaiting Schedule",
             "daysOfWeek": ["fri", "sat"],
-            "timeSlots": ["late-evening", "night"],
+            "timeSlots": ["late-evening"],
             "category": "music",
             "categoryLabel": "Music & Concerts",
             "categoryIcon": "🎵",
             "subTags": ["public-disco", "electronic", "house-music", "dance-party", "warehouse", "mount-pleasant"],
-            "dateSchedule": "Friday or Saturday • 10:00 PM – 2:30 AM",
-            "startIso": "2026-09-18T22:00:00-07:00",
-            "endIso": "2026-09-19T02:30:00-07:00",
+            "dateSchedule": "Awaiting next announced edition • Follow @publicdisco",
+            "startIso": None,
+            "endIso": None,
+            "confirmedDates": [],
             "isSoldOut": False,
             "agePolicy": "19+ (Valid Government Photo ID Required)",
             "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
@@ -2505,6 +2509,9 @@ def run_sync() -> bool:
         if VenueAdapterRegistry.has_adapter(event_id):
             item = VenueAdapterRegistry.authenticate_event(event_id, item)
 
+        # 0b. Dynamic Scrapers: Editorial, Taxonomy, Nomadic Metadata & Door Limits
+        item = DynamicEnricher.enrich_event(item)
+
         provider = item['provider']
 
         # 1. Automated URL Normalization & Deep-Link Safeguard
@@ -2610,6 +2617,7 @@ def run_sync() -> bool:
             "dateSchedule": item['dateSchedule'],
             "startIso": item.get('startIso'),
             "endIso": item.get('endIso'),
+            "confirmedDates": item.get('confirmedDates', []),
             "isSoldOut": item.get('isSoldOut', False),
             "websiteUrl": url,
             "venueUrl": venue_clean_url,
@@ -2631,6 +2639,26 @@ def run_sync() -> bool:
         providers_count[semantic_provider] = providers_count.get(semantic_provider, 0) + 1
         frequency_count[freq] = frequency_count.get(freq, 0) + 1
         categories_count[cat] = categories_count.get(cat, 0) + 1
+
+    # 3. Dynamic Resident Advisor (ra.co) Live Discovery Ingestion
+    print("\n[SYNC] Harvesting live Vancouver electronic & dance events from Resident Advisor (ra.co)...")
+    try:
+        ra_events = ResidentAdvisorAdapter.harvest_under_50_events(max_items=8)
+        for ra_ev in ra_events:
+            # Skip duplicates
+            if any(e['id'] == ra_ev['id'] or e['title'].lower() == ra_ev['title'].lower() for e in verified_events):
+                continue
+            # Dynamic metadata enrichment
+            ra_ev = DynamicEnricher.enrich_event(ra_ev)
+            if ra_ev['price'] <= 50.00:
+                verified_events.append(ra_ev)
+                p_label = ra_ev.get('ticketProvider', 'Resident Advisor Verified')
+                providers_count[p_label] = providers_count.get(p_label, 0) + 1
+                frequency_count[ra_ev.get('frequency', 'one-off')] = frequency_count.get(ra_ev.get('frequency', 'one-off'), 0) + 1
+                categories_count[ra_ev.get('category', 'music')] = categories_count.get(ra_ev.get('category', 'music'), 0) + 1
+                print(f"[RA SYNC] Added verified RA event: '{ra_ev['title']}' @ {ra_ev['venue']} ({ra_ev['priceLabel']})")
+    except Exception as e:
+        print(f"[SYNC ERROR] Failed to harvest Resident Advisor events: {e}")
 
     print(f"\n[SYNC COMPLETE] Total verified catalog events: {len(verified_events)}")
     print(f"[QUARANTINE QUEUE] Total events flagged for manual review: {len(quarantined_events)}")

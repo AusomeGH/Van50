@@ -1141,8 +1141,8 @@ function calculateNextTwoDates(ev) {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
 
-  // 1. Daily Spots
-  if (ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+  // 1. Daily Invariants (Stanley Park Seawall, Lynn Canyon, Public Markets, etc.)
+  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
     const d1 = new Date(today);
     const d2 = new Date(today);
     d2.setDate(d2.getDate() + 1);
@@ -1155,8 +1155,70 @@ function calculateNextTwoDates(ev) {
     };
   }
 
-  // 2. Weekly Recurring Events
-  if (ev.frequency === 'weekly' || (ev.daysOfWeek && ev.daysOfWeek.length > 0 && !ev.daysOfWeek.includes('daily'))) {
+  // 2. Strict Evidence-Grounded Confirmed Dates
+  if (Array.isArray(ev.confirmedDates)) {
+    if (ev.confirmedDates.length > 0) {
+      const validFuture = [];
+      for (const dStr of ev.confirmedDates) {
+        if (!dStr) continue;
+        const parts = dStr.split('-');
+        if (parts.length === 3) {
+          const cand = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+          if (cand >= today) {
+            validFuture.push(cand);
+          }
+        }
+      }
+      if (validFuture.length > 0) {
+        validFuture.sort((a, b) => a - b);
+        const formatted = validFuture.slice(0, 2).map(d => {
+          const isToday = d.getTime() === today.getTime();
+          const isTomorrow = d.getTime() === (today.getTime() + 86400000);
+          const prefix = isToday ? 'Today (' : (isTomorrow ? 'Tomorrow (' : '');
+          const suffix = (isToday || isTomorrow) ? ')' : '';
+          const str = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+          return `${prefix}${str}${suffix}`;
+        });
+        return {
+          type: 'confirmed',
+          label: formatted.length > 1 ? 'Confirmed Dates' : 'Confirmed Next Date',
+          dates: formatted.join(' • ')
+        };
+      }
+    }
+    // Confirmed dates array provided but 0 future dates found
+    if (ev.frequency === 'seasonal' || ev.frequency === 'limited-run' || ev.isRoving) {
+      return {
+        type: 'seasonal',
+        label: 'Seasonal Schedule',
+        dates: 'Seasonal / Awaiting Next Schedule'
+      };
+    }
+  }
+
+  // 3. Seasonal, Nomadic & Annual Festivals
+  if (ev.frequency === 'seasonal' || ev.frequency === 'limited-run' || ev.frequency === 'annual' || ev.isRoving) {
+    if (ev.startIso) {
+      const start = new Date(ev.startIso);
+      if (!isNaN(start.getTime()) && start >= today) {
+        const isToday = start.toDateString() === today.toDateString();
+        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        return {
+          type: 'seasonal',
+          label: 'Confirmed Festival Date',
+          dates: isToday ? `Today (${fmt})` : fmt
+        };
+      }
+    }
+    return {
+      type: 'seasonal',
+      label: 'Seasonal Schedule',
+      dates: 'Seasonal / Awaiting Next Schedule'
+    };
+  }
+
+  // 4. Genuine Weekly Ongoing Residencies (STRICTLY when frequency === 'weekly' and NOT seasonal or roving)
+  if (ev.frequency === 'weekly') {
     const targetDays = (ev.daysOfWeek || [])
       .map(d => DAY_MAP[d.toLowerCase()])
       .filter(d => d !== undefined);
@@ -1189,7 +1251,7 @@ function calculateNextTwoDates(ev) {
     }
   }
 
-  // 3. Monthly Recurring Events
+  // 5. Monthly Series
   if (ev.frequency === 'monthly') {
     if (ev.startIso) {
       const start = new Date(ev.startIso);
@@ -1197,7 +1259,7 @@ function calculateNextTwoDates(ev) {
         const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
         return {
           type: 'monthly',
-          label: 'Next Show',
+          label: 'Next Confirmed Show',
           dates: fmt
         };
       }
@@ -1209,36 +1271,25 @@ function calculateNextTwoDates(ev) {
     };
   }
 
-  // 3b. Annual & Seasonal Festivals (e.g. Car Free Day, Khatsahlano, Shipyards Live)
-  if (ev.frequency === 'annual' || ev.frequency === 'seasonal') {
-    if (ev.startIso) {
-      const start = new Date(ev.startIso);
-      if (!isNaN(start.getTime())) {
-        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-        return {
-          type: 'seasonal',
-          label: ev.frequency === 'annual' ? 'Annual Festival' : 'Seasonal Event',
-          dates: fmt
-        };
-      }
-    }
-    return {
-      type: 'seasonal',
-      label: 'Festival Season',
-      dates: ev.dateSchedule || 'Annual community event'
-    };
-  }
-
-  // 4. One-off Events
+  // 6. One-off Events
   if (ev.startIso) {
     const start = new Date(ev.startIso);
     if (!isNaN(start.getTime())) {
-      const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-      return {
-        type: 'one-off',
-        label: 'Event Date',
-        dates: fmt
-      };
+      if (start >= today) {
+        const isToday = start.toDateString() === today.toDateString();
+        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        return {
+          type: 'one-off',
+          label: 'Confirmed Date',
+          dates: isToday ? `Today (${fmt})` : fmt
+        };
+      } else {
+        return {
+          type: 'concluded',
+          label: 'Event Status',
+          dates: 'Concluded'
+        };
+      }
     }
   }
 

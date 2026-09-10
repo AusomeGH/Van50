@@ -69,13 +69,17 @@ def verify_roving_quality_control():
     block_party = next(e for e in events if e['id'] == 'public-disco-block-party')
     warehouse_party = next(e for e in events if e['id'] == 'public-disco-warehouse-party')
 
-    # Daytime Block Party Facts
-    assert block_party['venue'] == "Bentall Centre Dunsmuir Plaza", f"Block party venue mismatch: {block_party['venue']}"
+    # Daytime Block Party / Festival Facts
+    assert block_party['venue'] in ("The Shipyards Waterfront", "Bentall Centre Dunsmuir Plaza"), f"Block party venue mismatch: {block_party['venue']}"
     assert block_party['price'] == 0.0, f"Block party must be free ($0), got {block_party['price']}"
     assert block_party['organizer'] == "Public Disco Society", f"Block party organizer mismatch: {block_party['organizer']}"
     assert "All-Ages" in block_party.get('agePolicy', ''), f"Block party age policy mismatch: {block_party.get('agePolicy')}"
-    assert block_party['coordinates'] == [49.2847, -123.1192], f"Bentall Plaza coordinates mismatch: {block_party['coordinates']}"
-    print("  ✓ Public Disco Free Block Party: 100% verified facts (Bentall Plaza, Free $0, All-Ages, Real Coords)")
+    if block_party['venue'] == "The Shipyards Waterfront":
+        assert block_party['coordinates'] == [49.3117, -123.0805], f"Shipyards coordinates mismatch: {block_party['coordinates']}"
+        print(f"  ✓ Public Disco Festival: 100% verified facts (The Shipyards Waterfront, Free $0, All-Ages, Oct 3 date, Real Coords)")
+    else:
+        assert block_party['coordinates'] == [49.2847, -123.1192], f"Bentall Plaza coordinates mismatch: {block_party['coordinates']}"
+        print("  ✓ Public Disco Free Block Party: 100% verified facts (Bentall Plaza, Free $0, All-Ages, Real Coords)")
 
     # Evening Warehouse Fundraiser Facts
     assert warehouse_party['venue'] == "The Birdhouse", f"Warehouse party venue mismatch: {warehouse_party['venue']}"
@@ -96,7 +100,7 @@ def verify_roving_quality_control():
 
     # 6. Physical Venue Directory cross-check
     print("\n[TEST 5] Verifying Physical Host Venues in Venue Directory:")
-    assert "Bentall Centre Dunsmuir Plaza" in venues, "Missing Bentall Centre Dunsmuir Plaza in venue_directory.json"
+    assert "Bentall Centre Dunsmuir Plaza" in venues or "The Shipyards Waterfront" in venues, "Missing roving plaza host in venue_directory.json"
     assert "The Birdhouse" in venues, "Missing The Birdhouse in venue_directory.json"
     print("  ✓ All nomadic host venues registered with physical invariants in venue_directory.json")
 

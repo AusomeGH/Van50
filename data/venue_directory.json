@@ -1329,6 +1329,32 @@
       "managedEvents": [
         "public-disco-warehouse-party"
       ]
+    },
+    "The Shipyards Waterfront": {
+      "venueId": "the-shipyards-waterfront",
+      "name": "The Shipyards Waterfront",
+      "aliases": [
+        "The Shipyards",
+        "Shipyards Waterfront",
+        "Shipyards North Vancouver",
+        "Lonsdale Quay Shipyards"
+      ],
+      "address": "125 Victory Ship Way, North Vancouver, BC",
+      "neighborhood": "North Shore / Burnaby",
+      "coordinates": [
+        49.3117,
+        -123.0805
+      ],
+      "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along waterfront",
+      "category": "social",
+      "venueUrl": "https://theshipyardsdistrict.ca",
+      "calendarUrl": "https://publicdisco.ca/events",
+      "boxOfficeUrl": "https://publicdisco.ca/events",
+      "ticketingProvider": "Free Public Access",
+      "adapter": "PublicDiscoLiveAdapter.authenticate_block_party",
+      "managedEvents": [
+        "public-disco-block-party"
+      ]
     }
   }
 }

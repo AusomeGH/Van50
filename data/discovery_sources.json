@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "1.0.0",
-    "updatedAt": "2026-09-09T17:15:00-07:00",
-    "totalSources": 11,
+    "version": "1.1.0",
+    "updatedAt": "2026-09-10T10:45:00-07:00",
+    "totalSources": 12,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -170,6 +170,21 @@
       "harvestMethod": "direct_api_and_search",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
+      "status": "active"
+    },
+    {
+      "id": "resident-advisor-vancouver",
+      "name": "Resident Advisor (Vancouver)",
+      "domain": "ra.co",
+      "eventsUrl": "https://ra.co/events/ca/vancouver",
+      "apiUrl": "https://ra.co/graphql",
+      "type": "direct_ticketing_discovery",
+      "typeLabel": "Electronic & Club Discovery (Resident Advisor)",
+      "focus": "Electronic music, dance parties, club nights, warehouse fundraisers, DJ sets, underground community parties",
+      "bestForCategories": ["music", "social", "shows"],
+      "harvestMethod": "direct_graphql_api",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Query RA GraphQL API directly with Vancouver Area ID 39; filter for verified venue locations under $50 CAD total out-of-pocket.",
       "status": "active"
     }
   ]

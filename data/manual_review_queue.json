@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-10T10:32:49-07:00",
+    "updatedAt": "2026-09-10T11:04:12-07:00",
     "pendingCount": 5,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -18,7 +18,7 @@
       "semanticProvider": "Showpass Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "shows",
-      "flaggedAt": "2026-09-10T10:32:47-07:00",
+      "flaggedAt": "2026-09-10T11:03:40-07:00",
       "flagReason": "Showpass returned no ticket types",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -35,7 +35,7 @@
       "semanticProvider": "AudienceView Verified",
       "websiteUrl": "https://thecultch.com/box-office/",
       "category": "shows",
-      "flaggedAt": "2026-09-10T10:32:47-07:00",
+      "flaggedAt": "2026-09-10T11:03:43-07:00",
       "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -52,7 +52,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://www.tightropetheatre.com/classes",
       "category": "activities",
-      "flaggedAt": "2026-09-10T10:32:47-07:00",
+      "flaggedAt": "2026-09-10T11:03:43-07:00",
       "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -69,7 +69,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
       "category": "cinema",
-      "flaggedAt": "2026-09-10T10:32:49-07:00",
+      "flaggedAt": "2026-09-10T11:04:05-07:00",
       "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -86,7 +86,7 @@
       "semanticProvider": "Studio Booking / Walk-in",
       "websiteUrl": "https://claymatesceramicsstudio.com",
       "category": "crafts",
-      "flaggedAt": "2026-09-10T10:32:49-07:00",
+      "flaggedAt": "2026-09-10T11:04:08-07:00",
       "flagReason": "Pottery courses at Claymates are multi-week intensives ($175+) exceeding the $50 cap; studio requires full multi-session enrollment or monthly membership ($175+). Quarantined in favor of Hand Eye Ceramics ($26.25 all-in drop-in).",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
