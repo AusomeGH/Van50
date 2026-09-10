@@ -191,8 +191,13 @@ def run_tests():
     with open(JS_MAP_PATH, 'r', encoding='utf-8') as f:
         map_js = f.read()
     assert 'popup-gmaps-btn' in map_js, "popup-gmaps-btn missing in js/map.js"
-    assert 'google.com/maps/search' in map_js, "Google Maps search query missing in js/map.js"
-    print("  ✓ js/map.js popup includes Google Maps navigation link")
+    assert 'google.com/maps' in map_js, "Google Maps URL missing in js/map.js"
+    print("  ✓ js/map.js popup includes direct Google Maps pinpoint navigation link")
+
+    assert 'btn-venue-filter' in app_js, "btn-venue-filter missing in js/app.js"
+    assert 'active-venue-banner' in app_js, "active-venue-banner missing in js/app.js"
+    assert 'matchesSmartSearch' in app_js, "matchesSmartSearch missing in js/app.js"
+    print("  ✓ js/app.js includes venue isolation filter and smart search engine")
 
     with open(CSS_PATH, 'r', encoding='utf-8') as f:
         css = f.read()
@@ -201,7 +206,9 @@ def run_tests():
     assert '.card-maps-link' in css, ".card-maps-link CSS missing in css/components.css"
     assert '.card-next-dates-box' in css, ".card-next-dates-box CSS missing in css/components.css"
     assert '.popup-gmaps-btn' in css, ".popup-gmaps-btn CSS missing in css/components.css"
-    print("  ✓ css/components.css contains complete styling for all new components")
+    assert '.btn-venue-filter' in css, ".btn-venue-filter CSS missing in css/components.css"
+    assert '.active-venue-banner' in css, ".active-venue-banner CSS missing in css/components.css"
+    print("  ✓ css/components.css contains complete styling for venue filter banner, buttons, and card links")
 
     print("\n" + "=" * 70)
     print("ALL ENHANCEMENT TESTS PASSED CLEANLY! (0 Errors, 0 Discrepancies)")

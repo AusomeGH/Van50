@@ -69,8 +69,7 @@ function updateMapMarkers(events) {
 
     const marker = L.marker([lat, lng], { icon: customIcon });
 
-    const gmapsQuery = encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'));
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+    const gmapsUrl = `https://www.google.com/maps?q=${lat},${lng}+(${encodeURIComponent(ev.venue || 'Vancouver')})`;
 
     // Popup content with direct link & Google Maps navigation
     const popupHtml = `

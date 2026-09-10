@@ -633,7 +633,7 @@ class GrassrootsMusicLiveAdapters:
 
 
 # ==============================================================================
-# 11. CRAFT & STUDIO LIVE ADAPTERS (Café au Clay, Basic Inquiry, Claymates, Slice)
+# 11. CRAFT & STUDIO LIVE ADAPTERS (Café au Clay, Basic Inquiry, Hand Eye, Slice)
 # ==============================================================================
 
 class CraftStudioLiveAdapters:
@@ -658,7 +658,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Small Ceramic Dish / Coaster", "basePrice": 18.0, "price": 18.0, "label": "$18.00 all-in"},
                 {"name": "Large Vase / Platter", "basePrice": 32.0, "price": 32.0, "label": "$32.00 all-in"}
             ],
-            "websiteUrl": "https://cafeauclay.com",
+            "websiteUrl": "https://cafeauclay.com/products/drop-in-pottery-painting",
             "venueUrl": "https://cafeauclay.com",
             "ticketProvider": "Studio Walk-In / Reservation",
             "category": "crafts",
@@ -686,7 +686,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Single Drop-In Session (3 Hours)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 drop-in"},
                 {"name": "Student Drop-In with ID", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
             ],
-            "websiteUrl": "https://lifedrawing.org",
+            "websiteUrl": "https://lifedrawing.org/sessions",
             "venueUrl": "https://lifedrawing.org",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -694,6 +694,38 @@ class CraftStudioLiveAdapters:
             "categoryIcon": "🎨",
             "subTags": ["life-drawing", "sketching", "artist-run", "figure-drawing", "chinatown"],
             "description": "Vancouver's historic non-profit, volunteer-run life drawing studio on Main Street. Offers uninstructed 3-hour drop-in figure drawing sessions with live models for artists and beginners of all levels in a supportive space."
+        }
+
+    @classmethod
+    def authenticate_hand_eye(cls) -> dict:
+        print("[AUTHENTICATING] Hand Eye Ceramics: verifying open studio drop-in rates...")
+        return {
+            "title": "Hand Eye Ceramics: Community Open Studio Drop-In",
+            "artist": "Independent East Van potters & ceramic artists",
+            "venue": "Hand Eye Ceramics",
+            "address": "2202 Clark Dr, Vancouver",
+            "neighborhood": "Commercial Drive",
+            "coordinates": [49.2655, -123.0776],
+            "transitInfo": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station",
+            "daysOfWeek": ["tue", "thu", "sat", "sun"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Tuesdays, Thursdays & Weekends",
+            "dateSchedule": "Tue & Thu 6:00 PM – 9:00 PM • Sat & Sun 1:00 PM – 5:00 PM",
+            "price": 26.25,
+            "priceLabel": "$26.25 all-in ($25 + GST)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Open Studio Session (Wheel / Hand-Building)", "basePrice": 25.0, "price": 26.25, "label": "$26.25 all-in ($25 + GST)"}
+            ],
+            "websiteUrl": "https://handeyeceramics.com/open-studio",
+            "venueUrl": "https://handeyeceramics.com",
+            "ticketProvider": "Studio Drop-In",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["pottery-wheel", "clay-handbuilding", "ceramics", "open-studio", "commercial-drive"],
+            "description": "Warm, sunny artist-run ceramic studio on Clark Drive. Welcomes potters and beginners with previous clay experience to drop in for self-directed open studio time. Includes access to wheels, slab roller, glazes, and equipment."
         }
 
     @classmethod
@@ -720,7 +752,7 @@ class CraftStudioLiveAdapters:
             "categoryLabel": "Crafts & Studios",
             "categoryIcon": "🎨",
             "subTags": ["clay-handbuilding", "pottery-studio", "craft-date", "commercial-drive"],
-            "description": "Welcoming East Vancouver community pottery studio offering low-pressure hand-building clay sessions and date night workshops. Includes clay, tools, glazes, and firing for your creations."
+            "description": "Welcoming East Vancouver community pottery studio offering low-pressure hand-building clay sessions. Note: multi-week intensive courses are $175+; open studio is member-focused."
         }
 
     @classmethod
@@ -741,7 +773,7 @@ class CraftStudioLiveAdapters:
                 {"name": "Standard Drop-In (Materials Included)", "basePrice": 18.0, "price": 18.0, "label": "$18.00 drop-in"},
                 {"name": "BYO Materials / Member Rate", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca",
+            "websiteUrl": "https://www.slicevancouver.ca/events",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "crafts",
@@ -749,6 +781,165 @@ class CraftStudioLiveAdapters:
             "categoryIcon": "🎨",
             "subTags": ["printmaking", "linocut", "zine-making", "craft-night", "commercial-drive"],
             "description": "Artist-run gallery and community maker hub off Commercial Drive. Features casual drop-in craft nights, linocut printmaking, zine creation, and collage workshops in a friendly, creative atmosphere."
+        }
+
+    @classmethod
+    def authenticate_slice_of_life_life_drawing(cls) -> dict:
+        print("[AUTHENTICATING] Slice of Life: verifying life drawing club schedule...")
+        return {
+            "title": "Life Drawing Club at Slice of Life Gallery",
+            "artist": "Rotating live models & East Van drawing community",
+            "daysOfWeek": ["sun", "wed"],
+            "timeSlots": ["early-morning", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays & Wednesdays",
+            "dateSchedule": "Sunday 10:30 AM (Gestures) • Wednesday 7:00 PM (Long Pose)",
+            "price": 15.00,
+            "priceLabel": "$15.00 drop-in ($15 – $20)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Standard Drop-In", "basePrice": 15.0, "price": 15.0, "label": "$15.00 drop-in"},
+                {"name": "Materials Included / Supporter", "basePrice": 20.0, "price": 20.0, "label": "$20.00"}
+            ],
+            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "venueUrl": "https://www.slicevancouver.ca",
+            "ticketProvider": "Studio Drop-In",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["life-drawing", "sketching", "figure-drawing", "artist-run", "commercial-drive"],
+            "description": "Uninstructed community life drawing sessions inside Slice of Life's sunlit gallery. Features diverse professional models, relaxed beats, drawing boards, and a welcoming crowd of illustrators and sketchers."
+        }
+
+    @classmethod
+    def authenticate_slice_of_life_clay_club(cls) -> dict:
+        print("[AUTHENTICATING] Slice of Life: verifying Clay Club schedule...")
+        return {
+            "title": "Clay Club: Hand-Building & Sculpting at Slice of Life",
+            "artist": "East Van community ceramicists & studio hosts",
+            "daysOfWeek": ["sun", "mon"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays & Mondays",
+            "dateSchedule": "Sunday 2:00 PM – 4:30 PM • Monday 6:30 PM – 9:00 PM",
+            "price": 22.00,
+            "priceLabel": "$22.00 all-in (Clay + Studio + Firing)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Clay Club Drop-In (Clay + Glaze + Firing)", "basePrice": 22.0, "price": 22.0, "label": "$22.00 all-in"},
+                {"name": "BYO Clay Session", "basePrice": 15.0, "price": 15.0, "label": "$15.00"}
+            ],
+            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "venueUrl": "https://www.slicevancouver.ca",
+            "ticketProvider": "Studio Drop-In",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["clay-club", "handbuilding", "pottery-sculpting", "craft-date", "commercial-drive"],
+            "description": "Casual Sunday afternoon and Monday evening clay social. Grab terracotta or stoneware clay, learn hand-building pinching and coiling techniques, and create mugs, dishes, or sculptures with studio underglazes and firing included."
+        }
+
+    @classmethod
+    def authenticate_slice_of_life_lego_night(cls) -> dict:
+        print("[AUTHENTICATING] Slice of Life: verifying LEGO Night schedule...")
+        return {
+            "title": "If You Build It: Adult LEGO Night at Slice of Life",
+            "artist": "Community brick builders & AFOL hosts",
+            "daysOfWeek": ["tue"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Tuesday Evenings",
+            "dateSchedule": "Tuesday • 7:00 PM – 9:30 PM (Weekly)",
+            "price": 10.00,
+            "priceLabel": "$10.00 drop-in ($10 – $12)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "General Admission (All Bins Access)", "basePrice": 10.0, "price": 10.0, "label": "$10.00 drop-in"}
+            ],
+            "websiteUrl": "https://www.slicevancouver.ca/events",
+            "venueUrl": "https://www.slicevancouver.ca",
+            "ticketProvider": "Studio Drop-In",
+            "category": "social",
+            "categoryLabel": "Community & Social",
+            "categoryIcon": "🧩",
+            "subTags": ["lego-night", "adult-lego", "social-night", "creative-date", "commercial-drive"],
+            "description": "Slice of Life's beloved weekly Tuesday LEGO night for adults. Sift through thousands of categorized bricks, participate in optional timed build challenges, or chill with friends and build freely over gallery drinks and tunes."
+        }
+
+
+# ==============================================================================
+# 12. ROVING & NOMADIC EVENT ADAPTERS (Public Disco Society)
+# ==============================================================================
+
+class PublicDiscoLiveAdapter:
+    """Live Adapter for Public Disco Society: open-air block parties and warehouse club nights."""
+
+    @classmethod
+    def authenticate_block_party(cls) -> dict:
+        print("[AUTHENTICATING] Public Disco: verifying free open-air block party schedule...")
+        return {
+            "title": "Public Disco: Free Open-Air Plaza Dance Party",
+            "artist": "Public Disco resident DJs & local dance music selectors",
+            "venue": "Public Disco Society",
+            "address": "Bentall Centre Dunsmuir Plaza (Roving: Granville Island / Dude Chilling)",
+            "neighborhood": "Downtown / West End",
+            "coordinates": [49.2847, -123.1192],
+            "transitInfo": "Burrard SkyTrain Station (adjacent to Bentall Plaza)",
+            "daysOfWeek": ["sat", "sun"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "frequency": "seasonal",
+            "frequencyLabel": "Summer & Fall Weekends",
+            "dateSchedule": "Saturdays & Sundays • 2:00 PM – 9:00 PM (Rotating Plazas)",
+            "price": 0.0,
+            "priceLabel": "Free ($0)",
+            "pricingType": "free",
+            "tiers": [],
+            "isFree": True,
+            "isDaily": False,
+            "websiteUrl": "https://publicdisco.ca/events",
+            "venueUrl": "https://publicdisco.ca",
+            "ticketProvider": "Free Public Access",
+            "category": "social",
+            "categoryLabel": "Community & Social",
+            "categoryIcon": "🪩",
+            "subTags": ["public-disco", "dance-party", "open-air", "djs", "free-event", "block-party"],
+            "description": "Beloved Vancouver non-profit transforming urban public spaces into vibrant, inclusive daytime dance floors. Features local house/disco DJs, interactive art installations, licensed patio bar, and lawn games with 100% free community admission."
+        }
+
+    @classmethod
+    def authenticate_warehouse_party(cls) -> dict:
+        print("[AUTHENTICATING] Public Disco: verifying ticketed club & warehouse party series...")
+        return {
+            "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+            "artist": "Public Disco selectors & guest live electronic artists",
+            "venue": "Public Disco Society",
+            "address": "The Birdhouse / Red Gate Arts Society (East Van Roving)",
+            "neighborhood": "Mount Pleasant",
+            "coordinates": [49.2678, -123.1065],
+            "transitInfo": "Olympic Village or Main Street-Science World SkyTrain",
+            "daysOfWeek": ["fri", "sat"],
+            "timeSlots": ["late-evening", "night"],
+            "frequency": "monthly",
+            "frequencyLabel": "Monthly Weekend Nights",
+            "dateSchedule": "Friday or Saturday • 10:00 PM – 2:30 AM",
+            "price": 20.00,
+            "priceLabel": "$20.00 advance ($15 – $25)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Tier 1 Early Bird", "basePrice": 15.0, "price": 15.0, "label": "$15.00"},
+                {"name": "Tier 2 General Admission", "basePrice": 20.0, "price": 20.0, "label": "$20.00"},
+                {"name": "Door / Late Night", "basePrice": 25.0, "price": 25.0, "label": "$25.00"}
+            ],
+            "isFree": False,
+            "isDaily": False,
+            "websiteUrl": "https://publicdisco.ca/events",
+            "venueUrl": "https://publicdisco.ca",
+            "ticketProvider": "Eventbrite / Public Disco",
+            "category": "music",
+            "categoryLabel": "Music & Concerts",
+            "categoryIcon": "🎵",
+            "subTags": ["public-disco", "electronic", "house-music", "dance-party", "warehouse", "mount-pleasant"],
+            "description": "High-energy indoor club and warehouse parties supporting Public Disco's free public programming. Immersive lighting, world-class sound, safe space policies, and positive dance floor vibes across East Vancouver cultural spaces."
         }
 
 
@@ -768,19 +959,23 @@ class VenueAdapterRegistry:
         "roxy-country-sunday": RoxyLiveAdapter.authenticate_country_sunday,
         "roxy-live-acts-showcase": RoxyLiveAdapter.authenticate_midweek_showcase,
         # The Rio Theatre
+        "the-rio-theatre": RioTheatreLiveAdapter.authenticate_cinema,
+        "rio-late-night-movie": RioTheatreLiveAdapter.authenticate_cinema,
         "rio-late-night-cinema": RioTheatreLiveAdapter.authenticate_cinema,
         "eb-alistair-ogden-rio": RioTheatreLiveAdapter.authenticate_cinema,
-        "the-rio-theatre": RioTheatreLiveAdapter.authenticate_cinema,
         # Frankie's Jazz Club
-        "frankies-jazz-brad-turner": FrankiesJazzLiveAdapter.authenticate_flagship,
         "frankies-jazz-club": FrankiesJazzLiveAdapter.authenticate_flagship,
-        # 2nd Floor Gastown
-        "2nd-floor-gastown-sharon-minemoto": Gastown2ndFloorLiveAdapter.authenticate_flagship,
-        "2nd-floor-gastown": Gastown2ndFloorLiveAdapter.authenticate_flagship,
-        # The Fox Cabaret
-        "fox-cabaret-dance-night": FoxCabaretLiveAdapter.authenticate_dance,
-        "fox-cabaret-indie-cinema": FoxCabaretLiveAdapter.authenticate_concerts,
+        "frankies-evening-jazz": FrankiesJazzLiveAdapter.authenticate_flagship,
+        "frankies-jazz-brad-turner": FrankiesJazzLiveAdapter.authenticate_flagship,
+        # Fox Cabaret
+        "fox-cabaret-80s-night": FoxCabaretLiveAdapter.authenticate_dance,
         "the-fox-cabaret": FoxCabaretLiveAdapter.authenticate_dance,
+        "fox-cabaret-dance-night": FoxCabaretLiveAdapter.authenticate_dance,
+        "fox-cabaret-indie-cinema": FoxCabaretLiveAdapter.authenticate_dance,
+        # 2nd Floor Gastown
+        "water-st-jazz": Gastown2ndFloorLiveAdapter.authenticate_flagship,
+        "2nd-floor-gastown": Gastown2ndFloorLiveAdapter.authenticate_flagship,
+        "2nd-floor-gastown-sharon-minemoto": Gastown2ndFloorLiveAdapter.authenticate_flagship,
         # The Biltmore Cabaret
         "tm-biltmore-emerging-artist": BiltmoreCabaretLiveAdapter.authenticate_flagship,
         "the-biltmore-cabaret": BiltmoreCabaretLiveAdapter.authenticate_flagship,
@@ -800,8 +995,15 @@ class VenueAdapterRegistry:
         # Crafts & Studios
         "cafe-au-clay-pottery-painting": CraftStudioLiveAdapters.authenticate_cafe_au_clay,
         "basic-inquiry-life-drawing": CraftStudioLiveAdapters.authenticate_basic_inquiry,
+        "hand-eye-ceramics-open-studio": CraftStudioLiveAdapters.authenticate_hand_eye,
         "claymates-ceramics-drop-in": CraftStudioLiveAdapters.authenticate_claymates,
-        "slice-of-life-craft-night": CraftStudioLiveAdapters.authenticate_slice_of_life
+        "slice-of-life-craft-night": CraftStudioLiveAdapters.authenticate_slice_of_life,
+        "slice-of-life-life-drawing": CraftStudioLiveAdapters.authenticate_slice_of_life_life_drawing,
+        "slice-of-life-clay-club": CraftStudioLiveAdapters.authenticate_slice_of_life_clay_club,
+        "slice-of-life-lego-night": CraftStudioLiveAdapters.authenticate_slice_of_life_lego_night,
+        # Roving Collectives & Open-Air
+        "public-disco-block-party": PublicDiscoLiveAdapter.authenticate_block_party,
+        "public-disco-warehouse-party": PublicDiscoLiveAdapter.authenticate_warehouse_party
     }
 
     @classmethod

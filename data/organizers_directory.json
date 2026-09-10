@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-09-10T09:30:00-07:00",
+    "totalOrganizers": 1,
+    "description": "Van50 Roving & Nomadic Organizers Directory: Collectives hosting events across multiple rotating outdoor and indoor locations."
+  },
+  "organizers": {
+    "public-disco-society": {
+      "id": "public-disco-society",
+      "name": "Public Disco Society",
+      "aliases": ["Public Disco", "Public Disco Vancouver"],
+      "type": "non_profit_arts_society",
+      "focus": "Open-air daytime dance block parties (free) and ticketed evening warehouse/club fundraisers",
+      "websiteUrl": "https://publicdisco.ca",
+      "eventsUrl": "https://publicdisco.ca/events",
+      "ticketingPortal": "https://www.eventbrite.ca/o/public-disco-society-17366397394",
+      "primaryVenues": [
+        "Bentall Centre Dunsmuir Plaza",
+        "Granville Island Public Market Plaza",
+        "Dude Chilling Park (Guelph Park)",
+        "The Birdhouse",
+        "Red Gate Arts Society"
+      ],
+      "budgetProfile": {
+        "blockParties": "Free ($0 CAD) open to all ages",
+        "clubParties": "$15.00 - $25.00 CAD"
+      },
+      "active": true
+    }
+  }
+}

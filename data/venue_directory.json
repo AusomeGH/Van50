@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 55
+    "totalVenues": 57
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -1140,8 +1140,8 @@
       "transitInfo": "#84 or #50 bus to 4th Ave & Fir St (3 min walk)",
       "category": "crafts",
       "venueUrl": "https://cafeauclay.com",
-      "calendarUrl": "https://cafeauclay.com",
-      "boxOfficeUrl": "https://cafeauclay.com",
+      "calendarUrl": "https://cafeauclay.com/products/drop-in-pottery-painting",
+      "boxOfficeUrl": "https://cafeauclay.com/products/drop-in-pottery-painting",
       "ticketingProvider": "Studio Walk-In / Reservation",
       "adapter": "CraftStudioLiveAdapters.authenticate_cafe_au_clay",
       "managedEvents": [
@@ -1165,12 +1165,37 @@
       "transitInfo": "Main Street-Science World SkyTrain Station (4 min walk)",
       "category": "crafts",
       "venueUrl": "https://lifedrawing.org",
-      "calendarUrl": "https://lifedrawing.org",
-      "boxOfficeUrl": "https://lifedrawing.org",
+      "calendarUrl": "https://lifedrawing.org/sessions",
+      "boxOfficeUrl": "https://lifedrawing.org/sessions",
       "ticketingProvider": "Studio Drop-In",
       "adapter": "CraftStudioLiveAdapters.authenticate_basic_inquiry",
       "managedEvents": [
         "basic-inquiry-life-drawing"
+      ]
+    },
+    "Hand Eye Ceramics": {
+      "venueId": "hand-eye-ceramics",
+      "name": "Hand Eye Ceramics",
+      "aliases": [
+        "Hand Eye Studio",
+        "Hand Eye Pottery",
+        "Hand Eye Ceramics Studio"
+      ],
+      "address": "2202 Clark Dr, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2655,
+        -123.0776
+      ],
+      "transitInfo": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station",
+      "category": "crafts",
+      "venueUrl": "https://handeyeceramics.com",
+      "calendarUrl": "https://handeyeceramics.com/open-studio",
+      "boxOfficeUrl": "https://handeyeceramics.com/open-studio",
+      "ticketingProvider": "Studio Drop-In",
+      "adapter": "CraftStudioLiveAdapters.authenticate_hand_eye",
+      "managedEvents": [
+        "hand-eye-ceramics-open-studio"
       ]
     },
     "Claymates Ceramics Studio": {
@@ -1193,6 +1218,8 @@
       "calendarUrl": "https://claymatesceramicsstudio.com",
       "boxOfficeUrl": "https://claymatesceramicsstudio.com",
       "ticketingProvider": "Studio Drop-In / Workshop",
+      "quarantined": true,
+      "quarantineReason": "Multi-week courses exceed $50 CAD ($175+) and open studio is member-restricted.",
       "adapter": "CraftStudioLiveAdapters.authenticate_claymates",
       "managedEvents": [
         "claymates-ceramics-drop-in"
@@ -1215,12 +1242,41 @@
       "transitInfo": "#20 Commercial bus to Venables St (2 min walk)",
       "category": "crafts",
       "venueUrl": "https://www.slicevancouver.ca",
-      "calendarUrl": "https://www.slicevancouver.ca",
-      "boxOfficeUrl": "https://www.slicevancouver.ca",
+      "calendarUrl": "https://www.slicevancouver.ca/events",
+      "boxOfficeUrl": "https://www.slicevancouver.ca/events",
       "ticketingProvider": "Studio Drop-In",
       "adapter": "CraftStudioLiveAdapters.authenticate_slice_of_life",
       "managedEvents": [
-        "slice-of-life-craft-night"
+        "slice-of-life-craft-night",
+        "slice-of-life-life-drawing",
+        "slice-of-life-clay-club",
+        "slice-of-life-lego-night"
+      ]
+    },
+    "Public Disco Society": {
+      "venueId": "public-disco",
+      "name": "Public Disco Society",
+      "aliases": [
+        "Public Disco",
+        "Public Disco Vancouver",
+        "Public Disco Block Party"
+      ],
+      "address": "Bentall Centre Dunsmuir Plaza (Roving / Open-Air & Club)",
+      "neighborhood": "Downtown / West End",
+      "coordinates": [
+        49.2847,
+        -123.1192
+      ],
+      "transitInfo": "Burrard SkyTrain Station (adjacent to Bentall Plaza)",
+      "category": "social",
+      "venueUrl": "https://publicdisco.ca",
+      "calendarUrl": "https://publicdisco.ca/events",
+      "boxOfficeUrl": "https://publicdisco.ca/events",
+      "ticketingProvider": "Free Public Access / Eventbrite",
+      "adapter": "PublicDiscoLiveAdapter",
+      "managedEvents": [
+        "public-disco-block-party",
+        "public-disco-warehouse-party"
       ]
     }
   }

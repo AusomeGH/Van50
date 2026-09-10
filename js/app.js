@@ -11,6 +11,7 @@ const state = {
   timeSlot: 'all',
   selectedNeighborhoods: new Set(typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS : []),
   selectedTag: null,
+  selectedVenue: null,
   searchQuery: '',
   savedEvents: new Set(),
   expiredCount: 0
@@ -501,6 +502,9 @@ function applyFiltersAndRender() {
   state.expiredCount = expiredCount;
 
   const filtered = activeCatalog.filter(ev => {
+    // Venue Isolation Filter (Requirement 7)
+    if (state.selectedVenue && ev.venue !== state.selectedVenue) return false;
+
     // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD)
     if (state.minBudget === 0 && state.maxBudget === 0) {
       if (ev.price > 0) return false;
@@ -560,44 +564,9 @@ function applyFiltersAndRender() {
       if (!hasTag) return false;
     }
 
-    // 9. Smart Text Search Query (checks title, venue, aliases, address, neighborhood, description, schedule, subTags, and artist/performers)
+    // 9. Smart Text Search Query with Stemming & Typo Tolerance (Requirement 6)
     if (state.searchQuery) {
-      const qTokens = normalizeSearchText(state.searchQuery).split(' ').filter(Boolean);
-      if (qTokens.length > 0) {
-        const venueAliasesStr = Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : (ev.venueAliases || '');
-        const performersStr = Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || '');
-        const subTagsStr = Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '';
-        
-        // Common venue alternate names & landmarks for instant discovery
-        let extraAliases = '';
-        const vLower = (ev.venue || '').toLowerCase();
-        if (vLower.includes('2nd floor') || ev.id.includes('2nd-floor')) {
-          extraAliases += ' water street cafe water st cafe gastown jazz';
-        } else if (vLower.includes('dr. sun yat-sen') || ev.id.includes('sun-yat-sen')) {
-          extraAliases += ' chinese garden chinatown garden classical courtyard';
-        } else if (vLower.includes('nat bailey')) {
-          extraAliases += ' scotiabank field canadians baseball hillcrest park';
-        } else if (vLower.includes('stanley park')) {
-          extraAliases += ' seawall lost lagoon pitch putt';
-        }
-
-        const searchableContent = normalizeSearchText([
-          ev.title,
-          ev.venue,
-          ev.address,
-          ev.neighborhood,
-          ev.description,
-          ev.dateSchedule,
-          ev.artist,
-          performersStr,
-          subTagsStr,
-          venueAliasesStr,
-          extraAliases
-        ].filter(Boolean).join(' '));
-
-        const matchesAllTokens = qTokens.every(tok => searchableContent.includes(tok));
-        if (!matchesAllTokens) return false;
-      }
+      if (!matchesSmartSearch(ev, state.searchQuery)) return false;
     }
 
     return true;
@@ -638,11 +607,27 @@ function applyFiltersAndRender() {
       </div>
     ` : '';
 
+    // Check for cross-category matches if current category yields 0
+    let crossCategoryBannerHtml = '';
+    if (filtered.length === 0 && state.searchQuery && state.category !== 'all') {
+      const crossMatches = activeCatalog.filter(ev => matchesSmartSearch(ev, state.searchQuery)).length;
+      if (crossMatches > 0) {
+        crossCategoryBannerHtml = `
+          <div style="margin-top: 8px;">
+            <button type="button" class="btn-cross-category" onclick="resetCategoryForSearch()" style="cursor: pointer; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
+              🔍 Found ${crossMatches} match${crossMatches > 1 ? 'es' : ''} across all categories • View All ↗
+            </button>
+          </div>
+        `;
+      }
+    }
+
     countBar.innerHTML = `
       <div class="results-count-text">
         Showing <strong>${filtered.length}</strong> active outings under $50 CAD${expiredNote}
       </div>
       ${tagBadgeHtml}
+      ${crossCategoryBannerHtml}
     `;
   }
 
@@ -667,6 +652,201 @@ function normalizeSearchText(str) {
     .replace(/[^\w\s]/g, ' ')         // remove punctuation
     .replace(/\s+/g, ' ')             // collapse multiple spaces
     .trim();
+}
+
+// Lightweight Stemmer for matching common suffixes (plurals, -ing, -ed, etc.)
+function stemWord(word) {
+  if (!word || word.length < 3) return word;
+  let w = word.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (w.endsWith('ies') && w.length > 4) return w.slice(0, -3) + 'y';
+  if (w.endsWith('sses')) return w.slice(0, -2);
+  if (w.endsWith('ing') && w.length > 5) {
+    let base = w.slice(0, -3);
+    if (base.endsWith(base[base.length - 1])) base = base.slice(0, -1);
+    return base;
+  }
+  if (w.endsWith('ed') && w.length > 4) return w.slice(0, -2);
+  if (w.endsWith('s') && !w.endsWith('ss') && w.length > 3) return w.slice(0, -1);
+  return w;
+}
+
+// 1-Typo tolerance Levenshtein check for search tokens >= 4 characters
+function isFuzzyTokenMatch(queryTok, docTok) {
+  if (docTok.includes(queryTok) || queryTok.includes(docTok)) return true;
+  if (queryTok.length < 4 || docTok.length < 4) return false;
+  if (Math.abs(queryTok.length - docTok.length) > 1) return false;
+
+  let diffs = 0;
+  let i = 0, j = 0;
+  while (i < queryTok.length && j < docTok.length) {
+    if (queryTok[i] !== docTok[j]) {
+      diffs++;
+      if (diffs > 1) return false;
+      if (queryTok.length > docTok.length) { i++; continue; }
+      if (queryTok.length < docTok.length) { j++; continue; }
+    }
+    i++;
+    j++;
+  }
+  diffs += (queryTok.length - i) + (docTok.length - j);
+  return diffs <= 1;
+}
+
+// Full-Spectrum Smart Search Engine (Stemming, Typos, Transit, Pricing, Category & Synonyms)
+function matchesSmartSearch(ev, query) {
+  if (!query) return true;
+  const qTokens = normalizeSearchText(query).split(' ').filter(Boolean);
+  if (qTokens.length === 0) return true;
+
+  const venueAliasesStr = Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : (ev.venueAliases || '');
+  const performersStr = Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || '');
+  const subTagsStr = Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '';
+  
+  // Day names expansion
+  const dayNames = {
+    sun: 'sunday weekend',
+    mon: 'monday weekday',
+    tue: 'tuesday weekday',
+    wed: 'wednesday midweek weekday',
+    thu: 'thursday weekday',
+    fri: 'friday weekend',
+    sat: 'saturday weekend',
+    daily: 'daily everyday anytime 7 days'
+  };
+  const daysStr = Array.isArray(ev.daysOfWeek) ? ev.daysOfWeek.map(d => dayNames[d] || d).join(' ') : '';
+
+  // Contextual synonyms, landmarks, and cultural hubs
+  let extraAliases = '';
+  const vLower = (ev.venue || '').toLowerCase();
+  const tLower = (ev.title || '').toLowerCase();
+  const cLower = (ev.category || '').toLowerCase();
+
+  if (vLower.includes('slice of life') || tLower.includes('slice of life')) {
+    extraAliases += ' east van gallery maker printmaking linocut zine drawing figure clay pottery lego social commercial drive';
+  } else if (vLower.includes('public disco') || tLower.includes('public disco')) {
+    extraAliases += ' dance party block party djs electronic house music open air warehouse bentall outdoor plaza roving dance';
+  } else if (vLower.includes('hand eye') || tLower.includes('hand eye')) {
+    extraAliases += ' pottery ceramics open studio wheel throwing handbuilding clay clark drive';
+  } else if (vLower.includes('cafe au clay') || tLower.includes('cafe au clay')) {
+    extraAliases += ' pottery ceramics painting bisque mugs granville island false creek creative date';
+  } else if (vLower.includes('basic inquiry') || tLower.includes('basic inquiry')) {
+    extraAliases += ' life drawing figure drawing sketching model live model chinatown main st art';
+  } else if (vLower.includes('2nd floor') || ev.id.includes('2nd-floor')) {
+    extraAliases += ' water street cafe water st cafe gastown jazz supper club';
+  } else if (vLower.includes('dr. sun yat-sen') || ev.id.includes('sun-yat-sen')) {
+    extraAliases += ' chinese garden chinatown garden classical courtyard';
+  } else if (vLower.includes('nat bailey')) {
+    extraAliases += ' scotiabank field canadians baseball hillcrest park';
+  } else if (vLower.includes('stanley park')) {
+    extraAliases += ' seawall lost lagoon pitch putt';
+  }
+
+  // Category synonyms
+  if (cLower === 'crafts') {
+    extraAliases += ' craft crafts studio maker hands on tactile workshop drop in art create ceramics pottery drawing paint';
+  } else if (cLower === 'music') {
+    extraAliases += ' concert gig live band jazz soul indie rock dance electronic';
+  } else if (cLower === 'shows') {
+    extraAliases += ' comedy standup improv theatre performance show';
+  } else if (cLower === 'cinema') {
+    extraAliases += ' movie film screening matinee midnight cult art house';
+  } else if (cLower === 'outdoors') {
+    extraAliases += ' walk nature park seawall beach garden suspension bridge';
+  } else if (cLower === 'activities') {
+    extraAliases += ' active sports games boardgames trivia market';
+  } else if (cLower === 'social') {
+    extraAliases += ' party dance gathering social meetup lego';
+  }
+
+  const searchableContent = normalizeSearchText([
+    ev.title,
+    ev.venue,
+    ev.address,
+    ev.neighborhood,
+    ev.description,
+    ev.dateSchedule,
+    ev.category,
+    ev.categoryLabel,
+    ev.transitInfo,
+    ev.ticketProvider,
+    ev.priceLabel,
+    ev.isFree ? 'free $0 zero' : 'paid ticket',
+    ev.artist,
+    performersStr,
+    subTagsStr,
+    venueAliasesStr,
+    daysStr,
+    extraAliases
+  ].filter(Boolean).join(' '));
+
+  const docTokens = searchableContent.split(' ').filter(tok => tok.length > 1);
+  const docStems = docTokens.map(stemWord);
+
+  return qTokens.every(qTok => {
+    // 1. Direct substring in full normalized content
+    if (searchableContent.includes(qTok)) return true;
+    // 2. Word stem matching (e.g. "ceramics" -> "ceramic", "paintings" -> "paint")
+    const qStem = stemWord(qTok);
+    if (docStems.includes(qStem)) return true;
+    // 3. Typo tolerance matching (Levenshtein diff <= 1 for tokens >= 4 chars)
+    return docTokens.some(dTok => isFuzzyTokenMatch(qTok, dTok));
+  });
+}
+
+// 1-Click Venue Isolation Action (Requirement 7)
+function filterByVenue(venueName) {
+  if (state.selectedVenue === venueName) {
+    state.selectedVenue = null;
+  } else {
+    state.selectedVenue = venueName;
+    state.category = 'all'; // Switch to 'all' so user sees complete multi-program lineup
+    renderCategoryPills();
+  }
+  applyFiltersAndRender();
+  const banner = document.getElementById('active-venue-banner');
+  if (banner) {
+    banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function clearSelectedVenue() {
+  state.selectedVenue = null;
+  applyFiltersAndRender();
+}
+
+function resetCategoryForSearch() {
+  state.category = 'all';
+  renderCategoryPills();
+  applyFiltersAndRender();
+}
+
+function resetAllFilters() {
+  state.minBudget = 0;
+  state.maxBudget = 50;
+  state.hideDaily = false;
+  state.category = 'all';
+  state.frequency = 'all';
+  state.dayOfWeek = 'all';
+  state.timeSlot = 'all';
+  state.selectedNeighborhoods = new Set(typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS : []);
+  state.selectedTag = null;
+  state.selectedVenue = null;
+  state.searchQuery = '';
+  
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) searchInput.value = '';
+  const minSlider = document.getElementById('min-spend-slider');
+  const maxSlider = document.getElementById('max-spend-slider');
+  if (minSlider) minSlider.value = 0;
+  if (maxSlider) maxSlider.value = 50;
+  
+  renderCategoryPills();
+  renderDayPills();
+  renderTimePills();
+  renderNeighborhoodPills();
+  renderFrequencyPills();
+  updateSliderVisuals();
+  applyFiltersAndRender();
 }
 
 function formatStandardPrice(ev) {
@@ -817,8 +997,19 @@ function renderEventCards(events) {
   const grid = document.getElementById('events-grid');
   if (!grid) return;
 
+  const venueBannerHtml = state.selectedVenue ? `
+    <div class="active-venue-banner" id="active-venue-banner" style="grid-column: 1 / -1;">
+      <div class="venue-banner-content">
+        <span class="venue-banner-icon">🏛️</span>
+        <span>Showing all <strong>${events.length}</strong> verified events at <strong>${state.selectedVenue}</strong></span>
+      </div>
+      <button type="button" class="btn-clear-venue" onclick="clearSelectedVenue()" aria-label="Clear venue filter">Clear Venue Filter ✕</button>
+    </div>
+  ` : '';
+
   if (events.length === 0) {
     grid.innerHTML = `
+      ${venueBannerHtml}
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
         <div style="font-size: 2.5rem; margin-bottom: 12px;">🌲🔍</div>
         <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 8px;">No Outings Found Matching Filters</h3>
@@ -831,16 +1022,32 @@ function renderEventCards(events) {
     return;
   }
 
-  grid.innerHTML = events.map(ev => {
+  grid.innerHTML = venueBannerHtml + events.map(ev => {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
     const isSoldOut = Boolean(ev.isSoldOut);
     const standardPrice = formatStandardPrice(ev);
     
-    // Hyperlinks & Navigation Targets
+    // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
     const venueUrl = ev.venueUrl || (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
-    const gmapsQuery = encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'));
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+    const hasCoords = ev.coordinates && Array.isArray(ev.coordinates) && ev.coordinates.length >= 2;
+    const gmapsUrl = hasCoords 
+      ? `https://www.google.com/maps?q=${ev.coordinates[0]},${ev.coordinates[1]}+(${encodeURIComponent(ev.venue || 'Vancouver')})`
+      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'))}`;
+
+    // Venue Event Count & Filter Button (Requirement 7)
+    const venueTotalCount = ALL_EVENTS.filter(e => e.venue === ev.venue).length;
+    const isThisVenueSelected = state.selectedVenue === ev.venue;
+    const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
+      <button 
+        type="button" 
+        class="btn-venue-filter ${isThisVenueSelected ? 'active' : ''}" 
+        onclick="filterByVenue('${(ev.venue || '').replace(/'/g, "\\'")}')" 
+        title="${isThisVenueSelected ? 'Clear filter for ' + ev.venue : 'Show all ' + venueTotalCount + ' events at ' + ev.venue}"
+      >
+        🏛️ ${isThisVenueSelected ? 'Viewing this venue ✕' : 'Other events here (' + (venueTotalCount - 1) + ')'}
+      </button>
+    ` : '';
     
     // Dynamic Next-Two-Dates calculation
     const nextDates = calculateNextTwoDates(ev);
@@ -981,7 +1188,7 @@ function renderEventCards(events) {
           </div>
         ` : ''}
         
-        <!-- Venue Row: Single Unified Location/Directions Button (Google Maps) + Separate Official Venue Website Link -->
+        <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
           <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps for directions">
             <span class="venue-pin-icon">📍</span>
@@ -992,6 +1199,7 @@ function renderEventCards(events) {
               <span class="website-icon">🌐</span> Venue Site ↗
             </a>
           ` : ''}
+          ${venueOtherEventsBtnHtml}
         </div>
 
         <!-- Schedule Row & Dynamic Next Dates -->

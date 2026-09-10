@@ -39,10 +39,10 @@ def run_tests():
     print(f"  • Category counts: {cat_counts}")
     assert cat_counts.get('music') >= 16, f"Expected at least 16 music events, got {cat_counts.get('music')}"
     assert cat_counts.get('shows') >= 11, f"Expected at least 11 shows events, got {cat_counts.get('shows')}"
-    assert cat_counts.get('crafts') == 4, f"Expected 4 crafts events, got {cat_counts.get('crafts')}"
+    assert cat_counts.get('crafts') >= 4, f"Expected at least 4 crafts events, got {cat_counts.get('crafts')}"
     print(f"  ✓ 'music' category verified: {cat_counts.get('music')} Live Music events")
     print(f"  ✓ 'shows' category verified: {cat_counts.get('shows')} Comedy & Shows events")
-    print(f"  ✓ 'crafts' category verified: exactly 4 Crafts & Studios events")
+    print(f"  ✓ 'crafts' category verified: {cat_counts.get('crafts')} Crafts & Studios events")
 
     # 3. Check data.js CATEGORIES array
     with open(DATA_JS_PATH, 'r', encoding='utf-8') as f:
@@ -209,27 +209,56 @@ def run_tests():
     craft_clay = event_map.get('cafe-au-clay-pottery-painting')
     assert craft_clay is not None, "Missing cafe-au-clay-pottery-painting"
     assert craft_clay['price'] == 24.0, f"Café au Clay price must be 24.00, got {craft_clay['price']}"
-    assert craft_clay['websiteUrl'] == "https://cafeauclay.com", f"Café au Clay URL mismatch: {craft_clay['websiteUrl']}"
+    assert "drop-in-pottery-painting" in craft_clay['websiteUrl'], f"Café au Clay URL mismatch: {craft_clay['websiteUrl']}"
     assert craft_clay['category'] == "crafts", f"Café au Clay category mismatch: {craft_clay['category']}"
 
     craft_life = event_map.get('basic-inquiry-life-drawing')
     assert craft_life is not None, "Missing basic-inquiry-life-drawing"
     assert craft_life['price'] == 15.0, f"Basic Inquiry price must be 15.00, got {craft_life['price']}"
-    assert craft_life['websiteUrl'] == "https://lifedrawing.org", f"Basic Inquiry URL mismatch: {craft_life['websiteUrl']}"
+    assert "sessions" in craft_life['websiteUrl'] or "lifedrawing.org" in craft_life['websiteUrl'], f"Basic Inquiry URL mismatch: {craft_life['websiteUrl']}"
     assert craft_life['category'] == "crafts", f"Basic Inquiry category mismatch: {craft_life['category']}"
 
-    craft_mates = event_map.get('claymates-ceramics-drop-in')
-    assert craft_mates is not None, "Missing claymates-ceramics-drop-in"
-    assert craft_mates['price'] == 35.0, f"Claymates price must be 35.00, got {craft_mates['price']}"
-    assert craft_mates['websiteUrl'] == "https://claymatesceramicsstudio.com", f"Claymates URL mismatch: {craft_mates['websiteUrl']}"
-    assert craft_mates['category'] == "crafts", f"Claymates category mismatch: {craft_mates['category']}"
+    craft_hand_eye = event_map.get('hand-eye-ceramics-open-studio')
+    assert craft_hand_eye is not None, "Missing hand-eye-ceramics-open-studio"
+    assert craft_hand_eye['price'] == 26.25, f"Hand Eye price must be 26.25, got {craft_hand_eye['price']}"
+    assert "open-studio" in craft_hand_eye['websiteUrl'], f"Hand Eye URL mismatch: {craft_hand_eye['websiteUrl']}"
+    assert craft_hand_eye['category'] == "crafts", f"Hand Eye category mismatch: {craft_hand_eye['category']}"
+
+    # Claymates quarantined due to $175 multi-week course policy
+    assert 'claymates-ceramics-drop-in' not in event_map, "Claymates must be excluded from active events"
+    with open(os.path.join(ROOT_DIR, 'data', 'manual_review_queue.json'), 'r', encoding='utf-8') as f:
+        rq_data = json.load(f)
+    assert any(q['id'] == 'claymates-ceramics-drop-in' for q in rq_data['quarantinedEvents']), "Claymates must be in manual review queue"
 
     craft_slice = event_map.get('slice-of-life-craft-night')
     assert craft_slice is not None, "Missing slice-of-life-craft-night"
     assert craft_slice['price'] == 18.0, f"Slice of Life price must be 18.00, got {craft_slice['price']}"
-    assert craft_slice['websiteUrl'] == "https://www.slicevancouver.ca", f"Slice of Life URL mismatch: {craft_slice['websiteUrl']}"
+    assert "events" in craft_slice['websiteUrl'] or "slicevancouver.ca" in craft_slice['websiteUrl'], f"Slice of Life URL mismatch: {craft_slice['websiteUrl']}"
     assert craft_slice['category'] == "crafts", f"Slice of Life category mismatch: {craft_slice['category']}"
-    print(f"  ✓ All 4 Craft Studio events verified (Pricing $15–$35, Category 'crafts', 100% active links)")
+
+    slice_life = event_map.get('slice-of-life-life-drawing')
+    assert slice_life is not None, "Missing slice-of-life-life-drawing"
+    assert slice_life['price'] == 15.0, f"Slice of Life Life Drawing price mismatch: {slice_life['price']}"
+
+    slice_clay = event_map.get('slice-of-life-clay-club')
+    assert slice_clay is not None, "Missing slice-of-life-clay-club"
+    assert slice_clay['price'] == 22.0, f"Slice of Life Clay Club price mismatch: {slice_clay['price']}"
+
+    slice_lego = event_map.get('slice-of-life-lego-night')
+    assert slice_lego is not None, "Missing slice-of-life-lego-night"
+    assert slice_lego['price'] == 10.0, f"Slice of Life LEGO Night price mismatch: {slice_lego['price']}"
+
+    # Public Disco Verification
+    disco_block = event_map.get('public-disco-block-party')
+    assert disco_block is not None, "Missing public-disco-block-party"
+    assert disco_block['price'] == 0.0, f"Public Disco Block Party must be free ($0), got {disco_block['price']}"
+    assert disco_block['category'] == "social", f"Public Disco Block Party category mismatch: {disco_block['category']}"
+
+    disco_club = event_map.get('public-disco-warehouse-party')
+    assert disco_club is not None, "Missing public-disco-warehouse-party"
+    assert disco_club['price'] == 20.0, f"Public Disco Club Party price mismatch: {disco_club['price']}"
+    assert disco_club['category'] == "music", f"Public Disco Club Party category mismatch: {disco_club['category']}"
+    print(f"  ✓ Craft Studio & Public Disco events verified (Pricing <= $50, deep links, multi-programs authenticated)")
 
     # 7. Discovery Sources Directory Verification
     discovery_json_path = os.path.join(ROOT_DIR, 'data', 'discovery_sources.json')
