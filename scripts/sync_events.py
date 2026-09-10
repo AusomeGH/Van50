@@ -43,6 +43,7 @@ DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, 'discovery_sources.json')
 # ==============================================================================
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pricing_search_engine import EventPricingSearchEngine
+from venue_adapters import VenueAdapterRegistry
 
 
 
@@ -486,7 +487,7 @@ def get_curated_seed_catalog():
         },
         {
             "id": "cinematheque-matinee",
-            "title": "The Cinematheque: Art House & Film History Matinee",
+            "title": "The Cinematheque: Art House & Essential Cinema",
             "venue": "The Cinematheque",
             "address": "1131 Howe St, Vancouver",
             "neighborhood": "Downtown / West End",
@@ -496,27 +497,27 @@ def get_curated_seed_catalog():
             "semanticProvider": "Agile Ticketing Verified",
             "pricingType": "platform",
             "tiers": [
-                {"name": "General Admission", "basePrice": 15.0, "price": 15.0, "label": "$15.00 all-in"},
+                {"name": "General Admission (18+)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 all-in"},
                 {"name": "Senior (65+)", "basePrice": 13.0, "price": 13.0, "label": "$13.00 all-in"},
                 {"name": "Student / Youth", "basePrice": 11.0, "price": 11.0, "label": "$11.00 all-in"}
             ],
             "isDaily": False,
             "frequency": "weekly",
-            "frequencyLabel": "Weekly (Matinees)",
-            "daysOfWeek": ["sat", "sun"],
-            "timeSlots": ["afternoon"],
+            "frequencyLabel": "Wednesday – Monday",
+            "daysOfWeek": ["mon", "wed", "thu", "fri", "sat", "sun"],
+            "timeSlots": ["afternoon", "early-evening", "late-evening"],
             "category": "cinema",
             "categoryLabel": "Cinema",
             "categoryIcon": "🎬",
             "subTags": ["35mm", "film-history", "restored-classics", "auteur-cinema"],
-            "dateSchedule": "Saturday & Sunday Matinees • 2:00 PM",
-            "startIso": "2026-09-12T14:00:00-07:00",
-            "endIso": "2026-12-31T16:30:00-07:00",
+            "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
+            "startIso": "2026-09-09T18:30:00-07:00",
+            "endIso": "2026-12-31T23:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572816~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "websiteUrl": "https://thecinematheque.ca/films/calendar",
             "coordinates": [49.2795, -123.1274],
             "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-            "description": "Vancouver's home for essential cinema, international film retrospectives, restored 35mm classics, and auteur independent cinema in Downtown."
+            "description": "Vancouver's home for essential cinema, international film retrospectives, restored 35mm classics, and auteur independent cinema in Downtown. Screenings run Wednesday through Monday evenings with select weekend matinees."
         },
         {
             "id": "portside-pub-trivia",
@@ -2120,6 +2121,11 @@ def run_sync() -> bool:
 
     for item in catalog:
         event_id = item['id']
+
+        # 0. Dynamic Live Venue Adapter Authentication
+        if VenueAdapterRegistry.has_adapter(event_id):
+            item = VenueAdapterRegistry.authenticate_event(event_id, item)
+
         provider = item['provider']
 
         # 1. Automated URL Normalization & Deep-Link Safeguard

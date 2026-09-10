@@ -175,6 +175,17 @@ def run_tests():
     assert event_map['wise-hall-roots-revue']['title'] == "East Van Roots, Folk & Live Music at The WISE Hall"
     print(f"  ✓ All recurring music nights verified with series titles and rotating artist lineups")
 
+    # The Cinematheque Live Calendar & Multi-Day Verification
+    cin = event_map.get('cinematheque-matinee')
+    assert cin is not None, "Missing cinematheque-matinee"
+    assert cin['websiteUrl'] == "https://thecinematheque.ca/films/calendar", f"Cinematheque websiteUrl unexpected: {cin['websiteUrl']}"
+    assert "ticketsearchcriteria" not in cin['websiteUrl'].lower(), "Cinematheque cannot link to fragile internal Agile websales frame"
+    assert "wed" in cin['daysOfWeek'] and "fri" in cin['daysOfWeek'], f"Cinematheque must include active weekday programming: {cin['daysOfWeek']}"
+    assert "early-evening" in cin['timeSlots'], f"Cinematheque must include early-evening slot: {cin['timeSlots']}"
+    assert cin['title'] == "The Cinematheque: Art House & Essential Cinema", f"Cinematheque title unexpected: {cin['title']}"
+    assert cin['frequencyLabel'] == "Wednesday – Monday", f"Cinematheque frequencyLabel unexpected: {cin['frequencyLabel']}"
+    print(f"  ✓ The Cinematheque live calendar & multi-day schedule verified: {cin['websiteUrl']} (Wednesday – Monday programming with evening slots)")
+
     # 7. Discovery Sources Directory Verification
     discovery_json_path = os.path.join(ROOT_DIR, 'data', 'discovery_sources.json')
     assert os.path.exists(discovery_json_path), f"Missing {discovery_json_path}"
