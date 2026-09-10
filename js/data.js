@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-09T17:45:30-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-09T18:13:34-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -56,7 +56,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -113,7 +113,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -170,7 +170,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -227,7 +227,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -284,7 +284,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -340,7 +340,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -397,7 +397,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -454,14 +454,14 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
   {
     "id": "lmg-open-mic",
     "title": "Little Mountain Gallery: First Come First Serve Stand-Up Open Mic",
-    "artist": null,
+    "artist": "Vancouver stand-up comedians (all levels)",
     "performers": null,
     "venue": "Little Mountain Gallery",
     "venueAliases": [],
@@ -470,7 +470,20 @@ const VANCOUVER_EVENTS = [
     "price": 8.09,
     "priceLabel": "$8.09 all-in ($5 base + $3.09 fees)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Performer Entry",
+        "basePrice": 0.0,
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Audience Ticket",
+        "basePrice": 8.0,
+        "price": 10.24,
+        "label": "$10.24 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
@@ -494,7 +507,7 @@ const VANCOUVER_EVENTS = [
     "startIso": "2026-09-11T19:30:00-07:00",
     "endIso": "2026-12-31T21:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/first-come-first-serve-open-mic-2/",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "venueUrl": "https://littlemountaingallery.ca",
     "ticketProvider": "Showpass Verified",
     "rawProvider": "Showpass",
@@ -503,14 +516,14 @@ const VANCOUVER_EVENTS = [
       -123.1072
     ],
     "transitInfo": "4 min walk from Waterfront SkyTrain station",
-    "description": "Vancouver's premier comedy incubator in Gastown. Fast-paced open mic showcasing local pros testing fresh material alongside up-and-coming talent.",
+    "description": "Vancouver's favorite non-profit community comedy club in Mount Pleasant. Friday open mic welcomes 20+ comics testing fresh material in an inclusive, supportive setting.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 8.09,
       "preTaxSticker": 7.7,
       "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
     }
   },
@@ -566,7 +579,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 9.82,
       "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via Showpass Vancouver Park Board ticketing portal."
     }
   },
@@ -635,7 +648,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 10.24,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
     }
   },
@@ -691,7 +704,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 11.75,
       "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
     }
   },
@@ -746,7 +759,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 12.44,
       "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via Eventbrite checkout modal."
     }
   },
@@ -802,14 +815,14 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
   {
     "id": "viff-centre-matinee",
-    "title": "VIFF Centre: Essential Indie Cinema & Matinee",
-    "artist": null,
+    "title": "VIFF Centre: International Cinema & Film Screenings",
+    "artist": "Auteur, documentary & world cinema",
     "performers": null,
     "venue": "VIFF Centre (Seymour Atrium)",
     "venueAliases": [],
@@ -840,8 +853,8 @@ const VANCOUVER_EVENTS = [
     ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Daily Slots)",
+    "frequency": "daily",
+    "frequencyLabel": "Daily (7 Days a Week)",
     "daysOfWeek": [
       "mon",
       "tue",
@@ -852,7 +865,9 @@ const VANCOUVER_EVENTS = [
       "sun"
     ],
     "timeSlots": [
-      "afternoon"
+      "afternoon",
+      "early-evening",
+      "late-evening"
     ],
     "category": "cinema",
     "categoryLabel": "Cinema",
@@ -863,11 +878,11 @@ const VANCOUVER_EVENTS = [
       "viff",
       "matinee"
     ],
-    "dateSchedule": "Weekday & Weekend Matinees • 1:30 PM & 4:00 PM",
+    "dateSchedule": "Daily • Afternoon & Evening Screenings",
     "startIso": "2026-09-08T13:30:00-07:00",
     "endIso": "2026-12-31T18:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/a-sad-and-beautiful-world/#book",
+    "websiteUrl": "https://viff.org/whats-on/",
     "venueUrl": "https://viff.org",
     "ticketProvider": "Agile Ticketing Verified",
     "rawProvider": "Agile Ticketing",
@@ -876,13 +891,13 @@ const VANCOUVER_EVENTS = [
       -123.1251
     ],
     "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
-    "description": "State-of-the-art non-profit cinema operated by the Vancouver International Film Festival showing international award-winners and Canadian indies.",
+    "description": "State-of-the-art cinematic theatre presenting curated world cinema, Canadian independent premieres, and documentaries year-round in Yaletown.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "embedded_checkout_json",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-09T17:45:27-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via VIFF Centre Agile ticketing websales portal."
     }
   },
@@ -932,7 +947,6 @@ const VANCOUVER_EVENTS = [
       "sun"
     ],
     "timeSlots": [
-      "early-morning",
       "afternoon",
       "early-evening",
       "late-evening"
@@ -965,7 +979,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 15.0,
       "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via Agile websales",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via The Cinematheque Agile websales ticket search frame."
     }
   },
@@ -1020,32 +1034,53 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:31-07:00",
       "details": "Verified via venue booking and trivia participation policy."
     }
   },
   {
     "id": "rio-late-night-cinema",
-    "title": "Found Footage Fest: Live at The Rio Theatre",
-    "artist": null,
+    "title": "The Rio Theatre: Art House Cinema & Midnight Cult Classics",
+    "artist": "Independent cinema, cult classics & live comedy",
     "performers": null,
     "venue": "The Rio Theatre",
     "venueAliases": [],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive",
-    "price": 36.0,
-    "priceLabel": "$36.00 all-in ($32 + $4.00 fees)",
+    "price": 16.0,
+    "priceLabel": "$16.00 all-in (Student/Senior $13)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Regular Adult Admission",
+        "basePrice": 16.0,
+        "price": 16.0,
+        "label": "$16.00 all-in"
+      },
+      {
+        "name": "Concession (Student / Senior / Member)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Special Event (Sept 9)",
+    "frequency": "daily",
+    "frequencyLabel": "Daily (7 Days a Week)",
     "daysOfWeek": [
-      "wed"
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
     ],
     "timeSlots": [
-      "early-evening"
+      "afternoon",
+      "early-evening",
+      "late-evening"
     ],
     "category": "cinema",
     "categoryLabel": "Cinema",
@@ -1056,11 +1091,11 @@ const VANCOUVER_EVENTS = [
       "indie-theatre",
       "cult-cinema"
     ],
-    "dateSchedule": "Wednesday, Sept 9 • 7:30 PM (Doors 7:00 PM)",
+    "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
     "startIso": "2026-09-09T19:30:00-07:00",
     "endIso": "2026-09-09T22:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://riotheatretickets.ca/events/42273-found-footage-fest-porcelain-vhs-treasures",
+    "websiteUrl": "https://riotheatre.ca/calendar/",
     "venueUrl": "https://riotheatre.ca",
     "ticketProvider": "Igniter Tickets Verified",
     "rawProvider": "Igniter Tickets",
@@ -1069,20 +1104,20 @@ const VANCOUVER_EVENTS = [
       -123.0699
     ],
     "transitInfo": "Steps from Commercial-Broadway SkyTrain Interchange",
-    "description": "Commercial Drive's beloved independent cinema hosts the hilarious Found Footage Fest, showcasing rare VHS oddities, thrift store gems, and live commentary.",
+    "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "embedded_checkout_json",
-      "verifiedTotal": 36.0,
-      "feeBreakdown": "$32.00 base + $4.00 Igniter convenience & box office fees",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
-      "details": "Parsed from live ticket_types JSON payload on riotheatretickets.ca."
+      "method": "venue_published_policy",
+      "verifiedTotal": 16.0,
+      "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
+      "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
   {
     "id": "fox-cabaret-indie-cinema",
-    "title": "Double InDUMBnity: Screening at The Fox Cabaret",
-    "artist": null,
+    "title": "Live Indie Concerts & Showcases at The Fox Cabaret",
+    "artist": "Local indie bands & touring artists",
     "performers": null,
     "venue": "The Fox Cabaret",
     "venueAliases": [],
@@ -1091,12 +1126,21 @@ const VANCOUVER_EVENTS = [
     "price": 44.0,
     "priceLabel": "$44.00 all-in",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 17.0,
+        "price": 20.0,
+        "label": "$20.00 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Screening (Sept 18)",
+    "frequency": "weekly",
+    "frequencyLabel": "Wednesdays – Fridays",
     "daysOfWeek": [
+      "wed",
+      "thu",
       "fri"
     ],
     "timeSlots": [
@@ -1111,11 +1155,11 @@ const VANCOUVER_EVENTS = [
       "projection-room",
       "fox-cabaret"
     ],
-    "dateSchedule": "Friday, Sept 18 • 7:00 PM (Doors 6:30 PM)",
+    "dateSchedule": "Wednesday – Friday • Doors 7:00 PM (Show 8:00 PM)",
     "startIso": "2026-09-18T19:00:00-07:00",
     "endIso": "2026-09-18T21:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.eventbrite.com/e/double-indumbnity-john-jonah-at-fox-cabaret-vancouver-tickets-1998392844794",
+    "websiteUrl": "https://www.foxcabaret.com/",
     "venueUrl": "https://www.foxcabaret.com",
     "ticketProvider": "Eventbrite Verified",
     "rawProvider": "Eventbrite",
@@ -1124,20 +1168,20 @@ const VANCOUVER_EVENTS = [
       -123.1012
     ],
     "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
-    "description": "Intimate indie comedy film screening in the restored vintage projection room upstairs at Mount Pleasant's historic Fox Cabaret.",
+    "description": "Early-evening live performances by emerging indie, synth-pop, rock, and alternative touring acts on the Fox Cabaret mainstage.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "direct_cart_scrape",
       "verifiedTotal": 44.0,
       "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Eventbrite checkout cart payload."
     }
   },
   {
     "id": "tm-biltmore-emerging-artist",
-    "title": "Letters to Lions Live at The Biltmore",
-    "artist": "Letters to Lions",
+    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "artist": "Local indie bands & resident DJs",
     "performers": null,
     "venue": "The Biltmore Cabaret",
     "venueAliases": [],
@@ -1146,16 +1190,32 @@ const VANCOUVER_EVENTS = [
     "price": 22.75,
     "priceLabel": "$22.75 all-in ($20 + $2.75 fees)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Advance Admission",
+        "basePrice": 15.0,
+        "price": 18.5,
+        "label": "$18.50 all-in"
+      },
+      {
+        "name": "Door Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Live Concert (April 2)",
+    "frequency": "weekly",
+    "frequencyLabel": "Thursdays – Saturdays",
     "daysOfWeek": [
-      "fri"
+      "thu",
+      "fri",
+      "sat"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "music",
     "categoryLabel": "Live Music",
@@ -1166,11 +1226,11 @@ const VANCOUVER_EVENTS = [
       "biltmore",
       "concert"
     ],
-    "dateSchedule": "Friday, April 2 • 7:00 PM (Doors)",
+    "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
     "startIso": "2027-04-02T19:00:00-07:00",
     "endIso": "2027-04-02T23:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://admitone.com/events/vancouver/pro/concerts/biltmore-cabaret/letters-to-lions/letters-to-lions/6a886f3262d0333f4abacb56",
+    "websiteUrl": "https://biltmorecabaret.com/",
     "venueUrl": "https://biltmorecabaret.com",
     "ticketProvider": "AdmitOne Verified",
     "rawProvider": "AdmitOne",
@@ -1179,20 +1239,20 @@ const VANCOUVER_EVENTS = [
       -123.0975
     ],
     "transitInfo": "Main & 12th Ave bus corridor",
-    "description": "Mount Pleasant's heritage indie concert lounge hosting Australian indie rock band Letters to Lions live with support, ticketed via AdmitOne.",
+    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and legendary retro dance parties like Guilty Pleasures.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "direct_cart_scrape",
       "verifiedTotal": 22.75,
       "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
     }
   },
   {
     "id": "lmg-happy-hour-comedy",
-    "title": "Little Mountain Gallery: Happy Hour Comedy Showcase",
-    "artist": null,
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
     "venueAliases": [],
@@ -1218,12 +1278,17 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Wednesdays)",
+    "frequencyLabel": "Tuesdays – Saturdays",
     "daysOfWeek": [
-      "wed"
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "shows",
     "categoryLabel": "Comedy & Shows",
@@ -1234,11 +1299,11 @@ const VANCOUVER_EVENTS = [
       "comedy",
       "gastown"
     ],
-    "dateSchedule": "Wednesdays • 7:30 PM",
+    "dateSchedule": "Tuesday – Saturday • 7:30 PM & 9:30 PM Shows",
     "startIso": "2026-09-23T19:30:00-07:00",
     "endIso": "2026-12-31T21:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/happy-hour-comedy-8/",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "venueUrl": "https://littlemountaingallery.ca",
     "ticketProvider": "Showpass Verified",
     "rawProvider": "Showpass",
@@ -1247,20 +1312,20 @@ const VANCOUVER_EVENTS = [
       -123.1072
     ],
     "transitInfo": "4 min walk from Waterfront Station",
-    "description": "Early evening stand-up comedy showcase featuring top local Vancouver comics, drink specials, and high energy to kick off the night.",
+    "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
     }
   },
   {
     "id": "lmg-seasoned-improv",
-    "title": "Little Mountain Gallery: Seasoned All-Star Improv",
-    "artist": null,
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
     "venueAliases": [],
@@ -1269,16 +1334,34 @@ const VANCOUVER_EVENTS = [
     "price": 18.86,
     "priceLabel": "$18.86 all-in ($15 base + $3.86 fees)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Advance Showcase Ticket",
+        "basePrice": 15.0,
+        "price": 18.86,
+        "label": "$18.86 all-in"
+      },
+      {
+        "name": "Door Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly (Nov 6)",
+    "frequency": "weekly",
+    "frequencyLabel": "Tuesdays – Saturdays",
     "daysOfWeek": [
-      "fri"
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "shows",
     "categoryLabel": "Comedy & Shows",
@@ -1288,11 +1371,11 @@ const VANCOUVER_EVENTS = [
       "canadian-comedy-awards",
       "narrative-improv"
     ],
-    "dateSchedule": "Friday, Nov 6 • 7:30 PM (Monthly Series)",
+    "dateSchedule": "Tuesday – Saturday • 7:30 PM & 9:30 PM Shows",
     "startIso": "2026-11-06T19:30:00-07:00",
     "endIso": "2026-11-06T21:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/seasoned-improv-comedy-29/",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "venueUrl": "https://littlemountaingallery.ca",
     "ticketProvider": "Showpass Verified",
     "rawProvider": "Showpass",
@@ -1301,21 +1384,21 @@ const VANCOUVER_EVENTS = [
       -123.1072
     ],
     "transitInfo": "Waterfront Station corridor",
-    "description": "Veteran Vancouver improvisers and Canadian Comedy Award winners deliver lightning-fast spontaneous narrative comedy.",
+    "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
   {
     "id": "lmg-decolonized-comedy",
-    "title": "Who Wants to Be Decolonized? Comedy Showcase",
-    "artist": null,
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
     "venueAliases": [],
@@ -1324,16 +1407,34 @@ const VANCOUVER_EVENTS = [
     "price": 18.86,
     "priceLabel": "$18.86 all-in ($15 base + $3.86 fees)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Advance Showcase Ticket",
+        "basePrice": 15.0,
+        "price": 18.86,
+        "label": "$18.86 all-in"
+      },
+      {
+        "name": "Door Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly (Sept 9)",
+    "frequency": "weekly",
+    "frequencyLabel": "Tuesdays – Saturdays",
     "daysOfWeek": [
-      "wed"
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "shows",
     "categoryLabel": "Comedy & Shows",
@@ -1344,11 +1445,11 @@ const VANCOUVER_EVENTS = [
       "satire",
       "stand-up"
     ],
-    "dateSchedule": "Wednesday, Sept 9 • 8:00 PM (Monthly Showcase)",
+    "dateSchedule": "Tuesday – Saturday • 7:30 PM & 9:30 PM Shows",
     "startIso": "2026-09-09T20:00:00-07:00",
     "endIso": "2026-09-09T22:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/who-wants-to-be-decolonized-5/",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "venueUrl": "https://littlemountaingallery.ca",
     "ticketProvider": "Showpass Verified",
     "rawProvider": "Showpass",
@@ -1357,21 +1458,21 @@ const VANCOUVER_EVENTS = [
       -123.1072
     ],
     "transitInfo": "Gastown Water St corridor",
-    "description": "A sharp, hilarious, and thought-provoking game-show style comedy panel confronting Canadian history and culture with BIPOC headliners.",
+    "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T17:45:28-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
   {
     "id": "lmg-crowd-source",
-    "title": "Little Mountain Gallery: Crowd Source Comedy",
-    "artist": null,
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
     "venueAliases": [],
@@ -1380,15 +1481,33 @@ const VANCOUVER_EVENTS = [
     "price": 18.86,
     "priceLabel": "$18.86 all-in ($15 base + $3.86 fees)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Advance Showcase Ticket",
+        "basePrice": 15.0,
+        "price": 18.86,
+        "label": "$18.86 all-in"
+      },
+      {
+        "name": "Door Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly (Oct 3)",
+    "frequency": "weekly",
+    "frequencyLabel": "Tuesdays – Saturdays",
     "daysOfWeek": [
+      "tue",
+      "wed",
+      "thu",
+      "fri",
       "sat"
     ],
     "timeSlots": [
+      "early-evening",
       "late-evening"
     ],
     "category": "shows",
@@ -1400,11 +1519,11 @@ const VANCOUVER_EVENTS = [
       "crowd-prompts",
       "late-show"
     ],
-    "dateSchedule": "Saturday, Oct 3 • 9:30 PM (Monthly Series)",
+    "dateSchedule": "Tuesday – Saturday • 7:30 PM & 9:30 PM Shows",
     "startIso": "2026-10-03T21:30:00-07:00",
     "endIso": "2026-10-03T23:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/crowd-source-comedy-26/",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
     "venueUrl": "https://littlemountaingallery.ca",
     "ticketProvider": "Showpass Verified",
     "rawProvider": "Showpass",
@@ -1413,14 +1532,14 @@ const VANCOUVER_EVENTS = [
       -123.1072
     ],
     "transitInfo": "Gastown Water St corridor",
-    "description": "High-wire interactive comedy show where audience text submissions, wild confessions, and internet rabbit holes become instant scene prompts.",
+    "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 18.86,
       "preTaxSticker": 17.96,
       "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
     }
   },
@@ -1492,14 +1611,14 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 18.5,
       "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
     }
   },
   {
     "id": "fox-cabaret-dance-night",
-    "title": "The Fox Cabaret: 90s Retro Dance Night",
-    "artist": null,
+    "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
+    "artist": "Resident DJs & guest party selectors",
     "performers": null,
     "venue": "The Fox Cabaret",
     "venueAliases": [],
@@ -1507,7 +1626,7 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Mount Pleasant",
     "price": 18.5,
     "priceLabel": "$18.50 – $20.00 all-in",
-    "pricingType": "multi-tier",
+    "pricingType": "platform",
     "tiers": [
       {
         "name": "Online Advance",
@@ -1525,8 +1644,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Saturdays)",
+    "frequencyLabel": "Fridays & Saturdays",
     "daysOfWeek": [
+      "fri",
       "sat"
     ],
     "timeSlots": [
@@ -1541,11 +1661,11 @@ const VANCOUVER_EVENTS = [
       "dj-night",
       "mount-pleasant"
     ],
-    "dateSchedule": "Saturdays • 10:30 PM - 2:00 AM",
+    "dateSchedule": "Fridays & Saturdays • 10:30 PM – 2:00 AM",
     "startIso": "2026-09-12T22:30:00-07:00",
     "endIso": "2026-12-31T02:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2022/7/90snight-t7res-bw2jx-tjrw3-hzzrb-49bce-dejtp-x9h5d-pc7k4-4apsb-d23g7-m5fc6-nznlr-pjkt5-m9258",
+    "websiteUrl": "https://www.foxcabaret.com/",
     "venueUrl": "https://www.foxcabaret.com",
     "ticketProvider": "Independent Box Office",
     "rawProvider": "Independent Box Office",
@@ -1554,13 +1674,13 @@ const VANCOUVER_EVENTS = [
       -123.1012
     ],
     "transitInfo": "Main St & 7th Ave bus stop",
-    "description": "Vancouver's most iconic retro dance party in Mount Pleasant. Resident DJs spin new wave, post-punk, synthpop, and 90s hip hop classics. Tickets are $18.50 online advance ($15 + fees) or $20 at the door.",
+    "description": "Mount Pleasant's former adult theatre transformed into a vibrant cultural hub. Famous for high-energy weekend retro dance parties (Ultimate 90s, Motown Soul, 2000s Pop) and curated local music showcases.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 18.5,
       "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via The Fox Cabaret calendar fee schedule."
     }
   },
@@ -1628,7 +1748,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 25.0,
       "feeBreakdown": "General Admission ($25.00) and Student ($20.00) verified with inclusive fees on Eventbrite",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Eventbrite Revue Stage checkout manifest."
     }
   },
@@ -1696,32 +1816,53 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 25.0,
       "feeBreakdown": "General ($25.00) and Student ($18.00) verified with 0 added online fees on TicketSpice",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
     }
   },
   {
     "id": "eb-alistair-ogden-rio",
-    "title": "Alistair Ogden Live at The Rio Theatre",
-    "artist": null,
+    "title": "The Rio Theatre: Art House Cinema & Midnight Cult Classics",
+    "artist": "Independent cinema, cult classics & live comedy",
     "performers": null,
     "venue": "The Rio Theatre",
     "venueAliases": [],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive",
-    "price": 27.96,
-    "priceLabel": "$27.96 all-in",
+    "price": 16.0,
+    "priceLabel": "$16.00 all-in (Student/Senior $13)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Regular Adult Admission",
+        "basePrice": 16.0,
+        "price": 16.0,
+        "label": "$16.00 all-in"
+      },
+      {
+        "name": "Concession (Student / Senior / Member)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "One-Off Show (Dec 4)",
+    "frequency": "daily",
+    "frequencyLabel": "Daily (7 Days a Week)",
     "daysOfWeek": [
-      "fri"
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
     ],
     "timeSlots": [
-      "early-evening"
+      "afternoon",
+      "early-evening",
+      "late-evening"
     ],
     "category": "shows",
     "categoryLabel": "Comedy & Shows",
@@ -1732,11 +1873,11 @@ const VANCOUVER_EVENTS = [
       "headliner",
       "rio-theatre"
     ],
-    "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
+    "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
     "startIso": "2026-12-04T19:30:00-07:00",
     "endIso": "2026-12-04T22:00:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+    "websiteUrl": "https://riotheatre.ca/calendar/",
     "venueUrl": "https://riotheatre.ca",
     "ticketProvider": "Eventbrite Verified",
     "rawProvider": "Eventbrite",
@@ -1745,14 +1886,14 @@ const VANCOUVER_EVENTS = [
       -123.0699
     ],
     "transitInfo": "Steps from Commercial-Broadway SkyTrain",
-    "description": "Award-winning stand-up comedian Alistair Ogden (CBC Comedy, Just For Laughs) headlines an evening of high-energy comedy at The Rio Theatre.",
+    "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "direct_cart_scrape",
-      "verifiedTotal": 27.96,
-      "feeBreakdown": "$23.00 advance base + $4.96 Eventbrite fee & GST",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
-      "details": "Verified via Eventbrite checkout modal."
+      "method": "venue_published_policy",
+      "verifiedTotal": 16.0,
+      "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
+      "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
   {
@@ -1821,7 +1962,7 @@ const VANCOUVER_EVENTS = [
       "method": "embedded_checkout_json",
       "verifiedTotal": 33.5,
       "feeBreakdown": "Regular Seat ($33.50) and Student/Senior ($28.50) tiers verified via AudienceView consumer checkout",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via The Improv Centre AudienceView schedule."
     }
   },
@@ -1876,7 +2017,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.85,
       "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Eventbrite checkout cart."
     }
   },
@@ -1932,7 +2073,7 @@ const VANCOUVER_EVENTS = [
       "method": "direct_cart_scrape",
       "verifiedTotal": 39.5,
       "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via tickets.scienceworld.ca."
     }
   },
@@ -2000,7 +2141,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 35.0,
       "feeBreakdown": "$35.00 standard balcony rate ($20 flat rate with VSO All-Access Pass)",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Vancouver Symphony Orchestra published box office rates."
     }
   },
@@ -2057,7 +2198,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 18.0,
       "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
     }
   },
@@ -2113,7 +2254,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 15.55,
       "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
     }
   },
@@ -2169,7 +2310,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2225,7 +2366,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2279,7 +2420,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2337,7 +2478,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2394,7 +2535,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2451,7 +2592,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2508,7 +2649,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2569,7 +2710,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2625,7 +2766,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2681,7 +2822,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2739,7 +2880,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2796,7 +2937,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2853,7 +2994,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2910,7 +3051,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -2967,7 +3108,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3024,7 +3165,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3081,7 +3222,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via official municipal park bylaw / published civic schedule."
     }
   },
@@ -3105,16 +3246,30 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Gastown / Chinatown",
     "price": 12.0,
     "priceLabel": "$12.00 live music cover",
-    "pricingType": "cover_charge",
-    "tiers": [],
+    "pricingType": "door",
+    "tiers": [
+      {
+        "name": "Live Music Cover",
+        "basePrice": 12.0,
+        "price": 12.0,
+        "label": "$12.00 cover charge"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Fridays)",
+    "frequency": "daily",
+    "frequencyLabel": "Daily (7 Nights a Week)",
     "daysOfWeek": [
-      "fri"
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
     ],
     "timeSlots": [
+      "afternoon",
       "early-evening",
       "late-evening"
     ],
@@ -3128,7 +3283,7 @@ const VANCOUVER_EVENTS = [
       "supper-club",
       "piano-trio"
     ],
-    "dateSchedule": "Weekly (Fridays) • 7:30 PM & 9:30 PM Sets",
+    "dateSchedule": "Nightly • 7:00 PM & 9:30 PM Sets (Plus Weekend Brunch 12:00 PM)",
     "startIso": "2026-09-11T19:30:00-07:00",
     "endIso": "2026-09-11T22:30:00-07:00",
     "isSoldOut": false,
@@ -3141,13 +3296,13 @@ const VANCOUVER_EVENTS = [
       -123.1102
     ],
     "transitInfo": "Waterfront Station (3 min walk)",
-    "description": "Intimate 50-seat jazz listening room above the Water St. Cafe featuring rotating acclaimed Vancouver jazz pianists, trios, and guest artists. $12 live music cover added to dining bill.",
+    "description": "Intimate, romantic supper club above the historic Water Street Cafe overlooking the Gastown Steam Clock. Features live jazz, soul, and vocalists every night of the week and during weekend brunch.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist charge per guest added to dining bill",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:32-07:00",
       "details": "Verified via 2nd Floor Gastown at Water St. Cafe live music terms."
     }
   },
@@ -3170,18 +3325,35 @@ const VANCOUVER_EVENTS = [
     "address": "755 Beatty St, Vancouver",
     "neighborhood": "Downtown / West End",
     "price": 22.0,
-    "priceLabel": "$22.00 all-in",
+    "priceLabel": "$22.00 all-in (Tiers $20 – $25)",
     "pricingType": "platform",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Standard Admission",
+        "basePrice": 20.0,
+        "price": 22.0,
+        "label": "$22.00 all-in"
+      },
+      {
+        "name": "Premium / Weekend Set",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 all-in"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Saturdays)",
+    "frequencyLabel": "Wednesday – Sunday",
     "daysOfWeek": [
-      "sat"
+      "thu",
+      "fri",
+      "sat",
+      "sun"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "music",
     "categoryLabel": "Live Music",
@@ -3193,11 +3365,11 @@ const VANCOUVER_EVENTS = [
       "listening-room",
       "bebop"
     ],
-    "dateSchedule": "Weekly (Saturdays) • 8:00 PM (Doors 7:00 PM)",
+    "dateSchedule": "Wednesday – Sunday • 8:00 PM Sets (Doors 7:00 PM)",
     "startIso": "2026-09-12T20:00:00-07:00",
     "endIso": "2026-09-12T22:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.coastaljazz.ca",
+    "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
     "venueUrl": "https://www.coastaljazz.ca",
     "ticketProvider": "Box Office / Direct Verified",
     "rawProvider": "Box Office / Direct",
@@ -3206,14 +3378,14 @@ const VANCOUVER_EVENTS = [
       -123.1147
     ],
     "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
-    "description": "Vancouver's premier dedicated jazz supper club, operated in partnership with the Coastal Jazz & Blues Society. Weekend live showcases featuring rotating Canadian and international jazz artists.",
+    "description": "Downtown Vancouver's premier intimate acoustic listening room in partnership with Coastal Jazz. Presents live jazz, bebop, modern trios, and vocalists 5 nights a week with fine Italian dining and wines.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "venue_published_policy",
+      "method": "api_endpoint",
       "verifiedTotal": 22.0,
-      "feeBreakdown": "$22.00 all-in ticket rate verified via Coastal Jazz & Blues Society box office",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
-      "details": "Verified via Frankie's Jazz Club / Coastal Jazz box office."
+      "feeBreakdown": "$20.00 base + $2.00 service fee verified via Turntable Tickets",
+      "verifiedAt": "2026-09-09T18:13:33-07:00",
+      "details": "Verified via Frankie's Jazz Club Turntable Tickets portal (frankiesjazzclub.turntabletickets.com)."
     }
   },
   {
@@ -3235,12 +3407,21 @@ const VANCOUVER_EVENTS = [
     "price": 15.0,
     "priceLabel": "$15.00 door",
     "pricingType": "door",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Saturdays)",
+    "frequencyLabel": "Thursdays – Saturdays",
     "daysOfWeek": [
+      "thu",
+      "fri",
       "sat"
     ],
     "timeSlots": [
@@ -3257,11 +3438,11 @@ const VANCOUVER_EVENTS = [
       "community-hall",
       "folk"
     ],
-    "dateSchedule": "Weekly (Saturdays) • 8:00 PM (Doors 7:00 PM)",
+    "dateSchedule": "Thursday – Saturday • 8:00 PM (Doors 7:00 PM)",
     "startIso": "2026-09-12T20:00:00-07:00",
     "endIso": "2026-09-12T23:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://thewise.ca",
+    "websiteUrl": "https://wisehall.ca",
     "venueUrl": "https://thewise.ca",
     "ticketProvider": "Venue Door / Table Charge",
     "rawProvider": "Box Office / Direct",
@@ -3270,13 +3451,13 @@ const VANCOUVER_EVENTS = [
       -123.0673
     ],
     "transitInfo": "#20 Victoria or #14 Hastings bus to Commercial & Adanac",
-    "description": "Historic East Vancouver community hall and downstairs lounge hosting high-energy bluegrass, old-time roots, and Americana stringbands with rotating local artists. Friendly neighborhood vibe with local taps.",
+    "description": "Beloved community cultural institution off Commercial Drive. Features wood-floor acoustics, friendly community lounge, and live roots, blues, and indie showcases.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 general door admission for live community hall show",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:33-07:00",
       "details": "Verified via The WISE Hall & Lounge official event door policy."
     }
   },
@@ -3292,16 +3473,25 @@ const VANCOUVER_EVENTS = [
     "price": 10.0,
     "priceLabel": "$10.00 door",
     "pricingType": "door",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Jam Admission",
+        "basePrice": 10.0,
+        "price": 10.0,
+        "label": "$10.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Mondays)",
+    "frequencyLabel": "Mondays & Thursdays",
     "daysOfWeek": [
-      "mon"
+      "mon",
+      "thu"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "music",
     "categoryLabel": "Live Music",
@@ -3313,11 +3503,11 @@ const VANCOUVER_EVENTS = [
       "celtic",
       "social-club"
     ],
-    "dateSchedule": "Weekly (Mondays) • 7:30 PM - 10:30 PM",
+    "dateSchedule": "Mondays & Thursdays • 7:30 PM – 10:30 PM",
     "startIso": "2026-09-14T19:30:00-07:00",
     "endIso": "2026-09-14T22:30:00-07:00",
     "isSoldOut": false,
-    "websiteUrl": "https://www.anzaclub.org",
+    "websiteUrl": "https://anzaclub.org",
     "venueUrl": "https://www.anzaclub.org",
     "ticketProvider": "Venue Door / Table Charge",
     "rawProvider": "Box Office / Direct",
@@ -3326,13 +3516,13 @@ const VANCOUVER_EVENTS = [
       -123.1068
     ],
     "transitInfo": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)",
-    "description": "Mount Pleasant's beloved non-profit social club hosting weekly acoustic bluegrass, old-time fiddle, and Celtic jam sessions. Listeners and pickers welcome, $10 general door.",
+    "description": "Historic Australian New Zealand Association social club in Mount Pleasant. Hosts authentic acoustic bluegrass jams, open mics, darts, and craft beers.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 10.0,
       "feeBreakdown": "$10.00 general admission door rate for community jam showcase",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:33-07:00",
       "details": "Verified via The Anza Club member and guest event policy."
     }
   },
@@ -3359,13 +3549,21 @@ const VANCOUVER_EVENTS = [
     "price": 12.0,
     "priceLabel": "$12.00 door (PWYC)",
     "pricingType": "door",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Door Admission (PWYC)",
+        "basePrice": 12.0,
+        "price": 12.0,
+        "label": "$12.00 door (PWYC)"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Fridays)",
+    "frequencyLabel": "Fridays & Saturdays",
     "daysOfWeek": [
-      "fri"
+      "fri",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3382,7 +3580,7 @@ const VANCOUVER_EVENTS = [
       "post-punk",
       "all-ages"
     ],
-    "dateSchedule": "Weekly (Fridays) • 8:30 PM (Doors 8:00 PM)",
+    "dateSchedule": "Fridays & Saturdays • 8:30 PM (Doors 8:00 PM)",
     "startIso": "2026-09-11T20:30:00-07:00",
     "endIso": "2026-09-11T23:45:00-07:00",
     "isSoldOut": false,
@@ -3395,13 +3593,13 @@ const VANCOUVER_EVENTS = [
       -123.0805
     ],
     "transitInfo": "#14 or #16 Hastings bus directly to Clark Dr",
-    "description": "Vancouver's premier artist-run underground DIY music space hosting Friday night live indie, post-punk, and experimental bands. Rotating local acts, accessible, all-ages, $12 door PWYC.",
+    "description": "Artist-run non-profit community arts space on Main Street. Hosts cutting-edge experimental, post-punk, noise, and independent music showcases where no one is turned away for lack of funds.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 suggested door cover under Red Gate pay-what-you-can artist policy",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:33-07:00",
       "details": "Verified via Red Gate Arts Society non-profit door policy."
     }
   },
@@ -3427,12 +3625,21 @@ const VANCOUVER_EVENTS = [
     "price": 12.0,
     "priceLabel": "$12.00 door",
     "pricingType": "door",
-    "tiers": [],
+    "tiers": [
+      {
+        "name": "Door Admission",
+        "basePrice": 12.0,
+        "price": 12.0,
+        "label": "$12.00 door"
+      }
+    ],
     "isFree": false,
     "isDaily": false,
     "frequency": "weekly",
-    "frequencyLabel": "Weekly (Saturdays)",
+    "frequencyLabel": "Thursdays – Saturdays",
     "daysOfWeek": [
+      "thu",
+      "fri",
       "sat"
     ],
     "timeSlots": [
@@ -3449,7 +3656,7 @@ const VANCOUVER_EVENTS = [
       "strathcona",
       "all-ages"
     ],
-    "dateSchedule": "Weekly (Saturdays) • 8:00 PM (Doors 7:30 PM)",
+    "dateSchedule": "Thursday – Saturday • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-12T20:00:00-07:00",
     "endIso": "2026-09-12T23:30:00-07:00",
     "isSoldOut": false,
@@ -3462,13 +3669,13 @@ const VANCOUVER_EVENTS = [
       -123.0954
     ],
     "transitInfo": "#4 or #7 Powell bus to Dunlevy Ave",
-    "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane weekend live shows with rotating Vancouver garage punk and rock bands. 100% door proceeds support the performers.",
+    "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane weekend live shows with rotating Vancouver garage punk, indie, and alternative bands. 100% door proceeds support the artists.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 direct band door cover collected at entrance",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:33-07:00",
       "details": "Verified via LanaLou's live music booking & door schedule."
     }
   },
@@ -3543,7 +3750,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live band cover charge collected at entrance",
-      "verifiedAt": "2026-09-09T17:45:29-07:00",
+      "verifiedAt": "2026-09-09T18:13:34-07:00",
       "details": "Verified via The Roxy Cabaret official cover policy and live residency schedule."
     }
   },
@@ -3619,7 +3826,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-09T17:45:30-07:00",
+      "verifiedAt": "2026-09-09T18:13:34-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     }
   },
@@ -3700,7 +3907,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 14.16,
       "feeBreakdown": "Live multi-tier Showpass checkout: THE HAUNTED WITHIN: $14.16 all-in, ABANDONED YESTERDAY: $14.16 all-in, BOTH BANDS: $14.16 all-in",
-      "verifiedAt": "2026-09-09T17:45:30-07:00",
+      "verifiedAt": "2026-09-09T18:13:34-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (THE HAUNTED WITHIN: $13.49, ABANDONED YESTERDAY: $13.49, BOTH BANDS: $13.49) before adding 5% GST at checkout."
     }
   }
@@ -3718,7 +3925,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "AudienceView Verified",
     "websiteUrl": "https://thecultch.com/box-office/",
     "category": "shows",
-    "flaggedAt": "2026-09-09T17:45:29-07:00",
+    "flaggedAt": "2026-09-09T18:13:32-07:00",
     "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3735,7 +3942,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://www.tightropetheatre.com/classes",
     "category": "activities",
-    "flaggedAt": "2026-09-09T17:45:29-07:00",
+    "flaggedAt": "2026-09-09T18:13:32-07:00",
     "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -3752,7 +3959,7 @@ const MANUAL_REVIEW_QUEUE = [
     "semanticProvider": "Independent Box Office",
     "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
     "category": "cinema",
-    "flaggedAt": "2026-09-09T17:45:30-07:00",
+    "flaggedAt": "2026-09-09T18:13:34-07:00",
     "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."

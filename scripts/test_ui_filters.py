@@ -114,20 +114,33 @@ print(f"  ✓ Quarantine Queue verified ({len(quarantined)} items isolated from 
 # Test 4: One-Off and Advance Dates Alignment
 # ------------------------------------------------------------------------------
 print("\n[TEST 4] Date Alignment & Recurrence Tagging:")
-advance_date_events = [
+# Genuine one-off special events
+genuine_one_offs = [
     'eb-puff-magic-improv',
-    'rio-late-night-cinema',
-    'fox-cabaret-indie-cinema',
-    'tm-biltmore-emerging-artist',
     'eb-standup-mental-health',
-    'eb-alistair-ogden-rio',
     'rickshaw-indie-rock'
 ]
 
 for ev in events:
-    if ev['id'] in advance_date_events:
-        print(f"  • [OK] {ev['id']:<28} | freq={ev['frequency']:<8} | sched={ev['dateSchedule']}")
+    if ev['id'] in genuine_one_offs:
+        print(f"  • [ONE-OFF] {ev['id']:<28} | freq={ev['frequency']:<8} | sched={ev['dateSchedule']}")
         assert ev['frequency'] == 'one-off', f"{ev['id']} should be tagged as one-off!"
+
+# Venue-authenticated recurring programs
+recurring_authenticated = {
+    'rio-late-night-cinema': 'daily',
+    'tm-biltmore-emerging-artist': 'weekly',
+    'fox-cabaret-indie-cinema': 'weekly',
+    'cinematheque-matinee': 'weekly',
+    'frankies-jazz-brad-turner': 'weekly',
+    'the-roxy-fab-fourever': 'daily'
+}
+
+for ev in events:
+    if ev['id'] in recurring_authenticated:
+        expected_freq = recurring_authenticated[ev['id']]
+        print(f"  • [RECURRING] {ev['id']:<28} | freq={ev['frequency']:<8} (expected {expected_freq}) | sched={ev['dateSchedule']}")
+        assert ev['frequency'] == expected_freq, f"{ev['id']} frequency mismatch: expected {expected_freq}, got {ev['frequency']}"
 
 print("\n" + "=" * 70)
 print("ALL AUTOMATED TESTS & SIMULATIONS PASSED (0 Errors, 0 Discrepancies)!")
