@@ -1,11 +1,28 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-09T18:13:34-07:00",
-    "pendingCount": 3,
+    "updatedAt": "2026-09-10T09:16:15-07:00",
+    "pendingCount": 4,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
+    {
+      "id": "lmg-decolonized-comedy",
+      "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+      "venue": "Little Mountain Gallery",
+      "address": "110 Water St, Vancouver",
+      "neighborhood": "Gastown / Chinatown",
+      "attemptedPrice": 15.0,
+      "attemptedPriceLabel": "$15.00 door",
+      "provider": "Showpass",
+      "semanticProvider": "Showpass Verified",
+      "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+      "category": "shows",
+      "flaggedAt": "2026-09-10T09:16:13-07:00",
+      "flagReason": "Showpass returned no ticket types",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
     {
       "id": "cultch-theatre-series",
       "title": "The Cultch: Contemporary Stage Performance",
@@ -18,7 +35,7 @@
       "semanticProvider": "AudienceView Verified",
       "websiteUrl": "https://thecultch.com/box-office/",
       "category": "shows",
-      "flaggedAt": "2026-09-09T18:13:32-07:00",
+      "flaggedAt": "2026-09-10T09:16:14-07:00",
       "flagReason": "Generic box office info page (thecultch.com/box-office/) without specific production checkout cart payload. Prices range $29–$75.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -35,7 +52,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://www.tightropetheatre.com/classes",
       "category": "activities",
-      "flaggedAt": "2026-09-09T18:13:32-07:00",
+      "flaggedAt": "2026-09-10T09:16:14-07:00",
       "flagReason": "Event relies on unconfirmed generic door price assumption without live checkout API.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -52,7 +69,7 @@
       "semanticProvider": "Independent Box Office",
       "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
       "category": "cinema",
-      "flaggedAt": "2026-09-09T18:13:34-07:00",
+      "flaggedAt": "2026-09-10T09:16:15-07:00",
       "flagReason": "Venue has no online checkout portal and ticket price ($15.00) is based on unconfirmed general door assumption.",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."

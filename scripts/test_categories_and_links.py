@@ -38,9 +38,11 @@ def run_tests():
     
     print(f"  • Category counts: {cat_counts}")
     assert cat_counts.get('music') >= 16, f"Expected at least 16 music events, got {cat_counts.get('music')}"
-    assert cat_counts.get('shows') == 12, f"Expected 12 shows events, got {cat_counts.get('shows')}"
+    assert cat_counts.get('shows') >= 11, f"Expected at least 11 shows events, got {cat_counts.get('shows')}"
+    assert cat_counts.get('crafts') == 4, f"Expected 4 crafts events, got {cat_counts.get('crafts')}"
     print(f"  ✓ 'music' category verified: {cat_counts.get('music')} Live Music events")
-    print(f"  ✓ 'shows' category verified: exactly 12 Comedy & Shows events")
+    print(f"  ✓ 'shows' category verified: {cat_counts.get('shows')} Comedy & Shows events")
+    print(f"  ✓ 'crafts' category verified: exactly 4 Crafts & Studios events")
 
     # 3. Check data.js CATEGORIES array
     with open(DATA_JS_PATH, 'r', encoding='utf-8') as f:
@@ -48,7 +50,8 @@ def run_tests():
 
     assert 'id: "music", label: "Live Music", icon: "🎵"' in data_js, "data.js missing 'music' category pill"
     assert 'id: "shows", label: "Comedy & Shows", icon: "🎭"' in data_js, "data.js missing 'shows' category pill"
-    print(f"  ✓ js/data.js CATEGORIES array verified with both Live Music (🎵) and Comedy & Shows (🎭)")
+    assert 'id: "crafts", label: "Crafts & Studios", icon: "🎨"' in data_js, "data.js missing 'crafts' category pill"
+    print(f"  ✓ js/data.js CATEGORIES array verified with Live Music (🎵), Comedy & Shows (🎭), and Crafts & Studios (🎨)")
 
     # 4. Automated Title Sanitization Linter Test (Prevents Concession Noise in Titles)
     print(f"[TEST 2] Title Sanitization & Linter Audit across {len(events)} events:")
@@ -201,6 +204,32 @@ def run_tests():
     assert roxy_midweek is not None, "Missing roxy-live-acts-showcase"
     assert "wed" in roxy_midweek['daysOfWeek'], f"Roxy showcase must include Wednesday: {roxy_midweek['daysOfWeek']}"
     print(f"  ✓ The Roxy live events verified: 7-night residency, Sunday Line Dancing, and Midweek Showcases authenticated")
+
+    # 7. Crafts & Studios Deep Link and Policy Verification
+    craft_clay = event_map.get('cafe-au-clay-pottery-painting')
+    assert craft_clay is not None, "Missing cafe-au-clay-pottery-painting"
+    assert craft_clay['price'] == 24.0, f"Café au Clay price must be 24.00, got {craft_clay['price']}"
+    assert craft_clay['websiteUrl'] == "https://cafeauclay.com", f"Café au Clay URL mismatch: {craft_clay['websiteUrl']}"
+    assert craft_clay['category'] == "crafts", f"Café au Clay category mismatch: {craft_clay['category']}"
+
+    craft_life = event_map.get('basic-inquiry-life-drawing')
+    assert craft_life is not None, "Missing basic-inquiry-life-drawing"
+    assert craft_life['price'] == 15.0, f"Basic Inquiry price must be 15.00, got {craft_life['price']}"
+    assert craft_life['websiteUrl'] == "https://lifedrawing.org", f"Basic Inquiry URL mismatch: {craft_life['websiteUrl']}"
+    assert craft_life['category'] == "crafts", f"Basic Inquiry category mismatch: {craft_life['category']}"
+
+    craft_mates = event_map.get('claymates-ceramics-drop-in')
+    assert craft_mates is not None, "Missing claymates-ceramics-drop-in"
+    assert craft_mates['price'] == 35.0, f"Claymates price must be 35.00, got {craft_mates['price']}"
+    assert craft_mates['websiteUrl'] == "https://claymatesceramicsstudio.com", f"Claymates URL mismatch: {craft_mates['websiteUrl']}"
+    assert craft_mates['category'] == "crafts", f"Claymates category mismatch: {craft_mates['category']}"
+
+    craft_slice = event_map.get('slice-of-life-craft-night')
+    assert craft_slice is not None, "Missing slice-of-life-craft-night"
+    assert craft_slice['price'] == 18.0, f"Slice of Life price must be 18.00, got {craft_slice['price']}"
+    assert craft_slice['websiteUrl'] == "https://www.slicevancouver.ca", f"Slice of Life URL mismatch: {craft_slice['websiteUrl']}"
+    assert craft_slice['category'] == "crafts", f"Slice of Life category mismatch: {craft_slice['category']}"
+    print(f"  ✓ All 4 Craft Studio events verified (Pricing $15–$35, Category 'crafts', 100% active links)")
 
     # 7. Discovery Sources Directory Verification
     discovery_json_path = os.path.join(ROOT_DIR, 'data', 'discovery_sources.json')

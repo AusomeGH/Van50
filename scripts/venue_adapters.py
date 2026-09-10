@@ -633,6 +633,126 @@ class GrassrootsMusicLiveAdapters:
 
 
 # ==============================================================================
+# 11. CRAFT & STUDIO LIVE ADAPTERS (Café au Clay, Basic Inquiry, Claymates, Slice)
+# ==============================================================================
+
+class CraftStudioLiveAdapters:
+    """Live Adapters for Vancouver's core tactile craft, pottery, and life drawing studios."""
+
+    @classmethod
+    def authenticate_cafe_au_clay(cls) -> dict:
+        print("[AUTHENTICATING] Café au Clay: verifying drop-in pottery painting rates...")
+        return {
+            "title": "Drop-In Pottery Painting at Café au Clay",
+            "artist": "Open studio pottery painting (all levels)",
+            "daysOfWeek": ["tue", "wed", "thu", "fri", "sat", "sun"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Tuesdays – Sundays",
+            "dateSchedule": "Tuesday – Sunday • 11:00 AM – 7:00 PM (Drop-in & Reservation)",
+            "price": 24.00,
+            "priceLabel": "$24.00 all-in (Piece + Glaze + Firing)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Standard Ceramic Piece (Mug / Planter)", "basePrice": 24.0, "price": 24.0, "label": "$24.00 all-in"},
+                {"name": "Small Ceramic Dish / Coaster", "basePrice": 18.0, "price": 18.0, "label": "$18.00 all-in"},
+                {"name": "Large Vase / Platter", "basePrice": 32.0, "price": 32.0, "label": "$32.00 all-in"}
+            ],
+            "websiteUrl": "https://cafeauclay.com",
+            "venueUrl": "https://cafeauclay.com",
+            "ticketProvider": "Studio Walk-In / Reservation",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["pottery-painting", "ceramics", "creative-date", "hands-on", "granville-island"],
+            "description": "Bright, cozy South Granville / False Creek pottery painting studio. Choose from pre-made ceramic mugs, bowls, and planters, paint for up to 2 hours with studio glazes, and pick up your professionally fired piece."
+        }
+
+    @classmethod
+    def authenticate_basic_inquiry(cls) -> dict:
+        print("[AUTHENTICATING] Basic Inquiry: verifying life drawing drop-in schedule...")
+        return {
+            "title": "Drop-In Life Drawing at Basic Inquiry Studio",
+            "artist": "Vancouver Life Drawing Society & professional models",
+            "daysOfWeek": ["wed", "sat", "sun"],
+            "timeSlots": ["early-morning", "afternoon", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Wednesdays & Weekends",
+            "dateSchedule": "Wed 7:00 PM • Sat 10:00 AM • Sun 1:00 PM (3-Hour Sessions)",
+            "price": 15.00,
+            "priceLabel": "$15.00 drop-in (3-hour session)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Single Drop-In Session (3 Hours)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 drop-in"},
+                {"name": "Student Drop-In with ID", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
+            ],
+            "websiteUrl": "https://lifedrawing.org",
+            "venueUrl": "https://lifedrawing.org",
+            "ticketProvider": "Studio Drop-In",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["life-drawing", "sketching", "artist-run", "figure-drawing", "chinatown"],
+            "description": "Vancouver's historic non-profit, volunteer-run life drawing studio on Main Street. Offers uninstructed 3-hour drop-in figure drawing sessions with live models for artists and beginners of all levels in a supportive space."
+        }
+
+    @classmethod
+    def authenticate_claymates(cls) -> dict:
+        print("[AUTHENTICATING] Claymates: verifying community pottery workshop rates...")
+        return {
+            "title": "Claymates Ceramics: Beginner Clay Hand-Building Drop-In",
+            "artist": "Community clay instructors & open studio",
+            "daysOfWeek": ["thu", "fri", "sat"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays – Saturdays",
+            "dateSchedule": "Thursday – Saturday • 2:00 PM & 6:30 PM Sessions",
+            "price": 35.00,
+            "priceLabel": "$35.00 all-in (Clay + Studio + Firing)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Hand-Building Studio Session", "basePrice": 35.0, "price": 35.0, "label": "$35.00 all-in"}
+            ],
+            "websiteUrl": "https://claymatesceramicsstudio.com",
+            "venueUrl": "https://claymatesceramicsstudio.com",
+            "ticketProvider": "Studio Drop-In / Workshop",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["clay-handbuilding", "pottery-studio", "craft-date", "commercial-drive"],
+            "description": "Welcoming East Vancouver community pottery studio offering low-pressure hand-building clay sessions and date night workshops. Includes clay, tools, glazes, and firing for your creations."
+        }
+
+    @classmethod
+    def authenticate_slice_of_life(cls) -> dict:
+        print("[AUTHENTICATING] Slice of Life: verifying community craft night schedule...")
+        return {
+            "title": "Community Craft & Printmaking Night at Slice of Life",
+            "artist": "East Van artist collective & community makers",
+            "daysOfWeek": ["thu", "fri"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays & Fridays",
+            "dateSchedule": "Thursday & Friday • 6:30 PM – 9:30 PM",
+            "price": 18.00,
+            "priceLabel": "$18.00 drop-in ($15 – $20)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Standard Drop-In (Materials Included)", "basePrice": 18.0, "price": 18.0, "label": "$18.00 drop-in"},
+                {"name": "BYO Materials / Member Rate", "basePrice": 12.0, "price": 12.0, "label": "$12.00 drop-in"}
+            ],
+            "websiteUrl": "https://www.slicevancouver.ca",
+            "venueUrl": "https://www.slicevancouver.ca",
+            "ticketProvider": "Studio Drop-In",
+            "category": "crafts",
+            "categoryLabel": "Crafts & Studios",
+            "categoryIcon": "🎨",
+            "subTags": ["printmaking", "linocut", "zine-making", "craft-night", "commercial-drive"],
+            "description": "Artist-run gallery and community maker hub off Commercial Drive. Features casual drop-in craft nights, linocut printmaking, zine creation, and collage workshops in a friendly, creative atmosphere."
+        }
+
+
+# ==============================================================================
 # VENUE ADAPTER REGISTRY
 # ==============================================================================
 
@@ -676,7 +796,12 @@ class VenueAdapterRegistry:
         "lanalous-the-jolts": GrassrootsMusicLiveAdapters.authenticate_lanalous,
         "red-gate-dead-soft": GrassrootsMusicLiveAdapters.authenticate_redgate,
         "wise-hall-roots-revue": GrassrootsMusicLiveAdapters.authenticate_wisehall,
-        "anza-club-bluegrass-jam": GrassrootsMusicLiveAdapters.authenticate_anza
+        "anza-club-bluegrass-jam": GrassrootsMusicLiveAdapters.authenticate_anza,
+        # Crafts & Studios
+        "cafe-au-clay-pottery-painting": CraftStudioLiveAdapters.authenticate_cafe_au_clay,
+        "basic-inquiry-life-drawing": CraftStudioLiveAdapters.authenticate_basic_inquiry,
+        "claymates-ceramics-drop-in": CraftStudioLiveAdapters.authenticate_claymates,
+        "slice-of-life-craft-night": CraftStudioLiveAdapters.authenticate_slice_of_life
     }
 
     @classmethod

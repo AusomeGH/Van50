@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 51
+    "totalVenues": 55
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -1121,6 +1121,106 @@
         "the-roxy-fab-fourever",
         "roxy-country-sunday",
         "roxy-live-acts-showcase"
+      ]
+    },
+    "Café au Clay Studios": {
+      "venueId": "cafe-au-clay",
+      "name": "Café au Clay Studios",
+      "aliases": [
+        "Cafe au Clay",
+        "Cafe au Clay Pottery",
+        "Cafe Au Clay"
+      ],
+      "address": "1612 W 3rd Ave, Vancouver",
+      "neighborhood": "Granville Island",
+      "coordinates": [
+        49.2698,
+        -123.1415
+      ],
+      "transitInfo": "#84 or #50 bus to 4th Ave & Fir St (3 min walk)",
+      "category": "crafts",
+      "venueUrl": "https://cafeauclay.com",
+      "calendarUrl": "https://cafeauclay.com",
+      "boxOfficeUrl": "https://cafeauclay.com",
+      "ticketingProvider": "Studio Walk-In / Reservation",
+      "adapter": "CraftStudioLiveAdapters.authenticate_cafe_au_clay",
+      "managedEvents": [
+        "cafe-au-clay-pottery-painting"
+      ]
+    },
+    "Basic Inquiry Life Drawing Society": {
+      "venueId": "basic-inquiry",
+      "name": "Basic Inquiry Life Drawing Society",
+      "aliases": [
+        "Basic Inquiry",
+        "Vancouver Life Drawing Society",
+        "Basic Inquiry Gallery"
+      ],
+      "address": "1011 Main St, Vancouver",
+      "neighborhood": "Gastown / Chinatown",
+      "coordinates": [
+        49.2778,
+        -123.0998
+      ],
+      "transitInfo": "Main Street-Science World SkyTrain Station (4 min walk)",
+      "category": "crafts",
+      "venueUrl": "https://lifedrawing.org",
+      "calendarUrl": "https://lifedrawing.org",
+      "boxOfficeUrl": "https://lifedrawing.org",
+      "ticketingProvider": "Studio Drop-In",
+      "adapter": "CraftStudioLiveAdapters.authenticate_basic_inquiry",
+      "managedEvents": [
+        "basic-inquiry-life-drawing"
+      ]
+    },
+    "Claymates Ceramics Studio": {
+      "venueId": "claymates-ceramics",
+      "name": "Claymates Ceramics Studio",
+      "aliases": [
+        "Claymates",
+        "Claymates Ceramics",
+        "Claymates Studio"
+      ],
+      "address": "1268 E Hastings St, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2813,
+        -123.0782
+      ],
+      "transitInfo": "#14, #16, or #20 Hastings bus to Clark Dr",
+      "category": "crafts",
+      "venueUrl": "https://claymatesceramicsstudio.com",
+      "calendarUrl": "https://claymatesceramicsstudio.com",
+      "boxOfficeUrl": "https://claymatesceramicsstudio.com",
+      "ticketingProvider": "Studio Drop-In / Workshop",
+      "adapter": "CraftStudioLiveAdapters.authenticate_claymates",
+      "managedEvents": [
+        "claymates-ceramics-drop-in"
+      ]
+    },
+    "Slice of Life Gallery & Studios": {
+      "venueId": "slice-of-life",
+      "name": "Slice of Life Gallery & Studios",
+      "aliases": [
+        "Slice of Life",
+        "Slice of Life Vancouver",
+        "Slice Gallery"
+      ],
+      "address": "1636 Venables St, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2764,
+        -123.0715
+      ],
+      "transitInfo": "#20 Commercial bus to Venables St (2 min walk)",
+      "category": "crafts",
+      "venueUrl": "https://www.slicevancouver.ca",
+      "calendarUrl": "https://www.slicevancouver.ca",
+      "boxOfficeUrl": "https://www.slicevancouver.ca",
+      "ticketingProvider": "Studio Drop-In",
+      "adapter": "CraftStudioLiveAdapters.authenticate_slice_of_life",
+      "managedEvents": [
+        "slice-of-life-craft-night"
       ]
     }
   }
