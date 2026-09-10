@@ -65,16 +65,73 @@
         <span id="sync-status-text">100% Live Checkout Verified • Auto-Synced Daily</span>
       </div>
 
-      <!-- Real-time Search Input -->
+      <!-- Real-time Google-Style Search Input -->
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
         <input 
           type="text" 
           id="search-input" 
           class="search-input" 
-          placeholder="Search by event title, venue, or keyword..."
+          placeholder='Search events, venues, or use operators (e.g. "open mic", comedy -improv, price:<20)...'
           aria-label="Search events"
+          autocomplete="off"
+          spellcheck="false"
         >
+        <button type="button" class="btn-clear-search" id="btn-clear-search" title="Clear search" aria-label="Clear search" style="display: none;">✕</button>
+        <button type="button" class="btn-search-tips-toggle" id="btn-search-tips-toggle" title="Classic Search Operators &amp; Tips" aria-expanded="false">
+          <span>⚡ Tips</span>
+        </button>
+      </div>
+
+      <!-- Classic Search Operators Interactive Popover -->
+      <div class="search-tips-popover" id="search-tips-popover" style="display: none;" role="region" aria-label="Search tips and operators">
+        <div class="search-tips-header">
+          <div class="search-tips-title">
+            <span>⚡</span> <strong>Classic Google Search Operators</strong>
+          </div>
+          <button type="button" class="btn-close-tips" id="btn-close-tips" aria-label="Close search tips">✕</button>
+        </div>
+        <div class="search-tips-grid">
+          <div class="search-tip-item" onclick="applySearchSample('&quot;open mic&quot;')" title="Click to test exact phrase matching">
+            <code>"open mic"</code>
+            <span>Exact phrase</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('comedy -improv')" title="Click to test negative exclusion">
+            <code>comedy -improv</code>
+            <span>Exclude keyword</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('pottery OR ceramics')" title="Click to test boolean OR">
+            <code>pottery OR ceramics</code>
+            <span>Boolean OR</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('venue:roxy')" title="Click to filter by venue name">
+            <code>venue:roxy</code>
+            <span>Venue filter</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('price:<20')" title="Click to filter by maximum price">
+            <code>price:&lt;20</code>
+            <span>Under $20 CAD</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('price:free')" title="Click to show only 100% free events">
+            <code>price:free</code>
+            <span>Free ($0) events</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('day:friday')" title="Click to filter by day of week">
+            <code>day:friday</code>
+            <span>Runs on Friday</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('cat:crafts')" title="Click to filter by category">
+            <code>cat:crafts</code>
+            <span>Category filter</span>
+          </div>
+          <div class="search-tip-item" onclick="applySearchSample('area:kitsilano')" title="Click to filter by neighborhood">
+            <code>area:kitsilano</code>
+            <span>Neighborhood</span>
+          </div>
+        </div>
+        <div class="search-tips-footer">
+          <span>💡 <em>Click any operator pill above to test it instantly! Stemming, typos &amp; relevance sorting are built in.</em></span>
+        </div>
       </div>
     </section>
 

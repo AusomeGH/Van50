@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 57
+    "totalVenues": 59
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -1276,6 +1276,57 @@
       "adapter": "PublicDiscoLiveAdapter",
       "managedEvents": [
         "public-disco-block-party",
+        "public-disco-warehouse-party"
+      ]
+    },
+    "Bentall Centre Dunsmuir Plaza": {
+      "venueId": "bentall-centre-plaza",
+      "name": "Bentall Centre Dunsmuir Plaza",
+      "aliases": [
+        "Bentall Centre",
+        "Bentall Plaza",
+        "Dunsmuir Plaza",
+        "Public Disco Plaza"
+      ],
+      "address": "1055 Dunsmuir St, Vancouver",
+      "neighborhood": "Downtown / West End",
+      "coordinates": [
+        49.2847,
+        -123.1192
+      ],
+      "transitInfo": "Burrard SkyTrain Station (direct plaza level access)",
+      "category": "social",
+      "venueUrl": "https://bentallcentre.com",
+      "calendarUrl": "https://publicdisco.ca/events",
+      "boxOfficeUrl": "https://publicdisco.ca/events",
+      "ticketingProvider": "Free Public Access",
+      "adapter": "PublicDiscoLiveAdapter.authenticate_block_party",
+      "managedEvents": [
+        "public-disco-block-party"
+      ]
+    },
+    "The Birdhouse": {
+      "venueId": "the-birdhouse",
+      "name": "The Birdhouse",
+      "aliases": [
+        "Birdhouse",
+        "The Birdhouse East Van",
+        "Birdhouse Vancouver"
+      ],
+      "address": "44 W 4th Ave, Vancouver",
+      "neighborhood": "Mount Pleasant",
+      "coordinates": [
+        49.2678,
+        -123.1065
+      ],
+      "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
+      "category": "social",
+      "venueUrl": "https://www.birdhouse.ca",
+      "calendarUrl": "https://publicdisco.ca/events",
+      "boxOfficeUrl": "https://publicdisco.ca/events",
+      "ticketingProvider": "Advance & Door Tickets",
+      "adapter": "PublicDiscoLiveAdapter.authenticate_warehouse_party",
+      "managedEvents": [
         "public-disco-warehouse-party"
       ]
     }

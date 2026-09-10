@@ -1,15 +1,15 @@
 {
   "metadata": {
-    "version": "1.0.0",
-    "updatedAt": "2026-09-10T09:30:00-07:00",
-    "totalOrganizers": 1,
-    "description": "Van50 Roving & Nomadic Organizers Directory: Collectives hosting events across multiple rotating outdoor and indoor locations."
+    "version": "1.1.0",
+    "updatedAt": "2026-09-10T10:30:00-07:00",
+    "totalOrganizers": 6,
+    "description": "Van50 Roving & Nomadic Organizers Directory: Verified community collectives hosting events across multiple rotating outdoor and indoor locations."
   },
   "organizers": {
     "public-disco-society": {
       "id": "public-disco-society",
       "name": "Public Disco Society",
-      "aliases": ["Public Disco", "Public Disco Vancouver"],
+      "aliases": ["Public Disco", "Public Disco Vancouver", "Public Disco Society"],
       "type": "non_profit_arts_society",
       "focus": "Open-air daytime dance block parties (free) and ticketed evening warehouse/club fundraisers",
       "websiteUrl": "https://publicdisco.ca",
@@ -25,6 +25,120 @@
       "budgetProfile": {
         "blockParties": "Free ($0 CAD) open to all ages",
         "clubParties": "$15.00 - $25.00 CAD"
+      },
+      "agePolicy": {
+        "plazaEvents": "All-Ages (Licensed 19+ Beer Garden)",
+        "warehouseEvents": "19+ (Government Photo ID Required)"
+      },
+      "active": true
+    },
+    "iq-2000-trivia": {
+      "id": "iq-2000-trivia",
+      "name": "IQ 2000 Trivia",
+      "aliases": ["IQ 2000", "IQ 2000 Pub Trivia"],
+      "type": "independent_producer",
+      "focus": "High-energy comedic multi-round pub trivia nights across Vancouver bars and community halls",
+      "websiteUrl": "https://iq2000trivia.com",
+      "eventsUrl": "https://iq2000trivia.com",
+      "ticketingPortal": "https://iq2000trivia.com",
+      "primaryVenues": [
+        "Colony Main Street",
+        "The Biltmore Cabaret",
+        "The Portside Pub",
+        "Hero's Welcome"
+      ],
+      "budgetProfile": {
+        "standardNights": "Free ($0 CAD) admission for patrons"
+      },
+      "agePolicy": {
+        "pubEvents": "19+ (Licensed Hospitality Venues)"
+      },
+      "active": true
+    },
+    "eatlocal-vancouver": {
+      "id": "eatlocal-vancouver",
+      "name": "Vancouver Farmers Markets (EatLocal)",
+      "aliases": ["EatLocal", "Vancouver Farmers Markets", "VFM"],
+      "type": "registered_charity",
+      "focus": "Rotating community agricultural and artisan street markets across Vancouver parks and civic plazas",
+      "websiteUrl": "https://eatlocal.org",
+      "eventsUrl": "https://eatlocal.org/markets/",
+      "ticketingPortal": "Free Public Access",
+      "primaryVenues": [
+        "John Hendry Park (Trout Lake)",
+        "Kitsilano Community Centre Plaza",
+        "Riley Park Plaza (Nat Bailey Stadium)",
+        "Nelson Park (West End)",
+        "Dude Chilling Park (Guelph Park)",
+        "Vancouver Art Gallery Plaza (North)",
+        "Concord Community Park (False Creek)"
+      ],
+      "budgetProfile": {
+        "allMarkets": "Free ($0 CAD) public admission"
+      },
+      "agePolicy": {
+        "allMarkets": "All-Ages Family Friendly"
+      },
+      "active": true
+    },
+    "car-free-vancouver-society": {
+      "id": "car-free-vancouver-society",
+      "name": "Car Free Vancouver Society",
+      "aliases": ["Car Free Day", "Car Free Vancouver"],
+      "type": "non_profit_society",
+      "focus": "Annual pedestrian street festivals celebrating local art, music, food, and community culture",
+      "websiteUrl": "https://www.carfreevancouver.org",
+      "eventsUrl": "https://www.carfreevancouver.org",
+      "ticketingPortal": "Free Public Access",
+      "primaryVenues": [
+        "Commercial Drive (Grandview-Woodland)",
+        "Main Street (Mount Pleasant)"
+      ],
+      "budgetProfile": {
+        "streetFestivals": "Free ($0 CAD) open to the public"
+      },
+      "agePolicy": {
+        "streetFestivals": "All-Ages Family Friendly"
+      },
+      "active": true
+    },
+    "khatsahlano-festival": {
+      "id": "khatsahlano-festival",
+      "name": "Khatsahlano Street Party (Kitsilano 4th Ave BIA)",
+      "aliases": ["Khatsahlano", "Khatsahlano Music + Arts Festival"],
+      "type": "bia_arts_festival",
+      "focus": "Vancouver's largest free 10-block outdoor music and community street party on West 4th Avenue",
+      "websiteUrl": "https://khatsahlano.ca",
+      "eventsUrl": "https://khatsahlano.ca",
+      "ticketingPortal": "Free Public Access",
+      "primaryVenues": [
+        "West 4th Avenue (Burrard to Macdonald)"
+      ],
+      "budgetProfile": {
+        "streetFestival": "Free ($0 CAD) open admission"
+      },
+      "agePolicy": {
+        "streetFestival": "All-Ages (Licensed 19+ Beer Gardens with ID)"
+      },
+      "active": true
+    },
+    "runvan-society": {
+      "id": "runvan-society",
+      "name": "RUNVAN (Vancouver International Marathon Society)",
+      "aliases": ["RUNVAN", "RUNVAN Club"],
+      "type": "non_profit_sports_society",
+      "focus": "Free weekly community social running groups along Vancouver seawalls and parks",
+      "websiteUrl": "https://runvan.org",
+      "eventsUrl": "https://runvan.org/community/",
+      "ticketingPortal": "Free Public Access",
+      "primaryVenues": [
+        "RUNVAN Clubhouse & Seawall"
+      ],
+      "budgetProfile": {
+        "socialRuns": "Free ($0 CAD) community meetup"
+      },
+      "agePolicy": {
+        "socialRuns": "All-Ages Community Fitness"
       },
       "active": true
     }

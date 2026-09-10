@@ -2184,8 +2184,11 @@ def get_curated_seed_catalog():
         {
             "id": "public-disco-block-party",
             "title": "Public Disco: Free Open-Air Plaza Dance Party",
-            "venue": "Public Disco Society",
-            "address": "Bentall Centre Dunsmuir Plaza (Roving: Granville Island / Dude Chilling)",
+            "venue": "Bentall Centre Dunsmuir Plaza",
+            "organizer": "Public Disco Society",
+            "isRoving": True,
+            "editionVenue": "Bentall Centre Dunsmuir Plaza",
+            "address": "1055 Dunsmuir St, Vancouver",
             "neighborhood": "Downtown / West End",
             "basePrice": 0.00,
             "provider": "Free Public Access",
@@ -2204,16 +2207,22 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-12T14:00:00-07:00",
             "endIso": "2026-09-12T21:00:00-07:00",
             "isSoldOut": False,
+            "agePolicy": "All-Ages (Licensed 19+ Beer Garden with ID)",
+            "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
+            "rovingNote": "Flagship summer/fall outdoor plaza edition at Bentall Centre; rotating editions at Granville Island Lot 55 & Dude Chilling Park.",
             "websiteUrl": "https://publicdisco.ca/events",
             "coordinates": [49.2847, -123.1192],
-            "transitInfo": "Burrard SkyTrain Station (adjacent to Bentall Plaza)",
+            "transitInfo": "Burrard SkyTrain Station (direct plaza level access)",
             "description": "Beloved Vancouver non-profit transforming urban public spaces into vibrant, inclusive daytime dance floors. Features local house/disco DJs, interactive art installations, licensed patio bar, and lawn games with 100% free community admission."
         },
         {
             "id": "public-disco-warehouse-party",
             "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-            "venue": "Public Disco Society",
-            "address": "The Birdhouse / Red Gate Arts Society (East Van Roving)",
+            "venue": "The Birdhouse",
+            "organizer": "Public Disco Society",
+            "isRoving": True,
+            "editionVenue": "The Birdhouse",
+            "address": "44 W 4th Ave, Vancouver",
             "neighborhood": "Mount Pleasant",
             "basePrice": 20.00,
             "provider": "Eventbrite / Public Disco",
@@ -2232,9 +2241,12 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-18T22:00:00-07:00",
             "endIso": "2026-09-19T02:30:00-07:00",
             "isSoldOut": False,
+            "agePolicy": "19+ (Valid Government Photo ID Required)",
+            "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
+            "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
             "websiteUrl": "https://publicdisco.ca/events",
             "coordinates": [49.2678, -123.1065],
-            "transitInfo": "Olympic Village or Main Street-Science World SkyTrain",
+            "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
             "description": "High-energy indoor club and warehouse parties supporting Public Disco's free public programming. Immersive lighting, world-class sound, safe space policies, and positive dance floor vibes across East Vancouver cultural spaces."
         }
     ]
@@ -2301,7 +2313,9 @@ VENUE_URLS = {
     "Hand Eye Ceramics": "https://handeyeceramics.com",
     "Claymates Ceramics Studio": "https://claymatesceramicsstudio.com",
     "Slice of Life Gallery & Studios": "https://www.slicevancouver.ca",
-    "Public Disco Society": "https://publicdisco.ca"
+    "Public Disco Society": "https://publicdisco.ca",
+    "Bentall Centre Dunsmuir Plaza": "https://bentallcentre.com",
+    "The Birdhouse": "https://www.birdhouse.ca"
 }
 
 
@@ -2603,6 +2617,12 @@ def run_sync() -> bool:
             "rawProvider": provider,
             "coordinates": item['coordinates'],
             "transitInfo": item['transitInfo'],
+            "organizer": item.get('organizer'),
+            "isRoving": item.get('isRoving', False),
+            "editionVenue": item.get('editionVenue'),
+            "agePolicy": item.get('agePolicy'),
+            "admissionPolicy": item.get('admissionPolicy'),
+            "rovingNote": item.get('rovingNote'),
             "description": item['description'],
             "checkoutVerification": verification
         }

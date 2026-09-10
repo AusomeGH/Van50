@@ -88,14 +88,92 @@ function showSyncTimestamp(isoStr, count) {
 // ==============================================================================
 
 function setupEventListeners() {
-  // Search input
+  // Search input & interactive controls
   const searchInput = document.getElementById('search-input');
+  const clearSearchBtn = document.getElementById('btn-clear-search');
+  const tipsToggleBtn = document.getElementById('btn-search-tips-toggle');
+  const tipsPopover = document.getElementById('search-tips-popover');
+  const closeTipsBtn = document.getElementById('btn-close-tips');
+
+  function updateClearBtnVisibility() {
+    if (clearSearchBtn) {
+      clearSearchBtn.style.display = (searchInput && searchInput.value.trim().length > 0) ? 'inline-flex' : 'none';
+    }
+  }
+
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value.toLowerCase().trim();
+      state.searchQuery = e.target.value.trim();
+      updateClearBtnVisibility();
       applyFiltersAndRender();
     });
   }
+
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      state.searchQuery = '';
+      updateClearBtnVisibility();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (tipsToggleBtn && tipsPopover) {
+    tipsToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = tipsPopover.style.display !== 'none';
+      if (isVisible) {
+        tipsPopover.style.display = 'none';
+        tipsToggleBtn.classList.remove('active');
+        tipsToggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        tipsPopover.style.display = 'block';
+        tipsToggleBtn.classList.add('active');
+        tipsToggleBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  if (closeTipsBtn && tipsPopover && tipsToggleBtn) {
+    closeTipsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tipsPopover.style.display = 'none';
+      tipsToggleBtn.classList.remove('active');
+      tipsToggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Dismiss search tips on outside click
+  document.addEventListener('click', (e) => {
+    if (tipsPopover && tipsPopover.style.display !== 'none') {
+      if (!tipsPopover.contains(e.target) && !tipsToggleBtn.contains(e.target)) {
+        tipsPopover.style.display = 'none';
+        if (tipsToggleBtn) {
+          tipsToggleBtn.classList.remove('active');
+          tipsToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+  });
+
+  // Global search sample applicator
+  window.applySearchSample = function(sampleQuery) {
+    if (searchInput) {
+      searchInput.value = sampleQuery;
+      searchInput.focus();
+    }
+    state.searchQuery = sampleQuery;
+    updateClearBtnVisibility();
+    if (tipsPopover) tipsPopover.style.display = 'none';
+    if (tipsToggleBtn) {
+      tipsToggleBtn.classList.remove('active');
+      tipsToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+    applyFiltersAndRender();
+  };
 
   // Dual Spend Range Slider
   const minSlider = document.getElementById('min-spend-slider');
@@ -501,6 +579,8 @@ function applyFiltersAndRender() {
 
   state.expiredCount = expiredCount;
 
+  const parsedSearch = state.searchQuery ? parseGoogleQuery(state.searchQuery) : null;
+
   const filtered = activeCatalog.filter(ev => {
     // Venue Isolation Filter (Requirement 7)
     if (state.selectedVenue && ev.venue !== state.selectedVenue) return false;
@@ -564,13 +644,22 @@ function applyFiltersAndRender() {
       if (!hasTag) return false;
     }
 
-    // 9. Smart Text Search Query with Stemming & Typo Tolerance (Requirement 6)
-    if (state.searchQuery) {
-      if (!matchesSmartSearch(ev, state.searchQuery)) return false;
+    // 9. Classic Google-Style Search Engine (Quotes, Negative, OR, Field Filters, Typo Tolerance, Relevance)
+    if (parsedSearch) {
+      const [matched, score] = matchesGoogleSearch(ev, parsedSearch);
+      if (!matched) return false;
+      ev._searchScore = score;
+    } else {
+      ev._searchScore = 0;
     }
 
     return true;
   });
+
+  // If search query is active, rank results by relevance score descending (Exact title matches on top)
+  if (parsedSearch) {
+    filtered.sort((a, b) => (b._searchScore || 0) - (a._searchScore || 0));
+  }
 
   window.currentFilteredEvents = filtered;
 
@@ -609,8 +698,8 @@ function applyFiltersAndRender() {
 
     // Check for cross-category matches if current category yields 0
     let crossCategoryBannerHtml = '';
-    if (filtered.length === 0 && state.searchQuery && state.category !== 'all') {
-      const crossMatches = activeCatalog.filter(ev => matchesSmartSearch(ev, state.searchQuery)).length;
+    if (filtered.length === 0 && parsedSearch && state.category !== 'all') {
+      const crossMatches = activeCatalog.filter(ev => matchesGoogleSearch(ev, parsedSearch)[0]).length;
       if (crossMatches > 0) {
         crossCategoryBannerHtml = `
           <div style="margin-top: 8px;">
@@ -672,9 +761,11 @@ function stemWord(word) {
 
 // 1-Typo tolerance Levenshtein check for search tokens >= 4 characters
 function isFuzzyTokenMatch(queryTok, docTok) {
-  if (docTok.includes(queryTok) || queryTok.includes(docTok)) return true;
-  if (queryTok.length < 4 || docTok.length < 4) return false;
-  if (Math.abs(queryTok.length - docTok.length) > 1) return false;
+  if (queryTok === docTok) return true;
+  // Prefix match if query token is long enough (e.g. ceramic -> ceramics)
+  if (queryTok.length >= 4 && docTok.startsWith(queryTok)) return true;
+  if (docTok.length >= 4 && queryTok.startsWith(docTok) && docTok.length >= queryTok.length - 1) return true;
+  if (queryTok.length < 4 || docTok.length < 4 || Math.abs(queryTok.length - docTok.length) > 1) return false;
 
   let diffs = 0;
   let i = 0, j = 0;
@@ -683,46 +774,121 @@ function isFuzzyTokenMatch(queryTok, docTok) {
       diffs++;
       if (diffs > 1) return false;
       if (queryTok.length > docTok.length) { i++; continue; }
-      if (queryTok.length < docTok.length) { j++; continue; }
+      else if (queryTok.length < docTok.length) { j++; continue; }
     }
     i++;
     j++;
   }
-  diffs += (queryTok.length - i) + (docTok.length - j);
+  if (i < queryTok.length || j < docTok.length) diffs++;
   return diffs <= 1;
 }
 
-// Full-Spectrum Smart Search Engine (Stemming, Typos, Transit, Pricing, Category & Synonyms)
-function matchesSmartSearch(ev, query) {
-  if (!query) return true;
-  const qTokens = normalizeSearchText(query).split(' ').filter(Boolean);
-  if (qTokens.length === 0) return true;
+// Classic Google Search Query Parser: Exact Phrases ("..."), Negative (-term), Boolean (OR), Field Operators (prefix:value)
+function parseGoogleQuery(queryStr) {
+  if (!queryStr) {
+    return { exactPhrases: [], negativeTerms: [], fieldFilters: {}, orGroups: [], standardTokens: [] };
+  }
+  const q = String(queryStr).trim();
+  const exactPhrases = [];
 
-  const venueAliasesStr = Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : (ev.venueAliases || '');
-  const performersStr = Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || '');
-  const subTagsStr = Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '';
-  
-  // Day names expansion
-  const dayNames = {
-    sun: 'sunday weekend',
-    mon: 'monday weekday',
-    tue: 'tuesday weekday',
-    wed: 'wednesday midweek weekday',
-    thu: 'thursday weekday',
-    fri: 'friday weekend',
-    sat: 'saturday weekend',
-    daily: 'daily everyday anytime 7 days'
+  // 1. Extract quoted exact phrases: "open mic", "life drawing"
+  const quoteRegex = /"([^"]+)"/g;
+  let match;
+  while ((match = quoteRegex.exec(q)) !== null) {
+    if (match[1] && match[1].trim()) {
+      exactPhrases.push(match[1].toLowerCase().trim());
+    }
+  }
+  const remaining = q.replace(/"[^"]+"/g, ' ');
+
+  const negativeTerms = [];
+  const fieldFilters = {};
+  const orGroups = [];
+  const standardTokens = [];
+
+  const rawTokens = remaining.split(/\s+/).filter(Boolean);
+  let i = 0;
+  while (i < rawTokens.length) {
+    const tok = rawTokens[i];
+
+    // Check for field filter: prefix:value
+    if (tok.includes(':') && !tok.startsWith('-')) {
+      const colonIdx = tok.indexOf(':');
+      const prefix = tok.slice(0, colonIdx).toLowerCase().trim();
+      const val = tok.slice(colonIdx + 1).trim();
+      if (prefix && val) {
+        fieldFilters[prefix] = val;
+      }
+      i++;
+      continue;
+    }
+
+    // Check for negative exclusion: -term
+    if (tok.startsWith('-') && tok.length > 1) {
+      negativeTerms.push(tok.slice(1).toLowerCase().trim());
+      i++;
+      continue;
+    }
+
+    // Check for boolean OR: tok OR next_tok
+    if (i + 2 < rawTokens.length && rawTokens[i + 1].toUpperCase() === 'OR') {
+      orGroups.push([tok.toLowerCase().trim(), rawTokens[i + 2].toLowerCase().trim()]);
+      i += 3;
+      continue;
+    }
+
+    if (tok.toUpperCase() === 'OR') {
+      i++;
+      continue;
+    }
+
+    standardTokens.push(tok.toLowerCase().trim());
+    i++;
+  }
+
+  return {
+    exactPhrases,
+    negativeTerms,
+    fieldFilters,
+    orGroups,
+    standardTokens
   };
-  const daysStr = Array.isArray(ev.daysOfWeek) ? ev.daysOfWeek.map(d => dayNames[d] || d).join(' ') : '';
+}
 
-  // Contextual synonyms, landmarks, and cultural hubs
+// Classic Google-Style Matcher with Stemming, Fuzzy Typo Tolerance, Field Filters & BM25 Relevance Scoring
+function matchesGoogleSearch(ev, parsed) {
+  const titleNorm = normalizeSearchText(ev.title || '');
+  const venueNorm = normalizeSearchText(ev.venue || '');
+  const descNorm = normalizeSearchText(ev.description || '');
+  const artistNorm = normalizeSearchText(ev.artist || '');
+  const orgNorm = normalizeSearchText(ev.organizer || '');
+  const catNorm = normalizeSearchText(ev.category || '');
+  const catLabelNorm = normalizeSearchText(ev.categoryLabel || '');
+  const addrNorm = normalizeSearchText(ev.address || '');
+  const neighNorm = normalizeSearchText(ev.neighborhood || '');
+  const tagsNorm = normalizeSearchText(Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '');
+  const venueAliasesNorm = normalizeSearchText(Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : '');
+  const performersNorm = normalizeSearchText(Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || ''));
+  const daysList = Array.isArray(ev.daysOfWeek) ? ev.daysOfWeek.map(d => String(d).toLowerCase()) : [];
+  const daysNorm = daysList.join(' ');
+
+  // Contextual aliases & landmark associations
   let extraAliases = '';
   const vLower = (ev.venue || '').toLowerCase();
   const tLower = (ev.title || '').toLowerCase();
   const cLower = (ev.category || '').toLowerCase();
 
   if (vLower.includes('slice of life') || tLower.includes('slice of life')) {
-    extraAliases += ' east van gallery maker printmaking linocut zine drawing figure clay pottery lego social commercial drive';
+    extraAliases += ' east van gallery maker social commercial drive';
+    if (tLower.includes('clay')) {
+      extraAliases += ' pottery ceramics handbuilding sculpting';
+    } else if (tLower.includes('printmaking') || tLower.includes('craft')) {
+      extraAliases += ' linocut zine printmaking stamp craft';
+    } else if (tLower.includes('drawing')) {
+      extraAliases += ' sketching figure live model life drawing';
+    } else if (tLower.includes('lego')) {
+      extraAliases += ' bricks building adult lego blocks';
+    }
   } else if (vLower.includes('public disco') || tLower.includes('public disco')) {
     extraAliases += ' dance party block party djs electronic house music open air warehouse bentall outdoor plaza roving dance';
   } else if (vLower.includes('hand eye') || tLower.includes('hand eye')) {
@@ -731,66 +897,152 @@ function matchesSmartSearch(ev, query) {
     extraAliases += ' pottery ceramics painting bisque mugs granville island false creek creative date';
   } else if (vLower.includes('basic inquiry') || tLower.includes('basic inquiry')) {
     extraAliases += ' life drawing figure drawing sketching model live model chinatown main st art';
-  } else if (vLower.includes('2nd floor') || ev.id.includes('2nd-floor')) {
-    extraAliases += ' water street cafe water st cafe gastown jazz supper club';
-  } else if (vLower.includes('dr. sun yat-sen') || ev.id.includes('sun-yat-sen')) {
-    extraAliases += ' chinese garden chinatown garden classical courtyard';
-  } else if (vLower.includes('nat bailey')) {
-    extraAliases += ' scotiabank field canadians baseball hillcrest park';
-  } else if (vLower.includes('stanley park')) {
-    extraAliases += ' seawall lost lagoon pitch putt';
-  }
-
-  // Category synonyms
-  if (cLower === 'crafts') {
-    extraAliases += ' craft crafts studio maker hands on tactile workshop drop in art create ceramics pottery drawing paint';
+  } else if (cLower === 'crafts') {
+    extraAliases += ' craft crafts studio maker hands on tactile workshop drop in art';
   } else if (cLower === 'music') {
     extraAliases += ' concert gig live band jazz soul indie rock dance electronic';
   } else if (cLower === 'shows') {
     extraAliases += ' comedy standup improv theatre performance show';
   } else if (cLower === 'cinema') {
     extraAliases += ' movie film screening matinee midnight cult art house';
-  } else if (cLower === 'outdoors') {
-    extraAliases += ' walk nature park seawall beach garden suspension bridge';
-  } else if (cLower === 'activities') {
-    extraAliases += ' active sports games boardgames trivia market';
-  } else if (cLower === 'social') {
-    extraAliases += ' party dance gathering social meetup lego';
   }
 
-  const searchableContent = normalizeSearchText([
-    ev.title,
-    ev.venue,
-    ev.address,
-    ev.neighborhood,
-    ev.description,
-    ev.dateSchedule,
-    ev.category,
-    ev.categoryLabel,
-    ev.transitInfo,
-    ev.ticketProvider,
-    ev.priceLabel,
-    ev.isFree ? 'free $0 zero' : 'paid ticket',
-    ev.artist,
-    performersStr,
-    subTagsStr,
-    venueAliasesStr,
-    daysStr,
-    extraAliases
-  ].filter(Boolean).join(' '));
-
-  const docTokens = searchableContent.split(' ').filter(tok => tok.length > 1);
+  const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${extraAliases}`;
+  const docTokens = allContent.split(' ').filter(tok => tok.length > 0);
   const docStems = docTokens.map(stemWord);
 
-  return qTokens.every(qTok => {
-    // 1. Direct substring in full normalized content
-    if (searchableContent.includes(qTok)) return true;
-    // 2. Word stem matching (e.g. "ceramics" -> "ceramic", "paintings" -> "paint")
-    const qStem = stemWord(qTok);
-    if (docStems.includes(qStem)) return true;
-    // 3. Typo tolerance matching (Levenshtein diff <= 1 for tokens >= 4 chars)
-    return docTokens.some(dTok => isFuzzyTokenMatch(qTok, dTok));
-  });
+  // 1. Negative Exclusions (-term)
+  for (const neg of parsed.negativeTerms) {
+    const negNorm = normalizeSearchText(neg);
+    const negStem = stemWord(negNorm);
+    if (allContent.includes(negNorm) || docStems.includes(negStem)) {
+      return [false, 0];
+    }
+  }
+
+  // 2. Field Filters (prefix:value)
+  for (const [prefix, rawVal] of Object.entries(parsed.fieldFilters)) {
+    const valNorm = normalizeSearchText(rawVal);
+    const valStr = String(rawVal).toLowerCase().trim();
+
+    if (prefix === 'venue' || prefix === 'v') {
+      if (!venueNorm.includes(valNorm) && !venueAliasesNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'cat' || prefix === 'category' || prefix === 'c') {
+      if (!catNorm.includes(valNorm) && !catLabelNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'area' || prefix === 'neighborhood' || prefix === 'near' || prefix === 'n') {
+      if (!neighNorm.includes(valNorm) && !addrNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'day' || prefix === 'd') {
+      const dayMap = { fri: 'fri', friday: 'fri', sat: 'sat', saturday: 'sat', sun: 'sun', sunday: 'sun', mon: 'mon', monday: 'mon', tue: 'tue', tuesday: 'tue', wed: 'wed', wednesday: 'wed', thu: 'thu', thursday: 'thu' };
+      const targetDay = dayMap[valNorm] || valNorm;
+      if (targetDay === 'weekend') {
+        if (!daysList.some(d => ['fri', 'sat', 'sun'].includes(d)) && !ev.isDaily) {
+          return [false, 0];
+        }
+      } else if (!daysList.includes(targetDay) && !ev.isDaily) {
+        return [false, 0];
+      }
+    } else if (prefix === 'price' || prefix === 'p') {
+      const price = parseFloat(ev.price || 0.0);
+      if (valStr === 'free' || valStr === '0') {
+        if (price > 0) return [false, 0];
+      } else if (valStr.startsWith('<=')) {
+        const limit = parseFloat(valStr.slice(2));
+        if (!isNaN(limit) && price > limit) return [false, 0];
+      } else if (valStr.startsWith('<')) {
+        const limit = parseFloat(valStr.slice(1));
+        if (!isNaN(limit) && price >= limit) return [false, 0];
+      } else if (valStr.startsWith('>=')) {
+        const limit = parseFloat(valStr.slice(2));
+        if (!isNaN(limit) && price < limit) return [false, 0];
+      } else if (valStr.startsWith('>')) {
+        const limit = parseFloat(valStr.slice(1));
+        if (!isNaN(limit) && price <= limit) return [false, 0];
+      } else {
+        const limit = parseFloat(valStr);
+        if (!isNaN(limit) && price > limit) return [false, 0];
+      }
+    } else if (prefix === 'org' || prefix === 'organizer') {
+      if (!orgNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    }
+  }
+
+  // 3. Exact Phrase Matching ("...")
+  for (const phrase of parsed.exactPhrases) {
+    const phraseNorm = normalizeSearchText(phrase);
+    if (!allContent.includes(phraseNorm)) {
+      return [false, 0];
+    }
+  }
+
+  // 4. Boolean OR Groups
+  for (const orGroup of parsed.orGroups) {
+    let groupMatched = false;
+    for (const opt of orGroup) {
+      const optNorm = normalizeSearchText(opt);
+      const optStem = stemWord(optNorm);
+      if (allContent.includes(optNorm) || docStems.includes(optStem) || docTokens.some(dt => isFuzzyTokenMatch(optNorm, dt))) {
+        groupMatched = true;
+        break;
+      }
+    }
+    if (!groupMatched) {
+      return [false, 0];
+    }
+  }
+
+  // 5. Standard Positive Tokens (must all match via substring, stem, or fuzzy typo tolerance)
+  for (const tok of parsed.standardTokens) {
+    const tokNorm = normalizeSearchText(tok);
+    const tokStem = stemWord(tokNorm);
+    const matched = allContent.includes(tokNorm) ||
+                    docStems.includes(tokStem) ||
+                    docTokens.some(dt => isFuzzyTokenMatch(tokNorm, dt));
+    if (!matched) {
+      return [false, 0];
+    }
+  }
+
+  // 6. Calculate BM25-Style Relevance Score
+  let score = 10;
+  for (const phrase of parsed.exactPhrases) {
+    const pNorm = normalizeSearchText(phrase);
+    if (titleNorm.includes(pNorm)) score += 100;
+    else if (venueNorm.includes(pNorm) || artistNorm.includes(pNorm) || orgNorm.includes(pNorm)) score += 50;
+    else score += 20;
+  }
+
+  for (const tok of parsed.standardTokens) {
+    const tNorm = normalizeSearchText(tok);
+    const tStem = stemWord(tNorm);
+    if (titleNorm.includes(tNorm) || titleNorm.includes(tStem)) {
+      score += 40;
+    } else if (artistNorm.includes(tNorm) || venueNorm.includes(tNorm) || orgNorm.includes(tNorm)) {
+      score += 25;
+    } else if (tagsNorm.includes(tNorm) || catNorm.includes(tNorm)) {
+      score += 15;
+    } else if (descNorm.includes(tNorm)) {
+      score += 8;
+    } else {
+      score += 3;
+    }
+  }
+
+  return [true, score];
+}
+
+// Backward-compatible wrapper
+function matchesSmartSearch(ev, query) {
+  if (!query) return true;
+  const parsed = parseGoogleQuery(query);
+  return matchesGoogleSearch(ev, parsed)[0];
 }
 
 // 1-Click Venue Isolation Action (Requirement 7)
@@ -1187,6 +1439,29 @@ function renderEventCards(events) {
             <strong class="artist-name">${ev.artist || (Array.isArray(ev.performers) ? ev.performers.join(', ') : ev.performers)}</strong>
           </div>
         ` : ''}
+
+        <!-- Roving / Nomadic Series Organizer Badge -->
+        ${ev.organizer ? `
+          <div class="card-organizer-badge" title="Roving community event organized by ${ev.organizer}">
+            <span class="organizer-icon">🏛️</span>
+            <span class="organizer-label">Roving Series:</span>
+            <strong class="organizer-name">${ev.organizer}</strong>
+            ${ev.editionVenue ? `<span class="edition-venue">(${ev.editionVenue})</span>` : ''}
+          </div>
+        ` : ''}
+
+        <!-- Age & Admission Policy Badges (QC Verified) -->
+        ${(ev.agePolicy || ev.admissionPolicy) ? `
+          <div class="card-policy-row">
+            ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${ev.agePolicy}">🛡️ ${ev.agePolicy}</span>` : ''}
+            ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${ev.admissionPolicy}">🎟️ ${ev.admissionPolicy}</span>` : ''}
+          </div>
+        ` : ''}
+
+        <!-- Roving Physical Host Note -->
+        ${ev.rovingNote ? `
+          <div class="card-roving-note">📍 <em>${ev.rovingNote}</em></div>
+        ` : ''}
         
         <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
@@ -1250,6 +1525,15 @@ function resetAllFilters() {
 
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.value = '';
+  const clearSearchBtn = document.getElementById('btn-clear-search');
+  if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+  const tipsPopover = document.getElementById('search-tips-popover');
+  if (tipsPopover) tipsPopover.style.display = 'none';
+  const tipsToggleBtn = document.getElementById('btn-search-tips-toggle');
+  if (tipsToggleBtn) {
+    tipsToggleBtn.classList.remove('active');
+    tipsToggleBtn.setAttribute('aria-expanded', 'false');
+  }
 
   const minSlider = document.getElementById('min-spend-slider');
   const maxSlider = document.getElementById('max-spend-slider');

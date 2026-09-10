@@ -1687,4 +1687,257 @@
   font-weight: 700;
 }
 
+/* ==============================================================================
+   Search Input Enhancements: Clear Button & Tips Popover
+   ============================================================================== */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin-top: 4px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 110px 14px 46px;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 76px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+  line-height: 1;
+}
+
+.btn-clear-search:hover {
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.btn-search-tips-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-search-tips-toggle:hover {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
+  color: #fff;
+}
+
+.btn-search-tips-toggle.active {
+  background: #38bdf8;
+  color: #080c14;
+  border-color: #38bdf8;
+}
+
+.search-tips-popover {
+  width: 100%;
+  max-width: 620px;
+  margin-top: 10px;
+  background: #0b1120;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  z-index: 50;
+  animation: fadeInDown 0.18s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-tips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-tips-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: #38bdf8;
+}
+
+.btn-close-tips {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.btn-close-tips:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.search-tip-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.search-tip-item:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.search-tip-item code {
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.search-tip-item span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.search-tips-footer {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
+}
+
+/* ==============================================================================
+   Roving & Nomadic Events Quality Control UI: Organizer Badges & Policies
+   ============================================================================== */
+.card-organizer-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.12));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-top: -2px;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.card-organizer-badge .organizer-icon {
+  font-size: 0.9rem;
+}
+
+.card-organizer-badge .organizer-label {
+  color: #34d399;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.card-organizer-badge .organizer-name {
+  color: #fff;
+  font-weight: 700;
+}
+
+.card-organizer-badge .edition-venue {
+  color: #94a3b8;
+  font-size: 0.76rem;
+  font-style: italic;
+}
+
+.card-policy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 8px;
+}
+
+.policy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.policy-pill.age-policy {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.policy-pill.admission-policy {
+  background: rgba(147, 51, 234, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+.card-roving-note {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 4px 0 8px;
+  line-height: 1.35;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--accent-primary);
+  padding: 4px 8px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+
 

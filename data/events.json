@@ -2,7 +2,7 @@
   "metadata": {
     "version": "4.1.0",
     "appName": "Van50",
-    "updatedAt": "2026-09-10T10:07:55-07:00",
+    "updatedAt": "2026-09-10T10:32:49-07:00",
     "region": "Vancouver, BC",
     "budgetLimit": 50.0,
     "currency": "CAD",
@@ -60,13 +60,19 @@
         -123.1384
       ],
       "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -117,13 +123,19 @@
         -123.0189
       ],
       "transitInfo": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's 100% free alternative to Capilano. Sway 50 meters above roaring canyon waters, temperate rainforest boardwalks, and emerald swimming holes.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -174,13 +186,19 @@
         -123.1342
       ],
       "transitInfo": "#50 False Creek bus or False Creek Aquabus ferry docks",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Explore bustling artisan food halls, timber marinas, busking circles, and panoramic False Creek waterfront views. Completely free to walk.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -231,13 +249,19 @@
         -123.1558
       ],
       "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -288,13 +312,19 @@
         -123.1154
       ],
       "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -344,13 +374,19 @@
         -123.104
       ],
       "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "The outer Ming Dynasty-style courtyard is completely free to enter, featuring stone pathways, jade ponds, weeping willows, and classical pavilion architecture.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -401,13 +437,19 @@
         -123.2562
       ],
       "transitInfo": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Iconic cliffside rose garden on Crescent Road overlooking Howe Sound and the snow-capped Coast Mountains, connecting to the scenic wooden stairway of Trail 6 down to Wreck Beach. 100% free public admission.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -458,13 +500,19 @@
         -123.1126
       ],
       "transitInfo": "10 min walk from King Edward Canada Line station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -526,6 +574,12 @@
         -123.1072
       ],
       "transitInfo": "4 min walk from Waterfront SkyTrain station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's favorite non-profit community comedy club in Mount Pleasant. Friday open mic welcomes 20+ comics testing fresh material in an inclusive, supportive setting.",
       "checkoutVerification": {
         "status": "verified_live",
@@ -533,7 +587,7 @@
         "verifiedTotal": 8.09,
         "preTaxSticker": 7.7,
         "feeBreakdown": "$5.00 base + $2.70 service charge + $0.39 GST ($3.09 total fees)",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $7.70 pre-tax before checkout."
       }
     },
@@ -583,13 +637,19 @@
         -123.1144
       ],
       "transitInfo": "12 min walk from King Edward Canada Line station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Lush domed tropical paradise atop Queen Elizabeth Park containing over 500 exotic plants and flowers and more than 100 free-flying tropical birds.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 9.82,
         "feeBreakdown": "$7.90 base + $1.92 Showpass fees & GST",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via Showpass Vancouver Park Board ticketing portal."
       }
     },
@@ -652,13 +712,19 @@
         -123.1072
       ],
       "transitInfo": "4 min walk from Waterfront SkyTrain / SeaBus",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "A welcoming, raucous weekly improv jam where performers of all skill levels team up for spontaneous scenes and games in Gastown.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 10.24,
         "feeBreakdown": "Live multi-tier Showpass checkout: General Admission (Audience): $10.24 all-in, Performer (Open Stage): Free ($0)",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission (Audience): $9.75, Performer (Open Stage): $0.00) before adding 5% GST at checkout."
       }
     },
@@ -708,13 +774,19 @@
         -123.2483
       ],
       "transitInfo": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "High-octane U SPORTS national championship varsity basketball, volleyball, and football matches on the UBC Point Grey campus.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "embedded_checkout_json",
         "verifiedTotal": 11.75,
         "feeBreakdown": "$10.00 base single ticket + $1.75 Paciolan platform charge",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via UBC Thunderbirds Paciolan ticketing portal."
       }
     },
@@ -763,13 +835,19 @@
         -123.1265
       ],
       "transitInfo": "3 min walk from Yaletown-Roundhouse Canada Line",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Hilarious and heartwarming live stand-up showcase founded by comic David Granirer, turning mental health challenges into comedy gold.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 12.44,
         "feeBreakdown": "$10.00 base + $2.44 Eventbrite service charge",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via Eventbrite checkout modal."
       }
     },
@@ -818,6 +896,12 @@
         -123.1072
       ],
       "transitInfo": "4 min walk from Waterfront SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Midweek comedy laboratory where seasoned Vancouver touring comics and brave newcomers hone their tight five before weekend tours.",
       "checkoutVerification": {
         "status": "verified_live",
@@ -825,7 +909,7 @@
         "verifiedTotal": 13.48,
         "preTaxSticker": 12.83,
         "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
       }
     },
@@ -901,13 +985,19 @@
         -123.1251
       ],
       "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "State-of-the-art cinematic theatre presenting curated world cinema, Canadian independent premieres, and documentaries year-round in Yaletown.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "embedded_checkout_json",
         "verifiedTotal": 16.5,
         "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-        "verifiedAt": "2026-09-10T10:07:47-07:00",
+        "verifiedAt": "2026-09-10T10:32:45-07:00",
         "details": "Verified via VIFF Centre Agile ticketing websales portal."
       }
     },
@@ -983,13 +1073,19 @@
         -123.1274
       ],
       "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's home for essential cinema, international film retrospectives, restored 35mm classics, and auteur independent cinema in Downtown. Screenings run Wednesday through Monday evenings with select weekend matinees.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "embedded_checkout_json",
         "verifiedTotal": 15.0,
         "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via Agile websales",
-        "verifiedAt": "2026-09-10T10:07:52-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Verified via The Cinematheque Agile websales ticket search frame."
       }
     },
@@ -1038,13 +1134,19 @@
         -123.1042
       ],
       "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 15.0,
         "feeBreakdown": "Free trivia entry ($0.00); table reservation minimum spend ~ $15.00 beverage/food",
-        "verifiedAt": "2026-09-10T10:07:52-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Verified via venue booking and trivia participation policy."
       }
     },
@@ -1114,13 +1216,19 @@
         -123.0699
       ],
       "transitInfo": "Steps from Commercial-Broadway SkyTrain Interchange",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 16.0,
         "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
       }
     },
@@ -1183,13 +1291,19 @@
         -123.1012
       ],
       "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Mount Pleasant's former adult theatre transformed into a vibrant cultural hub. Famous for high-energy weekend retro dance parties (Ultimate 90s, Motown Soul, 2000s Pop) and curated local music showcases.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 44.0,
         "feeBreakdown": "$38.00 base + $6.00 Eventbrite service and processing fees",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Verified via Eventbrite checkout cart payload."
       }
     },
@@ -1254,13 +1368,19 @@
         -123.0975
       ],
       "transitInfo": "Main & 12th Ave bus corridor",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and legendary retro dance parties like Guilty Pleasures.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 22.75,
         "feeBreakdown": "$20.00 advance base + $2.75 AdmitOne service fee",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Verified via AdmitOne Biltmore Cabaret checkout manifest."
       }
     },
@@ -1327,13 +1447,19 @@
         -123.1072
       ],
       "transitInfo": "4 min walk from Waterfront Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 18.86,
         "feeBreakdown": "Live multi-tier Showpass checkout: General Admission: $22.10 all-in, Early Bird: $18.86 all-in",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:46-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays pre-tax sticker prices (General Admission: $21.04, Early Bird: $17.96) before adding 5% GST at checkout."
       }
     },
@@ -1399,6 +1525,12 @@
         -123.1072
       ],
       "transitInfo": "Waterfront Station corridor",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
       "checkoutVerification": {
         "status": "verified_live",
@@ -1406,7 +1538,7 @@
         "verifiedTotal": 18.86,
         "preTaxSticker": 17.96,
         "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
       }
     },
@@ -1473,6 +1605,12 @@
         -123.1072
       ],
       "transitInfo": "Gastown Water St corridor",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Curated independent comedy showcases featuring Vancouver's best improv troupes, touring stand-up headliners, and interactive comedy games.",
       "checkoutVerification": {
         "status": "verified_live",
@@ -1480,7 +1618,7 @@
         "verifiedTotal": 18.86,
         "preTaxSticker": 17.96,
         "feeBreakdown": "$15.00 base + $2.96 service charge + $0.90 GST ($3.86 total fees)",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $17.96 pre-tax before checkout."
       }
     },
@@ -1546,13 +1684,19 @@
         -123.1098
       ],
       "transitInfo": "#3 Main Bus or 12 min walk from King Edward Canada Line",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "High-A Toronto Blue Jays affiliate baseball in historic Nat Bailey Stadium beside Queen Elizabeth Park, complete with the famous sushi mascot races. Choose between scenic open bleachers or covered grandstand box seats.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 18.5,
         "feeBreakdown": "Bleachers ($18.50 all-in) and Reserved Grandstand ($24.50 all-in) verified via Ticketmaster Canadians box office",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via Ticketmaster Nat Bailey Stadium single game portal."
       }
     },
@@ -1615,13 +1759,19 @@
         -123.1012
       ],
       "transitInfo": "Main St & 7th Ave bus stop",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Mount Pleasant's former adult theatre transformed into a vibrant cultural hub. Famous for high-energy weekend retro dance parties (Ultimate 90s, Motown Soul, 2000s Pop) and curated local music showcases.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 18.5,
         "feeBreakdown": "$15.00 advance + $3.50 tax/sc online ($18.50 all-in) or $20.00 door admission",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via The Fox Cabaret calendar fee schedule."
       }
     },
@@ -1683,13 +1833,19 @@
         -123.1332
       ],
       "transitInfo": "#50 False Creek bus or Aquabus ferry dock",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "High-octane spontaneous improv comedy featuring veteran Vancouver performers on Granville Island's waterfront Revue Stage.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 25.0,
         "feeBreakdown": "General Admission ($25.00) and Student ($20.00) verified with inclusive fees on Eventbrite",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via Eventbrite Revue Stage checkout manifest."
       }
     },
@@ -1751,13 +1907,19 @@
         -123.0768
       ],
       "transitInfo": "Commercial & Hastings bus corridor",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Fast-paced elimination improv tournament where 10 ensemble performers direct and act in spontaneous scenes for audience scores to crown the Maestro.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 25.0,
         "feeBreakdown": "General ($25.00) and Student ($18.00) verified with 0 added online fees on TicketSpice",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via TicketSpice booking frame on tightropetheatre.com."
       }
     },
@@ -1827,13 +1989,19 @@
         -123.0699
       ],
       "transitInfo": "Steps from Commercial-Broadway SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 16.0,
         "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
       }
     },
@@ -1897,13 +2065,19 @@
         -123.1363
       ],
       "transitInfo": "#50 False Creek Bus or Aquabus ferry dock",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's premier waterfront theatre dedicated entirely to spontaneous comedy on Granville Island since 1980.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "embedded_checkout_json",
         "verifiedTotal": 33.5,
         "feeBreakdown": "Regular Seat ($33.50) and Student/Senior ($28.50) tiers verified via AudienceView consumer checkout",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via The Improv Centre AudienceView schedule."
       }
     },
@@ -1952,13 +2126,19 @@
         -123.0984
       ],
       "transitInfo": "5 min walk from Main & Hastings bus hub",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Legendary converted East Hastings music hall hosts heavy metal icons Metal Church and Armored Saint on their co-headlining tour with LiveKill.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 39.85,
         "feeBreakdown": "$35.00 advance base + $4.85 Eventbrite ticketing fees",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via Eventbrite checkout cart."
       }
     },
@@ -2008,13 +2188,19 @@
         -123.1038
       ],
       "transitInfo": "1 min walk from Main Street-Science World SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Explore the iconic geodesic dome kid-free with adult science shows, hands-on physics exhibits, drinks, and guest DJs across two floors.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "direct_cart_scrape",
         "verifiedTotal": 39.5,
         "feeBreakdown": "$39.50 all-in admission ticket verified via Science World ticketing",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via tickets.scienceworld.ca."
       }
     },
@@ -2076,13 +2262,19 @@
         -123.1206
       ],
       "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Experience world-class orchestral masterworks performed by the Vancouver Symphony Orchestra inside Vancouver's opulent 1927 Orpheum Theatre under a hand-painted ceiling dome. Standard balcony tickets start at $35, with $20 passes available for patrons under 35.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 35.0,
         "feeBreakdown": "$35.00 standard balcony rate ($20 flat rate with VSO All-Access Pass)",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via Vancouver Symphony Orchestra published box office rates."
       }
     },
@@ -2133,13 +2325,19 @@
         -123.1074
       ],
       "transitInfo": "3 min walk from Stadium-Chinatown SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Extensive library of 1,200+ tabletop board games with friendly game masters on hand to teach rules at zero cover charge for dining guests.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 18.0,
         "feeBreakdown": "No door/cover charge ($0.00); dine-in patrons order food/drink (~$16–$22 min spend)",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via Pizzeria Ludica game policy & dining reservation terms."
       }
     },
@@ -2189,13 +2387,19 @@
         -123.1448
       ],
       "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 15.55,
         "feeBreakdown": "$15.55 Park Board official adult 18-hole green fee",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via City of Vancouver Board of Parks and Recreation 2026 Fee Schedule."
       }
     },
@@ -2245,13 +2449,19 @@
         -123.1205
       ],
       "transitInfo": "1 min walk from City Centre / Granville SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2301,13 +2511,19 @@
         -123.0818
       ],
       "transitInfo": "5 min walk from Lonsdale Quay SeaBus terminal",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Waterfront pier festival featuring free live concerts, artisan night market, food trucks, and fire pits with skyline views across Burrard Inlet.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2355,13 +2571,19 @@
         -123.1534
       ],
       "transitInfo": "#2 Burrard or #4 bus",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Annual end-of-summer community musical celebration on Kitsilano Beach. (Demonstration ended event for internal tracker verification).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2413,13 +2635,19 @@
         -123.0694
       ],
       "transitInfo": "Commercial-Broadway SkyTrain or Main St-Science World SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's premier annual car-free street celebrations across Commercial Drive and Main Street featuring multiple stages of live local music, food carts, artisan vendors, and community block parties.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2470,13 +2698,19 @@
         -123.1582
       ],
       "transitInfo": "#4 or #7 bus directly along West 4th Avenue",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's largest free 10-block indie music and arts festival on West 4th Avenue, showcasing over 50 top local musical acts across multiple stages, patio gardens, and street food.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2527,13 +2761,19 @@
         -123.0642
       ],
       "transitInfo": "10 min walk from Commercial-Broadway SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's original community farmers market situated beside scenic Trout Lake in John Hendry Park, featuring 60+ BC organic farms, artisanal bakers, craft cider, and hot food trucks.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2584,13 +2824,19 @@
         -123.1617
       ],
       "transitInfo": "#99 B-Line or #9 to Broadway & Larch St",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Weekly Sunday neighborhood market in the heart of Kitsilano with farm-fresh Okanagan fruit, BC field vegetables, fresh pasta, artisanal cheeses, and live local acoustic music.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2645,13 +2891,19 @@
         -123.1039
       ],
       "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Gastown's subterranean live music staple hosting world-class jazz, blues, Latin, and soul 365 nights a year. Free admission at the door with an optional suggested donation for the artists.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2701,13 +2953,19 @@
         -123.2492
       ],
       "transitInfo": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Founded in 1916, Vancouver's longest-running free public lecture series bringing global scientists, authors, and thinkers to UBC IRC Lecture Hall No. 2 every Saturday evening during academic terms.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2757,13 +3015,19 @@
         -123.1009
       ],
       "transitInfo": "#3 Main St bus to 13th Avenue",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's most popular multimedia pub quiz featuring high-energy pop culture rounds, music clues, visual puzzles, and gift card prizes. Free trivia admission with table food & beverage spend.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2815,13 +3079,19 @@
         -123.1278
       ],
       "transitInfo": "Burrard SkyTrain Station (7 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Free community run club organized by the non-profit Vancouver International Marathon Society. All paces welcome for scenic 5K and 8K loops along Coal Harbour and the Stanley Park Seawall.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2872,13 +3142,19 @@
         -123.1066
       ],
       "transitInfo": "#3 Main St bus or King Edward Canada Line station (12 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "One of Vancouver's premier outdoor flagship markets situated outside Nat Bailey Stadium, showcasing 70+ local farms, artisan cheese makers, craft brewers, and local bakers.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2929,13 +3205,19 @@
         -123.1302
       ],
       "transitInfo": "Burrard SkyTrain station or #5 / #6 Robson/Davie bus",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Nestled in tree-lined Nelson Park next to Mole Hill heritage houses, featuring fresh urban greens, artisan sourdough, micro-batch kombucha, and hot lunch stalls in downtown Vancouver.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -2986,13 +3268,19 @@
         -123.0954
       ],
       "transitInfo": "#8 Fraser bus or #9 / #99 Broadway to Fraser St",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vibrant Sunday market held on the grass at Dude Chilling Park with local fruit growers, honey harvesters, plant starts, fresh donuts, and laid-back East Van park community vibes.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -3043,13 +3331,19 @@
         -123.1205
       ],
       "transitInfo": "Vancouver City Centre or Granville SkyTrain Station (2 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Convenient mid-week downtown market on the Vancouver Art Gallery plaza with fresh berries, hand-crafted pastries, gourmet food trucks, and farm-fresh produce for evening commuters.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -3100,13 +3394,19 @@
         -123.1118
       ],
       "transitInfo": "Stadium-Chinatown SkyTrain Station (6 min walk along seawall)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Thursday evening waterfront market overlooking False Creek with BC field berries, wild BC seafood, cold-pressed juices, baked treats, and seaside sunset park views.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -3157,13 +3457,19 @@
         -123.2384
       ],
       "transitInfo": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per Vancouver Park Board & City Charter",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via official municipal park bylaw / published civic schedule."
       }
     },
@@ -3237,13 +3543,19 @@
         -123.1102
       ],
       "transitInfo": "Waterfront Station (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Intimate, romantic supper club above the historic Water Street Cafe overlooking the Gastown Steam Clock. Features live jazz, soul, and vocalists every night of the week and during weekend brunch.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 live music artist charge per guest added to dining bill",
-        "verifiedAt": "2026-09-10T10:07:53-07:00",
+        "verifiedAt": "2026-09-10T10:32:47-07:00",
         "details": "Verified via 2nd Floor Gastown at Water St. Cafe live music terms."
       }
     },
@@ -3319,13 +3631,19 @@
         -123.1147
       ],
       "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Downtown Vancouver's premier intimate acoustic listening room in partnership with Coastal Jazz. Presents live jazz, bebop, modern trios, and vocalists 5 nights a week with fine Italian dining and wines.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 22.0,
         "feeBreakdown": "$20.00 base + $2.00 service fee verified via Turntable Tickets",
-        "verifiedAt": "2026-09-10T10:07:54-07:00",
+        "verifiedAt": "2026-09-10T10:32:48-07:00",
         "details": "Verified via Frankie's Jazz Club Turntable Tickets portal (frankiesjazzclub.turntabletickets.com)."
       }
     },
@@ -3392,13 +3710,19 @@
         -123.0673
       ],
       "transitInfo": "#20 Victoria or #14 Hastings bus to Commercial & Adanac",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Beloved community cultural institution off Commercial Drive. Features wood-floor acoustics, friendly community lounge, and live roots, blues, and indie showcases.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 15.0,
         "feeBreakdown": "$15.00 general door admission for live community hall show",
-        "verifiedAt": "2026-09-10T10:07:54-07:00",
+        "verifiedAt": "2026-09-10T10:32:48-07:00",
         "details": "Verified via The WISE Hall & Lounge official event door policy."
       }
     },
@@ -3457,13 +3781,19 @@
         -123.1068
       ],
       "transitInfo": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Historic Australian New Zealand Association social club in Mount Pleasant. Hosts authentic acoustic bluegrass jams, open mics, darts, and craft beers.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 10.0,
         "feeBreakdown": "$10.00 general admission door rate for community jam showcase",
-        "verifiedAt": "2026-09-10T10:07:54-07:00",
+        "verifiedAt": "2026-09-10T10:32:48-07:00",
         "details": "Verified via The Anza Club member and guest event policy."
       }
     },
@@ -3534,13 +3864,19 @@
         -123.0805
       ],
       "transitInfo": "#14 or #16 Hastings bus directly to Clark Dr",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Artist-run non-profit community arts space on Main Street. Hosts cutting-edge experimental, post-punk, noise, and independent music showcases where no one is turned away for lack of funds.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 suggested door cover under Red Gate pay-what-you-can artist policy",
-        "verifiedAt": "2026-09-10T10:07:54-07:00",
+        "verifiedAt": "2026-09-10T10:32:48-07:00",
         "details": "Verified via Red Gate Arts Society non-profit door policy."
       }
     },
@@ -3610,13 +3946,19 @@
         -123.0954
       ],
       "transitInfo": "#4 or #7 Powell bus to Dunlevy Ave",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Strathcona's favorite colorful rock 'n' roll cafe hosting high-octane weekend live shows with rotating Vancouver garage punk, indie, and alternative bands. 100% door proceeds support the artists.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 direct band door cover collected at entrance",
-        "verifiedAt": "2026-09-10T10:07:54-07:00",
+        "verifiedAt": "2026-09-10T10:32:48-07:00",
         "details": "Verified via LanaLou's live music booking & door schedule."
       }
     },
@@ -3685,13 +4027,19 @@
         -123.1215
       ],
       "transitInfo": "Granville SkyTrain Station (4 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits 7 nights a week, plus guest touring acts and resident weekend DJs.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 live band cover charge collected at entrance",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via The Roxy Cabaret official cover policy and live residency schedule."
       }
     },
@@ -3760,6 +4108,12 @@
         -123.1215
       ],
       "transitInfo": "Granville SkyTrain Station (4 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Weekly Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition.",
       "checkoutVerification": {
         "status": "verified_live",
@@ -3767,7 +4121,7 @@
         "verifiedTotal": 7.24,
         "preTaxSticker": 6.9,
         "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
       }
     },
@@ -3836,13 +4190,19 @@
         -123.1215
       ],
       "transitInfo": "Granville SkyTrain Station (4 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Weekly original live music showcase in partnership with Live Acts Canada. Features 3-4 emerging local rock, indie, and alternative bands with all proceeds supporting the artists, followed by late-night party sets.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 14.16,
         "feeBreakdown": "$12.00 base + $2.16 Showpass fees ($15 door)",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via The Roxy Cabaret & Live Acts Canada weekly showcase ticket policy."
       }
     },
@@ -3917,13 +4277,19 @@
         -123.1412
       ],
       "transitInfo": "#84 UBC / VCC-Clark bus along 4th Ave or #7/#4 to Granville & 4th (5 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Bright, cozy South Granville / False Creek pottery painting studio. Choose from pre-made ceramic mugs, bowls, and planters, paint for up to 2 hours with studio glazes, and pick up your professionally fired piece.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 24.0,
         "feeBreakdown": "$24.00 all-in ceramic piece includes up to 2 hours studio time, paints, glazes, and firing",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Café au Clay Studios published studio rates (cafeauclay.com)."
       }
     },
@@ -3990,13 +4356,19 @@
         -123.1001
       ],
       "transitInfo": "Main Street–Science World SkyTrain station (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Vancouver's historic non-profit, volunteer-run life drawing studio on Main Street. Offers uninstructed 3-hour drop-in figure drawing sessions with live models for artists and beginners of all levels in a supportive space.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 15.0,
         "feeBreakdown": "$15.00 single session drop-in fee ($12 for students)",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Vancouver Life Drawing Society published drop-in policy (lifedrawing.org)."
       }
     },
@@ -4057,13 +4429,19 @@
         -123.0776
       ],
       "transitInfo": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Warm, sunny artist-run ceramic studio on Clark Drive. Welcomes potters and beginners with previous clay experience to drop in for self-directed open studio time. Includes access to wheels, slab roller, glazes, and equipment.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 26.25,
         "feeBreakdown": "$25.00 open studio session + $1.25 GST (5%) = $26.25 all-in",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Hand Eye Ceramics published open studio drop-in schedule (handeyeceramics.com/open-studio)."
       }
     },
@@ -4128,13 +4506,19 @@
         -123.0716
       ],
       "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Artist-run gallery and community maker hub off Commercial Drive. Features casual drop-in craft nights, linocut printmaking, zine creation, and collage workshops in a friendly, creative atmosphere.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 18.0,
         "feeBreakdown": "$18.00 community craft night drop-in includes materials and tools",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Slice of Life Gallery & Studios event booking schedule."
       }
     },
@@ -4199,13 +4583,19 @@
         -123.0716
       ],
       "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Uninstructed community life drawing sessions inside Slice of Life's sunlit gallery. Features diverse professional models, relaxed beats, drawing boards, and a welcoming crowd of illustrators and sketchers.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 15.0,
         "feeBreakdown": "$15.00 uninstructed figure drawing drop-in",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Slice of Life Life Drawing Club schedule."
       }
     },
@@ -4270,13 +4660,19 @@
         -123.0716
       ],
       "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Casual Sunday afternoon and Monday evening clay social. Grab terracotta or stoneware clay, learn hand-building pinching and coiling techniques, and create mugs, dishes, or sculptures with studio underglazes and firing included.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 22.0,
         "feeBreakdown": "$22.00 includes 1-2 lbs clay, studio underglazes, and firing",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Slice of Life Clay Club Sunday/Monday drop-in schedule."
       }
     },
@@ -4334,13 +4730,19 @@
         -123.0716
       ],
       "transitInfo": "#20 Victoria bus along Commercial Drive to Venables St (3 min walk)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
       "description": "Slice of Life's beloved weekly Tuesday LEGO night for adults. Sift through thousands of categorized bricks, participate in optional timed build challenges, or chill with friends and build freely over gallery drinks and tunes.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 10.0,
         "feeBreakdown": "$10.00 drop-in for Tuesday LEGO social",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Slice of Life 'If You Build It' event schedule."
       }
     },
@@ -4349,9 +4751,9 @@
       "title": "Public Disco: Free Open-Air Plaza Dance Party",
       "artist": "Public Disco resident DJs & local dance music selectors",
       "performers": null,
-      "venue": "Public Disco Society",
+      "venue": "Bentall Centre Dunsmuir Plaza",
       "venueAliases": [],
-      "address": "Bentall Centre Dunsmuir Plaza (Roving: Granville Island / Dude Chilling)",
+      "address": "1055 Dunsmuir St, Vancouver",
       "neighborhood": "Downtown / West End",
       "price": 0.0,
       "priceLabel": "Free ($0)",
@@ -4385,21 +4787,27 @@
       "endIso": "2026-09-12T21:00:00-07:00",
       "isSoldOut": false,
       "websiteUrl": "https://publicdisco.ca/events",
-      "venueUrl": "https://publicdisco.ca/events",
+      "venueUrl": "https://bentallcentre.com",
       "ticketProvider": "Free Civic Admission",
       "rawProvider": "Free Public Access",
       "coordinates": [
         49.2847,
         -123.1192
       ],
-      "transitInfo": "Burrard SkyTrain Station (adjacent to Bentall Plaza)",
+      "transitInfo": "Burrard SkyTrain Station (direct plaza level access)",
+      "organizer": "Public Disco Society",
+      "isRoving": true,
+      "editionVenue": "Bentall Centre Dunsmuir Plaza",
+      "agePolicy": "All-Ages (Licensed 19+ Beer Garden with ID)",
+      "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
+      "rovingNote": "Flagship summer/fall outdoor plaza edition at Bentall Centre; rotating editions at Granville Island Lot 55 & Dude Chilling Park.",
       "description": "Beloved Vancouver non-profit transforming urban public spaces into vibrant, inclusive daytime dance floors. Features local house/disco DJs, interactive art installations, licensed patio bar, and lawn games with 100% free community admission.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) open-air daytime community event (City plaza grant supported)",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Public Disco Society published seasonal programming (publicdisco.ca)."
       }
     },
@@ -4408,9 +4816,9 @@
       "title": "Public Disco: Warehouse & Club Dance Fundraiser",
       "artist": "Public Disco selectors & guest live electronic artists",
       "performers": null,
-      "venue": "Public Disco Society",
+      "venue": "The Birdhouse",
       "venueAliases": [],
-      "address": "The Birdhouse / Red Gate Arts Society (East Van Roving)",
+      "address": "44 W 4th Ave, Vancouver",
       "neighborhood": "Mount Pleasant",
       "price": 20.0,
       "priceLabel": "$20.00 advance ($15 – $25)",
@@ -4463,21 +4871,27 @@
       "endIso": "2026-09-19T02:30:00-07:00",
       "isSoldOut": false,
       "websiteUrl": "https://publicdisco.ca/events",
-      "venueUrl": "https://publicdisco.ca/events",
+      "venueUrl": "https://www.birdhouse.ca",
       "ticketProvider": "Online Advance & Door Tickets",
       "rawProvider": "Eventbrite / Public Disco",
       "coordinates": [
         49.2678,
         -123.1065
       ],
-      "transitInfo": "Olympic Village or Main Street-Science World SkyTrain",
+      "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
+      "organizer": "Public Disco Society",
+      "isRoving": true,
+      "editionVenue": "The Birdhouse",
+      "agePolicy": "19+ (Valid Government Photo ID Required)",
+      "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
+      "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
       "description": "High-energy indoor club and warehouse parties supporting Public Disco's free public programming. Immersive lighting, world-class sound, safe space policies, and positive dance floor vibes across East Vancouver cultural spaces.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 20.0,
         "feeBreakdown": "$20.00 general admission ($15 early / $25 door)",
-        "verifiedAt": "2026-09-10T10:07:55-07:00",
+        "verifiedAt": "2026-09-10T10:32:49-07:00",
         "details": "Verified via Public Disco Society Eventbrite ticketing portal."
       }
     }
