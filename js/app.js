@@ -1045,7 +1045,7 @@ function renderEventCards(events) {
         onclick="filterByVenue('${(ev.venue || '').replace(/'/g, "\\'")}')" 
         title="${isThisVenueSelected ? 'Clear filter for ' + ev.venue : 'Show all ' + venueTotalCount + ' events at ' + ev.venue}"
       >
-        🏛️ ${isThisVenueSelected ? 'Viewing this venue ✕' : 'Other events here (' + (venueTotalCount - 1) + ')'}
+        🏛️ ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + venueTotalCount + ' events here'}
       </button>
     ` : '';
     
