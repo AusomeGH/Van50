@@ -10,3 +10,6 @@ __pycache__/
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# Chrome scratch profiles
+scratch_chrome_*
