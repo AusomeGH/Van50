@@ -40,13 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch('data/events.json?v=4.1.0');
+    const res = await fetch('data/events.json?v=5.0.0');
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
         ALL_EVENTS = data.events;
         window.VANCOUVER_EVENTS = data.events;
         if (data.metadata && data.metadata.updatedAt) {
+          state.updatedAt = data.metadata.updatedAt;
           showSyncTimestamp(data.metadata.updatedAt, data.events.length);
         }
         applyFiltersAndRender();
@@ -58,7 +59,7 @@ async function loadCentralReference() {
 
   // Also load quarantined manual review queue
   try {
-    const rqRes = await fetch('data/manual_review_queue.json?v=4.1.0');
+    const rqRes = await fetch('data/manual_review_queue.json?v=5.0.0');
     if (rqRes.ok) {
       const rqData = await rqRes.json();
       if (rqData.quarantinedEvents) {
@@ -558,19 +559,90 @@ window.clearSelectedTag = function() {
 };
 
 // ==============================================================================
-// 3. CORE FILTERING ALGORITHM (WITH INTERNAL ENDED-EVENT TRACKER)
+// 3. CORE FILTERING ALGORITHM (WITH INTERNAL ENDED & AWAITING TRACKER)
 // ==============================================================================
+
+/**
+ * Detects whether an event is awaiting future schedule announcement or has concluded its seasonal run.
+ * Such placeholder items are preserved in the central database but strictly excluded from user display.
+ */
+function isAwaitingSchedule(ev) {
+  const text = `${ev.frequencyLabel || ''} ${ev.dateSchedule || ''} ${ev.description || ''}`.toLowerCase();
+  const awaitingPhrases = [
+    'awaiting schedule',
+    'awaiting next announced',
+    'awaiting next edition',
+    'awaiting next',
+    'awaiting 2027',
+    'awaiting 2028',
+    'series concluded',
+    'season concluded',
+    'concluded for the 2026',
+    'concluded 2026 season',
+    'ended event'
+  ];
+  if (awaitingPhrases.some(phrase => text.includes(phrase))) {
+    return true;
+  }
+  // Non-recurring events lacking start date and confirmed dates are awaiting schedule
+  if (!ev.isDaily && ev.frequency !== 'daily' && ev.frequency !== 'weekly' && ev.frequency !== 'monthly') {
+    if (!ev.startIso && (!ev.confirmedDates || ev.confirmedDates.length === 0)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Detects whether an event has passed or all confirmed dates have elapsed.
+ * Daily, weekly, and monthly recurring outings (which run continuously) remain active.
+ */
+function isEventInPast(ev, now = new Date()) {
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+
+  // If specific confirmed dates list exists (e.g. seasonal pop-ups / series sessions)
+  if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
+    const hasUpcoming = ev.confirmedDates.some(d => String(d).slice(0, 10) >= todayStr);
+    if (!hasUpcoming) {
+      return true;
+    }
+  }
+
+  // Daily, weekly, and monthly recurring programs run continuously
+  const isRecurring = ev.isDaily || ev.frequency === 'daily' || ev.frequency === 'weekly' || ev.frequency === 'monthly';
+
+  if (!isRecurring) {
+    if (ev.endIso) {
+      const endDt = new Date(ev.endIso);
+      if (!isNaN(endDt.getTime()) && endDt < now) {
+        return true;
+      }
+    }
+    if (ev.startIso) {
+      const startDt = new Date(ev.startIso);
+      if (!isNaN(startDt.getTime())) {
+        const startDay = String(ev.startIso).slice(0, 10);
+        if (startDay < todayStr && startDt < now) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
 
 function applyFiltersAndRender() {
   const now = new Date();
   let activeCatalog = [];
   let expiredCount = 0;
 
-  // Requirement 4: Internal Tracker for Ended Events (Strictly Excluded)
+  // Requirement: Strictly exclude past events & awaiting-schedule items from user display
   ALL_EVENTS.forEach(ev => {
-    if (ev.isDaily || !ev.endIso) {
-      activeCatalog.push(ev);
-    } else if (new Date(ev.endIso) < now) {
+    if (isAwaitingSchedule(ev) || isEventInPast(ev, now)) {
       expiredCount++;
     } else {
       activeCatalog.push(ev);
@@ -578,6 +650,13 @@ function applyFiltersAndRender() {
   });
 
   state.expiredCount = expiredCount;
+  window.currentActiveCatalog = activeCatalog;
+
+  // Keep live sync counter in header aligned with active catalog
+  const syncBadgeText = document.getElementById('sync-status-text');
+  if (syncBadgeText && state.updatedAt) {
+    showSyncTimestamp(state.updatedAt, activeCatalog.length);
+  }
 
   const parsedSearch = state.searchQuery ? parseGoogleQuery(state.searchQuery) : null;
 
@@ -685,7 +764,7 @@ function applyFiltersAndRender() {
   const countBar = document.getElementById('results-count');
   if (countBar) {
     const expiredNote = state.expiredCount > 0 
-      ? ` <span style="font-size: 0.78rem; opacity: 0.7; margin-left: 8px;">(${state.expiredCount} ended event filtered)</span>` 
+      ? ` <span style="font-size: 0.78rem; opacity: 0.7; margin-left: 8px;">(${state.expiredCount} past & concluded events filtered)</span>` 
       : '';
 
     const tagBadgeHtml = state.selectedTag ? `
@@ -1296,6 +1375,122 @@ function calculateNextTwoDates(ev) {
   return null;
 }
 
+// ==============================================================================
+// 6. TIME-HORIZON GROUPING ENGINE (Today, This Week, Next Week, Upcoming)
+// Organized strictly with Mondays as the start of the week.
+// ==============================================================================
+
+function getEventTimeBucket(ev, now = new Date()) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+
+  // Monday-based week calculation:
+  // In JS: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6
+  // Days since Monday: Mon->0, Tue->1, ..., Sun->6
+  const daysSinceMonday = (dayOfWeek + 6) % 7;
+  const thisWeekMonday = new Date(today);
+  thisWeekMonday.setDate(today.getDate() - daysSinceMonday);
+  thisWeekMonday.setHours(0, 0, 0, 0);
+
+  const thisWeekSunday = new Date(thisWeekMonday);
+  thisWeekSunday.setDate(thisWeekMonday.getDate() + 6);
+  thisWeekSunday.setHours(23, 59, 59, 999);
+
+  const nextWeekMonday = new Date(thisWeekMonday);
+  nextWeekMonday.setDate(thisWeekMonday.getDate() + 7);
+  nextWeekMonday.setHours(0, 0, 0, 0);
+
+  const nextWeekSunday = new Date(nextWeekMonday);
+  nextWeekSunday.setDate(nextWeekMonday.getDate() + 6);
+  nextWeekSunday.setHours(23, 59, 59, 999);
+
+  const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+
+  // 1. Daily Invariants: open every day -> "today"
+  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    return { bucket: 'today', date: today };
+  }
+
+  // 2. Confirmed dates array
+  if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
+    const futureDates = [];
+    for (const dStr of ev.confirmedDates) {
+      if (!dStr) continue;
+      const parts = dStr.split('-');
+      if (parts.length === 3) {
+        const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        if (d >= today) {
+          futureDates.push(d);
+        }
+      }
+    }
+    if (futureDates.length > 0) {
+      futureDates.sort((a, b) => a - b);
+      return categorizeDateBucket(futureDates[0], today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+    }
+  }
+
+  // 3. startIso
+  if (ev.startIso) {
+    const d = new Date(ev.startIso);
+    if (!isNaN(d.getTime())) {
+      const startDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      if (startDay >= today) {
+        return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+      }
+    }
+  }
+
+  // 4. Weekly recurring programs
+  if (ev.frequency === 'weekly' && Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0) {
+    const targetDays = ev.daysOfWeek
+      .map(d => DAY_MAP[String(d).toLowerCase()])
+      .filter(d => d !== undefined);
+    if (targetDays.length > 0) {
+      for (let offset = 0; offset < 28; offset++) {
+        const candidate = new Date(today);
+        candidate.setDate(candidate.getDate() + offset);
+        if (targetDays.includes(candidate.getDay())) {
+          return categorizeDateBucket(candidate, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+        }
+      }
+    }
+  }
+
+  return { bucket: 'upcoming', date: null };
+}
+
+function categorizeDateBucket(d, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday) {
+  const dTime = d.getTime();
+  const todayTime = today.getTime();
+  const tomorrowTime = tomorrow.getTime();
+
+  if (dTime === todayTime) {
+    return { bucket: 'today', date: d };
+  } else if (dTime === tomorrowTime) {
+    return { bucket: 'tomorrow', date: d };
+  } else if (dTime > tomorrowTime && dTime <= thisWeekSunday.getTime()) {
+    return { bucket: 'this_week', date: d };
+  } else if (dTime >= nextWeekMonday.getTime() && dTime <= nextWeekSunday.getTime()) {
+    return { bucket: 'next_week', date: d };
+  } else {
+    return { bucket: 'upcoming', date: d };
+  }
+}
+
+window.smoothScrollToTimeGroup = function(groupId, event) {
+  if (event) event.preventDefault();
+  const el = document.getElementById(groupId);
+  if (el) {
+    const yOffset = -70;
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+};
+
 function renderEventCards(events) {
   const grid = document.getElementById('events-grid');
   if (!grid) return;
@@ -1325,7 +1520,134 @@ function renderEventCards(events) {
     return;
   }
 
-  grid.innerHTML = venueBannerHtml + events.map(ev => {
+  // Partition events into 5 time buckets: Today, Tomorrow, This Week, Next Week, Upcoming
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const dayOfWeek = today.getDay();
+  const daysSinceMonday = (dayOfWeek + 6) % 7;
+  const thisWeekMonday = new Date(today);
+  thisWeekMonday.setDate(today.getDate() - daysSinceMonday);
+
+  const thisWeekSunday = new Date(thisWeekMonday);
+  thisWeekSunday.setDate(thisWeekMonday.getDate() + 6);
+
+  const nextWeekMonday = new Date(thisWeekMonday);
+  nextWeekMonday.setDate(thisWeekMonday.getDate() + 7);
+
+  const nextWeekSunday = new Date(nextWeekMonday);
+  nextWeekSunday.setDate(nextWeekMonday.getDate() + 6);
+
+  const fmtMonthDay = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const fmtWeekday = (d) => d.toLocaleDateString('en-US', { weekday: 'short' });
+  const fmtFull = (d) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+
+  const todayLabel = fmtFull(today);
+  const tomorrowLabel = fmtFull(tomorrow);
+  
+  // This Week label: after tomorrow through this week's Sunday
+  let thisWeekLabel;
+  const dayAfterTomorrow = new Date(tomorrow);
+  dayAfterTomorrow.setDate(tomorrow.getDate() + 1);
+  if (dayAfterTomorrow > thisWeekSunday) {
+    thisWeekLabel = `Ending ${fmtMonthDay(thisWeekSunday)}`;
+  } else if (dayAfterTomorrow.getTime() === thisWeekSunday.getTime()) {
+    thisWeekLabel = `${fmtWeekday(thisWeekSunday)}, ${fmtMonthDay(thisWeekSunday)}`;
+  } else {
+    thisWeekLabel = `${fmtWeekday(dayAfterTomorrow)} – Sun, ${fmtMonthDay(dayAfterTomorrow)} – ${fmtMonthDay(thisWeekSunday)}`;
+  }
+
+  // Next Week label
+  let nextWeekLabel;
+  if (tomorrow.getTime() === nextWeekMonday.getTime()) {
+    const nextWeekTuesday = new Date(nextWeekMonday);
+    nextWeekTuesday.setDate(nextWeekMonday.getDate() + 1);
+    nextWeekLabel = `Tue – Sun, ${fmtMonthDay(nextWeekTuesday)} – ${fmtMonthDay(nextWeekSunday)}`;
+  } else {
+    nextWeekLabel = `Mon – Sun, ${fmtMonthDay(nextWeekMonday)} – ${fmtMonthDay(nextWeekSunday)}`;
+  }
+  
+  const beyondDate = new Date(nextWeekSunday);
+  beyondDate.setDate(beyondDate.getDate() + 1);
+  const upcomingLabel = `Starting ${fmtMonthDay(beyondDate)} & Beyond`;
+
+  const buckets = {
+    today: [],
+    tomorrow: [],
+    this_week: [],
+    next_week: [],
+    upcoming: []
+  };
+
+  events.forEach(ev => {
+    const { bucket, date } = getEventTimeBucket(ev, now);
+    ev._computedNextDate = date;
+    buckets[bucket].push(ev);
+  });
+
+  // Sort within buckets chronologically by next occurrence date, then scheduled time
+  Object.keys(buckets).forEach(k => {
+    buckets[k].sort((a, b) => {
+      const aTime = a._computedNextDate ? a._computedNextDate.getTime() : 9999999999999;
+      const bTime = b._computedNextDate ? b._computedNextDate.getTime() : 9999999999999;
+      if (aTime !== bTime) return aTime - bTime;
+      if (a.isDaily && !b.isDaily) return 1;
+      if (!a.isDaily && b.isDaily) return -1;
+      return (a.price || 0) - (b.price || 0);
+    });
+  });
+
+  const bucketMeta = [
+    { key: 'today', title: "Today's Events", shortTitle: "Today", icon: '⚡', range: todayLabel, list: buckets.today },
+    { key: 'tomorrow', title: "Tomorrow's Events", shortTitle: "Tomorrow", icon: '🌅', range: tomorrowLabel, list: buckets.tomorrow },
+    { key: 'this_week', title: "This Week's Events", shortTitle: "This Week", icon: '🗓️', range: thisWeekLabel, list: buckets.this_week },
+    { key: 'next_week', title: "Next Week's Events", shortTitle: "Next Week", icon: '📅', range: nextWeekLabel, list: buckets.next_week },
+    { key: 'upcoming', title: "Upcoming & Future Events", shortTitle: "Upcoming", icon: '🔮', range: upcomingLabel, list: buckets.upcoming }
+  ];
+
+  const activeBuckets = bucketMeta.filter(b => b.list.length > 0);
+
+  // Quick navigation anchor bar (rendered if 2 or more buckets have items)
+  let navBarHtml = '';
+  if (activeBuckets.length > 1) {
+    navBarHtml = `
+      <nav class="time-nav-bar" aria-label="Jump to event timeframes">
+        ${activeBuckets.map(b => `
+          <a href="#group-${b.key}" class="time-nav-pill" onclick="smoothScrollToTimeGroup('group-${b.key}', event)">
+            <span>${b.icon} ${b.shortTitle}</span>
+            <span class="time-nav-count">${b.list.length}</span>
+          </a>
+        `).join('')}
+      </nav>
+    `;
+  }
+
+  // Render sections
+  const sectionsHtml = activeBuckets.map(b => {
+    const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev)).join('');
+    return `
+      <section class="events-time-group" id="group-${b.key}">
+        <div class="time-group-header">
+          <div class="time-group-title-wrap">
+            <span class="time-group-icon">${b.icon}</span>
+            <h2 class="time-group-title">${b.title}</h2>
+            <span class="time-group-date-range">${b.range}</span>
+          </div>
+          <span class="time-group-count-badge">${b.list.length} event${b.list.length === 1 ? '' : 's'}</span>
+        </div>
+        <div class="time-group-cards-grid">
+          ${cardsHtml}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml;
+}
+
+function renderSingleEventCardHtml(ev) {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
     const isSoldOut = Boolean(ev.isSoldOut);
@@ -1339,7 +1661,7 @@ function renderEventCards(events) {
       : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'))}`;
 
     // Venue Event Count & Filter Button (Requirement 7)
-    const venueTotalCount = ALL_EVENTS.filter(e => e.venue === ev.venue).length;
+    const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
     const isThisVenueSelected = state.selectedVenue === ev.venue;
     const venueOtherEventsBtnHtml = venueTotalCount > 1 ? `
       <button 
@@ -1531,14 +1853,14 @@ function renderEventCards(events) {
         <!-- Schedule Row & Dynamic Next Dates -->
         <div class="card-schedule-row">
           <span>📅</span>
-          <span>${ev.dateSchedule}</span>
+          <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
         </div>
 
         ${nextDatesHtml}
 
         ${tiersHtml}
 
-        <p class="card-desc">${ev.description}</p>
+        <p class="card-desc">${ev.description || ('Live music and performance at ' + ev.venue)}</p>
 
         ${subtagsHtml}
 
@@ -1559,7 +1881,6 @@ function renderEventCards(events) {
         </div>
       </article>
     `;
-  }).join('');
 }
 
 function resetAllFilters() {
@@ -1726,10 +2047,17 @@ function copyItineraryToClipboard() {
 // ==============================================================================
 
 function updateReviewQueueBadge() {
+  const container = document.getElementById('curator-footer-container');
   const badge = document.getElementById('review-queue-count');
   const items = (typeof MANUAL_REVIEW_QUEUE !== 'undefined') ? MANUAL_REVIEW_QUEUE : [];
   if (badge) {
     badge.textContent = items.length;
+  }
+  // Reveal curator portal button only if ?curator=true, ?admin=true, or active curator session
+  const urlParams = new URLSearchParams(window.location.search);
+  const isCurator = urlParams.has('curator') || urlParams.has('admin') || Boolean(sessionStorage.getItem('van50_curator_token'));
+  if (container) {
+    container.style.display = isCurator ? 'block' : 'none';
   }
 }
 

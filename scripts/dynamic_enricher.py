@@ -35,8 +35,13 @@ def fetch_html(url: str, timeout: int = 4) -> str:
     try:
         cmd = [
             "curl.exe", "-s", "-L",
-            "-A", HEADERS['User-Agent'],
-            "--connect-timeout", "2",
+            "-H", f"User-Agent: {HEADERS['User-Agent']}",
+            "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "-H", "Accept-Language: en-US,en;q=0.9",
+            "-H", 'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+            "-H", "sec-ch-ua-mobile: ?0",
+            "-H", 'sec-ch-ua-platform: "Windows"',
+            "--connect-timeout", "3",
             "--max-time", str(timeout),
             url
         ]
@@ -123,7 +128,7 @@ class NomadicMetadataScraper:
                 item['isRoving'] = True
                 item['editionVenue'] = "The Birdhouse"
                 item['venue'] = "The Birdhouse"
-                item['address'] = "44 W 4th Ave, Vancouver"
+                item['address'] = "44 W 4th Ave, Vancouver, BC"
                 item['neighborhood'] = "Mount Pleasant"
                 item['coordinates'] = [49.2678, -123.1065]
                 item['title'] = "Public Disco: Warehouse & Club Dance Fundraiser"
@@ -143,8 +148,8 @@ class NomadicMetadataScraper:
                 item['admissionPolicy'] = "Advance & Door Ticketed Fundraiser ($15 – $25)"
                 item['rovingNote'] = "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society)."
                 print(f"[NOMADIC ENRICHER] Public Disco Warehouse authenticated: Awaiting next edition schedule (0 phantom dates).")
-            else:
-                print(f"[NOMADIC ENRICHER] Checking Public Disco season schedule from publicdisco.ca...")
+            elif event_id == 'public-disco-block-party':
+                print(f"[NOMADIC ENRICHER] Public Disco Free Series flagship authenticated: Seasonal concluded (0 phantom dates).")
                 item['organizer'] = "Public Disco Society"
                 item['isRoving'] = True
                 item['editionVenue'] = "Downtown Vancouver Plazas"
@@ -170,7 +175,19 @@ class NomadicMetadataScraper:
                 item['admissionPolicy'] = "Free Public Admission (100% Free, No Tickets Required)"
                 item['rovingNote'] = "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap)."
                 item['description'] = "Public Disco Society hosts free open-air community block parties in Vancouver downtown plazas throughout the summer, featuring vibrant dance floors, local DJs, pop-up markets, and roller skating."
-                print(f"[NOMADIC ENRICHER] Public Disco Free Series authenticated: Seasonal concluded (0 phantom dates).")
+            else:
+                # Scraped distinct Public Disco events! Preserve scraped titles, dates, descriptions, and enrich roving host venue facts
+                item['organizer'] = "Public Disco Society"
+                item['isRoving'] = True
+                if not item.get('editionVenue') or item.get('editionVenue') == "Public Disco Society":
+                    item['editionVenue'] = item.get('venue')
+                if not item.get('agePolicy'):
+                    item['agePolicy'] = "19+ (Valid Photo ID Required)" if "musclecars" in event_id else "All-Ages (Family & Community Friendly)"
+                if not item.get('admissionPolicy'):
+                    item['admissionPolicy'] = "Advance & Door Ticketed" if item.get('price', 0) > 0 else "Free Public Access (No Ticket Required)"
+                if not item.get('rovingNote'):
+                    item['rovingNote'] = f"📍 Roving open-air event organized by Public Disco Society at {item.get('address')}."
+                print(f"[NOMADIC ENRICHER] Public Disco event '{item.get('title')}' authenticated at host venue '{item.get('venue')}'.")
 
         return item
 

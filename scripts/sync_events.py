@@ -42,10 +42,11 @@ DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, 'discovery_sources.json')
 # LIVE PRICING SEARCH ENGINE IMPORT
 # ==============================================================================
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pricing_search_engine import EventPricingSearchEngine
+from pricing_search_engine import EventPricingSearchEngine, load_curator_learned_rules, auto_deny_and_archive_event
 from venue_adapters import VenueAdapterRegistry
 from dynamic_enricher import DynamicEnricher
 from ra_events_adapter import ResidentAdvisorAdapter
+from universal_venue_crawler import UniversalVenueCrawler
 
 
 
@@ -78,7 +79,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://www.stanleypark.org/",
+            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
             "coordinates": [49.2988, -123.1384],
             "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
             "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon."
@@ -249,7 +250,7 @@ def get_curated_seed_catalog():
             "isSoldOut": False,
             "websiteUrl": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
             "coordinates": [49.2694, -123.2562],
-            "transitInfo": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange",
+            "transitInfo": "R4 RapidBus or Broadway Rapid Transit directly to UBC Bus Exchange",
             "description": "Iconic cliffside rose garden on Crescent Road overlooking Howe Sound and the snow-capped Coast Mountains, connecting to the scenic wooden stairway of Trail 6 down to Wreck Beach. 100% free public admission."
         },
         {
@@ -393,7 +394,7 @@ def get_curated_seed_catalog():
             "isSoldOut": False,
             "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
             "coordinates": [49.2662, -123.2483],
-            "transitInfo": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop",
+            "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit to UBC Loop",
             "description": "High-octane U SPORTS national championship varsity basketball, volleyball, and football matches on the UBC Point Grey campus."
         },
         {
@@ -608,34 +609,34 @@ def get_curated_seed_catalog():
             "description": "Intimate indie comedy film screening in the restored vintage projection room upstairs at Mount Pleasant's historic Fox Cabaret."
         },
         {
-            "id": "tm-biltmore-emerging-artist",
-            "title": "Letters to Lions Live at The Biltmore",
-            "artist": "Letters to Lions",
+            "id": "biltmore-cabaret-indie-music",
+            "title": "Mama's Broke Live at The Biltmore",
+            "artist": "Mama's Broke",
             "venue": "The Biltmore Cabaret",
             "address": "2755 Prince Edward St, Vancouver",
             "neighborhood": "Mount Pleasant",
-            "basePrice": 15.00,
-            "fee": 2.75,
+            "basePrice": 11.00,
+            "fee": 0.00,
             "provider": "AdmitOne",
             "semanticProvider": "AdmitOne Verified",
             "pricingType": "platform",
             "isDaily": False,
             "frequency": "one-off",
-            "frequencyLabel": "Live Concert (April 2)",
-            "daysOfWeek": ["fri"],
+            "frequencyLabel": "Live Concert (Oct 17)",
+            "daysOfWeek": ["sat"],
             "timeSlots": ["early-evening"],
             "category": "music",
             "categoryLabel": "Live Music",
             "categoryIcon": "🎵",
-            "subTags": ["indie-rock", "live-band", "biltmore", "concert"],
-            "dateSchedule": "Friday, April 2 • 7:00 PM (Doors)",
-            "startIso": "2027-04-02T19:00:00-07:00",
-            "endIso": "2027-04-02T23:00:00-07:00",
+            "subTags": ["indie-folk", "live-band", "biltmore", "concert"],
+            "dateSchedule": "Saturday, Oct 17 • 7:00 PM (Doors)",
+            "startIso": "2026-10-17T19:00:00-07:00",
+            "endIso": "2026-10-17T23:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://admitone.com/events/vancouver/pro/concerts/biltmore-cabaret/letters-to-lions/letters-to-lions/6a886f3262d0333f4abacb56",
+            "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
             "coordinates": [49.2602, -123.0975],
             "transitInfo": "Main & 12th Ave bus corridor",
-            "description": "Mount Pleasant's heritage indie concert lounge hosting Australian indie rock band Letters to Lions live with support, ticketed via AdmitOne."
+            "description": "Mount Pleasant's heritage indie concert lounge hosting folk duo Mama's Broke live with support, ticketed via AdmitOne."
         },
         {
             "id": "lmg-happy-hour-comedy",
@@ -796,13 +797,9 @@ def get_curated_seed_catalog():
             "address": "2321 Main St, Vancouver",
             "neighborhood": "Mount Pleasant",
             "basePrice": 15.00,
-            "provider": "Independent Box Office",
-            "semanticProvider": "Independent Box Office",
-            "pricingType": "multi-tier",
-            "tiers": [
-                { "name": "Online Advance", "basePrice": 15.00, "price": 18.50, "label": "$18.50 all-in" },
-                { "name": "Door Admission", "basePrice": 20.00, "price": 20.00, "label": "$20.00 door" }
-            ],
+            "provider": "Eventbrite",
+            "semanticProvider": "Eventbrite Verified",
+            "pricingType": "platform",
             "isDaily": False,
             "frequency": "weekly",
             "frequencyLabel": "Weekly (Saturdays)",
@@ -816,10 +813,10 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-12T22:30:00-07:00",
             "endIso": "2026-12-31T02:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2022/7/90snight-t7res-bw2jx-tjrw3-hzzrb-49bce-dejtp-x9h5d-pc7k4-4apsb-d23g7-m5fc6-nznlr-pjkt5-m9258",
+            "websiteUrl": "https://www.eventbrite.com/e/ultimate-90s-night-tickets-1996660198402",
             "coordinates": [49.2638, -123.1012],
             "transitInfo": "Main St & 7th Ave bus stop",
-            "description": "Vancouver's most iconic retro dance party in Mount Pleasant. Resident DJs spin new wave, post-punk, synthpop, and 90s hip hop classics. Tickets are $18.50 online advance ($15 + fees) or $20 at the door."
+            "description": "Vancouver's most iconic retro dance party in Mount Pleasant. Resident DJs spin new wave, post-punk, synthpop, and 90s hip hop classics. Tickets verified via Eventbrite."
         },
         {
             "id": "eb-puff-magic-improv",
@@ -854,19 +851,15 @@ def get_curated_seed_catalog():
             "description": "High-octane spontaneous improv comedy featuring veteran Vancouver performers on Granville Island's waterfront Revue Stage."
         },
         {
-            "id": "tightrope-maestro",
-            "title": "Tightrope Impro: Maestro Improv Tournament",
+            "id": "tightrope-impro-showcase",
+            "title": "Vancouver's Next Top Improviser at Tightrope Impro",
             "venue": "Tightrope Impro Theatre",
             "address": "1330 Napier St, Vancouver",
             "neighborhood": "Commercial Drive",
             "basePrice": 25.00,
-            "provider": "TicketSpice",
-            "semanticProvider": "TicketSpice Verified",
-            "pricingType": "multi-tier",
-            "tiers": [
-                { "name": "General Admission", "basePrice": 25.00, "price": 25.00, "label": "$25.00 verified" },
-                { "name": "BC Student / Youth", "basePrice": 18.00, "price": 18.00, "label": "$18.00 verified" }
-            ],
+            "provider": "Eventbrite",
+            "semanticProvider": "Eventbrite Verified",
+            "pricingType": "platform",
             "isDaily": False,
             "frequency": "weekly",
             "frequencyLabel": "Weekly (Thursdays)",
@@ -875,15 +868,15 @@ def get_curated_seed_catalog():
             "category": "shows",
             "categoryLabel": "Comedy & Shows",
             "categoryIcon": "🎭",
-            "subTags": ["maestro", "theatresports", "tournament", "commercial-drive"],
+            "subTags": ["improviser", "theatresports", "tournament", "commercial-drive"],
             "dateSchedule": "Thursdays • 8:00 PM",
             "startIso": "2026-09-10T20:00:00-07:00",
             "endIso": "2026-12-31T22:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.tightropetheatre.com/weekly-live-shows",
+            "websiteUrl": "https://www.eventbrite.ca/e/vancouvers-next-top-improvisor-tickets-1636427351259",
             "coordinates": [49.2748, -123.0768],
-            "transitInfo": "Commercial & Hastings bus corridor",
-            "description": "Fast-paced elimination improv tournament where 10 ensemble performers direct and act in spontaneous scenes for audience scores to crown the Maestro."
+            "transitInfo": "Commercial & Venables bus stop",
+            "description": "Vancouver's premier competitive improv tournament showcasing top talent at Commercial Drive's intimate storefront theatre, verified live on Eventbrite."
         },
         {
             "id": "eb-alistair-ogden-rio",
@@ -1126,7 +1119,7 @@ def get_curated_seed_catalog():
             "venue": "Stanley Park Pitch & Putt",
             "address": "2099 Beach Ave, Vancouver",
             "neighborhood": "Downtown / West End",
-            "basePrice": 15.55,
+            "basePrice": 19.11,
             "provider": "Independent Box Office",
             "semanticProvider": "City of Vancouver Park",
             "pricingType": "door",
@@ -1143,7 +1136,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T08:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://www.stanleypark.org/",
+            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
             "coordinates": [49.2908, -123.1448],
             "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
             "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay."
@@ -1350,7 +1343,7 @@ def get_curated_seed_catalog():
             "isSoldOut": False,
             "websiteUrl": "https://eatlocal.org/markets/kitsilano/",
             "coordinates": [49.2618, -123.1617],
-            "transitInfo": "#99 B-Line or #9 to Broadway & Larch St",
+            "transitInfo": "Broadway Rapid Transit or #9 / #14 to Broadway & Larch St",
             "description": "Weekly Sunday neighborhood market in the heart of Kitsilano with farm-fresh Okanagan fruit, BC field vegetables, fresh pasta, artisanal cheeses, and live local acoustic music."
         },
         {
@@ -1408,7 +1401,7 @@ def get_curated_seed_catalog():
             "isSoldOut": False,
             "websiteUrl": "https://vaninstitute.ca",
             "coordinates": [49.2647, -123.2492],
-            "transitInfo": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop",
+            "transitInfo": "Broadway Rapid Transit or #4 / #14 trolley bus to UBC Bus Loop",
             "description": "Founded in 1916, Vancouver's longest-running free public lecture series bringing global scientists, authors, and thinkers to UBC IRC Lecture Hall No. 2 every Saturday evening during academic terms."
         },
         {
@@ -1760,7 +1753,7 @@ def get_curated_seed_catalog():
             "isSoldOut": False,
             "websiteUrl": "https://www.anzaclub.org",
             "coordinates": [49.2638, -123.1068],
-            "transitInfo": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)",
+            "transitInfo": "Broadway Rapid Transit or #9 to Broadway & Ontario (2 min walk)",
             "description": "Mount Pleasant's beloved non-profit social club hosting weekly acoustic bluegrass, old-time fiddle, and Celtic jam sessions. Listeners and pickers welcome, $10 general door."
         },
         {
@@ -2184,73 +2177,6 @@ def get_curated_seed_catalog():
             "description": "Slice of Life's beloved weekly Tuesday LEGO night for adults. Sift through thousands of categorized bricks, participate in optional timed build challenges, or chill with friends and build freely over gallery drinks and tunes."
         },
         {
-            "id": "public-disco-block-party",
-            "title": "Public Disco: Open-Air Summer Block Party Series",
-            "venue": "Downtown Vancouver Plazas",
-            "organizer": "Public Disco Society",
-            "isRoving": True,
-            "editionVenue": "Bentall Centre / Granville Island",
-            "address": "505 Burrard St, Vancouver, BC",
-            "neighborhood": "Downtown / West End",
-            "basePrice": 0.00,
-            "provider": "Free Public Access",
-            "semanticProvider": "Free Civic Admission",
-            "pricingType": "free",
-            "isDaily": False,
-            "frequency": "seasonal",
-            "frequencyLabel": "Seasonal / Summer Series Concluded",
-            "daysOfWeek": ["sat"],
-            "timeSlots": ["afternoon", "early-evening"],
-            "category": "social",
-            "categoryLabel": "Community & Social",
-            "categoryIcon": "🪩",
-            "subTags": ["public-disco", "block-party", "dance-party", "open-air", "djs", "free-event"],
-            "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
-            "startIso": None,
-            "endIso": None,
-            "confirmedDates": [],
-            "isSoldOut": False,
-            "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
-            "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-            "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD on AdmitOne and quarantined for exceeding the $50 cap).",
-            "websiteUrl": "https://publicdisco.ca/events",
-            "coordinates": [49.2858, -123.1187],
-            "transitInfo": "Burrard SkyTrain station (direct plaza access)",
-            "description": "Public Disco Society hosts free open-air community block parties in Vancouver downtown plazas throughout the summer, featuring vibrant dance floors, local DJs, pop-up markets, and roller skating."
-        },
-        {
-            "id": "public-disco-festival-oct3",
-            "title": "Public Disco Festival: Shipyards Waterfront",
-            "venue": "The Shipyards Waterfront",
-            "organizer": "Public Disco Society",
-            "address": "125 Victory Ship Way, North Vancouver, BC",
-            "neighborhood": "North Shore / Burnaby",
-            "basePrice": 57.50,
-            "provider": "AdmitOne",
-            "semanticProvider": "AdmitOne Verified",
-            "pricingType": "platform",
-            "isDaily": False,
-            "frequency": "seasonal",
-            "frequencyLabel": "Seasonal Festival",
-            "daysOfWeek": ["sat"],
-            "timeSlots": ["afternoon", "early-evening", "late-evening"],
-            "category": "social",
-            "categoryLabel": "Community & Social",
-            "categoryIcon": "🪩",
-            "subTags": ["public-disco", "festival", "dance-party", "open-air", "djs"],
-            "dateSchedule": "Saturday, October 3, 2026 • 2:00 PM – 10:00 PM",
-            "startIso": "2026-10-03T14:00:00-07:00",
-            "endIso": "2026-10-03T22:00:00-07:00",
-            "confirmedDates": ["2026-10-03"],
-            "isSoldOut": False,
-            "agePolicy": "19+ (Valid Photo ID Required)",
-            "admissionPolicy": "Ticketed Festival ($57.50 – $75.00 CAD via AdmitOne)",
-            "websiteUrl": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4",
-            "coordinates": [49.3117, -123.0805],
-            "transitInfo": "SeaBus to Lonsdale Quay + 3 min walk east along the waterfront",
-            "description": "Public Disco Society 10th anniversary full-day, two-stage electronic music festival at the Shipyards District in North Vancouver. (Ticketed at $57.50+ CAD)."
-        },
-        {
             "id": "public-disco-warehouse-party",
             "title": "Public Disco: Warehouse & Club Dance Fundraiser",
             "venue": "The Birdhouse",
@@ -2293,7 +2219,7 @@ def get_curated_seed_catalog():
 # ==============================================================================
 
 VENUE_URLS = {
-    "Stanley Park Seawall": "https://www.stanleypark.org/",
+    "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "Lynn Canyon Park": "https://ecologycentre.ca",
     "Granville Island Public Market": "https://granvilleisland.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
@@ -2315,10 +2241,15 @@ VENUE_URLS = {
     "Tightrope Impro Theatre": "https://tightropetheatre.com",
     "The Improv Centre": "https://theimprovcentre.ca",
     "The Rickshaw Theatre": "https://rickshawtheatre.com",
+    "Rickshaw Theatre": "https://rickshawtheatre.com",
+    "Hollywood Theatre": "https://hollywoodtheatre.ca",
+    "The Hollywood Theatre": "https://hollywoodtheatre.ca",
     "Science World at TELUS World of Science": "https://www.scienceworld.ca",
+    "Public Disco Society": "https://publicdisco.ca",
+    "Public Disco": "https://publicdisco.ca",
     "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
     "Pizzeria Ludica": "https://ludica.ca",
-    "Stanley Park Pitch & Putt": "https://www.stanleypark.org/",
+    "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
     "The Shipyards District": "https://theshipyardsdistrict.ca",
     "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
@@ -2560,10 +2491,48 @@ def run_sync() -> bool:
 
         freq = item.get('frequency', 'one-off')
         cat = item.get('category', 'shows')
-        semantic_provider = item.get('semanticProvider', provider)
+        semantic_provider = item.get('semanticProvider')
+        if not semantic_provider:
+            if "ticketweb.ca" in url or "ticketweb.com" in url or provider == "TicketWeb":
+                semantic_provider = "TicketWeb Verified"
+            elif "dice.fm" in url or provider == "DICE":
+                semantic_provider = "DICE Verified"
+            elif "shotgun.live" in url or provider == "Shotgun":
+                semantic_provider = "Shotgun Verified"
+            elif "spektrix" in url or "thecultch.com" in url or provider == "Spektrix":
+                semantic_provider = "Spektrix Verified"
+            elif "vancouversymphony.ca" in url or "artsclub.com" in url or provider == "Tessitura":
+                semantic_provider = "Tessitura Verified"
+            elif "tickettailor.com" in url or "buytickets.at" in url or provider == "Ticket Tailor":
+                semantic_provider = "Ticket Tailor Verified"
+            elif "zeffy.com" in url or provider == "Zeffy":
+                semantic_provider = "Zeffy Verified"
+            elif "humanitix.com" in url or provider == "Humanitix":
+                semantic_provider = "Humanitix Verified"
+            elif "universe.com" in url or provider == "Universe":
+                semantic_provider = "Universe Verified"
+            elif "ticketmaster.ca" in url or "ticketmaster.com" in url or provider == "Ticketmaster":
+                semantic_provider = "Ticketmaster Verified"
+            elif "axs.com" in url or provider == "AXS":
+                semantic_provider = "AXS Verified"
+            elif "vtix.com" in url or "vtixonline.com" in url or provider == "VTix":
+                semantic_provider = "VTix Verified"
+            else:
+                semantic_provider = provider
+        item['semanticProvider'] = semantic_provider
+
+        # 0. Skip permanently dismissed or archived items
+        learned = load_curator_learned_rules()
+        if event_id in learned.get("archived_event_ids", []):
+            print(f"[SKIP ARCHIVED] '{item['title']}' is permanently dismissed/archived.")
+            continue
 
         # STRICT LIVE CHECKOUT PRICING SEARCH & VERIFICATION
         search_res = EventPricingSearchEngine.search_and_verify(item)
+        if search_res.get("isArchived") or search_res.get("isOverBudget"):
+            print(f"[AUTO-DENIED OVERBUDGET] '{item['title']}' was auto-denied (over $50 limit). Bypassing quarantine.")
+            continue
+
         if not search_res.get("isVerified", False):
             flag_reason = search_res.get("quarantineReason", "Unverified live checkout pricing")
             print(f"[QUARANTINE] '{item['title']}' flagged for manual review: {flag_reason}")
@@ -2592,28 +2561,11 @@ def run_sync() -> bool:
         tiers = search_res.get("tiers") or item.get('tiers', [])
         verification = search_res["verification"]
 
-        # Budget Cap Check (<= $50 CAD)
+        # Budget Cap Check (<= $50 CAD) - Auto-deny to archive, never burden curator
         if final_price > 50.00:
-            print(f"[REJECT & QUARANTINE] '{item['title']}' rejected: ${final_price:.2f} > $50.00 CAD")
+            print(f"[AUTO-DENIED & ARCHIVED] '{item['title']}' rejected: ${final_price:.2f} > $50.00 CAD")
             rejected_count += 1
-            quarantined_item = {
-                "id": event_id,
-                "title": item['title'],
-                "venue": item['venue'],
-                "address": item.get('address', ''),
-                "neighborhood": item.get('neighborhood', ''),
-                "attemptedPrice": final_price,
-                "attemptedPriceLabel": price_label,
-                "provider": provider,
-                "semanticProvider": semantic_provider,
-                "websiteUrl": url,
-                "category": cat,
-                "flaggedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                "flagReason": f"Verified admission price (${final_price:.2f} CAD) strictly exceeds the $50.00 budget limit.",
-                "reviewStatus": "pending_manual_review",
-                "notes": "Event price exceeds the strict Van50 <= $50.00 CAD out-of-pocket cap."
-            }
-            quarantined_events.append(quarantined_item)
+            auto_deny_and_archive_event(item, reason=f"Auto-Denied: Verified price (${final_price:.2f} CAD) strictly exceeds $50.00 CAD budget limit")
             continue
 
         # 2. Automated Title Sanitization & Recurrence-vs-Lineup Linter
@@ -2709,6 +2661,66 @@ def run_sync() -> bool:
                 print(f"[RA SYNC] Added verified RA event: '{ra_ev['title']}' @ {ra_ev['venue']} ({ra_ev['priceLabel']})")
     except Exception as e:
         print(f"[SYNC ERROR] Failed to harvest Resident Advisor events: {e}")
+
+    # 4. Universal Venue Calendar Crawler & Automated Ingestion
+    print("\n[SYNC] Running Universal Venue Calendar Crawler across registered directory venues...")
+    try:
+        uv_verified, uv_quarantined = UniversalVenueCrawler.harvest_all_venues(["Hollywood Theatre", "Rickshaw Theatre", "The Rickshaw Theatre", "Public Disco Society"])
+        for uv_ev in uv_verified:
+            # Skip duplicates
+            if any(e['id'] == uv_ev['id'] or e['title'].lower() == uv_ev['title'].lower() for e in verified_events):
+                continue
+            # Dynamic metadata enrichment & normalize links
+            uv_ev = DynamicEnricher.enrich_event(uv_ev)
+            raw_v_url = VENUE_URLS.get(uv_ev['venue'], uv_ev.get('venueUrl', ''))
+            uv_ev['venueUrl'] = normalize_event_links(raw_v_url, uv_ev['venue'])
+
+            p_label = uv_ev.get('ticketProvider')
+            if not p_label:
+                m_prov = re.search(r'(ticketweb|showpass|dice|vtix|admitone|eventbrite|playmor|zeffy|humanitix|universe)', uv_ev.get('websiteUrl', ''), re.I)
+                p_label = f"{m_prov.group(1).capitalize()} Verified" if m_prov else f"{uv_ev['venue']} Verified"
+                uv_ev['ticketProvider'] = p_label
+
+            if uv_ev['price'] <= 50.00:
+                verified_events.append(uv_ev)
+                providers_count[p_label] = providers_count.get(p_label, 0) + 1
+                frequency_count[uv_ev.get('frequency', 'one-off')] = frequency_count.get(uv_ev.get('frequency', 'one-off'), 0) + 1
+                cat = uv_ev.get('category', 'shows')
+                categories_count[cat] = categories_count.get(cat, 0) + 1
+                print(f"[UNIVERSAL SYNC] Ingested verified venue event: '{uv_ev['title']}' @ {uv_ev['venue']} ({uv_ev['priceLabel']})")
+
+        for q_ev in uv_quarantined:
+            if not any(q.get('id') == q_ev.get('id') or q.get('title', '').lower() == q_ev.get('title', '').lower() for q in quarantined_events):
+                quarantined_events.append(q_ev)
+    except Exception as e:
+        print(f"[SYNC ERROR] Failed to run Universal Venue Crawler: {e}")
+
+    # Preserve any manually approved events currently in events.json not re-crawled
+    if os.path.exists(JSON_PATH):
+        try:
+            with open(JSON_PATH, 'r', encoding='utf-8') as f:
+                old_db = json.load(f)
+            for old_ev in old_db.get('events', []):
+                if old_ev.get('checkoutVerification', {}).get('method') == 'manual_curator_review':
+                    if not any(e.get('id') == old_ev.get('id') for e in verified_events):
+                        # Run drift detection against live page
+                        drift_check = EventPricingSearchEngine.check_curator_drift(old_ev)
+                        if drift_check.get("isDrift"):
+                            old_ev["isVerified"] = False
+                            old_ev["isDrift"] = True
+                            old_ev["flagReason"] = drift_check.get("quarantineReason")
+                            old_ev["quarantineReason"] = drift_check.get("quarantineReason")
+                            quarantined_events.append(old_ev)
+                            print(f"[DRIFT DETECTED] Re-quarantined: '{old_ev['title']}' -> {drift_check.get('quarantineReason')}")
+                        else:
+                            verified_events.append(old_ev)
+                            p_label = old_ev.get('ticketProvider') or old_ev.get('semanticProvider') or "Curator Verified"
+                            providers_count[p_label] = providers_count.get(p_label, 0) + 1
+                            cat = old_ev.get('category', 'shows')
+                            categories_count[cat] = categories_count.get(cat, 0) + 1
+                            print(f"[PRESERVE CURATOR] Retained manually approved event: '{old_ev['title']}'")
+        except Exception as e:
+            print(f"[WARN] Could not preserve previous curator reviews: {e}")
 
     print(f"\n[SYNC COMPLETE] Total verified catalog events: {len(verified_events)}")
     print(f"[QUARANTINE QUEUE] Total events flagged for manual review: {len(quarantined_events)}")

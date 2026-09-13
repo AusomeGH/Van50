@@ -20,9 +20,14 @@
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
+  <!-- Cache Control -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <!-- Van50 Stylesheets -->
-  <link rel="stylesheet" href="css/style.css?v=4.1.0">
-  <link rel="stylesheet" href="css/components.css?v=4.1.0">
+  <link rel="stylesheet" href="css/style.css?v=5.0.0">
+  <link rel="stylesheet" href="css/components.css?v=5.0.0">
 </head>
 <body>
 
@@ -365,20 +370,20 @@
       <p style="font-size: 0.74rem; color: var(--text-secondary); opacity: 0.85;">
         ⚡ Single Reference Source Architecture (Auto-Synced Daily • 0 Client-Side Scraping).
       </p>
-      <div style="margin-top: 14px;">
-        <button class="btn btn-review-queue-footer" id="btn-open-review-queue" aria-label="View Data Review Queue" title="Inspect quarantined events with unverified live checkout">
-          <span>⚠️ Data Review Queue</span>
+      <div id="curator-footer-container" style="margin-top: 14px; display: none;">
+        <a href="curator.html" class="btn btn-review-queue-footer" id="btn-open-review-queue" aria-label="Curator Studio" title="Open Van50 Curator Studio">
+          <span>🛡️ Curator Studio</span>
           <span class="review-queue-badge" id="review-queue-count">0</span>
-        </button>
+        </a>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="js/data.js?v=4.1.0"></script>
-  <script src="js/map.js?v=4.1.0"></script>
-  <script src="js/roulette.js?v=4.1.0"></script>
-  <script src="js/app.js?v=4.1.0"></script>
+  <script src="js/data.js?v=5.0.0"></script>
+  <script src="js/map.js?v=5.0.0"></script>
+  <script src="js/roulette.js?v=5.0.0"></script>
+  <script src="js/app.js?v=5.0.0"></script>
 </body>
 </html>

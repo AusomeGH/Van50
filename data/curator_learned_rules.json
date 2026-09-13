@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-09-13T16:19:16-07:00",
+    "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
+  },
+  "vendor_fee_formulas": {
+    "orangetickets.ca": {
+      "feeFixed": 0.0,
+      "feePercent": 0.0,
+      "taxPercent": 0.0,
+      "description": "Transparent all-in pricing published on host page"
+    },
+    "admitone.com": {
+      "feeFixed": 2.5,
+      "feePercent": 0.05,
+      "description": "Standard AdmitOne live checkout service fee"
+    },
+    "customtickets.ca": {
+      "feeFixed": 2.5,
+      "feePercent": 0.05,
+      "description": "Standard CustomTickets checkout fee"
+    }
+  },
+  "venue_calendar_deep_links": {
+    "The Fox Cabaret": "https://www.foxcabaret.com/",
+    "The Biltmore Cabaret": "https://biltmorecabaret.com/"
+  },
+  "course_blacklist_patterns": [
+    "pottery intensive",
+    "multi-week pass",
+    "semester enrollment",
+    "multi-session workshop",
+    "curator-test-course-pattern"
+  ],
+  "price_override_heuristics": [],
+  "archived_event_ids": [
+    "public-disco-festival-oct3",
+    "rickshaw-theatre-covenant-festival-xi-night-one",
+    "rickshaw-theatre-the-greyboy-allstars",
+    "hollywood-theatre-abba-dance-party-with-abra-cadabra",
+    "hollywood-theatre-scrubb-live-in-vancouver",
+    "rickshaw-theatre-stick-men",
+    "tightrope-workshop",
+    "claymates-ceramics-drop-in",
+    "hollywood-theatre-old-mervs",
+    "unverified-eastside-cinema",
+    "lanalous-the-jolts",
+    "anza-club-bluegrass-jam",
+    "frankies-jazz-brad-turner",
+    "wise-hall-roots-revue",
+    "cultch-theatre-series",
+    "hollywood-theatre-steel-magnolias",
+    "hollywood-theatre-the-jazz-room-a-journey-to-the-heart-of-",
+    "hollywood-theatre-greylab-presents-homecoming-fest",
+    "hollywood-theatre-boogie-down-broadway-a-singalong-dance-p",
+    "rickshaw-theatre-nekrogoblikon",
+    "tm-canadians-baseball",
+    "lmg-decolonized-comedy"
+  ]
+}

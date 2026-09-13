@@ -391,7 +391,7 @@ class FoxCabaretLiveAdapter:
                 {"name": "Advance Ticket", "basePrice": 15.0, "price": 18.50, "label": "$18.50 all-in"},
                 {"name": "Door Cover", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"}
             ],
-            "websiteUrl": cls.HOMEPAGE_URL,
+            "websiteUrl": "https://www.eventbrite.com/e/ultimate-90s-night-tickets-1996660198402",
             "venueUrl": cls.HOMEPAGE_URL,
             "ticketProvider": "Eventbrite Verified",
             "description": "Mount Pleasant's former adult theatre transformed into a vibrant cultural hub. Famous for high-energy weekend retro dance parties (Ultimate 90s, Motown Soul, 2000s Pop) and curated local music showcases."
@@ -439,17 +439,16 @@ class BiltmoreCabaretLiveAdapter:
             "frequency": "weekly",
             "frequencyLabel": "Thursdays – Saturdays",
             "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
-            "price": 18.50,
-            "priceLabel": "$18.50 all-in ($15 advance / $20 door)",
+            "price": 11.00,
+            "priceLabel": "$11.00 all-in",
             "pricingType": "platform",
             "tiers": [
-                {"name": "Advance Admission", "basePrice": 15.0, "price": 18.50, "label": "$18.50 all-in"},
-                {"name": "Door Admission", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"}
+                {"name": "General Admission", "basePrice": 11.0, "price": 11.00, "label": "$11.00 all-in"}
             ],
-            "websiteUrl": cls.HOMEPAGE_URL,
+            "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
             "venueUrl": cls.HOMEPAGE_URL,
             "ticketProvider": "AdmitOne Verified",
-            "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and legendary retro dance parties like Guilty Pleasures."
+            "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands."
         }
 
 
@@ -989,13 +988,13 @@ class VenueAdapterRegistry:
         "fox-cabaret-80s-night": FoxCabaretLiveAdapter.authenticate_dance,
         "the-fox-cabaret": FoxCabaretLiveAdapter.authenticate_dance,
         "fox-cabaret-dance-night": FoxCabaretLiveAdapter.authenticate_dance,
-        "fox-cabaret-indie-cinema": FoxCabaretLiveAdapter.authenticate_dance,
         # 2nd Floor Gastown
         "water-st-jazz": Gastown2ndFloorLiveAdapter.authenticate_flagship,
         "2nd-floor-gastown": Gastown2ndFloorLiveAdapter.authenticate_flagship,
         "2nd-floor-gastown-sharon-minemoto": Gastown2ndFloorLiveAdapter.authenticate_flagship,
         # The Biltmore Cabaret
         "tm-biltmore-emerging-artist": BiltmoreCabaretLiveAdapter.authenticate_flagship,
+        "biltmore-cabaret-indie-music": BiltmoreCabaretLiveAdapter.authenticate_flagship,
         "the-biltmore-cabaret": BiltmoreCabaretLiveAdapter.authenticate_flagship,
         # Little Mountain Gallery
         "lmg-open-mic": LittleMountainGalleryLiveAdapter.authenticate_open_mic,

@@ -1939,5 +1939,193 @@
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
+/* ==============================================================================
+   12. Time Grouping Sections & Jump Navigation (Today, This Week, Next Week, Upcoming)
+   ============================================================================== */
 
+.time-nav-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 4px 16px 4px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+.time-nav-bar::-webkit-scrollbar {
+  display: none;
+}
 
+.time-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.time-nav-pill:hover {
+  background: var(--bg-card);
+  border-color: var(--border-focus);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.time-nav-pill.active {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.time-nav-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  border-radius: var(--radius-full);
+  padding: 2px 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* Time Group Section */
+.events-time-group {
+  grid-column: 1 / -1;
+  margin-bottom: 40px;
+  scroll-margin-top: 110px;
+}
+
+.time-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.time-group-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+  border-radius: 2px;
+}
+
+#group-today .time-group-header::after {
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9, transparent);
+}
+
+#group-tomorrow .time-group-header::after {
+  background: linear-gradient(90deg, #f43f5e, #fb7185, transparent);
+}
+
+#group-this-week .time-group-header::after,
+#group-this_week .time-group-header::after {
+  background: linear-gradient(90deg, #a855f7, #c084fc, transparent);
+}
+
+#group-next-week .time-group-header::after,
+#group-next_week .time-group-header::after {
+  background: linear-gradient(90deg, #10b981, #34d399, transparent);
+}
+
+#group-upcoming .time-group-header::after {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, transparent);
+}
+
+.time-group-title-wrap {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.time-group-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.time-group-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.time-group-date-range {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+}
+
+.time-group-count-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#group-today .time-group-count-badge {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+#group-this-week .time-group-count-badge {
+  background: rgba(168, 85, 247, 0.12);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+#group-next-week .time-group-count-badge {
+  background: rgba(16, 185, 129, 0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+#group-upcoming .time-group-count-badge {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.time-group-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 480px) {
+  .time-group-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .time-group-title {
+    font-size: 1.15rem;
+  }
+}

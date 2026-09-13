@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 59
+    "totalVenues": 61
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -17,9 +17,9 @@
       ],
       "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
       "category": "outdoors",
-      "venueUrl": "https://www.stanleypark.org/",
-      "calendarUrl": "https://www.stanleypark.org/",
-      "boxOfficeUrl": "https://www.stanleypark.org/",
+      "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+      "calendarUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+      "boxOfficeUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
       "ticketingProvider": "Free Public Access",
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
@@ -219,7 +219,8 @@
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "bloedel-conservatory-dome"
-      ]
+      ],
+      "officialAdultAdmission": 9.5
     },
     "War Memorial Gym & Thunderbird Stadium": {
       "venueId": "war-memorial-gym-thunderbird-stadium",
@@ -358,7 +359,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
       "category": "cinema",
       "venueUrl": "https://www.foxcabaret.com",
       "calendarUrl": "https://www.foxcabaret.com/",
@@ -557,7 +558,8 @@
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "ludica-boardgames"
-      ]
+      ],
+      "gameCoverPolicy": 8.0
     },
     "Stanley Park Pitch & Putt": {
       "venueId": "stanley-park-pitch-putt",
@@ -571,9 +573,9 @@
       ],
       "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
       "category": "activities",
-      "venueUrl": "https://www.stanleypark.org/",
-      "calendarUrl": "https://www.stanleypark.org/",
-      "boxOfficeUrl": "https://www.stanleypark.org/",
+      "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+      "calendarUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+      "boxOfficeUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
       "ticketingProvider": "City of Vancouver Park",
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
@@ -966,7 +968,8 @@
       "adapter": "Gastown2ndFloorLiveAdapter",
       "managedEvents": [
         "2nd-floor-gastown-sharon-minemoto"
-      ]
+      ],
+      "publishedCoverPolicy": 12.0
     },
     "Frankie's Jazz Club": {
       "venueId": "frankie-s-jazz-club",
@@ -1123,9 +1126,9 @@
         "roxy-live-acts-showcase"
       ]
     },
-    "Café au Clay Studios": {
+    "Caf\u00e9 au Clay Studios": {
       "venueId": "cafe-au-clay",
-      "name": "Café au Clay Studios",
+      "name": "Caf\u00e9 au Clay Studios",
       "aliases": [
         "Cafe au Clay",
         "Cafe au Clay Pottery",
@@ -1251,7 +1254,8 @@
         "slice-of-life-life-drawing",
         "slice-of-life-clay-club",
         "slice-of-life-lego-night"
-      ]
+      ],
+      "dropInPolicy": 15.0
     },
     "Public Disco Society": {
       "venueId": "public-disco",
@@ -1355,6 +1359,50 @@
       "managedEvents": [
         "public-disco-block-party"
       ]
+    },
+    "Hollywood Theatre": {
+      "venueId": "hollywood-theatre",
+      "name": "Hollywood Theatre",
+      "aliases": [
+        "The Hollywood Theatre",
+        "Hollywood Theatre Vancouver"
+      ],
+      "address": "3123 W Broadway, Vancouver, BC",
+      "neighborhood": "Kitsilano",
+      "coordinates": [
+        49.2642,
+        -123.1754
+      ],
+      "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
+      "category": "shows",
+      "venueUrl": "https://hollywoodtheatre.ca/",
+      "calendarUrl": "https://hollywoodtheatre.ca/events",
+      "boxOfficeUrl": "https://hollywoodtheatre.ca/events",
+      "ticketingProvider": "TicketWeb Verified",
+      "adapter": "UniversalVenueCrawler",
+      "managedEvents": []
+    },
+    "Rickshaw Theatre": {
+      "venueId": "rickshaw-theatre",
+      "name": "Rickshaw Theatre",
+      "aliases": [
+        "The Rickshaw Theatre",
+        "Rickshaw"
+      ],
+      "address": "254 E Hastings St, Vancouver, BC",
+      "neighborhood": "Gastown / Chinatown",
+      "coordinates": [
+        49.2811,
+        -123.0984
+      ],
+      "transitInfo": "#14, #16, or #20 bus along E Hastings St to Main St",
+      "category": "music",
+      "venueUrl": "https://rickshawtheatre.com/",
+      "calendarUrl": "https://rickshawtheatre.com/",
+      "boxOfficeUrl": "https://rickshawtheatre.com/",
+      "ticketingProvider": "TicketWeb Verified",
+      "adapter": "UniversalVenueCrawler",
+      "managedEvents": []
     }
   }
 }

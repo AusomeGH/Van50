@@ -13,3 +13,12 @@ Thumbs.db
 
 # Chrome scratch profiles
 scratch_chrome_*
+
+# Secrets and backups
+.env
+data/backups/
+data/.curator_secret.json
+data/curator_screenshots/
+
+# Scratch exploration scripts
+scratch/

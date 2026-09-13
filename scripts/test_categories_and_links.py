@@ -226,11 +226,15 @@ def run_tests():
     assert "open-studio" in craft_hand_eye['websiteUrl'], f"Hand Eye URL mismatch: {craft_hand_eye['websiteUrl']}"
     assert craft_hand_eye['category'] == "crafts", f"Hand Eye category mismatch: {craft_hand_eye['category']}"
 
-    # Claymates quarantined due to $175 multi-week course policy
+    # Claymates quarantined/denied due to $175 multi-week course policy
     assert 'claymates-ceramics-drop-in' not in event_map, "Claymates must be excluded from active events"
     with open(os.path.join(ROOT_DIR, 'data', 'manual_review_queue.json'), 'r', encoding='utf-8') as f:
         rq_data = json.load(f)
-    assert any(q['id'] == 'claymates-ceramics-drop-in' for q in rq_data['quarantinedEvents']), "Claymates must be in manual review queue"
+    with open(os.path.join(ROOT_DIR, 'data', 'archived_events.json'), 'r', encoding='utf-8') as f:
+        arch_data = json.load(f)
+    assert any(q['id'] == 'claymates-ceramics-drop-in' for q in rq_data.get('quarantinedEvents', [])) or \
+           any(a['id'] == 'claymates-ceramics-drop-in' for a in arch_data.get('archivedEvents', [])), \
+           "Claymates must be in manual review queue or archived events"
 
     craft_slice = event_map.get('slice-of-life-craft-night')
     assert craft_slice is not None, "Missing slice-of-life-craft-night"

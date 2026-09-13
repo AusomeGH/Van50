@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van50 Curator Studio — Master Control & Quarantine Triage</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/curator.css?v=1.0.0">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="curator-header">
+    <div class="curator-container curator-nav">
+      <a href="curator.html" class="curator-brand">
+        <span class="curator-logo-icon">🛡️</span>
+        <div class="curator-brand-title">Van<span>50</span> Curator Studio</div>
+        <span class="curator-badge-pill">Master Control</span>
+      </a>
+
+      <div class="curator-stats-strip">
+        <div class="stat-pill" title="Quarantined events awaiting review">
+          <span>⚠️ Quarantined:</span>
+          <span class="stat-val" id="stat-pending-count">0</span>
+        </div>
+        <div class="stat-pill" title="Rules actively applied to crawlers">
+          <span>🧠 Learned Rules:</span>
+          <span class="stat-val" id="stat-rules-count">0</span>
+        </div>
+        <div class="stat-pill" title="Plain-English instructions queued for AI Assistant">
+          <span>🤖 AI Instructions:</span>
+          <span class="stat-val" id="stat-instructions-count">0</span>
+        </div>
+        <div class="stat-pill" title="Verified active catalog items">
+          <span>✅ Master Events:</span>
+          <span class="stat-val" id="stat-master-count">0</span>
+        </div>
+      </div>
+
+      <div class="curator-nav-actions">
+        <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public catalog">
+          <span>🌲 Public Catalog ↗</span>
+        </a>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-curator-logout" title="Lock Curator Studio">
+          <span>🔒 Lock Studio</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="curator-container" style="flex: 1;">
+    
+    <!-- Controls Section -->
+    <section class="curator-controls-section">
+      <div class="curator-filters-row">
+        <!-- Filter Pills -->
+        <div class="curator-pills-group" id="filter-pills-group">
+          <button type="button" class="curator-filter-pill active" data-filter="all">All Quarantined (<span id="pill-count-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="unhandled" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="handled" style="border-color: rgba(168, 85, 247, 0.4); color: #c084fc;">🤖 AI Queued (<span id="pill-count-handled">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="drift" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">⚠️ Page Drift (<span id="pill-count-drift">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="overbudget">Over-Budget $50+ (<span id="pill-count-overbudget">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Cart (<span id="pill-count-unverified">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="brokenlink">Missing / 404 Link (<span id="pill-count-brokenlink">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span id="pill-count-course">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="autobudget" style="border-color: rgba(239, 68, 68, 0.35); color: #fca5a5;">🛡️ Auto-Denied &gt; $50 (<span id="pill-count-autobudget">0</span>)</button>
+        </div>
+
+        <!-- Search & Sort Row -->
+        <div class="curator-search-sort-row">
+          <div class="curator-search-box">
+            <span class="curator-search-icon">🔍</span>
+            <input type="text" id="curator-search-input" class="curator-search-input" placeholder="Search event title, venue, provider...">
+          </div>
+
+          <select id="curator-platform-select" class="curator-select">
+            <option value="all">All Ticketing Platforms</option>
+            <option value="Eventbrite">Eventbrite</option>
+            <option value="TicketWeb">TicketWeb</option>
+            <option value="Ticketmaster">Ticketmaster</option>
+            <option value="AdmitOne">AdmitOne</option>
+            <option value="Showpass">Showpass</option>
+            <option value="VTix">VTix</option>
+            <option value="Turntable Tickets">Turntable Tickets</option>
+          </select>
+
+          <select id="curator-sort-select" class="curator-select">
+            <option value="date-desc">Flagged: Newest First</option>
+            <option value="date-asc">Flagged: Oldest First</option>
+            <option value="price-asc">Attempted Price: Low to High</option>
+            <option value="price-desc">Attempted Price: High to Low</option>
+            <option value="venue-asc">Venue: A to Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Status Summary -->
+      <div class="curator-status-bar">
+        <div id="curator-results-text">Showing <strong>0</strong> quarantined items</div>
+        <div style="font-size: 0.8rem; opacity: 0.8;">💡 Corrections promoted here are instantly synchronized to <code>events.json</code> &amp; <code>js/data.js</code></div>
+      </div>
+    </section>
+
+    <!-- Quarantined Events Grid / List -->
+    <section class="curator-grid" id="curator-cards-list">
+      <!-- Dynamically rendered cards -->
+    </section>
+  </main>
+
+  <!-- Login Gate Modal -->
+  <div class="curator-modal-overlay" id="login-modal-overlay">
+    <div class="curator-modal-card">
+      <div class="curator-modal-header">
+        <div class="curator-modal-icon">🔒</div>
+        <h2 class="curator-modal-title">Van50 Master Control</h2>
+        <p class="curator-modal-desc">Enter your master passphrase to unlock the Curator Studio and data triage engine.</p>
+      </div>
+
+      <div class="curator-error-banner" id="login-error-banner"></div>
+
+      <form id="curator-login-form">
+        <input 
+          type="password" 
+          id="curator-password-field" 
+          class="curator-password-input" 
+          placeholder="Enter master passphrase..." 
+          autocomplete="current-password"
+          required
+        >
+        <button type="submit" class="btn-curator btn-curator-primary" style="width: 100%; justify-content: center; padding: 12px;">
+          🔓 Unlock Curator Studio
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Instruct AI Assistant Modal (Zero Coding, Plain English & Screenshots) -->
+  <div class="curator-modal-overlay" id="ai-instruction-modal">
+    <div class="curator-modal-card" style="max-width: 600px;">
+      <button type="button" class="curator-modal-close-btn" id="btn-close-ai-modal" aria-label="Close modal">✕</button>
+
+      <div class="curator-modal-header" style="margin-bottom: 16px; padding-right: 28px;">
+        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">🤖</div>
+        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Instruct AI Assistant (Zero Coding)</h2>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Describe what's wrong in plain English and attach or paste a screenshot. Antigravity will update the global crawlers to handle this venue permanently.</p>
+      </div>
+
+      <form id="ai-instruction-form">
+        <input type="hidden" id="ai-inst-event-id">
+        <input type="hidden" id="ai-inst-venue">
+        <input type="hidden" id="ai-inst-title">
+        <input type="hidden" id="ai-inst-url">
+
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px;">
+          <!-- Readonly Event Context Banner -->
+          <div id="ai-inst-event-summary" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; line-height: 1.35;">
+            <div style="font-weight: 600; color: #f8fafc;" id="ai-inst-summary-title">Event Title</div>
+            <div style="color: #94a3b8; margin-top: 2px;" id="ai-inst-summary-venue">Venue • Platform</div>
+            <a href="#" target="_blank" id="ai-inst-summary-link" style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source Page ↗</a>
+          </div>
+
+          <!-- Plain English Instructions -->
+          <div>
+            <label class="curator-label" for="ai-instruction-text" style="font-size: 0.8rem;">Plain English Instructions for AI <span style="color: #f43f5e;">*</span></label>
+            <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 75px; margin-top: 4px; font-family: inherit; font-size: 0.88rem; line-height: 1.4;" placeholder="e.g.: 'The scraper picked up the $65 VIP tier instead of the $25 General Admission ticket shown at the bottom of the page. Please target the GA price for this venue.'" required></textarea>
+          </div>
+
+          <!-- Screenshot Drop / Paste Zone -->
+          <div>
+            <label class="curator-label" style="font-size: 0.8rem;">Screenshot / Proof (Optional)</label>
+            <div id="ai-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Click to browse or paste screenshot" style="padding: 10px;">
+              <div id="ai-dropzone-prompt" style="text-align: center; padding: 8px; cursor: pointer;">
+                <div style="font-size: 1.4rem; margin-bottom: 2px;">📋 / 🖼️</div>
+                <div style="font-weight: 500; font-size: 0.82rem; color: #e2e8f0;">Click to browse, or paste image with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl + V</kbd></div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Supports PNG, JPG, WebP from clipboard or disk</div>
+              </div>
+              <input type="file" id="ai-screenshot-file-input" accept="image/*" style="display: none;">
+              <!-- Preview Thumbnail -->
+              <div id="ai-screenshot-preview-container" style="display: none; position: relative; padding: 6px; text-align: center;">
+                <img id="ai-screenshot-preview-img" src="" alt="Screenshot preview" style="max-height: 120px; max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2);">
+                <button type="button" id="btn-remove-screenshot" style="position: absolute; top: 8px; right: 8px; background: rgba(239, 68, 68, 0.85); color: white; border: none; border-radius: 4px; padding: 2px 7px; font-size: 0.72rem; cursor: pointer;">✕ Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Approval Overrides (for "Queue & Approve") -->
+          <div style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
+            <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Quick Catalog Approval (Optional)</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label class="curator-label" style="font-size: 0.75rem;">Verified Price (CAD, max $50)</label>
+                <input type="number" step="0.01" min="0" max="50" id="ai-approve-price" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="25.00">
+              </div>
+              <div>
+                <label class="curator-label" style="font-size: 0.75rem;">Category</label>
+                <select id="ai-approve-category" class="curator-select" style="width: 100%; margin-top: 4px;">
+                  <option value="shows">Comedy & Shows</option>
+                  <option value="music">Live Music</option>
+                  <option value="crafts">Crafts & Studios</option>
+                  <option value="cinema">Cinema</option>
+                  <option value="arts">Museums & Arts</option>
+                  <option value="activities">Games & Activities</option>
+                  <option value="outdoors">Walks & Outdoors</option>
+                  <option value="trivia">Drinks & Trivia</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top: 8px;">
+              <label class="curator-label" style="font-size: 0.75rem;">Audit Note / Tier Details</label>
+              <input type="text" id="ai-approve-note" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="e.g. Approved GA door tier per official event posting">
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
+          <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-ai-inst">Cancel</button>
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Queue instruction for AI and leave in quarantine">
+            🤖 Queue for AI
+          </button>
+          <button type="button" class="btn-curator btn-curator-primary" id="btn-submit-ai-inst-and-approve" title="Queue for AI and immediately approve event to catalog">
+            🚀 Queue &amp; Approve Event
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Feedback -->
+  <div class="curator-toast" id="curator-toast"></div>
+
+  <!-- Scripts -->
+  <script src="js/curator.js?v=1.0.0"></script>
+</body>
+</html>
