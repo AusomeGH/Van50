@@ -1,9 +1,44 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-13T15:35:29-07:00",
-    "pendingCount": 0,
+    "updatedAt": "2026-09-14T08:27:47-07:00",
+    "pendingCount": 2,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": []
+  "quarantinedEvents": [
+    {
+      "id": "ludica-boardgames",
+      "title": "Pizzeria Ludica: 1,200+ Board Game Night",
+      "venue": "Pizzeria Ludica",
+      "address": "189 Keefer Pl, Vancouver",
+      "neighborhood": "Gastown / Chinatown",
+      "attemptedPrice": 8.0,
+      "attemptedPriceLabel": "$8.00 door",
+      "provider": "Independent Box Office",
+      "semanticProvider": "Walk-in / Table Reservation",
+      "websiteUrl": "https://www.ludica.ca/games/",
+      "category": "activities",
+      "flaggedAt": "2026-09-14T08:26:28-07:00",
+      "flagReason": "Could not fetch host page: https://www.ludica.ca/games/",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "iq2000-pub-trivia-vancouver",
+      "title": "IQ 2000 Vancouver Pub Trivia Night",
+      "venue": "Colony Main Street",
+      "address": "2904 Main St, Vancouver",
+      "neighborhood": "Mount Pleasant",
+      "attemptedPrice": 0.0,
+      "attemptedPriceLabel": "$0.00 door",
+      "provider": "Box Office / Direct",
+      "semanticProvider": "Walk-in / Table Reservation",
+      "websiteUrl": "https://iq2000trivia.com",
+      "category": "trivia",
+      "flaggedAt": "2026-09-14T08:26:44-07:00",
+      "flagReason": "Could not fetch host page: https://iq2000trivia.com",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    }
+  ]
 }

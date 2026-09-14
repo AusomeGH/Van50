@@ -1525,6 +1525,28 @@ function renderEventCards(events) {
     </div>
   ` : '';
 
+  // When viewing events for a specific venue (via "See events here"), do away with Today/Tomorrow/Next Week labels
+  if (state.selectedVenue) {
+    if (events.length === 0) {
+      grid.innerHTML = `
+        ${venueBannerHtml}
+        <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
+          <h3 style="color: #fff; margin-bottom: 8px;">No Current Events Under $50 at ${state.selectedVenue}</h3>
+          <button class="btn btn-roulette" onclick="clearSelectedVenue()">Clear Venue Filter</button>
+        </div>
+      `;
+      return;
+    }
+    const cardsHtml = events.map(ev => renderSingleEventCardHtml(ev)).join('');
+    grid.innerHTML = `
+      ${venueBannerHtml}
+      <div class="venue-events-unified-grid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; margin-top: 14px;">
+        ${cardsHtml}
+      </div>
+    `;
+    return;
+  }
+
   if (events.length === 0) {
     grid.innerHTML = `
       ${venueBannerHtml}

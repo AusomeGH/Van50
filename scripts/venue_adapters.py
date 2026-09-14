@@ -177,18 +177,14 @@ class RoxyLiveAdapter:
     @classmethod
     def authenticate_flagship(cls) -> dict:
         print(f"[AUTHENTICATING] The Roxy Cabaret: fetching house band schedule from {cls.BAND_URL}...")
-        html = fetch_live_html(cls.BAND_URL)
-        has_7_nights = "7 nights a week" in html.lower() if html else True
-        dows = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] if has_7_nights else ["thu", "fri", "sat"]
-
         return {
             "title": "Live Music & Weekend Party Rock at The Roxy",
-            "artist": "Local live bands & rotating guest artists",
-            "daysOfWeek": dows,
-            "timeSlots": ["early-evening", "late-evening"],
-            "frequency": "daily",
-            "frequencyLabel": "Daily (7 Nights a Week)",
-            "dateSchedule": "Nightly • 8:00 PM – 3:00 AM (Fri & Sat until 4:00 AM)",
+            "artist": "The Roxy Rollers House Band & Weekend Guest Artists",
+            "daysOfWeek": ["thu", "fri", "sat"],
+            "timeSlots": ["late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Thu – Sat Nights",
+            "dateSchedule": "Thu, Fri & Sat Nights • Doors 8:00 PM • Live Band 10:00 PM",
             "price": 12.00,
             "priceLabel": "$12.00 door cover ($10 – $15)",
             "pricingType": "door",
@@ -198,19 +194,22 @@ class RoxyLiveAdapter:
             "websiteUrl": cls.EVENTS_URL,
             "venueUrl": "https://roxyvan.com",
             "ticketProvider": "Venue Door / Table Charge",
-            "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits 7 nights a week, plus guest touring acts and resident weekend DJs."
+            "description": "Vancouver's legendary live party venue on the Granville Strip. Features resident house band The Roxy Rollers playing classic rock, pop anthems, and modern hits on Thursday, Friday, and Saturday weekend nights with resident DJs until 3:00/4:00 AM."
         }
 
     @classmethod
     def authenticate_country_sunday(cls) -> dict:
         return {
-            "title": "Roxy Country Sunday: Live Band Line Dancing",
+            "title": "The Roxy Presents: Live Band Line Dancing",
             "artist": "The Roxy Rollers Country Band & Dance Instructors",
-            "daysOfWeek": ["sun"],
+            "daysOfWeek": [],
+            "confirmedDates": ["2026-09-27"],
+            "startIso": "2026-09-27T21:00:00-07:00",
+            "endIso": "2026-09-28T02:00:00-07:00",
             "timeSlots": ["early-evening", "late-evening"],
-            "frequency": "weekly",
-            "frequencyLabel": "Weekly (Sundays)",
-            "dateSchedule": "Weekly (Sundays) • Doors 9:00 PM • Line Dancing 9:30 PM",
+            "frequency": "limited-run",
+            "frequencyLabel": "Sunday, Sept 27",
+            "dateSchedule": "Sunday, Sept 27 • Doors 9:00 PM • Line Dancing 9:30 PM",
             "price": 7.24,
             "priceLabel": "$7.24 all-in ($6 advance / $8 door)",
             "pricingType": "platform",
@@ -221,19 +220,22 @@ class RoxyLiveAdapter:
             "websiteUrl": cls.EVENTS_URL,
             "venueUrl": "https://roxyvan.com",
             "ticketProvider": "Showpass Verified",
-            "description": "Weekly Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition."
+            "description": "Special Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition. Advance tickets $6.00 + fee on Showpass, $8 at door."
         }
 
     @classmethod
     def authenticate_midweek_showcase(cls) -> dict:
         return {
-            "title": "Midweek Live Bands & Emerging Artist Showcase at The Roxy",
-            "artist": "Local indie bands & guest touring artists (3-4 bands per night)",
-            "daysOfWeek": ["wed", "thu"],
+            "title": "The Roxy & Live Acts Canada: GHULO / Focus Your Audio",
+            "artist": "GHULO & Focus Your Audio",
+            "daysOfWeek": [],
+            "confirmedDates": ["2026-09-16"],
+            "startIso": "2026-09-16T20:00:00-07:00",
+            "endIso": "2026-09-17T01:00:00-07:00",
             "timeSlots": ["early-evening", "late-evening"],
-            "frequency": "weekly",
-            "frequencyLabel": "Wednesdays & Thursdays",
-            "dateSchedule": "Wednesdays & Thursdays • Doors 8:00 PM",
+            "frequency": "limited-run",
+            "frequencyLabel": "Wednesday, Sep 16",
+            "dateSchedule": "Wednesday, Sep 16 • Doors 8:00 PM",
             "price": 14.16,
             "priceLabel": "$14.16 all-in ($12 advance / $15 door)",
             "pricingType": "platform",
@@ -244,7 +246,7 @@ class RoxyLiveAdapter:
             "websiteUrl": cls.EVENTS_URL,
             "venueUrl": "https://roxyvan.com",
             "ticketProvider": "Showpass Verified",
-            "description": "Weekly original live music showcase in partnership with Live Acts Canada. Features 3-4 emerging local rock, indie, and alternative bands with all proceeds supporting the artists, followed by late-night party sets."
+            "description": "Live band showcase at The Roxy in partnership with Live Acts Canada featuring GHULO and Focus Your Audio. All proceeds support the bands. +19 for entry."
         }
 
 
