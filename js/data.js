@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-14T08:59:22-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-14T12:46:13-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1405,7 +1405,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "lmg-happy-hour-comedy",
-    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "title": "Little Mountain Gallery: Happy Hour Comedy Showcase",
     "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
@@ -1493,7 +1493,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "lmg-seasoned-improv",
-    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "title": "Little Mountain Gallery: Seasoned Improv Night",
     "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
@@ -1573,7 +1573,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "lmg-crowd-source",
-    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "title": "Little Mountain Gallery: Crowd Source Live Comedy",
     "artist": "Local professional stand-up & improv ensembles",
     "performers": null,
     "venue": "Little Mountain Gallery",
@@ -1858,89 +1858,6 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "$29.36 live checkout rate verified via Eventbrite schema payload (CAD)",
       "verifiedAt": "2026-09-14T08:26:18-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
-    }
-  },
-  {
-    "id": "eb-alistair-ogden-rio",
-    "title": "The Rio Theatre: Art House Cinema & Midnight Cult Classics",
-    "artist": "Independent cinema, cult classics & live comedy",
-    "performers": null,
-    "venue": "The Rio Theatre",
-    "venueAliases": [],
-    "address": "1660 E Broadway, Vancouver",
-    "neighborhood": "Commercial Drive",
-    "price": 16.0,
-    "priceLabel": "$16.00 all-in (Student/Senior $13)",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Regular Adult Admission",
-        "basePrice": 16.0,
-        "price": 16.0,
-        "label": "$16.00 all-in"
-      },
-      {
-        "name": "Concession (Student / Senior / Member)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "daily",
-    "frequencyLabel": "Daily (7 Days a Week)",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "stand-up",
-      "cbc-comedy",
-      "headliner",
-      "rio-theatre"
-    ],
-    "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
-    "startIso": "2026-12-04T19:30:00-07:00",
-    "endIso": "2026-12-04T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://riotheatre.ca/calendar/",
-    "venueUrl": "https://riotheatre.ca",
-    "ticketProvider": "Eventbrite Verified",
-    "rawProvider": "Eventbrite",
-    "coordinates": [
-      49.2627,
-      -123.0699
-    ],
-    "transitInfo": "Steps from Commercial-Broadway SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 16.0,
-      "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-14T08:26:18-07:00",
-      "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
   {
@@ -7143,7 +7060,7 @@ const VANCOUVER_EVENTS = [
     "ticketProvider": "Bentall Centre Dunsmuir Plaza Verified"
   },
   {
-    "id": "test-qa-event-1789401562",
+    "id": "test-qa-event-1789415173",
     "title": "Dual Action Test Event",
     "venue": "Rickshaw Theatre",
     "price": 25.0,
@@ -7155,14 +7072,14 @@ const VANCOUVER_EVENTS = [
       "method": "manual_curator_review",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-14T15:59:22.701513+00:00",
+      "verifiedAt": "2026-09-14T19:46:13.855044+00:00",
       "details": "Approved by curator with AI instruction. Note: Curator verified door price",
       "curatorSnapshot": {
         "approvedPrice": 25.0,
         "approvedPriceLabel": "$25.00 CAD",
         "approvedCategory": "shows",
         "curatorNote": "Curator verified door price",
-        "approvedAt": "2026-09-14T15:59:22.701534+00:00",
+        "approvedAt": "2026-09-14T19:46:13.855200+00:00",
         "sourceUrl": "https://rickshawtheatre.com/test-event"
       }
     },

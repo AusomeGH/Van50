@@ -981,7 +981,6 @@ class VenueAdapterRegistry:
         "the-rio-theatre": RioTheatreLiveAdapter.authenticate_cinema,
         "rio-late-night-movie": RioTheatreLiveAdapter.authenticate_cinema,
         "rio-late-night-cinema": RioTheatreLiveAdapter.authenticate_cinema,
-        "eb-alistair-ogden-rio": RioTheatreLiveAdapter.authenticate_cinema,
         # Frankie's Jazz Club
         "frankies-jazz-club": FrankiesJazzLiveAdapter.authenticate_flagship,
         "frankies-evening-jazz": FrankiesJazzLiveAdapter.authenticate_flagship,

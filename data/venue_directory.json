@@ -345,8 +345,7 @@
       "ticketingProvider": "Eventive",
       "adapter": "RioTheatreLiveAdapter",
       "managedEvents": [
-        "rio-late-night-cinema",
-        "eb-alistair-ogden-rio"
+        "rio-late-night-cinema"
       ]
     },
     "The Fox Cabaret": {
@@ -359,7 +358,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
       "category": "cinema",
       "venueUrl": "https://www.foxcabaret.com",
       "calendarUrl": "https://www.foxcabaret.com/",
@@ -1126,9 +1125,9 @@
         "roxy-live-acts-showcase"
       ]
     },
-    "Caf\u00e9 au Clay Studios": {
+    "Café au Clay Studios": {
       "venueId": "cafe-au-clay",
-      "name": "Caf\u00e9 au Clay Studios",
+      "name": "Café au Clay Studios",
       "aliases": [
         "Cafe au Clay",
         "Cafe au Clay Pottery",
