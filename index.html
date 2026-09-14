@@ -26,8 +26,8 @@
   <meta http-equiv="Expires" content="0">
 
   <!-- Van50 Stylesheets -->
-  <link rel="stylesheet" href="css/style.css?v=5.0.0">
-  <link rel="stylesheet" href="css/components.css?v=5.0.0">
+  <link rel="stylesheet" href="css/style.css?v=5.1.0">
+  <link rel="stylesheet" href="css/components.css?v=5.1.0">
 </head>
 <body>
 
@@ -41,12 +41,8 @@
       </a>
 
       <div class="nav-actions">
-        <button class="btn btn-roulette" id="btn-open-roulette" aria-label="Surprise Outing Generator">
-          <span>🎲 Surprise Me</span>
-        </button>
-
-        <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Itinerary">
-          <span>📌 Itinerary</span>
+        <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
+          <span>❤️ Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
       </div>
@@ -329,13 +325,13 @@
     </div>
   </div>
 
-  <!-- Outing Itinerary Drawer -->
-  <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Outing Itinerary Drawer">
+  <!-- Saved Events Drawer -->
+  <aside class="itinerary-drawer" id="itinerary-drawer" aria-label="Saved Events Drawer">
     <div class="itinerary-header">
       <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff;">
-        📌 My Saved Outings
+        ❤️ Saved Events
       </h3>
-      <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;" aria-label="Close Itinerary">✕</button>
+      <button class="modal-close-btn" id="close-itinerary-btn" style="position: static; font-size: 1.2rem;" aria-label="Close Saved Events">✕</button>
     </div>
 
     <div class="itinerary-total-card">
@@ -356,7 +352,7 @@
 
     <div style="padding-top: 14px; border-top: 1px solid var(--border-subtle); margin-top: auto;">
       <button class="btn-copy-plan" id="copy-plan-btn" style="width: 100%; border: none;">
-        📋 Copy Itinerary (with Direct Event Links)
+        📋 Copy Saved Events (with Direct Event Links)
       </button>
     </div>
   </aside>
@@ -381,9 +377,9 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="js/data.js?v=5.0.0"></script>
-  <script src="js/map.js?v=5.0.0"></script>
-  <script src="js/roulette.js?v=5.0.0"></script>
-  <script src="js/app.js?v=5.0.0"></script>
+  <script src="js/data.js?v=5.1.0"></script>
+  <script src="js/map.js?v=5.1.0"></script>
+  <script src="js/roulette.js?v=5.1.0"></script>
+  <script src="js/app.js?v=5.1.0"></script>
 </body>
 </html>

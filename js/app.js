@@ -14,6 +14,7 @@ const state = {
   selectedVenue: null,
   searchQuery: '',
   savedEvents: new Set(),
+  collapsedTimeGroups: new Set(),
   expiredCount: 0
 };
 
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch('data/events.json?v=5.0.0');
+    const res = await fetch('data/events.json?v=5.1.0');
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
@@ -59,7 +60,7 @@ async function loadCentralReference() {
 
   // Also load quarantined manual review queue
   try {
-    const rqRes = await fetch('data/manual_review_queue.json?v=5.0.0');
+    const rqRes = await fetch('data/manual_review_queue.json?v=5.1.0');
     if (rqRes.ok) {
       const rqData = await rqRes.json();
       if (rqData.quarantinedEvents) {
@@ -1481,14 +1482,33 @@ function categorizeDateBucket(d, today, tomorrow, thisWeekSunday, nextWeekMonday
   }
 }
 
+window.toggleTimeGroup = function(groupKey) {
+  if (!state.collapsedTimeGroups) {
+    state.collapsedTimeGroups = new Set();
+  }
+  if (state.collapsedTimeGroups.has(groupKey)) {
+    state.collapsedTimeGroups.delete(groupKey);
+  } else {
+    state.collapsedTimeGroups.add(groupKey);
+  }
+  applyFiltersAndRender();
+};
+
 window.smoothScrollToTimeGroup = function(groupId, event) {
   if (event) event.preventDefault();
-  const el = document.getElementById(groupId);
-  if (el) {
-    const yOffset = -70;
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+  const key = groupId.replace(/^group-/, '');
+  if (state.collapsedTimeGroups && state.collapsedTimeGroups.has(key)) {
+    state.collapsedTimeGroups.delete(key);
+    applyFiltersAndRender();
   }
+  setTimeout(() => {
+    const el = document.getElementById(groupId);
+    if (el) {
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, 20);
 };
 
 function renderEventCards(events) {
@@ -1626,20 +1646,34 @@ function renderEventCards(events) {
 
   // Render sections
   const sectionsHtml = activeBuckets.map(b => {
+    const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
     const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev)).join('');
     return `
-      <section class="events-time-group" id="group-${b.key}">
-        <div class="time-group-header">
+      <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}">
+        <div class="time-group-header" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${b.key}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${b.title}">
           <div class="time-group-title-wrap">
             <span class="time-group-icon">${b.icon}</span>
             <h2 class="time-group-title">${b.title}</h2>
             <span class="time-group-date-range">${b.range}</span>
           </div>
-          <span class="time-group-count-badge">${b.list.length} event${b.list.length === 1 ? '' : 's'}</span>
+          <div class="time-group-actions">
+            <span class="time-group-count-badge">${b.list.length} event${b.list.length === 1 ? '' : 's'}</span>
+            <button class="btn-group-collapse-toggle" type="button" aria-expanded="${!isCollapsed}" aria-label="${isCollapsed ? 'Expand section' : 'Collapse section'}" onclick="event.stopPropagation(); toggleTimeGroup('${b.key}')">
+              <span class="toggle-icon">${isCollapsed ? '▶' : '▼'}</span>
+              <span class="toggle-label">${isCollapsed ? 'Expand' : 'Collapse'}</span>
+            </button>
+          </div>
         </div>
-        <div class="time-group-cards-grid">
-          ${cardsHtml}
-        </div>
+        ${isCollapsed ? `
+          <div class="time-group-collapsed-banner" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" title="Click to expand ${b.title}">
+            <span class="collapsed-banner-info">${b.icon} <strong>${b.title}</strong> is collapsed (${b.list.length} event${b.list.length === 1 ? '' : 's'})</span>
+            <span class="collapsed-banner-action">Click to expand outings ▾</span>
+          </div>
+        ` : `
+          <div class="time-group-cards-grid" id="cards-grid-${b.key}">
+            ${cardsHtml}
+          </div>
+        `}
       </section>
     `;
   }).join('');
@@ -1978,7 +2012,7 @@ function renderItinerary() {
   if (savedList.length === 0) {
     list.innerHTML = `
       <div style="text-align: center; padding: 40px 10px; color: var(--text-muted); font-size: 0.86rem;">
-        No saved outings yet.<br>Click 🤍 on any card to bookmark an outing.
+        No saved events yet.<br>Click 🤍 on any card to save an event.
       </div>
     `;
     totalEl.textContent = '$0.00 CAD';
@@ -1996,7 +2030,7 @@ function renderItinerary() {
           <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">📍 ${ev.venue}</div>
           <div class="itinerary-item-price">${formatStandardPrice(ev)}</div>
         </div>
-        <button class="btn-remove-item" onclick="toggleSaveEvent('${ev.id}')" title="Remove from Itinerary">✕</button>
+        <button class="btn-remove-item" onclick="toggleSaveEvent('${ev.id}')" title="Remove from Saved Events">✕</button>
       </div>
     `;
   }).join('');
@@ -2012,12 +2046,12 @@ function renderItinerary() {
 function copyItineraryToClipboard() {
   const savedList = ALL_EVENTS.filter(ev => state.savedEvents.has(ev.id));
   if (savedList.length === 0) {
-    alert('Your itinerary is currently empty. Save some outings first!');
+    alert('Your saved events list is currently empty. Bookmark some outings first using the heart icon on any card!');
     return;
   }
 
   let totalCost = 0;
-  let text = `🌲 Van50 — Vancouver Outings Itinerary (Under $50 CAD)\n\n`;
+  let text = `🌲 Van50 — My Saved Vancouver Outings (Under $50 CAD)\n\n`;
   savedList.forEach((ev, i) => {
     totalCost += ev.price;
     text += `${i + 1}. ${ev.title}\n`;
@@ -2034,7 +2068,7 @@ function copyItineraryToClipboard() {
     const btn = document.getElementById('copy-plan-btn');
     if (btn) {
       const original = btn.textContent;
-      btn.textContent = '✅ Copied to Clipboard!';
+      btn.textContent = '✅ Copied Saved Events to Clipboard!';
       setTimeout(() => { btn.textContent = original; }, 2200);
     }
   }).catch(() => {

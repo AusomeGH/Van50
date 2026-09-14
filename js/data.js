@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-13T16:46:01-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-13T18:20:02-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -7029,6 +7029,32 @@ const VANCOUVER_EVENTS = [
     "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 505 Burrard St, Vancouver, BC.",
     "scrapedDescription": "Public Disco and the Vancouver Cherry Blossom Festival return to Downtown with a one-day spring block party.",
     "ticketProvider": "Bentall Centre Dunsmuir Plaza Verified"
+  },
+  {
+    "id": "test-qa-event-1789348801",
+    "title": "Dual Action Test Event",
+    "venue": "Rickshaw Theatre",
+    "price": 25.0,
+    "category": "shows",
+    "websiteUrl": "https://rickshawtheatre.com/test-event",
+    "curatorNote": "Curator verified door price",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "manual_curator_review",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
+      "verifiedAt": "2026-09-14T01:20:01.899396+00:00",
+      "details": "Approved by curator with AI instruction. Note: Curator verified door price",
+      "curatorSnapshot": {
+        "approvedPrice": 25.0,
+        "approvedPriceLabel": "$25.00 CAD",
+        "approvedCategory": "shows",
+        "curatorNote": "Curator verified door price",
+        "approvedAt": "2026-09-14T01:20:01.899427+00:00",
+        "sourceUrl": "https://rickshawtheatre.com/test-event"
+      }
+    },
+    "isSoldOut": false
   }
 ];
 const MANUAL_REVIEW_QUEUE = [];
