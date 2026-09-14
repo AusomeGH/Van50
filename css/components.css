@@ -623,17 +623,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
-.card-top-meta {
+.card-top-date-wrap {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
+}
+
+.card-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.card-date-badge.badge-today {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.1));
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #fef3c7;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+}
+
+.card-date-badge.badge-tomorrow {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.22), rgba(251, 113, 133, 0.1));
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #ffe4e6;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.15);
+}
+
+.card-top-right-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.venue-neighborhood-chip {
+  color: var(--accent-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-left: 2px;
 }
 
 .card-meta-pill {

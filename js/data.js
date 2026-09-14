@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-14T12:46:13-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-14T13:03:03-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1321,7 +1321,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Queer cabaret that will break your heart and pucker your hole",
+    "description": "A riotous camp indie cinema screening and live variety cabaret at Mount Pleasant's Fox Cabaret. Blends cult satirical films with irreverent live comedy and burlesque performances in a vintage two-level theatre.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "schema_jsonld",
@@ -1929,7 +1929,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Check out The Improv Centre’s hilarious comedy shows! Our bar and lounge opens 1 hour before first showtime, unless otherwise specified. Shows run 90 minutes long and include a 15-minute intermission, unless otherwise specified.As we are a licensed facility, people under the age of 19 are...",
+    "description": "High-energy unscripted comedy right on the Granville Island waterfront. The Improv Centre's seasoned ensemble transforms quick-witted audience suggestions into lightning-fast sketches, parodies, and spontaneous musical numbers in a licensed theatre lounge.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "audienceview_scraped",
@@ -2722,7 +2722,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Guilt & Company Home Page Calendar of Events",
+    "description": "Descend into Gastown's subterranean brick-and-candlelight speakeasy for nightly live jazz, soul, and Latin grooves across two intimate sets. Savor craft cocktails with zero mandatory door cover ($0 door; pay-what-you-can artist donation added to your table bill).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
@@ -4100,7 +4100,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
+    "description": "An all-levels community craft and printmaking night at Slice of Life on Commercial Drive. Bring your own works-in-progress or carve linocut stamps, design collages, and bind pocket zines alongside East Van makers with studio tools provided.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
@@ -4178,7 +4178,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
+    "description": "An intimate, non-judgmental life drawing session in East Van's creative hub on Commercial Drive. Features rotating live models doing expressive short gesture poses and sustained long studies in a supportive studio environment—all skill levels and mediums welcome.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
@@ -4327,7 +4327,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Shop Vancouver locally made craft and art affordable prices for quality jewellery accessories home decor prints cards postcards",
+    "description": "Unwind with thousands of colorful LEGO bricks at this relaxed adult build night on Commercial Drive. Tackle optional creative challenges or freeform build while sipping drinks and vibing to eclectic vinyl soundtracks.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
@@ -4411,7 +4411,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "19+ (Valid Government Photo ID Required)",
     "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
     "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
-    "description": "Dance Music Events in Vancouver, Canada",
+    "description": "Public Disco transforms The Birdhouse into an inclusive dancefloor haven for this community warehouse fundraiser. Features immersive projection mapping, vibrant local vinyl DJs, and queer-positive euphoria celebrating underground dance culture.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "scraped_page_policy",
@@ -4561,7 +4561,7 @@ const VANCOUVER_EVENTS = [
       -123.1207
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Commodore Ballroom. Featuring live performances by Ninajirachi.",
+    "description": "Australian hyperpop and electronic producer Ninajirachi brings kaleidoscopic synths, club-heavy rhythms, and euphoric dancefloor energy to Vancouver's historic Commodore Ballroom.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -4637,7 +4637,7 @@ const VANCOUVER_EVENTS = [
       -123.1294
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Village Studios. Featuring live performances by Denham Audio, Rohaan.",
+    "description": "A bass-heavy underground double-header at Village Studios featuring Rohaan's futuristic sound design alongside Denham Audio's hardcore jungle and breaks.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -4713,7 +4713,7 @@ const VANCOUVER_EVENTS = [
       -123.1207
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by nextdimensional, microtear.",
+    "description": "An immersive techno and hypnotic sound journey at Platform9, featuring cutting-edge modular synthesizers, live audiovisual projections, and deep subterranean grooves.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -4791,7 +4791,7 @@ const VANCOUVER_EVENTS = [
       -123.1012
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Skylight Warehouse. Featuring live performances by widdows95, Carbajal, educación física.",
+    "description": "An experimental warehouse gathering at Skylight Warehouse spotlighting ambient textures, heavy low-end club music, and queer underground club euphoria.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -4869,7 +4869,7 @@ const VANCOUVER_EVENTS = [
       -123.1055
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at KW Studios. Featuring live performances by Ivy Hollivana, BINKY, ANTI-NOTHING.",
+    "description": "An avant-garde club night at KW Studios in Gastown featuring Ivy Hollivana, BINKY, and AN spinning hyper-pop, leftfield deconstructed club, and cybernetic live electronics.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -4943,7 +4943,7 @@ const VANCOUVER_EVENTS = [
       -123.0998
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Fortune Sound Club. Featuring live performances by MoBlack.",
+    "description": "Afro-house pioneer and label boss MoBlack takes control of Chinatown's world-class Funktion-One sound system at Fortune Sound Club for a deep, rhythmic, spiritual dance marathon.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -5017,7 +5017,7 @@ const VANCOUVER_EVENTS = [
       -123.1207
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Cumberland Masonic Hall. Featuring live performances by Andre Kronert.",
+    "description": "A deep listening techno sanctuary featuring Berlin heavyweights Andre Kronert and Markus Suckut delivering precision analog soundscapes in an intimate historical hall.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
@@ -5075,7 +5075,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Get tickets for Shawn James at Hollywood Theatre in Vancouver. Artist Presale: June 24 @ 10:00 AM PT MRG Presale: June 25 @ 10:00 AM PT On Sale: June 26 @ 10:00 AM...",
+    "description": "Soulful blues-rock troubadour Shawn James brings his booming, raspy vocals and haunting Southern gothic storytelling to the historic Hollywood Theatre on West 4th.",
     "price": 11.0,
     "priceLabel": "$11.00 all-in",
     "tiers": [],
@@ -5139,7 +5139,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Find tickets for WesGhost, Red Leather, Eurotripp showing at the Hollywood Theatre - Vancouver, CA Thursday Sep 17, 7:00PM Tickets starting at $42.45",
+    "description": "Dark alternative indie rocker WesGhost teams up with masked outlaw balladeer Red Leather and Eurotripp for a genre-bending night of gritty hooks, alt-pop energy, and raw rock catharsis.",
     "price": 42.45,
     "priceLabel": "$42.45 all-in ($30.00 + $12.45 fees)",
     "tiers": [
@@ -5211,7 +5211,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Get ready to boogie all night at Hall of Flame’s 80's Disco Night—bring your best moves and retro vibes!",
+    "description": "Dust off your bell-bottoms and platform boots for a neon-drenched retro dancefloor journey featuring classic 80s disco, funk bangers, and dance anthems at the Hollywood Theatre.",
     "price": 22.73,
     "priceLabel": "$22.73 all-in",
     "tiers": [
@@ -5280,7 +5280,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Time to rock on! Concert Tickets in Vancouver.",
+    "description": "Fierce UK brat-punk icon Delilah Bon brings her empowering, high-octane fusion of punk rock energy, razor-sharp rap verses, and feminist anthems to West 4th for an electrifying live headline show.",
     "price": 37.95,
     "priceLabel": "$37.95 all-in ($30.00 + $7.95 fees)",
     "tiers": [
@@ -5349,7 +5349,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Find tickets for Tokyo Tea Room, Kylie V showing at the Hollywood Theatre - Vancouver, CA Thursday Sep 24, 7:00PM Tickets starting at $36.80",
+    "description": "Lush dreamy psychedelic pop outfit Tokyo Tea Room join local indie favorite Kylie V at the Hollywood Theatre for an evening of swirling reverb, sparkling guitars, and melodic indie nostalgia.",
     "price": 36.8,
     "priceLabel": "$36.80 all-in ($25.00 + $11.80 fees)",
     "tiers": [
@@ -5418,7 +5418,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": true,
-    "description": "Find tickets for Aldous Harding, Sam Burton showing at the Hollywood Theatre - Vancouver, CA Friday Sep 25, 6:30PM",
+    "description": "Enigmatic New Zealand songwriter Aldous Harding brings her spellbinding theatrical presence, idiosyncratic folk arrangements, and dry humor to Kitsilano alongside country-folk opener Sam Burton.",
     "price": 0.0,
     "priceLabel": "Sold Out",
     "tiers": [],
@@ -5485,7 +5485,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Day Fever Canada is the ultimate over 30s daytime party experience. Expect throwback club classics and iconic singalong moments.",
+    "description": "The daytime nightclub phenomenon arrives on West 4th! Tailored for the 30+ party crowd, enjoy classic throwback club hits and dancefloor bangers from 3 PM to 8 PM so you can dance hard and sleep well.",
     "price": 25.0,
     "priceLabel": "$25.00 all-in",
     "tiers": [
@@ -5554,7 +5554,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Find tickets for UP Dance Party Co. showing at the Hollywood Theatre - Vancouver, CA Saturday Sep 26, 10:00PM Tickets starting at $14.96",
+    "description": "UP Dance Party Co. takes over the Hollywood Theatre for an inclusive, high-energy pop, hyperpop, and queer dance anthems throwdown under the mirror ball.",
     "price": 20.22,
     "priceLabel": "$20.22 all-in ($14.96 + fees/tax)",
     "tiers": [
@@ -5623,7 +5623,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Get tickets for Shawn James at Hollywood Theatre in Vancouver. Artist Presale: June 24 @ 10:00 AM PT MRG Presale: June 25 @ 10:00 AM PT On Sale: June 26 @ 10:00 AM...",
+    "description": "An intimate duo performance by acclaimed avant-pop visionary Perfume Genius at Kitsilano's Art Deco cinema jewel. Stripping raw, emotional arrangements down to voice, piano, and evocative electronic harmonies for a spellbinding West Coast evening.",
     "price": 11.0,
     "priceLabel": "$11.00 all-in",
     "tiers": [],
@@ -5690,7 +5690,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Eventbrite - Rickshaw Theatre presents Dent May with Yawn - Wednesday, September 16, 2026 at Fox Cabaret, Vancouver, BC. Find event and ticket information.",
+    "description": "Mississippi-born retro-pop crooner Dent May serenades East Van with infectious sunshine harmonies, silky disco basslines, and witty romanticism alongside indie opener Yawn.",
     "price": 28.51,
     "priceLabel": "$28.51 all-in",
     "tiers": [
@@ -5762,7 +5762,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Cousin Harley returns to the Rickshaw once again! Catch him tearing up our stage this Fall with support from Sinéad X Sanders!",
+    "description": "Canada's undisputed king of rockabilly Paul Pigat brings the Cousin Harley powerhouse trio back to the Rickshaw for high-octane twang, blistering guitar solos, and jump-blues swing.",
     "price": 35.69,
     "priceLabel": "$35.69 all-in",
     "tiers": [
@@ -5834,7 +5834,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "New York noise rock trio Unsane bring their 'Occupational Hazard' tour to The Rickshaw with support from CNTS and Disruptions!",
+    "description": "Legendary NYC noise-rock outfit Unsane brings raw distortion, crushing rhythmic assaults, and ferocious angst to the Rickshaw stage on their 'Occupational Hazard' tour with CNTS.",
     "price": 34.92,
     "priceLabel": "$34.92 all-in",
     "tiers": [
@@ -5903,7 +5903,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Time to rock on! Concert Tickets in Vancouver.",
+    "description": "Heavy psychedelic prog-rock masters Elder unleash soaring guitar harmonies, intricate polyrhythmic grooves, and thunderous sonic landscapes at East Van's premier rock hall alongside special guests.",
     "price": 46.0,
     "priceLabel": "$46.00 all-in ($38.00 + $8.00 fees)",
     "tiers": [
@@ -5972,7 +5972,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Time to rock on! Concert Tickets in Vancouver.",
+    "description": "Technical death metal titans Revocation storm the historic Rickshaw stage, delivering blistering fretboard wizardry, relentless blast beats, and razor-sharp thrash precision for Vancouver metalheads.",
     "price": 36.8,
     "priceLabel": "$36.80 all-in ($30.00 + $6.80 fees)",
     "tiers": [
@@ -6041,7 +6041,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Find tickets for Quicksand, Fucked Up showing at the The Pearl - Vancouver, CA Wednesday Sep 23, 7:00PM Tickets starting at $46.11",
+    "description": "Post-hardcore pioneers Quicksand unite with Toronto punk powerhouses Fucked Up for a monumental evening of massive guitar riffs, ferocious vocal anthems, and relentless energy.",
     "price": 46.11,
     "priceLabel": "$46.11 all-in ($34.50 + $11.61 fees)",
     "tiers": [
@@ -6110,7 +6110,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Time to rock on! Concert Tickets in Vancouver.",
+    "description": "Legendary NYHC straight-edge hardcore pioneers Judge ignite the Rickshaw mosh pit with crushing breakdowns, raw New York aggression, and iconic anthems in a rare, high-intensity Vancouver appearance.",
     "price": 48.3,
     "priceLabel": "$48.30 all-in ($40.00 + $8.30 fees)",
     "tiers": [
@@ -6179,7 +6179,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "DOORS 7:00PMAustralia-based indie/alt-rock band Rum Jungle, known for mixing surf rock, indie-pop, and psychedelia — are making their way to Rickshaw Theatre! Catch them with support from Vancouver’s own Stitch!",
+    "description": "Australian surf-rock and psych-pop quartet Rum Jungle bring sun-drenched guitars, chilled melodies, and infectious groove-laden indie anthems to the Rickshaw on their North American tour.",
     "price": 33.86,
     "priceLabel": "$33.86 all-in ($25.00 + fees/tax)",
     "tiers": [
@@ -6247,7 +6247,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "DOORS: 7:00PMAlt-rock band, Failure brings their Rising Skyline tour to the Rickshaw with support from Quannnic!",
+    "description": "Alt-rock icons Failure bring their celebrated space-rock aesthetic, intricate pedalboard textures, and soaring grunge melodies to East Vancouver on the Rising Skyline Tour with Quannnic.",
     "price": 45.94,
     "priceLabel": "$45.94 all-in ($35.00 + fees/tax)",
     "tiers": [
@@ -6315,7 +6315,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "DOORS: 7:00PMFolk musician Ethan Regan comes to the Rickshaw stage this October to perform new music from his upcoming album, ‘Young Regan’ with support from harf.",
+    "description": "Heartfelt young folk singer-songwriter Ethan Regan shares acoustic confessions, rich fingerpicking melodies, and vulnerable indie-folk ballads on the Rickshaw stage.",
     "price": 49.25,
     "priceLabel": "$49.25 all-in",
     "tiers": [],
@@ -6386,7 +6386,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "DOORS: 6:30PMFinnish rock heavyweights The Rasmus play The Rickshaw with support from Saint Agnes and Death Valley Dreams.",
+    "description": "Finnish gothic rock heavyweights The Rasmus bring soaring theatrical choruses, dark melodies, and high-energy radio rock anthems to East Van alongside Saint Agnes.",
     "price": 48.95,
     "priceLabel": "$48.95 all-in ($37.50 + fees/tax)",
     "tiers": [
@@ -6457,7 +6457,7 @@ const VANCOUVER_EVENTS = [
     ],
     "isDaily": false,
     "isSoldOut": false,
-    "description": "Calgary indie rocker Chad VanGaalen plays the Wise Hall this Fall!",
+    "description": "Beloved eccentric Calgary indie rocker and animator Chad VanGaalen brings his otherworldly folk-pop, homemade instruments, and heartfelt storytelling to East Vancouver for a mesmerizing live performance.",
     "price": 38.27,
     "priceLabel": "$38.27 all-in",
     "tiers": [
@@ -7060,7 +7060,7 @@ const VANCOUVER_EVENTS = [
     "ticketProvider": "Bentall Centre Dunsmuir Plaza Verified"
   },
   {
-    "id": "test-qa-event-1789415173",
+    "id": "test-qa-event-1789416182",
     "title": "Dual Action Test Event",
     "venue": "Rickshaw Theatre",
     "price": 25.0,
@@ -7072,14 +7072,14 @@ const VANCOUVER_EVENTS = [
       "method": "manual_curator_review",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-14T19:46:13.855044+00:00",
+      "verifiedAt": "2026-09-14T20:03:02.977215+00:00",
       "details": "Approved by curator with AI instruction. Note: Curator verified door price",
       "curatorSnapshot": {
         "approvedPrice": 25.0,
         "approvedPriceLabel": "$25.00 CAD",
         "approvedCategory": "shows",
         "curatorNote": "Curator verified door price",
-        "approvedAt": "2026-09-14T19:46:13.855200+00:00",
+        "approvedAt": "2026-09-14T20:03:02.977666+00:00",
         "sourceUrl": "https://rickshawtheatre.com/test-event"
       }
     },

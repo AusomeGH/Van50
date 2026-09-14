@@ -304,6 +304,104 @@ function applyFiltersAndRender() {
 // 4. CARD RENDERING & QUICK-EDIT INTERFACE
 // ==============================================================================
 
+function formatCuratorDate(ev) {
+  if (ev.dateSchedule) {
+    return ev.dateSchedule;
+  }
+  if (ev.startIso) {
+    try {
+      const d = new Date(ev.startIso);
+      const dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+      const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      return `${dateStr} • ${timeStr}`;
+    } catch (e) {}
+  }
+  if (ev.frequencyLabel) {
+    return ev.frequencyLabel;
+  }
+  if (ev.daysOfWeek && ev.daysOfWeek.length > 0) {
+    const dows = ev.daysOfWeek.map(d => d.toUpperCase()).join(', ');
+    return `Days: ${dows}`;
+  }
+  return 'Schedule details pending review';
+}
+
+function generateCuratorDiagnostics(ev) {
+  const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
+  const isBudgetExceeded = attemptedPrice > 50.0;
+  const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
+  const hasDrift = isDrift(ev);
+  const reason = ev.quarantineReason || ev.flagReason || ev.archivedReason || 'Live checkout could not be verified automatically';
+
+  const confirmedItems = [];
+  confirmedItems.push(`<span>📍 <strong>Venue:</strong> ${escapeHtml(ev.venue || 'Known Venue')}${ev.neighborhood ? ' (' + escapeHtml(ev.neighborhood) + ')' : ''}</span>`);
+  
+  if (ev.address) {
+    confirmedItems.push(`<span>🗺️ <strong>Address:</strong> ${escapeHtml(ev.address)}</span>`);
+  }
+  
+  if (ev.artist && ev.artist !== ev.title) {
+    confirmedItems.push(`<span>👥 <strong>Lineup / Host:</strong> ${escapeHtml(ev.artist)}</span>`);
+  }
+  
+  const verifiedPrice = (ev.basePrice != null && ev.basePrice > 0) ? `$${Number(ev.basePrice).toFixed(2)} CAD base` : (attemptedPrice > 0 ? `$${attemptedPrice.toFixed(2)} CAD detected` : 'Free / By-Donation');
+  confirmedItems.push(`<span>💰 <strong>Base Price:</strong> ${verifiedPrice} (${escapeHtml(ev.provider || 'Direct')})</span>`);
+  
+  if (ev.categoryLabel || ev.category) {
+    confirmedItems.push(`<span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category)}</span>`);
+  }
+  
+  if (ev.websiteUrl) {
+    confirmedItems.push(`<span>🔗 <strong>Event Link:</strong> <a href="${escapeHtml(ev.websiteUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Open Host Page ↗</a></span>`);
+  }
+
+  const issuesItems = [];
+  if (isAutoDenied || isBudgetExceeded) {
+    issuesItems.push(`<span>🚨 <strong>Budget Cap Exceeded:</strong> Rate of $${attemptedPrice.toFixed(2)} CAD exceeds strict $50.00 ceiling</span>`);
+  }
+  if (hasDrift) {
+    issuesItems.push(`<span>⚠️ <strong>Audit Drift:</strong> Detected pricing or schedule changed from previous baseline</span>`);
+  }
+  if (reason) {
+    issuesItems.push(`<span>⚠️ <strong>Quarantine Reason:</strong> ${escapeHtml(reason)}</span>`);
+  }
+  
+  const verification = ev.checkoutVerification || {};
+  if (verification.status === 'quarantined' || !verification.status) {
+    issuesItems.push(`<span>🛒 <strong>Checkout Fees:</strong> Final checkout cart fees could not be verified dynamically</span>`);
+  } else if (verification.details) {
+    issuesItems.push(`<span>ℹ️ <strong>Cart Note:</strong> ${escapeHtml(verification.details)}</span>`);
+  }
+  
+  if (!issuesItems.length) {
+    issuesItems.push(`<span>ℹ️ <strong>Review Note:</strong> Manual verification requested by crawler auditor</span>`);
+  }
+
+  return `
+    <div class="curator-diagnostics-grid">
+      <div class="curator-confirmed-box">
+        <div class="curator-confirmed-title">
+          <span>✅ Confirmed Details</span>
+          <span style="font-size: 0.72rem; opacity: 0.8; margin-left: auto;">${confirmedItems.length} verified</span>
+        </div>
+        <ul class="curator-diag-list">
+          ${confirmedItems.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="curator-issues-box">
+        <div class="curator-issues-title">
+          <span>⚠️ Issues / Needs Review</span>
+          <span style="font-size: 0.72rem; opacity: 0.8; margin-left: auto;">${issuesItems.length} flagged</span>
+        </div>
+        <ul class="curator-diag-list">
+          ${issuesItems.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
 function renderCards(items) {
   const container = document.getElementById('curator-cards-list');
   if (!container) return;
@@ -333,6 +431,8 @@ function renderCards(items) {
     const hasDrift = isDrift(ev);
     const flagDateStr = ev.flaggedAt ? new Date(ev.flaggedAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Recently';
     const isHandled = Boolean(ev.dealtWith || ev.queuedInstruction);
+    const curatorDateStr = formatCuratorDate(ev);
+    const diagnosticsHtml = generateCuratorDiagnostics(ev);
 
     return `
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}">
@@ -354,6 +454,18 @@ function renderCards(items) {
             </span>
           </div>
         </div>
+
+        <!-- Prominent Event Date Banner -->
+        <div class="curator-date-banner" title="Event Schedule and Timing">
+          <span class="curator-date-banner-icon">📅</span>
+          <div>
+            <span class="curator-date-banner-label">Event Schedule / Day:</span>
+            <span class="curator-date-banner-text">${escapeHtml(curatorDateStr)}</span>
+          </div>
+        </div>
+
+        <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
+        ${diagnosticsHtml}
 
         <!-- Dealt-With / AI Queued Instruction Box -->
         ${isHandled && ev.queuedInstruction ? `

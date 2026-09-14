@@ -362,6 +362,109 @@ body {
   line-height: 1.2;
 }
 
+/* Prominent Event Schedule / Day Banner */
+.curator-date-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(56, 189, 248, 0.06));
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-left: 4px solid #38bdf8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 10px 0 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f0f9ff;
+}
+
+.curator-date-banner-icon {
+  font-size: 1.25rem;
+}
+
+.curator-date-banner-label {
+  color: #38bdf8;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-right: 4px;
+}
+
+.curator-date-banner-text {
+  color: #ffffff;
+}
+
+/* Two-column Diagnostic Breakdown: Confirmed vs Issues */
+.curator-diagnostics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .curator-diagnostics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.curator-confirmed-box {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-left: 3px solid #10b981;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #d1fae5;
+}
+
+.curator-confirmed-title {
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.curator-issues-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #fef3c7;
+}
+
+.curator-issues-title {
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.curator-diag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.curator-diag-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.35;
+}
+
 /* Edit Form inside Card */
 .curator-edit-grid {
   display: grid;

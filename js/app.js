@@ -1703,11 +1703,115 @@ function renderEventCards(events) {
   grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml;
 }
 
+function formatCardTopDate(ev) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  // 1. Daily Invariants
+  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    const todayStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return {
+      badgeText: `⚡ Today (${todayStr})`,
+      isToday: true,
+      icon: '⚡'
+    };
+  }
+
+  // 2. Confirmed dates
+  if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
+    const valid = ev.confirmedDates
+      .map(dStr => {
+        if (!dStr) return null;
+        const parts = dStr.split('-');
+        if (parts.length !== 3) return null;
+        return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      })
+      .filter(d => d && d >= today)
+      .sort((a, b) => a - b);
+
+    if (valid.length > 0) {
+      const nextDate = valid[0];
+      const isToday = nextDate.getTime() === today.getTime();
+      const isTomorrow = nextDate.getTime() === tomorrow.getTime();
+      const monthDay = nextDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
+
+      if (isToday) {
+        return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+      } else if (isTomorrow) {
+        return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+      } else {
+        return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+      }
+    }
+  }
+
+  // 3. startIso
+  if (ev.startIso) {
+    try {
+      const d = new Date(ev.startIso);
+      const dZero = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      if (dZero >= today) {
+        const isToday = dZero.getTime() === today.getTime();
+        const isTomorrow = dZero.getTime() === tomorrow.getTime();
+        const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
+
+        if (isToday) {
+          return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+        } else if (isTomorrow) {
+          return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+        } else {
+          return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 4. daysOfWeek
+  if (Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0) {
+    const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+    const curDay = today.getDay();
+    let minDaysAhead = 999;
+    for (const dow of ev.daysOfWeek) {
+      const targetDay = DAY_MAP[dow.toLowerCase()];
+      if (targetDay !== undefined) {
+        let diff = (targetDay - curDay + 7) % 7;
+        if (diff < minDaysAhead) minDaysAhead = diff;
+      }
+    }
+    if (minDaysAhead !== 999) {
+      const nextDate = new Date(today);
+      nextDate.setDate(nextDate.getDate() + minDaysAhead);
+      const isToday = minDaysAhead === 0;
+      const isTomorrow = minDaysAhead === 1;
+      const monthDay = nextDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
+
+      if (isToday) {
+        return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+      } else if (isTomorrow) {
+        return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+      } else {
+        return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+      }
+    }
+  }
+
+  return {
+    badgeText: `📅 ${ev.dateSchedule || ev.frequencyLabel || 'Upcoming'}`,
+    icon: '📅'
+  };
+}
+
 function renderSingleEventCardHtml(ev) {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
     const isSoldOut = Boolean(ev.isSoldOut);
     const standardPrice = formatStandardPrice(ev);
+    const topDate = formatCardTopDate(ev);
     
     // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
     const venueUrl = ev.venueUrl || (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
@@ -1832,25 +1936,30 @@ function renderSingleEventCardHtml(ev) {
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
-        <!-- Top Bar: Clean Meta (Recurrence + Neighborhood) + Save Button -->
+        <!-- Top Bar: Next Event Date on Top-Left, Frequency + Save Button on Top-Right -->
         <div class="card-top-bar">
-          <div class="card-top-meta">
-            <span class="card-meta-pill ${freqClass}">
+          <!-- Top Left: Next Event Date -->
+          <div class="card-top-date-wrap">
+            <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
+              ${topDate.badgeText}
+            </span>
+          </div>
+
+          <!-- Top Right: Frequency Badge & Save Button -->
+          <div class="card-top-right-group">
+            <span class="card-meta-pill ${freqClass}" title="Recurrence Frequency">
               <span>${ev.categoryIcon || '✨'}</span>
               <span>${ev.frequencyLabel || 'Outing'}</span>
             </span>
-            <span class="card-meta-dot">•</span>
-            <span class="card-meta-neighborhood">📍 ${ev.neighborhood}</span>
+            <button 
+              class="btn-save-card ${isSaved ? 'saved' : ''}" 
+              onclick="toggleSaveEvent('${ev.id}')" 
+              aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
+              title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
+            >
+              ${isSaved ? '❤️' : '🤍'}
+            </button>
           </div>
-
-          <button 
-            class="btn-save-card ${isSaved ? 'saved' : ''}" 
-            onclick="toggleSaveEvent('${ev.id}')" 
-            aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
-            title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
-          >
-            ${isSaved ? '❤️' : '🤍'}
-          </button>
         </div>
 
         <!-- Event Details: Clickable Title Link -->
@@ -1896,7 +2005,9 @@ function renderSingleEventCardHtml(ev) {
         <div class="card-venue-row">
           <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps for directions">
             <span class="venue-pin-icon">📍</span>
-            <span class="venue-name">${ev.venue} (Directions)</span>
+            <span class="venue-name">${ev.venue}</span>
+            <span class="venue-neighborhood-chip">• ${ev.neighborhood || 'Vancouver'}</span>
+            <span class="venue-directions-hint">(Directions)</span>
           </a>
           ${venueUrl ? `
             <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
