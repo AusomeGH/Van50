@@ -11,7 +11,8 @@ import hashlib
 import time
 import json
 import base64
-from typing import Tuple, Dict, Any
+import secrets
+from typing import Tuple, Dict, Any, Set
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_PATH = os.path.join(BASE_DIR, ".env")
@@ -19,13 +20,14 @@ SECRET_JSON_PATH = os.path.join(BASE_DIR, "data", ".curator_secret.json")
 
 # In-memory brute force tracker: { ip_address: { "failures": count, "lockedUntil": timestamp } }
 LOGIN_ATTEMPTS: Dict[str, Dict[str, Any]] = {}
+REVOKED_TOKENS: Set[str] = set()
 MAX_FAILED_ATTEMPTS = 5
 LOCKOUT_DURATION_SECONDS = 900  # 15 minutes
 TOKEN_LIFETIME_SECONDS = 86400  # 24 hours
 
 
 def load_configured_secret() -> str:
-    """Reads configured password from environment or .env file."""
+    """Reads configured password from environment or .env file, or generates a secure random one."""
     env_secret = os.environ.get("VAN50_CURATOR_SECRET")
     if env_secret:
         return env_secret.strip()
@@ -42,12 +44,23 @@ def load_configured_secret() -> str:
         except Exception:
             pass
 
-    # Default fallback
-    return "Professor-Urban-Freebase9"
+    # Never use static hardcoded fallback: auto-generate a cryptographically strong 32-character passphrase
+    generated = secrets.token_urlsafe(24)
+    try:
+        flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC
+        mode = 0o600
+        fd = os.open(ENV_PATH, flags, mode)
+        with open(fd, "w", encoding="utf-8") as f:
+            f.write("# Van50 Environment Configuration (Auto-Generated Secure Secret)\n")
+            f.write(f"VAN50_CURATOR_SECRET={generated}\n")
+        print(f"[SECURITY] Generated new secure curator secret in {ENV_PATH}")
+    except Exception as e:
+        print(f"[SECURITY WARN] Could not persist auto-generated secret to .env: {e}")
+    return generated
 
 
 def get_or_create_key_material() -> Tuple[bytes, bytes]:
-    """Retrieves or derives salt and server signing key material."""
+    """Retrieves or derives salt and server signing key material with restricted permissions."""
     if os.path.exists(SECRET_JSON_PATH):
         try:
             with open(SECRET_JSON_PATH, "r", encoding="utf-8") as f:
@@ -63,7 +76,10 @@ def get_or_create_key_material() -> Tuple[bytes, bytes]:
 
     os.makedirs(os.path.dirname(SECRET_JSON_PATH), exist_ok=True)
     try:
-        with open(SECRET_JSON_PATH, "w", encoding="utf-8") as f:
+        flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC
+        mode = 0o600
+        fd = os.open(SECRET_JSON_PATH, flags, mode)
+        with open(fd, "w", encoding="utf-8") as f:
             json.dump({
                 "salt": base64.b64encode(salt).decode("utf-8"),
                 "signingKey": base64.b64encode(signing_key).decode("utf-8"),
@@ -165,10 +181,26 @@ def generate_session_token() -> str:
     return f"{payload_b64}.{sig_b64}"
 
 
+def revoke_session_token(token: str) -> None:
+    """Revokes an active session token, invalidating it immediately."""
+    if token and isinstance(token, str):
+        REVOKED_TOKENS.add(token.strip())
+
+
+def is_token_revoked(token: str) -> bool:
+    """Checks if token has been explicitly revoked."""
+    if not token or not isinstance(token, str):
+        return True
+    return token.strip() in REVOKED_TOKENS
+
+
 def verify_session_token(token: str) -> Tuple[bool, str]:
-    """Verifies HMAC signature and expiration timestamp on an incoming session token."""
+    """Verifies HMAC signature, expiration timestamp, and revocation on an incoming session token."""
     if not token or "." not in token:
         return False, "Malformed token structure"
+
+    if is_token_revoked(token):
+        return False, "Session token has been revoked. Please re-authenticate."
 
     parts = token.split(".")
     if len(parts) != 2:

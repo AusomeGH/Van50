@@ -33,9 +33,45 @@ JS_DATA_PATH = os.path.join(BASE_DIR, "js", "data.js")
 BACKUP_DIR = os.path.join(DATA_DIR, "backups")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
-from curator_auth import verify_curator_password, generate_session_token, verify_session_token
+from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
 
 PORT = 8080
+
+# Security Configuration: Protected Directories & Files
+BLOCKED_DATA_FILES = {
+    "manual_review_queue.json",
+    "curator_instructions.json",
+    "curator_learned_rules.json",
+    "archived_events.json",
+    ".curator_secret.json"
+}
+BLOCKED_DIRS = {"scripts", "tests", "scratch", "backups", ".git", ".agents", ".vscode"}
+
+# Sliding-window rate limiter for mutating API calls: { ip: [timestamp1, timestamp2, ...] }
+MUTATING_RATE_LIMITS = {}
+MAX_MUTATIONS_PER_MINUTE = 60
+
+
+def check_mutating_rate_limit(ip: str) -> bool:
+    """Sliding-window rate limiter allowing up to MAX_MUTATIONS_PER_MINUTE per IP."""
+    now = time.time()
+    timestamps = MUTATING_RATE_LIMITS.setdefault(ip, [])
+    timestamps[:] = [t for t in timestamps if now - t < 60]
+    if len(timestamps) >= MAX_MUTATIONS_PER_MINUTE:
+        return False
+    timestamps.append(now)
+    return True
+
+
+def sanitize_text(text: str) -> str:
+    """Strips HTML and script tags from text inputs to prevent stored XSS injection."""
+    if not isinstance(text, str):
+        return text
+    # Strip <script...>...</script>
+    cleaned = re.sub(r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', '', text, flags=re.IGNORECASE)
+    # Strip any remaining tags
+    cleaned = re.sub(r'<[^>]+>', '', cleaned)
+    return cleaned.strip()
 
 
 def create_backup_snapshot():
@@ -170,9 +206,29 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
 
     def end_headers(self):
+        # Strict Cache-Control
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
+
+        # Defense-in-Depth Security Headers
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Permissions-Policy", "geolocation=(), camera=(), microphone=(), payment=()")
+        self.send_header("X-XSS-Protection", "1; mode=block")
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline'; "
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+            "font-src 'self' https://fonts.gstatic.com; "
+            "img-src 'self' data: https:; "
+            "connect-src 'self'; "
+            "frame-ancestors 'none'; "
+            "object-src 'none'; "
+            "base-uri 'self';"
+        )
         super().end_headers()
 
     def _get_client_ip(self) -> str:
@@ -181,12 +237,38 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return client_ip.split(",")[0].strip()
         return self.client_address[0] if self.client_address else "127.0.0.1"
 
+    def _apply_cors_headers(self):
+        """Restricts CORS to local loopback and authorized host; prevents wildcard origin exposure."""
+        origin = self.headers.get("Origin", "")
+        if origin and (
+            origin.startswith("http://127.0.0.1:") or
+            origin.startswith("http://localhost:") or
+            origin in {"http://127.0.0.1:8080", "http://localhost:8080"}
+        ):
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Access-Control-Allow-Credentials", "true")
+            self.send_header("Vary", "Origin")
+
+    def _send_forbidden(self, message: str = "Access Denied: Protected Resource"):
+        """Returns 403 Forbidden with security headers and descriptive error message."""
+        response_bytes = message.encode("utf-8")
+        self.send_response(403)
+        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self.send_header("Content-Length", str(len(response_bytes)))
+        self.end_headers()
+        self.wfile.write(response_bytes)
+
+    def list_directory(self, path):
+        """Disables directory browsing across the entire server."""
+        self._send_forbidden("Access Denied: Directory browsing is disabled.")
+        return None
+
     def _send_json(self, status: int, data: dict):
         response_bytes = json.dumps(data, indent=2).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(response_bytes)))
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self._apply_cors_headers()
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Curator-Token, Authorization")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.end_headers()
@@ -207,7 +289,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_OPTIONS(self):
         self.send_response(200)
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self._apply_cors_headers()
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Curator-Token, Authorization")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.end_headers()
@@ -343,7 +425,40 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     return self._send_json(200, json.load(f))
             return self._send_json(200, {"metadata": {}, "instructions": []})
 
-        # Standard file serving for web UI
+        # Standard file serving for web UI with path filtering & access control
+        # 1. Traversal & boundary check
+        rel_path = path.lstrip("/\\")
+        full_path = os.path.normpath(os.path.join(BASE_DIR, rel_path))
+
+        try:
+            common = os.path.commonpath([BASE_DIR, full_path])
+            if common != BASE_DIR:
+                return self._send_forbidden("Access Denied: Path traversal is prohibited.")
+        except Exception:
+            return self._send_forbidden("Access Denied: Invalid path.")
+
+        # 2. Block hidden files and dotfiles (e.g. .env, .git, .curator_secret.json)
+        parts = rel_path.replace("\\", "/").split("/")
+        for part in parts:
+            if part.startswith(".") and part not in {".", ".."}:
+                return self._send_forbidden("Access Denied: Protected system file.")
+
+        # 3. Block protected internal directories
+        if len(parts) > 0 and parts[0] in BLOCKED_DIRS:
+            return self._send_forbidden(f"Access Denied: Directory '{parts[0]}' is protected.")
+
+        # 4. Block direct access to administrative data files (must use authenticated API)
+        file_name = os.path.basename(full_path)
+        if file_name in BLOCKED_DATA_FILES:
+            if not self._check_authenticated():
+                return self._send_forbidden("Access Denied: Administrative data requires curator authentication.")
+
+        # 5. Block directory browsing
+        if os.path.isdir(full_path):
+            index_file = os.path.join(full_path, "index.html")
+            if not os.path.exists(index_file):
+                return self._send_forbidden("Access Denied: Directory browsing is disabled.")
+
         return super().do_GET()
 
     def do_POST(self):
@@ -351,8 +466,22 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         path = parsed.path
         client_ip = self._get_client_ip()
 
+        # Enforce Content-Length checks to prevent memory exhaustion DoS
+        content_len_header = self.headers.get("Content-Length")
+        if not content_len_header and path.startswith("/api/curator/"):
+            return self._send_json(411, {"error": "Length Required"})
+
         try:
-            content_len = int(self.headers.get("Content-Length", 0))
+            content_len = int(content_len_header or 0)
+        except ValueError:
+            return self._send_json(400, {"error": "Invalid Content-Length header"})
+
+        # Limits: 10MB for screenshot uploads, 256KB for all other JSON endpoints
+        max_bytes = 10 * 1024 * 1024 if (path == "/api/curator/instruction" and "image" in self.headers.get("Content-Type", "")) else 256 * 1024
+        if content_len > max_bytes:
+            return self._send_json(413, {"error": f"Payload Too Large. Max permitted size is {max_bytes // 1024} KB."})
+
+        try:
             body_raw = self.rfile.read(content_len).decode("utf-8") if content_len > 0 else "{}"
             payload = json.loads(body_raw)
         except Exception as e:
@@ -377,9 +506,25 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     "cooldown": cooldown
                 })
 
-        # All other mutating endpoints strictly require authentication
+        # 2. API: Logout & Revoke Session Token
+        if path == "/api/curator/logout":
+            token = self.headers.get("Curator-Token")
+            if not token:
+                auth_header = self.headers.get("Authorization", "")
+                if auth_header.startswith("Bearer "):
+                    token = auth_header.split(" ", 1)[1].strip()
+            if token:
+                revoke_session_token(token)
+            return self._send_json(200, {"success": True, "message": "Session revoked and logged out."})
+
+        # All mutating endpoints strictly require authentication
         if not self._check_authenticated():
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
+
+        # Sliding window rate limit on mutating endpoints
+        if path in {"/api/curator/approve", "/api/curator/reject", "/api/curator/rules", "/api/curator/instruction", "/api/curator/dismiss_instruction"}:
+            if not check_mutating_rate_limit(client_ip):
+                return self._send_json(429, {"error": "Rate limit exceeded: Too many mutating actions. Please wait a minute."})
 
         # 2. API: Approve event & promote to master list
         if path == "/api/curator/approve":
@@ -395,10 +540,16 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             # Create backup snapshot before writing
             create_backup_snapshot()
 
-            curator_note = payload.get("curatorNote") or event_data.get("curatorNote") or "Approved by curator in Van50 Curator Studio."
-            category = payload.get("category") or event_data.get("category") or "Shows"
-            source_url = event_data.get("websiteUrl") or event_data.get("url") or event_data.get("sourceUrl") or ""
-            price_label = event_data.get("priceLabel") or (f"${price:.2f} CAD" if price > 0 else "Free")
+            # Sanitize all string fields against stored XSS
+            event_data["title"] = sanitize_text(str(event_data.get("title", "")))
+            event_data["venue"] = sanitize_text(str(event_data.get("venue", "")))
+            event_data["description"] = sanitize_text(str(event_data.get("description", "")))
+            event_data["neighborhood"] = sanitize_text(str(event_data.get("neighborhood", "")))
+
+            curator_note = sanitize_text(payload.get("curatorNote") or event_data.get("curatorNote") or "Approved by curator in Van50 Curator Studio.")
+            category = sanitize_text(payload.get("category") or event_data.get("category") or "Shows")
+            source_url = sanitize_text(event_data.get("websiteUrl") or event_data.get("url") or event_data.get("sourceUrl") or "")
+            price_label = sanitize_text(event_data.get("priceLabel") or (f"${price:.2f} CAD" if price > 0 else "Free"))
 
             # Ensure checkout verification metadata is set
             event_data["checkoutVerification"] = {

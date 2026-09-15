@@ -99,7 +99,21 @@ async function handleLoginSubmit(e) {
   }
 }
 
-function handleLogout() {
+async function handleLogout() {
+  const currentToken = state.token || sessionStorage.getItem('van50_curator_token');
+  if (currentToken) {
+    try {
+      await fetch('/api/curator/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Curator-Token': currentToken
+        }
+      });
+    } catch (err) {
+      console.warn('Server logout notification failed:', err);
+    }
+  }
   sessionStorage.removeItem('van50_curator_token');
   state.token = null;
   state.quarantinedEvents = [];

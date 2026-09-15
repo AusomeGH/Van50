@@ -2,9 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Curator plain-language instructions and screenshots queued for AI global scraper updates.",
-    "pendingCount": 56,
+    "pendingCount": 59,
     "resolvedCount": 1,
-    "updatedAt": "2026-09-15T00:22:16.857627+00:00"
+    "updatedAt": "2026-09-15T00:32:48.388735+00:00"
   },
   "instructions": [
     {
@@ -798,6 +798,48 @@
       "createdAt": "2026-09-15T00:22:16.856080+00:00",
       "status": "pending",
       "eventId": "test-qa-event-1789431736",
+      "eventTitle": "",
+      "venueName": "",
+      "sourceUrl": "",
+      "instructionText": "Fix scraper to target General Admission tier.",
+      "screenshotPath": null,
+      "actionTaken": "queue_and_approve",
+      "curatorNote": "Curator verified door price",
+      "targetScraperOrEngine": "UniversalVenueCrawler"
+    },
+    {
+      "id": "inst_1789432368343",
+      "createdAt": "2026-09-15T00:32:48.343079+00:00",
+      "status": "pending",
+      "eventId": "test-crawl-flag-01",
+      "eventTitle": "Live Comedy Jam",
+      "venueName": "Little Mountain Gallery",
+      "sourceUrl": "https://littlemountaingallery.ca/events",
+      "instructionText": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+      "screenshotPath": null,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Little Mountain Gallery"
+    },
+    {
+      "id": "inst_1789432368365",
+      "createdAt": "2026-09-15T00:32:48.365947+00:00",
+      "status": "pending",
+      "eventId": "test-crawl-flag-02",
+      "eventTitle": "Jazz Trio Night",
+      "venueName": "Frankie's Jazz Club",
+      "sourceUrl": "https://frankiesjazzclub.com",
+      "instructionText": "Screenshot proves ticket price is $20 at door not $60.",
+      "screenshotPath": "data/curator_screenshots/screenshot_1789432368364.png",
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Frankie's Jazz Club"
+    },
+    {
+      "id": "inst_1789432368387",
+      "createdAt": "2026-09-15T00:32:48.387761+00:00",
+      "status": "pending",
+      "eventId": "test-qa-event-1789432368",
       "eventTitle": "",
       "venueName": "",
       "sourceUrl": "",

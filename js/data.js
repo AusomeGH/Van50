@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-14T17:22:16-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-14T17:32:48-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -7112,7 +7112,7 @@ const VANCOUVER_EVENTS = [
     }
   },
   {
-    "id": "test-qa-event-1789431736",
+    "id": "test-qa-event-1789432368",
     "title": "Dual Action Test Event",
     "venue": "Rickshaw Theatre",
     "price": 25.0,
@@ -7124,14 +7124,14 @@ const VANCOUVER_EVENTS = [
       "method": "manual_curator_review",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-15T00:22:16.874223+00:00",
+      "verifiedAt": "2026-09-15T00:32:48.404977+00:00",
       "details": "Approved by curator with AI instruction. Note: Curator verified door price",
       "curatorSnapshot": {
         "approvedPrice": 25.0,
         "approvedPriceLabel": "$25.00 CAD",
         "approvedCategory": "shows",
         "curatorNote": "Curator verified door price",
-        "approvedAt": "2026-09-15T00:22:16.874247+00:00",
+        "approvedAt": "2026-09-15T00:32:48.405002+00:00",
         "sourceUrl": "https://rickshawtheatre.com/test-event"
       }
     },
@@ -7228,7 +7228,7 @@ const VENUE_URLS = {
   "Public Disco Society": "https://publicdisco.ca",
   "Public Disco": "https://publicdisco.ca",
   "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
-  "Pizzeria Ludica": "https://ludica.ca",
+  "Pizzeria Ludica": "https://www.pizzerialudica.com/",
   "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
   "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
   "The Shipyards District": "https://theshipyardsdistrict.ca",
