@@ -36,6 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initVancouverMap();
   updateReviewQueueBadge();
   loadCentralReference();
+
+  // Real-time minute interval: automatically remove cards as venue hours conclude and events end
+  setInterval(() => {
+    applyFiltersAndRender();
+  }, 60000);
 });
 
 // Asynchronously load central reference data feed (data/events.json)
@@ -595,8 +600,136 @@ function isAwaitingSchedule(ev) {
 }
 
 /**
+ * Resolves the closing or end time for an event or venue for a given date (default today).
+ * Accurately parses range closing times (e.g. "10:00 AM - 6:00 PM"), dusk/daylight hours,
+ * explicit endIso timestamps, start times + standard event runtime (2.5 hours), and time slot bounds.
+ * Returns: { hasEnded: boolean, closingMinutes: number, closingTimeStr: string }
+ */
+function getEventClosingTimeToday(ev, now = new Date()) {
+  const ds = ev.dateSchedule || '';
+  const nowHours = now.getHours();
+  const nowMins = now.getMinutes();
+  const currentMinutes = nowHours * 60 + nowMins;
+
+  // 1. 24/7 venues never close
+  if (ds.includes('24/7') || ds.toLowerCase().includes('open 24')) {
+    return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7' };
+  }
+
+  // 2. Parse closing time range from dateSchedule (e.g. "10:00 AM - 6:00 PM", "6:00 AM - 10:00 PM")
+  const rangeMatch = ds.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
+  if (rangeMatch) {
+    const rawTime = rangeMatch[1].trim();
+    const timeMatch = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+    if (timeMatch) {
+      let h = parseInt(timeMatch[1], 10);
+      const m = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
+      const ampm = timeMatch[3].toUpperCase();
+      if (ampm === 'PM' && h < 12) h += 12;
+      if (ampm === 'AM' && h === 12) h = 0;
+      // If closing time is late night / past midnight (e.g. 1 AM - 4 AM)
+      if (h < 5 && (ds.toLowerCase().includes('night') || ds.toLowerCase().includes('cabaret') || ds.toLowerCase().includes('pm'))) {
+        h += 24;
+      }
+      const closingMinutes = h * 60 + m;
+      return {
+        hasEnded: currentMinutes >= closingMinutes,
+        closingMinutes,
+        closingTimeStr: rawTime
+      };
+    }
+  }
+
+  // 3. Daylight hours (parks, outdoor attractions) - dusk cutoff around 7:45 PM
+  if (ds.toLowerCase().includes('daylight hours')) {
+    const duskMinutes = 19 * 60 + 45;
+    return {
+      hasEnded: currentMinutes >= duskMinutes,
+      closingMinutes: duskMinutes,
+      closingTimeStr: 'Dusk (7:45 PM)'
+    };
+  }
+
+  // 4. Explicit endIso (if not end of year series placeholder)
+  if (ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
+    try {
+      const endDt = new Date(ev.endIso);
+      if (!isNaN(endDt.getTime())) {
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const day = now.getDate();
+        const todayStart = new Date(year, month, day, 0, 0, 0);
+        const todayEnd = new Date(year, month, day + 1, 4, 0, 0);
+        if (endDt >= todayStart && endDt <= todayEnd) {
+          const hasEnded = now >= endDt;
+          const timeStr = endDt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          return {
+            hasEnded,
+            closingMinutes: endDt.getHours() * 60 + endDt.getMinutes(),
+            closingTimeStr: timeStr
+          };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 5. Start time in dateSchedule or startIso + 2.5 hours runtime
+  const startMatch = ds.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+  if (startMatch) {
+    let sh = parseInt(startMatch[1], 10);
+    const sm = startMatch[2] ? parseInt(startMatch[2], 10) : 0;
+    const ampm = startMatch[3].toUpperCase();
+    if (ampm === 'PM' && sh < 12) sh += 12;
+    if (ampm === 'AM' && sh === 12) sh = 0;
+    const endMinutes = sh * 60 + sm + 150; // + 2.5 hours
+    return {
+      hasEnded: currentMinutes >= endMinutes,
+      closingMinutes: endMinutes,
+      closingTimeStr: `${startMatch[0]} (+2.5h run)`
+    };
+  }
+
+  if (ev.startIso) {
+    try {
+      const startDt = new Date(ev.startIso);
+      if (!isNaN(startDt.getTime())) {
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const day = now.getDate();
+        if (startDt.getFullYear() === year && startDt.getMonth() === month && startDt.getDate() === day) {
+          const endDt = new Date(startDt.getTime() + 150 * 60 * 1000);
+          return {
+            hasEnded: now >= endDt,
+            closingMinutes: endDt.getHours() * 60 + endDt.getMinutes(),
+            closingTimeStr: 'Show concluded'
+          };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 6. TimeSlot fallback
+  const slots = ev.timeSlots || [];
+  if (slots.length > 0) {
+    if (slots.length === 1 && slots[0] === 'early-morning') {
+      return { hasEnded: currentMinutes >= 12 * 60, closingMinutes: 12 * 60, closingTimeStr: '12:00 PM' };
+    }
+    if (slots.includes('afternoon') && !slots.includes('early-evening') && !slots.includes('late-evening')) {
+      return { hasEnded: currentMinutes >= 17 * 60, closingMinutes: 17 * 60, closingTimeStr: '5:00 PM' };
+    }
+    if (slots.includes('early-evening') && !slots.includes('late-evening')) {
+      return { hasEnded: currentMinutes >= 21 * 60, closingMinutes: 21 * 60, closingTimeStr: '9:00 PM' };
+    }
+  }
+
+  // Default fallback: 11:59 PM
+  return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Midnight' };
+}
+
+/**
  * Detects whether an event has passed or all confirmed dates have elapsed.
- * Daily, weekly, and monthly recurring outings (which run continuously) remain active.
+ * Daily, weekly, and monthly recurring outings (which run continuously) remain active,
+ * while completed one-off events and past sessions are strictly excluded.
  */
 function isEventInPast(ev, now = new Date()) {
   const year = now.getFullYear();
@@ -604,17 +737,27 @@ function isEventInPast(ev, now = new Date()) {
   const day = String(now.getDate()).padStart(2, '0');
   const todayStr = `${year}-${month}-${day}`;
 
-  // If specific confirmed dates list exists (e.g. seasonal pop-ups / series sessions)
+  const isRecurring = ev.isDaily || ev.frequency === 'daily' || ev.frequency === 'weekly' || ev.frequency === 'monthly';
+
+  // 1. If specific confirmed dates list exists
   if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
-    const hasUpcoming = ev.confirmedDates.some(d => String(d).slice(0, 10) >= todayStr);
-    if (!hasUpcoming) {
-      return true;
+    const futureDates = ev.confirmedDates.filter(d => String(d).slice(0, 10) > todayStr);
+    const todayDates = ev.confirmedDates.filter(d => String(d).slice(0, 10) === todayStr);
+    if (futureDates.length === 0) {
+      if (todayDates.length === 0) {
+        return true; // All confirmed dates are in the past
+      }
+      // Only today remains: if non-recurring, check if today's event has ended
+      if (!isRecurring) {
+        const closing = getEventClosingTimeToday(ev, now);
+        if (closing.hasEnded) {
+          return true;
+        }
+      }
     }
   }
 
-  // Daily, weekly, and monthly recurring programs run continuously
-  const isRecurring = ev.isDaily || ev.frequency === 'daily' || ev.frequency === 'weekly' || ev.frequency === 'monthly';
-
+  // 2. Non-recurring events (one-offs, limited run)
   if (!isRecurring) {
     if (ev.endIso) {
       const endDt = new Date(ev.endIso);
@@ -626,8 +769,14 @@ function isEventInPast(ev, now = new Date()) {
       const startDt = new Date(ev.startIso);
       if (!isNaN(startDt.getTime())) {
         const startDay = String(ev.startIso).slice(0, 10);
-        if (startDay < todayStr && startDt < now) {
+        if (startDay < todayStr) {
           return true;
+        }
+        if (startDay === todayStr) {
+          const closing = getEventClosingTimeToday(ev, now);
+          if (closing.hasEnded) {
+            return true;
+          }
         }
       }
     }
@@ -1223,15 +1372,20 @@ function calculateNextTwoDates(ev) {
 
   // 1. Daily Invariants (Stanley Park Seawall, Lynn Canyon, Public Markets, etc.)
   if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    const closing = getEventClosingTimeToday(ev, now);
+    const startOffset = closing.hasEnded ? 1 : 0;
     const d1 = new Date(today);
+    d1.setDate(d1.getDate() + startOffset);
     const d2 = new Date(today);
-    d2.setDate(d2.getDate() + 1);
+    d2.setDate(d2.getDate() + startOffset + 1);
     const fmt1 = d1.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     const fmt2 = d2.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const pfx1 = startOffset === 0 ? 'Today' : 'Tomorrow';
+    const pfx2 = startOffset === 0 ? 'Tomorrow' : d2.toLocaleDateString('en-US', { weekday: 'short' });
     return {
       type: 'daily',
-      label: 'Open Daily',
-      dates: `Today (${fmt1}) • Tomorrow (${fmt2})`
+      label: closing.hasEnded ? 'Open Daily (Closed for today)' : 'Open Daily',
+      dates: `${pfx1} (${fmt1}) • ${pfx2} (${fmt2})`
     };
   }
 
@@ -1244,7 +1398,12 @@ function calculateNextTwoDates(ev) {
         const parts = dStr.split('-');
         if (parts.length === 3) {
           const cand = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-          if (cand >= today) {
+          if (cand.getTime() === today.getTime()) {
+            const closing = getEventClosingTimeToday(ev, now);
+            if (!closing.hasEnded) {
+              validFuture.push(cand);
+            }
+          } else if (cand > today) {
             validFuture.push(cand);
           }
         }
@@ -1280,14 +1439,26 @@ function calculateNextTwoDates(ev) {
   if (ev.frequency === 'seasonal' || ev.frequency === 'limited-run' || ev.frequency === 'annual' || ev.isRoving) {
     if (ev.startIso) {
       const start = new Date(ev.startIso);
-      if (!isNaN(start.getTime()) && start >= today) {
-        const isToday = start.toDateString() === today.toDateString();
-        const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-        return {
-          type: 'seasonal',
-          label: 'Confirmed Festival Date',
-          dates: isToday ? `Today (${fmt})` : fmt
-        };
+      if (!isNaN(start.getTime())) {
+        const startDay = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+        if (startDay.getTime() === today.getTime()) {
+          const closing = getEventClosingTimeToday(ev, now);
+          if (!closing.hasEnded) {
+            const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+            return {
+              type: 'seasonal',
+              label: 'Confirmed Festival Date',
+              dates: `Today (${fmt})`
+            };
+          }
+        } else if (startDay > today) {
+          const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+          return {
+            type: 'seasonal',
+            label: 'Confirmed Festival Date',
+            dates: fmt
+          };
+        }
       }
     }
     return {
@@ -1309,6 +1480,10 @@ function calculateNextTwoDates(ev) {
         const candidate = new Date(today);
         candidate.setDate(candidate.getDate() + i);
         if (targetDays.includes(candidate.getDay())) {
+          if (i === 0) {
+            const closing = getEventClosingTimeToday(ev, now);
+            if (closing.hasEnded) continue;
+          }
           dates.push(candidate);
           if (dates.length === 2) break;
         }
@@ -1410,8 +1585,13 @@ function getEventTimeBucket(ev, now = new Date()) {
 
   const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
 
-  // 1. Daily Invariants: open every day -> "today"
+  // 1. Daily Invariants: open every day -> "today" (if venue open hours are still active today)
   if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    const status = getEventClosingTimeToday(ev, now);
+    if (status.hasEnded) {
+      // Open hours for today are over -> Move to Tomorrow!
+      return { bucket: 'tomorrow', date: tomorrow, closedToday: true, closingTimeStr: status.closingTimeStr };
+    }
     return { bucket: 'today', date: today };
   }
 
@@ -1423,7 +1603,12 @@ function getEventTimeBucket(ev, now = new Date()) {
       const parts = dStr.split('-');
       if (parts.length === 3) {
         const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-        if (d >= today) {
+        if (d.getTime() === today.getTime()) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (!status.hasEnded) {
+            futureDates.push(d);
+          }
+        } else if (d > today) {
           futureDates.push(d);
         }
       }
@@ -1439,7 +1624,12 @@ function getEventTimeBucket(ev, now = new Date()) {
     const d = new Date(ev.startIso);
     if (!isNaN(d.getTime())) {
       const startDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      if (startDay >= today) {
+      if (startDay.getTime() === today.getTime()) {
+        const status = getEventClosingTimeToday(ev, now);
+        if (!status.hasEnded) {
+          return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+        }
+      } else if (startDay > today) {
         return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
       }
     }
@@ -1455,6 +1645,13 @@ function getEventTimeBucket(ev, now = new Date()) {
         const candidate = new Date(today);
         candidate.setDate(candidate.getDate() + offset);
         if (targetDays.includes(candidate.getDay())) {
+          if (offset === 0) {
+            const status = getEventClosingTimeToday(ev, now);
+            if (status.hasEnded) {
+              // Today's session has ended -> move to next occurrence!
+              continue;
+            }
+          }
           return categorizeDateBucket(candidate, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
         }
       }
@@ -1711,6 +1908,17 @@ function formatCardTopDate(ev) {
 
   // 1. Daily Invariants
   if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+    const status = getEventClosingTimeToday(ev, now);
+    if (status.hasEnded) {
+      const tomorrowWeekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
+      const tomorrowMonthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return {
+        badgeText: `🌅 Tomorrow (${tomorrowWeekday}, ${tomorrowMonthDay})`,
+        isTomorrow: true,
+        closedToday: true,
+        icon: '🌅'
+      };
+    }
     const todayStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     return {
       badgeText: `⚡ Today (${todayStr})`,
@@ -1728,7 +1936,14 @@ function formatCardTopDate(ev) {
         if (parts.length !== 3) return null;
         return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
       })
-      .filter(d => d && d >= today)
+      .filter(d => {
+        if (!d) return false;
+        if (d.getTime() === today.getTime()) {
+          const status = getEventClosingTimeToday(ev, now);
+          return !status.hasEnded;
+        }
+        return d > today;
+      })
       .sort((a, b) => a - b);
 
     if (valid.length > 0) {
@@ -1753,15 +1968,19 @@ function formatCardTopDate(ev) {
     try {
       const d = new Date(ev.startIso);
       const dZero = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      if (dZero >= today) {
-        const isToday = dZero.getTime() === today.getTime();
+      if (dZero.getTime() === today.getTime()) {
+        const status = getEventClosingTimeToday(ev, now);
+        if (!status.hasEnded) {
+          const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
+          return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+        }
+      } else if (dZero > today) {
         const isTomorrow = dZero.getTime() === tomorrow.getTime();
         const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
 
-        if (isToday) {
-          return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
-        } else if (isTomorrow) {
+        if (isTomorrow) {
           return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
         } else {
           return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
@@ -1779,6 +1998,12 @@ function formatCardTopDate(ev) {
       const targetDay = DAY_MAP[dow.toLowerCase()];
       if (targetDay !== undefined) {
         let diff = (targetDay - curDay + 7) % 7;
+        if (diff === 0) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (status.hasEnded) {
+            diff = 7;
+          }
+        }
         if (diff < minDaysAhead) minDaysAhead = diff;
       }
     }
