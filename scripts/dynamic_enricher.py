@@ -220,23 +220,19 @@ class DoorSpendScraper:
                 print(f"[DOOR ENRICHER] Scraped Roxy door policy: ${door_price:.2f} door cover.")
 
         elif "Ludica" in v_name or "Pizzeria Ludica" in v_name:
-            html = fetch_html("https://www.pizzerialudica.com", timeout=6) or fetch_html("https://www.ludica.ca", timeout=6)
-            if html:
-                m = re.findall(r'(?:cover|game|table|fee)?\s*\$(\d+(?:\.\d{2})?)', html, re.I)
-                valid = [float(p) for p in m if 5.0 <= float(p) <= 25.0]
-                cover_p = min(valid) if valid else 8.0
-                item['price'] = cover_p
-                item['basePrice'] = cover_p
-                item['priceLabel'] = f"${cover_p:.2f} game cover"
-                item['pricingType'] = "door"
-                item['checkoutVerification'] = {
-                    "status": "verified_live",
-                    "method": "scraped_policy_page",
-                    "verifiedTotal": cover_p,
-                    "feeBreakdown": f"${cover_p:.2f} table game cover per person scraped from venue policy",
-                    "details": "Scraped dynamically via pizzerialudica.com game cover policy."
-                }
-                print(f"[DOOR ENRICHER] Scraped Pizzeria Ludica game cover: ${cover_p:.2f} cover.")
+            item['websiteUrl'] = "https://www.pizzerialudica.com/"
+            item['price'] = 20.0
+            item['basePrice'] = 20.0
+            item['priceLabel'] = "$20.00 min spend"
+            item['pricingType'] = "minimum-spend"
+            item['checkoutVerification'] = {
+                "status": "verified",
+                "method": "curator_instruction_rule",
+                "verifiedTotal": 20.0,
+                "feeBreakdown": "$20.00 minimum food & beverage spend per guest (no separate game cover fee)",
+                "details": "Verified via Curator Studio. $20.00 minimum spend per guest on food & drinks grants access to 1,200+ board game library. 2-hour maximum table duration during peak hours."
+            }
+            print(f"[DOOR ENRICHER] Applied Curator rule for Pizzeria Ludica: $20.00 minimum spend.")
 
         elif "2nd Floor" in v_name or "Water St Cafe" in v_name:
             html = fetch_html("https://www.waterstreetcafe.ca/2nd-floor-gastown", timeout=6)

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-14T13:03:02-07:00",
+    "updatedAt": "2026-09-14T17:22:16-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -24,7 +24,8 @@
   },
   "venue_calendar_deep_links": {
     "The Fox Cabaret": "https://www.foxcabaret.com/",
-    "The Biltmore Cabaret": "https://biltmorecabaret.com/"
+    "The Biltmore Cabaret": "https://biltmorecabaret.com/",
+    "Pizzeria Ludica": "https://www.pizzerialudica.com/"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -56,6 +57,16 @@
     "hollywood-theatre-boogie-down-broadway-a-singalong-dance-p",
     "rickshaw-theatre-nekrogoblikon",
     "tm-canadians-baseball",
-    "lmg-decolonized-comedy"
-  ]
+    "lmg-decolonized-comedy",
+    "iq2000-pub-trivia-vancouver"
+  ],
+  "venue_policy_rules": {
+    "Pizzeria Ludica": {
+      "minimumSpend": 20.0,
+      "pricingType": "minimum-spend",
+      "durationPolicy": "2 hours maximum during peak periods",
+      "websiteUrl": "https://www.pizzerialudica.com/",
+      "source": "Curator Instruction inst_1789431205737"
+    }
+  }
 }

@@ -2,9 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Curator plain-language instructions and screenshots queued for AI global scraper updates.",
-    "pendingCount": 53,
-    "resolvedCount": 0,
-    "updatedAt": "2026-09-14T20:03:02.961651+00:00"
+    "pendingCount": 56,
+    "resolvedCount": 1,
+    "updatedAt": "2026-09-15T00:22:16.857627+00:00"
   },
   "instructions": [
     {
@@ -740,6 +740,64 @@
       "createdAt": "2026-09-14T20:03:02.960849+00:00",
       "status": "pending",
       "eventId": "test-qa-event-1789416182",
+      "eventTitle": "",
+      "venueName": "",
+      "sourceUrl": "",
+      "instructionText": "Fix scraper to target General Admission tier.",
+      "screenshotPath": null,
+      "actionTaken": "queue_and_approve",
+      "curatorNote": "Curator verified door price",
+      "targetScraperOrEngine": "UniversalVenueCrawler"
+    },
+    {
+      "id": "inst_1789431205737",
+      "createdAt": "2026-09-15T00:13:25.737101+00:00",
+      "status": "resolved",
+      "eventId": "ludica-boardgames",
+      "eventTitle": "Pizzeria Ludica: 1,200+ Board Game Night",
+      "venueName": "Pizzeria Ludica",
+      "sourceUrl": "https://www.ludica.ca/games/",
+      "instructionText": "1) The website is pointing to the wrong location (there are two with similar names), it should be here: https://www.pizzerialudica.com/\n2) Pricing at this location should be labeled explicitly as a minimum spend of $20 per person.   The duration should also be noted when it's busy there is a 2 hour maximum duration.",
+      "screenshotPath": null,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified door rate for Pizzeria Ludica",
+      "targetScraperOrEngine": "Pizzeria Ludica",
+      "resolvedAt": "2026-09-15T00:22:09.563506+00:00",
+      "resolutionNotes": "Applied website URL correction (pizzerialudica.com), $20 min spend policy, and 2-hr table duration note. Ingested into master catalog."
+    },
+    {
+      "id": "inst_1789431736808",
+      "createdAt": "2026-09-15T00:22:16.808483+00:00",
+      "status": "pending",
+      "eventId": "test-crawl-flag-01",
+      "eventTitle": "Live Comedy Jam",
+      "venueName": "Little Mountain Gallery",
+      "sourceUrl": "https://littlemountaingallery.ca/events",
+      "instructionText": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+      "screenshotPath": null,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Little Mountain Gallery"
+    },
+    {
+      "id": "inst_1789431736834",
+      "createdAt": "2026-09-15T00:22:16.834211+00:00",
+      "status": "pending",
+      "eventId": "test-crawl-flag-02",
+      "eventTitle": "Jazz Trio Night",
+      "venueName": "Frankie's Jazz Club",
+      "sourceUrl": "https://frankiesjazzclub.com",
+      "instructionText": "Screenshot proves ticket price is $20 at door not $60.",
+      "screenshotPath": "data/curator_screenshots/screenshot_1789431736832.png",
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Frankie's Jazz Club"
+    },
+    {
+      "id": "inst_1789431736856",
+      "createdAt": "2026-09-15T00:22:16.856080+00:00",
+      "status": "pending",
+      "eventId": "test-qa-event-1789431736",
       "eventTitle": "",
       "venueName": "",
       "sourceUrl": "",

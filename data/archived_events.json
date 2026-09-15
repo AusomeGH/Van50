@@ -395,6 +395,31 @@
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
       "archivedReason": "Dismissed by curator",
       "archivedAt": "2026-09-13T16:46:01.385639"
+    },
+    {
+      "id": "iq2000-pub-trivia-vancouver",
+      "title": "IQ 2000 Vancouver Pub Trivia Night",
+      "venue": "Colony Main Street",
+      "address": "2904 Main St, Vancouver",
+      "neighborhood": "Mount Pleasant",
+      "attemptedPrice": 0.0,
+      "attemptedPriceLabel": "$0.00 door",
+      "provider": "Box Office / Direct",
+      "semanticProvider": "Walk-in / Table Reservation",
+      "websiteUrl": "https://iq2000trivia.com",
+      "category": "trivia",
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Tuesdays)",
+      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "flaggedAt": "2026-09-14T08:26:44-07:00",
+      "flagReason": "Could not fetch host page: https://iq2000trivia.com",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "archivedReason": "Dismissed by curator",
+      "archivedAt": "2026-09-14T17:05:28.008127"
     }
   ]
 }

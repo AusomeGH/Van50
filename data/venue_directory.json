@@ -550,15 +550,17 @@
       ],
       "transitInfo": "3 min walk from Stadium-Chinatown SkyTrain",
       "category": "activities",
-      "venueUrl": "https://ludica.ca",
-      "calendarUrl": "https://www.ludica.ca/games/",
-      "boxOfficeUrl": "https://www.ludica.ca/games/",
+      "venueUrl": "https://www.pizzerialudica.com/",
+      "calendarUrl": "https://www.pizzerialudica.com/",
+      "boxOfficeUrl": "https://www.pizzerialudica.com/",
       "ticketingProvider": "Walk-in / Table Reservation",
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "ludica-boardgames"
       ],
-      "gameCoverPolicy": 8.0
+      "gameCoverPolicy": 20.0,
+      "minimumSpendPolicy": 20.0,
+      "durationPolicy": "2 hours during peak periods"
     },
     "Stanley Park Pitch & Putt": {
       "venueId": "stanley-park-pitch-putt",

@@ -1,53 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-14T08:27:47-07:00",
-    "pendingCount": 2,
+    "updatedAt": "2026-09-15T00:22:09.562146+00:00",
+    "pendingCount": 0,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": [
-    {
-      "id": "ludica-boardgames",
-      "title": "Pizzeria Ludica: 1,200+ Board Game Night",
-      "venue": "Pizzeria Ludica",
-      "address": "189 Keefer Pl, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
-      "attemptedPrice": 8.0,
-      "attemptedPriceLabel": "$8.00 door",
-      "provider": "Independent Box Office",
-      "semanticProvider": "Walk-in / Table Reservation",
-      "websiteUrl": "https://www.ludica.ca/games/",
-      "category": "activities",
-      "isDaily": true,
-      "frequency": "daily",
-      "frequencyLabel": "Daily (7 Days a Week)",
-      "dateSchedule": "Daily • 4:30 PM - 10:00 PM",
-      "daysOfWeek": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-      "flaggedAt": "2026-09-14T08:26:28-07:00",
-      "flagReason": "Could not fetch host page: https://www.ludica.ca/games/",
-      "reviewStatus": "pending_manual_review",
-      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-    },
-    {
-      "id": "iq2000-pub-trivia-vancouver",
-      "title": "IQ 2000 Vancouver Pub Trivia Night",
-      "venue": "Colony Main Street",
-      "address": "2904 Main St, Vancouver",
-      "neighborhood": "Mount Pleasant",
-      "attemptedPrice": 0.0,
-      "attemptedPriceLabel": "$0.00 door",
-      "provider": "Box Office / Direct",
-      "semanticProvider": "Walk-in / Table Reservation",
-      "websiteUrl": "https://iq2000trivia.com",
-      "category": "trivia",
-      "frequency": "weekly",
-      "frequencyLabel": "Weekly (Tuesdays)",
-      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
-      "daysOfWeek": ["tue"],
-      "flaggedAt": "2026-09-14T08:26:44-07:00",
-      "flagReason": "Could not fetch host page: https://iq2000trivia.com",
-      "reviewStatus": "pending_manual_review",
-      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-    }
-  ]
+  "quarantinedEvents": []
 }
