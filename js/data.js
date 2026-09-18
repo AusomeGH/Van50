@@ -1,5 +1,8 @@
-// Automatically synced catalog snapshot
-const VAN50_EVENTS = [
+// Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
+// AUTO-GENERATED from central data/events.json on 2026-09-18T11:09:19-07:00
+// Single Reference Source Architecture • 0 Client-Side Scraping
+
+const VANCOUVER_EVENTS = [
   {
     "id": "seawall-lost-lagoon",
     "title": "Stanley Park Seawall & Lost Lagoon Walk",
@@ -60,7 +63,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:38-07:00",
+      "verifiedAt": "2026-09-18T11:07:26-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -118,13 +121,13 @@ const VAN50_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Vancouver's 100% free alternative to Capilano. Sway 50 meters above roaring canyon waters, temperate rainforest boardwalks, and emerald swimming holes.",
+    "description": "Visit the Ecology Centre, nestled in the temperate rainforest. Explore our nature museum, shop sustainable gifts, or join one of our engaging programs.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:38-07:00",
+      "verifiedAt": "2026-09-18T11:07:26-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -188,7 +191,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:38-07:00",
+      "verifiedAt": "2026-09-18T11:07:27-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -252,7 +255,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:39-07:00",
+      "verifiedAt": "2026-09-18T11:07:28-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -310,77 +313,14 @@ const VAN50_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+    "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:39-07:00",
+      "verifiedAt": "2026-09-18T11:07:28-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
-    }
-  },
-  {
-    "id": "sun-yat-sen-park",
-    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
-    "artist": null,
-    "performers": null,
-    "venue": "Dr. Sun Yat-Sen Public Courtyard",
-    "venueAliases": [],
-    "address": "578 Carrall St, Vancouver",
-    "neighborhood": "Gastown / Chinatown",
-    "price": 16.0,
-    "priceLabel": "$16.00 all-in",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🏮",
-    "subTags": [
-      "ming-dynasty",
-      "heritage-courtyard",
-      "koi-pond",
-      "chinatown"
-    ],
-    "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
-    "startIso": "2026-09-08T09:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
-    "venueUrl": "https://vancouverchinesegarden.com/visit/",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2798,
-      -123.104
-    ],
-    "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "GARDEN IS OPEN TO THE PUBLICBook Your Admission OPENING HOURSOpen Tuesday to Sunday 9:30 AM - 4:00 PM (last entry 3:30 PM) Tuesday, Wednesday, Thursday, Friday, Saturday, and SundayCLOSEDMondaySPECIAL CLOSURESPlease note that our hours may vary due to private events and rentals. Before planning your visit, please check our Google Business page f...",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 16.0,
-      "feeBreakdown": "$16.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-17T20:17:39-07:00",
-      "details": "Scraped live from published terms on https://vancouverchinesegarden.com/visit/."
     }
   },
   {
@@ -443,7 +383,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:39-07:00",
+      "verifiedAt": "2026-09-18T11:07:29-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -507,7 +447,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:39-07:00",
+      "verifiedAt": "2026-09-18T11:07:30-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -539,11 +479,11 @@ const VAN50_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
+      "vancouver",
       "exotic-birds",
       "botanical",
-      "tropical-dome",
       "tickets",
-      "bloedel-conservatory",
+      "tropical-dome",
       "rainforest"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
@@ -572,7 +512,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 9.97,
       "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-17T20:17:41-07:00",
+      "verifiedAt": "2026-09-18T11:07:31-07:00",
       "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
     }
   },
@@ -635,7 +575,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:17:42-07:00",
+      "verifiedAt": "2026-09-18T11:07:33-07:00",
       "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
     }
   },
@@ -671,12 +611,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "stand-up-for-mental-health-summer-class-debut",
-      "stand-up-for-mental-health-summer-class-debut-vancouver",
-      "yaletown",
       "mental-health",
-      "stand-up",
-      "community-comedy"
+      "stand-up-for-mental-health-summer-class-debut",
+      "yaletown",
+      "stand-up-for-mental-health-summer-class-debut-tickets",
+      "community-comedy",
+      "eventbrite"
     ],
     "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
     "startIso": "2026-09-22T19:30:00-07:00",
@@ -704,7 +644,7 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 12.06,
       "feeBreakdown": "$12.06 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:17:42-07:00",
+      "verifiedAt": "2026-09-18T11:07:34-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -767,7 +707,7 @@ const VAN50_EVENTS = [
       "verifiedTotal": 13.48,
       "preTaxSticker": 12.83,
       "feeBreakdown": "$10.00 base + $2.83 service charge + $0.65 GST ($3.48 total fees)",
-      "verifiedAt": "2026-09-17T20:17:43-07:00",
+      "verifiedAt": "2026-09-18T11:07:34-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $12.83 pre-tax before checkout."
     }
   },
@@ -856,7 +796,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-17T20:17:43-07:00",
+      "verifiedAt": "2026-09-18T11:07:35-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
     }
   },
@@ -914,12 +854,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Cinema",
     "categoryIcon": "🎬",
     "subTags": [
-      "auteur-cinema",
-      "cinema",
       "film-history",
-      "cinematheque",
       "vancouver",
-      "35mm"
+      "cinematheque",
+      "cinema",
+      "35mm",
+      "auteur-cinema"
     ],
     "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
     "startIso": "2026-09-09T18:30:00-07:00",
@@ -947,7 +887,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
-      "verifiedAt": "2026-09-17T20:17:43-07:00",
+      "verifiedAt": "2026-09-18T11:07:37-07:00",
       "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
     }
   },
@@ -1009,7 +949,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-17T20:17:43-07:00",
+      "verifiedAt": "2026-09-18T11:07:39-07:00",
       "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
     }
   },
@@ -1092,7 +1032,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.0,
       "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-17T20:17:44-07:00",
+      "verifiedAt": "2026-09-18T11:07:40-07:00",
       "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
@@ -1128,12 +1068,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Cinema",
     "categoryIcon": "🎬",
     "subTags": [
-      "projection-room",
-      "indie-film",
-      "double-indumbnity--john--jonah-at-fox-cabaret",
+      "vancouver",
       "fox-cabaret",
-      "eventbrite",
-      "comedy-screening"
+      "comedy-screening",
+      "double-indumbnity--john--jonah-at-fox-cabaret",
+      "projection-room",
+      "eventbrite"
     ],
     "dateSchedule": "Friday, Sept 18 • 7:00 PM (Doors 6:30 PM)",
     "startIso": "2026-09-18T19:00:00-07:00",
@@ -1161,7 +1101,7 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 43.93,
       "feeBreakdown": "$43.93 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:17:44-07:00",
+      "verifiedAt": "2026-09-18T11:07:40-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1233,7 +1173,7 @@ const VAN50_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 11.0,
       "feeBreakdown": "$11.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-17T20:17:44-07:00",
+      "verifiedAt": "2026-09-18T11:07:41-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/mamas-broke-vancouver-169979"
     }
   },
@@ -1278,12 +1218,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎵",
     "subTags": [
-      "ultimate-90s-night",
-      "ultimate-90s-night-vancouver",
       "mount-pleasant",
-      "eventbrite",
-      "ultimate-90s-night-tickets",
-      "dance-party"
+      "90s-music",
+      "dj-night",
+      "ultimate-90s-night-vancouver",
+      "dance-party",
+      "ultimate-90s-night-tickets"
     ],
     "dateSchedule": "Fridays & Saturdays • 10:30 PM – 2:00 AM",
     "startIso": "2026-09-12T22:30:00-07:00",
@@ -1311,7 +1251,7 @@ const VAN50_EVENTS = [
       "method": "regex_scraped",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 all-in verified via Eventbrite page text",
-      "verifiedAt": "2026-09-17T20:17:50-07:00",
+      "verifiedAt": "2026-09-18T11:07:45-07:00",
       "details": "Parsed from Eventbrite event text."
     }
   },
@@ -1347,12 +1287,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "improv",
+      "live-comedy",
       "granville-island",
-      "puff-the-magic-improv-show-sept-26-2026-vancouver",
-      "puff-the-magic-improv-show-sept-26-2026",
-      "eventbrite",
-      "revue-stage"
+      "puff-the-magic-improv-show-sept-26-2026-tickets",
+      "revue-stage",
+      "improv",
+      "puff-the-magic-improv-show-sept-26-2026"
     ],
     "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-26T20:00:00-07:00",
@@ -1380,7 +1320,7 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:17:50-07:00",
+      "verifiedAt": "2026-09-18T11:07:46-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1416,12 +1356,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "headliner",
+      "cbc-comedy",
       "rio-theatre",
-      "stand-up",
       "alistair-ogden-live-at-the-rio-theatre",
+      "headliner",
       "alistair-ogden-live-at-the-rio-theatre-vancouver",
-      "alistair-ogden-live-at-the-rio-theatre-tickets"
+      "eventbrite"
     ],
     "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
     "startIso": "2026-12-04T19:30:00-07:00",
@@ -1449,7 +1389,7 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:17:51-07:00",
+      "verifiedAt": "2026-09-18T11:07:49-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1498,12 +1438,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
+      "comedy-show",
       "waterfront-theatre",
-      "improv",
       "granville-island",
-      "comedy",
       "theatresports",
-      "comedy-show"
+      "improv",
+      "improv-comedy"
     ],
     "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
     "startIso": "2026-09-11T19:30:00-07:00",
@@ -1625,7 +1565,7 @@ const VAN50_EVENTS = [
       "method": "regex_scraped",
       "verifiedTotal": 40.0,
       "feeBreakdown": "$40.00 all-in verified via Eventbrite page text",
-      "verifiedAt": "2026-09-17T20:17:53-07:00",
+      "verifiedAt": "2026-09-18T11:07:57-07:00",
       "details": "Parsed from Eventbrite event text."
     }
   },
@@ -1771,7 +1711,7 @@ const VAN50_EVENTS = [
       "method": "vso_published_rush_policy",
       "verifiedTotal": 25.2,
       "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-17T20:17:53-07:00",
+      "verifiedAt": "2026-09-18T11:07:58-07:00",
       "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
     }
   },
@@ -1835,7 +1775,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-17T20:17:54-07:00",
+      "verifiedAt": "2026-09-18T11:08:00-07:00",
       "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
     }
   },
@@ -1963,7 +1903,7 @@ const VAN50_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
+    "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "manual_curator_review",
@@ -1979,69 +1919,6 @@ const VAN50_EVENTS = [
         "approvedAt": "2026-09-17T02:06:28.798477+00:00",
         "sourceUrl": "https://www.vanartgallery.bc.ca/visit/"
       }
-    }
-  },
-  {
-    "id": "shipyards-live-night",
-    "title": "The Shipyards Live: Waterfront Music & Night Market",
-    "artist": "Local bands & rotating indie artists",
-    "performers": null,
-    "venue": "The Shipyards District",
-    "venueAliases": [],
-    "address": "125 Victory Ship Way, North Vancouver",
-    "neighborhood": "North Shore / Burnaby",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Fridays)",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "night-market",
-      "live-music",
-      "pier-festival",
-      "lonsdale-quay"
-    ],
-    "dateSchedule": "Friday Evenings • 5:00 PM - 10:00 PM",
-    "startIso": "2026-09-11T17:00:00-07:00",
-    "endIso": "2026-09-25T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-    "venueUrl": "https://theshipyardsdistrict.ca",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.3113,
-      -123.0818
-    ],
-    "transitInfo": "5 min walk from Lonsdale Quay SeaBus terminal",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Shipyards is a popular destination, public space located on the scenic City waterfront, surrounded by restaurants, cafes, shops and services.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "civic_public_space_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free civic public space ('Skate Plaza') verified via municipal portal (https://www.cnv.org/Parks-Recreation/The-Shipyards)",
-      "verifiedAt": "2026-09-17T20:17:54-07:00",
-      "details": "Verified live from official civic public space terms on https://www.cnv.org/Parks-Recreation/The-Shipyards."
     }
   },
   {
@@ -2101,7 +1978,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:55-07:00",
+      "verifiedAt": "2026-09-18T11:08:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2166,7 +2043,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:56-07:00",
+      "verifiedAt": "2026-09-18T11:08:15-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2230,7 +2107,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:56-07:00",
+      "verifiedAt": "2026-09-18T11:08:16-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2294,7 +2171,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:56-07:00",
+      "verifiedAt": "2026-09-18T11:08:19-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2358,7 +2235,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:56-07:00",
+      "verifiedAt": "2026-09-18T11:08:21-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2451,7 +2328,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-17T20:17:56-07:00",
+      "verifiedAt": "2026-09-18T11:08:21-07:00",
       "details": "Verified via venue official artist contribution and door policy."
     }
   },
@@ -2516,7 +2393,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:30-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2580,7 +2457,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:31-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2644,7 +2521,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:33-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2708,7 +2585,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:35-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2772,7 +2649,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:36-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2836,7 +2713,7 @@ const VAN50_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:37-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2894,13 +2771,13 @@ const VAN50_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "> Markets Why do we cultivate food? To explore and exemplify healthy and sustainable food systems, encourage sustainable food literacy, foster socially just food systems for all, and cultivate the local food economy. Discover the UBC Farm through your taste buds! Get your local, certified organic, farm-fresh seasonal veggies, fruits, herbs, flow...",
+    "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:38-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2987,7 +2864,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist cover charge verified via venue policy",
-      "verifiedAt": "2026-09-17T20:17:59-07:00",
+      "verifiedAt": "2026-09-18T11:08:38-07:00",
       "details": "Verified dynamically via 2nd Floor Gastown published performance terms on https://www.waterstreetcafe.ca/2nd-floor-gastown."
     }
   },
@@ -3180,7 +3057,7 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 17.62,
       "feeBreakdown": "Live multi-tier Showpass checkout: DEAR VIRIDIAN: $17.62 all-in • GRAVEYARD GHOST: $17.62 all-in • MISTY RAINE: $17.62 all-in • ALL 3 BANDS: $17.62 all-in",
-      "verifiedAt": "2026-09-17T20:18:09-07:00",
+      "verifiedAt": "2026-09-18T11:08:48-07:00",
       "details": "Extracted directly from live Showpass public API payload."
     }
   },
@@ -3263,7 +3140,7 @@ const VAN50_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-17T20:18:14-07:00",
+      "verifiedAt": "2026-09-18T11:08:50-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     }
   },
@@ -3351,7 +3228,7 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 verified via host Schema.org product/event payload",
-      "verifiedAt": "2026-09-17T20:18:14-07:00",
+      "verifiedAt": "2026-09-18T11:08:51-07:00",
       "details": "Extracted directly from host Schema.org markup on https://cafeauclay.com/products/drop-in-pottery-painting."
     }
   },
@@ -3431,7 +3308,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-17T20:18:14-07:00",
+      "verifiedAt": "2026-09-18T11:08:52-07:00",
       "details": "Scraped live from published terms on https://lifedrawing.org/session-fees-rates/."
     }
   },
@@ -3505,7 +3382,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-17T20:18:15-07:00",
+      "verifiedAt": "2026-09-18T11:08:53-07:00",
       "details": "Scraped live from published terms on https://handeyeceramics.com/open-studio."
     }
   },
@@ -3583,7 +3460,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-17T20:18:17-07:00",
+      "verifiedAt": "2026-09-18T11:08:57-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop/life-drawing/145."
     }
   },
@@ -3661,7 +3538,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-17T20:18:17-07:00",
+      "verifiedAt": "2026-09-18T11:08:57-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/clayclub."
     }
   },
@@ -3732,7 +3609,7 @@ const VAN50_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-17T20:18:17-07:00",
+      "verifiedAt": "2026-09-18T11:08:58-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/visitors-20."
     }
   },
@@ -3816,227 +3693,8 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, All Ages') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/news/10-years-of-turning-the-city-into-a-dance-floor."
-    }
-  },
-  {
-    "id": "ra-2434193-ommodore-allroom",
-    "title": "Ninajirachi",
-    "artist": "Ninajirachi",
-    "performers": [
-      "Ninajirachi"
-    ],
-    "venue": "Commodore Ballroom",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Ninajirachi"
-    ],
-    "address": "868 Granville St; Vancouver, BC V6B 2C9; Canada",
-    "neighborhood": "Downtown / West End",
-    "price": 35.0,
-    "basePrice": 35.0,
-    "priceLabel": "$35.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 35.0,
-        "price": 35.0,
-        "label": "$35.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Thursday, Sep 17 • 8:00 PM",
-    "startIso": "2026-09-17T20:00:00.000",
-    "endIso": "2026-09-17T23:30:00.000",
-    "confirmedDates": [
-      "2026-09-17"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2434193",
-    "venueUrl": "https://ra.co/events/2434193",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Commodore Ballroom. Featuring live performances by Ninajirachi.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 35.0,
-      "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    }
-  },
-  {
-    "id": "ra-2536858-he-ido",
-    "title": "R̶I̶T̶U̶A̶L̶",
-    "artist": null,
-    "performers": null,
-    "venue": "The Lido",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver"
-    ],
-    "address": "518 E Broadway, Vancouver",
-    "neighborhood": "Mount Pleasant",
-    "price": 0.0,
-    "basePrice": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Thursday, Sep 17 • 9:00 PM",
-    "startIso": "2026-09-17T21:00:00.000",
-    "endIso": "2026-09-18T01:00:00.000",
-    "confirmedDates": [
-      "2026-09-17"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2536858",
-    "venueUrl": "https://ra.co/events/2536858",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2629,
-      -123.0927
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Lido.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    }
-  },
-  {
-    "id": "ra-2536906-ar-obo",
-    "title": "Pacific Rhythm meets Bar Gobo",
-    "artist": "DJ D.Dee",
-    "performers": [
-      "DJ D.Dee"
-    ],
-    "venue": "Bar Gobo",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "DJ D.Dee"
-    ],
-    "address": "237 Union St, Vancouver, BC V6A 2B2",
-    "neighborhood": "Downtown / West End",
-    "price": 0.0,
-    "basePrice": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Thursday, Sep 17 • 8:00 PM",
-    "startIso": "2026-09-17T20:00:00.000",
-    "endIso": "2026-09-17T23:00:00.000",
-    "confirmedDates": [
-      "2026-09-17"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2536906",
-    "venueUrl": "https://ra.co/events/2536906",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Bar Gobo. Featuring live performances by DJ D.Dee.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
   {
@@ -4113,7 +3771,7 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 14.41,
       "feeBreakdown": "Live RA listing price: $14.41 all-in",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4189,7 +3847,7 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4265,7 +3923,7 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4343,7 +4001,7 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 35.0,
       "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4417,7 +4075,237 @@ const VAN50_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2537197-org-ish",
+    "title": "ANALOG // Mike McSuede, Lerma & Kozue // Vinyl Set",
+    "artist": "Mike McSuede, Lerma, Kozue",
+    "performers": [
+      "Mike McSuede",
+      "Lerma",
+      "Kozue"
+    ],
+    "venue": "Gorg-O-Mish",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "Mike McSuede",
+      "Lerma",
+      "Kozue"
+    ],
+    "address": "695 Smithe St; Vancouver, BC V6B 2C9; Canada",
+    "neighborhood": "Downtown / West End",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Sep 18 • 11:59 PM",
+    "startIso": "2026-09-18T23:59:00.000",
+    "endIso": "2026-09-19T06:00:00.000",
+    "confirmedDates": [
+      "2026-09-18"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2537197",
+    "venueUrl": "https://ra.co/events/2537197",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Gorg-O-Mish. Featuring live performances by Mike McSuede, Lerma, Kozue.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2470117-he-eaumont-tudios",
+    "title": "Soul Hop & JK Gaultier present: LADYMONIX (3 hour set)",
+    "artist": "LADYMONIX, Jesse Walker, Kon Radd",
+    "performers": [
+      "LADYMONIX",
+      "Jesse Walker",
+      "Kon Radd"
+    ],
+    "venue": "The Beaumont Studios",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "LADYMONIX",
+      "Jesse Walker",
+      "Kon Radd"
+    ],
+    "address": "316 W 5th Ave, Vancouver, BC",
+    "neighborhood": "Downtown / West End",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Saturday, Sep 19 • 9:30 PM",
+    "startIso": "2026-09-19T21:30:00.000",
+    "endIso": "2026-09-20T03:00:00.000",
+    "confirmedDates": [
+      "2026-09-19"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2470117",
+    "venueUrl": "https://ra.co/events/2470117",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Beaumont Studios. Featuring live performances by LADYMONIX, Jesse Walker, Kon Radd.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2502921-ortune-ound-lub",
+    "title": "MoBlack",
+    "artist": "MoBlack",
+    "performers": [
+      "MoBlack"
+    ],
+    "venue": "Fortune Sound Club",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "MoBlack"
+    ],
+    "address": "147 E Pender St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Saturday, Sep 19 • 10:00 PM",
+    "startIso": "2026-09-19T22:00:00.000",
+    "endIso": "2026-09-20T02:00:00.000",
+    "confirmedDates": [
+      "2026-09-19"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2502921",
+    "venueUrl": "https://ra.co/events/2502921",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2808,
+      -123.0998
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Fortune Sound Club. Featuring live performances by MoBlack.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-18T11:09:00-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4449,11 +4337,11 @@ const VAN50_EVENTS = [
     "categoryIcon": "🎵",
     "subTags": [
       "music",
-      "hall-of-flame-presents-80s-night",
-      "hall-of-flame-presents-80s-night-vancouver",
+      "live-calendar",
       "hall-of-flame-presents-80s-night-tickets",
+      "hollywood-theatre",
       "eventbrite",
-      "live-calendar"
+      "hall-of-flame-presents-80s-night-vancouver"
     ],
     "frequency": "one-off",
     "frequencyLabel": "Live Showcase",
@@ -4486,150 +4374,12 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 22.73,
       "feeBreakdown": "$22.73 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:06-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     },
     "isFree": false,
     "scrapedDescription": "Get ready to boogie all night at Hall of Flame’s 80's Disco Night—bring your best moves and retro vibes!",
     "ticketProvider": "Eventbrite Verified"
-  },
-  {
-    "id": "hollywood-theatre-delilah-bon",
-    "title": "DELILAH BON",
-    "venue": "Hollywood Theatre",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "venueAliases": [
-      "The Hollywood Theatre",
-      "Hollywood Theatre Vancouver"
-    ],
-    "address": "3123 W Broadway, Vancouver, BC",
-    "neighborhood": "Kitsilano",
-    "coordinates": [
-      49.2642,
-      -123.1754
-    ],
-    "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
-    "basePrice": 20.0,
-    "scrapedBasePrice": null,
-    "venueSubpageUrl": "https://hollywoodtheatre.ca/events/delilah-bon",
-    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2240",
-    "venueUrl": "https://hollywoodtheatre.ca",
-    "category": "shows",
-    "categoryLabel": "Shows & Music",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "hollywood-theatre",
-      "shows",
-      "live-calendar"
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Live Showcase",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "dateSchedule": "Sep 22, 2026",
-    "startIso": "2026-09-22T19:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [
-      "2026-09-22"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Time to rock on! Concert Tickets in Vancouver.",
-    "price": 37.95,
-    "priceLabel": "$37.95 all-in ($30.00 + $7.95 fees)",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 37.95
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "universal_transparent_checkout",
-      "verifiedTotal": 37.95,
-      "feeBreakdown": "$3.00 facility fee + $4.95 service fee",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Live checked against published transparent checkout rates on https://orangetickets.ca/detalles_evento.php?id_evento=2240."
-    },
-    "isFree": false,
-    "scrapedDescription": "Time to rock on! Concert Tickets in Vancouver.",
-    "ticketProvider": "Hollywood Theatre Verified"
-  },
-  {
-    "id": "hollywood-theatre-tokyo-tea-room",
-    "title": "Tokyo Tea Room",
-    "venue": "Hollywood Theatre",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "venueAliases": [
-      "The Hollywood Theatre",
-      "Hollywood Theatre Vancouver"
-    ],
-    "address": "3123 W Broadway, Vancouver, BC",
-    "neighborhood": "Kitsilano",
-    "coordinates": [
-      49.2642,
-      -123.1754
-    ],
-    "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
-    "basePrice": 20.0,
-    "scrapedBasePrice": null,
-    "venueSubpageUrl": "https://hollywoodtheatre.ca/events/tokyo-tea-room",
-    "websiteUrl": "https://www.ticketweb.ca/event/tokyo-tea-room-hollywood-theatre-tickets/14924383?pl=timbre21",
-    "venueUrl": "https://hollywoodtheatre.ca",
-    "category": "shows",
-    "categoryLabel": "Shows & Music",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "hollywood-theatre",
-      "shows",
-      "live-calendar"
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Live Showcase",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "dateSchedule": "Sep 24, 2026",
-    "startIso": "2026-09-24T19:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [
-      "2026-09-24"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Find tickets for Tokyo Tea Room, Kylie V showing at the Hollywood Theatre - Vancouver, CA Thursday Sep 24, 7:00PM Tickets starting at $36.80",
-    "price": 36.8,
-    "priceLabel": "$36.80 all-in ($25.00 + $11.80 fees)",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 36.8
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "schema_jsonld",
-      "verifiedTotal": 36.8,
-      "feeBreakdown": "$25.00 base + $11.80 TicketWeb fee",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Extracted dynamically from Schema.org payload on https://www.ticketweb.ca/event/tokyo-tea-room-hollywood-theatre-tickets/14924383?pl=timbre21."
-    },
-    "isFree": false,
-    "scrapedDescription": "Find tickets for Tokyo Tea Room, Kylie V showing at the Hollywood Theatre - Vancouver, CA Thursday Sep 24, 7:00PM Tickets starting at $36.80",
-    "ticketProvider": "Ticketweb Verified"
   },
   {
     "id": "hollywood-theatre-day-fever-canada",
@@ -4658,12 +4408,12 @@ const VAN50_EVENTS = [
     "categoryLabel": "Shows & Music",
     "categoryIcon": "🎭",
     "subTags": [
-      "day-fever-canada--hollywood-theatre--vancouver",
+      "live-calendar",
       "bc-tickets",
+      "hollywood-theatre",
       "shows",
       "eventbrite",
-      "live-calendar",
-      "hollywood-theatre"
+      "day-fever-canada--hollywood-theatre--vancouver"
     ],
     "frequency": "one-off",
     "frequencyLabel": "Live Showcase",
@@ -4696,81 +4446,12 @@ const VAN50_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:07-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     },
     "isFree": false,
     "scrapedDescription": "Day Fever Canada is the ultimate over 30s daytime party experience. Expect throwback club classics and iconic singalong moments.",
     "ticketProvider": "Eventbrite Verified"
-  },
-  {
-    "id": "hollywood-theatre-heated-rivalry-dance-party",
-    "title": "Heated Rivalry Dance Party",
-    "venue": "Hollywood Theatre",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "venueAliases": [
-      "The Hollywood Theatre",
-      "Hollywood Theatre Vancouver"
-    ],
-    "address": "3123 W Broadway, Vancouver, BC",
-    "neighborhood": "Kitsilano",
-    "coordinates": [
-      49.2642,
-      -123.1754
-    ],
-    "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
-    "basePrice": 20.0,
-    "scrapedBasePrice": null,
-    "venueSubpageUrl": "https://hollywoodtheatre.ca/events/heated-rivalry-dance-party-peoe3",
-    "websiteUrl": "https://www.ticketweb.ca/event/heated-rivalry-dance-party-vancouver-hollywood-theatre-tickets/15034503",
-    "venueUrl": "https://hollywoodtheatre.ca",
-    "category": "music",
-    "categoryLabel": "Shows & Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "hollywood-theatre",
-      "music",
-      "live-calendar"
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Live Showcase",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "dateSchedule": "Sep 26, 2026",
-    "startIso": "2026-09-26T19:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [
-      "2026-09-26"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Find tickets for UP Dance Party Co. showing at the Hollywood Theatre - Vancouver, CA Saturday Sep 26, 10:00PM Tickets starting at $14.96",
-    "price": 20.22,
-    "priceLabel": "$20.22 all-in ($14.96 + fees/tax)",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 20.22
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "schema_jsonld",
-      "verifiedTotal": 20.22,
-      "feeBreakdown": "$14.96 base + $4.30 TicketWeb fee + $0.96 GST",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
-      "details": "Extracted dynamically from Schema.org payload on https://www.ticketweb.ca/event/heated-rivalry-dance-party-vancouver-hollywood-theatre-tickets/15034503."
-    },
-    "isFree": false,
-    "scrapedDescription": "Find tickets for UP Dance Party Co. showing at the Hollywood Theatre - Vancouver, CA Saturday Sep 26, 10:00PM Tickets starting at $14.96",
-    "ticketProvider": "Ticketweb Verified"
   },
   {
     "id": "hollywood-theatre-don-west",
@@ -4829,7 +4510,7 @@ const VAN50_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 11.0,
       "feeBreakdown": "$11.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-17T20:18:20-07:00",
+      "verifiedAt": "2026-09-18T11:09:07-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/pro/other/hollywood-theatre/don-west/don-west/69bb15ff37d8090dd76b170d"
     },
     "isFree": false,
@@ -4893,7 +4574,7 @@ const VAN50_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 11.0,
       "feeBreakdown": "$11.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:08-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/tricky-vancouver-162822"
     },
     "isFree": false,
@@ -4963,7 +4644,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:15-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/gastown-streetside-sessions-xe3kh-n4n52-whwyz-d674d-spja9."
     },
     "isFree": true,
@@ -5036,7 +4717,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:15-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granville-street-2026-3."
     },
     "isFree": true,
@@ -5105,7 +4786,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:15-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
     },
     "isFree": true,
@@ -5177,7 +4858,7 @@ const VAN50_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 9.0,
       "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:18-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website"
     },
     "isFree": false,
@@ -5258,7 +4939,7 @@ const VAN50_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 28.0,
       "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
-      "verifiedAt": "2026-09-17T20:18:21-07:00",
+      "verifiedAt": "2026-09-18T11:09:18-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
     },
     "isFree": false,
@@ -5328,7 +5009,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free and all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:22-07:00",
+      "verifiedAt": "2026-09-18T11:09:18-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/shipyards-night-market-stage-takeover."
     },
     "isFree": true,
@@ -5400,7 +5081,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free EVENT') scraped live from published terms",
-      "verifiedAt": "2026-09-17T20:18:22-07:00",
+      "verifiedAt": "2026-09-18T11:09:18-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granvilleisland2026."
     },
     "isFree": true,
@@ -5471,7 +5152,7 @@ const VAN50_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public entry with $5.00 suggested community donation scraped live",
-      "verifiedAt": "2026-09-17T20:18:22-07:00",
+      "verifiedAt": "2026-09-18T11:09:18-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/blossom-block-party-2026."
     },
     "isFree": true,
@@ -5551,6 +5232,280 @@ const VAN50_EVENTS = [
     },
     "isFree": false,
     "ticketProvider": "Rickshaw Theatre Verified"
+  }
+];
+const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "sun-yat-sen-park",
+    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
+    "venue": "Dr. Sun Yat-Sen Public Courtyard",
+    "address": "578 Carrall St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
+    "category": "arts",
+    "flaggedAt": "2026-09-18T11:07:29-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouverchinesegarden.com/visit/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "lmg-open-mic",
+    "title": "Little Mountain Gallery: First Come First Serve Stand-Up Open Mic",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 5.0,
+    "attemptedPriceLabel": "$5.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:31-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "lmg-improv-jam",
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 7.0,
+    "attemptedPriceLabel": "$7.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:32-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "lmg-happy-hour-comedy",
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:42-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "lmg-seasoned-improv",
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:43-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "lmg-decolonized-comedy",
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:44-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "lmg-crowd-source",
+    "title": "Little Mountain Gallery: Weekend Comedy & Improv Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://littlemountaingallery.ca/schedule/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:44-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "tightrope-impro-showcase",
+    "title": "Tightrope Impro Theatre: Unscripted Comedy Showcase",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 25.0,
+    "attemptedPriceLabel": "$25.00 door",
+    "provider": "Eventbrite",
+    "semanticProvider": "Eventbrite Verified",
+    "websiteUrl": "https://tightropetheatre.com/",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:07:48-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://tightropetheatre.com/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "tightrope-workshop",
+    "title": "Tightrope Impro Theatre: Unscripted Comedy Showcase",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 40.0,
+    "attemptedPriceLabel": "$40.00 door",
+    "provider": "Independent Box Office",
+    "semanticProvider": "Independent Box Office",
+    "websiteUrl": "https://tightropetheatre.com/",
+    "category": "activities",
+    "flaggedAt": "2026-09-18T11:07:59-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://tightropetheatre.com/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "shipyards-live-night",
+    "title": "The Shipyards Live: Waterfront Music & Night Market",
+    "venue": "The Shipyards District",
+    "address": "125 Victory Ship Way, North Vancouver",
+    "neighborhood": "North Shore / Burnaby",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:14-07:00",
+    "flagReason": "Could not fetch host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "vancouver-institute-lectures",
+    "title": "The Vancouver Institute: Saturday Public Lecture Series",
+    "venue": "UBC Instructional Resources Centre (IRC)",
+    "address": "2194 Health Sciences Mall, Vancouver",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://vaninstitute.ca",
+    "category": "arts",
+    "flaggedAt": "2026-09-18T11:08:22-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://vaninstitute.ca. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "frankies-jazz-brad-turner",
+    "title": "Live Jazz Showcase at Frankie's Jazz Club",
+    "venue": "Frankie's Jazz Club",
+    "address": "755 Beatty St, Vancouver",
+    "neighborhood": "Downtown / West End",
+    "attemptedPrice": 22.0,
+    "attemptedPriceLabel": "$22.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Box Office / Direct Verified",
+    "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:40-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://frankiesjazzclub.turntabletickets.com/. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "wise-hall-roots-revue",
+    "title": "East Van Roots, Folk & Live Music at The WISE Hall",
+    "venue": "The WISE Hall & Lounge",
+    "address": "1882 Adanac St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://wisehall.ca",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:41-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://wisehall.ca. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "anza-club-bluegrass-jam",
+    "title": "Pacific Bluegrass & Heritage Acoustic Jam at The Anza Club",
+    "venue": "The Anza Club",
+    "address": "3 W 8th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant",
+    "attemptedPrice": 10.0,
+    "attemptedPriceLabel": "$10.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://anzaclub.org",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:42-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://anzaclub.org. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "red-gate-dead-soft",
+    "title": "Friday Night Live Indie & Underground at Red Gate",
+    "venue": "Red Gate Arts Society",
+    "address": "1151 E Hastings St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 12.0,
+    "attemptedPriceLabel": "$12.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:44-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "lanalous-the-jolts",
+    "title": "Weekend Live Rock 'n' Roll at LanaLou's",
+    "venue": "LanaLou's",
+    "address": "362 Powell St, Vancouver",
+    "neighborhood": "Gastown / Chinatown",
+    "attemptedPrice": 12.0,
+    "attemptedPriceLabel": "$12.00 door",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Venue Door / Table Charge",
+    "websiteUrl": "https://lanalous.com",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:08:44-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://lanalous.com. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
   },
   {
     "id": "roxy-live-acts-showcase",
@@ -5562,30 +5517,648 @@ const VAN50_EVENTS = [
     "attemptedPriceLabel": "$12.00 door",
     "provider": "Showpass",
     "semanticProvider": "Showpass Verified",
-    "websiteUrl": "https://www.showpass.com/cfe0926/",
+    "websiteUrl": "https://roxyvan.com/events",
     "category": "music",
-    "flaggedAt": "2026-09-17T20:18:12-07:00",
+    "flaggedAt": "2026-09-18T11:08:49-07:00",
     "flagReason": "Generic Link: Generic catalog index path ('/events') without specific event slug: https://roxyvan.com/events. Autonomous Hunter could not locate a specific event checkout page.",
     "reviewStatus": "pending_manual_review",
-    "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
-    "price": 12.0,
-    "priceLabel": "$12.00 door / advance",
-    "categoryLabel": "Live Music",
-    "coordinates": [
-      49.2804,
-      -123.1213
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 CAD verified on Showpass (https://www.showpass.com/cfe0926/)",
-      "verifiedAt": "2026-09-18T03:20:41.040871+00:00",
-      "details": "Direct Showpass event page provided by curator."
-    }
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "unverified-eastside-cinema",
+    "title": "Eastside Cinema Club: Unverified Community Screening",
+    "venue": "Eastside Community Hall",
+    "address": "1200 Commercial Dr, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 15.0,
+    "attemptedPriceLabel": "$15.00 door",
+    "provider": "Independent Box Office",
+    "semanticProvider": "Independent Box Office",
+    "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
+    "category": "cinema",
+    "flaggedAt": "2026-09-18T11:08:50-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/tickets') without specific event slug: https://eastsidecinemaclub.example.com/tickets. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "slice-of-life-craft-night",
+    "title": "Community Craft & Printmaking Night at Slice of Life",
+    "venue": "Slice of Life Gallery & Studios",
+    "address": "1636 Venables St, Vancouver",
+    "neighborhood": "Commercial Drive",
+    "attemptedPrice": 18.0,
+    "attemptedPriceLabel": "$18.00 door",
+    "provider": "Direct Studio Drop-In / Walk-in",
+    "semanticProvider": "Walk-in / Studio Registration",
+    "websiteUrl": "https://www.slicevancouver.ca/shop",
+    "category": "crafts",
+    "flaggedAt": "2026-09-18T11:08:56-07:00",
+    "flagReason": "Generic Link: Generic catalog index path ('/shop') without specific event slug: https://www.slicevancouver.ca/shop. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "hollywood-theatre-delilah-bon",
+    "title": "DELILAH BON",
+    "venue": "Hollywood Theatre",
+    "address": "3123 W Broadway, Vancouver, BC",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2240",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:09:06-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://orangetickets.ca/detalles_evento.php?id_evento=2240",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "hollywood-theatre-tokyo-tea-room",
+    "title": "Tokyo Tea Room",
+    "venue": "Hollywood Theatre",
+    "address": "3123 W Broadway, Vancouver, BC",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketweb.ca/event/tokyo-tea-room-hollywood-theatre-tickets/14924383?pl=timbre21",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:09:07-07:00",
+    "flagReason": "Unverified TicketWeb event: could not extract checkout pricing from https://www.ticketweb.ca/event/tokyo-tea-room-hollywood-theatre-tickets/14924383?pl=timbre21",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "hollywood-theatre-heated-rivalry-dance-party",
+    "title": "Heated Rivalry Dance Party",
+    "venue": "Hollywood Theatre",
+    "address": "3123 W Broadway, Vancouver, BC",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketweb.ca/event/heated-rivalry-dance-party-vancouver-hollywood-theatre-tickets/15034503",
+    "category": "music",
+    "flaggedAt": "2026-09-18T11:09:07-07:00",
+    "flagReason": "Unverified TicketWeb event: could not extract checkout pricing from https://www.ticketweb.ca/event/heated-rivalry-dance-party-vancouver-hollywood-theatre-tickets/15034503",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "hollywood-theatre-nick-hakim",
+    "title": "NICK HAKIM",
+    "venue": "Hollywood Theatre",
+    "address": "3123 W Broadway, Vancouver, BC",
+    "neighborhood": "Kitsilano",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketweb.ca/event/nick-hakim-hollywood-theatre-tickets/14966653?pl=timbre21",
+    "category": "shows",
+    "flaggedAt": "2026-09-18T11:09:09-07:00",
+    "flagReason": "Unverified TicketWeb event: could not extract checkout pricing from https://www.ticketweb.ca/event/nick-hakim-hollywood-theatre-tickets/14966653?pl=timbre21",
+    "reviewStatus": "pending_manual_review"
   }
 ];
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { VAN50_EVENTS };
-}
+// Neighborhood List (Multi-selection enabled)
+const NEIGHBORHOODS = [
+  "Gastown / Chinatown",
+  "Mount Pleasant",
+  "Commercial Drive",
+  "Downtown / West End",
+  "Kitsilano",
+  "Granville Island",
+  "North Shore / Burnaby"
+];
+
+// Days of the Week
+const DAYS_OF_WEEK = [
+  { id: "all", label: "All Days", icon: "🗓️" },
+  { id: "mon", label: "Mon", full: "Monday" },
+  { id: "tue", label: "Tue", full: "Tuesday" },
+  { id: "wed", label: "Wed", full: "Wednesday" },
+  { id: "thu", label: "Thu", full: "Thursday" },
+  { id: "fri", label: "Fri", full: "Friday" },
+  { id: "sat", label: "Sat", full: "Saturday" },
+  { id: "sun", label: "Sun", full: "Sunday" },
+  { id: "daily", label: "Daily Spots", icon: "☀️" }
+];
+
+// Time of Day Starting Slots
+const TIME_SLOTS = [
+  { id: "all", label: "Any Time", icon: "⏰" },
+  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
+  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
+  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
+  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
+];
+
+// Recurrence Frequency Metadata
+const FREQUENCIES = [
+  { id: "all", label: "All Frequencies", icon: "✨" },
+  { id: "weekly", label: "Weekly", icon: "🔄", color: "#a855f7" },
+  { id: "monthly", label: "Monthly", icon: "📅", color: "#06b6d4" },
+  { id: "daily", label: "Daily", icon: "☀️", color: "#f59e0b" },
+  { id: "one-off", label: "One-Off", icon: "🎟️", color: "#f43f5e" },
+  { id: "seasonal", label: "Seasonal", icon: "🌟", color: "#10b981" },
+  { id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }
+];
+
+// Refined Category Definitions (Split Live Music & Comedy/Shows)
+const CATEGORIES = [
+  { id: "all", label: "All", icon: "✨" },
+  { id: "music", label: "Live Music", icon: "🎵" },
+  { id: "shows", label: "Comedy & Shows", icon: "🎭" },
+  { id: "crafts", label: "Crafts & Studios", icon: "🎨" },
+  { id: "cinema", label: "Cinema", icon: "🎬" },
+  { id: "arts", label: "Museums & Arts", icon: "🏛️" },
+  { id: "outdoors", label: "Walks & Outdoors", icon: "🌲" },
+  { id: "activities", label: "Games & Activities", icon: "🎲" },
+  { id: "trivia", label: "Drinks & Trivia", icon: "🍻" }
+];
+
+// Curated Venue Homepages Directory
+const VENUE_URLS = {
+  "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+  "Lynn Canyon Park": "https://ecologycentre.ca",
+  "Granville Island Public Market": "https://granvilleisland.com",
+  "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
+  "VPL Central Library (Level 9)": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+  "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
+  "UBC Rose Garden & Trail 6": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+  "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+  "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
+  "Little Mountain Gallery": "https://littlemountaingallery.ca",
+  "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
+  "Chill x Studio": "https://chillxstudio.com",
+  "VIFF Centre (Seymour Atrium)": "https://viff.org",
+  "The Cinematheque": "https://thecinematheque.ca",
+  "The Portside Pub": "https://theportsidepub.com",
+  "The Rio Theatre": "https://riotheatre.ca",
+  "The Fox Cabaret": "https://www.foxcabaret.com",
+  "The Biltmore Cabaret": "https://biltmorecabaret.com",
+  "Scotiabank Field at Nat Bailey Stadium": "https://www.milb.com/vancouver",
+  "Tightrope Impro Theatre": "https://tightropetheatre.com",
+  "The Improv Centre": "https://theimprovcentre.ca",
+  "The Rickshaw Theatre": "https://rickshawtheatre.com",
+  "Rickshaw Theatre": "https://rickshawtheatre.com",
+  "Hollywood Theatre": "https://hollywoodtheatre.ca",
+  "The Hollywood Theatre": "https://hollywoodtheatre.ca",
+  "Science World at TELUS World of Science": "https://www.scienceworld.ca",
+  "Public Disco Society": "https://publicdisco.ca",
+  "Public Disco": "https://publicdisco.ca",
+  "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
+  "Pizzeria Ludica": "https://www.pizzerialudica.com/",
+  "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+  "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
+  "The Shipyards District": "https://theshipyardsdistrict.ca",
+  "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
+  "Revue Stage Granville Island": "https://theimprovcentre.ca",
+  "Commercial Drive & Main Street": "https://www.carfreevancouver.org",
+  "West 4th Avenue (Burrard to Macdonald)": "https://khatsahlano.ca",
+  "John Hendry Park (Trout Lake)": "https://eatlocal.org/markets/trout-lake/",
+  "Kitsilano Community Centre Plaza": "https://eatlocal.org/markets/kitsilano/",
+  "Guilt & Co.": "https://www.guiltandcompany.com",
+  "UBC Instructional Resources Centre (IRC)": "https://vaninstitute.ca",
+  "Colony Main Street": "https://iq2000trivia.com",
+  "RUNVAN Clubhouse & Seawall": "https://runvan.org",
+  "Riley Park Plaza (Nat Bailey Stadium)": "https://eatlocal.org/markets/riley-park/",
+  "Nelson Park (West End)": "https://eatlocal.org/markets/west-end/",
+  "Dude Chilling Park (Guelph Park)": "https://eatlocal.org/markets/mount-pleasant/",
+  "Vancouver Art Gallery Plaza (North)": "https://eatlocal.org/markets/downtown/",
+  "Concord Community Park (False Creek)": "https://eatlocal.org/markets/false-creek/",
+  "UBC Farm (South Campus)": "https://ubcfarm.ubc.ca/markets/",
+  "2nd Floor Gastown": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+  "Frankie's Jazz Club": "https://www.coastaljazz.ca",
+  "The WISE Hall & Lounge": "https://thewise.ca",
+  "The Anza Club": "https://www.anzaclub.org",
+  "Red Gate Arts Society": "https://redgate.tv/tickets/",
+  "LanaLou's": "https://lanalous.com",
+  "The Roxy Cabaret": "https://www.roxyvan.com",
+  "Café au Clay Studios": "https://cafeauclay.com",
+  "Basic Inquiry Life Drawing Society": "https://lifedrawing.org",
+  "Hand Eye Ceramics": "https://handeyeceramics.com",
+  "Claymates Ceramics Studio": "https://claymatesceramicsstudio.com",
+  "Slice of Life Gallery & Studios": "https://www.slicevancouver.ca",
+  "Bentall Centre Dunsmuir Plaza": "https://bentallcentre.com",
+  "The Birdhouse": "https://www.birdhouse.ca",
+  "Commodore Ballroom": "https://ra.co/events/2434193",
+  "The Lido": "https://ra.co/events/2536858",
+  "Bar Gobo": "https://ra.co/events/2536906",
+  "KW Studios": "https://ra.co/events/2485148",
+  "Village Studios": "https://ra.co/events/2522862",
+  "Platform9": "https://ra.co/events/2525474",
+  "Skylight Warehouse": "https://ra.co/events/2533755",
+  "Pizza Coming Soon": "https://ra.co/events/2536847",
+  "Gastown (Water Street)": "https://publicdisco.ca/events/gastown-streetside-sessions-xe3kh-n4n52-whwyz-d674d-spja9",
+  "Granville Street Pedestrian Zone": "https://publicdisco.ca/events/granville-street-2026-3",
+  "Downtown Vancouver Plazas": "https://publicdisco.ca/events/downtown2026",
+  "Mount Pleasant (4th & Ontario)": "https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website",
+  "City Centre Artist Lodge": "https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website",
+  "The Shipyards Waterfront": "https://publicdisco.ca/events/shipyards-night-market-stage-takeover",
+  "Granville Island (Lot 55)": "https://publicdisco.ca/events/granvilleisland2026"
+};
+
+// Curated Discovery Sources Directory
+const DISCOVERY_SOURCES = [
+  {
+    "id": "vancouver-is-awesome",
+    "name": "Vancouver Is Awesome",
+    "domain": "vancouverisawesome.com",
+    "eventsUrl": "https://www.vancouverisawesome.com/events",
+    "rssUrl": "https://www.vancouverisawesome.com/rss",
+    "type": "editorial_aggregator",
+    "typeLabel": "Editorial News & Community Calendar",
+    "focus": "Community culture, trending local happenings, weekend roundups, seasonal festivals",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or box office portal. Never use VIA article URL as final card destination.",
+    "status": "active"
+  },
+  {
+    "id": "do604",
+    "name": "Do604",
+    "domain": "do604.com",
+    "eventsUrl": "https://do604.com/events",
+    "rssUrl": "https://do604.com/events.rss",
+    "type": "nightlife_and_gigs_aggregator",
+    "typeLabel": "Live Music & Nightlife Directory",
+    "focus": "Live music, cover bands, indie rock, DJ & retro dance nights, brewery trivia, comedy, and RSVP giveaways",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "html_calendar_and_rss",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
+    "status": "active"
+  },
+  {
+    "id": "georgia-straight",
+    "name": "The Georgia Straight",
+    "domain": "straight.com",
+    "eventsUrl": "https://www.straight.com/listings",
+    "rssUrl": "https://www.straight.com/rss/listings",
+    "type": "cultural_directory",
+    "typeLabel": "Arts, Culture & Community Listings",
+    "focus": "Grassroots arts, live theatre, dance, jazz sessions, comedy showcases, and community submissions",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "arts",
+      "cinema"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
+    "status": "active"
+  },
+  {
+    "id": "daily-hive-vancouver",
+    "name": "Daily Hive Vancouver",
+    "domain": "dailyhive.com",
+    "eventsUrl": "https://dailyhive.com/vancouver/events",
+    "rssUrl": "https://dailyhive.com/vancouver/feed",
+    "type": "editorial_lifestyle_aggregator",
+    "typeLabel": "Lifestyle & Pop-Up Event Coverage",
+    "focus": "Weekly 'Free & cheap things to do in Vancouver' roundups, night markets, food festivals, and seasonal pop-ups",
+    "bestForCategories": [
+      "activities",
+      "outdoors",
+      "shows"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Scan weekly weekend editorial lists, extract venue and dates, and resolve to official venue pages.",
+    "status": "active"
+  },
+  {
+    "id": "miss604",
+    "name": "Miss604 (Rebecca Bollwitt)",
+    "domain": "miss604.com",
+    "eventsUrl": "https://miss604.com/category/events",
+    "rssUrl": "https://miss604.com/feed",
+    "type": "independent_civic_guide",
+    "typeLabel": "Independent Vancouver Events & Heritage Guide",
+    "focus": "Civic gatherings, free outdoor festivals, park events, farmers markets, heritage and community activities",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_blog_roundups",
+    "targetBudgetTier": "Free & budget ($0 - $25 CAD)",
+    "resolutionPolicy": "Extract structured bullet points from weekly 'Things to Do in Vancouver This Weekend' post published every Thursday; link directly to official host organization.",
+    "status": "active"
+  },
+  {
+    "id": "destination-vancouver",
+    "name": "Destination Vancouver",
+    "domain": "destinationvancouver.com",
+    "eventsUrl": "https://www.destinationvancouver.com/events/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Official Tourism & Civic Festival Calendar",
+    "focus": "Major city-wide street festivals (Khatsahlano, Car Free Days, Greek Day, Italian Day), fireworks, cultural celebrations",
+    "bestForCategories": [
+      "outdoors",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "Free & civic ($0 CAD)",
+    "resolutionPolicy": "High authority; use official festival domains and municipal event landing pages linked on each listing.",
+    "status": "active"
+  },
+  {
+    "id": "live-music-vancouver",
+    "name": "Live Music Vancouver",
+    "domain": "livemusicvancouver.com",
+    "eventsUrl": "https://www.livemusicvancouver.com/",
+    "rssUrl": null,
+    "type": "pub_and_club_gig_guide",
+    "typeLabel": "Local Pub & Bar Music Schedule",
+    "focus": "Vancouver bar and pub live music circuit (The Roxy, Blarney Stone, Rickshaw, LanaLou's, Fairview)",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "$0 - $20 CAD door",
+    "resolutionPolicy": "Extract gig date and performer, then match to venue's official ticket portal or verified door policy.",
+    "status": "active"
+  },
+  {
+    "id": "songkick-vancouver",
+    "name": "Songkick Vancouver",
+    "domain": "songkick.com",
+    "eventsUrl": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+    "rssUrl": null,
+    "type": "concert_and_gig_aggregator",
+    "typeLabel": "Concert & Touring Gig Directory",
+    "focus": "Live band tours, local venue shows, cover showcases, recurring club gigs",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract platform ticketing links (Ticketweb, Eventbrite, AXS, Showpass) and calculate all-in fees.",
+    "status": "active"
+  },
+  {
+    "id": "bandsintown-vancouver",
+    "name": "Bandsintown Vancouver",
+    "domain": "bandsintown.com",
+    "eventsUrl": "https://www.bandsintown.com/c/vancouver-canada",
+    "rssUrl": null,
+    "type": "concert_and_tour_aggregator",
+    "typeLabel": "Live Music & Artist Tour Tracker",
+    "focus": "Concerts, emerging artists, local stage performances across Metro Vancouver",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Follow primary ticket provider link to obtain actual cart price and fee breakdown.",
+    "status": "active"
+  },
+  {
+    "id": "showpass-discover-vancouver",
+    "name": "Showpass Discover (Vancouver)",
+    "domain": "showpass.com",
+    "eventsUrl": "https://www.showpass.com/discover/?location=Vancouver",
+    "apiUrl": "https://www.showpass.com/api/public/events/?location=Vancouver",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Showpass)",
+    "focus": "Independent comedy, dance parties, community performances, seasonal attractions (e.g. Fox Cabaret, Bloedel, Little Mountain Gallery)",
+    "bestForCategories": [
+      "shows",
+      "music",
+      "activities"
+    ],
+    "harvestMethod": "direct_api",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Zero middleman: event is already on Showpass; query API directly for instant price verification.",
+    "status": "active"
+  },
+  {
+    "id": "eventbrite-vancouver",
+    "name": "Eventbrite Vancouver",
+    "domain": "eventbrite.ca",
+    "eventsUrl": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+    "apiUrl": "https://www.eventbrite.ca/api/v3/destination/events/?place_id=85633041",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Eventbrite)",
+    "focus": "Free community workshops, underground music, indie showcases, pop-up markets, neighborhood festivals",
+    "bestForCategories": [
+      "activities",
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "direct_api_and_search",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
+    "status": "active"
+  },
+  {
+    "id": "resident-advisor-vancouver",
+    "name": "Resident Advisor (Vancouver)",
+    "domain": "ra.co",
+    "eventsUrl": "https://ra.co/events/ca/vancouver",
+    "apiUrl": "https://ra.co/graphql",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Electronic & Club Discovery (Resident Advisor)",
+    "focus": "Electronic music, dance parties, club nights, warehouse fundraisers, DJ sets, underground community parties",
+    "bestForCategories": [
+      "music",
+      "social",
+      "shows"
+    ],
+    "harvestMethod": "direct_graphql_api",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Query RA GraphQL API directly with Vancouver Area ID 39; filter for verified venue locations under $50 CAD total out-of-pocket.",
+    "status": "active"
+  },
+  {
+    "id": "ticketweb-vancouver",
+    "name": "TicketWeb (Vancouver)",
+    "domain": "ticketweb.ca",
+    "eventsUrl": "https://www.ticketweb.ca/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Mid-Sized Club & Live Music Ticketing",
+    "focus": "Indie rock, punk, metal, retro dance parties, touring live acts (Hollywood Theatre, Rickshaw, Wise Hall, Pearl)",
+    "bestForCategories": [
+      "music",
+      "shows"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract live Schema.org offers or venue event mirror; calculate exact all-in total with service fees and 5% GST; quarantine if > $50 CAD.",
+    "status": "active"
+  },
+  {
+    "id": "dice-vancouver",
+    "name": "DICE (Vancouver)",
+    "domain": "dice.fm",
+    "eventsUrl": "https://dice.fm/browse/vancouver",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Upfront Transparent Mobile Ticketing",
+    "focus": "Indie showcases, electronic, synth-pop, underground dance parties (Red Gate, Paradise)",
+    "bestForCategories": [
+      "music",
+      "shows"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse __NEXT_DATA__ event payload; verify upfront all-in pricing with zero hidden checkout fees.",
+    "status": "active"
+  },
+  {
+    "id": "shotgun-vancouver",
+    "name": "Shotgun (Vancouver)",
+    "domain": "shotgun.live",
+    "eventsUrl": "https://shotgun.live/en/cities/vancouver",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Underground Dance & Nightlife Ticketing",
+    "focus": "Electronic, techno, house, warehouse collectives, late-night parties",
+    "bestForCategories": [
+      "music",
+      "social"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse live event state and calculate platform commission and 5% GST; enforce <= $50 cap.",
+    "status": "active"
+  },
+  {
+    "id": "spektrix-thecultch",
+    "name": "Spektrix Performing Arts (The Cultch / PuSh)",
+    "domain": "thecultch.com",
+    "eventsUrl": "https://thecultch.com/whats-on/",
+    "apiUrl": null,
+    "type": "theatre_ticketing_system",
+    "typeLabel": "Independent Performing Arts & Theatre",
+    "focus": "Contemporary theatre, dance, circus, festival performances across York, Historic, and Culture Lab stages",
+    "bestForCategories": [
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "spektrix_components_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract accessible tiers (Under-30, Youth, Arts Worker, Preview) and verify with 5% GST.",
+    "status": "active"
+  },
+  {
+    "id": "tessitura-vancouver",
+    "name": "Tessitura (VSO / Arts Club / Bard on the Beach)",
+    "domain": "vancouversymphony.ca",
+    "eventsUrl": "https://www.vancouversymphony.ca/",
+    "apiUrl": null,
+    "type": "arts_enterprise_ticketing",
+    "typeLabel": "Institutional Performing Arts & Classical",
+    "focus": "Symphony concerts, major theatre productions, Shakespeare festival previews, youth/student rush",
+    "bestForCategories": [
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "tessitura_tnew_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Filter for accessible rush tiers (Student Rush, Under-35 Symphony Pass, previews) under $50 all-in.",
+    "status": "active"
+  },
+  {
+    "id": "tickettailor-vancouver",
+    "name": "Ticket Tailor (Vancouver)",
+    "domain": "tickettailor.com",
+    "eventsUrl": "https://www.tickettailor.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Flat-Fee Grassroots & Community Ticketing",
+    "focus": "DIY concerts, craft fairs, drag shows, queer dances, community workshops",
+    "bestForCategories": [
+      "arts",
+      "music",
+      "activities"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse transparent low flat fees and calculate verified total out-of-pocket price.",
+    "status": "active"
+  },
+  {
+    "id": "zeffy-vancouver",
+    "name": "Zeffy (Vancouver Non-Profits)",
+    "domain": "zeffy.com",
+    "eventsUrl": "https://www.zeffy.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "100% Free Non-Profit & Charity Platform",
+    "focus": "Charity choir concerts, heritage walking tours, museum talks, community arts fundraisers",
+    "bestForCategories": [
+      "activities",
+      "arts",
+      "outdoors"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Confirm $0 platform fee; verify 100% transparent admission for Canadian registered non-profits.",
+    "status": "active"
+  },
+  {
+    "id": "humanitix-vancouver",
+    "name": "Humanitix (Vancouver)",
+    "domain": "humanitix.com",
+    "eventsUrl": "https://humanitix.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Charity-Driven Community Ticketing",
+    "focus": "Community storytelling, environmental symposiums, local speaker panels, education",
+    "bestForCategories": [
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract transparent charity booking fee and calculate all-in checkout amount.",
+    "status": "active"
+  },
+  {
+    "id": "universe-vancouver",
+    "name": "Universe (Vancouver)",
+    "domain": "universe.com",
+    "eventsUrl": "https://www.universe.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Film Festivals & Pop-Up Events",
+    "focus": "DOXA Documentary Film Festival, Latin American Film Festival, food & craft beverage tastings",
+    "bestForCategories": [
+      "cinema",
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse embedded state or Schema.org offers; enforce <= $50 total checkout.",
+    "status": "active"
+  },
+  {
+    "id": "vtix-vancouver",
+    "name": "VTix Online (Vancouver)",
+    "domain": "vtixonline.com",
+    "eventsUrl": "https://www.vtixonline.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Regional Performance & Box Office Ticketing",
+    "focus": "Hollywood Theatre special showcases, Shadbolt Centre performances, indie theatre and dance",
+    "bestForCategories": [
+      "shows",
+      "music"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
+    "status": "active"
+  }
+];
