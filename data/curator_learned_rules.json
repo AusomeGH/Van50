@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-18T03:20:41.040871+00:00",
+    "updatedAt": "2026-09-18T03:25:51.605161+00:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -30,7 +30,9 @@
     "Hollywood Theatre": "https://hollywoodtheatre.ca/events/",
     "Guilt & Co.": "https://guiltandcompany.com/live-music",
     "Tightrope Impro Theatre": "https://www.tightropetheatre.com/weekly-live-shows",
-    "The Improv Centre": "https://theimprovcentre.ca/shows/"
+    "The Improv Centre": "https://theimprovcentre.ca/shows/",
+    "The Roxy Cabaret": "https://www.showpass.com/cfe0926/",
+    "The WISE Hall & Lounge": "https://www.wisehall.ca"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -40,7 +42,8 @@
     "curator-test-course-pattern",
     "eastside cinema club",
     "unverified-eastside-cinema",
-    "slicevancouver.ca/shop"
+    "slicevancouver.ca/shop",
+    "paypal.com/ncp/"
   ],
   "price_override_heuristics": [],
   "archived_event_ids": [
@@ -74,7 +77,13 @@
     "hollywood-theatre-aldous-harding",
     "hollywood-theatre-perfume-genius-duo",
     "hollywood-theatre-wesghost-red-leather",
-    "vancouver-institute-lectures"
+    "vancouver-institute-lectures",
+    "red-gate-dead-soft",
+    "lmg-open-mic",
+    "lmg-improv-jam",
+    "lmg-happy-hour-comedy",
+    "lmg-seasoned-improv",
+    "lmg-crowd-source"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {
@@ -84,5 +93,9 @@
       "websiteUrl": "https://www.pizzerialudica.com/",
       "source": "Curator Instruction inst_1789431205737"
     }
+  },
+  "notes": {
+    "wise_hall_rule": "Only scrape green entries (Hall shows) or direct Eventbrite links. Ignore blue lounge entries.",
+    "lmg_fringe_rule": "Regular comedy programming pauses during Vancouver Fringe Festival."
   }
 }

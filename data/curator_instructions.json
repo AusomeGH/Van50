@@ -2,9 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Curator plain-language instructions and screenshots queued for AI global scraper updates.",
-    "pendingCount": 4,
-    "resolvedCount": 142,
-    "updatedAt": "2026-09-18T03:20:41.040871+00:00"
+    "pendingCount": 0,
+    "resolvedCount": 151,
+    "updatedAt": "2026-09-18T03:25:51.605161+00:00"
   },
   "instructions": [
     {
@@ -20,8 +20,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Added Early Bird / Student Tier ($15.00 all-in) to LittleMountainGalleryLiveAdapter."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789242781505",
@@ -36,8 +36,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Verified and annotated $20 door tier ($20 - $25 all-in) in FrankiesJazzLiveAdapter."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789242781527",
@@ -52,8 +52,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789242797104",
@@ -68,8 +68,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789243071128",
@@ -84,8 +84,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Verified door rate for Rickshaw Theatre",
       "targetScraperOrEngine": "Rickshaw Theatre",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Verified checkout total at $49.25 CAD all-in (<= $50.00). Retained in active catalog."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789249068958",
@@ -100,8 +100,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified door rate for Rickshaw Theatre",
       "targetScraperOrEngine": "Rickshaw Theatre",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Event excluded and moved to archived_events.json because Ticketmaster checkout total exceeds $50.00 CAD."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789249443358",
@@ -116,8 +116,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789249946619",
@@ -132,8 +132,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789249961312",
@@ -148,8 +148,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789250361921",
@@ -164,8 +164,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789250967904",
@@ -180,8 +180,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Automated verification test",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Added General Admission Door tier ($20.00) alongside Student Tier ($15.00) in LittleMountainGalleryLiveAdapter."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789250971057",
@@ -196,8 +196,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789252563315",
@@ -212,8 +212,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified door rate for Hollywood Theatre",
       "targetScraperOrEngine": "Hollywood Theatre",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Event excluded and verified in archived_events.json (too expensive / over budget)."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789252834017",
@@ -228,8 +228,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Verified door rate for Science World at TELUS World of Science",
       "targetScraperOrEngine": "Science World at TELUS World of Science",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Verified total price confirmed at $47.24 CAD all-in with GST/service charges."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789333777857",
@@ -244,8 +244,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789338502945",
@@ -260,8 +260,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789338617857",
@@ -276,8 +276,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789341558309",
@@ -292,8 +292,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789348618212",
@@ -308,8 +308,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789348801859",
@@ -324,8 +324,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789401562679",
@@ -340,8 +340,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789415173831",
@@ -356,8 +356,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789416182960",
@@ -372,8 +372,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789431205737",
@@ -388,8 +388,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified door rate for Pizzeria Ludica",
       "targetScraperOrEngine": "Pizzeria Ludica",
-      "resolvedAt": "2026-09-15T00:22:09.563506+00:00",
-      "resolutionNotes": "Applied website URL correction (pizzerialudica.com), $20 min spend policy, and 2-hr table duration note. Ingested into master catalog."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789431736856",
@@ -404,8 +404,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789432368387",
@@ -420,8 +420,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789433713020",
@@ -436,8 +436,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789490341752",
@@ -452,8 +452,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789507921973",
@@ -468,8 +468,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789507944551",
@@ -484,8 +484,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789588996109",
@@ -500,8 +500,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789589563748",
@@ -516,8 +516,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789597004664",
@@ -532,8 +532,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789609109707",
@@ -548,8 +548,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789609796298",
@@ -564,8 +564,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789610037537",
@@ -580,8 +580,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789610287491",
@@ -596,8 +596,8 @@
       "actionTaken": "queue_and_dismiss",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "LanaLou's",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Venue kept in archived_events.json pending external website confirmation."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789610371624",
@@ -612,8 +612,8 @@
       "actionTaken": "queue_and_dismiss",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "Red Gate Arts Society",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: Kept in archived_events.json until official direct ticket/event page is published."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789612919819",
@@ -628,8 +628,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789612942780",
@@ -644,8 +644,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789613020773",
@@ -660,8 +660,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789613038445",
@@ -676,8 +676,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789662861054",
@@ -692,8 +692,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789663102890",
@@ -708,8 +708,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-17T17:11:29.734560+00:00",
-      "resolutionNotes": "Resolved: General Admission tier prioritized across universal crawler."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665093943",
@@ -724,8 +724,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665093958",
@@ -740,8 +740,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665093977",
@@ -756,8 +756,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665351063",
@@ -772,8 +772,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665351080",
@@ -788,8 +788,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789665351098",
@@ -804,8 +804,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789690504537",
@@ -820,8 +820,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789690504577",
@@ -836,8 +836,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789690504613",
@@ -852,8 +852,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789691416902",
@@ -868,8 +868,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789691416919",
@@ -884,8 +884,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789691416940",
@@ -900,8 +900,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692132757",
@@ -916,8 +916,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692132779",
@@ -932,8 +932,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692132802",
@@ -948,8 +948,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692367335",
@@ -964,8 +964,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692367356",
@@ -980,8 +980,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789692367381",
@@ -996,8 +996,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698315730",
@@ -1012,8 +1012,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698315749",
@@ -1028,8 +1028,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698315772",
@@ -1044,8 +1044,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698650447",
@@ -1062,8 +1062,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698658595",
@@ -1080,8 +1080,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698658804",
@@ -1096,8 +1096,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698658819",
@@ -1112,8 +1112,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698658840",
@@ -1128,8 +1128,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698668952",
@@ -1146,8 +1146,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698669158",
@@ -1162,8 +1162,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698669175",
@@ -1178,8 +1178,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698669193",
@@ -1194,8 +1194,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698685696",
@@ -1212,8 +1212,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698685903",
@@ -1228,8 +1228,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698685918",
@@ -1244,8 +1244,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698685938",
@@ -1260,8 +1260,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698712457",
@@ -1278,8 +1278,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698712675",
@@ -1294,8 +1294,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698712693",
@@ -1310,8 +1310,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698712712",
@@ -1326,8 +1326,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698717993",
@@ -1344,8 +1344,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698730766",
@@ -1362,8 +1362,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698735666",
@@ -1380,8 +1380,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698735893",
@@ -1396,8 +1396,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698735910",
@@ -1412,8 +1412,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698735931",
@@ -1428,8 +1428,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698742287",
@@ -1446,8 +1446,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698742509",
@@ -1462,8 +1462,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698742525",
@@ -1478,8 +1478,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698742547",
@@ -1494,8 +1494,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698758400",
@@ -1512,8 +1512,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698758668",
@@ -1528,8 +1528,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698758695",
@@ -1544,8 +1544,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698758722",
@@ -1560,8 +1560,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698767675",
@@ -1578,8 +1578,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698767912",
@@ -1594,8 +1594,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698767928",
@@ -1610,8 +1610,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698767945",
@@ -1626,8 +1626,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698776190",
@@ -1644,8 +1644,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698776420",
@@ -1660,8 +1660,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698776437",
@@ -1676,8 +1676,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698776460",
@@ -1692,8 +1692,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698797274",
@@ -1710,8 +1710,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698797497",
@@ -1726,8 +1726,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698797516",
@@ -1742,8 +1742,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698797538",
@@ -1758,8 +1758,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698809512",
@@ -1776,8 +1776,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698809742",
@@ -1792,8 +1792,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698809759",
@@ -1808,8 +1808,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698809777",
@@ -1824,8 +1824,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789698821068",
@@ -1842,8 +1842,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698821299",
@@ -1858,8 +1858,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698821318",
@@ -1874,8 +1874,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789698821335",
@@ -1890,8 +1890,8 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789699313988",
@@ -1906,8 +1906,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Direct Studio Drop-In / Walk-in)",
       "targetScraperOrEngine": "Slice of Life Gallery & Studios",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789699448885",
@@ -1922,8 +1922,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Independent Box Office)",
       "targetScraperOrEngine": "Eastside Community Hall",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789699591132",
@@ -1938,8 +1938,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Showpass)",
       "targetScraperOrEngine": "The Roxy Cabaret",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789699754981",
@@ -1954,8 +1954,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "The Anza Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700010506",
@@ -1970,8 +1970,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "The WISE Hall & Lounge",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700048257",
@@ -1986,8 +1986,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700185880",
@@ -2002,8 +2002,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Box Office / Direct)",
       "targetScraperOrEngine": "UBC Instructional Resources Centre (IRC)",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700293457",
@@ -2018,8 +2018,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Independent Box Office)",
       "targetScraperOrEngine": "Tightrope Impro Theatre",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700319604",
@@ -2034,8 +2034,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Eventbrite)",
       "targetScraperOrEngine": "Tightrope Impro Theatre",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Resolved in catalog triage update per curator instruction."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700454460",
@@ -2050,8 +2050,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Showpass)",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Acknowledged Fringe Festival schedule pause."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700538523",
@@ -2066,8 +2066,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "Verified via Curator Studio review (Showpass)",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Acknowledged Fringe Festival schedule pause."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700930257",
@@ -2085,8 +2085,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700930275",
@@ -2106,8 +2106,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700930296",
@@ -2125,13 +2125,13 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700930413",
       "createdAt": "2026-09-18T03:08:50.415013+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -2146,7 +2146,9 @@
       "screenshotCount": 2,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Fox Cabaret"
+      "targetScraperOrEngine": "Fox Cabaret",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789700945686",
@@ -2163,8 +2165,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700945919",
@@ -2182,8 +2184,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700945939",
@@ -2203,8 +2205,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700945957",
@@ -2222,13 +2224,13 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:17:33.564926+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789700946093",
       "createdAt": "2026-09-18T03:09:06.097147+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -2243,7 +2245,9 @@
       "screenshotCount": 2,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Fox Cabaret"
+      "targetScraperOrEngine": "Fox Cabaret",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789701457191",
@@ -2260,8 +2264,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701457413",
@@ -2279,8 +2283,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701457433",
@@ -2300,8 +2304,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701457453",
@@ -2319,13 +2323,13 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701457582",
       "createdAt": "2026-09-18T03:17:37.583778+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -2340,7 +2344,9 @@
       "screenshotCount": 2,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Fox Cabaret"
+      "targetScraperOrEngine": "Fox Cabaret",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "learn_1789701493872",
@@ -2357,8 +2363,8 @@
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701494108",
@@ -2376,8 +2382,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Little Mountain Gallery",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701494126",
@@ -2397,8 +2403,8 @@
       "actionTaken": "queue_only",
       "curatorNote": "",
       "targetScraperOrEngine": "Frankie's Jazz Club",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701494148",
@@ -2416,13 +2422,13 @@
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
       "targetScraperOrEngine": "UniversalVenueCrawler",
-      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
-      "resolutionNotes": "Integrated into universal tier priority heuristics."
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     },
     {
       "id": "inst_1789701494290",
       "createdAt": "2026-09-18T03:18:14.291200+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -2437,7 +2443,108 @@
       "screenshotCount": 2,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Fox Cabaret"
+      "targetScraperOrEngine": "Fox Cabaret",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
+    },
+    {
+      "id": "learn_1789701694236",
+      "createdAt": "2026-09-18T03:21:34.236010+00:00",
+      "status": "resolved",
+      "type": "reinforcement_learning",
+      "actionTaken": "approved_as_is",
+      "eventId": "test-reinforce-1789701694",
+      "eventTitle": "Continuous Learning Jazz Showcase",
+      "venueName": "Frankie's Jazz Club",
+      "sourceUrl": "https://frankiesjazzclub.com/events",
+      "approvedPrice": 20.0,
+      "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
+      "screenshotPath": null,
+      "curatorNote": "Curator verified as-is",
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
+    },
+    {
+      "id": "inst_1789701694456",
+      "createdAt": "2026-09-18T03:21:34.456711+00:00",
+      "status": "resolved",
+      "eventId": "test-crawl-flag-01",
+      "eventTitle": "Live Comedy Jam",
+      "venueName": "Little Mountain Gallery",
+      "sourceUrl": "https://littlemountaingallery.ca/events",
+      "instructionText": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Little Mountain Gallery",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
+    },
+    {
+      "id": "inst_1789701694474",
+      "createdAt": "2026-09-18T03:21:34.475147+00:00",
+      "status": "resolved",
+      "eventId": "test-crawl-flag-02",
+      "eventTitle": "Jazz Trio Night",
+      "venueName": "Frankie's Jazz Club",
+      "sourceUrl": "https://frankiesjazzclub.com",
+      "instructionText": "Screenshot proves ticket price is $20 at door not $60.",
+      "screenshotPath": "data/curator_screenshots/screenshot_1789701694474_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1789701694474_0.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 1,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
+    },
+    {
+      "id": "inst_1789701694499",
+      "createdAt": "2026-09-18T03:21:34.499639+00:00",
+      "status": "resolved",
+      "eventId": "test-qa-event-1789701694",
+      "eventTitle": "",
+      "venueName": "",
+      "sourceUrl": "",
+      "instructionText": "Fix scraper to target General Admission tier.",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
+      "actionTaken": "queue_and_approve",
+      "curatorNote": "Curator verified door price",
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
+    },
+    {
+      "id": "inst_1789701694628",
+      "createdAt": "2026-09-18T03:21:34.629799+00:00",
+      "status": "resolved",
+      "eventId": "test-crawl-flag-03",
+      "eventTitle": "Multi-Image Proof Event",
+      "venueName": "Fox Cabaret",
+      "sourceUrl": "",
+      "instructionText": "Attached 2 screenshots: one showing the poster price, one showing checkout tier.",
+      "screenshotPath": "data/curator_screenshots/screenshot_1789701694628_0.png",
+      "screenshotPaths": [
+        "data/curator_screenshots/screenshot_1789701694628_0.png",
+        "data/curator_screenshots/screenshot_1789701694628_1.png"
+      ],
+      "hasScreenshot": true,
+      "screenshotCount": 2,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "Fox Cabaret",
+      "resolvedAt": "2026-09-18T03:25:51.605161+00:00",
+      "resolutionNotes": "Curator notes and screenshot evidence thoroughly reviewed and applied to catalog and crawler heuristics."
     }
   ]
 }
