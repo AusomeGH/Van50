@@ -1,16 +1,16 @@
 {
-  "status": "running",
+  "status": "success",
   "automationEnabled": true,
-  "lastRunAt": "2026-09-17T17:17:22.630940",
+  "lastRunAt": "2026-09-17T17:31:05.258209",
   "nextRunAt": "2026-09-18T04:00:00",
   "totalEvents": 77,
   "quarantinedCount": 18,
   "testKey": "automation_unit_test",
   "testTimestamp": "2026-09-17T17:30:18.357930",
-  "updatedAt": "2026-09-17T17:30:18.414354",
-  "currentStep": "live_sync_crawlers",
+  "updatedAt": "2026-09-17T17:31:05.273885",
+  "currentStep": "idle",
   "startedAt": "2026-09-17T17:30:18.399564",
-  "durationSeconds": 144.75,
-  "backupFile": "events_2026-09-17_171457.json",
+  "durationSeconds": 46.86,
+  "backupFile": "events_2026-09-17_173018.json",
   "lastLogFile": "data/automation_logs/daily_sync_2026-09-17.log"
 }

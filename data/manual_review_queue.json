@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-17T17:30:16-07:00",
+    "updatedAt": "2026-09-17T17:31:05-07:00",
     "pendingCount": 18,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -18,7 +18,7 @@
       "semanticProvider": "Free Public Access",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "outdoors",
-      "flaggedAt": "2026-09-17T17:15:05-07:00",
+      "flaggedAt": "2026-09-17T17:30:21-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -35,7 +35,7 @@
       "semanticProvider": "Showpass Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "arts",
-      "flaggedAt": "2026-09-17T17:15:08-07:00",
+      "flaggedAt": "2026-09-17T17:30:22-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -52,7 +52,7 @@
       "semanticProvider": "AdmitOne Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:15:23-07:00",
+      "flaggedAt": "2026-09-17T17:30:25-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -69,7 +69,7 @@
       "semanticProvider": "AdmitOne Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:15:24-07:00",
+      "flaggedAt": "2026-09-17T17:30:27-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -86,7 +86,7 @@
       "semanticProvider": "AdmitOne Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:15:26-07:00",
+      "flaggedAt": "2026-09-17T17:30:29-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -103,7 +103,7 @@
       "semanticProvider": "AdmitOne Verified",
       "websiteUrl": "https://littlemountaingallery.ca/schedule/",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:15:27-07:00",
+      "flaggedAt": "2026-09-17T17:30:30-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/schedule') without specific event slug: https://littlemountaingallery.ca/schedule/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -120,7 +120,7 @@
       "semanticProvider": "Eventbrite Verified",
       "websiteUrl": "https://tightropetheatre.com/",
       "category": "shows",
-      "flaggedAt": "2026-09-17T17:15:32-07:00",
+      "flaggedAt": "2026-09-17T17:30:32-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://tightropetheatre.com/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -137,7 +137,7 @@
       "semanticProvider": "AudienceView Verified",
       "websiteUrl": "https://tightropetheatre.com/",
       "category": "shows",
-      "flaggedAt": "2026-09-17T17:15:40-07:00",
+      "flaggedAt": "2026-09-17T17:30:35-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://tightropetheatre.com/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -154,7 +154,7 @@
       "semanticProvider": "Free Public Access",
       "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:15:55-07:00",
+      "flaggedAt": "2026-09-17T17:30:36-07:00",
       "flagReason": "Could not fetch host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -171,7 +171,7 @@
       "semanticProvider": "By-Donation / Artist Contribution",
       "websiteUrl": "https://vaninstitute.ca",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:03-07:00",
+      "flaggedAt": "2026-09-17T17:30:39-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://vaninstitute.ca. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -188,7 +188,7 @@
       "semanticProvider": "Venue Door / Table Charge",
       "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:20-07:00",
+      "flaggedAt": "2026-09-17T17:30:43-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://frankiesjazzclub.turntabletickets.com/. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -205,7 +205,7 @@
       "semanticProvider": "Venue Door / Table Charge",
       "websiteUrl": "https://wisehall.ca",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:22-07:00",
+      "flaggedAt": "2026-09-17T17:30:43-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://wisehall.ca. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -222,7 +222,7 @@
       "semanticProvider": "Venue Door / Table Charge",
       "websiteUrl": "https://anzaclub.org",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:24-07:00",
+      "flaggedAt": "2026-09-17T17:30:45-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://anzaclub.org. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -239,7 +239,7 @@
       "semanticProvider": "Venue Door / Table Charge",
       "websiteUrl": "https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:25-07:00",
+      "flaggedAt": "2026-09-17T17:30:46-07:00",
       "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
@@ -256,7 +256,7 @@
       "semanticProvider": "Venue Door / Table Charge",
       "websiteUrl": "https://lanalous.com",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:26-07:00",
+      "flaggedAt": "2026-09-17T17:30:46-07:00",
       "flagReason": "Generic Link: Bare root homepage without event path: https://lanalous.com. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -273,7 +273,7 @@
       "semanticProvider": "Showpass Verified",
       "websiteUrl": "https://roxyvan.com/events",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:36-07:00",
+      "flaggedAt": "2026-09-17T17:30:53-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/events') without specific event slug: https://roxyvan.com/events. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -290,7 +290,7 @@
       "semanticProvider": "Showpass Verified",
       "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
       "category": "music",
-      "flaggedAt": "2026-09-17T17:16:38-07:00",
+      "flaggedAt": "2026-09-17T17:30:55-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/tickets') without specific event slug: https://eastsidecinemaclub.example.com/tickets. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
@@ -307,7 +307,7 @@
       "semanticProvider": "Studio Booking / Walk-in",
       "websiteUrl": "https://www.slicevancouver.ca/shop",
       "category": "crafts",
-      "flaggedAt": "2026-09-17T17:16:45-07:00",
+      "flaggedAt": "2026-09-17T17:30:58-07:00",
       "flagReason": "Generic Link: Generic catalog index path ('/shop') without specific event slug: https://www.slicevancouver.ca/shop. Autonomous Hunter could not locate a specific event checkout page.",
       "reviewStatus": "pending_manual_review",
       "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
