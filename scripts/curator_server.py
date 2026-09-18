@@ -580,6 +580,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_data["venue"] = sanitize_text(str(event_data.get("venue", "")))
             event_data["description"] = sanitize_text(str(event_data.get("description", "")))
             event_data["neighborhood"] = sanitize_text(str(event_data.get("neighborhood", "")))
+            category = sanitize_text(str(event_data.get("category") or "shows"))
+            source_url = sanitize_text(str(event_data.get("websiteUrl") or event_data.get("url") or ""))
 
             curator_note = sanitize_text(payload.get("curatorNote") or event_data.get("curatorNote") or "Approved by curator in Van50 Curator Studio.")
             raw_price_label = sanitize_text(event_data.get("priceLabel") or "")
@@ -633,12 +635,48 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                 json.dump(q_data, f, indent=2, ensure_ascii=False)
 
-            # 3. Synchronize js/data.js
+            # 3. Record positive reinforcement learning signal in data/curator_instructions.json
+            try:
+                if os.path.exists(INSTRUCTIONS_PATH):
+                    with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as inf:
+                        inst_db = json.load(inf)
+                else:
+                    inst_db = {"metadata": {}, "instructions": []}
+                instructions_list = inst_db.setdefault("instructions", [])
+                
+                # Check if this exact event already has a pending reinforcement entry
+                existing_learn = next((i for i in instructions_list if i.get("eventId") == ev_id and i.get("status") == "pending" and i.get("type") == "reinforcement_learning"), None)
+                if not existing_learn:
+                    learning_entry = {
+                        "id": f"learn_{int(time.time() * 1000)}",
+                        "createdAt": datetime.now(timezone.utc).isoformat(),
+                        "status": "pending",
+                        "type": "reinforcement_learning",
+                        "actionTaken": "approved_as_is",
+                        "eventId": ev_id,
+                        "eventTitle": event_data.get("title", ""),
+                        "venueName": event_data.get("venue", ""),
+                        "sourceUrl": event_data.get("websiteUrl") or event_data.get("url") or "",
+                        "approvedPrice": price,
+                        "instructionText": f"Approved As-Is by curator. Verified price (${price:.2f} CAD) and category '{category}'. Reinforce crawler accuracy for {event_data.get('venue', 'this venue')}.",
+                        "screenshotPath": None,
+                        "curatorNote": curator_note,
+                        "targetScraperOrEngine": event_data.get("venue", "UniversalCrawler")
+                    }
+                    instructions_list.append(learning_entry)
+                    inst_db.setdefault("metadata", {})["pendingCount"] = len([i for i in instructions_list if i.get("status") == "pending"])
+                    inst_db["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+                    with open(INSTRUCTIONS_PATH, "w", encoding="utf-8") as inf:
+                        json.dump(inst_db, inf, indent=2, ensure_ascii=False)
+            except Exception as e:
+                print(f"[WARN] Failed to record learning signal on approve: {e}")
+
+            # 4. Synchronize js/data.js
             sync_js_data_file()
 
             return self._send_json(200, {
                 "success": True,
-                "message": f"Successfully approved '{event_data.get('title')}' and promoted to master catalog.",
+                "message": f"Successfully approved '{event_data.get('title')}' and queued for AI learning.",
                 "remainingQuarantine": len(q_list),
                 "totalMasterEvents": len(events_list)
             })

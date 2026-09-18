@@ -211,9 +211,9 @@
             </div>
           </div>
 
-          <!-- Quick Approval Overrides (for "Queue & Approve") -->
+          <!-- Quick Approval Overrides (for "Approve As-Is") -->
           <div id="ai-quick-approval-box" style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
-            <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Quick Catalog Approval (Optional)</div>
+            <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Catalog Details (Optional if approving as-is)</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label class="curator-label" style="font-size: 0.75rem;">Verified Price (CAD, max $50)</label>
@@ -242,14 +242,14 @@
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-ai-inst">Cancel</button>
-          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Queue instruction for AI and leave in quarantine">
-            🤖 Queue Instruction Only
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Send screenshot/notes to AI and leave held in quarantine">
+            🤖 Instruct AI
           </button>
-          <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Dismiss and archive this event, and instruct AI scrapers why">
+          <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Dismiss and archive this event, and teach AI scrapers why">
             🛑 Dismiss &amp; Instruct AI
           </button>
-          <button type="button" class="btn-curator btn-curator-primary" id="btn-submit-ai-inst-and-approve" title="Approve event to master catalog, and queue instruction for AI">
-            ✨ Approve &amp; Instruct AI
+          <button type="button" class="btn-curator btn-curator-primary" id="btn-submit-ai-inst-and-approve" title="Approve details as-is, publish to live master catalog now, and train AI">
+            ✅ Approve As-Is
           </button>
         </div>
       </form>

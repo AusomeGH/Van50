@@ -68,9 +68,8 @@ class TestUIEnhancements(unittest.TestCase):
 
         # Check card action buttons
         self.assertIn("btn-curator-ai-approve", js_content, "Missing btn-curator-ai-approve class in js/curator.js")
-        self.assertIn("btn-curator-ai-dismiss", js_content, "Missing btn-curator-ai-dismiss class in js/curator.js")
-        self.assertIn("Approve &amp; Instruct AI", js_content, "Missing Approve & Instruct AI button text in js/curator.js")
-        self.assertIn("Dismiss &amp; Instruct AI", js_content, "Missing Dismiss & Instruct AI button text in js/curator.js")
+        self.assertIn("Approve As-Is", js_content, "Missing Approve As-Is button text in js/curator.js")
+        self.assertIn("Instruct AI", js_content, "Missing Instruct AI button text in js/curator.js")
 
         # Check modal buttons and handler support
         self.assertIn("queue_and_dismiss", js_content, "Missing queue_and_dismiss support in js/curator.js")

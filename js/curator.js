@@ -579,36 +579,27 @@ function renderCards(items) {
                 type="button" 
                 class="btn-curator btn-curator-success" 
                 onclick="approveQuarantinedEvent('${ev.id}')"
-                title="Promote directly to live master catalog"
+                title="Approve details as-is, promote directly to live catalog, and queue for AI learning"
               >
-                ✅ Approve
+                ✅ Approve As-Is
               </button>
 
               <button 
                 type="button" 
                 class="btn-curator btn-curator-ai-approve" 
-                onclick="openAIInstructionModal('${ev.id}', 'approve')"
-                title="Approve this event and instruct AI scrapers on the verified pattern"
+                onclick="openAIInstructionModal('${ev.id}', 'instruct')"
+                title="Attach screenshot or notes for AI to review and update scrapers"
               >
-                ✨ Approve &amp; Instruct AI
+                🤖 Instruct AI
               </button>
 
               <button 
                 type="button" 
                 class="btn-curator btn-curator-danger" 
                 onclick="rejectQuarantinedEvent('${ev.id}')"
-                title="Dismiss and archive this event without instruction"
+                title="Dismiss and archive this event"
               >
                 🚫 Dismiss
-              </button>
-
-              <button 
-                type="button" 
-                class="btn-curator btn-curator-ai-dismiss" 
-                onclick="openAIInstructionModal('${ev.id}', 'dismiss')"
-                title="Dismiss and archive this event, and instruct AI scrapers why"
-              >
-                🛑 Dismiss &amp; Instruct AI
               </button>
             `}
           </div>
@@ -677,7 +668,7 @@ window.approveQuarantinedEvent = async function(eventId) {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(`Approved '${original.title}'! Added to master catalog.`, 'success');
+      showToast(`✅ Approved '${original.title}' as-is! Queued for AI learning.`, 'success');
       state.quarantinedEvents = state.quarantinedEvents.filter(e => e.id !== eventId);
       updateFilterCounts();
       applyFiltersAndRender();
@@ -765,10 +756,10 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   } else {
     if (modalIcon) modalIcon.textContent = '🤖';
     if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
-    if (modalDesc) modalDesc.textContent = "Describe what's wrong in plain English and attach or paste a screenshot. Antigravity will update the global crawlers to handle this venue permanently.";
+    if (modalDesc) modalDesc.textContent = "Attach a screenshot or explain what to fix. Antigravity will update the crawlers and learn the pattern permanently.";
     if (quickApprovalBox) quickApprovalBox.style.display = 'block';
     if (btnApprove) btnApprove.style.display = 'inline-flex';
-    if (btnDismiss) btnDismiss.style.display = 'inline-flex';
+    if (btnDismiss) btnDismiss.style.display = 'none';
   }
 
   if (ev) {
@@ -902,7 +893,10 @@ async function submitAIInstruction(action = 'queue_only') {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(data.message || 'Queued for AI Assistant!', 'success');
+      const successMsg = action === 'queue_and_approve'
+        ? '✅ Approved as-is and queued for AI learning!'
+        : (data.message || '🤖 Queued for AI Assistant review!');
+      showToast(successMsg, 'success');
       const modal = document.getElementById('ai-instruction-modal');
       if (modal) modal.classList.remove('active');
 
