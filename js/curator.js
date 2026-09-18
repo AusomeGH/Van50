@@ -15,7 +15,8 @@ const state = {
     rules: 0,
     instructions: 0
   },
-  currentScreenshotBase64: null
+  currentScreenshotBase64: null,
+  currentScreenshots: []
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -154,6 +155,31 @@ async function loadQuarantineQueue() {
       }
     } catch (e) {
       console.warn('Could not fetch archived events:', e);
+    }
+
+    // Hydrate any existing queued instructions onto the quarantined events
+    try {
+      const instRes = await fetch('/api/curator/instructions', {
+        headers: { 'Curator-Token': state.token }
+      });
+      if (instRes.ok) {
+        const instData = await instRes.json();
+        const instructions = instData.instructions || [];
+        const instMap = new Map();
+        for (const inst of instructions) {
+          if (inst.eventId && inst.status === 'pending') {
+            instMap.set(inst.eventId, inst);
+          }
+        }
+        state.quarantinedEvents.forEach(ev => {
+          if (instMap.has(ev.id)) {
+            ev.dealtWith = true;
+            ev.queuedInstruction = instMap.get(ev.id);
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Could not fetch queued instructions:', e);
     }
 
     updateFilterCounts();
@@ -329,6 +355,59 @@ function formatCuratorDate(ev) {
   return 'Schedule details pending review';
 }
 
+function simplifyQuarantineReason(reason, attemptedPrice = null) {
+  if (!reason) return 'Needs curator review';
+  const r = String(reason).toLowerCase();
+
+  if (r.includes('strictly exceeds') || r.includes('exceeds $50') || r.includes('over-budget')) {
+    return attemptedPrice ? `🚨 Over $50 limit ($${attemptedPrice.toFixed(2)} CAD detected)` : '🚨 Exceeds $50 budget limit';
+  }
+  if (r.includes('schedule') || r.includes('generic catalog index') || r.includes('without specific event slug')) {
+    return '🔗 Venue calendar link (no direct show URL)';
+  }
+  if (r.includes('bare root homepage') || r.includes('bare root')) {
+    return '🔗 Venue homepage (needs direct show link or as-is approval)';
+  }
+  if (r.includes('generic link') || r.includes('catalog index')) {
+    return '🔗 General venue listing (not direct show page)';
+  }
+  if (r.includes('drift') || r.includes('price drift')) {
+    return '⚠️ Price drift detected (source page differs from saved price)';
+  }
+  if (r.includes('paypal')) {
+    return '💳 Direct PayPal checkout link (needs verification)';
+  }
+  if (r.includes('ticketweb') || r.includes('showpass') || r.includes('eventbrite') || r.includes('checkout pricing') || r.includes('cart')) {
+    return '💳 Cart / checkout total unverified by automated scraper';
+  }
+  if (r.includes('unverified') || r.includes('could not dynamically verify') || r.includes('not confirmed')) {
+    return '🔍 Live door/ticket price needs human confirmation';
+  }
+
+  const cleaned = reason.replace(/https?:\/\/[^\s]+/g, '').replace(/Autonomous Hunter [^.]+\./i, '').trim();
+  return cleaned.length > 70 ? cleaned.slice(0, 67) + '...' : cleaned;
+}
+
+function renderCardScreenshotThumbnails(inst) {
+  if (!inst) return '';
+  const paths = (inst.screenshotPaths && inst.screenshotPaths.length) 
+    ? inst.screenshotPaths 
+    : (inst.screenshotPath ? [inst.screenshotPath] : []);
+  if (!paths.length) return '';
+  return `
+    <div class="curator-instruction-shots" style="margin: 8px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <span style="font-size: 0.78rem; font-weight: 600; color: #d8b4fe;">🖼️ ${paths.length} Screenshot${paths.length > 1 ? 's' : ''} Attached:</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        ${paths.map((p, idx) => `
+          <a href="${p}" target="_blank" rel="noopener noreferrer" title="Click to view full-size screenshot proof #${idx+1}" style="display: inline-block; text-decoration: none;">
+            <img src="${p}" alt="Screenshot #${idx+1}" style="height: 52px; width: 52px; object-fit: cover; border-radius: 6px; border: 1.5px solid rgba(168, 85, 247, 0.6); box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function generateCuratorDiagnostics(ev) {
   const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
   const isBudgetExceeded = attemptedPrice > 50.0;
@@ -366,7 +445,7 @@ function generateCuratorDiagnostics(ev) {
     issuesItems.push(`<span>⚠️ <strong>Audit Drift:</strong> Detected pricing or schedule changed from previous baseline</span>`);
   }
   if (reason) {
-    issuesItems.push(`<span>⚠️ <strong>Quarantine Reason:</strong> ${escapeHtml(reason)}</span>`);
+    issuesItems.push(`<span>⚠️ <strong>Quarantine Reason:</strong> ${escapeHtml(simplifyQuarantineReason(reason, attemptedPrice))}</span>`);
   }
   
   const verification = ev.checkoutVerification || {};
@@ -471,35 +550,48 @@ function renderCards(items) {
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
         ${diagnosticsHtml}
 
-        <!-- Dealt-With / AI Queued Instruction Box -->
-        ${isHandled && ev.queuedInstruction ? `
-          <div class="curator-handled-box">
-            <div class="curator-handled-header">
-              <strong><span>🤖</span> AI Scraper Instruction Queued</strong>
-              <span class="curator-handled-tag">${escapeHtml(ev.queuedInstruction.action === 'queue_and_approve' ? '⚡ Queue & Auto-Approve' : '📋 Queue for Training')}</span>
+        <!-- Prominent Instruction Banner (Displays User Instructions on Cards) -->
+        ${(isHandled && ev.queuedInstruction) ? `
+          <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
+            <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+                <span>🤖</span> Your AI Scraper Instruction:
+              </strong>
+              <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+                ${escapeHtml(
+                  (ev.queuedInstruction.action === 'queue_and_approve' || ev.queuedInstruction.actionTaken === 'queue_and_approve')
+                    ? '⚡ Approved & Training AI'
+                    : (ev.queuedInstruction.action === 'queue_and_dismiss' || ev.queuedInstruction.actionTaken === 'queue_and_dismiss')
+                      ? '🛑 Dismissed & Training AI'
+                      : '📋 Held for AI Review'
+                )}
+              </span>
             </div>
-            <div class="curator-handled-text">"${escapeHtml(ev.queuedInstruction.instructionText || '')}"</div>
-            <div class="curator-handled-meta">
+            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
+              “${escapeHtml(ev.queuedInstruction.instructionText || '')}”
+            </div>
+            ${renderCardScreenshotThumbnails(ev.queuedInstruction)}
+            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
               <span>🕒 Queued ${ev.queuedInstruction.createdAt ? new Date(ev.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
-              ${ev.queuedInstruction.hasScreenshot ? '<span>🖼️ Includes Screenshot</span>' : ''}
-              ${ev.queuedInstruction.approvedPrice ? `<span>💰 Proposed: $${Number(ev.queuedInstruction.approvedPrice).toFixed(2)} CAD</span>` : ''}
+              ${ev.queuedInstruction.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(ev.queuedInstruction.approvedPrice).toFixed(2)} CAD</span>` : ''}
+              <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="margin-left: auto; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit / Add Proof</button>
             </div>
           </div>
         ` : ''}
 
-        <!-- Flag Reason Alert / Drift Alert -->
+        <!-- Flag Reason Alert / Drift Alert (Shortened & Simple) -->
         ${hasDrift ? `
-          <div class="curator-drift-alert-box">
+          <div class="curator-drift-alert-box" title="${escapeHtml(ev.quarantineReason || ev.flagReason || 'Material price drift detected on live page')}">
             <span style="font-size: 1.25rem;">⚠️</span>
             <div>
-              <strong>Audit Drift Alert:</strong> ${escapeHtml(ev.quarantineReason || ev.flagReason || 'Material price drift detected on live page')}
+              <strong>Audit Drift Alert:</strong> ${escapeHtml(simplifyQuarantineReason(ev.quarantineReason || ev.flagReason, attemptedPrice))}
             </div>
           </div>
         ` : `
-          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;' : ''}">
+          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;' : ''}" title="${escapeHtml(ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}">
             <span class="curator-flag-icon">${(isBudgetExceeded || isAutoDenied) ? '🛡️' : '⚠️'}</span>
             <div>
-              <strong>${isAutoDenied ? 'Policy Denial Reason:' : 'Quarantine Reason:'}</strong> ${escapeHtml(ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}
+              <strong>${isAutoDenied ? 'Policy Denial:' : 'Quarantine Reason:'}</strong> ${escapeHtml(simplifyQuarantineReason(ev.archivedReason || ev.flagReason, attemptedPrice))}
             </div>
           </div>
         `}
@@ -803,7 +895,19 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (q.approvedPrice && priceField) priceField.value = parseFloat(q.approvedPrice).toFixed(2);
     if (q.approvedCategory && catField) catField.value = q.approvedCategory;
     if (q.curatorNote && noteField) noteField.value = q.curatorNote;
-    if (q.screenshotBase64) setScreenshotPreview(q.screenshotBase64);
+    
+    // Load screenshots (support both screenshotPaths array and single screenshotPath/screenshotBase64)
+    const existingImgs = [];
+    if (Array.isArray(q.screenshotPaths) && q.screenshotPaths.length > 0) {
+      existingImgs.push(...q.screenshotPaths);
+    } else if (q.screenshotPath) {
+      existingImgs.push(q.screenshotPath);
+    } else if (q.screenshotBase64) {
+      existingImgs.push(q.screenshotBase64);
+    }
+    if (existingImgs.length > 0) {
+      addScreenshotDataUrls(existingImgs);
+    }
   } else if (textField) {
     textField.value = '';
     if (mode === 'dismiss') {
@@ -822,25 +926,76 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
 };
 
 function clearScreenshotPreview() {
+  state.currentScreenshots = [];
   state.currentScreenshotBase64 = null;
   const prompt = document.getElementById('ai-dropzone-prompt');
   const container = document.getElementById('ai-screenshot-preview-container');
-  const img = document.getElementById('ai-screenshot-preview-img');
+  const gallery = document.getElementById('ai-screenshot-gallery-grid');
   const fileInput = document.getElementById('ai-screenshot-file-input');
   if (prompt) prompt.style.display = 'block';
   if (container) container.style.display = 'none';
-  if (img) img.src = '';
+  if (gallery) gallery.innerHTML = '';
   if (fileInput) fileInput.value = '';
 }
 
-function setScreenshotPreview(dataUrl) {
-  state.currentScreenshotBase64 = dataUrl;
+function renderScreenshotGallery() {
   const prompt = document.getElementById('ai-dropzone-prompt');
   const container = document.getElementById('ai-screenshot-preview-container');
-  const img = document.getElementById('ai-screenshot-preview-img');
+  const gallery = document.getElementById('ai-screenshot-gallery-grid');
+  const countLabel = document.getElementById('ai-screenshot-count-label');
+
+  if (!state.currentScreenshots || state.currentScreenshots.length === 0) {
+    clearScreenshotPreview();
+    return;
+  }
+
+  state.currentScreenshotBase64 = state.currentScreenshots[0] || null;
+
   if (prompt) prompt.style.display = 'none';
   if (container) container.style.display = 'block';
-  if (img) img.src = dataUrl;
+  if (countLabel) {
+    const n = state.currentScreenshots.length;
+    countLabel.textContent = `🖼️ ${n} Screenshot${n === 1 ? '' : 's'} Attached`;
+  }
+
+  if (gallery) {
+    gallery.innerHTML = state.currentScreenshots.map((src, idx) => `
+      <div class="ai-gallery-item" style="position: relative; width: 88px; height: 88px; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(168, 85, 247, 0.55); background: #0f172a; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
+        <img src="${src}" alt="Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${src}', '_blank')" title="Click to view full size">
+        <button type="button" onclick="event.stopPropagation(); window.removeScreenshotByIndex(${idx});" title="Remove image" style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5);">✕</button>
+        <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
+      </div>
+    `).join('');
+  }
+}
+
+window.removeScreenshotByIndex = function(index) {
+  if (state.currentScreenshots && index >= 0 && index < state.currentScreenshots.length) {
+    state.currentScreenshots.splice(index, 1);
+    renderScreenshotGallery();
+    showToast('Screenshot removed', 'info');
+  }
+};
+
+function addScreenshotDataUrls(urls) {
+  if (!Array.isArray(urls)) urls = [urls];
+  if (!state.currentScreenshots) state.currentScreenshots = [];
+  let addedCount = 0;
+  for (const url of urls) {
+    if (url && typeof url === 'string') {
+      state.currentScreenshots.push(url);
+      addedCount++;
+    }
+  }
+  renderScreenshotGallery();
+  if (addedCount > 0) {
+    showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added!`, 'info');
+  }
+}
+
+function setScreenshotPreview(dataUrl) {
+  if (!dataUrl) return;
+  addScreenshotDataUrls([dataUrl]);
 }
 
 async function submitAIInstruction(action = 'queue_only') {
@@ -874,7 +1029,8 @@ async function submitAIInstruction(action = 'queue_only') {
     eventTitle: eventTitle,
     venueName: venueName,
     sourceUrl: sourceUrl,
-    screenshotBase64: state.currentScreenshotBase64,
+    screenshotBase64: state.currentScreenshots[0] || state.currentScreenshotBase64 || null,
+    screenshotsBase64: state.currentScreenshots || [],
     action: action,
     approvedPrice: approvedPrice,
     approvedCategory: approvedCategory,
@@ -904,14 +1060,19 @@ async function submitAIInstruction(action = 'queue_only') {
       const targetItem = state.quarantinedEvents.find(e => e.id === eventId);
       if (targetItem) {
         targetItem.dealtWith = true;
+        const finalPaths = (data.screenshotPaths && data.screenshotPaths.length > 0)
+          ? data.screenshotPaths
+          : (data.screenshotPath ? [data.screenshotPath] : [...state.currentScreenshots]);
         targetItem.queuedInstruction = {
           instructionText: instructionText,
           eventId: eventId,
           eventTitle: eventTitle,
           venueName: venueName,
           sourceUrl: sourceUrl,
-          screenshotBase64: state.currentScreenshotBase64,
-          hasScreenshot: Boolean(state.currentScreenshotBase64),
+          screenshotPath: data.screenshotPath || finalPaths[0] || null,
+          screenshotPaths: finalPaths,
+          hasScreenshot: finalPaths.length > 0,
+          screenshotCount: finalPaths.length,
           action: action,
           approvedPrice: approvedPrice,
           approvedCategory: approvedCategory,
@@ -1032,25 +1193,41 @@ function setupCuratorEventListeners() {
     btnSubmitAndDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
   }
 
-  // Screenshot Dropzone & File Input
+  // Screenshot Dropzone & File Input (Supports Multiple Screenshots)
   const dropzone = document.getElementById('ai-screenshot-dropzone');
   const fileInput = document.getElementById('ai-screenshot-file-input');
+  const btnAddMore = document.getElementById('btn-add-more-screenshots');
+
+  if (btnAddMore && fileInput) {
+    btnAddMore.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fileInput.click();
+    });
+  }
+
   if (dropzone && fileInput) {
     dropzone.addEventListener('click', (e) => {
-      if (e.target.id === 'btn-remove-screenshot') return;
+      if (e.target.closest('button')) return;
       fileInput.click();
     });
 
     fileInput.addEventListener('change', (e) => {
-      const file = e.target.files?.[0];
-      if (file) {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+      let loaded = 0;
+      const urls = [];
+      files.forEach(f => {
         const reader = new FileReader();
         reader.onload = (evt) => {
-          setScreenshotPreview(evt.target.result);
-          showToast('🖼️ Screenshot image selected!', 'info');
+          urls.push(evt.target.result);
+          loaded++;
+          if (loaded === files.length) {
+            addScreenshotDataUrls(urls);
+          }
         };
-        reader.readAsDataURL(file);
-      }
+        reader.readAsDataURL(f);
+      });
+      fileInput.value = '';
     });
 
     dropzone.addEventListener('dragover', (e) => {
@@ -1065,15 +1242,21 @@ function setupCuratorEventListeners() {
     dropzone.addEventListener('drop', (e) => {
       e.preventDefault();
       dropzone.classList.remove('dragover');
-      const file = e.dataTransfer?.files?.[0];
-      if (file && file.type.startsWith('image/')) {
+      const files = Array.from(e.dataTransfer?.files || []).filter(f => f.type.startsWith('image/'));
+      if (files.length === 0) return;
+      let loaded = 0;
+      const urls = [];
+      files.forEach(f => {
         const reader = new FileReader();
         reader.onload = (evt) => {
-          setScreenshotPreview(evt.target.result);
-          showToast('🖼️ Screenshot dropped!', 'info');
+          urls.push(evt.target.result);
+          loaded++;
+          if (loaded === files.length) {
+            addScreenshotDataUrls(urls);
+          }
         };
-        reader.readAsDataURL(file);
-      }
+        reader.readAsDataURL(f);
+      });
     });
   }
 
@@ -1082,11 +1265,11 @@ function setupCuratorEventListeners() {
     removeScreenshotBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       clearScreenshotPreview();
-      showToast('Screenshot removed', 'info');
+      showToast('Screenshots cleared', 'info');
     });
   }
 
-  // Global Clipboard Paste Listener for Screenshots (Ctrl+V)
+  // Global Clipboard Paste Listener for Screenshots (Ctrl+V, supports multiple images)
   window.addEventListener('paste', (e) => {
     const modal = document.getElementById('ai-instruction-modal');
     if (!modal || !modal.classList.contains('active')) return;
@@ -1094,20 +1277,29 @@ function setupCuratorEventListeners() {
     const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items;
     if (!items) return;
 
+    const imgItems = [];
     for (let i = 0; i < items.length; i++) {
-      if (items[i].type.indexOf('image') !== -1) {
+      if (items[i].type && items[i].type.indexOf('image') !== -1) {
         const blob = items[i].getAsFile();
-        if (blob) {
-          const reader = new FileReader();
-          reader.onload = (evt) => {
-            setScreenshotPreview(evt.target.result);
-            showToast('📋 Screenshot pasted from clipboard!', 'info');
-          };
-          reader.readAsDataURL(blob);
-          e.preventDefault();
-          break;
-        }
+        if (blob) imgItems.push(blob);
       }
+    }
+
+    if (imgItems.length > 0) {
+      e.preventDefault();
+      let loaded = 0;
+      const urls = [];
+      imgItems.forEach(blob => {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          urls.push(evt.target.result);
+          loaded++;
+          if (loaded === imgItems.length) {
+            addScreenshotDataUrls(urls);
+          }
+        };
+        reader.readAsDataURL(blob);
+      });
     }
   });
 }

@@ -200,6 +200,45 @@ class TestCuratorInstructionsAPI(unittest.TestCase):
         self.assertIn("instructionsPendingCount", status_res)
         self.assertGreaterEqual(status_res["instructionsPendingCount"], 2)
 
+    def test_07_multiple_screenshots_queue(self):
+        """Curator can attach multiple screenshots, saved and tracked in screenshotPaths."""
+        sample_b64_1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+        sample_b64_2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkWPjfDwAE4wH5pZqYFAAAAABJRU5ErkJggg=="
+        payload = {
+            "eventId": "test-crawl-flag-03",
+            "eventTitle": "Multi-Image Proof Event",
+            "venueName": "Fox Cabaret",
+            "instructionText": "Attached 2 screenshots: one showing the poster price, one showing checkout tier.",
+            "screenshotsBase64": [sample_b64_1, sample_b64_2],
+            "action": "queue_only"
+        }
+        req = urllib.request.Request(
+            f"{self.BASE_URL}/api/curator/instruction",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Content-Type": "application/json",
+                "Curator-Token": self.TOKEN
+            }
+        )
+        res = json.loads(urllib.request.urlopen(req).read().decode("utf-8"))
+        self.assertTrue(res["success"])
+        self.assertIn("screenshotPaths", res)
+        self.assertEqual(len(res["screenshotPaths"]), 2)
+        self.assertEqual(res["screenshotPath"], res["screenshotPaths"][0])
+
+        # Verify disk persistence for both files
+        for p in res["screenshotPaths"]:
+            self.assertTrue(os.path.exists(os.path.join(ROOT_DIR, p)))
+
+        # Verify record in curator_instructions.json
+        with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as f:
+            db = json.load(f)
+        saved = next((i for i in db["instructions"] if i["id"] == res["instructionId"]), None)
+        self.assertIsNotNone(saved)
+        self.assertEqual(saved["screenshotCount"], 2)
+        self.assertEqual(len(saved["screenshotPaths"]), 2)
+        self.assertTrue(saved["hasScreenshot"])
+
 
 if __name__ == "__main__":
     unittest.main()

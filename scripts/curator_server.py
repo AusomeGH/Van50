@@ -510,8 +510,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         except ValueError:
             return self._send_json(400, {"error": "Invalid Content-Length header"})
 
-        # Limits: 10MB for screenshot uploads, 256KB for all other JSON endpoints
-        max_bytes = 10 * 1024 * 1024 if (path == "/api/curator/instruction" and "image" in self.headers.get("Content-Type", "")) else 256 * 1024
+        # Limits: 25MB for screenshot uploads (supporting multiple screenshots), 256KB for all other JSON endpoints
+        max_bytes = 25 * 1024 * 1024 if path == "/api/curator/instruction" else 256 * 1024
         if content_len > max_bytes:
             self.close_connection = True
             return self._send_json(413, {"error": f"Payload Too Large. Max permitted size is {max_bytes // 1024} KB."})
@@ -776,24 +776,34 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_id = payload.get("eventId", "")
             action = payload.get("action", "queue_only")
 
-            # Handle screenshot if provided (Base64 data URI or raw Base64)
+            # Handle multiple screenshots or single screenshot (Base64 data URI or raw Base64)
             os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
-            screenshot_rel_path = None
-            screenshot_b64 = payload.get("screenshotBase64")
-            if screenshot_b64:
-                if "," in screenshot_b64:
-                    screenshot_b64 = screenshot_b64.split(",", 1)[1]
+            screenshot_rel_paths = []
+
+            raw_shots = list(payload.get("screenshotsBase64") or [])
+            single_shot = payload.get("screenshotBase64")
+            if single_shot and single_shot not in raw_shots:
+                raw_shots.insert(0, single_shot)
+
+            ts_base = int(time.time() * 1000)
+            for idx, shot_b64 in enumerate(raw_shots):
+                if not shot_b64 or not isinstance(shot_b64, str):
+                    continue
+                if "," in shot_b64:
+                    shot_b64 = shot_b64.split(",", 1)[1]
                 try:
-                    img_data = base64.b64decode(screenshot_b64)
-                    file_name = f"screenshot_{int(time.time() * 1000)}.png"
+                    img_data = base64.b64decode(shot_b64)
+                    file_name = f"screenshot_{ts_base}_{idx}.png"
                     full_img_path = os.path.join(SCREENSHOTS_DIR, file_name)
                     with open(full_img_path, "wb") as f_img:
                         f_img.write(img_data)
-                    screenshot_rel_path = f"data/curator_screenshots/{file_name}"
+                    screenshot_rel_paths.append(f"data/curator_screenshots/{file_name}")
                 except Exception as e:
-                    print(f"[WARN] Failed to decode/save screenshot: {e}")
+                    print(f"[WARN] Failed to decode/save screenshot #{idx}: {e}")
 
-            inst_id = f"inst_{int(time.time() * 1000)}"
+            primary_shot = screenshot_rel_paths[0] if screenshot_rel_paths else None
+
+            inst_id = f"inst_{ts_base}"
             instruction_record = {
                 "id": inst_id,
                 "createdAt": datetime.now(timezone.utc).isoformat(),
@@ -803,7 +813,10 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "venueName": payload.get("venueName", ""),
                 "sourceUrl": payload.get("sourceUrl", ""),
                 "instructionText": instruction_text,
-                "screenshotPath": screenshot_rel_path,
+                "screenshotPath": primary_shot,
+                "screenshotPaths": screenshot_rel_paths,
+                "hasScreenshot": len(screenshot_rel_paths) > 0,
+                "screenshotCount": len(screenshot_rel_paths),
                 "actionTaken": action,
                 "curatorNote": payload.get("curatorNote", ""),
                 "targetScraperOrEngine": payload.get("venueName") or "UniversalVenueCrawler"
@@ -960,6 +973,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Instruction queued successfully for AI Assistant.{approval_msg}",
                 "instructionId": inst_id,
                 "action": action,
+                "screenshotPath": primary_shot,
+                "screenshotPaths": screenshot_rel_paths,
                 "pendingInstructions": pending_count
             })
 

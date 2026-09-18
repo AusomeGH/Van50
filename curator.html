@@ -193,20 +193,23 @@
             <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 75px; margin-top: 4px; font-family: inherit; font-size: 0.88rem; line-height: 1.4;" placeholder="e.g.: 'The scraper picked up the $65 VIP tier instead of the $25 General Admission ticket shown at the bottom of the page. Please target the GA price for this venue.'" required></textarea>
           </div>
 
-          <!-- Screenshot Drop / Paste Zone -->
+          <!-- Screenshot Drop / Paste Zone (Supports Multiple Screenshots) -->
           <div>
-            <label class="curator-label" style="font-size: 0.8rem;">Screenshot / Proof (Optional)</label>
-            <div id="ai-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Click to browse or paste screenshot" style="padding: 10px;">
+            <label class="curator-label" style="font-size: 0.8rem;">Screenshots / Proof (Optional, multiple supported)</label>
+            <div id="ai-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Click to browse or paste screenshots" style="padding: 10px;">
               <div id="ai-dropzone-prompt" style="text-align: center; padding: 8px; cursor: pointer;">
                 <div style="font-size: 1.4rem; margin-bottom: 2px;">📋 / 🖼️</div>
-                <div style="font-weight: 500; font-size: 0.82rem; color: #e2e8f0;">Click to browse, or paste image with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl + V</kbd></div>
-                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Supports PNG, JPG, WebP from clipboard or disk</div>
+                <div style="font-weight: 500; font-size: 0.82rem; color: #e2e8f0;">Click to select screenshots, or paste images with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl + V</kbd></div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Attach flyers, ticket tiers, or door price posters (multiple images allowed)</div>
               </div>
-              <input type="file" id="ai-screenshot-file-input" accept="image/*" style="display: none;">
-              <!-- Preview Thumbnail -->
-              <div id="ai-screenshot-preview-container" style="display: none; position: relative; padding: 6px; text-align: center;">
-                <img id="ai-screenshot-preview-img" src="" alt="Screenshot preview" style="max-height: 120px; max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2);">
-                <button type="button" id="btn-remove-screenshot" style="position: absolute; top: 8px; right: 8px; background: rgba(239, 68, 68, 0.85); color: white; border: none; border-radius: 4px; padding: 2px 7px; font-size: 0.72rem; cursor: pointer;">✕ Remove</button>
+              <input type="file" id="ai-screenshot-file-input" accept="image/*" multiple style="display: none;">
+              <!-- Multi-Screenshot Preview Gallery -->
+              <div id="ai-screenshot-preview-container" style="display: none; padding: 6px 2px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-size: 0.78rem; font-weight: 600; color: #c084fc;" id="ai-screenshot-count-label">🖼️ 0 Screenshots Attached</span>
+                  <button type="button" id="btn-add-more-screenshots" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #d8b4fe; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; cursor: pointer;">+ Add More</button>
+                </div>
+                <div id="ai-screenshot-gallery-grid" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"></div>
               </div>
             </div>
           </div>
