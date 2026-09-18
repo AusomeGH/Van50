@@ -1,0 +1,72 @@
+{
+  "id": "ca.van50.app",
+  "name": "Van50 - Vancouver Events Under $50",
+  "short_name": "Van50",
+  "description": "Curated authentic Vancouver events, live music, comedy, indie cinema, and outings strictly under $50.00 CAD total out-of-pocket per person.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#080c14",
+  "theme_color": "#080c14",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["entertainment", "events", "travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Events",
+      "short_name": "Explore",
+      "description": "Browse today's verified Vancouver events under $50",
+      "url": "./index.html#events-grid",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Interactive Map",
+      "short_name": "Map",
+      "description": "View event locations across Vancouver neighborhoods",
+      "url": "./index.html#map-section",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Saved Events",
+      "short_name": "Saved",
+      "description": "View your saved custom itinerary",
+      "url": "./index.html#itinerary",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
