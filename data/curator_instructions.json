@@ -2,9 +2,9 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Curator plain-language instructions and screenshots queued for AI global scraper updates.",
-    "pendingCount": 12,
-    "resolvedCount": 134,
-    "updatedAt": "2026-09-18T03:18:14.292652+00:00"
+    "pendingCount": 4,
+    "resolvedCount": 142,
+    "updatedAt": "2026-09-18T03:20:41.040871+00:00"
   },
   "instructions": [
     {
@@ -2248,7 +2248,7 @@
     {
       "id": "learn_1789701457191",
       "createdAt": "2026-09-18T03:17:37.191602+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1789701457",
@@ -2259,12 +2259,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
     },
     {
       "id": "inst_1789701457413",
       "createdAt": "2026-09-18T03:17:37.413778+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -2276,12 +2278,14 @@
       "screenshotCount": 0,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Little Mountain Gallery"
+      "targetScraperOrEngine": "Little Mountain Gallery",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated into universal tier priority heuristics."
     },
     {
       "id": "inst_1789701457433",
       "createdAt": "2026-09-18T03:17:37.434314+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -2295,12 +2299,14 @@
       "screenshotCount": 1,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
     },
     {
       "id": "inst_1789701457453",
       "createdAt": "2026-09-18T03:17:37.453678+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1789701457",
       "eventTitle": "",
       "venueName": "",
@@ -2312,7 +2318,9 @@
       "screenshotCount": 0,
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
-      "targetScraperOrEngine": "UniversalVenueCrawler"
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated into universal tier priority heuristics."
     },
     {
       "id": "inst_1789701457582",
@@ -2337,7 +2345,7 @@
     {
       "id": "learn_1789701493872",
       "createdAt": "2026-09-18T03:18:13.872243+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1789701493",
@@ -2348,12 +2356,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
     },
     {
       "id": "inst_1789701494108",
       "createdAt": "2026-09-18T03:18:14.108431+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -2365,12 +2375,14 @@
       "screenshotCount": 0,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Little Mountain Gallery"
+      "targetScraperOrEngine": "Little Mountain Gallery",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated into universal tier priority heuristics."
     },
     {
       "id": "inst_1789701494126",
       "createdAt": "2026-09-18T03:18:14.127094+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -2384,12 +2396,14 @@
       "screenshotCount": 1,
       "actionTaken": "queue_only",
       "curatorNote": "",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated Frankie's Jazz Club door price reinforcement."
     },
     {
       "id": "inst_1789701494148",
       "createdAt": "2026-09-18T03:18:14.148423+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1789701494",
       "eventTitle": "",
       "venueName": "",
@@ -2401,7 +2415,9 @@
       "screenshotCount": 0,
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
-      "targetScraperOrEngine": "UniversalVenueCrawler"
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "resolvedAt": "2026-09-18T03:20:41.040871+00:00",
+      "resolutionNotes": "Integrated into universal tier priority heuristics."
     },
     {
       "id": "inst_1789701494290",
