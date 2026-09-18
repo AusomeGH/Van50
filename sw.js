@@ -3,16 +3,16 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v1.0.0';
+const CACHE_NAME = 'van50-cache-v1.0.2';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css?v=5.1.0',
-  './css/components.css?v=5.1.0',
-  './js/app.js',
-  './js/map.js',
+  './css/style.css?v=5.2.0',
+  './css/components.css?v=5.2.0',
+  './js/app.js?v=5.2.0',
+  './js/map.js?v=5.2.0',
   './js/data.js',
   './js/roulette.js',
   './js/pwa-install.js',
