@@ -89,6 +89,29 @@ class TestPwaAssets(unittest.TestCase):
         self.assertIn('<meta name="mobile-web-app-capable" content="yes">', html, "index.html missing mobile-web-app-capable")
         self.assertIn('js/pwa-install.js', html, "index.html missing pwa-install.js script tag")
 
+    def test_curator_pwa_integration(self):
+        """Validates that curator-manifest.json exists, declares valid icons, and is linked in curator.html."""
+        curator_manifest_path = os.path.join(BASE_DIR, "curator-manifest.json")
+        curator_html_path = os.path.join(BASE_DIR, "curator.html")
+        
+        self.assertTrue(os.path.exists(curator_manifest_path), "curator-manifest.json does not exist")
+        with open(curator_manifest_path, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+
+        self.assertEqual(manifest.get("display"), "standalone")
+        self.assertIn("curator.html", manifest.get("start_url", ""))
+        self.assertGreaterEqual(len(manifest.get("icons", [])), 4)
+
+        for icon in manifest.get("icons", []):
+            src = icon.get("src")
+            icon_file = os.path.join(BASE_DIR, src.replace("/", os.sep))
+            self.assertTrue(os.path.exists(icon_file), f"Curator icon missing: {icon_file}")
+            self.assertGreater(os.path.getsize(icon_file), 1000)
+
+        with open(curator_html_path, "r", encoding="utf-8") as f:
+            html = f.read()
+        self.assertIn('<link rel="manifest" href="curator-manifest.json">', html)
+
 
 if __name__ == "__main__":
     unittest.main()

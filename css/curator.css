@@ -878,3 +878,122 @@ body {
   font-weight: 500;
   font-size: 0.75rem;
 }
+
+/* ==============================================================================
+   Curator Studio Mobile & Android PWA Optimization
+   ============================================================================== */
+
+@media (max-width: 900px) {
+  .curator-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .curator-stats-strip {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .curator-nav-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .curator-search-sort-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .curator-search-box,
+  .curator-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .curator-container {
+    padding: 0 14px;
+  }
+
+  .curator-header {
+    padding: 12px 0;
+  }
+
+  .curator-brand-title {
+    font-size: 1.15rem;
+  }
+
+  .curator-pills-group {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .curator-pills-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .curator-filter-pill {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* Single Column Touch Cards */
+  .curator-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .curator-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .curator-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .curator-card-actions .btn-curator {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    font-size: 0.88rem;
+  }
+
+  .curator-modal-card {
+    width: 94%;
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+}
+
+/* Standalone Curator Mobile PWA Mode */
+@media all and (display-mode: standalone) {
+  .curator-header {
+    padding-top: calc(12px + env(safe-area-inset-top));
+  }
+
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  input, textarea, select {
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+}
+
