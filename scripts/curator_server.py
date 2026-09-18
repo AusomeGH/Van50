@@ -32,6 +32,9 @@ INSTRUCTIONS_PATH = os.path.join(DATA_DIR, "curator_instructions.json")
 SCREENSHOTS_DIR = os.path.join(DATA_DIR, "curator_screenshots")
 JS_DATA_PATH = os.path.join(BASE_DIR, "js", "data.js")
 BACKUP_DIR = os.path.join(DATA_DIR, "backups")
+DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
+VENUE_DIR_PATH = os.path.join(DATA_DIR, "venue_directory.json")
+FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
@@ -95,6 +98,21 @@ def create_backup_snapshot():
                     pass
     except Exception as e:
         print(f"[WARN] Failed to create backup: {e}")
+
+
+def create_venue_backup_snapshot():
+    """Creates a timestamped snapshot of data/venue_directory.json prior to mutation."""
+    if not os.path.exists(VENUE_DIR_PATH):
+        return None
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+    ts = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    dest = os.path.join(BACKUP_DIR, f"venues_{ts}.json")
+    try:
+        shutil.copy2(VENUE_DIR_PATH, dest)
+        return f"venues_{ts}.json"
+    except Exception as e:
+        print(f"[WARN] Failed to create venue backup: {e}")
+        return None
 
 
 def sync_js_data_file():
@@ -361,6 +379,24 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            v_count = 0
+            if os.path.exists(DISCOVERED_VENUES_PATH):
+                try:
+                    with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as f:
+                        v_data = json.load(f)
+                        v_count = len([x for x in v_data.get("discoveredVenues", []) if x.get("status") == "pending"])
+                except Exception:
+                    pass
+
+            known_venues = []
+            if os.path.exists(VENUE_DIR_PATH):
+                try:
+                    with open(VENUE_DIR_PATH, "r", encoding="utf-8") as f:
+                        vd = json.load(f)
+                        known_venues = list(vd.get("venues", {}).keys())
+                except Exception:
+                    pass
+
             return self._send_json(200, {
                 "server": "Van50 Curator Daemon",
                 "authenticated": is_auth,
@@ -369,6 +405,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "rulesCount": r_count,
                 "archivedCount": a_count,
                 "instructionsPendingCount": inst_count,
+                "discoveredVenuesCount": v_count,
+                "knownVenues": known_venues,
                 "timestamp": datetime.now().isoformat()
             })
 
@@ -458,6 +496,32 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as f:
                     return self._send_json(200, json.load(f))
             return self._send_json(200, {"metadata": {}, "instructions": []})
+
+        # 6. API: Get discovered venues candidate list
+        if path == "/api/curator/discovered_venues":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            disc = {"metadata": {}, "discoveredVenues": []}
+            if os.path.exists(DISCOVERED_VENUES_PATH):
+                try:
+                    with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as f:
+                        disc = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, disc)
+
+        # 7. API: Get festival registry
+        if path == "/api/curator/festivals":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            fests = {"metadata": {}, "festivals": []}
+            if os.path.exists(FESTIVAL_REGISTRY_PATH):
+                try:
+                    with open(FESTIVAL_REGISTRY_PATH, "r", encoding="utf-8") as f:
+                        fests = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, fests)
 
         # Standard file serving for web UI with path filtering & access control
         # 1. Traversal & boundary check
@@ -557,7 +621,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
 
         # Sliding window rate limit on mutating endpoints
-        if path in {"/api/curator/approve", "/api/curator/reject", "/api/curator/rules", "/api/curator/instruction", "/api/curator/dismiss_instruction"}:
+        if path in {"/api/curator/approve", "/api/curator/reject", "/api/curator/rules", "/api/curator/instruction", "/api/curator/dismiss_instruction", "/api/curator/venues/add", "/api/curator/discovered_venues/dismiss"}:
             if not check_mutating_rate_limit(client_ip):
                 return self._send_json(429, {"error": "Rate limit exceeded: Too many mutating actions. Please wait a minute."})
 
@@ -1032,6 +1096,112 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "automationEnabled": new_state,
                 "message": f"Daily automation scheduler {'enabled' if new_state else 'paused'}."
             })
+
+        # 9. API: Add discovered venue to permanent directory & regular crawler
+        if path == "/api/curator/venues/add":
+            name = sanitize_text(str(payload.get("name", "")).strip())
+            if not name:
+                return self._send_json(400, {"error": "Venue name is required."})
+
+            address = sanitize_text(str(payload.get("address") or f"{name}, Vancouver, BC").strip())
+            neighborhood = sanitize_text(str(payload.get("neighborhood") or "Downtown / West End").strip())
+            calendar_url = sanitize_text(str(payload.get("calendarUrl") or payload.get("websiteUrl") or "").strip())
+            venue_url = sanitize_text(str(payload.get("venueUrl") or calendar_url).strip())
+            category = sanitize_text(str(payload.get("category") or "shows").strip())
+            ticketing_provider = sanitize_text(str(payload.get("ticketingProvider") or "Universal Ticketing").strip())
+            adapter = sanitize_text(str(payload.get("adapter") or "UniversalVenueCrawler").strip())
+            discovered_id = payload.get("discoveredId")
+
+            clean_slug = re.sub(r"[^\w\s-]", "", name.lower())
+            venue_id = re.sub(r"[-\s]+", "-", clean_slug).strip("-")
+
+            create_venue_backup_snapshot()
+
+            venue_dir_data = {"metadata": {}, "venues": {}}
+            if os.path.exists(VENUE_DIR_PATH):
+                try:
+                    with open(VENUE_DIR_PATH, "r", encoding="utf-8") as f:
+                        venue_dir_data = json.load(f)
+                except Exception as e:
+                    return self._send_json(500, {"error": f"Failed reading venue directory: {e}"})
+
+            venues_map = venue_dir_data.setdefault("venues", {})
+
+            new_venue = {
+                "venueId": venue_id,
+                "name": name,
+                "aliases": [name],
+                "address": address,
+                "neighborhood": neighborhood,
+                "coordinates": payload.get("coordinates") or [49.2827, -123.1207],
+                "transitInfo": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
+                "category": category,
+                "venueUrl": venue_url,
+                "calendarUrl": calendar_url,
+                "boxOfficeUrl": calendar_url,
+                "ticketingProvider": ticketing_provider,
+                "adapter": adapter,
+                "managedEvents": []
+            }
+
+            venues_map[name] = new_venue
+            venue_dir_data.setdefault("metadata", {})["totalVenues"] = len(venues_map)
+            venue_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+
+            try:
+                with open(VENUE_DIR_PATH, "w", encoding="utf-8") as f:
+                    json.dump(venue_dir_data, f, indent=2, ensure_ascii=False)
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed saving venue directory: {e}"})
+
+            # Mark in discovered_venues.json as approved if exists
+            if os.path.exists(DISCOVERED_VENUES_PATH):
+                try:
+                    with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                        disc_data = json.load(df)
+                    for item in disc_data.get("discoveredVenues", []):
+                        if (discovered_id and item.get("id") == discovered_id) or item.get("name", "").lower() == name.lower():
+                            item["status"] = "approved"
+                            item["approvedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                        json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                except Exception as e:
+                    print(f"[WARN] Failed updating discovered venues status: {e}")
+
+            sync_js_data_file()
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Venue '{name}' successfully added to permanent directory and registered with {adapter}.",
+                "venue": new_venue,
+                "totalVenues": len(venues_map)
+            })
+
+        # 10. API: Dismiss discovered venue
+        if path == "/api/curator/discovered_venues/dismiss":
+            disc_id = payload.get("id")
+            if not disc_id:
+                return self._send_json(400, {"error": "Missing discovered venue id"})
+
+            if os.path.exists(DISCOVERED_VENUES_PATH):
+                try:
+                    with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                        disc_data = json.load(df)
+                    found = False
+                    for item in disc_data.get("discoveredVenues", []):
+                        if item.get("id") == disc_id:
+                            item["status"] = "dismissed"
+                            item["dismissedAt"] = datetime.now(timezone.utc).isoformat()
+                            found = True
+                    if found:
+                        with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                            json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                        return self._send_json(200, {"success": True, "message": "Discovered venue candidate dismissed."})
+                    else:
+                        return self._send_json(404, {"error": "Candidate not found."})
+                except Exception as e:
+                    return self._send_json(500, {"error": f"Failed dismissing discovered venue: {e}"})
+            return self._send_json(404, {"error": "Discovered venues registry not found"})
 
         return self._send_json(404, {"error": "Endpoint not found"})
 

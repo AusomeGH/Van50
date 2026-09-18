@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Registry of seasonal and multi-day Vancouver festivals. Crawlers activate autonomously 30 days prior to opening and stop 2 days post-event.",
+    "updatedAt": "2026-09-18T08:00:00-07:00"
+  },
+  "festivals": [
+    {
+      "id": "vancouver-fringe-festival",
+      "name": "Vancouver Fringe Festival",
+      "edition": "2026",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-20",
+      "preWindowDays": 30,
+      "postWindowDays": 2,
+      "category": "shows",
+      "websiteUrl": "https://vancouverfringe.com",
+      "scheduleUrl": "https://vancouverfringe.com/shows/",
+      "ticketPortalUrl": "https://vancouverfringe.com/tickets/",
+      "priceStructure": {
+        "model": "per_show_plus_membership",
+        "showPrice": 15.00,
+        "membershipButtonFee": 10.00,
+        "allInSingleShow": 25.00,
+        "withinBudget": true
+      },
+      "hostVenues": [
+        "Waterfront Theatre",
+        "The Nest (Granville Island)",
+        "Performance Works",
+        "Carousel Theatre",
+        "Arts Factory",
+        "The Revue Stage"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "viff-vancouver-film-festival",
+      "name": "Vancouver International Film Festival (VIFF)",
+      "edition": "2026",
+      "startDate": "2026-09-24",
+      "endDate": "2026-10-04",
+      "preWindowDays": 30,
+      "postWindowDays": 2,
+      "category": "cinema",
+      "websiteUrl": "https://viff.org",
+      "scheduleUrl": "https://viff.org/festival/",
+      "ticketPortalUrl": "https://viff.org/tickets/",
+      "priceStructure": {
+        "model": "single_screening",
+        "showPrice": 18.00,
+        "membershipButtonFee": 2.00,
+        "allInSingleShow": 20.00,
+        "withinBudget": true
+      },
+      "hostVenues": [
+        "VIFF Centre",
+        "The Cinematheque",
+        "Rio Theatre",
+        "SFU Goldcorp Centre for the Arts"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "khatsahlano-street-party",
+      "name": "Khatsahlano Street Party",
+      "edition": "2026",
+      "startDate": "2026-07-11",
+      "endDate": "2026-07-11",
+      "preWindowDays": 30,
+      "postWindowDays": 2,
+      "category": "music",
+      "websiteUrl": "https://khatsahlano.com",
+      "scheduleUrl": "https://khatsahlano.com/lineup/",
+      "ticketPortalUrl": "https://khatsahlano.com",
+      "priceStructure": {
+        "model": "free_civic",
+        "showPrice": 0.00,
+        "membershipButtonFee": 0.00,
+        "allInSingleShow": 0.00,
+        "withinBudget": true
+      },
+      "hostVenues": [
+        "West 4th Avenue (Burrard to MacDonald)"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "vancouver-folk-music-festival",
+      "name": "Vancouver Folk Music Festival",
+      "edition": "2026",
+      "startDate": "2026-07-17",
+      "endDate": "2026-07-19",
+      "preWindowDays": 30,
+      "postWindowDays": 2,
+      "category": "music",
+      "websiteUrl": "https://thefestival.bc.ca",
+      "scheduleUrl": "https://thefestival.bc.ca/artists/",
+      "ticketPortalUrl": "https://thefestival.bc.ca/tickets/",
+      "priceStructure": {
+        "model": "single_day_or_evening",
+        "showPrice": 45.00,
+        "membershipButtonFee": 0.00,
+        "allInSingleShow": 47.25,
+        "withinBudget": true
+      },
+      "hostVenues": [
+        "Jericho Beach Park"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "car-free-days-vancouver",
+      "name": "Car Free Days Vancouver",
+      "edition": "2026",
+      "startDate": "2026-09-06",
+      "endDate": "2026-09-20",
+      "preWindowDays": 30,
+      "postWindowDays": 2,
+      "category": "outdoors",
+      "websiteUrl": "https://www.carfreevancouver.org",
+      "scheduleUrl": "https://www.carfreevancouver.org",
+      "ticketPortalUrl": "https://www.carfreevancouver.org",
+      "priceStructure": {
+        "model": "free_civic",
+        "showPrice": 0.00,
+        "membershipButtonFee": 0.00,
+        "allInSingleShow": 0.00,
+        "withinBudget": true
+      },
+      "hostVenues": [
+        "Commercial Drive",
+        "Main Street",
+        "Denman Street (West End)"
+      ],
+      "status": "active"
+    }
+  ]
+}

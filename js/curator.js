@@ -13,8 +13,11 @@ const state = {
     pending: 0,
     master: 0,
     rules: 0,
-    instructions: 0
+    instructions: 0,
+    discoveredVenues: 0
   },
+  discoveredVenues: [],
+  knownVenues: new Set(),
   currentScreenshotBase64: null,
   currentScreenshots: []
 };
@@ -46,7 +49,10 @@ async function checkAuthAndInitialize() {
       const data = await res.json();
       if (data.authenticated) {
         if (loginModal) loginModal.classList.remove('active');
-        updateHeaderStats(data.pendingCount, data.rulesCount, data.masterCount, data.instructionsPendingCount || 0);
+        if (data.knownVenues) {
+          state.knownVenues = new Set(data.knownVenues.map(v => v.toLowerCase()));
+        }
+        updateHeaderStats(data.pendingCount, data.rulesCount, data.masterCount, data.instructionsPendingCount || 0, data.discoveredVenuesCount || 0);
         loadQuarantineQueue();
         return;
       }
@@ -182,6 +188,19 @@ async function loadQuarantineQueue() {
       console.warn('Could not fetch queued instructions:', e);
     }
 
+    // Fetch Discovered Venues from Discovery Feeds and Festival Scout
+    try {
+      const discRes = await fetch('/api/curator/discovered_venues', {
+        headers: { 'Curator-Token': state.token }
+      });
+      if (discRes.ok) {
+        const discData = await discRes.json();
+        state.discoveredVenues = (discData.discoveredVenues || []).filter(v => v.status === 'pending');
+      }
+    } catch (e) {
+      console.warn('Could not fetch discovered venues:', e);
+    }
+
     updateFilterCounts();
     applyFiltersAndRender();
   } catch (err) {
@@ -189,20 +208,23 @@ async function loadQuarantineQueue() {
   }
 }
 
-function updateHeaderStats(pending, rules, master, instructions = 0) {
+function updateHeaderStats(pending, rules, master, instructions = 0, discoveredVenues = 0) {
   state.stats.pending = pending;
   state.stats.rules = rules;
   state.stats.master = master;
   state.stats.instructions = instructions;
+  state.stats.discoveredVenues = discoveredVenues;
 
   const elP = document.getElementById('stat-pending-count');
   const elR = document.getElementById('stat-rules-count');
   const elM = document.getElementById('stat-master-count');
   const elI = document.getElementById('stat-instructions-count');
+  const elV = document.getElementById('stat-discovered-venues-count');
   if (elP) elP.textContent = pending;
   if (elR) elR.textContent = rules;
   if (elM) elM.textContent = master;
   if (elI) elI.textContent = instructions;
+  if (elV) elV.textContent = discoveredVenues;
 }
 
 function isDrift(item) {
@@ -218,12 +240,14 @@ function updateFilterCounts() {
   const unverified = all.filter(e => isUnverifiedCart(e)).length;
   const brokenlink = all.filter(e => isBrokenLink(e)).length;
   const course = all.filter(e => isCourse(e)).length;
+  const discVenues = (state.discoveredVenues || []).length;
 
   const setT = (id, count) => {
     const el = document.getElementById(id);
     if (el) el.textContent = count;
   };
   setT('pill-count-all', all.length);
+  setT('pill-count-discovered-venues', discVenues);
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
   setT('pill-count-drift', drift);
@@ -233,6 +257,8 @@ function updateFilterCounts() {
 
   const statP = document.getElementById('stat-pending-count');
   if (statP) statP.textContent = all.length;
+  const statV = document.getElementById('stat-discovered-venues-count');
+  if (statV) statV.textContent = discVenues;
 }
 
 // Classification Helpers for Triage Filtering
@@ -263,6 +289,12 @@ function isCourse(item) {
 // ==============================================================================
 
 function applyFiltersAndRender() {
+  // Discovered Venues Tab
+  if (state.activeFilter === 'discovered_venues') {
+    renderDiscoveredVenuesCards();
+    return;
+  }
+
   // Strict Budget Cap: Curator strictly triages candidates that may meet criteria; >$50 are completely filtered out
   let list = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
 
@@ -512,6 +544,8 @@ function renderCards(items) {
     const isHandled = Boolean(ev.dealtWith || ev.queuedInstruction);
     const curatorDateStr = formatCuratorDate(ev);
     const diagnosticsHtml = generateCuratorDiagnostics(ev);
+    const vName = (ev.venue || '').trim();
+    const isDiscoveredVenue = Boolean(vName && state.knownVenues && state.knownVenues.size > 0 && !state.knownVenues.has(vName.toLowerCase()));
 
     return `
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}">
@@ -528,6 +562,11 @@ function renderCards(items) {
             </div>
           </div>
           <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
+            ${isDiscoveredVenue ? `
+              <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);" title="Venue not in permanent directory">
+                🏛️ Discovered Venue
+              </span>
+            ` : ''}
             <span class="curator-badge-pill curator-badge-category" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);">
               🏷️ ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}
             </span>
@@ -693,6 +732,18 @@ function renderCards(items) {
               >
                 🚫 Dismiss
               </button>
+
+              ${isDiscoveredVenue ? `
+                <button 
+                  type="button" 
+                  class="btn-curator btn-curator-ghost" 
+                  style="color: #34d399; border-color: rgba(16, 185, 129, 0.4);" 
+                  onclick="openAddVenueModalFromEvent('${ev.id}')"
+                  title="Enroll '${escapeHtml(ev.venue)}' into regular venue crawler"
+                >
+                  🏛️ Add Venue to Crawler
+                </button>
+              ` : ''}
             `}
           </div>
 
@@ -1302,6 +1353,245 @@ function setupCuratorEventListeners() {
       });
     }
   });
+
+  // Discovered Venues Stat Pill Hook
+  const statVenuesPill = document.getElementById('stat-discovered-venues-pill');
+  if (statVenuesPill) {
+    statVenuesPill.addEventListener('click', () => {
+      document.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      const pill = document.querySelector('.curator-filter-pill[data-filter="discovered_venues"]');
+      if (pill) pill.classList.add('active');
+      state.activeFilter = 'discovered_venues';
+      applyFiltersAndRender();
+    });
+  }
+
+  // Add Discovered Venue Modal Listeners
+  const venueModal = document.getElementById('add-venue-modal');
+  const closeVenueModalBtn = document.getElementById('btn-close-venue-modal');
+  const cancelVenueModalBtn = document.getElementById('btn-cancel-venue-modal');
+  const venueForm = document.getElementById('add-venue-form');
+
+  const closeVenueModal = () => {
+    if (venueModal) venueModal.classList.remove('active');
+  };
+
+  if (closeVenueModalBtn) closeVenueModalBtn.addEventListener('click', closeVenueModal);
+  if (cancelVenueModalBtn) cancelVenueModalBtn.addEventListener('click', closeVenueModal);
+  if (venueModal) {
+    venueModal.addEventListener('click', (e) => {
+      if (e.target === venueModal) closeVenueModal();
+    });
+  }
+
+  if (venueForm) {
+    venueForm.addEventListener('submit', handleAddVenueSubmit);
+  }
+}
+
+// ==============================================================================
+// 7. DISCOVERED VENUES PIPELINE & MODAL LOGIC
+// ==============================================================================
+
+function renderDiscoveredVenuesCards() {
+  const container = document.getElementById('curator-cards-list');
+  const countDisplay = document.getElementById('curator-results-text');
+  if (!container) return;
+
+  const venues = state.discoveredVenues || [];
+  if (countDisplay) {
+    countDisplay.innerHTML = `Showing <strong>${venues.length}</strong> candidate venue(s) discovered from festivals and discovery feeds`;
+  }
+
+  if (venues.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🏛️</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+          No Discovered Venues Pending Review
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          All venues discovered by festivals and editorial discovery feeds have either been enrolled into the regular crawler or dismissed.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = venues.map(v => {
+    const safeV = JSON.stringify(v).replace(/'/g, "&#39;");
+    return `
+      <div class="curator-card" id="card-venue-${v.id}" style="border-left: 4px solid #10b981;">
+        <div class="curator-card-top">
+          <div>
+            <h3 class="curator-card-title" style="color: #6ee7b7;">${escapeHtml(v.name)}</h3>
+            <div class="curator-card-meta">
+              <span>📍 <strong>${escapeHtml(v.address || v.name)}</strong></span>
+              <span>🏘️ <strong>Neighborhood:</strong> ${escapeHtml(v.neighborhood || 'Vancouver')}</span>
+              <span>🏷️ <strong>Category:</strong> ${escapeHtml(v.category || 'shows')}</span>
+              <span>🔍 <strong>Discovered Via:</strong> ${escapeHtml(v.discoveredVia || 'Festival / Feed')}</span>
+            </div>
+          </div>
+          <div>
+            <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">
+              🏛️ Discovered Venue
+            </span>
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85rem; color: var(--curator-text-muted);">
+          <div><strong>Context / Sample Event:</strong> ${escapeHtml(v.sampleEvent || 'Detected via festival program')}</div>
+          ${v.calendarUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(v.calendarUrl)}" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : ''}
+        </div>
+
+        <div class="curator-actions-bar">
+          <div class="curator-actions-left">
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-primary" 
+              onclick='openAddVenueModal(${safeV})'
+              title="Enroll this venue into venue_directory.json and regular daily crawl"
+            >
+              ➕ Add to Regular Venue Crawler
+            </button>
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-danger" 
+              onclick="dismissDiscoveredVenue('${v.id}')"
+              title="Dismiss this candidate venue"
+            >
+              🚫 Dismiss
+            </button>
+          </div>
+          <div>
+            <a 
+              href="${escapeHtml(v.calendarUrl || v.websiteUrl || '#')}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-curator btn-curator-ghost"
+              title="Inspect venue website in new tab"
+            >
+              🔗 Inspect Venue Page ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.openAddVenueModal = function(v) {
+  const modal = document.getElementById('add-venue-modal');
+  if (!modal) return;
+
+  const idField = document.getElementById('venue-form-discovered-id');
+  const nameField = document.getElementById('venue-form-name');
+  const addrField = document.getElementById('venue-form-address');
+  const urlField = document.getElementById('venue-form-calendar-url');
+  const neighSelect = document.getElementById('venue-form-neighborhood');
+  const catSelect = document.getElementById('venue-form-category');
+
+  if (idField) idField.value = v.id || '';
+  if (nameField) nameField.value = v.name || '';
+  if (addrField) addrField.value = v.address || `${v.name}, Vancouver, BC`;
+  if (urlField) urlField.value = v.calendarUrl || v.websiteUrl || '';
+  if (neighSelect && v.neighborhood) neighSelect.value = v.neighborhood;
+  if (catSelect && v.category) catSelect.value = v.category;
+
+  modal.classList.add('active');
+};
+
+window.openAddVenueModalFromEvent = function(eventId) {
+  const ev = (state.quarantinedEvents || []).find(e => e.id === eventId);
+  if (!ev) return;
+  openAddVenueModal({
+    id: null,
+    name: ev.venue,
+    address: `${ev.venue}, Vancouver, BC`,
+    neighborhood: ev.neighborhood || 'Downtown / West End',
+    category: ev.category || 'shows',
+    calendarUrl: ev.websiteUrl || '',
+    websiteUrl: ev.websiteUrl || '',
+    discoveredVia: `Event: ${ev.title}`
+  });
+};
+
+window.dismissDiscoveredVenue = async function(discId) {
+  if (!state.token || !discId) return;
+  try {
+    const res = await fetch('/api/curator/discovered_venues/dismiss', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ id: discId })
+    });
+    if (res.ok) {
+      showToast('Candidate venue dismissed.', 'info');
+      state.discoveredVenues = state.discoveredVenues.filter(v => v.id !== discId);
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast('Failed to dismiss venue.', 'error');
+    }
+  } catch (err) {
+    showToast('Network error dismissing venue.', 'error');
+  }
+};
+
+async function handleAddVenueSubmit(e) {
+  e.preventDefault();
+  if (!state.token) return;
+
+  const id = document.getElementById('venue-form-discovered-id').value;
+  const name = document.getElementById('venue-form-name').value.trim();
+  const address = document.getElementById('venue-form-address').value.trim();
+  const calendarUrl = document.getElementById('venue-form-calendar-url').value.trim();
+  const neighborhood = document.getElementById('venue-form-neighborhood').value;
+  const category = document.getElementById('venue-form-category').value;
+
+  if (!name || !calendarUrl) {
+    showToast('Venue name and calendar URL are required.', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/curator/venues/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({
+        discoveredId: id || undefined,
+        name,
+        address,
+        calendarUrl,
+        neighborhood,
+        category,
+        adapter: 'UniversalVenueCrawler'
+      })
+    });
+
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`✓ Venue '${name}' enrolled into Universal Venue Crawler!`, 'success');
+      const modal = document.getElementById('add-venue-modal');
+      if (modal) modal.classList.remove('active');
+
+      if (name) {
+        state.knownVenues.add(name.toLowerCase());
+      }
+
+      // Refresh data
+      loadQuarantineQueue();
+    } else {
+      showToast(data.error || 'Failed to add venue.', 'error');
+    }
+  } catch (err) {
+    showToast('Network error while adding venue.', 'error');
+  }
 }
 
 // Toast Utility

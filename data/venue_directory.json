@@ -2,7 +2,8 @@
   "metadata": {
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 61
+    "totalVenues": 63,
+    "updatedAt": "2026-09-18T15:25:52.099411+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -1402,6 +1403,27 @@
       "calendarUrl": "https://rickshawtheatre.com/",
       "boxOfficeUrl": "https://rickshawtheatre.com/",
       "ticketingProvider": "TicketWeb Verified",
+      "adapter": "UniversalVenueCrawler",
+      "managedEvents": []
+    },
+    "Waterfront Theatre": {
+      "venueId": "waterfront-theatre",
+      "name": "Waterfront Theatre",
+      "aliases": [
+        "Waterfront Theatre"
+      ],
+      "address": "1412 Cartwright St, Vancouver, BC",
+      "neighborhood": "Granville Island",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Check TransLink for nearest transit route",
+      "category": "shows",
+      "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "calendarUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "boxOfficeUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "ticketingProvider": "Universal Ticketing",
       "adapter": "UniversalVenueCrawler",
       "managedEvents": []
     }

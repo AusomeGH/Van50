@@ -1,9 +1,10 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-18T03:26:16.005614+00:00",
-    "pendingCount": 0,
-    "description": "Events quarantined for manual user review due to unverified live checkout pricing."
+    "updatedAt": "2026-09-18T16:41:23.732831+00:00",
+    "pendingCount": 16,
+    "description": "Events quarantined for manual user review due to unverified live checkout pricing.",
+    "totalQuarantined": 0
   },
   "quarantinedEvents": []
 }

@@ -1,16 +1,16 @@
 {
   "status": "success",
   "automationEnabled": true,
-  "lastRunAt": "2026-09-17T20:22:16.834382",
-  "nextRunAt": "2026-09-18T04:00:00",
-  "totalEvents": 77,
-  "quarantinedCount": 17,
+  "lastRunAt": "2026-09-18T08:23:47.217222",
+  "nextRunAt": "2026-09-19T04:00:00",
+  "totalEvents": 78,
+  "quarantinedCount": 16,
   "testKey": "automation_unit_test",
-  "testTimestamp": "2026-09-17T20:21:35.835352",
-  "updatedAt": "2026-09-17T20:22:16.841483",
+  "testTimestamp": "2026-09-18T08:20:58.049011",
+  "updatedAt": "2026-09-18T08:23:47.237543",
   "currentStep": "idle",
-  "startedAt": "2026-09-17T20:21:35.879332",
-  "durationSeconds": 40.96,
-  "backupFile": "events_2026-09-17_202135.json",
-  "lastLogFile": "data/automation_logs/daily_sync_2026-09-17.log"
+  "startedAt": "2026-09-18T08:20:58.115010",
+  "durationSeconds": 169.1,
+  "backupFile": "events_2026-09-18_082058.json",
+  "lastLogFile": "data/automation_logs/daily_sync_2026-09-18.log"
 }

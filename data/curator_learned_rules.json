@@ -32,7 +32,8 @@
     "Tightrope Impro Theatre": "https://www.tightropetheatre.com/weekly-live-shows",
     "The Improv Centre": "https://theimprovcentre.ca/shows/",
     "The Roxy Cabaret": "https://www.showpass.com/cfe0926/",
-    "The WISE Hall & Lounge": "https://www.wisehall.ca"
+    "The WISE Hall & Lounge": "https://www.wisehall.ca",
+    "Little Mountain Gallery": "https://littlemountaingallery.ca/schedule/"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -43,7 +44,10 @@
     "eastside cinema club",
     "unverified-eastside-cinema",
     "slicevancouver.ca/shop",
-    "paypal.com/ncp/"
+    "paypal.com/ncp/",
+    "/shop",
+    "eastsidecinemaclub.example.com",
+    "Eastside Community Hall"
   ],
   "price_override_heuristics": [],
   "archived_event_ids": [
