@@ -7,9 +7,12 @@ and official published fee schedules to guarantee 100% accurate displayed prices
 CRITICAL POLICY:
 - ZERO ASSUMPTIONS: Never use generic venue door defaults.
 - ZERO HARDCODED BYPASSES: Never bypass live inspection with static returns.
-- STRICT BUDGET CAP: Any outing whose live price > $50.00 CAD is immediately quarantined.
-- MANDATORY QUARANTINE: Any event that cannot be verified against a live checkout
-  payload or official fee schedule is quarantined for manual user review.
+- STRICT BUDGET CAP (> $50.00 CAD): Any event whose verified checkout price > $50.00 CAD
+  is filtered out completely. It persists only in data/archived_events.json as a historical
+  record and is NEVER displayed to the user or to the curator.
+- CURATOR TRIAGE: The Curator is strictly reserved for events that may meet all criteria
+  (price potentially <= $50.00 CAD) but require human assistance to confirm one way or
+  another (e.g. unverified carts, ambiguous fee structures, moved links, or course vs drop-in).
 """
 
 import urllib.request
@@ -21,6 +24,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from dynamic_enricher import fetch_html
+from universal_link_hunter import is_generic_url, AutonomousDeepLinkHunter
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -1947,6 +1951,20 @@ class PlatformAndPolicyExtractor:
                 "quarantineReason": f"Primary venue link failed to load or returned 404: {url}"
             }
 
+        return cls.extract_from_html(html, url, item)
+
+    @classmethod
+    def extract_from_html(cls, html: str, url: str, item: dict) -> dict:
+        """Parses page HTML for Schema.org, meta tags, civic terms, and published fee schedules."""
+        if not html:
+            return {"success": False, "quarantineReason": "Empty HTML content provided"}
+
+        ev_id = item.get('id', '')
+        cat = item.get('category', '')
+        v_name = item.get('venue', '')
+        semantic = item.get('semanticProvider', '')
+        base_price = float(item.get('basePrice', 0.0))
+
         from bs4 import BeautifulSoup
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -2021,6 +2039,83 @@ class PlatformAndPolicyExtractor:
             except ValueError:
                 pass
 
+        clean_text = soup.get_text(separator=' ')
+        is_declared_free_event = (
+            item.get('pricingType') == 'free' or 
+            'free' in item.get('title', '').lower() or 
+            'free' in item.get('id', '').lower() or
+            item.get('basePrice') == 0.0 or
+            item.get('price') == 0.0
+        )
+
+        def _check_free_policies():
+            # Check for explicitly declared Free Admission / Free Event / Suggested Donation
+            m_donation = re.search(r'\$(\d+(?:\.\d{2})?)\s+(?:suggested\s+donation|donation)', clean_text, re.IGNORECASE)
+            if m_donation:
+                don_amt = float(m_donation.group(1))
+                return {
+                    "success": True,
+                    "finalPrice": 0.0,
+                    "priceLabel": f"Free (${don_amt:.0f} suggested donation)",
+                    "tiers": [],
+                    "verification": {
+                        "status": "verified_live",
+                        "method": "scraped_page_policy",
+                        "verifiedTotal": 0.0,
+                        "feeBreakdown": f"Free public entry with ${don_amt:.2f} suggested community donation scraped live",
+                        "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                        "details": f"Verified live from published terms on {url}."
+                    }
+                }
+
+            # Check for municipal open civic public spaces / waterfront plazas (free admission by mandate)
+            is_municipal_domain = any(dom in url.lower() for dom in ['cnv.org', 'vancouver.ca', 'portvancouver.com'])
+            m_civic = re.search(r'\b(?:public\s+space|civic\s+plaza|waterfront\s+district|public\s+park|community\s+gathering|public\s+access|public\s+realm|skate\s+plaza|splash\s+park)\b', clean_text, re.IGNORECASE)
+            if (is_municipal_domain or m_civic) and (item.get('pricingType') == 'free' or item.get('priceCAD') == 0.0 or item.get('price') == 0.0 or "0.0" in str(item.get('attemptedPrice'))):
+                matched_term = m_civic.group(0) if m_civic else "Municipal Civic Public Space"
+                return {
+                    "success": True,
+                    "finalPrice": 0.0,
+                    "priceLabel": "Free ($0)",
+                    "tiers": [],
+                    "verification": {
+                        "status": "verified_live",
+                        "method": "civic_public_space_policy",
+                        "verifiedTotal": 0.0,
+                        "feeBreakdown": f"Free civic public space ('{matched_term}') verified via municipal portal ({url})",
+                        "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                        "details": f"Verified live from official civic public space terms on {url}."
+                    }
+                }
+
+            m_free = re.search(
+                r'\b(?:free\s+event|free\s+admission|free\s+entry|free\s*&\s*all\s+ages|free\s*\|\s*all\s+ages|free\s*,\s*all\s+ages|free\s+all\s+ages|free\s+outdoor|free\s+community|100%\s+free|free\s+and\s+all\s+ages|no\s+tickets\s+required|free\s+and\s+open\s+to\s+the\s+public|free\s+public\s+access|admission\s+is\s+free|free\s+first\s+friday|free\s+first\s+friday\s+nights?|free\s+nights?)\b',
+                clean_text,
+                re.IGNORECASE
+            )
+            if m_free:
+                return {
+                    "success": True,
+                    "finalPrice": 0.0,
+                    "priceLabel": "Free ($0)",
+                    "tiers": [],
+                    "verification": {
+                        "status": "verified_live",
+                        "method": "scraped_page_policy",
+                        "verifiedTotal": 0.0,
+                        "feeBreakdown": f"Free public admission ('{m_free.group(0)}') scraped live from published terms",
+                        "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                        "details": f"Verified live from published terms on {url}."
+                    }
+                }
+            return None
+
+        # Prioritize free program check if event was declared as free admission
+        if is_declared_free_event:
+            free_res = _check_free_policies()
+            if free_res:
+                return free_res
+
         found_prices = []
 
         # Check structured HTML table rows for published admission / ticket / green fees (e.g. City of Vancouver Park Board)
@@ -2039,7 +2134,6 @@ class PlatformAndPolicyExtractor:
                             pass
 
         # Dynamic regex parsing on clean rendered page text
-        clean_text = soup.get_text(separator=' ')
         patterns = [
             r'(?:cover|door|admission|entry|drop-in|tickets?|fee|session|single\s+ticket)\s*(?:is|:|\-)?\s*\$(\d+(?:\.\d{2})?)',
             r'\$(\d+(?:\.\d{2})?)\s*(?:\+gst|\+tax|\s*(?:adv|door|cover|admission|drop-in|advance|per\s+person|artist\s+charge|session|if|\/session))',
@@ -2058,8 +2152,11 @@ class PlatformAndPolicyExtractor:
             min_p = min(found_prices)
             if min_p > 50.0:
                 return {"success": False, "quarantineReason": f"Live scraped rate (${min_p:.2f} CAD) strictly exceeds the $50.00 budget limit."}
-            p_type = item.get('pricingType', 'door')
-            p_label = f"${min_p:.2f} door" if p_type == 'door' else f"${min_p:.2f} all-in"
+            if min_p == 0.0:
+                p_label = "Free ($0)"
+            else:
+                p_type = item.get('pricingType', 'door')
+                p_label = f"${min_p:.2f} door" if p_type == 'door' else f"${min_p:.2f} all-in"
             return {
                 "success": True,
                 "finalPrice": min_p,
@@ -2075,65 +2172,12 @@ class PlatformAndPolicyExtractor:
                 }
             }
 
-        # Check for explicitly declared Free Admission / Free Event / Suggested Donation
-        m_donation = re.search(r'\$(\d+(?:\.\d{2})?)\s+(?:suggested\s+donation|donation)', clean_text, re.IGNORECASE)
-        if m_donation:
-            don_amt = float(m_donation.group(1))
-            return {
-                "success": True,
-                "finalPrice": 0.0,
-                "priceLabel": f"Free (${don_amt:.0f} suggested donation)",
-                "tiers": [],
-                "verification": {
-                    "status": "verified_live",
-                    "method": "scraped_page_policy",
-                    "verifiedTotal": 0.0,
-                    "feeBreakdown": f"Free public entry with ${don_amt:.2f} suggested community donation scraped live",
-                    "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                    "details": f"Verified live from published terms on {url}."
-                }
-            }
+        # Fallback check for free policies if not already evaluated
+        if not is_declared_free_event:
+            free_res = _check_free_policies()
+            if free_res:
+                return free_res
 
-        # Check for municipal open civic public spaces / waterfront plazas (free admission by mandate)
-        is_municipal_domain = any(dom in url.lower() for dom in ['cnv.org', 'vancouver.ca', 'portvancouver.com'])
-        m_civic = re.search(r'\b(?:public\s+space|civic\s+plaza|waterfront\s+district|public\s+park|community\s+gathering|public\s+access|public\s+realm|skate\s+plaza|splash\s+park)\b', clean_text, re.IGNORECASE)
-        if (is_municipal_domain or m_civic) and (item.get('pricingType') == 'free' or item.get('priceCAD') == 0.0 or item.get('price') == 0.0 or "0.0" in str(item.get('attemptedPrice'))):
-            matched_term = m_civic.group(0) if m_civic else "Municipal Civic Public Space"
-            return {
-                "success": True,
-                "finalPrice": 0.0,
-                "priceLabel": "Free ($0)",
-                "tiers": [],
-                "verification": {
-                    "status": "verified_live",
-                    "method": "civic_public_space_policy",
-                    "verifiedTotal": 0.0,
-                    "feeBreakdown": f"Free civic public space ('{matched_term}') verified via municipal portal ({url})",
-                    "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                    "details": f"Verified live from official civic public space terms on {url}."
-                }
-            }
-
-        m_free = re.search(
-            r'\b(?:free\s+event|free\s+admission|free\s+entry|free\s*&\s*all\s+ages|free\s*\|\s*all\s+ages|free\s*,\s*all\s+ages|free\s+all\s+ages|free\s+outdoor|free\s+community|100%\s+free|free\s+and\s+all\s+ages|no\s+tickets\s+required|free\s+and\s+open\s+to\s+the\s+public|free\s+public\s+access|admission\s+is\s+free)\b',
-            clean_text,
-            re.IGNORECASE
-        )
-        if m_free:
-            return {
-                "success": True,
-                "finalPrice": 0.0,
-                "priceLabel": "Free ($0)",
-                "tiers": [],
-                "verification": {
-                    "status": "verified_live",
-                    "method": "scraped_page_policy",
-                    "verifiedTotal": 0.0,
-                    "feeBreakdown": f"Free public admission ('{m_free.group(0)}') scraped live from published terms",
-                    "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                    "details": f"Verified live from published terms on {url}."
-                }
-            }
 
         # Dynamic check for board game cafe game cover or dining min spend policies
         if "trivia" in ev_id or "trivia" in cat or "ludica" in ev_id or "pizzeria ludica" in v_name.lower():
@@ -2250,6 +2294,8 @@ class PlatformAndPolicyExtractor:
 
         return {"success": False, "quarantineReason": f"Could not dynamically verify live checkout pricing on host page: {url}"}
 
+    extract_general_fee_schedule = extract_from_html
+
 
 def load_curator_learned_rules() -> dict:
     """Loads learned rules and heuristics from data/curator_learned_rules.json."""
@@ -2360,6 +2406,26 @@ def auto_deny_and_archive_event(item: dict, reason: str = None) -> dict:
                 print(f"[AUTO-DENY PURGED] Evicted {ev_id} from manual_review_queue.json")
         except Exception as e:
             print(f"[WARN] Failed to purge from manual review queue: {e}")
+
+    # 4. Purge from data/events.json if present
+    events_path = os.path.join(base_dir, "data", "events.json")
+    if os.path.exists(events_path):
+        try:
+            with open(events_path, "r", encoding="utf-8") as f:
+                ev_data = json.load(f)
+            ev_list = ev_data.get("events", [])
+            initial_ev_len = len(ev_list)
+            ev_list = [x for x in ev_list if x.get("id") != ev_id]
+            if len(ev_list) != initial_ev_len:
+                ev_data["events"] = ev_list
+                if "metadata" in ev_data:
+                    ev_data["metadata"]["totalEvents"] = len(ev_list)
+                    ev_data["metadata"]["updatedAt"] = now_iso
+                with open(events_path, "w", encoding="utf-8") as f:
+                    json.dump(ev_data, f, indent=2, ensure_ascii=False)
+                print(f"[AUTO-DENY PURGED] Evicted {ev_id} from events.json")
+        except Exception as e:
+            print(f"[WARN] Failed to purge from events.json: {e}")
 
     return arch_record
 
@@ -2798,7 +2864,20 @@ class EventPricingSearchEngine:
                 "quarantineReason": item.get("flagReason", "Explicit manual review required; live checkout unverified.")
             }
 
-        # 2. Probe live pricing across specialized extractors, universal crawler, and civic policies
+        # 2. Autonomous Deep Link Hunt if incoming URL is generic
+        is_gen, gen_reason = is_generic_url(url)
+        if is_gen and not (item.get("isDaily") or item.get("frequency") == "daily"):
+            hunter_res = AutonomousDeepLinkHunter.hunt(item, url)
+            if hunter_res.get("resolved"):
+                url = hunter_res["deepUrl"]
+                item["websiteUrl"] = url
+            else:
+                return {
+                    "isVerified": False,
+                    "quarantineReason": f"Generic Link: {gen_reason}. Autonomous Hunter could not locate deep event link."
+                }
+
+        # 3. Probe live pricing across specialized extractors, universal crawler, and civic policies
         res = cls.probe_live_pricing(item, url)
         if res.get("success"):
             if res["finalPrice"] > 50.0:

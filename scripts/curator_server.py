@@ -18,6 +18,7 @@ import time
 import shutil
 import base64
 import re
+import threading
 from datetime import datetime, timezone
 from urllib.parse import urlparse, parse_qs
 
@@ -34,6 +35,7 @@ BACKUP_DIR = os.path.join(DATA_DIR, "backups")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
+from daily_automation import get_automation_status, update_automation_status, run_full_daily_pipeline
 
 PORT = 8080
 
@@ -271,6 +273,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         self._apply_cors_headers()
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Curator-Token, Authorization")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        if getattr(self, "close_connection", False):
+            self.send_header("Connection", "close")
         self.end_headers()
         self.wfile.write(response_bytes)
 
@@ -308,7 +312,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 try:
                     with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                         q_data = json.load(f)
-                        q_count = len(q_data.get("quarantinedEvents", []))
+                        raw_q = q_data.get("quarantinedEvents", [])
+                        # Strict budget cap: curator only reviews items needing confirmation where price <= 50.0 or unverified
+                        q_count = len([
+                            x for x in raw_q
+                            if float(x.get("attemptedPrice", x.get("price", 0.0))) <= 50.0
+                            and not any(k in str(x.get("flagReason", "")).lower() for k in ["strictly exceeds", "exceeds $50", "over-budget"])
+                        ])
                 except Exception:
                     pass
             if os.path.exists(EVENTS_PATH):
@@ -332,14 +342,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
 
             a_count = 0
-            auto_budget_count = 0
             if os.path.exists(ARCHIVE_PATH):
                 try:
                     with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
                         a_data = json.load(f)
                         arch_events = a_data.get("archivedEvents", [])
-                        a_count = len(arch_events)
-                        auto_budget_count = len([x for x in arch_events if x.get("reviewStatus") == "denied_auto_budget"])
+                        # Non-budget archived items
+                        a_count = len([x for x in arch_events if x.get("reviewStatus") != "denied_auto_budget" and float(x.get("attemptedPrice", x.get("price", 0.0))) <= 50.0])
                 except Exception:
                     pass
 
@@ -359,10 +368,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "masterCount": m_count,
                 "rulesCount": r_count,
                 "archivedCount": a_count,
-                "autoBudgetCount": auto_budget_count,
                 "instructionsPendingCount": inst_count,
                 "timestamp": datetime.now().isoformat()
             })
+
+        # API: Automation status
+        if path == "/api/automation/status":
+            return self._send_json(200, get_automation_status())
 
         # 2. API: Get quarantined events (requires auth)
         if path == "/api/curator/queue":
@@ -387,7 +399,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            # Strict budget cap: exclude any events > $50.00 from curator triage
+            filtered_q = []
             for ev in queue_data.get("quarantinedEvents", []):
+                try:
+                    p = float(ev.get("attemptedPrice", ev.get("price", 0.0)))
+                except (ValueError, TypeError):
+                    p = 0.0
+                r = str(ev.get("flagReason", "")).lower()
+                if p > 50.0 or any(k in r for k in ["strictly exceeds", "exceeds $50", "over-budget"]):
+                    continue
+                filtered_q.append(ev)
+
+            for ev in filtered_q:
                 eid = ev.get("id")
                 if eid in instructions_map:
                     ev["dealtWith"] = True
@@ -396,6 +420,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     ev["dealtWith"] = False
                     ev["queuedInstruction"] = None
 
+            queue_data["quarantinedEvents"] = filtered_q
+            queue_data.setdefault("metadata", {})["pendingCount"] = len(filtered_q)
             return self._send_json(200, queue_data)
 
         # 3. API: Get learned rules (requires auth)
@@ -413,7 +439,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
             if os.path.exists(ARCHIVE_PATH):
                 with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
-                    return self._send_json(200, json.load(f))
+                    arch_full = json.load(f)
+                    # Filter out > $50 events so curator never sees them
+                    arch_filtered = [
+                        x for x in arch_full.get("archivedEvents", [])
+                        if float(x.get("attemptedPrice", x.get("price", 0.0))) <= 50.0
+                        and x.get("reviewStatus") != "denied_auto_budget"
+                    ]
+                    arch_full["archivedEvents"] = arch_filtered
+                    return self._send_json(200, arch_full)
             return self._send_json(200, {"metadata": {}, "archivedEvents": []})
 
         # 5. API: Get queued AI instructions (requires auth)
@@ -479,6 +513,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         # Limits: 10MB for screenshot uploads, 256KB for all other JSON endpoints
         max_bytes = 10 * 1024 * 1024 if (path == "/api/curator/instruction" and "image" in self.headers.get("Content-Type", "")) else 256 * 1024
         if content_len > max_bytes:
+            self.close_connection = True
             return self._send_json(413, {"error": f"Payload Too Large. Max permitted size is {max_bytes // 1024} KB."})
 
         try:
@@ -547,9 +582,11 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_data["neighborhood"] = sanitize_text(str(event_data.get("neighborhood", "")))
 
             curator_note = sanitize_text(payload.get("curatorNote") or event_data.get("curatorNote") or "Approved by curator in Van50 Curator Studio.")
-            category = sanitize_text(payload.get("category") or event_data.get("category") or "Shows")
-            source_url = sanitize_text(event_data.get("websiteUrl") or event_data.get("url") or event_data.get("sourceUrl") or "")
-            price_label = sanitize_text(event_data.get("priceLabel") or (f"${price:.2f} CAD" if price > 0 else "Free"))
+            raw_price_label = sanitize_text(event_data.get("priceLabel") or "")
+            if not raw_price_label or raw_price_label == "$0.00 door" or (price == 0 and "$0.00" in raw_price_label):
+                price_label = "Free ($0)" if price == 0 else f"${price:.2f} CAD"
+            else:
+                price_label = raw_price_label
 
             # Ensure checkout verification metadata is set
             event_data["checkoutVerification"] = {
@@ -776,11 +813,16 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         return self._send_json(400, {"error": f"Approved price ${price:.2f} CAD exceeds $50.00 CAD budget limit."})
 
                     category = payload.get("approvedCategory") or event_to_approve.get("category", "shows")
-                    note = payload.get("curatorNote") or instruction_text
-                    price_label = payload.get("priceLabel") or (f"${price:.2f} CAD" if price > 0 else "Free")
-                    source_url = event_to_approve.get("websiteUrl") or event_to_approve.get("url") or payload.get("sourceUrl", "")
+                    raw_price_label = payload.get("priceLabel") or ""
+                    if not raw_price_label or raw_price_label == "$0.00 door" or (price == 0 and "$0.00" in raw_price_label):
+                        price_label = "Free ($0)" if price == 0 else f"${price:.2f} CAD"
+                    else:
+                        price_label = raw_price_label
 
                     create_backup_snapshot()
+
+                    note = payload.get("curatorNote", "") or event_to_approve.get("curatorNote", "")
+                    source_url = payload.get("sourceUrl", "") or event_to_approve.get("sourceUrl", "") or event_to_approve.get("ticketUrl", "")
 
                     event_to_approve["price"] = price
                     event_to_approve["category"] = category
@@ -827,6 +869,54 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     sync_js_data_file()
                     approval_msg = f" Event '{event_to_approve.get('title')}' approved and promoted to catalog."
 
+            elif action in ("queue_and_dismiss", "queue_and_reject"):
+                event_to_dismiss = None
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                        q_data = json.load(f)
+                    q_list = q_data.get("quarantinedEvents", [])
+                    event_to_dismiss = next((q for q in q_list if q.get("id") == event_id), None)
+                    new_q = [q for q in q_list if q.get("id") != event_id]
+                    q_data["quarantinedEvents"] = new_q
+                    q_data["metadata"]["pendingCount"] = len(new_q)
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                        json.dump(q_data, f, indent=2, ensure_ascii=False)
+
+                if event_to_dismiss:
+                    create_backup_snapshot()
+                    archive_db = {"metadata": {}, "archivedEvents": []}
+                    if os.path.exists(ARCHIVE_PATH):
+                        try:
+                            with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
+                                archive_db = json.load(f)
+                        except Exception:
+                            pass
+                    archived_item = {
+                        **event_to_dismiss,
+                        "archivedAt": datetime.now(timezone.utc).isoformat(),
+                        "reviewStatus": "dismissed_by_curator",
+                        "archivedReason": f"Dismissed with AI instruction: {instruction_text[:120]}",
+                        "curatorInstructionId": inst_id
+                    }
+                    archive_db.setdefault("archivedEvents", []).append(archived_item)
+                    archive_db["metadata"]["totalArchived"] = len(archive_db["archivedEvents"])
+                    archive_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
+                        json.dump(archive_db, f, indent=2, ensure_ascii=False)
+
+                    if os.path.exists(EVENTS_PATH):
+                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+                            db = json.load(f)
+                        db_events = [e for e in db.get("events", []) if e.get("id") != event_id]
+                        if len(db_events) != len(db.get("events", [])):
+                            db["events"] = db_events
+                            db["metadata"]["totalEvents"] = len(db_events)
+                            with open(EVENTS_PATH, "w", encoding="utf-8") as f:
+                                json.dump(db, f, indent=2, ensure_ascii=False)
+
+                    sync_js_data_file()
+                    approval_msg = f" Event '{event_to_dismiss.get('title')}' dismissed and moved to archive."
+
             return self._send_json(200, {
                 "success": True,
                 "message": f"Instruction queued successfully for AI Assistant.{approval_msg}",
@@ -848,14 +938,86 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Successfully rolled back catalog to snapshot: {os.path.basename(latest)}"
             })
 
+        # 7. API: Trigger full automation pipeline
+        if path == "/api/automation/trigger":
+            if not self._check_authenticated():
+                return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to trigger daily automation"})
+
+            cur_status = get_automation_status()
+            if cur_status.get("status") == "running":
+                return self._send_json(409, {
+                    "error": "Daily discovery pipeline is already actively running.",
+                    "status": cur_status
+                })
+
+            def _async_pipeline_worker():
+                try:
+                    run_full_daily_pipeline()
+                    sync_js_data_file()
+                except Exception as ex:
+                    print(f"[AUTOMATION TRIGGER ERROR] {ex}")
+
+            t = threading.Thread(target=_async_pipeline_worker, daemon=True)
+            t.start()
+
+            return self._send_json(200, {
+                "success": True,
+                "message": "Autonomous daily discovery pipeline triggered in background.",
+                "timestamp": datetime.now().isoformat()
+            })
+
+        # 8. API: Toggle automation active state
+        if path == "/api/automation/toggle":
+            if not self._check_authenticated():
+                return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to toggle automation"})
+
+            cur_status = get_automation_status()
+            new_state = not cur_status.get("automationEnabled", True)
+            update_automation_status({"automationEnabled": new_state})
+            return self._send_json(200, {
+                "success": True,
+                "automationEnabled": new_state,
+                "message": f"Daily automation scheduler {'enabled' if new_state else 'paused'}."
+            })
+
         return self._send_json(404, {"error": "Endpoint not found"})
+
+
+def _curator_daemon_scheduler_loop(target_time_str: str = "04:00"):
+    """Background scheduler thread running inside curator_server."""
+    while True:
+        try:
+            status = get_automation_status()
+            if status.get("automationEnabled", True):
+                now = datetime.now()
+                current_time_hm = now.strftime("%H:%M")
+                last_run_iso = status.get("lastRunAt")
+                already_ran_today = False
+                if last_run_iso:
+                    try:
+                        last_dt = datetime.fromisoformat(last_run_iso)
+                        if last_dt.date() == now.date() and (now - last_dt).total_seconds() < 3600:
+                            already_ran_today = True
+                    except Exception:
+                        pass
+
+                if current_time_hm == target_time_str and not already_ran_today and status.get("status") != "running":
+                    print(f"[CURATOR SCHEDULER] Triggering scheduled daily discovery at {current_time_hm}...")
+                    run_full_daily_pipeline(run_at_time=target_time_str)
+                    sync_js_data_file()
+        except Exception as e:
+            print(f"[CURATOR SCHEDULER ERROR] {e}")
+        time.sleep(30)
 
 
 def run_server(port=PORT):
     socketserver.ThreadingTCPServer.allow_reuse_address = True
+    scheduler_thread = threading.Thread(target=_curator_daemon_scheduler_loop, daemon=True)
+    scheduler_thread.start()
     with socketserver.ThreadingTCPServer(("0.0.0.0", port), CuratorRequestHandler) as httpd:
         print(f"[CURATOR SERVER] Listening on http://127.0.0.1:{port}/")
         print(f"[CURATOR SERVER] Curator Studio: http://127.0.0.1:{port}/curator.html")
+        print(f"[CURATOR SERVER] Daily Automation Scheduler active (Target: 04:00 AM)")
         httpd.serve_forever()
 
 

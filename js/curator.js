@@ -21,6 +21,8 @@ const state = {
 document.addEventListener('DOMContentLoaded', () => {
   setupCuratorEventListeners();
   checkAuthAndInitialize();
+  fetchAutomationStatus();
+  setInterval(fetchAutomationStatus, 30000);
 });
 
 // ==============================================================================
@@ -183,15 +185,13 @@ function isDrift(item) {
 }
 
 function updateFilterCounts() {
-  const all = state.quarantinedEvents;
+  const all = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
   const unhandled = all.filter(e => !e.dealtWith).length;
   const handled = all.filter(e => Boolean(e.dealtWith)).length;
   const drift = all.filter(e => isDrift(e)).length;
-  const overbudget = all.filter(e => isOverBudget(e)).length;
   const unverified = all.filter(e => isUnverifiedCart(e)).length;
   const brokenlink = all.filter(e => isBrokenLink(e)).length;
   const course = all.filter(e => isCourse(e)).length;
-  const autobudget = (state.archivedEvents || []).filter(e => e.reviewStatus === 'denied_auto_budget').length;
 
   const setT = (id, count) => {
     const el = document.getElementById(id);
@@ -201,11 +201,9 @@ function updateFilterCounts() {
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
   setT('pill-count-drift', drift);
-  setT('pill-count-overbudget', overbudget);
   setT('pill-count-unverified', unverified);
   setT('pill-count-brokenlink', brokenlink);
   setT('pill-count-course', course);
-  setT('pill-count-autobudget', autobudget);
 
   const statP = document.getElementById('stat-pending-count');
   if (statP) statP.textContent = all.length;
@@ -213,9 +211,9 @@ function updateFilterCounts() {
 
 // Classification Helpers for Triage Filtering
 function isOverBudget(item) {
-  const r = (item.flagReason || '').toLowerCase();
-  const p = parseFloat(item.attemptedPrice || 0.0);
-  return p > 50.0 || r.includes('exceeds') || r.includes('cap') || r.includes('strictly exceeds');
+  const r = (item.quarantineReason || item.flagReason || '').toLowerCase();
+  const p = parseFloat(item.attemptedPrice || item.price || 0.0);
+  return p > 50.0 || r.includes('exceeds $50') || r.includes('strictly exceeds') || r.includes('over-budget');
 }
 
 function isUnverifiedCart(item) {
@@ -239,28 +237,22 @@ function isCourse(item) {
 // ==============================================================================
 
 function applyFiltersAndRender() {
-  let list = [];
+  // Strict Budget Cap: Curator strictly triages candidates that may meet criteria; >$50 are completely filtered out
+  let list = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
 
-  if (state.activeFilter === 'autobudget') {
-    list = [...(state.archivedEvents || []).filter(e => e.reviewStatus === 'denied_auto_budget')];
-  } else {
-    list = [...state.quarantinedEvents];
-    // 1. Tab Filter
-    if (state.activeFilter === 'unhandled') {
-      list = list.filter(e => !e.dealtWith);
-    } else if (state.activeFilter === 'handled') {
-      list = list.filter(e => Boolean(e.dealtWith));
-    } else if (state.activeFilter === 'drift') {
-      list = list.filter(e => isDrift(e));
-    } else if (state.activeFilter === 'overbudget') {
-      list = list.filter(e => isOverBudget(e));
-    } else if (state.activeFilter === 'unverified') {
-      list = list.filter(e => isUnverifiedCart(e));
-    } else if (state.activeFilter === 'brokenlink') {
-      list = list.filter(e => isBrokenLink(e));
-    } else if (state.activeFilter === 'course') {
-      list = list.filter(e => isCourse(e));
-    }
+  // 1. Tab Filter
+  if (state.activeFilter === 'unhandled') {
+    list = list.filter(e => !e.dealtWith);
+  } else if (state.activeFilter === 'handled') {
+    list = list.filter(e => Boolean(e.dealtWith));
+  } else if (state.activeFilter === 'drift') {
+    list = list.filter(e => isDrift(e));
+  } else if (state.activeFilter === 'unverified') {
+    list = list.filter(e => isUnverifiedCart(e));
+  } else if (state.activeFilter === 'brokenlink') {
+    list = list.filter(e => isBrokenLink(e));
+  } else if (state.activeFilter === 'course') {
+    list = list.filter(e => isCourse(e));
   }
 
   // 2. Platform Filter
@@ -304,11 +296,8 @@ function applyFiltersAndRender() {
   // Update counter
   const statusText = document.getElementById('curator-results-text');
   if (statusText) {
-    if (state.activeFilter === 'autobudget') {
-      statusText.innerHTML = `Showing <strong>${list.length}</strong> auto-denied over-budget events (archived)`;
-    } else {
-      statusText.innerHTML = `Showing <strong>${list.length}</strong> of ${state.quarantinedEvents.length} quarantined items`;
-    }
+    const totalEligible = (state.quarantinedEvents || []).filter(e => !isOverBudget(e)).length;
+    statusText.innerHTML = `Showing <strong>${list.length}</strong> of ${totalEligible} items requiring curator confirmation`;
   }
 
   renderCards(list);
@@ -421,17 +410,14 @@ function renderCards(items) {
   if (!container) return;
 
   if (items.length === 0) {
-    const isOverBudget = state.activeFilter === 'overbudget';
     container.innerHTML = `
       <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
-        <div style="font-size: 2.5rem; margin-bottom: 12px;">${isOverBudget ? '🛡️' : '🎉'}</div>
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🎉</div>
         <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
-          ${isOverBudget ? 'Zero Over-Budget Events in Quarantine' : 'No Quarantined Items Found'}
+          No Items Requiring Curator Confirmation
         </h3>
         <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
-          ${isOverBudget 
-            ? 'All events exceeding $50.00 CAD are automatically intercepted, auto-denied, and archived directly into <code>data/archived_events.json</code> with zero curator manual review required. Click the <strong>🛡️ Auto-Denied &gt; $50</strong> tab to inspect archived listings.' 
-            : 'All events matching this filter are verified or cleared.'}
+          All candidates matching this view have been verified or resolved. Any events exceeding $50.00 CAD are automatically filtered out and archived.
         </p>
       </div>
     `;
@@ -456,12 +442,16 @@ function renderCards(items) {
             <h3 class="curator-card-title">${escapeHtml(ev.title)}</h3>
             <div class="curator-card-meta">
               <span>📍 <strong>${escapeHtml(ev.venue)}</strong></span>
+              <span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}</span>
               <span>🏘️ ${escapeHtml(ev.neighborhood || 'Vancouver')}</span>
               <span>🎫 Provider: ${escapeHtml(ev.provider || 'Direct')}</span>
               <span>🕒 ${isAutoDenied ? 'Archived' : 'Flagged'}: ${flagDateStr}</span>
             </div>
           </div>
           <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
+            <span class="curator-badge-pill curator-badge-category" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);">
+              🏷️ ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}
+            </span>
             ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">🤖 AI Queued</span>` : ''}
             <span class="curator-badge-pill ${hasDrift ? 'curator-badge-drift' : ''}" style="${isAutoDenied ? 'background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.5);' : hasDrift ? '' : isBudgetExceeded ? 'background: rgba(239, 68, 68, 0.15); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);' : 'background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.4);'}">
               ${isAutoDenied ? '🛡️ Auto-Denied > $50' : hasDrift ? '⚠️ Page Drift' : isBudgetExceeded ? '🚨 Over $50 Cap' : '⚠️ Unverified'}
@@ -589,27 +579,36 @@ function renderCards(items) {
                 type="button" 
                 class="btn-curator btn-curator-success" 
                 onclick="approveQuarantinedEvent('${ev.id}')"
-                title="Promote this verified event to the live master catalog"
+                title="Promote directly to live master catalog"
               >
-                ✅ Approve & Ingest to Master
+                ✅ Approve
+              </button>
+
+              <button 
+                type="button" 
+                class="btn-curator btn-curator-ai-approve" 
+                onclick="openAIInstructionModal('${ev.id}', 'approve')"
+                title="Approve this event and instruct AI scrapers on the verified pattern"
+              >
+                ✨ Approve &amp; Instruct AI
               </button>
 
               <button 
                 type="button" 
                 class="btn-curator btn-curator-danger" 
                 onclick="rejectQuarantinedEvent('${ev.id}')"
-                title="Permanently dismiss and archive this event"
+                title="Dismiss and archive this event without instruction"
               >
-                🚫 Dismiss & Archive
+                🚫 Dismiss
               </button>
 
               <button 
                 type="button" 
-                class="btn-curator btn-curator-purple" 
-                onclick="openAIInstructionModal('${ev.id}')"
-                title="${isHandled ? 'Edit queued AI instruction or add screenshots' : 'Instruct AI in plain English and attach screenshots to update scrapers'}"
+                class="btn-curator btn-curator-ai-dismiss" 
+                onclick="openAIInstructionModal('${ev.id}', 'dismiss')"
+                title="Dismiss and archive this event, and instruct AI scrapers why"
               >
-                ${isHandled ? '✏️ Edit AI Instruction' : '💬 Instruct AI'}
+                🛑 Dismiss &amp; Instruct AI
               </button>
             `}
           </div>
@@ -699,10 +698,6 @@ window.rejectQuarantinedEvent = async function(eventId) {
   const original = state.quarantinedEvents.find(e => e.id === eventId);
   if (!original) return;
 
-  if (!confirm(`Are you sure you want to dismiss and archive '${original.title}'?`)) {
-    return;
-  }
-
   try {
     const res = await fetch('/api/curator/reject', {
       method: 'POST',
@@ -727,10 +722,18 @@ window.rejectQuarantinedEvent = async function(eventId) {
   }
 };
 
-window.openAIInstructionModal = function(eventId) {
+window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const ev = (state.quarantinedEvents || []).find(e => e.id === eventId) || (state.archivedEvents || []).find(e => e.id === eventId);
   const modal = document.getElementById('ai-instruction-modal');
   if (!modal) return;
+
+  const modalTitle = modal.querySelector('.curator-modal-title');
+  const modalDesc = modal.querySelector('.curator-modal-desc');
+  const modalIcon = modal.querySelector('.curator-modal-icon');
+  const quickApprovalBox = document.getElementById('ai-quick-approval-box');
+  const btnApprove = document.getElementById('btn-submit-ai-inst-and-approve');
+  const btnDismiss = document.getElementById('btn-submit-ai-inst-and-dismiss');
+  const btnOnly = document.getElementById('btn-submit-ai-inst-only');
 
   const idField = document.getElementById('ai-inst-event-id');
   const venueField = document.getElementById('ai-inst-venue');
@@ -743,6 +746,30 @@ window.openAIInstructionModal = function(eventId) {
   const priceField = document.getElementById('ai-approve-price');
   const catField = document.getElementById('ai-approve-category');
   const noteField = document.getElementById('ai-approve-note');
+
+  // Configure modal presentation based on action mode
+  if (mode === 'approve') {
+    if (modalIcon) modalIcon.textContent = '✨';
+    if (modalTitle) modalTitle.textContent = 'Approve & Instruct AI';
+    if (modalDesc) modalDesc.textContent = "Approve this event into the master catalog and provide plain-English instructions so AI scrapers learn the verified pricing and venue pattern.";
+    if (quickApprovalBox) quickApprovalBox.style.display = 'block';
+    if (btnApprove) btnApprove.style.display = 'inline-flex';
+    if (btnDismiss) btnDismiss.style.display = 'none';
+  } else if (mode === 'dismiss') {
+    if (modalIcon) modalIcon.textContent = '🛑';
+    if (modalTitle) modalTitle.textContent = 'Dismiss & Instruct AI';
+    if (modalDesc) modalDesc.textContent = "Dismiss and archive this event, and tell AI scrapers why so they permanently skip or adapt to this format on future crawls.";
+    if (quickApprovalBox) quickApprovalBox.style.display = 'none';
+    if (btnApprove) btnApprove.style.display = 'none';
+    if (btnDismiss) btnDismiss.style.display = 'inline-flex';
+  } else {
+    if (modalIcon) modalIcon.textContent = '🤖';
+    if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
+    if (modalDesc) modalDesc.textContent = "Describe what's wrong in plain English and attach or paste a screenshot. Antigravity will update the global crawlers to handle this venue permanently.";
+    if (quickApprovalBox) quickApprovalBox.style.display = 'block';
+    if (btnApprove) btnApprove.style.display = 'inline-flex';
+    if (btnDismiss) btnDismiss.style.display = 'inline-flex';
+  }
 
   if (ev) {
     if (idField) idField.value = ev.id || '';
@@ -758,11 +785,18 @@ window.openAIInstructionModal = function(eventId) {
       summaryLink.textContent = website ? `Source: ${website} ↗` : 'No direct URL';
     }
 
-    const attPrice = parseFloat(ev.attemptedPrice || ev.price || 0);
-    if (priceField) priceField.value = (attPrice <= 50.0 && attPrice > 0) ? attPrice.toFixed(2) : '25.00';
-    if (catField) catField.value = ev.category || 'shows';
+    // Pre-fill from card quick-edit inputs if available
+    const cardPriceInput = document.getElementById(`edit-price-${ev.id}`);
+    const cardCatInput = document.getElementById(`edit-category-${ev.id}`);
+    const cardFeeInput = document.getElementById(`edit-fee-${ev.id}`);
+
+    const attPrice = cardPriceInput ? parseFloat(cardPriceInput.value) : parseFloat(ev.attemptedPrice || ev.price || 0);
+    if (priceField) priceField.value = (attPrice <= 50.0 && attPrice >= 0) ? attPrice.toFixed(2) : '25.00';
+    if (catField) catField.value = cardCatInput ? cardCatInput.value : (ev.category || 'shows');
     if (noteField) {
-      if (isDrift(ev)) {
+      if (cardFeeInput && cardFeeInput.value) {
+        noteField.value = cardFeeInput.value;
+      } else if (isDrift(ev)) {
         noteField.value = 'Approved GA door tier following live page drift audit';
       } else {
         noteField.value = `Verified door rate for ${ev.venue || 'event'}`;
@@ -781,7 +815,9 @@ window.openAIInstructionModal = function(eventId) {
     if (q.screenshotBase64) setScreenshotPreview(q.screenshotBase64);
   } else if (textField) {
     textField.value = '';
-    if (ev && isDrift(ev)) {
+    if (mode === 'dismiss') {
+      textField.placeholder = "e.g.: 'This venue is private bookings only, or this is a multi-week course rather than a drop-in. Please ignore this section.'";
+    } else if (ev && isDrift(ev)) {
       textField.placeholder = `Explain the live drift, e.g.: 'The page now shows a price change. The scraper should look for the lowest general admission tier at...'`;
     } else {
       textField.placeholder = "e.g.: 'The scraper picked up the $65 VIP tier instead of the $25 General Admission ticket shown at the bottom of the page. Please target the GA price for this venue.'";
@@ -890,7 +926,7 @@ async function submitAIInstruction(action = 'queue_only') {
         };
       }
 
-      if (action === 'queue_and_approve') {
+      if (action === 'queue_and_approve' || action === 'queue_and_dismiss') {
         state.quarantinedEvents = state.quarantinedEvents.filter(e => e.id !== eventId);
       }
 
@@ -925,6 +961,10 @@ function setupCuratorEventListeners() {
   // Logout Button
   const logoutBtn = document.getElementById('btn-curator-logout');
   if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+
+  // Trigger Sync Button
+  const triggerSyncBtn = document.getElementById('btn-trigger-sync');
+  if (triggerSyncBtn) triggerSyncBtn.addEventListener('click', handleTriggerSync);
 
   // Filter Pills
   const pillsGroup = document.getElementById('filter-pills-group');
@@ -991,6 +1031,11 @@ function setupCuratorEventListeners() {
   const btnSubmitAndApprove = document.getElementById('btn-submit-ai-inst-and-approve');
   if (btnSubmitAndApprove) {
     btnSubmitAndApprove.addEventListener('click', () => submitAIInstruction('queue_and_approve'));
+  }
+
+  const btnSubmitAndDismiss = document.getElementById('btn-submit-ai-inst-and-dismiss');
+  if (btnSubmitAndDismiss) {
+    btnSubmitAndDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
   }
 
   // Screenshot Dropzone & File Input
@@ -1099,4 +1144,134 @@ function escapeHtml(str) {
 
 function jsonStringify(obj) {
   return JSON.stringify(obj);
+}
+
+// ==============================================================================
+// 7. DAILY DISCOVERY & AUTOMATION CONTROLS
+// ==============================================================================
+
+async function fetchAutomationStatus() {
+  try {
+    const res = await fetch('/api/automation/status');
+    if (!res.ok) return;
+    const data = await res.json();
+    updateAutomationUI(data);
+  } catch (err) {
+    console.warn('Could not fetch automation status:', err);
+  }
+}
+
+function updateAutomationUI(data) {
+  const container = document.getElementById('automation-status-container');
+  const dot = document.getElementById('automation-dot');
+  const label = document.getElementById('automation-label');
+  const syncBtn = document.getElementById('btn-trigger-sync');
+  const syncIcon = document.getElementById('btn-sync-icon');
+  const syncText = document.getElementById('btn-sync-text');
+  if (!container || !label) return;
+
+  const isRunning = data.status === 'running';
+  const isEnabled = data.automationEnabled !== false;
+
+  if (isRunning) {
+    container.className = 'automation-badge-container running';
+    dot.textContent = '⚡';
+    label.textContent = `Syncing: ${data.currentStep || 'in progress'}...`;
+    if (syncBtn) {
+      syncBtn.disabled = true;
+      syncBtn.style.opacity = '0.7';
+    }
+    if (syncIcon) syncIcon.className = 'sync-spinning';
+    if (syncText) syncText.textContent = 'Syncing Live...';
+  } else {
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.style.opacity = '1';
+    }
+    if (syncIcon) syncIcon.className = '';
+    if (syncText) syncText.textContent = 'Run Full Sync';
+
+    if (isEnabled) {
+      container.className = 'automation-badge-container';
+      dot.textContent = '🟢';
+      let nextTime = '04:00 AM';
+      if (data.nextRunAt) {
+        try {
+          const dt = new Date(data.nextRunAt);
+          nextTime = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        } catch (e) {}
+      }
+      label.textContent = `Daily Sync: Active (${nextTime})`;
+    } else {
+      container.className = 'automation-badge-container paused';
+      dot.textContent = '⏸️';
+      label.textContent = 'Daily Sync: Paused';
+    }
+  }
+}
+
+async function handleTriggerSync() {
+  if (!state.token) {
+    showToast('Please authenticate first to run full sync', 'error');
+    return;
+  }
+
+  const syncBtn = document.getElementById('btn-trigger-sync');
+  const syncIcon = document.getElementById('btn-sync-icon');
+  const syncText = document.getElementById('btn-sync-text');
+
+  if (syncBtn) {
+    syncBtn.disabled = true;
+    syncBtn.style.opacity = '0.7';
+  }
+  if (syncIcon) syncIcon.className = 'sync-spinning';
+  if (syncText) syncText.textContent = 'Starting Sync...';
+
+  try {
+    const res = await fetch('/api/automation/trigger', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: jsonStringify({})
+    });
+
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast('⚡ Autonomous sync launched in background', 'info');
+      fetchAutomationStatus();
+
+      // Poll every 2.5 seconds until complete
+      const pollInterval = setInterval(async () => {
+        try {
+          const sRes = await fetch('/api/automation/status');
+          if (sRes.ok) {
+            const sData = await sRes.json();
+            updateAutomationUI(sData);
+            if (sData.status !== 'running') {
+              clearInterval(pollInterval);
+              showToast(`✅ Discovery complete: ${sData.totalEvents} active events verified!`, 'success');
+              loadQuarantineQueue();
+              const statusRes = await fetch('/api/curator/status', {
+                headers: { 'Curator-Token': state.token }
+              });
+              if (statusRes.ok) {
+                const curData = await statusRes.json();
+                updateHeaderStats(curData.pendingCount, curData.rulesCount, curData.masterCount, curData.instructionsPendingCount || 0);
+              }
+            }
+          }
+        } catch (e) {
+          clearInterval(pollInterval);
+        }
+      }, 2500);
+    } else {
+      showToast(data.error || 'Failed to trigger sync', 'error');
+      fetchAutomationStatus();
+    }
+  } catch (err) {
+    showToast('Server connection failed while triggering sync', 'error');
+    fetchAutomationStatus();
+  }
 }

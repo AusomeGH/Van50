@@ -321,11 +321,12 @@ class FrankiesJazzLiveAdapter:
             "frequency": "weekly",
             "frequencyLabel": "Wednesday – Sunday",
             "dateSchedule": "Wednesday – Sunday • 8:00 PM Sets (Doors 7:00 PM)",
-            "price": 22.00,
-            "priceLabel": "$22.00 all-in (Tiers $20 – $25)",
-            "pricingType": "platform",
+            "price": 20.00,
+            "priceLabel": "$20.00 door ($20 – $25 all-in)",
+            "pricingType": "door",
             "tiers": [
-                {"name": "Standard Admission", "basePrice": 20.0, "price": 22.0, "label": "$22.00 all-in"},
+                {"name": "Door Admission", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"},
+                {"name": "Standard Admission Advance", "basePrice": 20.0, "price": 22.0, "label": "$22.00 all-in"},
                 {"name": "Premium / Weekend Set", "basePrice": 25.0, "price": 25.0, "label": "$25.00 all-in"}
             ],
             "websiteUrl": cls.CALENDAR_URL,
@@ -496,12 +497,13 @@ class LittleMountainGalleryLiveAdapter:
             "frequency": "weekly",
             "frequencyLabel": "Tuesdays – Saturdays",
             "dateSchedule": "Tuesday – Saturday • 7:30 PM & 9:30 PM Shows",
-            "price": 18.86,
-            "priceLabel": "$18.86 all-in ($15 advance)",
+            "price": 15.00,
+            "priceLabel": "$15.00 all-in ($12 student / $15 advance)",
             "pricingType": "platform",
             "tiers": [
+                {"name": "Early Bird / Student Tier", "basePrice": 12.0, "price": 15.0, "label": "$15.00 all-in"},
                 {"name": "Advance Showcase Ticket", "basePrice": 15.0, "price": 18.86, "label": "$18.86 all-in"},
-                {"name": "Door Admission", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"}
+                {"name": "General Admission Door", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"}
             ],
             "websiteUrl": cls.SCHEDULE_URL,
             "venueUrl": cls.HOMEPAGE_URL,
@@ -857,7 +859,7 @@ class CraftStudioLiveAdapters:
             "tiers": [
                 {"name": "General Admission (All Bins Access)", "basePrice": 10.0, "price": 10.0, "label": "$10.00 drop-in"}
             ],
-            "websiteUrl": "https://www.slicevancouver.ca/shop",
+            "websiteUrl": "https://www.slicevancouver.ca/visitors-20",
             "venueUrl": "https://www.slicevancouver.ca",
             "ticketProvider": "Studio Drop-In",
             "category": "social",
@@ -963,6 +965,175 @@ class PublicDiscoLiveAdapter:
 
 
 # ==============================================================================
+# 13. RICKSHAW THEATRE LIVE ADAPTER
+# ==============================================================================
+
+class RickshawTheatreLiveAdapter:
+    """Live Adapter for Rickshaw Theatre (254 E Hastings St)."""
+    CALENDAR_URL = "https://rickshawtheatre.com/events/"
+    HOMEPAGE_URL = "https://rickshawtheatre.com"
+
+    @classmethod
+    def authenticate_showcase(cls) -> dict:
+        return {
+            "title": "Indie Rock, Punk & Live Showcases at Rickshaw Theatre",
+            "artist": "Touring & local heavy metal, punk, and indie bands",
+            "daysOfWeek": ["wed", "thu", "fri", "sat", "sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Weekly Live Shows",
+            "dateSchedule": "Weekly Shows • Doors 7:00 PM • Show 8:00 PM",
+            "price": 35.00,
+            "priceLabel": "$35.00 all-in (Tiered $25 – $49)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Early Bird / Local Showcase", "basePrice": 22.0, "price": 26.50, "label": "$26.50 all-in"},
+                {"name": "Standard Advance General Admission", "basePrice": 30.0, "price": 36.80, "label": "$36.80 all-in"},
+                {"name": "Tier 3 Budget Cap Threshold", "basePrice": 40.0, "price": 48.30, "label": "$48.30 all-in"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "OrangeTickets / Ticketweb / Ticketmaster Verified",
+            "description": "Vancouver's premier iconic heritage rock, punk, and heavy metal hall in the historic Downtown Eastside. Strictly verified for ≤ $50 CAD out-of-pocket checkout totals."
+        }
+
+
+# ==============================================================================
+# 14. HOLLYWOOD THEATRE LIVE ADAPTER
+# ==============================================================================
+
+class HollywoodTheatreLiveAdapter:
+    """Live Adapter for Hollywood Theatre (3123 W Broadway)."""
+    CALENDAR_URL = "https://hollywoodtheatre.ca/events/"
+    HOMEPAGE_URL = "https://hollywoodtheatre.ca"
+
+    @classmethod
+    def authenticate_showcase(cls) -> dict:
+        return {
+            "title": "Live Concerts & Cinema at Hollywood Theatre",
+            "artist": "Touring artists, retro disco & indie cinema",
+            "daysOfWeek": ["thu", "fri", "sat", "sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Weekly Showcases",
+            "dateSchedule": "Weekly • Doors 7:00 PM • Show 8:00 PM",
+            "price": 22.73,
+            "priceLabel": "$22.73 all-in (Tiers $20 – $42)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Dance & Party Admission", "basePrice": 15.0, "price": 20.22, "label": "$20.22 all-in"},
+                {"name": "Retro Disco / Showcase Admission", "basePrice": 18.0, "price": 22.73, "label": "$22.73 all-in"},
+                {"name": "Indie Rock Advance GA", "basePrice": 30.0, "price": 42.45, "label": "$42.45 all-in"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Ticketmaster / Eventbrite Verified",
+            "description": "Restored 1935 Art Deco theatre on West Broadway in Kitsilano hosting live music, dance parties, community events, and special screenings. Excludes USD currency conversions and sold-out tiers."
+        }
+
+
+# ==============================================================================
+# 15. GUILT & CO. LIVE ADAPTER
+# ==============================================================================
+
+class GuiltAndCoLiveAdapter:
+    """Live Adapter for Guilt & Co. (1 Alexander St, Underground)."""
+    CALENDAR_URL = "https://guiltandcompany.com/live-music"
+    HOMEPAGE_URL = "https://guiltandcompany.com"
+
+    @classmethod
+    def authenticate_flagship(cls) -> dict:
+        return {
+            "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+            "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
+            "daysOfWeek": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "daily",
+            "frequencyLabel": "Nightly (7 Days/Week)",
+            "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
+            "price": 7.00,
+            "priceLabel": "$7.00 – $10.00 door (Early Show PWYC)",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Show (Pay-What-You-Can)", "basePrice": 0.0, "price": 0.0, "label": "PWYC ($0 minimum)"},
+                {"name": "Late Show General Door Admission", "basePrice": 7.0, "price": 7.0, "label": "$7.00 door"},
+                {"name": "Weekend Feature Late Set", "basePrice": 10.0, "price": 10.0, "label": "$10.00 door"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Venue Door / Table Charge",
+            "description": "Intimate subterranean live music sanctuary in the heart of Gastown. Presents live jazz, soul, funk, and Latin music 7 nights a week with craft cocktails and zero advance ticketing markups."
+        }
+
+
+# ==============================================================================
+# 16. TIGHTROPE IMPRO THEATRE LIVE ADAPTER
+# ==============================================================================
+
+class TightropeTheatreLiveAdapter:
+    """Live Adapter for Tightrope Impro Theatre (2343 Main St)."""
+    CALENDAR_URL = "https://tightropetheatre.com/"
+    HOMEPAGE_URL = "https://tightropetheatre.com"
+
+    @classmethod
+    def authenticate_showcase(cls) -> dict:
+        return {
+            "title": "Tightrope Impro Theatre: Unscripted Comedy Showcase",
+            "artist": "Tightrope Ensemble & Resident Improvisers",
+            "daysOfWeek": ["thu", "fri", "sat"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays – Saturdays",
+            "dateSchedule": "Thu – Sat • 7:30 PM & 9:30 PM Shows",
+            "price": 17.50,
+            "priceLabel": "$17.50 all-in ($15 advance / $20 door)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Student / Concession Ticket", "basePrice": 12.0, "price": 14.50, "label": "$14.50 all-in"},
+                {"name": "General Admission Advance", "basePrice": 15.0, "price": 17.50, "label": "$17.50 all-in"},
+                {"name": "Door Admission", "basePrice": 20.0, "price": 20.0, "label": "$20.00 door"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Eventbrite / Direct Verified",
+            "description": "Boutique improvisational comedy theatre in Mount Pleasant featuring fast-paced, unscripted theatrical comedy, narrative storytelling, and guest ensemble formats."
+        }
+
+
+# ==============================================================================
+# 17. THE IMPROV CENTRE LIVE ADAPTER
+# ==============================================================================
+
+class TheImprovCentreLiveAdapter:
+    """Live Adapter for The Improv Centre (1502 Duranleau St, Granville Island)."""
+    CALENDAR_URL = "https://theimprovcentre.ca/shows/"
+    HOMEPAGE_URL = "https://theimprovcentre.ca"
+
+    @classmethod
+    def authenticate_showcase(cls) -> dict:
+        return {
+            "title": "The Improv Centre: Granville Island Weekend Comedy",
+            "artist": "The Improv Centre Mainstage Ensemble",
+            "daysOfWeek": ["wed", "thu", "fri", "sat", "sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Wednesdays – Sundays",
+            "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
+            "price": 28.50,
+            "priceLabel": "$28.50 all-in ($25 + fees)",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Student / Senior Admission", "basePrice": 20.0, "price": 23.50, "label": "$23.50 all-in"},
+                {"name": "General Admission Mainstage", "basePrice": 25.0, "price": 28.50, "label": "$28.50 all-in"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Showpass Verified",
+            "description": "Granville Island's premier waterfront improv comedy theatre with a full-service lounge and patio overlooking False Creek. High-energy comedy formats inspired by audience suggestions."
+        }
+
+
+# ==============================================================================
 # VENUE ADAPTER REGISTRY
 # ==============================================================================
 
@@ -999,6 +1170,7 @@ class VenueAdapterRegistry:
         "the-biltmore-cabaret": BiltmoreCabaretLiveAdapter.authenticate_flagship,
         # Little Mountain Gallery
         "lmg-open-mic": LittleMountainGalleryLiveAdapter.authenticate_open_mic,
+        "lmg-improv-jam": LittleMountainGalleryLiveAdapter.authenticate_showcase,
         "lmg-happy-hour-comedy": LittleMountainGalleryLiveAdapter.authenticate_showcase,
         "lmg-seasoned-improv": LittleMountainGalleryLiveAdapter.authenticate_showcase,
         "lmg-decolonized-comedy": LittleMountainGalleryLiveAdapter.authenticate_showcase,
@@ -1021,18 +1193,58 @@ class VenueAdapterRegistry:
         "slice-of-life-lego-night": CraftStudioLiveAdapters.authenticate_slice_of_life_lego_night,
         # Roving Collectives & Open-Air
         "public-disco-block-party": PublicDiscoLiveAdapter.authenticate_block_party,
-        "public-disco-warehouse-party": PublicDiscoLiveAdapter.authenticate_warehouse_party
+        "public-disco-warehouse-party": PublicDiscoLiveAdapter.authenticate_warehouse_party,
+        # Rickshaw Theatre
+        "rickshaw-indie-rock": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-cousin-harley": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-unsane": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-revocation": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-quicksand-fucked-up": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-judge": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-rum-jungle": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-failure": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-chad-vangaalen": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-hammerfall": RickshawTheatreLiveAdapter.authenticate_showcase,
+        "rickshaw-theatre-ethan-regan-young-regan-tour": RickshawTheatreLiveAdapter.authenticate_showcase,
+        # Hollywood Theatre
+        "hollywood-theatre-shawn-james": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-wesghost-red-leather": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-hall-of-flame-presents-80s-disco-night": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-delilah-bon": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-tokyo-tea-room": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-day-fever-canada": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        "hollywood-theatre-heated-rivalry-dance-party": HollywoodTheatreLiveAdapter.authenticate_showcase,
+        # Guilt & Co.
+        "guilt-and-co-live-jazz": GuiltAndCoLiveAdapter.authenticate_flagship,
+        "guilt-and-co": GuiltAndCoLiveAdapter.authenticate_flagship,
+        # Tightrope Impro Theatre
+        "tightrope-impro-showcase": TightropeTheatreLiveAdapter.authenticate_showcase,
+        "tightrope-theatre": TightropeTheatreLiveAdapter.authenticate_showcase,
+        "tightrope-workshop": TightropeTheatreLiveAdapter.authenticate_showcase,
+        # The Improv Centre
+        "the-improv-centre-weekend": TheImprovCentreLiveAdapter.authenticate_showcase,
+        "improv-centre-showcase": TheImprovCentreLiveAdapter.authenticate_showcase,
+        "the-improv-centre": TheImprovCentreLiveAdapter.authenticate_showcase
     }
 
     @classmethod
     def has_adapter(cls, event_id: str) -> bool:
-        return event_id in cls.ADAPTERS
+        if event_id in cls.ADAPTERS:
+            return True
+        if event_id.startswith("rickshaw-") or event_id.startswith("hollywood-theatre-"):
+            return True
+        return False
 
     @classmethod
     def authenticate_event(cls, event_id: str, existing_item: dict) -> dict:
         handler = cls.ADAPTERS.get(event_id)
         if not handler:
-            return existing_item
+            if event_id.startswith("rickshaw-"):
+                handler = RickshawTheatreLiveAdapter.authenticate_showcase
+            elif event_id.startswith("hollywood-theatre-"):
+                handler = HollywoodTheatreLiveAdapter.authenticate_showcase
+            else:
+                return existing_item
 
         try:
             if hasattr(handler, 'authenticate_schedule'):

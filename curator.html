@@ -51,6 +51,14 @@
       </div>
 
       <div class="curator-nav-actions">
+        <div class="automation-badge-container" id="automation-status-container" title="Autonomous Daily Discovery Engine">
+          <span class="automation-dot" id="automation-dot">🟢</span>
+          <span class="automation-label" id="automation-label">Daily Sync: 04:00 AM</span>
+        </div>
+        <button type="button" class="btn-curator btn-curator-primary" id="btn-trigger-sync" title="Execute complete hands-free crawl &amp; verification cycle now">
+          <span id="btn-sync-icon">⚡</span>
+          <span id="btn-sync-text">Run Full Sync</span>
+        </button>
         <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public catalog">
           <span>🌲 Public Catalog ↗</span>
         </a>
@@ -73,11 +81,9 @@
           <button type="button" class="curator-filter-pill" data-filter="unhandled" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="handled" style="border-color: rgba(168, 85, 247, 0.4); color: #c084fc;">🤖 AI Queued (<span id="pill-count-handled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="drift" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">⚠️ Page Drift (<span id="pill-count-drift">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="overbudget">Over-Budget $50+ (<span id="pill-count-overbudget">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Cart (<span id="pill-count-unverified">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="brokenlink">Missing / 404 Link (<span id="pill-count-brokenlink">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="course">Multi-Week Course (<span id="pill-count-course">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="autobudget" style="border-color: rgba(239, 68, 68, 0.35); color: #fca5a5;">🛡️ Auto-Denied &gt; $50 (<span id="pill-count-autobudget">0</span>)</button>
         </div>
 
         <!-- Search & Sort Row -->
@@ -198,7 +204,7 @@
           </div>
 
           <!-- Quick Approval Overrides (for "Queue & Approve") -->
-          <div style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
+          <div id="ai-quick-approval-box" style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
             <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Quick Catalog Approval (Optional)</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
@@ -229,10 +235,13 @@
         <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-ai-inst">Cancel</button>
           <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Queue instruction for AI and leave in quarantine">
-            🤖 Queue for AI
+            🤖 Queue Instruction Only
           </button>
-          <button type="button" class="btn-curator btn-curator-primary" id="btn-submit-ai-inst-and-approve" title="Queue for AI and immediately approve event to catalog">
-            🚀 Queue &amp; Approve Event
+          <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Dismiss and archive this event, and instruct AI scrapers why">
+            🛑 Dismiss &amp; Instruct AI
+          </button>
+          <button type="button" class="btn-curator btn-curator-primary" id="btn-submit-ai-inst-and-approve" title="Approve event to master catalog, and queue instruction for AI">
+            ✨ Approve &amp; Instruct AI
           </button>
         </div>
       </form>

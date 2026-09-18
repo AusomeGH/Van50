@@ -14,6 +14,11 @@ import sys
 import json
 from bs4 import BeautifulSoup
 
+try:
+    from nomadic_resolver import NomadicLocationResolver
+except ImportError:
+    NomadicLocationResolver = None
+
 sys.stdout.reconfigure(encoding='utf-8')
 
 HEADERS = {
@@ -179,6 +184,19 @@ class NomadicMetadataScraper:
                 # Scraped distinct Public Disco events! Preserve scraped titles, dates, descriptions, and enrich roving host venue facts
                 item['organizer'] = "Public Disco Society"
                 item['isRoving'] = True
+                if NomadicLocationResolver:
+                    loc_match = NomadicLocationResolver.resolve_location(
+                        "public-disco",
+                        item.get('venue', '') + " " + item.get('address', ''),
+                        item.get('title', '')
+                    )
+                    if loc_match.get('resolved'):
+                        item['editionVenue'] = loc_match['venue']
+                        item['venue'] = loc_match['venue']
+                        item['address'] = loc_match['address']
+                        item['neighborhood'] = loc_match['neighborhood']
+                        item['coordinates'] = loc_match['coordinates']
+                        item['transitInfo'] = loc_match['transitInfo']
                 if not item.get('editionVenue') or item.get('editionVenue') == "Public Disco Society":
                     item['editionVenue'] = item.get('venue')
                 if not item.get('agePolicy'):

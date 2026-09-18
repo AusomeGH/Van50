@@ -261,6 +261,7 @@ function setupEventListeners() {
       viewMapBtn.classList.remove('active');
       eventsGrid.style.display = 'grid';
       mapWrapper.style.display = 'none';
+      mapWrapper.classList.remove('active');
     });
 
     viewMapBtn.addEventListener('click', () => {
@@ -268,18 +269,36 @@ function setupEventListeners() {
       viewCardsBtn.classList.remove('active');
       eventsGrid.style.display = 'none';
       mapWrapper.style.display = 'block';
+      mapWrapper.classList.add('active');
 
-      // Ensure Leaflet calculates real container size & renders dark tiles properly
-      setTimeout(() => {
-        if (window.vancouverMapInstance) {
-          window.vancouverMapInstance.invalidateSize();
-        } else if (typeof initVancouverMap === 'function') {
-          initVancouverMap();
+      const getActiveEvents = () => {
+        if (window.currentFilteredEvents && window.currentFilteredEvents.length > 0) {
+          return window.currentFilteredEvents;
         }
-        if (typeof updateMapMarkers === 'function') {
-          updateMapMarkers(window.currentFilteredEvents || ALL_EVENTS || []);
-        }
-      }, 80);
+        return ALL_EVENTS || [];
+      };
+
+      if (!window.vancouverMapInstance && typeof initVancouverMap === 'function') {
+        initVancouverMap();
+      }
+
+      // Allow container to finish layout reflow before invalidating Leaflet size
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (window.vancouverMapInstance) {
+            window.vancouverMapInstance.invalidateSize();
+          }
+          if (typeof updateMapMarkers === 'function') {
+            updateMapMarkers(getActiveEvents());
+          }
+          if (window._pendingMapBounds && window.vancouverMapInstance) {
+            try {
+              window.vancouverMapInstance.fitBounds(window._pendingMapBounds, { padding: [40, 40], maxZoom: 15 });
+              window._pendingMapBounds = null;
+            } catch (e) {}
+          }
+        }, 60);
+      });
     });
   }
 
@@ -462,6 +481,21 @@ function renderCategoryPills() {
   });
 }
 
+function filterByCategory(catId) {
+  if (!catId || catId === 'all') {
+    state.category = 'all';
+  } else {
+    state.category = (state.category === catId) ? 'all' : catId;
+  }
+  renderCategoryPills();
+  applyFiltersAndRender();
+  const resultsHeading = document.getElementById('results-heading');
+  if (resultsHeading) {
+    resultsHeading.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+window.filterByCategory = filterByCategory;
+
 function renderDayPills() {
   const container = document.getElementById('days-pills-wrap');
   if (!container || typeof DAYS_OF_WEEK === 'undefined') return;
@@ -509,7 +543,7 @@ function renderNeighborhoodPills() {
     const pill = document.createElement('button');
     const isSelected = state.selectedNeighborhoods.has(nh);
     pill.className = `nh-pill ${isSelected ? 'active' : ''}`;
-    pill.innerHTML = `<span>📍</span> <span>${nh}</span>`;
+    pill.innerHTML = `<span>${nh}</span>`;
     pill.addEventListener('click', () => {
       if (state.selectedNeighborhoods.has(nh)) {
         state.selectedNeighborhoods.delete(nh);
@@ -790,9 +824,10 @@ function applyFiltersAndRender() {
   let activeCatalog = [];
   let expiredCount = 0;
 
-  // Requirement: Strictly exclude past events & awaiting-schedule items from user display
+  // Requirement: Strictly exclude past events, awaiting-schedule items, and over-budget (> $50) from user display
   ALL_EVENTS.forEach(ev => {
-    if (isAwaitingSchedule(ev) || isEventInPast(ev, now)) {
+    const p = parseFloat(ev.price || 0.0);
+    if (isAwaitingSchedule(ev) || isEventInPast(ev, now) || p > 50.00) {
       expiredCount++;
     } else {
       activeCatalog.push(ev);
@@ -811,6 +846,10 @@ function applyFiltersAndRender() {
   const parsedSearch = state.searchQuery ? parseGoogleQuery(state.searchQuery) : null;
 
   const filtered = activeCatalog.filter(ev => {
+    // Strict Budget Cap Guard (never display > $50.00 CAD to user under any circumstances)
+    const p = parseFloat(ev.price || 0.0);
+    if (p > 50.00) return false;
+
     // Venue Isolation Filter (Requirement 7)
     if (state.selectedVenue && ev.venue !== state.selectedVenue) return false;
 
@@ -933,7 +972,7 @@ function applyFiltersAndRender() {
         crossCategoryBannerHtml = `
           <div style="margin-top: 8px;">
             <button type="button" class="btn-cross-category" onclick="resetCategoryForSearch()" style="cursor: pointer; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
-              🔍 Found ${crossMatches} match${crossMatches > 1 ? 'es' : ''} across all categories • View All ↗
+              Found ${crossMatches} match${crossMatches > 1 ? 'es' : ''} across all categories • View All ↗
             </button>
           </div>
         `;
@@ -1331,8 +1370,11 @@ function resetAllFilters() {
 }
 
 function formatStandardPrice(ev) {
-  // 1. If explicit priceLabel exists on the event, prioritize it (carries adult rate with concession note)
+  // 1. If explicit priceLabel exists on the event, prioritize it (normalize erroneous "$0.00 door")
   if (ev.priceLabel) {
+    if (ev.priceLabel === '$0.00 door' || (ev.price === 0 && ev.priceLabel.includes('$0.00'))) {
+      return 'Free ($0)';
+    }
     return ev.priceLabel;
   }
   // 2. Multi-tier events always evaluate and display tier range first
@@ -1352,7 +1394,7 @@ function formatStandardPrice(ev) {
     return 'Free ($0)';
   }
   if (ev.pricingType === 'door') {
-    return `$${ev.price.toFixed(2)} door`;
+    return ev.price === 0 ? 'Free ($0)' : `$${ev.price.toFixed(2)} door`;
   }
   if (ev.pricingType === 'food-drink') {
     return `Free entry (~$${ev.price.toFixed(0)} food/drink)`;
@@ -1715,7 +1757,7 @@ function renderEventCards(events) {
   const venueBannerHtml = state.selectedVenue ? `
     <div class="active-venue-banner" id="active-venue-banner" style="grid-column: 1 / -1;">
       <div class="venue-banner-content">
-        <span class="venue-banner-icon">🏛️</span>
+        <span class="venue-banner-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
         <span>Showing all <strong>${events.length}</strong> verified events at <strong>${state.selectedVenue}</strong></span>
       </div>
       <button type="button" class="btn-clear-venue" onclick="clearSelectedVenue()" aria-label="Clear venue filter">Clear Venue Filter ✕</button>
@@ -1748,7 +1790,7 @@ function renderEventCards(events) {
     grid.innerHTML = `
       ${venueBannerHtml}
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);">
-        <div style="font-size: 2.5rem; margin-bottom: 12px;">🌲🔍</div>
+        <div class="empty-icon-wrap" style="margin-bottom: 14px;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5; color: var(--accent-primary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
         <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 8px;">No Outings Found Matching Filters</h3>
         <p style="font-size: 0.9rem; max-width: 440px; margin: 0 auto 18px;">
           Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Ticketed events only".
@@ -2161,19 +2203,28 @@ function renderSingleEventCardHtml(ev) {
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
-        <!-- Top Bar: Next Event Date on Top-Left, Frequency + Save Button on Top-Right -->
+        <!-- Top Bar: Next Event Date & Category on Left, Frequency & Save on Right -->
         <div class="card-top-bar">
-          <!-- Top Left: Next Event Date -->
-          <div class="card-top-date-wrap">
+          <!-- Top Left: Next Event Date & Category Badge -->
+          <div class="card-top-left-group">
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
               ${topDate.badgeText}
             </span>
+            <button 
+              type="button" 
+              class="card-category-badge category-${ev.category || 'misc'}" 
+              onclick="filterByCategory('${ev.category || 'all'}')" 
+              title="Click to filter by ${ev.categoryLabel || ev.category || 'this category'}"
+              aria-label="Category: ${ev.categoryLabel || ev.category || 'Event'}"
+            >
+              <span class="category-badge-icon"></span>
+              <span class="category-badge-text">${ev.categoryLabel || ev.category || 'Event'}</span>
+            </button>
           </div>
 
           <!-- Top Right: Frequency Badge & Save Button -->
           <div class="card-top-right-group">
-            <span class="card-meta-pill ${freqClass}" title="Recurrence Frequency">
-              <span>${ev.categoryIcon || '✨'}</span>
+            <span class="card-meta-pill ${freqClass}" title="Recurrence: ${ev.frequencyLabel || 'Outing'}">
               <span>${ev.frequencyLabel || 'Outing'}</span>
             </span>
             <button 
@@ -2182,7 +2233,9 @@ function renderSingleEventCardHtml(ev) {
               aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
               title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
             >
-              ${isSaved ? '❤️' : '🤍'}
+              ${isSaved 
+                ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
+                : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'}
             </button>
           </div>
         </div>
@@ -2197,7 +2250,7 @@ function renderSingleEventCardHtml(ev) {
         <!-- Band / Artist Highlight Badge (if present) -->
         ${(ev.artist || ev.performers) ? `
           <div class="card-artist-badge" title="Featured band / artist lineup">
-            <span class="artist-icon">🎵</span>
+            <span class="artist-icon"></span>
             <span class="artist-label">Featuring:</span>
             <strong class="artist-name">${ev.artist || (Array.isArray(ev.performers) ? ev.performers.join(', ') : ev.performers)}</strong>
           </div>
@@ -2206,8 +2259,8 @@ function renderSingleEventCardHtml(ev) {
         <!-- Roving / Nomadic Series Organizer Badge -->
         ${ev.organizer ? `
           <div class="card-organizer-badge" title="Roving community event organized by ${ev.organizer}">
-            <span class="organizer-icon">🏛️</span>
-            <span class="organizer-label">Roving Series:</span>
+            <span class="organizer-icon"></span>
+            <span class="organizer-label">Series:</span>
             <strong class="organizer-name">${ev.organizer}</strong>
             ${ev.editionVenue ? `<span class="edition-venue">(${ev.editionVenue})</span>` : ''}
           </div>
@@ -2216,27 +2269,27 @@ function renderSingleEventCardHtml(ev) {
         <!-- Age & Admission Policy Badges (QC Verified) -->
         ${(ev.agePolicy || ev.admissionPolicy) ? `
           <div class="card-policy-row">
-            ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${ev.agePolicy}">🛡️ ${ev.agePolicy}</span>` : ''}
-            ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${ev.admissionPolicy}">🎟️ ${ev.admissionPolicy}</span>` : ''}
+            ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${ev.agePolicy}">${ev.agePolicy}</span>` : ''}
+            ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${ev.admissionPolicy}">${ev.admissionPolicy}</span>` : ''}
           </div>
         ` : ''}
 
         <!-- Roving Physical Host Note -->
         ${ev.rovingNote ? `
-          <div class="card-roving-note">📍 <em>${ev.rovingNote}</em></div>
+          <div class="card-roving-note"><em>${ev.rovingNote}</em></div>
         ` : ''}
         
         <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
           <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps for directions">
-            <span class="venue-pin-icon">📍</span>
+            <span class="venue-pin-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="opacity: 0.85;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
             <span class="venue-name">${ev.venue}</span>
             <span class="venue-neighborhood-chip">• ${ev.neighborhood || 'Vancouver'}</span>
             <span class="venue-directions-hint">(Directions)</span>
           </a>
           ${venueUrl ? `
             <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
-              <span class="website-icon">🌐</span> Venue Site ↗
+              <span class="website-label">Venue Site ↗</span>
             </a>
           ` : ''}
           ${venueOtherEventsBtnHtml}
@@ -2244,7 +2297,7 @@ function renderSingleEventCardHtml(ev) {
 
         <!-- Schedule Row & Dynamic Next Dates -->
         <div class="card-schedule-row">
-          <span>📅</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.8; margin-right: 4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
         </div>
 
@@ -2385,7 +2438,7 @@ function renderItinerary() {
       <div class="itinerary-item-card">
         <div style="flex: 1;">
           <div class="itinerary-item-title">${ev.title}</div>
-          <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">📍 ${ev.venue}</div>
+          <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 4px;">${ev.venue}</div>
           <div class="itinerary-item-price">${formatStandardPrice(ev)}</div>
         </div>
         <button class="btn-remove-item" onclick="toggleSaveEvent('${ev.id}')" title="Remove from Saved Events">✕</button>

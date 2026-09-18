@@ -47,6 +47,7 @@ from venue_adapters import VenueAdapterRegistry
 from dynamic_enricher import DynamicEnricher
 from ra_events_adapter import ResidentAdvisorAdapter
 from universal_venue_crawler import UniversalVenueCrawler
+from universal_link_hunter import is_generic_url, AutonomousDeepLinkHunter
 
 
 
@@ -1151,7 +1152,7 @@ def get_curated_seed_catalog():
             "neighborhood": "Downtown / West End",
             "basePrice": 0.0,
             "provider": "Box Office / Direct",
-            "semanticProvider": "Free Public Access",
+            "semanticProvider": "BMO / Vancouver Art Gallery",
             "pricingType": "free",
             "isDaily": False,
             "frequency": "monthly",
@@ -1166,8 +1167,9 @@ def get_curated_seed_catalog():
             "startIso": "2026-10-02T16:00:00-07:00",
             "endIso": "2026-10-02T20:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://www.vanartgallery.bc.ca/visit/",
-            "coordinates": [49.2830, -123.1205],
+            "websiteUrl": "https://www.vanartgallery.bc.ca/free",
+            "venueUrl": "https://www.vanartgallery.bc.ca/visit",
+            "coordinates": [49.2828, -123.1205],
             "transitInfo": "1 min walk from City Centre / Granville SkyTrain",
             "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming."
         },
@@ -2324,6 +2326,18 @@ VENUE_URLS = {
     "The Birdhouse": "https://www.birdhouse.ca"
 }
 
+# Dynamically incorporate verified directory venues from data/venues_directory.json
+VENUES_DIR_FILE = os.path.join(DATA_DIR, "venues_directory.json")
+if os.path.exists(VENUES_DIR_FILE):
+    try:
+        with open(VENUES_DIR_FILE, "r", encoding="utf-8") as _vf:
+            _vdata = json.load(_vf)
+            for _v in _vdata.get("venues", []):
+                if _v.get("name") and _v.get("websiteUrl") and _v["name"] not in VENUE_URLS:
+                    VENUE_URLS[_v["name"]] = _v["websiteUrl"]
+    except Exception:
+        pass
+
 
 # ==============================================================================
 # AUTOMATED URL DEEP-LINK NORMALIZER & SAFEGUARD PIPELINE
@@ -2364,19 +2378,27 @@ PROHIBITED_GENERIC_URL_REDIRECTS = {
     "https://publicdisco.ca/": "https://publicdisco.ca/events"
 }
 
-def normalize_event_links(url: str, venue: str = "") -> str:
+def normalize_event_links(url: str, venue: str = "", item: dict = None) -> str:
     """
     Automated URL deep-link normalizer:
     Guarantees event URLs point to verified schedule/ticketing endpoints rather than
-    live-stream players (e.g. PeerTube webcam), institutional landing pages, separate paid attractions, or dead ends.
+    generic catalog indices, institutional landing pages, separate paid attractions, or dead ends.
     """
     if not url:
         return url
     cleaned = url.strip()
 
-    # Exact prohibited roots
+    # 1. Exact prohibited roots
     if cleaned in PROHIBITED_GENERIC_URL_REDIRECTS:
         return PROHIBITED_GENERIC_URL_REDIRECTS[cleaned]
+
+    # 2. Autonomous hunter resolution if item context is provided
+    if item and not (item.get('isDaily') or item.get('frequency') == 'daily'):
+        is_gen, _ = is_generic_url(cleaned)
+        if is_gen:
+            hunt_res = AutonomousDeepLinkHunter.hunt(item, cleaned)
+            if hunt_res.get("resolved"):
+                return hunt_res["deepUrl"]
 
     # Pattern-based normalization for Red Gate
     if "redgate.tv" in cleaned.lower():
@@ -2518,10 +2540,45 @@ def run_sync() -> bool:
 
         # 1. Automated URL Normalization & Deep-Link Safeguard
         raw_url = item.get('websiteUrl', '').strip()
-        url = normalize_event_links(raw_url, item.get('venue', ''))
+        url = normalize_event_links(raw_url, item.get('venue', ''), item)
         if url != raw_url:
             print(f"[URL NORM] Deep link normalized for '{item['title']}': '{raw_url}' -> '{url}'")
             item['websiteUrl'] = url
+
+        # Universal Generic Link Quality Gate
+        is_daily = item.get('isDaily', False) or item.get('frequency') == 'daily'
+        is_gen, gen_reason = is_generic_url(url)
+        if is_gen and not is_daily:
+            # Attempt Autonomous Deep Link Hunt
+            hunt_res = AutonomousDeepLinkHunter.hunt(item, url)
+            if hunt_res.get("resolved"):
+                upgraded_url = hunt_res["deepUrl"]
+                print(f"[AUTONOMOUS HUNTER] Upgraded generic link for '{item['title']}': '{url}' -> '{upgraded_url}'")
+                url = upgraded_url
+                item['websiteUrl'] = url
+            else:
+                # FAIL-CLOSED QUALITY GATE:
+                # Strictly exclude non-daily events with unresolved generic links from public events.json
+                print(f"[FAIL-CLOSED GATE] '{item['title']}' has generic link '{url}' ({gen_reason}). Quarantining for curator review.")
+                quarantined_item = {
+                    "id": event_id,
+                    "title": item['title'],
+                    "venue": item['venue'],
+                    "address": item.get('address', ''),
+                    "neighborhood": item.get('neighborhood', ''),
+                    "attemptedPrice": float(item.get('basePrice', 0.0)),
+                    "attemptedPriceLabel": "Free ($0)" if (float(item.get('basePrice', 0.0)) == 0.0 or item.get('pricingType') == 'free') else f"${float(item.get('basePrice', 0.0)):.2f} door",
+                    "provider": provider,
+                    "semanticProvider": semantic_provider,
+                    "websiteUrl": url,
+                    "category": cat,
+                    "flaggedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                    "flagReason": f"Generic Link: {gen_reason}. Autonomous Hunter could not locate a specific event checkout page.",
+                    "reviewStatus": "pending_manual_review",
+                    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+                }
+                quarantined_events.append(quarantined_item)
+                continue
 
         if not url.startswith('http') or len(url) < 14:
             print(f"[REJECT] '{item['title']}' rejected: invalid ticket link.")
@@ -2582,7 +2639,7 @@ def run_sync() -> bool:
                 "address": item.get('address', ''),
                 "neighborhood": item.get('neighborhood', ''),
                 "attemptedPrice": float(item.get('basePrice', 0.0)),
-                "attemptedPriceLabel": f"${float(item.get('basePrice', 0.0)):.2f} door",
+                "attemptedPriceLabel": "Free ($0)" if (float(item.get('basePrice', 0.0)) == 0.0 or item.get('pricingType') == 'free') else f"${float(item.get('basePrice', 0.0)):.2f} door",
                 "provider": provider,
                 "semanticProvider": semantic_provider,
                 "websiteUrl": url,
@@ -2599,6 +2656,19 @@ def run_sync() -> bool:
         price_label = search_res["priceLabel"]
         tiers = search_res.get("tiers") or item.get('tiers', [])
         verification = search_res["verification"]
+
+        # Unified Multi-Tier Price Label Formatting
+        if tiers and len(tiers) > 1 and not item.get("isSoldOut"):
+            tier_prices = [float(t.get('price', 0.0)) for t in tiers if 'price' in t]
+            if tier_prices:
+                min_t = min(tier_prices)
+                max_t = max(tier_prices)
+                if min_t == max_t:
+                    price_label = f"${min_t:.2f} all-in"
+                elif min_t == 0:
+                    price_label = f"Free – ${max_t:.2f} all-in"
+                else:
+                    price_label = f"${min_t:.2f} – ${max_t:.2f} all-in"
 
         # Budget Cap Check (<= $50 CAD) - Auto-deny to archive, never burden curator
         if final_price > 50.00:
@@ -2646,7 +2716,7 @@ def run_sync() -> bool:
             "pricingType": item.get('pricingType', 'platform'),
             "tiers": tiers,
             "isFree": (final_price == 0 and not any(t.get('price', 0) > 0 for t in tiers)),
-            "isDaily": item.get('isDaily', False),
+            "isDaily": (item.get('isDaily', False) or freq == 'daily'),
             "frequency": freq,
             "frequencyLabel": item.get('frequencyLabel', freq.capitalize()),
             "daysOfWeek": item.get('daysOfWeek', ['daily']),
@@ -2741,23 +2811,45 @@ def run_sync() -> bool:
                 old_db = json.load(f)
             for old_ev in old_db.get('events', []):
                 if old_ev.get('checkoutVerification', {}).get('method') == 'manual_curator_review':
-                    if not any(e.get('id') == old_ev.get('id') for e in verified_events):
-                        # Run drift detection against live page
-                        drift_check = EventPricingSearchEngine.check_curator_drift(old_ev)
-                        if drift_check.get("isDrift"):
-                            old_ev["isVerified"] = False
-                            old_ev["isDrift"] = True
-                            old_ev["flagReason"] = drift_check.get("quarantineReason")
-                            old_ev["quarantineReason"] = drift_check.get("quarantineReason")
-                            quarantined_events.append(old_ev)
-                            print(f"[DRIFT DETECTED] Re-quarantined: '{old_ev['title']}' -> {drift_check.get('quarantineReason')}")
-                        else:
-                            verified_events.append(old_ev)
-                            p_label = old_ev.get('ticketProvider') or old_ev.get('semanticProvider') or "Curator Verified"
-                            providers_count[p_label] = providers_count.get(p_label, 0) + 1
-                            cat = old_ev.get('category', 'shows')
-                            categories_count[cat] = categories_count.get(cat, 0) + 1
-                            print(f"[PRESERVE CURATOR] Retained manually approved event: '{old_ev['title']}'")
+                    # If already in verified_events or quarantined in this sync run, do not re-add
+                    if any(e.get('id') == old_ev.get('id') for e in verified_events):
+                        continue
+                    if any(q.get('id') == old_ev.get('id') for q in quarantined_events):
+                        continue
+
+                    # Strict Budget Cap Guard (Never restore > $50 events)
+                    old_price = float(old_ev.get('price', 0.0))
+                    if old_price > 50.00:
+                        auto_deny_and_archive_event(old_ev, reason=f"Auto-Denied: Price (${old_price:.2f}) exceeds $50.00 CAD budget cap")
+                        continue
+
+                    # Strict Fail-Closed Generic Link Guard on manually approved items
+                    old_is_daily = old_ev.get('isDaily', False) or old_ev.get('frequency') == 'daily'
+                    is_gen, gen_reason = is_generic_url(old_ev.get('websiteUrl', ''))
+                    if is_gen and not old_is_daily:
+                        old_ev["isVerified"] = False
+                        old_ev["flagReason"] = f"Generic Link: {gen_reason}"
+                        old_ev["quarantineReason"] = f"Generic Link: {gen_reason}"
+                        quarantined_events.append(old_ev)
+                        print(f"[FAIL-CLOSED GATE] Manually approved event '{old_ev['title']}' has generic link '{old_ev.get('websiteUrl')}'. Re-quarantined.")
+                        continue
+
+                    # Run drift detection against live page
+                    drift_check = EventPricingSearchEngine.check_curator_drift(old_ev)
+                    if drift_check.get("isDrift"):
+                        old_ev["isVerified"] = False
+                        old_ev["isDrift"] = True
+                        old_ev["flagReason"] = drift_check.get("quarantineReason")
+                        old_ev["quarantineReason"] = drift_check.get("quarantineReason")
+                        quarantined_events.append(old_ev)
+                        print(f"[DRIFT DETECTED] Re-quarantined: '{old_ev['title']}' -> {drift_check.get('quarantineReason')}")
+                    else:
+                        verified_events.append(old_ev)
+                        p_label = old_ev.get('ticketProvider') or old_ev.get('semanticProvider') or "Curator Verified"
+                        providers_count[p_label] = providers_count.get(p_label, 0) + 1
+                        cat = old_ev.get('category', 'shows')
+                        categories_count[cat] = categories_count.get(cat, 0) + 1
+                        print(f"[PRESERVE CURATOR] Retained manually approved event: '{old_ev['title']}'")
         except Exception as e:
             print(f"[WARN] Could not preserve previous curator reviews: {e}")
 

@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Registry of nomadic event producers, street festivals, and pop-up collectives in Vancouver with dynamic location mappings.",
+    "updatedAt": "2026-09-17T17:07:00-07:00"
+  },
+  "organizers": [
+    {
+      "id": "public-disco",
+      "name": "Public Disco Society",
+      "feedUrl": "https://publicdisco.ca/events",
+      "type": "nomadic",
+      "category": "music",
+      "categoryLabel": "Music & Concerts",
+      "categoryIcon": "🎵",
+      "defaultProvider": "Eventbrite / Public Disco",
+      "locationPatterns": {
+        "water street": {
+          "venueName": "Gastown (Water Street)",
+          "address": "Water St & Carrall St, Gastown, Vancouver",
+          "neighborhood": "Gastown / Chinatown",
+          "coordinates": [49.2838, -123.1093],
+          "transitInfo": "2 min walk from Waterfront SkyTrain (Expo, Millennium & Canada Lines)"
+        },
+        "granville street": {
+          "venueName": "Granville Street Pedestrian Zone",
+          "address": "Granville St & Robson St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [49.2808, -123.1205],
+          "transitInfo": "Directly outside Granville and Vancouver City Centre SkyTrain Stations"
+        },
+        "mount pleasant": {
+          "venueName": "Mount Pleasant (4th & Ontario)",
+          "address": "2114 Ontario St & E 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [49.2668, -123.1054],
+          "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)"
+        },
+        "4th & ontario": {
+          "venueName": "Mount Pleasant (4th & Ontario)",
+          "address": "2114 Ontario St & E 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [49.2668, -123.1054],
+          "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)"
+        },
+        "granville island": {
+          "venueName": "Granville Island (Lot 55)",
+          "address": "Lot 55 beneath Granville Bridge, Granville Island, Vancouver",
+          "neighborhood": "Granville Island",
+          "coordinates": [49.2711, -123.1347],
+          "transitInfo": "#50 False Creek bus or False Creek Ferries / Aquabus"
+        },
+        "city centre artist lodge": {
+          "venueName": "City Centre Artist Lodge",
+          "address": "2111 Main St, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [49.2662, -123.0978],
+          "transitInfo": "#8 Main bus directly to 5th Ave"
+        },
+        "shipyards": {
+          "venueName": "The Shipyards Waterfront",
+          "address": "125 Victory Ship Way, North Vancouver",
+          "neighborhood": "North Shore / Burnaby",
+          "coordinates": [49.3117, -123.0811],
+          "transitInfo": "SeaBus from Waterfront Station to Lonsdale Quay (2 min walk)"
+        },
+        "bentall centre": {
+          "venueName": "Bentall Centre Dunsmuir Plaza",
+          "address": "505 Burrard St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [49.2847, -123.1189],
+          "transitInfo": "Direct concourse connection at Burrard SkyTrain Station"
+        },
+        "birdhouse": {
+          "venueName": "The Birdhouse",
+          "address": "44 W 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [49.2675, -123.1065],
+          "transitInfo": "Olympic Village SkyTrain (7 min walk) or #84 UBC bus"
+        },
+        "downtown": {
+          "venueName": "Downtown Vancouver Plazas",
+          "address": "Granville St & Georgia St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [49.2831, -123.1165],
+          "transitInfo": "Granville or Vancouver City Centre SkyTrain Station"
+        }
+      }
+    },
+    {
+      "id": "car-free-vancouver",
+      "name": "Car Free Vancouver Society",
+      "feedUrl": "https://www.carfreevancouver.org",
+      "type": "nomadic",
+      "category": "social",
+      "categoryLabel": "Street Festivals",
+      "categoryIcon": "🌟",
+      "defaultProvider": "Free Public Access",
+      "locationPatterns": {
+        "commercial drive": {
+          "venueName": "Commercial Drive (Grandview to 1st)",
+          "address": "Commercial Drive from N Grandview to 1st Ave, Vancouver",
+          "neighborhood": "Commercial Drive",
+          "coordinates": [49.2715, -123.0694],
+          "transitInfo": "Commercial-Broadway SkyTrain Station (Expo & Millennium lines)"
+        },
+        "main street": {
+          "venueName": "Main Street (10th to 30th Ave)",
+          "address": "Main St from 10th Ave to 30th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [49.2608, -123.1012],
+          "transitInfo": "#8 Main or #9 / 99 B-Line Broadway bus"
+        }
+      }
+    },
+    {
+      "id": "khatsahlano",
+      "name": "Khatsahlano Street Party",
+      "feedUrl": "https://khatsahlano.ca",
+      "type": "nomadic",
+      "category": "music",
+      "categoryLabel": "Street Festivals",
+      "categoryIcon": "🌟",
+      "defaultProvider": "Free Public Access",
+      "locationPatterns": {
+        "west 4th": {
+          "venueName": "West 4th Avenue (Burrard to Macdonald)",
+          "address": "West 4th Ave from Burrard St to Macdonald St, Vancouver",
+          "neighborhood": "Kitsilano",
+          "coordinates": [49.2683, -123.1610],
+          "transitInfo": "#4 or #7 bus directly along 4th Ave from Downtown"
+        }
+      }
+    }
+  ]
+}

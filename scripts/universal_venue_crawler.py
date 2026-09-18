@@ -41,7 +41,9 @@ TICKETING_DOMAINS = [
     'axs.com',
     'playmor.music',
     'orangetickets.ca',
-    'tickets.com'
+    'tickets.com',
+    'opendate.io',
+    'feverup.com'
 ]
 
 class UniversalVenueCrawler:
@@ -281,7 +283,7 @@ class UniversalVenueCrawler:
                 continue
 
             # Check for direct outbound ticket button or Sold Out badge in scope
-            outbound_ticket_url = None
+            outbound_ticket_url = full_url if is_ticket_domain else None
             internal_subpage_url = full_url if is_internal_event else None
             is_sold_out = False
             for btn in scope.find_all('a', href=True):
@@ -290,14 +292,15 @@ class UniversalVenueCrawler:
                 b_text = btn.get_text(strip=True).lower()
                 if 'sold out' in b_text:
                     is_sold_out = True
-                if any(td in b_domain for td in TICKETING_DOMAINS):
-                    outbound_ticket_url = b_href
-                elif not any(td in b_domain for td in TICKETING_DOMAINS) and bool(re.search(r'/(?:events|event|shows|show|show_listings)/[a-z0-9\-]+', urlparse(b_href).path.lower())):
-                    if not internal_subpage_url:
-                        internal_subpage_url = b_href
-                elif any(k in b_text for k in ['ticket', 'buy', 'rsvp', 'sold out']):
-                    if b_href != calendar_url and not b_href.endswith('#'):
+                if not is_ticket_domain:
+                    if any(td in b_domain for td in TICKETING_DOMAINS):
                         outbound_ticket_url = b_href
+                    elif not any(td in b_domain for td in TICKETING_DOMAINS) and bool(re.search(r'/(?:events|event|shows|show|show_listings)/[a-z0-9\-]+', urlparse(b_href).path.lower())):
+                        if not internal_subpage_url:
+                            internal_subpage_url = b_href
+                    elif any(k in b_text for k in ['ticket', 'buy', 'rsvp', 'sold out']):
+                        if b_href != calendar_url and not b_href.endswith('#'):
+                            outbound_ticket_url = b_href
 
             effective_ticket_url = outbound_ticket_url or full_url
             effective_is_internal = is_internal_event and not bool(outbound_ticket_url) and not is_ticket_domain

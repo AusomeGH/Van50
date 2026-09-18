@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-13T15:34:51-07:00",
+    "updatedAt": "2026-09-17T17:15:04-07:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 8
+    "totalArchived": 31
   },
   "archivedEvents": [
     {
@@ -410,7 +410,7 @@
       "category": "trivia",
       "frequency": "weekly",
       "frequencyLabel": "Weekly (Tuesdays)",
-      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
+      "dateSchedule": "Weekly on Tuesdays \u2022 7:30 PM - 9:30 PM",
       "daysOfWeek": [
         "tue"
       ],
@@ -420,6 +420,308 @@
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
       "archivedReason": "Dismissed by curator",
       "archivedAt": "2026-09-14T17:05:28.008127"
+    },
+    {
+      "id": "rickshaw-theatre-elder",
+      "title": "Elder",
+      "venue": "Rickshaw Theatre",
+      "address": "254 E Hastings St, Vancouver, BC",
+      "neighborhood": "Gastown / Chinatown",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2234",
+      "category": "music",
+      "flaggedAt": "2026-09-15T14:27:45-07:00",
+      "flagReason": "Could not dynamically verify live checkout pricing on host page: https://orangetickets.ca/detalles_evento.php?id_evento=2234",
+      "reviewStatus": "pending_manual_review",
+      "archivedReason": "Dismissed by curator",
+      "archivedAt": "2026-09-15T14:35:12.888807"
+    },
+    {
+      "id": "slice-of-life-craft-night",
+      "title": "Community Craft & Printmaking Night at Slice of Life",
+      "venue": "Slice of Life Gallery & Studios",
+      "address": "1636 Venables St, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "attemptedPrice": 18.0,
+      "attemptedPriceLabel": "$18.00 door",
+      "provider": "Direct Studio Drop-In / Walk-in",
+      "semanticProvider": "Studio Booking / Walk-in",
+      "websiteUrl": "https://www.slicevancouver.ca/shop",
+      "category": "crafts",
+      "flaggedAt": "2026-09-15T14:27:13-07:00",
+      "flagReason": "Generic Link: Generic catalog index path ('/shop') without specific event slug: https://www.slicevancouver.ca/shop. Autonomous Hunter could not locate a specific event checkout page.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
+      "archivedReason": "Dismissed by curator",
+      "archivedAt": "2026-09-15T14:38:49.991091"
+    },
+    {
+      "id": "unverified-eastside-cinema",
+      "title": "Eastside Cinema Club: Unverified Community Screening",
+      "venue": "Eastside Community Hall",
+      "address": "1200 Commercial Dr, Vancouver",
+      "neighborhood": "Commercial Drive",
+      "attemptedPrice": 15.0,
+      "attemptedPriceLabel": "$15.00 door",
+      "provider": "Independent Box Office",
+      "semanticProvider": "Showpass Verified",
+      "websiteUrl": "https://eastsidecinemaclub.example.com/tickets",
+      "category": "music",
+      "flaggedAt": "2026-09-15T14:27:05-07:00",
+      "flagReason": "Generic Link: Generic catalog index path ('/tickets') without specific event slug: https://eastsidecinemaclub.example.com/tickets. Autonomous Hunter could not locate a specific event checkout page.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
+      "archivedReason": "Dismissed by curator",
+      "archivedAt": "2026-09-15T14:39:21.236012"
+    },
+    {
+      "id": "lanalous-the-jolts",
+      "title": "Weekend Live Rock 'n' Roll at LanaLou's",
+      "venue": "LanaLou's",
+      "address": "362 Powell St, Vancouver",
+      "neighborhood": "Gastown / Chinatown",
+      "attemptedPrice": 12.0,
+      "attemptedPriceLabel": "$12.00 door",
+      "provider": "Box Office / Direct",
+      "semanticProvider": "Venue Door / Table Charge",
+      "websiteUrl": "https://lanalous.com",
+      "category": "music",
+      "flaggedAt": "2026-09-15T14:26:52-07:00",
+      "flagReason": "Generic Link: Bare root homepage without event path: https://lanalous.com. Autonomous Hunter could not locate a specific event checkout page.",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
+      "archivedAt": "2026-09-17T01:58:07.523768+00:00",
+      "archivedReason": "Dismissed with AI instruction: You can check this venue for events, however I don't want it prompted to enter the list until the website actually works",
+      "curatorInstructionId": "inst_1789610287491"
+    },
+    {
+      "id": "red-gate-dead-soft",
+      "title": "Friday Night Live Indie & Underground at Red Gate",
+      "venue": "Red Gate Arts Society",
+      "address": "1151 E Hastings St, Vancouver",
+      "neighborhood": "Gastown / Chinatown",
+      "attemptedPrice": 12.0,
+      "attemptedPriceLabel": "$12.00 door",
+      "provider": "Box Office / Direct",
+      "semanticProvider": "Venue Door / Table Charge",
+      "websiteUrl": "https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
+      "category": "music",
+      "flaggedAt": "2026-09-15T14:26:51-07:00",
+      "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.paypal.com/ncp/payment/RAFCQGNTM489G",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "archivedAt": "2026-09-17T01:59:31.656455+00:00",
+      "archivedReason": "Dismissed with AI instruction: The link is to a paypal account, not the event page",
+      "curatorInstructionId": "inst_1789610371624"
+    },
+    {
+      "id": "hollywood-theatre-aldous-harding",
+      "title": "ALDOUS HARDING",
+      "venue": "Hollywood Theatre",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "venueAliases": [
+        "The Hollywood Theatre",
+        "Hollywood Theatre Vancouver"
+      ],
+      "address": "3123 W Broadway, Vancouver, BC",
+      "neighborhood": "Kitsilano",
+      "coordinates": [
+        49.2642,
+        -123.1754
+      ],
+      "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
+      "basePrice": 20.0,
+      "scrapedBasePrice": null,
+      "venueSubpageUrl": "https://hollywoodtheatre.ca/events/aldous-harding",
+      "websiteUrl": "https://www.ticketweb.ca/event/aldous-harding-hollywood-theatre-tickets/14012894?pl=timbre21",
+      "venueUrl": "https://hollywoodtheatre.ca",
+      "category": "shows",
+      "categoryLabel": "Shows & Music",
+      "categoryIcon": "\ud83c\udfad",
+      "subTags": [
+        "hollywood-theatre",
+        "shows",
+        "live-calendar"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "Live Showcase",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "dateSchedule": "Sep 25, 2026",
+      "startIso": "2026-09-25T19:30:00-07:00",
+      "endIso": null,
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "isDaily": false,
+      "isSoldOut": true,
+      "description": "Find tickets for Aldous Harding, Sam Burton showing at the Hollywood Theatre - Vancouver, CA Friday Sep 25, 6:30PM",
+      "price": 0.0,
+      "priceLabel": "Sold Out",
+      "tiers": [],
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "schema_jsonld",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Event marked Sold Out on TicketWeb",
+        "verifiedAt": "2026-09-15T14:27:39-07:00",
+        "details": "Live TicketWeb listing confirmed sold out on https://www.ticketweb.ca/event/aldous-harding-hollywood-theatre-tickets/14012894?pl=timbre21."
+      },
+      "isFree": true,
+      "scrapedDescription": "Find tickets for Aldous Harding, Sam Burton showing at the Hollywood Theatre - Vancouver, CA Friday Sep 25, 6:30PM",
+      "ticketProvider": "Ticketweb Verified",
+      "archivedAt": "2026-09-17T17:11:29.734560+00:00",
+      "reason": "Excluded: Status verified as Sold Out on primary ticketing platform.",
+      "reviewStatus": "archived_guardrail_violation"
+    },
+    {
+      "id": "hollywood-theatre-perfume-genius-duo",
+      "title": "PERFUME GENIUS (DUO)",
+      "venue": "Hollywood Theatre",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "venueAliases": [
+        "The Hollywood Theatre",
+        "Hollywood Theatre Vancouver"
+      ],
+      "address": "3123 W Broadway, Vancouver, BC",
+      "neighborhood": "Kitsilano",
+      "coordinates": [
+        49.2642,
+        -123.1754
+      ],
+      "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
+      "basePrice": 20.0,
+      "scrapedBasePrice": null,
+      "venueSubpageUrl": "https://hollywoodtheatre.ca/events/perfume-genius-duo",
+      "websiteUrl": "https://app.opendate.io/e/perfume-genius-duo-september-27-2026-682697",
+      "venueUrl": "https://hollywoodtheatre.ca",
+      "category": "shows",
+      "categoryLabel": "Shows & Music",
+      "categoryIcon": "\ud83c\udfad",
+      "subTags": [
+        "hollywood-theatre",
+        "shows",
+        "live-calendar"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "Live Showcase",
+      "daysOfWeek": [
+        "sun"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "dateSchedule": "Sep 27, 2026",
+      "startIso": "2026-09-27T19:30:00-07:00",
+      "endIso": null,
+      "confirmedDates": [
+        "2026-09-27"
+      ],
+      "isDaily": false,
+      "isSoldOut": false,
+      "description": "HOLLYWOOD THEATRE PRESENTS...",
+      "price": 50.0,
+      "priceLabel": "$50.00 advance (USD)",
+      "tiers": [
+        {
+          "name": "General Admission",
+          "price": 50.0
+        }
+      ],
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "universal_schema_jsonld",
+        "verifiedTotal": 50.0,
+        "feeBreakdown": "Published via Schema.org structured event data (USD)",
+        "verifiedAt": "2026-09-15T14:27:41-07:00",
+        "details": "Dynamically extracted from Schema.org JSON-LD metadata on https://app.opendate.io/e/perfume-genius-duo-september-27-2026-682697."
+      },
+      "isFree": false,
+      "ticketProvider": "Hollywood Theatre Verified",
+      "archivedAt": "2026-09-17T17:11:29.734560+00:00",
+      "reason": "Excluded: Listed in USD ($50.00 USD ~ $68.00 CAD), exceeding the $50.00 CAD ceiling.",
+      "reviewStatus": "archived_guardrail_violation"
+    },
+    {
+      "id": "rickshaw-theatre-the-rasmus",
+      "title": "The Rasmus",
+      "venue": "Rickshaw Theatre",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "venueAliases": [
+        "The Rickshaw Theatre",
+        "Rickshaw"
+      ],
+      "address": "254 E Hastings St, Vancouver, BC",
+      "neighborhood": "Gastown / Chinatown",
+      "coordinates": [
+        49.2811,
+        -123.0984
+      ],
+      "transitInfo": "#14, #16, or #20 bus along E Hastings St to Main St",
+      "basePrice": 20.0,
+      "scrapedBasePrice": null,
+      "venueSubpageUrl": null,
+      "websiteUrl": "https://www.ticketmaster.ca/event/110064E68DD33560",
+      "venueUrl": "https://rickshawtheatre.com",
+      "category": "music",
+      "categoryLabel": "Shows & Music",
+      "categoryIcon": "\ud83c\udfb5",
+      "subTags": [
+        "rickshaw-theatre",
+        "music",
+        "live-calendar"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "Live Showcase",
+      "daysOfWeek": [
+        "sun"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "dateSchedule": "Oct 4, 2026",
+      "startIso": "2026-10-04T19:30:00-07:00",
+      "endIso": null,
+      "confirmedDates": [
+        "2026-10-04"
+      ],
+      "isDaily": false,
+      "isSoldOut": false,
+      "description": "Live scheduled programming at Rickshaw Theatre.",
+      "price": 48.95,
+      "priceLabel": "$48.95 all-in ($37.50 + fees/tax)",
+      "tiers": [
+        {
+          "name": "General Admission",
+          "price": 48.95
+        }
+      ],
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_rate_formula",
+        "verifiedTotal": 48.95,
+        "feeBreakdown": "$37.50 base rate published on Rickshaw Theatre + $9.12 Ticketmaster fee + $2.33 GST",
+        "verifiedAt": "2026-09-15T14:27:57-07:00",
+        "details": "Base admission rate verified from https://rickshawtheatre.com/show_listings/the-rasmus/ with official Ticketmaster BC fee schedule."
+      },
+      "isFree": false,
+      "ticketProvider": "Rickshaw Theatre Verified",
+      "archivedAt": "2026-09-17T17:11:29.734560+00:00",
+      "reason": "Excluded per curator instruction: Ticketmaster live checkout with facility/service fees exceeds $50.00 CAD limit.",
+      "reviewStatus": "archived_guardrail_violation"
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "automationEnabled": true,
+  "lastRunAt": "2026-09-17T17:17:22.630940",
+  "nextRunAt": "2026-09-18T04:00:00",
+  "totalEvents": 77,
+  "quarantinedCount": 18,
+  "testKey": "automation_unit_test",
+  "testTimestamp": "2026-09-17T17:15:07.313028",
+  "updatedAt": "2026-09-17T17:17:22.638027",
+  "currentStep": "idle",
+  "startedAt": "2026-09-17T17:14:57.889998",
+  "durationSeconds": 144.75,
+  "backupFile": "events_2026-09-17_171457.json",
+  "lastLogFile": "data/automation_logs/daily_sync_2026-09-17.log"
+}

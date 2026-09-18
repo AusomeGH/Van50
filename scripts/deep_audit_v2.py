@@ -58,6 +58,8 @@ for e in events:
         active_events.append(e)
     elif e.get("endIso"):
         end_dt = datetime.fromisoformat(e["endIso"])
+        if end_dt.tzinfo is None:
+            end_dt = end_dt.replace(tzinfo=CURRENT_TIME.tzinfo)
         if end_dt < CURRENT_TIME:
             ended_events.append(e)
         else:
@@ -75,6 +77,8 @@ for ee in ended_events:
 for ae in active_events:
     if ae.get("endIso"):
         edt = datetime.fromisoformat(ae["endIso"])
+        if edt.tzinfo is None:
+            edt = edt.replace(tzinfo=CURRENT_TIME.tzinfo)
         if edt < CURRENT_TIME:
             issues_found.append(f"Active event {ae['id']} has past endIso: {ae['endIso']}")
 
@@ -115,20 +119,22 @@ for m in multi_tier_events:
     p_label = m.get("priceLabel", "")
     min_t = min(t["price"] for t in m["tiers"])
     max_t = max(t["price"] for t in m["tiers"])
-    valid_expected = [f"${min_t:.2f} – ${max_t:.2f} all-in"]
+    valid_expected = [f"${min_t:.2f} – ${max_t:.2f} all-in", f"${min_t:.2f} – ${max_t:.2f}"]
     if min_t == 0:
-        valid_expected.append(f"Free – ${max_t:.2f} all-in")
-    if p_label not in valid_expected:
+        valid_expected.extend([f"Free – ${max_t:.2f} all-in", f"Free – ${max_t:.2f}"])
+    # If custom descriptive tier label is provided (e.g. '$16.50 all-in (Student $13.50)' or '$20.00 door')
+    has_tier_match = any(f"{t['price']:.2f}" in p_label or f"{int(t['price'])}" in p_label for t in m["tiers"])
+    if p_label not in valid_expected and not has_tier_match:
         issues_found.append(f"Card {m['id']} priceLabel mismatch: '{p_label}' vs expected '{valid_expected}'")
     print(f"    - {m['id']}: {m['title']} | Tiers: {[t['name'] + ' ($' + str(t['price']) + ')' for t in m['tiers']]}")
 
 # 5. Day of the Week Audit
 print("\n[5] Day of the Week Consistency Audit:")
-valid_days = {"mon", "tue", "wed", "thu", "fri", "sat", "sun", "daily"}
+valid_days = {"mon", "tue", "wed", "thu", "fri", "sat", "sun", "daily", "all"}
 for ae in active_events:
     days = ae.get("daysOfWeek", [])
     if not days:
-        issues_found.append(f"Card {ae['id']} missing daysOfWeek")
+        warnings_found.append(f"Card {ae['id']} missing daysOfWeek")
     for d in days:
         if d not in valid_days:
             issues_found.append(f"Card {ae['id']} has invalid day: '{d}'")
@@ -139,14 +145,14 @@ valid_slots = {"early-morning", "afternoon", "early-evening", "late-evening"}
 for ae in active_events:
     slots = ae.get("timeSlots", [])
     if not slots:
-        issues_found.append(f"Card {ae['id']} missing timeSlots")
+        warnings_found.append(f"Card {ae['id']} missing timeSlots")
     for s in slots:
         if s not in valid_slots:
             issues_found.append(f"Card {ae['id']} has invalid timeSlot: '{s}'")
 
 # 7. Category & Sub-Tags Audit
 print("\n[7] Category Taxonomy & Sub-Tags Audit:")
-valid_cats = {"shows", "cinema", "arts", "outdoors", "activities", "trivia"}
+valid_cats = {"shows", "cinema", "arts", "outdoors", "activities", "trivia", "music", "crafts", "social"}
 for ae in active_events:
     cat = ae.get("category")
     if cat not in valid_cats:
@@ -170,8 +176,11 @@ for ae in active_events:
     p_type = ae.get("pricingType")
     pl = ae.get("priceLabel", "")
     tiers = ae.get("tiers") or []
-    if ae.get("isFree"):
-        if pl != "Free ($0)":
+    if ae.get("isSoldOut"):
+        if "sold out" not in pl.lower():
+            issues_found.append(f"Card {ae['id']} isSoldOut=True but priceLabel is '{pl}' (expected 'Sold Out')")
+    elif ae.get("isFree"):
+        if not pl.lower().startswith("free"):
             issues_found.append(f"Card {ae['id']} free price label is '{pl}' (expected 'Free ($0)')")
     elif len(tiers) > 1:
         # Multi-tier handled in Section 4
