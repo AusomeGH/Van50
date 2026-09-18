@@ -2537,9 +2537,41 @@ def run_sync() -> bool:
         item = DynamicEnricher.enrich_event(item)
 
         provider = item['provider']
+        freq = item.get('frequency', 'one-off')
+        cat = item.get('category', 'shows')
+        raw_url = item.get('websiteUrl', '').strip()
+
+        semantic_provider = item.get('semanticProvider')
+        if not semantic_provider:
+            if "ticketweb.ca" in raw_url or "ticketweb.com" in raw_url or provider == "TicketWeb":
+                semantic_provider = "TicketWeb Verified"
+            elif "dice.fm" in raw_url or provider == "DICE":
+                semantic_provider = "DICE Verified"
+            elif "shotgun.live" in raw_url or provider == "Shotgun":
+                semantic_provider = "Shotgun Verified"
+            elif "spektrix" in raw_url or "thecultch.com" in raw_url or provider == "Spektrix":
+                semantic_provider = "Spektrix Verified"
+            elif "vancouversymphony.ca" in raw_url or "artsclub.com" in raw_url or provider == "Tessitura":
+                semantic_provider = "Tessitura Verified"
+            elif "tickettailor.com" in raw_url or "buytickets.at" in raw_url or provider == "Ticket Tailor":
+                semantic_provider = "Ticket Tailor Verified"
+            elif "zeffy.com" in raw_url or provider == "Zeffy":
+                semantic_provider = "Zeffy Verified"
+            elif "humanitix.com" in raw_url or provider == "Humanitix":
+                semantic_provider = "Humanitix Verified"
+            elif "universe.com" in raw_url or provider == "Universe":
+                semantic_provider = "Universe Verified"
+            elif "ticketmaster.ca" in raw_url or "ticketmaster.com" in raw_url or provider == "Ticketmaster":
+                semantic_provider = "Ticketmaster Verified"
+            elif "axs.com" in raw_url or provider == "AXS":
+                semantic_provider = "AXS Verified"
+            elif "vtix.com" in raw_url or "vtixonline.com" in raw_url or provider == "VTix":
+                semantic_provider = "VTix Verified"
+            else:
+                semantic_provider = provider
+        item['semanticProvider'] = semantic_provider
 
         # 1. Automated URL Normalization & Deep-Link Safeguard
-        raw_url = item.get('websiteUrl', '').strip()
         url = normalize_event_links(raw_url, item.get('venue', ''), item)
         if url != raw_url:
             print(f"[URL NORM] Deep link normalized for '{item['title']}': '{raw_url}' -> '{url}'")
@@ -2584,38 +2616,6 @@ def run_sync() -> bool:
             print(f"[REJECT] '{item['title']}' rejected: invalid ticket link.")
             rejected_count += 1
             continue
-
-        freq = item.get('frequency', 'one-off')
-        cat = item.get('category', 'shows')
-        semantic_provider = item.get('semanticProvider')
-        if not semantic_provider:
-            if "ticketweb.ca" in url or "ticketweb.com" in url or provider == "TicketWeb":
-                semantic_provider = "TicketWeb Verified"
-            elif "dice.fm" in url or provider == "DICE":
-                semantic_provider = "DICE Verified"
-            elif "shotgun.live" in url or provider == "Shotgun":
-                semantic_provider = "Shotgun Verified"
-            elif "spektrix" in url or "thecultch.com" in url or provider == "Spektrix":
-                semantic_provider = "Spektrix Verified"
-            elif "vancouversymphony.ca" in url or "artsclub.com" in url or provider == "Tessitura":
-                semantic_provider = "Tessitura Verified"
-            elif "tickettailor.com" in url or "buytickets.at" in url or provider == "Ticket Tailor":
-                semantic_provider = "Ticket Tailor Verified"
-            elif "zeffy.com" in url or provider == "Zeffy":
-                semantic_provider = "Zeffy Verified"
-            elif "humanitix.com" in url or provider == "Humanitix":
-                semantic_provider = "Humanitix Verified"
-            elif "universe.com" in url or provider == "Universe":
-                semantic_provider = "Universe Verified"
-            elif "ticketmaster.ca" in url or "ticketmaster.com" in url or provider == "Ticketmaster":
-                semantic_provider = "Ticketmaster Verified"
-            elif "axs.com" in url or provider == "AXS":
-                semantic_provider = "AXS Verified"
-            elif "vtix.com" in url or "vtixonline.com" in url or provider == "VTix":
-                semantic_provider = "VTix Verified"
-            else:
-                semantic_provider = provider
-        item['semanticProvider'] = semantic_provider
 
         # 0. Skip permanently dismissed or archived items
         learned = load_curator_learned_rules()

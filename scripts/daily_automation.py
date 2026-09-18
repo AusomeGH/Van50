@@ -6,14 +6,16 @@ all-in fee computations, link health audits, and catalog updates.
 Can run as a standalone one-off script, a background daemon, or via Windows Task Scheduler.
 """
 
+from __future__ import annotations
 import os
 import sys
 import json
 import time
 import shutil
 import argparse
+import traceback
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -140,7 +142,7 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
         sync_ok = sync_events.run_sync()
         log_message(f"[PIPELINE SYNC RESULT] sync_events.run_sync() returned: {sync_ok}", log_file_path)
     except Exception as e:
-        log_message(f"[PIPELINE ERROR] sync_events encountered exception: {e}", log_file_path)
+        log_message(f"[PIPELINE ERROR] sync_events encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
 
     # Step 3: Verify Catalog & Queue Metrics
     update_automation_status({"currentStep": "compiling_metrics"})

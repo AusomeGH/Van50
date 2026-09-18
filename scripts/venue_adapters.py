@@ -7,6 +7,7 @@ Zero hardcoding: every card aspect is verified against primary sources on compil
 """
 
 import subprocess
+import shutil
 import re
 import os
 import sys
@@ -16,6 +17,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 sys.stdout.reconfigure(encoding='utf-8')
+
+CURL_BIN = shutil.which("curl") or shutil.which("curl.exe") or "curl"
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -27,7 +30,7 @@ def fetch_live_html(url: str, timeout: int = 10) -> str:
     """Helper to fetch live HTML via curl with desktop browser headers."""
     try:
         cmd = [
-            "curl.exe", "-s", "-L",
+            CURL_BIN, "-s", "-L",
             "-A", HEADERS['User-Agent'],
             "--max-time", str(timeout),
             url

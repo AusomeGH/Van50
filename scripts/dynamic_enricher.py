@@ -8,6 +8,7 @@ Replaces hardcoded values with live, freshly-scraped metadata on each sync run:
 """
 
 import subprocess
+import shutil
 import re
 import os
 import sys
@@ -20,6 +21,8 @@ except ImportError:
     NomadicLocationResolver = None
 
 sys.stdout.reconfigure(encoding='utf-8')
+
+CURL_BIN = shutil.which("curl") or shutil.which("curl.exe") or "curl"
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -39,7 +42,7 @@ def fetch_html(url: str, timeout: int = 4) -> str:
         return ""
     try:
         cmd = [
-            "curl.exe", "-s", "-L",
+            CURL_BIN, "-s", "-L",
             "-H", f"User-Agent: {HEADERS['User-Agent']}",
             "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
             "-H", "Accept-Language: en-US,en;q=0.9",

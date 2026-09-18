@@ -41,8 +41,10 @@ def check_event(ev_tuple):
             if e.code in [403, 429]:
                 # Validate with native curl to check actual browser HTTP compatibility
                 import subprocess
+                import shutil
+                curl_bin = shutil.which("curl") or shutil.which("curl.exe") or "curl"
                 try:
-                    res = subprocess.run(['curl.exe', '-sI', '-m', '5', url], capture_output=True, text=True)
+                    res = subprocess.run([curl_bin, '-sI', '-m', '5', url], capture_output=True, text=True)
                     for line in res.stdout.splitlines():
                         if line.startswith('HTTP/'):
                             parts = line.split()
