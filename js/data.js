@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-17T17:17:22-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-17T17:30:17-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -5560,6 +5560,32 @@ const VANCOUVER_EVENTS = [
     },
     "isFree": false,
     "ticketProvider": "Rickshaw Theatre Verified"
+  },
+  {
+    "id": "test-qa-event-1789691416",
+    "title": "Dual Action Test Event",
+    "venue": "Rickshaw Theatre",
+    "price": 25.0,
+    "category": "shows",
+    "websiteUrl": "https://rickshawtheatre.com/test-event",
+    "curatorNote": "Curator verified door price",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "manual_curator_review",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
+      "verifiedAt": "2026-09-18T00:30:16.957768+00:00",
+      "details": "Approved by curator with AI instruction. Note: Curator verified door price",
+      "curatorSnapshot": {
+        "approvedPrice": 25.0,
+        "approvedPriceLabel": "$25.00 CAD",
+        "approvedCategory": "shows",
+        "curatorNote": "Curator verified door price",
+        "approvedAt": "2026-09-18T00:30:16.957790+00:00",
+        "sourceUrl": ""
+      }
+    },
+    "isSoldOut": false
   }
 ];
 const MANUAL_REVIEW_QUEUE = [

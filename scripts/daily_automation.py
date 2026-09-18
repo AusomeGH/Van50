@@ -113,7 +113,7 @@ def update_automation_status(status_payload: Dict[str, Any]):
         print(f"[STATUS WARN] Failed to write {STATUS_PATH}: {e}")
 
 
-def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00") -> Dict[str, Any]:
+def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", send_email: bool = False) -> Dict[str, Any]:
     """Executes the complete end-to-end daily synchronization & discovery cycle."""
     start_time = time.time()
     os.makedirs(LOGS_DIR, exist_ok=True)
@@ -181,6 +181,15 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00") -
     update_automation_status(result_summary)
     log_message(f"[PIPELINE COMPLETE] {total_events} active events verified, {quarantine_count} quarantined in {elapsed}s.", log_file_path)
     log_message(f"[NEXT SCHEDULED RUN] {next_run_dt.strftime('%Y-%m-%d %H:%M:%S')}", log_file_path)
+
+    # Step 4: Optional Email Notification Dispatch
+    if send_email or os.environ.get("SMTP_USERNAME"):
+        try:
+            from email_notifier import send_daily_status_email
+            send_daily_status_email(result_summary)
+        except Exception as e:
+            log_message(f"[EMAIL WARN] Could not send email notification: {e}", log_file_path)
+
     log_message("=== PIPELINE RUN FINISHED ===", log_file_path)
     
     return result_summary
@@ -226,15 +235,16 @@ if __name__ == "__main__":
     parser.add_argument("--daemon", action="store_true", help="Run as continuous background daemon scheduling daily runs")
     parser.add_argument("--target-time", type=str, default="04:00", help="Target daily execution time in HH:MM format (default: 04:00)")
     parser.add_argument("--dry-run", action="store_true", help="Simulate run without writing files")
+    parser.add_argument("--send-email", action="store_true", help="Send daily status report email via SMTP")
 
     args = parser.parse_args()
 
     if args.run_once:
-        res = run_full_daily_pipeline(dry_run=args.dry_run, run_at_time=args.target_time)
+        res = run_full_daily_pipeline(dry_run=args.dry_run, run_at_time=args.target_time, send_email=args.send_email)
         sys.exit(0 if res["status"] == "success" else 1)
     elif args.daemon:
         run_daemon_loop(target_time_str=args.target_time)
     else:
         # Default behavior: run once if called directly
-        res = run_full_daily_pipeline(dry_run=args.dry_run, run_at_time=args.target_time)
+        res = run_full_daily_pipeline(dry_run=args.dry_run, run_at_time=args.target_time, send_email=args.send_email)
         sys.exit(0 if res["status"] == "success" else 1)

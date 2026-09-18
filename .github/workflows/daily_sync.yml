@@ -27,9 +27,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 requests
 
-      - name: Run Van50 Daily Automation Pipeline
+      - name: Run Van50 Daily Automation Pipeline & Send Status Email
+        env:
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER || 'smtp.gmail.com' }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NOTIFICATION_EMAIL_TO: ${{ secrets.NOTIFICATION_EMAIL_TO }}
         run: |
-          python scripts/daily_automation.py --run-once
+          python scripts/daily_automation.py --run-once --send-email
 
       - name: Commit and push updated catalog
         run: |

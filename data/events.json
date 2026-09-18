@@ -2,12 +2,12 @@
   "metadata": {
     "version": "4.1.0",
     "appName": "Van50",
-    "updatedAt": "2026-09-17T17:17:22-07:00",
+    "updatedAt": "2026-09-18T00:30:16.961461+00:00",
     "region": "Vancouver, BC",
     "budgetLimit": 50.0,
     "currency": "CAD",
     "feeInclusive": true,
-    "totalEvents": 77,
+    "totalEvents": 78,
     "providersCount": 31,
     "discoverySourcesCount": 22,
     "quarantinedCount": 18
@@ -40,14 +40,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌊",
+      "categoryIcon": "\ud83c\udf0a",
       "subTags": [
         "seawall",
         "ocean-walk",
         "stanley-park",
         "sunset"
       ],
-      "dateSchedule": "Daily • Open 24/7 (Best at sunset)",
+      "dateSchedule": "Daily \u2022 Open 24/7 (Best at sunset)",
       "startIso": "2026-09-08T06:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -104,14 +104,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌲",
+      "categoryIcon": "\ud83c\udf32",
       "subTags": [
         "suspension-bridge",
         "rainforest",
         "twin-falls",
         "free-hike"
       ],
-      "dateSchedule": "Daily • 7:00 AM - 7:00 PM",
+      "dateSchedule": "Daily \u2022 7:00 AM - 7:00 PM",
       "startIso": "2026-09-08T07:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -168,14 +168,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "⛵",
+      "categoryIcon": "\u26f5",
       "subTags": [
         "public-market",
         "boardwalk",
         "buskers",
         "false-creek"
       ],
-      "dateSchedule": "Daily • 9:00 AM - 6:00 PM",
+      "dateSchedule": "Daily \u2022 9:00 AM - 6:00 PM",
       "startIso": "2026-09-08T09:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -195,7 +195,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "The Granville Island Public Market is the jewel in the Island’s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
+      "description": "The Granville Island Public Market is the jewel in the Island\u2019s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
@@ -232,14 +232,14 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "outdoor-theatre",
         "community-concert",
         "kits-beach",
         "live-music"
       ],
-      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
+      "dateSchedule": "Mon, Wed & Fri Evenings \u2022 7:00 PM - 9:00 PM",
       "startIso": "2026-09-09T19:00:00-07:00",
       "endIso": "2026-09-30T21:00:00-07:00",
       "confirmedDates": [],
@@ -296,14 +296,14 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏛️",
+      "categoryIcon": "\ud83c\udfdb\ufe0f",
       "subTags": [
         "architecture",
         "rooftop-terrace",
         "quiet-spot",
         "city-views"
       ],
-      "dateSchedule": "Monday - Sunday • 10:00 AM - 6:00 PM",
+      "dateSchedule": "Monday - Sunday \u2022 10:00 AM - 6:00 PM",
       "startIso": "2026-09-08T10:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -323,7 +323,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+      "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver\u2019s natural meeting place.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
@@ -359,14 +359,14 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏮",
+      "categoryIcon": "\ud83c\udfee",
       "subTags": [
         "ming-dynasty",
         "heritage-courtyard",
         "koi-pond",
         "chinatown"
       ],
-      "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
+      "dateSchedule": "Daily \u2022 9:30 AM - 4:30 PM",
       "startIso": "2026-09-08T09:30:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -423,14 +423,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌹",
+      "categoryIcon": "\ud83c\udf39",
       "subTags": [
         "rose-garden",
         "ocean-view",
         "ubc",
         "coastal-trail"
       ],
-      "dateSchedule": "Daily • Daylight hours (Best June - September)",
+      "dateSchedule": "Daily \u2022 Daylight hours (Best June - September)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -487,14 +487,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌺",
+      "categoryIcon": "\ud83c\udf3a",
       "subTags": [
         "quarry-garden",
         "panoramic-view",
         "cambie-corridor",
         "city-view"
       ],
-      "dateSchedule": "Daily • 6:00 AM - 10:00 PM",
+      "dateSchedule": "Daily \u2022 6:00 AM - 10:00 PM",
       "startIso": "2026-09-08T06:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -550,7 +550,7 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🦜",
+      "categoryIcon": "\ud83e\udd9c",
       "subTags": [
         "tickets",
         "botanical",
@@ -559,7 +559,7 @@
         "exotic-birds",
         "rainforest"
       ],
-      "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
+      "dateSchedule": "Daily \u2022 10:00 AM - 5:00 PM",
       "startIso": "2026-09-08T10:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -615,14 +615,14 @@
       ],
       "category": "activities",
       "categoryLabel": "Games & Activities",
-      "categoryIcon": "🦅",
+      "categoryIcon": "\ud83e\udd85",
       "subTags": [
         "varsity-sports",
         "basketball",
         "volleyball",
         "ubc-athletics"
       ],
-      "dateSchedule": "Friday & Saturday Evenings • 6:00 PM & 8:00 PM",
+      "dateSchedule": "Friday & Saturday Evenings \u2022 6:00 PM & 8:00 PM",
       "startIso": "2026-09-11T18:00:00-07:00",
       "endIso": "2027-03-31T22:00:00-07:00",
       "confirmedDates": [],
@@ -642,7 +642,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+      "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025\u201326 Season Information",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "scraped_page_policy",
@@ -682,7 +682,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "mental-health",
         "stand-up",
@@ -691,7 +691,7 @@
         "stand-up-for-mental-health-summer-class-debut",
         "stand-up-for-mental-health-summer-class-debut-tickets"
       ],
-      "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
+      "dateSchedule": "Tuesday, Sept 22 \u2022 7:30 PM",
       "startIso": "2026-09-22T19:30:00-07:00",
       "endIso": "2026-09-22T21:30:00-07:00",
       "confirmedDates": [],
@@ -746,14 +746,14 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "stand-up",
         "comedy-lab",
         "open-mic",
         "gastown"
       ],
-      "dateSchedule": "Wednesdays • 7:30 PM",
+      "dateSchedule": "Wednesdays \u2022 7:30 PM",
       "startIso": "2026-09-09T19:30:00-07:00",
       "endIso": "2026-12-31T21:30:00-07:00",
       "confirmedDates": [],
@@ -794,7 +794,7 @@
       "address": "1181 Seymour St, Vancouver",
       "neighborhood": "Downtown / West End",
       "price": 16.5,
-      "priceLabel": "$13.50 – $16.50 all-in",
+      "priceLabel": "$13.50 \u2013 $16.50 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -836,14 +836,14 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "subTags": [
         "indie-film",
         "international-cinema",
         "viff",
         "matinee"
       ],
-      "dateSchedule": "Daily • Afternoon & Evening Screenings",
+      "dateSchedule": "Daily \u2022 Afternoon & Evening Screenings",
       "startIso": "2026-09-08T13:30:00-07:00",
       "endIso": "2026-12-31T18:00:00-07:00",
       "confirmedDates": [],
@@ -883,7 +883,7 @@
       "address": "1131 Howe St, Vancouver",
       "neighborhood": "Downtown / West End",
       "price": 15.0,
-      "priceLabel": "$11.00 – $15.00 all-in",
+      "priceLabel": "$11.00 \u2013 $15.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -908,7 +908,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Wednesday – Monday",
+      "frequencyLabel": "Wednesday \u2013 Monday",
       "daysOfWeek": [
         "mon",
         "tue",
@@ -925,7 +925,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "subTags": [
         "film-history",
         "35mm",
@@ -934,7 +934,7 @@
         "cinematheque",
         "vancouver"
       ],
-      "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
+      "dateSchedule": "Wednesday \u2013 Monday \u2022 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
       "startIso": "2026-09-09T18:30:00-07:00",
       "endIso": "2026-12-31T23:00:00-07:00",
       "confirmedDates": [],
@@ -954,7 +954,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+      "description": "The Cin\u00ade\u00admath\u00adeque, found\u00aded in 1972, is a film insti\u00adtute and media edu\u00adca\u00adtion cen\u00adtre devot\u00aded to under\u00adstand\u00ading the art and his\u00adto\u00adry of Cana\u00addi\u00adan and inter\u00adna\u00adtion\u00adal cin\u00ade\u00adma and the impact of mov\u00ading images and screen-based media in our lives.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -989,14 +989,14 @@
       ],
       "category": "trivia",
       "categoryLabel": "Drinks & Trivia",
-      "categoryIcon": "🧠",
+      "categoryIcon": "\ud83e\udde0",
       "subTags": [
         "pub-trivia",
         "craft-beer",
         "gastown-pub",
         "trivia-night"
       ],
-      "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
+      "dateSchedule": "Tuesdays \u2022 7:30 PM (Teams of 1-6)",
       "startIso": "2026-09-08T19:30:00-07:00",
       "endIso": "2026-12-31T22:00:00-07:00",
       "confirmedDates": [],
@@ -1036,7 +1036,7 @@
       "address": "1660 E Broadway, Vancouver",
       "neighborhood": "Commercial Drive",
       "price": 16.0,
-      "priceLabel": "$13.00 – $16.00 all-in",
+      "priceLabel": "$13.00 \u2013 $16.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1072,14 +1072,14 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🍿",
+      "categoryIcon": "\ud83c\udf7f",
       "subTags": [
         "vhs-gems",
         "live-comedy",
         "indie-theatre",
         "cult-cinema"
       ],
-      "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
+      "dateSchedule": "Daily \u2022 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
       "startIso": "2026-09-09T19:30:00-07:00",
       "endIso": "2026-09-09T22:00:00-07:00",
       "confirmedDates": [],
@@ -1139,7 +1139,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "subTags": [
         "projection-room",
         "fox-cabaret",
@@ -1148,7 +1148,7 @@
         "indie-film",
         "eventbrite"
       ],
-      "dateSchedule": "Friday, Sept 18 • 7:00 PM (Doors 6:30 PM)",
+      "dateSchedule": "Friday, Sept 18 \u2022 7:00 PM (Doors 6:30 PM)",
       "startIso": "2026-09-18T19:00:00-07:00",
       "endIso": "2026-09-18T21:30:00-07:00",
       "confirmedDates": [],
@@ -1161,7 +1161,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
       "organizer": null,
       "isRoving": false,
       "editionVenue": null,
@@ -1201,7 +1201,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Thursdays – Saturdays",
+      "frequencyLabel": "Thursdays \u2013 Saturdays",
       "daysOfWeek": [
         "thu",
         "fri",
@@ -1213,14 +1213,14 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "indie-folk",
         "live-band",
         "biltmore",
         "concert"
       ],
-      "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
+      "dateSchedule": "Thursday \u2013 Saturday \u2022 Doors 7:00 PM (Dance Nights 10:30 PM)",
       "startIso": "2026-10-17T19:00:00-07:00",
       "endIso": "2026-10-17T23:00:00-07:00",
       "confirmedDates": [],
@@ -1260,7 +1260,7 @@
       "address": "2321 Main St, Vancouver",
       "neighborhood": "Mount Pleasant",
       "price": 15.0,
-      "priceLabel": "$18.50 – $20.00 all-in",
+      "priceLabel": "$18.50 \u2013 $20.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1289,7 +1289,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "ultimate-90s-night-tickets",
         "dance-party",
@@ -1298,7 +1298,7 @@
         "ultimate-90s-night",
         "ultimate-90s-night-vancouver"
       ],
-      "dateSchedule": "Fridays & Saturdays • 10:30 PM – 2:00 AM",
+      "dateSchedule": "Fridays & Saturdays \u2022 10:30 PM \u2013 2:00 AM",
       "startIso": "2026-09-12T22:30:00-07:00",
       "endIso": "2026-12-31T02:00:00-07:00",
       "confirmedDates": [],
@@ -1358,7 +1358,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "puff-the-magic-improv-show-sept-26-2026",
         "puff-the-magic-improv-show-sept-26-2026-tickets",
@@ -1367,7 +1367,7 @@
         "improv",
         "revue-stage"
       ],
-      "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
+      "dateSchedule": "Saturday, Sept 26 \u2022 8:00 PM (Doors 7:30 PM)",
       "startIso": "2026-09-26T20:00:00-07:00",
       "endIso": "2026-09-26T22:00:00-07:00",
       "confirmedDates": [],
@@ -1427,7 +1427,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "alistair-ogden-live-at-the-rio-theatre-tickets",
         "rio-theatre",
@@ -1436,7 +1436,7 @@
         "alistair-ogden-live-at-the-rio-theatre-vancouver",
         "alistair-ogden-live-at-the-rio-theatre"
       ],
-      "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
+      "dateSchedule": "Friday, Dec 4 \u2022 7:30 PM (Doors 6:30 PM)",
       "startIso": "2026-12-04T19:30:00-07:00",
       "endIso": "2026-12-04T22:00:00-07:00",
       "confirmedDates": [],
@@ -1476,7 +1476,7 @@
       "address": "1502 Duranleau St, Vancouver",
       "neighborhood": "Granville Island",
       "price": 30.0,
-      "priceLabel": "$23.50 – $28.50 all-in",
+      "priceLabel": "$23.50 \u2013 $28.50 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1495,7 +1495,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Wednesdays – Sundays",
+      "frequencyLabel": "Wednesdays \u2013 Sundays",
       "daysOfWeek": [
         "wed",
         "thu",
@@ -1509,7 +1509,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "theatresports",
         "comedy-show",
@@ -1518,7 +1518,7 @@
         "waterfront-theatre",
         "improv-comedy"
       ],
-      "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
+      "dateSchedule": "Wednesday \u2013 Sunday \u2022 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
       "startIso": "2026-09-11T19:30:00-07:00",
       "endIso": "2026-12-31T23:00:00-07:00",
       "confirmedDates": [],
@@ -1538,7 +1538,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Check out The Improv Centre’s hilarious comedy shows! Our bar and lounge opens 1 hour before first showtime, unless otherwise specified. Shows run 90 minutes long and include a 15-minute intermission, unless otherwise specified.As we are a licensed facility, people under the age of 19 are...",
+      "description": "Check out The Improv Centre\u2019s hilarious comedy shows! Our bar and lounge opens 1 hour before first showtime, unless otherwise specified. Shows run 90 minutes long and include a 15-minute intermission, unless otherwise specified.As we are a licensed facility, people under the age of 19 are...",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "manual_curator_review",
@@ -1566,7 +1566,7 @@
       "address": "254 E Hastings St, Vancouver",
       "neighborhood": "Gastown / Chinatown",
       "price": 40.0,
-      "priceLabel": "$26.50 – $48.30 all-in",
+      "priceLabel": "$26.50 \u2013 $48.30 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1605,14 +1605,14 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "heavy-metal",
         "rickshaw",
         "live-concert",
         "headliner"
       ],
-      "dateSchedule": "Weekly Shows • Doors 7:00 PM • Show 8:00 PM",
+      "dateSchedule": "Weekly Shows \u2022 Doors 7:00 PM \u2022 Show 8:00 PM",
       "startIso": "2026-11-15T18:00:00-07:00",
       "endIso": "2026-11-15T23:00:00-07:00",
       "confirmedDates": [],
@@ -1632,7 +1632,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Vancouver's premier iconic heritage rock, punk, and heavy metal hall in the historic Downtown Eastside. Strictly verified for ≤ $50 CAD out-of-pocket checkout totals.",
+      "description": "Vancouver's premier iconic heritage rock, punk, and heavy metal hall in the historic Downtown Eastside. Strictly verified for \u2264 $50 CAD out-of-pocket checkout totals.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "regex_scraped",
@@ -1668,14 +1668,14 @@
       ],
       "category": "activities",
       "categoryLabel": "Games & Activities",
-      "categoryIcon": "🧪",
+      "categoryIcon": "\ud83e\uddea",
       "subTags": [
         "19-plus",
         "geodesic-dome",
         "adult-science",
         "cocktails"
       ],
-      "dateSchedule": "Third Thursday of Month • 6:00 PM - 10:00 PM",
+      "dateSchedule": "Third Thursday of Month \u2022 6:00 PM - 10:00 PM",
       "startIso": "2026-09-17T18:00:00-07:00",
       "endIso": "2026-09-17T22:00:00-07:00",
       "confirmedDates": [],
@@ -1723,7 +1723,7 @@
       "address": "601 Smithe St, Vancouver",
       "neighborhood": "Downtown / West End",
       "price": 25.2,
-      "priceLabel": "$15.75 – $25.20 all-in",
+      "priceLabel": "$15.75 \u2013 $25.20 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1750,7 +1750,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "symphony",
         "orpheum",
@@ -1758,7 +1758,7 @@
         "under-35",
         "vso"
       ],
-      "dateSchedule": "Select Weekend Evenings • 8:00 PM",
+      "dateSchedule": "Select Weekend Evenings \u2022 8:00 PM",
       "startIso": "2026-09-19T20:00:00-07:00",
       "endIso": "2027-05-31T22:30:00-07:00",
       "confirmedDates": [],
@@ -1815,14 +1815,14 @@
       ],
       "category": "activities",
       "categoryLabel": "Games & Activities",
-      "categoryIcon": "🎲",
+      "categoryIcon": "\ud83c\udfb2",
       "subTags": [
         "board-games",
         "tabletop",
         "wood-fired-pizza",
         "craft-beer"
       ],
-      "dateSchedule": "Daily from 4:30 PM • 2-Hour Table Limit When Busy",
+      "dateSchedule": "Daily from 4:30 PM \u2022 2-Hour Table Limit When Busy",
       "startIso": "2026-09-08T16:30:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -1878,14 +1878,14 @@
       ],
       "category": "activities",
       "categoryLabel": "Games & Activities",
-      "categoryIcon": "⛳",
+      "categoryIcon": "\u26f3",
       "subTags": [
         "pitch-and-putt",
         "golf",
         "stanley-park",
         "english-bay"
       ],
-      "dateSchedule": "Daily • Daylight hours (First come, first served)",
+      "dateSchedule": "Daily \u2022 Daylight hours (First come, first served)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -1949,14 +1949,14 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏛️",
+      "categoryIcon": "\ud83c\udfdb\ufe0f",
       "subTags": [
         "contemporary-art",
         "emily-carr",
         "free-first-friday",
         "art-museum"
       ],
-      "dateSchedule": "First Friday of Each Month • 4:00 PM - 8:00 PM",
+      "dateSchedule": "First Friday of Each Month \u2022 4:00 PM - 8:00 PM",
       "startIso": "2026-10-02T16:00:00-07:00",
       "endIso": "2026-10-02T20:00:00-07:00",
       "confirmedDates": [],
@@ -2019,13 +2019,13 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "labour-day",
         "sunset-concert",
         "kits-beach"
       ],
-      "dateSchedule": "Monday, Sept 1, 2026 • 6:00 PM - 9:00 PM",
+      "dateSchedule": "Monday, Sept 1, 2026 \u2022 6:00 PM - 9:00 PM",
       "startIso": "2026-09-01T18:00:00-07:00",
       "endIso": "2026-09-01T21:00:00-07:00",
       "confirmedDates": [],
@@ -2082,7 +2082,7 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🎉",
+      "categoryIcon": "\ud83c\udf89",
       "subTags": [
         "street-festival",
         "car-free",
@@ -2090,7 +2090,7 @@
         "live-music",
         "artisan-market"
       ],
-      "dateSchedule": "Annual Autumn Festival • 12:00 PM - 7:00 PM",
+      "dateSchedule": "Annual Autumn Festival \u2022 12:00 PM - 7:00 PM",
       "startIso": "2026-09-12T12:00:00-07:00",
       "endIso": "2026-09-13T19:00:00-07:00",
       "confirmedDates": [],
@@ -2146,7 +2146,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "street-party",
         "indie-music",
@@ -2154,7 +2154,7 @@
         "food-trucks",
         "outdoor-festival"
       ],
-      "dateSchedule": "Annual Summer Music Festival • 11:00 AM - 9:00 PM",
+      "dateSchedule": "Annual Summer Music Festival \u2022 11:00 AM - 9:00 PM",
       "startIso": "2026-07-11T11:00:00-07:00",
       "endIso": "2026-07-11T21:00:00-07:00",
       "confirmedDates": [],
@@ -2210,7 +2210,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🥬",
+      "categoryIcon": "\ud83e\udd6c",
       "subTags": [
         "farmers-market",
         "local-produce",
@@ -2218,7 +2218,7 @@
         "food-trucks",
         "dog-friendly"
       ],
-      "dateSchedule": "Weekly (Saturdays) • 9:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Saturdays) \u2022 9:00 AM - 2:00 PM",
       "startIso": "2026-09-12T09:00:00-07:00",
       "endIso": "2026-09-12T14:00:00-07:00",
       "confirmedDates": [],
@@ -2274,7 +2274,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🍓",
+      "categoryIcon": "\ud83c\udf53",
       "subTags": [
         "farmers-market",
         "kitsilano",
@@ -2282,7 +2282,7 @@
         "baked-goods",
         "family-friendly"
       ],
-      "dateSchedule": "Weekly (Sundays) • 10:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Sundays) \u2022 10:00 AM - 2:00 PM",
       "startIso": "2026-09-13T10:00:00-07:00",
       "endIso": "2026-09-13T14:00:00-07:00",
       "confirmedDates": [],
@@ -2326,7 +2326,7 @@
       "address": "1 Alexander St (Below Ground), Vancouver",
       "neighborhood": "Gastown / Chinatown",
       "price": 0.0,
-      "priceLabel": "Free – $10.00 all-in",
+      "priceLabel": "Free \u2013 $10.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -2367,7 +2367,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "live-jazz",
         "gastown",
@@ -2375,7 +2375,7 @@
         "intimate-lounge",
         "cocktails"
       ],
-      "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
+      "dateSchedule": "Daily \u2022 Early Show 7:00 PM (PWYC) \u2022 Late Show 9:30 PM",
       "startIso": "2026-09-09T19:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -2400,7 +2400,7 @@
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
-        "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+        "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5\u2013$15) added to table bill or cash jar",
         "verifiedAt": "2026-09-17T17:16:02-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       }
@@ -2432,7 +2432,7 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🏃",
+      "categoryIcon": "\ud83c\udfc3",
       "subTags": [
         "run-club",
         "seawall-run",
@@ -2496,7 +2496,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🌽",
+      "categoryIcon": "\ud83c\udf3d",
       "subTags": [
         "farmers-market",
         "local-produce",
@@ -2504,7 +2504,7 @@
         "nat-bailey",
         "food-trucks"
       ],
-      "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Saturdays) \u2022 10:00 AM - 2:00 PM",
       "startIso": "2026-09-12T10:00:00-07:00",
       "endIso": "2026-09-12T14:00:00-07:00",
       "confirmedDates": [],
@@ -2560,7 +2560,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🥕",
+      "categoryIcon": "\ud83e\udd55",
       "subTags": [
         "farmers-market",
         "west-end",
@@ -2568,7 +2568,7 @@
         "downtown",
         "artisan-bakers"
       ],
-      "dateSchedule": "Weekly (Saturdays) • 9:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Saturdays) \u2022 9:00 AM - 2:00 PM",
       "startIso": "2026-09-12T09:00:00-07:00",
       "endIso": "2026-09-12T14:00:00-07:00",
       "confirmedDates": [],
@@ -2624,7 +2624,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🌻",
+      "categoryIcon": "\ud83c\udf3b",
       "subTags": [
         "farmers-market",
         "mount-pleasant",
@@ -2632,7 +2632,7 @@
         "craft-food",
         "community"
       ],
-      "dateSchedule": "Weekly (Sundays) • 10:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Sundays) \u2022 10:00 AM - 2:00 PM",
       "startIso": "2026-09-13T10:00:00-07:00",
       "endIso": "2026-09-13T14:00:00-07:00",
       "confirmedDates": [],
@@ -2688,7 +2688,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🍎",
+      "categoryIcon": "\ud83c\udf4e",
       "subTags": [
         "farmers-market",
         "downtown",
@@ -2696,7 +2696,7 @@
         "midweek-market",
         "grab-and-go"
       ],
-      "dateSchedule": "Weekly (Wednesdays) • 2:00 PM - 6:00 PM",
+      "dateSchedule": "Weekly (Wednesdays) \u2022 2:00 PM - 6:00 PM",
       "startIso": "2026-09-09T14:00:00-07:00",
       "endIso": "2026-09-09T18:00:00-07:00",
       "confirmedDates": [],
@@ -2752,7 +2752,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "⛵",
+      "categoryIcon": "\u26f5",
       "subTags": [
         "farmers-market",
         "false-creek",
@@ -2760,7 +2760,7 @@
         "thursday-market",
         "seawall"
       ],
-      "dateSchedule": "Weekly (Thursdays) • 3:00 PM - 7:00 PM",
+      "dateSchedule": "Weekly (Thursdays) \u2022 3:00 PM - 7:00 PM",
       "startIso": "2026-09-10T15:00:00-07:00",
       "endIso": "2026-09-10T19:00:00-07:00",
       "confirmedDates": [],
@@ -2816,7 +2816,7 @@
       ],
       "category": "activities",
       "categoryLabel": "Activities & Fun",
-      "categoryIcon": "🚜",
+      "categoryIcon": "\ud83d\ude9c",
       "subTags": [
         "farmers-market",
         "ubc-farm",
@@ -2824,7 +2824,7 @@
         "farm-tours",
         "family-friendly"
       ],
-      "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
+      "dateSchedule": "Weekly (Saturdays) \u2022 10:00 AM - 2:00 PM",
       "startIso": "2026-09-12T10:00:00-07:00",
       "endIso": "2026-09-12T14:00:00-07:00",
       "confirmedDates": [],
@@ -2903,7 +2903,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "live-jazz",
         "sharon-minemoto",
@@ -2911,7 +2911,7 @@
         "supper-club",
         "piano-trio"
       ],
-      "dateSchedule": "Nightly • 7:00 PM & 9:30 PM Sets (Plus Weekend Brunch 12:00 PM)",
+      "dateSchedule": "Nightly \u2022 7:00 PM & 9:30 PM Sets (Plus Weekend Brunch 12:00 PM)",
       "startIso": "2026-09-11T19:30:00-07:00",
       "endIso": "2026-09-11T22:30:00-07:00",
       "confirmedDates": [],
@@ -2968,7 +2968,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Thu – Sat Nights",
+      "frequencyLabel": "Thu \u2013 Sat Nights",
       "daysOfWeek": [
         "thu",
         "fri",
@@ -2979,7 +2979,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "party-band",
         "roxy-rollers",
@@ -2988,7 +2988,7 @@
         "live-music",
         "top-40"
       ],
-      "dateSchedule": "Thu, Fri & Sat Nights • Doors 8:00 PM • Live Band 10:00 PM",
+      "dateSchedule": "Thu, Fri & Sat Nights \u2022 Doors 8:00 PM \u2022 Live Band 10:00 PM",
       "startIso": "2026-09-17T20:00:00-07:00",
       "endIso": "2026-09-18T03:00:00-07:00",
       "confirmedDates": [],
@@ -3095,14 +3095,14 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "indie-rock",
         "local-bands",
         "live-music",
         "granville-strip"
       ],
-      "dateSchedule": "Tuesday, Sep 15 • Doors 8:00 PM",
+      "dateSchedule": "Tuesday, Sep 15 \u2022 Doors 8:00 PM",
       "startIso": "2026-09-15T20:00:00-07:00",
       "endIso": "2026-09-16T01:00:00-07:00",
       "confirmedDates": [
@@ -3129,7 +3129,7 @@
         "status": "verified_live",
         "method": "api_endpoint",
         "verifiedTotal": 17.62,
-        "feeBreakdown": "Live multi-tier Showpass checkout: DEAR VIRIDIAN: $17.62 all-in • GRAVEYARD GHOST: $17.62 all-in • MISTY RAINE: $17.62 all-in • ALL 3 BANDS: $17.62 all-in",
+        "feeBreakdown": "Live multi-tier Showpass checkout: DEAR VIRIDIAN: $17.62 all-in \u2022 GRAVEYARD GHOST: $17.62 all-in \u2022 MISTY RAINE: $17.62 all-in \u2022 ALL 3 BANDS: $17.62 all-in",
         "verifiedAt": "2026-09-17T17:16:32-07:00",
         "details": "Extracted directly from live Showpass public API payload."
       }
@@ -3148,7 +3148,7 @@
       "address": "932 Granville St, Vancouver",
       "neighborhood": "Downtown / West End",
       "price": 7.24,
-      "priceLabel": "$7.24 – $8.00 all-in",
+      "priceLabel": "$7.24 \u2013 $8.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -3175,7 +3175,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "country",
         "line-dancing",
@@ -3184,7 +3184,7 @@
         "dance-lesson",
         "granville-strip"
       ],
-      "dateSchedule": "Sunday, Sept 27 • Doors 9:00 PM • Line Dancing 9:30 PM",
+      "dateSchedule": "Sunday, Sept 27 \u2022 Doors 9:00 PM \u2022 Line Dancing 9:30 PM",
       "startIso": "2026-09-27T21:00:00-07:00",
       "endIso": "2026-09-28T02:00:00-07:00",
       "confirmedDates": [
@@ -3219,15 +3219,15 @@
     },
     {
       "id": "cafe-au-clay-pottery-painting",
-      "title": "Drop-In Pottery Painting at Café au Clay",
+      "title": "Drop-In Pottery Painting at Caf\u00e9 au Clay",
       "artist": "Open studio pottery painting (all levels)",
       "performers": null,
-      "venue": "Café au Clay Studios",
+      "venue": "Caf\u00e9 au Clay Studios",
       "venueAliases": [],
       "address": "1612 W 3rd Ave, Vancouver",
       "neighborhood": "Kitsilano",
       "price": 25.0,
-      "priceLabel": "$18.00 – $32.00 all-in",
+      "priceLabel": "$18.00 \u2013 $32.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -3252,7 +3252,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Tuesdays – Sundays",
+      "frequencyLabel": "Tuesdays \u2013 Sundays",
       "daysOfWeek": [
         "tue",
         "wed",
@@ -3267,7 +3267,7 @@
       ],
       "category": "crafts",
       "categoryLabel": "Crafts & Studios",
-      "categoryIcon": "🎨",
+      "categoryIcon": "\ud83c\udfa8",
       "subTags": [
         "pottery-painting",
         "ceramics",
@@ -3275,7 +3275,7 @@
         "hands-on",
         "granville-island"
       ],
-      "dateSchedule": "Tuesday – Sunday • 11:00 AM – 7:00 PM (Drop-in & Reservation)",
+      "dateSchedule": "Tuesday \u2013 Sunday \u2022 11:00 AM \u2013 7:00 PM (Drop-in & Reservation)",
       "startIso": "2026-09-10T12:00:00-07:00",
       "endIso": "2026-09-10T20:00:00-07:00",
       "confirmedDates": [],
@@ -3315,7 +3315,7 @@
       "address": "1011 Main St, Vancouver",
       "neighborhood": "Gastown / Chinatown",
       "price": 20.0,
-      "priceLabel": "$17.00 – $20.00 all-in",
+      "priceLabel": "$17.00 \u2013 $20.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -3347,7 +3347,7 @@
       ],
       "category": "crafts",
       "categoryLabel": "Crafts & Studios",
-      "categoryIcon": "🎨",
+      "categoryIcon": "\ud83c\udfa8",
       "subTags": [
         "life-drawing",
         "sketching",
@@ -3355,7 +3355,7 @@
         "figure-drawing",
         "chinatown"
       ],
-      "dateSchedule": "Wed 7:00 PM • Sat 10:00 AM • Sun 1:00 PM (3-Hour Sessions)",
+      "dateSchedule": "Wed 7:00 PM \u2022 Sat 10:00 AM \u2022 Sun 1:00 PM (3-Hour Sessions)",
       "startIso": "2026-09-10T19:00:00-07:00",
       "endIso": "2026-09-10T22:00:00-07:00",
       "confirmedDates": [],
@@ -3368,7 +3368,7 @@
         49.2789,
         -123.1001
       ],
-      "transitInfo": "Main Street–Science World SkyTrain station (3 min walk)",
+      "transitInfo": "Main Street\u2013Science World SkyTrain station (3 min walk)",
       "organizer": null,
       "isRoving": false,
       "editionVenue": null,
@@ -3421,7 +3421,7 @@
       ],
       "category": "crafts",
       "categoryLabel": "Crafts & Studios",
-      "categoryIcon": "🎨",
+      "categoryIcon": "\ud83c\udfa8",
       "subTags": [
         "pottery-wheel",
         "clay-handbuilding",
@@ -3429,7 +3429,7 @@
         "open-studio",
         "commercial-drive"
       ],
-      "dateSchedule": "Tue & Thu 6:00 PM – 9:00 PM • Sat & Sun 1:00 PM – 5:00 PM",
+      "dateSchedule": "Tue & Thu 6:00 PM \u2013 9:00 PM \u2022 Sat & Sun 1:00 PM \u2013 5:00 PM",
       "startIso": "2026-09-10T18:00:00-07:00",
       "endIso": "2026-09-10T21:00:00-07:00",
       "confirmedDates": [],
@@ -3469,7 +3469,7 @@
       "address": "1636 Venables St, Vancouver",
       "neighborhood": "Commercial Drive",
       "price": 15.0,
-      "priceLabel": "$15.00 – $20.00 all-in",
+      "priceLabel": "$15.00 \u2013 $20.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -3499,7 +3499,7 @@
       ],
       "category": "crafts",
       "categoryLabel": "Crafts & Studios",
-      "categoryIcon": "🎨",
+      "categoryIcon": "\ud83c\udfa8",
       "subTags": [
         "life-drawing",
         "sketching",
@@ -3507,7 +3507,7 @@
         "artist-run",
         "commercial-drive"
       ],
-      "dateSchedule": "Sunday 10:30 AM (Gestures) • Wednesday 7:00 PM (Long Pose)",
+      "dateSchedule": "Sunday 10:30 AM (Gestures) \u2022 Wednesday 7:00 PM (Long Pose)",
       "startIso": "2026-09-13T10:30:00-07:00",
       "endIso": "2026-09-13T13:00:00-07:00",
       "confirmedDates": [],
@@ -3547,7 +3547,7 @@
       "address": "1636 Venables St, Vancouver",
       "neighborhood": "Commercial Drive",
       "price": 15.0,
-      "priceLabel": "$15.00 – $22.00 all-in",
+      "priceLabel": "$15.00 \u2013 $22.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -3577,7 +3577,7 @@
       ],
       "category": "crafts",
       "categoryLabel": "Crafts & Studios",
-      "categoryIcon": "🎨",
+      "categoryIcon": "\ud83c\udfa8",
       "subTags": [
         "clay-club",
         "handbuilding",
@@ -3585,7 +3585,7 @@
         "craft-date",
         "commercial-drive"
       ],
-      "dateSchedule": "Sunday 2:00 PM – 4:30 PM • Monday 6:30 PM – 9:00 PM",
+      "dateSchedule": "Sunday 2:00 PM \u2013 4:30 PM \u2022 Monday 6:30 PM \u2013 9:00 PM",
       "startIso": "2026-09-13T14:00:00-07:00",
       "endIso": "2026-09-13T16:30:00-07:00",
       "confirmedDates": [],
@@ -3648,7 +3648,7 @@
       ],
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🧩",
+      "categoryIcon": "\ud83e\udde9",
       "subTags": [
         "lego-night",
         "adult-lego",
@@ -3656,7 +3656,7 @@
         "creative-date",
         "commercial-drive"
       ],
-      "dateSchedule": "Tuesday • 7:00 PM – 9:30 PM (Weekly)",
+      "dateSchedule": "Tuesday \u2022 7:00 PM \u2013 9:30 PM (Weekly)",
       "startIso": "2026-09-15T19:00:00-07:00",
       "endIso": "2026-09-15T21:30:00-07:00",
       "confirmedDates": [],
@@ -3696,7 +3696,7 @@
       "address": "44 W 4th Ave, Vancouver, BC",
       "neighborhood": "Mount Pleasant",
       "price": 0.0,
-      "priceLabel": "$15.00 – $25.00 all-in",
+      "priceLabel": "$15.00 \u2013 $25.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -3731,7 +3731,7 @@
       ],
       "category": "music",
       "categoryLabel": "Music & Concerts",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "public-disco",
         "electronic",
@@ -3740,7 +3740,7 @@
         "warehouse",
         "mount-pleasant"
       ],
-      "dateSchedule": "Awaiting next announced edition • Follow @publicdisco",
+      "dateSchedule": "Awaiting next announced edition \u2022 Follow @publicdisco",
       "startIso": null,
       "endIso": null,
       "confirmedDates": [],
@@ -3758,7 +3758,7 @@
       "isRoving": true,
       "editionVenue": "The Birdhouse",
       "agePolicy": "19+ (Valid Government Photo ID Required)",
-      "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
+      "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 \u2013 $25)",
       "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
       "description": "Dance Music Events in Vancouver, Canada",
       "checkoutVerification": {
@@ -3809,7 +3809,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -3817,7 +3817,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Thursday, Sep 17 • 8:00 PM",
+      "dateSchedule": "Thursday, Sep 17 \u2022 8:00 PM",
       "startIso": "2026-09-17T20:00:00.000",
       "endIso": "2026-09-17T23:30:00.000",
       "confirmedDates": [
@@ -3846,7 +3846,7 @@
     },
     {
       "id": "ra-2536858-he-ido",
-      "title": "R̶I̶T̶U̶A̶L̶",
+      "title": "R\u0336I\u0336T\u0336U\u0336A\u0336L\u0336",
       "artist": null,
       "performers": null,
       "venue": "The Lido",
@@ -3880,7 +3880,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -3888,7 +3888,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Thursday, Sep 17 • 9:00 PM",
+      "dateSchedule": "Thursday, Sep 17 \u2022 9:00 PM",
       "startIso": "2026-09-17T21:00:00.000",
       "endIso": "2026-09-18T01:00:00.000",
       "confirmedDates": [
@@ -3954,7 +3954,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -3962,7 +3962,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Thursday, Sep 17 • 8:00 PM",
+      "dateSchedule": "Thursday, Sep 17 \u2022 8:00 PM",
       "startIso": "2026-09-17T20:00:00.000",
       "endIso": "2026-09-17T23:00:00.000",
       "confirmedDates": [
@@ -4006,7 +4006,7 @@
         "BINKY",
         "ANTI-NOTHING"
       ],
-      "address": "#10 – 111 Hastings St W, Vancouver, BC V6B 1H4, Canada",
+      "address": "#10 \u2013 111 Hastings St W, Vancouver, BC V6B 1H4, Canada",
       "neighborhood": "Gastown / Chinatown",
       "price": 14.41,
       "basePrice": 14.41,
@@ -4032,7 +4032,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -4040,7 +4040,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 18 • 8:00 PM",
+      "dateSchedule": "Friday, Sep 18 \u2022 8:00 PM",
       "startIso": "2026-09-18T20:00:00.000",
       "endIso": "2026-09-19T00:30:00.000",
       "confirmedDates": [
@@ -4108,7 +4108,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -4116,7 +4116,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 18 • 10:00 PM",
+      "dateSchedule": "Friday, Sep 18 \u2022 10:00 PM",
       "startIso": "2026-09-18T22:00:00.000",
       "endIso": "2026-09-19T03:00:00.000",
       "confirmedDates": [
@@ -4184,7 +4184,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -4192,7 +4192,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 18 • 11:00 PM",
+      "dateSchedule": "Friday, Sep 18 \u2022 11:00 PM",
       "startIso": "2026-09-18T23:00:00.000",
       "endIso": "2026-09-19T03:00:00.000",
       "confirmedDates": [
@@ -4222,11 +4222,11 @@
     {
       "id": "ra-2533755-kylight-arehouse",
       "title": "Boy Aquarium",
-      "artist": "widdows95, Carbajal, educación física",
+      "artist": "widdows95, Carbajal, educaci\u00f3n f\u00edsica",
       "performers": [
         "widdows95",
         "Carbajal",
-        "educación física"
+        "educaci\u00f3n f\u00edsica"
       ],
       "venue": "Skylight Warehouse",
       "venueAliases": [
@@ -4234,7 +4234,7 @@
         "RA Vancouver",
         "widdows95",
         "Carbajal",
-        "educación física"
+        "educaci\u00f3n f\u00edsica"
       ],
       "address": "1800 Main St, Vancouver",
       "neighborhood": "Mount Pleasant",
@@ -4262,7 +4262,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -4270,7 +4270,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 18 • 8:00 PM",
+      "dateSchedule": "Friday, Sep 18 \u2022 8:00 PM",
       "startIso": "2026-09-18T20:00:00.000",
       "endIso": "2026-09-19T03:00:00.000",
       "confirmedDates": [
@@ -4287,7 +4287,7 @@
         -123.1012
       ],
       "transitInfo": "Accessible via TransLink transit routes",
-      "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Skylight Warehouse. Featuring live performances by widdows95, Carbajal, educación física.",
+      "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Skylight Warehouse. Featuring live performances by widdows95, Carbajal, educaci\u00f3n f\u00edsica.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "api_endpoint",
@@ -4336,7 +4336,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -4344,7 +4344,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 18 • 10:00 PM",
+      "dateSchedule": "Friday, Sep 18 \u2022 10:00 PM",
       "startIso": "2026-09-18T22:00:00.000",
       "endIso": "2026-09-19T00:00:00.000",
       "confirmedDates": [
@@ -4396,7 +4396,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -4465,7 +4465,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "hall-of-flame-presents-80s-night",
         "hall-of-flame-presents-80s-night-tickets",
@@ -4491,7 +4491,7 @@
       ],
       "isDaily": false,
       "isSoldOut": false,
-      "description": "Get ready to boogie all night at Hall of Flame’s 80's Disco Night—bring your best moves and retro vibes!",
+      "description": "Get ready to boogie all night at Hall of Flame\u2019s 80's Disco Night\u2014bring your best moves and retro vibes!",
       "price": 22.73,
       "priceLabel": "$22.73 all-in",
       "tiers": [
@@ -4509,7 +4509,7 @@
         "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
       },
       "isFree": false,
-      "scrapedDescription": "Get ready to boogie all night at Hall of Flame’s 80's Disco Night—bring your best moves and retro vibes!",
+      "scrapedDescription": "Get ready to boogie all night at Hall of Flame\u2019s 80's Disco Night\u2014bring your best moves and retro vibes!",
       "ticketProvider": "Eventbrite Verified"
     },
     {
@@ -4537,7 +4537,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -4606,7 +4606,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -4675,7 +4675,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "shows",
         "bc-tickets",
@@ -4747,7 +4747,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "hollywood-theatre",
         "music",
@@ -4816,7 +4816,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -4880,7 +4880,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -4945,7 +4945,7 @@
       "venueUrl": "https://publicdisco.ca/events/gastown-streetside-sessions-xe3kh-n4n52-whwyz-d674d-spja9",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -4963,7 +4963,7 @@
         "afternoon",
         "early-evening"
       ],
-      "dateSchedule": "Car-Free Sundays: Jul 5 • Aug 9 • Sep 6, 2026 (1:00 PM – 6:00 PM)",
+      "dateSchedule": "Car-Free Sundays: Jul 5 \u2022 Aug 9 \u2022 Sep 6, 2026 (1:00 PM \u2013 6:00 PM)",
       "startIso": "2026-09-06T14:00:00-07:00",
       "endIso": "2026-09-06T22:00:00-07:00",
       "confirmedDates": [
@@ -4973,7 +4973,7 @@
       ],
       "isDaily": false,
       "isSoldOut": false,
-      "description": "A laid-back daytime DJ series blending café culture with curated sounds from across Vancouver’s music scene—live and outdoors in the heart of Gastown.",
+      "description": "A laid-back daytime DJ series blending caf\u00e9 culture with curated sounds from across Vancouver\u2019s music scene\u2014live and outdoors in the heart of Gastown.",
       "price": 0.0,
       "priceLabel": "Free ($0)",
       "tiers": [],
@@ -4988,8 +4988,8 @@
       "isFree": true,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Free Public Access (No Ticket Required)",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at Water St & Carrall St, Gastown, Vancouver.",
-      "scrapedDescription": "A laid-back daytime DJ series blending café culture with curated sounds from across Vancouver’s music scene—live and outdoors in the heart of Gastown.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at Water St & Carrall St, Gastown, Vancouver.",
+      "scrapedDescription": "A laid-back daytime DJ series blending caf\u00e9 culture with curated sounds from across Vancouver\u2019s music scene\u2014live and outdoors in the heart of Gastown.",
       "ticketProvider": "Gastown (Water Street) Verified"
     },
     {
@@ -5018,7 +5018,7 @@
       "venueUrl": "https://publicdisco.ca/events/granville-street-2026-3",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -5036,7 +5036,7 @@
         "afternoon",
         "early-evening"
       ],
-      "dateSchedule": "Midweek Summer Series: Aug 12 • Aug 18 • Sep 2, 2026 (4:00 PM – 9:00 PM)",
+      "dateSchedule": "Midweek Summer Series: Aug 12 \u2022 Aug 18 \u2022 Sep 2, 2026 (4:00 PM \u2013 9:00 PM)",
       "startIso": "2026-09-02T14:00:00-07:00",
       "endIso": "2026-09-02T22:00:00-07:00",
       "confirmedDates": [
@@ -5061,7 +5061,7 @@
       "isFree": true,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Free Public Access (No Ticket Required)",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at Granville St & Robson St, Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at Granville St & Robson St, Vancouver.",
       "scrapedDescription": "House music, street dance, and vinyl take over the Granville Street Pedestrian Zone for a free, all-ages afternoon to close out the summer.",
       "ticketProvider": "Granville Street Pedestrian Zone Verified"
     },
@@ -5091,7 +5091,7 @@
       "venueUrl": "https://publicdisco.ca/events/downtown2026",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -5109,13 +5109,13 @@
         "afternoon",
         "early-evening"
       ],
-      "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
+      "dateSchedule": "Summer 2026 series concluded (Aug 29) \u2022 Awaiting 2027 season",
       "startIso": null,
       "endIso": null,
       "confirmedDates": [],
       "isDaily": false,
       "isSoldOut": false,
-      "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
+      "description": "Public Disco\u2019s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
       "price": 0.0,
       "priceLabel": "Free ($0)",
       "tiers": [],
@@ -5131,8 +5131,8 @@
       "pricingType": "free",
       "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
       "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-      "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
-      "scrapedDescription": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
+      "rovingNote": "\ud83d\udccd Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
+      "scrapedDescription": "Public Disco\u2019s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
       "ticketProvider": "Downtown Vancouver Plazas Verified"
     },
     {
@@ -5161,7 +5161,7 @@
       "venueUrl": "https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "public-disco",
         "music",
@@ -5187,7 +5187,7 @@
       ],
       "isDaily": false,
       "isSoldOut": false,
-      "description": "Public Disco’s Pride Block Party returns to Mount Pleasant. Two stages, music-led programming, and a packed street-level dance floor at the centre of Vancouver Pride weekend.",
+      "description": "Public Disco\u2019s Pride Block Party returns to Mount Pleasant. Two stages, music-led programming, and a packed street-level dance floor at the centre of Vancouver Pride weekend.",
       "price": 9.0,
       "priceLabel": "$9.00 all-in",
       "tiers": [],
@@ -5202,7 +5202,7 @@
       "isFree": false,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Advance & Door Ticketed",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2114 Ontario St & E 4th Ave, Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at 2114 Ontario St & E 4th Ave, Vancouver.",
       "ticketProvider": "Admitone Verified"
     },
     {
@@ -5231,7 +5231,7 @@
       "venueUrl": "https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "public-disco",
         "music",
@@ -5259,7 +5259,7 @@
       "isSoldOut": false,
       "description": "A summer return to City Centre Artist Lodge with Musclecars and DJ Heather. House-rooted programming in a transformed motel courtyard, with local support shaping the full arc of the day.",
       "price": 28.0,
-      "priceLabel": "$28.00 – $56.00 all-in",
+      "priceLabel": "$28.00 \u2013 $56.00 all-in",
       "tiers": [
         {
           "name": "Tier 1",
@@ -5276,14 +5276,14 @@
         "status": "verified_live",
         "method": "admitone_scraped",
         "verifiedTotal": 28.0,
-        "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
+        "feeBreakdown": "Live AdmitOne price range $28.00 \u2013 $56.00 CAD",
         "verifiedAt": "2026-09-17T17:17:21-07:00",
         "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
       },
       "isFree": false,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Advance & Door Ticketed",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2111 Main St, Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at 2111 Main St, Vancouver.",
       "ticketProvider": "Admitone Verified"
     },
     {
@@ -5312,7 +5312,7 @@
       "venueUrl": "https://publicdisco.ca/events/shipyards-night-market-stage-takeover",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "public-disco",
         "music",
@@ -5353,7 +5353,7 @@
       "isFree": true,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Free Public Access (No Ticket Required)",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 125 Victory Ship Way, North Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at 125 Victory Ship Way, North Vancouver.",
       "scrapedDescription": "Public Disco takes over the Open House stage at the Shipyards Night Market for an evening of house music on E 1st Street in North Vancouver.",
       "ticketProvider": "The Shipyards Waterfront Verified"
     },
@@ -5383,7 +5383,7 @@
       "venueUrl": "https://publicdisco.ca/events/granvilleisland2026",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -5401,7 +5401,7 @@
         "afternoon",
         "early-evening"
       ],
-      "dateSchedule": "Friday, Jun 5 (4:00–10:00 PM) & Saturday, Jun 6, 2026 (2:00–10:00 PM)",
+      "dateSchedule": "Friday, Jun 5 (4:00\u201310:00 PM) & Saturday, Jun 6, 2026 (2:00\u201310:00 PM)",
       "startIso": "2026-06-05T14:00:00-07:00",
       "endIso": "2026-06-05T22:00:00-07:00",
       "confirmedDates": [
@@ -5425,7 +5425,7 @@
       "isFree": true,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Free Public Access (No Ticket Required)",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at Lot 55 beneath Granville Bridge, Granville Island, Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at Lot 55 beneath Granville Bridge, Granville Island, Vancouver.",
       "scrapedDescription": "Public Disco returns to Lot 55 beneath the Granville Bridge for a two-day block party.",
       "ticketProvider": "Granville Island (Lot 55) Verified"
     },
@@ -5455,7 +5455,7 @@
       "venueUrl": "https://bentallcentre.com",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -5496,7 +5496,7 @@
       "isFree": true,
       "agePolicy": "All-Ages (Family & Community Friendly)",
       "admissionPolicy": "Free Public Access (No Ticket Required)",
-      "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 505 Burrard St, Vancouver.",
+      "rovingNote": "\ud83d\udccd Roving open-air event organized by Public Disco Society at 505 Burrard St, Vancouver.",
       "scrapedDescription": "Public Disco and the Vancouver Cherry Blossom Festival return to Downtown with a one-day spring block party.",
       "ticketProvider": "Bentall Centre Dunsmuir Plaza Verified"
     },
@@ -5525,7 +5525,7 @@
       "venueUrl": "https://rickshawtheatre.com",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "rickshaw-theatre",
         "music",
@@ -5548,7 +5548,7 @@
       ],
       "isDaily": false,
       "isSoldOut": false,
-      "description": "DOORS: 7:00PMFolk musician Ethan Regan comes to the Rickshaw stage this October to perform new music from his upcoming album, ‘Young Regan’ with support from harf.",
+      "description": "DOORS: 7:00PMFolk musician Ethan Regan comes to the Rickshaw stage this October to perform new music from his upcoming album, \u2018Young Regan\u2019 with support from harf.",
       "price": 49.25,
       "priceLabel": "$49.25 all-in",
       "tiers": [],
