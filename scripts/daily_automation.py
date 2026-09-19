@@ -34,6 +34,7 @@ from universal_venue_crawler import UniversalVenueCrawler
 from nomadic_resolver import NomadicLocationResolver
 from universal_festival_crawler import UniversalFestivalCrawler
 from universal_discovery_crawler import UniversalDiscoveryCrawler
+from curator_learning_engine import CuratorLearningEngine
 
 
 def log_message(msg: str, log_file_path: str = None):
@@ -132,10 +133,20 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
         "startedAt": datetime.now().isoformat()
     })
 
+    # Step 0: Ingest Curator Guidance, Auto-Triage Queue, and Distill Rules
+    update_automation_status({"currentStep": "digesting_curator_guidance"})
+    log_message("[PIPELINE STEP 0/3] Digesting curator guidance, auto-triaging review queue, and distilling rules...", log_file_path)
+    learning_stats = {"instructionsProcessed": 0, "archived": 0, "promoted": 0, "rulesAdded": 0}
+    try:
+        learning_stats = CuratorLearningEngine.process_pending_feedback()
+        log_message(f"[CURATOR LEARNING] Processed {learning_stats.get('instructionsProcessed', 0)} instructions: {learning_stats.get('archived', 0)} archived, {learning_stats.get('promoted', 0)} promoted, {learning_stats.get('rulesAdded', 0)} rules distilled.", log_file_path)
+    except Exception as e:
+        log_message(f"[CURATOR LEARNING ERROR] {e}\n{traceback.format_exc()}", log_file_path)
+
     # Step 1: Safety Backup
     backup_file = create_safety_backup(log_file_path)
 
-    # Step 2: Run Universal Crawlers & Dynamic Synchronization
+    # Step 2: Run Universal Crawlers & Dynamic Synchronization (using learned rules)
     update_automation_status({"currentStep": "live_sync_crawlers"})
     log_message("[PIPELINE STEP 1/3] Invoking venue adapters and universal synchronization worker...", log_file_path)
     
@@ -143,6 +154,8 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     try:
         sync_ok = sync_events.run_sync()
         log_message(f"[PIPELINE SYNC RESULT] sync_events.run_sync() returned: {sync_ok}", log_file_path)
+        # Follow-up auto-triage check to ensure freshly crawled items respect curator guidance
+        CuratorLearningEngine.process_pending_feedback()
     except Exception as e:
         log_message(f"[PIPELINE ERROR] sync_events encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
 
@@ -193,6 +206,7 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
         "totalEvents": total_events,
         "quarantinedCount": quarantine_count,
         "backupFile": backup_file,
+        "learningStats": learning_stats,
         "automationEnabled": True,
         "lastLogFile": f"data/automation_logs/daily_sync_{today_str}.log"
     }

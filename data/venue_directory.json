@@ -2,8 +2,8 @@
   "metadata": {
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 63,
-    "updatedAt": "2026-09-18T15:25:52.099411+00:00"
+    "totalVenues": 69,
+    "updatedAt": "2026-09-18T21:42:45.747374+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -187,8 +187,8 @@
       "transitInfo": "4 min walk from Waterfront SkyTrain station",
       "category": "shows",
       "venueUrl": "https://littlemountaingallery.ca",
-      "calendarUrl": "https://littlemountaingallery.ca/schedule/",
-      "boxOfficeUrl": "https://littlemountaingallery.ca",
+      "calendarUrl": "https://littlemountaingallery.ca/events",
+      "boxOfficeUrl": "https://littlemountaingallery.ca/events",
       "ticketingProvider": "Eventbrite",
       "adapter": "LittleMountainGalleryLiveAdapter",
       "managedEvents": [
@@ -199,7 +199,28 @@
         "lmg-seasoned-improv",
         "lmg-decolonized-comedy",
         "lmg-crowd-source"
-      ]
+      ],
+      "curatorInstructions": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+      "curatorNote": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+      "curatorLearnedRules": {
+        "venueName": "Little Mountain Gallery",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://littlemountaingallery.ca/events",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
+        "summary": "Calendar: https://littlemountaingallery.ca/events",
+        "distilledAt": "2026-09-18T21:38:51.930968+00:00"
+      },
+      "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
     "Bloedel Conservatory": {
       "venueId": "bloedel-conservatory",
@@ -992,13 +1013,34 @@
       "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
       "category": "music",
       "venueUrl": "https://www.coastaljazz.ca",
-      "calendarUrl": "https://frankiesjazzclub.ca/events/",
-      "boxOfficeUrl": "https://frankiesjazzclub.ca",
+      "calendarUrl": "https://frankiesjazzclub.turntabletickets.com/",
+      "boxOfficeUrl": "https://frankiesjazzclub.turntabletickets.com/",
       "ticketingProvider": "Showpass",
       "adapter": "FrankiesJazzLiveAdapter",
       "managedEvents": [
         "frankies-jazz-brad-turner"
-      ]
+      ],
+      "curatorInstructions": "Sold out.",
+      "curatorNote": "Sold out.",
+      "curatorLearnedRules": {
+        "venueName": "Frankie's Jazz Club",
+        "category": "music",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://frankiesjazzclub.turntabletickets.com/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Sold out.",
+        "summary": "Calendar: https://frankiesjazzclub.turntabletickets.com/",
+        "distilledAt": "2026-09-18T21:42:45.744167+00:00"
+      },
+      "policySummary": "Calendar: https://frankiesjazzclub.turntabletickets.com/"
     },
     "The WISE Hall & Lounge": {
       "venueId": "the-wise-hall-lounge",
@@ -1425,6 +1467,353 @@
       "boxOfficeUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
       "ticketingProvider": "Universal Ticketing",
       "adapter": "UniversalVenueCrawler",
+      "managedEvents": []
+    },
+    "The Waldorf": {
+      "venueId": "the-waldorf",
+      "name": "The Waldorf",
+      "aliases": [
+        "The Waldorf Hotel",
+        "Waldorf Hotel",
+        "Tiki Bar at The Waldorf",
+        "Tabu at The Waldorf",
+        "The Waldorf Vancouver"
+      ],
+      "address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2813,
+        -123.0734
+      ],
+      "transitInfo": "#14, #16, #20 bus or #R5 RapidBus on Hastings St (10 min from Downtown)",
+      "category": "music",
+      "venueUrl": "https://atthewaldorf.com",
+      "calendarUrl": "https://atthewaldorf.com/events",
+      "boxOfficeUrl": "https://atthewaldorf.com/events",
+      "ticketingProvider": "Universal Ticketing",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": 15.0,
+      "priceRange": [
+        10.0,
+        20.0
+      ],
+      "operatingDays": [
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "subTags": [
+        "live music",
+        "djs",
+        "tiki bar",
+        "indie",
+        "dance",
+        "electronic"
+      ],
+      "curatorInstructions": "East Van cultural hub with historic Polynesian Tiki Bar, Tabu lounge, and live music room. Shows and DJ dance parties Thursdays through Sundays, door covers typically $10-$20 CAD.",
+      "policySummary": "Door Cover ~$15.00 CAD ($10-$20 range) | Days: THU, FRI, SAT, SUN | Tags: live music, djs, tiki bar | Link: https://atthewaldorf.com/events",
+      "curatorLearnedRules": {
+        "venueName": "The Waldorf",
+        "category": "music",
+        "neighborhood": "Commercial Drive",
+        "calendarUrl": "https://atthewaldorf.com/events",
+        "doorPrice": 15.0,
+        "priceRange": [
+          10.0,
+          20.0
+        ],
+        "pricingType": "door-cover",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "genres": [
+          "live music",
+          "djs",
+          "tiki bar",
+          "indie",
+          "dance",
+          "electronic"
+        ],
+        "blacklistPatterns": [],
+        "curatorGuidance": "East Van cultural hub with historic Polynesian Tiki Bar, Tabu lounge, and live music room. Shows and DJ dance parties Thursdays through Sundays, door covers typically $10-$20 CAD.",
+        "summary": "Door Cover ~$15.00 CAD ($10-$20 range) | Days: THU, FRI, SAT, SUN | Tags: live music, djs, tiki bar | Link: https://atthewaldorf.com/events",
+        "distilledAt": "2026-09-18T17:22:38.793377+00:00"
+      },
+      "managedEvents": []
+    },
+    "The Cobalt": {
+      "venueId": "the-cobalt",
+      "name": "The Cobalt",
+      "aliases": [
+        "The Cobalt Cabaret",
+        "Cobalt Vancouver",
+        "The Cobalt Vancouver",
+        "Cobalt Cabaret"
+      ],
+      "address": "917 Main St, Vancouver, BC V6A 2V8",
+      "neighborhood": "Gastown / Chinatown",
+      "coordinates": [
+        49.2764,
+        -123.0999
+      ],
+      "transitInfo": "5 min walk from Main Street-Science World SkyTrain Station or #3 / #8 / #19 / #22 bus",
+      "category": "music",
+      "venueUrl": "https://thecobalt.ca",
+      "calendarUrl": "https://thecobalt.ca/events",
+      "boxOfficeUrl": "https://thecobalt.ca/events",
+      "ticketingProvider": "Showpass",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": 15.0,
+      "priceRange": [
+        12.0,
+        20.0
+      ],
+      "operatingDays": [
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "subTags": [
+        "punk",
+        "metal",
+        "hardcore",
+        "indie rock",
+        "drag",
+        "dance nights"
+      ],
+      "curatorInstructions": "Historic live music staple on Main Street. Legendary for punk, metal, hardcore, indie rock, and alternative club nights. Door tickets typically $12-$20 CAD, sold via Showpass or at the door.",
+      "policySummary": "Door Cover ~$15.00 CAD ($12-$20 range) | Days: THU, FRI, SAT, SUN | Tags: punk, metal, indie rock | Link: https://thecobalt.ca/events",
+      "curatorLearnedRules": {
+        "venueName": "The Cobalt",
+        "category": "music",
+        "neighborhood": "Gastown / Chinatown",
+        "calendarUrl": "https://thecobalt.ca/events",
+        "doorPrice": 15.0,
+        "priceRange": [
+          12.0,
+          20.0
+        ],
+        "pricingType": "door-cover",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [
+          "thu",
+          "fri",
+          "sat",
+          "sun"
+        ],
+        "genres": [
+          "punk",
+          "metal",
+          "hardcore",
+          "indie rock",
+          "drag",
+          "dance nights"
+        ],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Historic live music staple on Main Street. Legendary for punk, metal, hardcore, indie rock, and alternative club nights. Door tickets typically $12-$20 CAD, sold via Showpass or at the door.",
+        "summary": "Door Cover ~$15.00 CAD ($12-$20 range) | Days: THU, FRI, SAT, SUN | Tags: punk, metal, indie rock | Link: https://thecobalt.ca/events",
+        "distilledAt": "2026-09-18T17:22:38.793660+00:00"
+      },
+      "managedEvents": []
+    },
+    "Carousel Theatre": {
+      "venueId": "carousel-theatre",
+      "name": "Carousel Theatre",
+      "aliases": [
+        "Carousel Theatre"
+      ],
+      "address": "Carousel Theatre, Vancouver, BC",
+      "neighborhood": "Downtown / West End",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Check TransLink for nearest transit route",
+      "category": "shows",
+      "venueUrl": "https://vancouverfringe.com/shows/",
+      "calendarUrl": "https://vancouverfringe.com/shows/",
+      "boxOfficeUrl": "https://vancouverfringe.com/shows/",
+      "ticketingProvider": "Universal Ticketing",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": null,
+      "priceRange": null,
+      "operatingDays": [],
+      "subTags": [],
+      "curatorInstructions": "This seems to be nearly exclusively for children, which is not the intended demographic of the app. So don't include the regular events here, only special adult ones.",
+      "curatorNote": "This seems to be nearly exclusively for children, which is not the intended demographic of the app. So don't include the regular events here, only special adult ones.",
+      "curatorLearnedRules": {
+        "venueName": "Carousel Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://vancouverfringe.com/shows/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [
+          "kids",
+          "children",
+          "toddler",
+          "family show"
+        ],
+        "curatorGuidance": "This seems to be nearly exclusively for children, which is not the intended demographic of the app. So don't include the regular events here, only special adult ones.",
+        "summary": "Filter: Adults only (Exclude regular kids events) | Calendar: https://vancouverfringe.com/shows/",
+        "distilledAt": "2026-09-18T17:44:24.383431+00:00",
+        "demographicFilter": "adults_only"
+      },
+      "policySummary": "Filter: Adults only (Exclude regular kids events) | Calendar: https://vancouverfringe.com/shows/",
+      "managedEvents": []
+    },
+    "Commercial Drive": {
+      "venueId": "commercial-drive",
+      "name": "Commercial Drive",
+      "aliases": [
+        "Commercial Drive"
+      ],
+      "address": "Commercial Drive, Vancouver, BC",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Check TransLink for nearest transit route",
+      "category": "outdoors",
+      "venueUrl": "https://www.carfreevancouver.org",
+      "calendarUrl": "https://www.carfreevancouver.org",
+      "boxOfficeUrl": "https://www.carfreevancouver.org",
+      "ticketingProvider": "Universal Ticketing",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": null,
+      "priceRange": null,
+      "operatingDays": [],
+      "subTags": [],
+      "curatorInstructions": "",
+      "curatorNote": "",
+      "curatorLearnedRules": {
+        "venueName": "Commercial Drive",
+        "category": "outdoors",
+        "neighborhood": "Commercial Drive",
+        "calendarUrl": "https://www.carfreevancouver.org",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Commercial Drive.",
+        "distilledAt": "2026-09-18T21:13:26.527901+00:00"
+      },
+      "policySummary": "Standard venue record registered for Commercial Drive.",
+      "managedEvents": []
+    },
+    "Main Street": {
+      "venueId": "main-street",
+      "name": "Main Street",
+      "aliases": [
+        "Main Street"
+      ],
+      "address": "Main Street, Vancouver, BC",
+      "neighborhood": "Mount Pleasant",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Check TransLink for nearest transit route",
+      "category": "outdoors",
+      "venueUrl": "https://www.carfreevancouver.org",
+      "calendarUrl": "https://www.carfreevancouver.org",
+      "boxOfficeUrl": "https://www.carfreevancouver.org",
+      "ticketingProvider": "Universal Ticketing",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": null,
+      "priceRange": null,
+      "operatingDays": [],
+      "subTags": [],
+      "curatorInstructions": "",
+      "curatorNote": "",
+      "curatorLearnedRules": {
+        "venueName": "Main Street",
+        "category": "outdoors",
+        "neighborhood": "Mount Pleasant",
+        "calendarUrl": "https://www.carfreevancouver.org",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Main Street.",
+        "distilledAt": "2026-09-18T21:13:33.319247+00:00"
+      },
+      "policySummary": "Standard venue record registered for Main Street.",
+      "managedEvents": []
+    },
+    "Touchstone Theatre": {
+      "venueId": "touchstone-theatre",
+      "name": "Touchstone Theatre",
+      "aliases": [
+        "Touchstone Theatre"
+      ],
+      "address": "Touchstone Theatre, Vancouver, BC",
+      "neighborhood": "Downtown / West End",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Check TransLink for nearest transit route",
+      "category": "shows",
+      "venueUrl": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+      "calendarUrl": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+      "boxOfficeUrl": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+      "ticketingProvider": "Universal Ticketing",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": null,
+      "priceRange": null,
+      "operatingDays": [],
+      "subTags": [],
+      "curatorInstructions": "https://touchstonetheatre.com/",
+      "curatorNote": "https://touchstonetheatre.com/",
+      "curatorLearnedRules": {
+        "venueName": "Touchstone Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://touchstonetheatre.com/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://touchstonetheatre.com/",
+        "summary": "Calendar: https://touchstonetheatre.com/",
+        "distilledAt": "2026-09-18T21:16:18.215327+00:00"
+      },
+      "policySummary": "Calendar: https://touchstonetheatre.com/",
       "managedEvents": []
     }
   }

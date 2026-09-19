@@ -19,15 +19,22 @@ const state = {
   discoveredVenues: [],
   knownVenues: new Set(),
   currentScreenshotBase64: null,
-  currentScreenshots: []
+  currentScreenshots: [],
+  currentVenueScreenshots: []
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   setupCuratorEventListeners();
   checkAuthAndInitialize();
   fetchAutomationStatus();
   setInterval(fetchAutomationStatus, 30000);
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 // ==============================================================================
 // 1. AUTHENTICATION & SESSION MANAGEMENT
@@ -42,8 +49,9 @@ async function checkAuthAndInitialize() {
   }
 
   try {
-    const res = await fetch('/api/curator/status', {
-      headers: { 'Curator-Token': state.token }
+    const res = await fetch(`/api/curator/status?_t=${Date.now()}`, {
+      headers: { 'Curator-Token': state.token },
+      cache: 'no-store'
     });
     if (res.ok) {
       const data = await res.json();
@@ -139,9 +147,11 @@ async function handleLogout() {
 async function loadQuarantineQueue() {
   if (!state.token) return;
 
+  const t = Date.now();
   try {
-    const res = await fetch('/api/curator/queue', {
-      headers: { 'Curator-Token': state.token }
+    const res = await fetch(`/api/curator/queue?_t=${t}`, {
+      headers: { 'Curator-Token': state.token },
+      cache: 'no-store'
     });
     if (res.ok) {
       const data = await res.json();
@@ -152,8 +162,9 @@ async function loadQuarantineQueue() {
     }
 
     try {
-      const archRes = await fetch('/api/curator/archived', {
-        headers: { 'Curator-Token': state.token }
+      const archRes = await fetch(`/api/curator/archived?_t=${t}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
       });
       if (archRes.ok) {
         const archData = await archRes.json();
@@ -165,8 +176,9 @@ async function loadQuarantineQueue() {
 
     // Hydrate any existing queued instructions onto the quarantined events
     try {
-      const instRes = await fetch('/api/curator/instructions', {
-        headers: { 'Curator-Token': state.token }
+      const instRes = await fetch(`/api/curator/instructions?_t=${t}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
       });
       if (instRes.ok) {
         const instData = await instRes.json();
@@ -190,12 +202,22 @@ async function loadQuarantineQueue() {
 
     // Fetch Discovered Venues from Discovery Feeds and Festival Scout
     try {
-      const discRes = await fetch('/api/curator/discovered_venues', {
-        headers: { 'Curator-Token': state.token }
+      const discRes = await fetch(`/api/curator/discovered_venues?_t=${t}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
       });
       if (discRes.ok) {
         const discData = await discRes.json();
         state.discoveredVenues = (discData.discoveredVenues || []).filter(v => v.status === 'pending');
+        state.discoveredVenues.forEach(v => {
+          if (instMap && instMap.has(v.id)) {
+            v.dealtWith = true;
+            v.queuedInstruction = instMap.get(v.id);
+          } else if (v.name && instMap && instMap.has(v.name.toLowerCase())) {
+            v.dealtWith = true;
+            v.queuedInstruction = instMap.get(v.name.toLowerCase());
+          }
+        });
       }
     } catch (e) {
       console.warn('Could not fetch discovered venues:', e);
@@ -1028,6 +1050,80 @@ window.removeScreenshotByIndex = function(index) {
   }
 };
 
+// Image optimization for uploads: downscales giant phone/desktop screenshots to max 1600px
+// and generates crisp compressed data URLs to ensure fast, reliable uploads.
+async function optimizeImageForUpload(file, maxDim = 1600, quality = 0.85) {
+  return new Promise((resolve) => {
+    if (!file || (file.type && !file.type.startsWith('image/')) || file.type === 'image/svg+xml') {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+      return;
+    }
+
+    if (file.size && file.size <= 400 * 1024) {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+      return;
+    }
+
+    const img = new Image();
+    const blobUrl = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(blobUrl);
+      let { width, height } = img;
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL('image/jpeg', quality);
+      resolve(dataUrl);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(blobUrl);
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+    };
+    img.src = blobUrl;
+  });
+}
+
+async function handleIncomingScreenshotFiles(files, isVenue = false) {
+  const imgFiles = Array.from(files || []).filter(f => f && (!f.type || f.type.startsWith('image/')));
+  if (imgFiles.length === 0) return;
+  const urls = [];
+  for (const f of imgFiles) {
+    try {
+      const dataUrl = await optimizeImageForUpload(f);
+      if (dataUrl) urls.push(dataUrl);
+    } catch (e) {
+      console.warn('Could not optimize image', e);
+    }
+  }
+  if (urls.length > 0) {
+    if (isVenue) {
+      addVenueScreenshotDataUrls(urls);
+    } else {
+      addScreenshotDataUrls(urls);
+    }
+  }
+}
+
 function addScreenshotDataUrls(urls) {
   if (!Array.isArray(urls)) urls = [urls];
   if (!state.currentScreenshots) state.currentScreenshots = [];
@@ -1262,22 +1358,10 @@ function setupCuratorEventListeners() {
       fileInput.click();
     });
 
-    fileInput.addEventListener('change', (e) => {
+    fileInput.addEventListener('change', async (e) => {
       const files = Array.from(e.target.files || []);
       if (files.length === 0) return;
-      let loaded = 0;
-      const urls = [];
-      files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          urls.push(evt.target.result);
-          loaded++;
-          if (loaded === files.length) {
-            addScreenshotDataUrls(urls);
-          }
-        };
-        reader.readAsDataURL(f);
-      });
+      await handleIncomingScreenshotFiles(files, false);
       fileInput.value = '';
     });
 
@@ -1290,24 +1374,12 @@ function setupCuratorEventListeners() {
       dropzone.classList.remove('dragover');
     });
 
-    dropzone.addEventListener('drop', (e) => {
+    dropzone.addEventListener('drop', async (e) => {
       e.preventDefault();
       dropzone.classList.remove('dragover');
-      const files = Array.from(e.dataTransfer?.files || []).filter(f => f.type.startsWith('image/'));
+      const files = Array.from(e.dataTransfer?.files || []);
       if (files.length === 0) return;
-      let loaded = 0;
-      const urls = [];
-      files.forEach(f => {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          urls.push(evt.target.result);
-          loaded++;
-          if (loaded === files.length) {
-            addScreenshotDataUrls(urls);
-          }
-        };
-        reader.readAsDataURL(f);
-      });
+      await handleIncomingScreenshotFiles(files, false);
     });
   }
 
@@ -1320,10 +1392,13 @@ function setupCuratorEventListeners() {
     });
   }
 
-  // Global Clipboard Paste Listener for Screenshots (Ctrl+V, supports multiple images)
-  window.addEventListener('paste', (e) => {
-    const modal = document.getElementById('ai-instruction-modal');
-    if (!modal || !modal.classList.contains('active')) return;
+  // Global Clipboard Paste Listener for Screenshots (Ctrl+V, routes to active modal)
+  window.addEventListener('paste', async (e) => {
+    const aiModal = document.getElementById('ai-instruction-modal');
+    const venueModal = document.getElementById('add-venue-modal');
+    const isAiActive = aiModal && aiModal.classList.contains('active');
+    const isVenueActive = venueModal && venueModal.classList.contains('active');
+    if (!isAiActive && !isVenueActive) return;
 
     const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items;
     if (!items) return;
@@ -1338,19 +1413,7 @@ function setupCuratorEventListeners() {
 
     if (imgItems.length > 0) {
       e.preventDefault();
-      let loaded = 0;
-      const urls = [];
-      imgItems.forEach(blob => {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          urls.push(evt.target.result);
-          loaded++;
-          if (loaded === imgItems.length) {
-            addScreenshotDataUrls(urls);
-          }
-        };
-        reader.readAsDataURL(blob);
-      });
+      await handleIncomingScreenshotFiles(imgItems, isVenueActive);
     }
   });
 
@@ -1371,6 +1434,8 @@ function setupCuratorEventListeners() {
   const closeVenueModalBtn = document.getElementById('btn-close-venue-modal');
   const cancelVenueModalBtn = document.getElementById('btn-cancel-venue-modal');
   const venueForm = document.getElementById('add-venue-form');
+  const btnVenueInstOnly = document.getElementById('btn-venue-inst-only');
+  const btnVenueInstDismiss = document.getElementById('btn-venue-inst-dismiss');
 
   const closeVenueModal = () => {
     if (venueModal) venueModal.classList.remove('active');
@@ -1384,14 +1449,139 @@ function setupCuratorEventListeners() {
     });
   }
 
+  if (btnVenueInstOnly) {
+    btnVenueInstOnly.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleAddVenueSubmit(e, 'queue_only');
+    });
+  }
+
+  if (btnVenueInstDismiss) {
+    btnVenueInstDismiss.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleAddVenueSubmit(e, 'queue_and_dismiss');
+    });
+  }
+
   if (venueForm) {
-    venueForm.addEventListener('submit', handleAddVenueSubmit);
+    venueForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleAddVenueSubmit(e, 'queue_and_approve');
+    });
+  }
+
+  // Venue Screenshot Dropzone & File Input
+  const venueDropzone = document.getElementById('venue-screenshot-dropzone');
+  const venueFileInput = document.getElementById('venue-screenshot-file-input');
+  const btnAddMoreVenueShots = document.getElementById('btn-add-more-venue-screenshots');
+
+  if (btnAddMoreVenueShots && venueFileInput) {
+    btnAddMoreVenueShots.addEventListener('click', (e) => {
+      e.stopPropagation();
+      venueFileInput.click();
+    });
+  }
+
+  if (venueDropzone && venueFileInput) {
+    venueDropzone.addEventListener('click', (e) => {
+      if (e.target.closest('button')) return;
+      venueFileInput.click();
+    });
+
+    venueFileInput.addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+      await handleIncomingScreenshotFiles(files, true);
+      venueFileInput.value = '';
+    });
+
+    venueDropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      venueDropzone.classList.add('dragover');
+    });
+
+    venueDropzone.addEventListener('dragleave', () => {
+      venueDropzone.classList.remove('dragover');
+    });
+
+    venueDropzone.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      venueDropzone.classList.remove('dragover');
+      const files = Array.from(e.dataTransfer?.files || []);
+      if (files.length === 0) return;
+      await handleIncomingScreenshotFiles(files, true);
+    });
   }
 }
 
 // ==============================================================================
 // 7. DISCOVERED VENUES PIPELINE & MODAL LOGIC
 // ==============================================================================
+
+function clearVenueScreenshotPreview() {
+  state.currentVenueScreenshots = [];
+  const prompt = document.getElementById('venue-dropzone-prompt');
+  const container = document.getElementById('venue-screenshot-preview-container');
+  const gallery = document.getElementById('venue-screenshot-gallery-grid');
+  const fileInput = document.getElementById('venue-screenshot-file-input');
+  if (prompt) prompt.style.display = 'block';
+  if (container) container.style.display = 'none';
+  if (gallery) gallery.innerHTML = '';
+  if (fileInput) fileInput.value = '';
+}
+
+function renderVenueScreenshotGallery() {
+  const prompt = document.getElementById('venue-dropzone-prompt');
+  const container = document.getElementById('venue-screenshot-preview-container');
+  const gallery = document.getElementById('venue-screenshot-gallery-grid');
+  const countLabel = document.getElementById('venue-screenshot-count-label');
+
+  if (!state.currentVenueScreenshots || state.currentVenueScreenshots.length === 0) {
+    clearVenueScreenshotPreview();
+    return;
+  }
+
+  if (prompt) prompt.style.display = 'none';
+  if (container) container.style.display = 'block';
+  if (countLabel) {
+    const n = state.currentVenueScreenshots.length;
+    countLabel.textContent = `🖼️ ${n} Screenshot${n === 1 ? '' : 's'} Attached`;
+  }
+
+  if (gallery) {
+    gallery.innerHTML = state.currentVenueScreenshots.map((src, idx) => `
+      <div class="ai-gallery-item" style="position: relative; width: 88px; height: 88px; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(168, 85, 247, 0.55); background: #0f172a; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
+        <img src="${src}" alt="Venue Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${src}', '_blank')" title="Click to view full size">
+        <button type="button" onclick="event.stopPropagation(); window.removeVenueScreenshotByIndex(${idx});" title="Remove image" style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5);">✕</button>
+        <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
+      </div>
+    `).join('');
+  }
+}
+
+window.removeVenueScreenshotByIndex = function(index) {
+  if (state.currentVenueScreenshots && index >= 0 && index < state.currentVenueScreenshots.length) {
+    state.currentVenueScreenshots.splice(index, 1);
+    renderVenueScreenshotGallery();
+    showToast('Venue screenshot removed', 'info');
+  }
+};
+
+function addVenueScreenshotDataUrls(urls) {
+  if (!Array.isArray(urls)) urls = [urls];
+  if (!state.currentVenueScreenshots) state.currentVenueScreenshots = [];
+  let addedCount = 0;
+  for (const url of urls) {
+    if (url && typeof url === 'string') {
+      state.currentVenueScreenshots.push(url);
+      addedCount++;
+    }
+  }
+  renderVenueScreenshotGallery();
+  if (addedCount > 0) {
+    showToast(`🖼️ ${addedCount} venue screenshot${addedCount > 1 ? 's' : ''} added!`, 'info');
+  }
+}
 
 function renderDiscoveredVenuesCards() {
   const container = document.getElementById('curator-cards-list');
@@ -1420,8 +1610,9 @@ function renderDiscoveredVenuesCards() {
 
   container.innerHTML = venues.map(v => {
     const safeV = JSON.stringify(v).replace(/'/g, "&#39;");
+    const isHandled = Boolean(v.dealtWith || v.queuedInstruction);
     return `
-      <div class="curator-card" id="card-venue-${v.id}" style="border-left: 4px solid #10b981;">
+      <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-venue-${v.id}" style="border-left: 4px solid #10b981;">
         <div class="curator-card-top">
           <div>
             <h3 class="curator-card-title" style="color: #6ee7b7;">${escapeHtml(v.name)}</h3>
@@ -1432,10 +1623,11 @@ function renderDiscoveredVenuesCards() {
               <span>🔍 <strong>Discovered Via:</strong> ${escapeHtml(v.discoveredVia || 'Festival / Feed')}</span>
             </div>
           </div>
-          <div>
+          <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
             <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">
               🏛️ Discovered Venue
             </span>
+            ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">🤖 AI Queued</span>` : ''}
           </div>
         </div>
 
@@ -1443,6 +1635,40 @@ function renderDiscoveredVenuesCards() {
           <div><strong>Context / Sample Event:</strong> ${escapeHtml(v.sampleEvent || 'Detected via festival program')}</div>
           ${v.calendarUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(v.calendarUrl)}" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : ''}
         </div>
+
+        <!-- Prominent Instruction Banner (Displays User Instructions on Discovered Venue Cards) -->
+        ${(v.queuedInstruction) ? `
+          <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
+            <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+                <span>🤖</span> Your AI Scraper Instruction:
+              </strong>
+              <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+                ${escapeHtml(
+                  (v.queuedInstruction.action === 'queue_and_approve' || v.queuedInstruction.actionTaken === 'queue_and_approve')
+                    ? '⚡ Enrolled & Training AI'
+                    : (v.queuedInstruction.action === 'queue_and_dismiss' || v.queuedInstruction.actionTaken === 'queue_and_dismiss')
+                      ? '🛑 Dismissed & Training AI'
+                      : '📋 Held for AI Review'
+                )}
+              </span>
+            </div>
+            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
+              “${escapeHtml(v.queuedInstruction.instructionText || '')}”
+            </div>
+            ${(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary) ? `
+              <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; font-size: 0.82rem; color: #a7f3d0; display: flex; align-items: center; gap: 8px;">
+                <span>🧠</span>
+                <span><strong>AI Learned Policy:</strong> ${escapeHtml(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary)}</span>
+              </div>
+            ` : ''}
+            ${renderCardScreenshotThumbnails(v.queuedInstruction)}
+            <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span>🕒 Queued ${v.queuedInstruction.createdAt ? new Date(v.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
+              <button type="button" class="btn-curator-edit-inst" onclick='openAddVenueModal(${safeV}, { focusInstruction: true })' style="margin-left: auto; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;">✏️ Edit / Add Proof</button>
+            </div>
+          </div>
+        ` : ''}
 
         <div class="curator-actions-bar">
           <div class="curator-actions-left">
@@ -1453,6 +1679,14 @@ function renderDiscoveredVenuesCards() {
               title="Enroll this venue into venue_directory.json and regular daily crawl"
             >
               ➕ Add to Regular Venue Crawler
+            </button>
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-ai-approve" 
+              onclick='openAddVenueModal(${safeV}, { focusInstruction: true })'
+              title="Instruct AI Assistant on how to crawl this venue with notes & screenshots"
+            >
+              🤖 Instruct AI
             </button>
             <button 
               type="button" 
@@ -1480,7 +1714,7 @@ function renderDiscoveredVenuesCards() {
   }).join('');
 }
 
-window.openAddVenueModal = function(v) {
+window.openAddVenueModal = function(v, options = {}) {
   const modal = document.getElementById('add-venue-modal');
   if (!modal) return;
 
@@ -1490,6 +1724,7 @@ window.openAddVenueModal = function(v) {
   const urlField = document.getElementById('venue-form-calendar-url');
   const neighSelect = document.getElementById('venue-form-neighborhood');
   const catSelect = document.getElementById('venue-form-category');
+  const textField = document.getElementById('venue-instruction-text');
 
   if (idField) idField.value = v.id || '';
   if (nameField) nameField.value = v.name || '';
@@ -1498,7 +1733,42 @@ window.openAddVenueModal = function(v) {
   if (neighSelect && v.neighborhood) neighSelect.value = v.neighborhood;
   if (catSelect && v.category) catSelect.value = v.category;
 
+  clearVenueScreenshotPreview();
+
+  if (v && v.queuedInstruction) {
+    const q = v.queuedInstruction;
+    if (textField) textField.value = q.instructionText || '';
+    const existingImgs = [];
+    if (Array.isArray(q.screenshotPaths) && q.screenshotPaths.length > 0) {
+      existingImgs.push(...q.screenshotPaths);
+    } else if (q.screenshotPath) {
+      existingImgs.push(q.screenshotPath);
+    } else if (q.screenshotBase64) {
+      existingImgs.push(q.screenshotBase64);
+    }
+    if (existingImgs.length > 0) {
+      addVenueScreenshotDataUrls(existingImgs);
+    }
+  } else if (textField) {
+    textField.value = v.curatorNote || '';
+  }
+
   modal.classList.add('active');
+
+  if (options && options.focusInstruction) {
+    setTimeout(() => {
+      if (textField) {
+        textField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        textField.focus();
+        textField.style.borderColor = '#c084fc';
+        textField.style.boxShadow = '0 0 0 3px rgba(168, 85, 247, 0.3)';
+        setTimeout(() => {
+          textField.style.borderColor = '';
+          textField.style.boxShadow = '';
+        }, 2000);
+      }
+    }, 150);
+  }
 };
 
 window.openAddVenueModalFromEvent = function(eventId) {
@@ -1540,19 +1810,30 @@ window.dismissDiscoveredVenue = async function(discId) {
   }
 };
 
-async function handleAddVenueSubmit(e) {
-  e.preventDefault();
+async function handleAddVenueSubmit(e, action = 'queue_and_approve') {
+  if (e && e.preventDefault) e.preventDefault();
   if (!state.token) return;
 
-  const id = document.getElementById('venue-form-discovered-id').value;
-  const name = document.getElementById('venue-form-name').value.trim();
-  const address = document.getElementById('venue-form-address').value.trim();
-  const calendarUrl = document.getElementById('venue-form-calendar-url').value.trim();
-  const neighborhood = document.getElementById('venue-form-neighborhood').value;
-  const category = document.getElementById('venue-form-category').value;
+  const id = document.getElementById('venue-form-discovered-id')?.value || '';
+  const name = document.getElementById('venue-form-name')?.value?.trim() || '';
+  const address = document.getElementById('venue-form-address')?.value?.trim() || '';
+  const calendarUrl = document.getElementById('venue-form-calendar-url')?.value?.trim() || '';
+  const neighborhood = document.getElementById('venue-form-neighborhood')?.value || 'Downtown / West End';
+  const category = document.getElementById('venue-form-category')?.value || 'shows';
+  const instructionText = document.getElementById('venue-instruction-text')?.value?.trim() || '';
 
-  if (!name || !calendarUrl) {
-    showToast('Venue name and calendar URL are required.', 'error');
+  if (!name) {
+    showToast('Venue name is required.', 'error');
+    return;
+  }
+
+  if (action === 'queue_and_approve' && !calendarUrl) {
+    showToast('Calendar / Events Webpage URL is required to enroll into the crawler.', 'error');
+    return;
+  }
+
+  if (action === 'queue_only' && !instructionText && (!state.currentVenueScreenshots || state.currentVenueScreenshots.length === 0)) {
+    showToast('Please provide instructions or a screenshot for AI before queuing.', 'error');
     return;
   }
 
@@ -1570,27 +1851,74 @@ async function handleAddVenueSubmit(e) {
         calendarUrl,
         neighborhood,
         category,
-        adapter: 'UniversalVenueCrawler'
+        adapter: 'UniversalVenueCrawler',
+        action,
+        instructionText,
+        screenshotsBase64: state.currentVenueScreenshots || []
       })
     });
 
-    const data = await res.json();
+    let data = {};
+    try {
+      data = await res.json();
+    } catch (_) {
+      data = { error: res.statusText || `Server responded with HTTP ${res.status}` };
+    }
+
     if (res.ok && data.success) {
-      showToast(`✓ Venue '${name}' enrolled into Universal Venue Crawler!`, 'success');
       const modal = document.getElementById('add-venue-modal');
       if (modal) modal.classList.remove('active');
 
-      if (name) {
-        state.knownVenues.add(name.toLowerCase());
+      const learnedMsg = data.aiLearnedSummary ? ` • 🧠 ${data.aiLearnedSummary}` : '';
+      if (action === 'queue_and_approve') {
+        showToast(`✓ Venue '${name}' enrolled into Universal Venue Crawler!${learnedMsg}`, 'success');
+        if (name) state.knownVenues.add(name.toLowerCase());
+        state.discoveredVenues = state.discoveredVenues.filter(v => v.id !== id && v.name.toLowerCase() !== name.toLowerCase());
+      } else if (action === 'queue_and_dismiss' || action === 'dismiss') {
+        showToast(`Candidate venue '${name}' dismissed.`, 'info');
+        state.discoveredVenues = state.discoveredVenues.filter(v => v.id !== id && v.name.toLowerCase() !== name.toLowerCase());
+      } else {
+        showToast(`🤖 AI instruction, proof, and learned rules saved for '${name}'!${learnedMsg}`, 'success');
+        const targetV = state.discoveredVenues.find(v => v.id === id || v.name.toLowerCase() === name.toLowerCase());
+        if (targetV) {
+          targetV.dealtWith = true;
+          const finalPaths = (data.screenshotPaths && data.screenshotPaths.length > 0)
+            ? data.screenshotPaths
+            : [...(state.currentVenueScreenshots || [])];
+          targetV.queuedInstruction = {
+            instructionText: instructionText,
+            eventId: id || targetV.id,
+            venueName: name,
+            sourceUrl: calendarUrl,
+            screenshotPath: finalPaths[0] || null,
+            screenshotPaths: finalPaths,
+            hasScreenshot: finalPaths.length > 0,
+            screenshotCount: finalPaths.length,
+            action: action,
+            distilledRules: data.distilledRules || null,
+            aiLearnedSummary: data.aiLearnedSummary || '',
+            createdAt: new Date().toISOString()
+          };
+          targetV.curatorLearnedRules = data.distilledRules || null;
+        }
       }
 
-      // Refresh data
-      loadQuarantineQueue();
+      updateFilterCounts();
+      applyFiltersAndRender();
+
+      // Refresh status counts
+      const statusRes = await fetch('/api/curator/status', {
+        headers: { 'Curator-Token': state.token }
+      });
+      if (statusRes.ok) {
+        const sData = await statusRes.json();
+        updateHeaderStats(sData.pendingCount, sData.rulesCount, sData.masterCount, sData.instructionsPendingCount || 0, sData.discoveredVenuesCount || 0);
+      }
     } else {
-      showToast(data.error || 'Failed to add venue.', 'error');
+      showToast(data.error || `Failed to process venue action (${res.status}).`, 'error');
     }
   } catch (err) {
-    showToast('Network error while adding venue.', 'error');
+    showToast(`Network error processing venue: ${err.message || err}`, 'error');
   }
 }
 
@@ -1628,7 +1956,7 @@ function jsonStringify(obj) {
 
 async function fetchAutomationStatus() {
   try {
-    const res = await fetch('/api/automation/status');
+    const res = await fetch(`/api/automation/status?_t=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) return;
     const data = await res.json();
     updateAutomationUI(data);
@@ -1658,14 +1986,14 @@ function updateAutomationUI(data) {
       syncBtn.style.opacity = '0.7';
     }
     if (syncIcon) syncIcon.className = 'sync-spinning';
-    if (syncText) syncText.textContent = 'Syncing Live...';
+    if (syncText) syncText.textContent = 'Syncing & Learning...';
   } else {
     if (syncBtn) {
       syncBtn.disabled = false;
       syncBtn.style.opacity = '1';
     }
     if (syncIcon) syncIcon.className = '';
-    if (syncText) syncText.textContent = 'Run Full Sync';
+    if (syncText) syncText.textContent = 'Run Full Sync & Learn from Guidance';
 
     if (isEnabled) {
       container.className = 'automation-badge-container';
@@ -1701,7 +2029,7 @@ async function handleTriggerSync() {
     syncBtn.style.opacity = '0.7';
   }
   if (syncIcon) syncIcon.className = 'sync-spinning';
-  if (syncText) syncText.textContent = 'Starting Sync...';
+  if (syncText) syncText.textContent = 'Starting Sync & Learning...';
 
   try {
     const res = await fetch('/api/automation/trigger', {
@@ -1715,7 +2043,7 @@ async function handleTriggerSync() {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast('⚡ Autonomous sync launched in background', 'info');
+      showToast('⚡ Autonomous sync & AI rule learning launched in background', 'info');
       fetchAutomationStatus();
 
       // Poll every 2.5 seconds until complete
@@ -1727,14 +2055,22 @@ async function handleTriggerSync() {
             updateAutomationUI(sData);
             if (sData.status !== 'running') {
               clearInterval(pollInterval);
-              showToast(`✅ Discovery complete: ${sData.totalEvents} active events verified!`, 'success');
+              let learnMsg = '';
+              if (sData.learningStats) {
+                const triaged = (sData.learningStats.archived || 0) + (sData.learningStats.promoted || 0);
+                const rules = sData.learningStats.rulesAdded || 0;
+                if (triaged > 0 || rules > 0) {
+                  learnMsg = ` (${triaged} items triaged, ${rules} rules distilled)`;
+                }
+              }
+              showToast(`✅ Sync & Learning complete: ${sData.totalEvents} active events verified!${learnMsg}`, 'success');
               loadQuarantineQueue();
               const statusRes = await fetch('/api/curator/status', {
                 headers: { 'Curator-Token': state.token }
               });
               if (statusRes.ok) {
                 const curData = await statusRes.json();
-                updateHeaderStats(curData.pendingCount, curData.rulesCount, curData.masterCount, curData.instructionsPendingCount || 0);
+                updateHeaderStats(curData.pendingCount, curData.rulesCount, curData.masterCount, curData.instructionsPendingCount || 0, curData.discoveredVenuesCount || 0);
               }
             }
           }

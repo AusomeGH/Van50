@@ -47,6 +47,7 @@ from venue_adapters import VenueAdapterRegistry
 from dynamic_enricher import DynamicEnricher
 from ra_events_adapter import ResidentAdvisorAdapter
 from universal_venue_crawler import UniversalVenueCrawler
+from universal_festival_crawler import UniversalFestivalCrawler
 from universal_link_hunter import is_generic_url, AutonomousDeepLinkHunter
 
 
@@ -1239,9 +1240,9 @@ def get_curated_seed_catalog():
         # ======================================================================
         {
             "id": "car-free-day-vancouver",
-            "title": "Car Free Day: Commercial Drive & Main Street",
-            "venue": "Commercial Drive & Main Street",
-            "address": "Commercial Dr & Main St, Vancouver",
+            "title": "Car Free Day: Commercial Drive, Main Street & West End (Denman)",
+            "venue": "Commercial Drive, Main Street & Denman Street",
+            "address": "Commercial Dr, Main St & Denman St, Vancouver",
             "neighborhood": "Commercial Drive",
             "basePrice": 0.0,
             "provider": "Box Office / Direct",
@@ -1255,15 +1256,15 @@ def get_curated_seed_catalog():
             "category": "outdoors",
             "categoryLabel": "Walks & Outdoors",
             "categoryIcon": "🎉",
-            "subTags": ["street-festival", "car-free", "community", "live-music", "artisan-market"],
+            "subTags": ["street-festival", "car-free", "community", "live-music", "artisan-market", "denman-street", "west-end"],
             "dateSchedule": "Annual Autumn Festival • 12:00 PM - 7:00 PM",
             "startIso": "2026-09-12T12:00:00-07:00",
             "endIso": "2026-09-13T19:00:00-07:00",
             "isSoldOut": False,
             "websiteUrl": "https://www.carfreevancouver.org",
             "coordinates": [49.2685, -123.0694],
-            "transitInfo": "Commercial-Broadway SkyTrain or Main St-Science World SkyTrain",
-            "description": "Vancouver's premier annual car-free street celebrations across Commercial Drive and Main Street featuring multiple stages of live local music, food carts, artisan vendors, and community block parties."
+            "transitInfo": "Commercial-Broadway SkyTrain, Main St-Science World, or #5/#19 bus to Denman",
+            "description": "Vancouver's premier annual car-free street celebrations combining Commercial Drive, Main Street, and the West End along Denman Street featuring multiple stages of live local music, food carts, artisan vendors, and community block parties."
         },
         {
             "id": "khatsahlano-street-party",
@@ -2295,6 +2296,15 @@ VENUE_URLS = {
     "The Shipyards District": "https://theshipyardsdistrict.ca",
     "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
     "Revue Stage Granville Island": "https://theimprovcentre.ca",
+    "The Revue Stage": "https://theimprovcentre.ca",
+    "Waterfront Theatre": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "The Nest (Granville Island)": "https://www.granvilleisland.com/directory/nest",
+    "Performance Works": "https://granvilleisland.com/directory/performance-works",
+    "Carousel Theatre": "https://www.carouseltheatre.ca",
+    "Arts Factory": "https://artsfactorysociety.ca",
+    "VIFF Centre": "https://viff.org",
+    "Rio Theatre": "https://riotheatre.ca",
+    "SFU Goldcorp Centre for the Arts": "https://www.sfu.ca/woodwards.html",
     "Commercial Drive & Main Street": "https://www.carfreevancouver.org",
     "West 4th Avenue (Burrard to Macdonald)": "https://khatsahlano.ca",
     "John Hendry Park (Trout Lake)": "https://eatlocal.org/markets/trout-lake/",
@@ -2323,18 +2333,24 @@ VENUE_URLS = {
     "Slice of Life Gallery & Studios": "https://www.slicevancouver.ca",
     "Public Disco Society": "https://publicdisco.ca",
     "Bentall Centre Dunsmuir Plaza": "https://bentallcentre.com",
-    "The Birdhouse": "https://www.birdhouse.ca"
+    "The Birdhouse": "https://www.birdhouse.ca",
+    "The Waldorf": "https://atthewaldorf.com",
+    "The Cobalt": "https://thecobalt.ca"
 }
 
-# Dynamically incorporate verified directory venues from data/venues_directory.json
-VENUES_DIR_FILE = os.path.join(DATA_DIR, "venues_directory.json")
+# Dynamically incorporate verified directory venues from data/venue_directory.json
+VENUES_DIR_FILE = os.path.join(DATA_DIR, "venue_directory.json")
 if os.path.exists(VENUES_DIR_FILE):
     try:
         with open(VENUES_DIR_FILE, "r", encoding="utf-8") as _vf:
             _vdata = json.load(_vf)
-            for _v in _vdata.get("venues", []):
-                if _v.get("name") and _v.get("websiteUrl") and _v["name"] not in VENUE_URLS:
-                    VENUE_URLS[_v["name"]] = _v["websiteUrl"]
+            raw_v = _vdata.get("venues", {})
+            v_list = raw_v.values() if isinstance(raw_v, dict) else raw_v
+            for _v in v_list:
+                v_n = _v.get("name")
+                v_u = _v.get("venueUrl") or _v.get("websiteUrl")
+                if v_n and v_u and v_n not in VENUE_URLS:
+                    VENUE_URLS[v_n] = v_u
     except Exception:
         pass
 
@@ -2529,7 +2545,13 @@ def run_sync() -> bool:
     for item in catalog:
         event_id = item['id']
 
-        # 0. Dynamic Live Venue Adapter Authentication
+        # 0. Skip permanently dismissed or archived items FIRST (honoring curator guidance)
+        learned = load_curator_learned_rules()
+        if event_id in learned.get("archived_event_ids", []):
+            print(f"[SKIP ARCHIVED] '{item['title']}' is permanently dismissed/archived.")
+            continue
+
+        # 0b. Dynamic Live Venue Adapter Authentication
         if VenueAdapterRegistry.has_adapter(event_id):
             item = VenueAdapterRegistry.authenticate_event(event_id, item)
 
@@ -2615,12 +2637,6 @@ def run_sync() -> bool:
         if not url.startswith('http') or len(url) < 14:
             print(f"[REJECT] '{item['title']}' rejected: invalid ticket link.")
             rejected_count += 1
-            continue
-
-        # 0. Skip permanently dismissed or archived items
-        learned = load_curator_learned_rules()
-        if event_id in learned.get("archived_event_ids", []):
-            print(f"[SKIP ARCHIVED] '{item['title']}' is permanently dismissed/archived.")
             continue
 
         # STRICT LIVE CHECKOUT PRICING SEARCH & VERIFICATION
@@ -2798,11 +2814,39 @@ def run_sync() -> bool:
                 categories_count[cat] = categories_count.get(cat, 0) + 1
                 print(f"[UNIVERSAL SYNC] Ingested verified venue event: '{uv_ev['title']}' @ {uv_ev['venue']} ({uv_ev['priceLabel']})")
 
+        learned = load_curator_learned_rules()
         for q_ev in uv_quarantined:
+            if q_ev.get('id') in learned.get("archived_event_ids", []):
+                continue
             if not any(q.get('id') == q_ev.get('id') or q.get('title', '').lower() == q_ev.get('title', '').lower() for q in quarantined_events):
                 quarantined_events.append(q_ev)
     except Exception as e:
         print(f"[SYNC ERROR] Failed to run Universal Venue Crawler: {e}")
+
+    # 5. Universal Festival Crawler Show & Screening Ingestion
+    print("\n[SYNC] Harvesting active festival shows and screenings from UniversalFestivalCrawler...")
+    try:
+        fest_events = UniversalFestivalCrawler.harvest_all_active_festival_events()
+        for f_ev in fest_events:
+            # Skip duplicates
+            if any(e['id'] == f_ev['id'] or e['title'].lower() == f_ev['title'].lower() for e in verified_events):
+                continue
+            # Dynamic metadata enrichment & normalize links
+            f_ev = DynamicEnricher.enrich_event(f_ev)
+            raw_v_url = VENUE_URLS.get(f_ev['venue'], f_ev.get('venueUrl', ''))
+            if raw_v_url:
+                f_ev['venueUrl'] = normalize_event_links(raw_v_url, f_ev['venue'])
+
+            if f_ev['price'] <= 50.00:
+                verified_events.append(f_ev)
+                p_label = f_ev.get('ticketProvider', 'Festival Box Office Verified')
+                providers_count[p_label] = providers_count.get(p_label, 0) + 1
+                frequency_count[f_ev.get('frequency', 'seasonal')] = frequency_count.get(f_ev.get('frequency', 'seasonal'), 0) + 1
+                cat = f_ev.get('category', 'shows')
+                categories_count[cat] = categories_count.get(cat, 0) + 1
+                print(f"[FESTIVAL SYNC] Ingested verified festival show: '{f_ev['title']}' @ {f_ev['venue']} ({f_ev['priceLabel']})")
+    except Exception as e:
+        print(f"[SYNC ERROR] Failed to harvest festival events: {e}")
 
     # Preserve any manually approved events currently in events.json not re-crawled
     if os.path.exists(JSON_PATH):

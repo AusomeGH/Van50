@@ -67,9 +67,9 @@
           <span class="automation-dot" id="automation-dot">🟢</span>
           <span class="automation-label" id="automation-label">Daily Sync: 04:00 AM</span>
         </div>
-        <button type="button" class="btn-curator btn-curator-primary" id="btn-trigger-sync" title="Execute complete hands-free crawl &amp; verification cycle now">
+        <button type="button" class="btn-curator btn-curator-primary" id="btn-trigger-sync" title="Execute complete hands-free crawl, learn from curator guidance &amp; screenshots, and auto-triage queue now">
           <span id="btn-sync-icon">⚡</span>
-          <span id="btn-sync-text">Run Full Sync</span>
+          <span id="btn-sync-text">Run Full Sync &amp; Learn from Guidance</span>
         </button>
         <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public catalog">
           <span>🌲 Public Catalog ↗</span>
@@ -327,11 +327,48 @@
           <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #a7f3d0;">
             ⚙️ <strong>Crawler Adapter:</strong> <code>UniversalVenueCrawler</code> (HTML Schema.org + JSON-LD + Deep Link Resolver)
           </div>
+
+          <!-- Plain English Instructions for AI (Optional) -->
+          <div>
+            <label class="curator-label" for="venue-instruction-text" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>🤖 Plain English Instructions for AI Crawler <span style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">(Optional)</span></span>
+            </label>
+            <textarea id="venue-instruction-text" class="curator-input" style="width: 100%; height: 75px; margin-top: 4px; font-family: inherit; font-size: 0.85rem; line-height: 1.4;" placeholder="e.g.: 'Scrape /events/calendar subpage only. Live sets are Thursdays to Saturdays, $15 cash cover at door. Ignore private bookings.'"></textarea>
+          </div>
+
+          <!-- Screenshots / Proof for Venue (Optional, multiple supported, Ctrl+V paste enabled) -->
+          <div>
+            <label class="curator-label" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>🖼️ Screenshots / Proof <span style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">(Optional, multiple supported)</span></span>
+            </label>
+            <div id="venue-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Click to browse or paste screenshots" style="padding: 10px; margin-top: 4px;">
+              <div id="venue-dropzone-prompt" style="text-align: center; padding: 8px; cursor: pointer;">
+                <div style="font-size: 1.4rem; margin-bottom: 2px;">📋 / 🖼️</div>
+                <div style="font-weight: 500; font-size: 0.82rem; color: #e2e8f0;">Click to select screenshots, or paste images with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl + V</kbd></div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Attach schedule screenshots, calendar page layout, door fee posters, or flyer proof</div>
+              </div>
+              <input type="file" id="venue-screenshot-file-input" accept="image/*" multiple style="display: none;">
+              <!-- Multi-Screenshot Preview Gallery -->
+              <div id="venue-screenshot-preview-container" style="display: none; padding: 6px 2px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-size: 0.78rem; font-weight: 600; color: #c084fc;" id="venue-screenshot-count-label">🖼️ 0 Screenshots Attached</span>
+                  <button type="button" id="btn-add-more-venue-screenshots" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #d8b4fe; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; cursor: pointer;">+ Add More</button>
+                </div>
+                <div id="venue-screenshot-gallery-grid" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-venue-modal">Cancel</button>
-          <button type="submit" class="btn-curator btn-curator-primary" id="btn-confirm-add-venue">
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-venue-inst-only" title="Send screenshot/notes to AI and leave candidate in review queue">
+            🤖 Instruct AI Only
+          </button>
+          <button type="button" class="btn-curator btn-curator-danger" id="btn-venue-inst-dismiss" title="Dismiss this candidate venue and train AI scrapers why">
+            🛑 Dismiss Candidate
+          </button>
+          <button type="submit" class="btn-curator btn-curator-primary" id="btn-confirm-add-venue" title="Enroll this venue into venue_directory.json and regular daily crawl">
             ➕ Add to Regular Venue Crawler
           </button>
         </div>
@@ -343,6 +380,23 @@
   <div class="curator-toast" id="curator-toast"></div>
 
   <!-- Scripts -->
-  <script src="js/curator.js?v=1.0.0"></script>
+  <script>
+    // Ensure Curator Studio always bypasses any Service Worker caches
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(keys) {
+        for (let key of keys) {
+          caches.delete(key);
+        }
+      });
+    }
+  </script>
+  <script src="js/curator.js?v=1.2.2"></script>
 </body>
 </html>

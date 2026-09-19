@@ -1939,6 +1939,37 @@ class PlatformAndPolicyExtractor:
             }
 
         # 3. Dynamic Live Web Scraping for Venues, Door Covers, Dining Spends, and Studios
+        learned = load_curator_learned_rules()
+        v_policy = learned.get("venue_policy_rules", {}).get(v_name)
+        if not v_policy:
+            for k, pol in learned.get("venue_policy_rules", {}).items():
+                if k.lower() == v_name.lower():
+                    v_policy = pol
+                    break
+
+        if v_policy and isinstance(v_policy, dict):
+            door_p = v_policy.get("doorPrice")
+            v_cal = (v_policy.get("calendarUrl") or "").rstrip("/")
+            item_url = (url or "").rstrip("/")
+            if door_p is not None and float(door_p) <= 50.0:
+                if not url or item_url in [v_cal, (item.get("venueUrl") or "").rstrip("/")]:
+                    final_door = float(door_p)
+                    p_label = "Free ($0)" if final_door == 0.0 else f"${final_door:.2f} door"
+                    return {
+                        "success": True,
+                        "finalPrice": final_door,
+                        "priceLabel": p_label,
+                        "tiers": [{"name": "Door Admission", "price": final_door, "label": p_label}],
+                        "verification": {
+                            "status": "verified_policy",
+                            "method": "curator_learned_venue_policy",
+                            "verifiedTotal": final_door,
+                            "feeBreakdown": f"{p_label} CAD door admission verified via curator policy for {v_name}",
+                            "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                            "details": v_policy.get("summary") or f"Curator rule for {v_name}: {v_policy.get('curatorGuidance', '')}"
+                        }
+                    }
+
         html = fetch_html(url, timeout=8)
         if not html:
             venue_url = item.get('venueUrl')
@@ -2290,7 +2321,34 @@ class PlatformAndPolicyExtractor:
                         "details": f"Verified dynamically via Slice of Life Gallery & Studios published programming terms on {url}."
                     }
                 }
-            return {"success": False, "quarantineReason": f"Could not dynamically verify live studio rates on Slice of Life page: {url}"}
+        # Check general venue_policy_rules from curator as fallback before quarantine
+        learned = load_curator_learned_rules()
+        v_policy = learned.get("venue_policy_rules", {}).get(v_name)
+        if not v_policy:
+            for k, pol in learned.get("venue_policy_rules", {}).items():
+                if k.lower() == v_name.lower():
+                    v_policy = pol
+                    break
+
+        if v_policy and isinstance(v_policy, dict):
+            door_p = v_policy.get("doorPrice")
+            if door_p is not None and float(door_p) <= 50.0:
+                final_door = float(door_p)
+                p_label = "Free ($0)" if final_door == 0.0 else f"${final_door:.2f} door"
+                return {
+                    "success": True,
+                    "finalPrice": final_door,
+                    "priceLabel": p_label,
+                    "tiers": [{"name": "Door Admission", "price": final_door, "label": p_label}],
+                    "verification": {
+                        "status": "verified_policy",
+                        "method": "curator_learned_venue_policy",
+                        "verifiedTotal": final_door,
+                        "feeBreakdown": f"{p_label} CAD door admission verified via curator policy for {v_name}",
+                        "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                        "details": v_policy.get("summary") or f"Curator rule for {v_name}: {v_policy.get('curatorGuidance', '')}"
+                    }
+                }
 
         return {"success": False, "quarantineReason": f"Could not dynamically verify live checkout pricing on host page: {url}"}
 
@@ -2865,8 +2923,35 @@ class EventPricingSearchEngine:
             }
 
         # 2. Autonomous Deep Link Hunt if incoming URL is generic
+        venue_name = item.get('venue', '')
+        v_policy = learned.get("venue_policy_rules", {}).get(venue_name)
+        if not v_policy:
+            for k, pol in learned.get("venue_policy_rules", {}).items():
+                if k.lower() == venue_name.lower():
+                    v_policy = pol
+                    break
+
         is_gen, gen_reason = is_generic_url(url)
         if is_gen and not (item.get("isDaily") or item.get("frequency") == "daily"):
+            # If venue operates under an approved curator learned policy (e.g. door cover), verify directly
+            if v_policy and v_policy.get("doorPrice") is not None and float(v_policy["doorPrice"]) <= 50.0:
+                door_p = float(v_policy["doorPrice"])
+                p_label = "Free ($0)" if door_p == 0.0 else f"${door_p:.2f} door"
+                return {
+                    "isVerified": True,
+                    "finalPrice": door_p,
+                    "priceLabel": p_label,
+                    "tiers": [{"name": "Door Admission", "price": door_p, "label": p_label}],
+                    "verification": {
+                        "status": "verified_policy",
+                        "method": "curator_learned_venue_policy",
+                        "verifiedTotal": door_p,
+                        "feeBreakdown": f"{p_label} CAD door admission verified via curator policy for {venue_name}",
+                        "verifiedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                        "details": v_policy.get("summary") or f"Curator rule for {venue_name}: {v_policy.get('curatorGuidance', '')}"
+                    }
+                }
+
             hunter_res = AutonomousDeepLinkHunter.hunt(item, url)
             if hunter_res.get("resolved"):
                 url = hunter_res["deepUrl"]

@@ -102,6 +102,48 @@ class TestUniversalFestivalCrawler(unittest.TestCase):
         flagged_names = [f["name"] for f in flagged]
         self.assertNotIn("Stanley Park Seawall", flagged_names)
 
+    def test_harvest_active_festival_events(self):
+        """Tests that harvesting active festivals produces valid <= $50 events with non-daily flag and valid coordinates."""
+        events = UniversalFestivalCrawler.harvest_all_active_festival_events(date(2026, 9, 18))
+        self.assertGreaterEqual(len(events), 10)
+
+        venues = [e["venue"] for e in events]
+        self.assertIn("Waterfront Theatre", venues)
+        self.assertIn("The Nest (Granville Island)", venues)
+        self.assertIn("Performance Works", venues)
+        self.assertIn("Carousel Theatre", venues)
+        self.assertIn("VIFF Centre", venues)
+        self.assertIn("The Cinematheque", venues)
+        self.assertIn("Rio Theatre", venues)
+
+        for ev in events:
+            # 1. Budget cap strict enforcement
+            self.assertLessEqual(ev["price"], 50.00, f"Event {ev['id']} exceeded $50 CAD: {ev['price']}")
+            # 2. Daily spot exclusivity guard: festival shows must NEVER be marked as daily drop-ins
+            self.assertFalse(ev["isDaily"], f"Event {ev['id']} should not be marked isDaily")
+            # 3. Valid Vancouver map coordinates
+            coords = ev.get("coordinates")
+            self.assertIsInstance(coords, list)
+            self.assertEqual(len(coords), 2)
+            lat, lng = coords
+            self.assertTrue(49.0 <= lat <= 49.5, f"Event {ev['id']} invalid lat {lat}")
+            self.assertTrue(-123.5 <= lng <= -122.5, f"Event {ev['id']} invalid lng {lng}")
+            # 4. Required fields
+            self.assertTrue(ev["websiteUrl"].startswith("http"))
+            self.assertIn("#festival", ev["subTags"])
+
+        # Check that Carousel Theatre applies curator guidance (adult-only filter)
+        carousel_events = [e for e in events if e["venue"] == "Carousel Theatre"]
+        self.assertGreater(len(carousel_events), 0)
+        carousel_ev = carousel_events[0]
+        self.assertIn("Adult Comedy", carousel_ev["title"])
+        self.assertIn("#adults-only", carousel_ev["subTags"])
+
+    def test_harvest_concluded_festival_events(self):
+        """Tests that when all festivals in registry have concluded, 0 events are harvested."""
+        events = UniversalFestivalCrawler.harvest_all_active_festival_events(date(2026, 11, 1))
+        self.assertEqual(len(events), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

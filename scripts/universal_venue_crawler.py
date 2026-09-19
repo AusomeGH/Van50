@@ -68,6 +68,16 @@ class UniversalVenueCrawler:
                         for v_name, c_url in rules_data.get("venue_calendar_deep_links", {}).items():
                             if v_name in venues and c_url:
                                 venues[v_name]["calendarUrl"] = c_url
+                        for v_name, policy in rules_data.get("venue_policy_rules", {}).items():
+                            if v_name in venues and isinstance(policy, dict):
+                                venues[v_name]["curatorLearnedRules"] = policy
+                                if policy.get("doorPrice") is not None and "doorCover" not in venues[v_name]:
+                                    venues[v_name]["doorCover"] = policy.get("doorPrice")
+                                if policy.get("scheduleDays") and "operatingDays" not in venues[v_name]:
+                                    venues[v_name]["operatingDays"] = policy.get("scheduleDays")
+                                if policy.get("genres"):
+                                    existing_tags = list(venues[v_name].get("subTags") or [])
+                                    venues[v_name]["subTags"] = sorted(list(set(existing_tags + policy.get("genres", []))))
                 except Exception:
                     pass
 
@@ -587,6 +597,27 @@ class UniversalVenueCrawler:
             if "public-disco" in venue_id:
                 sub_tags = ["public-disco", category, "block-party", "dance-party", "open-air", "djs"]
 
+            # Apply learned curator rules and door covers
+            policy_rule = venue_meta.get("curatorLearnedRules") or {}
+            door_policy_price = venue_meta.get("doorCover") if venue_meta.get("doorCover") is not None else policy_rule.get("doorPrice")
+            if cand.get("scrapedBasePrice") is not None:
+                base_price = float(cand["scrapedBasePrice"])
+            elif door_policy_price is not None and float(door_policy_price) <= 50.0:
+                base_price = float(door_policy_price)
+            else:
+                base_price = 20.0
+
+            if not days_of_week or days_of_week == ["all"]:
+                if venue_meta.get("operatingDays"):
+                    days_of_week = venue_meta["operatingDays"]
+                elif policy_rule.get("scheduleDays"):
+                    days_of_week = policy_rule["scheduleDays"]
+
+            if policy_rule.get("genres"):
+                for g in policy_rule["genres"]:
+                    if g not in sub_tags:
+                        sub_tags.append(g)
+
             candidate_item = {
                 "id": ev_id,
                 "title": title,
@@ -599,8 +630,9 @@ class UniversalVenueCrawler:
                 "neighborhood": neighborhood,
                 "coordinates": coordinates,
                 "transitInfo": transit_info,
-                "basePrice": cand.get("scrapedBasePrice") if cand.get("scrapedBasePrice") is not None else 20.0,
+                "basePrice": base_price,
                 "scrapedBasePrice": cand.get("scrapedBasePrice"),
+                "doorPolicyPrice": door_policy_price,
                 "venueSubpageUrl": venue_subpage,
                 "websiteUrl": ticket_url,
                 "venueUrl": venue_meta.get('venueUrl', calendar_url),

@@ -115,6 +115,301 @@ def create_venue_backup_snapshot():
         return None
 
 
+def save_screenshots_from_payload(payload: dict, ts_base: int = None) -> list:
+    """Decodes base64 screenshots and saves them to data/curator_screenshots."""
+    if ts_base is None:
+        ts_base = int(time.time() * 1000)
+    os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
+    screenshot_rel_paths = []
+
+    raw_shots = list(payload.get("screenshotsBase64") or [])
+    single_shot = payload.get("screenshotBase64")
+    if single_shot and single_shot not in raw_shots:
+        raw_shots.insert(0, single_shot)
+
+    for idx, shot_b64 in enumerate(raw_shots):
+        if not shot_b64 or not isinstance(shot_b64, str):
+            continue
+        if "," in shot_b64:
+            shot_b64 = shot_b64.split(",", 1)[1]
+        try:
+            img_data = base64.b64decode(shot_b64)
+            file_name = f"screenshot_{ts_base}_{idx}.png"
+            full_img_path = os.path.join(SCREENSHOTS_DIR, file_name)
+            with open(full_img_path, "wb") as f_img:
+                f_img.write(img_data)
+            screenshot_rel_paths.append(f"data/curator_screenshots/{file_name}")
+        except Exception as e:
+            print(f"[WARN] Failed to decode/save screenshot #{idx}: {e}")
+
+    return screenshot_rel_paths
+
+
+def distill_venue_learned_rules(venue_name: str, calendar_url: str = "", instruction_text: str = "", category: str = "shows", neighborhood: str = None, website_url: str = None) -> dict:
+    """
+    Analyzes curator plain-English comments/instructions to distill persistent,
+    executable rules for venue scraping, door cover policies, schedule patterns,
+    genres, and calendar deep links.
+    """
+    text = (instruction_text or "").strip()
+    clean_cal = (calendar_url or website_url or "").strip()
+
+    rules = {
+        "venueName": venue_name,
+        "category": category or "shows",
+        "neighborhood": neighborhood or "Downtown / West End",
+        "calendarUrl": clean_cal,
+        "doorPrice": None,
+        "priceRange": None,
+        "pricingType": "standard",
+        "isFree": False,
+        "minimumSpend": None,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": text,
+        "summary": "",
+        "distilledAt": datetime.now(timezone.utc).isoformat()
+    }
+
+    if not text:
+        rules["summary"] = f"Standard venue record registered for {venue_name}."
+        return rules
+
+    # 1. Calendar Deep Link Extraction
+    found_urls = re.findall(r"https?://[^\s\"'>)]+", text)
+    if found_urls:
+        candidate_url = found_urls[0].rstrip(".,;:)")
+        if candidate_url.startswith("http"):
+            rules["calendarUrl"] = candidate_url
+
+    # 2. Pricing & Door Admission Policies
+    # Free / No cover
+    if re.search(r"\b(?:free\s+entry|free\s+admission|no\s+cover|free\s+all\s+night|free\s+walk-ins?|\$0\b)\b", text, re.I):
+        rules["doorPrice"] = 0.0
+        rules["isFree"] = True
+        rules["pricingType"] = "free"
+
+    # Minimum spend (e.g. "minimum spend of $20", "minimum $15 purchase")
+    min_spend_match = re.search(r"minimum\s+(?:spend|purchase)\s*(?:of\s*)?\$?(\d+(?:\.\d{2})?)", text, re.I)
+    if min_spend_match:
+        val = float(min_spend_match.group(1))
+        if val <= 50.0:
+            rules["minimumSpend"] = val
+            rules["doorPrice"] = val
+            rules["pricingType"] = "minimum-spend"
+
+    # Price range (e.g. "$10-$20", "$12 to $18", "$10 - $25")
+    range_match = re.search(r"\$(\d+(?:\.\d{2})?)\s*(?:-|to)\s*\$?(\d+(?:\.\d{2})?)", text, re.I)
+    if range_match and rules.get("doorPrice") is None:
+        low, high = float(range_match.group(1)), float(range_match.group(2))
+        if low <= high and high <= 50.0:
+            rules["priceRange"] = [low, high]
+            rules["doorPrice"] = high
+            rules["pricingType"] = "door-cover"
+        elif low <= 50.0:
+            rules["priceRange"] = [low, 50.0]
+            rules["doorPrice"] = low
+            rules["pricingType"] = "door-cover"
+
+    # Single door cover or ticket price
+    if rules.get("doorPrice") is None:
+        price_match = re.search(r"(?:cover|door|admission|entry|ticket|tickets|entry\s+fee|admission\s+fee)(?:\s+is|\s*[:=-])?\s*\$?(\d+(?:\.\d{2})?)", text, re.I)
+        if not price_match:
+            price_match = re.search(r"\$(\d+(?:\.\d{2})?)\s*(?:cover|door|admission|entry|tickets?|at\s+the\s+door)", text, re.I)
+        if price_match:
+            val = float(price_match.group(1))
+            if val <= 50.0:
+                rules["doorPrice"] = val
+                rules["pricingType"] = "door-cover"
+
+    # Price ceiling / budget cap mentions
+    cap_match = re.search(r"(?:never\s+over|under|max|cap(?:\s+of)?)\s*\$?(\d+(?:\.\d{2})?)", text, re.I)
+    if cap_match:
+        cval = float(cap_match.group(1))
+        if 0 < cval <= 50.0:
+            rules["priceCeiling"] = cval
+
+    # 3. Schedule / Days of Week
+    day_map = {
+        "monday": "mon", "mon": "mon",
+        "tuesday": "tue", "tue": "tue",
+        "wednesday": "wed", "wed": "wed",
+        "thursday": "thu", "thu": "thu",
+        "friday": "fri", "fri": "fri",
+        "saturday": "sat", "sat": "sat",
+        "sunday": "sun", "sun": "sun"
+    }
+    all_week = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+
+    if re.search(r"\bthursdays?\s*(?:through|to|-)\s*sundays?\b", text, re.I):
+        rules["scheduleDays"] = ["thu", "fri", "sat", "sun"]
+    elif re.search(r"\bfridays?\s*(?:and|&|-)\s*saturdays?\b", text, re.I):
+        rules["scheduleDays"] = ["fri", "sat"]
+    elif re.search(r"\bweekends?\b", text, re.I):
+        rules["scheduleDays"] = ["fri", "sat", "sun"]
+    elif re.search(r"\bweekdays?\b", text, re.I):
+        rules["scheduleDays"] = ["mon", "tue", "wed", "thu", "fri"]
+    elif re.search(r"\bdaily\b", text, re.I):
+        rules["scheduleDays"] = ["daily"]
+    else:
+        found_days = []
+        for word, code in day_map.items():
+            if re.search(rf"\b{word}s?\b", text, re.I) and code not in found_days:
+                found_days.append(code)
+        if found_days:
+            rules["scheduleDays"] = sorted(found_days, key=lambda d: all_week.index(d))
+
+    # 4. Music Genres & Tags
+    genre_keywords = [
+        "punk", "metal", "hardcore", "indie rock", "indie", "rock", "electronic", "techno",
+        "house", "djs", "dj", "dance", "drag", "cabaret", "tiki", "comedy", "improv",
+        "jazz", "blues", "folk", "hip hop", "open mic", "trivia", "board games", "arcade",
+        "live music"
+    ]
+    detected_genres = []
+    for g in genre_keywords:
+        if re.search(rf"\b{re.escape(g)}\b", text, re.I):
+            detected_genres.append(g)
+    rules["genres"] = detected_genres
+
+    # 5. Blacklist / Filter Patterns & Demographic Filtering
+    blacklists = []
+    if re.search(r"\b(?:exclude|ignore|skip)\s+private\b", text, re.I):
+        blacklists.append(f"{venue_name.lower()} private rental")
+    if re.search(r"\b(?:exclude|ignore|skip)\s+(?:multi-week|workshops?|courses?)\b", text, re.I):
+        blacklists.append(f"{venue_name.lower()} multi-week")
+    if re.search(r"\b(?:children|kids?|toddlers?|family)\b", text, re.I) and re.search(r"\b(?:don'?t include|exclude|skip|not\s+(?:the\s+)?intended demographic|only special adult)\b", text, re.I):
+        blacklists.extend(["kids", "children", "toddler", "family show"])
+        rules["demographicFilter"] = "adults_only"
+    rules["blacklistPatterns"] = blacklists
+
+    # 6. Executive Summary Generation
+    parts = []
+    if rules["isFree"]:
+        parts.append("Free Admission ($0)")
+    elif rules["minimumSpend"]:
+        parts.append(f"Min Spend ${rules['minimumSpend']:.2f}")
+    elif rules["priceRange"]:
+        parts.append(f"Cover ${rules['priceRange'][0]:.0f}-${rules['priceRange'][1]:.0f}")
+    elif rules["doorPrice"] is not None:
+        parts.append(f"Door Cover ${rules['doorPrice']:.2f}")
+
+    if rules.get("demographicFilter") == "adults_only":
+        parts.append("Filter: Adults only (Exclude regular kids events)")
+    if rules["scheduleDays"]:
+        parts.append(f"Days: {', '.join(rules['scheduleDays']).upper()}")
+    if rules["genres"]:
+        parts.append(f"Tags: {', '.join(rules['genres'][:3])}")
+    if rules["calendarUrl"]:
+        parts.append(f"Calendar: {rules['calendarUrl']}")
+
+    rules["summary"] = " | ".join(parts) if parts else f"AI distilled policy rules from curator comments for {venue_name}."
+    return rules
+
+
+def apply_distilled_venue_rules(distilled: dict, instruction_id: str = None) -> dict:
+    """
+    Persists distilled venue rules across curator_learned_rules.json,
+    venue_directory.json, and updates curator_instructions.json status.
+    """
+    venue_name = distilled.get("venueName")
+    if not venue_name:
+        return {}
+
+    # 1. Update data/curator_learned_rules.json
+    rules_data = {"metadata": {}, "venue_policy_rules": {}, "venue_calendar_deep_links": {}}
+    if os.path.exists(RULES_PATH):
+        try:
+            with open(RULES_PATH, "r", encoding="utf-8") as rf:
+                rules_data = json.load(rf)
+        except Exception as e:
+            print(f"[WARN] Failed loading curator_learned_rules.json: {e}")
+
+    rules_data.setdefault("venue_policy_rules", {})[venue_name] = {
+        "doorPrice": distilled.get("doorPrice"),
+        "priceRange": distilled.get("priceRange"),
+        "pricingType": distilled.get("pricingType"),
+        "minimumSpend": distilled.get("minimumSpend"),
+        "priceCeiling": distilled.get("priceCeiling", 50.0),
+        "scheduleDays": distilled.get("scheduleDays", []),
+        "genres": distilled.get("genres", []),
+        "calendarUrl": distilled.get("calendarUrl", ""),
+        "summary": distilled.get("summary", ""),
+        "curatorGuidance": distilled.get("curatorGuidance", ""),
+        "learnedAt": datetime.now(timezone.utc).isoformat(),
+        "source": f"Curator Studio Instruction {instruction_id or ''}".strip()
+    }
+
+    if distilled.get("calendarUrl"):
+        rules_data.setdefault("venue_calendar_deep_links", {})[venue_name] = distilled["calendarUrl"]
+
+    for pattern in distilled.get("blacklistPatterns", []):
+        if pattern not in rules_data.setdefault("course_blacklist_patterns", []):
+            rules_data["course_blacklist_patterns"].append(pattern)
+
+    rules_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+    try:
+        with open(RULES_PATH, "w", encoding="utf-8") as rf:
+            json.dump(rules_data, rf, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"[WARN] Failed writing curator_learned_rules.json: {e}")
+
+    # 2. Update data/venue_directory.json
+    if os.path.exists(VENUE_DIR_PATH):
+        try:
+            with open(VENUE_DIR_PATH, "r", encoding="utf-8") as vf:
+                v_dir_data = json.load(vf)
+            venues_map = v_dir_data.setdefault("venues", {})
+            if venue_name in venues_map:
+                v_obj = venues_map[venue_name]
+                v_obj["curatorInstructions"] = distilled.get("curatorGuidance", "")
+                v_obj["curatorNote"] = distilled.get("curatorGuidance", "")
+                v_obj["curatorLearnedRules"] = distilled
+                v_obj["policySummary"] = distilled.get("summary", "")
+                if distilled.get("doorPrice") is not None:
+                    v_obj["doorCover"] = distilled.get("doorPrice")
+                if distilled.get("priceRange"):
+                    v_obj["priceRange"] = distilled.get("priceRange")
+                if distilled.get("scheduleDays"):
+                    v_obj["operatingDays"] = distilled.get("scheduleDays")
+                if distilled.get("genres"):
+                    existing_tags = list(v_obj.get("subTags") or [])
+                    v_obj["subTags"] = sorted(list(set(existing_tags + distilled.get("genres", []))))
+                if distilled.get("calendarUrl"):
+                    v_obj["calendarUrl"] = distilled["calendarUrl"]
+                    v_obj["boxOfficeUrl"] = distilled["calendarUrl"]
+                v_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                with open(VENUE_DIR_PATH, "w", encoding="utf-8") as vf:
+                    json.dump(v_dir_data, vf, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"[WARN] Failed updating venue_directory.json with learned rules: {e}")
+
+    # 3. Update data/curator_instructions.json
+    if instruction_id and os.path.exists(INSTRUCTIONS_PATH):
+        try:
+            with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as inf:
+                inst_db = json.load(inf)
+            for item in inst_db.get("instructions", []):
+                if item.get("id") == instruction_id:
+                    if item.get("actionTaken") != "queue_only":
+                        item["status"] = "active_learned"
+                    else:
+                        item["status"] = "pending"
+                    item["aiLearned"] = True
+                    item["distilledRules"] = distilled
+                    item["aiLearnedSummary"] = distilled.get("summary", "")
+                    item["learnedAt"] = datetime.now(timezone.utc).isoformat()
+            inst_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            with open(INSTRUCTIONS_PATH, "w", encoding="utf-8") as inf:
+                json.dump(inst_db, inf, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"[WARN] Failed updating curator_instructions.json: {e}")
+
+    return distilled
+
+
 def sync_js_data_file():
     """Regenerates js/data.js from data/events.json and data/manual_review_queue.json."""
     try:
@@ -288,6 +583,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(response_bytes)))
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         self._apply_cors_headers()
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Curator-Token, Authorization")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
@@ -508,6 +806,32 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         disc = json.load(f)
                 except Exception:
                     pass
+
+            # Cross-reference with curator_instructions.json
+            if os.path.exists(INSTRUCTIONS_PATH):
+                try:
+                    with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as f:
+                        inst_db = json.load(f)
+                    inst_map = {}
+                    for inst in inst_db.get("instructions", []):
+                        ev_id = inst.get("eventId")
+                        v_name = (inst.get("venueName") or "").lower().strip()
+                        if ev_id:
+                            inst_map[ev_id] = inst
+                        if v_name:
+                            inst_map[v_name] = inst
+                    for v in disc.get("discoveredVenues", []):
+                        v_id = v.get("id")
+                        v_nm = (v.get("name") or "").lower().strip()
+                        if v_id in inst_map:
+                            v["queuedInstruction"] = inst_map[v_id]
+                            v["dealtWith"] = True
+                        elif v_nm in inst_map:
+                            v["queuedInstruction"] = inst_map[v_nm]
+                            v["dealtWith"] = True
+                except Exception:
+                    pass
+
             return self._send_json(200, disc)
 
         # 7. API: Get festival registry
@@ -575,10 +899,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(400, {"error": "Invalid Content-Length header"})
 
         # Limits: 25MB for screenshot uploads (supporting multiple screenshots), 256KB for all other JSON endpoints
-        max_bytes = 25 * 1024 * 1024 if path == "/api/curator/instruction" else 256 * 1024
+        max_bytes = 25 * 1024 * 1024 if path in {"/api/curator/instruction", "/api/curator/venues/add"} else 256 * 1024
         if content_len > max_bytes:
+            try:
+                # Drain small excess if feasible to prevent abrupt connection reset
+                if content_len <= 1024 * 1024:
+                    self.rfile.read(content_len)
+            except Exception:
+                pass
             self.close_connection = True
-            return self._send_json(413, {"error": f"Payload Too Large. Max permitted size is {max_bytes // 1024} KB."})
+            unit = "MB" if max_bytes >= 1024 * 1024 else "KB"
+            div = (1024 * 1024) if max_bytes >= 1024 * 1024 else 1024
+            return self._send_json(413, {"error": f"Payload Too Large. Max permitted size is {max_bytes // div} {unit}."})
 
         try:
             body_raw = self.rfile.read(content_len).decode("utf-8") if content_len > 0 else "{}"
@@ -840,31 +1172,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_id = payload.get("eventId", "")
             action = payload.get("action", "queue_only")
 
-            # Handle multiple screenshots or single screenshot (Base64 data URI or raw Base64)
-            os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
-            screenshot_rel_paths = []
-
-            raw_shots = list(payload.get("screenshotsBase64") or [])
-            single_shot = payload.get("screenshotBase64")
-            if single_shot and single_shot not in raw_shots:
-                raw_shots.insert(0, single_shot)
-
             ts_base = int(time.time() * 1000)
-            for idx, shot_b64 in enumerate(raw_shots):
-                if not shot_b64 or not isinstance(shot_b64, str):
-                    continue
-                if "," in shot_b64:
-                    shot_b64 = shot_b64.split(",", 1)[1]
-                try:
-                    img_data = base64.b64decode(shot_b64)
-                    file_name = f"screenshot_{ts_base}_{idx}.png"
-                    full_img_path = os.path.join(SCREENSHOTS_DIR, file_name)
-                    with open(full_img_path, "wb") as f_img:
-                        f_img.write(img_data)
-                    screenshot_rel_paths.append(f"data/curator_screenshots/{file_name}")
-                except Exception as e:
-                    print(f"[WARN] Failed to decode/save screenshot #{idx}: {e}")
-
+            screenshot_rel_paths = save_screenshots_from_payload(payload, ts_base)
             primary_shot = screenshot_rel_paths[0] if screenshot_rel_paths else None
 
             inst_id = f"inst_{ts_base}"
@@ -912,112 +1221,219 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 json.dump(instructions_db, f, indent=2, ensure_ascii=False)
 
             approval_msg = ""
+            distilled_rules = None
+            is_venue_item = str(event_id).startswith("discovered-") or payload.get("itemType") == "venue" or bool(payload.get("venueName"))
+            if is_venue_item and instruction_text:
+                v_target_name = sanitize_text(str(payload.get("venueName") or payload.get("eventTitle") or "").replace("Venue: ", "").strip())
+                if v_target_name:
+                    distilled_rules = distill_venue_learned_rules(
+                        venue_name=v_target_name,
+                        calendar_url=payload.get("sourceUrl", ""),
+                        instruction_text=instruction_text,
+                        category=payload.get("approvedCategory") or payload.get("category") or "shows",
+                        neighborhood=payload.get("neighborhood"),
+                        website_url=payload.get("sourceUrl", "")
+                    )
+                    apply_distilled_venue_rules(distilled_rules, inst_id)
+
             if action == "queue_and_approve":
-                event_to_approve = None
-                if os.path.exists(MANUAL_QUEUE_PATH):
-                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
-                        q_data = json.load(f)
-                    q_list = q_data.get("quarantinedEvents", [])
-                    event_to_approve = next((q for q in q_list if q.get("id") == event_id), None)
-                if not event_to_approve and payload.get("event"):
-                    event_to_approve = payload.get("event")
+                # Check if this is a discovered candidate venue
+                if str(event_id).startswith("discovered-") or payload.get("itemType") == "venue":
+                    venue_name = sanitize_text(str(payload.get("venueName", "")).strip())
+                    if venue_name:
+                        if not distilled_rules:
+                            distilled_rules = distill_venue_learned_rules(
+                                venue_name=venue_name,
+                                calendar_url=payload.get("sourceUrl", ""),
+                                instruction_text=instruction_text,
+                                category=payload.get("approvedCategory") or payload.get("category") or "shows",
+                                neighborhood=payload.get("neighborhood"),
+                                website_url=payload.get("sourceUrl", "")
+                            )
+                            apply_distilled_venue_rules(distilled_rules, inst_id)
 
-                if event_to_approve:
-                    price = float(payload.get("approvedPrice", event_to_approve.get("price", 0.0)))
-                    if price > 50.0:
-                        return self._send_json(400, {"error": f"Approved price ${price:.2f} CAD exceeds $50.00 CAD budget limit."})
-
-                    category = payload.get("approvedCategory") or event_to_approve.get("category", "shows")
-                    raw_price_label = payload.get("priceLabel") or ""
-                    if not raw_price_label or raw_price_label == "$0.00 door" or (price == 0 and "$0.00" in raw_price_label):
-                        price_label = "Free ($0)" if price == 0 else f"${price:.2f} CAD"
-                    else:
-                        price_label = raw_price_label
-
-                    create_backup_snapshot()
-
-                    note = payload.get("curatorNote", "") or event_to_approve.get("curatorNote", "")
-                    source_url = payload.get("sourceUrl", "") or event_to_approve.get("sourceUrl", "") or event_to_approve.get("ticketUrl", "")
-
-                    event_to_approve["price"] = price
-                    event_to_approve["category"] = category
-                    event_to_approve["curatorNote"] = note
-                    event_to_approve["checkoutVerification"] = {
-                        "status": "verified_live",
-                        "method": "manual_curator_review",
-                        "verifiedTotal": price,
-                        "feeBreakdown": f"${price:.2f} CAD verified via Curator Studio review with AI instruction",
-                        "verifiedAt": datetime.now(timezone.utc).isoformat(),
-                        "details": f"Approved by curator with AI instruction. Note: {note}",
-                        "curatorSnapshot": {
-                            "approvedPrice": price,
-                            "approvedPriceLabel": price_label,
-                            "approvedCategory": category,
-                            "curatorNote": note,
-                            "approvedAt": datetime.now(timezone.utc).isoformat(),
-                            "sourceUrl": source_url
+                        create_venue_backup_snapshot()
+                        clean_slug = re.sub(r"[^\w\s-]", "", venue_name.lower())
+                        vid = re.sub(r"[-\s]+", "-", clean_slug).strip("-")
+                        v_addr = sanitize_text(str(payload.get("address") or f"{venue_name}, Vancouver, BC").strip())
+                        v_neigh = sanitize_text(str(payload.get("neighborhood") or "Downtown / West End").strip())
+                        v_cat = sanitize_text(str(payload.get("approvedCategory") or payload.get("category") or "shows").strip())
+                        v_url = sanitize_text(str((distilled_rules.get("calendarUrl") if distilled_rules else None) or payload.get("sourceUrl") or "").strip())
+                        v_dir_data = {"metadata": {}, "venues": {}}
+                        if os.path.exists(VENUE_DIR_PATH):
+                            try:
+                                with open(VENUE_DIR_PATH, "r", encoding="utf-8") as vf:
+                                    v_dir_data = json.load(vf)
+                            except Exception:
+                                pass
+                        v_map = v_dir_data.setdefault("venues", {})
+                        new_v = {
+                            "venueId": vid,
+                            "name": venue_name,
+                            "aliases": [venue_name],
+                            "address": v_addr,
+                            "neighborhood": v_neigh,
+                            "coordinates": payload.get("coordinates") or [49.2827, -123.1207],
+                            "transitInfo": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
+                            "category": v_cat,
+                            "venueUrl": v_url,
+                            "calendarUrl": v_url,
+                            "boxOfficeUrl": v_url,
+                            "ticketingProvider": "Universal Ticketing",
+                            "adapter": "UniversalVenueCrawler",
+                            "doorCover": distilled_rules.get("doorPrice") if distilled_rules else None,
+                            "priceRange": distilled_rules.get("priceRange") if distilled_rules else None,
+                            "operatingDays": distilled_rules.get("scheduleDays") if distilled_rules else [],
+                            "subTags": sorted(list(set(payload.get("subTags", []) + (distilled_rules.get("genres", []) if distilled_rules else [])))),
+                            "curatorInstructions": instruction_text,
+                            "curatorNote": instruction_text,
+                            "curatorLearnedRules": distilled_rules,
+                            "policySummary": distilled_rules.get("summary", "") if distilled_rules else "",
+                            "managedEvents": []
                         }
-                    }
-                    event_to_approve["isSoldOut"] = bool(event_to_approve.get("isSoldOut", False))
+                        v_map[venue_name] = new_v
+                        v_dir_data.setdefault("metadata", {})["totalVenues"] = len(v_map)
+                        v_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        with open(VENUE_DIR_PATH, "w", encoding="utf-8") as vf:
+                            json.dump(v_dir_data, vf, indent=2, ensure_ascii=False)
 
-                    # 1. Add/update in events.json
-                    with open(EVENTS_PATH, "r", encoding="utf-8") as f:
-                        db = json.load(f)
-                    events_list = [e for e in db.get("events", []) if e.get("id") != event_id]
-                    events_list.append(event_to_approve)
-                    db["events"] = events_list
-                    db["metadata"]["totalEvents"] = len(events_list)
-                    db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
-                    with open(EVENTS_PATH, "w", encoding="utf-8") as f:
-                        json.dump(db, f, indent=2, ensure_ascii=False)
-
-                    # 2. Remove from manual_review_queue.json
+                        if os.path.exists(DISCOVERED_VENUES_PATH):
+                            try:
+                                with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                                    disc_data = json.load(df)
+                                for item in disc_data.get("discoveredVenues", []):
+                                    if item.get("id") == event_id or item.get("name", "").lower() == venue_name.lower():
+                                        item["status"] = "approved"
+                                        item["approvedAt"] = datetime.now(timezone.utc).isoformat()
+                                        item["curatorLearnedRules"] = distilled_rules
+                                with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                                    json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                            except Exception:
+                                pass
+                        sync_js_data_file()
+                        approval_msg = f" Venue '{venue_name}' approved and enrolled into Universal Venue Crawler."
+                else:
+                    event_to_approve = None
                     if os.path.exists(MANUAL_QUEUE_PATH):
                         with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                             q_data = json.load(f)
-                        q_list = [q for q in q_data.get("quarantinedEvents", []) if q.get("id") != event_id]
-                        q_data["quarantinedEvents"] = q_list
-                        q_data["metadata"]["pendingCount"] = len(q_list)
+                        q_list = q_data.get("quarantinedEvents", [])
+                        event_to_approve = next((q for q in q_list if q.get("id") == event_id), None)
+                    if not event_to_approve and payload.get("event"):
+                        event_to_approve = payload.get("event")
+
+                    if event_to_approve:
+                        price = float(payload.get("approvedPrice", event_to_approve.get("price", 0.0)))
+                        if price > 50.0:
+                            return self._send_json(400, {"error": f"Approved price ${price:.2f} CAD exceeds $50.00 CAD budget limit."})
+
+                        category = payload.get("approvedCategory") or event_to_approve.get("category", "shows")
+                        raw_price_label = payload.get("priceLabel") or ""
+                        if not raw_price_label or raw_price_label == "$0.00 door" or (price == 0 and "$0.00" in raw_price_label):
+                            price_label = "Free ($0)" if price == 0 else f"${price:.2f} CAD"
+                        else:
+                            price_label = raw_price_label
+
+                        create_backup_snapshot()
+
+                        note = payload.get("curatorNote", "") or event_to_approve.get("curatorNote", "")
+                        source_url = payload.get("sourceUrl", "") or event_to_approve.get("sourceUrl", "") or event_to_approve.get("ticketUrl", "")
+
+                        event_to_approve["price"] = price
+                        event_to_approve["category"] = category
+                        event_to_approve["curatorNote"] = note
+                        event_to_approve["checkoutVerification"] = {
+                            "status": "verified_live",
+                            "method": "manual_curator_review",
+                            "verifiedTotal": price,
+                            "feeBreakdown": f"${price:.2f} CAD verified via Curator Studio review with AI instruction",
+                            "verifiedAt": datetime.now(timezone.utc).isoformat(),
+                            "details": f"Approved by curator with AI instruction. Note: {note}",
+                            "curatorSnapshot": {
+                                "approvedPrice": price,
+                                "approvedPriceLabel": price_label,
+                                "approvedCategory": category,
+                                "curatorNote": note,
+                                "approvedAt": datetime.now(timezone.utc).isoformat(),
+                                "sourceUrl": source_url
+                            }
+                        }
+                        event_to_approve["isSoldOut"] = bool(event_to_approve.get("isSoldOut", False))
+
+                        # 1. Add/update in events.json
+                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+                            db = json.load(f)
+                        events_list = [e for e in db.get("events", []) if e.get("id") != event_id]
+                        events_list.append(event_to_approve)
+                        db["events"] = events_list
+                        db["metadata"]["totalEvents"] = len(events_list)
+                        db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        with open(EVENTS_PATH, "w", encoding="utf-8") as f:
+                            json.dump(db, f, indent=2, ensure_ascii=False)
+
+                        # 2. Remove from manual_review_queue.json
+                        if os.path.exists(MANUAL_QUEUE_PATH):
+                            with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                                q_data = json.load(f)
+                            q_list = [q for q in q_data.get("quarantinedEvents", []) if q.get("id") != event_id]
+                            q_data["quarantinedEvents"] = q_list
+                            q_data["metadata"]["pendingCount"] = len(q_list)
+                            with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                                json.dump(q_data, f, indent=2, ensure_ascii=False)
+
+                        sync_js_data_file()
+                        approval_msg = f" Event '{event_to_approve.get('title')}' approved and promoted to catalog."
+
+            elif action in ("queue_and_dismiss", "queue_and_reject"):
+                if str(event_id).startswith("discovered-") or payload.get("itemType") == "venue":
+                    venue_name = sanitize_text(str(payload.get("venueName", "")).strip())
+                    if os.path.exists(DISCOVERED_VENUES_PATH):
+                        try:
+                            with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                                disc_data = json.load(df)
+                            for item in disc_data.get("discoveredVenues", []):
+                                if item.get("id") == event_id or (venue_name and item.get("name", "").lower() == venue_name.lower()):
+                                    item["status"] = "dismissed"
+                                    item["dismissedAt"] = datetime.now(timezone.utc).isoformat()
+                            with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                                json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                        except Exception:
+                            pass
+                    approval_msg = f" Candidate venue '{venue_name or event_id}' dismissed."
+                else:
+                    event_to_dismiss = None
+                    if os.path.exists(MANUAL_QUEUE_PATH):
+                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                            q_data = json.load(f)
+                        q_list = q_data.get("quarantinedEvents", [])
+                        event_to_dismiss = next((q for q in q_list if q.get("id") == event_id), None)
+                        new_q = [q for q in q_list if q.get("id") != event_id]
+                        q_data["quarantinedEvents"] = new_q
+                        q_data["metadata"]["pendingCount"] = len(new_q)
                         with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                             json.dump(q_data, f, indent=2, ensure_ascii=False)
 
-                    sync_js_data_file()
-                    approval_msg = f" Event '{event_to_approve.get('title')}' approved and promoted to catalog."
-
-            elif action in ("queue_and_dismiss", "queue_and_reject"):
-                event_to_dismiss = None
-                if os.path.exists(MANUAL_QUEUE_PATH):
-                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
-                        q_data = json.load(f)
-                    q_list = q_data.get("quarantinedEvents", [])
-                    event_to_dismiss = next((q for q in q_list if q.get("id") == event_id), None)
-                    new_q = [q for q in q_list if q.get("id") != event_id]
-                    q_data["quarantinedEvents"] = new_q
-                    q_data["metadata"]["pendingCount"] = len(new_q)
-                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
-                        json.dump(q_data, f, indent=2, ensure_ascii=False)
-
-                if event_to_dismiss:
-                    create_backup_snapshot()
-                    archive_db = {"metadata": {}, "archivedEvents": []}
-                    if os.path.exists(ARCHIVE_PATH):
-                        try:
-                            with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
-                                archive_db = json.load(f)
-                        except Exception:
-                            pass
-                    archived_item = {
-                        **event_to_dismiss,
-                        "archivedAt": datetime.now(timezone.utc).isoformat(),
-                        "reviewStatus": "dismissed_by_curator",
-                        "archivedReason": f"Dismissed with AI instruction: {instruction_text[:120]}",
-                        "curatorInstructionId": inst_id
-                    }
-                    archive_db.setdefault("archivedEvents", []).append(archived_item)
-                    archive_db["metadata"]["totalArchived"] = len(archive_db["archivedEvents"])
-                    archive_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
-                    with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
-                        json.dump(archive_db, f, indent=2, ensure_ascii=False)
+                    if event_to_dismiss:
+                        create_backup_snapshot()
+                        archive_db = {"metadata": {}, "archivedEvents": []}
+                        if os.path.exists(ARCHIVE_PATH):
+                            try:
+                                with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
+                                    archive_db = json.load(f)
+                            except Exception:
+                                pass
+                        archived_item = {
+                            **event_to_dismiss,
+                            "archivedAt": datetime.now(timezone.utc).isoformat(),
+                            "reviewStatus": "dismissed_by_curator",
+                            "archivedReason": f"Dismissed with AI instruction: {instruction_text[:120]}",
+                            "curatorInstructionId": inst_id
+                        }
+                        archive_db.setdefault("archivedEvents", []).append(archived_item)
+                        archive_db["metadata"]["totalArchived"] = len(archive_db["archivedEvents"])
+                        archive_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
+                            json.dump(archive_db, f, indent=2, ensure_ascii=False)
 
                     if os.path.exists(EVENTS_PATH):
                         with open(EVENTS_PATH, "r", encoding="utf-8") as f:
@@ -1039,7 +1455,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "action": action,
                 "screenshotPath": primary_shot,
                 "screenshotPaths": screenshot_rel_paths,
-                "pendingInstructions": pending_count
+                "pendingInstructions": pending_count,
+                "distilledRules": distilled_rules,
+                "aiLearnedSummary": distilled_rules.get("summary", "") if distilled_rules else None
             })
 
         # 6. API: Safe rollback
@@ -1097,12 +1515,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Daily automation scheduler {'enabled' if new_state else 'paused'}."
             })
 
-        # 9. API: Add discovered venue to permanent directory & regular crawler
+        # 9. API: Add discovered venue to permanent directory & regular crawler (or instruct AI / dismiss)
         if path == "/api/curator/venues/add":
             name = sanitize_text(str(payload.get("name", "")).strip())
             if not name:
                 return self._send_json(400, {"error": "Venue name is required."})
 
+            action = payload.get("action", "queue_and_approve")
             address = sanitize_text(str(payload.get("address") or f"{name}, Vancouver, BC").strip())
             neighborhood = sanitize_text(str(payload.get("neighborhood") or "Downtown / West End").strip())
             calendar_url = sanitize_text(str(payload.get("calendarUrl") or payload.get("websiteUrl") or "").strip())
@@ -1111,11 +1530,133 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             ticketing_provider = sanitize_text(str(payload.get("ticketingProvider") or "Universal Ticketing").strip())
             adapter = sanitize_text(str(payload.get("adapter") or "UniversalVenueCrawler").strip())
             discovered_id = payload.get("discoveredId")
+            instruction_text = (payload.get("instructionText") or "").strip()
+
+            distilled_rules = distill_venue_learned_rules(
+                venue_name=name,
+                calendar_url=calendar_url,
+                instruction_text=instruction_text,
+                category=category,
+                neighborhood=neighborhood,
+                website_url=venue_url
+            )
+            if distilled_rules.get("calendarUrl") and not calendar_url:
+                calendar_url = distilled_rules["calendarUrl"]
+                venue_url = calendar_url
 
             clean_slug = re.sub(r"[^\w\s-]", "", name.lower())
             venue_id = re.sub(r"[-\s]+", "-", clean_slug).strip("-")
 
+            ts_base = int(time.time() * 1000)
+            screenshot_rel_paths = save_screenshots_from_payload(payload, ts_base)
+            primary_shot = screenshot_rel_paths[0] if screenshot_rel_paths else None
+
+            inst_id = None
+            if instruction_text or screenshot_rel_paths:
+                inst_id = f"inst_{ts_base}"
+                instruction_record = {
+                    "id": inst_id,
+                    "createdAt": datetime.now(timezone.utc).isoformat(),
+                    "status": "pending",
+                    "eventId": discovered_id or venue_id,
+                    "eventTitle": f"Venue: {name}",
+                    "venueName": name,
+                    "sourceUrl": calendar_url,
+                    "instructionText": instruction_text or f"Curator triaged venue '{name}' with {adapter}.",
+                    "screenshotPath": primary_shot,
+                    "screenshotPaths": screenshot_rel_paths,
+                    "hasScreenshot": len(screenshot_rel_paths) > 0,
+                    "screenshotCount": len(screenshot_rel_paths),
+                    "actionTaken": action,
+                    "curatorNote": payload.get("curatorNote", ""),
+                    "targetScraperOrEngine": adapter or "UniversalVenueCrawler",
+                    "aiLearned": True,
+                    "distilledRules": distilled_rules,
+                    "aiLearnedSummary": distilled_rules.get("summary", "")
+                }
+                # Save to curator_instructions.json
+                os.makedirs(DATA_DIR, exist_ok=True)
+                instructions_db = {
+                    "metadata": {
+                        "version": "1.0.0",
+                        "updatedAt": datetime.now(timezone.utc).isoformat(),
+                        "pendingCount": 0,
+                        "description": "Queued plain-English instructions and screenshots for AI scraper enhancements."
+                    },
+                    "instructions": []
+                }
+                if os.path.exists(INSTRUCTIONS_PATH):
+                    try:
+                        with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as f:
+                            instructions_db = json.load(f)
+                    except Exception:
+                        pass
+                instructions_db.setdefault("instructions", []).append(instruction_record)
+                pending_count = len([i for i in instructions_db["instructions"] if i.get("status") == "pending"])
+                instructions_db["metadata"]["pendingCount"] = pending_count
+                instructions_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                with open(INSTRUCTIONS_PATH, "w", encoding="utf-8") as f:
+                    json.dump(instructions_db, f, indent=2, ensure_ascii=False)
+
+            # Handle action branches:
+            if action in ("queue_and_dismiss", "dismiss"):
+                if os.path.exists(DISCOVERED_VENUES_PATH):
+                    try:
+                        with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                            disc_data = json.load(df)
+                        for item in disc_data.get("discoveredVenues", []):
+                            if (discovered_id and item.get("id") == discovered_id) or item.get("name", "").lower() == name.lower():
+                                item["status"] = "dismissed"
+                                item["dismissedAt"] = datetime.now(timezone.utc).isoformat()
+                                if instruction_text:
+                                    item["curatorNote"] = instruction_text
+                        with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                            json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                    except Exception as e:
+                        print(f"[WARN] Failed updating discovered venues status: {e}")
+
+                return self._send_json(200, {
+                    "success": True,
+                    "action": action,
+                    "message": f"Candidate venue '{name}' dismissed and feedback recorded for AI.",
+                    "instructionId": inst_id,
+                    "screenshotPaths": screenshot_rel_paths,
+                    "distilledRules": distilled_rules,
+                    "aiLearnedSummary": distilled_rules.get("summary", "")
+                })
+
+            if action == "queue_only":
+                if instruction_text:
+                    apply_distilled_venue_rules(distilled_rules, inst_id)
+
+                if os.path.exists(DISCOVERED_VENUES_PATH):
+                    try:
+                        with open(DISCOVERED_VENUES_PATH, "r", encoding="utf-8") as df:
+                            disc_data = json.load(df)
+                        for item in disc_data.get("discoveredVenues", []):
+                            if (discovered_id and item.get("id") == discovered_id) or item.get("name", "").lower() == name.lower():
+                                if instruction_text:
+                                    item["curatorNote"] = instruction_text
+                                item["hasInstruction"] = True
+                                item["curatorLearnedRules"] = distilled_rules
+                        with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
+                            json.dump(disc_data, df, indent=2, ensure_ascii=False)
+                    except Exception as e:
+                        print(f"[WARN] Failed updating discovered venues status: {e}")
+
+                return self._send_json(200, {
+                    "success": True,
+                    "action": action,
+                    "message": f"AI scraper instructions, proof, and learned rules saved for venue '{name}'.",
+                    "instructionId": inst_id,
+                    "screenshotPaths": screenshot_rel_paths,
+                    "distilledRules": distilled_rules,
+                    "aiLearnedSummary": distilled_rules.get("summary", "")
+                })
+
+            # Default: action == "queue_and_approve"
             create_venue_backup_snapshot()
+            apply_distilled_venue_rules(distilled_rules, inst_id)
 
             venue_dir_data = {"metadata": {}, "venues": {}}
             if os.path.exists(VENUE_DIR_PATH):
@@ -1141,6 +1682,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "boxOfficeUrl": calendar_url,
                 "ticketingProvider": ticketing_provider,
                 "adapter": adapter,
+                "doorCover": distilled_rules.get("doorPrice"),
+                "priceRange": distilled_rules.get("priceRange"),
+                "operatingDays": distilled_rules.get("scheduleDays"),
+                "subTags": sorted(list(set(payload.get("subTags", []) + distilled_rules.get("genres", [])))),
+                "curatorInstructions": instruction_text,
+                "curatorNote": instruction_text,
+                "curatorLearnedRules": distilled_rules,
+                "policySummary": distilled_rules.get("summary", ""),
                 "managedEvents": []
             }
 
@@ -1163,6 +1712,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         if (discovered_id and item.get("id") == discovered_id) or item.get("name", "").lower() == name.lower():
                             item["status"] = "approved"
                             item["approvedAt"] = datetime.now(timezone.utc).isoformat()
+                            if instruction_text:
+                                item["curatorNote"] = instruction_text
+                            item["curatorLearnedRules"] = distilled_rules
                     with open(DISCOVERED_VENUES_PATH, "w", encoding="utf-8") as df:
                         json.dump(disc_data, df, indent=2, ensure_ascii=False)
                 except Exception as e:
@@ -1172,9 +1724,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             return self._send_json(200, {
                 "success": True,
+                "action": action,
                 "message": f"Venue '{name}' successfully added to permanent directory and registered with {adapter}.",
                 "venue": new_venue,
-                "totalVenues": len(venues_map)
+                "totalVenues": len(venues_map),
+                "instructionId": inst_id,
+                "screenshotPaths": screenshot_rel_paths,
+                "distilledRules": distilled_rules,
+                "aiLearnedSummary": distilled_rules.get("summary", "")
             })
 
         # 10. API: Dismiss discovered venue

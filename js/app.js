@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch('data/events.json?v=5.1.0');
+    const res = await fetch('data/events.json?v=5.2.3');
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
@@ -65,7 +65,7 @@ async function loadCentralReference() {
 
   // Also load quarantined manual review queue
   try {
-    const rqRes = await fetch('data/manual_review_queue.json?v=5.1.0');
+    const rqRes = await fetch('data/manual_review_queue.json?v=5.2.2');
     if (rqRes.ok) {
       const rqData = await rqRes.json();
       if (rqData.quarantinedEvents) {
@@ -791,12 +791,16 @@ function isEventInPast(ev, now = new Date()) {
     }
   }
 
-  // 2. Non-recurring events (one-offs, limited run)
+  // 2. Non-recurring events (one-offs, limited run, festivals)
   if (!isRecurring) {
     if (ev.endIso) {
       const endDt = new Date(ev.endIso);
-      if (!isNaN(endDt.getTime()) && endDt < now) {
-        return true;
+      if (!isNaN(endDt.getTime())) {
+        if (endDt < now) {
+          return true; // The entire multi-day run or festival edition has concluded
+        }
+        // If endDt is still in the future, the event is currently active or upcoming
+        return false;
       }
     }
     if (ev.startIso) {
@@ -899,9 +903,12 @@ function applyFiltersAndRender() {
       return false;
     }
 
-    // 7. Ticketed Events Only Toggle (Hides free unticketed public spots and everyday walks)
+    // 7. Shows & Special Events Only Toggle (Hides everyday drop-in spots and open-hours venues)
     if (state.hideDaily) {
-      if (ev.ticketProvider === 'Free Public Access' || (ev.isDaily && ev.isFree)) {
+      if (ev.isDaily && (ev.category === 'outdoors' || ev.category === 'activities' || ev.ticketProvider === 'Free Public Access')) {
+        return false;
+      }
+      if (ev.id === 'pizzeria-ludica-game-night' || ev.id === 'stanley-park-pitch-and-putt' || ev.id === 'bloedel-conservatory-dome') {
         return false;
       }
     }
@@ -1793,7 +1800,7 @@ function renderEventCards(events) {
         <div class="empty-icon-wrap" style="margin-bottom: 14px;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5; color: var(--accent-primary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
         <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 8px;">No Outings Found Matching Filters</h3>
         <p style="font-size: 0.9rem; max-width: 440px; margin: 0 auto 18px;">
-          Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Ticketed events only".
+          Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Shows & special events only".
         </p>
         <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
       </div>

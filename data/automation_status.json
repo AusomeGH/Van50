@@ -1,16 +1,23 @@
 {
   "status": "success",
   "automationEnabled": true,
-  "lastRunAt": "2026-09-18T08:23:47.217222",
+  "lastRunAt": "2026-09-18T14:43:24.304011",
   "nextRunAt": "2026-09-19T04:00:00",
-  "totalEvents": 78,
-  "quarantinedCount": 16,
+  "totalEvents": 88,
+  "quarantinedCount": 0,
   "testKey": "automation_unit_test",
-  "testTimestamp": "2026-09-18T08:20:58.049011",
-  "updatedAt": "2026-09-18T08:23:47.237543",
+  "testTimestamp": "2026-09-18T14:38:54.240314",
+  "updatedAt": "2026-09-18T14:43:24.310761",
   "currentStep": "idle",
-  "startedAt": "2026-09-18T08:20:58.115010",
-  "durationSeconds": 169.1,
-  "backupFile": "events_2026-09-18_082058.json",
-  "lastLogFile": "data/automation_logs/daily_sync_2026-09-18.log"
+  "startedAt": "2026-09-18T14:42:57.480420",
+  "durationSeconds": 26.83,
+  "backupFile": "events_2026-09-18_144257.json",
+  "lastLogFile": "data/automation_logs/daily_sync_2026-09-18.log",
+  "learningStats": {
+    "success": true,
+    "instructionsProcessed": 2,
+    "archived": 1,
+    "promoted": 0,
+    "rulesAdded": 8
+  }
 }

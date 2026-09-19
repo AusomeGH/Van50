@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Candidate venues detected via discovery feeds and festival programs.",
-    "updatedAt": "2026-09-18T15:02:49.156605+00:00",
+    "updatedAt": "2026-09-18T21:48:18.027000+00:00",
     "totalDiscovered": 13
   },
   "discoveredVenues": [
@@ -33,9 +33,29 @@
       "discoveredVia": "Vancouver Fringe Festival 2026",
       "discoverySourceId": "vancouver-fringe-festival",
       "sampleEvent": "Fringe Festival Experimental & New Works",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T08:00:00-07:00",
-      "curatorNote": ""
+      "curatorNote": "Several events at Granville Island are noted here: https://gitd.ca/pages/whats-on",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "The Nest (Granville Island)",
+        "category": "shows",
+        "neighborhood": "Granville Island",
+        "calendarUrl": "https://gitd.ca/pages/whats-on",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Several events at Granville Island are noted here: https://gitd.ca/pages/whats-on",
+        "summary": "Calendar: https://gitd.ca/pages/whats-on",
+        "distilledAt": "2026-09-18T17:33:57.798825+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-performance-works",
@@ -48,9 +68,29 @@
       "discoveredVia": "Vancouver Fringe Festival",
       "discoverySourceId": "vancouver-fringe-festival",
       "sampleEvent": "Vancouver Fringe Festival Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.207315+00:00",
-      "curatorNote": ""
+      "curatorNote": "Several events at Granville Island are noted here: https://gitd.ca/pages/whats-on",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Performance Works",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://gitd.ca/pages/whats-on",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Several events at Granville Island are noted here: https://gitd.ca/pages/whats-on",
+        "summary": "Calendar: https://gitd.ca/pages/whats-on",
+        "distilledAt": "2026-09-18T17:34:03.551074+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-carousel-theatre",
@@ -63,9 +103,34 @@
       "discoveredVia": "Vancouver Fringe Festival",
       "discoverySourceId": "vancouver-fringe-festival",
       "sampleEvent": "Vancouver Fringe Festival Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.207366+00:00",
-      "curatorNote": ""
+      "curatorNote": "This seems to be nearly exclusively for children, which is not the intended demographic of the app. So don't include the regular events here, only special adult ones.",
+      "approvedAt": "2026-09-18T17:44:24.438108+00:00",
+      "curatorLearnedRules": {
+        "venueName": "Carousel Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://vancouverfringe.com/shows/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [
+          "kids",
+          "children",
+          "toddler",
+          "family show"
+        ],
+        "curatorGuidance": "This seems to be nearly exclusively for children, which is not the intended demographic of the app. So don't include the regular events here, only special adult ones.",
+        "summary": "Filter: Adults only (Exclude regular kids events) | Calendar: https://vancouverfringe.com/shows/",
+        "distilledAt": "2026-09-18T17:44:24.383431+00:00",
+        "demographicFilter": "adults_only"
+      }
     },
     {
       "id": "discovered-arts-factory",
@@ -78,9 +143,29 @@
       "discoveredVia": "Vancouver Fringe Festival",
       "discoverySourceId": "vancouver-fringe-festival",
       "sampleEvent": "Vancouver Fringe Festival Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.207395+00:00",
-      "curatorNote": ""
+      "curatorNote": "https://www.artsfactorysociety.ca/events/",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Arts Factory",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.artsfactorysociety.ca/events/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://www.artsfactorysociety.ca/events/",
+        "summary": "Calendar: https://www.artsfactorysociety.ca/events/",
+        "distilledAt": "2026-09-18T21:08:50.423500+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-the-revue-stage",
@@ -93,9 +178,29 @@
       "discoveredVia": "Vancouver Fringe Festival",
       "discoverySourceId": "vancouver-fringe-festival",
       "sampleEvent": "Vancouver Fringe Festival Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.207422+00:00",
-      "curatorNote": ""
+      "curatorNote": "https://www.revuestagetheatre.ca/home",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "The Revue Stage",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.revuestagetheatre.ca/home",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://www.revuestagetheatre.ca/home",
+        "summary": "Calendar: https://www.revuestagetheatre.ca/home",
+        "distilledAt": "2026-09-18T21:09:50.519754+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-viff-centre",
@@ -108,9 +213,29 @@
       "discoveredVia": "Vancouver International Film Festival (VIFF)",
       "discoverySourceId": "viff-vancouver-film-festival",
       "sampleEvent": "Vancouver International Film Festival (VIFF) Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.229268+00:00",
-      "curatorNote": ""
+      "curatorNote": "https://viff.org/whats-on/",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "VIFF Centre",
+        "category": "cinema",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://viff.org/whats-on/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://viff.org/whats-on/",
+        "summary": "Calendar: https://viff.org/whats-on/",
+        "distilledAt": "2026-09-18T21:11:17.278773+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-rio-theatre",
@@ -123,9 +248,29 @@
       "discoveredVia": "Vancouver International Film Festival (VIFF)",
       "discoverySourceId": "viff-vancouver-film-festival",
       "sampleEvent": "Vancouver International Film Festival (VIFF) Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.229298+00:00",
-      "curatorNote": ""
+      "curatorNote": "https://riotheatre.ca/\n\nThe venue should already be crawled.",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Rio Theatre",
+        "category": "cinema",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://riotheatre.ca/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://riotheatre.ca/\n\nThe venue should already be crawled.",
+        "summary": "Calendar: https://riotheatre.ca/",
+        "distilledAt": "2026-09-18T21:11:59.622620+00:00"
+      },
+      "approvedAt": "2026-09-18T21:20:31.536828+00:00"
     },
     {
       "id": "discovered-sfu-goldcorp-centre-for-the-arts",
@@ -138,9 +283,10 @@
       "discoveredVia": "Vancouver International Film Festival (VIFF)",
       "discoverySourceId": "viff-vancouver-film-festival",
       "sampleEvent": "Vancouver International Film Festival (VIFF) Performances & Showcases",
-      "status": "pending",
+      "status": "dismissed",
       "discoveredAt": "2026-09-18T15:02:11.229317+00:00",
-      "curatorNote": ""
+      "curatorNote": "",
+      "dismissedAt": "2026-09-18T21:12:59.032317+00:00"
     },
     {
       "id": "discovered-commercial-drive",
@@ -153,9 +299,28 @@
       "discoveredVia": "Car Free Days Vancouver",
       "discoverySourceId": "car-free-days-vancouver",
       "sampleEvent": "Car Free Days Vancouver Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.247201+00:00",
-      "curatorNote": ""
+      "curatorNote": "",
+      "approvedAt": "2026-09-18T21:13:26.548780+00:00",
+      "curatorLearnedRules": {
+        "venueName": "Commercial Drive",
+        "category": "outdoors",
+        "neighborhood": "Commercial Drive",
+        "calendarUrl": "https://www.carfreevancouver.org",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Commercial Drive.",
+        "distilledAt": "2026-09-18T21:13:26.527901+00:00"
+      }
     },
     {
       "id": "discovered-main-street",
@@ -168,9 +333,28 @@
       "discoveredVia": "Car Free Days Vancouver",
       "discoverySourceId": "car-free-days-vancouver",
       "sampleEvent": "Car Free Days Vancouver Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.247221+00:00",
-      "curatorNote": ""
+      "curatorNote": "",
+      "approvedAt": "2026-09-18T21:13:33.330206+00:00",
+      "curatorLearnedRules": {
+        "venueName": "Main Street",
+        "category": "outdoors",
+        "neighborhood": "Mount Pleasant",
+        "calendarUrl": "https://www.carfreevancouver.org",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Main Street.",
+        "distilledAt": "2026-09-18T21:13:33.319247+00:00"
+      }
     },
     {
       "id": "discovered-denman-street-west-end",
@@ -183,9 +367,29 @@
       "discoveredVia": "Car Free Days Vancouver",
       "discoverySourceId": "car-free-days-vancouver",
       "sampleEvent": "Car Free Days Vancouver Performances & Showcases",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:11.247232+00:00",
-      "curatorNote": ""
+      "approvedAt": "2026-09-18T21:44:00.000000+00:00",
+      "curatorNote": "I think there are multiple cards being made for the same Car Free days.  Please combine them appropriately",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Denman Street (West End)",
+        "category": "outdoors",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.carfreevancouver.org",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "I think there are multiple cards being made for the same Car Free days.  Please combine them appropriately",
+        "summary": "Calendar: https://www.carfreevancouver.org",
+        "distilledAt": "2026-09-18T21:42:56.358167+00:00"
+      }
     },
     {
       "id": "discovered-touchstone-theatre",
@@ -198,9 +402,28 @@
       "discoveredVia": "Miss604 (Rebecca Bollwitt)",
       "discoverySourceId": "miss604",
       "sampleEvent": "Vascular Necrosis – a Queer Zombie Love Story",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-18T15:02:49.156167+00:00",
-      "curatorNote": ""
+      "curatorNote": "https://touchstonetheatre.com/",
+      "approvedAt": "2026-09-18T21:16:18.257296+00:00",
+      "curatorLearnedRules": {
+        "venueName": "Touchstone Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://touchstonetheatre.com/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "https://touchstonetheatre.com/",
+        "summary": "Calendar: https://touchstonetheatre.com/",
+        "distilledAt": "2026-09-18T21:16:18.215327+00:00"
+      }
     }
   ]
 }

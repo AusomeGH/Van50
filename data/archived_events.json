@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-18T03:26:16.005614+00:00",
+    "updatedAt": "2026-09-18T21:48:18.027000+00:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 37
+    "totalArchived": 38
   },
   "archivedEvents": [
     {
@@ -528,26 +528,6 @@
       "archivedAt": "2026-09-17T19:40:48.298503"
     },
     {
-      "id": "frankies-jazz-brad-turner",
-      "title": "Live Jazz Showcase at Frankie's Jazz Club",
-      "venue": "Frankie's Jazz Club",
-      "address": "755 Beatty St, Vancouver",
-      "neighborhood": "Downtown / West End",
-      "attemptedPrice": 22.0,
-      "attemptedPriceLabel": "$22.00 door",
-      "provider": "Box Office / Direct",
-      "semanticProvider": "Box Office / Direct Verified",
-      "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
-      "category": "music",
-      "flaggedAt": "2026-09-17T20:21:56-07:00",
-      "flagReason": "Generic Link: Bare root homepage without event path: https://frankiesjazzclub.turntabletickets.com/. Autonomous Hunter could not locate a specific event checkout page.",
-      "reviewStatus": "sold_out",
-      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
-      "archivedAt": "2026-09-18T03:25:51.605161+00:00",
-      "archivedReason": "Sold out: Verified via turntabletickets.com screenshot (Winston Matsushita Trio)",
-      "isSoldOut": true
-    },
-    {
       "id": "wise-hall-roots-revue",
       "title": "East Van Roots, Folk & Live Music at The WISE Hall",
       "venue": "The WISE Hall & Lounge",
@@ -831,6 +811,45 @@
       "notes": "Deep link updated to /weekly-live-shows per curator instruction.",
       "archivedAt": "2026-09-18T03:26:16.005614+00:00",
       "archivedReason": "Curator could not locate event on weekly live shows page; crawler re-targeted to /weekly-live-shows"
+    },
+    {
+      "id": "roxy-live-acts-showcase",
+      "title": "The Roxy & Live Acts Canada: GHULO / Focus Your Audio",
+      "venue": "The Roxy Cabaret",
+      "address": "932 Granville St, Vancouver",
+      "neighborhood": "Downtown / West End",
+      "attemptedPrice": 12.0,
+      "attemptedPriceLabel": "$12.00 door",
+      "provider": "Showpass",
+      "semanticProvider": "Showpass Verified",
+      "websiteUrl": "https://roxyvan.com/events",
+      "category": "music",
+      "flaggedAt": "2026-09-18T11:11:25-07:00",
+      "flagReason": "Generic Link: Generic catalog index path ('/events') without specific event slug: https://roxyvan.com/events. Autonomous Hunter could not locate a specific event checkout page.",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
+      "archivedAt": "2026-09-18T18:36:55.019544+00:00",
+      "archivedReason": "Curator guidance: The event is clearly sold on the showpass website. https://www.showpass.com/cfe0926/"
+    },
+    {
+      "id": "frankies-jazz-brad-turner",
+      "title": "Live Jazz Showcase at Frankie's Jazz Club",
+      "venue": "Frankie's Jazz Club",
+      "address": "755 Beatty St, Vancouver",
+      "neighborhood": "Downtown / West End",
+      "attemptedPrice": 22.0,
+      "attemptedPriceLabel": "$22.00 door",
+      "provider": "Box Office / Direct",
+      "semanticProvider": "Box Office / Direct Verified",
+      "websiteUrl": "https://frankiesjazzclub.turntabletickets.com/",
+      "category": "music",
+      "flaggedAt": "2026-09-18T14:39:07-07:00",
+      "flagReason": "Generic Link: Bare root homepage without event path: https://frankiesjazzclub.turntabletickets.com/. Autonomous Hunter could not locate a specific event checkout page.",
+      "reviewStatus": "sold_out",
+      "notes": "Generic URL detected. Curator review required to verify or assign specific event link.",
+      "archivedAt": "2026-09-18T21:42:57.494092+00:00",
+      "archivedReason": "Curator guidance: Sold out.",
+      "isSoldOut": true
     }
   ]
 }
