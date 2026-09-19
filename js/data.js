@@ -315,7 +315,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+    "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
@@ -546,6 +546,7 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
+      "vancouver",
       "exotic-birds",
       "tickets",
       "rainforest",
@@ -1507,7 +1508,6 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "comedy-show",
       "granville-island",
-      "comedy",
       "theatresports",
       "improv",
       "waterfront-theatre"
@@ -1972,7 +1972,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
+    "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "manual_curator_review",
@@ -2905,7 +2905,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "> Markets Why do we cultivate food? To explore and exemplify healthy and sustainable food systems, encourage sustainable food literacy, foster socially just food systems for all, and cultivate the local food economy. Discover the UBC Farm through your taste buds! Get your local, certified organic, farm-fresh seasonal veggies, fruits, herbs, flow...",
+    "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
