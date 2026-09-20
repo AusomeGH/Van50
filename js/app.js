@@ -487,14 +487,15 @@ function renderFestivalSpotlight() {
 
   container.style.display = 'block';
   container.innerHTML = `
-    <div class="festival-spotlight-card ${isHidden ? 'festival-muted' : ''}">
+    <div class="festival-spotlight-card ${isHidden ? 'festival-muted festival-collapsed' : ''}">
       <div class="festival-spotlight-left">
         <div class="festival-badge-row">
-          <span class="festival-status-badge">🎪 LIVE FESTIVAL SPOTLIGHT</span>
+          <span class="festival-status-badge">${isHidden ? '🎪 FESTIVALS HIDDEN' : '🎪 LIVE FESTIVAL SPOTLIGHT'}</span>
           <span class="festival-dates-badge">Sept 10 – 20, 2026</span>
           <span class="festival-venue-badge">Granville Island &amp; East Van</span>
         </div>
-        <h2 class="festival-spotlight-title">Vancouver Fringe Festival 2026</h2>
+        <h2 class="festival-spotlight-title">Vancouver Fringe Festival 2026 ${isHidden ? '<span class="festival-hidden-tag">(Events &amp; blurb hidden from listings &amp; map)</span>' : ''}</h2>
+        ${!isHidden ? `
         <p class="festival-spotlight-blurb">
           Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
         </p>
@@ -507,8 +508,10 @@ function renderFestivalSpotlight() {
           </a>
           <span class="festival-stats-chip">${festCount} Curated Fringe Productions in Van50</span>
         </div>
+        ` : ''}
       </div>
       <div class="festival-spotlight-right">
+        ${!isHidden ? `
         <button 
           type="button" 
           class="btn-festival-display ${state.category === 'festivals' ? 'active' : ''}" 
@@ -519,6 +522,7 @@ function renderFestivalSpotlight() {
           <span class="toggle-icon">${state.category === 'festivals' ? '✓' : '🎪'}</span>
           <span class="toggle-label">${state.category === 'festivals' ? 'Showing Festival Events (Show All)' : `Display Festival Events (${festCount})`}</span>
         </button>
+        ` : ''}
 
         <button 
           type="button" 
@@ -526,10 +530,10 @@ function renderFestivalSpotlight() {
           id="btn-toggle-festival"
           onclick="toggleHideFestivalEvents()"
           aria-pressed="${isHidden}"
-          title="${isHidden ? 'Show festival events in listing and map' : 'Hide festival events from listing and map'}"
+          title="${isHidden ? 'Show festival events and blurb in listing and map' : 'Hide festival events and blurb from listing and map'}"
         >
           <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
-          <span class="toggle-label">${isHidden ? `Unhide Festival Events` : 'Hide Festival Events'}</span>
+          <span class="toggle-label">${isHidden ? `Unhide Festival Events (${festCount})` : 'Hide Festival Events'}</span>
         </button>
       </div>
     </div>

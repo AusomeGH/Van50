@@ -288,6 +288,7 @@ body {
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.15s ease;
+  user-select: none;
 }
 
 .curator-filter-pill:hover {
@@ -295,10 +296,76 @@ body {
   color: #fff;
 }
 
+/* Category-specific Inactive Tints */
+.curator-filter-pill[data-filter="discovered_venues"] {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+.curator-filter-pill[data-filter="unhandled"] {
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+.curator-filter-pill[data-filter="handled"] {
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #c084fc;
+}
+.curator-filter-pill[data-filter="drift"] {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+
+/* High-Contrast Selected / Active States */
 .curator-filter-pill.active {
-  background: var(--curator-accent);
-  color: #090d16;
-  border-color: var(--curator-accent);
+  background: var(--curator-accent) !important;
+  color: #04131f !important;
+  border-color: var(--curator-accent) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+}
+.curator-filter-pill.active span,
+.curator-filter-pill.active * {
+  color: #04131f !important;
+  font-weight: 800 !important;
+}
+
+.curator-filter-pill[data-filter="discovered_venues"].active {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #022c16 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+}
+.curator-filter-pill[data-filter="discovered_venues"].active span {
+  color: #022c16 !important;
+}
+
+.curator-filter-pill[data-filter="unhandled"].active {
+  background: #38bdf8 !important;
+  border-color: #38bdf8 !important;
+  color: #041926 !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+}
+.curator-filter-pill[data-filter="unhandled"].active span {
+  color: #041926 !important;
+}
+
+.curator-filter-pill[data-filter="handled"].active {
+  background: #c084fc !important;
+  border-color: #c084fc !important;
+  color: #240742 !important;
+  box-shadow: 0 0 14px rgba(192, 132, 252, 0.4);
+}
+.curator-filter-pill[data-filter="handled"].active span {
+  color: #240742 !important;
+}
+
+.curator-filter-pill[data-filter="drift"].active {
+  background: #fbbf24 !important;
+  border-color: #fbbf24 !important;
+  color: #3b1b02 !important;
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.4);
+}
+.curator-filter-pill[data-filter="drift"].active span {
+  color: #3b1b02 !important;
 }
 
 .curator-search-sort-row {
@@ -353,6 +420,17 @@ body {
 
 .curator-select:focus {
   border-color: var(--curator-accent);
+}
+
+.curator-select option {
+  background: #0f172a;
+  color: #f1f5f9;
+  padding: 6px 10px;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.45);
+  color: #ffffff;
 }
 
 /* Results Status Bar */
