@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-18T21:48:18.027000+00:00",
+    "updatedAt": "2026-09-19T08:18:52-07:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 38
+    "totalArchived": 40
   },
   "archivedEvents": [
     {
@@ -277,7 +277,7 @@
       "category": "trivia",
       "frequency": "weekly",
       "frequencyLabel": "Weekly (Tuesdays)",
-      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
+      "dateSchedule": "Weekly on Tuesdays \u2022 7:30 PM - 9:30 PM",
       "daysOfWeek": [
         "tue"
       ],
@@ -328,7 +328,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -395,7 +395,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -466,7 +466,7 @@
       "venueUrl": "https://rickshawtheatre.com",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "rickshaw-theatre",
         "music",
@@ -850,6 +850,44 @@
       "archivedAt": "2026-09-18T21:42:57.494092+00:00",
       "archivedReason": "Curator guidance: Sold out.",
       "isSoldOut": true
+    },
+    {
+      "id": "fox-cabaret-dance-night",
+      "title": "The Fox Cabaret: Weekend 90s & Retro Dance Parties",
+      "venue": "The Fox Cabaret",
+      "address": "2321 Main St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 15.0,
+      "attemptedPriceLabel": "$15.00 door",
+      "provider": "Eventbrite",
+      "semanticProvider": "Eventbrite Verified",
+      "websiteUrl": "https://www.eventbrite.com/e/ultimate-90s-night-tickets-1996660198402",
+      "category": "music",
+      "flaggedAt": "2026-09-19T07:33:01-07:00",
+      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.com/e/ultimate-90s-night-tickets-1996660198402",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "archivedAt": "2026-09-19T14:42:51.125744+00:00",
+      "archivedReason": "Curator guidance: Attached 2 screenshots: one showing the poster price, one showing checkout tier."
+    },
+    {
+      "id": "fox-cabaret-indie-cinema",
+      "title": "Double InDUMBnity: Screening at The Fox Cabaret",
+      "venue": "The Fox Cabaret",
+      "address": "2321 Main St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 39.0,
+      "attemptedPriceLabel": "$39.00 door",
+      "provider": "Eventbrite",
+      "semanticProvider": "Eventbrite Verified",
+      "websiteUrl": "https://www.eventbrite.com/e/double-indumbnity-john-jonah-at-fox-cabaret-vancouver-tickets-1998392844794",
+      "category": "cinema",
+      "flaggedAt": "2026-09-19T07:47:33-07:00",
+      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.com/e/double-indumbnity-john-jonah-at-fox-cabaret-vancouver-tickets-1998392844794",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "archivedAt": "2026-09-19T14:49:56.559997+00:00",
+      "archivedReason": "Curator guidance: Attached 2 screenshots: one showing the poster price, one showing checkout tier."
     }
   ]
 }

@@ -18,10 +18,12 @@
       "scheduleUrl": "https://vancouverfringe.com/shows/",
       "ticketPortalUrl": "https://vancouverfringe.com/tickets/",
       "priceStructure": {
-        "model": "per_show_plus_membership",
-        "showPrice": 15.00,
-        "membershipButtonFee": 10.00,
-        "allInSingleShow": 25.00,
+        "model": "per_show_all_in",
+        "showPrice": 18.00,
+        "membershipButtonFee": 0.00,
+        "membershipRequired": false,
+        "allInSingleShow": 18.00,
+        "taxIncluded": true,
         "withinBudget": true
       },
       "hostVenues": [

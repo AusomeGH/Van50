@@ -3,17 +3,17 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v1.0.6';
+const CACHE_NAME = 'van50-cache-v1.2.0';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css?v=5.2.0',
-  './css/components.css?v=5.2.0',
-  './js/app.js?v=5.2.3',
-  './js/map.js?v=5.2.0',
-  './js/data.js?v=5.2.3',
+  './css/style.css?v=5.5.0',
+  './css/components.css?v=5.5.0',
+  './js/app.js?v=5.5.0',
+  './js/map.js?v=5.5.0',
+  './js/data.js?v=5.5.0',
   './js/roulette.js',
   './js/pwa-install.js',
   './vendor/leaflet/leaflet.css',
@@ -60,8 +60,8 @@ self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // Only handle GET requests
-  if (request.method !== 'GET') return;
+  // Only handle same-origin GET requests; bypass third-party map tiles and CDNs
+  if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
   // Never intercept or cache API endpoints or curator management console
   if (url.pathname.startsWith('/api/') || url.pathname.includes('curator')) {

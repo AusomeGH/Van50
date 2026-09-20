@@ -2,8 +2,8 @@
   "metadata": {
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 69,
-    "updatedAt": "2026-09-18T21:42:45.747374+00:00"
+    "totalVenues": 72,
+    "updatedAt": "2026-09-19T15:10:39.509721+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -11,7 +11,7 @@
       "name": "Stanley Park Seawall",
       "aliases": [],
       "address": "Georgia St & Park Dr, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2988,
         -123.1384
@@ -32,7 +32,7 @@
       "name": "Lynn Canyon Park",
       "aliases": [],
       "address": "3663 Park Rd, North Vancouver",
-      "neighborhood": "North Shore / Burnaby",
+      "neighborhood": "North Shore, Burnaby & Metro",
       "coordinates": [
         49.3438,
         -123.0189
@@ -53,7 +53,7 @@
       "name": "Granville Island Public Market",
       "aliases": [],
       "address": "1689 Johnston St, Vancouver",
-      "neighborhood": "Granville Island",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2718,
         -123.1342
@@ -74,7 +74,7 @@
       "name": "Kitsilano Beach Outdoor Amphitheatre",
       "aliases": [],
       "address": "2300 Cornwall Ave, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2742,
         -123.1558
@@ -95,7 +95,7 @@
       "name": "VPL Central Library (Level 9)",
       "aliases": [],
       "address": "350 W Georgia St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2801,
         -123.1154
@@ -116,7 +116,7 @@
       "name": "Dr. Sun Yat-Sen Public Courtyard",
       "aliases": [],
       "address": "578 Carrall St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2798,
         -123.104
@@ -137,7 +137,7 @@
       "name": "UBC Rose Garden & Trail 6",
       "aliases": [],
       "address": "6301 NW Marine Dr, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2694,
         -123.2562
@@ -158,7 +158,7 @@
       "name": "Queen Elizabeth Park",
       "aliases": [],
       "address": "4600 Cambie St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2417,
         -123.1126
@@ -179,7 +179,7 @@
       "name": "Little Mountain Gallery",
       "aliases": [],
       "address": "110 Water St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2838,
         -123.1072
@@ -218,7 +218,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-18T21:38:51.930968+00:00"
+        "distilledAt": "2026-09-19T15:10:36.850778+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -227,7 +227,7 @@
       "name": "Bloedel Conservatory",
       "aliases": [],
       "address": "4600 Cambie St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2423,
         -123.1144
@@ -249,7 +249,7 @@
       "name": "War Memorial Gym & Thunderbird Stadium",
       "aliases": [],
       "address": "6081 University Blvd, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2662,
         -123.2483
@@ -270,7 +270,7 @@
       "name": "Chill x Studio",
       "aliases": [],
       "address": "1227 Richards St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2748,
         -123.1265
@@ -291,7 +291,7 @@
       "name": "VIFF Centre (Seymour Atrium)",
       "aliases": [],
       "address": "1181 Seymour St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2774,
         -123.1251
@@ -312,7 +312,7 @@
       "name": "The Cinematheque",
       "aliases": [],
       "address": "1131 Howe St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2795,
         -123.1274
@@ -333,7 +333,7 @@
       "name": "The Portside Pub",
       "aliases": [],
       "address": "7 Alexander St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2842,
         -123.1042
@@ -354,7 +354,7 @@
       "name": "The Rio Theatre",
       "aliases": [],
       "address": "1660 E Broadway, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2627,
         -123.0699
@@ -375,7 +375,7 @@
       "name": "The Fox Cabaret",
       "aliases": [],
       "address": "2321 Main St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2638,
         -123.1012
@@ -397,7 +397,7 @@
       "name": "The Biltmore Cabaret",
       "aliases": [],
       "address": "2755 Prince Edward St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2602,
         -123.0975
@@ -418,7 +418,7 @@
       "name": "Scotiabank Field at Nat Bailey Stadium",
       "aliases": [],
       "address": "4601 Ontario St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2428,
         -123.1098
@@ -439,7 +439,7 @@
       "name": "Revue Stage Granville Island",
       "aliases": [],
       "address": "1601 Johnston St, Vancouver",
-      "neighborhood": "Granville Island",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2711,
         -123.1332
@@ -460,7 +460,7 @@
       "name": "Tightrope Impro Theatre",
       "aliases": [],
       "address": "1330 Napier St, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2748,
         -123.0768
@@ -481,7 +481,7 @@
       "name": "The Improv Centre",
       "aliases": [],
       "address": "1502 Duranleau St, Vancouver",
-      "neighborhood": "Granville Island",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2706,
         -123.1363
@@ -502,7 +502,7 @@
       "name": "The Rickshaw Theatre",
       "aliases": [],
       "address": "254 E Hastings St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2813,
         -123.0984
@@ -523,7 +523,7 @@
       "name": "Science World at TELUS World of Science",
       "aliases": [],
       "address": "1455 Quebec St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2734,
         -123.1038
@@ -544,7 +544,7 @@
       "name": "The Orpheum Theatre",
       "aliases": [],
       "address": "601 Smithe St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2804,
         -123.1206
@@ -565,7 +565,7 @@
       "name": "Pizzeria Ludica",
       "aliases": [],
       "address": "189 Keefer Pl, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2801,
         -123.1074
@@ -589,13 +589,13 @@
       "name": "Stanley Park Pitch & Putt",
       "aliases": [],
       "address": "2099 Beach Ave, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2908,
         -123.1448
       ],
       "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
-      "category": "activities",
+      "category": "outdoors",
       "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
       "calendarUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
       "boxOfficeUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
@@ -610,7 +610,7 @@
       "name": "Vancouver Art Gallery",
       "aliases": [],
       "address": "750 Hornby St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.283,
         -123.1205
@@ -631,7 +631,7 @@
       "name": "The Shipyards District",
       "aliases": [],
       "address": "125 Victory Ship Way, North Vancouver",
-      "neighborhood": "North Shore / Burnaby",
+      "neighborhood": "North Shore, Burnaby & Metro",
       "coordinates": [
         49.3113,
         -123.0818
@@ -652,7 +652,7 @@
       "name": "Kitsilano Beach Park",
       "aliases": [],
       "address": "1499 Arbutus St, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2724,
         -123.1534
@@ -673,7 +673,7 @@
       "name": "Commercial Drive & Main Street",
       "aliases": [],
       "address": "Commercial Dr & Main St, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2685,
         -123.0694
@@ -694,7 +694,7 @@
       "name": "West 4th Avenue (Burrard to Macdonald)",
       "aliases": [],
       "address": "West 4th Ave, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2681,
         -123.1582
@@ -715,7 +715,7 @@
       "name": "John Hendry Park (Trout Lake)",
       "aliases": [],
       "address": "3360 Victoria Dr, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2558,
         -123.0642
@@ -736,7 +736,7 @@
       "name": "Kitsilano Community Centre Plaza",
       "aliases": [],
       "address": "2690 Larch St, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2618,
         -123.1617
@@ -761,7 +761,7 @@
         "Guilt and Company"
       ],
       "address": "1 Alexander St (Below Ground), Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2835,
         -123.1039
@@ -782,7 +782,7 @@
       "name": "UBC Instructional Resources Centre (IRC)",
       "aliases": [],
       "address": "2194 Health Sciences Mall, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2647,
         -123.2492
@@ -803,7 +803,7 @@
       "name": "Colony Main Street",
       "aliases": [],
       "address": "2904 Main St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2586,
         -123.1009
@@ -824,7 +824,7 @@
       "name": "RUNVAN Clubhouse & Seawall",
       "aliases": [],
       "address": "1288 W Georgia St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2882,
         -123.1278
@@ -845,7 +845,7 @@
       "name": "Riley Park Plaza (Nat Bailey Stadium)",
       "aliases": [],
       "address": "4601 Ontario St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2435,
         -123.1066
@@ -866,7 +866,7 @@
       "name": "Nelson Park (West End)",
       "aliases": [],
       "address": "1100 Comox St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2818,
         -123.1302
@@ -887,7 +887,7 @@
       "name": "Dude Chilling Park (Guelph Park)",
       "aliases": [],
       "address": "2390 Brunswick St, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2638,
         -123.0954
@@ -908,7 +908,7 @@
       "name": "Vancouver Art Gallery Plaza (North)",
       "aliases": [],
       "address": "750 Hornby St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2831,
         -123.1205
@@ -929,7 +929,7 @@
       "name": "Concord Community Park (False Creek)",
       "aliases": [],
       "address": "50 Pacific Blvd, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2743,
         -123.1118
@@ -950,7 +950,7 @@
       "name": "UBC Farm (South Campus)",
       "aliases": [],
       "address": "3461 Ross Dr, Vancouver",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2526,
         -123.2384
@@ -977,7 +977,7 @@
         "Sharon Minemoto Trio"
       ],
       "address": "300 Water St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2842,
         -123.1102
@@ -1005,7 +1005,7 @@
         "Brad Turner Quartet"
       ],
       "address": "755 Beatty St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2778,
         -123.1147
@@ -1013,20 +1013,20 @@
       "transitInfo": "Stadium-Chinatown SkyTrain Station (2 min walk)",
       "category": "music",
       "venueUrl": "https://www.coastaljazz.ca",
-      "calendarUrl": "https://frankiesjazzclub.turntabletickets.com/",
-      "boxOfficeUrl": "https://frankiesjazzclub.turntabletickets.com/",
+      "calendarUrl": "https://frankiesjazzclub.com",
+      "boxOfficeUrl": "https://frankiesjazzclub.com",
       "ticketingProvider": "Showpass",
       "adapter": "FrankiesJazzLiveAdapter",
       "managedEvents": [
         "frankies-jazz-brad-turner"
       ],
-      "curatorInstructions": "Sold out.",
-      "curatorNote": "Sold out.",
+      "curatorInstructions": "Screenshot proves ticket price is $20 at door not $60.",
+      "curatorNote": "Screenshot proves ticket price is $20 at door not $60.",
       "curatorLearnedRules": {
         "venueName": "Frankie's Jazz Club",
-        "category": "music",
+        "category": "shows",
         "neighborhood": "Downtown / West End",
-        "calendarUrl": "https://frankiesjazzclub.turntabletickets.com/",
+        "calendarUrl": "https://frankiesjazzclub.com",
         "doorPrice": null,
         "priceRange": null,
         "pricingType": "standard",
@@ -1036,11 +1036,11 @@
         "scheduleDays": [],
         "genres": [],
         "blacklistPatterns": [],
-        "curatorGuidance": "Sold out.",
-        "summary": "Calendar: https://frankiesjazzclub.turntabletickets.com/",
-        "distilledAt": "2026-09-18T21:42:45.744167+00:00"
+        "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
+        "summary": "Calendar: https://frankiesjazzclub.com",
+        "distilledAt": "2026-09-19T15:10:36.890572+00:00"
       },
-      "policySummary": "Calendar: https://frankiesjazzclub.turntabletickets.com/"
+      "policySummary": "Calendar: https://frankiesjazzclub.com"
     },
     "The WISE Hall & Lounge": {
       "venueId": "the-wise-hall-lounge",
@@ -1052,7 +1052,7 @@
         "Roots & Bluegrass Revue"
       ],
       "address": "1882 Adanac St, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2774,
         -123.0673
@@ -1073,7 +1073,7 @@
       "name": "The Anza Club",
       "aliases": [],
       "address": "3 W 8th Ave, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2638,
         -123.1068
@@ -1100,7 +1100,7 @@
         "Sore Points"
       ],
       "address": "1151 E Hastings St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2811,
         -123.0805
@@ -1127,7 +1127,7 @@
         "Tough Customer"
       ],
       "address": "362 Powell St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2831,
         -123.0954
@@ -1152,7 +1152,7 @@
         "Roxy Nightclub"
       ],
       "address": "932 Granville St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2804,
         -123.1215
@@ -1179,7 +1179,7 @@
         "Cafe Au Clay"
       ],
       "address": "1612 W 3rd Ave, Vancouver",
-      "neighborhood": "Granville Island",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2698,
         -123.1415
@@ -1204,7 +1204,7 @@
         "Basic Inquiry Gallery"
       ],
       "address": "1011 Main St, Vancouver",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2778,
         -123.0998
@@ -1229,7 +1229,7 @@
         "Hand Eye Ceramics Studio"
       ],
       "address": "2202 Clark Dr, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2655,
         -123.0776
@@ -1254,7 +1254,7 @@
         "Claymates Studio"
       ],
       "address": "1268 E Hastings St, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2813,
         -123.0782
@@ -1281,7 +1281,7 @@
         "Slice Gallery"
       ],
       "address": "1636 Venables St, Vancouver",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2764,
         -123.0715
@@ -1310,7 +1310,7 @@
         "Public Disco Block Party"
       ],
       "address": "Bentall Centre Dunsmuir Plaza (Roving / Open-Air & Club)",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2847,
         -123.1192
@@ -1337,7 +1337,7 @@
         "Public Disco Plaza"
       ],
       "address": "1055 Dunsmuir St, Vancouver",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2847,
         -123.1192
@@ -1362,7 +1362,7 @@
         "Birdhouse Vancouver"
       ],
       "address": "44 W 4th Ave, Vancouver",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2678,
         -123.1065
@@ -1388,7 +1388,7 @@
         "Lonsdale Quay Shipyards"
       ],
       "address": "125 Victory Ship Way, North Vancouver, BC",
-      "neighborhood": "North Shore / Burnaby",
+      "neighborhood": "North Shore, Burnaby & Metro",
       "coordinates": [
         49.3117,
         -123.0805
@@ -1412,7 +1412,7 @@
         "Hollywood Theatre Vancouver"
       ],
       "address": "3123 W Broadway, Vancouver, BC",
-      "neighborhood": "Kitsilano",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
       "coordinates": [
         49.2642,
         -123.1754
@@ -1434,7 +1434,7 @@
         "Rickshaw"
       ],
       "address": "254 E Hastings St, Vancouver, BC",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2811,
         -123.0984
@@ -1455,7 +1455,7 @@
         "Waterfront Theatre"
       ],
       "address": "1412 Cartwright St, Vancouver, BC",
-      "neighborhood": "Granville Island",
+      "neighborhood": "Granville Island & False Creek",
       "coordinates": [
         49.2827,
         -123.1207
@@ -1480,7 +1480,7 @@
         "The Waldorf Vancouver"
       ],
       "address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2813,
         -123.0734
@@ -1558,7 +1558,7 @@
         "Cobalt Cabaret"
       ],
       "address": "917 Main St, Vancouver, BC V6A 2V8",
-      "neighborhood": "Gastown / Chinatown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2764,
         -123.0999
@@ -1633,7 +1633,7 @@
         "Carousel Theatre"
       ],
       "address": "Carousel Theatre, Vancouver, BC",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2827,
         -123.1207
@@ -1685,7 +1685,7 @@
         "Commercial Drive"
       ],
       "address": "Commercial Drive, Vancouver, BC",
-      "neighborhood": "Commercial Drive",
+      "neighborhood": "Commercial Drive & East Vancouver",
       "coordinates": [
         49.2827,
         -123.1207
@@ -1731,7 +1731,7 @@
         "Main Street"
       ],
       "address": "Main Street, Vancouver, BC",
-      "neighborhood": "Mount Pleasant",
+      "neighborhood": "Mount Pleasant & South Vancouver",
       "coordinates": [
         49.2827,
         -123.1207
@@ -1777,7 +1777,7 @@
         "Touchstone Theatre"
       ],
       "address": "Touchstone Theatre, Vancouver, BC",
-      "neighborhood": "Downtown / West End",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "coordinates": [
         49.2827,
         -123.1207
@@ -1815,6 +1815,42 @@
       },
       "policySummary": "Calendar: https://touchstonetheatre.com/",
       "managedEvents": []
+    },
+    "Queen Elizabeth Park Pitch & Putt": {
+      "name": "Queen Elizabeth Park Pitch & Putt",
+      "address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "category": "outdoors",
+      "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+      "coordinates": [
+        49.2395,
+        -123.114
+      ],
+      "transitInfo": "SkyTrain Canada Line to King Edward Station or #15 Cambie bus"
+    },
+    "Rupert Park Pitch & Putt": {
+      "name": "Rupert Park Pitch & Putt",
+      "address": "3402 Charles St, Vancouver, BC",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "category": "outdoors",
+      "websiteUrl": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+      "coordinates": [
+        49.274,
+        -123.0335
+      ],
+      "transitInfo": "#9 or #99 B-Line to Boundary / Broadway or #16 Renfrew bus"
+    },
+    "Central Park Pitch & Putt": {
+      "name": "Central Park Pitch & Putt",
+      "address": "Kingsway & Boundary Rd, Central Park, Vancouver/Burnaby, BC",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "category": "outdoors",
+      "websiteUrl": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+      "coordinates": [
+        49.228,
+        -123.0205
+      ],
+      "transitInfo": "SkyTrain Expo Line to Patterson Station (3 min walk)"
     }
   }
 }

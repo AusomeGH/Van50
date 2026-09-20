@@ -5,6 +5,7 @@ const state = {
   minBudget: 0,
   maxBudget: 50,
   hideDaily: false,
+  hideFestivalEvents: false,
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
@@ -26,6 +27,7 @@ let ALL_EVENTS = typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS : []
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedState();
   setupEventListeners();
+  renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
   renderTimePills();
@@ -46,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch('data/events.json?v=5.2.3');
+    const res = await fetch(`data/events.json?v=5.5.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
@@ -56,6 +58,7 @@ async function loadCentralReference() {
           state.updatedAt = data.metadata.updatedAt;
           showSyncTimestamp(data.metadata.updatedAt, data.events.length);
         }
+        renderFestivalSpotlight();
         applyFiltersAndRender();
       }
     }
@@ -460,8 +463,126 @@ function clearActiveQuickButtons() {
 }
 
 // ==============================================================================
+// 1.5 FESTIVAL SPOTLIGHT & TOGGLE ENGINE
+// ==============================================================================
+
+function renderFestivalSpotlight() {
+  const container = document.getElementById('festival-spotlight-container');
+  if (!container) return;
+
+  const festivalEvents = ALL_EVENTS.filter(e => e && (
+    (e.id && e.id.startsWith('fest-')) ||
+    e.isFestival ||
+    (e.subTags && e.subTags.includes('festival')) ||
+    (e.title && e.title.toLowerCase().includes('fringe festival'))
+  ));
+
+  if (festivalEvents.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+
+  const isHidden = state.hideFestivalEvents === true;
+  const festCount = festivalEvents.length;
+
+  container.style.display = 'block';
+  container.innerHTML = `
+    <div class="festival-spotlight-card ${isHidden ? 'festival-muted' : ''}">
+      <div class="festival-spotlight-left">
+        <div class="festival-badge-row">
+          <span class="festival-status-badge">🎪 LIVE FESTIVAL SPOTLIGHT</span>
+          <span class="festival-dates-badge">Sept 10 – 20, 2026</span>
+          <span class="festival-venue-badge">Granville Island &amp; East Van</span>
+        </div>
+        <h2 class="festival-spotlight-title">Vancouver Fringe Festival 2026</h2>
+        <p class="festival-spotlight-blurb">
+          Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
+        </p>
+        <div class="festival-links-row">
+          <a href="https://vancouverfringe.com/shows/" target="_blank" rel="noopener noreferrer" class="festival-link-primary" title="Browse full festival program on official site">
+            Official Fringe Program &amp; Tickets ↗
+          </a>
+          <a href="https://www.vancouverfringe.com/how-to-fringe/" target="_blank" rel="noopener noreferrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="Official How to Fringe guide">
+            How to Fringe Guide ↗
+          </a>
+          <span class="festival-stats-chip">${festCount} Curated Fringe Productions in Van50</span>
+        </div>
+      </div>
+      <div class="festival-spotlight-right">
+        <button 
+          type="button" 
+          class="btn-festival-display ${state.category === 'festivals' ? 'active' : ''}" 
+          id="btn-display-festival"
+          onclick="displayFestivalEvents()"
+          title="${state.category === 'festivals' ? 'Showing festival events. Click to show all outings' : 'Filter outings to display only festival events'}"
+        >
+          <span class="toggle-icon">${state.category === 'festivals' ? '✓' : '🎪'}</span>
+          <span class="toggle-label">${state.category === 'festivals' ? 'Showing Festival Events (Show All)' : `Display Festival Events (${festCount})`}</span>
+        </button>
+
+        <button 
+          type="button" 
+          class="btn-festival-toggle ${isHidden ? 'fest-hidden' : ''}" 
+          id="btn-toggle-festival"
+          onclick="toggleHideFestivalEvents()"
+          aria-pressed="${isHidden}"
+          title="${isHidden ? 'Show festival events in listing and map' : 'Hide festival events from listing and map'}"
+        >
+          <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
+          <span class="toggle-label">${isHidden ? `Unhide Festival Events` : 'Hide Festival Events'}</span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function displayFestivalEvents() {
+  if (state.category === 'festivals') {
+    state.category = 'all';
+  } else {
+    state.category = 'festivals';
+    state.hideFestivalEvents = false;
+  }
+  renderCategoryPills();
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+  if (typeof invalidateVancouverMap === 'function') {
+    invalidateVancouverMap();
+  }
+  const target = document.getElementById('events-container') || document.getElementById('catalog-section');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function toggleHideFestivalEvents() {
+  state.hideFestivalEvents = !state.hideFestivalEvents;
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+  if (typeof invalidateVancouverMap === 'function') {
+    invalidateVancouverMap();
+  }
+}
+window.displayFestivalEvents = displayFestivalEvents;
+window.toggleHideFestivalEvents = toggleHideFestivalEvents;
+window.renderFestivalSpotlight = renderFestivalSpotlight;
+
+// ==============================================================================
 // 2. RENDERING FILTER PILLS
 // ==============================================================================
+
+if (typeof CATEGORIES === 'undefined') {
+  window.CATEGORIES = [
+    { id: "all", label: "All", icon: "✨" },
+    { id: "music", label: "Live Music", icon: "🎵" },
+    { id: "shows", label: "Comedy & Stage", icon: "🎭" },
+    { id: "festivals", label: "Festivals", icon: "🎪" },
+    { id: "markets", label: "Markets", icon: "🧺" },
+    { id: "outdoors", label: "Outdoors", icon: "🌲" },
+    { id: "cinema", label: "Cinema", icon: "🎬" },
+    { id: "social", label: "Social & Arts", icon: "🎨" }
+  ];
+}
 
 function renderCategoryPills() {
   const container = document.getElementById('categories-bar');
@@ -857,6 +978,13 @@ function applyFiltersAndRender() {
     // Venue Isolation Filter (Requirement 7)
     if (state.selectedVenue && ev.venue !== state.selectedVenue) return false;
 
+    // Festival Toggle Guard (Hide Festival Events toggle)
+    if (state.hideFestivalEvents) {
+      if ((ev.id && ev.id.startsWith('fest-')) || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')) || (ev.title && ev.title.toLowerCase().includes('fringe'))) {
+        return false;
+      }
+    }
+
     // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD)
     if (state.minBudget === 0 && state.maxBudget === 0) {
       if (ev.price > 0) return false;
@@ -866,8 +994,24 @@ function applyFiltersAndRender() {
       if (ev.price < state.minBudget || ev.price > state.maxBudget) return false;
     }
 
-    // 2. Category Filter (Requirement 5: Split Cinema & Museums/Arts)
-    if (state.category !== 'all' && ev.category !== state.category) return false;
+    // 2. Category Filter (Multi-category support)
+    if (state.category !== 'all') {
+      const evCats = (Array.isArray(ev.categories) && ev.categories.length > 0)
+        ? ev.categories
+        : [ev.category];
+      const match = evCats.includes(state.category) ||
+        (state.category === 'markets' && (
+          evCats.includes('markets') || 
+          evCats.includes('market') || 
+          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('market'))) ||
+          (ev.id && ev.id.includes('market')) ||
+          (ev.title && ev.title.toLowerCase().includes('market'))
+        )) ||
+        (state.category === 'shows' && (evCats.includes('stage') || evCats.includes('comedy') || evCats.includes('shows'))) ||
+        (state.category === 'festivals' && (evCats.includes('festivals') || evCats.includes('festival') || ev.isFestival || (ev.id && ev.id.startsWith('fest-')) || (ev.title && ev.title.toLowerCase().includes('fringe')))) ||
+        (state.category === 'social' && (evCats.includes('crafts') || evCats.includes('arts') || evCats.includes('trivia') || evCats.includes('activities') || evCats.includes('social')));
+      if (!match) return false;
+    }
 
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
@@ -899,8 +1043,13 @@ function applyFiltersAndRender() {
     }
 
     // 6. Multi-Select Neighborhood
-    if (state.selectedNeighborhoods.size > 0 && !state.selectedNeighborhoods.has(ev.neighborhood)) {
+    const allClustersCount = typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS.length : 6;
+    if (state.selectedNeighborhoods.size === 0) {
       return false;
+    } else if (state.selectedNeighborhoods.size < allClustersCount) {
+      if (!state.selectedNeighborhoods.has(ev.neighborhood)) {
+        return false;
+      }
     }
 
     // 7. Shows & Special Events Only Toggle (Hides everyday drop-in spots and open-hours venues)
@@ -1137,7 +1286,7 @@ function matchesGoogleSearch(ev, parsed) {
   const descNorm = normalizeSearchText(ev.description || '');
   const artistNorm = normalizeSearchText(ev.artist || '');
   const orgNorm = normalizeSearchText(ev.organizer || '');
-  const catNorm = normalizeSearchText(ev.category || '');
+  const catNorm = normalizeSearchText(((Array.isArray(ev.categories) ? ev.categories.join(' ') : '') + ' ' + (ev.category || '')).trim());
   const catLabelNorm = normalizeSearchText(ev.categoryLabel || '');
   const addrNorm = normalizeSearchText(ev.address || '');
   const neighNorm = normalizeSearchText(ev.neighborhood || '');
@@ -1668,7 +1817,37 @@ function getEventTimeBucket(ev, now = new Date()) {
     }
   }
 
-  // 3. startIso
+  // 3. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
+  if (ev.startIso && ev.endIso) {
+    const startDt = new Date(ev.startIso);
+    const endDt = new Date(ev.endIso);
+    if (!isNaN(startDt.getTime()) && !isNaN(endDt.getTime())) {
+      const startDay = new Date(startDt.getFullYear(), startDt.getMonth(), startDt.getDate());
+      const endDay = new Date(endDt.getFullYear(), endDt.getMonth(), endDt.getDate());
+      if (today >= startDay && today <= endDay) {
+        const targetDays = (Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0)
+          ? ev.daysOfWeek.map(d => DAY_MAP[String(d).toLowerCase()]).filter(d => d !== undefined)
+          : [];
+        const matchesToday = targetDays.length === 0 || targetDays.includes(today.getDay());
+        if (matchesToday) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (!status.hasEnded) {
+            return { bucket: 'today', date: today };
+          }
+        }
+        for (let offset = 1; offset <= 14; offset++) {
+          const candidate = new Date(today);
+          candidate.setDate(candidate.getDate() + offset);
+          if (candidate > endDay) break;
+          if (targetDays.length === 0 || targetDays.includes(candidate.getDay())) {
+            return categorizeDateBucket(candidate, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+          }
+        }
+      }
+    }
+  }
+
+  // 4. startIso
   if (ev.startIso) {
     const d = new Date(ev.startIso);
     if (!isNaN(d.getTime())) {
@@ -2012,7 +2191,41 @@ function formatCardTopDate(ev) {
     }
   }
 
-  // 3. startIso
+  // 3. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
+  if (ev.startIso && ev.endIso) {
+    try {
+      const startDt = new Date(ev.startIso);
+      const endDt = new Date(ev.endIso);
+      const startZero = new Date(startDt.getFullYear(), startDt.getMonth(), startDt.getDate());
+      const endZero = new Date(endDt.getFullYear(), endDt.getMonth(), endDt.getDate());
+      if (today >= startZero && today <= endZero) {
+        const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+        const curDay = today.getDay();
+        const hasDaysOfWeek = Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0;
+        const matchesToday = !hasDaysOfWeek || ev.daysOfWeek.some(dow => DAY_MAP[dow.toLowerCase()] === curDay);
+
+        if (matchesToday) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (!status.hasEnded) {
+            const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
+            return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+          }
+        }
+        if (tomorrow <= endZero) {
+          const tomDay = tomorrow.getDay();
+          const matchesTomorrow = !hasDaysOfWeek || ev.daysOfWeek.some(dow => DAY_MAP[dow.toLowerCase()] === tomDay);
+          if (matchesTomorrow) {
+            const monthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const weekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
+            return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 4. startIso
   if (ev.startIso) {
     try {
       const d = new Date(ev.startIso);
@@ -2080,6 +2293,39 @@ function formatCardTopDate(ev) {
   };
 }
 
+function formatCardDisplayTitle(rawTitle, ev) {
+  if (!rawTitle) return '';
+  let t = rawTitle.trim();
+
+  // Identify Fringe productions
+  const isFringe = Boolean(
+    (ev && ev.id && ev.id.includes('fringe')) ||
+    (ev && ev.subTags && ev.subTags.some(tag => tag.toLowerCase().includes('fringe'))) ||
+    (ev && ev.organizer && ev.organizer.toLowerCase().includes('fringe')) ||
+    (ev && ev.ticketProvider && ev.ticketProvider.toLowerCase().includes('fringe')) ||
+    t.toLowerCase().includes('fringe')
+  );
+
+  if (isFringe) {
+    if (ev && ev.rawTitle) {
+      t = ev.rawTitle.trim();
+    } else {
+      // Strip any verbose or legacy prefixes: "Vancouver Fringe Festival:", "Vancouver Fringe:", "FRINGE:", "Fringe:"
+      t = t.replace(/^vancouver fringe festival:\s*/i, '')
+           .replace(/^vancouver fringe:\s*/i, '')
+           .replace(/^fringe:\s*/i, '');
+      // Strip redundant trailing venue if present (e.g. "at Waterfront Theatre")
+      if (ev && ev.venue) {
+        const venueRegex = new RegExp(`\\s+at\\s+${ev.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i');
+        t = t.replace(venueRegex, '');
+      }
+    }
+    // Clean, short title-case label
+    return `Fringe: ${t}`;
+  }
+  return t;
+}
+
 function renderSingleEventCardHtml(ev) {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
@@ -2125,7 +2371,7 @@ function renderSingleEventCardHtml(ev) {
           ${ev.tiers.map(t => `
             <span class="tier-pill">
               <span class="tier-name">${t.name}:</span>
-              <span class="tier-price">${t.label}</span>
+              <span class="tier-price">${t.label || ('$' + (typeof t.price === 'number' ? t.price.toFixed(2) : t.price))}</span>
             </span>
           `).join('')}
         </div>
@@ -2210,30 +2456,40 @@ function renderSingleEventCardHtml(ev) {
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
-        <!-- Top Bar: Next Event Date & Category on Left, Frequency & Save on Right -->
+        <!-- Top Bar: Date strictly on Left, Category & Save strictly on Right -->
         <div class="card-top-bar">
-          <!-- Top Left: Next Event Date & Category Badge -->
+          <!-- Top Left: Next Event Date Badge -->
           <div class="card-top-left-group">
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
-              ${topDate.badgeText}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.85; margin-right: 2px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>${topDate.badgeText}</span>
             </span>
-            <button 
-              type="button" 
-              class="card-category-badge category-${ev.category || 'misc'}" 
-              onclick="filterByCategory('${ev.category || 'all'}')" 
-              title="Click to filter by ${ev.categoryLabel || ev.category || 'this category'}"
-              aria-label="Category: ${ev.categoryLabel || ev.category || 'Event'}"
-            >
-              <span class="category-badge-icon"></span>
-              <span class="category-badge-text">${ev.categoryLabel || ev.category || 'Event'}</span>
-            </button>
           </div>
 
-          <!-- Top Right: Frequency Badge & Save Button -->
+          <!-- Top Right: Category Badge(s) & Save Button -->
           <div class="card-top-right-group">
-            <span class="card-meta-pill ${freqClass}" title="Recurrence: ${ev.frequencyLabel || 'Outing'}">
-              <span>${ev.frequencyLabel || 'Outing'}</span>
-            </span>
+            ${(() => {
+              const catsToDisplay = (Array.isArray(ev.categories) && ev.categories.length > 0)
+                ? ev.categories.slice(0, 2)
+                : [ev.category || 'misc'];
+              return catsToDisplay.map(catId => {
+                const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
+                const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
+                const icon = catDef ? catDef.icon : (catId === ev.category ? (ev.categoryIcon || '') : '');
+                return `
+                  <button 
+                    type="button" 
+                    class="card-category-badge category-${catId}" 
+                    onclick="filterByCategory('${catId}')" 
+                    title="Click to filter by ${label}"
+                    aria-label="Category: ${label}"
+                  >
+                    <span class="category-badge-icon">${icon}</span>
+                    <span class="category-badge-text">${label}</span>
+                  </button>
+                `;
+              }).join('');
+            })()}
             <button 
               class="btn-save-card ${isSaved ? 'saved' : ''}" 
               onclick="toggleSaveEvent('${ev.id}')" 
@@ -2247,10 +2503,10 @@ function renderSingleEventCardHtml(ev) {
           </div>
         </div>
 
-        <!-- Event Details: Clickable Title Link -->
+        <!-- Event Details: Clickable Title Link (Always shortened to FRINGE: for Fringe shows) -->
         <h2 class="card-title">
           <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link" title="Get tickets & details for ${ev.title}">
-            ${ev.title}
+            ${formatCardDisplayTitle(ev.title, ev)}
           </a>
         </h2>
         
@@ -2306,6 +2562,7 @@ function renderSingleEventCardHtml(ev) {
         <div class="card-schedule-row">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.8; margin-right: 4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
+          ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
         </div>
 
         ${nextDatesHtml}
@@ -2324,9 +2581,6 @@ function renderSingleEventCardHtml(ev) {
               ${popoverHtml}
             </div>
             ${preTaxNoteHtml}
-            <span class="price-provider-tag" title="${tooltipText ? 'Live Checkout Verified • ' + tooltipText.replace(/"/g, '&quot;') : 'Live Verified'}">
-              ✓ ${ev.ticketProvider}
-            </span>
           </div>
 
           ${ctaButtonHtml}

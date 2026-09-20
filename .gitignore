@@ -11,8 +11,10 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Chrome scratch profiles
+# Chrome and Edge scratch profiles
 scratch_chrome_*
+scratch_edge*
+scratch_edge/
 
 # Secrets and backups
 .env

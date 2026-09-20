@@ -53,6 +53,46 @@ from universal_link_hunter import is_generic_url, AutonomousDeepLinkHunter
 
 
 # ==============================================================================
+# REGIONAL SUPER-CLUSTERS (OPTION B) MAPPING ENGINE
+# ==============================================================================
+
+def map_super_cluster(ev_or_venue):
+    old_n = ev_or_venue.get('neighborhood', '')
+    title_l = ev_or_venue.get('title', '').lower() if 'title' in ev_or_venue else ''
+    venue_l = ev_or_venue.get('venue', ev_or_venue.get('name', '')).lower()
+    ev_id = ev_or_venue.get('id', ev_or_venue.get('venueId', '')).lower()
+
+    if ('granville island' in old_n.lower() or 'granville island' in venue_l or 
+        'false creek' in title_l or 'false creek' in venue_l or 'science world' in venue_l):
+        return 'Granville Island & False Creek'
+
+    if ('kitsilano' in old_n.lower() or 'ubc' in old_n.lower() or 'ubc' in venue_l or 
+        'ubc' in title_l or 'point grey' in old_n.lower() or 'hollywood' in venue_l or 
+        'showboat' in title_l or 'wreck beach' in title_l):
+        return 'Kitsilano, Point Grey & UBC'
+
+    if ('mount pleasant' in old_n.lower() or 'south vancouver' in old_n.lower() or 
+        'cambie' in old_n.lower() or 'queen elizabeth' in venue_l or 'bloedel' in venue_l or 
+        'riley park' in title_l or 'nat bailey' in venue_l or 'main street' in old_n.lower() or
+        'marpole' in old_n.lower() or 'oakridge' in old_n.lower() or 'fraser' in old_n.lower() or
+        'qe-park' in ev_id):
+        return 'Mount Pleasant & South Vancouver'
+
+    if ('commercial drive' in old_n.lower() or 'east van' in old_n.lower() or 
+        'hastings' in old_n.lower() or 'rupert' in venue_l or 'slice of life' in venue_l or 
+        'hand eye' in venue_l or 'cafe au clay' in venue_l or 'trout lake' in title_l or 
+        'dude chilling' in venue_l or 'rio theatre' in venue_l or 'rio' in old_n.lower() or
+        'arts factory' in venue_l or 'cultch' in venue_l):
+        return 'Commercial Drive & East Vancouver'
+
+    if ('north shore' in old_n.lower() or 'burnaby' in old_n.lower() or 'lynn canyon' in venue_l or 
+        'shipyards' in venue_l or 'central park' in venue_l or 'lonsdale' in venue_l):
+        return 'North Shore, Burnaby & Metro'
+
+    return 'Downtown, Gastown & Yaletown'
+
+
+# ==============================================================================
 # CURATED SEED CATALOG DEFINITION (ALL 9 ENHANCEMENTS APPLIED)
 # ==============================================================================
 
@@ -1310,9 +1350,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Saturdays)",
             "daysOfWeek": ["sat"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🥬",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "local-produce", "trout-lake", "food-trucks", "dog-friendly"],
             "dateSchedule": "Weekly (Saturdays) • 9:00 AM - 2:00 PM",
             "startIso": "2026-09-12T09:00:00-07:00",
@@ -1338,9 +1379,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Sundays)",
             "daysOfWeek": ["sun"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🍓",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "kitsilano", "organic-produce", "baked-goods", "family-friendly"],
             "dateSchedule": "Weekly (Sundays) • 10:00 AM - 2:00 PM",
             "startIso": "2026-09-13T10:00:00-07:00",
@@ -1483,9 +1525,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Saturdays)",
             "daysOfWeek": ["sat"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🌽",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "local-produce", "riley-park", "nat-bailey", "food-trucks"],
             "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
             "startIso": "2026-09-12T10:00:00-07:00",
@@ -1511,9 +1554,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Saturdays)",
             "daysOfWeek": ["sat"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🥕",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "west-end", "nelson-park", "downtown", "artisan-bakers"],
             "dateSchedule": "Weekly (Saturdays) • 9:00 AM - 2:00 PM",
             "startIso": "2026-09-12T09:00:00-07:00",
@@ -1539,9 +1583,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Sundays)",
             "daysOfWeek": ["sun"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🌻",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "mount-pleasant", "dude-chilling-park", "craft-food", "community"],
             "dateSchedule": "Weekly (Sundays) • 10:00 AM - 2:00 PM",
             "startIso": "2026-09-13T10:00:00-07:00",
@@ -1567,9 +1612,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Wednesdays)",
             "daysOfWeek": ["wed"],
             "timeSlots": ["afternoon", "early-evening"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🍎",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "downtown", "art-gallery-plaza", "midweek-market", "grab-and-go"],
             "dateSchedule": "Weekly (Wednesdays) • 2:00 PM - 6:00 PM",
             "startIso": "2026-09-09T14:00:00-07:00",
@@ -1595,9 +1641,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Thursdays)",
             "daysOfWeek": ["thu"],
             "timeSlots": ["afternoon", "early-evening"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "⛵",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "false-creek", "waterfront", "thursday-market", "seawall"],
             "dateSchedule": "Weekly (Thursdays) • 3:00 PM - 7:00 PM",
             "startIso": "2026-09-10T15:00:00-07:00",
@@ -1623,9 +1670,10 @@ def get_curated_seed_catalog():
             "frequencyLabel": "Weekly (Saturdays)",
             "daysOfWeek": ["sat"],
             "timeSlots": ["early-morning", "afternoon"],
-            "category": "activities",
-            "categoryLabel": "Activities & Fun",
-            "categoryIcon": "🚜",
+            "category": "markets",
+            "categories": ["markets", "social"],
+            "categoryLabel": "Markets",
+            "categoryIcon": "🧺",
             "subTags": ["farmers-market", "ubc-farm", "organic-certified", "farm-tours", "family-friendly"],
             "dateSchedule": "Weekly (Saturdays) • 10:00 AM - 2:00 PM",
             "startIso": "2026-09-12T10:00:00-07:00",
@@ -2534,6 +2582,8 @@ def run_sync() -> bool:
     os.makedirs(JS_DIR, exist_ok=True)
 
     catalog = get_curated_seed_catalog()
+    for item in catalog:
+        item["neighborhood"] = map_super_cluster(item)
     verified_events = []
     quarantined_events = []
     rejected_count = 0
@@ -2911,6 +2961,11 @@ def run_sync() -> bool:
         except Exception as e:
             print(f"[WARN] Failed to load discovery sources: {e}")
 
+    for v in verified_events:
+        v["neighborhood"] = map_super_cluster(v)
+    for q in quarantined_events:
+        q["neighborhood"] = map_super_cluster(q)
+
     database = {
         "metadata": {
             "version": "4.1.0",
@@ -2955,15 +3010,14 @@ def run_sync() -> bool:
 const VANCOUVER_EVENTS = {json.dumps(verified_events, indent=2, ensure_ascii=False)};
 const MANUAL_REVIEW_QUEUE = {json.dumps(quarantined_events, indent=2, ensure_ascii=False)};
 
-// Neighborhood List (Multi-selection enabled)
+// Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [
-  "Gastown / Chinatown",
-  "Mount Pleasant",
-  "Commercial Drive",
-  "Downtown / West End",
-  "Kitsilano",
-  "Granville Island",
-  "North Shore / Burnaby"
+  "Downtown, Gastown & Yaletown",
+  "Mount Pleasant & South Vancouver",
+  "Commercial Drive & East Vancouver",
+  "Kitsilano, Point Grey & UBC",
+  "Granville Island & False Creek",
+  "North Shore, Burnaby & Metro"
 ];
 
 // Days of the Week
@@ -2999,17 +3053,16 @@ const FREQUENCIES = [
   {{ id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }}
 ];
 
-// Refined Category Definitions (Split Live Music & Comedy/Shows)
+// Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   {{ id: "all", label: "All", icon: "✨" }},
   {{ id: "music", label: "Live Music", icon: "🎵" }},
-  {{ id: "shows", label: "Comedy & Shows", icon: "🎭" }},
-  {{ id: "crafts", label: "Crafts & Studios", icon: "🎨" }},
+  {{ id: "shows", label: "Comedy & Stage", icon: "🎭" }},
+  {{ id: "festivals", label: "Festivals", icon: "🎪" }},
+  {{ id: "markets", label: "Markets", icon: "🧺" }},
+  {{ id: "outdoors", label: "Outdoors", icon: "🌲" }},
   {{ id: "cinema", label: "Cinema", icon: "🎬" }},
-  {{ id: "arts", label: "Museums & Arts", icon: "🏛️" }},
-  {{ id: "outdoors", label: "Walks & Outdoors", icon: "🌲" }},
-  {{ id: "activities", label: "Games & Activities", icon: "🎲" }},
-  {{ id: "trivia", label: "Drinks & Trivia", icon: "🍻" }}
+  {{ id: "social", label: "Social & Arts", icon: "🎨" }}
 ];
 
 // Curated Venue Homepages Directory

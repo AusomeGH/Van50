@@ -25,8 +25,8 @@ class TestUniversalVenueCrawler(unittest.TestCase):
         self.assertIsInstance(venues, dict)
         self.assertIn("Hollywood Theatre", venues)
         self.assertIn("Rickshaw Theatre", venues)
-        self.assertEqual(venues["Hollywood Theatre"]["neighborhood"], "Kitsilano")
-        self.assertEqual(venues["Rickshaw Theatre"]["neighborhood"], "Gastown / Chinatown")
+        self.assertEqual(venues["Hollywood Theatre"]["neighborhood"], "Kitsilano, Point Grey & UBC")
+        self.assertEqual(venues["Rickshaw Theatre"]["neighborhood"], "Downtown, Gastown & Yaletown")
         self.assertTrue(venues["Hollywood Theatre"]["calendarUrl"].startswith("https://"))
 
     def test_slugify(self):

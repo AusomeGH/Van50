@@ -721,6 +721,17 @@
   border-color: rgba(217, 70, 239, 0.45);
   color: #f0abfc;
 }
+.card-category-badge.category-festivals {
+  background: rgba(236, 72, 153, 0.2);
+  border-color: rgba(236, 72, 153, 0.55);
+  color: #f472b6;
+}
+.card-category-badge.category-markets,
+.card-category-badge.category-market {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.55);
+  color: #fde047;
+}
 
 .card-top-date-wrap {
   display: flex;
@@ -767,7 +778,9 @@
 .card-top-right-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .venue-neighborhood-chip {
@@ -1168,6 +1181,7 @@
 }
 
 .price-provider-tag {
+  display: none !important;
   font-size: 0.7rem;
   color: var(--text-muted);
 }
@@ -1384,9 +1398,10 @@
   background: #080c14;
 }
 
-/* Dark Mode Night Filter for OpenStreetMap (Zero API Keys, Zero Watermarks, Full Detail) */
+/* Native Dark Mode Basemap (CartoDB Dark Matter) */
 #vancouver-map .leaflet-tile-pane {
-  filter: invert(100%) hue-rotate(180deg) brightness(88%) contrast(92%);
+  /* Natively dark-rendered tiles; no GPU-inversion filter needed */
+  opacity: 0.96;
 }
 
 #vancouver-map .leaflet-control-attribution {
@@ -2608,5 +2623,200 @@
 .is-pwa-standalone body {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ==============================================================================
+   Festival Spotlight & Dynamic Banner
+   ============================================================================== */
+.festival-spotlight-section {
+  margin-bottom: 24px;
+}
+
+.festival-spotlight-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 26px;
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  transition: all var(--transition-normal, 0.25s ease);
+}
+
+.festival-spotlight-card.festival-muted {
+  opacity: 0.72;
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.festival-spotlight-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.festival-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.festival-status-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.25);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  color: #fde047;
+  text-transform: uppercase;
+}
+
+.festival-dates-badge,
+.festival-venue-badge {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+}
+
+.festival-spotlight-title {
+  font-size: 1.28rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.festival-spotlight-blurb {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin: 0 0 12px;
+  max-width: 780px;
+}
+
+.festival-spotlight-blurb strong {
+  color: #38bdf8;
+}
+
+.festival-links-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.festival-link-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #38bdf8;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(56, 189, 248, 0.5);
+  padding-bottom: 1px;
+  transition: all var(--transition-fast, 0.15s ease);
+}
+
+.festival-link-primary:hover {
+  color: #7dd3fc;
+  border-bottom-style: solid;
+}
+
+.festival-stats-chip {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.festival-spotlight-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.btn-festival-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: 1px solid rgba(245, 158, 11, 0.9);
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
+  transition: all var(--transition-fast, 0.15s ease);
+}
+
+.btn-festival-display:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-festival-display.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+}
+
+.btn-festival-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast, 0.15s ease);
+}
+
+.btn-festival-toggle:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-festival-toggle.fest-hidden {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.6);
+  color: #fef08a;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+@media (max-width: 768px) {
+  .festival-spotlight-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .festival-spotlight-right {
+    width: 100%;
+  }
+  .btn-festival-toggle {
+    width: 100%;
+    justify-content: center;
+  }
 }
 

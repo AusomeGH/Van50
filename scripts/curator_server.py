@@ -410,6 +410,42 @@ def apply_distilled_venue_rules(distilled: dict, instruction_id: str = None) -> 
     return distilled
 
 
+def map_super_cluster(ev_or_venue):
+    old_n = ev_or_venue.get('neighborhood', '')
+    title_l = ev_or_venue.get('title', '').lower() if 'title' in ev_or_venue else ''
+    venue_l = ev_or_venue.get('venue', ev_or_venue.get('name', '')).lower()
+    ev_id = ev_or_venue.get('id', ev_or_venue.get('venueId', '')).lower()
+
+    if ('granville island' in old_n.lower() or 'granville island' in venue_l or 
+        'false creek' in title_l or 'false creek' in venue_l or 'science world' in venue_l):
+        return 'Granville Island & False Creek'
+
+    if ('kitsilano' in old_n.lower() or 'ubc' in old_n.lower() or 'ubc' in venue_l or 
+        'ubc' in title_l or 'point grey' in old_n.lower() or 'hollywood' in venue_l or 
+        'showboat' in title_l or 'wreck beach' in title_l):
+        return 'Kitsilano, Point Grey & UBC'
+
+    if ('mount pleasant' in old_n.lower() or 'south vancouver' in old_n.lower() or 
+        'cambie' in old_n.lower() or 'queen elizabeth' in venue_l or 'bloedel' in venue_l or 
+        'riley park' in title_l or 'nat bailey' in venue_l or 'main street' in old_n.lower() or
+        'marpole' in old_n.lower() or 'oakridge' in old_n.lower() or 'fraser' in old_n.lower() or
+        'qe-park' in ev_id):
+        return 'Mount Pleasant & South Vancouver'
+
+    if ('commercial drive' in old_n.lower() or 'east van' in old_n.lower() or 
+        'hastings' in old_n.lower() or 'rupert' in venue_l or 'slice of life' in venue_l or 
+        'hand eye' in venue_l or 'cafe au clay' in venue_l or 'trout lake' in title_l or 
+        'dude chilling' in venue_l or 'rio theatre' in venue_l or 'rio' in old_n.lower() or
+        'arts factory' in venue_l or 'cultch' in venue_l):
+        return 'Commercial Drive & East Vancouver'
+
+    if ('north shore' in old_n.lower() or 'burnaby' in old_n.lower() or 'lynn canyon' in venue_l or 
+        'shipyards' in venue_l or 'central park' in venue_l or 'lonsdale' in venue_l):
+        return 'North Shore, Burnaby & Metro'
+
+    return 'Downtown, Gastown & Yaletown'
+
+
 def sync_js_data_file():
     """Regenerates js/data.js from data/events.json and data/manual_review_queue.json."""
     try:
@@ -419,11 +455,17 @@ def sync_js_data_file():
                 data = json.load(f)
                 events = data if isinstance(data, list) else data.get("events", [])
 
+        for ev in events:
+            ev["neighborhood"] = map_super_cluster(ev)
+
         quarantined = []
         if os.path.exists(MANUAL_QUEUE_PATH):
             with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                 qdata = json.load(f)
                 quarantined = qdata if isinstance(qdata, list) else qdata.get("quarantinedEvents", [])
+
+        for q in quarantined:
+            q["neighborhood"] = map_super_cluster(q)
 
         discovery_sources = []
         disc_path = os.path.join(DATA_DIR, "discovery_sources.json")
@@ -444,15 +486,14 @@ def sync_js_data_file():
 const VANCOUVER_EVENTS = {json.dumps(events, indent=2, ensure_ascii=False)};
 const MANUAL_REVIEW_QUEUE = {json.dumps(quarantined, indent=2, ensure_ascii=False)};
 
-// Neighborhood List (Multi-selection enabled)
+// Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [
-  "Gastown / Chinatown",
-  "Mount Pleasant",
-  "Commercial Drive",
-  "Downtown / West End",
-  "Kitsilano",
-  "Granville Island",
-  "North Shore / Burnaby"
+  "Downtown, Gastown & Yaletown",
+  "Mount Pleasant & South Vancouver",
+  "Commercial Drive & East Vancouver",
+  "Kitsilano, Point Grey & UBC",
+  "Granville Island & False Creek",
+  "North Shore, Burnaby & Metro"
 ];
 
 // Days of the Week
@@ -488,17 +529,16 @@ const FREQUENCIES = [
   {{ id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }}
 ];
 
-// Refined Category Definitions (Split Live Music & Comedy/Shows)
+// Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   {{ id: "all", label: "All", icon: "✨" }},
   {{ id: "music", label: "Live Music", icon: "🎵" }},
-  {{ id: "shows", label: "Comedy & Shows", icon: "🎭" }},
-  {{ id: "crafts", label: "Crafts & Studios", icon: "🎨" }},
+  {{ id: "shows", label: "Comedy & Stage", icon: "🎭" }},
+  {{ id: "festivals", label: "Festivals", icon: "🎪" }},
+  {{ id: "markets", label: "Markets", icon: "🧺" }},
+  {{ id: "outdoors", label: "Outdoors", icon: "🌲" }},
   {{ id: "cinema", label: "Cinema", icon: "🎬" }},
-  {{ id: "arts", label: "Museums & Arts", icon: "🏛️" }},
-  {{ id: "outdoors", label: "Walks & Outdoors", icon: "🌲" }},
-  {{ id: "activities", label: "Games & Activities", icon: "🎲" }},
-  {{ id: "trivia", label: "Drinks & Trivia", icon: "🍻" }}
+  {{ id: "social", label: "Social & Arts", icon: "🎨" }}
 ];
 
 // Curated Venue Homepages Directory

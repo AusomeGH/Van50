@@ -24,12 +24,26 @@ function initVancouverMap() {
       zoomControl: true
     });
 
-    // High-resolution OpenStreetMap tiles (100% Free, Zero API Key Required, No Watermarks)
-    // Dark mode styling is applied seamlessly via CSS filter in css/components.css
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+    // High-performance native dark-theme tiles (CartoDB Dark Matter, Zero API key required)
+    // Renders rich streets, waterfront, parks, and labels directly in dark mode without CSS filter distortion
+    const darkTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
+      subdomains: 'abcd',
       maxZoom: 19
-    }).addTo(mapInstance);
+    });
+
+    darkTileLayer.on('tileerror', function() {
+      // Graceful fallback to OpenStreetMap if subdomains are momentarily rate-limited
+      if (!mapInstance._fallbackTileLayerAttached) {
+        mapInstance._fallbackTileLayerAttached = true;
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
+          maxZoom: 19
+        }).addTo(mapInstance);
+      }
+    });
+
+    darkTileLayer.addTo(mapInstance);
 
     markersLayer = L.layerGroup().addTo(mapInstance);
     window.vancouverMapInstance = mapInstance;

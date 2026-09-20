@@ -153,7 +153,7 @@ class TestCuratorVenueLearning(unittest.TestCase):
 
         waldorf = venues["The Waldorf"]
         self.assertEqual(waldorf["venueId"], "the-waldorf")
-        self.assertEqual(waldorf["neighborhood"], "Commercial Drive")
+        self.assertEqual(waldorf["neighborhood"], "Commercial Drive & East Vancouver")
         self.assertEqual(waldorf["category"], "music")
         self.assertEqual(waldorf["calendarUrl"], "https://atthewaldorf.com/events")
         self.assertEqual(waldorf["doorCover"], 15.0)
@@ -162,7 +162,7 @@ class TestCuratorVenueLearning(unittest.TestCase):
 
         cobalt = venues["The Cobalt"]
         self.assertEqual(cobalt["venueId"], "the-cobalt")
-        self.assertEqual(cobalt["neighborhood"], "Gastown / Chinatown")
+        self.assertEqual(cobalt["neighborhood"], "Downtown, Gastown & Yaletown")
         self.assertEqual(cobalt["category"], "music")
         self.assertEqual(cobalt["calendarUrl"], "https://thecobalt.ca/events")
         self.assertEqual(cobalt["doorCover"], 15.0)
