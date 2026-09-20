@@ -267,7 +267,8 @@ class UniversalFestivalCrawler:
                 continue
 
             slug = re.sub(r"[^\w\s-]", "", h_lower)
-            venue_id = f"discovered-{re.sub(r'[-\s]+', '-', slug).strip('-')}"
+            clean_slug = re.sub(r'[-\s]+', '-', slug).strip('-')
+            venue_id = f"discovered-{clean_slug}"
 
             # Default neighborhood heuristic
             neighborhood = "Granville Island" if "granville" in h_lower or "island" in h_lower else "Downtown / West End"

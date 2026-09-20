@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 72,
-    "updatedAt": "2026-09-19T15:10:39.509721+00:00"
+    "updatedAt": "2026-09-20T16:59:40.022522+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -380,7 +380,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
       "category": "cinema",
       "venueUrl": "https://www.foxcabaret.com",
       "calendarUrl": "https://www.foxcabaret.com/",
@@ -1170,9 +1170,9 @@
         "roxy-live-acts-showcase"
       ]
     },
-    "Café au Clay Studios": {
+    "Caf\u00e9 au Clay Studios": {
       "venueId": "cafe-au-clay",
-      "name": "Café au Clay Studios",
+      "name": "Caf\u00e9 au Clay Studios",
       "aliases": [
         "Cafe au Clay",
         "Cafe au Clay Pottery",

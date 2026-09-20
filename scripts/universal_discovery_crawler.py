@@ -217,7 +217,8 @@ class UniversalDiscoveryCrawler:
             return
 
         slug = re.sub(r"[^\w\s-]", "", v_lower)
-        venue_id = f"discovered-{re.sub(r'[-\s]+', '-', slug).strip('-')}"
+        clean_slug = re.sub(r'[-\s]+', '-', slug).strip('-')
+        venue_id = f"discovered-{clean_slug}"
 
         new_entry = {
             "id": venue_id,

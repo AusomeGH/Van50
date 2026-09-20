@@ -1,11 +1,42 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-19T08:18:52-07:00",
-    "pendingCount": 0,
+    "updatedAt": "2026-09-20T09:59:37-07:00",
+    "pendingCount": 2,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": [],
-  "pendingCount": 0,
-  "lastTriagedAt": "2026-09-19T15:11:25.047544+00:00"
+  "quarantinedEvents": [
+    {
+      "id": "lmg-wed-open-mic",
+      "title": "Little Mountain Gallery: Wednesday Stand-Up Open Mic",
+      "venue": "Little Mountain Gallery",
+      "address": "110 Water St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 10.0,
+      "attemptedPriceLabel": "$10.00 door",
+      "provider": "Showpass",
+      "semanticProvider": "Showpass Verified",
+      "websiteUrl": "https://www.showpass.com/open-mic-116/",
+      "category": "shows",
+      "flaggedAt": "2026-09-20T09:26:02-07:00",
+      "flagReason": "Showpass API returned no active ticket types for 'open-mic-116'",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "hollywood-theatre-deer-tick-tour-o-matic",
+      "title": "Deer Tick: Tour-O-Matic",
+      "venue": "Hollywood Theatre",
+      "address": "3123 W Broadway, Vancouver, BC",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/event/110064638F595700",
+      "category": "music",
+      "flaggedAt": "2026-09-20T09:27:34-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/110064638F595700",
+      "reviewStatus": "pending_manual_review"
+    }
+  ],
+  "pendingCount": 2,
+  "lastTriagedAt": "2026-09-20T16:28:48.589269+00:00"
 }

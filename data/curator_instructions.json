@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-19T15:10:39.506754+00:00",
+    "updatedAt": "2026-09-20T16:59:40.025688+00:00",
     "pendingCount": 3,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements."
   },
@@ -850,5 +850,5 @@
       "appliedAt": "2026-09-19T15:11:25.047544+00:00"
     }
   ],
-  "lastLearnedAt": "2026-09-19T15:11:25.047544+00:00"
+  "lastLearnedAt": "2026-09-20T16:28:48.589269+00:00"
 }
