@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T10:27:50-07:00",
+    "updatedAt": "2026-09-20T10:43:15-07:00",
     "pendingCount": 1,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -15,11 +15,11 @@
       "attemptedPrice": 20.0,
       "websiteUrl": "https://www.ticketmaster.ca/event/110064638F595700",
       "category": "music",
-      "flaggedAt": "2026-09-20T10:27:11-07:00",
+      "flaggedAt": "2026-09-20T10:29:25-07:00",
       "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/110064638F595700",
       "reviewStatus": "pending_manual_review"
     }
   ],
   "pendingCount": 1,
-  "lastTriagedAt": "2026-09-20T17:27:54.767087+00:00"
+  "lastTriagedAt": "2026-09-20T17:39:48.860041+00:00"
 }

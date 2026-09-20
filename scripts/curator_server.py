@@ -1513,6 +1513,37 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Successfully rolled back catalog to snapshot: {os.path.basename(latest)}"
             })
 
+        # 6b. API: Fetch & Ingest Newsletters from Gmail or dropped files
+        if path == "/api/curator/sync_newsletters":
+            if not self._check_authenticated():
+                return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to fetch newsletters"})
+            try:
+                from scripts.newsletter_ingestor import run_newsletter_ingestion, process_inbound_folder
+                folder_res = process_inbound_folder()
+                gmail_res = run_newsletter_ingestion(unread_only=True, limit=20, dry_run=False)
+
+                total_queued = folder_res.get("queued", 0) + gmail_res.get("queued", 0)
+                msg_parts = []
+                if folder_res.get("files_processed", 0) > 0:
+                    msg_parts.append(f"Processed {folder_res['files_processed']} local files ({folder_res.get('queued', 0)} queued)")
+                if gmail_res.get("success"):
+                    msg_parts.append(f"Checked Gmail ({gmail_res.get('queued', 0)} queued from {gmail_res.get('emailsChecked', 0)} emails)")
+                elif gmail_res.get("requiresSetup"):
+                    msg_parts.append("Gmail credentials not yet configured in .env")
+                elif gmail_res.get("error"):
+                    msg_parts.append(f"Gmail sync warning: {gmail_res['error']}")
+
+                sync_js_data_file()
+                return self._send_json(200, {
+                    "success": True,
+                    "totalQueued": total_queued,
+                    "folderResult": folder_res,
+                    "gmailResult": gmail_res,
+                    "message": " • ".join(msg_parts) if msg_parts else "Newsletter ingestion complete."
+                })
+            except Exception as e:
+                return self._send_json(500, {"success": False, "error": str(e), "message": f"Newsletter sync failed: {e}"})
+
         # 7. API: Trigger full automation pipeline
         if path == "/api/automation/trigger":
             if not self._check_authenticated():
@@ -1834,7 +1865,7 @@ def run_server(port=PORT):
     socketserver.ThreadingTCPServer.allow_reuse_address = True
     scheduler_thread = threading.Thread(target=_curator_daemon_scheduler_loop, daemon=True)
     scheduler_thread.start()
-    with socketserver.ThreadingTCPServer(("0.0.0.0", port), CuratorRequestHandler) as httpd:
+    with socketserver.ThreadingTCPServer(("127.0.0.1", port), CuratorRequestHandler) as httpd:
         print(f"[CURATOR SERVER] Listening on http://127.0.0.1:{port}/")
         print(f"[CURATOR SERVER] Curator Studio: http://127.0.0.1:{port}/curator.html")
         print(f"[CURATOR SERVER] Daily Automation Scheduler active (Target: 04:00 AM)")

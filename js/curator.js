@@ -262,6 +262,7 @@ function updateFilterCounts() {
   const unverified = all.filter(e => isUnverifiedCart(e)).length;
   const brokenlink = all.filter(e => isBrokenLink(e)).length;
   const course = all.filter(e => isCourse(e)).length;
+  const newsletter = all.filter(e => e.source === 'newsletter' || (e.flagReason || '').toLowerCase().includes('newsletter')).length;
   const discVenues = (state.discoveredVenues || []).length;
 
   const setT = (id, count) => {
@@ -269,6 +270,7 @@ function updateFilterCounts() {
     if (el) el.textContent = count;
   };
   setT('pill-count-all', all.length);
+  setT('pill-count-newsletter', newsletter);
   setT('pill-count-discovered-venues', discVenues);
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
@@ -325,6 +327,8 @@ function applyFiltersAndRender() {
     list = list.filter(e => !e.dealtWith);
   } else if (state.activeFilter === 'handled') {
     list = list.filter(e => Boolean(e.dealtWith));
+  } else if (state.activeFilter === 'newsletter') {
+    list = list.filter(e => e.source === 'newsletter' || (e.flagReason || '').toLowerCase().includes('newsletter'));
   } else if (state.activeFilter === 'drift') {
     list = list.filter(e => isDrift(e));
   } else if (state.activeFilter === 'unverified') {
@@ -1268,6 +1272,10 @@ function setupCuratorEventListeners() {
   const triggerSyncBtn = document.getElementById('btn-trigger-sync');
   if (triggerSyncBtn) triggerSyncBtn.addEventListener('click', handleTriggerSync);
 
+  // Fetch Newsletters Button
+  const fetchNewslettersBtn = document.getElementById('btn-fetch-newsletters');
+  if (fetchNewslettersBtn) fetchNewslettersBtn.addEventListener('click', handleFetchNewsletters);
+
   // Filter Pills
   const pillsGroup = document.getElementById('filter-pills-group');
   if (pillsGroup) {
@@ -2087,3 +2095,61 @@ async function handleTriggerSync() {
     fetchAutomationStatus();
   }
 }
+
+async function handleFetchNewsletters() {
+  if (!state.token) {
+    showToast('Please authenticate first to fetch newsletters', 'error');
+    return;
+  }
+
+  const iconEl = document.getElementById('btn-newsletters-icon');
+  const textEl = document.getElementById('btn-newsletters-text');
+  const btn = document.getElementById('btn-fetch-newsletters');
+  const origIcon = iconEl ? iconEl.textContent : '📧';
+  const origText = textEl ? textEl.textContent : 'Fetch Newsletters';
+
+  if (btn) btn.disabled = true;
+  if (iconEl) iconEl.textContent = '⏳';
+  if (textEl) textEl.textContent = 'Fetching...';
+
+  try {
+    showToast('Checking Gmail newsletter inbox & local drop folder...', 'info');
+    const res = await fetch('/api/curator/sync_newsletters', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({})
+    });
+
+    const data = await res.json();
+    if (res.ok && data.success) {
+      const queuedCount = data.totalQueued || 0;
+      if (queuedCount > 0) {
+        showToast(`🎉 ${data.message || `Queued ${queuedCount} new newsletter event cards!`}`, 'success');
+      } else {
+        showToast(data.message || 'Newsletter check complete: No new unread events.', 'info');
+      }
+      await loadQuarantineQueue();
+      const statusRes = await fetch('/api/curator/status', {
+        headers: { 'Curator-Token': state.token }
+      });
+      if (statusRes.ok) {
+        const curData = await statusRes.json();
+        updateHeaderStats(curData.pendingCount, curData.rulesCount, curData.masterCount, curData.instructionsPendingCount || 0, curData.discoveredVenuesCount || 0);
+      }
+    } else if (data.gmailResult && data.gmailResult.requiresSetup) {
+      showToast('⚠️ Gmail credentials not yet configured in .env (NEWSLETTER_GMAIL_USER, NEWSLETTER_GMAIL_PASSWORD)', 'warning');
+    } else {
+      showToast(data.message || data.error || 'Failed to sync newsletters', 'error');
+    }
+  } catch (err) {
+    showToast(`Server connection error while fetching newsletters: ${err.message}`, 'error');
+  } finally {
+    if (btn) btn.disabled = false;
+    if (iconEl) iconEl.textContent = origIcon;
+    if (textEl) textEl.textContent = origText;
+  }
+}
+

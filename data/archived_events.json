@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T17:27:54.767087+00:00",
+    "updatedAt": "2026-09-20T10:43:14-07:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 40
+    "totalArchived": 41
   },
   "archivedEvents": [
     {
@@ -277,7 +277,7 @@
       "category": "trivia",
       "frequency": "weekly",
       "frequencyLabel": "Weekly (Tuesdays)",
-      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
+      "dateSchedule": "Weekly on Tuesdays \u2022 7:30 PM - 9:30 PM",
       "daysOfWeek": [
         "tue"
       ],
@@ -328,7 +328,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -395,7 +395,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -466,7 +466,7 @@
       "venueUrl": "https://rickshawtheatre.com",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "rickshaw-theatre",
         "music",
@@ -888,6 +888,25 @@
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
       "archivedAt": "2026-09-19T14:49:56.559997+00:00",
       "archivedReason": "Curator guidance: Attached 2 screenshots: one showing the poster price, one showing checkout tier."
+    },
+    {
+      "id": "lmg-wed-open-mic",
+      "title": "Little Mountain Gallery: Wednesday Stand-Up Open Mic",
+      "venue": "Little Mountain Gallery",
+      "address": "110 Water St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 10.0,
+      "attemptedPriceLabel": "$10.00 door",
+      "provider": "Showpass",
+      "semanticProvider": "Showpass Verified",
+      "websiteUrl": "https://www.showpass.com/open-mic-116/",
+      "category": "shows",
+      "flaggedAt": "2026-09-20T10:28:05-07:00",
+      "flagReason": "Showpass API returned no active ticket types for 'open-mic-116'",
+      "reviewStatus": "dismissed_by_curator",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "archivedAt": "2026-09-20T17:39:48.860041+00:00",
+      "archivedReason": "Curator guidance: The scraper missed the $15 Early Bird student tier at the bottom of the page."
     }
   ]
 }

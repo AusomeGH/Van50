@@ -71,6 +71,10 @@
           <span id="btn-sync-icon">⚡</span>
           <span id="btn-sync-text">Run Full Sync &amp; Learn from Guidance</span>
         </button>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-fetch-newsletters" style="border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;" title="Fetch unread emails from designated Gmail newsletter inbox and dropped files">
+          <span id="btn-newsletters-icon">📧</span>
+          <span id="btn-newsletters-text">Fetch Newsletters</span>
+        </button>
         <a href="index.html" class="btn-curator btn-curator-ghost" target="_blank" title="View live public catalog">
           <span>🌲 Public Catalog ↗</span>
         </a>
@@ -90,6 +94,7 @@
         <!-- Filter Pills -->
         <div class="curator-pills-group" id="filter-pills-group">
           <button type="button" class="curator-filter-pill active" data-filter="all">All Quarantined (<span id="pill-count-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="newsletter">📧 Newsletters (<span id="pill-count-newsletter">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unhandled">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="handled">🤖 AI Queued (<span id="pill-count-handled">0</span>)</button>
