@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T09:59:37-07:00",
+    "updatedAt": "2026-09-20T17:27:54.767087+00:00",
     "description": "Events permanently dismissed or archived by the curator.",
     "totalArchived": 40
   },
@@ -277,7 +277,7 @@
       "category": "trivia",
       "frequency": "weekly",
       "frequencyLabel": "Weekly (Tuesdays)",
-      "dateSchedule": "Weekly on Tuesdays \u2022 7:30 PM - 9:30 PM",
+      "dateSchedule": "Weekly on Tuesdays • 7:30 PM - 9:30 PM",
       "daysOfWeek": [
         "tue"
       ],
@@ -328,7 +328,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "\ud83c\udfad",
+      "categoryIcon": "🎭",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -395,7 +395,7 @@
       "venueUrl": "https://hollywoodtheatre.ca",
       "category": "shows",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "\ud83c\udfad",
+      "categoryIcon": "🎭",
       "subTags": [
         "hollywood-theatre",
         "shows",
@@ -466,7 +466,7 @@
       "venueUrl": "https://rickshawtheatre.com",
       "category": "music",
       "categoryLabel": "Shows & Music",
-      "categoryIcon": "\ud83c\udfb5",
+      "categoryIcon": "🎵",
       "subTags": [
         "rickshaw-theatre",
         "music",

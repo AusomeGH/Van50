@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 72,
-    "updatedAt": "2026-09-20T16:59:40.022522+00:00"
+    "updatedAt": "2026-09-20T17:27:55.158523+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -218,7 +218,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-19T15:10:36.850778+00:00"
+        "distilledAt": "2026-09-20T17:27:51.220739+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -380,7 +380,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
       "category": "cinema",
       "venueUrl": "https://www.foxcabaret.com",
       "calendarUrl": "https://www.foxcabaret.com/",
@@ -1038,7 +1038,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
         "summary": "Calendar: https://frankiesjazzclub.com",
-        "distilledAt": "2026-09-19T15:10:36.890572+00:00"
+        "distilledAt": "2026-09-20T17:27:51.271100+00:00"
       },
       "policySummary": "Calendar: https://frankiesjazzclub.com"
     },
@@ -1170,9 +1170,9 @@
         "roxy-live-acts-showcase"
       ]
     },
-    "Caf\u00e9 au Clay Studios": {
+    "Café au Clay Studios": {
       "venueId": "cafe-au-clay",
-      "name": "Caf\u00e9 au Clay Studios",
+      "name": "Café au Clay Studios",
       "aliases": [
         "Cafe au Clay",
         "Cafe au Clay Pottery",
