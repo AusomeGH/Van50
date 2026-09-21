@@ -1518,7 +1518,10 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             if not self._check_authenticated():
                 return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to fetch newsletters"})
             try:
-                from scripts.newsletter_ingestor import run_newsletter_ingestion, process_inbound_folder
+                try:
+                    from newsletter_ingestor import run_newsletter_ingestion, process_inbound_folder
+                except ImportError:
+                    from scripts.newsletter_ingestor import run_newsletter_ingestion, process_inbound_folder
                 folder_res = process_inbound_folder()
                 gmail_res = run_newsletter_ingestion(unread_only=True, limit=20, dry_run=False)
 
