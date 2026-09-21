@@ -531,8 +531,8 @@ def get_curated_seed_catalog():
             "description": "State-of-the-art non-profit cinema operated by the Vancouver International Film Festival showing international award-winners and Canadian indies."
         },
         {
-            "id": "cinematheque-matinee",
-            "title": "The Cinematheque: Art House & Essential Cinema",
+            "id": "cinematheque-samurai-prisoner",
+            "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
             "venue": "The Cinematheque",
             "address": "1131 Howe St, Vancouver",
             "neighborhood": "Downtown / West End",
@@ -547,22 +547,22 @@ def get_curated_seed_catalog():
                 {"name": "Student / Youth", "basePrice": 11.0, "price": 11.0, "label": "$11.00 all-in"}
             ],
             "isDaily": False,
-            "frequency": "weekly",
-            "frequencyLabel": "Wednesday – Monday",
-            "daysOfWeek": ["mon", "wed", "thu", "fri", "sat", "sun"],
-            "timeSlots": ["afternoon", "early-evening", "late-evening"],
+            "frequency": "limited-run",
+            "frequencyLabel": "Limited Run",
+            "daysOfWeek": ["tue", "thu", "sat"],
+            "timeSlots": ["afternoon", "early-evening"],
             "category": "cinema",
             "categoryLabel": "Cinema",
             "categoryIcon": "🎬",
-            "subTags": ["35mm", "film-history", "restored-classics", "auteur-cinema"],
-            "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
-            "startIso": "2026-09-09T18:30:00-07:00",
-            "endIso": "2026-12-31T23:00:00-07:00",
+            "subTags": ["kurosawa", "samurai", "japanese-cinema", "mystery", "locked-room", "vancouver-premiere"],
+            "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
+            "startIso": "2026-09-22T19:00:00-07:00",
+            "endIso": "2026-09-26T21:30:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://thecinematheque.ca/films/calendar",
+            "websiteUrl": "https://thecinematheque.ca/films/2026/samurai-prisoner",
             "coordinates": [49.2795, -123.1274],
             "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-            "description": "Vancouver's home for essential cinema, international film retrospectives, restored 35mm classics, and auteur independent cinema in Downtown. Screenings run Wednesday through Monday evenings with select weekend matinees."
+            "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers."
         },
         {
             "id": "portside-pub-trivia",

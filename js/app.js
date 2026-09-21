@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch(`data/events.json?v=5.5.0&t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetch(`data/events.json?v=5.6.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {

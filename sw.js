@@ -3,19 +3,19 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v1.4.0';
+const CACHE_NAME = 'van50-cache-v1.5.0';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css?v=5.5.0',
-  './css/components.css?v=5.5.0',
-  './js/app.js?v=5.5.0',
-  './js/map.js?v=5.5.0',
-  './js/data.js?v=5.5.0',
-  './js/roulette.js',
-  './js/pwa-install.js',
+  './css/style.css?v=5.6.0',
+  './css/components.css?v=5.6.0',
+  './js/app.js?v=5.6.0',
+  './js/map.js?v=5.6.0',
+  './js/data.js?v=5.6.0',
+  './js/roulette.js?v=5.6.0',
+  './js/pwa-install.js?v=5.6.0',
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './icons/icon.svg',
@@ -68,10 +68,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 1. DATA API STRATEGY: Network-First with Cache Fallback
-  // Ensures fresh 4:00 AM daily sync updates are delivered when online,
-  // while maintaining full offline browsing when signal drops.
-  if (url.pathname.includes('/data/events.json') || url.pathname.endsWith('data.js')) {
+  // 1. DATA & NAVIGATION STRATEGY: Network-First with Cache Fallback
+  // Ensures fresh HTML shell, daily sync data, and events are delivered immediately when online,
+  // while falling back seamlessly to offline cache when disconnected.
+  const isNavigation = request.mode === 'navigate' || url.pathname.endsWith('/index.html') || url.pathname.endsWith('/');
+  const isDataFeed = url.pathname.includes('/data/events.json') || url.pathname.endsWith('data.js');
+
+  if (isNavigation || isDataFeed) {
     event.respondWith(
       fetch(request)
         .then((networkResponse) => {
@@ -85,7 +88,13 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => {
           // Fallback to cache when offline
-          return caches.match(request);
+          return caches.match(request).then((cached) => {
+            if (cached) return cached;
+            if (isNavigation) {
+              return caches.match('./index.html').then((fallback) => fallback || caches.match('./'));
+            }
+            return null;
+          });
         })
     );
     return;

@@ -11,10 +11,20 @@
 
   // 1. Register Service Worker for Offline Capabilities
   if ('serviceWorker' in navigator) {
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        console.log('[PWA] Service worker updated. Reloading page to display latest catalog...');
+        window.location.reload();
+      }
+    });
+
     window.addEventListener('load', () => {
       navigator.serviceWorker
         .register('sw.js')
         .then((reg) => {
+          reg.update().catch(() => {});
           console.log('[PWA] ServiceWorker registered with scope:', reg.scope);
 
           // Check for service worker updates
@@ -23,7 +33,7 @@
             if (installingWorker) {
               installingWorker.addEventListener('statechange', () => {
                 if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('[PWA] New version available! Refresh to update.');
+                  console.log('[PWA] New version available! Activating update.');
                 }
               });
             }
