@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-20T18:53:56-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-20T19:14:30-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1087,7 +1087,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-10-17T23:00:00-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
+    "websiteUrl": "https://www.biltmorecabaret.com/",
     "venueUrl": "https://biltmorecabaret.com",
     "ticketProvider": "AdmitOne Verified",
     "rawProvider": "AdmitOne",
@@ -1109,7 +1109,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 11.0,
       "feeBreakdown": "$11.00 all-in verified via AdmitOne checkout page",
       "verifiedAt": "2026-09-20T10:28:13-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/mamas-broke-vancouver-169979"
+      "details": "Scraped live from AdmitOne event page: https://www.biltmorecabaret.com/"
     }
   },
   {
@@ -2231,7 +2231,7 @@ const VANCOUVER_EVENTS = [
     "endIso": null,
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://guiltandcompany.com/live-music",
+    "websiteUrl": "https://www.guiltandcompany.com/#shows",
     "venueUrl": "https://www.guiltandcompany.com",
     "ticketProvider": "By-Donation / Artist Contribution",
     "rawProvider": "Box Office / Direct",
@@ -5025,7 +5025,7 @@ const VANCOUVER_EVENTS = [
     "scrapedBasePrice": null,
     "doorPolicyPrice": null,
     "venueSubpageUrl": null,
-    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website",
+    "websiteUrl": "https://publicdisco.ca/",
     "venueUrl": "https://publicdisco.ca/events",
     "category": "music",
     "categoryLabel": "Shows & Music",
@@ -5065,7 +5065,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 9.0,
       "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
       "verifiedAt": "2026-09-20T10:29:39-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website"
+      "details": "Scraped live from AdmitOne event page: https://publicdisco.ca/"
     },
     "isFree": false,
     "agePolicy": "All-Ages (Family & Community Friendly)",
@@ -5096,7 +5096,7 @@ const VANCOUVER_EVENTS = [
     "scrapedBasePrice": null,
     "doorPolicyPrice": null,
     "venueSubpageUrl": null,
-    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website",
+    "websiteUrl": "https://publicdisco.ca/",
     "venueUrl": "https://publicdisco.ca/events",
     "category": "music",
     "categoryLabel": "Shows & Music",
@@ -5147,7 +5147,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 28.0,
       "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
       "verifiedAt": "2026-09-20T10:29:40-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
+      "details": "Scraped live from AdmitOne event page: https://publicdisco.ca/"
     },
     "isFree": false,
     "agePolicy": "All-Ages (Family & Community Friendly)",
@@ -13918,7 +13918,7 @@ const VANCOUVER_EVENTS = [
       "2026-09-20"
     ],
     "isSoldOut": false,
-    "websiteUrl": "https://vancouverfringe.com/events/delusions-and-grandeur/",
+    "websiteUrl": "https://www.vancouverfringe.com/events/",
     "reviewUrl": "https://reviews.fringetheatre.ca/events/delusions-and-grandeur/",
     "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
     "rawProvider": "Vancouver Fringe Festival",
@@ -14010,7 +14010,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-10-04T23:59:59-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/viff-2026/",
+    "websiteUrl": "https://viff.org/festival/viff-2026/",
     "venueUrl": "https://viff.org",
     "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
     "rawProvider": "Vancouver International Film Festival (VIFF)",
@@ -14100,7 +14100,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-10-04T23:59:59-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/the-cinematheque/",
+    "websiteUrl": "https://viff.org/festival/films/",
     "venueUrl": "https://thecinematheque.ca",
     "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
     "rawProvider": "Vancouver International Film Festival (VIFF)",
@@ -14190,7 +14190,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-10-04T23:59:59-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/rio-theatre/",
+    "websiteUrl": "https://viff.org/festival/films/",
     "venueUrl": "https://riotheatre.ca",
     "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
     "rawProvider": "Vancouver International Film Festival (VIFF)",
@@ -14280,7 +14280,7 @@ const VANCOUVER_EVENTS = [
     "endIso": "2026-10-04T23:59:59-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/sfu-goldcorp/",
+    "websiteUrl": "https://viff.org/festival/films/",
     "venueUrl": "https://www.sfu.ca/woodwards.html",
     "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
     "rawProvider": "Vancouver International Film Festival (VIFF)",
@@ -14565,7 +14565,7 @@ const VANCOUVER_EVENTS = [
     "endIso": null,
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+    "websiteUrl": "https://www.golfburnaby.ca/golf/central-park",
     "venueUrl": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
     "ticketProvider": "Burnaby Parks & Recreation",
     "rawProvider": "Independent Box Office",
