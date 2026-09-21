@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   openBtn.addEventListener('click', () => {
     modal.classList.add('active');
     resetRouletteView();
+    if (window.trackAnonymousEvent) {
+      window.trackAnonymousEvent('roulette/open', 'Open Roulette Modal');
+    }
   });
 
   // Close modal
@@ -51,6 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ? window.currentFilteredEvents
       : (typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS : []);
 
+    if (window.trackAnonymousEvent) {
+      window.trackAnonymousEvent('roulette/spin', 'Outing Roulette Spin');
+    }
+
     if (candidates.length === 0) {
       titleEl.textContent = 'No Outings Match Your Filters';
       descEl.textContent = 'Try adjusting your spend range or neighborhood selection first.';
@@ -81,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       iconEl.textContent = chosen.categoryIcon || '✨';
       titleEl.textContent = chosen.title;
+
+      const escapedTitle = (chosen.title || '').replace(/"/g, '&quot;');
+      const escapedVenue = (chosen.venue || '').replace(/"/g, '&quot;');
       
       descEl.innerHTML = `
         <div style="margin-bottom: 8px;">
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
           📅 ${chosen.dateSchedule}
         </div>
         <div style="display: flex; gap: 8px; justify-content: center;">
-          <a href="${chosen.websiteUrl}" target="_blank" rel="noopener noreferrer" class="btn-ticket-cta" style="font-size: 0.82rem; padding: 7px 14px;">
+          <a href="${chosen.websiteUrl}" target="_blank" rel="noopener noreferrer" class="btn-ticket-cta" data-event-id="${chosen.id}" data-event-title="${escapedTitle}" data-event-venue="${escapedVenue}" style="font-size: 0.82rem; padding: 7px 14px;">
             Get Tickets / Details ↗
           </a>
           <button class="btn btn-itinerary" onclick="toggleSaveEvent('${chosen.id}')" style="font-size: 0.82rem; padding: 7px 14px;">

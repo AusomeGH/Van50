@@ -1,6 +1,21 @@
 // Van50 — Application State Management, Multi-Filter Engine & UI Orchestration
 // Strictly displays events under $50.00 CAD total out-of-pocket per person.
 
+// Privacy-Preserving Anonymous Event Tracking (GoatCounter - 0 PII, Cookieless)
+window.trackAnonymousEvent = function(path, title) {
+  try {
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+      window.goatcounter.count({
+        path: path,
+        title: title,
+        event: true
+      });
+    }
+  } catch (_) {
+    // Fail silently - analytics must never degrade user experience
+  }
+};
+
 const state = {
   minBudget: 0,
   maxBudget: 50,
@@ -105,8 +120,24 @@ function setupEventListeners() {
   if (accessBtn) {
     accessBtn.addEventListener('click', () => {
       toggleAccessibilityMode();
+      window.trackAnonymousEvent('preference/accessible-mode', 'Toggle Accessible Mode');
     });
   }
+
+  // Delegated listener for Outbound Ticket & Event Link clicks
+  document.addEventListener('click', (e) => {
+    const ctaBtn = e.target.closest('.btn-ticket-cta');
+    if (ctaBtn) {
+      const card = ctaBtn.closest('.event-card');
+      const eventId = ctaBtn.dataset.eventId || (card ? card.id.replace(/^card-/, '') : null);
+      const ev = eventId ? (window.currentActiveCatalog || ALL_EVENTS).find(item => item.id === eventId) : null;
+      const eventTitle = ctaBtn.dataset.eventTitle || (ev ? ev.title : 'Event');
+      const eventVenue = ctaBtn.dataset.eventVenue || (ev ? ev.venue : '');
+      const label = eventVenue ? `${eventTitle} (${eventVenue})` : eventTitle;
+      const pathKey = eventId ? `tickets/${eventId}` : 'tickets/external';
+      window.trackAnonymousEvent(pathKey, `Tickets: ${label}`);
+    }
+  });
 
   // Search input & interactive controls
   const searchInput = document.getElementById('search-input');
@@ -609,6 +640,9 @@ function renderCategoryPills() {
     pill.innerHTML = `<span>${cat.icon}</span> <span>${cat.label}</span>`;
     pill.addEventListener('click', () => {
       state.category = cat.id;
+      if (cat.id && cat.id !== 'all') {
+        window.trackAnonymousEvent('category/' + cat.id, 'Category: ' + cat.label);
+      }
       renderCategoryPills();
       applyFiltersAndRender();
     });
@@ -621,6 +655,9 @@ function filterByCategory(catId) {
     state.category = 'all';
   } else {
     state.category = (state.category === catId) ? 'all' : catId;
+  }
+  if (state.category !== 'all') {
+    window.trackAnonymousEvent('category/' + state.category, 'Category: ' + state.category);
   }
   renderCategoryPills();
   applyFiltersAndRender();
@@ -684,6 +721,7 @@ function renderNeighborhoodPills() {
         state.selectedNeighborhoods.delete(nh);
       } else {
         state.selectedNeighborhoods.add(nh);
+        window.trackAnonymousEvent('neighborhood/' + nh.toLowerCase().replace(/[^a-z0-9]+/g, '-'), 'Neighborhood: ' + nh);
       }
       renderNeighborhoodPills();
       applyFiltersAndRender();
@@ -2422,12 +2460,17 @@ function renderSingleEventCardHtml(ev) {
     }
 
     // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
+    const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
+    const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
     const ctaButtonHtml = isSoldOut ? `
       <a 
         href="${ev.websiteUrl}" 
         target="_blank" 
         rel="noopener noreferrer" 
         class="btn-ticket-cta sold-out"
+        data-event-id="${ev.id}"
+        data-event-title="${escapedTitle}"
+        data-event-venue="${escapedVenue}"
         aria-label="${ev.title} is sold out - check ticket portal or waitlist"
       >
         Sold Out (Waitlist) ↗
@@ -2438,6 +2481,9 @@ function renderSingleEventCardHtml(ev) {
         target="_blank" 
         rel="noopener noreferrer" 
         class="btn-ticket-cta"
+        data-event-id="${ev.id}"
+        data-event-title="${escapedTitle}"
+        data-event-venue="${escapedVenue}"
         aria-label="Get tickets for ${ev.title}"
       >
         Get Tickets / Details ↗
@@ -2673,6 +2719,11 @@ window.toggleSaveEvent = function(eventId) {
     state.savedEvents.delete(eventId);
   } else {
     state.savedEvents.add(eventId);
+    const ev = (window.currentActiveCatalog || ALL_EVENTS).find(e => e.id === eventId);
+    if (ev) {
+      const label = ev.venue ? `${ev.title} (${ev.venue})` : ev.title;
+      window.trackAnonymousEvent('save/' + eventId, 'Saved: ' + label);
+    }
   }
   persistSavedState();
   updateItineraryBadge();
