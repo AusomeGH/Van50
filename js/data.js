@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-20T17:51:31-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-20T18:46:02-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -14608,10 +14608,10 @@ const VANCOUVER_EVENTS = [
     "reviewStatus": "curator_approved",
     "promotedAt": "2026-09-21T00:51:07.708809+00:00",
     "curatorGuidance": "under 50 bucks, looks good to me",
-    "price": 20.0,
+    "price": 40.75,
     "isFree": false,
     "pricingType": "fixed",
-    "priceLabel": "$20.00 all-in",
+    "priceLabel": "$40.75 all-in ($30.00 + $10.75 fees/tax)",
     "categories": [
       "music"
     ],
@@ -14622,7 +14622,15 @@ const VANCOUVER_EVENTS = [
     "coordinates": [
       49.2642,
       -123.1754
-    ]
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "curator_screenshot_verification",
+      "verifiedTotal": 40.75,
+      "feeBreakdown": "$30.00 CAD base ticket + $10.75 Ticketmaster service fee & processing ($40.75 total)",
+      "verifiedAt": "2026-09-21T01:45:33.468473+00:00",
+      "screenshotPath": "data/curator_screenshots/screenshot_1789950158077_0.png"
+    }
   }
 ];
 const MANUAL_REVIEW_QUEUE = [];
