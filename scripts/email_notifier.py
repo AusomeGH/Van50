@@ -25,6 +25,28 @@ LOGS_DIR = os.path.join(DATA_DIR, "automation_logs")
 AUDIT_REPORT_PATH = os.path.join(LOGS_DIR, "link_audit_latest.json")
 
 
+def load_dotenv():
+    """Loads variables from project .env file into os.environ without third-party deps."""
+    env_path = os.path.join(BASE_DIR, ".env")
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip('"').strip("'")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
+        except Exception:
+            pass
+
+
+load_dotenv()
+
+
 def build_email_content(summary: Dict[str, Any], quarantined_items: Optional[List[Dict[str, Any]]] = None) -> tuple[str, str]:
     """Generates both plain-text and rich HTML versions of the daily status email."""
     ts = summary.get("lastRunAt", datetime.now().isoformat())
@@ -291,11 +313,12 @@ def send_daily_status_email(summary: Dict[str, Any], to_email: Optional[str] = N
     Sends the daily discovery status report to the configured recipient via SMTP.
     Returns True if sent successfully, False otherwise.
     """
-    recipient = to_email or os.environ.get("NOTIFICATION_EMAIL_TO") or os.environ.get("SMTP_USERNAME")
+    load_dotenv()
+    smtp_user = os.environ.get("SMTP_USERNAME") or os.environ.get("NEWSLETTER_GMAIL_USER")
+    smtp_pass = os.environ.get("SMTP_PASSWORD") or os.environ.get("NEWSLETTER_GMAIL_PASSWORD")
+    recipient = to_email or os.environ.get("NOTIFICATION_EMAIL_TO") or smtp_user
     smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
-    smtp_user = os.environ.get("SMTP_USERNAME")
-    smtp_pass = os.environ.get("SMTP_PASSWORD")
     sender = os.environ.get("SMTP_FROM", f"Van50 Discovery <{smtp_user}>" if smtp_user else "Van50 Discovery")
 
     if not smtp_user or not smtp_pass or not recipient:

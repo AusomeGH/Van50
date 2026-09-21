@@ -38,6 +38,28 @@ from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
 
 
+def load_dotenv():
+    """Loads variables from project .env file into os.environ if not already set."""
+    env_path = os.path.join(BASE_DIR, ".env")
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip('"').strip("'")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
+        except Exception:
+            pass
+
+
+load_dotenv()
+
+
 def log_message(msg: str, log_file_path: str = None):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     line = f"[{ts}] {msg}"
@@ -236,13 +258,25 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     log_message(f"[PIPELINE COMPLETE] {total_events} active events verified, {quarantine_count} quarantined in {elapsed}s.", log_file_path)
     log_message(f"[NEXT SCHEDULED RUN] {next_run_dt.strftime('%Y-%m-%d %H:%M:%S')}", log_file_path)
 
-    # Step 4: Optional Email Notification Dispatch
-    if send_email or os.environ.get("SMTP_USERNAME"):
+    # Step 4: Autonomous Email Notification Dispatch
+    load_dotenv()
+    smtp_available = bool(
+        os.environ.get("SMTP_USERNAME") or
+        os.environ.get("NEWSLETTER_GMAIL_USER")
+    )
+    if send_email or smtp_available:
         try:
             from email_notifier import send_daily_status_email
-            send_daily_status_email(result_summary)
+            log_message("[PIPELINE STEP 4/4] Dispatching daily discovery status report via SMTP...", log_file_path)
+            delivered = send_daily_status_email(result_summary)
+            if delivered:
+                log_message("[EMAIL NOTIFIER OK] Daily discovery report email successfully delivered.", log_file_path)
+            else:
+                log_message("[EMAIL NOTIFIER WARN] Email dispatch returned False. Check SMTP credentials or recipient in .env.", log_file_path)
         except Exception as e:
-            log_message(f"[EMAIL WARN] Could not send email notification: {e}", log_file_path)
+            log_message(f"[EMAIL NOTIFIER ERROR] Could not send email notification: {e}\n{traceback.format_exc()}", log_file_path)
+    else:
+        log_message("[EMAIL NOTIFIER NOTICE] SMTP credentials not configured in .env. Skipping outbound email.", log_file_path)
 
     log_message("=== PIPELINE RUN FINISHED ===", log_file_path)
     
