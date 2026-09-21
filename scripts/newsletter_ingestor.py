@@ -17,6 +17,10 @@ import re
 import json
 import imaplib
 import email
+import subprocess
+import shutil
+import hashlib
+import time
 from email.header import decode_header
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple
@@ -32,6 +36,7 @@ EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
 ARCHIVE_PATH = os.path.join(DATA_DIR, "archived_events.json")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
 INBOUND_FOLDER = os.path.join(DATA_DIR, "inbound_newsletters")
+SCREENSHOTS_DIR = os.path.join(DATA_DIR, "curator_screenshots")
 
 
 # ==============================================================================
@@ -243,7 +248,79 @@ def extract_date_schedule(text: str) -> Tuple[str, Optional[str]]:
         except Exception:
             return display, None
 
-    return "Upcoming Date (Check Listing)", None
+    return "Upcoming Dates • Check Source", None
+
+
+def capture_email_screenshot(content: str, email_identifier: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Saves the full newsletter email HTML to data/curator_screenshots/
+    and captures a full-length PNG screenshot using Chrome / Edge headless.
+    Returns (screenshot_rel_path, html_rel_path).
+    """
+    os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
+    slug_id = slugify(email_identifier[:40]) or f"newsletter_{int(time.time())}"
+    html_filename = f"email_{slug_id}.html"
+    png_filename = f"email_{slug_id}.png"
+
+    html_abs = os.path.join(SCREENSHOTS_DIR, html_filename)
+    png_abs = os.path.join(SCREENSHOTS_DIR, png_filename)
+
+    full_html = content
+    if "<html" not in content.lower():
+        full_html = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 24px; color: #1e293b; line-height: 1.6; background: #ffffff; }}
+pre {{ white-space: pre-wrap; word-break: break-word; font-family: inherit; font-size: 14px; }}
+</style>
+</head>
+<body>
+<pre>{content}</pre>
+</body>
+</html>"""
+
+    try:
+        with open(html_abs, "w", encoding="utf-8", errors="replace") as f:
+            f.write(full_html)
+    except Exception as ex:
+        print(f"[WARN] Failed to write email HTML preview: {ex}")
+        return None, None
+
+    browser_candidates = [
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        shutil.which("chrome"),
+        shutil.which("msedge"),
+        shutil.which("google-chrome")
+    ]
+
+    screenshot_ok = False
+    file_url = "file:///" + html_abs.replace("\\", "/")
+
+    for browser in browser_candidates:
+        if browser and os.path.exists(browser):
+            try:
+                cmd = [
+                    browser,
+                    "--headless=new",
+                    "--disable-gpu",
+                    f"--screenshot={png_abs}",
+                    "--window-size=1080,1800",
+                    file_url
+                ]
+                res = subprocess.run(cmd, capture_output=True, timeout=12)
+                if res.returncode == 0 and os.path.exists(png_abs) and os.path.getsize(png_abs) > 500:
+                    screenshot_ok = True
+                    break
+            except Exception:
+                continue
+
+    html_rel = f"data/curator_screenshots/{html_filename}"
+    png_rel = f"data/curator_screenshots/{png_filename}" if screenshot_ok else None
+
+    return png_rel, html_rel
 
 
 # ==============================================================================
@@ -254,7 +331,9 @@ def extract_candidates_from_content(
     content: str,
     sender: str = "",
     subject: str = "",
-    source_type: str = "newsletter"
+    source_type: str = "newsletter",
+    email_screenshot: Optional[str] = None,
+    email_html_path: Optional[str] = None
 ) -> List[Dict[str, Any]]:
     """
     Parses HTML or plain text newsletter body and extracts structured event candidates.
@@ -369,6 +448,8 @@ def extract_candidates_from_content(
             "provider": f"Newsletter ({sender.split('@')[0] if '@' in sender else 'Inbox'})",
             "semanticProvider": "Newsletter Ingested",
             "source": "newsletter",
+            "emailScreenshot": email_screenshot,
+            "emailHtmlPath": email_html_path,
             "newsletterSender": sender,
             "newsletterSubject": subject,
             "flaggedAt": datetime.now(timezone.utc).isoformat(),
@@ -610,7 +691,12 @@ def process_local_file(file_path: str, dry_run: bool = False) -> Dict[str, Any]:
         except Exception:
             pass
 
-    candidates = extract_candidates_from_content(content, sender, subject, source_type="local_file")
+    email_id = slugify(f"{sender[:18]}-{subject[:25]}")
+    shot_path, html_path = capture_email_screenshot(content, email_id)
+    candidates = extract_candidates_from_content(
+        content, sender, subject, source_type="local_file",
+        email_screenshot=shot_path, email_html_path=html_path
+    )
     print(f"[NEWSLETTER] Extracted {len(candidates)} candidate events from {filename}.")
     return stage_candidates_to_review_queue(candidates, dry_run=dry_run)
 
@@ -676,7 +762,12 @@ def run_newsletter_ingestion(unread_only: bool = True, limit: int = 20, dry_run:
 
         all_candidates = []
         for sender, subject, date_hdr, body in emails:
-            cands = extract_candidates_from_content(body, sender, subject, source_type="gmail")
+            email_id = slugify(f"{sender[:18]}-{subject[:25]}-{date_hdr[:12]}")
+            shot_path, html_path = capture_email_screenshot(body, email_id)
+            cands = extract_candidates_from_content(
+                body, sender, subject, source_type="gmail",
+                email_screenshot=shot_path, email_html_path=html_path
+            )
             all_candidates.extend(cands)
 
         queue_res = stage_candidates_to_review_queue(all_candidates, dry_run=dry_run)

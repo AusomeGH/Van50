@@ -615,6 +615,45 @@ function renderCards(items) {
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
         ${diagnosticsHtml}
 
+        <!-- Newsletter Email Source & Full Screenshot Proof -->
+        ${(ev.source === 'newsletter' || ev.emailScreenshot || ev.emailHtmlPath) ? `
+          <div class="curator-newsletter-source-box" style="background: rgba(56, 189, 248, 0.07); border: 1.5px solid rgba(56, 189, 248, 0.35); border-left: 5px solid #38bdf8; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+              <strong style="color: #38bdf8; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+                <span>📧</span> Ingested from Newsletter:
+              </strong>
+              <span style="background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); color: #bae6fd; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+                ${escapeHtml(ev.newsletterSender || 'Email Inbox')}
+              </span>
+            </div>
+            <div style="color: #f1f5f9; font-size: 0.88rem; margin-bottom: 10px; line-height: 1.4;">
+              <strong>Subject:</strong> “${escapeHtml(ev.newsletterSubject || 'Event Digest')}”
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              ${ev.emailScreenshot ? `
+                <a href="${ev.emailScreenshot}" target="_blank" rel="noopener noreferrer" title="Click to open full email screenshot in new tab" style="display: inline-block; position: relative; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 2px 8px rgba(0,0,0,0.4); text-decoration: none;">
+                  <img src="${ev.emailScreenshot}" alt="Newsletter Email Screenshot" style="height: 75px; width: 130px; object-fit: cover; object-position: top; display: block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); color: #38bdf8; font-size: 0.68rem; text-align: center; padding: 2px 0; font-weight: 600;">🖼️ Full Screenshot ↗</div>
+                </a>
+              ` : ''}
+              
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                ${ev.emailScreenshot ? `
+                  <button type="button" onclick="openEmailScreenshotModal('${ev.id}')" style="background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.32)'" onmouseout="this.style.background='rgba(56, 189, 248, 0.18)'">
+                    <span>🔍</span> Inspect Full Email Screenshot
+                  </button>
+                ` : ''}
+                ${ev.emailHtmlPath ? `
+                  <a href="${ev.emailHtmlPath}" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; font-size: 0.78rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;">
+                    <span>📄</span> View Original HTML Digest ↗
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
         <!-- Prominent Instruction Banner (Displays User Instructions on Cards) -->
         ${(isHandled && ev.queuedInstruction) ? `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
@@ -1002,6 +1041,48 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   }, 100);
 };
 
+window.openEmailScreenshotModal = function(eventId) {
+  const item = (state.quarantinedEvents || []).find(e => e.id === eventId) || (state.archivedEvents || []).find(e => e.id === eventId);
+  if (!item) return;
+  const modal = document.getElementById('email-screenshot-modal');
+  const titleEl = document.getElementById('email-modal-title');
+  const subtitleEl = document.getElementById('email-modal-subtitle');
+  const imgEl = document.getElementById('email-modal-img');
+  const emptyEl = document.getElementById('email-modal-empty');
+  const shotLink = document.getElementById('email-modal-shot-link');
+  const rawLink = document.getElementById('email-modal-raw-link');
+
+  if (titleEl) titleEl.textContent = `📧 ${item.title || 'Newsletter Event'}`;
+  if (subtitleEl) subtitleEl.textContent = `From: ${item.newsletterSender || 'Newsletter'} • Subject: “${item.newsletterSubject || 'Event Digest'}”`;
+
+  if (item.emailScreenshot) {
+    if (imgEl) {
+      imgEl.src = item.emailScreenshot;
+      imgEl.style.display = 'inline-block';
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+    if (shotLink) {
+      shotLink.href = item.emailScreenshot;
+      shotLink.style.display = 'inline';
+    }
+  } else {
+    if (imgEl) imgEl.style.display = 'none';
+    if (emptyEl) emptyEl.style.display = 'block';
+    if (shotLink) shotLink.style.display = 'none';
+  }
+
+  if (rawLink) {
+    if (item.emailHtmlPath) {
+      rawLink.href = item.emailHtmlPath;
+      rawLink.style.display = 'inline';
+    } else {
+      rawLink.style.display = 'none';
+    }
+  }
+
+  if (modal) modal.classList.add('active');
+};
+
 function clearScreenshotPreview() {
   state.currentScreenshots = [];
   state.currentScreenshotBase64 = null;
@@ -1330,6 +1411,23 @@ function setupCuratorEventListeners() {
   if (aiModal) {
     aiModal.addEventListener('click', (e) => {
       if (e.target === aiModal) closeAiModal();
+    });
+  }
+
+  // Email Screenshot Modal Listeners
+  const emailModal = document.getElementById('email-screenshot-modal');
+  const cancelEmailBtn = document.getElementById('btn-cancel-email-modal');
+  const btnCloseEmailModal = document.getElementById('btn-close-email-modal');
+
+  const closeEmailModal = () => {
+    if (emailModal) emailModal.classList.remove('active');
+  };
+
+  if (cancelEmailBtn) cancelEmailBtn.addEventListener('click', closeEmailModal);
+  if (btnCloseEmailModal) btnCloseEmailModal.addEventListener('click', closeEmailModal);
+  if (emailModal) {
+    emailModal.addEventListener('click', (e) => {
+      if (e.target === emailModal) closeEmailModal();
     });
   }
 
