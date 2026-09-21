@@ -126,7 +126,7 @@ class CinemathequeLiveAdapter:
 
         print(f"[AUTHENTICATED] The Cinematheque: {screenings_total} screenings parsed across days: {active_dows}")
         return {
-            "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+            "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
             "daysOfWeek": active_dows,
             "timeSlots": active_slots,
             "frequency": "limited-run",
@@ -142,13 +142,13 @@ class CinemathequeLiveAdapter:
                 { "name": "Student / Youth", "basePrice": 11.0, "price": 11.0, "label": "$11.00 all-in" }
             ],
             "ticketProvider": "The Cinematheque Box Office (Agile Ticketing)",
-            "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers."
+            "description": "Vancouver Premiere. Acclaimed master Kiyoshi Kurosawa crafts a tense 16th-century feudal mystery where a disgraced samurai defending an isolated fortress must decipher four enigmatic, season-spanning crimes with the guidance of an incarcerated strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Rated PG. Feudal swordplay violence and mature historical wartime themes. Strictly non-spoiler."
         }
 
     @classmethod
     def get_verified_baseline(cls) -> dict:
         return {
-            "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+            "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
             "daysOfWeek": ["mon", "wed", "thu", "fri", "sat", "sun"],
             "timeSlots": ["afternoon", "early-evening", "late-evening"],
             "frequency": "limited-run",
@@ -164,7 +164,7 @@ class CinemathequeLiveAdapter:
                 { "name": "Student / Youth", "basePrice": 11.0, "price": 11.0, "label": "$11.00 all-in" }
             ],
             "ticketProvider": "The Cinematheque Box Office (Agile Ticketing)",
-            "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers."
+            "description": "Vancouver Premiere. Acclaimed master Kiyoshi Kurosawa crafts a tense 16th-century feudal mystery where a disgraced samurai defending an isolated fortress must decipher four enigmatic, season-spanning crimes with the guidance of an incarcerated strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Rated PG. Feudal swordplay violence and mature historical wartime themes. Strictly non-spoiler."
         }
 
 

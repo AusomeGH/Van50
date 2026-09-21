@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   try {
-    const res = await fetch(`data/events.json?v=5.6.0&t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetch(`data/events.json?v=5.7.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.events && Array.isArray(data.events)) {
@@ -2463,6 +2463,35 @@ function renderSingleEventCardHtml(ev) {
       `;
     }
 
+    // Film Buzzwords, Topic Tags & Critical Reviews
+    const buzzwordsHtml = (ev.buzzwords && Array.isArray(ev.buzzwords) && ev.buzzwords.length > 0) ? `
+      <div class="card-buzzwords-row" title="Genre topics & non-spoiler themes">
+        ${ev.buzzwords.map(bw => `<span class="card-buzzword-pill">${bw}</span>`).join('')}
+      </div>
+    ` : '';
+
+    const filmReviewsHtml = ((ev.ratings && Array.isArray(ev.ratings) && ev.ratings.length > 0) || ev.reviewQuote) ? `
+      <div class="card-film-reviews">
+        ${(ev.ratings && ev.ratings.length > 0) ? `
+          <div class="film-ratings-pills">
+            ${ev.ratings.map(r => {
+              const srcLower = (r.source || '').toLowerCase();
+              const srcClass = srcLower.includes('rotten') ? 'rt' : (srcLower.includes('letterboxd') ? 'letterboxd' : 'imdb');
+              return `<span class="film-rating-chip ${srcClass}" title="${r.source} rating">${r.icon || '⭐'} ${r.source}: <strong>${r.score}</strong></span>`;
+            }).join('')}
+          </div>
+        ` : ''}
+        ${ev.reviewQuote ? `<p class="film-review-quote">“${ev.reviewQuote}”</p>` : ''}
+      </div>
+    ` : '';
+
+    const contentAdvisoryHtml = ev.contentAdvisory ? `
+      <div class="card-content-advisory-box" title="Audience content advisory">
+        <span aria-hidden="true" style="flex-shrink: 0;">⚠️</span>
+        <span>${ev.contentAdvisory}</span>
+      </div>
+    ` : '';
+
     // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
     const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
     const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
@@ -2639,7 +2668,13 @@ function renderSingleEventCardHtml(ev) {
 
         ${tiersHtml}
 
+        ${buzzwordsHtml}
+
+        ${filmReviewsHtml}
+
         <p class="card-desc">${ev.description || ('Live music and performance at ' + ev.venue)}</p>
+
+        ${contentAdvisoryHtml}
 
         ${subtagsHtml}
 

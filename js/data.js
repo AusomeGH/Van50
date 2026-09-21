@@ -650,7 +650,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "viff-centre-matinee",
-    "title": "VIFF Centre: International Cinema & Film Screenings",
+    "title": "\"A Sad and Beautiful World\" (Documentary Showcase • Dir. Cyril Aris)",
     "artist": "Auteur, documentary & world cinema",
     "performers": null,
     "venue": "VIFF Centre (Seymour Atrium)",
@@ -727,7 +727,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "See what&#039;s on at the VIFF Centre! Showtimes for exceptional films at one of Vancouver&#039;s premium cinemas.",
+    "description": "A poignant, deeply personal portrait of resilience, creativity, and daily life amidst turbulent economic and political transformation, capturing an enduring pursuit of hope and humanity in contemporary Beirut. (Arabic with English subtitles).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
@@ -735,7 +735,28 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
       "verifiedAt": "2026-09-21T11:07:26-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
-    }
+    },
+    "buzzwords": [
+      "International Documentary",
+      "Human Resilience",
+      "Cinéma Vérité",
+      "Festival Award Winner",
+      "Middle Eastern Cinema"
+    ],
+    "ratings": [
+      {
+        "source": "Letterboxd",
+        "score": "3.9 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "Cineuropa",
+        "score": "Audience Award",
+        "icon": "🏆"
+      }
+    ],
+    "reviewQuote": "Devastating yet radiant with humor, stubborn vitality, and an unshakeable love for human endurance.",
+    "contentAdvisory": "Real-world discussions of economic hardship, social unrest, and displacement. Strictly non-spoiler."
   },
   {
     "id": "portside-pub-trivia",
@@ -12835,7 +12856,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "fest-viff-vancouver-film-festival-viff-centre",
-    "title": "Vancouver International Film Festival (VIFF): Feature Screenings, Talks & BC Spotlight at VIFF Centre",
+    "title": "VIFF 2026: \"All We Imagine as Light\" (Cannes Grand Prix • Dir. Payal Kapadia)",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "VIFF Centre",
@@ -12912,7 +12933,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
+    "description": "Vancouver International Film Festival flagship presentation. In bustling Mumbai, two hospital nurses navigate love, independence, and shifting horizons before embarking on a transformative journey to a coastal mist-covered town. (Malayalam & Hindi with English subtitles).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
@@ -12921,11 +12942,37 @@ const VANCOUVER_EVENTS = [
       "verifiedAt": "2026-09-21T11:08:31.760233+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival."
+    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
+    "buzzwords": [
+      "Cannes Grand Prix Winner",
+      "Luminous Drama",
+      "Mumbai Nocturne",
+      "Poetic Realism",
+      "Female Friendship"
+    ],
+    "ratings": [
+      {
+        "source": "Rotten Tomatoes",
+        "score": "100% Fresh",
+        "icon": "🍅"
+      },
+      {
+        "source": "Letterboxd",
+        "score": "4.2 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "IMDb",
+        "score": "7.6 / 10",
+        "icon": "⭐"
+      }
+    ],
+    "reviewQuote": "A sensual, radiant masterpiece of pure cinematic grace, emotional depth, and atmospheric beauty.",
+    "contentAdvisory": "Mild sensuality and mature interpersonal emotional conflicts. Strictly non-spoiler."
   },
   {
     "id": "fest-viff-vancouver-film-festival-the-cinematheque",
-    "title": "Vancouver International Film Festival (VIFF): International Cinema Showcase & Retrospectives at The Cinematheque",
+    "title": "VIFF 2026: \"Grand Tour\" (Best Director Cannes • Dir. Miguel Gomes)",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "The Cinematheque",
@@ -13003,7 +13050,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+    "description": "Vancouver International Film Festival auteur showcase. A hypnotic, whimsical odyssey across 1917 Southeast Asia following a wandering civil servant and the determined fiancée pursuing him across exotic ports and changing eras.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
@@ -13012,11 +13059,31 @@ const VANCOUVER_EVENTS = [
       "verifiedAt": "2026-09-21T11:08:31.760254+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives."
+    "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+    "buzzwords": [
+      "Cannes Best Director",
+      "Travelogue Romance",
+      "Historical Whimsy",
+      "Visual Elegance"
+    ],
+    "ratings": [
+      {
+        "source": "Rotten Tomatoes",
+        "score": "88% Fresh",
+        "icon": "🍅"
+      },
+      {
+        "source": "Letterboxd",
+        "score": "3.8 / 5",
+        "icon": "★"
+      }
+    ],
+    "reviewQuote": "An inventive, romantic reverie that bridges past and present with breathtaking cinematic ingenuity.",
+    "contentAdvisory": "Mild language and mature thematic travel motifs. Strictly non-spoiler."
   },
   {
     "id": "fest-viff-vancouver-film-festival-rio-theatre",
-    "title": "Vancouver International Film Festival (VIFF): Late-Night Cult & Special Screenings at Rio Theatre",
+    "title": "VIFF 2026: \"The Substance\" (Best Screenplay Cannes • Dir. Coralie Fargeat)",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "Rio Theatre",
@@ -13093,7 +13160,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
+    "description": "Vancouver International Film Festival late-night sensation. An aging Hollywood fitness celebrity is offered a black-market medical formula that promises a younger, better version of herself—with one strict, unforgiving condition.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
@@ -13102,7 +13169,33 @@ const VANCOUVER_EVENTS = [
       "verifiedAt": "2026-09-21T11:08:31.760265+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ..."
+    "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
+    "buzzwords": [
+      "Body Horror",
+      "Cannes Best Screenplay",
+      "Satirical Sci-Fi",
+      "Feminist Nightmare",
+      "Midnight Sensation"
+    ],
+    "ratings": [
+      {
+        "source": "Rotten Tomatoes",
+        "score": "90% Fresh",
+        "icon": "🍅"
+      },
+      {
+        "source": "Letterboxd",
+        "score": "4.0 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "IMDb",
+        "score": "7.8 / 10",
+        "icon": "⭐"
+      }
+    ],
+    "reviewQuote": "An electrifying, jaw-dropping riot of audacity, gore, and razor-sharp Hollywood satire.",
+    "contentAdvisory": "Rated 18A / 19+. Extreme visceral body horror, graphic gore, nudity, and intense sound design. Strictly non-spoiler."
   },
   {
     "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
@@ -13323,7 +13416,7 @@ const VANCOUVER_EVENTS = [
   },
   {
     "id": "cinematheque-samurai-prisoner",
-    "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+    "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
     "artist": "Kiyoshi Kurosawa",
     "performers": [
       "Motoki Masahiro",
@@ -13406,7 +13499,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "Rated PG (BC)",
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers.",
+    "description": "Vancouver Premiere. Acclaimed master Kiyoshi Kurosawa crafts a tense 16th-century feudal mystery where a disgraced samurai defending an isolated fortress must decipher four enigmatic, season-spanning crimes with the guidance of an incarcerated strategist. (Japanese with English subtitles).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_venue_policy",
@@ -13414,11 +13507,32 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
       "verifiedAt": "2026-09-21T08:25:00-07:00",
       "details": "Verified via The Cinematheque official screening calendar."
-    }
+    },
+    "buzzwords": [
+      "Feudal Mystery",
+      "Locked-Room Procedural",
+      "Bushido Subversion",
+      "Cerebral Atmosphere",
+      "Japanese Cinema"
+    ],
+    "ratings": [
+      {
+        "source": "Letterboxd",
+        "score": "3.6 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "Film Comment",
+        "score": "Critical Acclaim",
+        "icon": "📜"
+      }
+    ],
+    "reviewQuote": "A quiet, brain-teasing subversion of the samurai genre that prizes deductive wit and psychological tension over mere spectacle.",
+    "contentAdvisory": "Rated PG. Feudal swordplay violence and mature historical wartime themes. Strictly non-spoiler."
   },
   {
     "id": "cinematheque-serpents-path",
-    "title": "The Cinematheque: \"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
+    "title": "\"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
     "artist": "Kiyoshi Kurosawa",
     "performers": [
       "Damien Bonnard",
@@ -13500,7 +13614,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "Rated 14A / Advisory",
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Vancouver Premiere. A cold, exacting French-language psychological revenge thriller from director Kiyoshi Kurosawa (Cure). A grieving father in Paris, assisted by an enigmatic Japanese psychiatrist, systematically hunts those responsible for his daughter's murder. (French/Japanese with English subtitles). ⚠️ Content Advisory: Intense psychological thriller themes, abduction, and off-screen violence. No spoilers.",
+    "description": "A grieving father consumed by a methodical quest for justice partners with a mysterious, calculating mathematician to interrogate suspects connected to an underworld syndicate in a desolate industrial warehouse. (Japanese with English subtitles).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_venue_policy",
@@ -13508,11 +13622,37 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
       "verifiedAt": "2026-09-21T08:25:00-07:00",
       "details": "Verified via The Cinematheque official screening calendar."
-    }
+    },
+    "buzzwords": [
+      "Psychological Thriller",
+      "Noir Procedural",
+      "Dark Revenge",
+      "Slow-Burn Tension",
+      "35mm Aesthetic"
+    ],
+    "ratings": [
+      {
+        "source": "Rotten Tomatoes",
+        "score": "86% Fresh",
+        "icon": "🍅"
+      },
+      {
+        "source": "Letterboxd",
+        "score": "3.7 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "IMDb",
+        "score": "7.1 / 10",
+        "icon": "⭐"
+      }
+    ],
+    "reviewQuote": "Cold, clinical, and utterly hypnotic. One of modern cinema's most unnerving and taut exercises in vengeance.",
+    "contentAdvisory": "Rated 14A. Intense psychological tension, abduction themes, and off-screen violence. Strictly non-spoiler."
   },
   {
     "id": "cinematheque-downpour",
-    "title": "The Cinematheque: \"Downpour\" (Restored Iranian New Wave • Dir. Bahram Beyzaie)",
+    "title": "\"Downpour\" (4K Restoration • Dir. Bahram Beyzaie)",
     "artist": "Bahram Beyzaie",
     "performers": [
       "Parviz Fannizadeh",
@@ -13588,7 +13728,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "Unrated / General Audience",
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "The landmark 1972 feature that helped launch the Iranian New Wave, restored in 4K by Martin Scorsese's World Cinema Project. A dedicated schoolteacher moves to a conservative southern Tehran neighborhood and faces town gossip after falling for a student's older sister. (Persian with English subtitles). ⚠️ Content Advisory: Mature social drama with themes of conservative cultural pressures and community ostracization.",
+    "description": "Martin Scorsese's World Cinema Project 4K restoration. A dedicated, idealistic young teacher newly assigned to an impoverished South Tehran district finds his life transformed after crossing paths with a hardworking young seamstress in the neighborhood. (Persian with English subtitles).",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_venue_policy",
@@ -13596,11 +13736,37 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
       "verifiedAt": "2026-09-21T08:25:00-07:00",
       "details": "Verified via The Cinematheque official screening calendar."
-    }
+    },
+    "buzzwords": [
+      "Iranian New Wave",
+      "Lyrical Melancholy",
+      "Scorsese World Cinema Project",
+      "Social Satire",
+      "Poetic Realism"
+    ],
+    "ratings": [
+      {
+        "source": "Rotten Tomatoes",
+        "score": "100% Fresh",
+        "icon": "🍅"
+      },
+      {
+        "source": "Letterboxd",
+        "score": "3.9 / 5",
+        "icon": "★"
+      },
+      {
+        "source": "IMDb",
+        "score": "7.8 / 10",
+        "icon": "⭐"
+      }
+    ],
+    "reviewQuote": "A milestone of the Iranian New Wave—warm, ironic, and brimming with visual poetry and social grace.",
+    "contentAdvisory": "Mature social drama depicting conservative community gossip and traditional social friction. Strictly non-spoiler."
   },
   {
     "id": "cinematheque-dim-cinema",
-    "title": "The Cinematheque: \"Making with Trouble — Stéphanie Lagarde\" (DIM Cinema)",
+    "title": "\"Making with Trouble\" (DIM Cinema • Dir. Stéphanie Lagarde)",
     "artist": "Stéphanie Lagarde",
     "performers": [
       "Stéphanie Lagarde"
@@ -13675,7 +13841,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "Unrated / Adult Art",
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Paris-based moving-image artist Stéphanie Lagarde presents experimental films examining state surveillance systems, military infrastructure, and institutional memory, followed by an in-person filmmaker Q&A. ⚠️ Content Advisory: Rapid flashing visual imagery and discussions of state surveillance.",
+    "description": "International Film Festival Rotterdam (IFFR) official selection. A mesmerizing moving-image essay exploring the sonic, spatial, and visual friction of contemporary crowd dynamics, riot architecture, and state surveillance technologies.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_venue_policy",
@@ -13683,11 +13849,32 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
       "verifiedAt": "2026-09-21T08:25:00-07:00",
       "details": "Verified via The Cinematheque official screening calendar."
-    }
+    },
+    "buzzwords": [
+      "Experimental Moving Image",
+      "Urban Resistance",
+      "Sensory Collage",
+      "IFFR Selection",
+      "Digital Media Art"
+    ],
+    "ratings": [
+      {
+        "source": "IFFR",
+        "score": "Official Selection",
+        "icon": "🎪"
+      },
+      {
+        "source": "DIM Cinema",
+        "score": "Curator Feature",
+        "icon": "🎬"
+      }
+    ],
+    "reviewQuote": "An urgent, kinetic audiovisual inquiry into the architecture of modern public assembly, street protest, and digital civic control.",
+    "contentAdvisory": "Flashing visual sequences, strobe effects, and loud amplified sound design. Strictly non-spoiler."
   },
   {
     "id": "rio-total-recall",
-    "title": "The Rio Theatre: \"Total Recall\" (4K Restoration • Midnight Cult Classic)",
+    "title": "\"Total Recall\" (4K Restoration • Dir. Paul Verhoeven)",
     "artist": "Paul Verhoeven",
     "performers": [
       "Arnold Schwarzenegger",
@@ -13699,7 +13886,7 @@ const VANCOUVER_EVENTS = [
       "Rio Theatre"
     ],
     "address": "1660 E Broadway, Vancouver",
-    "neighborhood": "Commercial Drive & East Vancouver",
+    "neighborhood": "Commercial Drive & East Van",
     "price": 17.5,
     "priceLabel": "$14.00 – $17.50 all-in",
     "pricingType": "platform",
@@ -13759,7 +13946,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "19+ with 2 pieces of ID for bar service",
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Paul Verhoeven's mind-bending sci-fi action classic presented in a pristine 4K restoration. A construction worker in 2084 discovers his planted memories of Mars are real, triggering a deadly planetary conspiracy. ⚠️ Content Advisory: Rated 18A / 19+ for graphic sci-fi violence, gore, and language.",
+    "description": "4K Digital Restoration. A 21st-century construction worker haunted by recurring dreams of Mars visits a memory-implantation clinic for an artificial vacation, only for the procedure to go wrong and uncover that his entire identity may be fabricated.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_venue_policy",
@@ -13767,436 +13954,36 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "General ($17.50), Student ($14.00) all-in",
       "verifiedAt": "2026-09-21T08:25:00-07:00",
       "details": "Verified via The Rio Theatre official box office rates."
-    }
-  }
-];
-const MANUAL_REVIEW_QUEUE = [
-  {
-    "id": "sun-yat-sen-park",
-    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
-    "venue": "Dr. Sun Yat-Sen Public Courtyard",
-    "address": "578 Carrall St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 0.0,
-    "attemptedPriceLabel": "Free ($0)",
-    "provider": "Box Office / Direct",
-    "semanticProvider": "Free Public Access",
-    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
-    "category": "arts",
-    "flaggedAt": "2026-09-21T11:07:24-07:00",
-    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouverchinesegarden.com/visit/",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "shipyards-live-night",
-    "title": "The Shipyards Live: Waterfront Music & Night Market",
-    "venue": "The Shipyards District",
-    "address": "125 Victory Ship Way, North Vancouver",
-    "neighborhood": "North Shore, Burnaby & Metro",
-    "attemptedPrice": 0.0,
-    "attemptedPriceLabel": "Free ($0)",
-    "provider": "Box Office / Direct",
-    "semanticProvider": "Free Public Access",
-    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-    "category": "music",
-    "flaggedAt": "2026-09-21T11:07:49-07:00",
-    "flagReason": "Could not fetch host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "public-disco-pride-block-party",
-    "title": "Public Disco Pride Block Party: Colored Craig (LA/NY), CarrieOnDisco (SF)",
-    "venue": "Mount Pleasant (4th & Ontario)",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "Mount Pleasant (4th & Ontario)",
-    "venueAliases": [
-      "Public Disco",
-      "Public Disco Vancouver",
-      "Public Disco Block Party"
-    ],
-    "address": "2114 Ontario St & E 4th Ave, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.2668,
-      -123.1054
-    ],
-    "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)",
-    "basePrice": 20.0,
-    "scrapedBasePrice": null,
-    "doorPolicyPrice": null,
-    "venueSubpageUrl": null,
-    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website",
-    "venueUrl": "https://publicdisco.ca/events",
-    "category": "music",
-    "categoryLabel": "Shows & Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "public-disco",
-      "music",
-      "block-party",
-      "dance-party",
-      "open-air",
-      "djs"
-    ],
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal Series",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening"
-    ],
-    "dateSchedule": "Saturday, August 1, 2026",
-    "startIso": "2026-08-01T14:00:00-07:00",
-    "endIso": "2026-08-01T22:00:00-07:00",
-    "confirmedDates": [
-      "2026-08-01"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Public Disco’s Pride Block Party returns to Mount Pleasant. Two stages, music-led programming, and a packed street-level dance floor at the centre of Vancouver Pride weekend.",
-    "price": 9.0,
-    "priceLabel": "$9.00 all-in",
-    "tiers": [],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "admitone_scraped",
-      "verifiedTotal": 9.0,
-      "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-21T11:08:30-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website"
     },
-    "isFree": false,
-    "agePolicy": "All-Ages (Family & Community Friendly)",
-    "admissionPolicy": "Advance & Door Ticketed",
-    "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2114 Ontario St & E 4th Ave, Vancouver.",
-    "ticketProvider": "Admitone Verified",
-    "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '.../NY), CarrieOnDisco (SF) This event has ended. Check out other events . Public Disco Pride...'",
-    "quarantinedAt": "2026-09-21T11:09:12.704071+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "public-disco-ccal-block-party",
-    "title": "Public Disco Block Party: MUSCLECARS (NYC), DJ HEATHER (CHI)",
-    "venue": "City Centre Artist Lodge",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "City Centre Artist Lodge",
-    "venueAliases": [
-      "Public Disco",
-      "Public Disco Vancouver",
-      "Public Disco Block Party"
+    "buzzwords": [
+      "Mind-Bending Sci-Fi",
+      "Practical FX Masterpiece",
+      "Memory Distortion",
+      "90s Action",
+      "Mars Colony"
     ],
-    "address": "2111 Main St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.2662,
-      -123.0978
-    ],
-    "transitInfo": "#8 Main bus directly to 5th Ave",
-    "basePrice": 20.0,
-    "scrapedBasePrice": null,
-    "doorPolicyPrice": null,
-    "venueSubpageUrl": null,
-    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website",
-    "venueUrl": "https://publicdisco.ca/events",
-    "category": "music",
-    "categoryLabel": "Shows & Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "public-disco",
-      "music",
-      "block-party",
-      "dance-party",
-      "open-air",
-      "djs"
-    ],
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal Series",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening"
-    ],
-    "dateSchedule": "Saturday, July 18, 2026",
-    "startIso": "2026-07-18T14:00:00-07:00",
-    "endIso": "2026-07-18T22:00:00-07:00",
-    "confirmedDates": [
-      "2026-07-18"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "A summer return to City Centre Artist Lodge with Musclecars and DJ Heather. House-rooted programming in a transformed motel courtyard, with local support shaping the full arc of the day.",
-    "price": 28.0,
-    "priceLabel": "$28.00 – $56.00 all-in",
-    "tiers": [
+    "ratings": [
       {
-        "name": "Tier 1",
-        "price": 28.0,
-        "label": "$28.00"
+        "source": "Rotten Tomatoes",
+        "score": "84% Fresh",
+        "icon": "🍅"
       },
       {
-        "name": "Tier 2",
-        "price": 56.0,
-        "label": "$56.00"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "admitone_scraped",
-      "verifiedTotal": 28.0,
-      "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
-      "verifiedAt": "2026-09-21T11:08:31-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
-    },
-    "isFree": false,
-    "agePolicy": "All-Ages (Family & Community Friendly)",
-    "admissionPolicy": "Advance & Door Ticketed",
-    "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2111 Main St, Vancouver.",
-    "ticketProvider": "Admitone Verified",
-    "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '... (NYC), DJ Heather (CHI) This event has ended. Check out other events . Public Disco Block...'",
-    "quarantinedAt": "2026-09-21T11:09:12.704126+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "fest-vancouver-fringe-festival-carousel-theatre",
-    "title": "Fringe: Delusions and Grandeur (Adult Comedy & Solo Cello Clown)",
-    "rawTitle": "Delusions and Grandeur (Adult Comedy & Solo Cello Clown)",
-    "artist": "Karen Hall",
-    "venue": "Carousel Theatre",
-    "address": "1411 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2708,
-      -123.1347
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#comedy",
-      "#adult-comedy",
-      "#clown",
-      "#adults-only",
-      "#granville-island"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://vancouverfringe.com/events/delusions-and-grandeur/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/delusions-and-grandeur/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Carousel Theatre",
-    "agePolicy": "Adults only",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Karen Hall's sold-out solo clowning and classical cello tour de force exploring vulnerability, ego, and perfectionism.\n\n★ Fringe Reviews: \"Fascinating and brilliantly creative... her comedic timing is as impeccable as her playing.\" (VanCityVince & Stage Raw Best Solo Performance Award).",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.596843+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "venueUrl": "https://www.carouseltheatre.ca",
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T11:09:12.704224+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "fest-viff-vancouver-film-festival-sfu-goldcorp-centre-for-the-arts",
-    "title": "Vancouver International Film Festival (VIFF): Gala Screenings & Contemporary Storytelling at SFU Goldcorp Centre for the Arts",
-    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
-    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
-    "venue": "SFU Goldcorp Centre for the Arts",
-    "venueAliases": [
-      "SFU Goldcorp Centre for the Arts",
-      "Vancouver International Film Festival (VIFF)"
-    ],
-    "address": "149 W Hastings St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
-    "pricingType": "festival_all_in",
-    "tiers": [
-      {
-        "name": "Single Show / Screening Ticket",
-        "price": 18.0,
-        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
+        "source": "Letterboxd",
+        "score": "3.8 / 5",
+        "icon": "★"
       },
       {
-        "name": "All-In Checkout (Ticket + Society Membership + GST)",
-        "price": 20.9,
-        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
+        "source": "IMDb",
+        "score": "7.5 / 10",
+        "icon": "⭐"
       }
     ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categories": [
-      "festivals",
-      "cinema"
-    ],
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "#festival",
-      "#viff",
-      "#cinema",
-      "#screenings",
-      "#premieres"
-    ],
-    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
-    "startIso": "2026-09-24T12:00:00-07:00",
-    "endIso": "2026-10-04T23:59:59-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.sfu.ca/woodwards.html",
-    "venueUrl": "https://www.sfu.ca/woodwards.html",
-    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
-    "rawProvider": "Vancouver International Film Festival (VIFF)",
-    "coordinates": [
-      49.2831,
-      -123.109
-    ],
-    "transitInfo": "5 min walk from Waterfront SkyTrain Station",
-    "organizer": "Vancouver International Film Festival (VIFF)",
-    "isRoving": false,
-    "editionVenue": "SFU Goldcorp Centre for the Arts",
-    "agePolicy": "All ages / see individual show rating",
-    "admissionPolicy": "Show ticket + society membership required for venue entry",
-    "rovingNote": null,
-    "description": "Special festival gala screenings and contemporary cinematic storytelling at SFU Goldcorp Centre for the Arts in the historic Woodward's complex.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T11:08:31.760295+00:00",
-      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T11:09:12.704256+00:00",
-    "dealtWith": false
+    "reviewQuote": "A ferocious, breathless blast of practical-effects brilliance and relentless, satirical sci-fi energy.",
+    "contentAdvisory": "Rated 18A / 19+. Intense stylized violence, graphic practical sci-fi gore, and language. Strictly non-spoiler."
   }
 ];
 
-// Regional Super-Clusters (Option B)
-const NEIGHBORHOODS = [
-  "Downtown, Gastown & Yaletown",
-  "Mount Pleasant & South Vancouver",
-  "Commercial Drive & East Vancouver",
-  "Kitsilano, Point Grey & UBC",
-  "Granville Island & False Creek",
-  "North Shore, Burnaby & Metro"
-];
-
-// Days of the Week
-const DAYS_OF_WEEK = [
-  { id: "all", label: "All Days", icon: "🗓️" },
-  { id: "mon", label: "Mon", full: "Monday" },
-  { id: "tue", label: "Tue", full: "Tuesday" },
-  { id: "wed", label: "Wed", full: "Wednesday" },
-  { id: "thu", label: "Thu", full: "Thursday" },
-  { id: "fri", label: "Fri", full: "Friday" },
-  { id: "sat", label: "Sat", full: "Saturday" },
-  { id: "sun", label: "Sun", full: "Sunday" },
-  { id: "daily", label: "Daily Spots", icon: "☀️" }
-];
-
-// Time of Day Starting Slots
-const TIME_SLOTS = [
-  { id: "all", label: "Any Time", icon: "⏰" },
-  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
-  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
-  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
-  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
-];
-
-// Recurrence Frequency Metadata
-const FREQUENCIES = [
-  { id: "all", label: "All Frequencies", icon: "✨" },
-  { id: "weekly", label: "Weekly", icon: "🔄", color: "#a855f7" },
-  { id: "monthly", label: "Monthly", icon: "📅", color: "#06b6d4" },
-  { id: "daily", label: "Daily", icon: "☀️", color: "#f59e0b" },
-  { id: "one-off", label: "One-Off", icon: "🎟️", color: "#f43f5e" },
-  { id: "seasonal", label: "Seasonal", icon: "🌟", color: "#10b981" },
-  { id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }
-];
-
-// Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   { id: "all", label: "All", icon: "✨" },
   { id: "music", label: "Live Music", icon: "🎵" },

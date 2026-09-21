@@ -2983,3 +2983,95 @@ body.van50-accessible .card-ticket-link {
   font-weight: 800 !important;
 }
 
+/* ==============================================================================
+   7. Cinema & Film Cards: Buzzwords, Ratings & Non-Spoiler Reviews
+   ============================================================================== */
+.card-buzzwords-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 6px 0 8px;
+}
+
+.card-buzzword-pill {
+  font-size: 0.70rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(14, 165, 233, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.card-film-reviews {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid #e11d48;
+  border-radius: var(--radius-sm);
+  padding: 7px 9px;
+  margin: 8px 0;
+}
+
+.film-ratings-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.film-rating-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.film-rating-chip.rt {
+  border-color: rgba(244, 63, 94, 0.35);
+  color: #fda4af;
+}
+
+.film-rating-chip.letterboxd {
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #86efac;
+}
+
+.film-rating-chip.imdb {
+  border-color: rgba(234, 179, 8, 0.35);
+  color: #fde047;
+}
+
+.film-review-quote {
+  font-size: 0.76rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.card-content-advisory-box {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #fef08a;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+

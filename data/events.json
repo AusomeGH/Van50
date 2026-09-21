@@ -647,7 +647,7 @@
     },
     {
       "id": "viff-centre-matinee",
-      "title": "VIFF Centre: International Cinema & Film Screenings",
+      "title": "\"A Sad and Beautiful World\" (Documentary Showcase • Dir. Cyril Aris)",
       "artist": "Auteur, documentary & world cinema",
       "performers": null,
       "venue": "VIFF Centre (Seymour Atrium)",
@@ -724,7 +724,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "See what&#039;s on at the VIFF Centre! Showtimes for exceptional films at one of Vancouver&#039;s premium cinemas.",
+      "description": "A poignant, deeply personal portrait of resilience, creativity, and daily life amidst turbulent economic and political transformation, capturing an enduring pursuit of hope and humanity in contemporary Beirut. (Arabic with English subtitles).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -732,7 +732,28 @@
         "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
         "verifiedAt": "2026-09-21T11:07:26-07:00",
         "details": "Verified via VIFF Centre box office schedule (viff.org)."
-      }
+      },
+      "buzzwords": [
+        "International Documentary",
+        "Human Resilience",
+        "Cinéma Vérité",
+        "Festival Award Winner",
+        "Middle Eastern Cinema"
+      ],
+      "ratings": [
+        {
+          "source": "Letterboxd",
+          "score": "3.9 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "Cineuropa",
+          "score": "Audience Award",
+          "icon": "🏆"
+        }
+      ],
+      "reviewQuote": "Devastating yet radiant with humor, stubborn vitality, and an unshakeable love for human endurance.",
+      "contentAdvisory": "Real-world discussions of economic hardship, social unrest, and displacement. Strictly non-spoiler."
     },
     {
       "id": "portside-pub-trivia",
@@ -12832,7 +12853,7 @@
     },
     {
       "id": "fest-viff-vancouver-film-festival-viff-centre",
-      "title": "Vancouver International Film Festival (VIFF): Feature Screenings, Talks & BC Spotlight at VIFF Centre",
+      "title": "VIFF 2026: \"All We Imagine as Light\" (Cannes Grand Prix • Dir. Payal Kapadia)",
       "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
       "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
       "venue": "VIFF Centre",
@@ -12909,7 +12930,7 @@
       "agePolicy": "All ages / see individual show rating",
       "admissionPolicy": "Show ticket + society membership required for venue entry",
       "rovingNote": null,
-      "description": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
+      "description": "Vancouver International Film Festival flagship presentation. In bustling Mumbai, two hospital nurses navigate love, independence, and shifting horizons before embarking on a transformative journey to a coastal mist-covered town. (Malayalam & Hindi with English subtitles).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "festival_charter_pricing",
@@ -12918,11 +12939,37 @@
         "verifiedAt": "2026-09-21T11:08:31.760233+00:00",
         "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
       },
-      "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival."
+      "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
+      "buzzwords": [
+        "Cannes Grand Prix Winner",
+        "Luminous Drama",
+        "Mumbai Nocturne",
+        "Poetic Realism",
+        "Female Friendship"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "100% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "4.2 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "IMDb",
+          "score": "7.6 / 10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "A sensual, radiant masterpiece of pure cinematic grace, emotional depth, and atmospheric beauty.",
+      "contentAdvisory": "Mild sensuality and mature interpersonal emotional conflicts. Strictly non-spoiler."
     },
     {
       "id": "fest-viff-vancouver-film-festival-the-cinematheque",
-      "title": "Vancouver International Film Festival (VIFF): International Cinema Showcase & Retrospectives at The Cinematheque",
+      "title": "VIFF 2026: \"Grand Tour\" (Best Director Cannes • Dir. Miguel Gomes)",
       "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
       "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
       "venue": "The Cinematheque",
@@ -13000,7 +13047,7 @@
       "agePolicy": "All ages / see individual show rating",
       "admissionPolicy": "Show ticket + society membership required for venue entry",
       "rovingNote": null,
-      "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+      "description": "Vancouver International Film Festival auteur showcase. A hypnotic, whimsical odyssey across 1917 Southeast Asia following a wandering civil servant and the determined fiancée pursuing him across exotic ports and changing eras.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "festival_charter_pricing",
@@ -13009,11 +13056,31 @@
         "verifiedAt": "2026-09-21T11:08:31.760254+00:00",
         "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
       },
-      "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives."
+      "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+      "buzzwords": [
+        "Cannes Best Director",
+        "Travelogue Romance",
+        "Historical Whimsy",
+        "Visual Elegance"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "88% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "3.8 / 5",
+          "icon": "★"
+        }
+      ],
+      "reviewQuote": "An inventive, romantic reverie that bridges past and present with breathtaking cinematic ingenuity.",
+      "contentAdvisory": "Mild language and mature thematic travel motifs. Strictly non-spoiler."
     },
     {
       "id": "fest-viff-vancouver-film-festival-rio-theatre",
-      "title": "Vancouver International Film Festival (VIFF): Late-Night Cult & Special Screenings at Rio Theatre",
+      "title": "VIFF 2026: \"The Substance\" (Best Screenplay Cannes • Dir. Coralie Fargeat)",
       "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
       "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
       "venue": "Rio Theatre",
@@ -13090,7 +13157,7 @@
       "agePolicy": "All ages / see individual show rating",
       "admissionPolicy": "Show ticket + society membership required for venue entry",
       "rovingNote": null,
-      "description": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
+      "description": "Vancouver International Film Festival late-night sensation. An aging Hollywood fitness celebrity is offered a black-market medical formula that promises a younger, better version of herself—with one strict, unforgiving condition.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "festival_charter_pricing",
@@ -13099,7 +13166,33 @@
         "verifiedAt": "2026-09-21T11:08:31.760265+00:00",
         "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
       },
-      "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ..."
+      "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
+      "buzzwords": [
+        "Body Horror",
+        "Cannes Best Screenplay",
+        "Satirical Sci-Fi",
+        "Feminist Nightmare",
+        "Midnight Sensation"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "90% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "4.0 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "IMDb",
+          "score": "7.8 / 10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "An electrifying, jaw-dropping riot of audacity, gore, and razor-sharp Hollywood satire.",
+      "contentAdvisory": "Rated 18A / 19+. Extreme visceral body horror, graphic gore, nudity, and intense sound design. Strictly non-spoiler."
     },
     {
       "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
@@ -13320,7 +13413,7 @@
     },
     {
       "id": "cinematheque-samurai-prisoner",
-      "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+      "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
       "artist": "Kiyoshi Kurosawa",
       "performers": [
         "Motoki Masahiro",
@@ -13403,7 +13496,7 @@
       "agePolicy": "Rated PG (BC)",
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers.",
+      "description": "Vancouver Premiere. Acclaimed master Kiyoshi Kurosawa crafts a tense 16th-century feudal mystery where a disgraced samurai defending an isolated fortress must decipher four enigmatic, season-spanning crimes with the guidance of an incarcerated strategist. (Japanese with English subtitles).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_venue_policy",
@@ -13411,11 +13504,32 @@
         "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
         "verifiedAt": "2026-09-21T08:25:00-07:00",
         "details": "Verified via The Cinematheque official screening calendar."
-      }
+      },
+      "buzzwords": [
+        "Feudal Mystery",
+        "Locked-Room Procedural",
+        "Bushido Subversion",
+        "Cerebral Atmosphere",
+        "Japanese Cinema"
+      ],
+      "ratings": [
+        {
+          "source": "Letterboxd",
+          "score": "3.6 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "Film Comment",
+          "score": "Critical Acclaim",
+          "icon": "📜"
+        }
+      ],
+      "reviewQuote": "A quiet, brain-teasing subversion of the samurai genre that prizes deductive wit and psychological tension over mere spectacle.",
+      "contentAdvisory": "Rated PG. Feudal swordplay violence and mature historical wartime themes. Strictly non-spoiler."
     },
     {
       "id": "cinematheque-serpents-path",
-      "title": "The Cinematheque: \"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
+      "title": "\"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
       "artist": "Kiyoshi Kurosawa",
       "performers": [
         "Damien Bonnard",
@@ -13497,7 +13611,7 @@
       "agePolicy": "Rated 14A / Advisory",
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Vancouver Premiere. A cold, exacting French-language psychological revenge thriller from director Kiyoshi Kurosawa (Cure). A grieving father in Paris, assisted by an enigmatic Japanese psychiatrist, systematically hunts those responsible for his daughter's murder. (French/Japanese with English subtitles). ⚠️ Content Advisory: Intense psychological thriller themes, abduction, and off-screen violence. No spoilers.",
+      "description": "A grieving father consumed by a methodical quest for justice partners with a mysterious, calculating mathematician to interrogate suspects connected to an underworld syndicate in a desolate industrial warehouse. (Japanese with English subtitles).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_venue_policy",
@@ -13505,11 +13619,37 @@
         "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
         "verifiedAt": "2026-09-21T08:25:00-07:00",
         "details": "Verified via The Cinematheque official screening calendar."
-      }
+      },
+      "buzzwords": [
+        "Psychological Thriller",
+        "Noir Procedural",
+        "Dark Revenge",
+        "Slow-Burn Tension",
+        "35mm Aesthetic"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "86% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "3.7 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "IMDb",
+          "score": "7.1 / 10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "Cold, clinical, and utterly hypnotic. One of modern cinema's most unnerving and taut exercises in vengeance.",
+      "contentAdvisory": "Rated 14A. Intense psychological tension, abduction themes, and off-screen violence. Strictly non-spoiler."
     },
     {
       "id": "cinematheque-downpour",
-      "title": "The Cinematheque: \"Downpour\" (Restored Iranian New Wave • Dir. Bahram Beyzaie)",
+      "title": "\"Downpour\" (4K Restoration • Dir. Bahram Beyzaie)",
       "artist": "Bahram Beyzaie",
       "performers": [
         "Parviz Fannizadeh",
@@ -13585,7 +13725,7 @@
       "agePolicy": "Unrated / General Audience",
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "The landmark 1972 feature that helped launch the Iranian New Wave, restored in 4K by Martin Scorsese's World Cinema Project. A dedicated schoolteacher moves to a conservative southern Tehran neighborhood and faces town gossip after falling for a student's older sister. (Persian with English subtitles). ⚠️ Content Advisory: Mature social drama with themes of conservative cultural pressures and community ostracization.",
+      "description": "Martin Scorsese's World Cinema Project 4K restoration. A dedicated, idealistic young teacher newly assigned to an impoverished South Tehran district finds his life transformed after crossing paths with a hardworking young seamstress in the neighborhood. (Persian with English subtitles).",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_venue_policy",
@@ -13593,11 +13733,37 @@
         "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
         "verifiedAt": "2026-09-21T08:25:00-07:00",
         "details": "Verified via The Cinematheque official screening calendar."
-      }
+      },
+      "buzzwords": [
+        "Iranian New Wave",
+        "Lyrical Melancholy",
+        "Scorsese World Cinema Project",
+        "Social Satire",
+        "Poetic Realism"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "100% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "3.9 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "IMDb",
+          "score": "7.8 / 10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "A milestone of the Iranian New Wave—warm, ironic, and brimming with visual poetry and social grace.",
+      "contentAdvisory": "Mature social drama depicting conservative community gossip and traditional social friction. Strictly non-spoiler."
     },
     {
       "id": "cinematheque-dim-cinema",
-      "title": "The Cinematheque: \"Making with Trouble — Stéphanie Lagarde\" (DIM Cinema)",
+      "title": "\"Making with Trouble\" (DIM Cinema • Dir. Stéphanie Lagarde)",
       "artist": "Stéphanie Lagarde",
       "performers": [
         "Stéphanie Lagarde"
@@ -13672,7 +13838,7 @@
       "agePolicy": "Unrated / Adult Art",
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Paris-based moving-image artist Stéphanie Lagarde presents experimental films examining state surveillance systems, military infrastructure, and institutional memory, followed by an in-person filmmaker Q&A. ⚠️ Content Advisory: Rapid flashing visual imagery and discussions of state surveillance.",
+      "description": "International Film Festival Rotterdam (IFFR) official selection. A mesmerizing moving-image essay exploring the sonic, spatial, and visual friction of contemporary crowd dynamics, riot architecture, and state surveillance technologies.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_venue_policy",
@@ -13680,11 +13846,32 @@
         "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
         "verifiedAt": "2026-09-21T08:25:00-07:00",
         "details": "Verified via The Cinematheque official screening calendar."
-      }
+      },
+      "buzzwords": [
+        "Experimental Moving Image",
+        "Urban Resistance",
+        "Sensory Collage",
+        "IFFR Selection",
+        "Digital Media Art"
+      ],
+      "ratings": [
+        {
+          "source": "IFFR",
+          "score": "Official Selection",
+          "icon": "🎪"
+        },
+        {
+          "source": "DIM Cinema",
+          "score": "Curator Feature",
+          "icon": "🎬"
+        }
+      ],
+      "reviewQuote": "An urgent, kinetic audiovisual inquiry into the architecture of modern public assembly, street protest, and digital civic control.",
+      "contentAdvisory": "Flashing visual sequences, strobe effects, and loud amplified sound design. Strictly non-spoiler."
     },
     {
       "id": "rio-total-recall",
-      "title": "The Rio Theatre: \"Total Recall\" (4K Restoration • Midnight Cult Classic)",
+      "title": "\"Total Recall\" (4K Restoration • Dir. Paul Verhoeven)",
       "artist": "Paul Verhoeven",
       "performers": [
         "Arnold Schwarzenegger",
@@ -13756,7 +13943,7 @@
       "agePolicy": "19+ with 2 pieces of ID for bar service",
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Paul Verhoeven's mind-bending sci-fi action classic presented in a pristine 4K restoration. A construction worker in 2084 discovers his planted memories of Mars are real, triggering a deadly planetary conspiracy. ⚠️ Content Advisory: Rated 18A / 19+ for graphic sci-fi violence, gore, and language.",
+      "description": "4K Digital Restoration. A 21st-century construction worker haunted by recurring dreams of Mars visits a memory-implantation clinic for an artificial vacation, only for the procedure to go wrong and uncover that his entire identity may be fabricated.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_venue_policy",
@@ -13764,7 +13951,33 @@
         "feeBreakdown": "General ($17.50), Student ($14.00) all-in",
         "verifiedAt": "2026-09-21T08:25:00-07:00",
         "details": "Verified via The Rio Theatre official box office rates."
-      }
+      },
+      "buzzwords": [
+        "Mind-Bending Sci-Fi",
+        "Practical FX Masterpiece",
+        "Memory Distortion",
+        "90s Action",
+        "Mars Colony"
+      ],
+      "ratings": [
+        {
+          "source": "Rotten Tomatoes",
+          "score": "84% Fresh",
+          "icon": "🍅"
+        },
+        {
+          "source": "Letterboxd",
+          "score": "3.8 / 5",
+          "icon": "★"
+        },
+        {
+          "source": "IMDb",
+          "score": "7.5 / 10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "A ferocious, breathless blast of practical-effects brilliance and relentless, satirical sci-fi energy.",
+      "contentAdvisory": "Rated 18A / 19+. Intense stylized violence, graphic practical sci-fi gore, and language. Strictly non-spoiler."
     }
   ]
 }

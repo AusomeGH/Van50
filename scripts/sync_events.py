@@ -532,7 +532,7 @@ def get_curated_seed_catalog():
         },
         {
             "id": "cinematheque-samurai-prisoner",
-            "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+            "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
             "venue": "The Cinematheque",
             "address": "1131 Howe St, Vancouver",
             "neighborhood": "Downtown / West End",
