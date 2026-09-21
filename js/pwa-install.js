@@ -39,6 +39,9 @@
   if (isStandalone) {
     console.log('[PWA] Van50 is running in standalone mode.');
     document.documentElement.classList.add('is-pwa-standalone');
+    if (window.trackAnonymousEvent) {
+      window.trackAnonymousEvent('app/standalone-open', 'Installed App Launch');
+    }
     return;
   }
 
@@ -121,6 +124,10 @@
 
   // 5. Trigger Native Install Flow
   async function triggerInstallFlow() {
+    if (window.trackAnonymousEvent) {
+      window.trackAnonymousEvent('pwa/install-prompt-click', 'Install App Prompt Click');
+    }
+
     if (!deferredPrompt) {
       // Fallback instructions if prompt not directly available
       alert('To install Van50 on Android:\n1. Tap the Chrome menu (⋮) at top right\n2. Tap "Install App" or "Add to Home Screen"');
@@ -143,6 +150,9 @@
   // 6. Handle App Installed confirmation
   window.addEventListener('appinstalled', () => {
     console.log('[PWA] Van50 app installed successfully!');
+    if (window.trackAnonymousEvent) {
+      window.trackAnonymousEvent('pwa/installed-success', 'PWA App Installed');
+    }
     hideInstallUI();
     deferredPrompt = null;
   });
