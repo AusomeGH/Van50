@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-20T17:42:34-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-20T17:51:31-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -14593,9 +14593,7 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "social"
     ]
-  }
-];
-const MANUAL_REVIEW_QUEUE = [
+  },
   {
     "id": "hollywood-theatre-deer-tick-tour-o-matic",
     "title": "Deer Tick: Tour-O-Matic",
@@ -14607,9 +14605,27 @@ const MANUAL_REVIEW_QUEUE = [
     "category": "music",
     "flaggedAt": "2026-09-20T10:29:25-07:00",
     "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/110064638F595700",
-    "reviewStatus": "pending_manual_review"
+    "reviewStatus": "curator_approved",
+    "promotedAt": "2026-09-21T00:51:07.708809+00:00",
+    "curatorGuidance": "under 50 bucks, looks good to me",
+    "price": 20.0,
+    "isFree": false,
+    "pricingType": "fixed",
+    "priceLabel": "$20.00 all-in",
+    "categories": [
+      "music"
+    ],
+    "frequency": "one-time",
+    "startIso": "2026-09-21T00:51:07.708809+00:00",
+    "description": "Live performance at Hollywood Theatre.",
+    "ticketProvider": "Curator Verified",
+    "coordinates": [
+      49.2642,
+      -123.1754
+    ]
   }
 ];
+const MANUAL_REVIEW_QUEUE = [];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [

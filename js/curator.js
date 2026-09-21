@@ -685,7 +685,10 @@ function renderCards(items) {
             <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
               <span>🕒 Queued ${ev.queuedInstruction.createdAt ? new Date(ev.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
               ${ev.queuedInstruction.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(ev.queuedInstruction.approvedPrice).toFixed(2)} CAD</span>` : ''}
-              <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="margin-left: auto; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit / Add Proof</button>
+              <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+                <button type="button" class="btn-curator btn-curator-success" onclick="approveQuarantinedEvent('${ev.id}')" style="padding: 4px 12px; font-size: 0.78rem; font-weight: 700; border-radius: 4px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);" title="Immediately approve and publish this event to live catalog">✅ Approve &amp; Push Live</button>
+                <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit / Add Proof</button>
+              </div>
             </div>
           </div>
         ` : ''}

@@ -39,7 +39,8 @@ class CuratorLearningEngine:
 
     PROMOTION_KEYWORDS = [
         "approved as-is", "verified price", "promote", "approved GA", "ticket price is $",
-        "cover is $"
+        "cover is $", "looks good", "good to me", "under 50 bucks", "under $50", "approved",
+        "all good", "looks fine", "good to go", "valid"
     ]
 
     @classmethod
@@ -147,7 +148,7 @@ class CuratorLearningEngine:
             text_lower = text.lower()
             ev_id = inst.get("eventId")
             venue_name = inst.get("venueName") or ""
-            action = inst.get("action")
+            action = inst.get("action") or inst.get("actionTaken")
 
             stats["instructionsProcessed"] += 1
 
@@ -240,6 +241,26 @@ class CuratorLearningEngine:
                     item["promotedAt"] = now_iso
                     item["curatorGuidance"] = text
                     
+                    # Ensure required event metadata fields are set
+                    price_val = float(item.get("attemptedPrice", item.get("price", 20.0)))
+                    item["price"] = price_val
+                    item["isFree"] = price_val == 0
+                    item["pricingType"] = "free" if price_val == 0 else "fixed"
+                    if not item.get("priceLabel"):
+                        item["priceLabel"] = "Free ($0)" if price_val == 0 else f"${price_val:.2f} all-in"
+                    if not item.get("category"):
+                        item["category"] = "shows"
+                    if not item.get("categories"):
+                        item["categories"] = [item["category"]]
+                    if not item.get("frequency"):
+                        item["frequency"] = "one-time"
+                    if not item.get("startIso"):
+                        item["startIso"] = now_iso
+                    if not item.get("description"):
+                        item["description"] = f"Live performance at {item.get('venue', 'Vancouver, BC')}."
+                    if not item.get("ticketProvider"):
+                        item["ticketProvider"] = "Curator Verified"
+
                     # Ensure coordinates are set for map compliance
                     if not item.get("coordinates") or not isinstance(item.get("coordinates"), list) or len(item.get("coordinates")) != 2:
                         v_lower = (item.get("venue") or "").lower()

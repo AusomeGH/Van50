@@ -1,26 +1,12 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T17:42:25-07:00",
-    "pendingCount": 1,
+    "updatedAt": "2026-09-20T17:51:26-07:00",
+    "pendingCount": 0,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing.",
     "lastNewsletterIngestion": "2026-09-21T00:02:26.761084+00:00"
   },
-  "quarantinedEvents": [
-    {
-      "id": "hollywood-theatre-deer-tick-tour-o-matic",
-      "title": "Deer Tick: Tour-O-Matic",
-      "venue": "Hollywood Theatre",
-      "address": "3123 W Broadway, Vancouver, BC",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
-      "attemptedPrice": 20.0,
-      "websiteUrl": "https://www.ticketmaster.ca/event/110064638F595700",
-      "category": "music",
-      "flaggedAt": "2026-09-20T10:29:25-07:00",
-      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/110064638F595700",
-      "reviewStatus": "pending_manual_review"
-    }
-  ],
-  "pendingCount": 1,
-  "lastTriagedAt": "2026-09-20T17:39:48.860041+00:00"
+  "quarantinedEvents": [],
+  "pendingCount": 0,
+  "lastTriagedAt": "2026-09-21T00:51:07.708809+00:00"
 }
