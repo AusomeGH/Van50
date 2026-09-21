@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-21T11:09:12-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-21T08:28:52-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -738,97 +738,6 @@ const VANCOUVER_EVENTS = [
     }
   },
   {
-    "id": "cinematheque-matinee",
-    "title": "The Cinematheque: Art House & Essential Cinema",
-    "artist": null,
-    "performers": null,
-    "venue": "The Cinematheque",
-    "venueAliases": [],
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Wednesday – Monday",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "film-history",
-      "auteur-cinema",
-      "cinematheque",
-      "restored-classics",
-      "35mm",
-      "cinema"
-    ],
-    "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
-    "startIso": "2026-09-09T18:30:00-07:00",
-    "endIso": "2026-12-31T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://thecinematheque.ca/films/calendar",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "Agile Ticketing Verified",
-    "rawProvider": "Agile Ticketing",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
-      "verifiedAt": "2026-09-21T11:07:28-07:00",
-      "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
-    }
-  },
-  {
     "id": "portside-pub-trivia",
     "title": "The Portside Pub: Gastown Brainstormer Trivia",
     "artist": null,
@@ -888,89 +797,6 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "$12.00 rate scraped live from published venue page",
       "verifiedAt": "2026-09-21T11:07:30-07:00",
       "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
-    }
-  },
-  {
-    "id": "rio-late-night-cinema",
-    "title": "The Rio Theatre: Art House Cinema & Midnight Cult Classics",
-    "artist": "Independent cinema, cult classics & live comedy",
-    "performers": null,
-    "venue": "The Rio Theatre",
-    "venueAliases": [],
-    "address": "1660 E Broadway, Vancouver",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 16.0,
-    "priceLabel": "$13.00 – $16.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Regular Adult Admission",
-        "basePrice": 16.0,
-        "price": 16.0,
-        "label": "$16.00 all-in"
-      },
-      {
-        "name": "Concession (Student / Senior / Member)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily (7 Days a Week)",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🍿",
-    "subTags": [
-      "vhs-gems",
-      "live-comedy",
-      "indie-theatre",
-      "cult-cinema"
-    ],
-    "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
-    "startIso": "2026-09-09T19:30:00-07:00",
-    "endIso": "2026-09-09T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://riotheatre.ca/calendar/",
-    "venueUrl": "https://riotheatre.ca",
-    "ticketProvider": "Igniter Tickets Verified",
-    "rawProvider": "Igniter Tickets",
-    "coordinates": [
-      49.2627,
-      -123.0699
-    ],
-    "transitInfo": "Steps from Commercial-Broadway SkyTrain Interchange",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 16.0,
-      "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-21T11:07:31-07:00",
-      "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
   {
@@ -13494,6 +13320,454 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "social"
     ]
+  },
+  {
+    "id": "cinematheque-samurai-prisoner",
+    "title": "The Cinematheque: \"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+    "artist": "Kiyoshi Kurosawa",
+    "performers": [
+      "Motoki Masahiro",
+      "Kiyoshi Kurosawa"
+    ],
+    "venue": "The Cinematheque",
+    "venueAliases": [
+      "Pacific Cinémathèque"
+    ],
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$11.00 – $15.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
+      },
+      {
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "limited-run",
+    "frequencyLabel": "Limited Run",
+    "daysOfWeek": [
+      "tue",
+      "thu",
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "afternoon"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "kurosawa",
+      "samurai",
+      "japanese-cinema",
+      "mystery",
+      "locked-room",
+      "vancouver-premiere"
+    ],
+    "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
+    "startIso": "2026-09-22T19:00:00-07:00",
+    "endIso": "2026-09-26T21:30:00-07:00",
+    "confirmedDates": [
+      "2026-09-22T19:00:00-07:00",
+      "2026-09-24T18:00:00-07:00",
+      "2026-09-26T15:00:00-07:00"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca/films/2026/samurai-prisoner",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "The Cinematheque Box Office",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": "Rated PG (BC)",
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Vancouver Premiere. A cerebral 16th-century samurai procedural and locked-room murder mystery directed by Kiyoshi Kurosawa. When feudal lord Murashige betrays his warlord and renounces the bushido code, he faces four baffling crimes segmenting the seasons and must seek the counsel of an imprisoned strategist. (Japanese with English subtitles). ⚠️ Content Advisory: Feudal sword violence and mature historical wartime themes. No spoilers.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_venue_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
+      "verifiedAt": "2026-09-21T08:25:00-07:00",
+      "details": "Verified via The Cinematheque official screening calendar."
+    }
+  },
+  {
+    "id": "cinematheque-serpents-path",
+    "title": "The Cinematheque: \"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
+    "artist": "Kiyoshi Kurosawa",
+    "performers": [
+      "Damien Bonnard",
+      "Ko Shibasaki"
+    ],
+    "venue": "The Cinematheque",
+    "venueAliases": [
+      "Pacific Cinémathèque"
+    ],
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$11.00 – $15.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
+      },
+      {
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "limited-run",
+    "frequencyLabel": "Limited Run",
+    "daysOfWeek": [
+      "thu",
+      "sat",
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "kurosawa",
+      "thriller",
+      "revenge",
+      "french-cinema",
+      "vancouver-premiere"
+    ],
+    "dateSchedule": "Thursday, September 24 • 6:30 PM (Also Sep 26 & 28)",
+    "startIso": "2026-09-24T18:30:00-07:00",
+    "endIso": "2026-09-28T20:30:00-07:00",
+    "confirmedDates": [
+      "2026-09-24T18:30:00-07:00",
+      "2026-09-26T20:30:00-07:00",
+      "2026-09-28T18:30:00-07:00"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca/films/2026/serpents-path",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "The Cinematheque Box Office",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": "Rated 14A / Advisory",
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Vancouver Premiere. A cold, exacting French-language psychological revenge thriller from director Kiyoshi Kurosawa (Cure). A grieving father in Paris, assisted by an enigmatic Japanese psychiatrist, systematically hunts those responsible for his daughter's murder. (French/Japanese with English subtitles). ⚠️ Content Advisory: Intense psychological thriller themes, abduction, and off-screen violence. No spoilers.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_venue_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
+      "verifiedAt": "2026-09-21T08:25:00-07:00",
+      "details": "Verified via The Cinematheque official screening calendar."
+    }
+  },
+  {
+    "id": "cinematheque-downpour",
+    "title": "The Cinematheque: \"Downpour\" (Restored Iranian New Wave • Dir. Bahram Beyzaie)",
+    "artist": "Bahram Beyzaie",
+    "performers": [
+      "Parviz Fannizadeh",
+      "Parvaneh Massoumi"
+    ],
+    "venue": "The Cinematheque",
+    "venueAliases": [
+      "Pacific Cinémathèque"
+    ],
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$11.00 – $15.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
+      },
+      {
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Special Screening",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "iranian-new-wave",
+      "restored-classics",
+      "scorsese-world-cinema",
+      "cinematheque"
+    ],
+    "dateSchedule": "Thursday, September 24 • 8:50 PM",
+    "startIso": "2026-09-24T20:50:00-07:00",
+    "endIso": "2026-09-24T23:00:00-07:00",
+    "confirmedDates": [
+      "2026-09-24T20:50:00-07:00"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca/films/2026/downpour",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "The Cinematheque Box Office",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": "Unrated / General Audience",
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "The landmark 1972 feature that helped launch the Iranian New Wave, restored in 4K by Martin Scorsese's World Cinema Project. A dedicated schoolteacher moves to a conservative southern Tehran neighborhood and faces town gossip after falling for a student's older sister. (Persian with English subtitles). ⚠️ Content Advisory: Mature social drama with themes of conservative cultural pressures and community ostracization.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_venue_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
+      "verifiedAt": "2026-09-21T08:25:00-07:00",
+      "details": "Verified via The Cinematheque official screening calendar."
+    }
+  },
+  {
+    "id": "cinematheque-dim-cinema",
+    "title": "The Cinematheque: \"Making with Trouble — Stéphanie Lagarde\" (DIM Cinema)",
+    "artist": "Stéphanie Lagarde",
+    "performers": [
+      "Stéphanie Lagarde"
+    ],
+    "venue": "The Cinematheque",
+    "venueAliases": [
+      "Pacific Cinémathèque"
+    ],
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$11.00 – $15.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
+      },
+      {
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Tonight • Special Screening",
+    "daysOfWeek": [
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "dim-cinema",
+      "experimental-film",
+      "media-art",
+      "artist-talk"
+    ],
+    "dateSchedule": "Tonight, Monday, September 21 • 7:00 PM",
+    "startIso": "2026-09-21T19:00:00-07:00",
+    "endIso": "2026-09-21T21:00:00-07:00",
+    "confirmedDates": [
+      "2026-09-21T19:00:00-07:00"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca/films/2026/stephanie-lagarde",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "The Cinematheque Box Office",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": "Unrated / Adult Art",
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Paris-based moving-image artist Stéphanie Lagarde presents experimental films examining state surveillance systems, military infrastructure, and institutional memory, followed by an in-person filmmaker Q&A. ⚠️ Content Advisory: Rapid flashing visual imagery and discussions of state surveillance.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_venue_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
+      "verifiedAt": "2026-09-21T08:25:00-07:00",
+      "details": "Verified via The Cinematheque official screening calendar."
+    }
+  },
+  {
+    "id": "rio-total-recall",
+    "title": "The Rio Theatre: \"Total Recall\" (4K Restoration • Midnight Cult Classic)",
+    "artist": "Paul Verhoeven",
+    "performers": [
+      "Arnold Schwarzenegger",
+      "Sharon Stone",
+      "Michael Ironside"
+    ],
+    "venue": "The Rio Theatre",
+    "venueAliases": [
+      "Rio Theatre"
+    ],
+    "address": "1660 E Broadway, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "price": 17.5,
+    "priceLabel": "$14.00 – $17.50 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "basePrice": 17.5,
+        "price": 17.5,
+        "label": "$17.50 all-in"
+      },
+      {
+        "name": "Student / Senior",
+        "basePrice": 14.0,
+        "price": 14.0,
+        "label": "$14.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Midnight Movie",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "cult-classic",
+      "4k-restoration",
+      "midnight-movie",
+      "sci-fi",
+      "rio-theatre"
+    ],
+    "dateSchedule": "Friday, September 25 • 11:30 PM",
+    "startIso": "2026-09-25T23:30:00-07:00",
+    "endIso": "2026-09-26T01:30:00-07:00",
+    "confirmedDates": [
+      "2026-09-25T23:30:00-07:00"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://riotheatre.ca",
+    "venueUrl": "https://riotheatre.ca",
+    "ticketProvider": "The Rio Theatre Box Office",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2627,
+      -123.0694
+    ],
+    "transitInfo": "Directly adjacent to Commercial-Broadway SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": "19+ with 2 pieces of ID for bar service",
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Paul Verhoeven's mind-bending sci-fi action classic presented in a pristine 4K restoration. A construction worker in 2084 discovers his planted memories of Mars are real, triggering a deadly planetary conspiracy. ⚠️ Content Advisory: Rated 18A / 19+ for graphic sci-fi violence, gore, and language.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "official_venue_policy",
+      "verifiedTotal": 17.5,
+      "feeBreakdown": "General ($17.50), Student ($14.00) all-in",
+      "verifiedAt": "2026-09-21T08:25:00-07:00",
+      "details": "Verified via The Rio Theatre official box office rates."
+    }
   }
 ];
 const MANUAL_REVIEW_QUEUE = [

@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
           📅 ${chosen.dateSchedule}
         </div>
         <div style="display: flex; gap: 8px; justify-content: center;">
-          <a href="${chosen.websiteUrl}" target="_blank" rel="noopener noreferrer" class="btn-ticket-cta" data-event-id="${chosen.id}" data-event-title="${escapedTitle}" data-event-venue="${escapedVenue}" style="font-size: 0.82rem; padding: 7px 14px;">
+          <a href="${chosen.websiteUrl}" target="_blank" rel="noopener noreferrer" class="btn-ticket-cta" data-event-id="${chosen.id}" data-event-title="${escapedTitle}" data-event-venue="${escapedVenue}" data-goatcounter-click="tickets-${chosen.id}" data-goatcounter-title="Tickets: ${escapedTitle} (${escapedVenue})" data-goatcounter-no-session="1" style="font-size: 0.82rem; padding: 7px 14px;">
             Get Tickets / Details ↗
           </a>
           <button class="btn btn-itinerary" onclick="toggleSaveEvent('${chosen.id}')" style="font-size: 0.82rem; padding: 7px 14px;">

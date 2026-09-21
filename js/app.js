@@ -4,10 +4,11 @@
 // Privacy-Preserving Anonymous Event Tracking (GoatCounter - 0 PII, Cookieless)
 window.trackAnonymousEvent = function(path, title) {
   try {
+    const cleanPath = (path || '').replace(/^\/+/, '').replace(/\//g, '-');
     if (window.goatcounter && typeof window.goatcounter.count === 'function') {
       window.goatcounter.count({
-        path: path,
-        title: title,
+        path: cleanPath,
+        title: title || cleanPath,
         event: true
       });
     }
@@ -638,6 +639,9 @@ function renderCategoryPills() {
     const pill = document.createElement('button');
     pill.className = `category-pill ${state.category === cat.id ? 'active' : ''}`;
     pill.innerHTML = `<span>${cat.icon}</span> <span>${cat.label}</span>`;
+    pill.setAttribute('data-goatcounter-click', 'category-' + cat.id);
+    pill.setAttribute('data-goatcounter-title', 'Category: ' + cat.label);
+    pill.setAttribute('data-goatcounter-no-session', '1');
     pill.addEventListener('click', () => {
       state.category = cat.id;
       if (cat.id && cat.id !== 'all') {
@@ -2471,6 +2475,9 @@ function renderSingleEventCardHtml(ev) {
         data-event-id="${ev.id}"
         data-event-title="${escapedTitle}"
         data-event-venue="${escapedVenue}"
+        data-goatcounter-click="tickets-${ev.id}"
+        data-goatcounter-title="Tickets: ${escapedTitle} (${escapedVenue})"
+        data-goatcounter-no-session="1"
         aria-label="${ev.title} is sold out - check ticket portal or waitlist"
       >
         Sold Out (Waitlist) ↗
@@ -2484,6 +2491,9 @@ function renderSingleEventCardHtml(ev) {
         data-event-id="${ev.id}"
         data-event-title="${escapedTitle}"
         data-event-venue="${escapedVenue}"
+        data-goatcounter-click="tickets-${ev.id}"
+        data-goatcounter-title="Tickets: ${escapedTitle} (${escapedVenue})"
+        data-goatcounter-no-session="1"
         aria-label="Get tickets for ${ev.title}"
       >
         Get Tickets / Details ↗
