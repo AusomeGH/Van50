@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 72,
-    "updatedAt": "2026-09-20T17:43:17.785639+00:00"
+    "updatedAt": "2026-09-21T00:34:02.270633+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -218,7 +218,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-20T17:43:15.312903+00:00"
+        "distilledAt": "2026-09-21T00:33:55.925498+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -1038,7 +1038,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
         "summary": "Calendar: https://frankiesjazzclub.com",
-        "distilledAt": "2026-09-20T17:43:15.365476+00:00"
+        "distilledAt": "2026-09-21T00:33:56.027115+00:00"
       },
       "policySummary": "Calendar: https://frankiesjazzclub.com"
     },
@@ -1420,11 +1420,32 @@
       "transitInfo": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
       "category": "shows",
       "venueUrl": "https://hollywoodtheatre.ca/",
-      "calendarUrl": "https://hollywoodtheatre.ca/events",
-      "boxOfficeUrl": "https://hollywoodtheatre.ca/events",
+      "calendarUrl": "https://www.ticketmaster.ca/event/110064638F595700",
+      "boxOfficeUrl": "https://www.ticketmaster.ca/event/110064638F595700",
       "ticketingProvider": "TicketWeb Verified",
       "adapter": "UniversalVenueCrawler",
-      "managedEvents": []
+      "managedEvents": [],
+      "curatorInstructions": "under 50 bucks, looks good to me",
+      "curatorNote": "under 50 bucks, looks good to me",
+      "curatorLearnedRules": {
+        "venueName": "Hollywood Theatre",
+        "category": "music",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.ticketmaster.ca/event/110064638F595700",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "under 50 bucks, looks good to me",
+        "summary": "Calendar: https://www.ticketmaster.ca/event/110064638F595700",
+        "distilledAt": "2026-09-21T00:22:38.123737+00:00"
+      },
+      "policySummary": "Calendar: https://www.ticketmaster.ca/event/110064638F595700"
     },
     "Rickshaw Theatre": {
       "venueId": "rickshaw-theatre",

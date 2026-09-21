@@ -20,7 +20,13 @@ const state = {
   knownVenues: new Set(),
   currentScreenshotBase64: null,
   currentScreenshots: [],
-  currentVenueScreenshots: []
+  currentVenueScreenshots: [],
+  learnedRules: null,
+  activeRuleTab: 'venue_policy_rules',
+  rulesSearchQuery: '',
+  instructionsList: [],
+  activeInstFilter: 'all',
+  instructionsSearchQuery: ''
 };
 
 function initApp() {
@@ -1431,6 +1437,118 @@ function setupCuratorEventListeners() {
     });
   }
 
+  // Learned Rules Pill & Modal Listeners
+  const rulesPill = document.getElementById('stat-rules-pill');
+  if (rulesPill) rulesPill.addEventListener('click', openLearnedRulesModal);
+
+  const rulesModal = document.getElementById('learned-rules-modal');
+  const closeRulesBtn = document.getElementById('btn-close-rules-modal');
+  const closeRulesBottom = document.getElementById('btn-close-rules-bottom');
+  const closeRules = () => {
+    if (rulesModal) rulesModal.classList.remove('active');
+    const p = document.getElementById('rule-edit-panel');
+    if (p) p.style.display = 'none';
+  };
+  if (closeRulesBtn) closeRulesBtn.addEventListener('click', closeRules);
+  if (closeRulesBottom) closeRulesBottom.addEventListener('click', closeRules);
+  if (rulesModal) {
+    rulesModal.addEventListener('click', (e) => {
+      if (e.target === rulesModal) closeRules();
+    });
+  }
+
+  const rulesTabGroup = document.getElementById('rules-tab-group');
+  if (rulesTabGroup) {
+    rulesTabGroup.addEventListener('click', (e) => {
+      const pill = e.target.closest('.curator-filter-pill');
+      if (!pill) return;
+      rulesTabGroup.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      state.activeRuleTab = pill.dataset.ruleTab || 'venue_policy_rules';
+      const p = document.getElementById('rule-edit-panel');
+      if (p) p.style.display = 'none';
+      renderRulesList();
+    });
+  }
+
+  const rulesSearchInput = document.getElementById('rules-search-input');
+  if (rulesSearchInput) {
+    rulesSearchInput.addEventListener('input', () => {
+      state.rulesSearchQuery = rulesSearchInput.value;
+      renderRulesList();
+    });
+  }
+
+  const btnAddRuleTrigger = document.getElementById('btn-add-rule-trigger');
+  if (btnAddRuleTrigger) btnAddRuleTrigger.addEventListener('click', openAddRule);
+
+  const btnCancelRuleEdit = document.getElementById('btn-cancel-rule-edit');
+  const btnCancelRuleSave = document.getElementById('btn-cancel-rule-save');
+  const cancelRulePanel = () => {
+    const p = document.getElementById('rule-edit-panel');
+    if (p) p.style.display = 'none';
+  };
+  if (btnCancelRuleEdit) btnCancelRuleEdit.addEventListener('click', cancelRulePanel);
+  if (btnCancelRuleSave) btnCancelRuleSave.addEventListener('click', cancelRulePanel);
+
+  const ruleEditForm = document.getElementById('rule-edit-form');
+  if (ruleEditForm) ruleEditForm.addEventListener('submit', saveRuleChanges);
+
+  // AI Instructions Pill & Modal Listeners
+  const instructionsPill = document.getElementById('stat-instructions-pill');
+  if (instructionsPill) instructionsPill.addEventListener('click', openAIInstructionsModal);
+
+  const instructionsModal = document.getElementById('ai-instructions-modal');
+  const closeInstBtn = document.getElementById('btn-close-instructions-modal');
+  const closeInstBottom = document.getElementById('btn-close-instructions-bottom');
+  const closeInstructions = () => {
+    if (instructionsModal) instructionsModal.classList.remove('active');
+    const p = document.getElementById('instruction-edit-panel');
+    if (p) p.style.display = 'none';
+  };
+  if (closeInstBtn) closeInstBtn.addEventListener('click', closeInstructions);
+  if (closeInstBottom) closeInstBottom.addEventListener('click', closeInstructions);
+  if (instructionsModal) {
+    instructionsModal.addEventListener('click', (e) => {
+      if (e.target === instructionsModal) closeInstructions();
+    });
+  }
+
+  const instTabGroup = document.getElementById('instructions-tab-group');
+  if (instTabGroup) {
+    instTabGroup.addEventListener('click', (e) => {
+      const pill = e.target.closest('.curator-filter-pill');
+      if (!pill) return;
+      instTabGroup.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      state.activeInstFilter = pill.dataset.instFilter || 'all';
+      const p = document.getElementById('instruction-edit-panel');
+      if (p) p.style.display = 'none';
+      renderInstructionsList();
+    });
+  }
+
+  const instSearchInput = document.getElementById('instructions-search-input');
+  if (instSearchInput) {
+    instSearchInput.addEventListener('input', () => {
+      state.instructionsSearchQuery = instSearchInput.value;
+      renderInstructionsList();
+    });
+  }
+
+  const btnCancelInstEdit = document.getElementById('btn-cancel-inst-edit');
+  const btnCancelInstSave = document.getElementById('btn-cancel-inst-save');
+  const cancelInstPanel = () => {
+    const p = document.getElementById('instruction-edit-panel');
+    if (p) p.style.display = 'none';
+  };
+  if (btnCancelInstEdit) btnCancelInstEdit.addEventListener('click', cancelInstPanel);
+  if (btnCancelInstSave) btnCancelInstSave.addEventListener('click', cancelInstPanel);
+
+  const instEditForm = document.getElementById('instruction-edit-form');
+  if (instEditForm) instEditForm.addEventListener('submit', saveInstructionChanges);
+
+
   const btnSubmitOnly = document.getElementById('btn-submit-ai-inst-only');
   if (btnSubmitOnly) {
     btnSubmitOnly.addEventListener('click', () => submitAIInstruction('queue_only'));
@@ -2250,4 +2368,605 @@ async function handleFetchNewsletters() {
     if (textEl) textEl.textContent = origText;
   }
 }
+
+// ==============================================================================
+// 7. LEARNED RULES & AI INSTRUCTIONS MANAGERS
+// ==============================================================================
+
+window.openLearnedRulesModal = async function() {
+  if (!state.token) {
+    showToast('Please authenticate into Curator Studio first', 'warning');
+    return;
+  }
+
+  const modal = document.getElementById('learned-rules-modal');
+  if (!modal) return;
+
+  try {
+    const res = await fetch(`/api/curator/rules?_t=${Date.now()}`, {
+      headers: { 'Curator-Token': state.token },
+      cache: 'no-store'
+    });
+    if (res.ok) {
+      state.learnedRules = await res.json();
+      renderRulesList();
+      modal.classList.add('active');
+    } else {
+      showToast('Failed to load learned rules', 'error');
+    }
+  } catch (err) {
+    showToast(`Error connecting to server: ${err.message}`, 'error');
+  }
+};
+
+window.openAIInstructionsModal = async function() {
+  if (!state.token) {
+    showToast('Please authenticate into Curator Studio first', 'warning');
+    return;
+  }
+
+  const modal = document.getElementById('ai-instructions-modal');
+  if (!modal) return;
+
+  try {
+    const res = await fetch(`/api/curator/instructions?_t=${Date.now()}`, {
+      headers: { 'Curator-Token': state.token },
+      cache: 'no-store'
+    });
+    if (res.ok) {
+      const data = await res.json();
+      state.instructionsList = data.instructions || [];
+      renderInstructionsList();
+      modal.classList.add('active');
+    } else {
+      showToast('Failed to load AI instructions', 'error');
+    }
+  } catch (err) {
+    showToast(`Error connecting to server: ${err.message}`, 'error');
+  }
+};
+
+function renderRulesList() {
+  const container = document.getElementById('rules-list-container');
+  if (!container || !state.learnedRules) return;
+
+  const tab = state.activeRuleTab || 'venue_policy_rules';
+  const query = (state.rulesSearchQuery || '').toLowerCase().trim();
+
+  // Update counts on tabs
+  const countPolicies = Object.keys(state.learnedRules.venue_policy_rules || {}).length;
+  const countLinks = Object.keys(state.learnedRules.venue_calendar_deep_links || {}).length;
+  const countPatterns = (state.learnedRules.course_blacklist_patterns || []).length;
+  const countFees = Object.keys(state.learnedRules.vendor_fee_formulas || {}).length;
+
+  const elP = document.getElementById('rule-count-policies');
+  const elL = document.getElementById('rule-count-links');
+  const elPat = document.getElementById('rule-count-patterns');
+  const elF = document.getElementById('rule-count-fees');
+  if (elP) elP.textContent = countPolicies;
+  if (elL) elL.textContent = countLinks;
+  if (elPat) elPat.textContent = countPatterns;
+  if (elF) elF.textContent = countFees;
+
+  let itemsHtml = '';
+
+  if (tab === 'venue_policy_rules') {
+    const policies = state.learnedRules.venue_policy_rules || {};
+    let entries = Object.entries(policies);
+    if (query) {
+      entries = entries.filter(([venue, pol]) => {
+        const text = `${venue} ${pol.summary || ''} ${pol.curatorGuidance || ''} ${pol.pricingType || ''} ${(pol.scheduleDays || []).join(' ')}`.toLowerCase();
+        return text.includes(query);
+      });
+    }
+
+    if (entries.length === 0) {
+      container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No venue policy rules found matching your filter.</div>`;
+      return;
+    }
+
+    itemsHtml = entries.map(([venue, pol]) => {
+      const priceBadge = (pol.doorPrice != null) 
+        ? `<span class="rule-tag rule-tag-price">💰 Door: $${Number(pol.doorPrice).toFixed(2)} CAD</span>` 
+        : (pol.isFree ? `<span class="rule-tag rule-tag-price">🆓 Free Drop-in</span>` : '');
+      const typeBadge = pol.pricingType ? `<span class="rule-tag">${escapeHtml(pol.pricingType)}</span>` : '';
+      const days = Array.isArray(pol.scheduleDays) && pol.scheduleDays.length > 0 
+        ? `<span class="rule-tag rule-tag-schedule">📅 ${pol.scheduleDays.join(', ').toUpperCase()}</span>` 
+        : '';
+      const linkBadge = pol.calendarUrl ? `<a href="${escapeHtml(pol.calendarUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.78rem; text-decoration: underline; margin-left: 6px;">Calendar URL ↗</a>` : '';
+
+      return `
+        <div class="rule-item-card">
+          <div class="rule-item-main">
+            <div class="rule-item-title">
+              <span>🏛️ ${escapeHtml(venue)}</span>
+              ${priceBadge}
+              ${typeBadge}
+              ${days}
+            </div>
+            ${pol.curatorGuidance ? `
+              <div style="margin: 6px 0; font-size: 0.84rem; color: #e2e8f0; font-style: italic; background: rgba(0,0,0,0.25); padding: 6px 10px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+                “${escapeHtml(pol.curatorGuidance)}”
+              </div>
+            ` : ''}
+            <div class="rule-item-meta">
+              ${pol.summary ? `<span>${escapeHtml(pol.summary)}</span> • ` : ''}
+              ${pol.learnedAt ? `<span>Learned: ${new Date(pol.learnedAt).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</span>` : ''}
+              ${linkBadge}
+            </div>
+          </div>
+          <div class="rule-item-actions">
+            <button type="button" class="btn-curator btn-curator-ghost" style="padding: 5px 10px; font-size: 0.78rem;" onclick="openEditRule('venue_policy_rules', '${escapeHtml(venue.replace(/'/g, "\\'"))}')">✏️ Edit</button>
+            <button type="button" class="btn-curator btn-curator-danger" style="padding: 5px 10px; font-size: 0.78rem;" onclick="deleteRule('venue_policy_rules', '${escapeHtml(venue.replace(/'/g, "\\'"))}')">🗑️</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+  } else if (tab === 'venue_calendar_deep_links') {
+    const links = state.learnedRules.venue_calendar_deep_links || {};
+    let entries = Object.entries(links);
+    if (query) {
+      entries = entries.filter(([v, u]) => `${v} ${u}`.toLowerCase().includes(query));
+    }
+
+    if (entries.length === 0) {
+      container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No calendar deep links found matching your filter.</div>`;
+      return;
+    }
+
+    itemsHtml = entries.map(([venue, url]) => `
+      <div class="rule-item-card">
+        <div class="rule-item-main">
+          <div class="rule-item-title">
+            <span>🏛️ ${escapeHtml(venue)}</span>
+          </div>
+          <div class="rule-item-meta" style="margin-top: 4px;">
+            <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; word-break: break-all; text-decoration: underline;">${escapeHtml(url)} ↗</a>
+          </div>
+        </div>
+        <div class="rule-item-actions">
+          <button type="button" class="btn-curator btn-curator-ghost" style="padding: 5px 10px; font-size: 0.78rem;" onclick="openEditRule('venue_calendar_deep_links', '${escapeHtml(venue.replace(/'/g, "\\'"))}')">✏️ Edit</button>
+          <button type="button" class="btn-curator btn-curator-danger" style="padding: 5px 10px; font-size: 0.78rem;" onclick="deleteRule('venue_calendar_deep_links', '${escapeHtml(venue.replace(/'/g, "\\'"))}')">🗑️</button>
+        </div>
+      </div>
+    `).join('');
+
+  } else if (tab === 'course_blacklist_patterns') {
+    let patterns = state.learnedRules.course_blacklist_patterns || [];
+    if (query) {
+      patterns = patterns.filter(p => p.toLowerCase().includes(query));
+    }
+
+    if (patterns.length === 0) {
+      container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No blacklist patterns found matching your filter.</div>`;
+      return;
+    }
+
+    itemsHtml = patterns.map(pat => `
+      <div class="rule-item-card">
+        <div class="rule-item-main">
+          <div class="rule-item-title">
+            <span class="rule-tag rule-tag-pattern">🚫 Auto-Excluded</span>
+            <code style="color: #f43f5e; font-size: 0.95rem;">"${escapeHtml(pat)}"</code>
+          </div>
+          <div class="rule-item-meta">Matches and excludes multi-week courses, classes, or private hire from the public Vancouver under-$50 catalog.</div>
+        </div>
+        <div class="rule-item-actions">
+          <button type="button" class="btn-curator btn-curator-ghost" style="padding: 5px 10px; font-size: 0.78rem;" onclick="openEditRule('course_blacklist_patterns', '${escapeHtml(pat.replace(/'/g, "\\'"))}')">✏️ Edit</button>
+          <button type="button" class="btn-curator btn-curator-danger" style="padding: 5px 10px; font-size: 0.78rem;" onclick="deleteRule('course_blacklist_patterns', '${escapeHtml(pat.replace(/'/g, "\\'"))}')">🗑️</button>
+        </div>
+      </div>
+    `).join('');
+
+  } else if (tab === 'vendor_fee_formulas') {
+    const fees = state.learnedRules.vendor_fee_formulas || {};
+    let entries = Object.entries(fees);
+    if (query) {
+      entries = entries.filter(([domain, f]) => `${domain} ${f.description || ''}`.toLowerCase().includes(query));
+    }
+
+    if (entries.length === 0) {
+      container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No vendor fee formulas found matching your filter.</div>`;
+      return;
+    }
+
+    itemsHtml = entries.map(([domain, f]) => `
+      <div class="rule-item-card">
+        <div class="rule-item-main">
+          <div class="rule-item-title">
+            <span>💳 ${escapeHtml(domain)}</span>
+            <span class="rule-tag rule-tag-price">Fixed Fee: $${Number(f.feeFixed || 0).toFixed(2)} CAD</span>
+            <span class="rule-tag">Percent Fee: ${((f.feePercent || 0) * 100).toFixed(1)}%</span>
+          </div>
+          <div class="rule-item-meta">${escapeHtml(f.description || 'Live checkout fee calculation formula')}</div>
+        </div>
+        <div class="rule-item-actions">
+          <button type="button" class="btn-curator btn-curator-ghost" style="padding: 5px 10px; font-size: 0.78rem;" onclick="openEditRule('vendor_fee_formulas', '${escapeHtml(domain.replace(/'/g, "\\'"))}')">✏️ Edit</button>
+          <button type="button" class="btn-curator btn-curator-danger" style="padding: 5px 10px; font-size: 0.78rem;" onclick="deleteRule('vendor_fee_formulas', '${escapeHtml(domain.replace(/'/g, "\\'"))}')">🗑️</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  container.innerHTML = itemsHtml;
+}
+
+window.openEditRule = function(type, key) {
+  const panel = document.getElementById('rule-edit-panel');
+  if (!panel || !state.learnedRules) return;
+
+  document.getElementById('rule-edit-type').value = type;
+  document.getElementById('rule-edit-old-key').value = key || '';
+  const titleEl = document.getElementById('rule-edit-panel-title');
+  if (titleEl) titleEl.textContent = key ? `✏️ Edit Rule: ${key}` : '➕ Add New Rule';
+
+  // Toggle field sets
+  const fPolicy = document.getElementById('rule-fields-venue-policy');
+  const fLink = document.getElementById('rule-fields-calendar-link');
+  const fBlacklist = document.getElementById('rule-fields-blacklist');
+  const fFee = document.getElementById('rule-fields-vendor-fee');
+
+  if (fPolicy) fPolicy.style.display = type === 'venue_policy_rules' ? 'flex' : 'none';
+  if (fLink) fLink.style.display = type === 'venue_calendar_deep_links' ? 'flex' : 'none';
+  if (fBlacklist) fBlacklist.style.display = type === 'course_blacklist_patterns' ? 'flex' : 'none';
+  if (fFee) fFee.style.display = type === 'vendor_fee_formulas' ? 'flex' : 'none';
+
+  if (type === 'venue_policy_rules') {
+    const pol = (state.learnedRules.venue_policy_rules || {})[key] || {};
+    document.getElementById('rule-input-venue-name').value = key || '';
+    document.getElementById('rule-input-door-price').value = pol.doorPrice != null ? pol.doorPrice : '';
+    document.getElementById('rule-input-pricing-type').value = pol.pricingType || 'door-cover';
+    document.getElementById('rule-input-schedule-days').value = (pol.scheduleDays || []).join(', ');
+    document.getElementById('rule-input-calendar-url').value = pol.calendarUrl || '';
+    document.getElementById('rule-input-guidance').value = pol.curatorGuidance || '';
+  } else if (type === 'venue_calendar_deep_links') {
+    document.getElementById('rule-input-link-venue').value = key || '';
+    document.getElementById('rule-input-link-url').value = (state.learnedRules.venue_calendar_deep_links || {})[key] || '';
+  } else if (type === 'course_blacklist_patterns') {
+    document.getElementById('rule-input-pattern').value = key || '';
+  } else if (type === 'vendor_fee_formulas') {
+    const fee = (state.learnedRules.vendor_fee_formulas || {})[key] || {};
+    document.getElementById('rule-input-vendor-domain').value = key || '';
+    document.getElementById('rule-input-fee-fixed').value = fee.feeFixed != null ? fee.feeFixed : '';
+    document.getElementById('rule-input-fee-percent').value = fee.feePercent != null ? fee.feePercent : '';
+    document.getElementById('rule-input-fee-desc').value = fee.description || '';
+  }
+
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth' });
+};
+
+window.openAddRule = function() {
+  openEditRule(state.activeRuleTab || 'venue_policy_rules', '');
+};
+
+async function saveRuleChanges(e) {
+  e.preventDefault();
+  if (!state.token) return;
+
+  const ruleType = document.getElementById('rule-edit-type').value;
+  const oldKey = document.getElementById('rule-edit-old-key').value;
+  let key = '';
+  let value = null;
+
+  if (ruleType === 'venue_policy_rules') {
+    key = document.getElementById('rule-input-venue-name').value.trim();
+    if (!key) {
+      showToast('Venue name is required', 'error');
+      return;
+    }
+    const existing = (state.learnedRules.venue_policy_rules || {})[oldKey] || {};
+    const doorPriceVal = document.getElementById('rule-input-door-price').value;
+    const pricingType = document.getElementById('rule-input-pricing-type').value;
+    const daysRaw = document.getElementById('rule-input-schedule-days').value;
+    const calendarUrl = document.getElementById('rule-input-calendar-url').value.trim();
+    const guidance = document.getElementById('rule-input-guidance').value.trim();
+
+    const doorPrice = doorPriceVal !== '' ? parseFloat(doorPriceVal) : null;
+    const scheduleDays = daysRaw ? daysRaw.split(',').map(s => s.trim().toLowerCase()).filter(Boolean) : [];
+
+    value = {
+      ...existing,
+      doorPrice: doorPrice,
+      pricingType: pricingType,
+      isFree: pricingType === 'free' || doorPrice === 0,
+      scheduleDays: scheduleDays,
+      calendarUrl: calendarUrl || existing.calendarUrl || '',
+      curatorGuidance: guidance,
+      summary: doorPrice != null ? `Door Cover ~$${doorPrice.toFixed(2)} CAD | Days: ${scheduleDays.join(', ').toUpperCase()} | Link: ${calendarUrl}` : (guidance || 'Curator configured rule'),
+      learnedAt: existing.learnedAt || new Date().toISOString(),
+      source: 'Curator Rule Editor'
+    };
+
+  } else if (ruleType === 'venue_calendar_deep_links') {
+    key = document.getElementById('rule-input-link-venue').value.trim();
+    value = document.getElementById('rule-input-link-url').value.trim();
+    if (!key || !value) {
+      showToast('Venue name and URL are required', 'error');
+      return;
+    }
+
+  } else if (ruleType === 'course_blacklist_patterns') {
+    value = document.getElementById('rule-input-pattern').value.trim();
+    key = value;
+    if (!value) {
+      showToast('Pattern text is required', 'error');
+      return;
+    }
+
+  } else if (ruleType === 'vendor_fee_formulas') {
+    key = document.getElementById('rule-input-vendor-domain').value.trim();
+    const feeFixed = parseFloat(document.getElementById('rule-input-fee-fixed').value || 0);
+    const feePercent = parseFloat(document.getElementById('rule-input-fee-percent').value || 0);
+    const desc = document.getElementById('rule-input-fee-desc').value.trim();
+    if (!key) {
+      showToast('Vendor domain is required', 'error');
+      return;
+    }
+    value = {
+      feeFixed: feeFixed,
+      feePercent: feePercent,
+      description: desc || 'Live checkout fee calculation formula'
+    };
+  }
+
+  try {
+    const res = await fetch('/api/curator/rules/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({
+        ruleType: ruleType,
+        key: key,
+        oldKey: oldKey,
+        value: value
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`✅ Saved changes to '${key}'!`, 'success');
+      state.learnedRules = data.rules;
+      if (data.rulesCount) {
+        state.stats.rules = data.rulesCount;
+        const elR = document.getElementById('stat-rules-count');
+        if (elR) elR.textContent = data.rulesCount;
+      }
+      const editPanel = document.getElementById('rule-edit-panel');
+      if (editPanel) editPanel.style.display = 'none';
+      renderRulesList();
+    } else {
+      showToast(data.error || 'Failed to save rule changes', 'error');
+    }
+  } catch (err) {
+    showToast('Server error while saving rule', 'error');
+  }
+}
+
+window.deleteRule = async function(ruleType, key) {
+  if (!state.token) return;
+
+  try {
+    const res = await fetch('/api/curator/rules/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({
+        ruleType: ruleType,
+        key: key
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`Rule for '${key}' removed.`, 'info');
+      state.learnedRules = data.rules;
+      if (data.rulesCount) {
+        state.stats.rules = data.rulesCount;
+        const elR = document.getElementById('stat-rules-count');
+        if (elR) elR.textContent = data.rulesCount;
+      }
+      renderRulesList();
+    } else {
+      showToast(data.error || 'Failed to delete rule', 'error');
+    }
+  } catch (err) {
+    showToast('Server error while deleting rule', 'error');
+  }
+};
+
+function renderInstructionsList() {
+  const container = document.getElementById('instructions-list-container');
+  if (!container || !state.instructionsList) return;
+
+  const filter = state.activeInstFilter || 'all';
+  const query = (state.instructionsSearchQuery || '').toLowerCase().trim();
+
+  // Tab counts
+  const allCount = state.instructionsList.length;
+  const pendingCount = state.instructionsList.filter(i => i.status === 'pending').length;
+  const resolvedCount = state.instructionsList.filter(i => i.status === 'resolved' || i.applied).length;
+  const dismissedCount = state.instructionsList.filter(i => i.status === 'dismissed').length;
+
+  const elA = document.getElementById('inst-count-all');
+  const elP = document.getElementById('inst-count-pending');
+  const elR = document.getElementById('inst-count-resolved');
+  const elD = document.getElementById('inst-count-dismissed');
+  if (elA) elA.textContent = allCount;
+  if (elP) elP.textContent = pendingCount;
+  if (elR) elR.textContent = resolvedCount;
+  if (elD) elD.textContent = dismissedCount;
+
+  let items = [...state.instructionsList];
+  if (filter === 'pending') {
+    items = items.filter(i => i.status === 'pending');
+  } else if (filter === 'resolved') {
+    items = items.filter(i => i.status === 'resolved' || i.applied);
+  } else if (filter === 'dismissed') {
+    items = items.filter(i => i.status === 'dismissed');
+  }
+
+  if (query) {
+    items = items.filter(i => {
+      const text = `${i.venueName || ''} ${i.eventTitle || ''} ${i.instructionText || ''} ${i.curatorNote || ''}`.toLowerCase();
+      return text.includes(query);
+    });
+  }
+
+  if (items.length === 0) {
+    container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No AI instructions found matching your filter.</div>`;
+    return;
+  }
+
+  container.innerHTML = items.map(inst => {
+    const isPending = inst.status === 'pending';
+    const isDismissed = inst.status === 'dismissed';
+    const statusTag = isPending
+      ? `<span class="rule-tag" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">⚡ Pending Review</span>`
+      : (isDismissed 
+          ? `<span class="rule-tag" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">🛑 Dismissed</span>`
+          : `<span class="rule-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">✅ Resolved &amp; Applied</span>`);
+
+    const shots = inst.screenshotPaths || (inst.screenshotPath ? [inst.screenshotPath] : []);
+    const shotsHtml = shots.length > 0 ? `
+      <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
+        ${shots.map(s => `
+          <a href="${escapeHtml(s)}" target="_blank" rel="noopener noreferrer" style="display: inline-block; width: 60px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2);">
+            <img src="${escapeHtml(s)}" alt="Proof Screenshot" style="width: 100%; height: 100%; object-fit: cover;" />
+          </a>
+        `).join('')}
+      </div>
+    ` : '';
+
+    const distilledHtml = inst.aiLearnedSummary ? `
+      <div style="margin-top: 6px; font-size: 0.78rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.08); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.2);">
+        🤖 AI Distilled: ${escapeHtml(inst.aiLearnedSummary)}
+      </div>
+    ` : '';
+
+    return `
+      <div class="rule-item-card">
+        <div class="rule-item-main">
+          <div class="rule-item-title">
+            <span>${escapeHtml(inst.venueName || inst.eventTitle || 'Instruction #' + inst.id)}</span>
+            ${statusTag}
+            ${inst.actionTaken ? `<span class="rule-tag">${escapeHtml(inst.actionTaken)}</span>` : ''}
+          </div>
+          <div style="color: #ffffff; font-size: 0.9rem; margin: 8px 0 6px 0; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc;">
+            “${escapeHtml(inst.instructionText || '')}”
+          </div>
+          ${inst.curatorNote && inst.curatorNote !== inst.instructionText ? `
+            <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 4px;">
+              <strong>Note:</strong> ${escapeHtml(inst.curatorNote)}
+            </div>
+          ` : ''}
+          ${distilledHtml}
+          ${shotsHtml}
+          <div class="rule-item-meta" style="margin-top: 6px;">
+            <span>ID: <code>${escapeHtml(inst.id)}</code></span> • 
+            <span>${inst.createdAt ? new Date(inst.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Unknown date'}</span>
+          </div>
+        </div>
+        <div class="rule-item-actions">
+          <button type="button" class="btn-curator btn-curator-ghost" style="padding: 5px 10px; font-size: 0.78rem;" onclick="openEditInstruction('${inst.id}')">✏️ Edit</button>
+          <button type="button" class="btn-curator btn-curator-danger" style="padding: 5px 10px; font-size: 0.78rem;" onclick="deleteInstruction('${inst.id}')">🗑️</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.openEditInstruction = function(instId) {
+  const inst = (state.instructionsList || []).find(i => i.id === instId);
+  if (!inst) return;
+  const panel = document.getElementById('instruction-edit-panel');
+  if (!panel) return;
+
+  document.getElementById('inst-edit-id').value = inst.id;
+  document.getElementById('inst-edit-text').value = inst.instructionText || '';
+  document.getElementById('inst-edit-note').value = inst.curatorNote || '';
+  document.getElementById('inst-edit-status').value = inst.status || 'pending';
+
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth' });
+};
+
+async function saveInstructionChanges(e) {
+  e.preventDefault();
+  if (!state.token) return;
+
+  const id = document.getElementById('inst-edit-id').value;
+  const text = document.getElementById('inst-edit-text').value.trim();
+  const note = document.getElementById('inst-edit-note').value.trim();
+  const status = document.getElementById('inst-edit-status').value;
+
+  try {
+    const res = await fetch('/api/curator/instructions/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({
+        id: id,
+        instructionText: text,
+        curatorNote: note,
+        status: status
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast('✅ Instruction updated!', 'success');
+      const idx = state.instructionsList.findIndex(i => i.id === id);
+      if (idx >= 0) {
+        state.instructionsList[idx] = data.instruction;
+      }
+      if (data.instructionsPendingCount != null) {
+        state.stats.instructions = data.instructionsPendingCount;
+        const elI = document.getElementById('stat-instructions-count');
+        if (elI) elI.textContent = data.instructionsPendingCount;
+      }
+      const panel = document.getElementById('instruction-edit-panel');
+      if (panel) panel.style.display = 'none';
+      renderInstructionsList();
+    } else {
+      showToast(data.error || 'Failed to update instruction', 'error');
+    }
+  } catch (err) {
+    showToast('Server error while updating instruction', 'error');
+  }
+}
+
+window.deleteInstruction = async function(instId) {
+  if (!state.token) return;
+
+  try {
+    const res = await fetch('/api/curator/instructions/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ id: instId })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast('Instruction deleted.', 'info');
+      state.instructionsList = state.instructionsList.filter(i => i.id !== instId);
+      if (data.instructionsPendingCount != null) {
+        state.stats.instructions = data.instructionsPendingCount;
+        const elI = document.getElementById('stat-instructions-count');
+        if (elI) elI.textContent = data.instructionsPendingCount;
+      }
+      renderInstructionsList();
+    } else {
+      showToast(data.error || 'Failed to delete instruction', 'error');
+    }
+  } catch (err) {
+    showToast('Server error while deleting instruction', 'error');
+  }
+};
 

@@ -993,7 +993,12 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
 
         # Sliding window rate limit on mutating endpoints
-        if path in {"/api/curator/approve", "/api/curator/reject", "/api/curator/rules", "/api/curator/instruction", "/api/curator/dismiss_instruction", "/api/curator/venues/add", "/api/curator/discovered_venues/dismiss"}:
+        if path in {
+            "/api/curator/approve", "/api/curator/reject", "/api/curator/rules", 
+            "/api/curator/rules/update", "/api/curator/rules/delete",
+            "/api/curator/instruction", "/api/curator/instructions/update", "/api/curator/instructions/delete",
+            "/api/curator/dismiss_instruction", "/api/curator/venues/add", "/api/curator/discovered_venues/dismiss"
+        }:
             if not check_mutating_rate_limit(client_ip):
                 return self._send_json(429, {"error": "Rate limit exceeded: Too many mutating actions. Please wait a minute."})
 
@@ -1202,6 +1207,174 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Successfully registered learned rule in '{rule_type}'.",
                 "rules": rules
             })
+
+        # 4b. API: Update existing learned rule
+        if path == "/api/curator/rules/update":
+            rule_type = payload.get("ruleType")
+            key = sanitize_text(str(payload.get("key") or "").strip())
+            old_key = sanitize_text(str(payload.get("oldKey") or "").strip()) or key
+            value = payload.get("value") if "value" in payload else payload.get("data")
+
+            if not rule_type or value is None:
+                return self._send_json(400, {"error": "Missing ruleType or value."})
+
+            with open(RULES_PATH, "r", encoding="utf-8") as f:
+                rules = json.load(f)
+
+            if rule_type in ["venue_policy_rules", "vendor_fee_formulas", "venue_calendar_deep_links"]:
+                if not key:
+                    return self._send_json(400, {"error": "Key is required."})
+                target_dict = rules.setdefault(rule_type, {})
+                if old_key and old_key in target_dict and old_key != key:
+                    del target_dict[old_key]
+                target_dict[key] = value
+            elif rule_type in ["course_blacklist_patterns", "archived_event_ids"]:
+                patterns = rules.setdefault(rule_type, [])
+                new_val = str(value).lower().strip()
+                if old_key and old_key in patterns:
+                    idx = patterns.index(old_key)
+                    patterns[idx] = new_val
+                elif new_val not in patterns:
+                    patterns.append(new_val)
+            elif rule_type == "price_override_heuristics":
+                rules.setdefault("price_override_heuristics", []).append(value)
+            else:
+                return self._send_json(400, {"error": f"Unknown ruleType: {rule_type}"})
+
+            rules["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+            with open(RULES_PATH, "w", encoding="utf-8") as f:
+                json.dump(rules, f, indent=2, ensure_ascii=False)
+
+            r_count = (
+                len(rules.get("vendor_fee_formulas", {})) +
+                len(rules.get("venue_calendar_deep_links", {})) +
+                len(rules.get("course_blacklist_patterns", [])) +
+                len(rules.get("price_override_heuristics", []))
+            )
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Successfully updated rule in '{rule_type}'.",
+                "rulesCount": r_count,
+                "rules": rules
+            })
+
+        # 4c. API: Delete learned rule
+        if path == "/api/curator/rules/delete":
+            rule_type = payload.get("ruleType")
+            key = payload.get("key")
+
+            if not rule_type or key is None:
+                return self._send_json(400, {"error": "Missing ruleType or key."})
+
+            with open(RULES_PATH, "r", encoding="utf-8") as f:
+                rules = json.load(f)
+
+            if rule_type in ["venue_policy_rules", "vendor_fee_formulas", "venue_calendar_deep_links"]:
+                rules.setdefault(rule_type, {}).pop(str(key), None)
+            elif rule_type in ["course_blacklist_patterns", "archived_event_ids"]:
+                patterns = rules.setdefault(rule_type, [])
+                val_to_remove = str(key).lower().strip()
+                if val_to_remove in patterns:
+                    patterns.remove(val_to_remove)
+            elif rule_type == "price_override_heuristics":
+                heuristics = rules.setdefault("price_override_heuristics", [])
+                try:
+                    idx = int(key)
+                    if 0 <= idx < len(heuristics):
+                        heuristics.pop(idx)
+                except (ValueError, TypeError):
+                    pass
+            else:
+                return self._send_json(400, {"error": f"Unknown ruleType: {rule_type}"})
+
+            rules["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+            with open(RULES_PATH, "w", encoding="utf-8") as f:
+                json.dump(rules, f, indent=2, ensure_ascii=False)
+
+            r_count = (
+                len(rules.get("vendor_fee_formulas", {})) +
+                len(rules.get("venue_calendar_deep_links", {})) +
+                len(rules.get("course_blacklist_patterns", [])) +
+                len(rules.get("price_override_heuristics", []))
+            )
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Successfully deleted rule from '{rule_type}'.",
+                "rulesCount": r_count,
+                "rules": rules
+            })
+
+        # 4d. API: Update AI instruction
+        if path == "/api/curator/instructions/update":
+            inst_id = payload.get("id")
+            text = payload.get("instructionText")
+            note = payload.get("curatorNote")
+            status = payload.get("status")
+
+            if not inst_id:
+                return self._send_json(400, {"error": "Missing instruction id."})
+
+            if not os.path.exists(INSTRUCTIONS_PATH):
+                return self._send_json(404, {"error": "Instructions file not found."})
+
+            with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as inf:
+                inst_db = json.load(inf)
+
+            instructions = inst_db.get("instructions", [])
+            target = next((i for i in instructions if i.get("id") == inst_id), None)
+            if not target:
+                return self._send_json(404, {"error": f"Instruction '{inst_id}' not found."})
+
+            if text is not None:
+                target["instructionText"] = sanitize_text(str(text).strip())
+            if note is not None:
+                target["curatorNote"] = sanitize_text(str(note).strip())
+            if status is not None and status in {"pending", "resolved", "dismissed"}:
+                target["status"] = status
+
+            pending_count = len([i for i in instructions if i.get("status") == "pending"])
+            inst_db.setdefault("metadata", {})["pendingCount"] = pending_count
+            inst_db["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+
+            with open(INSTRUCTIONS_PATH, "w", encoding="utf-8") as inf:
+                json.dump(inst_db, inf, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": "Instruction updated successfully.",
+                "instruction": target,
+                "instructionsPendingCount": pending_count
+            })
+
+        # 4e. API: Delete AI instruction
+        if path == "/api/curator/instructions/delete":
+            inst_id = payload.get("id")
+            if not inst_id:
+                return self._send_json(400, {"error": "Missing instruction id."})
+
+            if not os.path.exists(INSTRUCTIONS_PATH):
+                return self._send_json(404, {"error": "Instructions file not found."})
+
+            with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as inf:
+                inst_db = json.load(inf)
+
+            instructions = inst_db.get("instructions", [])
+            inst_db["instructions"] = [i for i in instructions if i.get("id") != inst_id]
+            pending_count = len([i for i in inst_db["instructions"] if i.get("status") == "pending"])
+            inst_db.setdefault("metadata", {})["pendingCount"] = pending_count
+            inst_db["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
+
+            with open(INSTRUCTIONS_PATH, "w", encoding="utf-8") as inf:
+                json.dump(inst_db, inf, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Instruction '{inst_id}' deleted successfully.",
+                "instructionsPendingCount": pending_count
+            })
+
 
         # 5. API: Instruct AI Assistant (Plain English & Screenshot Queue)
         if path == "/api/curator/instruction":

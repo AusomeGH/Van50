@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T10:43:17-07:00",
+    "updatedAt": "2026-09-20T17:34:02-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -27,7 +27,7 @@
     "The Biltmore Cabaret": "https://biltmorecabaret.com/",
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
     "Rickshaw Theatre": "https://rickshawtheatre.com/events/",
-    "Hollywood Theatre": "https://hollywoodtheatre.ca/events/",
+    "Hollywood Theatre": "https://www.ticketmaster.ca/event/110064638F595700",
     "Guilt & Co.": "https://guiltandcompany.com/live-music",
     "Tightrope Impro Theatre": "https://www.tightropetheatre.com/weekly-live-shows",
     "The Improv Centre": "https://theimprovcentre.ca/shows/",
@@ -112,7 +112,19 @@
     "Pending Venue Candidate 1789925989": "https://pendingvenue.example.com",
     "Test QA Cellar 1789925989": "https://testcellar.example.com/events",
     "Pending Venue Candidate 1789926197": "https://pendingvenue.example.com",
-    "Test QA Cellar 1789926197": "https://testcellar.example.com/events"
+    "Test QA Cellar 1789926197": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789948964": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789948965": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789949478": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789949478": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789949515": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789949515": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789950541": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789950542": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789950595": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789950595": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1789950841": "https://pendingvenue.example.com",
+    "Test QA Cellar 1789950842": "https://testcellar.example.com/events"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -288,8 +300,8 @@
       "calendarUrl": "https://littlemountaingallery.ca/events",
       "summary": "Calendar: https://littlemountaingallery.ca/events",
       "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
-      "learnedAt": "2026-09-20T17:43:15.317354+00:00",
-      "source": "Curator Studio Instruction inst_1789926195305"
+      "learnedAt": "2026-09-21T00:33:55.928175+00:00",
+      "source": "Curator Studio Instruction inst_1789950835897"
     },
     "Frankie's Jazz Club": {
       "doorPrice": null,
@@ -302,8 +314,8 @@
       "calendarUrl": "https://frankiesjazzclub.com",
       "summary": "Calendar: https://frankiesjazzclub.com",
       "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
-      "learnedAt": "2026-09-20T17:43:15.385220+00:00",
-      "source": "Curator Studio Instruction inst_1789926195358"
+      "learnedAt": "2026-09-21T00:33:56.060759+00:00",
+      "source": "Curator Studio Instruction inst_1789950836014"
     },
     "Fox Cabaret": {
       "doorPrice": null,
@@ -316,8 +328,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Fox Cabaret.",
       "curatorGuidance": "Attached 2 screenshots: one showing the poster price, one showing checkout tier.",
-      "learnedAt": "2026-09-20T17:43:15.665800+00:00",
-      "source": "Curator Studio Instruction inst_1789926195653"
+      "learnedAt": "2026-09-21T00:33:56.586973+00:00",
+      "source": "Curator Studio Instruction inst_1789950836566"
     },
     "Pending Venue Candidate 1789753431": {
       "doorPrice": null,
@@ -1395,6 +1407,214 @@
       "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
       "learnedAt": "2026-09-20T17:43:17.765353+00:00",
       "source": "Curator Studio Instruction inst_1789926197685"
+    },
+    "Pending Venue Candidate 1789948964": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:02:45.021024+00:00",
+      "source": "Curator Studio Instruction inst_1789948964968"
+    },
+    "Test QA Cellar 1789948965": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:02:45.259363+00:00",
+      "source": "Curator Studio Instruction inst_1789948965165"
+    },
+    "Pending Venue Candidate 1789949478": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:11:18.507363+00:00",
+      "source": "Curator Studio Instruction inst_1789949478460"
+    },
+    "Test QA Cellar 1789949478": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:11:18.669622+00:00",
+      "source": "Curator Studio Instruction inst_1789949478605"
+    },
+    "Pending Venue Candidate 1789949515": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:11:55.847690+00:00",
+      "source": "Curator Studio Instruction inst_1789949515800"
+    },
+    "Test QA Cellar 1789949515": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:11:56.188655+00:00",
+      "source": "Curator Studio Instruction inst_1789949516000"
+    },
+    "Hollywood Theatre": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://www.ticketmaster.ca/event/110064638F595700",
+      "summary": "Calendar: https://www.ticketmaster.ca/event/110064638F595700",
+      "curatorGuidance": "under 50 bucks, looks good to me",
+      "learnedAt": "2026-09-21T00:22:38.147303+00:00",
+      "source": "Curator Studio Instruction inst_1789950158077"
+    },
+    "Pending Venue Candidate 1789950541": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:29:02.028616+00:00",
+      "source": "Curator Studio Instruction inst_1789950541970"
+    },
+    "Test QA Cellar 1789950542": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:29:02.286099+00:00",
+      "source": "Curator Studio Instruction inst_1789950542164"
+    },
+    "Pending Venue Candidate 1789950595": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:29:55.696273+00:00",
+      "source": "Curator Studio Instruction inst_1789950595639"
+    },
+    "Test QA Cellar 1789950595": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:29:55.920641+00:00",
+      "source": "Curator Studio Instruction inst_1789950595812"
+    },
+    "Inspector Suite Test Hall": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "",
+      "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
+      "curatorGuidance": "Instruction to be updated by test suite",
+      "learnedAt": "2026-09-21T00:33:57.360984+00:00",
+      "source": "Curator Studio Instruction inst_1789950837349"
+    },
+    "Pending Venue Candidate 1789950841": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-21T00:34:01.942362+00:00",
+      "source": "Curator Studio Instruction inst_1789950841859"
+    },
+    "Test QA Cellar 1789950842": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-21T00:34:02.190182+00:00",
+      "source": "Curator Studio Instruction inst_1789950842067"
     }
   },
   "notes": {

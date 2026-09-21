@@ -44,11 +44,11 @@
           <span>⚠️ Quarantined:</span>
           <span class="stat-val" id="stat-pending-count">0</span>
         </div>
-        <div class="stat-pill" title="Rules actively applied to crawlers">
+        <div class="stat-pill clickable-pill" id="stat-rules-pill" style="cursor: pointer;" title="Click to inspect, edit, or delete Learned Rules">
           <span>🧠 Learned Rules:</span>
           <span class="stat-val" id="stat-rules-count">0</span>
         </div>
-        <div class="stat-pill" title="Plain-English instructions queued for AI Assistant">
+        <div class="stat-pill clickable-pill" id="stat-instructions-pill" style="cursor: pointer;" title="Click to inspect, edit, or delete AI Scraper Instructions">
           <span>🤖 AI Instructions:</span>
           <span class="stat-val" id="stat-instructions-count">0</span>
         </div>
@@ -408,6 +408,228 @@
       </div>
     </div>
   </div>
+
+  <!-- Learned Rules Modal -->
+  <div class="curator-modal-overlay" id="learned-rules-modal">
+    <div class="curator-modal-card manager-modal-card">
+      <button type="button" class="curator-modal-close-btn" id="btn-close-rules-modal" aria-label="Close modal">✕</button>
+
+      <div class="curator-modal-header" style="text-align: left; margin-bottom: 14px; padding-right: 36px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="curator-modal-icon" style="font-size: 2rem; margin: 0;">🧠</div>
+          <div>
+            <h2 class="curator-modal-title" style="font-size: 1.3rem; margin: 0;">Learned Rules &amp; Crawler Policies</h2>
+            <p class="curator-modal-desc" style="font-size: 0.82rem; margin-top: 2px;">
+              Rules, door pricing formulas, calendar deep links, and blacklist patterns distilled from curator fixes to keep crawlers verified.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Tabs -->
+      <div class="manager-filter-bar">
+        <div class="manager-search-box">
+          <span class="curator-search-icon">🔍</span>
+          <input type="text" id="rules-search-input" class="curator-search-input" placeholder="Filter by venue name, keyword, pattern...">
+        </div>
+
+        <div class="curator-pills-group" id="rules-tab-group" style="margin: 0;">
+          <button type="button" class="curator-filter-pill active" data-rule-tab="venue_policy_rules">🏛️ Venue Policies (<span id="rule-count-policies">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-rule-tab="venue_calendar_deep_links">🔗 Calendar Links (<span id="rule-count-links">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-rule-tab="course_blacklist_patterns">🚫 Blacklist Patterns (<span id="rule-count-patterns">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-rule-tab="vendor_fee_formulas">💳 Vendor Fees (<span id="rule-count-fees">0</span>)</button>
+        </div>
+
+        <button type="button" class="btn-curator btn-curator-primary" id="btn-add-rule-trigger" style="margin-left: auto; padding: 7px 14px; font-size: 0.82rem;">
+          ➕ Add Rule
+        </button>
+      </div>
+
+      <!-- Edit/Create Rule Inline Panel (Hidden by default) -->
+      <div id="rule-edit-panel" class="rule-edit-panel" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <strong id="rule-edit-panel-title" style="color: #38bdf8; font-size: 0.95rem;">✏️ Edit Rule</strong>
+          <button type="button" id="btn-cancel-rule-edit" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer;">✕</button>
+        </div>
+        <form id="rule-edit-form">
+          <input type="hidden" id="rule-edit-type">
+          <input type="hidden" id="rule-edit-old-key">
+
+          <!-- Venue Policy Fields -->
+          <div id="rule-fields-venue-policy" style="display: none; flex-direction: column; gap: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label class="curator-label" for="rule-input-venue-name" style="font-size: 0.78rem;">Venue Name <span style="color: #f43f5e;">*</span></label>
+                <input type="text" id="rule-input-venue-name" class="curator-input" style="width: 100%;">
+              </div>
+              <div>
+                <label class="curator-label" for="rule-input-door-price" style="font-size: 0.78rem;">Door Cover / Verified Price (CAD, max $50)</label>
+                <input type="number" step="0.01" min="0" max="50" id="rule-input-door-price" class="curator-input" style="width: 100%;" placeholder="e.g. 15.00">
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label class="curator-label" for="rule-input-pricing-type" style="font-size: 0.78rem;">Pricing Type</label>
+                <select id="rule-input-pricing-type" class="curator-input" style="width: 100%;">
+                  <option value="door-cover">door-cover (Cash/Card at door)</option>
+                  <option value="free">free ($0 Drop-in)</option>
+                  <option value="minimum-spend">minimum-spend (Food &amp; Drink minimum)</option>
+                  <option value="standard">standard (Advance &amp; Door)</option>
+                </select>
+              </div>
+              <div>
+                <label class="curator-label" for="rule-input-schedule-days" style="font-size: 0.78rem;">Operating Days (comma-separated: thu, fri, sat...)</label>
+                <input type="text" id="rule-input-schedule-days" class="curator-input" style="width: 100%;" placeholder="e.g. thu, fri, sat, sun">
+              </div>
+            </div>
+            <div>
+              <label class="curator-label" for="rule-input-calendar-url" style="font-size: 0.78rem;">Calendar / Events Webpage URL</label>
+              <input type="url" id="rule-input-calendar-url" class="curator-input" style="width: 100%;" placeholder="https://venue.com/events">
+            </div>
+            <div>
+              <label class="curator-label" for="rule-input-guidance" style="font-size: 0.78rem;">Curator Guidance / Crawler Policy Notes</label>
+              <textarea id="rule-input-guidance" class="curator-input" style="width: 100%; height: 60px; font-family: inherit; font-size: 0.85rem;" placeholder="e.g. Live jazz sets on weekends, $15 cash cover at door. Ignore private bookings."></textarea>
+            </div>
+          </div>
+
+          <!-- Calendar Link Fields -->
+          <div id="rule-fields-calendar-link" style="display: none; flex-direction: column; gap: 10px;">
+            <div>
+              <label class="curator-label" for="rule-input-link-venue" style="font-size: 0.78rem;">Venue Name <span style="color: #f43f5e;">*</span></label>
+              <input type="text" id="rule-input-link-venue" class="curator-input" style="width: 100%;">
+            </div>
+            <div>
+              <label class="curator-label" for="rule-input-link-url" style="font-size: 0.78rem;">Calendar / Listing URL <span style="color: #f43f5e;">*</span></label>
+              <input type="url" id="rule-input-link-url" class="curator-input" style="width: 100%;" placeholder="https://example.com/events">
+            </div>
+          </div>
+
+          <!-- Blacklist Pattern Fields -->
+          <div id="rule-fields-blacklist" style="display: none; flex-direction: column; gap: 10px;">
+            <div>
+              <label class="curator-label" for="rule-input-pattern" style="font-size: 0.78rem;">Keyword / Pattern to Exclude <span style="color: #f43f5e;">*</span></label>
+              <input type="text" id="rule-input-pattern" class="curator-input" style="width: 100%;" placeholder="e.g. 6-week workshop, semester-long, private hire">
+            </div>
+          </div>
+
+          <!-- Vendor Fee Fields -->
+          <div id="rule-fields-vendor-fee" style="display: none; flex-direction: column; gap: 10px;">
+            <div>
+              <label class="curator-label" for="rule-input-vendor-domain" style="font-size: 0.78rem;">Vendor Domain (e.g. admitone.com) <span style="color: #f43f5e;">*</span></label>
+              <input type="text" id="rule-input-vendor-domain" class="curator-input" style="width: 100%;">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label class="curator-label" for="rule-input-fee-fixed" style="font-size: 0.78rem;">Fixed Checkout Fee (CAD)</label>
+                <input type="number" step="0.01" min="0" id="rule-input-fee-fixed" class="curator-input" style="width: 100%;" placeholder="2.50">
+              </div>
+              <div>
+                <label class="curator-label" for="rule-input-fee-percent" style="font-size: 0.78rem;">Percent Fee (0.05 = 5%)</label>
+                <input type="number" step="0.001" min="0" max="1" id="rule-input-fee-percent" class="curator-input" style="width: 100%;" placeholder="0.05">
+              </div>
+            </div>
+            <div>
+              <label class="curator-label" for="rule-input-fee-desc" style="font-size: 0.78rem;">Description</label>
+              <input type="text" id="rule-input-fee-desc" class="curator-input" style="width: 100%;" placeholder="Standard live checkout fee formula">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px;">
+            <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-rule-save">Cancel</button>
+            <button type="submit" class="btn-curator btn-curator-primary" id="btn-save-rule-submit">💾 Save Rule Changes</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Rules List Container -->
+      <div id="rules-list-container" class="manager-list-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <span id="rules-status-footer" style="font-size: 0.8rem; color: #94a3b8;">Active learned rules loaded</span>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-rules-bottom">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Instructions Modal -->
+  <div class="curator-modal-overlay" id="ai-instructions-modal">
+    <div class="curator-modal-card manager-modal-card">
+      <button type="button" class="curator-modal-close-btn" id="btn-close-instructions-modal" aria-label="Close modal">✕</button>
+
+      <div class="curator-modal-header" style="text-align: left; margin-bottom: 14px; padding-right: 36px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="curator-modal-icon" style="font-size: 2rem; margin: 0;">🤖</div>
+          <div>
+            <h2 class="curator-modal-title" style="font-size: 1.3rem; margin: 0;">AI Scraper Instructions Log</h2>
+            <p class="curator-modal-desc" style="font-size: 0.82rem; margin-top: 2px;">
+              Review, edit, or dismiss plain-English instructions and screenshot proof submitted to train crawlers and distill venue rules.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Tabs -->
+      <div class="manager-filter-bar">
+        <div class="manager-search-box">
+          <span class="curator-search-icon">🔍</span>
+          <input type="text" id="instructions-search-input" class="curator-search-input" placeholder="Search instructions by venue, event, instruction text...">
+        </div>
+
+        <div class="curator-pills-group" id="instructions-tab-group" style="margin: 0;">
+          <button type="button" class="curator-filter-pill active" data-inst-filter="all">All (<span id="inst-count-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-inst-filter="pending">⚡ Pending (<span id="inst-count-pending">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-inst-filter="resolved">✅ Resolved / Applied (<span id="inst-count-resolved">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-inst-filter="dismissed">🛑 Dismissed (<span id="inst-count-dismissed">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Edit Instruction Inline Panel (Hidden by default) -->
+      <div id="instruction-edit-panel" class="rule-edit-panel" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <strong id="inst-edit-panel-title" style="color: #c084fc; font-size: 0.95rem;">✏️ Edit AI Instruction</strong>
+          <button type="button" id="btn-cancel-inst-edit" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer;">✕</button>
+        </div>
+        <form id="instruction-edit-form">
+          <input type="hidden" id="inst-edit-id">
+          <div>
+            <label class="curator-label" for="inst-edit-text" style="font-size: 0.78rem;">Instruction Guidance Text <span style="color: #f43f5e;">*</span></label>
+            <textarea id="inst-edit-text" class="curator-input" style="width: 100%; height: 75px; font-family: inherit; font-size: 0.85rem;" required></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <div>
+              <label class="curator-label" for="inst-edit-note" style="font-size: 0.78rem;">Curator Note / Tier Details</label>
+              <input type="text" id="inst-edit-note" class="curator-input" style="width: 100%;">
+            </div>
+            <div>
+              <label class="curator-label" for="inst-edit-status" style="font-size: 0.78rem;">Status</label>
+              <select id="inst-edit-status" class="curator-input" style="width: 100%;">
+                <option value="pending">⚡ Pending (Active Queue)</option>
+                <option value="resolved">✅ Resolved &amp; Applied</option>
+                <option value="dismissed">🛑 Dismissed</option>
+              </select>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px;">
+            <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-inst-save">Cancel</button>
+            <button type="submit" class="btn-curator btn-curator-primary" id="btn-save-inst-submit">💾 Save Instruction</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Instructions List Container -->
+      <div id="instructions-list-container" class="manager-list-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <span id="instructions-status-footer" style="font-size: 0.8rem; color: #94a3b8;">AI Instructions loaded</span>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-instructions-bottom">Close</button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Toast Feedback -->
   <div class="curator-toast" id="curator-toast"></div>
