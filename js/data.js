@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-20T19:27:42-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-21T11:09:12-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -33,11 +33,9 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🌊",
     "subTags": [
       "seawall",
-      "sunset",
       "ocean-walk",
-      "vancouver",
-      "totems",
-      "stanley-park"
+      "stanley-park",
+      "sunset"
     ],
     "dateSchedule": "Daily • Open 24/7 (Best at sunset)",
     "startIso": "2026-09-08T06:00:00-07:00",
@@ -59,13 +57,13 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Vancouver's Stanley Park is a world renowned park and tourist attraction. Learn more about what to see and do in this magnificent green space.",
+    "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:01-07:00",
+      "verifiedAt": "2026-09-21T11:07:21-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -129,7 +127,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:02-07:00",
+      "verifiedAt": "2026-09-21T11:07:21-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -193,7 +191,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:02-07:00",
+      "verifiedAt": "2026-09-21T11:07:22-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -257,7 +255,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:04-07:00",
+      "verifiedAt": "2026-09-21T11:07:23-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -315,77 +313,14 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+    "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:04-07:00",
+      "verifiedAt": "2026-09-21T11:07:24-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
-    }
-  },
-  {
-    "id": "sun-yat-sen-park",
-    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
-    "artist": null,
-    "performers": null,
-    "venue": "Dr. Sun Yat-Sen Public Courtyard",
-    "venueAliases": [],
-    "address": "578 Carrall St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 16.0,
-    "priceLabel": "$16.00 all-in",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🏮",
-    "subTags": [
-      "ming-dynasty",
-      "heritage-courtyard",
-      "koi-pond",
-      "chinatown"
-    ],
-    "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
-    "startIso": "2026-09-08T09:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
-    "venueUrl": "https://vancouverchinesegarden.com/visit/",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2798,
-      -123.104
-    ],
-    "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "GARDEN IS OPEN TO THE PUBLICBook Your Admission OPENING HOURSOpen Tuesday to Sunday 9:30 AM - 4:00 PM (last entry 3:30 PM) Tuesday, Wednesday, Thursday, Friday, Saturday, and SundayCLOSEDMondaySPECIAL CLOSURESPlease note that our hours may vary due to private events and rentals. Before planning your visit, please check our Google Business page f...",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 16.0,
-      "feeBreakdown": "$16.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-20T19:23:05-07:00",
-      "details": "Scraped live from published terms on https://vancouverchinesegarden.com/visit/."
     }
   },
   {
@@ -448,7 +383,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:05-07:00",
+      "verifiedAt": "2026-09-21T11:07:24-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -483,10 +418,8 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "quarry-garden",
       "panoramic-view",
-      "queen-elizabeth-park",
-      "celebration-paviliion",
       "cambie-corridor",
-      "4600-cambie-st"
+      "city-view"
     ],
     "dateSchedule": "Daily • 6:00 AM - 10:00 PM",
     "startIso": "2026-09-08T06:00:00-07:00",
@@ -508,13 +441,13 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Queen Elizabeth Park is home to some of the most beautiful and well maintained gardens in the world. Learn more about the park.",
+    "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:06-07:00",
+      "verifiedAt": "2026-09-21T11:07:24-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -546,12 +479,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
+      "tickets",
       "tropical-dome",
       "organization",
-      "vancouver",
-      "exotic-birds",
       "rainforest",
-      "bloedel-conservatory"
+      "bloedel-conservatory",
+      "botanical"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
     "startIso": "2026-09-08T10:00:00-07:00",
@@ -579,7 +512,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 9.97,
       "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-20T19:23:07-07:00",
+      "verifiedAt": "2026-09-21T11:07:25-07:00",
       "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
     }
   },
@@ -642,7 +575,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:23:10-07:00",
+      "verifiedAt": "2026-09-21T11:07:25-07:00",
       "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
     }
   },
@@ -678,12 +611,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "yaletown",
-      "stand-up-for-mental-health-summer-class-debut",
-      "community-comedy",
-      "stand-up-for-mental-health-summer-class-debut-tickets",
       "eventbrite",
-      "stand-up"
+      "stand-up-for-mental-health-summer-class-debut-tickets",
+      "mental-health",
+      "stand-up",
+      "stand-up-for-mental-health-summer-class-debut",
+      "community-comedy"
     ],
     "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
     "startIso": "2026-09-22T19:30:00-07:00",
@@ -711,7 +644,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 12.06,
       "feeBreakdown": "$12.06 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-20T19:23:11-07:00",
+      "verifiedAt": "2026-09-21T11:07:26-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -800,7 +733,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-20T19:23:11-07:00",
+      "verifiedAt": "2026-09-21T11:07:26-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
     }
   },
@@ -859,11 +792,11 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎬",
     "subTags": [
       "film-history",
-      "vancouver",
       "auteur-cinema",
-      "cinema",
+      "cinematheque",
+      "restored-classics",
       "35mm",
-      "cinematheque"
+      "cinema"
     ],
     "dateSchedule": "Wednesday – Monday • 6:30 PM & 7:00 PM (Plus Weekend Matinees)",
     "startIso": "2026-09-09T18:30:00-07:00",
@@ -891,7 +824,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
-      "verifiedAt": "2026-09-20T19:23:16-07:00",
+      "verifiedAt": "2026-09-21T11:07:28-07:00",
       "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
     }
   },
@@ -953,7 +886,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-20T19:23:18-07:00",
+      "verifiedAt": "2026-09-21T11:07:30-07:00",
       "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
     }
   },
@@ -1036,8 +969,80 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.0,
       "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
-      "verifiedAt": "2026-09-20T19:23:19-07:00",
+      "verifiedAt": "2026-09-21T11:07:31-07:00",
       "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
+    }
+  },
+  {
+    "id": "biltmore-cabaret-indie-music",
+    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "artist": "Local indie bands & resident DJs",
+    "performers": null,
+    "venue": "The Biltmore Cabaret",
+    "venueAliases": [],
+    "address": "2755 Prince Edward St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 9.0,
+    "priceLabel": "$9.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Thursdays – Saturdays",
+    "daysOfWeek": [
+      "thu",
+      "fri",
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "indie-folk",
+      "live-band",
+      "biltmore",
+      "concert"
+    ],
+    "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
+    "startIso": "2026-10-17T19:00:00-07:00",
+    "endIso": "2026-10-17T23:00:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://admitone.com/events/vancouver",
+    "venueUrl": "https://biltmorecabaret.com",
+    "ticketProvider": "AdmitOne Verified",
+    "rawProvider": "AdmitOne",
+    "coordinates": [
+      49.2602,
+      -123.0975
+    ],
+    "transitInfo": "Main & 12th Ave bus corridor",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "admitone_scraped",
+      "verifiedTotal": 9.0,
+      "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
+      "verifiedAt": "2026-09-21T11:07:33-07:00",
+      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver"
     }
   },
   {
@@ -1073,11 +1078,11 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "granville-island",
-      "live-comedy",
-      "revue-stage",
       "eventbrite",
+      "live-comedy",
+      "puff-the-magic-improv-show-sept-26-2026-tickets",
       "improv",
-      "puff-the-magic-improv-show-sept-26-2026-tickets"
+      "revue-stage"
     ],
     "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-26T20:00:00-07:00",
@@ -1105,7 +1110,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-20T19:23:21-07:00",
+      "verifiedAt": "2026-09-21T11:07:34-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1141,11 +1146,11 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "alistair-ogden-live-at-the-rio-theatre-vancouver",
-      "alistair-ogden-live-at-the-rio-theatre-tickets",
-      "eventbrite",
       "headliner",
+      "eventbrite",
+      "alistair-ogden-live-at-the-rio-theatre",
       "rio-theatre",
+      "alistair-ogden-live-at-the-rio-theatre-vancouver",
       "stand-up"
     ],
     "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
@@ -1174,7 +1179,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-20T19:23:21-07:00",
+      "verifiedAt": "2026-09-21T11:07:34-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1223,12 +1228,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy",
       "granville-island",
-      "waterfront-theatre",
-      "improv",
+      "comedy",
       "improv-comedy",
-      "comedy-show"
+      "waterfront-theatre",
+      "comedy-show",
+      "theatresports"
     ],
     "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
     "startIso": "2026-09-11T19:30:00-07:00",
@@ -1350,7 +1355,7 @@ const VANCOUVER_EVENTS = [
       "method": "regex_scraped",
       "verifiedTotal": 40.0,
       "feeBreakdown": "$40.00 all-in verified via Eventbrite page text",
-      "verifiedAt": "2026-09-20T19:23:26-07:00",
+      "verifiedAt": "2026-09-21T11:07:38-07:00",
       "details": "Parsed from Eventbrite event text."
     }
   },
@@ -1496,7 +1501,7 @@ const VANCOUVER_EVENTS = [
       "method": "vso_published_rush_policy",
       "verifiedTotal": 25.2,
       "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-20T19:23:27-07:00",
+      "verifiedAt": "2026-09-21T11:07:39-07:00",
       "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
     }
   },
@@ -1560,7 +1565,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-20T19:23:28-07:00",
+      "verifiedAt": "2026-09-21T11:07:39-07:00",
       "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
     }
   },
@@ -1592,12 +1597,10 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Games & Activities",
     "categoryIcon": "⛳",
     "subTags": [
+      "pitch-and-putt",
       "golf",
-      "english-bay",
-      "stanley-park-pitch--putt",
       "stanley-park",
-      "stanley-park-golf",
-      "pitch-and-putt"
+      "english-bay"
     ],
     "dateSchedule": "Daily • Daylight hours (First come, first served)",
     "startIso": "2026-09-08T08:00:00-07:00",
@@ -1619,7 +1622,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "The Stanley Park Pitch and Putt has 18 holes ranging from 40 to 100 yards, bordered by a rhododendron garden.",
+    "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "manual_curator_review",
@@ -1709,69 +1712,6 @@ const VANCOUVER_EVENTS = [
     }
   },
   {
-    "id": "shipyards-live-night",
-    "title": "The Shipyards Live: Waterfront Music & Night Market",
-    "artist": "Local bands & rotating indie artists",
-    "performers": null,
-    "venue": "The Shipyards District",
-    "venueAliases": [],
-    "address": "125 Victory Ship Way, North Vancouver",
-    "neighborhood": "North Shore, Burnaby & Metro",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Fridays)",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "night-market",
-      "live-music",
-      "pier-festival",
-      "lonsdale-quay"
-    ],
-    "dateSchedule": "Friday Evenings • 5:00 PM - 10:00 PM",
-    "startIso": "2026-09-11T17:00:00-07:00",
-    "endIso": "2026-09-25T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
-    "venueUrl": "https://theshipyardsdistrict.ca",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.3113,
-      -123.0818
-    ],
-    "transitInfo": "5 min walk from Lonsdale Quay SeaBus terminal",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "The Shipyards is a popular destination, public space located on the scenic City waterfront, surrounded by restaurants, cafes, shops and services.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "civic_public_space_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free civic public space ('Skate Plaza') verified via municipal portal (https://www.cnv.org/Parks-Recreation/The-Shipyards)",
-      "verifiedAt": "2026-09-20T19:23:37-07:00",
-      "details": "Verified live from official civic public space terms on https://www.cnv.org/Parks-Recreation/The-Shipyards."
-    }
-  },
-  {
     "id": "kits-labour-day-concert",
     "title": "Kits Beach Labour Day Sundown Finale",
     "artist": "Local brass bands & musicians",
@@ -1828,7 +1768,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:37-07:00",
+      "verifiedAt": "2026-09-21T11:07:49-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1895,7 +1835,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:39-07:00",
+      "verifiedAt": "2026-09-21T11:07:50-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1959,7 +1899,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:40-07:00",
+      "verifiedAt": "2026-09-21T11:07:51-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2023,7 +1963,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:42-07:00",
+      "verifiedAt": "2026-09-21T11:07:54-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2087,8 +2027,102 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:43-07:00",
+      "verifiedAt": "2026-09-21T11:07:56-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
+    }
+  },
+  {
+    "id": "guilt-and-co-live-jazz",
+    "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+    "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
+    "performers": null,
+    "venue": "Guilt & Co.",
+    "venueAliases": [
+      "Guilt and Co",
+      "Guilt & Co",
+      "Guilt and Company"
+    ],
+    "address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 0.0,
+    "priceLabel": "Free – $10.00 all-in",
+    "pricingType": "door",
+    "tiers": [
+      {
+        "name": "Early Show (Pay-What-You-Can)",
+        "basePrice": 0.0,
+        "price": 0.0,
+        "label": "PWYC ($0 minimum)"
+      },
+      {
+        "name": "Late Show General Door Admission",
+        "basePrice": 7.0,
+        "price": 7.0,
+        "label": "$7.00 door"
+      },
+      {
+        "name": "Weekend Feature Late Set",
+        "basePrice": 10.0,
+        "price": 10.0,
+        "label": "$10.00 door"
+      }
+    ],
+    "isFree": false,
+    "isDaily": true,
+    "frequency": "daily",
+    "frequencyLabel": "Nightly (7 Days/Week)",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "soul-music",
+      "live-jazz",
+      "intimate-lounge",
+      "gastown",
+      "live-music",
+      "cocktails"
+    ],
+    "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
+    "startIso": "2026-09-09T19:00:00-07:00",
+    "endIso": null,
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.guiltandcompany.com",
+    "venueUrl": "https://www.guiltandcompany.com",
+    "ticketProvider": "By-Donation / Artist Contribution",
+    "rawProvider": "Box Office / Direct",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Guilt & Company Home Page Calendar of Events",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "venue_published_policy",
+      "verifiedTotal": 0.0,
+      "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+      "verifiedAt": "2026-09-21T11:07:57-07:00",
+      "details": "Verified via venue official artist contribution and door policy."
     }
   },
   {
@@ -2152,7 +2186,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:44-07:00",
+      "verifiedAt": "2026-09-21T11:07:57-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2216,7 +2250,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:45-07:00",
+      "verifiedAt": "2026-09-21T11:08:00-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2280,7 +2314,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:47-07:00",
+      "verifiedAt": "2026-09-21T11:08:03-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2344,7 +2378,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:48-07:00",
+      "verifiedAt": "2026-09-21T11:08:06-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2408,7 +2442,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:49-07:00",
+      "verifiedAt": "2026-09-21T11:08:09-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2472,7 +2506,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:51-07:00",
+      "verifiedAt": "2026-09-21T11:08:12-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2530,13 +2564,13 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "> Markets Why do we cultivate food? To explore and exemplify healthy and sustainable food systems, encourage sustainable food literacy, foster socially just food systems for all, and cultivate the local food economy. Discover the UBC Farm through your taste buds! Get your local, certified organic, farm-fresh seasonal veggies, fruits, herbs, flow...",
+    "description": "Vancouver's only certified organic working farm market set within a 24-hectare coastal forest. Features 30+ farm stalls, live acoustic music, food trucks, and free 12:00 PM farm tours.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-20T19:23:53-07:00",
+      "verifiedAt": "2026-09-21T11:08:12-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2623,7 +2657,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist cover charge verified via venue policy",
-      "verifiedAt": "2026-09-20T19:23:53-07:00",
+      "verifiedAt": "2026-09-21T11:08:13-07:00",
       "details": "Verified dynamically via 2nd Floor Gastown published performance terms on https://www.waterstreetcafe.ca/2nd-floor-gastown."
     }
   },
@@ -2816,7 +2850,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 17.62,
       "feeBreakdown": "Live multi-tier Showpass checkout: DEAR VIRIDIAN: $17.62 all-in • GRAVEYARD GHOST: $17.62 all-in • MISTY RAINE: $17.62 all-in • ALL 3 BANDS: $17.62 all-in",
-      "verifiedAt": "2026-09-20T19:23:59-07:00",
+      "verifiedAt": "2026-09-21T11:08:16-07:00",
       "details": "Extracted directly from live Showpass public API payload."
     }
   },
@@ -2899,7 +2933,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-20T19:24:01-07:00",
+      "verifiedAt": "2026-09-21T11:08:17-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     }
   },
@@ -2987,7 +3021,7 @@ const VANCOUVER_EVENTS = [
       "method": "meta_tag",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 verified via host OpenGraph metadata",
-      "verifiedAt": "2026-09-20T19:24:01-07:00",
+      "verifiedAt": "2026-09-21T11:08:17-07:00",
       "details": "Extracted from meta tags on https://cafeauclay.com/products/drop-in-pottery-painting."
     }
   },
@@ -3067,8 +3101,82 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-20T19:24:03-07:00",
+      "verifiedAt": "2026-09-21T11:08:19-07:00",
       "details": "Scraped live from published terms on https://lifedrawing.org/session-fees-rates/."
+    }
+  },
+  {
+    "id": "hand-eye-ceramics-open-studio",
+    "title": "Hand Eye Ceramics: Community Open Studio Drop-In",
+    "artist": "Independent East Van potters & ceramic artists",
+    "performers": null,
+    "venue": "Hand Eye Ceramics",
+    "venueAliases": [],
+    "address": "2202 Clark Dr, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "price": 25.0,
+    "priceLabel": "$25.00 door",
+    "pricingType": "door",
+    "tiers": [
+      {
+        "name": "Open Studio Session (Wheel / Hand-Building)",
+        "basePrice": 25.0,
+        "price": 26.25,
+        "label": "$26.25 all-in ($25 + GST)"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Tuesdays, Thursdays & Weekends",
+    "daysOfWeek": [
+      "tue",
+      "thu",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening"
+    ],
+    "category": "crafts",
+    "categoryLabel": "Crafts & Studios",
+    "categoryIcon": "🎨",
+    "subTags": [
+      "pottery-wheel",
+      "clay-handbuilding",
+      "ceramics",
+      "open-studio",
+      "commercial-drive"
+    ],
+    "dateSchedule": "Tue & Thu 6:00 PM – 9:00 PM • Sat & Sun 1:00 PM – 5:00 PM",
+    "startIso": "2026-09-10T18:00:00-07:00",
+    "endIso": "2026-09-10T21:00:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://handeyeceramics.com/open-studio",
+    "venueUrl": "https://handeyeceramics.com/open-studio",
+    "ticketProvider": "Studio Walk-In / Open Studio",
+    "rawProvider": "Direct Studio Drop-In / Walk-in",
+    "coordinates": [
+      49.2655,
+      -123.0776
+    ],
+    "transitInfo": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Open studio hours and information for drop ins and make up classes at the Hand Eye Ceramics pottery studio.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "scraped_page_policy",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "$25.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-21T11:08:19-07:00",
+      "details": "Scraped live from published terms on https://handeyeceramics.com/open-studio."
     }
   },
   {
@@ -3145,7 +3253,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-20T19:24:11-07:00",
+      "verifiedAt": "2026-09-21T11:08:20-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop/life-drawing/145."
     }
   },
@@ -3223,7 +3331,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-20T19:24:11-07:00",
+      "verifiedAt": "2026-09-21T11:08:21-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/clayclub."
     }
   },
@@ -3294,7 +3402,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-20T19:24:12-07:00",
+      "verifiedAt": "2026-09-21T11:08:21-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/visitors-20."
     }
   },
@@ -3378,153 +3486,8 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, All Ages') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/news/10-years-of-turning-the-city-into-a-dance-floor."
-    }
-  },
-  {
-    "id": "ra-2536220-ero-s-elcome",
-    "title": "John Lee Trio at Hero’s Welcome",
-    "artist": null,
-    "performers": null,
-    "venue": "Hero's Welcome",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver"
-    ],
-    "address": "3917 Main St, Vancouver, BC V5V 3P3",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 25.0,
-    "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Sunday, Sep 20 • 7:00 PM",
-    "startIso": "2026-09-20T19:00:00.000",
-    "endIso": "2026-09-20T21:00:00.000",
-    "confirmedDates": [
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2536220",
-    "venueUrl": "https://ra.co/events/2536220",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Hero's Welcome.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    }
-  },
-  {
-    "id": "ra-2537211-org-ish",
-    "title": "Gorg-O-Mish presents: Oki & Luke McKeehan",
-    "artist": "Luke McKeehan",
-    "performers": [
-      "Luke McKeehan"
-    ],
-    "venue": "Gorg-O-Mish",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Luke McKeehan"
-    ],
-    "address": "695 Smithe St; Vancouver, BC V6B 2C9; Canada",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.0,
-    "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Sunday, Sep 20 • 2:00 AM",
-    "startIso": "2026-09-20T02:00:00.000",
-    "endIso": "2026-09-20T08:00:00.000",
-    "confirmedDates": [
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2537211",
-    "venueUrl": "https://ra.co/events/2537211",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Gorg-O-Mish. Featuring live performances by Luke McKeehan.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
   {
@@ -3597,81 +3560,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    }
-  },
-  {
-    "id": "ra-2463411-illage-tudios",
-    "title": "Dean Turnley (Vancouver)",
-    "artist": "Dean Turnley",
-    "performers": [
-      "Dean Turnley"
-    ],
-    "venue": "Village Studios",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Dean Turnley"
-    ],
-    "address": "1024 Davie St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.0,
-    "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Friday, Sep 25 • 11:00 PM",
-    "startIso": "2026-09-25T23:00:00.000",
-    "endIso": "2026-09-26T04:00:00.000",
-    "confirmedDates": [
-      "2026-09-25"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2463411",
-    "venueUrl": "https://ra.co/events/2463411",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2809,
-      -123.1294
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Village Studios. Featuring live performances by Dean Turnley.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3745,7 +3634,81 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2463411-illage-tudios",
+    "title": "Dean Turnley (Vancouver)",
+    "artist": "Dean Turnley",
+    "performers": [
+      "Dean Turnley"
+    ],
+    "venue": "Village Studios",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "Dean Turnley"
+    ],
+    "address": "1024 Davie St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Sep 25 • 11:00 PM",
+    "startIso": "2026-09-25T23:00:00.000",
+    "endIso": "2026-09-26T04:00:00.000",
+    "confirmedDates": [
+      "2026-09-25"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2463411",
+    "venueUrl": "https://ra.co/events/2463411",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2809,
+      -123.1294
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Village Studios. Featuring live performances by Dean Turnley.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3824,7 +3787,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3900,7 +3863,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 40.0,
       "feeBreakdown": "Live RA listing price: $40.00 advance",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3971,7 +3934,158 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 35.0,
       "feeBreakdown": "Live RA listing price: $35.00 all-in",
-      "verifiedAt": "2026-09-20T19:24:16-07:00",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2502822-latform9",
+    "title": "Thump! presents 1morning (Ilian Tape)",
+    "artist": "1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey",
+    "performers": [
+      "1morning",
+      "AWood",
+      "NOTEVENDOWN",
+      "Max Ulis",
+      "DJ Hockey"
+    ],
+    "venue": "Platform9",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "1morning",
+      "AWood",
+      "NOTEVENDOWN"
+    ],
+    "address": "390 Industrial Ave, Vancouver, BC V6A 2P3 Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 22.0,
+    "basePrice": 22.0,
+    "priceLabel": "$22.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 22.0,
+        "price": 22.0,
+        "label": "$22.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Saturday, Sep 26 • 11:00 PM",
+    "startIso": "2026-09-26T23:00:00.000",
+    "endIso": "2026-09-27T04:00:00.000",
+    "confirmedDates": [
+      "2026-09-26"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2502822",
+    "venueUrl": "https://ra.co/events/2502822",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by 1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 22.0,
+      "feeBreakdown": "Live RA listing price: $22.00 advance",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2524035-he-argrove",
+    "title": "DECEL / DIVERGE Art Rave + Manifesto Drop",
+    "artist": null,
+    "performers": null,
+    "venue": "The Hargrove",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver"
+    ],
+    "address": "Back Alley Entrance, 150 E 3rd Ave, Vancouver, BC V5T 3C1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Saturday, Sep 26 • 8:30 PM",
+    "startIso": "2026-09-26T20:30:00.000",
+    "endIso": "2026-09-27T01:30:00.000",
+    "confirmedDates": [
+      "2026-09-26"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2524035",
+    "venueUrl": "https://ra.co/events/2524035",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Hargrove.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-21T11:08:23-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4039,7 +4153,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:30-07:00",
+      "verifiedAt": "2026-09-21T11:08:28-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/gastown-streetside-sessions-xe3kh-n4n52-whwyz-d674d-spja9."
     },
     "isFree": true,
@@ -4113,7 +4227,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:30-07:00",
+      "verifiedAt": "2026-09-21T11:08:28-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granville-street-2026-3."
     },
     "isFree": true,
@@ -4183,7 +4297,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:30-07:00",
+      "verifiedAt": "2026-09-21T11:08:28-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
     },
     "isFree": true,
@@ -4256,7 +4370,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free and all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:34-07:00",
+      "verifiedAt": "2026-09-21T11:08:31-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/shipyards-night-market-stage-takeover."
     },
     "isFree": true,
@@ -4329,7 +4443,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free EVENT') scraped live from published terms",
-      "verifiedAt": "2026-09-20T19:24:34-07:00",
+      "verifiedAt": "2026-09-21T11:08:31-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granvilleisland2026."
     },
     "isFree": true,
@@ -4401,7 +4515,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public entry with $5.00 suggested community donation scraped live",
-      "verifiedAt": "2026-09-20T19:24:34-07:00",
+      "verifiedAt": "2026-09-21T11:08:31-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/blossom-block-party-2026."
     },
     "isFree": true,
@@ -12894,6 +13008,277 @@ const VANCOUVER_EVENTS = [
     "scrapedDescription": "Orene Askew, aka DJ O Show, brings energy and expertise to every event she DJ’s and hosts. She brings professionalism and passion and remains true to her love for hip hop and R&B, incorporating beats to ensure you never want to leave the dance floor! With an outgoing personality and friendly demeanor, O Show is […]"
   },
   {
+    "id": "fest-viff-vancouver-film-festival-viff-centre",
+    "title": "Vancouver International Film Festival (VIFF): Feature Screenings, Talks & BC Spotlight at VIFF Centre",
+    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
+    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
+    "venue": "VIFF Centre",
+    "venueAliases": [
+      "VIFF Centre",
+      "Vancouver International Film Festival (VIFF)"
+    ],
+    "address": "1181 Seymour St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
+    "pricingType": "festival_all_in",
+    "tiers": [
+      {
+        "name": "Single Show / Screening Ticket",
+        "price": 18.0,
+        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
+      },
+      {
+        "name": "All-In Checkout (Ticket + Society Membership + GST)",
+        "price": 20.9,
+        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categories": [
+      "festivals",
+      "cinema"
+    ],
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "#festival",
+      "#viff",
+      "#cinema",
+      "#screenings",
+      "#film"
+    ],
+    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
+    "startIso": "2026-09-24T12:00:00-07:00",
+    "endIso": "2026-10-04T23:59:59-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://viff.org",
+    "venueUrl": "https://viff.org",
+    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
+    "rawProvider": "Vancouver International Film Festival (VIFF)",
+    "coordinates": [
+      49.2774,
+      -123.1251
+    ],
+    "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
+    "organizer": "Vancouver International Film Festival (VIFF)",
+    "isRoving": false,
+    "editionVenue": "VIFF Centre",
+    "agePolicy": "All ages / see individual show rating",
+    "admissionPolicy": "Show ticket + society membership required for venue entry",
+    "rovingNote": null,
+    "description": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 20.9,
+      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
+      "verifiedAt": "2026-09-21T11:08:31.760233+00:00",
+      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
+    },
+    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival."
+  },
+  {
+    "id": "fest-viff-vancouver-film-festival-the-cinematheque",
+    "title": "Vancouver International Film Festival (VIFF): International Cinema Showcase & Retrospectives at The Cinematheque",
+    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
+    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
+    "venue": "The Cinematheque",
+    "venueAliases": [
+      "The Cinematheque",
+      "Vancouver International Film Festival (VIFF)"
+    ],
+    "address": "1131 Howe St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
+    "pricingType": "festival_all_in",
+    "tiers": [
+      {
+        "name": "Single Show / Screening Ticket",
+        "price": 18.0,
+        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
+      },
+      {
+        "name": "All-In Checkout (Ticket + Society Membership + GST)",
+        "price": 20.9,
+        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categories": [
+      "festivals",
+      "cinema"
+    ],
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "#cinema",
+      "#film",
+      "#festival",
+      "#viff",
+      "cinematheque",
+      "#world-cinema"
+    ],
+    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
+    "startIso": "2026-09-24T12:00:00-07:00",
+    "endIso": "2026-10-04T23:59:59-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
+    "rawProvider": "Vancouver International Film Festival (VIFF)",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": "Vancouver International Film Festival (VIFF)",
+    "isRoving": false,
+    "editionVenue": "The Cinematheque",
+    "agePolicy": "All ages / see individual show rating",
+    "admissionPolicy": "Show ticket + society membership required for venue entry",
+    "rovingNote": null,
+    "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 20.9,
+      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
+      "verifiedAt": "2026-09-21T11:08:31.760254+00:00",
+      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
+    },
+    "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives."
+  },
+  {
+    "id": "fest-viff-vancouver-film-festival-rio-theatre",
+    "title": "Vancouver International Film Festival (VIFF): Late-Night Cult & Special Screenings at Rio Theatre",
+    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
+    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
+    "venue": "Rio Theatre",
+    "venueAliases": [
+      "Rio Theatre",
+      "Vancouver International Film Festival (VIFF)"
+    ],
+    "address": "1660 E Broadway, Vancouver, BC",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "price": 20.9,
+    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
+    "pricingType": "festival_all_in",
+    "tiers": [
+      {
+        "name": "Single Show / Screening Ticket",
+        "price": 18.0,
+        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
+      },
+      {
+        "name": "All-In Checkout (Ticket + Society Membership + GST)",
+        "price": 20.9,
+        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categories": [
+      "festivals",
+      "cinema"
+    ],
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "#festival",
+      "#viff",
+      "#cinema",
+      "#cult-film",
+      "#late-night"
+    ],
+    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
+    "startIso": "2026-09-24T12:00:00-07:00",
+    "endIso": "2026-10-04T23:59:59-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://riotheatre.ca",
+    "venueUrl": "https://riotheatre.ca",
+    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
+    "rawProvider": "Vancouver International Film Festival (VIFF)",
+    "coordinates": [
+      49.2627,
+      -123.0699
+    ],
+    "transitInfo": "1 min walk from Commercial-Broadway SkyTrain",
+    "organizer": "Vancouver International Film Festival (VIFF)",
+    "isRoving": false,
+    "editionVenue": "Rio Theatre",
+    "agePolicy": "All ages / see individual show rating",
+    "admissionPolicy": "Show ticket + society membership required for venue entry",
+    "rovingNote": null,
+    "description": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 20.9,
+      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
+      "verifiedAt": "2026-09-21T11:08:31.760265+00:00",
+      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
+    },
+    "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ..."
+  },
+  {
     "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
     "title": "Ethan Regan - Young Regan Tour",
     "venue": "Rickshaw Theatre",
@@ -13113,192 +13498,38 @@ const VANCOUVER_EVENTS = [
 ];
 const MANUAL_REVIEW_QUEUE = [
   {
-    "id": "hand-eye-ceramics-open-studio",
-    "title": "Hand Eye Ceramics: Community Open Studio Drop-In",
-    "venue": "Hand Eye Ceramics",
-    "address": "2202 Clark Dr, Vancouver",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "attemptedPrice": 26.25,
-    "attemptedPriceLabel": "$26.25 door",
-    "provider": "Direct Studio Drop-In / Walk-in",
-    "semanticProvider": "Studio Walk-In / Open Studio",
-    "websiteUrl": "https://handeyeceramics.com/open-studio",
-    "category": "crafts",
-    "flaggedAt": "2026-09-20T19:24:09-07:00",
-    "flagReason": "Could not fetch host page: https://handeyeceramics.com/open-studio",
+    "id": "sun-yat-sen-park",
+    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
+    "venue": "Dr. Sun Yat-Sen Public Courtyard",
+    "address": "578 Carrall St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
+    "category": "arts",
+    "flaggedAt": "2026-09-21T11:07:24-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouverchinesegarden.com/visit/",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
   {
-    "id": "biltmore-cabaret-indie-music",
-    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
-    "artist": "Local indie bands & resident DJs",
-    "performers": null,
-    "venue": "The Biltmore Cabaret",
-    "venueAliases": [],
-    "address": "2755 Prince Edward St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 11.0,
-    "priceLabel": "$11.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Thursdays – Saturdays",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
+    "id": "shipyards-live-night",
+    "title": "The Shipyards Live: Waterfront Music & Night Market",
+    "venue": "The Shipyards District",
+    "address": "125 Victory Ship Way, North Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
     "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "indie-folk",
-      "live-band",
-      "biltmore",
-      "concert"
-    ],
-    "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
-    "startIso": "2026-10-17T19:00:00-07:00",
-    "endIso": "2026-10-17T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
-    "venueUrl": "https://biltmorecabaret.com",
-    "ticketProvider": "AdmitOne Verified",
-    "rawProvider": "AdmitOne",
-    "coordinates": [
-      49.2602,
-      -123.0975
-    ],
-    "transitInfo": "Main & 12th Ave bus corridor",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "admitone_scraped",
-      "verifiedTotal": 11.0,
-      "feeBreakdown": "$11.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-20T19:23:20-07:00",
-      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/mamas-broke-vancouver-169979"
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: Page heading indicates soft 404: 'this event has ended. check out other events.'",
-    "quarantinedAt": "2026-09-21T02:27:41.509628+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "guilt-and-co-live-jazz",
-    "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
-    "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
-    "performers": null,
-    "venue": "Guilt & Co.",
-    "venueAliases": [
-      "Guilt and Co",
-      "Guilt & Co",
-      "Guilt and Company"
-    ],
-    "address": "1 Alexander St (Below Ground), Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free – $10.00 all-in",
-    "pricingType": "door",
-    "tiers": [
-      {
-        "name": "Early Show (Pay-What-You-Can)",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "PWYC ($0 minimum)"
-      },
-      {
-        "name": "Late Show General Door Admission",
-        "basePrice": 7.0,
-        "price": 7.0,
-        "label": "$7.00 door"
-      },
-      {
-        "name": "Weekend Feature Late Set",
-        "basePrice": 10.0,
-        "price": 10.0,
-        "label": "$10.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Nightly (7 Days/Week)",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "live-jazz",
-      "gastown",
-      "soul-music",
-      "intimate-lounge",
-      "cocktails"
-    ],
-    "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
-    "startIso": "2026-09-09T19:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://guiltandcompany.com/live-music",
-    "venueUrl": "https://www.guiltandcompany.com",
-    "ticketProvider": "By-Donation / Artist Contribution",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2835,
-      -123.1039
-    ],
-    "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Intimate subterranean live music sanctuary in the heart of Gastown. Presents live jazz, soul, funk, and Latin music 7 nights a week with craft cocktails and zero advance ticketing markups.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-20T19:23:43-07:00",
-      "details": "Verified via venue official artist contribution and door policy."
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.509799+00:00",
-    "dealtWith": false
+    "flaggedAt": "2026-09-21T11:07:49-07:00",
+    "flagReason": "Could not fetch host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
   {
     "id": "public-disco-pride-block-party",
@@ -13362,7 +13593,7 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "admitone_scraped",
       "verifiedTotal": 9.0,
       "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-20T19:24:32-07:00",
+      "verifiedAt": "2026-09-21T11:08:30-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website"
     },
     "isFree": false,
@@ -13371,7 +13602,7 @@ const MANUAL_REVIEW_QUEUE = [
     "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2114 Ontario St & E 4th Ave, Vancouver.",
     "ticketProvider": "Admitone Verified",
     "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '.../NY), CarrieOnDisco (SF) This event has ended. Check out other events . Public Disco Pride...'",
-    "quarantinedAt": "2026-09-21T02:27:41.509994+00:00",
+    "quarantinedAt": "2026-09-21T11:09:12.704071+00:00",
     "dealtWith": false
   },
   {
@@ -13447,7 +13678,7 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "admitone_scraped",
       "verifiedTotal": 28.0,
       "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
-      "verifiedAt": "2026-09-20T19:24:33-07:00",
+      "verifiedAt": "2026-09-21T11:08:31-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
     },
     "isFree": false,
@@ -13456,7 +13687,7 @@ const MANUAL_REVIEW_QUEUE = [
     "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2111 Main St, Vancouver.",
     "ticketProvider": "Admitone Verified",
     "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '... (NYC), DJ Heather (CHI) This event has ended. Check out other events . Public Disco Block...'",
-    "quarantinedAt": "2026-09-21T02:27:41.510078+00:00",
+    "quarantinedAt": "2026-09-21T11:09:12.704126+00:00",
     "dealtWith": false
   },
   {
@@ -13551,286 +13782,7 @@ const MANUAL_REVIEW_QUEUE = [
     },
     "venueUrl": "https://www.carouseltheatre.ca",
     "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510363+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "fest-viff-vancouver-film-festival-viff-centre",
-    "title": "Vancouver International Film Festival (VIFF): Feature Screenings, Talks & BC Spotlight at VIFF Centre",
-    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
-    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
-    "venue": "VIFF Centre",
-    "venueAliases": [
-      "VIFF Centre",
-      "Vancouver International Film Festival (VIFF)"
-    ],
-    "address": "1181 Seymour St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
-    "pricingType": "festival_all_in",
-    "tiers": [
-      {
-        "name": "Single Show / Screening Ticket",
-        "price": 18.0,
-        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
-      },
-      {
-        "name": "All-In Checkout (Ticket + Society Membership + GST)",
-        "price": 20.9,
-        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categories": [
-      "festivals",
-      "cinema"
-    ],
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "#festival",
-      "#viff",
-      "#cinema",
-      "#screenings",
-      "#film"
-    ],
-    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
-    "startIso": "2026-09-24T12:00:00-07:00",
-    "endIso": "2026-10-04T23:59:59-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/viff-2026/",
-    "venueUrl": "https://viff.org",
-    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
-    "rawProvider": "Vancouver International Film Festival (VIFF)",
-    "coordinates": [
-      49.2774,
-      -123.1251
-    ],
-    "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
-    "organizer": "Vancouver International Film Festival (VIFF)",
-    "isRoving": false,
-    "editionVenue": "VIFF Centre",
-    "agePolicy": "All ages / see individual show rating",
-    "admissionPolicy": "Show ticket + society membership required for venue entry",
-    "rovingNote": null,
-    "description": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T02:24:35.098283+00:00",
-      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
-    },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510439+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "fest-viff-vancouver-film-festival-the-cinematheque",
-    "title": "Vancouver International Film Festival (VIFF): International Cinema Showcase & Retrospectives at The Cinematheque",
-    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
-    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
-    "venue": "The Cinematheque",
-    "venueAliases": [
-      "The Cinematheque",
-      "Vancouver International Film Festival (VIFF)"
-    ],
-    "address": "1131 Howe St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
-    "pricingType": "festival_all_in",
-    "tiers": [
-      {
-        "name": "Single Show / Screening Ticket",
-        "price": 18.0,
-        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
-      },
-      {
-        "name": "All-In Checkout (Ticket + Society Membership + GST)",
-        "price": 20.9,
-        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categories": [
-      "festivals",
-      "cinema"
-    ],
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "#festival",
-      "#viff",
-      "#cinema",
-      "#world-cinema",
-      "#film"
-    ],
-    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
-    "startIso": "2026-09-24T12:00:00-07:00",
-    "endIso": "2026-10-04T23:59:59-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/the-cinematheque/",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
-    "rawProvider": "Vancouver International Film Festival (VIFF)",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": "Vancouver International Film Festival (VIFF)",
-    "isRoving": false,
-    "editionVenue": "The Cinematheque",
-    "agePolicy": "All ages / see individual show rating",
-    "admissionPolicy": "Show ticket + society membership required for venue entry",
-    "rovingNote": null,
-    "description": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T02:24:35.098385+00:00",
-      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
-    },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510506+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "fest-viff-vancouver-film-festival-rio-theatre",
-    "title": "Vancouver International Film Festival (VIFF): Late-Night Cult & Special Screenings at Rio Theatre",
-    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
-    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
-    "venue": "Rio Theatre",
-    "venueAliases": [
-      "Rio Theatre",
-      "Vancouver International Film Festival (VIFF)"
-    ],
-    "address": "1660 E Broadway, Vancouver, BC",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 20.9,
-    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
-    "pricingType": "festival_all_in",
-    "tiers": [
-      {
-        "name": "Single Show / Screening Ticket",
-        "price": 18.0,
-        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
-      },
-      {
-        "name": "All-In Checkout (Ticket + Society Membership + GST)",
-        "price": 20.9,
-        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categories": [
-      "festivals",
-      "cinema"
-    ],
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "#festival",
-      "#viff",
-      "#cinema",
-      "#cult-film",
-      "#late-night"
-    ],
-    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
-    "startIso": "2026-09-24T12:00:00-07:00",
-    "endIso": "2026-10-04T23:59:59-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/rio-theatre/",
-    "venueUrl": "https://riotheatre.ca",
-    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
-    "rawProvider": "Vancouver International Film Festival (VIFF)",
-    "coordinates": [
-      49.2627,
-      -123.0699
-    ],
-    "transitInfo": "1 min walk from Commercial-Broadway SkyTrain",
-    "organizer": "Vancouver International Film Festival (VIFF)",
-    "isRoving": false,
-    "editionVenue": "Rio Theatre",
-    "agePolicy": "All ages / see individual show rating",
-    "admissionPolicy": "Show ticket + society membership required for venue entry",
-    "rovingNote": null,
-    "description": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T02:24:35.098429+00:00",
-      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
-    },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510573+00:00",
+    "quarantinedAt": "2026-09-21T11:09:12.704224+00:00",
     "dealtWith": false
   },
   {
@@ -13897,7 +13849,7 @@ const MANUAL_REVIEW_QUEUE = [
     "endIso": "2026-10-04T23:59:59-07:00",
     "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://viff.org/venues/sfu-goldcorp/",
+    "websiteUrl": "https://www.sfu.ca/woodwards.html",
     "venueUrl": "https://www.sfu.ca/woodwards.html",
     "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
     "rawProvider": "Vancouver International Film Festival (VIFF)",
@@ -13912,92 +13864,17 @@ const MANUAL_REVIEW_QUEUE = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
+    "description": "Special festival gala screenings and contemporary cinematic storytelling at SFU Goldcorp Centre for the Arts in the historic Woodward's complex.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
       "verifiedTotal": 20.9,
       "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T02:24:35.098469+00:00",
+      "verifiedAt": "2026-09-21T11:08:31.760295+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, one of the best cinemas in Vancouver and home to the Vancouver International Film Festival.",
     "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510637+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "rupert-park-pitch-putt",
-    "title": "Rupert Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "performers": null,
-    "venue": "Rupert Park Pitch & Putt",
-    "venueAliases": [
-      "Rupert Pitch & Putt",
-      "Rupert Golf"
-    ],
-    "address": "3402 Charles St, Vancouver",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 17.5,
-    "priceLabel": "$17.50 door",
-    "pricingType": "door",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Outing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "outdoors",
-    "categoryLabel": "Outdoors",
-    "categoryIcon": "🌲",
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "rupert-park",
-      "east-van",
-      "outdoors"
-    ],
-    "dateSchedule": "Daily • Daylight hours (First-come, first-served)",
-    "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
-    "ticketProvider": "City of Vancouver Park Board",
-    "rawProvider": "Independent Box Office",
-    "coordinates": [
-      49.274,
-      -123.0335
-    ],
-    "transitInfo": "#9 or #99 B-Line to Boundary / Broadway or #16 Renfrew bus",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "A scenic, rolling 18-hole pitch and putt in East Vancouver featuring tree-lined fairways, ponds, and peaceful mountain vistas.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 14.5,
-      "feeBreakdown": "Direct Park Board walk-up fee (.50 all-in CAD)",
-      "verifiedAt": "2026-09-18T17:54:20.374298",
-      "details": "Verified City of Vancouver Park Board tariff."
-    },
-    "categories": [
-      "outdoors",
-      "social"
-    ],
-    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
-    "quarantinedAt": "2026-09-21T02:27:41.510711+00:00",
+    "quarantinedAt": "2026-09-21T11:09:12.704256+00:00",
     "dealtWith": false
   }
 ];
