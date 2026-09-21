@@ -1,6 +1,8 @@
 # Python cache
 __pycache__/
 *.pyc
+.cache/
+scripts/.cache/
 
 # Local IDE / environment files
 .agents/

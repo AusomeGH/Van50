@@ -39,6 +39,7 @@ FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
 from daily_automation import get_automation_status, update_automation_status, run_full_daily_pipeline
+from screenshot_verifier import verify_screenshot_against_event
 
 PORT = 8080
 
@@ -939,7 +940,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             return self._send_json(400, {"error": "Invalid Content-Length header"})
 
         # Limits: 25MB for screenshot uploads (supporting multiple screenshots), 256KB for all other JSON endpoints
-        max_bytes = 25 * 1024 * 1024 if path in {"/api/curator/instruction", "/api/curator/venues/add"} else 256 * 1024
+        max_bytes = 25 * 1024 * 1024 if path in {"/api/curator/instruction", "/api/curator/venues/add", "/api/curator/verify-screenshot"} else 256 * 1024
         if content_len > max_bytes:
             try:
                 # Drain small excess if feasible to prevent abrupt connection reset
@@ -1375,6 +1376,50 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "instructionsPendingCount": pending_count
             })
 
+        # 4f. API: Verify Screenshot & Align with Card Metadata (Native Windows OCR)
+        if path == "/api/curator/verify-screenshot":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            event_id = payload.get("eventId", "")
+            screenshot_base64 = payload.get("screenshotBase64") or payload.get("screenshot")
+            screenshot_path = payload.get("screenshotPath")
+            card_data = payload.get("event") or {}
+
+            if not card_data and event_id:
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    try:
+                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                            q_data = json.load(f)
+                        card_data = next((q for q in q_data.get("quarantinedEvents", []) if q.get("id") == event_id), None)
+                    except Exception:
+                        pass
+                if not card_data and os.path.exists(EVENTS_PATH):
+                    try:
+                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+                            ev_data = json.load(f)
+                        card_data = next((e for e in ev_data.get("events", []) if e.get("id") == event_id), None)
+                    except Exception:
+                        pass
+
+            if not card_data:
+                card_data = {
+                    "id": event_id or "candidate",
+                    "title": payload.get("eventTitle", ""),
+                    "venue": payload.get("venueName", ""),
+                    "price": float(payload.get("price", 0.0)),
+                    "dateSchedule": payload.get("dateSchedule", "")
+                }
+
+            source_img = screenshot_path if (screenshot_path and os.path.exists(screenshot_path)) else screenshot_base64
+            if not source_img:
+                return self._send_json(400, {"error": "No screenshot provided. Please provide screenshotBase64 or screenshotPath."})
+
+            try:
+                result = verify_screenshot_against_event(source_img, card_data)
+                return self._send_json(200, result)
+            except Exception as e:
+                return self._send_json(500, {"error": f"Screenshot verification failed: {e}"})
 
         # 5. API: Instruct AI Assistant (Plain English & Screenshot Queue)
         if path == "/api/curator/instruction":
@@ -1536,7 +1581,25 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         event_to_approve = payload.get("event")
 
                     if event_to_approve:
-                        price = float(payload.get("approvedPrice", event_to_approve.get("price", 0.0)))
+                        # Auto-extract from screenshot if user did not type price explicitly
+                        user_supplied_price = payload.get("approvedPrice")
+                        fee_breakdown_override = None
+                        if user_supplied_price is None and primary_shot and os.path.exists(primary_shot):
+                            try:
+                                ocr_res = verify_screenshot_against_event(primary_shot, event_to_approve)
+                                extracted_ocr = ocr_res.get("extracted", {})
+                                if extracted_ocr.get("total_price") is not None:
+                                    price = float(extracted_ocr["total_price"])
+                                    fee_breakdown_override = extracted_ocr.get("fee_breakdown")
+                                    print(f"[CURATOR AUTO-OCR] Auto-applied verified screenshot price ${price:.2f} to '{event_id}'")
+                                else:
+                                    price = float(event_to_approve.get("price", 0.0))
+                            except Exception as e:
+                                print(f"[CURATOR AUTO-OCR WARN] {e}")
+                                price = float(event_to_approve.get("price", 0.0))
+                        else:
+                            price = float(user_supplied_price if user_supplied_price is not None else event_to_approve.get("price", 0.0))
+
                         if price > 50.0:
                             return self._send_json(400, {"error": f"Approved price ${price:.2f} CAD exceeds $50.00 CAD budget limit."})
 
@@ -1557,9 +1620,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         event_to_approve["curatorNote"] = note
                         event_to_approve["checkoutVerification"] = {
                             "status": "verified_live",
-                            "method": "manual_curator_review",
+                            "method": "curator_screenshot_verification" if fee_breakdown_override else "manual_curator_review",
                             "verifiedTotal": price,
-                            "feeBreakdown": f"${price:.2f} CAD verified via Curator Studio review with AI instruction",
+                            "feeBreakdown": fee_breakdown_override or f"${price:.2f} CAD verified via Curator Studio review with AI instruction",
                             "verifiedAt": datetime.now(timezone.utc).isoformat(),
                             "details": f"Approved by curator with AI instruction. Note: {note}",
                             "curatorSnapshot": {

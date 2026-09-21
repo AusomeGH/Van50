@@ -1104,6 +1104,255 @@ function clearScreenshotPreview() {
   if (container) container.style.display = 'none';
   if (gallery) gallery.innerHTML = '';
   if (fileInput) fileInput.value = '';
+  resetScreenshotAlignmentPanel();
+}
+
+function resetScreenshotAlignmentPanel() {
+  state.currentOcrVerification = null;
+  const panel = document.getElementById('ai-screenshot-alignment-panel');
+  if (panel) panel.style.display = 'none';
+
+  const loading = document.getElementById('ai-alignment-loading');
+  if (loading) loading.style.display = 'none';
+
+  const results = document.getElementById('ai-alignment-results');
+  if (results) results.style.display = 'none';
+
+  const badge = document.getElementById('ai-alignment-status-badge');
+  if (badge) {
+    badge.textContent = 'Analyzing...';
+    badge.style.background = 'rgba(56, 189, 248, 0.2)';
+    badge.style.color = '#38bdf8';
+  }
+
+  const priceEl = document.getElementById('ai-ocr-detected-price');
+  if (priceEl) {
+    priceEl.textContent = '$0.00';
+    priceEl.style.color = '#f8fafc';
+  }
+
+  const feeEl = document.getElementById('ai-ocr-fee-breakdown');
+  if (feeEl) feeEl.textContent = 'Fee Breakdown';
+
+  const discAlert = document.getElementById('ai-ocr-discrepancy-alert');
+  if (discAlert) {
+    discAlert.style.display = 'none';
+    discAlert.textContent = '';
+  }
+
+  const statAlert = document.getElementById('ai-ocr-status-warning');
+  if (statAlert) {
+    statAlert.style.display = 'none';
+    statAlert.textContent = '';
+  }
+
+  ['venue', 'title', 'date', 'age'].forEach(k => {
+    const row = document.getElementById(`ai-align-row-${k}`);
+    const val = document.getElementById(`ai-align-val-${k}`);
+    if (row) row.style.borderLeft = '3px solid #94a3b8';
+    if (val) {
+      val.textContent = k === 'age' ? 'Standard' : 'Checking...';
+      val.style.color = '#f1f5f9';
+    }
+  });
+}
+
+async function triggerScreenshotVerification(dataUrl) {
+  if (!dataUrl || !state.token) return;
+
+  const panel = document.getElementById('ai-screenshot-alignment-panel');
+  const loading = document.getElementById('ai-alignment-loading');
+  const results = document.getElementById('ai-alignment-results');
+  const badge = document.getElementById('ai-alignment-status-badge');
+  const detectedPriceEl = document.getElementById('ai-ocr-detected-price');
+  const feeBreakdownEl = document.getElementById('ai-ocr-fee-breakdown');
+  const discrepancyAlert = document.getElementById('ai-ocr-discrepancy-alert');
+  const statusWarning = document.getElementById('ai-ocr-status-warning');
+  const btnApplyPrice = document.getElementById('btn-apply-ocr-price');
+  const eventId = document.getElementById('ai-inst-event-id')?.value || '';
+
+  if (panel) panel.style.display = 'block';
+  if (loading) loading.style.display = 'flex';
+  if (results) results.style.display = 'none';
+  if (badge) {
+    badge.textContent = 'Running Native OCR...';
+    badge.style.background = 'rgba(56, 189, 248, 0.2)';
+    badge.style.color = '#38bdf8';
+  }
+
+  try {
+    const res = await fetch('/api/curator/verify-screenshot', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: jsonStringify({
+        eventId: eventId,
+        screenshotBase64: dataUrl
+      })
+    });
+
+    if (loading) loading.style.display = 'none';
+    if (results) results.style.display = 'block';
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
+        state.currentOcrVerification = data;
+
+        // Header Status Badge
+        if (badge) {
+          if (data.aligned) {
+            badge.textContent = '✓ Fully Aligned';
+            badge.style.background = 'rgba(16, 185, 129, 0.25)';
+            badge.style.color = '#34d399';
+          } else if (data.warnings && data.warnings.length > 0) {
+            badge.textContent = '⚠️ Attention Needed';
+            badge.style.background = 'rgba(245, 158, 11, 0.25)';
+            badge.style.color = '#fbbf24';
+          } else {
+            badge.textContent = '✓ OCR Verified';
+            badge.style.background = 'rgba(16, 185, 129, 0.25)';
+            badge.style.color = '#34d399';
+          }
+        }
+
+        // Pricing Information
+        const shotPrice = data.price?.screenshotPrice;
+        const feeText = data.price?.feeBreakdown;
+        if (detectedPriceEl) {
+          if (shotPrice !== null && shotPrice !== undefined) {
+            detectedPriceEl.textContent = `$${parseFloat(shotPrice).toFixed(2)} CAD (all-in)`;
+            detectedPriceEl.style.color = shotPrice <= 50.0 ? '#34d399' : '#f87171';
+          } else {
+            detectedPriceEl.textContent = 'No total price detected';
+            detectedPriceEl.style.color = '#94a3b8';
+          }
+        }
+
+        if (feeBreakdownEl) {
+          if (feeText) {
+            feeBreakdownEl.textContent = feeText;
+          } else if (data.ocrSummary?.rawPriceMatches?.length > 0) {
+            feeBreakdownEl.textContent = 'Raw prices found: ' + data.ocrSummary.rawPriceMatches.map(p => '$' + p).join(', ');
+          } else {
+            feeBreakdownEl.textContent = 'No individual fees itemized';
+          }
+        }
+
+        // Configure Apply Price Button & Auto-fill price field if empty or default
+        if (btnApplyPrice) {
+          if (shotPrice !== null && shotPrice !== undefined) {
+            btnApplyPrice.style.display = 'inline-flex';
+            btnApplyPrice.dataset.price = parseFloat(shotPrice).toFixed(2);
+            btnApplyPrice.dataset.breakdown = feeText || '';
+
+            // Auto-fill price input if it was default ($25.00) or empty or 0
+            const priceInput = document.getElementById('ai-approve-price');
+            const noteInput = document.getElementById('ai-approve-note');
+            if (priceInput) {
+              const currentVal = parseFloat(priceInput.value);
+              if (isNaN(currentVal) || currentVal === 0 || currentVal === 25.0) {
+                priceInput.value = parseFloat(shotPrice).toFixed(2);
+                priceInput.style.transition = 'background-color 0.4s ease, border-color 0.4s ease';
+                priceInput.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+                priceInput.style.borderColor = '#10b981';
+                setTimeout(() => {
+                  priceInput.style.backgroundColor = '';
+                  priceInput.style.borderColor = '';
+                }, 1500);
+              }
+            }
+            if (noteInput && feeText && (!noteInput.value || noteInput.value.startsWith('Verified door rate'))) {
+              noteInput.value = feeText;
+            }
+          } else {
+            btnApplyPrice.style.display = 'none';
+          }
+        }
+
+        // Update Alignment Indicators
+        const setIndicator = (key, matched, label) => {
+          const row = document.getElementById(`ai-align-row-${key}`);
+          const val = document.getElementById(`ai-align-val-${key}`);
+          if (val) {
+            val.textContent = matched ? `✓ ${label}` : (label ? `⚠️ ${label}` : 'Not found');
+            val.style.color = matched ? '#34d399' : (label ? '#fbbf24' : '#94a3b8');
+          }
+          if (row) {
+            row.style.borderLeft = matched ? '3px solid #10b981' : (label ? '3px solid #f59e0b' : '3px solid #64748b');
+          }
+        };
+
+        setIndicator('venue', data.alignment?.venueMatch, data.ocrSummary?.detectedVenue || (data.alignment?.venueMatch ? 'Matched' : ''));
+        setIndicator('title', data.alignment?.titleMatch, data.ocrSummary?.detectedTitle || (data.alignment?.titleMatch ? 'Matched' : ''));
+        setIndicator('date', data.alignment?.dateMatch, data.ocrSummary?.detectedDate || (data.alignment?.dateMatch ? 'Matched' : ''));
+
+        // Age policy indicator
+        const rowAge = document.getElementById('ai-align-row-age');
+        const valAge = document.getElementById('ai-align-val-age');
+        const agePolicy = data.ocrSummary?.agePolicy || 'All Ages';
+        const isAdult = agePolicy.includes('19+');
+        if (valAge) {
+          valAge.textContent = isAdult ? '🔞 19+ (Adult)' : `✓ ${agePolicy}`;
+          valAge.style.color = isAdult ? '#fbbf24' : '#34d399';
+        }
+        if (rowAge) {
+          rowAge.style.borderLeft = isAdult ? '3px solid #f59e0b' : '3px solid #10b981';
+        }
+
+        // Discrepancy Alert Banner
+        if (discrepancyAlert) {
+          const cardPrice = data.price?.cardPrice;
+          if (cardPrice !== null && shotPrice !== null && Math.abs(cardPrice - shotPrice) > 0.05) {
+            discrepancyAlert.style.display = 'block';
+            discrepancyAlert.innerHTML = `⚠️ <strong>Price Mismatch:</strong> Card has <strong>$${cardPrice.toFixed(2)}</strong>, but screenshot verified <strong>$${shotPrice.toFixed(2)} all-in</strong>. Click <em>Apply to Card Price</em> to update.`;
+          } else if (data.warnings && data.warnings.length > 0) {
+            discrepancyAlert.style.display = 'block';
+            discrepancyAlert.innerHTML = `⚠️ <strong>Notice:</strong> ` + data.warnings.map(escapeHtml).join('; ');
+          } else {
+            discrepancyAlert.style.display = 'none';
+          }
+        }
+
+        // Status Warning Banner (Sold out / Private)
+        if (statusWarning) {
+          if (data.ocrSummary?.soldOut) {
+            statusWarning.style.display = 'block';
+            statusWarning.innerHTML = `🛑 <strong>Sold Out / Capacity Alert:</strong> Screenshot text contains sold out / off-sale terms. Check before approving.`;
+          } else if (data.ocrSummary?.privateEvent) {
+            statusWarning.style.display = 'block';
+            statusWarning.innerHTML = `🛑 <strong>Restricted Event Alert:</strong> Screenshot indicates a private or members-only event.`;
+          } else {
+            statusWarning.style.display = 'none';
+          }
+        }
+
+        showToast('🔍 Screenshot verified with Native OCR!', 'info');
+      } else {
+        if (badge) {
+          badge.textContent = 'OCR Notice';
+          badge.style.background = 'rgba(245, 158, 11, 0.2)';
+          badge.style.color = '#fbbf24';
+        }
+      }
+    } else {
+      if (badge) {
+        badge.textContent = 'OCR Error';
+        badge.style.background = 'rgba(239, 68, 68, 0.2)';
+        badge.style.color = '#f87171';
+      }
+    }
+  } catch (err) {
+    console.error('Screenshot verification error:', err);
+    if (loading) loading.style.display = 'none';
+    if (badge) {
+      badge.textContent = 'OCR Offline';
+      badge.style.background = 'rgba(239, 68, 68, 0.2)';
+      badge.style.color = '#f87171';
+    }
+  }
 }
 
 function renderScreenshotGallery() {
@@ -1232,6 +1481,9 @@ function addScreenshotDataUrls(urls) {
   renderScreenshotGallery();
   if (addedCount > 0) {
     showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added!`, 'info');
+    if (state.currentScreenshots && state.currentScreenshots.length > 0) {
+      triggerScreenshotVerification(state.currentScreenshots[0]);
+    }
   }
 }
 
@@ -1256,9 +1508,15 @@ async function submitAIInstruction(action = 'queue_only') {
   const venueName = document.getElementById('ai-inst-venue')?.value || '';
   const sourceUrl = document.getElementById('ai-inst-url')?.value || '';
 
-  const approvedPrice = parseFloat(document.getElementById('ai-approve-price')?.value || 0);
+  let approvedPrice = parseFloat(document.getElementById('ai-approve-price')?.value);
+  if ((isNaN(approvedPrice) || approvedPrice <= 0) && state.currentOcrVerification?.price?.screenshotPrice) {
+    approvedPrice = state.currentOcrVerification.price.screenshotPrice;
+  }
+  if (isNaN(approvedPrice)) {
+    approvedPrice = 0.0;
+  }
   const approvedCategory = document.getElementById('ai-approve-category')?.value || 'shows';
-  const curatorNote = document.getElementById('ai-approve-note')?.value || instructionText;
+  const curatorNote = document.getElementById('ai-approve-note')?.value || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
 
   if (action === 'queue_and_approve' && (isNaN(approvedPrice) || approvedPrice < 0 || approvedPrice > 50.0)) {
     showToast('Price must be a valid number between $0.00 and $50.00 CAD to approve!', 'error');
@@ -1418,6 +1676,7 @@ function setupCuratorEventListeners() {
 
   const closeAiModal = () => {
     if (aiModal) aiModal.classList.remove('active');
+    resetScreenshotAlignmentPanel();
   };
 
   if (cancelAiBtn) cancelAiBtn.addEventListener('click', closeAiModal);
@@ -1621,6 +1880,33 @@ function setupCuratorEventListeners() {
       e.stopPropagation();
       clearScreenshotPreview();
       showToast('Screenshots cleared', 'info');
+    });
+  }
+
+  // 1-Click Apply OCR Price to Card
+  const btnApplyOcrPrice = document.getElementById('btn-apply-ocr-price');
+  if (btnApplyOcrPrice) {
+    btnApplyOcrPrice.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const detectedPrice = btnApplyOcrPrice.dataset.price;
+      const feeBreakdown = btnApplyOcrPrice.dataset.breakdown;
+      const priceInput = document.getElementById('ai-approve-price');
+      const noteInput = document.getElementById('ai-approve-note');
+      if (priceInput && detectedPrice) {
+        priceInput.value = detectedPrice;
+        priceInput.style.transition = 'background-color 0.3s ease, border-color 0.3s ease';
+        priceInput.style.backgroundColor = 'rgba(16, 185, 129, 0.25)';
+        priceInput.style.borderColor = '#10b981';
+        setTimeout(() => {
+          priceInput.style.backgroundColor = '';
+          priceInput.style.borderColor = '';
+        }, 1200);
+      }
+      if (noteInput && feeBreakdown) {
+        noteInput.value = feeBreakdown;
+      }
+      showToast(`⚡ Applied $${detectedPrice} CAD to card price!`, 'success');
     });
   }
 

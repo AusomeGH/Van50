@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-20T18:46:02-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-20T18:53:56-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -14616,7 +14616,7 @@ const VANCOUVER_EVENTS = [
       "music"
     ],
     "frequency": "one-time",
-    "startIso": "2026-09-21T00:51:07.708809+00:00",
+    "startIso": "2026-10-04T19:00:00-07:00",
     "description": "Live performance at Hollywood Theatre.",
     "ticketProvider": "Curator Verified",
     "coordinates": [
@@ -14630,7 +14630,9 @@ const VANCOUVER_EVENTS = [
       "feeBreakdown": "$30.00 CAD base ticket + $10.75 Ticketmaster service fee & processing ($40.75 total)",
       "verifiedAt": "2026-09-21T01:45:33.468473+00:00",
       "screenshotPath": "data/curator_screenshots/screenshot_1789950158077_0.png"
-    }
+    },
+    "dateSchedule": "Sun Oct 04, 2026 • 7:00 PM",
+    "agePolicy": "19+"
   }
 ];
 const MANUAL_REVIEW_QUEUE = [];
