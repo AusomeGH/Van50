@@ -32,6 +32,7 @@ INSTRUCTIONS_PATH = os.path.join(DATA_DIR, "curator_instructions.json")
 SCREENSHOTS_DIR = os.path.join(DATA_DIR, "curator_screenshots")
 JS_DATA_PATH = os.path.join(BASE_DIR, "js", "data.js")
 BACKUP_DIR = os.path.join(DATA_DIR, "backups")
+LOGS_DIR = os.path.join(DATA_DIR, "automation_logs")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
 VENUE_DIR_PATH = os.path.join(DATA_DIR, "venue_directory.json")
 FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
@@ -736,6 +737,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            link_audit_data = None
+            audit_report_path = os.path.join(LOGS_DIR, "link_audit_latest.json")
+            if os.path.exists(audit_report_path):
+                try:
+                    with open(audit_report_path, "r", encoding="utf-8") as af:
+                        link_audit_data = json.load(af)
+                except Exception:
+                    pass
+
             return self._send_json(200, {
                 "server": "Van50 Curator Daemon",
                 "authenticated": is_auth,
@@ -746,6 +756,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "instructionsPendingCount": inst_count,
                 "discoveredVenuesCount": v_count,
                 "knownVenues": known_venues,
+                "linkAudit": link_audit_data,
                 "timestamp": datetime.now().isoformat()
             })
 

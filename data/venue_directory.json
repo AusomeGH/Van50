@@ -769,7 +769,7 @@
       "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
       "category": "music",
       "venueUrl": "https://www.guiltandcompany.com",
-      "calendarUrl": "https://www.guiltandcompany.com/live-music",
+      "calendarUrl": "https://www.guiltandcompany.com",
       "boxOfficeUrl": "https://www.guiltandcompany.com",
       "ticketingProvider": "Venue Door / Table Charge",
       "adapter": "GuiltAndCoLiveAdapter",

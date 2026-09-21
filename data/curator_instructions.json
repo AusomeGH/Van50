@@ -3764,7 +3764,7 @@
     {
       "id": "learn_1789951886746",
       "createdAt": "2026-09-21T00:51:26.746490+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1789951886",
@@ -3775,12 +3775,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951887216",
       "createdAt": "2026-09-21T00:51:27.217101+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -3813,12 +3815,14 @@
         "distilledAt": "2026-09-21T00:51:27.227868+00:00"
       },
       "aiLearnedSummary": "Calendar: https://littlemountaingallery.ca/events",
-      "learnedAt": "2026-09-21T00:51:27.263226+00:00"
+      "learnedAt": "2026-09-21T00:51:27.263226+00:00",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951887301",
       "createdAt": "2026-09-21T00:51:27.303114+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -3853,12 +3857,14 @@
         "distilledAt": "2026-09-21T00:51:27.315592+00:00"
       },
       "aiLearnedSummary": "Calendar: https://frankiesjazzclub.com",
-      "learnedAt": "2026-09-21T00:51:27.385130+00:00"
+      "learnedAt": "2026-09-21T00:51:27.385130+00:00",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951887423",
       "createdAt": "2026-09-21T00:51:27.424251+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1789951887",
       "eventTitle": "",
       "venueName": "",
@@ -3870,12 +3876,14 @@
       "screenshotCount": 0,
       "actionTaken": "queue_and_approve",
       "curatorNote": "Curator verified door price",
-      "targetScraperOrEngine": "UniversalVenueCrawler"
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951887928",
       "createdAt": "2026-09-21T00:51:27.933671+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -3911,12 +3919,14 @@
         "distilledAt": "2026-09-21T00:51:27.966714+00:00"
       },
       "aiLearnedSummary": "AI distilled policy rules from curator comments for Fox Cabaret.",
-      "learnedAt": "2026-09-21T00:51:28.023813+00:00"
+      "learnedAt": "2026-09-21T00:51:28.023813+00:00",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951891544",
       "createdAt": "2026-09-21T00:51:31.544933+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1789951891",
       "eventTitle": "Venue: Dummy Private Hall 1789951891",
       "venueName": "Dummy Private Hall 1789951891",
@@ -3948,12 +3958,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1789951891.",
         "distilledAt": "2026-09-21T00:51:31.543534+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1789951891."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1789951891.",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951891644",
       "createdAt": "2026-09-21T00:51:31.646324+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1789951891",
       "eventTitle": "Venue: Pending Venue Candidate 1789951891",
       "venueName": "Pending Venue Candidate 1789951891",
@@ -3988,12 +4000,14 @@
         "distilledAt": "2026-09-21T00:51:31.643856+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-21T00:51:31.724635+00:00"
+      "learnedAt": "2026-09-21T00:51:31.724635+00:00",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     },
     {
       "id": "inst_1789951891777",
       "createdAt": "2026-09-21T00:51:31.779276+00:00",
-      "status": "active_learned",
+      "status": "resolved",
       "eventId": "test-qa-cellar-1789951891",
       "eventTitle": "Venue: Test QA Cellar 1789951891",
       "venueName": "Test QA Cellar 1789951891",
@@ -4030,8 +4044,10 @@
         "distilledAt": "2026-09-21T00:51:31.776902+00:00"
       },
       "aiLearnedSummary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
-      "learnedAt": "2026-09-21T00:51:31.884241+00:00"
+      "learnedAt": "2026-09-21T00:51:31.884241+00:00",
+      "applied": true,
+      "appliedAt": "2026-09-21T02:23:00.572926+00:00"
     }
   ],
-  "lastLearnedAt": "2026-09-21T00:51:07.708809+00:00"
+  "lastLearnedAt": "2026-09-21T02:25:37.337055+00:00"
 }

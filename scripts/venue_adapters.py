@@ -451,7 +451,7 @@ class BiltmoreCabaretLiveAdapter:
             "tiers": [
                 {"name": "General Admission", "basePrice": 11.0, "price": 11.00, "label": "$11.00 all-in"}
             ],
-            "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
+            "websiteUrl": "https://biltmorecabaret.com",
             "venueUrl": cls.HOMEPAGE_URL,
             "ticketProvider": "AdmitOne Verified",
             "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands."
@@ -1041,8 +1041,8 @@ class HollywoodTheatreLiveAdapter:
 
 class GuiltAndCoLiveAdapter:
     """Live Adapter for Guilt & Co. (1 Alexander St, Underground)."""
-    CALENDAR_URL = "https://guiltandcompany.com/live-music"
-    HOMEPAGE_URL = "https://guiltandcompany.com"
+    CALENDAR_URL = "https://www.guiltandcompany.com"
+    HOMEPAGE_URL = "https://www.guiltandcompany.com"
 
     @classmethod
     def authenticate_flagship(cls) -> dict:

@@ -41,8 +41,11 @@ def build_email_content(summary: Dict[str, Any], quarantined_items: Optional[Lis
         f"Quarantined:      {quarantine_count} items awaiting review",
         f"Crawl Duration:   {duration} seconds",
         f"Safety Backup:    {backup_file}",
-        ""
     ]
+    link_audit = summary.get("linkAudit")
+    if link_audit:
+        text_lines.append(f"Link Health:      {link_audit.get('healthyCount', 0)} healthy, {link_audit.get('botProtectedCount', 0)} bot-shielded, {link_audit.get('deadCount', 0)} dead, {link_audit.get('soft404Count', 0)} soft-404 ({link_audit.get('quarantinedCount', 0)} quarantined)")
+    text_lines.append("")
     if quarantined_items:
         text_lines.append("--- Items Flagged for Manual Review ---")
         for item in quarantined_items[:5]:
@@ -152,7 +155,8 @@ def build_email_content(summary: Dict[str, Any], quarantined_items: Optional[Lis
       <!-- Pipeline Telemetry -->
       <div style="background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
         <div style="margin-bottom: 6px;">💾 <strong>Safety Snapshot:</strong> <code style="color: #38bdf8;">{backup_file}</code></div>
-        <div>🗓️ <strong>Next Autonomous Run:</strong> {summary.get('nextRunAt', 'Tomorrow 04:00 AM')}</div>
+        <div style="margin-bottom: {'6px' if link_audit else '0'};">🗓️ <strong>Next Autonomous Run:</strong> {summary.get('nextRunAt', 'Tomorrow 04:00 AM')}</div>
+        {f'''<div style="margin-top: 6px;">🔗 <strong>Link Health Audit:</strong> {link_audit.get("healthyCount", 0)} healthy &bull; {link_audit.get("botProtectedCount", 0)} bot-shielded &bull; <span style="color: {'#f87171' if (link_audit.get('deadCount', 0) + link_audit.get('soft404Count', 0)) > 0 else '#10b981'};">{link_audit.get('deadCount', 0)} dead, {link_audit.get('soft404Count', 0)} soft-404 ({link_audit.get('quarantinedCount', 0)} quarantined)</span></div>''' if link_audit else ''}
       </div>
 
       <!-- Quarantine Table if present -->

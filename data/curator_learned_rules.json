@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-20T17:51:31-07:00",
+    "updatedAt": "2026-09-21T02:25:37.337055+00:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -28,7 +28,7 @@
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
     "Rickshaw Theatre": "https://rickshawtheatre.com/events/",
     "Hollywood Theatre": "https://www.ticketmaster.ca/event/110064638F595700",
-    "Guilt & Co.": "https://guiltandcompany.com/live-music",
+    "Guilt & Co.": "https://www.guiltandcompany.com",
     "Tightrope Impro Theatre": "https://www.tightropetheatre.com/weekly-live-shows",
     "The Improv Centre": "https://theimprovcentre.ca/shows/",
     "The Roxy Cabaret": "https://www.showpass.com/cfe0926/",

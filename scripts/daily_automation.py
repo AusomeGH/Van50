@@ -35,6 +35,7 @@ from nomadic_resolver import NomadicLocationResolver
 from universal_festival_crawler import UniversalFestivalCrawler
 from universal_discovery_crawler import UniversalDiscoveryCrawler
 from curator_learning_engine import CuratorLearningEngine
+from audit_all_links import run_link_health_audit
 
 
 def log_message(msg: str, log_file_path: str = None):
@@ -92,7 +93,8 @@ def get_automation_status() -> Dict[str, Any]:
         "lastRunAt": None,
         "nextRunAt": calculate_next_run("04:00").isoformat(),
         "totalEvents": 0,
-        "quarantinedCount": 0
+        "quarantinedCount": 0,
+        "linkAudit": None
     }
     if os.path.exists(STATUS_PATH):
         try:
@@ -174,6 +176,24 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     except Exception as e:
         log_message(f"[DISCOVERY RADAR WARN] Error: {e}", log_file_path)
 
+    # Step 2.8: Autonomous Link & Soft-404 Health Audit
+    update_automation_status({"currentStep": "link_health_audit"})
+    log_message("[PIPELINE STEP 2.8/3] Running autonomous link & soft-404 health audit across active catalog...", log_file_path)
+    link_audit_summary = None
+    try:
+        link_audit_summary = run_link_health_audit(auto_quarantine=not dry_run, log_path=log_file_path)
+        log_message(
+            f"[LINK AUDIT RESULTS] Checked: {link_audit_summary.get('totalChecked', 0)} | "
+            f"Healthy: {link_audit_summary.get('healthyCount', 0)} | "
+            f"Bot-Shielded: {link_audit_summary.get('botProtectedCount', 0)} | "
+            f"Dead: {link_audit_summary.get('deadCount', 0)} | "
+            f"Soft 404s: {link_audit_summary.get('soft404Count', 0)} | "
+            f"Quarantined: {link_audit_summary.get('quarantinedCount', 0)}",
+            log_file_path
+        )
+    except Exception as e:
+        log_message(f"[LINK AUDIT WARN] Error running link health audit: {e}\n{traceback.format_exc()}", log_file_path)
+
     # Step 3: Verify Catalog & Queue Metrics
     update_automation_status({"currentStep": "compiling_metrics"})
     total_events = 0
@@ -207,6 +227,7 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
         "quarantinedCount": quarantine_count,
         "backupFile": backup_file,
         "learningStats": learning_stats,
+        "linkAudit": link_audit_summary,
         "automationEnabled": True,
         "lastLogFile": f"data/automation_logs/daily_sync_{today_str}.log"
     }

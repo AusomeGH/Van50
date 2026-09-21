@@ -78,7 +78,7 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "sampleShowTitle": "Delusions and Grandeur (Adult Comedy & Solo Cello Clown)",
         "artist": "Karen Hall",
         "performers": "Karen Hall",
-        "showUrl": "https://vancouverfringe.com/events/delusions-and-grandeur/",
+        "showUrl": "https://vancouverfringe.com/",
         "showDescription": "Karen Hall's sold-out solo clowning and classical cello tour de force exploring vulnerability, ego, and perfectionism.\n\n★ Fringe Reviews: \"Fascinating and brilliantly creative... her comedic timing is as impeccable as her playing.\" (VanCityVince & Stage Raw Best Solo Performance Award).",
         "subTags": ["#festival", "#fringe", "#theatre", "#comedy", "#adult-comedy", "#clown", "#adults-only", "#granville-island"]
     },
@@ -114,7 +114,7 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "coordinates": [49.2774, -123.1251],
         "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
         "venueUrl": "https://viff.org",
-        "showUrl": "https://viff.org/whats-on/viff-2026/",
+        "showUrl": "https://viff.org",
         "sampleShowTitle": "Feature Screenings, Talks & BC Spotlight",
         "showDescription": "Vancouver International Film Festival feature screenings, director Q&As, and BC spotlight cinema at the downtown VIFF Centre.",
         "subTags": ["#festival", "#viff", "#cinema", "#screenings", "#film"]
@@ -125,7 +125,7 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "coordinates": [49.2795, -123.1274],
         "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
         "venueUrl": "https://thecinematheque.ca",
-        "showUrl": "https://viff.org/venues/the-cinematheque/",
+        "showUrl": "https://thecinematheque.ca",
         "sampleShowTitle": "International Cinema Showcase & Retrospectives",
         "showDescription": "Award-winning international festival selections, auteur documentaries, and global premieres at Howe Street's historic Cinematheque.",
         "subTags": ["#festival", "#viff", "#cinema", "#world-cinema", "#film"]
@@ -136,7 +136,7 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "coordinates": [49.2627, -123.0699],
         "transitInfo": "1 min walk from Commercial-Broadway SkyTrain",
         "venueUrl": "https://riotheatre.ca",
-        "showUrl": "https://viff.org/venues/rio-theatre/",
+        "showUrl": "https://riotheatre.ca",
         "sampleShowTitle": "Late-Night Cult & Special Screenings",
         "showDescription": "Late-night cult cinema, genre premieres, and electric live-screened festival events at Commercial Drive's iconic Rio Theatre.",
         "subTags": ["#festival", "#viff", "#cinema", "#cult-film", "#late-night"]
@@ -147,7 +147,7 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "coordinates": [49.2831, -123.1090],
         "transitInfo": "5 min walk from Waterfront SkyTrain Station",
         "venueUrl": "https://www.sfu.ca/woodwards.html",
-        "showUrl": "https://viff.org/venues/sfu-goldcorp/",
+        "showUrl": "https://www.sfu.ca/woodwards.html",
         "sampleShowTitle": "Gala Screenings & Contemporary Storytelling",
         "showDescription": "Special festival gala screenings and contemporary cinematic storytelling at SFU Goldcorp Centre for the Arts in the historic Woodward's complex.",
         "subTags": ["#festival", "#viff", "#cinema", "#screenings", "#premieres"]

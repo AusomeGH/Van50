@@ -675,7 +675,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-10-17T19:00:00-07:00",
             "endIso": "2026-10-17T23:00:00-07:00",
             "isSoldOut": False,
-            "websiteUrl": "https://admitone.com/events/mamas-broke-vancouver-169979",
+            "websiteUrl": "https://biltmorecabaret.com",
             "coordinates": [49.2602, -123.0975],
             "transitInfo": "Main & 12th Ave bus corridor",
             "description": "Mount Pleasant's heritage indie concert lounge hosting folk duo Mama's Broke live with support, ticketed via AdmitOne."
