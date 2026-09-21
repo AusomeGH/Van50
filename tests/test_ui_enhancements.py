@@ -124,7 +124,44 @@ class TestUIEnhancements(unittest.TestCase):
         self.assertNotIn('<span>⚡ More Filters</span>', index_html)
         self.assertNotIn('<span>❤️ Saved Events</span>', index_html)
 
+    def test_08_accessibility_mode_and_buttons(self):
+        """Verify accessible mode button exists in index.html, curator.html, and CSS defines van50-accessible."""
+        index_html_path = os.path.join(BASE_DIR, "index.html")
+        with open(index_html_path, "r", encoding="utf-8") as f:
+            index_html = f.read()
+        self.assertIn('id="accessibility-btn"', index_html)
+        self.assertIn('Accessibility', index_html)
+
+        curator_html_path = os.path.join(BASE_DIR, "curator.html")
+        with open(curator_html_path, "r", encoding="utf-8") as f:
+            curator_html = f.read()
+        self.assertIn('id="curator-accessibility-btn"', curator_html)
+
+        app_js_path = os.path.join(BASE_DIR, "js", "app.js")
+        with open(app_js_path, "r", encoding="utf-8") as f:
+            app_js = f.read()
+        self.assertIn("toggleAccessibilityMode", app_js)
+        self.assertIn("setAccessibilityMode", app_js)
+        self.assertIn("van50-accessible", app_js)
+        self.assertIn("van50_accessible_mode", app_js)
+
+        css_comp_path = os.path.join(BASE_DIR, "css", "components.css")
+        with open(css_comp_path, "r", encoding="utf-8") as f:
+            css_comp = f.read()
+        self.assertIn("body.van50-accessible", css_comp)
+        self.assertIn("min-height: 48px", css_comp)
+
+    def test_09_festival_spotlight_blurb_dates(self):
+        """Verify festival spotlight blurb contains the dates the festival is occurring on."""
+        app_js_path = os.path.join(BASE_DIR, "js", "app.js")
+        with open(app_js_path, "r", encoding="utf-8") as f:
+            app_js = f.read()
+        self.assertIn("festival-dates-lead", app_js)
+        self.assertIn("September 10 – 20, 2026", app_js)
+        self.assertIn("festival-spotlight-blurb", app_js)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 

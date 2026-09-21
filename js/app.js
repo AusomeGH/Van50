@@ -6,6 +6,7 @@ const state = {
   maxBudget: 50,
   hideDaily: false,
   hideFestivalEvents: false,
+  accessibleMode: false,
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
@@ -26,6 +27,7 @@ let ALL_EVENTS = typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS : []
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedState();
+  initAccessibility();
   setupEventListeners();
   renderFestivalSpotlight();
   renderCategoryPills();
@@ -98,6 +100,14 @@ function showSyncTimestamp(isoStr, count) {
 // ==============================================================================
 
 function setupEventListeners() {
+  // Accessibility Mode Toggle
+  const accessBtn = document.getElementById('accessibility-btn');
+  if (accessBtn) {
+    accessBtn.addEventListener('click', () => {
+      toggleAccessibilityMode();
+    });
+  }
+
   // Search input & interactive controls
   const searchInput = document.getElementById('search-input');
   const clearSearchBtn = document.getElementById('btn-clear-search');
@@ -497,7 +507,7 @@ function renderFestivalSpotlight() {
         <h2 class="festival-spotlight-title">Vancouver Fringe Festival 2026 ${isHidden ? '<span class="festival-hidden-tag">(Events &amp; blurb hidden from listings &amp; map)</span>' : ''}</h2>
         ${!isHidden ? `
         <p class="festival-spotlight-blurb">
-          Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
+          <strong class="festival-dates-lead">📅 September 10 – 20, 2026:</strong> Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
         </p>
         <div class="festival-links-row">
           <a href="https://vancouverfringe.com/shows/" target="_blank" rel="noopener noreferrer" class="festival-link-primary" title="Browse full festival program on official site">
@@ -2820,4 +2830,52 @@ function renderReviewQueueModal() {
     </div>
   `).join('');
 }
+
+// ==============================================================================
+// 12. ACCESSIBILITY MODE ENGINE (WCAG AAA High Contrast & Enhanced Legibility)
+// ==============================================================================
+
+function initAccessibility() {
+  try {
+    const isAccessible = localStorage.getItem('van50_accessible_mode') === 'true';
+    setAccessibilityMode(isAccessible, false);
+  } catch (e) {}
+}
+
+function setAccessibilityMode(enabled, notify = true) {
+  state.accessibleMode = !!enabled;
+  document.documentElement.classList.toggle('van50-accessible', state.accessibleMode);
+  document.body.classList.toggle('van50-accessible', state.accessibleMode);
+
+  const btn = document.getElementById('accessibility-btn');
+  if (btn) {
+    btn.setAttribute('aria-pressed', state.accessibleMode ? 'true' : 'false');
+    btn.classList.toggle('active', state.accessibleMode);
+    const label = btn.querySelector('.access-label');
+    if (label) {
+      label.textContent = state.accessibleMode ? 'Accessible: ON' : 'Accessibility';
+    }
+  }
+
+  try {
+    localStorage.setItem('van50_accessible_mode', state.accessibleMode ? 'true' : 'false');
+  } catch (e) {}
+
+  if (notify && typeof showToast === 'function') {
+    showToast(
+      state.accessibleMode 
+        ? '♿ Accessible Mode Enabled (High Contrast, Enhanced Text & 48px Touch Targets)' 
+        : '♿ Standard Display Mode Restored',
+      'info'
+    );
+  }
+}
+
+function toggleAccessibilityMode() {
+  setAccessibilityMode(!state.accessibleMode, true);
+}
+
+window.initAccessibility = initAccessibility;
+window.setAccessibilityMode = setAccessibilityMode;
+window.toggleAccessibilityMode = toggleAccessibilityMode;
 

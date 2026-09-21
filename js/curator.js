@@ -30,6 +30,7 @@ const state = {
 };
 
 function initApp() {
+  initCuratorAccessibility();
   setupCuratorEventListeners();
   checkAuthAndInitialize();
   fetchAutomationStatus();
@@ -1362,6 +1363,10 @@ function setupCuratorEventListeners() {
   // Fetch Newsletters Button
   const fetchNewslettersBtn = document.getElementById('btn-fetch-newsletters');
   if (fetchNewslettersBtn) fetchNewslettersBtn.addEventListener('click', handleFetchNewsletters);
+
+  // Accessibility Mode Toggle Button
+  const curatorAccessBtn = document.getElementById('curator-accessibility-btn');
+  if (curatorAccessBtn) curatorAccessBtn.addEventListener('click', toggleCuratorAccessibility);
 
   // Filter Pills
   const pillsGroup = document.getElementById('filter-pills-group');
@@ -2969,4 +2974,52 @@ window.deleteInstruction = async function(instId) {
     showToast('Server error while deleting instruction', 'error');
   }
 };
+
+// ==============================================================================
+// 10. CURATOR ACCESSIBILITY ENGINE (High Contrast & Large Touch Targets)
+// ==============================================================================
+
+function initCuratorAccessibility() {
+  try {
+    const isAccessible = localStorage.getItem('van50_accessible_mode') === 'true';
+    setCuratorAccessibility(isAccessible, false);
+  } catch (e) {}
+}
+
+function setCuratorAccessibility(enabled, notify = true) {
+  document.documentElement.classList.toggle('van50-accessible', !!enabled);
+  document.body.classList.toggle('van50-accessible', !!enabled);
+
+  const btn = document.getElementById('curator-accessibility-btn');
+  if (btn) {
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    btn.classList.toggle('active', !!enabled);
+    const label = btn.querySelector('.access-label');
+    if (label) {
+      label.textContent = enabled ? 'Accessible: ON' : 'Accessibility';
+    }
+  }
+
+  try {
+    localStorage.setItem('van50_accessible_mode', enabled ? 'true' : 'false');
+  } catch (e) {}
+
+  if (notify && typeof showToast === 'function') {
+    showToast(
+      enabled 
+        ? '♿ Accessibility Mode Enabled (High Contrast & Enhanced Text)' 
+        : '♿ Standard Mode Restored',
+      'info'
+    );
+  }
+}
+
+function toggleCuratorAccessibility() {
+  const current = document.body.classList.contains('van50-accessible');
+  setCuratorAccessibility(!current, true);
+}
+
+window.initCuratorAccessibility = initCuratorAccessibility;
+window.setCuratorAccessibility = setCuratorAccessibility;
+window.toggleCuratorAccessibility = toggleCuratorAccessibility;
 

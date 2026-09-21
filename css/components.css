@@ -2846,3 +2846,140 @@
   }
 }
 
+/* Festival Spotlight Dates Lead Pill */
+.festival-dates-lead {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(56, 189, 248, 0.16);
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-right: 6px;
+  letter-spacing: 0.01em;
+}
+
+/* ==============================================================================
+   WCAG AAA Accessible Mode (.van50-accessible)
+   High Contrast (Black / White / Amber / Cyan), Enlarged Fonts, 48px Touch Targets, Underlined Links
+   ============================================================================== */
+
+body.van50-accessible {
+  --bg-base: #000000 !important;
+  --bg-surface: #0a0f1d !important;
+  --bg-card: #0d1527 !important;
+  --border-subtle: #475569 !important;
+  --border-medium: #94a3b8 !important;
+  --border-highlight: #ffffff !important;
+  --text-primary: #ffffff !important;
+  --text-secondary: #f8fafc !important;
+  --text-muted: #e2e8f0 !important;
+  --accent-primary: #34d399 !important;
+  --accent-secondary: #38bdf8 !important;
+  font-size: 108% !important;
+  line-height: 1.6 !important;
+}
+
+body.van50-accessible .site-header {
+  background: #000000 !important;
+  border-bottom: 2px solid #64748b !important;
+}
+
+body.van50-accessible .event-card {
+  border: 2px solid #64748b !important;
+  background: #0b1120 !important;
+}
+
+body.van50-accessible .event-card:hover,
+body.van50-accessible .event-card:focus-within {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px #38bdf8 !important;
+}
+
+body.van50-accessible .card-title {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  font-weight: 800 !important;
+}
+
+body.van50-accessible .card-price {
+  color: #ffffff !important;
+  background: #065f46 !important;
+  border: 2px solid #34d399 !important;
+  font-weight: 800 !important;
+  font-size: 0.98rem !important;
+  padding: 3px 10px !important;
+}
+
+body.van50-accessible .card-category-badge,
+body.van50-accessible .card-date-badge,
+body.van50-accessible .venue-pill {
+  border: 1.5px solid #94a3b8 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+body.van50-accessible .btn,
+body.van50-accessible .category-pill,
+body.van50-accessible .day-pill,
+body.van50-accessible .filter-chip,
+body.van50-accessible .view-btn,
+body.van50-accessible .btn-festival-toggle,
+body.van50-accessible .btn-festival-display {
+  min-height: 48px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-width: 2px !important;
+}
+
+body.van50-accessible a:focus-visible,
+body.van50-accessible button:focus-visible,
+body.van50-accessible input:focus-visible {
+  outline: 3px solid #38bdf8 !important;
+  outline-offset: 3px !important;
+}
+
+body.van50-accessible .btn-accessibility {
+  border: 2px solid #38bdf8 !important;
+  color: #38bdf8 !important;
+}
+
+body.van50-accessible .btn-accessibility.active {
+  background: #38bdf8 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.6) !important;
+}
+
+body.van50-accessible .festival-spotlight-card {
+  border: 2px solid #38bdf8 !important;
+  background: #060e1a !important;
+}
+
+body.van50-accessible .festival-spotlight-blurb {
+  color: #ffffff !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+body.van50-accessible .festival-dates-lead {
+  background: #0369a1 !important;
+  color: #ffffff !important;
+  border: 2px solid #38bdf8 !important;
+  font-size: 0.98rem !important;
+  padding: 3px 10px !important;
+}
+
+body.van50-accessible .card-ticket-link {
+  min-height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1rem !important;
+  border: 2px solid #38bdf8 !important;
+  font-weight: 800 !important;
+}
+

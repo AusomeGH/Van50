@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 72,
-    "updatedAt": "2026-09-21T00:34:02.270633+00:00"
+    "updatedAt": "2026-09-21T00:42:34.157359+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -218,7 +218,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-21T00:33:55.925498+00:00"
+        "distilledAt": "2026-09-21T00:42:26.434846+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -1038,7 +1038,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
         "summary": "Calendar: https://frankiesjazzclub.com",
-        "distilledAt": "2026-09-21T00:33:56.027115+00:00"
+        "distilledAt": "2026-09-21T00:42:26.566459+00:00"
       },
       "policySummary": "Calendar: https://frankiesjazzclub.com"
     },

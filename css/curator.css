@@ -1230,4 +1230,40 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
+/* ==============================================================================
+   WCAG AAA Accessible Mode in Curator Studio (.van50-accessible)
+   ============================================================================== */
+
+body.van50-accessible {
+  --curator-bg: #000000 !important;
+  --curator-card: #0b1220 !important;
+  --curator-text: #ffffff !important;
+  --curator-muted: #cbd5e1 !important;
+  --curator-border: #475569 !important;
+  font-size: 105% !important;
+}
+
+body.van50-accessible .curator-header {
+  background: #000000 !important;
+  border-bottom: 2px solid #64748b !important;
+}
+
+body.van50-accessible .curator-card,
+body.van50-accessible .manager-modal-card {
+  border: 2px solid #64748b !important;
+  background: #0a101d !important;
+}
+
+body.van50-accessible .btn-curator {
+  min-height: 42px !important;
+  font-weight: 700 !important;
+  border-width: 2px !important;
+}
+
+body.van50-accessible #curator-accessibility-btn.active {
+  background: #38bdf8 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+
 
