@@ -1,6 +1,47 @@
 // Van50 — Application State Management, Multi-Filter Engine & UI Orchestration
 // Strictly displays events under $50.00 CAD total out-of-pocket per person.
 
+// 0. CORE TAXONOMY & CLUSTER CONSTANTS (Authoritative Defaults)
+window.NEIGHBORHOODS = window.NEIGHBORHOODS || [
+  "Downtown, Gastown & Yaletown",
+  "Mount Pleasant & South Vancouver",
+  "Commercial Drive & East Vancouver",
+  "Kitsilano, Point Grey & UBC",
+  "Granville Island & False Creek",
+  "North Shore, Burnaby & Metro"
+];
+
+window.DAYS_OF_WEEK = window.DAYS_OF_WEEK || [
+  { id: "all", label: "All Days", icon: "🗓️" },
+  { id: "mon", label: "Mon", full: "Monday" },
+  { id: "tue", label: "Tue", full: "Tuesday" },
+  { id: "wed", label: "Wed", full: "Wednesday" },
+  { id: "thu", label: "Thu", full: "Thursday" },
+  { id: "fri", label: "Fri", full: "Friday" },
+  { id: "sat", label: "Sat", full: "Saturday" },
+  { id: "sun", label: "Sun", full: "Sunday" },
+  { id: "daily", label: "Daily Spots", icon: "☀️" }
+];
+
+window.TIME_SLOTS = window.TIME_SLOTS || [
+  { id: "all", label: "Any Time", icon: "⏰" },
+  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
+  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
+  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
+  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
+];
+
+window.CATEGORIES = window.CATEGORIES || [
+  { id: "all", label: "All", icon: "✨" },
+  { id: "music", label: "Live Music", icon: "🎵" },
+  { id: "shows", label: "Comedy & Stage", icon: "🎭" },
+  { id: "festivals", label: "Festivals", icon: "🎪" },
+  { id: "markets", label: "Markets", icon: "🧺" },
+  { id: "outdoors", label: "Outdoors", icon: "🌲" },
+  { id: "cinema", label: "Cinema", icon: "🎬" },
+  { id: "social", label: "Social & Arts", icon: "🎨" }
+];
+
 // Privacy-Preserving Anonymous Event Tracking (GoatCounter - 0 PII, Cookieless)
 window.trackAnonymousEvent = function(path, title) {
   try {
@@ -27,7 +68,7 @@ const state = {
   frequency: 'all',
   dayOfWeek: 'all',
   timeSlot: 'all',
-  selectedNeighborhoods: new Set(typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS : []),
+  selectedNeighborhoods: new Set(window.NEIGHBORHOODS),
   selectedTag: null,
   selectedVenue: null,
   searchQuery: '',
@@ -512,43 +553,70 @@ function renderFestivalSpotlight() {
   const container = document.getElementById('festival-spotlight-container');
   if (!container) return;
 
-  const festivalEvents = ALL_EVENTS.filter(e => e && (
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+
+  const activeFestivalEvents = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e && !isEventInPast(e, now) && (
     (e.id && e.id.startsWith('fest-')) ||
     e.isFestival ||
     (e.subTags && e.subTags.includes('festival')) ||
-    (e.title && e.title.toLowerCase().includes('fringe festival'))
+    (Array.isArray(e.categories) && e.categories.includes('festivals'))
   ));
 
-  if (festivalEvents.length === 0) {
-    container.style.display = 'none';
-    return;
-  }
-
   const isHidden = state.hideFestivalEvents === true;
-  const festCount = festivalEvents.length;
+  const festCount = activeFestivalEvents.length;
 
   container.style.display = 'block';
+
+  // Dynamic content based on current active / upcoming festival in Vancouver
+  const isFringeActive = todayStr <= '2026-09-20';
+
+  const badgeStatus = isHidden 
+    ? '🎪 FESTIVALS HIDDEN' 
+    : (isFringeActive ? '🎪 LIVE FESTIVAL SPOTLIGHT' : '🎪 UPCOMING FESTIVAL SPOTLIGHT');
+
+  const datesBadge = isFringeActive ? 'Sept 10 – 20, 2026' : 'Sept 24 – Oct 04, 2026';
+  const venueBadge = isFringeActive ? 'Granville Island & East Van' : 'VIFF Centre, The Cinematheque & Rio Theatre';
+  const festTitle = isFringeActive ? 'Vancouver Fringe Festival 2026' : 'Vancouver International Film Festival (VIFF 2026)';
+  
+  const festBlurb = isFringeActive ? `
+    <strong class="festival-dates-lead">📅 September 10 – 20, 2026:</strong> Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
+  ` : `
+    <strong class="festival-dates-lead">📅 September 24 – October 4, 2026:</strong> Western Canada's premier celebration of world cinema, award-winning auteur features, and Cannes Grand Prix winners across VIFF Centre, The Cinematheque, and the Rio Theatre! Single festival screening tickets are <strong>$18.00 CAD + $2.00 VIFF society membership ($20.90 CAD all-in checkout)</strong>.
+  `;
+
+  const programLink = isFringeActive ? 'https://vancouverfringe.com/shows/' : 'https://viff.org';
+  const programLabel = isFringeActive ? 'Official Fringe Program & Tickets ↗' : 'Official VIFF Program & Tickets ↗';
+  const secondaryLink = isFringeActive ? 'https://www.vancouverfringe.com/how-to-fringe/' : 'https://thecinematheque.ca';
+  const secondaryLabel = isFringeActive ? 'How to Fringe Guide ↗' : 'Cinematheque VIFF Screenings ↗';
+  const countLabel = isFringeActive 
+    ? `${festCount} Curated Fringe Productions in Van50` 
+    : `${festCount || 3} Curated VIFF Feature Screenings under $50 CAD in Van50`;
+
   container.innerHTML = `
     <div class="festival-spotlight-card ${isHidden ? 'festival-muted festival-collapsed' : ''}">
       <div class="festival-spotlight-left">
         <div class="festival-badge-row">
-          <span class="festival-status-badge">${isHidden ? '🎪 FESTIVALS HIDDEN' : '🎪 LIVE FESTIVAL SPOTLIGHT'}</span>
-          <span class="festival-dates-badge">Sept 10 – 20, 2026</span>
-          <span class="festival-venue-badge">Granville Island &amp; East Van</span>
+          <span class="festival-status-badge">${badgeStatus}</span>
+          <span class="festival-dates-badge">${datesBadge}</span>
+          <span class="festival-venue-badge">${venueBadge}</span>
         </div>
-        <h2 class="festival-spotlight-title">Vancouver Fringe Festival 2026 ${isHidden ? '<span class="festival-hidden-tag">(Events &amp; blurb hidden from listings &amp; map)</span>' : ''}</h2>
+        <h2 class="festival-spotlight-title">${festTitle} ${isHidden ? '<span class="festival-hidden-tag">(Events &amp; blurb hidden from listings &amp; map)</span>' : ''}</h2>
         ${!isHidden ? `
         <p class="festival-spotlight-blurb">
-          <strong class="festival-dates-lead">📅 September 10 – 20, 2026:</strong> Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
+          ${festBlurb}
         </p>
         <div class="festival-links-row">
-          <a href="https://vancouverfringe.com/shows/" target="_blank" rel="noopener noreferrer" class="festival-link-primary" title="Browse full festival program on official site">
-            Official Fringe Program &amp; Tickets ↗
+          <a href="${programLink}" target="_blank" rel="noopener noreferrer" class="festival-link-primary" title="Browse full festival program on official site">
+            ${programLabel}
           </a>
-          <a href="https://www.vancouverfringe.com/how-to-fringe/" target="_blank" rel="noopener noreferrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="Official How to Fringe guide">
-            How to Fringe Guide ↗
+          <a href="${secondaryLink}" target="_blank" rel="noopener noreferrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="${secondaryLabel}">
+            ${secondaryLabel}
           </a>
-          <span class="festival-stats-chip">${festCount} Curated Fringe Productions in Van50</span>
+          <span class="festival-stats-chip">${countLabel}</span>
         </div>
         ` : ''}
       </div>
@@ -562,7 +630,7 @@ function renderFestivalSpotlight() {
           title="${state.category === 'festivals' ? 'Showing festival events. Click to show all outings' : 'Filter outings to display only festival events'}"
         >
           <span class="toggle-icon">${state.category === 'festivals' ? '✓' : '🎪'}</span>
-          <span class="toggle-label">${state.category === 'festivals' ? 'Showing Festival Events (Show All)' : `Display Festival Events (${festCount})`}</span>
+          <span class="toggle-label">${state.category === 'festivals' ? 'Showing Festival Events (Show All)' : `Display Festival Events (${festCount || 3})`}</span>
         </button>
         ` : ''}
 
@@ -575,7 +643,7 @@ function renderFestivalSpotlight() {
           title="${isHidden ? 'Show festival events and blurb in listing and map' : 'Hide festival events and blurb from listing and map'}"
         >
           <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
-          <span class="toggle-label">${isHidden ? `Unhide Festival Events (${festCount})` : 'Hide Festival Events'}</span>
+          <span class="toggle-label">${isHidden ? `Unhide Festival Events (${festCount || 3})` : 'Hide Festival Events'}</span>
         </button>
       </div>
     </div>
@@ -1099,9 +1167,9 @@ function applyFiltersAndRender() {
     }
 
     // 6. Multi-Select Neighborhood
-    const allClustersCount = typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS.length : 6;
+    const allClustersCount = (window.NEIGHBORHOODS && window.NEIGHBORHOODS.length) || 6;
     if (state.selectedNeighborhoods.size === 0) {
-      return false;
+      state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
     } else if (state.selectedNeighborhoods.size < allClustersCount) {
       if (!state.selectedNeighborhoods.has(ev.neighborhood)) {
         return false;
@@ -1560,7 +1628,7 @@ function resetAllFilters() {
   state.frequency = 'all';
   state.dayOfWeek = 'all';
   state.timeSlot = 'all';
-  state.selectedNeighborhoods = new Set(typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS : []);
+  state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
   state.selectedTag = null;
   state.selectedVenue = null;
   state.searchQuery = '';
@@ -2037,7 +2105,10 @@ function renderEventCards(events) {
         <p style="font-size: 0.9rem; max-width: 440px; margin: 0 auto 18px;">
           Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Shows & special events only".
         </p>
-        <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
+          <button type="button" class="btn" onclick="filterByCategory('all')" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">Show All Active Outings</button>
+        </div>
       </div>
     `;
     return;
@@ -2701,7 +2772,7 @@ function resetAllFilters() {
   state.frequency = 'all';
   state.dayOfWeek = 'all';
   state.timeSlot = 'all';
-  state.selectedNeighborhoods = new Set(typeof NEIGHBORHOODS !== 'undefined' ? NEIGHBORHOODS : []);
+  state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
   state.hideDaily = false;
   state.selectedTag = null;
   state.searchQuery = '';
