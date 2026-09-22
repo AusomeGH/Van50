@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-22T11:09:50-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-22T09:27:25-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -14605,48 +14605,4 @@ const DISCOVERY_SOURCES = [
     "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
     "status": "active"
   }
-];
-
-// Regional Super-Clusters
-const NEIGHBORHOODS = [
-  "Downtown, Gastown & Yaletown",
-  "Mount Pleasant & South Vancouver",
-  "Commercial Drive & East Vancouver",
-  "Kitsilano, Point Grey & UBC",
-  "Granville Island & False Creek",
-  "North Shore, Burnaby & Metro"
-];
-
-// Days of the Week
-const DAYS_OF_WEEK = [
-  { id: "all", label: "All Days", icon: "🗓️" },
-  { id: "mon", label: "Mon", full: "Monday" },
-  { id: "tue", label: "Tue", full: "Tuesday" },
-  { id: "wed", label: "Wed", full: "Wednesday" },
-  { id: "thu", label: "Thu", full: "Thursday" },
-  { id: "fri", label: "Fri", full: "Friday" },
-  { id: "sat", label: "Sat", full: "Saturday" },
-  { id: "sun", label: "Sun", full: "Sunday" },
-  { id: "daily", label: "Daily Spots", icon: "☀️" }
-];
-
-// Time of Day Starting Slots
-const TIME_SLOTS = [
-  { id: "all", label: "Any Time", icon: "⏰" },
-  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
-  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
-  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
-  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
-];
-
-// Event Categories
-const CATEGORIES = [
-  { id: "all", label: "All", icon: "✨" },
-  { id: "music", label: "Live Music", icon: "🎵" },
-  { id: "shows", label: "Comedy & Stage", icon: "🎭" },
-  { id: "festivals", label: "Festivals", icon: "🎪" },
-  { id: "markets", label: "Markets", icon: "🧺" },
-  { id: "outdoors", label: "Outdoors", icon: "🌲" },
-  { id: "cinema", label: "Cinema", icon: "🎬" },
-  { id: "social", label: "Social & Arts", icon: "🎨" }
 ];

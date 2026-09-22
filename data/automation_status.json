@@ -1,5 +1,5 @@
 {
-  "status": "success",
+  "status": "idle",
   "automationEnabled": true,
   "lastRunAt": "2026-09-22T11:09:50.553344",
   "nextRunAt": "2026-09-23T04:00:00",
@@ -1603,8 +1603,8 @@
   },
   "testKey": "automation_unit_test",
   "testTimestamp": "2026-09-20T17:51:31.142531",
-  "updatedAt": "2026-09-22T11:09:50.553452",
-  "currentStep": "idle",
+  "updatedAt": "2026-09-22T09:27:25.074525",
+  "currentStep": null,
   "startedAt": "2026-09-22T11:07:11.293821",
   "durationSeconds": 159.26,
   "backupFile": "events_2026-09-22_110711.json",
@@ -1615,5 +1615,6 @@
     "archived": 0,
     "promoted": 0,
     "rulesAdded": 8
-  }
+  },
+  "error": null
 }

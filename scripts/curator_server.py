@@ -1836,6 +1836,45 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": f"Daily automation scheduler {'enabled' if new_state else 'paused'}."
             })
 
+        # 8b. API: Restart system & clear server caches, reset automation locks, and resync catalog
+        if path == "/api/curator/system/restart-and-clear":
+            if not self._check_authenticated():
+                return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to restart system and clear caches"})
+
+            # 1. Reset automation status
+            try:
+                update_automation_status({
+                    "status": "idle",
+                    "currentStep": None,
+                    "error": None
+                })
+            except Exception as e:
+                print(f"[RESTART WARN] Could not reset automation status: {e}")
+
+            # 2. Resync js/data.js and re-verify catalog
+            try:
+                sync_js_data_file()
+            except Exception as e:
+                print(f"[RESTART WARN] Could not resync js/data.js: {e}")
+
+            # 3. Clean temporary scrapers/locks in scratch or logs if needed
+            cleaned_items = 0
+            if os.path.exists(LOGS_DIR):
+                for f in os.listdir(LOGS_DIR):
+                    if f.endswith(".lock") or f.endswith(".tmp"):
+                        try:
+                            os.remove(os.path.join(LOGS_DIR, f))
+                            cleaned_items += 1
+                        except Exception:
+                            pass
+
+            return self._send_json(200, {
+                "success": True,
+                "message": "Server state reset: automation unlocked, catalog re-synchronized, and temporary locks cleared.",
+                "cleanedItems": cleaned_items,
+                "timestamp": datetime.now().isoformat()
+            })
+
         # 9. API: Add discovered venue to permanent directory & regular crawler (or instruct AI / dismiss)
         if path == "/api/curator/venues/add":
             name = sanitize_text(str(payload.get("name", "")).strip())

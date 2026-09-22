@@ -1621,6 +1621,10 @@ function setupCuratorEventListeners() {
   const triggerSyncBtn = document.getElementById('btn-trigger-sync');
   if (triggerSyncBtn) triggerSyncBtn.addEventListener('click', handleTriggerSync);
 
+  // Restart All & Clear Caches Button
+  const restartSystemBtn = document.getElementById('btn-restart-system');
+  if (restartSystemBtn) restartSystemBtn.addEventListener('click', handleRestartAllAndClear);
+
   // Fetch Newsletters Button
   const fetchNewslettersBtn = document.getElementById('btn-fetch-newsletters');
   if (fetchNewslettersBtn) fetchNewslettersBtn.addEventListener('click', handleFetchNewsletters);
@@ -2603,6 +2607,95 @@ async function handleTriggerSync() {
   } catch (err) {
     showToast('Server connection failed while triggering sync', 'error');
     fetchAutomationStatus();
+  }
+}
+
+async function handleRestartAllAndClear() {
+  const confirmed = confirm(
+    "⚠️ RESTART ALL & CLEAR CACHES\n\n" +
+    "This will perform a full master reset:\n" +
+    "• Unlock any actively running or stuck automation syncs\n" +
+    "• Purge all Service Worker and HTTP CacheStorage entries\n" +
+    "• Unregister active Service Workers for a clean boot\n" +
+    "• Reset transient local browser storage & filters\n" +
+    "• Re-synchronize and re-verify the active catalog from disk\n\n" +
+    "Are you sure you want to proceed?"
+  );
+
+  if (!confirmed) return;
+
+  const btn = document.getElementById('btn-restart-system');
+  const icon = document.getElementById('btn-restart-icon');
+  const text = document.getElementById('btn-restart-text');
+
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+  }
+  if (icon) icon.className = 'sync-spinning';
+  if (text) text.textContent = 'Restarting & Clearing...';
+
+  try {
+    // 1. Tell server daemon to unlock automation, clear lock files, and resync catalog
+    const headers = { 'Content-Type': 'application/json' };
+    if (state.token) {
+      headers['Curator-Token'] = state.token;
+    }
+    const res = await fetch('/api/curator/system/restart-and-clear', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({})
+    });
+    
+    // 2. Client-side: Purge all CacheStorage caches
+    if ('caches' in window) {
+      try {
+        const cacheKeys = await caches.keys();
+        await Promise.all(cacheKeys.map(k => caches.delete(k)));
+        console.log('[CURATOR RESET] Cleared CacheStorage:', cacheKeys);
+      } catch (err) {
+        console.warn('[CURATOR RESET] CacheStorage clear warning:', err);
+      }
+    }
+
+    // 3. Client-side: Unregister all Service Workers
+    if ('serviceWorker' in navigator) {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(registrations.map(r => r.unregister()));
+        console.log('[CURATOR RESET] Unregistered Service Workers:', registrations.length);
+      } catch (err) {
+        console.warn('[CURATOR RESET] ServiceWorker unregister warning:', err);
+      }
+    }
+
+    // 4. Client-side: Clear sessionStorage
+    try {
+      sessionStorage.clear();
+    } catch (_) {}
+
+    // 5. Client-side: Reset transient filter localStorage (preserving curator auth session)
+    try {
+      const curToken = state.token || localStorage.getItem('van50_curator_token');
+      const remember = localStorage.getItem('van50_curator_remember');
+      localStorage.clear();
+      if (curToken) localStorage.setItem('van50_curator_token', curToken);
+      if (remember) localStorage.setItem('van50_curator_remember', remember);
+    } catch (_) {}
+
+    showToast('All systems restarted, caches purged, and catalog reloaded!', 'success');
+
+    // 6. Reload page cleanly with cache-buster
+    setTimeout(() => {
+      window.location.href = window.location.pathname + '?_t=' + Date.now();
+    }, 800);
+
+  } catch (err) {
+    console.error('[CURATOR RESET ERROR]', err);
+    showToast('Reset completed locally; refreshing...', 'info');
+    setTimeout(() => {
+      window.location.href = window.location.pathname + '?_t=' + Date.now();
+    }, 800);
   }
 }
 
