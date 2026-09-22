@@ -27,8 +27,9 @@ VENUE_DIRECTORY_PATH = os.path.join(DATA_DIR, "venue_directory.json")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
 CURATOR_RULES_PATH = os.path.join(DATA_DIR, "curator_learned_rules.json")
 FRINGE_CATALOG_PATH = os.path.join(DATA_DIR, "fringe_shows_catalog.json")
+VIFF_CATALOG_PATH = os.path.join(DATA_DIR, "viff_films_catalog.json")
 
-# Invariant physical coordinates and profiles for festival host stages
+# Invariant physical coordinates and profiles for festival host stages (theatre / live stage only)
 FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
     "Waterfront Theatre": {
         "address": "1412 Cartwright St, Vancouver, BC",
@@ -107,50 +108,6 @@ FESTIVAL_HOST_VENUE_DIRECTORY: Dict[str, Dict[str, Any]] = {
         "showUrl": "https://vancouverfringe.com/events/daddy-issues/",
         "showDescription": "Stand-up comedy hour by Michaela Chung exploring dating in your 30s, mixed-race identity, and dysfunctional family dynamics.\n\n★ Fringe Reviews: \"Refreshing warmth, sharp autobiographical wit, and masterful crowd work.\" (Vancouver Arts Review).",
         "subTags": ["#festival", "#fringe", "#theatre", "#comedy", "#stand-up", "#indie"]
-    },
-    "VIFF Centre": {
-        "address": "1181 Seymour St, Vancouver, BC",
-        "neighborhood": "Downtown / West End",
-        "coordinates": [49.2774, -123.1251],
-        "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
-        "venueUrl": "https://viff.org",
-        "showUrl": "https://viff.org",
-        "sampleShowTitle": "Feature Screenings, Talks & BC Spotlight",
-        "showDescription": "Vancouver International Film Festival feature screenings, director Q&As, and BC spotlight cinema at the downtown VIFF Centre.",
-        "subTags": ["#festival", "#viff", "#cinema", "#screenings", "#film"]
-    },
-    "The Cinematheque": {
-        "address": "1131 Howe St, Vancouver, BC",
-        "neighborhood": "Downtown / West End",
-        "coordinates": [49.2795, -123.1274],
-        "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-        "venueUrl": "https://thecinematheque.ca",
-        "showUrl": "https://thecinematheque.ca",
-        "sampleShowTitle": "International Cinema Showcase & Retrospectives",
-        "showDescription": "Award-winning international festival selections, auteur documentaries, and global premieres at Howe Street's historic Cinematheque.",
-        "subTags": ["#festival", "#viff", "#cinema", "#world-cinema", "#film"]
-    },
-    "Rio Theatre": {
-        "address": "1660 E Broadway, Vancouver, BC",
-        "neighborhood": "Commercial Drive",
-        "coordinates": [49.2627, -123.0699],
-        "transitInfo": "1 min walk from Commercial-Broadway SkyTrain",
-        "venueUrl": "https://riotheatre.ca",
-        "showUrl": "https://riotheatre.ca",
-        "sampleShowTitle": "Late-Night Cult & Special Screenings",
-        "showDescription": "Late-night cult cinema, genre premieres, and electric live-screened festival events at Commercial Drive's iconic Rio Theatre.",
-        "subTags": ["#festival", "#viff", "#cinema", "#cult-film", "#late-night"]
-    },
-    "SFU Goldcorp Centre for the Arts": {
-        "address": "149 W Hastings St, Vancouver, BC",
-        "neighborhood": "Gastown / Chinatown",
-        "coordinates": [49.2831, -123.1090],
-        "transitInfo": "5 min walk from Waterfront SkyTrain Station",
-        "venueUrl": "https://www.sfu.ca/woodwards.html",
-        "showUrl": "https://www.sfu.ca/woodwards.html",
-        "sampleShowTitle": "Gala Screenings & Contemporary Storytelling",
-        "showDescription": "Special festival gala screenings and contemporary cinematic storytelling at SFU Goldcorp Centre for the Arts in the historic Woodward's complex.",
-        "subTags": ["#festival", "#viff", "#cinema", "#screenings", "#premieres"]
     }
 }
 
@@ -504,6 +461,49 @@ class UniversalFestivalCrawler:
                             continue
                 except Exception as e:
                     print(f"[FESTIVAL CRAWLER] Fallback to host venue template for {fest_name}: {e}")
+
+            # Film Festival Individual Item Policy Enforcement:
+            # All film festivals (VIFF, DOXA, VAFF, VQFF) MUST be harvested as individual film screenings
+            # with non-spoiler setups, director attribution, and direct screening ticket deep links.
+            # Generic host-venue umbrella cards are STRICTLY PROHIBITED for film festivals.
+            is_film_fest = (category == "cinema") or ("film" in fest_id.lower()) or fest.get("isFilmFestival", False)
+            if is_film_fest:
+                film_catalog_loaded = False
+                candidate_catalogs = [
+                    VIFF_CATALOG_PATH if "viff" in fest_id else None,
+                    os.path.join(DATA_DIR, f"{fest_id}_catalog.json"),
+                    os.path.join(DATA_DIR, "film_festival_catalog.json")
+                ]
+                for cat_path in candidate_catalogs:
+                    if cat_path and os.path.exists(cat_path):
+                        try:
+                            with open(cat_path, "r", encoding="utf-8") as ff:
+                                fdata = json.load(ff)
+                                f_shows = fdata.get("films") or fdata.get("shows") or []
+                                if f_shows:
+                                    for s in f_shows:
+                                        if float(s.get("price", 0)) <= 50.0:
+                                            harvested_events.append(s)
+                                    film_catalog_loaded = True
+                                    print(f"[FESTIVAL CRAWLER] Loaded {len(f_shows)} verified individual film cards for {fest_name}.")
+                                    break
+                        except Exception as e:
+                            print(f"[FESTIVAL CRAWLER] Error loading film catalog from {cat_path}: {e}")
+
+                if not film_catalog_loaded:
+                    print(f"[FESTIVAL CRAWLER POLICY ENFORCEMENT] Film festival '{fest_name}' ({fest_id}) cannot use generic venue umbrella cards. Individual feature films must be cataloged. Skipping venue umbrella generation.")
+                
+                # CRITICAL: Always continue to guarantee NO generic venue umbrella cards are ever generated for film festivals!
+                continue
+
+            # Performing Arts Organization Policy Enforcement:
+            # Orchestras, operas, and resident performing arts ensembles (VSO, Vancouver Opera, etc.)
+            # must be represented by individual distinct concert productions with dates, repertoire, and conductors.
+            # Generic season/venue umbrella cards are STRICTLY PROHIBITED.
+            is_symphonic_or_opera = any(k in fest_id.lower() or k in fest_name.lower() for k in ["symphony", "orchestra", "vso", "opera"])
+            if is_symphonic_or_opera:
+                print(f"[PERFORMING ARTS POLICY ENFORCEMENT] Performing arts organization '{fest_name}' ({fest_id}) cannot use generic venue umbrella cards. Individual concert productions must be harvested via GraphQL / calendar API. Skipping venue umbrella generation.")
+                continue
 
             for host_name in fest.get("hostVenues", []):
                 h_clean = host_name.strip()

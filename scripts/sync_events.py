@@ -2439,7 +2439,30 @@ PROHIBITED_GENERIC_URL_REDIRECTS = {
     "https://handeyeceramics.com": "https://handeyeceramics.com/open-studio",
     "https://handeyeceramics.com/": "https://handeyeceramics.com/open-studio",
     "https://publicdisco.ca": "https://publicdisco.ca/events",
-    "https://publicdisco.ca/": "https://publicdisco.ca/events"
+    "https://publicdisco.ca/": "https://publicdisco.ca/events",
+    "https://biltmorecabaret.com": "https://biltmorecabaret.com/event",
+    "https://biltmorecabaret.com/": "https://biltmorecabaret.com/event",
+    "https://admitone.com/events/vancouver": "https://biltmorecabaret.com/event",
+    "https://theimprovcentre.ca": "https://theimprovcentre.ca/shows/",
+    "https://theimprovcentre.ca/": "https://theimprovcentre.ca/shows/",
+    "https://theimprovcentre.ca/ensemble": "https://theimprovcentre.ca/shows/",
+    "https://theimprovcentre.ca/ensemble/": "https://theimprovcentre.ca/shows/",
+    "https://rickshawtheatre.com": "https://rickshawtheatre.com/#show_listings",
+    "https://rickshawtheatre.com/": "https://rickshawtheatre.com/#show_listings",
+    "https://rickshawtheatre.com/show_listings/": "https://rickshawtheatre.com/#show_listings",
+    "https://rickshawtheatre.com/show_listings": "https://rickshawtheatre.com/#show_listings",
+    "https://viff.org": "https://viff.org/whats-on/",
+    "https://viff.org/": "https://viff.org/whats-on/",
+    "https://thecinematheque.ca": "https://thecinematheque.ca/films/",
+    "https://thecinematheque.ca/": "https://thecinematheque.ca/films/",
+    "https://riotheatre.ca": "https://riotheatre.ca/calendar/",
+    "https://riotheatre.ca/": "https://riotheatre.ca/calendar/",
+    "https://www.guiltandcompany.com": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "https://www.guiltandcompany.com/": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "https://guiltandcompany.com": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "https://guiltandcompany.com/": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "https://ecologycentre.ca": "https://ecologycentre.ca/trail-information/",
+    "https://ecologycentre.ca/": "https://ecologycentre.ca/trail-information/"
 }
 
 def normalize_event_links(url: str, venue: str = "", item: dict = None) -> str:
@@ -2452,9 +2475,19 @@ def normalize_event_links(url: str, venue: str = "", item: dict = None) -> str:
         return url
     cleaned = url.strip()
 
-    # 1. Exact prohibited roots
+    # 1. Exact prohibited roots and aggregators
     if cleaned in PROHIBITED_GENERIC_URL_REDIRECTS:
         return PROHIBITED_GENERIC_URL_REDIRECTS[cleaned]
+
+    # Specific historical mis-mappings cleanup
+    if "rickshawtheatre.com/show_listings/metal-church" in cleaned.lower() and (not item or "metal" not in item.get('title', '').lower()):
+        return "https://rickshawtheatre.com/show_listings/"
+    if "publicdisco.ca/news/" in cleaned.lower():
+        return "https://publicdisco.ca/events"
+    if "admitone.com/events/vancouver" in cleaned.lower():
+        return "https://biltmorecabaret.com/event"
+    if "theimprovcentre.ca/ensemble" in cleaned.lower():
+        return "https://theimprovcentre.ca/shows/"
 
     # 2. Autonomous hunter resolution if item context is provided
     if item and not (item.get('isDaily') or item.get('frequency') == 'daily'):

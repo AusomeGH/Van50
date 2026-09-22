@@ -210,7 +210,9 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
             f"Bot-Shielded: {link_audit_summary.get('botProtectedCount', 0)} | "
             f"Dead: {link_audit_summary.get('deadCount', 0)} | "
             f"Soft 404s: {link_audit_summary.get('soft404Count', 0)} | "
-            f"Quarantined: {link_audit_summary.get('quarantinedCount', 0)}",
+            f"Quarantined (Active Issues): {link_audit_summary.get('quarantinedCount', 0)} | "
+            f"Auto-Archived (Concluded): {link_audit_summary.get('autoArchivedCount', 0)} | "
+            f"Swept from Queue: {link_audit_summary.get('sweptFromQueueCount', 0)}",
             log_file_path
         )
     except Exception as e:

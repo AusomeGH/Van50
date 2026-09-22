@@ -94,13 +94,21 @@ class EditorialTaxonomyScraper:
                         break
 
             if candidate_desc:
-                # Retain rich descriptive sentences, clean excessive whitespace
-                cleaned_desc = re.sub(r'\s+', ' ', candidate_desc)
-                if len(cleaned_desc) > 350:
-                    cleaned_desc = cleaned_desc[:347] + "..."
-                item['scrapedDescription'] = cleaned_desc
-                item['description'] = cleaned_desc
-                print(f"[ENRICH EDITORIAL] Live description scraped for '{item['title']}': {cleaned_desc[:60]}...")
+                # Discard pure dining/table reservation boilerplate that lacks event context
+                desc_lower = candidate_desc.lower()
+                is_dining_boilerplate = any(b in desc_lower for b in [
+                    "dinner reservations are", "kitchen closes", "dinner reservations until",
+                    "table reservations", "reservation policy", "cancellation fee", "credit card required for booking"
+                ])
+                if not is_dining_boilerplate:
+                    cleaned_desc = re.sub(r'\s+', ' ', candidate_desc)
+                    if len(cleaned_desc) > 350:
+                        cleaned_desc = cleaned_desc[:347] + "..."
+                    item['scrapedDescription'] = cleaned_desc
+                    item['description'] = cleaned_desc
+                    print(f"[ENRICH EDITORIAL] Live description scraped for '{item['title']}': {cleaned_desc[:60]}...")
+                else:
+                    print(f"[ENRICH EDITORIAL] Ignored dining reservation boilerplate for '{item['title']}': {candidate_desc[:50]}...")
 
             # 2. Scrape Live Taxonomy Keywords
             meta_kw = soup.find("meta", attrs={"name": "keywords"})

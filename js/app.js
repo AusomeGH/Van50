@@ -1016,6 +1016,24 @@ function isEventInPast(ev, now = new Date()) {
   const day = String(now.getDate()).padStart(2, '0');
   const todayStr = `${year}-${month}-${day}`;
 
+  // Check explicit off-season flag
+  if (ev.isSeasonalOffSeason === true || ev.seasonConcluded === true) {
+    return true;
+  }
+
+  // Check seasonal boundary (e.g. summer series ending Aug/Sep)
+  if (ev.seasonEnd && String(ev.seasonEnd).slice(0, 10) < todayStr) {
+    return true;
+  }
+
+  // Check explicit endIso across ALL event types (including weekly and recurring)
+  if (ev.endIso) {
+    const endDt = new Date(ev.endIso);
+    if (!isNaN(endDt.getTime()) && endDt < now) {
+      return true; // The entire multi-day run, recurring series, or seasonal edition has concluded
+    }
+  }
+
   const isRecurring = ev.isDaily || ev.frequency === 'daily' || ev.frequency === 'weekly' || ev.frequency === 'monthly';
 
   // 1. If specific confirmed dates list exists
@@ -1036,18 +1054,8 @@ function isEventInPast(ev, now = new Date()) {
     }
   }
 
-  // 2. Non-recurring events (one-offs, limited run, festivals)
+  // 2. Non-recurring events (one-offs, limited run, festivals) startIso check
   if (!isRecurring) {
-    if (ev.endIso) {
-      const endDt = new Date(ev.endIso);
-      if (!isNaN(endDt.getTime())) {
-        if (endDt < now) {
-          return true; // The entire multi-day run or festival edition has concluded
-        }
-        // If endDt is still in the future, the event is currently active or upcoming
-        return false;
-      }
-    }
     if (ev.startIso) {
       const startDt = new Date(ev.startIso);
       if (!isNaN(startDt.getTime())) {
@@ -1070,6 +1078,10 @@ function isEventInPast(ev, now = new Date()) {
 
 function applyFiltersAndRender() {
   const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
   let activeCatalog = [];
   let expiredCount = 0;
 
@@ -1109,13 +1121,21 @@ function applyFiltersAndRender() {
       }
     }
 
-    // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD)
+    // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD) with Dual-Tier Support
+    const hasPaidTier = Array.isArray(ev.tiers) && ev.tiers.some(t => t.price > 0 && t.price <= 50);
+    const hasFreeTier = ev.price === 0 || ev.isFree || ev.pricingType === 'free-option' || (Array.isArray(ev.tiers) && ev.tiers.some(t => t.price === 0));
+
     if (state.minBudget === 0 && state.maxBudget === 0) {
-      if (ev.price > 0) return false;
+      // Free Outings ($0 CAD)
+      if (!hasFreeTier) return false;
     } else if (state.minBudget === 1 && state.maxBudget === 50) {
-      if (ev.price <= 0) return false;
+      // Paid Outings ($1 — $50 CAD)
+      if (ev.price <= 0 && !hasPaidTier) return false;
     } else {
-      if (ev.price < state.minBudget || ev.price > state.maxBudget) return false;
+      // Slider Range
+      const effectiveMin = ev.price;
+      const effectiveMax = hasPaidTier ? Math.max(ev.price, ...ev.tiers.map(t => t.price)) : ev.price;
+      if (effectiveMax < state.minBudget || effectiveMin > state.maxBudget) return false;
     }
 
     // 2. Category Filter (Multi-category support)
@@ -1144,9 +1164,20 @@ function applyFiltersAndRender() {
           return false;
         }
       } else {
-        const days = ev.daysOfWeek || [];
-        if (!days.includes(state.dayOfWeek) && !ev.isDaily) {
-          return false;
+        if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
+          const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+          const hasMatchingConfirmed = ev.confirmedDates.some(dStr => {
+            const d = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+            return !isNaN(d.getTime()) && DAY_CODES[d.getDay()] === state.dayOfWeek && dStr.slice(0, 10) >= todayStr;
+          });
+          if (!hasMatchingConfirmed && !ev.isDaily) {
+            return false;
+          }
+        } else {
+          const days = ev.daysOfWeek || [];
+          if (!days.includes(state.dayOfWeek) && !ev.isDaily) {
+            return false;
+          }
         }
       }
     }
@@ -1769,7 +1800,7 @@ function calculateNextTwoDates(ev) {
             const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
             return {
               type: 'seasonal',
-              label: 'Confirmed Festival Date',
+              label: ev.frequency === 'limited-run' ? 'Confirmed Date' : 'Confirmed Festival Date',
               dates: `Today (${fmt})`
             };
           }
@@ -1777,7 +1808,7 @@ function calculateNextTwoDates(ev) {
           const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
           return {
             type: 'seasonal',
-            label: 'Confirmed Festival Date',
+            label: ev.frequency === 'limited-run' ? 'Confirmed Date' : 'Confirmed Festival Date',
             dates: fmt
           };
         }
@@ -1785,8 +1816,8 @@ function calculateNextTwoDates(ev) {
     }
     return {
       type: 'seasonal',
-      label: 'Seasonal Schedule',
-      dates: 'Seasonal / Awaiting Next Schedule'
+      label: ev.frequency === 'limited-run' ? 'Schedule' : 'Seasonal Schedule',
+      dates: ev.dateSchedule || 'Awaiting Next Scheduled Dates • Check Venue Calendar'
     };
   }
 

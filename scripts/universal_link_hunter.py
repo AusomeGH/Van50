@@ -23,23 +23,41 @@ HEADERS = {
     'Accept-Language': 'en-US,en;q=0.9'
 }
 
-# Generic index directory patterns that lack a specific event slug or product ID
-GENERIC_PATH_PATTERNS = [
+# Prohibited non-event administrative, account, or media path patterns
+PROHIBITED_GENERIC_PATTERNS = [
     r'^/?$',
-    r'^/(?:shop|store|catalog|products)/?$',
-    r'^/(?:events|event|whats-on|whatson|calendar|schedule|shows|tickets|concerts)/?$',
-    r'^/(?:classes|workshops|sessions)/?$',
-    r'^/(?:visit|about|contact|info|home|index\.html?)/?$',
+    r'^/index\.(?:html?|php)$',
+    r'^/(?:shop|store|catalog|products|merch)/?$',
+    r'^/(?:visit|about|contact|contact-us|info|home)/?$',
     r'^/(?:all|everything|items)/?$',
-    r'^/(?:cart|checkout|basket|bag|account|login|register|signup|search|privacy|terms|donate|donations|membership|volunteer|sponsors|press)/?$'
+    r'^/(?:cart|checkout|basket|bag|account|login|register|signup|search|privacy|terms|donate|donations|membership|volunteer|sponsors|press|ensemble|team|staff|board|faq)/?$',
+    r'^/(?:news|blog|articles|posts)(?:/.*)?$'
+]
+
+# Official venue event calendars / show schedules (permitted when an event lacks an isolated single-ticket slug)
+OFFICIAL_CALENDAR_PATTERNS = [
+    r'^/(?:events|event|whats-on|whatson|calendar|schedule|shows|show_listings|tickets|concerts|films|live-music)/?$',
+    r'^/(?:homepage/calendar)/?$',
+    r'^/(?:branches/[^/]+/level-9/roofgarden)/?$'
+]
+
+# Regional or city-wide directory aggregators (prohibited as venue event links)
+REGIONAL_AGGREGATOR_PATTERNS = [
+    r'^https?://(?:www\.)?admitone\.com/events/[^/]+/?$',
+    r'^https?://(?:www\.)?eventbrite\.(?:ca|com)/d/[^/]+/?.*$',
+    r'^https?://(?:www\.)?ticketmaster\.(?:ca|com)/discover/[^/]+/?.*$'
 ]
 
 
-def is_generic_url(url: str) -> tuple:
+def is_generic_url(url: str, allow_calendar: bool = True) -> tuple:
     """
-    Universally detects if a URL is generic (root homepage or index catalog),
-    non-event media/map link, or malformed URL rather than a specific event,
-    ticket checkout, or dedicated landing page.
+    Detects if a URL is generic (root homepage, administrative non-event page,
+    regional directory aggregator, or static media/map).
+    
+    If allow_calendar is True (default), official venue calendars/schedules
+    (e.g., /events, /calendar, /shows, /whats-on) are permitted as valid Tier-2
+    links when an event lacks an isolated individual ticket slug.
+    
     Returns (is_generic: bool, reason: str).
     """
     if not url or not isinstance(url, str):
@@ -63,6 +81,11 @@ def is_generic_url(url: str) -> tuple:
     if any(path_lower.endswith(ext) for ext in ['.mp4', '.mov', '.avi', '.mp3', '.jpg', '.jpeg', '.png', '.gif', '.pdf', '.zip', '.svg', '.webp']):
         return True, f"Static media file rather than event landing page: {cleaned}"
 
+    # Check regional city-wide aggregator listings
+    for agg_pat in REGIONAL_AGGREGATOR_PATTERNS:
+        if re.match(agg_pat, cleaned, re.IGNORECASE):
+            return True, f"Regional city-wide directory aggregator rather than venue event page: {cleaned}"
+
     path = parsed.path.rstrip('/')
     if not path or path == "":
         # Root homepage e.g. https://example.com or https://example.com/
@@ -72,9 +95,18 @@ def is_generic_url(url: str) -> tuple:
             return False, "Dedicated event subdomain"
         return True, f"Bare root homepage without event path: {cleaned}"
 
-    for pattern in GENERIC_PATH_PATTERNS:
+    # Check administrative, account, or non-event paths
+    for pattern in PROHIBITED_GENERIC_PATTERNS:
         if re.match(pattern, path, re.IGNORECASE):
-            return True, f"Generic catalog index path ('{path}') without specific event slug: {cleaned}"
+            return True, f"Administrative or non-event path ('{path}'): {cleaned}"
+
+    # Check official venue calendar paths
+    for pattern in OFFICIAL_CALENDAR_PATTERNS:
+        if re.match(pattern, path, re.IGNORECASE):
+            if allow_calendar:
+                return False, f"Official venue event calendar/schedule ('{path}')"
+            else:
+                return True, f"Official venue calendar/schedule path ('{path}') without specific event slug"
 
     return False, "Specific path detected"
 
@@ -88,7 +120,10 @@ class AutonomousDeepLinkHunter:
     STOP_WORDS = {
         "the", "a", "an", "and", "or", "at", "in", "of", "on", "for", "with",
         "to", "by", "from", "at", "is", "it", "if", "you", "vancouver", "bc",
-        "canada", "live", "night", "presents", "show", "series", "drop-in"
+        "canada", "live", "night", "nightly", "presents", "show", "shows",
+        "showcase", "showcases", "series", "drop-in", "weekend", "summer",
+        "rock", "punk", "metal", "indie", "music", "jazz", "concert", "concerts",
+        "club", "party", "hall", "room", "theatre", "theater", "daily", "weekly"
     }
 
     @classmethod
@@ -208,18 +243,35 @@ class AutonomousDeepLinkHunter:
             # 3. Inspect Schema.org Event JSON-LD
             cls._inspect_schema_events(html, origin, tokens, candidate_links)
 
-        # Filter out any candidate that is itself generic
-        viable_candidates = []
+        # Separate specific event candidates from official venue calendars
+        specific_candidates = []
+        calendar_candidates = []
+
         for cand_url, score_info in candidate_links.items():
-            is_gen, _ = is_generic_url(cand_url)
-            if is_gen:
-                continue
-            viable_candidates.append((score_info["score"], cand_url, score_info["matched_tokens"]))
+            is_strict_gen, _ = is_generic_url(cand_url, allow_calendar=False)
+            is_relaxed_gen, _ = is_generic_url(cand_url, allow_calendar=True)
 
-        viable_candidates.sort(key=lambda x: x[0], reverse=True)
+            if not is_strict_gen:
+                # Specific event path (not admin, not aggregator, not bare root, not calendar index)
+                specific_candidates.append((score_info["score"], cand_url, score_info["matched_tokens"]))
+            elif not is_relaxed_gen:
+                # Official venue calendar/schedule path
+                calendar_candidates.append((score_info["score"], cand_url, score_info["matched_tokens"]))
 
-        if viable_candidates and viable_candidates[0][0] >= 1.5:
-            best_score, best_url, matched = viable_candidates[0]
+        # Also check probed navigation pages for official calendars
+        for probed in pages_to_probe:
+            is_probe_cal, _ = is_generic_url(probed, allow_calendar=True)
+            is_strict_cal, _ = is_generic_url(probed, allow_calendar=False)
+            if not is_probe_cal and is_strict_cal and probed.startswith(origin):
+                if not any(c[1] == probed for c in calendar_candidates):
+                    calendar_candidates.append((1.0, probed, ["nav:calendar"]))
+
+        specific_candidates.sort(key=lambda x: x[0], reverse=True)
+        calendar_candidates.sort(key=lambda x: x[0], reverse=True)
+
+        # 1. Require strong distinctive token match (score >= 4.0) for specific event overrides
+        if specific_candidates and specific_candidates[0][0] >= 4.0:
+            best_score, best_url, matched = specific_candidates[0]
             clean_best_url = best_url.replace('\\/', '/')
             nested_match = re.search(r'https?://[^\s/]+/+(https?://[^\s]+)', clean_best_url)
             if nested_match:
@@ -227,14 +279,26 @@ class AutonomousDeepLinkHunter:
             return {
                 "resolved": True,
                 "deepUrl": clean_best_url,
-                "confidence": min(1.0, best_score / 3.0),
+                "confidence": min(1.0, best_score / 5.0),
                 "matchedTokens": matched,
-                "reason": f"Discovered deep link matching tokens: {matched}"
+                "reason": f"Discovered high-confidence deep link matching tokens: {matched}"
+            }
+
+        # 2. If no specific link found with high confidence, fall back to official venue calendar
+        if calendar_candidates:
+            best_cal_score, best_cal_url, cal_matched = calendar_candidates[0]
+            clean_cal_url = best_cal_url.replace('\\/', '/')
+            return {
+                "resolved": True,
+                "deepUrl": clean_cal_url,
+                "confidence": 0.85,
+                "matchedTokens": cal_matched,
+                "reason": f"Discovered official venue event calendar/schedule: {clean_cal_url}"
             }
 
         return {
             "resolved": False,
-            "reason": f"Autonomous Hunter could not locate specific deep link matching tokens {tokens[:4]}"
+            "reason": f"Autonomous Hunter could not locate specific deep link or venue calendar matching tokens {tokens[:4]}"
         }
 
     @classmethod
@@ -378,3 +442,246 @@ class AutonomousDeepLinkHunter:
                         candidate_links[full_url] = {"score": score, "matched_tokens": matched}
             except Exception:
                 pass
+
+
+KNOWN_BOT_SHIELDED_DOMAINS = {
+    'ra.co', 'residentadvisor.net', 'www.ra.co',
+    'ticketmaster.ca', 'www.ticketmaster.ca', 'ticketmaster.com', 'www.ticketmaster.com',
+    'livenation.com', 'www.livenation.com',
+    'vancouver.ca', 'www.vancouver.ca',
+    'vpl.ca', 'www.vpl.ca'
+}
+
+
+def verify_event_on_page(event_item: dict, url: str, html: str = None) -> dict:
+    """
+    Affirmatively verifies that the destination webpage or venue calendar
+    contains live evidence of the specific event, artist, or recurring series.
+    Returns:
+        {
+            "is_verified": bool,
+            "match_type": "dedicated_page" | "calendar_mention" | "civic_mandate" | "bot_shielded_event_slug" | "none",
+            "matched_tokens": list,
+            "evidence_snippet": str,
+            "reason": str
+        }
+    """
+    if not url:
+        return {"is_verified": False, "match_type": "none", "matched_tokens": [], "reason": "No URL provided"}
+
+    title = event_item.get('title', '')
+    artist = event_item.get('artist', '') or ''
+    performers = event_item.get('performers', '') or ''
+    venue = event_item.get('venue', '') or ''
+    sub_tags = event_item.get('subTags', []) or []
+    is_daily = event_item.get('isDaily', False) or event_item.get('frequency') == 'daily'
+    pricing_type = event_item.get('pricingType', '')
+    parsed_u = urllib.parse.urlparse(url)
+    domain = parsed_u.netloc.lower()
+    path_u = parsed_u.path.rstrip('/')
+
+    # 1. Structural Verification for Bot-Shielded Specific Endpoints
+    if any(b_dom in domain for b_dom in KNOWN_BOT_SHIELDED_DOMAINS):
+        # A. Ticketmaster / RA specific event ID slug check
+        if re.search(r'/(?:events?|event)/\d+', path_u) or re.search(r'/event/[A-Z0-9]+', path_u, re.I):
+            return {
+                "is_verified": True,
+                "match_type": "bot_shielded_event_slug",
+                "matched_tokens": [path_u.split('/')[-1]],
+                "evidence_snippet": f"Verified platform event slug on {domain} ({path_u})",
+                "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
+            }
+        # B. Municipal Civic Park Board portal path check
+        if 'vancouver.ca' in domain or 'vpl.ca' in domain:
+            facility_tokens = [t for t in re.findall(r'[a-z0-9]+', path_u.lower()) if len(t) >= 4 and t not in ['parks', 'culture', 'recreation', 'branches', 'central']]
+            venue_tokens = [t for t in re.findall(r'[a-z0-9]+', venue.lower()) if len(t) >= 4]
+            overlap = [t for t in facility_tokens if t in venue_tokens]
+            if overlap:
+                return {
+                    "is_verified": True,
+                    "match_type": "civic_mandate",
+                    "matched_tokens": overlap,
+                    "evidence_snippet": f"Municipal civic facility path verified: {path_u}",
+                    "reason": "Official City of Vancouver / VPL park board facility path confirmed"
+                }
+
+    # 2. Civic Mandate & Public Park Access Check for Accessible Domains
+    is_civic_domain = any(d in url.lower() for d in [
+        'cnv.org', 'ecologycentre.ca', 'granvilleisland.com',
+        'visit.ubc.ca', 'golfburnaby.ca', 'vanartgallery.bc.ca', 'vancouversymphony.ca'
+    ])
+    if is_civic_domain and (is_daily or pricing_type == 'free'):
+        civic_tokens = AutonomousDeepLinkHunter.extract_distinctive_tokens(venue, "", sub_tags)
+        if not civic_tokens:
+            civic_tokens = [t for t in re.findall(r'[a-z0-9]+', venue.lower()) if len(t) >= 4]
+        
+        if html is None:
+            html = AutonomousDeepLinkHunter.fetch_page_content(url)
+        
+        if html:
+            clean_html = re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.DOTALL | re.I)
+            clean_html = re.sub(r'<style[^>]*>.*?</style>', ' ', clean_html, flags=re.DOTALL | re.I)
+            clean_text = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', clean_html)).strip().lower()
+            matched_civic = [t for t in civic_tokens if t in clean_text]
+            if matched_civic:
+                return {
+                    "is_verified": True,
+                    "match_type": "civic_mandate",
+                    "matched_tokens": matched_civic,
+                    "evidence_snippet": f"Civic public access facility verified on official portal ({', '.join(matched_civic)})",
+                    "reason": "Official municipal or public institution mandate confirmed"
+                }
+
+    # 3. Extract distinctive tokens for private venues and events
+    combined_artist = f"{artist} {performers}".strip()
+    tokens = AutonomousDeepLinkHunter.extract_distinctive_tokens(title, combined_artist, sub_tags, venue)
+    if not tokens:
+        raw_tokens = [t.strip('-') for t in re.sub(r'[^a-z0-9\s\-]', ' ', f"{title} {combined_artist}").lower().split()]
+        tokens = [t for t in raw_tokens if len(t) >= 4 and t not in AutonomousDeepLinkHunter.STOP_WORDS]
+
+    if not tokens:
+        return {"is_verified": False, "match_type": "none", "matched_tokens": [], "reason": "Could not derive distinctive tokens from card metadata"}
+
+    # 4. Fetch HTML if not passed
+    if html is None:
+        html = AutonomousDeepLinkHunter.fetch_page_content(url)
+    if not html:
+        return {"is_verified": False, "match_type": "none", "matched_tokens": [], "reason": f"Failed to retrieve content from {url}"}
+
+    # 5. Parse content
+    clean_html = re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.DOTALL | re.I)
+    clean_html = re.sub(r'<style[^>]*>.*?</style>', ' ', clean_html, flags=re.DOTALL | re.I)
+    body_text = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', clean_html)).strip().lower()
+
+    # Extract headings and title
+    titles_headings = " ".join(re.findall(r'<(?:title|h1|h2|h3)[^>]*>(.*?)</(?:title|h1|h2|h3)>', html, re.I | re.DOTALL)).lower()
+    clean_headings = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', titles_headings)).strip()
+
+    # Extract schema.org event names
+    schema_names = []
+    for m in re.finditer(r'<script\s+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.DOTALL):
+        try:
+            s_data = json.loads(m.group(1))
+            items = s_data if isinstance(s_data, list) else [s_data]
+            for it in items:
+                if isinstance(it, dict) and it.get("name"):
+                    schema_names.append(str(it["name"]).lower())
+        except Exception:
+            pass
+    schema_text = " ".join(schema_names)
+
+    # 6. Determine if destination is an official calendar / schedule
+    is_calendar = any(re.match(p, path_u, re.I) for p in OFFICIAL_CALENDAR_PATTERNS) or bool(parsed_u.fragment)
+
+    SEASON_CONCLUDED_PHRASES = [
+        'season concluded', 'series concluded', 'concluded for the season',
+        'see you next summer', 'see you next year', 'see you in 2027',
+        'no upcoming events', 'no scheduled shows', 'no events scheduled',
+        'currently closed for the season', 'reopening in the spring',
+        'reopening spring 2027', 'reopening summer 2027'
+    ]
+
+    # 7. Evaluate Token Matches
+    matched_in_headings = [t for t in tokens if t in clean_headings or t in schema_text]
+    matched_in_body = [t for t in tokens if t in body_text]
+
+    # For venues with live upcoming schedules / residencies on their own domain (e.g. Guilt & Co, Improv Centre)
+    if is_calendar and not matched_in_body:
+        cat = event_item.get('category', '').lower()
+        if cat == 'music':
+            prog = [t for t in ['music', 'shows', 'upcoming', 'live', 'jazz', 'concert'] if t in body_text]
+            if len(prog) >= 2:
+                matched_in_body = prog
+        elif cat in ('board-games', 'games') or 'board' in event_item.get('id', ''):
+            prog = [t for t in ['games', 'board', 'tabletop', 'play'] if t in body_text]
+            if len(prog) >= 1:
+                matched_in_body = prog
+        elif cat in ('comedy', 'shows'):
+            prog = [t for t in ['comedy', 'improv', 'standup', 'laughs'] if t in body_text]
+            if len(prog) >= 1:
+                matched_in_body = prog
+        elif cat == 'trivia':
+            prog = [t for t in ['trivia', 'quiz', 'brainstormer'] if t in body_text]
+            if len(prog) >= 1:
+                matched_in_body = prog
+
+    # Snippet extraction
+    evidence = ""
+    for tok in (matched_in_headings or matched_in_body):
+        idx = body_text.find(tok)
+        if idx != -1:
+            snippet_start = max(0, idx - 40)
+            snippet_end = min(len(body_text), idx + 80)
+            evidence = f"...{body_text[snippet_start:snippet_end].strip()}..."
+            break
+
+    # If calendar mode:
+    if is_calendar:
+        # Check if page explicitly indicates series/season has ended
+        if any(phrase in body_text for phrase in SEASON_CONCLUDED_PHRASES):
+            return {
+                "is_verified": False,
+                "match_type": "none",
+                "matched_tokens": [],
+                "reason": f"Official calendar at {url} explicitly indicates season or series has concluded"
+            }
+
+        # Temporal Grounding: Extract active schedule dates from DOM and JSON-LD
+        date_matches = re.findall(r'\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+\d{1,2}(?:st|nd|rd|th)?\b', body_text)
+        iso_matches = re.findall(r'202[6-9]-\d{2}-\d{2}', html)
+        all_schedule_dates = list(set(date_matches + iso_matches))
+
+        # Must have active dates present on the calendar
+        if len(all_schedule_dates) == 0:
+            return {
+                "is_verified": False,
+                "match_type": "none",
+                "matched_tokens": [],
+                "reason": f"Official calendar at {url} contains zero active dates or upcoming schedule listings"
+            }
+
+        # Verify dates fall within current or upcoming seasonal horizon
+        target_month_keys = ['sept', 'sep', 'oct', 'nov', 'dec', '2026-09', '2026-10', '2026-11', '2026-12']
+        has_upcoming_window = any(any(m in d.lower() for m in target_month_keys) for d in all_schedule_dates)
+        if not has_upcoming_window:
+            return {
+                "is_verified": False,
+                "match_type": "none",
+                "matched_tokens": [],
+                "reason": f"Official calendar at {url} contains dates ({all_schedule_dates[:3]}), but none in the current/upcoming active season window"
+            }
+
+        if matched_in_headings or matched_in_body:
+            matched = list(dict.fromkeys(matched_in_headings + matched_in_body))
+            return {
+                "is_verified": True,
+                "match_type": "calendar_mention",
+                "matched_tokens": matched,
+                "evidence_snippet": evidence or f"Event mention found in live schedule: {', '.join(matched)}",
+                "reason": f"Official venue calendar/schedule lists event token(s): {matched} alongside {len(all_schedule_dates)} active upcoming dates"
+            }
+        else:
+            return {
+                "is_verified": False,
+                "match_type": "none",
+                "matched_tokens": [],
+                "reason": f"Official calendar at {url} does not contain any event mentions matching {tokens[:4]}"
+            }
+
+    # If dedicated page mode:
+    if len(matched_in_headings) >= 1 or len(matched_in_body) >= 2 or (artist and any(t in body_text for t in AutonomousDeepLinkHunter.extract_distinctive_tokens(artist, venue=venue))):
+        matched = list(dict.fromkeys(matched_in_headings + matched_in_body))
+        return {
+            "is_verified": True,
+            "match_type": "dedicated_page",
+            "matched_tokens": matched,
+            "evidence_snippet": evidence or f"Live event confirmed with tokens: {', '.join(matched)}",
+            "reason": f"Affirmatively verified event on dedicated landing page ({', '.join(matched)})"
+        }
+
+    return {
+        "is_verified": False,
+        "match_type": "none",
+        "matched_tokens": matched_in_body,
+        "reason": f"Page at {url} has insufficient event evidence (found {matched_in_body}, required high-confidence multi-token match)"
+    }
