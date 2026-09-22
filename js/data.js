@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-21T08:28:52-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-22T11:09:50-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -63,7 +63,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:21-07:00",
+      "verifiedAt": "2026-09-22T11:07:11-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -127,7 +127,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:21-07:00",
+      "verifiedAt": "2026-09-22T11:07:11-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -191,7 +191,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:22-07:00",
+      "verifiedAt": "2026-09-22T11:07:12-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -255,7 +255,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:23-07:00",
+      "verifiedAt": "2026-09-22T11:07:13-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -319,7 +319,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:24-07:00",
+      "verifiedAt": "2026-09-22T11:07:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -383,7 +383,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:24-07:00",
+      "verifiedAt": "2026-09-22T11:07:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -447,7 +447,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:24-07:00",
+      "verifiedAt": "2026-09-22T11:07:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -479,12 +479,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
-      "tickets",
-      "tropical-dome",
+      "vancouver",
       "organization",
+      "botanical",
       "rainforest",
-      "bloedel-conservatory",
-      "botanical"
+      "tropical-dome",
+      "tickets"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
     "startIso": "2026-09-08T10:00:00-07:00",
@@ -512,7 +512,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 9.97,
       "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-21T11:07:25-07:00",
+      "verifiedAt": "2026-09-22T11:07:14-07:00",
       "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
     }
   },
@@ -575,7 +575,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:07:25-07:00",
+      "verifiedAt": "2026-09-22T11:07:16-07:00",
       "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
     }
   },
@@ -611,11 +611,11 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "eventbrite",
-      "stand-up-for-mental-health-summer-class-debut-tickets",
       "mental-health",
+      "yaletown",
       "stand-up",
       "stand-up-for-mental-health-summer-class-debut",
+      "stand-up-for-mental-health-summer-class-debut-tickets",
       "community-comedy"
     ],
     "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
@@ -644,13 +644,13 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 12.06,
       "feeBreakdown": "$12.06 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-21T11:07:26-07:00",
+      "verifiedAt": "2026-09-22T11:07:17-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
   {
     "id": "viff-centre-matinee",
-    "title": "\"A Sad and Beautiful World\" (Documentary Showcase • Dir. Cyril Aris)",
+    "title": "VIFF Centre: International Cinema & Film Screenings",
     "artist": "Auteur, documentary & world cinema",
     "performers": null,
     "venue": "VIFF Centre (Seymour Atrium)",
@@ -727,36 +727,101 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "A poignant, deeply personal portrait of resilience, creativity, and daily life amidst turbulent economic and political transformation, capturing an enduring pursuit of hope and humanity in contemporary Beirut. (Arabic with English subtitles).",
+    "description": "See what&#039;s on at the VIFF Centre! Showtimes for exceptional films at one of Vancouver&#039;s premium cinemas.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-21T11:07:26-07:00",
+      "verifiedAt": "2026-09-22T11:07:18-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
-    },
-    "buzzwords": [
-      "International Documentary",
-      "Human Resilience",
-      "Cinéma Vérité",
-      "Festival Award Winner",
-      "Middle Eastern Cinema"
-    ],
-    "ratings": [
+    }
+  },
+  {
+    "id": "cinematheque-samurai-prisoner",
+    "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+    "artist": null,
+    "performers": null,
+    "venue": "The Cinematheque",
+    "venueAliases": [],
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$11.00 – $15.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
       {
-        "source": "Letterboxd",
-        "score": "3.9 / 5",
-        "icon": "★"
+        "name": "General Admission",
+        "basePrice": 15.0,
+        "price": 15.0,
+        "label": "$15.00 all-in"
       },
       {
-        "source": "Cineuropa",
-        "score": "Audience Award",
-        "icon": "🏆"
+        "name": "Senior (65+)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      },
+      {
+        "name": "Student / Youth",
+        "basePrice": 11.0,
+        "price": 11.0,
+        "label": "$11.00 all-in"
       }
     ],
-    "reviewQuote": "Devastating yet radiant with humor, stubborn vitality, and an unshakeable love for human endurance.",
-    "contentAdvisory": "Real-world discussions of economic hardship, social unrest, and displacement. Strictly non-spoiler."
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "limited-run",
+    "frequencyLabel": "Limited Run",
+    "daysOfWeek": [
+      "tue",
+      "thu",
+      "sat"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🎬",
+    "subTags": [
+      "samurai",
+      "vancouver",
+      "vancouver-premiere",
+      "japanese-cinema",
+      "mystery",
+      "film"
+    ],
+    "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
+    "startIso": "2026-09-22T19:00:00-07:00",
+    "endIso": "2026-09-26T21:30:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://thecinematheque.ca/films/2026/samurai-prisoner",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "Agile Ticketing Verified",
+    "rawProvider": "Agile Ticketing",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Kurosawa Kiyoshi’s latest picture The Samurai and the Prisoner, set during Japan’s war-ravaged 16th century, is unlike any other in the auteur’s already genre-omnivorous catalogue.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "venue_published_policy",
+      "verifiedTotal": 15.0,
+      "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
+      "verifiedAt": "2026-09-22T11:07:19-07:00",
+      "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
+    }
   },
   {
     "id": "portside-pub-trivia",
@@ -816,8 +881,91 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-21T11:07:30-07:00",
+      "verifiedAt": "2026-09-22T11:07:21-07:00",
       "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
+    }
+  },
+  {
+    "id": "rio-late-night-cinema",
+    "title": "The Rio Theatre: Art House Cinema & Midnight Cult Classics",
+    "artist": "Independent cinema, cult classics & live comedy",
+    "performers": null,
+    "venue": "The Rio Theatre",
+    "venueAliases": [],
+    "address": "1660 E Broadway, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "price": 16.0,
+    "priceLabel": "$13.00 – $16.00 all-in",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Regular Adult Admission",
+        "basePrice": 16.0,
+        "price": 16.0,
+        "label": "$16.00 all-in"
+      },
+      {
+        "name": "Concession (Student / Senior / Member)",
+        "basePrice": 13.0,
+        "price": 13.0,
+        "label": "$13.00 all-in"
+      }
+    ],
+    "isFree": false,
+    "isDaily": true,
+    "frequency": "daily",
+    "frequencyLabel": "Daily (7 Days a Week)",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "Cinema",
+    "categoryIcon": "🍿",
+    "subTags": [
+      "vhs-gems",
+      "live-comedy",
+      "indie-theatre",
+      "cult-cinema"
+    ],
+    "dateSchedule": "Daily • 6:30 PM & 9:00 PM (Plus Weekend Matinees & Midnight Movies)",
+    "startIso": "2026-09-09T19:30:00-07:00",
+    "endIso": "2026-09-09T22:00:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://riotheatre.ca/calendar/",
+    "venueUrl": "https://riotheatre.ca",
+    "ticketProvider": "Igniter Tickets Verified",
+    "rawProvider": "Igniter Tickets",
+    "coordinates": [
+      49.2627,
+      -123.0699
+    ],
+    "transitInfo": "Steps from Commercial-Broadway SkyTrain Interchange",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "East Vancouver's historic, independent cinema and multi-arts venue right by Commercial-Broadway SkyTrain. Shows first-run indie movies, restored 35mm prints, midnight cult classics, and live comedy 7 nights a week with full bar service.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "venue_published_policy",
+      "verifiedTotal": 16.0,
+      "feeBreakdown": "Regular Adult $16.00, Student/Senior $13.00 verified via Rio Theatre ticket-info",
+      "verifiedAt": "2026-09-22T11:07:22-07:00",
+      "details": "Verified via The Rio Theatre published box office rates (riotheatre.ca/ticket-info/)."
     }
   },
   {
@@ -888,7 +1036,7 @@ const VANCOUVER_EVENTS = [
       "method": "admitone_scraped",
       "verifiedTotal": 9.0,
       "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
-      "verifiedAt": "2026-09-21T11:07:33-07:00",
+      "verifiedAt": "2026-09-22T11:07:23-07:00",
       "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver"
     }
   },
@@ -924,12 +1072,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "granville-island",
-      "eventbrite",
-      "live-comedy",
-      "puff-the-magic-improv-show-sept-26-2026-tickets",
       "improv",
-      "revue-stage"
+      "revue-stage",
+      "live-comedy",
+      "puff-the-magic-improv-show-sept-26-2026-vancouver",
+      "granville-island",
+      "puff-the-magic-improv-show-sept-26-2026-tickets"
     ],
     "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-26T20:00:00-07:00",
@@ -957,7 +1105,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-21T11:07:34-07:00",
+      "verifiedAt": "2026-09-22T11:07:24-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -993,12 +1141,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "headliner",
-      "eventbrite",
-      "alistair-ogden-live-at-the-rio-theatre",
+      "stand-up",
       "rio-theatre",
+      "alistair-ogden-live-at-the-rio-theatre-tickets",
       "alistair-ogden-live-at-the-rio-theatre-vancouver",
-      "stand-up"
+      "cbc-comedy",
+      "eventbrite"
     ],
     "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
     "startIso": "2026-12-04T19:30:00-07:00",
@@ -1026,7 +1174,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-21T11:07:34-07:00",
+      "verifiedAt": "2026-09-22T11:07:25-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     }
   },
@@ -1075,12 +1223,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "granville-island",
-      "comedy",
       "improv-comedy",
+      "improv",
       "waterfront-theatre",
       "comedy-show",
-      "theatresports"
+      "granville-island",
+      "comedy"
     ],
     "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
     "startIso": "2026-09-11T19:30:00-07:00",
@@ -1202,7 +1350,7 @@ const VANCOUVER_EVENTS = [
       "method": "regex_scraped",
       "verifiedTotal": 40.0,
       "feeBreakdown": "$40.00 all-in verified via Eventbrite page text",
-      "verifiedAt": "2026-09-21T11:07:38-07:00",
+      "verifiedAt": "2026-09-22T11:07:29-07:00",
       "details": "Parsed from Eventbrite event text."
     }
   },
@@ -1348,7 +1496,7 @@ const VANCOUVER_EVENTS = [
       "method": "vso_published_rush_policy",
       "verifiedTotal": 25.2,
       "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-21T11:07:39-07:00",
+      "verifiedAt": "2026-09-22T11:07:30-07:00",
       "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
     }
   },
@@ -1412,7 +1560,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-21T11:07:39-07:00",
+      "verifiedAt": "2026-09-22T11:07:30-07:00",
       "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
     }
   },
@@ -1540,7 +1688,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
+    "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "manual_curator_review",
@@ -1615,7 +1763,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:49-07:00",
+      "verifiedAt": "2026-09-22T11:07:45-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1682,7 +1830,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:50-07:00",
+      "verifiedAt": "2026-09-22T11:07:46-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1746,7 +1894,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:51-07:00",
+      "verifiedAt": "2026-09-22T11:07:47-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1810,7 +1958,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:54-07:00",
+      "verifiedAt": "2026-09-22T11:07:48-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1874,7 +2022,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:56-07:00",
+      "verifiedAt": "2026-09-22T11:07:50-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -1935,12 +2083,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎵",
     "subTags": [
-      "soul-music",
-      "live-jazz",
+      "cocktails",
+      "beer",
       "intimate-lounge",
-      "gastown",
+      "live-jazz",
       "live-music",
-      "cocktails"
+      "guilt--company"
     ],
     "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
     "startIso": "2026-09-09T19:00:00-07:00",
@@ -1968,7 +2116,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-21T11:07:57-07:00",
+      "verifiedAt": "2026-09-22T11:07:50-07:00",
       "details": "Verified via venue official artist contribution and door policy."
     }
   },
@@ -2033,7 +2181,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:07:57-07:00",
+      "verifiedAt": "2026-09-22T11:07:51-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2097,7 +2245,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:00-07:00",
+      "verifiedAt": "2026-09-22T11:07:53-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2161,7 +2309,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:03-07:00",
+      "verifiedAt": "2026-09-22T11:07:54-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2225,7 +2373,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:06-07:00",
+      "verifiedAt": "2026-09-22T11:07:56-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2289,7 +2437,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:09-07:00",
+      "verifiedAt": "2026-09-22T11:07:57-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2353,7 +2501,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:12-07:00",
+      "verifiedAt": "2026-09-22T11:07:59-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2417,7 +2565,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-21T11:08:12-07:00",
+      "verifiedAt": "2026-09-22T11:07:59-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     }
   },
@@ -2504,7 +2652,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 live music artist cover charge verified via venue policy",
-      "verifiedAt": "2026-09-21T11:08:13-07:00",
+      "verifiedAt": "2026-09-22T11:07:59-07:00",
       "details": "Verified dynamically via 2nd Floor Gastown published performance terms on https://www.waterstreetcafe.ca/2nd-floor-gastown."
     }
   },
@@ -2697,7 +2845,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 17.62,
       "feeBreakdown": "Live multi-tier Showpass checkout: DEAR VIRIDIAN: $17.62 all-in • GRAVEYARD GHOST: $17.62 all-in • MISTY RAINE: $17.62 all-in • ALL 3 BANDS: $17.62 all-in",
-      "verifiedAt": "2026-09-21T11:08:16-07:00",
+      "verifiedAt": "2026-09-22T11:08:02-07:00",
       "details": "Extracted directly from live Showpass public API payload."
     }
   },
@@ -2780,7 +2928,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-21T11:08:17-07:00",
+      "verifiedAt": "2026-09-22T11:08:03-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     }
   },
@@ -2868,7 +3016,7 @@ const VANCOUVER_EVENTS = [
       "method": "meta_tag",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 verified via host OpenGraph metadata",
-      "verifiedAt": "2026-09-21T11:08:17-07:00",
+      "verifiedAt": "2026-09-22T11:08:04-07:00",
       "details": "Extracted from meta tags on https://cafeauclay.com/products/drop-in-pottery-painting."
     }
   },
@@ -2948,7 +3096,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-21T11:08:19-07:00",
+      "verifiedAt": "2026-09-22T11:08:04-07:00",
       "details": "Scraped live from published terms on https://lifedrawing.org/session-fees-rates/."
     }
   },
@@ -3022,7 +3170,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-21T11:08:19-07:00",
+      "verifiedAt": "2026-09-22T11:08:05-07:00",
       "details": "Scraped live from published terms on https://handeyeceramics.com/open-studio."
     }
   },
@@ -3100,7 +3248,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-21T11:08:20-07:00",
+      "verifiedAt": "2026-09-22T11:08:06-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/shop/life-drawing/145."
     }
   },
@@ -3178,7 +3326,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-21T11:08:21-07:00",
+      "verifiedAt": "2026-09-22T11:08:07-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/clayclub."
     }
   },
@@ -3249,7 +3397,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 15.0,
       "feeBreakdown": "$15.00 studio drop-in rate verified via Slice of Life venue policy",
-      "verifiedAt": "2026-09-21T11:08:21-07:00",
+      "verifiedAt": "2026-09-22T11:08:07-07:00",
       "details": "Verified dynamically via Slice of Life Gallery & Studios published programming terms on https://www.slicevancouver.ca/visitors-20."
     }
   },
@@ -3333,7 +3481,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, All Ages') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedAt": "2026-09-22T11:08:09-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/news/10-years-of-turning-the-city-into-a-dance-floor."
     }
   },
@@ -3407,35 +3555,32 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
   {
-    "id": "ra-2502018-ibrary-quare-ublic-ouse",
-    "title": "Andre Kronert- Vancouver",
-    "artist": "Andre Kronert",
-    "performers": [
-      "Andre Kronert"
-    ],
-    "venue": "Library Square Public House",
+    "id": "ra-2542256-ero-s-elcome",
+    "title": "Cuba X Coltrane at Hero’s Welcome",
+    "artist": null,
+    "performers": null,
+    "venue": "Hero's Welcome",
     "venueAliases": [
       "Resident Advisor",
-      "RA Vancouver",
-      "Andre Kronert"
+      "RA Vancouver"
     ],
-    "address": "300 W Georgia St; Vancouver, BC V6B 6B4; Canada",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.0,
-    "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
+    "address": "3917 Main St, Vancouver, BC V5V 3P3",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 20.0,
+    "basePrice": 20.0,
+    "priceLabel": "$20.00 advance",
     "pricingType": "platform",
     "tiers": [
       {
         "name": "Standard RA Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 advance"
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 advance"
       }
     ],
     "isFree": false,
@@ -3443,10 +3588,10 @@ const VANCOUVER_EVENTS = [
     "frequency": "one-off",
     "frequencyLabel": "Confirmed Date",
     "daysOfWeek": [
-      "fri"
+      "thu"
     ],
     "timeSlots": [
-      "late-evening"
+      "early-evening"
     ],
     "category": "music",
     "categoryLabel": "Live Music",
@@ -3458,30 +3603,30 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Friday, Sep 25 • 9:00 PM",
-    "startIso": "2026-09-25T21:00:00.000",
-    "endIso": "2026-09-26T03:00:00.000",
+    "dateSchedule": "Thursday, Sep 24 • 7:00 PM",
+    "startIso": "2026-09-24T19:00:00.000",
+    "endIso": "2026-09-24T22:00:00.000",
     "confirmedDates": [
-      "2026-09-25"
+      "2026-09-24"
     ],
     "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2502018",
-    "venueUrl": "https://ra.co/events/2502018",
+    "websiteUrl": "https://ra.co/events/2542256",
+    "venueUrl": "https://ra.co/events/2542256",
     "provider": "Resident Advisor",
     "semanticProvider": "Resident Advisor Verified",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2638,
+      -123.1012
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Library Square Public House. Featuring live performances by Andre Kronert.",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Hero's Welcome.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "Live RA listing price: $20.00 advance",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3555,7 +3700,81 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    }
+  },
+  {
+    "id": "ra-2502018-ibrary-quare-ublic-ouse",
+    "title": "Andre Kronert- Vancouver",
+    "artist": "Andre Kronert",
+    "performers": [
+      "Andre Kronert"
+    ],
+    "venue": "Library Square Public House",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "Andre Kronert"
+    ],
+    "address": "300 W Georgia St; Vancouver, BC V6B 6B4; Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Sep 25 • 9:00 PM",
+    "startIso": "2026-09-25T21:00:00.000",
+    "endIso": "2026-09-26T03:00:00.000",
+    "confirmedDates": [
+      "2026-09-25"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2502018",
+    "venueUrl": "https://ra.co/events/2502018",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Library Square Public House. Featuring live performances by Andre Kronert.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3634,7 +3853,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -3710,32 +3929,32 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 40.0,
       "feeBreakdown": "Live RA listing price: $40.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
   {
-    "id": "ra-2477877-he-pot",
-    "title": "VANTANIOR - Dark Bass in the Black",
+    "id": "ra-2542266-he-merican",
+    "title": "Besties",
     "artist": null,
     "performers": null,
-    "venue": "The Spot",
+    "venue": "The American",
     "venueAliases": [
       "Resident Advisor",
       "RA Vancouver"
     ],
-    "address": "520 Alexander Street",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 35.0,
-    "basePrice": 35.0,
-    "priceLabel": "$35.00 all-in",
+    "address": "926 Main St, Vancouver, BC V6A 2W1",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 12.0,
+    "basePrice": 12.0,
+    "priceLabel": "$12.00 advance",
     "pricingType": "platform",
     "tiers": [
       {
         "name": "Standard RA Admission",
-        "basePrice": 35.0,
-        "price": 35.0,
-        "label": "$35.00 all-in"
+        "basePrice": 12.0,
+        "price": 12.0,
+        "label": "$12.00 advance"
       }
     ],
     "isFree": false,
@@ -3743,7 +3962,7 @@ const VANCOUVER_EVENTS = [
     "frequency": "one-off",
     "frequencyLabel": "Confirmed Date",
     "daysOfWeek": [
-      "sat"
+      "fri"
     ],
     "timeSlots": [
       "late-evening"
@@ -3758,135 +3977,55 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Saturday, Sep 26 • 9:00 PM",
-    "startIso": "2026-09-26T21:00:00.000",
-    "endIso": "2026-09-27T02:00:00.000",
+    "dateSchedule": "Friday, Sep 25 • 8:30 PM",
+    "startIso": "2026-09-25T20:30:00.000",
+    "endIso": "2026-09-26T02:00:00.000",
     "confirmedDates": [
-      "2026-09-26"
+      "2026-09-25"
     ],
     "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2477877",
-    "venueUrl": "https://ra.co/events/2477877",
+    "websiteUrl": "https://ra.co/events/2542266",
+    "venueUrl": "https://ra.co/events/2542266",
     "provider": "Resident Advisor",
     "semanticProvider": "Resident Advisor Verified",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2638,
+      -123.1012
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Spot.",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The American.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
-      "verifiedTotal": 35.0,
-      "feeBreakdown": "Live RA listing price: $35.00 all-in",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "verifiedTotal": 12.0,
+      "feeBreakdown": "Live RA listing price: $12.00 advance",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
   {
-    "id": "ra-2502822-latform9",
-    "title": "Thump! presents 1morning (Ilian Tape)",
-    "artist": "1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey",
-    "performers": [
-      "1morning",
-      "AWood",
-      "NOTEVENDOWN",
-      "Max Ulis",
-      "DJ Hockey"
-    ],
-    "venue": "Platform9",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "1morning",
-      "AWood",
-      "NOTEVENDOWN"
-    ],
-    "address": "390 Industrial Ave, Vancouver, BC V6A 2P3 Canada",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 22.0,
-    "basePrice": 22.0,
-    "priceLabel": "$22.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 22.0,
-        "price": 22.0,
-        "label": "$22.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Saturday, Sep 26 • 11:00 PM",
-    "startIso": "2026-09-26T23:00:00.000",
-    "endIso": "2026-09-27T04:00:00.000",
-    "confirmedDates": [
-      "2026-09-26"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2502822",
-    "venueUrl": "https://ra.co/events/2502822",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by 1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 22.0,
-      "feeBreakdown": "Live RA listing price: $22.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    }
-  },
-  {
-    "id": "ra-2524035-he-argrove",
-    "title": "DECEL / DIVERGE Art Rave + Manifesto Drop",
+    "id": "ra-2542274-ortune-ound-lub",
+    "title": "Chanel Beads with Horse Vision and urika's bedroom",
     "artist": null,
     "performers": null,
-    "venue": "The Hargrove",
+    "venue": "Fortune Sound Club",
     "venueAliases": [
       "Resident Advisor",
       "RA Vancouver"
     ],
-    "address": "Back Alley Entrance, 150 E 3rd Ave, Vancouver, BC V5T 3C1",
+    "address": "147 E Pender St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 25.0,
     "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
+    "priceLabel": "$25.00 all-in",
     "pricingType": "platform",
     "tiers": [
       {
         "name": "Standard RA Admission",
         "basePrice": 25.0,
         "price": 25.0,
-        "label": "$25.00 advance"
+        "label": "$25.00 all-in"
       }
     ],
     "isFree": false,
@@ -3894,10 +4033,10 @@ const VANCOUVER_EVENTS = [
     "frequency": "one-off",
     "frequencyLabel": "Confirmed Date",
     "daysOfWeek": [
-      "sat"
+      "fri"
     ],
     "timeSlots": [
-      "late-evening"
+      "early-evening"
     ],
     "category": "music",
     "categoryLabel": "Live Music",
@@ -3909,30 +4048,30 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Saturday, Sep 26 • 8:30 PM",
-    "startIso": "2026-09-26T20:30:00.000",
-    "endIso": "2026-09-27T01:30:00.000",
+    "dateSchedule": "Friday, Sep 25 • 6:30 PM",
+    "startIso": "2026-09-25T18:30:00.000",
+    "endIso": "2026-09-25T22:00:00.000",
     "confirmedDates": [
-      "2026-09-26"
+      "2026-09-25"
     ],
     "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2524035",
-    "venueUrl": "https://ra.co/events/2524035",
+    "websiteUrl": "https://ra.co/events/2542274",
+    "venueUrl": "https://ra.co/events/2542274",
     "provider": "Resident Advisor",
     "semanticProvider": "Resident Advisor Verified",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
-      49.2827,
-      -123.1207
+      49.2808,
+      -123.0998
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Hargrove.",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Fortune Sound Club.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-21T11:08:23-07:00",
+      "feeBreakdown": "Live RA listing price: $25.00 all-in",
+      "verifiedAt": "2026-09-22T11:08:10-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     }
   },
@@ -4000,7 +4139,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:28-07:00",
+      "verifiedAt": "2026-09-22T11:08:16-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/gastown-streetside-sessions-xe3kh-n4n52-whwyz-d674d-spja9."
     },
     "isFree": true,
@@ -4074,7 +4213,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free, all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:28-07:00",
+      "verifiedAt": "2026-09-22T11:08:16-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granville-street-2026-3."
     },
     "isFree": true,
@@ -4144,7 +4283,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:28-07:00",
+      "verifiedAt": "2026-09-22T11:08:16-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
     },
     "isFree": true,
@@ -4217,7 +4356,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free and all ages') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:31-07:00",
+      "verifiedAt": "2026-09-22T11:08:19-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/shipyards-night-market-stage-takeover."
     },
     "isFree": true,
@@ -4290,7 +4429,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free EVENT') scraped live from published terms",
-      "verifiedAt": "2026-09-21T11:08:31-07:00",
+      "verifiedAt": "2026-09-22T11:08:19-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/granvilleisland2026."
     },
     "isFree": true,
@@ -4362,7 +4501,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public entry with $5.00 suggested community donation scraped live",
-      "verifiedAt": "2026-09-21T11:08:31-07:00",
+      "verifiedAt": "2026-09-22T11:08:19-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/blossom-block-party-2026."
     },
     "isFree": true,
@@ -4373,8490 +4512,8 @@ const VANCOUVER_EVENTS = [
     "ticketProvider": "Bentall Centre Dunsmuir Plaza Verified"
   },
   {
-    "id": "fest-fringe-false-tour",
-    "title": "Fringe: The False Tour of False Creek",
-    "rawTitle": "The False Tour of False Creek",
-    "artist": "False Creek Ferries",
-    "venue": "Granville Island Ferry Dock",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2721,
-      -123.1348
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": true,
-    "websiteUrl": "https://www.vancouverfringe.com/events/false-tour/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Granville Island Ferry Dock",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "The crew of the False Creek Ferries are proud to reprise their hit False Tour of False Creek. Get misinformed by a Not-At-All-Full-Of-Baloney skipper as you sail around the harbour on a comfortable, silent, electric boat. Sights include Science World, the world’s largest Tesla Coil, the False Creek Ray Gun, and a skyline of non-Euclidean […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.573888+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "The crew of the False Creek Ferries are proud to reprise their hit False Tour of False Creek. Get misinformed by a Not-At-All-Full-Of-Baloney skipper as you sail around the harbour on a comfortable, silent, electric boat. Sights include Science World, the world’s largest Tesla Coil, the False Creek Ray Gun, and a skyline of non-Euclidean […]"
-  },
-  {
-    "id": "fest-fringe-intrusive-thoughts",
-    "title": "Fringe: Intrusive Thoughts",
-    "rawTitle": "Intrusive Thoughts",
-    "artist": "Intrusive Thoughts Theatre",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/intrusive-thoughts/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/intrusive-thoughts/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A therapist dreams up ways to enact revenge toward the villains in her client’s lives. Along the way she is confronted by the shadows in her own past. An exploration of the troubling thoughts that shape our lives and how they offer comfort in the face of injustice. Key Words: Revenge, Dramatic, Therapeutic",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.574124+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A therapist dreams up ways to enact revenge toward the villains in her client’s lives. Along the way she is confronted by the shadows in her own past. An exploration of the troubling thoughts that shape our lives and how they offer comfort in the face of injustice. Key Words: Revenge, Dramatic, Therapeutic"
-  },
-  {
-    "id": "fest-fringe-guys-i-fcked",
-    "title": "Fringe: The Guys I F*cked",
-    "rawTitle": "The Guys I F*cked",
-    "artist": "Explosive Lieutenant Productions",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/guys-i-fcked/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Christine and Noah are newly engaged and everything is wonderful. When Christine’s colourful romantic history comes to light, Noah realizes he doesn’t know her quite as well as he thought. Pharmacist-turned-playwright Centenie Narusis (Sabotage, Vancouver Fringe 2022) returns to Fringe this year with hilarious true stories of a woman’s journey t...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.574403+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Christine and Noah are newly engaged and everything is wonderful. When Christine’s colourful romantic history comes to light, Noah realizes he doesn’t know her quite as well as he thought. Pharmacist-turned-playwright Centenie Narusis (Sabotage, Vancouver Fringe 2022) returns to Fringe this year with hilarious true stories of a woman’s journey t...",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-adventures-of-a-valentine",
-    "title": "Fringe: The Adventures of a Valentine",
-    "rawTitle": "The Adventures of a Valentine",
-    "artist": "Tanner Valentine",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/adventures-of-a-valentine/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "How does someone go from being a Jesus-loving Christian youth group leader to a non-binary, kinky, polyamorous queerdo? Misery, mishaps, and making out with a whole lot of people! In this auto-biographical piece you will see what life beyond the binary can look like when you fearlessly embrace who you are (and say TO HECK […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.574677+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "How does someone go from being a Jesus-loving Christian youth group leader to a non-binary, kinky, polyamorous queerdo? Misery, mishaps, and making out with a whole lot of people! In this auto-biographical piece you will see what life beyond the binary can look like when you fearlessly embrace who you are (and say TO HECK […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-ivory-tower-power",
-    "title": "Fringe: The Ivory Tower Power Hour",
-    "rawTitle": "The Ivory Tower Power Hour",
-    "artist": "Great Growlers",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/ivory-tower-power/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "The Ivory Tower Power Hour is an absurdist, subversive, and gleefully unhinged feminist comedy about higher education in late-capitalist times. Public funding for the Arts and Humanities has been slashed, and generative AI has taken over teaching. To access what remains of research funding, three faculty finalists must compete in the Ivory Tower...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.574953+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "The Ivory Tower Power Hour is an absurdist, subversive, and gleefully unhinged feminist comedy about higher education in late-capitalist times. Public funding for the Arts and Humanities has been slashed, and generative AI has taken over teaching. To access what remains of research funding, three faculty finalists must compete in the Ivory Tower...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-jimmy-hogg",
-    "title": "Fringe: Jimmy Hogg: Mashed",
-    "rawTitle": "Jimmy Hogg: Mashed",
-    "artist": "Jimmy Hogg",
-    "venue": "Picnic Pavilion",
-    "address": "267 Old Bridge Walk, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2715,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/jimmy-hogg/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Picnic Pavilion",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "After SOLD-OUT runs across Canada in 2024 & 2025, British comedian and storyteller Jimmy Hogg (The Potato King) returns to Vancouver Fringe with a NEW SHOW. ***** “A fantastically engaging performer, sort of like if Ricky Gervais had more energy.” -Edmonton Journal ***** “Hogg is a raconteur of the finest order, his mile-a-minute-delivery — thin...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.575224+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "After SOLD-OUT runs across Canada in 2024 & 2025, British comedian and storyteller Jimmy Hogg (The Potato King) returns to Vancouver Fringe with a NEW SHOW. ***** “A fantastically engaging performer, sort of like if Ricky Gervais had more energy.” -Edmonton Journal ***** “Hogg is a raconteur of the finest order, his mile-a-minute-delivery — thin..."
-  },
-  {
-    "id": "fest-fringe-unsex-me-here",
-    "title": "Fringe: Unsex Me Here @LadyM",
-    "rawTitle": "Unsex Me Here @LadyM",
-    "artist": "Prairie Dog Theatre, collab with Curious Cats Theatre Collective",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/unsex-me-here/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "She is still, she is quiet, she is nice. After major surgery, Lady M pours all her ambition into her legal career, and a public rebrand so she can shake off her Mormon upbringing and take on the Barbie doll lawyers. But blood will have blood. Will her husband be her dearest partner of greatness, […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.575498+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "She is still, she is quiet, she is nice. After major surgery, Lady M pours all her ambition into her legal career, and a public rebrand so she can shake off her Mormon upbringing and take on the Barbie doll lawyers. But blood will have blood. Will her husband be her dearest partner of greatness, […]"
-  },
-  {
-    "id": "fest-fringe-my-big-break",
-    "title": "Fringe: My Big Break on Broadway",
-    "rawTitle": "My Big Break on Broadway",
-    "artist": "Joni Summerton",
-    "venue": "Arts Umbrella (Scott Studio)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/my-big-break/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Scott Studio)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "What if an aspiring Broadway actor living in Vancouver follows her dream, but winds up in a New York City psych ward instead? The harrowing true story about how mean people caused my mental health condition, but how I reclaimed my voice for singing and advocacy. Adapted from the memoir that took 10 years to […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.575761+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "What if an aspiring Broadway actor living in Vancouver follows her dream, but winds up in a New York City psych ward instead? The harrowing true story about how mean people caused my mental health condition, but how I reclaimed my voice for singing and advocacy. Adapted from the memoir that took 10 years to […]"
-  },
-  {
-    "id": "fest-fringe-that-showtime",
-    "title": "Fringe: That SHOWtime of the Month",
-    "rawTitle": "That SHOWtime of the Month",
-    "artist": "Alannah Brittany and Cory Lupovici",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/that-showtime/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A handful of (cis-)male comics experience periods, live on stage, while trying to do comedy! Cory Lupovici (JFL Vancouver) and Alannah Brittany (CBC Gem) bring you, That Show(time) of the Month! where we will be hooking male comics up to a period cramp simulator and challenging them to deliver their sets while squirming through the […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.576029+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A handful of (cis-)male comics experience periods, live on stage, while trying to do comedy! Cory Lupovici (JFL Vancouver) and Alannah Brittany (CBC Gem) bring you, That Show(time) of the Month! where we will be hooking male comics up to a period cramp simulator and challenging them to deliver their sets while squirming through the […]"
-  },
-  {
-    "id": "fest-fringe-jeff-grungled",
-    "title": "Fringe: Jeff & Grungled KNOW FRILLS",
-    "rawTitle": "Jeff & Grungled KNOW FRILLS",
-    "artist": "Holy! Scoundrels! Theatre!",
-    "venue": "Ron Basford Park (Sculpture Grove)",
-    "address": "Ron Basford Park, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2698,
-      -123.1325
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/jeff-grungled/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Ron Basford Park (Sculpture Grove)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Meet Jeff and Grungled. They certainly know frills, but do they know how to be men? KNOW FRILLS is a duo comedy show about masculinity beyond patriarchy. During a chaotic trip to the local grocery store, Jeff and Grungled battle the deluge of unspoken rules, riddles, and regiments of manhood, all while trying to find […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.576293+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Meet Jeff and Grungled. They certainly know frills, but do they know how to be men? KNOW FRILLS is a duo comedy show about masculinity beyond patriarchy. During a chaotic trip to the local grocery store, Jeff and Grungled battle the deluge of unspoken rules, riddles, and regiments of manhood, all while trying to find […]"
-  },
-  {
-    "id": "fest-fringe-spontaneous-shakespeare",
-    "title": "Fringe: The Spontaneous Shakespeare Company Presents",
-    "rawTitle": "The Spontaneous Shakespeare Company Presents",
-    "artist": "The Spontaneous Shakespeare Company",
-    "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/spontaneous-shakespeare/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Improv Centre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "What will it be? A history? A tragedy? A comedy? The Spontaneous Shakespeare Company returns to create an entirely original Shakespearean play for you. The only guarantee is a good time had by all! (Audience participation is not required, so come on out and enjoy the show!) Key Words: Shakespearean, Comedy, Improv",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.576554+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "What will it be? A history? A tragedy? A comedy? The Spontaneous Shakespeare Company returns to create an entirely original Shakespearean play for you. The only guarantee is a good time had by all! (Audience participation is not required, so come on out and enjoy the show!) Key Words: Shakespearean, Comedy, Improv",
-    "venueUrl": "https://theimprovcentre.ca"
-  },
-  {
-    "id": "fest-fringe-lovely-family-picnic",
-    "title": "Fringe: Lovely family picnic",
-    "rawTitle": "Lovely family picnic",
-    "artist": "The clown collective",
-    "venue": "Ron Basford Park (Amphitheatre)",
-    "address": "Ron Basford Park, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2698,
-      -123.1325
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/lovely-family-picnic/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/lovely-family-picnic/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Ron Basford Park (Amphitheatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A clown named Sticky wanders the wild grass in search of someone to share a picnic with. The sparks will fly between Sticky and that someone special as they share food, drink and conversation. Things at the picnic heat up fast, and one thing might lead to another… and another… and another… Key Words: Comedy, […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.576759+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A clown named Sticky wanders the wild grass in search of someone to share a picnic with. The sparks will fly between Sticky and that someone special as they share food, drink and conversation. Things at the picnic heat up fast, and one thing might lead to another… and another… and another… Key Words: Comedy, […]"
-  },
-  {
-    "id": "fest-fringe-ride-or-die",
-    "title": "Fringe: Ride or Die",
-    "rawTitle": "Ride or Die",
-    "artist": "Craft & Bone Theatre Collective & The Imagination Forge",
-    "venue": "Van Behind Ferreira Collision Centre",
-    "address": "980 Clark Dr, Vancouver, BC",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "coordinates": [
-      49.278,
-      -123.085
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": true,
-    "websiteUrl": "https://www.vancouverfringe.com/events/ride-or-die/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/ride-or-die/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Van Behind Ferreira Collision Centre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Will you help me bury a body… no questions asked?” The age-old question. The ultimate test of friendship. But the hypothetical becomes devastatingly real one night as Kat and Bea’s friendship is put to the test. Ride or Die is an immersive dark comedy, where the audience will be asked to step inside a seven-seater […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.576948+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Will you help me bury a body… no questions asked?” The age-old question. The ultimate test of friendship. But the hypothetical becomes devastatingly real one night as Kat and Bea’s friendship is put to the test. Ride or Die is an immersive dark comedy, where the audience will be asked to step inside a seven-seater […]"
-  },
-  {
-    "id": "fest-fringe-madeline-minx",
-    "title": "Fringe: The Madeline Minx Cabaret: Still Not Domesticated",
-    "rawTitle": "The Madeline Minx Cabaret: Still Not Domesticated",
-    "artist": "Pushy Productions",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/madeline-minx/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Madeline Minx sings, dances, and hot flashes her way through a cabaret comedy about 90s pop star ambitions. Raised on MTV and big feelings, she looks back on a career filled with strange detours, brushes with celebrities, near misses, and just enough success to keep the dream alive. There’s just one problem: her blunt, larger-than-life […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.577214+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Madeline Minx sings, dances, and hot flashes her way through a cabaret comedy about 90s pop star ambitions. Raised on MTV and big feelings, she looks back on a career filled with strange detours, brushes with celebrities, near misses, and just enough success to keep the dream alive. There’s just one problem: her blunt, larger-than-life […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-coming-of-rage",
-    "title": "Fringe: Coming of Rage",
-    "rawTitle": "Coming of Rage",
-    "artist": "Cosmic Theatre Co/Sophia Saugstad",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/coming-of-rage/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/coming-of-rage/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A young girl discovers the thrill of destruction, and with it, a rage unlike anything she has known before. As she grows into a young woman, the same fierce spirit that once drew admiration becomes a source of scrutiny and shame. As she begins to navigate the blurred line between aggression and passion, she must […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.577399+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A young girl discovers the thrill of destruction, and with it, a rage unlike anything she has known before. As she grows into a young woman, the same fierce spirit that once drew admiration becomes a source of scrutiny and shame. As she begins to navigate the blurred line between aggression and passion, she must […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-fashionably-late",
-    "title": "Fringe: Fashionably Late",
-    "rawTitle": "Fashionably Late",
-    "artist": "Savannah Erasmus",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/fashionably-late/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/fashionably-late/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Fashionably Late is an unserious, chaotic and deeply relatable stand-up and storytelling show written by Indigenous comedian Savannah Erasmus (CBC Gem, JFL Vancouver, JFL Toronto, Winnipeg Comedy Festival). Savannah shares her internal dialogue, panic, stress as she frantically gets dressed for her comedy show. Expect costume changes, tons of jo...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.577583+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Fashionably Late is an unserious, chaotic and deeply relatable stand-up and storytelling show written by Indigenous comedian Savannah Erasmus (CBC Gem, JFL Vancouver, JFL Toronto, Winnipeg Comedy Festival). Savannah shares her internal dialogue, panic, stress as she frantically gets dressed for her comedy show. Expect costume changes, tons of jo..."
-  },
-  {
-    "id": "fest-fringe-1984-again",
-    "title": "Fringe: 1984: AGAIN",
-    "rawTitle": "1984: AGAIN",
-    "artist": "Theatre Terrific",
-    "venue": "Picnic Pavilion",
-    "address": "267 Old Bridge Walk, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2715,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/1984-again/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/1984-again/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Picnic Pavilion",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Big Brother isn’t coming. He’s already in your pocket. In this gripping adaptation of Orwell’s masterpiece, Winston Smith commits the ultimate crime—he falls in love. In a world of absolute surveillance, his forbidden affair with Julia becomes a radical act of defiance against the Ministry of Truth. Drawing terrifying parallels to modern data tr...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.577734+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Big Brother isn’t coming. He’s already in your pocket. In this gripping adaptation of Orwell’s masterpiece, Winston Smith commits the ultimate crime—he falls in love. In a world of absolute surveillance, his forbidden affair with Julia becomes a radical act of defiance against the Ministry of Truth. Drawing terrifying parallels to modern data tr..."
-  },
-  {
-    "id": "fest-fringe-showing-size",
-    "title": "Fringe: Showing Size",
-    "rawTitle": "Showing Size",
-    "artist": "Delacroon Productions",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/showing-size/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/showing-size/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Showing Size began as a series of paintings. Artist Gordon Halloran was commissioned by financial trader John Woods to create paintings to commemorate the closing of the old building of the Vancouver Stock Exchange in 1981. This began Halloran’s in-depth study of individuals in the hectic, competitive, hand-to-hand world of open-outcry trading a...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.577954+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Showing Size began as a series of paintings. Artist Gordon Halloran was commissioned by financial trader John Woods to create paintings to commemorate the closing of the old building of the Vancouver Stock Exchange in 1981. This began Halloran’s in-depth study of individuals in the hectic, competitive, hand-to-hand world of open-outcry trading a...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-dragonfly",
-    "title": "Fringe: Dragonfly",
-    "rawTitle": "Dragonfly",
-    "artist": "Cocksure Performance",
-    "venue": "Upstart & Crow",
-    "address": "3177 Granville St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1335
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/dragonfly/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/dragonfly/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Upstart & Crow",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "In this original and poetic work, Lara Rae tells the raw and heartfelt story of her half century long (and counting) gender odyssey. Turning the autobiographical solo show upside down, Dragonfly presents two actors illuminating the inner life of one trans woman from her Scottish childhood in the 1960s to the present day. Resisting binaries […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.578134+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "In this original and poetic work, Lara Rae tells the raw and heartfelt story of her half century long (and counting) gender odyssey. Turning the autobiographical solo show upside down, Dragonfly presents two actors illuminating the inner life of one trans woman from her Scottish childhood in the 1960s to the present day. Resisting binaries […]"
-  },
-  {
-    "id": "fest-fringe-dip-happens",
-    "title": "Fringe: Dip Happens: Cold Water Swimming on Haida Gwaii",
-    "rawTitle": "Dip Happens: Cold Water Swimming on Haida Gwaii",
-    "artist": "Brussels Sprout Avalanche Theatre Company",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/dip-happens/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/dip-happens/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Josina’s been in three triathlons starting when she was 63 and continues to swim every day on Haida Gwaii. There’s no pools there and she swims in the rivers, lakes, or ocean. She likes learning new things but did not expect to be swimming in a triathlon as a nonathletic non-swimmer. Josina didn’t think she’d […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.578310+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Josina’s been in three triathlons starting when she was 63 and continues to swim every day on Haida Gwaii. There’s no pools there and she swims in the rivers, lakes, or ocean. She likes learning new things but did not expect to be swimming in a triathlon as a nonathletic non-swimmer. Josina didn’t think she’d […]"
-  },
-  {
-    "id": "fest-fringe-cappuccino-glen",
-    "title": "Fringe: Cappuccino Glen & Decaf Dan Present: The Grind and the Glory",
-    "rawTitle": "Cappuccino Glen & Decaf Dan Present: The Grind and the Glory",
-    "artist": "Cappuccino Glen Productions",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/cappuccino-glen/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Life has always worked out for Cappuccino Glen, who is full of bright positive energy and a passion for dance. But for minimalist Decaf Dan, existence is riddled with anxieties. They collide, and laughter follows. What makes a good life? Join us for a show packed with joy, music, and at least one interactive dance […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.578568+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Life has always worked out for Cappuccino Glen, who is full of bright positive energy and a passion for dance. But for minimalist Decaf Dan, existence is riddled with anxieties. They collide, and laughter follows. What makes a good life? Join us for a show packed with joy, music, and at least one interactive dance […]"
-  },
-  {
-    "id": "fest-fringe-a-ramona-dale-adventure",
-    "title": "Fringe: The Lady in the Fountain: A Ramona Dale Adventure",
-    "rawTitle": "The Lady in the Fountain: A Ramona Dale Adventure",
-    "artist": "Side One",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/a-ramona-dale-adventure/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Murder, Mayhem and Mussolini’s Blackshirts are part of this Ramona Dale romantic adventure set in 1920’s Italy. A chance encounter in front of a fountain leads Ramona along a path of love, deception, and honour as she makes the choice to get involved. Ramona was sent off by a wealthy Godmother to bring back photographs […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.578826+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Murder, Mayhem and Mussolini’s Blackshirts are part of this Ramona Dale romantic adventure set in 1920’s Italy. A chance encounter in front of a fountain leads Ramona along a path of love, deception, and honour as she makes the choice to get involved. Ramona was sent off by a wealthy Godmother to bring back photographs […]"
-  },
-  {
-    "id": "fest-fringe-thats-gay-comedy",
-    "title": "Fringe: THAT’S GAY! COMEDY",
-    "rawTitle": "THAT’S GAY! COMEDY",
-    "artist": "Erin Purghart",
-    "venue": "Little Mountain Gallery (Salazar Stage)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#comedy"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": true,
-    "websiteUrl": "https://www.vancouverfringe.com/events/thats-gay-comedy/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/thats-gay-comedy/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "After a sold out run last year, Vancouver’s favourite queer comedy show, THAT’S GAY! COMEDY is back again for the Vancouver Fringe! Hosted by Erin Purghart, we’ve got four different lineups featuring the Lower Mainland’s funniest, gayest comedians! SAT SEPT 12 9PM | Boys! Boys! Boys!Featuring: Steev Letts, Sasha Mark, DJ On, Mark Thomson THURS […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.579056+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "After a sold out run last year, Vancouver’s favourite queer comedy show, THAT’S GAY! COMEDY is back again for the Vancouver Fringe! Hosted by Erin Purghart, we’ve got four different lineups featuring the Lower Mainland’s funniest, gayest comedians! SAT SEPT 12 9PM | Boys! Boys! Boys!Featuring: Steev Letts, Sasha Mark, DJ On, Mark Thomson THURS […]"
-  },
-  {
-    "id": "fest-fringe-love-manipulated",
-    "title": "Fringe: Love (Manipulated)",
-    "rawTitle": "Love (Manipulated)",
-    "artist": "Gambit Players",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/love-manipulated/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/love-manipulated/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "The Baldersons, a tough-as-nails producer and her artsy director husband known for low-budget sci-fi movies, are making the leap into romantic comedy. But during rehearsal for their autobiographical love story, they clash over the details of an affair. They begin subjecting the poor actors playing them to increasingly biased versions of the same...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.579268+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "The Baldersons, a tough-as-nails producer and her artsy director husband known for low-budget sci-fi movies, are making the leap into romantic comedy. But during rehearsal for their autobiographical love story, they clash over the details of an affair. They begin subjecting the poor actors playing them to increasingly biased versions of the same..."
-  },
-  {
-    "id": "fest-fringe-date-or-hate",
-    "title": "Fringe: Date or Hate",
-    "rawTitle": "Date or Hate",
-    "artist": "Vivian Chan",
-    "venue": "Arts Umbrella (Scott Studio)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/date-or-hate/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/date-or-hate/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Scott Studio)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Date or Hate is a solo black comedy/storytelling about modern dating, professional ego death, , and the isolation of the immigrant experience. Vivian, a fiercely independent, award-winning Hong Kong actress, abandons her theatrical kingdom for freedom in Canada. But instead of finding a new ensemble, she finds a society determined to put her in ...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.579464+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Date or Hate is a solo black comedy/storytelling about modern dating, professional ego death, , and the isolation of the immigrant experience. Vivian, a fiercely independent, award-winning Hong Kong actress, abandons her theatrical kingdom for freedom in Canada. But instead of finding a new ensemble, she finds a society determined to put her in ..."
-  },
-  {
-    "id": "fest-fringe-greatest-night",
-    "title": "Fringe: The Greatest Night in Trivia History",
-    "rawTitle": "The Greatest Night in Trivia History",
-    "artist": "Jordy Matheson",
-    "venue": "Little Mountain Gallery (Raccoon Room)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/greatest-night/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Is life just trivia in the end? In a world filled with misinformation, there is only one place that we can go to find the ultimate truth: Trivia Night. Quizmaster Bertram Thistle has been hosting trivia since its invention and is a true devotee to the altar of general knowledge bar games. Tonight is a […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.579724+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Is life just trivia in the end? In a world filled with misinformation, there is only one place that we can go to find the ultimate truth: Trivia Night. Quizmaster Bertram Thistle has been hosting trivia since its invention and is a true devotee to the altar of general knowledge bar games. Tonight is a […]"
-  },
-  {
-    "id": "fest-fringe-snatched",
-    "title": "Fringe: Snatched",
-    "rawTitle": "Snatched",
-    "artist": "That Witch",
-    "venue": "Ron Basford Park (Amphitheatre)",
-    "address": "Ron Basford Park, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2698,
-      -123.1325
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/snatched/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/snatched/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Ron Basford Park (Amphitheatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Edinburgh, 1829. The School of Anatomical Sciences needs fresh cadavers. With high demand but low supply, a few desperate souls resort to murder, selling corpses to the school for cash. At the ripe age of 32, Agnes Gillies might as well have one foot in the grave. With no husband and no prospects, she’s too […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.579943+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Edinburgh, 1829. The School of Anatomical Sciences needs fresh cadavers. With high demand but low supply, a few desperate souls resort to murder, selling corpses to the school for cash. At the ripe age of 32, Agnes Gillies might as well have one foot in the grave. With no husband and no prospects, she’s too […]"
-  },
-  {
-    "id": "fest-fringe-poison-in-my-pocket",
-    "title": "Fringe: Poison in my Pocket",
-    "rawTitle": "Poison in my Pocket",
-    "artist": "Belecos Productions",
-    "venue": "Picnic Pavilion",
-    "address": "267 Old Bridge Walk, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2715,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/poison-in-my-pocket/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/poison-in-my-pocket/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Picnic Pavilion",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Poison in My Pocket is a musical comedy about fame, and the kind of confidence that can only come from delusion. Phi is the biggest pop star on the planet. There’s just one problem: she can’t sing, dance, or perform. Somehow, this hasn’t stopped her from selling out arenas around the world. As she prepares […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.580159+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Poison in My Pocket is a musical comedy about fame, and the kind of confidence that can only come from delusion. Phi is the biggest pop star on the planet. There’s just one problem: she can’t sing, dance, or perform. Somehow, this hasn’t stopped her from selling out arenas around the world. As she prepares […]"
-  },
-  {
-    "id": "fest-fringe-live-in-hell",
-    "title": "Fringe: LIVE IN HELL",
-    "rawTitle": "LIVE IN HELL",
-    "artist": "She-Devils",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/live-in-hell/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/live-in-hell/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "LIVE IN HELL is your next problematic fave – a comitragic solo show featuring a self-obsessed and definitely NOT sexy She-Devil. She welcomes the audience to her own personal hell, built from objects emerging from a comically large cardboard Amazon box. Through pathetic practical magic, crowd work, and trauma-informed puppet therapy, the She-Dev...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.580358+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "LIVE IN HELL is your next problematic fave – a comitragic solo show featuring a self-obsessed and definitely NOT sexy She-Devil. She welcomes the audience to her own personal hell, built from objects emerging from a comically large cardboard Amazon box. Through pathetic practical magic, crowd work, and trauma-informed puppet therapy, the She-Dev...",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-syllabus",
-    "title": "Fringe: The Syllabus",
-    "rawTitle": "The Syllabus",
-    "artist": "Morbidelli 17 Productions",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/syllabus/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Class is back in session, and this time, it’s personal. In The Syllabus, you will learn how to find out who sent the D-pic to a classmate, what the professor does with the confiscated edibles, and how to stay sane in a post-truth, rage-baiting media environment. In this original one-act performance, you’re a student again, […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.580617+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Class is back in session, and this time, it’s personal. In The Syllabus, you will learn how to find out who sent the D-pic to a classmate, what the professor does with the confiscated edibles, and how to stay sane in a post-truth, rage-baiting media environment. In this original one-act performance, you’re a student again, […]"
-  },
-  {
-    "id": "fest-fringe-islandography",
-    "title": "Fringe: Islandography",
-    "rawTitle": "Islandography",
-    "artist": "Justin Shaw",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/islandography/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/islandography/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Storytelling and standup collide in ISLANDOGRAPHY. Described as a “slightly caffeinated Stuart McLean,” Justin Shaw is a comedian and storyteller originally from Prince Edward Island (and if you’re also from Prince Edward Island, his dad probably knows your dad.) Weaving tales of his madcap misadventures across Canada, ISLANDOGRAPHY is a one-hou...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.580811+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Storytelling and standup collide in ISLANDOGRAPHY. Described as a “slightly caffeinated Stuart McLean,” Justin Shaw is a comedian and storyteller originally from Prince Edward Island (and if you’re also from Prince Edward Island, his dad probably knows your dad.) Weaving tales of his madcap misadventures across Canada, ISLANDOGRAPHY is a one-hou...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-chose",
-    "title": "Fringe: Chose",
-    "rawTitle": "Chose",
-    "artist": "Astia",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/chose/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/chose/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "What if love was never the problem? Chose is a philosophical solo performance about relationships, expectations, and the strange thing we call choice. Through poetry, storytelling, and dark humour, a young woman revisits the people she loved, the futures she almost chose, and the versions of herself she abandoned along the way. From the exciteme...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.580980+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "What if love was never the problem? Chose is a philosophical solo performance about relationships, expectations, and the strange thing we call choice. Through poetry, storytelling, and dark humour, a young woman revisits the people she loved, the futures she almost chose, and the versions of herself she abandoned along the way. From the exciteme..."
-  },
-  {
-    "id": "fest-fringe-brunch",
-    "title": "Fringe: BRUNCH: The Musical",
-    "rawTitle": "BRUNCH: The Musical",
-    "artist": "C. + M. MacEwan",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/brunch/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Imagine your favourite brunch place; your go-to Eggs Benedict. What makes it so special to you? For the Maître-D’, brunch just might be the answer to all the world’s problems. But could a soft poached egg really have that power? To change people’s lives? BRUNCH: The Musical connects traditional musical theatre practices to experimental approache...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.581237+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Imagine your favourite brunch place; your go-to Eggs Benedict. What makes it so special to you? For the Maître-D’, brunch just might be the answer to all the world’s problems. But could a soft poached egg really have that power? To change people’s lives? BRUNCH: The Musical connects traditional musical theatre practices to experimental approache..."
-  },
-  {
-    "id": "fest-fringe-task-show",
-    "title": "Fringe: Task Show",
-    "rawTitle": "Task Show",
-    "artist": "Allie Entwistle, Ronald Dario, and Maarten Bayliss",
-    "venue": "Little Mountain Gallery (Salazar Stage)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/task-show/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/task-show/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Task Show is a chaotic comedy game show where comedians do tasks in a way that is deeply unaffiliated with any other panel comedy show. Each comedian must complete a series of (mundane, bizarre, and often useless) challenges set out by Allie Entwistle (Brunch Comedy, Just For Laughs Vancouver) and her sycophantic assistant, Ronald Dario […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.581468+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Task Show is a chaotic comedy game show where comedians do tasks in a way that is deeply unaffiliated with any other panel comedy show. Each comedian must complete a series of (mundane, bizarre, and often useless) challenges set out by Allie Entwistle (Brunch Comedy, Just For Laughs Vancouver) and her sycophantic assistant, Ronald Dario […]"
-  },
-  {
-    "id": "fest-fringe-ask-me",
-    "title": "Fringe: Ask Me How I’m Feeling",
-    "rawTitle": "Ask Me How I’m Feeling",
-    "artist": "Rita Sheena",
-    "venue": "Arts Umbrella (Scott Studio)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": true,
-    "websiteUrl": "https://www.vancouverfringe.com/events/ask-me/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Scott Studio)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A contemporary dance work exploring the emotional depth and resilience of Women through the embodiment of their lived experiences. Blending narrative and abstract storytelling, Chelsea McGowan, Cassielle Flowers, and Rita Sheena (EVERYBODY KNOWS: Leonard Cohen Dance Theatre), move through emotional rupture, transformation, and renewal. The chore...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.581706+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A contemporary dance work exploring the emotional depth and resilience of Women through the embodiment of their lived experiences. Blending narrative and abstract storytelling, Chelsea McGowan, Cassielle Flowers, and Rita Sheena (EVERYBODY KNOWS: Leonard Cohen Dance Theatre), move through emotional rupture, transformation, and renewal. The chore..."
-  },
-  {
-    "id": "fest-fringe-story-story-lie",
-    "title": "Fringe: Story Story Lie",
-    "rawTitle": "Story Story Lie",
-    "artist": "DD Brassiere",
-    "venue": "Little Mountain Gallery (Raccoon Room)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/story-story-lie/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/story-story-lie/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Story Story Lie returns after a five-year hiatus! A clever mix of comedy, storytelling and cross-examination, the show has quickly become a Fringe favourite. Think Two Truths and a Lie, but with a twist. Three storytellers share outrageous, hilarious and embarrassing stories, but one of them is lying. Then it’s your turn to join the […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.581932+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Story Story Lie returns after a five-year hiatus! A clever mix of comedy, storytelling and cross-examination, the show has quickly become a Fringe favourite. Think Two Truths and a Lie, but with a twist. Three storytellers share outrageous, hilarious and embarrassing stories, but one of them is lying. Then it’s your turn to join the […]"
-  },
-  {
-    "id": "fest-fringe-mia",
-    "title": "Fringe: MIA",
-    "rawTitle": "MIA",
-    "artist": "Coyote Pact",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/mia/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/mia/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "THIS IS THE GAME. Annually, Mia asks the internet to hunt her down, running a complex online game based on riddles and puzzles. The winner decodes her posts to find her in person, and once they have, she disappears again until the next year. The problem is that this year, she hasn’t left any clues. […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.582136+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "THIS IS THE GAME. Annually, Mia asks the internet to hunt her down, running a complex online game based on riddles and puzzles. The winner decodes her posts to find her in person, and once they have, she disappears again until the next year. The problem is that this year, she hasn’t left any clues. […]"
-  },
-  {
-    "id": "fest-fringe-blackbird-2",
-    "title": "Fringe: Blackbird",
-    "rawTitle": "Blackbird",
-    "artist": "Fresh Ground Theatre",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/blackbird-2/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "She was twelve. He was forty. He went to prison. She went home to a life that was never the same. Now, fifteen years later, she has tracked him down to his new workplace. He has a new name, a new life, colleagues who know nothing about him. And she’s not leaving until she has […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.582393+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "She was twelve. He was forty. He went to prison. She went home to a life that was never the same. Now, fifteen years later, she has tracked him down to his new workplace. He has a new name, a new life, colleagues who know nothing about him. And she’s not leaving until she has […]"
-  },
-  {
-    "id": "fest-fringe-burn-blue",
-    "title": "Fringe: Burn Blue",
-    "rawTitle": "Burn Blue",
-    "artist": "Jill Goranson & Kelsi James",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/burn-blue/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/burn-blue/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Don’t look elsewhere. Take that breath and look around. Don’t look elsewhere. Find the sea, and find the ground. You’re not elsewhere, you can’t make it not pertain to you. Don’t look elsewhere, while we burn blue. Burn Blue is a devised, interdisciplinary show about the ocean, Vancouver stream restoration, and the politicization of water. […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.582562+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Don’t look elsewhere. Take that breath and look around. Don’t look elsewhere. Find the sea, and find the ground. You’re not elsewhere, you can’t make it not pertain to you. Don’t look elsewhere, while we burn blue. Burn Blue is a devised, interdisciplinary show about the ocean, Vancouver stream restoration, and the politicization of water. […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-candy",
-    "title": "Fringe: Candy",
-    "rawTitle": "Candy",
-    "artist": "Travis Abels",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/candy/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/candy/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Candy follows Travis Abels on what should be a simple quest: get to Ireland’s Cliffs of Moher, where legend says if you stand at the edge at sunset, you can catch a glimpse of your future. Easy enough. Except before Travis can get there, he needs a little something. A piece of candy. A puff […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.582724+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Candy follows Travis Abels on what should be a simple quest: get to Ireland’s Cliffs of Moher, where legend says if you stand at the edge at sunset, you can catch a glimpse of your future. Easy enough. Except before Travis can get there, he needs a little something. A piece of candy. A puff […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-trouble-with-my-hair",
-    "title": "Fringe: The Trouble with My Hair: Coloring, Cutting, and Coming into Who I Am",
-    "rawTitle": "The Trouble with My Hair: Coloring, Cutting, and Coming into Who I Am",
-    "artist": "Ada Cheng",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/trouble-with-my-hair/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A Vancouver premiere, this intimate and transformative solo performance examines gender, sexual, and racial identities through Cheng’s evolving relationship with her hair—and the stylists who helped shape it. With humor, vulnerability, and sharp cultural insight, Cheng reveals how something as seemingly simple as hair can carry the weight of fam...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.582979+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A Vancouver premiere, this intimate and transformative solo performance examines gender, sexual, and racial identities through Cheng’s evolving relationship with her hair—and the stylists who helped shape it. With humor, vulnerability, and sharp cultural insight, Cheng reveals how something as seemingly simple as hair can carry the weight of fam...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-all-we-have",
-    "title": "Fringe: All We Have",
-    "rawTitle": "All We Have",
-    "artist": "Shayla Lazenby",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/all-we-have/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/all-we-have/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "It hasn’t been easy for Lily. For the past year, it has taken most of her energy just to make it through the day, considering things only as they come and unable to look forward. Then, one year after she left, Rose appears back in Lily’s life, dredging up painful memories Lily tried to bury […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.583133+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "It hasn’t been easy for Lily. For the past year, it has taken most of her energy just to make it through the day, considering things only as they come and unable to look forward. Then, one year after she left, Rose appears back in Lily’s life, dredging up painful memories Lily tried to bury […]"
-  },
-  {
-    "id": "fest-fringe-11th-hour",
-    "title": "Fringe: Fringe Patio – 11th Hour Cabaret",
-    "rawTitle": "Fringe Patio – 11th Hour Cabaret",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/11th-hour/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "LATE NIGHT FRINGE ENTERTAINMENT? Join one-woman band and host Devon More for a FREE late-night spectacle where you’ll be entertained by Fringe artists. Hilarious interviews, live music, audience antics, prizes, giveaways, and the infamous Wheel of Wonder… and nobody, not even Devon, knows what the wheel will unleash next. Sept 18, 10 PM: 11th Ho...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.583395+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "LATE NIGHT FRINGE ENTERTAINMENT? Join one-woman band and host Devon More for a FREE late-night spectacle where you’ll be entertained by Fringe artists. Hilarious interviews, live music, audience antics, prizes, giveaways, and the infamous Wheel of Wonder… and nobody, not even Devon, knows what the wheel will unleash next. Sept 18, 10 PM: 11th Ho..."
-  },
-  {
-    "id": "fest-fringe-truth-and-darers",
-    "title": "Fringe: The Truth and Darers",
-    "rawTitle": "The Truth and Darers",
-    "artist": "Ginko and Co.",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/truth-and-darers/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20 at 10:00 PM In a barn that smells like horse shit, pre-pubescent armpits, and an inflated sense of freedom, six thirteen-year-olds strike up an ongoing, high-stakes game of Truth or Dare. The rules are simple: no cop outs or you’ll be banned from the group forever. Fuelled by boredom and impulse, the […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.583659+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20 at 10:00 PM In a barn that smells like horse shit, pre-pubescent armpits, and an inflated sense of freedom, six thirteen-year-olds strike up an ongoing, high-stakes game of Truth or Dare. The rules are simple: no cop outs or you’ll be banned from the group forever. Fuelled by boredom and impulse, the […]"
-  },
-  {
-    "id": "fest-fringe-byte-your-tongue",
-    "title": "Fringe: Byte Your Tongue",
-    "rawTitle": "Byte Your Tongue",
-    "artist": "Kylie Thompson Dance",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/byte-your-tongue/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/byte-your-tongue/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Conceptually, Byte Your Tongue is a contemporary dance solo set to a soundscape made almost entirely from women’s voices. Choreographed and performed by Toronto based soloist Kylie Thompson, it is movement response to how these voices harmonize, clash, evolve, challenge, demand and observe. Thompson’s collage of movement, sound and visuals (supp...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.583838+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Conceptually, Byte Your Tongue is a contemporary dance solo set to a soundscape made almost entirely from women’s voices. Choreographed and performed by Toronto based soloist Kylie Thompson, it is movement response to how these voices harmonize, clash, evolve, challenge, demand and observe. Thompson’s collage of movement, sound and visuals (supp...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-last-cowboy",
-    "title": "Fringe: The Last Cowboy (Hat Salesman)",
-    "rawTitle": "The Last Cowboy (Hat Salesman)",
-    "artist": "An Te Chu",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/last-cowboy/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Taking over the family business was supposed to bring An-Te one step closer to his ultimate dream of being a real cowboy. But the hat business is slow, the bills are piling up and he’s no closer to finding his childhood sweetheart Clementine-Rose. When the store is hit with a rezoning and development application, An-Te […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.584125+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Taking over the family business was supposed to bring An-Te one step closer to his ultimate dream of being a real cowboy. But the hat business is slow, the bills are piling up and he’s no closer to finding his childhood sweetheart Clementine-Rose. When the store is hit with a rezoning and development application, An-Te […]"
-  },
-  {
-    "id": "fest-fringe-behind-the-wall",
-    "title": "Fringe: Behind The Wall: A Thriller Musical",
-    "rawTitle": "Behind The Wall: A Thriller Musical",
-    "artist": "Landon And Friends Musical Theatre Society",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/behind-the-wall/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/behind-the-wall/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "This new thriller musical written by Vancouverites Kay Snell and Landon Dueck explores surveillance, technology, and empathy. Four original songs are weaved into a three hander play for a fast-paced investigative mystery that leaves you on the edge of your seat. In this musical, a hard-hitting journalist is sent for a week to uncover the […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.584291+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "This new thriller musical written by Vancouverites Kay Snell and Landon Dueck explores surveillance, technology, and empathy. Four original songs are weaved into a three hander play for a fast-paced investigative mystery that leaves you on the edge of your seat. In this musical, a hard-hitting journalist is sent for a week to uncover the […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-phoenix-hellfire",
-    "title": "Fringe: Hi I’m Phoenix HellFire!",
-    "rawTitle": "Hi I’m Phoenix HellFire!",
-    "artist": "Dahlia-Raphael Kerr & Alivia Sabatino",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/phoenix-hellfire/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Dahlia is a little girl trying to find her voice. In a world where everyone gets a guardian angel, she finds herself with a feral demon named Phoenix HellFire who shows her how to cope with life’s bullshit through the art of drag. With the guidance of her demon, Dahlia goes on a journey confronting […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.584582+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Dahlia is a little girl trying to find her voice. In a world where everyone gets a guardian angel, she finds herself with a feral demon named Phoenix HellFire who shows her how to cope with life’s bullshit through the art of drag. With the guidance of her demon, Dahlia goes on a journey confronting […]"
-  },
-  {
-    "id": "fest-fringe-las-mujeronas",
-    "title": "Fringe: Las Mujeronas",
-    "rawTitle": "Las Mujeronas",
-    "artist": "Jhoely Triana Flamenco",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/las-mujeronas/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/las-mujeronas/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Las Mujeronas brings together a collective of Flamenco Latinas in Vancouver in a powerful and emotionally charged exploration of immigration, identity, memory, and belonging. Performed in Spanish, Portuguese and English, with selected text translations for accessibility, the work weaves together flamenco dance, live music, poetry, and storytelli...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.584798+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Las Mujeronas brings together a collective of Flamenco Latinas in Vancouver in a powerful and emotionally charged exploration of immigration, identity, memory, and belonging. Performed in Spanish, Portuguese and English, with selected text translations for accessibility, the work weaves together flamenco dance, live music, poetry, and storytelli...",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-her-ladyship",
-    "title": "Fringe: Her Ladyship Sketch Comedy Show",
-    "rawTitle": "Her Ladyship Sketch Comedy Show",
-    "artist": "Her Ladyship Theatre Collective",
-    "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#comedy"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/her-ladyship/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Improv Centre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Her Ladyship is an all-women, original sketch comedy show that’s unapologetically funny and unmistakably Vancouver. Playing at The Improv Centre, this sharp, fast paced show skewers modern life with wit, warmth, and a healthy dose of local flavour. Written and directed by Leanne Kuzminski and Yvonne Connors, Her Ladyship dives headfirst into eve...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.585069+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Her Ladyship is an all-women, original sketch comedy show that’s unapologetically funny and unmistakably Vancouver. Playing at The Improv Centre, this sharp, fast paced show skewers modern life with wit, warmth, and a healthy dose of local flavour. Written and directed by Leanne Kuzminski and Yvonne Connors, Her Ladyship dives headfirst into eve...",
-    "venueUrl": "https://theimprovcentre.ca"
-  },
-  {
-    "id": "fest-fringe-lets-not-turn",
-    "title": "Fringe: Let’s Not Turn On Each Other",
-    "rawTitle": "Let’s Not Turn On Each Other",
-    "artist": "Walters & Watt theatre projects",
-    "venue": "Ron Basford Park (Amphitheatre)",
-    "address": "Ron Basford Park, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2698,
-      -123.1325
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/lets-not-turn/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Ron Basford Park (Amphitheatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Let’s Not Turn On Each Other is the story of two special girls who have been alone in the wilderness for a long time. Bethandreth and Cownow, two very devoted members of a faraway doomsday cult, have been stationed at an outpost on an “important mission.” When a disruption in their daily routine forces them […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.585337+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Let’s Not Turn On Each Other is the story of two special girls who have been alone in the wilderness for a long time. Bethandreth and Cownow, two very devoted members of a faraway doomsday cult, have been stationed at an outpost on an “important mission.” When a disruption in their daily routine forces them […]"
-  },
-  {
-    "id": "fest-fringe-song-collector",
-    "title": "Fringe: The Song Collector",
-    "rawTitle": "The Song Collector",
-    "artist": "Hummingbird Interactive",
-    "venue": "Urbanarium",
-    "address": "1 Alexander St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "coordinates": [
-      49.281,
-      -123.109
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/song-collector/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Urbanarium",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Back after a nearly sold-out run at the 2025 Vancouver Fringe! The Song Collector is an immersive video-based theatrical installation, inspired by folk song collector Lucy Broadwood. Step inside Lucy’s room, where you are welcome to browse her collection – and add to it. Lucy Broadwood (1858-1929)’s story is unique, because it’s not just about […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.585864+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Back after a nearly sold-out run at the 2025 Vancouver Fringe! The Song Collector is an immersive video-based theatrical installation, inspired by folk song collector Lucy Broadwood. Step inside Lucy’s room, where you are welcome to browse her collection – and add to it. Lucy Broadwood (1858-1929)’s story is unique, because it’s not just about […]"
-  },
-  {
-    "id": "fest-fringe-are-you-an-improvisor-or-impostor",
-    "title": "Fringe: Are You an Improvisor or Impostor?",
-    "rawTitle": "Are You an Improvisor or Impostor?",
-    "artist": "Esma Al-Autman",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/are-you-an-improvisor-or-impostor/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/are-you-an-improvisor-or-impostor/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Are You an Improvisor or Impostor? is a competitive improvised elimination comedy where six performers enter a game of deception, suspicion, and survival. Somewhere among them is an Impostor secretly eliminating players, and it’s up to the audience to piece together the clues and uncover them before it’s too late. As improvised scenes, challenge...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.586317+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Are You an Improvisor or Impostor? is a competitive improvised elimination comedy where six performers enter a game of deception, suspicion, and survival. Somewhere among them is an Impostor secretly eliminating players, and it’s up to the audience to piece together the clues and uncover them before it’s too late. As improvised scenes, challenge..."
-  },
-  {
-    "id": "fest-fringe-fml",
-    "title": "Fringe: fml: funny, my life",
-    "rawTitle": "fml: funny, my life",
-    "artist": "Lilix Media",
-    "venue": "Little Mountain Gallery (Salazar Stage)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/fml/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "FML: Funny, My Life is a comedic storytelling show inspired by real experiences. Hosted by Sarah Alma Angelle, each show features a diverse lineup of artists sharing stories based on a given prompt. Think “The Moth” meets Mike Birbiglia. Since debuting in January 2025, FML has become a resident hit at Vancouver’s Little Mountain Gallery […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.586656+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "FML: Funny, My Life is a comedic storytelling show inspired by real experiences. Hosted by Sarah Alma Angelle, each show features a diverse lineup of artists sharing stories based on a given prompt. Think “The Moth” meets Mike Birbiglia. Since debuting in January 2025, FML has become a resident hit at Vancouver’s Little Mountain Gallery […]"
-  },
-  {
-    "id": "fest-fringe-canon-fire",
-    "title": "Fringe: Canon Fire: The Improvised Musical",
-    "rawTitle": "Canon Fire: The Improvised Musical",
-    "artist": "VMIC",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/canon-fire/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/canon-fire/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Why travel abroad when Vancouver already has a Broadway AND a West End? Watch six improvisors and two musicians create a brand-new musical right before your eyes with no script, no pre-written music, and no safety net, solely inspired by audience suggestions and the stories you may have missed from your very own hometown newspaper. […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.586831+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Why travel abroad when Vancouver already has a Broadway AND a West End? Watch six improvisors and two musicians create a brand-new musical right before your eyes with no script, no pre-written music, and no safety net, solely inspired by audience suggestions and the stories you may have missed from your very own hometown newspaper. […]"
-  },
-  {
-    "id": "fest-fringe-grown-ups",
-    "title": "Fringe: The Grown-ups",
-    "rawTitle": "The Grown-ups",
-    "artist": "Lexacon",
-    "venue": "Ron Basford Park (Sculpture Grove)",
-    "address": "Ron Basford Park, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2698,
-      -123.1325
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/grown-ups/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Ron Basford Park (Sculpture Grove)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "The campers are all finally asleep, and the lake is getting quiet. Have a beer; make a s’more; tell a scary story. Figure out what you’re going to have to do in the morning to keep camp fun and safe without letting the kids find out about… well, you’ve seen the news. I just got […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.587156+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "The campers are all finally asleep, and the lake is getting quiet. Have a beer; make a s’more; tell a scary story. Figure out what you’re going to have to do in the morning to keep camp fun and safe without letting the kids find out about… well, you’ve seen the news. I just got […]"
-  },
-  {
-    "id": "fest-fringe-doctor-faustus",
-    "title": "Fringe: Doctor Faustus",
-    "rawTitle": "Doctor Faustus",
-    "artist": "Rough Magic Theatre",
-    "venue": "Picnic Pavilion",
-    "address": "267 Old Bridge Walk, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2715,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/doctor-faustus/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/doctor-faustus/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Picnic Pavilion",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "What is your soul worth? The Tragicall Historie of Doctor Faustus by Christopher Marlowe tells the story of the brilliant and ambitious scholar John Faustus, a man who has mastered every field of human knowledge but finds it meaningless. Drawn toward the dark arts and craving unlimited knowledge and influence, Faustus makes a literal deal […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.587384+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "What is your soul worth? The Tragicall Historie of Doctor Faustus by Christopher Marlowe tells the story of the brilliant and ambitious scholar John Faustus, a man who has mastered every field of human knowledge but finds it meaningless. Drawn toward the dark arts and craving unlimited knowledge and influence, Faustus makes a literal deal […]"
-  },
-  {
-    "id": "fest-fringe-sanction-me",
-    "title": "Fringe: Sanction Me, Daddy",
-    "rawTitle": "Sanction Me, Daddy",
-    "artist": "Niki Mohrdar",
-    "venue": "Little Mountain Gallery (Raccoon Room)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": true,
-    "websiteUrl": "https://www.vancouverfringe.com/events/sanction-me/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Join comedian Niki Mohrdar (Just For Laughs Vancouver, CBC, OutTV) for a sharp and deeply personal journey through immigration, identity, desire, and belonging. Growing up as a first-generation Iranian immigrant in Canada, Niki traces the ways whiteness and racialization shaped her understanding of attraction, love, and self-worth: from falling ...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.587625+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Join comedian Niki Mohrdar (Just For Laughs Vancouver, CBC, OutTV) for a sharp and deeply personal journey through immigration, identity, desire, and belonging. Growing up as a first-generation Iranian immigrant in Canada, Niki traces the ways whiteness and racialization shaped her understanding of attraction, love, and self-worth: from falling ..."
-  },
-  {
-    "id": "fest-fringe-malinchista",
-    "title": "Fringe: Malinchista",
-    "rawTitle": "Malinchista",
-    "artist": "She Evil Productions",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/malinchista/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/malinchista/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "For centuries La Malinche has been known as the traitor who helped the Spanish Conquistadors destroy the Mexica empire and get a hold of what today is Mexico. In this historical fantasy, we hear from Malinche herself, as she takes us to her world and shares the events that shaped history as a woman who […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.587839+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "For centuries La Malinche has been known as the traitor who helped the Spanish Conquistadors destroy the Mexica empire and get a hold of what today is Mexico. In this historical fantasy, we hear from Malinche herself, as she takes us to her world and shares the events that shaped history as a woman who […]"
-  },
-  {
-    "id": "fest-fringe-asian-persuasion",
-    "title": "Fringe: Fringe Patio – Asian Persuasion All Stars",
-    "rawTitle": "Fringe Patio – Asian Persuasion All Stars",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/asian-persuasion/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Asian Persuasion All Stars is a fun-loving, genre-blending collective of Vancouver indie rockers and artists from a variety of creative, talented and entertaining local groups. What began as a fundraising song to stand up against pandemic-era racism quickly became a musical movement. Their bold reworks of “Racist Friend” and “Why Can’t We Be Fri...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.588099+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Asian Persuasion All Stars is a fun-loving, genre-blending collective of Vancouver indie rockers and artists from a variety of creative, talented and entertaining local groups. What began as a fundraising song to stand up against pandemic-era racism quickly became a musical movement. Their bold reworks of “Racist Friend” and “Why Can’t We Be Fri..."
-  },
-  {
-    "id": "fest-fringe-sexy-viola-jokes",
-    "title": "Fringe: Sexy Viola Jokes",
-    "rawTitle": "Sexy Viola Jokes",
-    "artist": "Rae Gallimore",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/sexy-viola-jokes/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/sexy-viola-jokes/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A whimsical and raunchy musical stand-up comedy show, Sexy Viola Jokes challenges the serious nature of the classical musical world. Through the lens of Rae and her trusty viola (the big violin), this solo show wades through the anxieties of their new world: life after graduation from the Juilliard School. Rae’s identity crisis is heightened […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.588317+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A whimsical and raunchy musical stand-up comedy show, Sexy Viola Jokes challenges the serious nature of the classical musical world. Through the lens of Rae and her trusty viola (the big violin), this solo show wades through the anxieties of their new world: life after graduation from the Juilliard School. Rae’s identity crisis is heightened […]"
-  },
-  {
-    "id": "fest-fringe-cults",
-    "title": "Fringe: CULTS",
-    "rawTitle": "CULTS",
-    "artist": "Blair Moro",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/cults/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/cults/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "From award winning creator Blair Moro (Cabaret of Murder ★ ★ ★ ★1/2 + BRAIN ★ ★ ★ ★ ★) comes a brand-new true crime spectacle: CULTS. Presenting the most infamous moments of cult history through comedy and storytelling. Teaming up with the immaculate Hilary Fillier (ParaNorma P.I. & The Human Cat Experience) to bring […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.588509+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "From award winning creator Blair Moro (Cabaret of Murder ★ ★ ★ ★1/2 + BRAIN ★ ★ ★ ★ ★) comes a brand-new true crime spectacle: CULTS. Presenting the most infamous moments of cult history through comedy and storytelling. Teaming up with the immaculate Hilary Fillier (ParaNorma P.I. & The Human Cat Experience) to bring […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-boys-club",
-    "title": "Fringe: Boys’ Club",
-    "rawTitle": "Boys’ Club",
-    "artist": "Alick Mac",
-    "venue": "Arts Umbrella (Scott Studio)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/boys-club/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/boys-club/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Scott Studio)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "On his 2022 single Easier to Shout, rapper Alick Mac offered a self-reflective yet holistic critique of modern masculinity, blending personal experience with social commentary. Following the re-election of Donald Trump and the rise of the online manosphere, Alick delves further into his examination of masculinity with Boys’ Club. In a show that ...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.588676+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "On his 2022 single Easier to Shout, rapper Alick Mac offered a self-reflective yet holistic critique of modern masculinity, blending personal experience with social commentary. Following the re-election of Donald Trump and the rise of the online manosphere, Alick delves further into his examination of masculinity with Boys’ Club. In a show that ..."
-  },
-  {
-    "id": "fest-fringe-unfinished-business",
-    "title": "Fringe: Unfinished Business: The Cold Case Files",
-    "rawTitle": "Unfinished Business: The Cold Case Files",
-    "artist": "This Is It",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/unfinished-business/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/unfinished-business/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "The files have been reopened for a strange cold case murder. You, the audience, are the oversight committee, and must help Detective Jack and Counsellor Sara Jane find out whodunit. In the final moment, everyone must agree unanimously by shouting out the exact same name at the exact same time… or the killer walks! This […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.588924+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "The files have been reopened for a strange cold case murder. You, the audience, are the oversight committee, and must help Detective Jack and Counsellor Sara Jane find out whodunit. In the final moment, everyone must agree unanimously by shouting out the exact same name at the exact same time… or the killer walks! This […]"
-  },
-  {
-    "id": "fest-fringe-tampon-chair-bride",
-    "title": "Fringe: A TAMPON, A CHAIR, AND A BRIDE WALK ONTO A PLANE",
-    "rawTitle": "A TAMPON, A CHAIR, AND A BRIDE WALK ONTO A PLANE",
-    "artist": "Nico Gruzling",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/tampon-chair-bride/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Welcome Aboard. Keep your seatbelt fastened as Nico conjures a flight of confessions: a tampon grappling with workplace expectations, a matchbook nostalgic for flamier days, and a chair enduring the emotional turbulence of unrequited love. These are just a few of the passengers on their voyage to irrelevance. Can it be a flash mob with […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.589181+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Welcome Aboard. Keep your seatbelt fastened as Nico conjures a flight of confessions: a tampon grappling with workplace expectations, a matchbook nostalgic for flamier days, and a chair enduring the emotional turbulence of unrequited love. These are just a few of the passengers on their voyage to irrelevance. Can it be a flash mob with […]"
-  },
-  {
-    "id": "fest-fringe-tryhard",
-    "title": "Fringe: Tryhard",
-    "rawTitle": "Tryhard",
-    "artist": "Josh Romyn",
-    "venue": "Little Mountain Gallery (Salazar Stage)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/tryhard/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/tryhard/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Josh Romyn is a Vancouver-based standup comedian, filmmaker, and musician. Growing up in a hyper-religious family in small-town Ontario, he was homeschooled for the first thirteen years of his life (which explains a lot, to be honest). Following that, they attended school to become a pastor, dropped out twice, left religion, had a few depressive...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.589483+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Josh Romyn is a Vancouver-based standup comedian, filmmaker, and musician. Growing up in a hyper-religious family in small-town Ontario, he was homeschooled for the first thirteen years of his life (which explains a lot, to be honest). Following that, they attended school to become a pastor, dropped out twice, left religion, had a few depressive..."
-  },
-  {
-    "id": "fest-fringe-matt-and-ben",
-    "title": "Fringe: Matt and Ben",
-    "rawTitle": "Matt and Ben",
-    "artist": "Veenu Sandhu and Missy Cross",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/matt-and-ben/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/matt-and-ben/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20 at 9:00 PM Matt and Ben depicts its Hollywood golden boys – before Armageddon, before Saving Private Ryan, before Jay & Silent Bob Strike Back, before the Oscar… before anyone actually gave a damn. When the screenplay for Good Will Hunting drops mysteriously from the heavens, the boys realize they’re being tested […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.589882+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20 at 9:00 PM Matt and Ben depicts its Hollywood golden boys – before Armageddon, before Saving Private Ryan, before Jay & Silent Bob Strike Back, before the Oscar… before anyone actually gave a damn. When the screenplay for Good Will Hunting drops mysteriously from the heavens, the boys realize they’re being tested […]"
-  },
-  {
-    "id": "fest-fringe-weird-owl-karaoke",
-    "title": "Fringe: Weird Owl Karaoke",
-    "rawTitle": "Weird Owl Karaoke",
-    "artist": "Weird Owl Karaoke",
-    "venue": "Little Mountain Gallery (Raccoon Room)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/weird-owl-karaoke/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/weird-owl-karaoke/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "It’s Weird Owl Karaoke. Comedians sing original parody songs just like Weird Al – except we use YouTube karaoke tracks and Weird Al is not here. In-between the songs is a loose narrative of puppet-based sketches. This narrative has been ongoing for over a decade and is captured (against anyone’s wishes) in a 100% “fan”-maintained […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.590321+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "It’s Weird Owl Karaoke. Comedians sing original parody songs just like Weird Al – except we use YouTube karaoke tracks and Weird Al is not here. In-between the songs is a loose narrative of puppet-based sketches. This narrative has been ongoing for over a decade and is captured (against anyone’s wishes) in a 100% “fan”-maintained […]"
-  },
-  {
-    "id": "fest-fringe-mizuhiki",
-    "title": "Fringe: Mizuhiki",
-    "rawTitle": "Mizuhiki",
-    "artist": "Kenneth Seto Tynan & Ayako Karasawa",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/mizuhiki/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/mizuhiki/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "When a ceremonial wedding knot is cut, newly wed couple Frank Bai and Iori Fujiwara find their cultures clash in ways they didn’t before and must reconcile or their new bond might come undone itself. Mizuhiki explores the commonalities and differences of being Asian within a Western setting while also exploring what it means to […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.590526+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "When a ceremonial wedding knot is cut, newly wed couple Frank Bai and Iori Fujiwara find their cultures clash in ways they didn’t before and must reconcile or their new bond might come undone itself. Mizuhiki explores the commonalities and differences of being Asian within a Western setting while also exploring what it means to […]",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-broken-rice",
-    "title": "Fringe: Broken Rice",
-    "rawTitle": "Broken Rice",
-    "artist": "Clever Bird Entertainment Inc",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/broken-rice/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/broken-rice/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "With the grant deadline looming, Michelle faces the final and most dreaded part of her application: the artistic statement. Having put it off for far too long, she struggles to find the words to convince the faceless powers that be that she and her show, Broken Rice, are worthy of funding. Doubting herself as much […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.590688+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "With the grant deadline looming, Michelle faces the final and most dreaded part of her application: the artistic statement. Having put it off for far too long, she struggles to find the words to convince the faceless powers that be that she and her show, Broken Rice, are worthy of funding. Doubting herself as much […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-lucky-life",
-    "title": "Fringe: The Lucky Life of a Black Cat",
-    "rawTitle": "The Lucky Life of a Black Cat",
-    "artist": "Lobo-Guará Productions",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/lucky-life/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20 at 9:15 PM Lucky, a senior black cat who recently finished his mission with his humans, has just arrived in a magical Sanctuary between worlds. His next task? Deliver an inspiring “CAT Talk” to a group of wide‑eyed kittens so they can find their purrrfect humans. His real challenge? Letting go of […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.590939+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20 at 9:15 PM Lucky, a senior black cat who recently finished his mission with his humans, has just arrived in a magical Sanctuary between worlds. His next task? Deliver an inspiring “CAT Talk” to a group of wide‑eyed kittens so they can find their purrrfect humans. His real challenge? Letting go of […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-aficionado",
-    "title": "Fringe: Fringe Patio – Aficionado Stage",
-    "rawTitle": "Fringe Patio – Aficionado Stage",
-    "artist": "Vancouver Flamenco Festival",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/aficionado/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "A free outdoor event produced by Flamenco Rosario to kick things off at the 2026 Vancouver Flamenco Festival. Flamenco dance and music performers from across British Columbia come together to share the stage on these two vibrant afternoons. A celebration of local talent, live music, and the rich flamenco scene in Vancouver. Produced by Flamenco ...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.591249+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "A free outdoor event produced by Flamenco Rosario to kick things off at the 2026 Vancouver Flamenco Festival. Flamenco dance and music performers from across British Columbia come together to share the stage on these two vibrant afternoons. A celebration of local talent, live music, and the rich flamenco scene in Vancouver. Produced by Flamenco ..."
-  },
-  {
-    "id": "fest-fringe-home-alone",
-    "title": "Fringe: One Man Home Alone",
-    "rawTitle": "One Man Home Alone",
-    "artist": "Duran Cruickshank",
-    "venue": "Little Mountain Gallery (Salazar Stage)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/home-alone/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "35 minutes, 33 characters, 29 scenes, 11 pizzas, 10 booby traps, 2 burglars, ONE MAN HOME ALONE. Returning after its sold-out debut performance – Duran Cruickshank, alone on stage, hilariously performs his take on an iconic Christmas classic. Key Words: Hilarious, Physical Comedy, Lighthearted, A one-man show born out of a couple’s Christmas tra...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.591511+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "35 minutes, 33 characters, 29 scenes, 11 pizzas, 10 booby traps, 2 burglars, ONE MAN HOME ALONE. Returning after its sold-out debut performance – Duran Cruickshank, alone on stage, hilariously performs his take on an iconic Christmas classic. Key Words: Hilarious, Physical Comedy, Lighthearted, A one-man show born out of a couple’s Christmas tra..."
-  },
-  {
-    "id": "fest-fringe-kingsgate",
-    "title": "Fringe: Kingsgate Chorus",
-    "rawTitle": "Kingsgate Chorus",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Public Market Courtyard",
-    "address": "1689 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2725,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/kingsgate/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Public Market Courtyard",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Earth Oddity It is a beautiful late summer Saturday and a lovely group of singers directed by the talented musician Leah Abramson appears in the Granville Island Public Market and puts on a spectacular show featuring five part arrangements, and an eclectic selection of songs, covering everything from Folk, Rock, Alternative, Pop and Electronica,...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.591766+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Earth Oddity It is a beautiful late summer Saturday and a lovely group of singers directed by the talented musician Leah Abramson appears in the Granville Island Public Market and puts on a spectacular show featuring five part arrangements, and an eclectic selection of songs, covering everything from Folk, Rock, Alternative, Pop and Electronica,..."
-  },
-  {
-    "id": "fest-fringe-ickoholics",
-    "title": "Fringe: Ickoholics Anonymous",
-    "rawTitle": "Ickoholics Anonymous",
-    "artist": "Lucy Lucia",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/ickoholics/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20 at 9:45 PM Hi, my name is Lucy and I am an ickoholic. Think AA, but instead of alcohol, this group is for people addicted to getting ‘the ick.’ Ickoholics Anonymous is a one-woman musical comedy cabaret returning after an award-winning Australian season in 2024. Starring Lucia Lucia, the audience is taken […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.592025+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20 at 9:45 PM Hi, my name is Lucy and I am an ickoholic. Think AA, but instead of alcohol, this group is for people addicted to getting ‘the ick.’ Ickoholics Anonymous is a one-woman musical comedy cabaret returning after an award-winning Australian season in 2024. Starring Lucia Lucia, the audience is taken […]"
-  },
-  {
-    "id": "fest-fringe-tears-of-the-seawall",
-    "title": "Fringe: Tears of the Seawall: An Improvised Romance Film",
-    "rawTitle": "Tears of the Seawall: An Improvised Romance Film",
-    "artist": "Grad School Improv",
-    "venue": "Little Mountain Gallery (Raccoon Room)",
-    "address": "110 E 5th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "coordinates": [
-      49.263,
-      -123.098
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/tears-of-the-seawall/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/tears-of-the-seawall/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Can love conquer all? Let’s find out! Grad School Improv presents Tears of the Seawall: a completely improvised (and hilarious) romance movie. Inspired by our favourite Nicholas Sparks films (The Notebook, Dear John, The Last Song), prepare to see a story of love, laughter, and longing! Will the down-to-earth girl from Smalltown, BC end up […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.592245+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Can love conquer all? Let’s find out! Grad School Improv presents Tears of the Seawall: a completely improvised (and hilarious) romance movie. Inspired by our favourite Nicholas Sparks films (The Notebook, Dear John, The Last Song), prepare to see a story of love, laughter, and longing! Will the down-to-earth girl from Smalltown, BC end up […]"
-  },
-  {
-    "id": "fest-fringe-hip-bang",
-    "title": "Fringe: Hip.Bang! presents You Bet",
-    "rawTitle": "Hip.Bang! presents You Bet",
-    "artist": "Hip.Bang!",
-    "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/hip-bang/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Improv Centre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Devin and Tom of Hip.Bang! (Just For Laughs, Comedy Central, CBC) return to Fringe after selling out every performance in 2025 with a show that explores gambling, chance and how fun it can be to take a risk. Building on Hip.Bang!’s reputation for “incredibly innovative comedy” (Edmonton Journal), You Bet invites you into the dark […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.592504+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Devin and Tom of Hip.Bang! (Just For Laughs, Comedy Central, CBC) return to Fringe after selling out every performance in 2025 with a show that explores gambling, chance and how fun it can be to take a risk. Building on Hip.Bang!’s reputation for “incredibly innovative comedy” (Edmonton Journal), You Bet invites you into the dark […]",
-    "venueUrl": "https://theimprovcentre.ca"
-  },
-  {
-    "id": "fest-fringe-big-tips",
-    "title": "Fringe: Big Tips – The Rise and Fall of a 90s Bar Star",
-    "rawTitle": "Big Tips – The Rise and Fall of a 90s Bar Star",
-    "artist": "Sarah Rowland",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/big-tips/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/big-tips/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "“I’ll put down my tray when they pry it from my cold, dead hands.” It’s the ’90s and Sarah Rowland is a cocktail waitress in grave danger of becoming a lifer in the hospitality industry. In this one-woman-serves-all show, Sarah relives her heady days as a serving wench at countless dives, bars, pubs, and clubs […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.592671+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "“I’ll put down my tray when they pry it from my cold, dead hands.” It’s the ’90s and Sarah Rowland is a cocktail waitress in grave danger of becoming a lifer in the hospitality industry. In this one-woman-serves-all show, Sarah relives her heady days as a serving wench at countless dives, bars, pubs, and clubs […]"
-  },
-  {
-    "id": "fest-fringe-popurri",
-    "title": "Fringe: Popurrí",
-    "rawTitle": "Popurrí",
-    "artist": "Plastik Theatriks",
-    "venue": "Arts Umbrella (Theatre)",
-    "address": "1400 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2705,
-      -123.1342
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/popurri/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/popurri/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Arts Umbrella (Theatre)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Popurrí is a physical theatre piece that draws upon clowning, puppetry, masks, and opera to create a variety of short vignettes. Weaving together absurdity, surreal atmospheres, and eccentric characters. Developed through workshops and performances across Victoria, BC, including Atomic Vaudeville’s cabarets, SKAMpede Festival 2025 and more, Popu...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.592874+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Popurrí is a physical theatre piece that draws upon clowning, puppetry, masks, and opera to create a variety of short vignettes. Weaving together absurdity, surreal atmospheres, and eccentric characters. Developed through workshops and performances across Victoria, BC, including Atomic Vaudeville’s cabarets, SKAMpede Festival 2025 and more, Popu..."
-  },
-  {
-    "id": "fest-fringe-solovela",
-    "title": "Fringe: Solovela, An Improvised Solo Telenovela",
-    "rawTitle": "Solovela, An Improvised Solo Telenovela",
-    "artist": "Diane Jorge",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/solovela/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20 at 9:40 PM Critics’ Choice Award — Best Solo Show: Improv (Orlando Fringe 2025) Best of Orlando Fringe Fest 2026 – Orlando Sentinel One Performer. Every Character. Mucho Laughs. Diane Jorge transforms one audience member’s real-life love stories, enemies, and secrets into a wildly hilarious telenovela — playing every chara...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.593127+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20 at 9:40 PM Critics’ Choice Award — Best Solo Show: Improv (Orlando Fringe 2025) Best of Orlando Fringe Fest 2026 – Orlando Sentinel One Performer. Every Character. Mucho Laughs. Diane Jorge transforms one audience member’s real-life love stories, enemies, and secrets into a wildly hilarious telenovela — playing every chara...",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-daddy-bear-man-pssy",
-    "title": "Fringe: Daddy Bear & Man P*ssy",
-    "rawTitle": "Daddy Bear & Man P*ssy",
-    "artist": "Lucyboo Productions",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/daddy-bear-man-pssy/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/daddy-bear-man-pssy/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "An authentic and often humorous look at life when it comes with extra labels, like transgender and queer, Daddy Bear & Man P*ssy shares the ongoing tale of Steve and Jeff, two very different gay men who met at the beginning of the lockdowns and married shortly after the world re-opened. What does love and […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.593349+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "An authentic and often humorous look at life when it comes with extra labels, like transgender and queer, Daddy Bear & Man P*ssy shares the ongoing tale of Steve and Jeff, two very different gay men who met at the beginning of the lockdowns and married shortly after the world re-opened. What does love and […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-duck",
-    "title": "Fringe: DUCK",
-    "rawTitle": "DUCK",
-    "artist": "The Dream Agency",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/duck/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/duck/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "DUCK is a musical vessel to hold human interaction and healing. We connect to the Earth and listen to each other while sharing stories, insights and truth. Combining elements of New Jazz, Improv Theatre, and Dance every show is different! Musical accompaniment creates a nest for sharing life and discovering ourselves. DUCK flows gently like […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.593539+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "DUCK is a musical vessel to hold human interaction and healing. We connect to the Earth and listen to each other while sharing stories, insights and truth. Combining elements of New Jazz, Improv Theatre, and Dance every show is different! Musical accompaniment creates a nest for sharing life and discovering ourselves. DUCK flows gently like […]"
-  },
-  {
-    "id": "fest-fringe-golden-age",
-    "title": "Fringe: Fringe Patio – Golden Age of Wrestling",
-    "rawTitle": "Fringe Patio – Golden Age of Wrestling",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/golden-age/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Underground electronic artist Jeff Cancade launched the Golden Age of Wrestling in 2020 with a clear mission: to inject personality and glamour into ambient music, an often faceless, anonymous genre. With TGAOW, the Vancouver artist taps into a fantastical version of himself—a cocky, Machiavellian wrestling villain at the centre of a vivid world...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.593793+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Underground electronic artist Jeff Cancade launched the Golden Age of Wrestling in 2020 with a clear mission: to inject personality and glamour into ambient music, an often faceless, anonymous genre. With TGAOW, the Vancouver artist taps into a fantastical version of himself—a cocky, Machiavellian wrestling villain at the centre of a vivid world..."
-  },
-  {
-    "id": "fest-fringe-moonswine",
-    "title": "Fringe: MoonSwine: To-Dance-To-Dream-To-Poem-To-Pig",
-    "rawTitle": "MoonSwine: To-Dance-To-Dream-To-Poem-To-Pig",
-    "artist": "Maria Yanagisawa",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/moonswine/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/moonswine/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Guided by quirky beings from alternate universes, Moosie–a socially anxious human-pig hybrid–attempts to save her only friend (a stuffed animal) and her future self from perpetual loneliness while an ominous presence threatens to diminish their light. Blurring the lines between lucid dream and tangible reality, this is a journey of transcending ...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.593996+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Guided by quirky beings from alternate universes, Moosie–a socially anxious human-pig hybrid–attempts to save her only friend (a stuffed animal) and her future self from perpetual loneliness while an ominous presence threatens to diminish their light. Blurring the lines between lucid dream and tangible reality, this is a journey of transcending ..."
-  },
-  {
-    "id": "fest-fringe-colonial-circus",
-    "title": "Fringe: Colonial Circus – History, Clown Style",
-    "rawTitle": "Colonial Circus – History, Clown Style",
-    "artist": "Two2Mango",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/colonial-circus/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "HOLDOVER: September 20, 9:15PM. What if Colonizers were clowns? Two Brown Clowns, pretending to be British Colonizers, take you through the history of colonialism with a wink and a play. Colonial Circus—Patrons’ Pick, Critics’ Choice at Orlando Fringe, and Artists’ Pick at Edmonton Fringe—is coming to Vancouver with new bits, sharp satire, loads...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.594248+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "HOLDOVER: September 20, 9:15PM. What if Colonizers were clowns? Two Brown Clowns, pretending to be British Colonizers, take you through the history of colonialism with a wink and a play. Colonial Circus—Patrons’ Pick, Critics’ Choice at Orlando Fringe, and Artists’ Pick at Edmonton Fringe—is coming to Vancouver with new bits, sharp satire, loads...",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-flail",
-    "title": "Fringe: The Flail",
-    "rawTitle": "The Flail",
-    "artist": "judys production company",
-    "venue": "The Nest (Granville Island)",
-    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.134
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/flail/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "The Nest (Granville Island)",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Arturo Grijalva is sober. Six years clean. Not by choice. The Flail is a dark, hilarious one-man show tracing one man’s journey from a traumatic childhood in small-town Alberta through active addiction, homelessness, and the long, unglamorous road to recovery. But this isn’t a cautionary tale. This is a twisted fun adventure told by someone […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.594508+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Arturo Grijalva is sober. Six years clean. Not by choice. The Flail is a dark, hilarious one-man show tracing one man’s journey from a traumatic childhood in small-town Alberta through active addiction, homelessness, and the long, unglamorous road to recovery. But this isn’t a cautionary tale. This is a twisted fun adventure told by someone […]",
-    "venueUrl": "https://www.granvilleisland.com/directory/nest"
-  },
-  {
-    "id": "fest-fringe-tall-mark",
-    "title": "Fringe: Tall Mark’s EAT IT ANYWAY",
-    "rawTitle": "Tall Mark’s EAT IT ANYWAY",
-    "artist": "Full Groan Productions",
-    "venue": "Studio 16",
-    "address": "1555 W 7th Ave, Vancouver, BC",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "coordinates": [
-      49.2635,
-      -123.139
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/tall-mark/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Studio 16",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "BEST NATIONAL SHOW – Saskatoon Fringe 2026 Tall man, short tales.Five instruments, no bananas, one swear word. ★★★★★ “Canada has a new song satirist” – Montréal Times★★★★★ “If Raffi and Frank Zappa raised a muppet” – North Sask Music Zine A HEARTFELT MUSICAL COMEDY STORYTELLING EXPERIENCE ★★★★★ “One of the most satisfying Fringe experiences” – […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.594764+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "BEST NATIONAL SHOW – Saskatoon Fringe 2026 Tall man, short tales.Five instruments, no bananas, one swear word. ★★★★★ “Canada has a new song satirist” – Montréal Times★★★★★ “If Raffi and Frank Zappa raised a muppet” – North Sask Music Zine A HEARTFELT MUSICAL COMEDY STORYTELLING EXPERIENCE ★★★★★ “One of the most satisfying Fringe experiences” – […]"
-  },
-  {
-    "id": "fest-fringe-soul-maker",
-    "title": "Fringe: Soul Maker",
-    "rawTitle": "Soul Maker",
-    "artist": "Ripley Twardzik Ching",
-    "venue": "Waterfront Theatre",
-    "address": "1412 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2709,
-      -123.1345
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/soul-maker/",
-    "reviewUrl": "https://reviews.fringetheatre.ca/events/soul-maker/",
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Waterfront Theatre",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "What happens when you can’t accept a loved one dying? What lengths would you go to keep them here? Soul Maker is about navigating the reality of grief with a surreal, humorous, and tender outlook. In the form of a one-act play, it is an investigation into the existence of the human soul, and the […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.594977+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "What happens when you can’t accept a loved one dying? What lengths would you go to keep them here? Soul Maker is about navigating the reality of grief with a surreal, humorous, and tender outlook. In the form of a one-act play, it is an investigation into the existence of the human soul, and the […]",
-    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/"
-  },
-  {
-    "id": "fest-fringe-evilyn13-pandemonium",
-    "title": "Fringe: Fringe Patio – DJ Evilyn13 & DJ Pandemonium",
-    "rawTitle": "Fringe Patio – DJ Evilyn13 & DJ Pandemonium",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/evilyn13-pandemonium/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Restricted Entertainment is the Vancouver duo Evilyn13 and Pandemonium, who specialize in DJing and producing events. You may know them from their monthly events, Coffin Club, and Sin City Fetish Night, or have tuned into them on Twitch. They spin all kinds of genres, including alternative, retro, 80s, 90s, goth, industrial, EBM, synthpop, post-...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.595232+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Restricted Entertainment is the Vancouver duo Evilyn13 and Pandemonium, who specialize in DJing and producing events. You may know them from their monthly events, Coffin Club, and Sin City Fetish Night, or have tuned into them on Twitch. They spin all kinds of genres, including alternative, retro, 80s, 90s, goth, industrial, EBM, synthpop, post-..."
-  },
-  {
-    "id": "fest-fringe-walk-of-shame",
-    "title": "Fringe: The Walk of Shame",
-    "rawTitle": "The Walk of Shame",
-    "artist": "Samantha Li",
-    "venue": "Performance Works",
-    "address": "1218 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2694,
-      -123.136
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/walk-of-shame/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Performance Works",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Sam has been pissed at the patriarchy ever since her mom slut-shamed her at a young age. In The Walk of Shame, she makes the case that her sex life is her own fucking business, not her mom’s or anyone else’s. Not even God’s. She shares stories from her sexual history to argue that she […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.595502+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Sam has been pissed at the patriarchy ever since her mom slut-shamed her at a young age. In The Walk of Shame, she makes the case that her sex life is her own fucking business, not her mom’s or anyone else’s. Not even God’s. She shares stories from her sexual history to argue that she […]",
-    "venueUrl": "https://granvilleisland.com/directory/performance-works"
-  },
-  {
-    "id": "fest-fringe-calamity-cabaret",
-    "title": "Fringe: Special Event – Calamity Cabaret",
-    "rawTitle": "Special Event – Calamity Cabaret",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Revue Stage",
-    "address": "1601 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2711,
-      -123.1332
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/calamity-cabaret/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Revue Stage",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Expect the unexpected at Vancouver Fringe’s CALAMITY CABARET! Produced by Holly M. Brinkman and featuring performers from the 2026 Festival line-up. Artists who met just days ago are collaborating to make something never before seen and maybe never seen again. It has the energy of your last night at summer camp, and it’s lit entirely […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.595770+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Expect the unexpected at Vancouver Fringe’s CALAMITY CABARET! Produced by Holly M. Brinkman and featuring performers from the 2026 Festival line-up. Artists who met just days ago are collaborating to make something never before seen and maybe never seen again. It has the energy of your last night at summer camp, and it’s lit entirely […]"
-  },
-  {
-    "id": "fest-fringe-intro-to-flamenco",
-    "title": "Fringe: Fringe Patio – Basic Intro to Flamenco Classes",
-    "rawTitle": "Fringe Patio – Basic Intro to Flamenco Classes",
-    "artist": "Karen Flamenco",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/intro-to-flamenco/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "As part of the annual Vancouver Flamenco Festival, Flamenco Rosario offers two free introductory flamenco classes for children (11:00-11:30am) and for adults (11:45am-12:30pm). Participants are welcome to learn the basic techniques of flamenco in a friendly and lively space dedicated to fostering community. No prior experience in flamenco is req...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.596033+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "As part of the annual Vancouver Flamenco Festival, Flamenco Rosario offers two free introductory flamenco classes for children (11:00-11:30am) and for adults (11:45am-12:30pm). Participants are welcome to learn the basic techniques of flamenco in a friendly and lively space dedicated to fostering community. No prior experience in flamenco is req..."
-  },
-  {
-    "id": "fest-fringe-unpacking-the-art",
-    "title": "Fringe: UNPACKING: The Art of Making a Short Story Long",
-    "rawTitle": "UNPACKING: The Art of Making a Short Story Long",
-    "artist": "Cherry Blossom Lane Productions",
-    "venue": "Tru Cafe",
-    "address": "1540 Old Bridge St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.2718,
-      -123.1338
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/unpacking-the-art/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Tru Cafe",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Over the course of her life, Rebecca Erin Curtis has moved fifteen times. This time, she’s doing it differently. Two months after the worst day of her life, she faces her next biggest struggle: attending theatre school. UNPACKING: the art of making a short story long is a musical review of the last decade of […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.596290+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Over the course of her life, Rebecca Erin Curtis has moved fifteen times. This time, she’s doing it differently. Two months after the worst day of her life, she faces her next biggest struggle: attending theatre school. UNPACKING: the art of making a short story long is a musical review of the last decade of […]"
-  },
-  {
-    "id": "fest-fringe-tariq",
-    "title": "Fringe: Fringe Patio – Tariq",
-    "rawTitle": "Fringe Patio – Tariq",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/tariq/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Tariq is a Juno nominated songwriter and recording artist known for his solo work and also his work with the band, Brasstronaut. A stalwart of the Canadian indie scene for decades, his new songs represent a new and collaborative approach to making music working with musicians Robert Chursinoff (Drums), Peter Carruthers (Bass/Keys), and Adam Nanj...",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.596548+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Tariq is a Juno nominated songwriter and recording artist known for his solo work and also his work with the band, Brasstronaut. A stalwart of the Canadian indie scene for decades, his new songs represent a new and collaborative approach to making music working with musicians Robert Chursinoff (Drums), Peter Carruthers (Bass/Keys), and Adam Nanj..."
-  },
-  {
-    "id": "fest-fringe-o-show",
-    "title": "Fringe: Fringe Patio – DJ O Show",
-    "rawTitle": "Fringe Patio – DJ O Show",
-    "artist": "Fringe Theatre Ensemble",
-    "venue": "Fringe Patio",
-    "address": "1398 Cartwright St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "coordinates": [
-      49.271,
-      -123.1341
-    ],
-    "price": 18.0,
-    "priceLabel": "$18.00 all-in",
-    "pricingType": "festival_all_in",
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Festival Run",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categories": [
-      "festivals",
-      "shows"
-    ],
-    "subTags": [
-      "#festival",
-      "#fringe",
-      "#theatre",
-      "#stage"
-    ],
-    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
-    "startIso": "2026-09-10T12:00:00-07:00",
-    "endIso": "2026-09-20T23:59:59-07:00",
-    "confirmedDates": [
-      "2026-09-10",
-      "2026-09-11",
-      "2026-09-12",
-      "2026-09-13",
-      "2026-09-14",
-      "2026-09-15",
-      "2026-09-16",
-      "2026-09-17",
-      "2026-09-18",
-      "2026-09-19",
-      "2026-09-20"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.vancouverfringe.com/events/o-show/",
-    "reviewUrl": null,
-    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
-    "rawProvider": "Vancouver Fringe Festival",
-    "organizer": "Vancouver Fringe Festival",
-    "isRoving": false,
-    "editionVenue": "Fringe Patio",
-    "agePolicy": "All ages / see individual show advisory",
-    "admissionPolicy": "Show ticket required (no festival membership required)",
-    "description": "Orene Askew, aka DJ O Show, brings energy and expertise to every event she DJ’s and hosts. She brings professionalism and passion and remains true to her love for hip hop and R&B, incorporating beats to ensure you never want to leave the dance floor! With an outgoing personality and friendly demeanor, O Show is […]",
-    "tiers": [
-      {
-        "name": "Single Show Ticket",
-        "price": 18.0,
-        "label": "$18.00 all-in",
-        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_pricing",
-      "verifiedTotal": 18.0,
-      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
-      "verifiedAt": "2026-09-19T15:00:59.596808+00:00",
-      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
-    },
-    "scrapedDescription": "Orene Askew, aka DJ O Show, brings energy and expertise to every event she DJ’s and hosts. She brings professionalism and passion and remains true to her love for hip hop and R&B, incorporating beats to ensure you never want to leave the dance floor! With an outgoing personality and friendly demeanor, O Show is […]"
-  },
-  {
     "id": "fest-viff-vancouver-film-festival-viff-centre",
-    "title": "VIFF 2026: \"All We Imagine as Light\" (Cannes Grand Prix • Dir. Payal Kapadia)",
+    "title": "Vancouver International Film Festival (VIFF): Feature Screenings, Talks & BC Spotlight at VIFF Centre",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "VIFF Centre",
@@ -12933,46 +4590,20 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Vancouver International Film Festival flagship presentation. In bustling Mumbai, two hospital nurses navigate love, independence, and shifting horizons before embarking on a transformative journey to a coastal mist-covered town. (Malayalam & Hindi with English subtitles).",
+    "description": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
       "verifiedTotal": 20.9,
       "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T11:08:31.760233+00:00",
+      "verifiedAt": "2026-09-22T11:08:19.642259+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival.",
-    "buzzwords": [
-      "Cannes Grand Prix Winner",
-      "Luminous Drama",
-      "Mumbai Nocturne",
-      "Poetic Realism",
-      "Female Friendship"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "100% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "4.2 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "IMDb",
-        "score": "7.6 / 10",
-        "icon": "⭐"
-      }
-    ],
-    "reviewQuote": "A sensual, radiant masterpiece of pure cinematic grace, emotional depth, and atmospheric beauty.",
-    "contentAdvisory": "Mild sensuality and mature interpersonal emotional conflicts. Strictly non-spoiler."
+    "scrapedDescription": "Enjoy great movies at the luxurious VIFF Centre, voted one of the best cinemas in Vancouver and home to the prestigious Vancouver International Film Festival."
   },
   {
     "id": "fest-viff-vancouver-film-festival-the-cinematheque",
-    "title": "VIFF 2026: \"Grand Tour\" (Best Director Cannes • Dir. Miguel Gomes)",
+    "title": "Vancouver International Film Festival (VIFF): International Cinema Showcase & Retrospectives at The Cinematheque",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "The Cinematheque",
@@ -13023,12 +4654,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Cinema",
     "categoryIcon": "🎬",
     "subTags": [
-      "#cinema",
-      "#film",
-      "#festival",
+      "vancouver",
       "#viff",
-      "cinematheque",
-      "#world-cinema"
+      "#world-cinema",
+      "film",
+      "#festival",
+      "#cinema"
     ],
     "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
     "startIso": "2026-09-24T12:00:00-07:00",
@@ -13050,40 +4681,20 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Vancouver International Film Festival auteur showcase. A hypnotic, whimsical odyssey across 1917 Southeast Asia following a wandering civil servant and the determined fiancée pursuing him across exotic ports and changing eras.",
+    "description": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
       "verifiedTotal": 20.9,
       "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T11:08:31.760254+00:00",
+      "verifiedAt": "2026-09-22T11:08:19.642286+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives.",
-    "buzzwords": [
-      "Cannes Best Director",
-      "Travelogue Romance",
-      "Historical Whimsy",
-      "Visual Elegance"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "88% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "3.8 / 5",
-        "icon": "★"
-      }
-    ],
-    "reviewQuote": "An inventive, romantic reverie that bridges past and present with breathtaking cinematic ingenuity.",
-    "contentAdvisory": "Mild language and mature thematic travel motifs. Strictly non-spoiler."
+    "scrapedDescription": "The Cin­e­math­eque, found­ed in 1972, is a film insti­tute and media edu­ca­tion cen­tre devot­ed to under­stand­ing the art and his­to­ry of Cana­di­an and inter­na­tion­al cin­e­ma and the impact of mov­ing images and screen-based media in our lives."
   },
   {
     "id": "fest-viff-vancouver-film-festival-rio-theatre",
-    "title": "VIFF 2026: \"The Substance\" (Best Screenplay Cannes • Dir. Coralie Fargeat)",
+    "title": "Vancouver International Film Festival (VIFF): Late-Night Cult & Special Screenings at Rio Theatre",
     "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
     "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
     "venue": "Rio Theatre",
@@ -13160,42 +4771,16 @@ const VANCOUVER_EVENTS = [
     "agePolicy": "All ages / see individual show rating",
     "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "Vancouver International Film Festival late-night sensation. An aging Hollywood fitness celebrity is offered a black-market medical formula that promises a younger, better version of herself—with one strict, unforgiving condition.",
+    "description": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "festival_charter_pricing",
       "verifiedTotal": 20.9,
       "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
-      "verifiedAt": "2026-09-21T11:08:31.760265+00:00",
+      "verifiedAt": "2026-09-22T11:08:19.642303+00:00",
       "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ...",
-    "buzzwords": [
-      "Body Horror",
-      "Cannes Best Screenplay",
-      "Satirical Sci-Fi",
-      "Feminist Nightmare",
-      "Midnight Sensation"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "90% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "4.0 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "IMDb",
-        "score": "7.8 / 10",
-        "icon": "⭐"
-      }
-    ],
-    "reviewQuote": "An electrifying, jaw-dropping riot of audacity, gore, and razor-sharp Hollywood satire.",
-    "contentAdvisory": "Rated 18A / 19+. Extreme visceral body horror, graphic gore, nudity, and intense sound design. Strictly non-spoiler."
+    "scrapedDescription": "Rio Theatre Now Playing Upcoming Releases Live Events Coming Soon Calendar The Historic Rio Theatre Voted the #1 Independent Theatre in Vancouver, the Rio Theatre is a multimedia venue featuring arthouse, mainstream and cult-classic cinemas as well as live entertainment. Built in 1938, the Rio has been fully restored with a state of the art ... ..."
   },
   {
     "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
@@ -13413,577 +4998,9107 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "social"
     ]
+  }
+];
+const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "sun-yat-sen-park",
+    "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
+    "venue": "Dr. Sun Yat-Sen Public Courtyard",
+    "address": "578 Carrall St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://vancouverchinesegarden.com/visit/",
+    "category": "arts",
+    "flaggedAt": "2026-09-22T11:07:14-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouverchinesegarden.com/visit/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
   {
-    "id": "cinematheque-samurai-prisoner",
-    "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
-    "artist": "Kiyoshi Kurosawa",
-    "performers": [
-      "Motoki Masahiro",
-      "Kiyoshi Kurosawa"
-    ],
-    "venue": "The Cinematheque",
+    "id": "shipyards-live-night",
+    "title": "The Shipyards Live: Waterfront Music & Night Market",
+    "venue": "The Shipyards District",
+    "address": "125 Victory Ship Way, North Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "attemptedPrice": 0.0,
+    "attemptedPriceLabel": "Free ($0)",
+    "provider": "Box Office / Direct",
+    "semanticProvider": "Free Public Access",
+    "websiteUrl": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "category": "music",
+    "flaggedAt": "2026-09-22T11:07:44-07:00",
+    "flagReason": "Could not fetch host page: https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "public-disco-pride-block-party",
+    "title": "Public Disco Pride Block Party: Colored Craig (LA/NY), CarrieOnDisco (SF)",
+    "venue": "Mount Pleasant (4th & Ontario)",
+    "organizer": "Public Disco Society",
+    "isRoving": true,
+    "editionVenue": "Mount Pleasant (4th & Ontario)",
     "venueAliases": [
-      "Pacific Cinémathèque"
+      "Public Disco",
+      "Public Disco Vancouver",
+      "Public Disco Block Party"
     ],
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
+    "address": "2114 Ontario St & E 4th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.2668,
+      -123.1054
     ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "limited-run",
-    "frequencyLabel": "Limited Run",
+    "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)",
+    "basePrice": 20.0,
+    "scrapedBasePrice": null,
+    "doorPolicyPrice": null,
+    "venueSubpageUrl": null,
+    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website",
+    "venueUrl": "https://publicdisco.ca/events",
+    "category": "music",
+    "categoryLabel": "Shows & Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "public-disco",
+      "music",
+      "block-party",
+      "dance-party",
+      "open-air",
+      "djs"
+    ],
+    "frequency": "seasonal",
+    "frequencyLabel": "Seasonal Series",
     "daysOfWeek": [
-      "tue",
-      "thu",
       "sat"
     ],
     "timeSlots": [
-      "early-evening",
-      "afternoon"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "kurosawa",
-      "samurai",
-      "japanese-cinema",
-      "mystery",
-      "locked-room",
-      "vancouver-premiere"
-    ],
-    "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
-    "startIso": "2026-09-22T19:00:00-07:00",
-    "endIso": "2026-09-26T21:30:00-07:00",
-    "confirmedDates": [
-      "2026-09-22T19:00:00-07:00",
-      "2026-09-24T18:00:00-07:00",
-      "2026-09-26T15:00:00-07:00"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://thecinematheque.ca/films/2026/samurai-prisoner",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "The Cinematheque Box Office",
-    "rawProvider": "Agile Ticketing",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": "Rated PG (BC)",
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Vancouver Premiere. Acclaimed master Kiyoshi Kurosawa crafts a tense 16th-century feudal mystery where a disgraced samurai defending an isolated fortress must decipher four enigmatic, season-spanning crimes with the guidance of an incarcerated strategist. (Japanese with English subtitles).",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_venue_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
-      "verifiedAt": "2026-09-21T08:25:00-07:00",
-      "details": "Verified via The Cinematheque official screening calendar."
-    },
-    "buzzwords": [
-      "Feudal Mystery",
-      "Locked-Room Procedural",
-      "Bushido Subversion",
-      "Cerebral Atmosphere",
-      "Japanese Cinema"
-    ],
-    "ratings": [
-      {
-        "source": "Letterboxd",
-        "score": "3.6 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "Film Comment",
-        "score": "Critical Acclaim",
-        "icon": "📜"
-      }
-    ],
-    "reviewQuote": "A quiet, brain-teasing subversion of the samurai genre that prizes deductive wit and psychological tension over mere spectacle.",
-    "contentAdvisory": "Rated PG. Feudal swordplay violence and mature historical wartime themes. Strictly non-spoiler."
-  },
-  {
-    "id": "cinematheque-serpents-path",
-    "title": "\"Serpent's Path\" (Revenge Thriller • Dir. Kiyoshi Kurosawa)",
-    "artist": "Kiyoshi Kurosawa",
-    "performers": [
-      "Damien Bonnard",
-      "Ko Shibasaki"
-    ],
-    "venue": "The Cinematheque",
-    "venueAliases": [
-      "Pacific Cinémathèque"
-    ],
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "limited-run",
-    "frequencyLabel": "Limited Run",
-    "daysOfWeek": [
-      "thu",
-      "sat",
-      "mon"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "kurosawa",
-      "thriller",
-      "revenge",
-      "french-cinema",
-      "vancouver-premiere"
-    ],
-    "dateSchedule": "Thursday, September 24 • 6:30 PM (Also Sep 26 & 28)",
-    "startIso": "2026-09-24T18:30:00-07:00",
-    "endIso": "2026-09-28T20:30:00-07:00",
-    "confirmedDates": [
-      "2026-09-24T18:30:00-07:00",
-      "2026-09-26T20:30:00-07:00",
-      "2026-09-28T18:30:00-07:00"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://thecinematheque.ca/films/2026/serpents-path",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "The Cinematheque Box Office",
-    "rawProvider": "Agile Ticketing",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": "Rated 14A / Advisory",
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "A grieving father consumed by a methodical quest for justice partners with a mysterious, calculating mathematician to interrogate suspects connected to an underworld syndicate in a desolate industrial warehouse. (Japanese with English subtitles).",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_venue_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
-      "verifiedAt": "2026-09-21T08:25:00-07:00",
-      "details": "Verified via The Cinematheque official screening calendar."
-    },
-    "buzzwords": [
-      "Psychological Thriller",
-      "Noir Procedural",
-      "Dark Revenge",
-      "Slow-Burn Tension",
-      "35mm Aesthetic"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "86% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "3.7 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "IMDb",
-        "score": "7.1 / 10",
-        "icon": "⭐"
-      }
-    ],
-    "reviewQuote": "Cold, clinical, and utterly hypnotic. One of modern cinema's most unnerving and taut exercises in vengeance.",
-    "contentAdvisory": "Rated 14A. Intense psychological tension, abduction themes, and off-screen violence. Strictly non-spoiler."
-  },
-  {
-    "id": "cinematheque-downpour",
-    "title": "\"Downpour\" (4K Restoration • Dir. Bahram Beyzaie)",
-    "artist": "Bahram Beyzaie",
-    "performers": [
-      "Parviz Fannizadeh",
-      "Parvaneh Massoumi"
-    ],
-    "venue": "The Cinematheque",
-    "venueAliases": [
-      "Pacific Cinémathèque"
-    ],
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Special Screening",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "iranian-new-wave",
-      "restored-classics",
-      "scorsese-world-cinema",
-      "cinematheque"
-    ],
-    "dateSchedule": "Thursday, September 24 • 8:50 PM",
-    "startIso": "2026-09-24T20:50:00-07:00",
-    "endIso": "2026-09-24T23:00:00-07:00",
-    "confirmedDates": [
-      "2026-09-24T20:50:00-07:00"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://thecinematheque.ca/films/2026/downpour",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "The Cinematheque Box Office",
-    "rawProvider": "Agile Ticketing",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": "Unrated / General Audience",
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Martin Scorsese's World Cinema Project 4K restoration. A dedicated, idealistic young teacher newly assigned to an impoverished South Tehran district finds his life transformed after crossing paths with a hardworking young seamstress in the neighborhood. (Persian with English subtitles).",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_venue_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
-      "verifiedAt": "2026-09-21T08:25:00-07:00",
-      "details": "Verified via The Cinematheque official screening calendar."
-    },
-    "buzzwords": [
-      "Iranian New Wave",
-      "Lyrical Melancholy",
-      "Scorsese World Cinema Project",
-      "Social Satire",
-      "Poetic Realism"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "100% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "3.9 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "IMDb",
-        "score": "7.8 / 10",
-        "icon": "⭐"
-      }
-    ],
-    "reviewQuote": "A milestone of the Iranian New Wave—warm, ironic, and brimming with visual poetry and social grace.",
-    "contentAdvisory": "Mature social drama depicting conservative community gossip and traditional social friction. Strictly non-spoiler."
-  },
-  {
-    "id": "cinematheque-dim-cinema",
-    "title": "\"Making with Trouble\" (DIM Cinema • Dir. Stéphanie Lagarde)",
-    "artist": "Stéphanie Lagarde",
-    "performers": [
-      "Stéphanie Lagarde"
-    ],
-    "venue": "The Cinematheque",
-    "venueAliases": [
-      "Pacific Cinémathèque"
-    ],
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$11.00 – $15.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 13.0,
-        "label": "$13.00 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Tonight • Special Screening",
-    "daysOfWeek": [
-      "mon"
-    ],
-    "timeSlots": [
+      "afternoon",
       "early-evening"
     ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "subTags": [
-      "dim-cinema",
-      "experimental-film",
-      "media-art",
-      "artist-talk"
-    ],
-    "dateSchedule": "Tonight, Monday, September 21 • 7:00 PM",
-    "startIso": "2026-09-21T19:00:00-07:00",
-    "endIso": "2026-09-21T21:00:00-07:00",
+    "dateSchedule": "Saturday, August 1, 2026",
+    "startIso": "2026-08-01T14:00:00-07:00",
+    "endIso": "2026-08-01T22:00:00-07:00",
     "confirmedDates": [
-      "2026-09-21T19:00:00-07:00"
+      "2026-08-01"
     ],
+    "isDaily": false,
     "isSoldOut": false,
-    "websiteUrl": "https://thecinematheque.ca/films/2026/stephanie-lagarde",
-    "venueUrl": "https://thecinematheque.ca",
-    "ticketProvider": "The Cinematheque Box Office",
-    "rawProvider": "Agile Ticketing",
-    "coordinates": [
-      49.2795,
-      -123.1274
-    ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": "Unrated / Adult Art",
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "International Film Festival Rotterdam (IFFR) official selection. A mesmerizing moving-image essay exploring the sonic, spatial, and visual friction of contemporary crowd dynamics, riot architecture, and state surveillance technologies.",
+    "description": "Public Disco’s Pride Block Party returns to Mount Pleasant. Two stages, music-led programming, and a packed street-level dance floor at the centre of Vancouver Pride weekend.",
+    "price": 9.0,
+    "priceLabel": "$9.00 all-in",
+    "tiers": [],
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_venue_policy",
-      "verifiedTotal": 15.0,
-      "feeBreakdown": "General ($15), Senior ($13), Student ($11)",
-      "verifiedAt": "2026-09-21T08:25:00-07:00",
-      "details": "Verified via The Cinematheque official screening calendar."
+      "method": "admitone_scraped",
+      "verifiedTotal": 9.0,
+      "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
+      "verifiedAt": "2026-09-22T11:08:18-07:00",
+      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-pride-block-party-colored-craig-lany-carrieondisco-sf/4M0ATB?referral=website"
     },
-    "buzzwords": [
-      "Experimental Moving Image",
-      "Urban Resistance",
-      "Sensory Collage",
-      "IFFR Selection",
-      "Digital Media Art"
-    ],
-    "ratings": [
-      {
-        "source": "IFFR",
-        "score": "Official Selection",
-        "icon": "🎪"
-      },
-      {
-        "source": "DIM Cinema",
-        "score": "Curator Feature",
-        "icon": "🎬"
-      }
-    ],
-    "reviewQuote": "An urgent, kinetic audiovisual inquiry into the architecture of modern public assembly, street protest, and digital civic control.",
-    "contentAdvisory": "Flashing visual sequences, strobe effects, and loud amplified sound design. Strictly non-spoiler."
+    "isFree": false,
+    "agePolicy": "All-Ages (Family & Community Friendly)",
+    "admissionPolicy": "Advance & Door Ticketed",
+    "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2114 Ontario St & E 4th Ave, Vancouver.",
+    "ticketProvider": "Admitone Verified",
+    "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '.../NY), CarrieOnDisco (SF) This event has ended. Check out other events . Public Disco Pride...'",
+    "quarantinedAt": "2026-09-22T11:09:50.466174+00:00",
+    "dealtWith": false
   },
   {
-    "id": "rio-total-recall",
-    "title": "\"Total Recall\" (4K Restoration • Dir. Paul Verhoeven)",
-    "artist": "Paul Verhoeven",
-    "performers": [
-      "Arnold Schwarzenegger",
-      "Sharon Stone",
-      "Michael Ironside"
-    ],
-    "venue": "The Rio Theatre",
+    "id": "public-disco-ccal-block-party",
+    "title": "Public Disco Block Party: MUSCLECARS (NYC), DJ HEATHER (CHI)",
+    "venue": "City Centre Artist Lodge",
+    "organizer": "Public Disco Society",
+    "isRoving": true,
+    "editionVenue": "City Centre Artist Lodge",
     "venueAliases": [
-      "Rio Theatre"
+      "Public Disco",
+      "Public Disco Vancouver",
+      "Public Disco Block Party"
     ],
-    "address": "1660 E Broadway, Vancouver",
-    "neighborhood": "Commercial Drive & East Van",
-    "price": 17.5,
-    "priceLabel": "$14.00 – $17.50 all-in",
-    "pricingType": "platform",
+    "address": "2111 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.2662,
+      -123.0978
+    ],
+    "transitInfo": "#8 Main bus directly to 5th Ave",
+    "basePrice": 20.0,
+    "scrapedBasePrice": null,
+    "doorPolicyPrice": null,
+    "venueSubpageUrl": null,
+    "websiteUrl": "https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website",
+    "venueUrl": "https://publicdisco.ca/events",
+    "category": "music",
+    "categoryLabel": "Shows & Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "public-disco",
+      "music",
+      "block-party",
+      "dance-party",
+      "open-air",
+      "djs"
+    ],
+    "frequency": "seasonal",
+    "frequencyLabel": "Seasonal Series",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening"
+    ],
+    "dateSchedule": "Saturday, July 18, 2026",
+    "startIso": "2026-07-18T14:00:00-07:00",
+    "endIso": "2026-07-18T22:00:00-07:00",
+    "confirmedDates": [
+      "2026-07-18"
+    ],
+    "isDaily": false,
+    "isSoldOut": false,
+    "description": "A summer return to City Centre Artist Lodge with Musclecars and DJ Heather. House-rooted programming in a transformed motel courtyard, with local support shaping the full arc of the day.",
+    "price": 28.0,
+    "priceLabel": "$28.00 – $56.00 all-in",
     "tiers": [
       {
-        "name": "Adult General Admission",
-        "basePrice": 17.5,
-        "price": 17.5,
-        "label": "$17.50 all-in"
+        "name": "Tier 1",
+        "price": 28.0,
+        "label": "$28.00"
       },
       {
-        "name": "Student / Senior",
-        "basePrice": 14.0,
-        "price": 14.0,
-        "label": "$14.00 all-in"
+        "name": "Tier 2",
+        "price": 56.0,
+        "label": "$56.00"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "admitone_scraped",
+      "verifiedTotal": 28.0,
+      "feeBreakdown": "Live AdmitOne price range $28.00 – $56.00 CAD",
+      "verifiedAt": "2026-09-22T11:08:19-07:00",
+      "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver/community/party/public-disco-block-party-musclecars-nyc-dj-heather-chi/H70SS5?referral=website"
+    },
+    "isFree": false,
+    "agePolicy": "All-Ages (Family & Community Friendly)",
+    "admissionPolicy": "Advance & Door Ticketed",
+    "rovingNote": "📍 Roving open-air event organized by Public Disco Society at 2111 Main St, Vancouver.",
+    "ticketProvider": "Admitone Verified",
+    "quarantineReason": "Automated 4:00 AM Link Audit: Page content indicates event ended or 404: '... (NYC), DJ Heather (CHI) This event has ended. Check out other events . Public Disco Block...'",
+    "quarantinedAt": "2026-09-22T11:09:50.466273+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-false-tour",
+    "title": "Fringe: The False Tour of False Creek",
+    "rawTitle": "The False Tour of False Creek",
+    "artist": "False Creek Ferries",
+    "venue": "Granville Island Ferry Dock",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2721,
+      -123.1348
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": true,
+    "websiteUrl": "https://www.vancouverfringe.com/events/false-tour/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Granville Island Ferry Dock",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The False Tour of False Creek by False Creek Ferries at Granville Island Ferry Dock as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.573888+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466336+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-intrusive-thoughts",
+    "title": "Fringe: Intrusive Thoughts",
+    "rawTitle": "Intrusive Thoughts",
+    "artist": "Intrusive Thoughts Theatre",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/intrusive-thoughts/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/intrusive-thoughts/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Intrusive Thoughts by Intrusive Thoughts Theatre at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/intrusive-thoughts/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.574124+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466387+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-guys-i-fcked",
+    "title": "Fringe: The Guys I F*cked",
+    "rawTitle": "The Guys I F*cked",
+    "artist": "Explosive Lieutenant Productions",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/guys-i-fcked/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Guys I F*cked by Explosive Lieutenant Productions at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.574403+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466437+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-adventures-of-a-valentine",
+    "title": "Fringe: The Adventures of a Valentine",
+    "rawTitle": "The Adventures of a Valentine",
+    "artist": "Tanner Valentine",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/adventures-of-a-valentine/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Adventures of a Valentine by Tanner Valentine at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.574677+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466484+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-ivory-tower-power",
+    "title": "Fringe: The Ivory Tower Power Hour",
+    "rawTitle": "The Ivory Tower Power Hour",
+    "artist": "Great Growlers",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/ivory-tower-power/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Ivory Tower Power Hour by Great Growlers at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.574953+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466535+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-jimmy-hogg",
+    "title": "Fringe: Jimmy Hogg: Mashed",
+    "rawTitle": "Jimmy Hogg: Mashed",
+    "artist": "Jimmy Hogg",
+    "venue": "Picnic Pavilion",
+    "address": "267 Old Bridge Walk, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2715,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/jimmy-hogg/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Picnic Pavilion",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Jimmy Hogg: Mashed by Jimmy Hogg at Picnic Pavilion as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.575224+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466579+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-unsex-me-here",
+    "title": "Fringe: Unsex Me Here @LadyM",
+    "rawTitle": "Unsex Me Here @LadyM",
+    "artist": "Prairie Dog Theatre, collab with Curious Cats Theatre Collective",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/unsex-me-here/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Unsex Me Here @LadyM by Prairie Dog Theatre, collab with Curious Cats Theatre Collective at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.575498+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466621+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-my-big-break",
+    "title": "Fringe: My Big Break on Broadway",
+    "rawTitle": "My Big Break on Broadway",
+    "artist": "Joni Summerton",
+    "venue": "Arts Umbrella (Scott Studio)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/my-big-break/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Scott Studio)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of My Big Break on Broadway by Joni Summerton at Arts Umbrella (Scott Studio) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.575761+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466684+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-that-showtime",
+    "title": "Fringe: That SHOWtime of the Month",
+    "rawTitle": "That SHOWtime of the Month",
+    "artist": "Alannah Brittany and Cory Lupovici",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/that-showtime/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of That SHOWtime of the Month by Alannah Brittany and Cory Lupovici at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.576029+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466731+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-jeff-grungled",
+    "title": "Fringe: Jeff & Grungled KNOW FRILLS",
+    "rawTitle": "Jeff & Grungled KNOW FRILLS",
+    "artist": "Holy! Scoundrels! Theatre!",
+    "venue": "Ron Basford Park (Sculpture Grove)",
+    "address": "Ron Basford Park, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2698,
+      -123.1325
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/jeff-grungled/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Ron Basford Park (Sculpture Grove)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Jeff & Grungled KNOW FRILLS by Holy! Scoundrels! Theatre! at Ron Basford Park (Sculpture Grove) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.576293+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466773+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-spontaneous-shakespeare",
+    "title": "Fringe: The Spontaneous Shakespeare Company Presents",
+    "rawTitle": "The Spontaneous Shakespeare Company Presents",
+    "artist": "The Spontaneous Shakespeare Company",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/spontaneous-shakespeare/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Improv Centre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Spontaneous Shakespeare Company Presents by The Spontaneous Shakespeare Company at The Improv Centre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.576554+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://theimprovcentre.ca",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466815+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-lovely-family-picnic",
+    "title": "Fringe: Lovely family picnic",
+    "rawTitle": "Lovely family picnic",
+    "artist": "The clown collective",
+    "venue": "Ron Basford Park (Amphitheatre)",
+    "address": "Ron Basford Park, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2698,
+      -123.1325
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/lovely-family-picnic/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/lovely-family-picnic/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Ron Basford Park (Amphitheatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Lovely family picnic by The clown collective at Ron Basford Park (Amphitheatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/lovely-family-picnic/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.576759+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466859+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-ride-or-die",
+    "title": "Fringe: Ride or Die",
+    "rawTitle": "Ride or Die",
+    "artist": "Craft & Bone Theatre Collective & The Imagination Forge",
+    "venue": "Van Behind Ferreira Collision Centre",
+    "address": "980 Clark Dr, Vancouver, BC",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.278,
+      -123.085
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": true,
+    "websiteUrl": "https://www.vancouverfringe.com/events/ride-or-die/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/ride-or-die/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Van Behind Ferreira Collision Centre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Ride or Die by Craft & Bone Theatre Collective & The Imagination Forge at Van Behind Ferreira Collision Centre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/ride-or-die/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.576948+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466902+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-madeline-minx",
+    "title": "Fringe: The Madeline Minx Cabaret: Still Not Domesticated",
+    "rawTitle": "The Madeline Minx Cabaret: Still Not Domesticated",
+    "artist": "Pushy Productions",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/madeline-minx/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Madeline Minx Cabaret: Still Not Domesticated by Pushy Productions at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.577214+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466947+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-coming-of-rage",
+    "title": "Fringe: Coming of Rage",
+    "rawTitle": "Coming of Rage",
+    "artist": "Cosmic Theatre Co/Sophia Saugstad",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/coming-of-rage/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/coming-of-rage/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Coming of Rage by Cosmic Theatre Co/Sophia Saugstad at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/coming-of-rage/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.577399+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.466990+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-fashionably-late",
+    "title": "Fringe: Fashionably Late",
+    "rawTitle": "Fashionably Late",
+    "artist": "Savannah Erasmus",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/fashionably-late/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/fashionably-late/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fashionably Late by Savannah Erasmus at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/fashionably-late/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.577583+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467033+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-1984-again",
+    "title": "Fringe: 1984: AGAIN",
+    "rawTitle": "1984: AGAIN",
+    "artist": "Theatre Terrific",
+    "venue": "Picnic Pavilion",
+    "address": "267 Old Bridge Walk, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2715,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/1984-again/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/1984-again/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Picnic Pavilion",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of 1984: AGAIN by Theatre Terrific at Picnic Pavilion as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/1984-again/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.577734+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467075+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-showing-size",
+    "title": "Fringe: Showing Size",
+    "rawTitle": "Showing Size",
+    "artist": "Delacroon Productions",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/showing-size/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/showing-size/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Showing Size by Delacroon Productions at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/showing-size/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.577954+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467133+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-dragonfly",
+    "title": "Fringe: Dragonfly",
+    "rawTitle": "Dragonfly",
+    "artist": "Cocksure Performance",
+    "venue": "Upstart & Crow",
+    "address": "3177 Granville St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1335
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/dragonfly/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/dragonfly/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Upstart & Crow",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Dragonfly by Cocksure Performance at Upstart & Crow as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/dragonfly/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.578134+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467177+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-dip-happens",
+    "title": "Fringe: Dip Happens: Cold Water Swimming on Haida Gwaii",
+    "rawTitle": "Dip Happens: Cold Water Swimming on Haida Gwaii",
+    "artist": "Brussels Sprout Avalanche Theatre Company",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/dip-happens/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/dip-happens/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Dip Happens: Cold Water Swimming on Haida Gwaii by Brussels Sprout Avalanche Theatre Company at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/dip-happens/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.578310+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467218+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-cappuccino-glen",
+    "title": "Fringe: Cappuccino Glen & Decaf Dan Present: The Grind and the Glory",
+    "rawTitle": "Cappuccino Glen & Decaf Dan Present: The Grind and the Glory",
+    "artist": "Cappuccino Glen Productions",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/cappuccino-glen/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Cappuccino Glen & Decaf Dan Present: The Grind and the Glory by Cappuccino Glen Productions at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.578568+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467258+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-a-ramona-dale-adventure",
+    "title": "Fringe: The Lady in the Fountain: A Ramona Dale Adventure",
+    "rawTitle": "The Lady in the Fountain: A Ramona Dale Adventure",
+    "artist": "Side One",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/a-ramona-dale-adventure/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Lady in the Fountain: A Ramona Dale Adventure by Side One at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.578826+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467296+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-thats-gay-comedy",
+    "title": "Fringe: THAT’S GAY! COMEDY",
+    "rawTitle": "THAT’S GAY! COMEDY",
+    "artist": "Erin Purghart",
+    "venue": "Little Mountain Gallery (Salazar Stage)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#comedy"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": true,
+    "websiteUrl": "https://www.vancouverfringe.com/events/thats-gay-comedy/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/thats-gay-comedy/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of THAT’S GAY! COMEDY by Erin Purghart at Little Mountain Gallery (Salazar Stage) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/thats-gay-comedy/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.579056+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467329+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-love-manipulated",
+    "title": "Fringe: Love (Manipulated)",
+    "rawTitle": "Love (Manipulated)",
+    "artist": "Gambit Players",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/love-manipulated/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/love-manipulated/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Love (Manipulated) by Gambit Players at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/love-manipulated/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.579268+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467363+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-date-or-hate",
+    "title": "Fringe: Date or Hate",
+    "rawTitle": "Date or Hate",
+    "artist": "Vivian Chan",
+    "venue": "Arts Umbrella (Scott Studio)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/date-or-hate/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/date-or-hate/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Scott Studio)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Date or Hate by Vivian Chan at Arts Umbrella (Scott Studio) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/date-or-hate/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.579464+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467395+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-greatest-night",
+    "title": "Fringe: The Greatest Night in Trivia History",
+    "rawTitle": "The Greatest Night in Trivia History",
+    "artist": "Jordy Matheson",
+    "venue": "Little Mountain Gallery (Raccoon Room)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/greatest-night/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Greatest Night in Trivia History by Jordy Matheson at Little Mountain Gallery (Raccoon Room) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.579724+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467426+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-snatched",
+    "title": "Fringe: Snatched",
+    "rawTitle": "Snatched",
+    "artist": "That Witch",
+    "venue": "Ron Basford Park (Amphitheatre)",
+    "address": "Ron Basford Park, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2698,
+      -123.1325
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/snatched/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/snatched/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Ron Basford Park (Amphitheatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Snatched by That Witch at Ron Basford Park (Amphitheatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/snatched/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.579943+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467457+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-poison-in-my-pocket",
+    "title": "Fringe: Poison in my Pocket",
+    "rawTitle": "Poison in my Pocket",
+    "artist": "Belecos Productions",
+    "venue": "Picnic Pavilion",
+    "address": "267 Old Bridge Walk, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2715,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/poison-in-my-pocket/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/poison-in-my-pocket/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Picnic Pavilion",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Poison in my Pocket by Belecos Productions at Picnic Pavilion as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/poison-in-my-pocket/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.580159+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467487+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-live-in-hell",
+    "title": "Fringe: LIVE IN HELL",
+    "rawTitle": "LIVE IN HELL",
+    "artist": "She-Devils",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/live-in-hell/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/live-in-hell/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of LIVE IN HELL by She-Devils at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/live-in-hell/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.580358+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467518+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-syllabus",
+    "title": "Fringe: The Syllabus",
+    "rawTitle": "The Syllabus",
+    "artist": "Morbidelli 17 Productions",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/syllabus/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Syllabus by Morbidelli 17 Productions at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.580617+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467549+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-islandography",
+    "title": "Fringe: Islandography",
+    "rawTitle": "Islandography",
+    "artist": "Justin Shaw",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/islandography/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/islandography/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Islandography by Justin Shaw at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/islandography/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.580811+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467580+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-chose",
+    "title": "Fringe: Chose",
+    "rawTitle": "Chose",
+    "artist": "Astia",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/chose/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/chose/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Chose by Astia at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/chose/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.580980+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467611+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-brunch",
+    "title": "Fringe: BRUNCH: The Musical",
+    "rawTitle": "BRUNCH: The Musical",
+    "artist": "C. + M. MacEwan",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/brunch/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of BRUNCH: The Musical by C. + M. MacEwan at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.581237+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467641+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-task-show",
+    "title": "Fringe: Task Show",
+    "rawTitle": "Task Show",
+    "artist": "Allie Entwistle, Ronald Dario, and Maarten Bayliss",
+    "venue": "Little Mountain Gallery (Salazar Stage)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/task-show/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/task-show/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Task Show by Allie Entwistle, Ronald Dario, and Maarten Bayliss at Little Mountain Gallery (Salazar Stage) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/task-show/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.581468+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467713+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-ask-me",
+    "title": "Fringe: Ask Me How I’m Feeling",
+    "rawTitle": "Ask Me How I’m Feeling",
+    "artist": "Rita Sheena",
+    "venue": "Arts Umbrella (Scott Studio)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": true,
+    "websiteUrl": "https://www.vancouverfringe.com/events/ask-me/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Scott Studio)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Ask Me How I’m Feeling by Rita Sheena at Arts Umbrella (Scott Studio) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.581706+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467757+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-story-story-lie",
+    "title": "Fringe: Story Story Lie",
+    "rawTitle": "Story Story Lie",
+    "artist": "DD Brassiere",
+    "venue": "Little Mountain Gallery (Raccoon Room)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/story-story-lie/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/story-story-lie/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Story Story Lie by DD Brassiere at Little Mountain Gallery (Raccoon Room) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/story-story-lie/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.581932+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467813+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-mia",
+    "title": "Fringe: MIA",
+    "rawTitle": "MIA",
+    "artist": "Coyote Pact",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/mia/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/mia/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of MIA by Coyote Pact at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/mia/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.582136+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467899+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-blackbird-2",
+    "title": "Fringe: Blackbird",
+    "rawTitle": "Blackbird",
+    "artist": "Fresh Ground Theatre",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/blackbird-2/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Blackbird by Fresh Ground Theatre at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.582393+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.467974+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-burn-blue",
+    "title": "Fringe: Burn Blue",
+    "rawTitle": "Burn Blue",
+    "artist": "Jill Goranson & Kelsi James",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/burn-blue/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/burn-blue/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Burn Blue by Jill Goranson & Kelsi James at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/burn-blue/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.582562+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468048+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-candy",
+    "title": "Fringe: Candy",
+    "rawTitle": "Candy",
+    "artist": "Travis Abels",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/candy/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/candy/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Candy by Travis Abels at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/candy/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.582724+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468107+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-trouble-with-my-hair",
+    "title": "Fringe: The Trouble with My Hair: Coloring, Cutting, and Coming into Who I Am",
+    "rawTitle": "The Trouble with My Hair: Coloring, Cutting, and Coming into Who I Am",
+    "artist": "Ada Cheng",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/trouble-with-my-hair/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Trouble with My Hair: Coloring, Cutting, and Coming into Who I Am by Ada Cheng at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.582979+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468162+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-all-we-have",
+    "title": "Fringe: All We Have",
+    "rawTitle": "All We Have",
+    "artist": "Shayla Lazenby",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/all-we-have/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/all-we-have/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of All We Have by Shayla Lazenby at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/all-we-have/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.583133+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468216+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-11th-hour",
+    "title": "Fringe: Fringe Patio – 11th Hour Cabaret",
+    "rawTitle": "Fringe Patio – 11th Hour Cabaret",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/11th-hour/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – 11th Hour Cabaret by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.583395+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468273+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-truth-and-darers",
+    "title": "Fringe: The Truth and Darers",
+    "rawTitle": "The Truth and Darers",
+    "artist": "Ginko and Co.",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/truth-and-darers/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Truth and Darers by Ginko and Co. at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.583659+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468329+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-byte-your-tongue",
+    "title": "Fringe: Byte Your Tongue",
+    "rawTitle": "Byte Your Tongue",
+    "artist": "Kylie Thompson Dance",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/byte-your-tongue/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/byte-your-tongue/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Byte Your Tongue by Kylie Thompson Dance at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/byte-your-tongue/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.583838+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468383+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-last-cowboy",
+    "title": "Fringe: The Last Cowboy (Hat Salesman)",
+    "rawTitle": "The Last Cowboy (Hat Salesman)",
+    "artist": "An Te Chu",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/last-cowboy/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Last Cowboy (Hat Salesman) by An Te Chu at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.584125+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468436+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-behind-the-wall",
+    "title": "Fringe: Behind The Wall: A Thriller Musical",
+    "rawTitle": "Behind The Wall: A Thriller Musical",
+    "artist": "Landon And Friends Musical Theatre Society",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/behind-the-wall/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/behind-the-wall/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Behind The Wall: A Thriller Musical by Landon And Friends Musical Theatre Society at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/behind-the-wall/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.584291+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468491+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-phoenix-hellfire",
+    "title": "Fringe: Hi I’m Phoenix HellFire!",
+    "rawTitle": "Hi I’m Phoenix HellFire!",
+    "artist": "Dahlia-Raphael Kerr & Alivia Sabatino",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/phoenix-hellfire/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Hi I’m Phoenix HellFire! by Dahlia-Raphael Kerr & Alivia Sabatino at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.584582+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468544+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-las-mujeronas",
+    "title": "Fringe: Las Mujeronas",
+    "rawTitle": "Las Mujeronas",
+    "artist": "Jhoely Triana Flamenco",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/las-mujeronas/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/las-mujeronas/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Las Mujeronas by Jhoely Triana Flamenco at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/las-mujeronas/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.584798+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468599+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-her-ladyship",
+    "title": "Fringe: Her Ladyship Sketch Comedy Show",
+    "rawTitle": "Her Ladyship Sketch Comedy Show",
+    "artist": "Her Ladyship Theatre Collective",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#comedy"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/her-ladyship/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Improv Centre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Her Ladyship Sketch Comedy Show by Her Ladyship Theatre Collective at The Improv Centre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.585069+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://theimprovcentre.ca",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468672+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-lets-not-turn",
+    "title": "Fringe: Let’s Not Turn On Each Other",
+    "rawTitle": "Let’s Not Turn On Each Other",
+    "artist": "Walters & Watt theatre projects",
+    "venue": "Ron Basford Park (Amphitheatre)",
+    "address": "Ron Basford Park, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2698,
+      -123.1325
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/lets-not-turn/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Ron Basford Park (Amphitheatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Let’s Not Turn On Each Other by Walters & Watt theatre projects at Ron Basford Park (Amphitheatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.585337+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468740+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-song-collector",
+    "title": "Fringe: The Song Collector",
+    "rawTitle": "The Song Collector",
+    "artist": "Hummingbird Interactive",
+    "venue": "Urbanarium",
+    "address": "1 Alexander St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.281,
+      -123.109
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/song-collector/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Urbanarium",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Song Collector by Hummingbird Interactive at Urbanarium as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.585864+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468797+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-are-you-an-improvisor-or-impostor",
+    "title": "Fringe: Are You an Improvisor or Impostor?",
+    "rawTitle": "Are You an Improvisor or Impostor?",
+    "artist": "Esma Al-Autman",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/are-you-an-improvisor-or-impostor/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/are-you-an-improvisor-or-impostor/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Are You an Improvisor or Impostor? by Esma Al-Autman at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/are-you-an-improvisor-or-impostor/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.586317+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468852+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-fml",
+    "title": "Fringe: fml: funny, my life",
+    "rawTitle": "fml: funny, my life",
+    "artist": "Lilix Media",
+    "venue": "Little Mountain Gallery (Salazar Stage)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/fml/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of fml: funny, my life by Lilix Media at Little Mountain Gallery (Salazar Stage) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.586656+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468906+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-canon-fire",
+    "title": "Fringe: Canon Fire: The Improvised Musical",
+    "rawTitle": "Canon Fire: The Improvised Musical",
+    "artist": "VMIC",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/canon-fire/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/canon-fire/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Canon Fire: The Improvised Musical by VMIC at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/canon-fire/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.586831+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.468959+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-grown-ups",
+    "title": "Fringe: The Grown-ups",
+    "rawTitle": "The Grown-ups",
+    "artist": "Lexacon",
+    "venue": "Ron Basford Park (Sculpture Grove)",
+    "address": "Ron Basford Park, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2698,
+      -123.1325
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/grown-ups/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Ron Basford Park (Sculpture Grove)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Grown-ups by Lexacon at Ron Basford Park (Sculpture Grove) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.587156+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469013+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-doctor-faustus",
+    "title": "Fringe: Doctor Faustus",
+    "rawTitle": "Doctor Faustus",
+    "artist": "Rough Magic Theatre",
+    "venue": "Picnic Pavilion",
+    "address": "267 Old Bridge Walk, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2715,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/doctor-faustus/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/doctor-faustus/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Picnic Pavilion",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Doctor Faustus by Rough Magic Theatre at Picnic Pavilion as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/doctor-faustus/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.587384+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469068+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-sanction-me",
+    "title": "Fringe: Sanction Me, Daddy",
+    "rawTitle": "Sanction Me, Daddy",
+    "artist": "Niki Mohrdar",
+    "venue": "Little Mountain Gallery (Raccoon Room)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": true,
+    "websiteUrl": "https://www.vancouverfringe.com/events/sanction-me/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Sanction Me, Daddy by Niki Mohrdar at Little Mountain Gallery (Raccoon Room) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.587625+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469122+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-malinchista",
+    "title": "Fringe: Malinchista",
+    "rawTitle": "Malinchista",
+    "artist": "She Evil Productions",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/malinchista/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/malinchista/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Malinchista by She Evil Productions at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/malinchista/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.587839+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469176+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-asian-persuasion",
+    "title": "Fringe: Fringe Patio – Asian Persuasion All Stars",
+    "rawTitle": "Fringe Patio – Asian Persuasion All Stars",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/asian-persuasion/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – Asian Persuasion All Stars by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.588099+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469232+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-sexy-viola-jokes",
+    "title": "Fringe: Sexy Viola Jokes",
+    "rawTitle": "Sexy Viola Jokes",
+    "artist": "Rae Gallimore",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/sexy-viola-jokes/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/sexy-viola-jokes/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Sexy Viola Jokes by Rae Gallimore at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/sexy-viola-jokes/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.588317+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469288+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-cults",
+    "title": "Fringe: CULTS",
+    "rawTitle": "CULTS",
+    "artist": "Blair Moro",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/cults/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/cults/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of CULTS by Blair Moro at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/cults/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.588509+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469341+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-boys-club",
+    "title": "Fringe: Boys’ Club",
+    "rawTitle": "Boys’ Club",
+    "artist": "Alick Mac",
+    "venue": "Arts Umbrella (Scott Studio)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/boys-club/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/boys-club/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Scott Studio)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Boys’ Club by Alick Mac at Arts Umbrella (Scott Studio) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/boys-club/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.588676+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469394+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-unfinished-business",
+    "title": "Fringe: Unfinished Business: The Cold Case Files",
+    "rawTitle": "Unfinished Business: The Cold Case Files",
+    "artist": "This Is It",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/unfinished-business/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/unfinished-business/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Unfinished Business: The Cold Case Files by This Is It at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/unfinished-business/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.588924+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469450+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-tampon-chair-bride",
+    "title": "Fringe: A TAMPON, A CHAIR, AND A BRIDE WALK ONTO A PLANE",
+    "rawTitle": "A TAMPON, A CHAIR, AND A BRIDE WALK ONTO A PLANE",
+    "artist": "Nico Gruzling",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/tampon-chair-bride/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of A TAMPON, A CHAIR, AND A BRIDE WALK ONTO A PLANE by Nico Gruzling at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.589181+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469503+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-tryhard",
+    "title": "Fringe: Tryhard",
+    "rawTitle": "Tryhard",
+    "artist": "Josh Romyn",
+    "venue": "Little Mountain Gallery (Salazar Stage)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/tryhard/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/tryhard/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Tryhard by Josh Romyn at Little Mountain Gallery (Salazar Stage) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/tryhard/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.589483+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469558+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-matt-and-ben",
+    "title": "Fringe: Matt and Ben",
+    "rawTitle": "Matt and Ben",
+    "artist": "Veenu Sandhu and Missy Cross",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/matt-and-ben/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/matt-and-ben/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Matt and Ben by Veenu Sandhu and Missy Cross at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/matt-and-ben/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.589882+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469611+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-weird-owl-karaoke",
+    "title": "Fringe: Weird Owl Karaoke",
+    "rawTitle": "Weird Owl Karaoke",
+    "artist": "Weird Owl Karaoke",
+    "venue": "Little Mountain Gallery (Raccoon Room)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/weird-owl-karaoke/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/weird-owl-karaoke/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Weird Owl Karaoke by Weird Owl Karaoke at Little Mountain Gallery (Raccoon Room) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/weird-owl-karaoke/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.590321+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469695+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-mizuhiki",
+    "title": "Fringe: Mizuhiki",
+    "rawTitle": "Mizuhiki",
+    "artist": "Kenneth Seto Tynan & Ayako Karasawa",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/mizuhiki/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/mizuhiki/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Mizuhiki by Kenneth Seto Tynan & Ayako Karasawa at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/mizuhiki/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.590526+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469766+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-broken-rice",
+    "title": "Fringe: Broken Rice",
+    "rawTitle": "Broken Rice",
+    "artist": "Clever Bird Entertainment Inc",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/broken-rice/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/broken-rice/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Broken Rice by Clever Bird Entertainment Inc at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/broken-rice/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.590688+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469821+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-lucky-life",
+    "title": "Fringe: The Lucky Life of a Black Cat",
+    "rawTitle": "The Lucky Life of a Black Cat",
+    "artist": "Lobo-Guará Productions",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/lucky-life/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Lucky Life of a Black Cat by Lobo-Guará Productions at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.590939+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469875+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-aficionado",
+    "title": "Fringe: Fringe Patio – Aficionado Stage",
+    "rawTitle": "Fringe Patio – Aficionado Stage",
+    "artist": "Vancouver Flamenco Festival",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/aficionado/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – Aficionado Stage by Vancouver Flamenco Festival at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.591249+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469930+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-home-alone",
+    "title": "Fringe: One Man Home Alone",
+    "rawTitle": "One Man Home Alone",
+    "artist": "Duran Cruickshank",
+    "venue": "Little Mountain Gallery (Salazar Stage)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/home-alone/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Salazar Stage)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of One Man Home Alone by Duran Cruickshank at Little Mountain Gallery (Salazar Stage) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.591511+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.469987+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-kingsgate",
+    "title": "Fringe: Kingsgate Chorus",
+    "rawTitle": "Kingsgate Chorus",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Public Market Courtyard",
+    "address": "1689 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2725,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/kingsgate/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Public Market Courtyard",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Kingsgate Chorus by Fringe Theatre Ensemble at Public Market Courtyard as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.591766+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470042+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-ickoholics",
+    "title": "Fringe: Ickoholics Anonymous",
+    "rawTitle": "Ickoholics Anonymous",
+    "artist": "Lucy Lucia",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/ickoholics/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Ickoholics Anonymous by Lucy Lucia at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.592025+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470098+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-tears-of-the-seawall",
+    "title": "Fringe: Tears of the Seawall: An Improvised Romance Film",
+    "rawTitle": "Tears of the Seawall: An Improvised Romance Film",
+    "artist": "Grad School Improv",
+    "venue": "Little Mountain Gallery (Raccoon Room)",
+    "address": "110 E 5th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.263,
+      -123.098
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/tears-of-the-seawall/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/tears-of-the-seawall/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Little Mountain Gallery (Raccoon Room)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Tears of the Seawall: An Improvised Romance Film by Grad School Improv at Little Mountain Gallery (Raccoon Room) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/tears-of-the-seawall/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.592245+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470155+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-hip-bang",
+    "title": "Fringe: Hip.Bang! presents You Bet",
+    "rawTitle": "Hip.Bang! presents You Bet",
+    "artist": "Hip.Bang!",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/hip-bang/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Improv Centre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Hip.Bang! presents You Bet by Hip.Bang! at The Improv Centre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.592504+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://theimprovcentre.ca",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470213+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-big-tips",
+    "title": "Fringe: Big Tips – The Rise and Fall of a 90s Bar Star",
+    "rawTitle": "Big Tips – The Rise and Fall of a 90s Bar Star",
+    "artist": "Sarah Rowland",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/big-tips/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/big-tips/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Big Tips – The Rise and Fall of a 90s Bar Star by Sarah Rowland at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/big-tips/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.592671+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470269+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-popurri",
+    "title": "Fringe: Popurrí",
+    "rawTitle": "Popurrí",
+    "artist": "Plastik Theatriks",
+    "venue": "Arts Umbrella (Theatre)",
+    "address": "1400 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2705,
+      -123.1342
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/popurri/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/popurri/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Arts Umbrella (Theatre)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Popurrí by Plastik Theatriks at Arts Umbrella (Theatre) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/popurri/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.592874+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470328+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-solovela",
+    "title": "Fringe: Solovela, An Improvised Solo Telenovela",
+    "rawTitle": "Solovela, An Improvised Solo Telenovela",
+    "artist": "Diane Jorge",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/solovela/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Solovela, An Improvised Solo Telenovela by Diane Jorge at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.593127+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470386+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-daddy-bear-man-pssy",
+    "title": "Fringe: Daddy Bear & Man P*ssy",
+    "rawTitle": "Daddy Bear & Man P*ssy",
+    "artist": "Lucyboo Productions",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/daddy-bear-man-pssy/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/daddy-bear-man-pssy/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Daddy Bear & Man P*ssy by Lucyboo Productions at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/daddy-bear-man-pssy/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.593349+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470442+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-duck",
+    "title": "Fringe: DUCK",
+    "rawTitle": "DUCK",
+    "artist": "The Dream Agency",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/duck/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/duck/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of DUCK by The Dream Agency at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/duck/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.593539+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470497+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-golden-age",
+    "title": "Fringe: Fringe Patio – Golden Age of Wrestling",
+    "rawTitle": "Fringe Patio – Golden Age of Wrestling",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/golden-age/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – Golden Age of Wrestling by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.593793+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470552+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-moonswine",
+    "title": "Fringe: MoonSwine: To-Dance-To-Dream-To-Poem-To-Pig",
+    "rawTitle": "MoonSwine: To-Dance-To-Dream-To-Poem-To-Pig",
+    "artist": "Maria Yanagisawa",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/moonswine/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/moonswine/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of MoonSwine: To-Dance-To-Dream-To-Poem-To-Pig by Maria Yanagisawa at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/moonswine/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.593996+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470614+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-colonial-circus",
+    "title": "Fringe: Colonial Circus – History, Clown Style",
+    "rawTitle": "Colonial Circus – History, Clown Style",
+    "artist": "Two2Mango",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/colonial-circus/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Colonial Circus – History, Clown Style by Two2Mango at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.594248+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470692+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-flail",
+    "title": "Fringe: The Flail",
+    "rawTitle": "The Flail",
+    "artist": "judys production company",
+    "venue": "The Nest (Granville Island)",
+    "address": "1398 Cartwright St 3rd Floor, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.134
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/flail/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "The Nest (Granville Island)",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Flail by judys production company at The Nest (Granville Island) as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.594508+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.granvilleisland.com/directory/nest",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470754+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-tall-mark",
+    "title": "Fringe: Tall Mark’s EAT IT ANYWAY",
+    "rawTitle": "Tall Mark’s EAT IT ANYWAY",
+    "artist": "Full Groan Productions",
+    "venue": "Studio 16",
+    "address": "1555 W 7th Ave, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2635,
+      -123.139
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/tall-mark/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Studio 16",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Tall Mark’s EAT IT ANYWAY by Full Groan Productions at Studio 16 as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.594764+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470812+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-soul-maker",
+    "title": "Fringe: Soul Maker",
+    "rawTitle": "Soul Maker",
+    "artist": "Ripley Twardzik Ching",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/soul-maker/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/soul-maker/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Waterfront Theatre",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Soul Maker by Ripley Twardzik Ching at Waterfront Theatre as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.\n\n★ Fringe Reviews & Ratings: reviews.fringetheatre.ca/events/soul-maker/",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.594977+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470870+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-evilyn13-pandemonium",
+    "title": "Fringe: Fringe Patio – DJ Evilyn13 & DJ Pandemonium",
+    "rawTitle": "Fringe Patio – DJ Evilyn13 & DJ Pandemonium",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/evilyn13-pandemonium/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – DJ Evilyn13 & DJ Pandemonium by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.595232+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470926+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-walk-of-shame",
+    "title": "Fringe: The Walk of Shame",
+    "rawTitle": "The Walk of Shame",
+    "artist": "Samantha Li",
+    "venue": "Performance Works",
+    "address": "1218 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.136
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/walk-of-shame/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Performance Works",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of The Walk of Shame by Samantha Li at Performance Works as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.595502+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://granvilleisland.com/directory/performance-works",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.470986+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-calamity-cabaret",
+    "title": "Fringe: Special Event – Calamity Cabaret",
+    "rawTitle": "Special Event – Calamity Cabaret",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Revue Stage",
+    "address": "1601 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/calamity-cabaret/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Revue Stage",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Special Event – Calamity Cabaret by Fringe Theatre Ensemble at Revue Stage as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.595770+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471046+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-intro-to-flamenco",
+    "title": "Fringe: Fringe Patio – Basic Intro to Flamenco Classes",
+    "rawTitle": "Fringe Patio – Basic Intro to Flamenco Classes",
+    "artist": "Karen Flamenco",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/intro-to-flamenco/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – Basic Intro to Flamenco Classes by Karen Flamenco at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.596033+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471103+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-unpacking-the-art",
+    "title": "Fringe: UNPACKING: The Art of Making a Short Story Long",
+    "rawTitle": "UNPACKING: The Art of Making a Short Story Long",
+    "artist": "Cherry Blossom Lane Productions",
+    "venue": "Tru Cafe",
+    "address": "1540 Old Bridge St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1338
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/unpacking-the-art/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Tru Cafe",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of UNPACKING: The Art of Making a Short Story Long by Cherry Blossom Lane Productions at Tru Cafe as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.596290+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471161+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-tariq",
+    "title": "Fringe: Fringe Patio – Tariq",
+    "rawTitle": "Fringe Patio – Tariq",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/tariq/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – Tariq by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.596548+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471216+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-fringe-o-show",
+    "title": "Fringe: Fringe Patio – DJ O Show",
+    "rawTitle": "Fringe Patio – DJ O Show",
+    "artist": "Fringe Theatre Ensemble",
+    "venue": "Fringe Patio",
+    "address": "1398 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.271,
+      -123.1341
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#stage"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://www.vancouverfringe.com/events/o-show/",
+    "reviewUrl": null,
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Fringe Patio",
+    "agePolicy": "All ages / see individual show advisory",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Official presentation of Fringe Patio – DJ O Show by Fringe Theatre Ensemble at Fringe Patio as part of Vancouver Fringe Festival 2026. 100% of base ticket profits return directly to artists; no membership required.",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.596808+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471271+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-vancouver-fringe-festival-carousel-theatre",
+    "title": "Fringe: Delusions and Grandeur (Adult Comedy & Solo Cello Clown)",
+    "rawTitle": "Delusions and Grandeur (Adult Comedy & Solo Cello Clown)",
+    "artist": "Karen Hall",
+    "venue": "Carousel Theatre",
+    "address": "1411 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2708,
+      -123.1347
+    ],
+    "price": 18.0,
+    "priceLabel": "$18.00 all-in",
+    "pricingType": "festival_all_in",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categories": [
+      "festivals",
+      "shows"
+    ],
+    "subTags": [
+      "#festival",
+      "#fringe",
+      "#theatre",
+      "#comedy",
+      "#adult-comedy",
+      "#clown",
+      "#adults-only",
+      "#granville-island"
+    ],
+    "dateSchedule": "Sept 10 – Sept 20, 2026 • Vancouver Fringe Festival",
+    "startIso": "2026-09-10T12:00:00-07:00",
+    "endIso": "2026-09-20T23:59:59-07:00",
+    "confirmedDates": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://vancouverfringe.com/events/delusions-and-grandeur/",
+    "reviewUrl": "https://reviews.fringetheatre.ca/events/delusions-and-grandeur/",
+    "ticketProvider": "Vancouver Fringe Festival Box Office Verified",
+    "rawProvider": "Vancouver Fringe Festival",
+    "organizer": "Vancouver Fringe Festival",
+    "isRoving": false,
+    "editionVenue": "Carousel Theatre",
+    "agePolicy": "Adults only",
+    "admissionPolicy": "Show ticket required (no festival membership required)",
+    "description": "Karen Hall's sold-out solo clowning and classical cello tour de force exploring vulnerability, ego, and perfectionism.\n\n★ Fringe Reviews: \"Fascinating and brilliantly creative... her comedic timing is as impeccable as her playing.\" (VanCityVince & Stage Raw Best Solo Performance Award).",
+    "tiers": [
+      {
+        "name": "Single Show Ticket",
+        "price": 18.0,
+        "label": "$18.00 all-in",
+        "description": "$15.00 artist base price + $3.00 ticketing fee (100% of profits to artists; no membership required)"
+      }
+    ],
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 18.0,
+      "feeBreakdown": "$18.00 all-in ($15 show + $3 fee; GST and transaction fees included; no membership required)",
+      "verifiedAt": "2026-09-19T15:00:59.596843+00:00",
+      "details": "Verified via official Vancouver Fringe box office rate card. No membership is required; show tickets are $15–$18 all-in including $3 ticketing fee covering GST and card processing (100% of profits to artists)."
+    },
+    "venueUrl": "https://www.carouseltheatre.ca",
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471328+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "fest-viff-vancouver-film-festival-sfu-goldcorp-centre-for-the-arts",
+    "title": "Vancouver International Film Festival (VIFF): Gala Screenings & Contemporary Storytelling at SFU Goldcorp Centre for the Arts",
+    "artist": "Official Vancouver International Film Festival (VIFF) Artists & Roster",
+    "performers": "Vancouver International Film Festival (VIFF) Companies & Ensembles",
+    "venue": "SFU Goldcorp Centre for the Arts",
+    "venueAliases": [
+      "SFU Goldcorp Centre for the Arts",
+      "Vancouver International Film Festival (VIFF)"
+    ],
+    "address": "149 W Hastings St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 all-in ($18 ticket + $2 society membership + $0.90 GST)",
+    "pricingType": "festival_all_in",
+    "tiers": [
+      {
+        "name": "Single Show / Screening Ticket",
+        "price": 18.0,
+        "description": "Standard admission to one Vancouver International Film Festival (VIFF) presentation"
+      },
+      {
+        "name": "All-In Checkout (Ticket + Society Membership + GST)",
+        "price": 20.9,
+        "description": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket"
       }
     ],
     "isFree": false,
     "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Midnight Movie",
+    "frequency": "seasonal",
+    "frequencyLabel": "Festival Run",
     "daysOfWeek": [
-      "fri"
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
     ],
     "timeSlots": [
+      "afternoon",
+      "early-evening",
       "late-evening"
     ],
     "category": "cinema",
+    "categories": [
+      "festivals",
+      "cinema"
+    ],
     "categoryLabel": "Cinema",
     "categoryIcon": "🎬",
     "subTags": [
-      "cult-classic",
-      "4k-restoration",
-      "midnight-movie",
-      "sci-fi",
-      "rio-theatre"
+      "#festival",
+      "#viff",
+      "#cinema",
+      "#screenings",
+      "#premieres"
     ],
-    "dateSchedule": "Friday, September 25 • 11:30 PM",
-    "startIso": "2026-09-25T23:30:00-07:00",
-    "endIso": "2026-09-26T01:30:00-07:00",
-    "confirmedDates": [
-      "2026-09-25T23:30:00-07:00"
-    ],
+    "dateSchedule": "Sep 24 – Oct 04, 2026 • Vancouver International Film Festival (VIFF)",
+    "startIso": "2026-09-24T12:00:00-07:00",
+    "endIso": "2026-10-04T23:59:59-07:00",
+    "confirmedDates": [],
     "isSoldOut": false,
-    "websiteUrl": "https://riotheatre.ca",
-    "venueUrl": "https://riotheatre.ca",
-    "ticketProvider": "The Rio Theatre Box Office",
-    "rawProvider": "Agile Ticketing",
+    "websiteUrl": "https://www.sfu.ca/woodwards.html",
+    "venueUrl": "https://www.sfu.ca/woodwards.html",
+    "ticketProvider": "Vancouver International Film Festival (VIFF) Box Office Verified",
+    "rawProvider": "Vancouver International Film Festival (VIFF)",
     "coordinates": [
-      49.2627,
-      -123.0694
+      49.2831,
+      -123.109
     ],
-    "transitInfo": "Directly adjacent to Commercial-Broadway SkyTrain",
-    "organizer": null,
+    "transitInfo": "5 min walk from Waterfront SkyTrain Station",
+    "organizer": "Vancouver International Film Festival (VIFF)",
     "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": "19+ with 2 pieces of ID for bar service",
-    "admissionPolicy": null,
+    "editionVenue": "SFU Goldcorp Centre for the Arts",
+    "agePolicy": "All ages / see individual show rating",
+    "admissionPolicy": "Show ticket + society membership required for venue entry",
     "rovingNote": null,
-    "description": "4K Digital Restoration. A 21st-century construction worker haunted by recurring dreams of Mars visits a memory-implantation clinic for an artificial vacation, only for the procedure to go wrong and uncover that his entire identity may be fabricated.",
+    "description": "Special festival gala screenings and contemporary cinematic storytelling at SFU Goldcorp Centre for the Arts in the historic Woodward's complex.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "official_venue_policy",
-      "verifiedTotal": 17.5,
-      "feeBreakdown": "General ($17.50), Student ($14.00) all-in",
-      "verifiedAt": "2026-09-21T08:25:00-07:00",
-      "details": "Verified via The Rio Theatre official box office rates."
+      "method": "festival_charter_pricing",
+      "verifiedTotal": 20.9,
+      "feeBreakdown": "$18.00 show ticket + $2.00 festival button + $0.90 GST = $20.90 CAD total out-of-pocket",
+      "verifiedAt": "2026-09-22T11:08:19.642318+00:00",
+      "details": "Verified via official Vancouver International Film Festival (VIFF) box office rate card with mandatory society membership and GST included."
     },
-    "buzzwords": [
-      "Mind-Bending Sci-Fi",
-      "Practical FX Masterpiece",
-      "Memory Distortion",
-      "90s Action",
-      "Mars Colony"
-    ],
-    "ratings": [
-      {
-        "source": "Rotten Tomatoes",
-        "score": "84% Fresh",
-        "icon": "🍅"
-      },
-      {
-        "source": "Letterboxd",
-        "score": "3.8 / 5",
-        "icon": "★"
-      },
-      {
-        "source": "IMDb",
-        "score": "7.5 / 10",
-        "icon": "⭐"
-      }
-    ],
-    "reviewQuote": "A ferocious, breathless blast of practical-effects brilliance and relentless, satirical sci-fi energy.",
-    "contentAdvisory": "Rated 18A / 19+. Intense stylized violence, graphic practical sci-fi gore, and language. Strictly non-spoiler."
+    "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 404 (Not Found)",
+    "quarantinedAt": "2026-09-22T11:09:50.471387+00:00",
+    "dealtWith": false
   }
 ];
 
+// Regional Super-Clusters (Option B)
+const NEIGHBORHOODS = [
+  "Downtown, Gastown & Yaletown",
+  "Mount Pleasant & South Vancouver",
+  "Commercial Drive & East Vancouver",
+  "Kitsilano, Point Grey & UBC",
+  "Granville Island & False Creek",
+  "North Shore, Burnaby & Metro"
+];
+
+// Days of the Week
+const DAYS_OF_WEEK = [
+  { id: "all", label: "All Days", icon: "🗓️" },
+  { id: "mon", label: "Mon", full: "Monday" },
+  { id: "tue", label: "Tue", full: "Tuesday" },
+  { id: "wed", label: "Wed", full: "Wednesday" },
+  { id: "thu", label: "Thu", full: "Thursday" },
+  { id: "fri", label: "Fri", full: "Friday" },
+  { id: "sat", label: "Sat", full: "Saturday" },
+  { id: "sun", label: "Sun", full: "Sunday" },
+  { id: "daily", label: "Daily Spots", icon: "☀️" }
+];
+
+// Time of Day Starting Slots
+const TIME_SLOTS = [
+  { id: "all", label: "Any Time", icon: "⏰" },
+  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
+  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
+  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
+  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
+];
+
+// Recurrence Frequency Metadata
+const FREQUENCIES = [
+  { id: "all", label: "All Frequencies", icon: "✨" },
+  { id: "weekly", label: "Weekly", icon: "🔄", color: "#a855f7" },
+  { id: "monthly", label: "Monthly", icon: "📅", color: "#06b6d4" },
+  { id: "daily", label: "Daily", icon: "☀️", color: "#f59e0b" },
+  { id: "one-off", label: "One-Off", icon: "🎟️", color: "#f43f5e" },
+  { id: "seasonal", label: "Seasonal", icon: "🌟", color: "#10b981" },
+  { id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }
+];
+
+// Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   { id: "all", label: "All", icon: "✨" },
   { id: "music", label: "Live Music", icon: "🎵" },
