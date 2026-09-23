@@ -347,9 +347,9 @@
         "afternoon",
         "early-evening"
       ],
-      "category": "outdoors",
-      "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌹",
+      "category": "social",
+      "categoryLabel": "Varsity Sports",
+      "categoryIcon": "⚡",
       "subTags": [
         "rose-garden",
         "ocean-view",
@@ -561,88 +561,6 @@
         "nature",
         "outdoors",
         "tropical"
-      ]
-    },
-    {
-      "id": "ubc-thunderbirds-varsity",
-      "title": "UBC Thunderbirds: Home Varsity Games",
-      "artist": null,
-      "performers": null,
-      "venue": "War Memorial Gym & Thunderbird Stadium",
-      "venueAliases": [],
-      "address": "6081 University Blvd, Vancouver",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
-      "price": 0.0,
-      "priceLabel": "Free ($0)",
-      "pricingType": "platform",
-      "tiers": [],
-      "isFree": true,
-      "isDaily": false,
-      "frequency": "weekly",
-      "frequencyLabel": "Weekly (Game Days)",
-      "daysOfWeek": [
-        "fri",
-        "sat"
-      ],
-      "timeSlots": [
-        "early-evening"
-      ],
-      "category": "social",
-      "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
-      "subTags": [
-        "varsity-sports",
-        "basketball",
-        "volleyball",
-        "ubc-athletics"
-      ],
-      "dateSchedule": "Friday & Saturday Evenings • 6:00 PM & 8:00 PM",
-      "startIso": "2026-09-11T18:00:00-07:00",
-      "endIso": "2027-03-31T22:00:00-07:00",
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-      "venueUrl": "https://gothunderbirds.ca",
-      "ticketProvider": "Paciolan Verified",
-      "rawProvider": "Paciolan",
-      "coordinates": [
-        49.2662,
-        -123.2483
-      ],
-      "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit to UBC Loop",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "Catch high-intensity collegiate varsity action cheering on UBC's Thunderbirds in ice hockey, basketball, rugby, and soccer across campus venues with student spirit and electric rivalries.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "scraped_page_policy",
-        "verifiedTotal": 0.0,
-        "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-        "verifiedAt": "2026-09-22T11:07:16-07:00",
-        "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "dedicated_page",
-        "matched_tokens": [
-          "ubc",
-          "thunderbirds",
-          "games",
-          "home",
-          "basketball",
-          "volleyball"
-        ],
-        "evidence_snippet": "...ubc thunderbirds tickets: pricing, entry policies and 2025–26 season information...",
-        "reason": "Affirmatively verified event on dedicated landing page (ubc, thunderbirds, games, home, basketball, volleyball)"
-      },
-      "categories": [
-        "activities",
-        "social",
-        "sports"
       ]
     },
     {
@@ -2932,7 +2850,7 @@
     },
     {
       "id": "viff-all-we-imagine-as-light",
-      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Dir. Shannon Walsh)",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Multiple Days • Oct 2 & 4)",
       "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
       "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
       "venue": "VIFF Centre",
@@ -2951,7 +2869,7 @@
       "isFestival": true,
       "festivalId": "viff-2026",
       "frequency": "limited-run",
-      "frequencyLabel": "Festival Showcase",
+      "frequencyLabel": "Multiple Days",
       "daysOfWeek": [
         "fri",
         "sun"
@@ -2974,7 +2892,7 @@
         "viff-2026",
         "canadian-cinema"
       ],
-      "dateSchedule": "Friday, October 2 • 6:30 PM & Sunday, October 4 • 1:30 PM",
+      "dateSchedule": "Multiple Days: Friday, Oct 2 • 6:30 PM & Sunday, Oct 4 • 1:30 PM",
       "startIso": "2026-10-02T18:30:00-07:00",
       "endIso": "2026-10-04T15:30:00-07:00",
       "confirmedDates": [
@@ -3450,7 +3368,7 @@
     },
     {
       "id": "tic-triviaprov",
-      "title": "TRIVIAPROV: Interactive Trivia & Improv Comedy",
+      "title": "TRIVIAPROV: Interactive Trivia & Improv (Multiple Days • Sep 30 & Oct 8)",
       "artist": "The Improv Centre House Troupe",
       "performers": "TIC Improvisers & Hosts",
       "venue": "The Improv Centre",
@@ -3467,7 +3385,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "limited-run",
-      "frequencyLabel": "Select Dates",
+      "frequencyLabel": "Multiple Days",
       "daysOfWeek": [
         "wed",
         "thu"
@@ -3491,7 +3409,7 @@
         "granville-island",
         "interactive"
       ],
-      "dateSchedule": "Select Wednesdays & Thursdays • 7:00 PM",
+      "dateSchedule": "Multiple Days: Wednesday, Sep 30 & Thursday, Oct 8, 2026 • 7:00 PM",
       "startIso": "2026-09-30T19:00:00-07:00",
       "endIso": "2026-12-31T20:30:00-07:00",
       "confirmedDates": [
@@ -3702,7 +3620,7 @@
     },
     {
       "id": "vso-hadelich-brahms",
-      "title": "VSO: Augustin Hadelich Plays Brahms (Masterworks • Orpheum)",
+      "title": "VSO: Augustin Hadelich Plays Brahms (Multiple Days • Oct 9 & 10)",
       "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
       "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
       "venue": "The Orpheum Theatre",
@@ -3730,7 +3648,7 @@
       "isFree": false,
       "isDaily": false,
       "frequency": "limited-run",
-      "frequencyLabel": "Masterworks Series",
+      "frequencyLabel": "Multiple Days",
       "daysOfWeek": [
         "fri",
         "sat"
@@ -3754,7 +3672,7 @@
         "masterworks",
         "vso"
       ],
-      "dateSchedule": "Friday, Oct 9 & Saturday, Oct 10, 2026 • 7:30 PM",
+      "dateSchedule": "Multiple Days: Friday, Oct 9 & Saturday, Oct 10, 2026 • 7:30 PM",
       "startIso": "2026-10-09T19:30:00-07:00",
       "endIso": "2026-10-10T22:00:00-07:00",
       "confirmedDates": [
@@ -3882,6 +3800,959 @@
         ],
         "evidence_snippet": "Tchaikovsky's Violin Concerto at The Orpheum",
         "reason": "Direct concert production link verified on vancouversymphony.ca"
+      }
+    },
+    {
+      "id": "ubc-wsoc-ufv",
+      "title": "UBC Women's Soccer vs. UFV",
+      "artist": null,
+      "performers": null,
+      "venue": "Thunderbird Stadium",
+      "venueAliases": [
+        "UBC Thunderbird Stadium"
+      ],
+      "address": "6288 Stadium Rd, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 17.5,
+      "priceLabel": "$17.50 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "price": 17.5,
+          "label": "$17.50 all-in"
+        },
+        {
+          "name": "Concession (Alumni, Seniors 65+, Staff)",
+          "price": 12.5,
+          "label": "$12.50"
+        },
+        {
+          "name": "Youth (13–18)",
+          "price": 7.5,
+          "label": "$7.50"
+        },
+        {
+          "name": "Child (12 and under)",
+          "price": 3.0,
+          "label": "$3.00"
+        },
+        {
+          "name": "UBC Students",
+          "price": 0.0,
+          "label": "Free with student ID"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Match Day",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "social",
+      "categoryLabel": "Varsity Sports",
+      "categoryIcon": "⚡",
+      "categories": [
+        "activities",
+        "social",
+        "sports"
+      ],
+      "subTags": [
+        "ubc-soccer",
+        "womens-soccer",
+        "cw-soccer",
+        "thunderbirds",
+        "ufv-cascades"
+      ],
+      "dateSchedule": "Friday, September 25, 2026 • 6:00 PM",
+      "startIso": "2026-09-25T18:00:00-07:00",
+      "endIso": "2026-09-25T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://gothunderbirds.ca/sports/womens-soccer/schedule",
+      "venueUrl": "https://gothunderbirds.ca",
+      "ticketProvider": "Paciolan Box Office",
+      "rawProvider": "Paciolan",
+      "coordinates": [
+        49.2555,
+        -123.2458
+      ],
+      "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages Welcome",
+      "admissionPolicy": "General Admission bleacher & grandstand seating",
+      "rovingNote": null,
+      "description": "The defending national champion UBC Thunderbirds women's soccer team hosts the Fraser Valley Cascades (UFV) in a fiery Canada West regular season home showdown at Thunderbird Stadium.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 17.5,
+        "feeBreakdown": "$17.50 adult conference ticket ($12.50 concession / $7.50 youth / $3 child / UBC students free with ID)",
+        "verifiedAt": "2026-09-22T17:00:00-07:00",
+        "details": "Verified via official UBC Athletics published 2025-26 rate card on gothunderbirds.ca."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "ubc",
+          "soccer",
+          "women",
+          "ufv",
+          "cascades",
+          "stadium"
+        ],
+        "evidence_snippet": "Sep 25 (Fri) 6 p.m. Can West vs University of the Fraser Valley",
+        "reason": "Direct Canada West conference fixture verified on gothunderbirds.ca"
+      }
+    },
+    {
+      "id": "ubc-wsoc-twu",
+      "title": "UBC Women's Soccer vs. TWU",
+      "artist": null,
+      "performers": null,
+      "venue": "Thunderbird Stadium",
+      "venueAliases": [
+        "UBC Thunderbird Stadium"
+      ],
+      "address": "6288 Stadium Rd, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 17.5,
+      "priceLabel": "$17.50 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "price": 17.5,
+          "label": "$17.50 all-in"
+        },
+        {
+          "name": "Concession (Alumni, Seniors 65+, Staff)",
+          "price": 12.5,
+          "label": "$12.50"
+        },
+        {
+          "name": "Youth (13–18)",
+          "price": 7.5,
+          "label": "$7.50"
+        },
+        {
+          "name": "Child (12 and under)",
+          "price": 3.0,
+          "label": "$3.00"
+        },
+        {
+          "name": "UBC Students",
+          "price": 0.0,
+          "label": "Free with student ID"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Match Day",
+      "daysOfWeek": [
+        "sat"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "social",
+      "categoryLabel": "Varsity Sports",
+      "categoryIcon": "⚡",
+      "categories": [
+        "activities",
+        "social",
+        "sports"
+      ],
+      "subTags": [
+        "ubc-soccer",
+        "womens-soccer",
+        "twu-spartans",
+        "rivalry",
+        "thunderbirds"
+      ],
+      "dateSchedule": "Saturday, September 26, 2026 • 6:00 PM",
+      "startIso": "2026-09-26T18:00:00-07:00",
+      "endIso": "2026-09-26T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-09-26"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://gothunderbirds.ca/sports/womens-soccer/schedule",
+      "venueUrl": "https://gothunderbirds.ca",
+      "ticketProvider": "Paciolan Box Office",
+      "rawProvider": "Paciolan",
+      "coordinates": [
+        49.2555,
+        -123.2458
+      ],
+      "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages Welcome",
+      "admissionPolicy": "General Admission bleacher & grandstand seating",
+      "rovingNote": null,
+      "description": "A premier Lower Mainland derby as the UBC Thunderbirds battle the Trinity Western Spartans (TWU) under the lights at Thunderbird Stadium in a high-stakes Canada West rivalry match.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 17.5,
+        "feeBreakdown": "$17.50 adult conference ticket ($12.50 concession / $7.50 youth / $3 child / UBC students free with ID)",
+        "verifiedAt": "2026-09-22T17:00:00-07:00",
+        "details": "Verified via official UBC Athletics published 2025-26 rate card on gothunderbirds.ca."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "ubc",
+          "soccer",
+          "women",
+          "twu",
+          "spartans",
+          "stadium"
+        ],
+        "evidence_snippet": "Sep 26 (Sat) 6 p.m. Can West vs Trinity Western University",
+        "reason": "Direct Canada West conference fixture verified on gothunderbirds.ca"
+      }
+    },
+    {
+      "id": "ubc-fball-uofc",
+      "title": "UBC Football vs. U of C",
+      "artist": null,
+      "performers": null,
+      "venue": "Thunderbird Stadium",
+      "venueAliases": [
+        "UBC Thunderbird Stadium"
+      ],
+      "address": "6288 Stadium Rd, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 17.5,
+      "priceLabel": "$17.50 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "price": 17.5,
+          "label": "$17.50 all-in"
+        },
+        {
+          "name": "Concession (Alumni, Seniors 65+, Staff)",
+          "price": 12.5,
+          "label": "$12.50"
+        },
+        {
+          "name": "Youth (13–18)",
+          "price": 7.5,
+          "label": "$7.50"
+        },
+        {
+          "name": "Child (12 and under)",
+          "price": 3.0,
+          "label": "$3.00"
+        },
+        {
+          "name": "UBC Students",
+          "price": 0.0,
+          "label": "Free with student ID"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Game Day",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "social",
+      "categoryLabel": "Varsity Sports",
+      "categoryIcon": "⚡",
+      "categories": [
+        "activities",
+        "social",
+        "sports"
+      ],
+      "subTags": [
+        "ubc-football",
+        "calgary-dinos",
+        "u-sports",
+        "thunderbirds",
+        "stadium"
+      ],
+      "dateSchedule": "Friday, October 16, 2026 • 6:00 PM",
+      "startIso": "2026-10-16T18:00:00-07:00",
+      "endIso": "2026-10-16T21:00:00-07:00",
+      "confirmedDates": [
+        "2026-10-16"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://gothunderbirds.ca/sports/football/schedule",
+      "venueUrl": "https://gothunderbirds.ca",
+      "ticketProvider": "Paciolan Box Office",
+      "rawProvider": "Paciolan",
+      "coordinates": [
+        49.2555,
+        -123.2458
+      ],
+      "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages Welcome",
+      "admissionPolicy": "Full concession & licensed beverage garden available inside Thunderbird Stadium",
+      "rovingNote": null,
+      "description": "Friday night football under the campus floodlights as the UBC Thunderbirds clash with the perennial powerhouse Calgary Dinos (U of C) in a pivotal Canada West conference battle.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 17.5,
+        "feeBreakdown": "$17.50 adult conference ticket ($12.50 concession / $7.50 youth / $3 child / UBC students free with ID)",
+        "verifiedAt": "2026-09-22T17:00:00-07:00",
+        "details": "Verified via official UBC Athletics published 2025-26 rate card on gothunderbirds.ca."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "ubc",
+          "football",
+          "calgary",
+          "dinos",
+          "stadium"
+        ],
+        "evidence_snippet": "Oct 16 (Fri) 6 p.m. Can West vs University of Calgary",
+        "reason": "Direct Canada West conference fixture verified on gothunderbirds.ca"
+      }
+    },
+    {
+      "id": "ubc-mbball-twu",
+      "title": "UBC Men's Basketball vs. TWU",
+      "artist": null,
+      "performers": null,
+      "venue": "War Memorial Gym",
+      "venueAliases": [
+        "War Memorial Gymnasium UBC"
+      ],
+      "address": "6081 University Blvd, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 17.5,
+      "priceLabel": "$17.50 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "price": 17.5,
+          "label": "$17.50 all-in"
+        },
+        {
+          "name": "Concession (Alumni, Seniors 65+, Staff)",
+          "price": 12.5,
+          "label": "$12.50"
+        },
+        {
+          "name": "Youth (13–18)",
+          "price": 7.5,
+          "label": "$7.50"
+        },
+        {
+          "name": "Child (12 and under)",
+          "price": 3.0,
+          "label": "$3.00"
+        },
+        {
+          "name": "UBC Students",
+          "price": 0.0,
+          "label": "Free with student ID"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Game Night",
+      "daysOfWeek": [
+        "thu"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "social",
+      "categoryLabel": "Varsity Sports",
+      "categoryIcon": "⚡",
+      "categories": [
+        "activities",
+        "social",
+        "sports"
+      ],
+      "subTags": [
+        "ubc-basketball",
+        "twu-spartans",
+        "war-memorial",
+        "thunderbirds",
+        "hoops"
+      ],
+      "dateSchedule": "Thursday, October 29, 2026 • 7:30 PM",
+      "startIso": "2026-10-29T19:30:00-07:00",
+      "endIso": "2026-10-29T22:00:00-07:00",
+      "confirmedDates": [
+        "2026-10-29"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://gothunderbirds.ca/sports/mens-basketball/schedule",
+      "venueUrl": "https://gothunderbirds.ca",
+      "ticketProvider": "Paciolan Box Office",
+      "rawProvider": "Paciolan",
+      "coordinates": [
+        49.2662,
+        -123.2483
+      ],
+      "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit directly to UBC Loop beside War Memorial Gym",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages Welcome",
+      "admissionPolicy": "General Admission court-level and grandstand seating with liquor service available",
+      "rovingNote": null,
+      "description": "Fast-paced hardwood action inside historic War Memorial Gym as the UBC Thunderbirds men's basketball squad tips off against regional rivals the Trinity Western Spartans (TWU).",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 17.5,
+        "feeBreakdown": "$17.50 adult conference ticket ($12.50 concession / $7.50 youth / $3 child / UBC students free with ID)",
+        "verifiedAt": "2026-09-22T17:00:00-07:00",
+        "details": "Verified via official UBC Athletics published 2025-26 rate card on gothunderbirds.ca."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "ubc",
+          "basketball",
+          "twu",
+          "spartans",
+          "war",
+          "memorial"
+        ],
+        "evidence_snippet": "Oct 29 (Thu) 7:30 p.m. Can West vs Trinity Western University",
+        "reason": "Direct Canada West conference fixture verified on gothunderbirds.ca"
+      }
+    },
+    {
+      "id": "vso-hadelich-brahms-oct9",
+      "title": "VSO: Augustin Hadelich Plays Brahms (Friday Performance)",
+      "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
+      "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
+      "venue": "The Orpheum Theatre",
+      "venueAliases": [
+        "The Orpheum",
+        "Orpheum Vancouver"
+      ],
+      "address": "601 Smithe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 25.2,
+      "priceLabel": "$25.20 Under-35 / $45.00 Standard",
+      "pricingType": "tiered",
+      "tiers": [
+        {
+          "name": "Under 35 / Student All-Access Pass",
+          "price": 25.2,
+          "label": "$25.20 all-in"
+        },
+        {
+          "name": "Standard Tier Admission",
+          "price": 45.0,
+          "label": "$45.00 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Concert Night",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "categories": [
+        "classical",
+        "culture",
+        "music",
+        "symphony"
+      ],
+      "subTags": [
+        "brahms",
+        "augustin-hadelich",
+        "violin-concerto",
+        "masterworks",
+        "vso"
+      ],
+      "dateSchedule": "Friday, October 9, 2026 • 7:30 PM",
+      "startIso": "2026-10-09T19:30:00-07:00",
+      "endIso": "2026-10-09T22:00:00-07:00",
+      "confirmedDates": [
+        "2026-10-09"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://www.vancouversymphony.ca/concert/augustine-hadelich-plays-brahms/",
+      "venueUrl": "https://vancouvercivictheatres.com/venues/orpheum/",
+      "ticketProvider": "VSO Box Office Verified",
+      "rawProvider": "Vancouver Symphony Orchestra",
+      "coordinates": [
+        49.2804,
+        -123.1206
+      ],
+      "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
+      "description": "Grammy-winning virtuoso Augustin Hadelich returns to Vancouver to perform Johannes Brahms' sublime Violin Concerto in D Major, Op. 77 alongside Maestro Otto Tausk and the full orchestra at The Orpheum.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "vso_published_rush_policy",
+        "verifiedTotal": 25.2,
+        "feeBreakdown": "$20.00 VSO rush admission + $4.00 CIF + 5% GST = $25.20 all-in",
+        "verifiedAt": "2026-09-22T14:00:00-07:00",
+        "details": "Verified via live VSO box office calendar."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "hadelich",
+          "brahms",
+          "violin",
+          "vso"
+        ],
+        "evidence_snippet": "Augustin Hadelich Plays Brahms at The Orpheum",
+        "reason": "Direct concert production link verified on vancouversymphony.ca"
+      }
+    },
+    {
+      "id": "vso-hadelich-brahms-oct10",
+      "title": "VSO: Augustin Hadelich Plays Brahms (Saturday Performance)",
+      "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
+      "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
+      "venue": "The Orpheum Theatre",
+      "venueAliases": [
+        "The Orpheum",
+        "Orpheum Vancouver"
+      ],
+      "address": "601 Smithe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 25.2,
+      "priceLabel": "$25.20 Under-35 / $45.00 Standard",
+      "pricingType": "tiered",
+      "tiers": [
+        {
+          "name": "Under 35 / Student All-Access Pass",
+          "price": 25.2,
+          "label": "$25.20 all-in"
+        },
+        {
+          "name": "Standard Tier Admission",
+          "price": 45.0,
+          "label": "$45.00 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Concert Night",
+      "daysOfWeek": [
+        "sat"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "categories": [
+        "classical",
+        "culture",
+        "music",
+        "symphony"
+      ],
+      "subTags": [
+        "brahms",
+        "augustin-hadelich",
+        "violin-concerto",
+        "masterworks",
+        "vso"
+      ],
+      "dateSchedule": "Saturday, October 10, 2026 • 7:30 PM",
+      "startIso": "2026-10-10T19:30:00-07:00",
+      "endIso": "2026-10-10T22:00:00-07:00",
+      "confirmedDates": [
+        "2026-10-10"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://www.vancouversymphony.ca/concert/augustine-hadelich-plays-brahms/",
+      "venueUrl": "https://vancouvercivictheatres.com/venues/orpheum/",
+      "ticketProvider": "VSO Box Office Verified",
+      "rawProvider": "Vancouver Symphony Orchestra",
+      "coordinates": [
+        49.2804,
+        -123.1206
+      ],
+      "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
+      "description": "Grammy-winning virtuoso Augustin Hadelich returns to Vancouver to perform Johannes Brahms' sublime Violin Concerto in D Major, Op. 77 alongside Maestro Otto Tausk and the full orchestra at The Orpheum.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "vso_published_rush_policy",
+        "verifiedTotal": 25.2,
+        "feeBreakdown": "$20.00 VSO rush admission + $4.00 CIF + 5% GST = $25.20 all-in",
+        "verifiedAt": "2026-09-22T14:00:00-07:00",
+        "details": "Verified via live VSO box office calendar."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "hadelich",
+          "brahms",
+          "violin",
+          "vso"
+        ],
+        "evidence_snippet": "Augustin Hadelich Plays Brahms at The Orpheum",
+        "reason": "Direct concert production link verified on vancouversymphony.ca"
+      }
+    },
+    {
+      "id": "tic-triviaprov-sep30",
+      "title": "TRIVIAPROV: Interactive Trivia & Improv (Wednesday Show)",
+      "artist": "The Improv Centre House Troupe",
+      "performers": "TIC Improvisers & Hosts",
+      "venue": "The Improv Centre",
+      "venueAliases": [
+        "Vancouver TheatreSports",
+        "TIC Granville Island"
+      ],
+      "address": "1502 Duranleau St, Granville Island, Vancouver",
+      "neighborhood": "Granville Island & False Creek",
+      "price": 20.0,
+      "priceLabel": "$20.00 all-in",
+      "pricingType": "platform",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Show Night",
+      "daysOfWeek": [
+        "wed"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "shows",
+      "categoryLabel": "Comedy & Stage",
+      "categoryIcon": "🎭",
+      "categories": [
+        "comedy",
+        "shows",
+        "social",
+        "trivia"
+      ],
+      "subTags": [
+        "triviaprov",
+        "trivia-night",
+        "improv-comedy",
+        "granville-island",
+        "interactive"
+      ],
+      "dateSchedule": "Wednesday, September 30, 2026 • 7:00 PM",
+      "startIso": "2026-09-30T19:00:00-07:00",
+      "endIso": "2026-09-30T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-09-30"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7001",
+      "venueUrl": "https://theimprovcentre.ca",
+      "ticketProvider": "The Improv Centre Box Office",
+      "rawProvider": "TheatreManager",
+      "coordinates": [
+        49.2707,
+        -123.1362
+      ],
+      "transitInfo": "50 False Creek bus or 8 min walk from Granville Island Ferry Dock",
+      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out—pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 20.0,
+        "feeBreakdown": "$20.00 ticket all-in verified via purchase.theimprovcentre.ca",
+        "verifiedAt": "2026-09-22T12:15:00-07:00",
+        "details": "Verified via The Improv Centre official TheatreManager checkout system."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "triviaprov",
+          "trivia",
+          "improv",
+          "comedy"
+        ],
+        "evidence_snippet": "The Improv Centre: TRIVIAPROV Select Wednesdays and Thursdays at 7:00pm",
+        "reason": "Direct ticketing provider platform link verified on purchase.theimprovcentre.ca"
+      }
+    },
+    {
+      "id": "tic-triviaprov-oct8",
+      "title": "TRIVIAPROV: Interactive Trivia & Improv (Thursday Show)",
+      "artist": "The Improv Centre House Troupe",
+      "performers": "TIC Improvisers & Hosts",
+      "venue": "The Improv Centre",
+      "venueAliases": [
+        "Vancouver TheatreSports",
+        "TIC Granville Island"
+      ],
+      "address": "1502 Duranleau St, Granville Island, Vancouver",
+      "neighborhood": "Granville Island & False Creek",
+      "price": 20.0,
+      "priceLabel": "$20.00 all-in",
+      "pricingType": "platform",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Show Night",
+      "daysOfWeek": [
+        "thu"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "shows",
+      "categoryLabel": "Comedy & Stage",
+      "categoryIcon": "🎭",
+      "categories": [
+        "comedy",
+        "shows",
+        "social",
+        "trivia"
+      ],
+      "subTags": [
+        "triviaprov",
+        "trivia-night",
+        "improv-comedy",
+        "granville-island",
+        "interactive"
+      ],
+      "dateSchedule": "Thursday, October 8, 2026 • 7:00 PM",
+      "startIso": "2026-10-08T19:00:00-07:00",
+      "endIso": "2026-10-08T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-08"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7001",
+      "venueUrl": "https://theimprovcentre.ca",
+      "ticketProvider": "The Improv Centre Box Office",
+      "rawProvider": "TheatreManager",
+      "coordinates": [
+        49.2707,
+        -123.1362
+      ],
+      "transitInfo": "50 False Creek bus or 8 min walk from Granville Island Ferry Dock",
+      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out—pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 20.0,
+        "feeBreakdown": "$20.00 ticket all-in verified via purchase.theimprovcentre.ca",
+        "verifiedAt": "2026-09-22T12:15:00-07:00",
+        "details": "Verified via The Improv Centre official TheatreManager checkout system."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "triviaprov",
+          "trivia",
+          "improv",
+          "comedy"
+        ],
+        "evidence_snippet": "The Improv Centre: TRIVIAPROV Select Wednesdays and Thursdays at 7:00pm",
+        "reason": "Direct ticketing provider platform link verified on purchase.theimprovcentre.ca"
+      }
+    },
+    {
+      "id": "viff-the-sun-never-sets-oct2",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Friday Screening)",
+      "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
+      "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
+      "venue": "VIFF Centre",
+      "venueAliases": [
+        "VanCity Theatre",
+        "VIFF Hub"
+      ],
+      "address": "1181 Seymour St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$20.90 all-in",
+      "pricingType": "festival_all_in",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "isFestival": true,
+      "festivalId": "viff-2026",
+      "frequency": "one-off",
+      "frequencyLabel": "Screening",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "afternoon",
+        "early-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema",
+      "categoryIcon": "🎬",
+      "categories": [
+        "arts",
+        "cinema",
+        "festivals"
+      ],
+      "subTags": [
+        "bc-spotlight",
+        "indie-comedy",
+        "viff-2026",
+        "canadian-cinema"
+      ],
+      "dateSchedule": "Friday, October 2, 2026 • 6:30 PM",
+      "startIso": "2026-10-02T18:30:00-07:00",
+      "endIso": "2026-10-02T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-02"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
+      "venueUrl": "https://viff.org",
+      "ticketProvider": "VIFF Box Office Verified",
+      "rawProvider": "VIFF Festival Ticketing",
+      "coordinates": [
+        49.2781,
+        -123.1245
+      ],
+      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
+      "description": "VIFF BC Spotlight. An affectionate and witty contemporary comedy-drama exploring summer romance, remote northern isolation, and unexpected cross-cultural connection in the Alaskan midnight sun.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "festival_charter_rate",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
+        "verifiedAt": "2026-09-22T12:15:00-07:00",
+        "details": "Verified via official VIFF 2026 single ticket rate charter."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "imagine",
+          "light",
+          "cannes",
+          "kapadia",
+          "viff"
+        ],
+        "evidence_snippet": "VIFF 2026 Showcase: All We Imagine as Light Cannes Grand Prix Winner",
+        "reason": "Affirmatively verified VIFF 2026 feature screening on viff.org"
+      }
+    },
+    {
+      "id": "viff-the-sun-never-sets-oct4",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Sunday Matinee)",
+      "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
+      "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
+      "venue": "VIFF Centre",
+      "venueAliases": [
+        "VanCity Theatre",
+        "VIFF Hub"
+      ],
+      "address": "1181 Seymour St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$20.90 all-in",
+      "pricingType": "festival_all_in",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "isFestival": true,
+      "festivalId": "viff-2026",
+      "frequency": "one-off",
+      "frequencyLabel": "Screening",
+      "daysOfWeek": [
+        "sun"
+      ],
+      "timeSlots": [
+        "afternoon",
+        "early-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema",
+      "categoryIcon": "🎬",
+      "categories": [
+        "arts",
+        "cinema",
+        "festivals"
+      ],
+      "subTags": [
+        "bc-spotlight",
+        "indie-comedy",
+        "viff-2026",
+        "canadian-cinema"
+      ],
+      "dateSchedule": "Sunday, October 4, 2026 • 1:30 PM",
+      "startIso": "2026-10-04T13:30:00-07:00",
+      "endIso": "2026-10-04T15:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-04"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
+      "venueUrl": "https://viff.org",
+      "ticketProvider": "VIFF Box Office Verified",
+      "rawProvider": "VIFF Festival Ticketing",
+      "coordinates": [
+        49.2781,
+        -123.1245
+      ],
+      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
+      "description": "VIFF BC Spotlight. An affectionate and witty contemporary comedy-drama exploring summer romance, remote northern isolation, and unexpected cross-cultural connection in the Alaskan midnight sun.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "festival_charter_rate",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
+        "verifiedAt": "2026-09-22T12:15:00-07:00",
+        "details": "Verified via official VIFF 2026 single ticket rate charter."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "imagine",
+          "light",
+          "cannes",
+          "kapadia",
+          "viff"
+        ],
+        "evidence_snippet": "VIFF 2026 Showcase: All We Imagine as Light Cannes Grand Prix Winner",
+        "reason": "Affirmatively verified VIFF 2026 feature screening on viff.org"
       }
     }
   ]

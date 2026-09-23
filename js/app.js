@@ -1209,11 +1209,11 @@ function applyFiltersAndRender() {
 
     // 7. Shows & Special Events Only Toggle (Hides everyday drop-in spots and open-hours venues)
     if (state.hideDaily) {
-      if (ev.isDaily && (ev.category === 'outdoors' || ev.category === 'activities' || ev.ticketProvider === 'Free Public Access')) {
-        return false;
-      }
-      if (ev.id === 'pizzeria-ludica-game-night' || ev.id === 'stanley-park-pitch-and-putt' || ev.id === 'bloedel-conservatory-dome') {
-        return false;
+      if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
+        // Only preserve daily events that are actual scheduled live performances (e.g. Guilt & Co nightly live sets)
+        if (ev.id !== 'guilt-and-co-live-jazz') {
+          return false;
+        }
       }
     }
 
@@ -2512,29 +2512,31 @@ function renderSingleEventCardHtml(ev) {
       </button>
     ` : '';
     
-    // Dynamic Next-Two-Dates calculation
-    const nextDates = calculateNextTwoDates(ev);
-    const nextDatesHtml = nextDates ? `
-      <div class="card-next-dates-box" title="Upcoming confirmed dates">
-        <span class="next-dates-badge">⚡ ${nextDates.label}:</span>
-        <span class="next-dates-text">${nextDates.dates}</span>
-      </div>
-    ` : '';
+    // Featuring Box Filtering (Requirement 7: Keep only if event has multiple music artists not redundant with title)
+    let featuringBoxHtml = '';
+    const isMusic = ev.category === 'music' || (Array.isArray(ev.categories) && ev.categories.includes('music'));
+    if (isMusic && (ev.artist || ev.performers)) {
+      const rawPerformers = ev.performers || ev.artist || '';
+      const performersList = Array.isArray(rawPerformers)
+        ? rawPerformers
+        : String(rawPerformers).split(/,\s*|\s+&\s+|\s+with\s+/i);
+      const validArtists = performersList.map(a => a.trim()).filter(a => a.length > 1);
 
-    // Multi-tier compact chip summary
-    const tiersHtml = (ev.tiers && ev.tiers.length > 1) ? `
-      <div class="card-tiers-box">
-        <span class="tier-chip-summary">Tiers:</span>
-        <div class="card-tiers-pills">
-          ${ev.tiers.map(t => `
-            <span class="tier-pill">
-              <span class="tier-name">${t.name}:</span>
-              <span class="tier-price">${t.label || ('$' + (typeof t.price === 'number' ? t.price.toFixed(2) : t.price))}</span>
-            </span>
-          `).join('')}
-        </div>
-      </div>
-    ` : '';
+      if (validArtists.length >= 2) {
+        const titleLower = (ev.title || '').toLowerCase();
+        const isRedundantWithTitle = validArtists.every(a => titleLower.includes(a.toLowerCase()));
+        if (!isRedundantWithTitle) {
+          const artistStr = Array.isArray(ev.performers) ? ev.performers.join(', ') : (ev.artist || ev.performers);
+          featuringBoxHtml = `
+            <div class="card-artist-badge" title="Featured band / artist lineup">
+              <span class="artist-icon"></span>
+              <span class="artist-label">Featuring:</span>
+              <strong class="artist-name">${artistStr}</strong>
+            </div>
+          `;
+        }
+      }
+    }
 
     // Sub-tags chips with active state & click-to-deselect (capped to top 3 for clean display)
     let subtagsHtml = '';
@@ -2711,14 +2713,8 @@ function renderSingleEventCardHtml(ev) {
           </a>
         </h2>
         
-        <!-- Band / Artist Highlight Badge (if present) -->
-        ${(ev.artist || ev.performers) ? `
-          <div class="card-artist-badge" title="Featured band / artist lineup">
-            <span class="artist-icon"></span>
-            <span class="artist-label">Featuring:</span>
-            <strong class="artist-name">${ev.artist || (Array.isArray(ev.performers) ? ev.performers.join(', ') : ev.performers)}</strong>
-          </div>
-        ` : ''}
+        <!-- Band / Artist Highlight Badge (Rendered strictly when multiple non-redundant music artists exist) -->
+        ${featuringBoxHtml}
 
         <!-- Roving / Nomadic Series Organizer Badge -->
         ${ev.organizer ? `
@@ -2759,16 +2755,12 @@ function renderSingleEventCardHtml(ev) {
           ${venueOtherEventsBtnHtml}
         </div>
 
-        <!-- Schedule Row & Dynamic Next Dates -->
+        <!-- Schedule Row -->
         <div class="card-schedule-row">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.8; margin-right: 4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
           ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
         </div>
-
-        ${nextDatesHtml}
-
-        ${tiersHtml}
 
         ${buzzwordsHtml}
 
@@ -2787,8 +2779,16 @@ function renderSingleEventCardHtml(ev) {
               <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
               ${popoverHtml}
             </div>
+            ${(ev.tiers && ev.tiers.length > 1) ? `
+              <div class="price-tiers-footer" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px;">
+                ${ev.tiers.map(t => `<span class="price-tier-tag" style="font-size: 0.70rem; opacity: 0.88; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">${t.name}: <strong>${t.label || ('$' + Number(t.price).toFixed(2))}</strong></span>`).join('')}
+              </div>
+            ` : ''}
             ${preTaxNoteHtml}
           </div>
+
+          ${ctaButtonHtml}
+        </div>
 
           ${ctaButtonHtml}
         </div>

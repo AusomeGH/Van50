@@ -295,15 +295,24 @@ def audit_7_dimensions(check_network=True):
                 print(f"  [SHIELDED OK] {eid:<38} -> {domain}")
                 continue
 
-            try:
-                req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=8) as resp:
-                    if resp.status == 200:
-                        print(f"  [HTTP 200 OK] {eid:<38} -> {url[:60]}")
-                    else:
-                        net_failed.append((eid, url, resp.status))
-            except Exception as e:
-                net_failed.append((eid, url, str(e)))
+            success = False
+            last_err = None
+            for attempt in range(2):
+                try:
+                    req = urllib.request.Request(url, headers=headers)
+                    with urllib.request.urlopen(req, timeout=15) as resp:
+                        if resp.status == 200:
+                            print(f"  [HTTP 200 OK] {eid:<38} -> {url[:60]}")
+                            success = True
+                            break
+                        else:
+                            last_err = resp.status
+                except Exception as e:
+                    last_err = str(e)
+                    time.sleep(1)
+
+            if not success:
+                net_failed.append((eid, url, last_err))
 
         if net_failed:
             for eid, url, err in net_failed:
@@ -330,7 +339,7 @@ def audit_7_dimensions(check_network=True):
             print(f"  • [{dimension}] {eid}: {detail}")
         sys.exit(1)
     else:
-        print(f"\n✓ AUDIT PASSED: 100% of all 44 events affirmatively verified across all 7 dimensions!")
+        print(f"\n✓ AUDIT PASSED: 100% of all {len(events)} events affirmatively verified across all 7 dimensions!")
         sys.exit(0)
 
 if __name__ == '__main__':
