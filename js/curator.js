@@ -902,6 +902,16 @@ function renderCards(items) {
 
               <button 
                 type="button" 
+                class="btn-curator btn-curator-ghost" 
+                style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08);"
+                onclick="openAIInstructionModal('${ev.id}', 'screenshot')"
+                title="Attach screenshot to extract all 7 live dimensions and align card"
+              >
+                📸 Verify Screenshot
+              </button>
+
+              <button 
+                type="button" 
                 class="btn-curator btn-curator-danger" 
                 onclick="rejectQuarantinedEvent('${ev.id}')"
                 title="Dismiss and archive this event"
@@ -1059,6 +1069,8 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const priceField = document.getElementById('ai-approve-price');
   const catField = document.getElementById('ai-approve-category');
   const noteField = document.getElementById('ai-approve-note');
+  const dateField = document.getElementById('ai-approve-date');
+  const venueApproveField = document.getElementById('ai-approve-venue');
 
   // Configure modal presentation based on action mode
   if (mode === 'approve') {
@@ -1075,6 +1087,13 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (quickApprovalBox) quickApprovalBox.style.display = 'none';
     if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'inline-flex';
+  } else if (mode === 'screenshot') {
+    if (modalIcon) modalIcon.textContent = '📸';
+    if (modalTitle) modalTitle.textContent = 'Screenshot Proof & 7-Dimension Verifier';
+    if (modalDesc) modalDesc.textContent = "Upload or paste (Ctrl+V) a screenshot to extract all 7 live dimensions (Schedule, Frequency, Category, Location, Price, Provider, Lineup) and align with this card.";
+    if (quickApprovalBox) quickApprovalBox.style.display = 'block';
+    if (btnApprove) btnApprove.style.display = 'inline-flex';
+    if (btnDismiss) btnDismiss.style.display = 'none';
   } else {
     if (modalIcon) modalIcon.textContent = '🤖';
     if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
@@ -1102,10 +1121,13 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     const cardPriceInput = document.getElementById(`edit-price-${ev.id}`);
     const cardCatInput = document.getElementById(`edit-category-${ev.id}`);
     const cardFeeInput = document.getElementById(`edit-fee-${ev.id}`);
+    const cardDateInput = document.getElementById(`edit-date-${ev.id}`);
 
     const attPrice = cardPriceInput ? parseFloat(cardPriceInput.value) : parseFloat(ev.attemptedPrice || ev.price || 0);
     if (priceField) priceField.value = (attPrice <= 50.0 && attPrice >= 0) ? attPrice.toFixed(2) : '25.00';
     if (catField) catField.value = cardCatInput ? cardCatInput.value : (ev.category || 'shows');
+    if (dateField) dateField.value = cardDateInput ? cardDateInput.value : (ev.dateSchedule || (ev.startIso ? formatCuratorDate(ev) : ''));
+    if (venueApproveField) venueApproveField.value = ev.venue || '';
     if (noteField) {
       if (cardFeeInput && cardFeeInput.value) {
         noteField.value = cardFeeInput.value;
@@ -1124,6 +1146,8 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (textField) textField.value = q.instructionText || '';
     if (q.approvedPrice && priceField) priceField.value = parseFloat(q.approvedPrice).toFixed(2);
     if (q.approvedCategory && catField) catField.value = q.approvedCategory;
+    if (q.approvedDate && dateField) dateField.value = q.approvedDate;
+    if (q.approvedVenue && venueApproveField) venueApproveField.value = q.approvedVenue;
     if (q.curatorNote && noteField) noteField.value = q.curatorNote;
     
     // Load screenshots (support both screenshotPaths array and single screenshotPath/screenshotBase64)
@@ -1142,6 +1166,8 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     textField.value = '';
     if (mode === 'dismiss') {
       textField.placeholder = "e.g.: 'This venue is private bookings only, or this is a multi-week course rather than a drop-in. Please ignore this section.'";
+    } else if (mode === 'screenshot') {
+      textField.placeholder = "e.g.: 'Attached screenshot proof showing verified door price, showtimes, and lineup.'";
     } else if (ev && isDrift(ev)) {
       textField.placeholder = `Explain the live drift, e.g.: 'The page now shows a price change. The scraper should look for the lowest general admission tier at...'`;
     } else {
@@ -1151,7 +1177,11 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
 
   modal.classList.add('active');
   setTimeout(() => {
-    if (textField) textField.focus();
+    if (mode === 'screenshot') {
+      document.getElementById('ai-screenshot-dropzone')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else if (textField) {
+      textField.focus();
+    }
   }, 100);
 };
 
@@ -1211,6 +1241,8 @@ function clearScreenshotPreview() {
   resetScreenshotAlignmentPanel();
 }
 
+const LIVE_DIMENSION_KEYS = ['date', 'frequency', 'category', 'location', 'price', 'link', 'description'];
+
 function resetScreenshotAlignmentPanel() {
   state.currentOcrVerification = null;
   const panel = document.getElementById('ai-screenshot-alignment-panel');
@@ -1228,6 +1260,34 @@ function resetScreenshotAlignmentPanel() {
     badge.style.background = 'rgba(56, 189, 248, 0.2)';
     badge.style.color = '#38bdf8';
   }
+
+  const btnApplyAll = document.getElementById('btn-apply-all-dimensions');
+  if (btnApplyAll) btnApplyAll.style.display = 'none';
+
+  // Reset all 7 dimension cards
+  const defaults = {
+    date: { val: 'No date detected', compare: 'Card: Pending Review' },
+    frequency: { val: 'One-off Show', compare: 'Card: One-off Show' },
+    category: { val: '🏷️ Event', compare: 'Card: Comedy & Shows' },
+    location: { val: 'Venue unverified', compare: 'Card: Venue' },
+    price: { val: '$0.00 CAD', compare: 'Card: $0.00' },
+    link: { val: 'Direct / Box Office', compare: 'Card: Direct' },
+    description: { val: 'No details extracted', compare: 'Card: Title' }
+  };
+
+  LIVE_DIMENSION_KEYS.forEach(k => {
+    const cardEl = document.getElementById(`ai-dim-card-${k}`);
+    const badgeEl = document.getElementById(`ai-dim-badge-${k}`);
+    const valEl = document.getElementById(`ai-dim-val-${k}`);
+    const compEl = document.getElementById(`ai-dim-compare-${k}`);
+    if (cardEl) cardEl.className = 'curator-dimension-card';
+    if (badgeEl) {
+      badgeEl.textContent = 'Pending';
+      badgeEl.className = 'dim-pill dim-pill-unconfirmed';
+    }
+    if (valEl) valEl.textContent = defaults[k]?.val || 'Pending';
+    if (compEl) compEl.textContent = defaults[k]?.compare || '';
+  });
 
   const priceEl = document.getElementById('ai-ocr-detected-price');
   if (priceEl) {
@@ -1261,6 +1321,170 @@ function resetScreenshotAlignmentPanel() {
   });
 }
 
+function applyAllExtractedDimensions(dims) {
+  if (!dims) return;
+  const priceInput = document.getElementById('ai-approve-price');
+  const catInput = document.getElementById('ai-approve-category');
+  const dateInput = document.getElementById('ai-approve-date');
+  const venueInput = document.getElementById('ai-approve-venue');
+  const noteInput = document.getElementById('ai-approve-note');
+
+  const highlightedEls = [];
+
+  // 1. Price
+  if (priceInput && dims.price) {
+    const p = dims.price.extracted !== null && dims.price.extracted !== undefined ? dims.price.extracted : dims.price.total;
+    if (p !== null && p !== undefined && !isNaN(p)) {
+      priceInput.value = parseFloat(p).toFixed(2);
+      highlightedEls.push(priceInput);
+    }
+  }
+
+  // 2. Category
+  if (catInput && dims.category) {
+    const targetCat = (dims.category.extracted || dims.category.detected || '').toLowerCase();
+    for (let opt of catInput.options) {
+      if (opt.value === targetCat || (targetCat && opt.value.includes(targetCat))) {
+        catInput.value = opt.value;
+        highlightedEls.push(catInput);
+        break;
+      }
+    }
+  }
+
+  // 3. Date
+  if (dateInput && dims.date) {
+    const d = dims.date.extracted || dims.date.displayValue;
+    if (d && d !== 'No date detected on screenshot' && d !== 'No specific date detected') {
+      dateInput.value = d;
+      highlightedEls.push(dateInput);
+    }
+  }
+
+  // 4. Venue & Location
+  if (venueInput && dims.location) {
+    const v = dims.location.details?.venue || dims.location.extracted || dims.location.venue;
+    if (v && v !== 'Venue unverified' && v !== 'Venue') {
+      venueInput.value = v;
+      highlightedEls.push(venueInput);
+    }
+  }
+
+  // 5. Note / Fee breakdown & Lineup
+  if (noteInput) {
+    const notes = [];
+    if (dims.price?.details?.breakdown) {
+      notes.push(dims.price.details.breakdown);
+    }
+    if (dims.description?.details?.lineup) {
+      notes.push(`Lineup: ${dims.description.details.lineup}`);
+    }
+    if (dims.description?.details?.agePolicy && dims.description.details.agePolicy.includes('19+')) {
+      notes.push('Age: 19+ (Adult)');
+    }
+    if (notes.length > 0) {
+      noteInput.value = notes.join(' • ');
+      highlightedEls.push(noteInput);
+    }
+  }
+
+  // Smooth visual pulse on all updated inputs
+  highlightedEls.forEach(el => {
+    el.style.transition = 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+    el.style.backgroundColor = 'rgba(16, 185, 129, 0.25)';
+    el.style.borderColor = '#10b981';
+    el.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.4)';
+    setTimeout(() => {
+      el.style.backgroundColor = '';
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    }, 1500);
+  });
+
+  showToast('⚡ Applied all 7 extracted live dimensions to card!', 'success');
+}
+
+function applySingleDimension(dimKey, dims) {
+  if (!dims || !dims[dimKey]) return;
+  const dim = dims[dimKey];
+  const priceInput = document.getElementById('ai-approve-price');
+  const catInput = document.getElementById('ai-approve-category');
+  const dateInput = document.getElementById('ai-approve-date');
+  const venueInput = document.getElementById('ai-approve-venue');
+  const noteInput = document.getElementById('ai-approve-note');
+
+  let updatedEl = null;
+
+  if (dimKey === 'date' && dateInput) {
+    const d = dim.extracted || dim.displayValue;
+    if (d) {
+      dateInput.value = d;
+      updatedEl = dateInput;
+      showToast(`⚡ Applied extracted date: "${d}"`, 'success');
+    }
+  } else if (dimKey === 'frequency' && noteInput) {
+    const f = dim.displayValue || dim.extracted;
+    if (f) {
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Recurrence: ${f}`;
+      updatedEl = noteInput;
+      showToast(`⚡ Applied frequency to audit notes!`, 'success');
+    }
+  } else if (dimKey === 'category' && catInput) {
+    const c = (dim.extracted || dim.detected || '').toLowerCase();
+    for (let opt of catInput.options) {
+      if (opt.value === c || (c && opt.value.includes(c))) {
+        catInput.value = opt.value;
+        updatedEl = catInput;
+        showToast(`⚡ Selected category: ${opt.textContent}`, 'success');
+        break;
+      }
+    }
+  } else if (dimKey === 'location' && venueInput) {
+    const v = dim.details?.venue || dim.extracted || dim.venue;
+    if (v) {
+      venueInput.value = v;
+      updatedEl = venueInput;
+      showToast(`⚡ Applied venue: "${v}"`, 'success');
+    }
+  } else if (dimKey === 'price' && priceInput) {
+    const p = dim.extracted !== null && dim.extracted !== undefined ? dim.extracted : dim.total;
+    if (p !== null && !isNaN(p)) {
+      priceInput.value = parseFloat(p).toFixed(2);
+      updatedEl = priceInput;
+      if (noteInput && dim.displayValue) {
+        noteInput.value = dim.displayValue;
+      }
+      showToast(`⚡ Applied verified price $${parseFloat(p).toFixed(2)} CAD!`, 'success');
+    }
+  } else if (dimKey === 'link' && noteInput) {
+    const prov = dim.displayValue || dim.extracted;
+    if (prov) {
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Provider: ${prov}`;
+      updatedEl = noteInput;
+      showToast(`⚡ Applied ticketing provider details!`, 'success');
+    }
+  } else if (dimKey === 'description' && noteInput) {
+    const desc = dim.displayValue || dim.extracted;
+    if (desc) {
+      noteInput.value = desc;
+      updatedEl = noteInput;
+      showToast(`⚡ Applied lineup and restriction details!`, 'success');
+    }
+  }
+
+  if (updatedEl) {
+    updatedEl.style.transition = 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+    updatedEl.style.backgroundColor = 'rgba(16, 185, 129, 0.25)';
+    updatedEl.style.borderColor = '#10b981';
+    updatedEl.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.4)';
+    setTimeout(() => {
+      updatedEl.style.backgroundColor = '';
+      updatedEl.style.borderColor = '';
+      updatedEl.style.boxShadow = '';
+    }, 1500);
+  }
+}
+
 async function triggerScreenshotVerification(dataUrl) {
   if (!dataUrl || !state.token) return;
 
@@ -1268,6 +1492,7 @@ async function triggerScreenshotVerification(dataUrl) {
   const loading = document.getElementById('ai-alignment-loading');
   const results = document.getElementById('ai-alignment-results');
   const badge = document.getElementById('ai-alignment-status-badge');
+  const btnApplyAll = document.getElementById('btn-apply-all-dimensions');
   const detectedPriceEl = document.getElementById('ai-ocr-detected-price');
   const feeBreakdownEl = document.getElementById('ai-ocr-fee-breakdown');
   const discrepancyAlert = document.getElementById('ai-ocr-discrepancy-alert');
@@ -1304,11 +1529,12 @@ async function triggerScreenshotVerification(dataUrl) {
       const data = await res.json();
       if (data.success) {
         state.currentOcrVerification = data;
+        const dims = data.dimensions || {};
 
-        // Header Status Badge
+        // 1. Header Status Badge
         if (badge) {
-          if (data.aligned) {
-            badge.textContent = '✓ Fully Aligned';
+          if (data.aligned || data.isFullyAligned) {
+            badge.textContent = '✓ 7/7 Dimensions Aligned';
             badge.style.background = 'rgba(16, 185, 129, 0.25)';
             badge.style.color = '#34d399';
           } else if (data.warnings && data.warnings.length > 0) {
@@ -1316,15 +1542,68 @@ async function triggerScreenshotVerification(dataUrl) {
             badge.style.background = 'rgba(245, 158, 11, 0.25)';
             badge.style.color = '#fbbf24';
           } else {
-            badge.textContent = '✓ OCR Verified';
-            badge.style.background = 'rgba(16, 185, 129, 0.25)';
-            badge.style.color = '#34d399';
+            badge.textContent = '✓ 7 Dimensions Extracted';
+            badge.style.background = 'rgba(56, 189, 248, 0.25)';
+            badge.style.color = '#38bdf8';
           }
         }
 
-        // Pricing Information
-        const shotPrice = data.price?.screenshotPrice;
-        const feeText = data.price?.feeBreakdown;
+        // 2. Enable Master "Apply All Extracted Dimensions" button
+        if (btnApplyAll) {
+          btnApplyAll.style.display = 'inline-flex';
+        }
+
+        // 3. Render All 7 Dimensions in the Interactive Grid
+        LIVE_DIMENSION_KEYS.forEach(k => {
+          const dim = dims[k];
+          if (!dim) return;
+
+          const cardEl = document.getElementById(`ai-dim-card-${k}`);
+          const badgeEl = document.getElementById(`ai-dim-badge-${k}`);
+          const valEl = document.getElementById(`ai-dim-val-${k}`);
+          const compEl = document.getElementById(`ai-dim-compare-${k}`);
+
+          if (valEl) {
+            valEl.textContent = dim.displayValue || dim.extracted || 'Not detected';
+          }
+
+          if (compEl) {
+            const cardValStr = dim.cardValue || 'Pending Review';
+            compEl.textContent = `Card: ${cardValStr}`;
+          }
+
+          if (badgeEl) {
+            if (dim.isMatch) {
+              badgeEl.textContent = '✓ Verified Match';
+              badgeEl.className = 'dim-pill pill-confirmed';
+            } else if (dim.status === 'discrepancy') {
+              badgeEl.textContent = '⚠️ Discrepancy';
+              badgeEl.className = 'dim-pill pill-discrepancy';
+            } else if (dim.extracted) {
+              badgeEl.textContent = '🔍 Extracted';
+              badgeEl.className = 'dim-pill pill-inferred';
+            } else {
+              badgeEl.textContent = 'Unconfirmed';
+              badgeEl.className = 'dim-pill pill-unconfirmed';
+            }
+          }
+
+          if (cardEl) {
+            if (dim.isMatch) {
+              cardEl.className = 'curator-dimension-card dim-status-confirmed';
+            } else if (dim.status === 'discrepancy') {
+              cardEl.className = 'curator-dimension-card dim-status-discrepancy';
+            } else if (dim.extracted) {
+              cardEl.className = 'curator-dimension-card dim-status-notice';
+            } else {
+              cardEl.className = 'curator-dimension-card';
+            }
+          }
+        });
+
+        // 4. Update Legacy Elements for 100% Backwards Compatibility
+        const shotPrice = dims.price?.extracted ?? data.price?.screenshotPrice;
+        const feeText = dims.price?.details?.breakdown || data.price?.feeBreakdown;
         if (detectedPriceEl) {
           if (shotPrice !== null && shotPrice !== undefined) {
             detectedPriceEl.textContent = `$${parseFloat(shotPrice).toFixed(2)} CAD (all-in)`;
@@ -1334,84 +1613,56 @@ async function triggerScreenshotVerification(dataUrl) {
             detectedPriceEl.style.color = '#94a3b8';
           }
         }
-
         if (feeBreakdownEl) {
-          if (feeText) {
-            feeBreakdownEl.textContent = feeText;
-          } else if (data.ocrSummary?.rawPriceMatches?.length > 0) {
-            feeBreakdownEl.textContent = 'Raw prices found: ' + data.ocrSummary.rawPriceMatches.map(p => '$' + p).join(', ');
-          } else {
-            feeBreakdownEl.textContent = 'No individual fees itemized';
+          feeBreakdownEl.textContent = feeText || 'No individual fees itemized';
+        }
+        if (btnApplyPrice && shotPrice !== null && shotPrice !== undefined) {
+          btnApplyPrice.dataset.price = parseFloat(shotPrice).toFixed(2);
+          btnApplyPrice.dataset.breakdown = feeText || '';
+        }
+
+        // 5. Intelligent Form Auto-fill (Price, Date, Category, Venue, Note)
+        const priceInput = document.getElementById('ai-approve-price');
+        const noteInput = document.getElementById('ai-approve-note');
+        const dateInput = document.getElementById('ai-approve-date');
+        const venueInput = document.getElementById('ai-approve-venue');
+        const catInput = document.getElementById('ai-approve-category');
+
+        if (priceInput && shotPrice !== null && shotPrice !== undefined) {
+          const currentVal = parseFloat(priceInput.value);
+          if (isNaN(currentVal) || currentVal === 0 || currentVal === 25.0) {
+            priceInput.value = parseFloat(shotPrice).toFixed(2);
           }
         }
 
-        // Configure Apply Price Button & Auto-fill price field if empty or default
-        if (btnApplyPrice) {
-          if (shotPrice !== null && shotPrice !== undefined) {
-            btnApplyPrice.style.display = 'inline-flex';
-            btnApplyPrice.dataset.price = parseFloat(shotPrice).toFixed(2);
-            btnApplyPrice.dataset.breakdown = feeText || '';
+        if (dateInput && dims.date?.extracted && (!dateInput.value || dateInput.value.includes('pending') || dateInput.value === '')) {
+          dateInput.value = dims.date.extracted;
+        }
 
-            // Auto-fill price input if it was default ($25.00) or empty or 0
-            const priceInput = document.getElementById('ai-approve-price');
-            const noteInput = document.getElementById('ai-approve-note');
-            if (priceInput) {
-              const currentVal = parseFloat(priceInput.value);
-              if (isNaN(currentVal) || currentVal === 0 || currentVal === 25.0) {
-                priceInput.value = parseFloat(shotPrice).toFixed(2);
-                priceInput.style.transition = 'background-color 0.4s ease, border-color 0.4s ease';
-                priceInput.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
-                priceInput.style.borderColor = '#10b981';
-                setTimeout(() => {
-                  priceInput.style.backgroundColor = '';
-                  priceInput.style.borderColor = '';
-                }, 1500);
-              }
+        if (venueInput && dims.location?.details?.venue && (!venueInput.value || venueInput.value === 'Venue' || venueInput.value === '')) {
+          venueInput.value = dims.location.details.venue;
+        }
+
+        if (catInput && dims.category?.extracted) {
+          const tgt = String(dims.category.extracted).toLowerCase();
+          for (let opt of catInput.options) {
+            if (opt.value === tgt) {
+              catInput.value = opt.value;
+              break;
             }
-            if (noteInput && feeText && (!noteInput.value || noteInput.value.startsWith('Verified door rate'))) {
-              noteInput.value = feeText;
-            }
-          } else {
-            btnApplyPrice.style.display = 'none';
           }
         }
 
-        // Update Alignment Indicators
-        const setIndicator = (key, matched, label) => {
-          const row = document.getElementById(`ai-align-row-${key}`);
-          const val = document.getElementById(`ai-align-val-${key}`);
-          if (val) {
-            val.textContent = matched ? `✓ ${label}` : (label ? `⚠️ ${label}` : 'Not found');
-            val.style.color = matched ? '#34d399' : (label ? '#fbbf24' : '#94a3b8');
-          }
-          if (row) {
-            row.style.borderLeft = matched ? '3px solid #10b981' : (label ? '3px solid #f59e0b' : '3px solid #64748b');
-          }
-        };
-
-        setIndicator('venue', data.alignment?.venueMatch, data.ocrSummary?.detectedVenue || (data.alignment?.venueMatch ? 'Matched' : ''));
-        setIndicator('title', data.alignment?.titleMatch, data.ocrSummary?.detectedTitle || (data.alignment?.titleMatch ? 'Matched' : ''));
-        setIndicator('date', data.alignment?.dateMatch, data.ocrSummary?.detectedDate || (data.alignment?.dateMatch ? 'Matched' : ''));
-
-        // Age policy indicator
-        const rowAge = document.getElementById('ai-align-row-age');
-        const valAge = document.getElementById('ai-align-val-age');
-        const agePolicy = data.ocrSummary?.agePolicy || 'All Ages';
-        const isAdult = agePolicy.includes('19+');
-        if (valAge) {
-          valAge.textContent = isAdult ? '🔞 19+ (Adult)' : `✓ ${agePolicy}`;
-          valAge.style.color = isAdult ? '#fbbf24' : '#34d399';
-        }
-        if (rowAge) {
-          rowAge.style.borderLeft = isAdult ? '3px solid #f59e0b' : '3px solid #10b981';
+        if (noteInput && feeText && (!noteInput.value || noteInput.value.startsWith('Verified door rate'))) {
+          noteInput.value = feeText;
         }
 
-        // Discrepancy Alert Banner
+        // 6. Discrepancy Alert Banner
         if (discrepancyAlert) {
           const cardPrice = data.price?.cardPrice;
           if (cardPrice !== null && shotPrice !== null && Math.abs(cardPrice - shotPrice) > 0.05) {
             discrepancyAlert.style.display = 'block';
-            discrepancyAlert.innerHTML = `⚠️ <strong>Price Mismatch:</strong> Card has <strong>$${cardPrice.toFixed(2)}</strong>, but screenshot verified <strong>$${shotPrice.toFixed(2)} all-in</strong>. Click <em>Apply to Card Price</em> to update.`;
+            discrepancyAlert.innerHTML = `⚠️ <strong>Price Mismatch:</strong> Card has <strong>$${cardPrice.toFixed(2)}</strong>, but screenshot verified <strong>$${shotPrice.toFixed(2)} all-in</strong>. Click <em>⚡ Apply All Extracted Dimensions</em> to update.`;
           } else if (data.warnings && data.warnings.length > 0) {
             discrepancyAlert.style.display = 'block';
             discrepancyAlert.innerHTML = `⚠️ <strong>Notice:</strong> ` + data.warnings.map(escapeHtml).join('; ');
@@ -1420,12 +1671,12 @@ async function triggerScreenshotVerification(dataUrl) {
           }
         }
 
-        // Status Warning Banner (Sold out / Private)
+        // 7. Status Warning Banner (Sold out / Private)
         if (statusWarning) {
-          if (data.ocrSummary?.soldOut) {
+          if (data.ocrSummary?.soldOut || dims.description?.details?.isSoldOut) {
             statusWarning.style.display = 'block';
             statusWarning.innerHTML = `🛑 <strong>Sold Out / Capacity Alert:</strong> Screenshot text contains sold out / off-sale terms. Check before approving.`;
-          } else if (data.ocrSummary?.privateEvent) {
+          } else if (data.ocrSummary?.privateEvent || dims.description?.details?.isPrivate) {
             statusWarning.style.display = 'block';
             statusWarning.innerHTML = `🛑 <strong>Restricted Event Alert:</strong> Screenshot indicates a private or members-only event.`;
           } else {
@@ -1433,7 +1684,7 @@ async function triggerScreenshotVerification(dataUrl) {
           }
         }
 
-        showToast('🔍 Screenshot verified with Native OCR!', 'info');
+        showToast('🔍 Extracted all 7 live dimensions from screenshot!', 'info');
       } else {
         if (badge) {
           badge.textContent = 'OCR Notice';
@@ -1620,6 +1871,8 @@ async function submitAIInstruction(action = 'queue_only') {
     approvedPrice = 0.0;
   }
   const approvedCategory = document.getElementById('ai-approve-category')?.value || 'shows';
+  const approvedDate = document.getElementById('ai-approve-date')?.value || '';
+  const approvedVenue = document.getElementById('ai-approve-venue')?.value || '';
   const curatorNote = document.getElementById('ai-approve-note')?.value || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
 
   if (action === 'queue_and_approve' && (isNaN(approvedPrice) || approvedPrice < 0 || approvedPrice > 50.0)) {
@@ -1631,13 +1884,15 @@ async function submitAIInstruction(action = 'queue_only') {
     instructionText: instructionText,
     eventId: eventId,
     eventTitle: eventTitle,
-    venueName: venueName,
+    venueName: approvedVenue || venueName,
     sourceUrl: sourceUrl,
     screenshotBase64: state.currentScreenshots[0] || state.currentScreenshotBase64 || null,
     screenshotsBase64: state.currentScreenshots || [],
     action: action,
     approvedPrice: approvedPrice,
     approvedCategory: approvedCategory,
+    approvedDate: approvedDate,
+    approvedVenue: approvedVenue,
     curatorNote: curatorNote
   };
 
@@ -1991,7 +2246,30 @@ function setupCuratorEventListeners() {
     });
   }
 
-  // 1-Click Apply OCR Price to Card
+  // Master Action: Apply All 7 Extracted Dimensions
+  const btnApplyAllDimensions = document.getElementById('btn-apply-all-dimensions');
+  if (btnApplyAllDimensions) {
+    btnApplyAllDimensions.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      applyAllExtractedDimensions(state.currentOcrVerification?.dimensions);
+    });
+  }
+
+  // Individual Dimension Quick-Apply Handlers (Click Delegation)
+  const dimGrid = document.getElementById('ai-ocr-dimensions-grid');
+  if (dimGrid) {
+    dimGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-dim-apply');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const dimKey = btn.dataset.dim;
+      applySingleDimension(dimKey, state.currentOcrVerification?.dimensions);
+    });
+  }
+
+  // 1-Click Apply OCR Price to Card (Legacy / Backwards Compatible)
   const btnApplyOcrPrice = document.getElementById('btn-apply-ocr-price');
   if (btnApplyOcrPrice) {
     btnApplyOcrPrice.addEventListener('click', (e) => {

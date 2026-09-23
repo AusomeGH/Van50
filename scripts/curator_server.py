@@ -1651,6 +1651,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         event_to_approve["price"] = price
                         event_to_approve["category"] = category
                         event_to_approve["curatorNote"] = note
+
+                        if payload.get("approvedDate"):
+                            event_to_approve["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
+                        if payload.get("approvedVenue"):
+                            event_to_approve["venue"] = sanitize_text(str(payload.get("approvedVenue")))
+                        if payload.get("approvedTitle"):
+                            event_to_approve["title"] = sanitize_text(str(payload.get("approvedTitle")))
+
                         event_to_approve["checkoutVerification"] = {
                             "status": "verified_live",
                             "method": "curator_screenshot_verification" if fee_breakdown_override else "manual_curator_review",
@@ -1662,6 +1670,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                                 "approvedPrice": price,
                                 "approvedPriceLabel": price_label,
                                 "approvedCategory": category,
+                                "approvedDate": event_to_approve.get("dateSchedule"),
+                                "approvedVenue": event_to_approve.get("venue"),
                                 "curatorNote": note,
                                 "approvedAt": datetime.now(timezone.utc).isoformat(),
                                 "sourceUrl": source_url

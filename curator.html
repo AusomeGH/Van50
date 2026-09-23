@@ -232,59 +232,147 @@
             </div>
           </div>
 
-          <!-- Screenshot Alignment & Live OCR Verification Panel -->
-          <div id="ai-screenshot-alignment-panel" style="display: none; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 12px; transition: all 0.2s ease;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-              <div style="font-weight: 600; font-size: 0.82rem; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
-                <span id="ai-alignment-icon">🔍</span>
-                <span>Screenshot Verification & Card Alignment</span>
+          <!-- Screenshot Alignment & 7 Live Dimensions OCR Extraction Panel -->
+          <div id="ai-screenshot-alignment-panel" style="display: none; background: rgba(56, 189, 248, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 10px; padding: 14px; transition: all 0.25s ease;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+                  <span id="ai-alignment-icon">🔍</span>
+                  <span>7 Live Catalog Dimensions Extracted from Screenshot</span>
+                </div>
+                <div style="font-size: 0.73rem; color: #94a3b8; margin-top: 2px;">
+                  Native Windows OCR extracts and aligns Schedule, Frequency, Category, Location, All-in Checkout Price, Provider, and Lineup details.
+                </div>
               </div>
-              <span id="ai-alignment-status-badge" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">Analyzing...</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="ai-alignment-status-badge" style="font-size: 0.72rem; padding: 3px 10px; border-radius: 12px; font-weight: 700; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">Analyzing...</span>
+                <button type="button" id="btn-apply-all-dimensions" class="btn-curator" style="display: none; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; padding: 5px 12px; font-size: 0.78rem; border-radius: 6px; font-weight: 700; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4); align-items: center; gap: 5px;">
+                  ⚡ Apply All Extracted Dimensions
+                </button>
+              </div>
             </div>
 
-            <div id="ai-alignment-loading" style="display: none; font-size: 0.8rem; color: #94a3b8; padding: 6px 0; align-items: center; gap: 8px;">
-              <span style="display: inline-block; animation: spin 1s linear infinite;">⚡</span>
-              <span>Running Windows Native OCR to extract checkout pricing and verify event details...</span>
+            <div id="ai-alignment-loading" style="display: none; font-size: 0.82rem; color: #94a3b8; padding: 12px 6px; align-items: center; gap: 10px; background: rgba(0,0,0,0.25); border-radius: 6px;">
+              <span style="display: inline-block; font-size: 1.1rem; animation: spin 1s linear infinite;">⚡</span>
+              <div>
+                <div style="font-weight: 600; color: #f8fafc;">Running Windows Native OCR...</div>
+                <div style="font-size: 0.74rem; color: #94a3b8;">Scanning for pricing tiers, GST/fees, schedule dates, venues, categories, and age restrictions...</div>
+              </div>
             </div>
 
             <div id="ai-alignment-results" style="display: none;">
-              <!-- Price verification row -->
-              <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
-                <div>
-                  <div style="font-size: 0.73rem; color: #94a3b8;">Detected Checkout Price:</div>
-                  <div style="font-size: 1rem; font-weight: 700; color: #f8fafc; margin-top: 1px;" id="ai-ocr-detected-price">$0.00</div>
-                  <div style="font-size: 0.72rem; color: #38bdf8; margin-top: 2px;" id="ai-ocr-fee-breakdown">Fee Breakdown</div>
+              <!-- 7-Dimension Grid -->
+              <div id="ai-ocr-dimensions-grid" class="curator-dimensions-grid">
+                <!-- Dimension 1: Date & Schedule -->
+                <div class="curator-dimension-card" id="ai-dim-card-date">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>📅</span> 1. Date & Schedule</span>
+                    <span class="dim-pill" id="ai-dim-badge-date">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-date">No date detected</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-date">Card: Pending Review</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-date" data-dim="date" title="Copy extracted schedule to card">
+                    ⚡ Apply Date
+                  </button>
                 </div>
-                <div id="ai-ocr-price-action-container">
-                  <button type="button" id="btn-apply-ocr-price" class="btn-curator" style="background: #0284c7; color: #fff; padding: 5px 12px; font-size: 0.78rem; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4); display: flex; align-items: center; gap: 4px;">
-                    ⚡ Apply to Card Price
+
+                <!-- Dimension 2: Frequency -->
+                <div class="curator-dimension-card" id="ai-dim-card-frequency">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>🔄</span> 2. Frequency</span>
+                    <span class="dim-pill" id="ai-dim-badge-frequency">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-frequency">One-off Show</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-frequency">Card: One-off Show</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-frequency" data-dim="frequency" title="Apply detected recurrence">
+                    ⚡ Apply Freq
+                  </button>
+                </div>
+
+                <!-- Dimension 3: Category -->
+                <div class="curator-dimension-card" id="ai-dim-card-category">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>🏷️</span> 3. Category</span>
+                    <span class="dim-pill" id="ai-dim-badge-category">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-category">🏷️ Event</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-category">Card: Comedy & Shows</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-category" data-dim="category" title="Select this category">
+                    ⚡ Apply Category
+                  </button>
+                </div>
+
+                <!-- Dimension 4: Location & Venue -->
+                <div class="curator-dimension-card" id="ai-dim-card-location">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>📍</span> 4. Venue & Location</span>
+                    <span class="dim-pill" id="ai-dim-badge-location">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-location">Venue unverified</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-location">Card: Venue</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-location" data-dim="location" title="Apply venue to card">
+                    ⚡ Apply Venue
+                  </button>
+                </div>
+
+                <!-- Dimension 5: Price & Fees -->
+                <div class="curator-dimension-card" id="ai-dim-card-price">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>💰</span> 5. Price & Fees (≤ $50 CAD)</span>
+                    <span class="dim-pill" id="ai-dim-badge-price">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent dim-val-price" id="ai-dim-val-price">$0.00 CAD</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-price">Card: $0.00</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-price" data-dim="price" title="Apply verified all-in price">
+                    ⚡ Apply Price
+                  </button>
+                </div>
+
+                <!-- Dimension 6: Link & Provider -->
+                <div class="curator-dimension-card" id="ai-dim-card-link">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>🔗</span> 6. Link & Provider</span>
+                    <span class="dim-pill" id="ai-dim-badge-link">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-link">Direct / Box Office</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-link">Card: Direct</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-link" data-dim="link" title="Use detected provider">
+                    ⚡ Apply Provider
+                  </button>
+                </div>
+
+                <!-- Dimension 7: Description, Lineup & Restrictions -->
+                <div class="curator-dimension-card" id="ai-dim-card-description" style="grid-column: 1 / -1;">
+                  <div class="dim-card-header">
+                    <span class="dim-card-title"><span>📝</span> 7. Description, Lineup & Restrictions</span>
+                    <span class="dim-pill" id="ai-dim-badge-description">Checking...</span>
+                  </div>
+                  <div class="dim-val-prominent" id="ai-dim-val-description">No details extracted</div>
+                  <div class="dim-compare-row" id="ai-dim-compare-description">Card: Title</div>
+                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-description" data-dim="description" title="Apply lineup & restrictions note">
+                    ⚡ Apply Lineup & Notes
                   </button>
                 </div>
               </div>
 
-              <!-- Alignment Indicators Grid -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.78rem;">
-                <div id="ai-align-row-venue" style="background: rgba(0,0,0,0.2); padding: 6px 8px; border-radius: 4px; border-left: 3px solid #94a3b8;">
-                  <span style="color: #94a3b8;">Venue:</span> <span id="ai-align-val-venue" style="font-weight: 600; color: #f1f5f9;">Checking...</span>
-                </div>
-                <div id="ai-align-row-title" style="background: rgba(0,0,0,0.2); padding: 6px 8px; border-radius: 4px; border-left: 3px solid #94a3b8;">
-                  <span style="color: #94a3b8;">Event / Artist:</span> <span id="ai-align-val-title" style="font-weight: 600; color: #f1f5f9;">Checking...</span>
-                </div>
-                <div id="ai-align-row-date" style="background: rgba(0,0,0,0.2); padding: 6px 8px; border-radius: 4px; border-left: 3px solid #94a3b8;">
-                  <span style="color: #94a3b8;">Date / Schedule:</span> <span id="ai-align-val-date" style="font-weight: 600; color: #f1f5f9;">Checking...</span>
-                </div>
-                <div id="ai-align-row-age" style="background: rgba(0,0,0,0.2); padding: 6px 8px; border-radius: 4px; border-left: 3px solid #94a3b8;">
-                  <span style="color: #94a3b8;">Age Policy:</span> <span id="ai-align-val-age" style="font-weight: 600; color: #f1f5f9;">Standard</span>
-                </div>
+              <!-- Hidden backwards compatibility elements for legacy scripts/tests -->
+              <div style="display: none;">
+                <span id="ai-ocr-detected-price">$0.00</span>
+                <span id="ai-ocr-fee-breakdown">Fee Breakdown</span>
+                <button type="button" id="btn-apply-ocr-price">Apply</button>
+                <div id="ai-align-row-venue"><span id="ai-align-val-venue"></span></div>
+                <div id="ai-align-row-title"><span id="ai-align-val-title"></span></div>
+                <div id="ai-align-row-date"><span id="ai-align-val-date"></span></div>
+                <div id="ai-align-row-age"><span id="ai-align-val-age"></span></div>
               </div>
 
               <!-- Discrepancy Alert Banner -->
-              <div id="ai-ocr-discrepancy-alert" style="display: none; margin-top: 8px; padding: 6px 10px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 6px; font-size: 0.78rem; color: #fcd34d;">
+              <div id="ai-ocr-discrepancy-alert" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 6px; font-size: 0.8rem; color: #fcd34d;">
                 ⚠️ Discrepancy message here
               </div>
 
               <!-- Status Warning Banner (e.g. Sold Out, Private Booking) -->
-              <div id="ai-ocr-status-warning" style="display: none; margin-top: 8px; padding: 6px 10px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; font-size: 0.78rem; color: #fca5a5;">
+              <div id="ai-ocr-status-warning" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; font-size: 0.8rem; color: #fca5a5;">
                 🛑 Status warning here
               </div>
             </div>
@@ -292,7 +380,7 @@
 
           <!-- Quick Approval Overrides (for "Approve As-Is") -->
           <div id="ai-quick-approval-box" style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
-            <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Catalog Details (Optional if approving as-is)</div>
+            <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Catalog Details (Applied from Screenshot or Manual Edits)</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label class="curator-label" style="font-size: 0.75rem;">Verified Price (CAD, max $50)</label>
@@ -301,20 +389,28 @@
               <div>
                 <label class="curator-label" style="font-size: 0.75rem;">Category</label>
                 <select id="ai-approve-category" class="curator-select" style="width: 100%; margin-top: 4px;">
-                  <option value="shows">Comedy & Shows</option>
-                  <option value="music">Live Music</option>
-                  <option value="crafts">Crafts & Studios</option>
-                  <option value="cinema">Cinema</option>
-                  <option value="arts">Museums & Arts</option>
-                  <option value="activities">Games & Activities</option>
-                  <option value="outdoors">Walks & Outdoors</option>
-                  <option value="trivia">Drinks & Trivia</option>
+                  <option value="shows">🎭 Comedy & Shows</option>
+                  <option value="music">🎵 Live Music</option>
+                  <option value="crafts">🎨 Crafts & Studios</option>
+                  <option value="cinema">🎬 Indie Cinema</option>
+                  <option value="arts">🏛️ Museums & Arts</option>
+                  <option value="activities">🎲 Games & Activities</option>
+                  <option value="outdoors">🌊 Walks & Outdoors</option>
+                  <option value="trivia">🍻 Drinks & Trivia</option>
                 </select>
+              </div>
+              <div>
+                <label class="curator-label" style="font-size: 0.75rem;">Date / Schedule (Verified)</label>
+                <input type="text" id="ai-approve-date" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="e.g. Friday, Sept 25 • 8:00 PM">
+              </div>
+              <div>
+                <label class="curator-label" style="font-size: 0.75rem;">Venue Name (Verified)</label>
+                <input type="text" id="ai-approve-venue" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="e.g. The Fox Cabaret">
               </div>
             </div>
             <div style="margin-top: 8px;">
-              <label class="curator-label" style="font-size: 0.75rem;">Audit Note / Tier Details</label>
-              <input type="text" id="ai-approve-note" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="e.g. Approved GA door tier per official event posting">
+              <label class="curator-label" style="font-size: 0.75rem;">Audit Note / Fee Breakdown & Lineup Details</label>
+              <input type="text" id="ai-approve-note" class="curator-input" style="width: 100%; margin-top: 4px;" placeholder="e.g. $18.00 base + $4.00 service fee ($22.00 CAD all-in). Lineup: The Sunset Collective">
             </div>
           </div>
         </div>
