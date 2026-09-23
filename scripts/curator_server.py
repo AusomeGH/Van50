@@ -1474,6 +1474,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 }
 
             source_img = screenshot_path if (screenshot_path and os.path.exists(screenshot_path)) else screenshot_base64
+            if source_img and isinstance(source_img, str) and not source_img.startswith("data:"):
+                clean_path = source_img.replace("\\", "/").lstrip("/")
+                if clean_path.startswith("data/"):
+                    local_candidate = os.path.join(BASE_DIR, clean_path.replace("/", os.sep))
+                    if os.path.exists(local_candidate):
+                        source_img = local_candidate
+
             if not source_img:
                 return self._send_json(400, {"error": "No screenshot provided. Please provide screenshotBase64 or screenshotPath."})
 

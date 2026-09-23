@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-22T19:16:22.278524+00:00",
+    "updatedAt": "2026-09-23T16:54:05.409030+00:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 167,
+    "totalArchived": 172,
     "archivedCount": 170
   },
   "archivedEvents": [
@@ -12611,6 +12611,154 @@
       },
       "archivedAt": "2026-09-22T19:16:22.248815+00:00",
       "archiveReason": "Generic venue placeholder removed in favor of verified live concert cards (Ethan Regan)"
+    },
+    {
+      "id": "sun-yat-sen-park",
+      "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
+      "artist": null,
+      "performers": null,
+      "venue": "Dr. Sun Yat-Sen Public Courtyard",
+      "venueAliases": [],
+      "address": "578 Carrall St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 0.0,
+      "priceLabel": "Free ()",
+      "pricingType": "free",
+      "tiers": [],
+      "isFree": true,
+      "isDaily": true,
+      "frequency": "daily",
+      "frequencyLabel": "Daily Spot",
+      "daysOfWeek": [
+        "daily"
+      ],
+      "timeSlots": [
+        "early-morning",
+        "afternoon"
+      ],
+      "category": "arts",
+      "categoryLabel": "Museums & Visual Arts",
+      "categoryIcon": "🏮",
+      "subTags": [
+        "ming-dynasty",
+        "heritage-courtyard",
+        "koi-pond",
+        "chinatown"
+      ],
+      "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
+      "startIso": "2026-09-08T09:30:00-07:00",
+      "endIso": null,
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://vancouverchinesegarden.com/visit/",
+      "venueUrl": "https://vancouverchinesegarden.com/visit/",
+      "ticketProvider": "Free Public Access",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2798,
+        -123.104
+      ],
+      "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "The outer Ming Dynasty-style courtyard is completely free to enter, featuring stone pathways, jade ponds, weeping willows, and classical pavilion architecture.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "curator_learned_override",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Free public access to outer courtyard",
+        "verifiedAt": "2026-09-23T11:07:25-07:00",
+        "details": "Automatically verified by Van50 Curator Learned Rules Engine."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 403 (Forbidden)",
+      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "dealtWith": false,
+      "archivedAt": "2026-09-23T16:52:41.167725+00:00",
+      "archivedReason": "Curator guidance: This venue has multiple prices.  One is free, and the others vary for age.  It's also available every day.",
+      "reviewStatus": "dismissed_by_curator"
+    },
+    {
+      "id": "eb-standup-mental-health",
+      "title": "Stand Up For Mental Health Showcase",
+      "artist": null,
+      "performers": null,
+      "venue": "Chill x Studio",
+      "venueAliases": [],
+      "address": "1227 Richards St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 10.0,
+      "priceLabel": "$10.00 all-in",
+      "pricingType": "platform",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "One-Off Show (Sept 22)",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "shows",
+      "categoryLabel": "Comedy & Shows",
+      "categoryIcon": "🎭",
+      "subTags": [
+        "eventbrite",
+        "stand-up-for-mental-health-summer-class-debut-vancouver",
+        "mental-health",
+        "stand-up-for-mental-health-summer-class-debut",
+        "yaletown",
+        "community-comedy"
+      ],
+      "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
+      "startIso": "2026-09-22T19:30:00-07:00",
+      "endIso": "2026-09-22T21:30:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "venueUrl": "https://chillxstudio.com",
+      "ticketProvider": "Eventbrite Verified",
+      "rawProvider": "Eventbrite",
+      "coordinates": [
+        49.2748,
+        -123.1265
+      ],
+      "transitInfo": "3 min walk from Yaletown-Roundhouse Canada Line",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Kick off summer with laughs and support at our fun in-person Stand Up For Mental Health class debut!",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:12:22.889227+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:12:22.889248+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
+      },
+      "archivedAt": "2026-09-23T16:54:05.409030+00:00",
+      "archivedReason": "Auto-Archived: Scheduled run ended on 2026-09-22",
+      "reviewStatus": "concluded",
+      "isConcluded": true
     }
   ]
 }

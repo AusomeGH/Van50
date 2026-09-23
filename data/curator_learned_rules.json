@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-23T11:08:26.506026+00:00",
+    "updatedAt": "2026-09-23T09:58:47-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -131,7 +131,12 @@
     "Test QA Cellar 1789951891": "https://testcellar.example.com/events",
     "Dr. Sun Yat-Sen Public Chinese Garden": "https://vancouverchinesegarden.com/visit/",
     "The Shipyards District": "https://theshipyardsdistrict.ca/",
-    "SFU Goldcorp Centre for the Arts": "https://viff.org/whats-on/"
+    "SFU Goldcorp Centre for the Arts": "https://viff.org/whats-on/",
+    "Chill x Studio": "https://chillxstudio.com",
+    "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
+    "Pending Venue Candidate 1790182361": "https://pendingvenue.example.com",
+    "Test QA Cellar 1790182362": "https://testcellar.example.com/events"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -177,6 +182,7 @@
     "claymates-ceramics-drop-in",
     "cultch-theatre-series",
     "downtown-farmers-market",
+    "eb-standup-mental-health",
     "false-creek-farmers-market",
     "fest-fringe-11th-hour",
     "fest-fringe-1984-again",
@@ -326,6 +332,7 @@
     "slice-of-life-craft-night",
     "slice-of-life-lego-night",
     "slice-of-life-life-drawing",
+    "sun-yat-sen-park",
     "test-expensive-rave-999",
     "the-roxy-fab-fourever",
     "tightrope-impro-showcase",
@@ -448,8 +455,8 @@
       "calendarUrl": "https://littlemountaingallery.ca/events",
       "summary": "Calendar: https://littlemountaingallery.ca/events",
       "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
-      "learnedAt": "2026-09-21T00:51:27.229119+00:00",
-      "source": "Curator Studio Instruction inst_1789951887216"
+      "learnedAt": "2026-09-23T16:58:46.956267+00:00",
+      "source": "Curator Studio Instruction inst_1790182726832"
     },
     "Frankie's Jazz Club": {
       "doorPrice": null,
@@ -462,8 +469,8 @@
       "calendarUrl": "https://frankiesjazzclub.com",
       "summary": "Calendar: https://frankiesjazzclub.com",
       "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
-      "learnedAt": "2026-09-21T00:51:27.341212+00:00",
-      "source": "Curator Studio Instruction inst_1789951887301"
+      "learnedAt": "2026-09-23T16:58:47.208522+00:00",
+      "source": "Curator Studio Instruction inst_1790182727119"
     },
     "Fox Cabaret": {
       "doorPrice": null,
@@ -476,8 +483,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Fox Cabaret.",
       "curatorGuidance": "Attached 2 screenshots: one showing the poster price, one showing checkout tier.",
-      "learnedAt": "2026-09-21T00:51:27.970827+00:00",
-      "source": "Curator Studio Instruction inst_1789951887928"
+      "learnedAt": "2026-09-23T16:58:47.887557+00:00",
+      "source": "Curator Studio Instruction inst_1790182727853"
     },
     "Pending Venue Candidate 1789753431": {
       "doorPrice": null,
@@ -1731,8 +1738,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
       "curatorGuidance": "Instruction to be updated by test suite",
-      "learnedAt": "2026-09-21T00:51:28.718080+00:00",
-      "source": "Curator Studio Instruction inst_1789951888703"
+      "learnedAt": "2026-09-23T16:52:32.846185+00:00",
+      "source": "Curator Studio Instruction inst_1790182352809"
     },
     "Pending Venue Candidate 1789950841": {
       "doorPrice": null,
@@ -1823,6 +1830,78 @@
       "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
       "learnedAt": "2026-09-21T00:51:31.853782+00:00",
       "source": "Curator Studio Instruction inst_1789951891777"
+    },
+    "Chill x Studio": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://chillxstudio.com",
+      "summary": "Calendar: https://chillxstudio.com",
+      "curatorGuidance": "Updating event name based on flyer screenshot verification.",
+      "learnedAt": "2026-09-23T16:58:40.648723+00:00",
+      "source": "Curator Studio Instruction inst_1790182720578"
+    },
+    "Kitsilano Beach Outdoor Amphitheatre": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "summary": "Calendar: https://kitsilanoshowboat.com/homepage/calendar/",
+      "curatorGuidance": "This series of events is now over for the summer.",
+      "learnedAt": "2026-09-23T16:28:57.672521+00:00",
+      "source": "Curator Studio Instruction inst_1790180937655"
+    },
+    "Dr. Sun Yat-Sen Public Courtyard": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://vancouverchinesegarden.com/visit/",
+      "summary": "Calendar: https://vancouverchinesegarden.com/visit/",
+      "curatorGuidance": "This venue has multiple prices.  One is free, and the others vary for age.  It's also available every day.",
+      "learnedAt": "2026-09-23T16:38:30.303548+00:00",
+      "source": "Curator Studio Instruction inst_1790181510285"
+    },
+    "Pending Venue Candidate 1790182361": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-09-23T16:52:41.999914+00:00",
+      "source": "Curator Studio Instruction inst_1790182361923"
+    },
+    "Test QA Cellar 1790182362": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-09-23T16:52:42.346269+00:00",
+      "source": "Curator Studio Instruction inst_1790182362135"
     }
   },
   "notes": {

@@ -27,14 +27,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌊",
+      "categoryIcon": "\ud83c\udf0a",
       "subTags": [
         "seawall",
         "ocean-walk",
         "stanley-park",
         "sunset"
       ],
-      "dateSchedule": "Daily • Open 24/7 (Best at sunset)",
+      "dateSchedule": "Daily \u2022 Open 24/7 (Best at sunset)",
       "startIso": "2026-09-08T06:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -106,14 +106,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌲",
+      "categoryIcon": "\ud83c\udf32",
       "subTags": [
         "suspension-bridge",
         "rainforest",
         "twin-falls",
         "free-hike"
       ],
-      "dateSchedule": "Daily • 7:00 AM - 7:00 PM",
+      "dateSchedule": "Daily \u2022 7:00 AM - 7:00 PM",
       "startIso": "2026-09-08T07:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -187,14 +187,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "⛵",
+      "categoryIcon": "\u26f5",
       "subTags": [
         "public-market",
         "boardwalk",
         "buskers",
         "false-creek"
       ],
-      "dateSchedule": "Daily • 9:00 AM - 6:00 PM",
+      "dateSchedule": "Daily \u2022 9:00 AM - 6:00 PM",
       "startIso": "2026-09-08T09:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -214,7 +214,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "The Granville Island Public Market is the jewel in the Island’s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
+      "description": "The Granville Island Public Market is the jewel in the Island\u2019s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "official_bylaw_rate",
@@ -270,14 +270,14 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏛️",
+      "categoryIcon": "\ud83c\udfdb\ufe0f",
       "subTags": [
         "architecture",
         "rooftop-terrace",
         "quiet-spot",
         "city-views"
       ],
-      "dateSchedule": "Monday - Sunday • 10:00 AM - 6:00 PM",
+      "dateSchedule": "Monday - Sunday \u2022 10:00 AM - 6:00 PM",
       "startIso": "2026-09-08T10:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -349,14 +349,14 @@
       ],
       "category": "social",
       "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
+      "categoryIcon": "\u26a1",
       "subTags": [
         "rose-garden",
         "ocean-view",
         "ubc",
         "coastal-trail"
       ],
-      "dateSchedule": "Daily • Daylight hours (Best June - September)",
+      "dateSchedule": "Daily \u2022 Daylight hours (Best June - September)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -429,14 +429,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Walks & Outdoors",
-      "categoryIcon": "🌺",
+      "categoryIcon": "\ud83c\udf3a",
       "subTags": [
         "quarry-garden",
         "panoramic-view",
         "cambie-corridor",
         "city-view"
       ],
-      "dateSchedule": "Daily • 6:00 AM - 10:00 PM",
+      "dateSchedule": "Daily \u2022 6:00 AM - 10:00 PM",
       "startIso": "2026-09-08T06:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -508,7 +508,7 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🦜",
+      "categoryIcon": "\ud83e\udd9c",
       "subTags": [
         "vancouver",
         "organization",
@@ -517,7 +517,7 @@
         "tropical-dome",
         "tickets"
       ],
-      "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
+      "dateSchedule": "Daily \u2022 10:00 AM - 5:00 PM",
       "startIso": "2026-09-08T10:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -565,7 +565,7 @@
     },
     {
       "id": "cinematheque-samurai-prisoner",
-      "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+      "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere \u2022 Dir. Kiyoshi Kurosawa)",
       "artist": null,
       "performers": null,
       "venue": "The Cinematheque",
@@ -573,7 +573,7 @@
       "address": "1131 Howe St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 15.0,
-      "priceLabel": "$11.00 – $15.00 all-in",
+      "priceLabel": "$11.00 \u2013 $15.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -610,7 +610,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "subTags": [
         "samurai",
         "vancouver",
@@ -619,7 +619,7 @@
         "mystery",
         "film"
       ],
-      "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
+      "dateSchedule": "Tuesday, September 22 \u2022 7:00 PM (Also Sep 24 & 26)",
       "startIso": "2026-09-22T19:00:00-07:00",
       "endIso": "2026-09-26T21:30:00-07:00",
       "confirmedDates": [],
@@ -639,7 +639,7 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Kurosawa Kiyoshi’s period thriller The Samurai and the Prisoner, set during Japan’s war-ravaged 16th century, follows an enigmatic samurai caught between conflicting warlords in an atmospheric feature at The Cinematheque.",
+      "description": "Kurosawa Kiyoshi\u2019s period thriller The Samurai and the Prisoner, set during Japan\u2019s war-ravaged 16th century, follows an enigmatic samurai caught between conflicting warlords in an atmospheric feature at The Cinematheque.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -705,7 +705,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "improv",
         "revue-stage",
@@ -714,7 +714,7 @@
         "granville-island",
         "puff-the-magic-improv-show-sept-26-2026-tickets"
       ],
-      "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
+      "dateSchedule": "Saturday, Sept 26 \u2022 8:00 PM (Doors 7:30 PM)",
       "startIso": "2026-09-26T20:00:00-07:00",
       "endIso": "2026-09-26T22:00:00-07:00",
       "confirmedDates": [],
@@ -796,7 +796,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "subTags": [
         "stand-up",
         "rio-theatre",
@@ -805,7 +805,7 @@
         "cbc-comedy",
         "eventbrite"
       ],
-      "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
+      "dateSchedule": "Friday, Dec 4 \u2022 7:30 PM (Doors 6:30 PM)",
       "startIso": "2026-12-04T19:30:00-07:00",
       "endIso": "2026-12-04T22:00:00-07:00",
       "confirmedDates": [],
@@ -842,7 +842,7 @@
           "ogden",
           "eventbrite"
         ],
-        "evidence_snippet": "...alistair ogden: live at the rio theatre tickets, friday, december 4 • 6 pm - 7:3...",
+        "evidence_snippet": "...alistair ogden: live at the rio theatre tickets, friday, december 4 \u2022 6 pm - 7:3...",
         "reason": "Affirmatively verified event on dedicated landing page (alistair, ogden, eventbrite)"
       },
       "categories": [
@@ -877,14 +877,14 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Pitch & Putt",
-      "categoryIcon": "⛳",
+      "categoryIcon": "\u26f3",
       "subTags": [
         "pitch-and-putt",
         "golf",
         "stanley-park",
         "english-bay"
       ],
-      "dateSchedule": "Daily • Daylight hours (First come, first served)",
+      "dateSchedule": "Daily \u2022 Daylight hours (First come, first served)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -965,14 +965,14 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏛️",
+      "categoryIcon": "\ud83c\udfdb\ufe0f",
       "subTags": [
         "contemporary-art",
         "emily-carr",
         "free-first-friday",
         "art-museum"
       ],
-      "dateSchedule": "First Friday of Each Month • 4:00 PM - 8:00 PM",
+      "dateSchedule": "First Friday of Each Month \u2022 4:00 PM - 8:00 PM",
       "startIso": "2026-10-02T16:00:00-07:00",
       "endIso": "2026-10-02T20:00:00-07:00",
       "confirmedDates": [],
@@ -1027,7 +1027,7 @@
     {
       "id": "guilt-and-co-live-jazz",
       "title": "Guilt & Co.: Live R&B, Acoustic Soul & Organ Funk Nightly",
-      "artist": "Tora (7:00 PM) • The Ruby Lane Organ Trio (9:00 PM)",
+      "artist": "Tora (7:00 PM) \u2022 The Ruby Lane Organ Trio (9:00 PM)",
       "performers": null,
       "venue": "Guilt & Co.",
       "venueAliases": [
@@ -1038,7 +1038,7 @@
       "address": "1 Alexander St (Below Ground), Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 0.0,
-      "priceLabel": "Free – $10.00 all-in",
+      "priceLabel": "Free \u2013 $10.00 all-in",
       "pricingType": "door",
       "tiers": [
         {
@@ -1079,7 +1079,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "cocktails",
         "beer",
@@ -1088,7 +1088,7 @@
         "live-music",
         "guilt--company"
       ],
-      "dateSchedule": "Tonight • Early Set 7:00 PM (PWYC) • Late Set 9:00 PM ($7)",
+      "dateSchedule": "Tonight \u2022 Early Set 7:00 PM (PWYC) \u2022 Late Set 9:00 PM ($7)",
       "startIso": "2026-09-09T19:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -1113,7 +1113,7 @@
         "status": "verified_live",
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
-        "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+        "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5\u2013$15) added to table bill or cash jar",
         "verifiedAt": "2026-09-22T11:07:50-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       },
@@ -1150,7 +1150,7 @@
       "address": "932 Granville St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 7.24,
-      "priceLabel": "$7.24 – $8.00 all-in",
+      "priceLabel": "$7.24 \u2013 $8.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1177,7 +1177,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "country",
         "line-dancing",
@@ -1186,7 +1186,7 @@
         "dance-lesson",
         "granville-strip"
       ],
-      "dateSchedule": "Sunday, Sept 27 • Doors 9:00 PM • Line Dancing 9:30 PM",
+      "dateSchedule": "Sunday, Sept 27 \u2022 Doors 9:00 PM \u2022 Line Dancing 9:30 PM",
       "startIso": "2026-09-27T21:00:00-07:00",
       "endIso": "2026-09-28T02:00:00-07:00",
       "confirmedDates": [
@@ -1228,7 +1228,7 @@
           "dance",
           "instructors"
         ],
-        "evidence_snippet": "...line dancing sun sept 27th - the roxy cabaret - vancouver - sep 27, 2026 · showp...",
+        "evidence_snippet": "...line dancing sun sept 27th - the roxy cabaret - vancouver - sep 27, 2026 \u00b7 showp...",
         "reason": "Affirmatively verified event on dedicated landing page (line, dancing, band, dance, instructors)"
       },
       "categories": [
@@ -1247,7 +1247,7 @@
       "address": "44 W 4th Ave, Vancouver, BC",
       "neighborhood": "Mount Pleasant & South Vancouver",
       "price": 0.0,
-      "priceLabel": "$15.00 – $25.00 all-in",
+      "priceLabel": "$15.00 \u2013 $25.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -1282,7 +1282,7 @@
       ],
       "category": "music",
       "categoryLabel": "Music & Concerts",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "public-disco",
         "electronic",
@@ -1291,7 +1291,7 @@
         "warehouse",
         "mount-pleasant"
       ],
-      "dateSchedule": "Seasonal Series • Awaiting Next Edition (Fall/Winter)",
+      "dateSchedule": "Seasonal Series \u2022 Awaiting Next Edition (Fall/Winter)",
       "startIso": null,
       "endIso": null,
       "confirmedDates": [],
@@ -1309,7 +1309,7 @@
       "isRoving": true,
       "editionVenue": "The Birdhouse",
       "agePolicy": "19+ (Valid Government Photo ID Required)",
-      "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
+      "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 \u2013 $25)",
       "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
       "description": "Public Disco's indoor warehouse events bring curated electronic music, community art installations, and safe-space dance parties to Vancouver heritage industrial venues. Currently awaiting next scheduled edition.",
       "checkoutVerification": {
@@ -1380,7 +1380,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1388,7 +1388,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Thursday, Sep 24 • 9:00 PM",
+      "dateSchedule": "Thursday, Sep 24 \u2022 9:00 PM",
       "startIso": "2026-09-24T21:00:00.000",
       "endIso": "2026-09-25T01:00:00.000",
       "confirmedDates": [
@@ -1431,7 +1431,7 @@
     },
     {
       "id": "ra-2542256-ero-s-elcome",
-      "title": "Cuba X Coltrane at Hero’s Welcome",
+      "title": "Cuba X Coltrane at Hero\u2019s Welcome",
       "artist": null,
       "performers": null,
       "venue": "Hero's Welcome",
@@ -1469,7 +1469,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1477,7 +1477,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Thursday, Sep 24 • 7:00 PM",
+      "dateSchedule": "Thursday, Sep 24 \u2022 7:00 PM",
       "startIso": "2026-09-24T19:00:00.000",
       "endIso": "2026-09-24T22:00:00.000",
       "confirmedDates": [
@@ -1561,7 +1561,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1569,7 +1569,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 11:00 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 11:00 PM",
       "startIso": "2026-09-25T23:00:00.000",
       "endIso": "2026-09-26T04:00:00.000",
       "confirmedDates": [
@@ -1653,7 +1653,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1661,7 +1661,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 9:00 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 9:00 PM",
       "startIso": "2026-09-25T21:00:00.000",
       "endIso": "2026-09-26T03:00:00.000",
       "confirmedDates": [
@@ -1750,7 +1750,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1758,7 +1758,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 10:00 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 10:00 PM",
       "startIso": "2026-09-25T22:00:00.000",
       "endIso": "2026-09-26T04:00:00.000",
       "confirmedDates": [
@@ -1844,7 +1844,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1852,7 +1852,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 10:00 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 10:00 PM",
       "startIso": "2026-09-25T22:00:00.000",
       "endIso": "2026-09-26T03:00:00.000",
       "confirmedDates": [
@@ -1933,7 +1933,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -1941,7 +1941,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 8:30 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 8:30 PM",
       "startIso": "2026-09-25T20:30:00.000",
       "endIso": "2026-09-26T02:00:00.000",
       "confirmedDates": [
@@ -2022,7 +2022,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "electronic",
         "dance-party",
@@ -2030,7 +2030,7 @@
         "dj-set",
         "ra-vancouver"
       ],
-      "dateSchedule": "Friday, Sep 25 • 6:30 PM",
+      "dateSchedule": "Friday, Sep 25 \u2022 6:30 PM",
       "startIso": "2026-09-25T18:30:00.000",
       "endIso": "2026-09-25T22:00:00.000",
       "confirmedDates": [
@@ -2098,7 +2098,7 @@
       "venueUrl": "https://publicdisco.ca/events",
       "category": "social",
       "categoryLabel": "Community & Social",
-      "categoryIcon": "🪩",
+      "categoryIcon": "\ud83e\udea9",
       "subTags": [
         "public-disco",
         "social",
@@ -2116,7 +2116,7 @@
         "afternoon",
         "early-evening"
       ],
-      "dateSchedule": "Summer 2026 Season Concluded • Returns June 2027",
+      "dateSchedule": "Summer 2026 Season Concluded \u2022 Returns June 2027",
       "startIso": null,
       "endIso": null,
       "confirmedDates": [],
@@ -2138,8 +2138,8 @@
       "pricingType": "free",
       "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
       "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-      "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
-      "scrapedDescription": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
+      "rovingNote": "\ud83d\udccd Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
+      "scrapedDescription": "Public Disco\u2019s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
       "ticketProvider": "Downtown Vancouver Plazas Verified",
       "semanticVerification": {
         "is_verified": true,
@@ -2183,7 +2183,7 @@
       "venueUrl": "https://rickshawtheatre.com",
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "subTags": [
         "rickshaw-theatre",
         "music",
@@ -2285,7 +2285,7 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Outdoors",
-      "categoryIcon": "🌲",
+      "categoryIcon": "\ud83c\udf32",
       "subTags": [
         "pitch-and-putt",
         "golf",
@@ -2293,7 +2293,7 @@
         "cambie",
         "outdoors"
       ],
-      "dateSchedule": "Daily • Daylight hours (First-come, first-served)",
+      "dateSchedule": "Daily \u2022 Daylight hours (First-come, first-served)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -2370,7 +2370,7 @@
       ],
       "category": "outdoors",
       "categoryLabel": "Outdoors",
-      "categoryIcon": "🌲",
+      "categoryIcon": "\ud83c\udf32",
       "subTags": [
         "pitch-and-putt",
         "golf",
@@ -2378,7 +2378,7 @@
         "patterson-skytrain",
         "outdoors"
       ],
-      "dateSchedule": "Daily • Daylight hours (First-come, first-served)",
+      "dateSchedule": "Daily \u2022 Daylight hours (First-come, first-served)",
       "startIso": "2026-09-08T08:00:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -2434,7 +2434,7 @@
       "address": "578 Carrall St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 0.0,
-      "priceLabel": "Free – $16.00 all-in",
+      "priceLabel": "Free \u2013 $16.00 all-in",
       "pricingType": "free-option",
       "isFree": false,
       "isDaily": true,
@@ -2449,7 +2449,7 @@
       ],
       "category": "arts",
       "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏮",
+      "categoryIcon": "\ud83c\udfee",
       "subTags": [
         "ming-dynasty",
         "classical-garden",
@@ -2457,7 +2457,7 @@
         "chinatown",
         "free-option"
       ],
-      "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
+      "dateSchedule": "Daily \u2022 9:30 AM - 4:30 PM",
       "startIso": "2026-09-08T09:30:00-07:00",
       "endIso": null,
       "isSoldOut": false,
@@ -2539,14 +2539,14 @@
       ],
       "category": "social",
       "categoryLabel": "Board Game Lounge",
-      "categoryIcon": "🎲",
+      "categoryIcon": "\ud83c\udfb2",
       "subTags": [
         "board-games",
         "tabletop",
         "wood-fired-pizza",
         "craft-beer"
       ],
-      "dateSchedule": "Daily from 4:30 PM • 2-Hour Table Limit When Busy",
+      "dateSchedule": "Daily from 4:30 PM \u2022 2-Hour Table Limit When Busy",
       "startIso": "2026-09-08T16:30:00-07:00",
       "endIso": null,
       "confirmedDates": [],
@@ -2582,7 +2582,7 @@
           "game",
           "board"
         ],
-        "evidence_snippet": "...0 - ndtr eat. sip. play. pizza • beer • games • pizza • beer • games • pizza • beer • games • welcome to ludica vancouve...",
+        "evidence_snippet": "...0 - ndtr eat. sip. play. pizza \u2022 beer \u2022 games \u2022 pizza \u2022 beer \u2022 games \u2022 pizza \u2022 beer \u2022 games \u2022 welcome to ludica vancouve...",
         "reason": "Affirmatively verified event on dedicated landing page (game, board)"
       },
       "categories": [
@@ -2593,7 +2593,7 @@
     },
     {
       "id": "viff-the-debut",
-      "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
+      "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation \u2022 Mieko Kawakami Adaptation)",
       "artist": "Jesse Eisenberg, Julianne Moore, Paul Giamatti",
       "performers": "Jesse Eisenberg, Julianne Moore, Paul Giamatti",
       "venue": "SFU Goldcorp Centre for the Arts",
@@ -2621,7 +2621,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -2634,7 +2634,7 @@
         "special-presentation",
         "drama"
       ],
-      "dateSchedule": "Thursday, October 1 • 7:00 PM (Opening Gala)",
+      "dateSchedule": "Thursday, October 1 \u2022 7:00 PM (Opening Gala)",
       "startIso": "2026-10-01T19:00:00-07:00",
       "endIso": "2026-10-01T21:30:00-07:00",
       "confirmedDates": [
@@ -2674,7 +2674,7 @@
     },
     {
       "id": "viff-all-we-imagine-as-light",
-      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Multiple Days • Oct 2 & 4)",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Multiple Days \u2022 Oct 2 & 4)",
       "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
       "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
       "venue": "VIFF Centre",
@@ -2704,7 +2704,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -2716,7 +2716,7 @@
         "viff-2026",
         "canadian-cinema"
       ],
-      "dateSchedule": "Multiple Days: Friday, Oct 2 • 6:30 PM & Sunday, Oct 4 • 1:30 PM",
+      "dateSchedule": "Multiple Days: Friday, Oct 2 \u2022 6:30 PM & Sunday, Oct 4 \u2022 1:30 PM",
       "startIso": "2026-10-02T18:30:00-07:00",
       "endIso": "2026-10-04T15:30:00-07:00",
       "confirmedDates": [
@@ -2758,7 +2758,7 @@
     },
     {
       "id": "viff-universal-language",
-      "title": "VIFF Showcase: \"Union County\" (American Indie • Dir. Adam Meeks)",
+      "title": "VIFF Showcase: \"Union County\" (American Indie \u2022 Dir. Adam Meeks)",
       "artist": "Matthew Rankin, Rojina Esmaeili, Saba Vahedyousefi",
       "performers": "Rojina Esmaeili, Saba Vahedyousefi, Matthew Rankin",
       "venue": "The Cinematheque",
@@ -2787,7 +2787,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -2799,7 +2799,7 @@
         "drama",
         "premiere"
       ],
-      "dateSchedule": "Saturday, October 3 • 6:30 PM & Tuesday, October 6 • 8:45 PM",
+      "dateSchedule": "Saturday, October 3 \u2022 6:30 PM & Tuesday, October 6 \u2022 8:45 PM",
       "startIso": "2026-10-03T18:30:00-07:00",
       "endIso": "2026-10-06T20:45:00-07:00",
       "confirmedDates": [
@@ -2842,7 +2842,7 @@
     {
       "id": "viff-flow",
       "title": "VIFF Showcase: \"Hanging by a Wire\" (Himalayan High-Altitude Documentary)",
-      "artist": "Gints Zilbalodis, Matīss Kaža",
+      "artist": "Gints Zilbalodis, Mat\u012bss Ka\u017ea",
       "performers": null,
       "venue": "VIFF Centre",
       "venueAliases": [
@@ -2871,7 +2871,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -2883,7 +2883,7 @@
         "viff-2026",
         "survival"
       ],
-      "dateSchedule": "Sunday, October 4 • 4:00 PM & Wednesday, October 7 • 6:30 PM",
+      "dateSchedule": "Sunday, October 4 \u2022 4:00 PM & Wednesday, October 7 \u2022 6:30 PM",
       "startIso": "2026-10-04T16:00:00-07:00",
       "endIso": "2026-10-07T18:30:00-07:00",
       "confirmedDates": [
@@ -2925,7 +2925,7 @@
     },
     {
       "id": "viff-wild-horse-nine",
-      "title": "VIFF Showcase: \"Filipiñana\" (Dir. Rafael Manuel • Cannes Winner)",
+      "title": "VIFF Showcase: \"Filipi\u00f1ana\" (Dir. Rafael Manuel \u2022 Cannes Winner)",
       "artist": "Martin McDonagh, Colin Farrell, Brendan Gleeson",
       "performers": "Colin Farrell, Brendan Gleeson, Kerry Condon",
       "venue": "The Rio Theatre",
@@ -2952,7 +2952,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -2964,7 +2964,7 @@
         "viff-2026",
         "world-cinema"
       ],
-      "dateSchedule": "Sunday, October 11 • 7:30 PM (Closing Gala)",
+      "dateSchedule": "Sunday, October 11 \u2022 7:30 PM (Closing Gala)",
       "startIso": "2026-10-11T19:30:00-07:00",
       "endIso": "2026-10-11T22:00:00-07:00",
       "confirmedDates": [
@@ -3005,7 +3005,7 @@
     },
     {
       "id": "viff-andrei-rublev",
-      "title": "\"Andrei Rublev\" (Andrei Tarkovsky Historical Epic • 4K Restoration)",
+      "title": "\"Andrei Rublev\" (Andrei Tarkovsky Historical Epic \u2022 4K Restoration)",
       "artist": "Andrei Tarkovsky",
       "performers": "Anatoly Solonitsyn, Ivan Lapikov, Nikolai Grinko",
       "venue": "VIFF Centre",
@@ -3016,7 +3016,7 @@
       "address": "1181 Seymour St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 16.5,
-      "priceLabel": "$14.00 – $16.50 all-in",
+      "priceLabel": "$14.00 \u2013 $16.50 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -3046,7 +3046,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -3059,7 +3059,7 @@
         "viff-centre",
         "world-cinema"
       ],
-      "dateSchedule": "Select Showtimes • 4:00 PM & 7:30 PM",
+      "dateSchedule": "Select Showtimes \u2022 4:00 PM & 7:30 PM",
       "startIso": "2026-09-23T16:00:00-07:00",
       "endIso": "2026-10-31T22:00:00-07:00",
       "confirmedDates": [
@@ -3113,7 +3113,7 @@
       "address": "1502 Duranleau St, Granville Island, Vancouver",
       "neighborhood": "Granville Island & False Creek",
       "price": 25.0,
-      "priceLabel": "$25.00 – $30.00 all-in",
+      "priceLabel": "$25.00 \u2013 $30.00 all-in",
       "pricingType": "platform",
       "tiers": [
         {
@@ -3142,7 +3142,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Stage",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "categories": [
         "comedy",
         "shows",
@@ -3155,7 +3155,7 @@
         "comedy-tournament",
         "unscripted"
       ],
-      "dateSchedule": "Fridays & Saturdays • 9:00 PM - 10:30 PM",
+      "dateSchedule": "Fridays & Saturdays \u2022 9:00 PM - 10:30 PM",
       "startIso": "2026-09-25T21:00:00-07:00",
       "endIso": "2026-12-31T22:30:00-07:00",
       "confirmedDates": [],
@@ -3187,12 +3187,12 @@
           "comedy"
         ],
         "evidence_snippet": "The Improv Centre Theatresports EventId 618",
-        "reason": "Direct ticketing provider link confirmed for Theatresports™ on purchase.theimprovcentre.ca"
+        "reason": "Direct ticketing provider link confirmed for Theatresports\u2122 on purchase.theimprovcentre.ca"
       }
     },
     {
       "id": "tic-triviaprov",
-      "title": "TRIVIAPROV: Interactive Trivia & Improv (Multiple Days • Sep 30 & Oct 8)",
+      "title": "TRIVIAPROV: Interactive Trivia & Improv (Multiple Days \u2022 Sep 30 & Oct 8)",
       "artist": "The Improv Centre House Troupe",
       "performers": "TIC Improvisers & Hosts",
       "venue": "The Improv Centre",
@@ -3219,7 +3219,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Stage",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "categories": [
         "comedy",
         "shows",
@@ -3233,7 +3233,7 @@
         "granville-island",
         "interactive"
       ],
-      "dateSchedule": "Multiple Days: Wednesday, Sep 30 & Thursday, Oct 8, 2026 • 7:00 PM",
+      "dateSchedule": "Multiple Days: Wednesday, Sep 30 & Thursday, Oct 8, 2026 \u2022 7:00 PM",
       "startIso": "2026-09-30T19:00:00-07:00",
       "endIso": "2026-12-31T20:30:00-07:00",
       "confirmedDates": [
@@ -3250,7 +3250,7 @@
         -123.1362
       ],
       "transitInfo": "50 False Creek bus or 8 min walk from Granville Island Ferry Dock",
-      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out—pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
+      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out\u2014pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -3302,7 +3302,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Stage",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "categories": [
         "comedy",
         "shows",
@@ -3315,7 +3315,7 @@
         "granville-island",
         "theatre"
       ],
-      "dateSchedule": "Opening Thu Sep 24 • Fri & Sat • 7:00 PM - 8:30 PM",
+      "dateSchedule": "Opening Thu Sep 24 \u2022 Fri & Sat \u2022 7:00 PM - 8:30 PM",
       "startIso": "2026-09-24T19:00:00-07:00",
       "endIso": "2026-11-28T20:30:00-07:00",
       "confirmedDates": [],
@@ -3353,7 +3353,7 @@
     },
     {
       "id": "vso-the-path-forward",
-      "title": "VSO: \"The Path Forward\" (Truth & Reconciliation Concert • Orpheum)",
+      "title": "VSO: \"The Path Forward\" (Truth & Reconciliation Concert \u2022 Orpheum)",
       "artist": "Vancouver Symphony Orchestra",
       "performers": "VSO with Indigenous Artists & Storytellers",
       "venue": "The Orpheum Theatre",
@@ -3390,7 +3390,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "categories": [
         "classical",
         "culture",
@@ -3404,7 +3404,7 @@
         "truth-and-reconciliation",
         "vso"
       ],
-      "dateSchedule": "Sunday, September 27, 2026 • 4:00 PM",
+      "dateSchedule": "Sunday, September 27, 2026 \u2022 4:00 PM",
       "startIso": "2026-09-27T16:00:00-07:00",
       "endIso": "2026-09-27T18:30:00-07:00",
       "confirmedDates": [
@@ -3444,8 +3444,8 @@
     },
     {
       "id": "vso-hadelich-brahms",
-      "title": "VSO: Augustin Hadelich Plays Brahms (Multiple Days • Oct 9 & 10)",
-      "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
+      "title": "VSO: Augustin Hadelich Plays Brahms (Multiple Days \u2022 Oct 9 & 10)",
+      "artist": "Augustin Hadelich (Violin) \u2022 Vancouver Symphony Orchestra",
       "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
       "venue": "The Orpheum Theatre",
       "venueAliases": [
@@ -3482,7 +3482,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "categories": [
         "classical",
         "culture",
@@ -3496,7 +3496,7 @@
         "masterworks",
         "vso"
       ],
-      "dateSchedule": "Multiple Days: Friday, Oct 9 & Saturday, Oct 10, 2026 • 7:30 PM",
+      "dateSchedule": "Multiple Days: Friday, Oct 9 & Saturday, Oct 10, 2026 \u2022 7:30 PM",
       "startIso": "2026-10-09T19:30:00-07:00",
       "endIso": "2026-10-10T22:00:00-07:00",
       "confirmedDates": [
@@ -3537,7 +3537,7 @@
     },
     {
       "id": "vso-tchaikovsky-violin",
-      "title": "VSO: Tchaikovsky’s Violin Concerto (Masterworks • Orpheum)",
+      "title": "VSO: Tchaikovsky\u2019s Violin Concerto (Masterworks \u2022 Orpheum)",
       "artist": "Vancouver Symphony Orchestra",
       "performers": "VSO Guest Violinist & Orchestra",
       "venue": "The Orpheum Theatre",
@@ -3574,7 +3574,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "categories": [
         "classical",
         "culture",
@@ -3588,7 +3588,7 @@
         "orpheum",
         "vso"
       ],
-      "dateSchedule": "Friday, October 16, 2026 • 7:00 PM",
+      "dateSchedule": "Friday, October 16, 2026 \u2022 7:00 PM",
       "startIso": "2026-10-16T19:00:00-07:00",
       "endIso": "2026-10-16T21:30:00-07:00",
       "confirmedDates": [
@@ -3652,7 +3652,7 @@
           "label": "$12.50"
         },
         {
-          "name": "Youth (13–18)",
+          "name": "Youth (13\u201318)",
           "price": 7.5,
           "label": "$7.50"
         },
@@ -3679,7 +3679,7 @@
       ],
       "category": "social",
       "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
+      "categoryIcon": "\u26a1",
       "categories": [
         "activities",
         "social",
@@ -3692,7 +3692,7 @@
         "thunderbirds",
         "ufv-cascades"
       ],
-      "dateSchedule": "Friday, September 25, 2026 • 6:00 PM",
+      "dateSchedule": "Friday, September 25, 2026 \u2022 6:00 PM",
       "startIso": "2026-09-25T18:00:00-07:00",
       "endIso": "2026-09-25T20:30:00-07:00",
       "confirmedDates": [
@@ -3764,7 +3764,7 @@
           "label": "$12.50"
         },
         {
-          "name": "Youth (13–18)",
+          "name": "Youth (13\u201318)",
           "price": 7.5,
           "label": "$7.50"
         },
@@ -3791,7 +3791,7 @@
       ],
       "category": "social",
       "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
+      "categoryIcon": "\u26a1",
       "categories": [
         "activities",
         "social",
@@ -3804,7 +3804,7 @@
         "rivalry",
         "thunderbirds"
       ],
-      "dateSchedule": "Saturday, September 26, 2026 • 6:00 PM",
+      "dateSchedule": "Saturday, September 26, 2026 \u2022 6:00 PM",
       "startIso": "2026-09-26T18:00:00-07:00",
       "endIso": "2026-09-26T20:30:00-07:00",
       "confirmedDates": [
@@ -3876,7 +3876,7 @@
           "label": "$12.50"
         },
         {
-          "name": "Youth (13–18)",
+          "name": "Youth (13\u201318)",
           "price": 7.5,
           "label": "$7.50"
         },
@@ -3903,7 +3903,7 @@
       ],
       "category": "social",
       "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
+      "categoryIcon": "\u26a1",
       "categories": [
         "activities",
         "social",
@@ -3916,7 +3916,7 @@
         "thunderbirds",
         "stadium"
       ],
-      "dateSchedule": "Friday, October 16, 2026 • 6:00 PM",
+      "dateSchedule": "Friday, October 16, 2026 \u2022 6:00 PM",
       "startIso": "2026-10-16T18:00:00-07:00",
       "endIso": "2026-10-16T21:00:00-07:00",
       "confirmedDates": [
@@ -3987,7 +3987,7 @@
           "label": "$12.50"
         },
         {
-          "name": "Youth (13–18)",
+          "name": "Youth (13\u201318)",
           "price": 7.5,
           "label": "$7.50"
         },
@@ -4014,7 +4014,7 @@
       ],
       "category": "social",
       "categoryLabel": "Varsity Sports",
-      "categoryIcon": "⚡",
+      "categoryIcon": "\u26a1",
       "categories": [
         "activities",
         "social",
@@ -4027,7 +4027,7 @@
         "thunderbirds",
         "hoops"
       ],
-      "dateSchedule": "Thursday, October 29, 2026 • 7:30 PM",
+      "dateSchedule": "Thursday, October 29, 2026 \u2022 7:30 PM",
       "startIso": "2026-10-29T19:30:00-07:00",
       "endIso": "2026-10-29T22:00:00-07:00",
       "confirmedDates": [
@@ -4076,7 +4076,7 @@
     {
       "id": "vso-hadelich-brahms-oct9",
       "title": "VSO: Augustin Hadelich Plays Brahms (Friday Performance)",
-      "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
+      "artist": "Augustin Hadelich (Violin) \u2022 Vancouver Symphony Orchestra",
       "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
       "venue": "The Orpheum Theatre",
       "venueAliases": [
@@ -4112,7 +4112,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "categories": [
         "classical",
         "culture",
@@ -4126,7 +4126,7 @@
         "masterworks",
         "vso"
       ],
-      "dateSchedule": "Friday, October 9, 2026 • 7:30 PM",
+      "dateSchedule": "Friday, October 9, 2026 \u2022 7:30 PM",
       "startIso": "2026-10-09T19:30:00-07:00",
       "endIso": "2026-10-09T22:00:00-07:00",
       "confirmedDates": [
@@ -4167,7 +4167,7 @@
     {
       "id": "vso-hadelich-brahms-oct10",
       "title": "VSO: Augustin Hadelich Plays Brahms (Saturday Performance)",
-      "artist": "Augustin Hadelich (Violin) • Vancouver Symphony Orchestra",
+      "artist": "Augustin Hadelich (Violin) \u2022 Vancouver Symphony Orchestra",
       "performers": "Augustin Hadelich with Maestro Otto Tausk & VSO",
       "venue": "The Orpheum Theatre",
       "venueAliases": [
@@ -4203,7 +4203,7 @@
       ],
       "category": "music",
       "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
+      "categoryIcon": "\ud83c\udfb5",
       "categories": [
         "classical",
         "culture",
@@ -4217,7 +4217,7 @@
         "masterworks",
         "vso"
       ],
-      "dateSchedule": "Saturday, October 10, 2026 • 7:30 PM",
+      "dateSchedule": "Saturday, October 10, 2026 \u2022 7:30 PM",
       "startIso": "2026-10-10T19:30:00-07:00",
       "endIso": "2026-10-10T22:00:00-07:00",
       "confirmedDates": [
@@ -4283,7 +4283,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Stage",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "categories": [
         "comedy",
         "shows",
@@ -4297,7 +4297,7 @@
         "granville-island",
         "interactive"
       ],
-      "dateSchedule": "Wednesday, September 30, 2026 • 7:00 PM",
+      "dateSchedule": "Wednesday, September 30, 2026 \u2022 7:00 PM",
       "startIso": "2026-09-30T19:00:00-07:00",
       "endIso": "2026-09-30T20:30:00-07:00",
       "confirmedDates": [
@@ -4313,7 +4313,7 @@
         -123.1362
       ],
       "transitInfo": "50 False Creek bus or 8 min walk from Granville Island Ferry Dock",
-      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out—pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
+      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out\u2014pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -4363,7 +4363,7 @@
       ],
       "category": "shows",
       "categoryLabel": "Comedy & Stage",
-      "categoryIcon": "🎭",
+      "categoryIcon": "\ud83c\udfad",
       "categories": [
         "comedy",
         "shows",
@@ -4377,7 +4377,7 @@
         "granville-island",
         "interactive"
       ],
-      "dateSchedule": "Thursday, October 8, 2026 • 7:00 PM",
+      "dateSchedule": "Thursday, October 8, 2026 \u2022 7:00 PM",
       "startIso": "2026-10-08T19:00:00-07:00",
       "endIso": "2026-10-08T20:30:00-07:00",
       "confirmedDates": [
@@ -4393,7 +4393,7 @@
         -123.1362
       ],
       "transitInfo": "50 False Creek bus or 8 min walk from Granville Island Ferry Dock",
-      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out—pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
+      "description": "Calling all trivia lovers! TRIVIAPROV mixes two bulletproof nights out\u2014pub trivia and improv comedy. Using your mobile phone, compete in real-time trivia against the performers; the questions and misfires inspire hilarious unscripted scenes on stage. Next confirmed show: Wednesday, Sept 30, 2026 at 7:00 PM.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "venue_published_policy",
@@ -4446,7 +4446,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -4458,7 +4458,7 @@
         "viff-2026",
         "canadian-cinema"
       ],
-      "dateSchedule": "Friday, October 2, 2026 • 6:30 PM",
+      "dateSchedule": "Friday, October 2, 2026 \u2022 6:30 PM",
       "startIso": "2026-10-02T18:30:00-07:00",
       "endIso": "2026-10-02T20:30:00-07:00",
       "confirmedDates": [
@@ -4528,7 +4528,7 @@
       ],
       "category": "cinema",
       "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
+      "categoryIcon": "\ud83c\udfac",
       "categories": [
         "arts",
         "cinema",
@@ -4540,7 +4540,7 @@
         "viff-2026",
         "canadian-cinema"
       ],
-      "dateSchedule": "Sunday, October 4, 2026 • 1:30 PM",
+      "dateSchedule": "Sunday, October 4, 2026 \u2022 1:30 PM",
       "startIso": "2026-10-04T13:30:00-07:00",
       "endIso": "2026-10-04T15:30:00-07:00",
       "confirmedDates": [
@@ -4692,10 +4692,90 @@
       "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
       "pricingType": "paid",
       "isFree": false
+    },
+    {
+      "id": "portside-pub-trivia",
+      "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
+      "artist": null,
+      "performers": null,
+      "venue": "Chill x Studio",
+      "venueAliases": [],
+      "address": "7 Alexander St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 10.0,
+      "priceLabel": "$12.00 all-in",
+      "pricingType": "paid",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Tuesdays)",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "shows",
+      "categoryLabel": "Drinks & Trivia",
+      "categoryIcon": "\ud83e\udde0",
+      "subTags": [
+        "pub-trivia",
+        "craft-beer",
+        "gastown-pub",
+        "trivia-night"
+      ],
+      "dateSchedule": "Friday, September 25",
+      "startIso": "2026-09-08T19:30:00-07:00",
+      "endIso": "2026-12-31T22:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://theportsidepub.com/bookings/",
+      "venueUrl": "https://theportsidepub.com",
+      "ticketProvider": "Walk-in / Table Reservation",
+      "rawProvider": "OpenTable / Resy",
+      "coordinates": [
+        49.2842,
+        -123.1042
+      ],
+      "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:58:40.755875+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:58:40.755919+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
+      "quarantinedAt": "2026-09-23T16:54:05.409030+00:00",
+      "dealtWith": false,
+      "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+      "categories": [
+        "shows"
+      ]
     }
   ],
   "metadata": {
-    "totalEvents": 53,
-    "updatedAt": "2026-09-23T16:15:06.732471+00:00"
+    "totalEvents": 55,
+    "updatedAt": "2026-09-23T16:58:47.449579+00:00"
   }
 }

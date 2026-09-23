@@ -1,207 +1,95 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-23T11:08:09-07:00",
-    "pendingCount": 4,
+    "updatedAt": "2026-09-23T09:53:40-07:00",
+    "pendingCount": 2,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
     {
-      "id": "kitsilano-showboat",
-      "title": "Kitsilano Showboat: Community Summer Stage",
-      "artist": "Local bands & community ensembles",
+      "id": "biltmore-cabaret-indie-music",
+      "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+      "artist": "Local indie bands & resident DJs",
       "performers": null,
-      "venue": "Kitsilano Beach Outdoor Amphitheatre",
+      "venue": "The Biltmore Cabaret",
       "venueAliases": [],
-      "address": "2300 Cornwall Ave, Vancouver",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
-      "price": 0.0,
-      "priceLabel": "Free ($0)",
-      "pricingType": "free",
-      "tiers": [],
-      "isFree": true,
+      "address": "2755 Prince Edward St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "price": 10.0,
+      "priceLabel": "$10.00 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "General Admission",
+          "basePrice": 11.0,
+          "price": 11.0,
+          "label": "$11.00 all-in"
+        }
+      ],
+      "isFree": false,
       "isDaily": false,
       "frequency": "weekly",
-      "frequencyLabel": "Weekly (Mon, Wed, Fri)",
+      "frequencyLabel": "Thursdays – Saturdays",
       "daysOfWeek": [
-        "mon",
-        "wed",
-        "fri"
+        "thu",
+        "fri",
+        "sat"
       ],
       "timeSlots": [
-        "early-evening"
+        "early-evening",
+        "late-evening"
       ],
       "category": "music",
       "categoryLabel": "Live Music",
       "categoryIcon": "🎵",
       "subTags": [
-        "outdoor-theatre",
-        "community-concert",
-        "kits-beach",
-        "live-music"
+        "indie-folk",
+        "live-band",
+        "biltmore",
+        "concert"
       ],
-      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
-      "startIso": "2026-09-09T19:00:00-07:00",
-      "endIso": "2026-09-30T21:00:00-07:00",
+      "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
+      "startIso": "2026-10-17T19:00:00-07:00",
+      "endIso": "2026-10-17T23:00:00-07:00",
       "confirmedDates": [],
       "isSoldOut": false,
-      "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
-      "venueUrl": "https://kitsilanoshowboat.com",
-      "ticketProvider": "Free Public Access",
-      "rawProvider": "Box Office / Direct",
+      "websiteUrl": "https://biltmorecabaret.com/event",
+      "venueUrl": "https://biltmorecabaret.com/event",
+      "ticketProvider": "AdmitOne Verified",
+      "rawProvider": "AdmitOne",
       "coordinates": [
-        49.2742,
-        -123.1558
+        49.2602,
+        -123.0975
       ],
-      "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+      "transitInfo": "Main & 12th Ave bus corridor",
       "organizer": null,
       "isRoving": false,
       "editionVenue": null,
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
+      "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
       "checkoutVerification": {
         "status": "verified_live",
-        "method": "official_bylaw_rate",
-        "verifiedTotal": 0.0,
-        "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-        "verifiedAt": "2026-09-23T11:07:25-07:00",
-        "details": "Verified via official municipal park bylaw / published community schedule."
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:15:06.727899+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:15:06.727924+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
       },
-      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
-      "dealtWith": false
-    },
-    {
-      "id": "sun-yat-sen-park",
-      "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
-      "artist": null,
-      "performers": null,
-      "venue": "Dr. Sun Yat-Sen Public Courtyard",
-      "venueAliases": [],
-      "address": "578 Carrall St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "price": 0.0,
-      "priceLabel": "Free ()",
-      "pricingType": "free",
-      "tiers": [],
-      "isFree": true,
-      "isDaily": true,
-      "frequency": "daily",
-      "frequencyLabel": "Daily Spot",
-      "daysOfWeek": [
-        "daily"
-      ],
-      "timeSlots": [
-        "early-morning",
-        "afternoon"
-      ],
-      "category": "arts",
-      "categoryLabel": "Museums & Visual Arts",
-      "categoryIcon": "🏮",
-      "subTags": [
-        "ming-dynasty",
-        "heritage-courtyard",
-        "koi-pond",
-        "chinatown"
-      ],
-      "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
-      "startIso": "2026-09-08T09:30:00-07:00",
-      "endIso": null,
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://vancouverchinesegarden.com/visit/",
-      "venueUrl": "https://vancouverchinesegarden.com/visit/",
-      "ticketProvider": "Free Public Access",
-      "rawProvider": "Box Office / Direct",
-      "coordinates": [
-        49.2798,
-        -123.104
-      ],
-      "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "The outer Ming Dynasty-style courtyard is completely free to enter, featuring stone pathways, jade ponds, weeping willows, and classical pavilion architecture.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "curator_learned_override",
-        "verifiedTotal": 0.0,
-        "feeBreakdown": "Free public access to outer courtyard",
-        "verifiedAt": "2026-09-23T11:07:25-07:00",
-        "details": "Automatically verified by Van50 Curator Learned Rules Engine."
-      },
-      "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 403 (Forbidden)",
-      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
-      "dealtWith": false
-    },
-    {
-      "id": "portside-pub-trivia",
-      "title": "The Portside Pub: Gastown Brainstormer Trivia",
-      "artist": null,
-      "performers": null,
-      "venue": "The Portside Pub",
-      "venueAliases": [],
-      "address": "7 Alexander St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "price": 12.0,
-      "priceLabel": "$12.00 all-in",
-      "pricingType": "food-drink",
-      "tiers": [],
-      "isFree": false,
-      "isDaily": false,
-      "frequency": "weekly",
-      "frequencyLabel": "Weekly (Tuesdays)",
-      "daysOfWeek": [
-        "tue"
-      ],
-      "timeSlots": [
-        "early-evening"
-      ],
-      "category": "trivia",
-      "categoryLabel": "Drinks & Trivia",
-      "categoryIcon": "🧠",
-      "subTags": [
-        "pub-trivia",
-        "craft-beer",
-        "gastown-pub",
-        "trivia-night"
-      ],
-      "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
-      "startIso": "2026-09-08T19:30:00-07:00",
-      "endIso": "2026-12-31T22:00:00-07:00",
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://theportsidepub.com/bookings/",
-      "venueUrl": "https://theportsidepub.com",
-      "ticketProvider": "Walk-in / Table Reservation",
-      "rawProvider": "OpenTable / Resy",
-      "coordinates": [
-        49.2842,
-        -123.1042
-      ],
-      "transitInfo": "4 min walk from Waterfront SkyTrain Station",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "scraped_page_policy",
-        "verifiedTotal": 12.0,
-        "feeBreakdown": "$12.00 rate scraped live from published venue page",
-        "verifiedAt": "2026-09-23T11:07:31-07:00",
-        "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
-      },
-      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
-      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
+      "quarantinedAt": "2026-09-23T16:54:05.409030+00:00",
       "dealtWith": false
     },
     {
@@ -261,12 +149,12 @@
       "categoryLabel": "Live Music",
       "categoryIcon": "🎵",
       "subTags": [
-        "gastown",
-        "live-music",
-        "intimate-lounge",
         "cocktails",
-        "soul-music",
-        "beer"
+        "beer",
+        "live-music",
+        "live-jazz",
+        "guilt--company",
+        "gastown"
       ],
       "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
       "startIso": "2026-09-09T19:00:00-07:00",
@@ -294,14 +182,14 @@
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
         "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-        "verifiedAt": "2026-09-23T11:07:53-07:00",
+        "verifiedAt": "2026-09-23T09:53:13-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "quarantinedAt": "2026-09-23T16:54:05.409030+00:00",
       "dealtWith": false
     }
   ],
-  "pendingCount": 6,
-  "lastTriagedAt": "2026-09-23T11:08:09.365744+00:00"
+  "pendingCount": 4,
+  "lastTriagedAt": "2026-09-23T16:53:40.055102+00:00"
 }

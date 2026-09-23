@@ -2,8 +2,8 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Candidate venues detected via discovery feeds and festival programs.",
-    "updatedAt": "2026-09-23T11:08:09.365744+00:00",
-    "totalDiscovered": 13
+    "updatedAt": "2026-09-23T16:53:51.019899+00:00",
+    "totalDiscovered": 14
   },
   "discoveredVenues": [
     {
@@ -424,6 +424,21 @@
         "summary": "Calendar: https://touchstonetheatre.com/",
         "distilledAt": "2026-09-18T21:16:18.215327+00:00"
       }
+    },
+    {
+      "id": "discovered-queen-elizabeth-theatre",
+      "name": "Queen Elizabeth Theatre",
+      "address": "Queen Elizabeth Theatre, Vancouver, BC",
+      "neighborhood": "Vancouver (General)",
+      "category": "shows",
+      "websiteUrl": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+      "calendarUrl": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+      "discoveredVia": "Miss604 (Rebecca Bollwitt)",
+      "discoverySourceId": "miss604",
+      "sampleEvent": "Mrs. Doubtfire in Vancouver",
+      "status": "pending",
+      "discoveredAt": "2026-09-23T16:53:51.018366+00:00",
+      "curatorNote": ""
     }
   ]
 }

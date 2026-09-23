@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 72,
-    "updatedAt": "2026-09-21T00:51:31.900771+00:00"
+    "updatedAt": "2026-09-23T16:58:47.247132+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -82,13 +82,34 @@
       "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
       "category": "music",
       "venueUrl": "https://kitsilanoshowboat.com",
-      "calendarUrl": "https://kitsilanoshowboat.com/",
-      "boxOfficeUrl": "https://kitsilanoshowboat.com/",
+      "calendarUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "boxOfficeUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
       "ticketingProvider": "Free Public Access",
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "kitsilano-showboat"
-      ]
+      ],
+      "curatorInstructions": "This series of events is now over for the summer.",
+      "curatorNote": "This series of events is now over for the summer.",
+      "curatorLearnedRules": {
+        "venueName": "Kitsilano Beach Outdoor Amphitheatre",
+        "category": "music",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "This series of events is now over for the summer.",
+        "summary": "Calendar: https://kitsilanoshowboat.com/homepage/calendar/",
+        "distilledAt": "2026-09-23T16:28:57.671231+00:00"
+      },
+      "policySummary": "Calendar: https://kitsilanoshowboat.com/homepage/calendar/"
     },
     "VPL Central Library (Level 9)": {
       "venueId": "vpl-central-library-level-9",
@@ -130,7 +151,28 @@
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "sun-yat-sen-park"
-      ]
+      ],
+      "curatorInstructions": "This venue has multiple prices.  One is free, and the others vary for age.  It's also available every day.",
+      "curatorNote": "This venue has multiple prices.  One is free, and the others vary for age.  It's also available every day.",
+      "curatorLearnedRules": {
+        "venueName": "Dr. Sun Yat-Sen Public Courtyard",
+        "category": "arts",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://vancouverchinesegarden.com/visit/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "This venue has multiple prices.  One is free, and the others vary for age.  It's also available every day.",
+        "summary": "Calendar: https://vancouverchinesegarden.com/visit/",
+        "distilledAt": "2026-09-23T16:38:30.301532+00:00"
+      },
+      "policySummary": "Calendar: https://vancouverchinesegarden.com/visit/"
     },
     "UBC Rose Garden & Trail 6": {
       "venueId": "ubc-rose-garden-trail-6",
@@ -218,7 +260,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-21T00:51:27.227868+00:00"
+        "distilledAt": "2026-09-23T16:58:46.906372+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -278,13 +320,34 @@
       "transitInfo": "3 min walk from Yaletown-Roundhouse Canada Line",
       "category": "shows",
       "venueUrl": "https://chillxstudio.com",
-      "calendarUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-      "boxOfficeUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "calendarUrl": "https://chillxstudio.com",
+      "boxOfficeUrl": "https://chillxstudio.com",
       "ticketingProvider": "Eventbrite Verified",
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "eb-standup-mental-health"
-      ]
+      ],
+      "curatorInstructions": "Updating event name based on flyer screenshot verification.",
+      "curatorNote": "Updating event name based on flyer screenshot verification.",
+      "curatorLearnedRules": {
+        "venueName": "Chill x Studio",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://chillxstudio.com",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Updating event name based on flyer screenshot verification.",
+        "summary": "Calendar: https://chillxstudio.com",
+        "distilledAt": "2026-09-23T16:58:40.604951+00:00"
+      },
+      "policySummary": "Calendar: https://chillxstudio.com"
     },
     "VIFF Centre (Seymour Atrium)": {
       "venueId": "viff-centre-seymour-atrium",
@@ -1038,7 +1101,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
         "summary": "Calendar: https://frankiesjazzclub.com",
-        "distilledAt": "2026-09-21T00:51:27.315592+00:00"
+        "distilledAt": "2026-09-23T16:58:47.149609+00:00"
       },
       "policySummary": "Calendar: https://frankiesjazzclub.com"
     },

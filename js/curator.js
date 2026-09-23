@@ -668,7 +668,7 @@ function renderCards(items) {
     const isDiscoveredVenue = Boolean(vName && state.knownVenues && state.knownVenues.size > 0 && !state.knownVenues.has(vName.toLowerCase()));
 
     return `
-      <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}">
+      <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}" data-event-id="${ev.id}">
         <!-- Top Title & Metadata -->
         <div class="curator-card-top">
           <div>
@@ -948,6 +948,35 @@ function renderCards(items) {
       </div>
     `;
   }).join('');
+
+  // Attach card-level Drag & Drop for instant screenshot verification
+  container.querySelectorAll('.curator-card').forEach(card => {
+    const evId = card.getAttribute('data-event-id');
+    if (!evId) return;
+
+    card.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.add('card-drop-active');
+    });
+
+    card.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.remove('card-drop-active');
+    });
+
+    card.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.remove('card-drop-active');
+      const files = Array.from(e.dataTransfer?.files || []);
+      if (files.length > 0) {
+        window.openAIInstructionModal(evId, 'screenshot');
+        await handleIncomingScreenshotFiles(files, false);
+      }
+    });
+  });
 }
 
 // ==============================================================================
@@ -1045,6 +1074,65 @@ window.rejectQuarantinedEvent = async function(eventId) {
   }
 };
 
+window.setModalViewMode = function(mode = 'screenshot') {
+  const modal = document.getElementById('ai-instruction-modal');
+  if (!modal) return;
+  const tabScreenshot = document.getElementById('tab-mode-screenshot');
+  const tabInstruct = document.getElementById('tab-mode-instruct');
+  const dynamicBody = document.getElementById('ai-modal-dynamic-body');
+  const dropzoneBlock = document.getElementById('ai-screenshot-dropzone-block');
+  const alignPanel = document.getElementById('ai-screenshot-alignment-panel');
+  const instructBlock = document.getElementById('ai-instruction-text-block');
+  const modalIcon = modal.querySelector('.curator-modal-icon');
+  const modalTitle = modal.querySelector('.curator-modal-title');
+  const modalDesc = modal.querySelector('.curator-modal-desc');
+  const textField = document.getElementById('ai-instruction-text');
+
+  if (mode === 'screenshot') {
+    if (tabScreenshot) tabScreenshot.classList.add('active');
+    if (tabInstruct) tabInstruct.classList.remove('active');
+    if (modalIcon) modalIcon.textContent = '📸';
+    if (modalTitle) modalTitle.textContent = 'Screenshot Proof & 7-Dimension Verifier';
+    if (modalDesc) modalDesc.textContent = "Upload or paste (Ctrl+V) a screenshot to extract all 7 live dimensions (Schedule, Frequency, Category, Location, Price, Provider, Lineup) and align with this card.";
+
+    if (dynamicBody && dropzoneBlock && instructBlock) {
+      dynamicBody.insertBefore(dropzoneBlock, instructBlock);
+      if (alignPanel) {
+        dynamicBody.insertBefore(alignPanel, instructBlock);
+      }
+    }
+
+    if (!state.currentScreenshots || state.currentScreenshots.length === 0) {
+      setTimeout(() => {
+        const fileInput = document.getElementById('ai-screenshot-file-input');
+        if (fileInput && modal.classList.contains('active')) {
+          fileInput.click();
+        }
+      }, 150);
+    }
+  } else {
+    // instruct mode
+    if (tabInstruct) tabInstruct.classList.add('active');
+    if (tabScreenshot) tabScreenshot.classList.remove('active');
+    if (modalIcon) modalIcon.textContent = '🤖';
+    if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
+    if (modalDesc) modalDesc.textContent = "Attach a screenshot or explain what to fix. Antigravity will update the crawlers and learn the pattern permanently.";
+
+    if (dynamicBody && instructBlock && dropzoneBlock) {
+      dynamicBody.insertBefore(instructBlock, dropzoneBlock);
+      if (alignPanel) {
+        dropzoneBlock.after(alignPanel);
+      }
+    }
+
+    setTimeout(() => {
+      if (textField && modal.classList.contains('active')) {
+        textField.focus();
+      }
+    }, 100);
+  }
+};
+
 window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const ev = (state.quarantinedEvents || []).find(e => e.id === eventId) || (state.archivedEvents || []).find(e => e.id === eventId);
   const modal = document.getElementById('ai-instruction-modal');
@@ -1074,32 +1162,15 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const titleApproveField = document.getElementById('ai-approve-title');
   const titleBadge = document.getElementById('ai-approve-title-badge');
 
-  // Configure modal presentation based on action mode
-  if (mode === 'approve') {
-    if (modalIcon) modalIcon.textContent = '✨';
-    if (modalTitle) modalTitle.textContent = 'Approve & Instruct AI';
-    if (modalDesc) modalDesc.textContent = "Approve this event into the master catalog and provide plain-English instructions so AI scrapers learn the verified pricing and venue pattern.";
-    if (quickApprovalBox) quickApprovalBox.style.display = 'block';
-    if (btnApprove) btnApprove.style.display = 'inline-flex';
-    if (btnDismiss) btnDismiss.style.display = 'none';
-  } else if (mode === 'dismiss') {
+  // Configure action buttons and boxes
+  if (mode === 'dismiss') {
     if (modalIcon) modalIcon.textContent = '🛑';
     if (modalTitle) modalTitle.textContent = 'Dismiss & Instruct AI';
     if (modalDesc) modalDesc.textContent = "Dismiss and archive this event, and tell AI scrapers why so they permanently skip or adapt to this format on future crawls.";
     if (quickApprovalBox) quickApprovalBox.style.display = 'none';
     if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'inline-flex';
-  } else if (mode === 'screenshot') {
-    if (modalIcon) modalIcon.textContent = '📸';
-    if (modalTitle) modalTitle.textContent = 'Screenshot Proof & 7-Dimension Verifier';
-    if (modalDesc) modalDesc.textContent = "Upload or paste (Ctrl+V) a screenshot to extract all 7 live dimensions (Schedule, Frequency, Category, Location, Price, Provider, Lineup) and align with this card.";
-    if (quickApprovalBox) quickApprovalBox.style.display = 'block';
-    if (btnApprove) btnApprove.style.display = 'inline-flex';
-    if (btnDismiss) btnDismiss.style.display = 'none';
   } else {
-    if (modalIcon) modalIcon.textContent = '🤖';
-    if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
-    if (modalDesc) modalDesc.textContent = "Attach a screenshot or explain what to fix. Antigravity will update the crawlers and learn the pattern permanently.";
     if (quickApprovalBox) quickApprovalBox.style.display = 'block';
     if (btnApprove) btnApprove.style.display = 'inline-flex';
     if (btnDismiss) btnDismiss.style.display = 'none';
@@ -1143,8 +1214,9 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     }
   }
 
-  // Prepopulate if previously dealt with / instruction already queued
+  // Prepopulate if previously dealt with / instruction already queued or newsletter screenshot exists
   clearScreenshotPreview();
+  const existingImgs = [];
   if (ev && ev.queuedInstruction) {
     const q = ev.queuedInstruction;
     if (textField) textField.value = q.instructionText || '';
@@ -1156,7 +1228,6 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (q.curatorNote && noteField) noteField.value = q.curatorNote;
     
     // Load screenshots (support both screenshotPaths array and single screenshotPath/screenshotBase64)
-    const existingImgs = [];
     if (Array.isArray(q.screenshotPaths) && q.screenshotPaths.length > 0) {
       existingImgs.push(...q.screenshotPaths);
     } else if (q.screenshotPath) {
@@ -1164,10 +1235,19 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     } else if (q.screenshotBase64) {
       existingImgs.push(q.screenshotBase64);
     }
-    if (existingImgs.length > 0) {
-      addScreenshotDataUrls(existingImgs);
+  } else if (ev) {
+    if (ev.emailScreenshot) {
+      existingImgs.push(ev.emailScreenshot);
+    } else if (ev.screenshotPath) {
+      existingImgs.push(ev.screenshotPath);
     }
-  } else if (textField) {
+  }
+
+  if (existingImgs.length > 0) {
+    addScreenshotDataUrls(existingImgs);
+  }
+
+  if (textField && (!ev || !ev.queuedInstruction)) {
     textField.value = '';
     if (mode === 'dismiss') {
       textField.placeholder = "e.g.: 'This venue is private bookings only, or this is a multi-week course rather than a drop-in. Please ignore this section.'";
@@ -1181,13 +1261,10 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   }
 
   modal.classList.add('active');
-  setTimeout(() => {
-    if (mode === 'screenshot') {
-      document.getElementById('ai-screenshot-dropzone')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } else if (textField) {
-      textField.focus();
-    }
-  }, 100);
+
+  // Determine initial view mode
+  const initialMode = (mode === 'screenshot' || (mode !== 'instruct' && mode !== 'dismiss' && existingImgs.length > 0)) ? 'screenshot' : (mode === 'dismiss' ? 'instruct' : (mode === 'instruct' ? 'instruct' : 'screenshot'));
+  window.setModalViewMode(initialMode);
 };
 
 window.openEmailScreenshotModal = function(eventId) {
@@ -1820,7 +1897,10 @@ function renderScreenshotGallery() {
     return;
   }
 
-  state.currentScreenshotBase64 = state.currentScreenshots[0] || null;
+  if (state.activeScreenshotIndex === undefined || state.activeScreenshotIndex < 0 || state.activeScreenshotIndex >= state.currentScreenshots.length) {
+    state.activeScreenshotIndex = 0;
+  }
+  state.currentScreenshotBase64 = state.currentScreenshots[state.activeScreenshotIndex] || null;
 
   if (prompt) prompt.style.display = 'none';
   if (container) container.style.display = 'block';
@@ -1830,21 +1910,63 @@ function renderScreenshotGallery() {
   }
 
   if (gallery) {
-    gallery.innerHTML = state.currentScreenshots.map((src, idx) => `
-      <div class="ai-gallery-item" style="position: relative; width: 88px; height: 88px; border-radius: 6px; overflow: hidden; border: 1.5px solid rgba(168, 85, 247, 0.55); background: #0f172a; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
-        <img src="${src}" alt="Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${src}', '_blank')" title="Click to view full size">
-        <button type="button" onclick="event.stopPropagation(); window.removeScreenshotByIndex(${idx});" title="Remove image" style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5);">✕</button>
-        <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
-      </div>
-    `).join('');
+    gallery.innerHTML = state.currentScreenshots.map((src, idx) => {
+      const isActive = (idx === state.activeScreenshotIndex);
+      return `
+        <div 
+          class="ai-gallery-item ${isActive ? 'active-screenshot-thumb' : ''}" 
+          style="position: relative; width: 92px; height: 92px; border-radius: 6px; overflow: hidden; border: ${isActive ? '2.5px solid #38bdf8' : '1.5px solid rgba(168, 85, 247, 0.55)'}; background: #0f172a; flex-shrink: 0; box-shadow: ${isActive ? '0 0 14px rgba(56, 189, 248, 0.75)' : '0 2px 6px rgba(0,0,0,0.4)'}; cursor: pointer; transition: all 0.2s ease;"
+          onclick="window.selectActiveScreenshot(${idx})"
+          title="${isActive ? 'Active Verifier Screenshot (Currently extracting dimensions)' : 'Click to verify and extract 7 dimensions from this screenshot'}"
+        >
+          <img src="${src}" alt="Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover;">
+          ${isActive ? '<div class="active-shot-pill">Active</div>' : ''}
+          <button 
+            type="button" 
+            onclick="event.stopPropagation(); window.removeScreenshotByIndex(${idx});" 
+            title="Remove image" 
+            style="position: absolute; top: 3px; right: 3px; background: rgba(239, 68, 68, 0.9); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.5); z-index: 2;"
+          >✕</button>
+          <div style="position: absolute; bottom: 3px; left: 3px; background: rgba(0,0,0,0.75); color: #e2e8f0; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 600;">#${idx + 1}</div>
+          <button 
+            type="button" 
+            onclick="event.stopPropagation(); window.open('${src}', '_blank');" 
+            title="View full size image in new tab"
+            style="position: absolute; bottom: 3px; right: 3px; background: rgba(15, 23, 42, 0.85); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 3px; font-size: 10px; padding: 1px 4px; cursor: pointer; line-height: 1.2; z-index: 2;"
+          >↗</button>
+        </div>
+      `;
+    }).join('');
   }
 }
+
+window.selectActiveScreenshot = function(index) {
+  if (!state.currentScreenshots || index < 0 || index >= state.currentScreenshots.length) return;
+  state.activeScreenshotIndex = index;
+  state.currentScreenshotBase64 = state.currentScreenshots[index];
+  renderScreenshotGallery();
+  showToast(`🔍 Verifying screenshot #${index + 1}...`, 'info');
+  triggerScreenshotVerification(state.currentScreenshots[index]);
+};
 
 window.removeScreenshotByIndex = function(index) {
   if (state.currentScreenshots && index >= 0 && index < state.currentScreenshots.length) {
     state.currentScreenshots.splice(index, 1);
-    renderScreenshotGallery();
-    showToast('Screenshot removed', 'info');
+    if (state.currentScreenshots.length === 0) {
+      state.activeScreenshotIndex = 0;
+      state.currentScreenshotBase64 = null;
+      clearScreenshotPreview();
+      resetScreenshotAlignmentPanel();
+      showToast('All screenshots removed', 'info');
+    } else {
+      if (state.activeScreenshotIndex >= state.currentScreenshots.length) {
+        state.activeScreenshotIndex = state.currentScreenshots.length - 1;
+      }
+      state.currentScreenshotBase64 = state.currentScreenshots[state.activeScreenshotIndex];
+      renderScreenshotGallery();
+      showToast('Screenshot removed. Re-verifying remaining proof...', 'info');
+      triggerScreenshotVerification(state.currentScreenshots[state.activeScreenshotIndex]);
+    }
   }
 };
 
@@ -1926,17 +2048,26 @@ function addScreenshotDataUrls(urls) {
   if (!Array.isArray(urls)) urls = [urls];
   if (!state.currentScreenshots) state.currentScreenshots = [];
   let addedCount = 0;
+  let lastAddedIdx = -1;
   for (const url of urls) {
     if (url && typeof url === 'string') {
       state.currentScreenshots.push(url);
+      lastAddedIdx = state.currentScreenshots.length - 1;
       addedCount++;
     }
   }
+  if (lastAddedIdx >= 0) {
+    state.activeScreenshotIndex = lastAddedIdx;
+    state.currentScreenshotBase64 = state.currentScreenshots[lastAddedIdx];
+  } else if (state.activeScreenshotIndex === undefined || state.activeScreenshotIndex >= state.currentScreenshots.length) {
+    state.activeScreenshotIndex = 0;
+    state.currentScreenshotBase64 = state.currentScreenshots[0] || null;
+  }
   renderScreenshotGallery();
   if (addedCount > 0) {
-    showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added!`, 'info');
+    showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added! Running 7-dimension verification...`, 'info');
     if (state.currentScreenshots && state.currentScreenshots.length > 0) {
-      triggerScreenshotVerification(state.currentScreenshots[0]);
+      triggerScreenshotVerification(state.currentScreenshots[state.activeScreenshotIndex]);
     }
   }
 }
@@ -1950,12 +2081,7 @@ async function submitAIInstruction(action = 'queue_only') {
   if (!state.token) return;
 
   const textField = document.getElementById('ai-instruction-text');
-  const instructionText = textField ? textField.value.trim() : '';
-  if (!instructionText) {
-    showToast('Please provide plain-English instructions for the AI Assistant', 'error');
-    if (textField) textField.focus();
-    return;
-  }
+  let instructionText = textField ? textField.value.trim() : '';
 
   const eventId = document.getElementById('ai-inst-event-id')?.value || '';
   const eventTitle = document.getElementById('ai-inst-title')?.value || '';
@@ -1975,11 +2101,25 @@ async function submitAIInstruction(action = 'queue_only') {
   const approvedVenue = document.getElementById('ai-approve-venue')?.value || '';
   const curatorNote = document.getElementById('ai-approve-note')?.value || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
 
+  const hasScreenshots = Boolean(state.currentScreenshots && state.currentScreenshots.length > 0);
+  if (!instructionText) {
+    if (hasScreenshots) {
+      const pStr = (!isNaN(approvedPrice) && approvedPrice >= 0) ? `$${approvedPrice.toFixed(2)} CAD` : 'verified rate';
+      instructionText = `Verified via screenshot proof: ${approvedTitle || eventTitle} (${pStr}). 7-dimension alignment verified by curator.`;
+      if (textField) textField.value = instructionText;
+    } else {
+      showToast('Please provide plain-English instructions for the AI Assistant or attach a screenshot', 'error');
+      if (textField) textField.focus();
+      return;
+    }
+  }
+
   if (action === 'queue_and_approve' && (isNaN(approvedPrice) || approvedPrice < 0 || approvedPrice > 50.0)) {
     showToast('Price must be a valid number between $0.00 and $50.00 CAD to approve!', 'error');
     return;
   }
 
+  const activeShot = (state.currentScreenshots && state.currentScreenshots[state.activeScreenshotIndex || 0]) || state.currentScreenshotBase64 || null;
   const payload = {
     instructionText: instructionText,
     eventId: eventId,
@@ -1987,7 +2127,7 @@ async function submitAIInstruction(action = 'queue_only') {
     approvedTitle: approvedTitle,
     venueName: approvedVenue || venueName,
     sourceUrl: sourceUrl,
-    screenshotBase64: state.currentScreenshots[0] || state.currentScreenshotBase64 || null,
+    screenshotBase64: activeShot,
     screenshotsBase64: state.currentScreenshots || [],
     action: action,
     approvedPrice: approvedPrice,
@@ -2295,6 +2435,16 @@ function setupCuratorEventListeners() {
   const btnSubmitAndDismiss = document.getElementById('btn-submit-ai-inst-and-dismiss');
   if (btnSubmitAndDismiss) {
     btnSubmitAndDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
+  }
+
+  // AI Instruction / Screenshot Modal Mode Tabs
+  const tabModeScreenshot = document.getElementById('tab-mode-screenshot');
+  const tabModeInstruct = document.getElementById('tab-mode-instruct');
+  if (tabModeScreenshot) {
+    tabModeScreenshot.addEventListener('click', () => setModalViewMode('screenshot'));
+  }
+  if (tabModeInstruct) {
+    tabModeInstruct.addEventListener('click', () => setModalViewMode('instruct'));
   }
 
   // Screenshot Dropzone & File Input (Supports Multiple Screenshots)
