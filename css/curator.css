@@ -1470,5 +1470,135 @@ body.van50-accessible #curator-accessibility-btn.active {
   transition: all 0.2s ease;
 }
 
+/* Real-Time Live Event Card Preview inside Instruct AI Modal */
+.ai-live-card-preview-box {
+  background: #090e1a;
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55), 0 0 15px rgba(56, 189, 248, 0.15);
+  transition: all 0.25s ease;
+}
+
+.ai-live-card-preview-box:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.65), 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+.ai-preview-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.ai-preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.ai-preview-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ai-preview-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #e0f2fe;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.ai-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.ai-preview-cost {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #34d399;
+  letter-spacing: -0.5px;
+}
+
+.ai-preview-cost-free {
+  color: #38bdf8;
+}
+
+.ai-preview-subtext {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.ai-preview-cta-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  text-decoration: none;
+}
+
+.ai-signal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+}
+
+.ai-signal-chip.chip-active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.ai-signal-chip.chip-warning {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fcd34d;
+}
+
+.ai-signal-chip.chip-danger {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+
 
 

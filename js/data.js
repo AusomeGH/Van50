@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-23T09:58:47-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-23T10:24:42-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -4777,7 +4777,7 @@ const VANCOUVER_EVENTS = [
     ]
   },
   {
-    "id": "test-qa-event-1790182727",
+    "id": "test-qa-event-1790184281",
     "title": "Dual Action Test Event",
     "venue": "Rickshaw Theatre",
     "price": 25.0,
@@ -4789,7 +4789,7 @@ const VANCOUVER_EVENTS = [
       "method": "manual_curator_review",
       "verifiedTotal": 25.0,
       "feeBreakdown": "$25.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-23T16:58:47.443781+00:00",
+      "verifiedAt": "2026-09-23T17:24:41.988336+00:00",
       "details": "Approved by curator with AI instruction. Note: Curator verified door price",
       "curatorSnapshot": {
         "approvedTitle": "Dual Action Test Event",
@@ -4799,7 +4799,7 @@ const VANCOUVER_EVENTS = [
         "approvedDate": null,
         "approvedVenue": "Rickshaw Theatre",
         "curatorNote": "Curator verified door price",
-        "approvedAt": "2026-09-23T16:58:47.443823+00:00",
+        "approvedAt": "2026-09-23T17:24:41.988371+00:00",
         "sourceUrl": ""
       }
     },

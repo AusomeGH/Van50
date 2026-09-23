@@ -1490,6 +1490,255 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 return self._send_json(500, {"error": f"Screenshot verification failed: {e}"})
 
+        # 4g. API: Interpret Curator Instructions, Links & Screenshots -> Real-Time Card Preview / Dismissal
+        if path == "/api/curator/interpret-instruction":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+
+            event_id = payload.get("eventId", "")
+            instruction_text = (payload.get("instructionText") or "").strip()
+            screenshot_base64 = payload.get("screenshotBase64") or payload.get("screenshot")
+            screenshot_path = payload.get("screenshotPath")
+            card_data = payload.get("event") or {}
+
+            if not card_data and event_id:
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    try:
+                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                            q_data = json.load(f)
+                        card_data = next((q for q in q_data.get("quarantinedEvents", []) if q.get("id") == event_id), None)
+                    except Exception:
+                        pass
+                if not card_data and os.path.exists(EVENTS_PATH):
+                    try:
+                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+                            ev_data = json.load(f)
+                        card_data = next((e for e in ev_data.get("events", []) if e.get("id") == event_id), None)
+                    except Exception:
+                        pass
+
+            if not card_data:
+                card_data = {
+                    "id": event_id or "candidate",
+                    "title": payload.get("eventTitle", "Event Candidate"),
+                    "venue": payload.get("venueName", "Vancouver Venue"),
+                    "price": float(payload.get("price", 0.0)),
+                    "dateSchedule": payload.get("dateSchedule", "")
+                }
+
+            # 1. Parse Links / URLs from instructionText
+            raw_urls = re.findall(r'https?://[^\s<>"\'\,;]+', instruction_text)
+            parsed_links = []
+            for u in raw_urls:
+                u_clean = u.rstrip(".,;:)")
+                try:
+                    parsed_u = urlparse(u_clean)
+                    domain = parsed_u.netloc.lower().replace("www.", "")
+                    provider_name = "Direct / Venue Link"
+                    if "eventbrite" in domain:
+                        provider_name = "Eventbrite"
+                    elif "showpass" in domain:
+                        provider_name = "Showpass"
+                    elif "ticketmaster" in domain:
+                        provider_name = "Ticketmaster"
+                    elif "ra.co" in domain or "residentadvisor" in domain:
+                        provider_name = "Resident Advisor"
+                    elif "admitone" in domain:
+                        provider_name = "AdmitOne"
+                    elif "agileticketing" in domain:
+                        provider_name = "Agile Ticketing"
+                    elif "viff.org" in domain:
+                        provider_name = "VIFF Box Office"
+                    parsed_links.append({
+                        "url": u_clean,
+                        "domain": domain,
+                        "provider": provider_name
+                    })
+                except Exception:
+                    pass
+
+            # 2. Parse Text Instruction Signals
+            lower_text = instruction_text.lower()
+            text_signals = {
+                "detectedPrice": None,
+                "detectedTitle": None,
+                "detectedVenue": None,
+                "detectedDate": None,
+                "detectedCategory": None,
+                "isDismissalIntent": False,
+                "dismissalKeywords": []
+            }
+
+            # Dismissal keywords
+            dismiss_terms = ["dismiss", "reject", "skip", "private", "not an event", "multi-week", "course", "sold out", "cancelled", "canceled", "ignore", "spam", "duplicate", "too expensive", "over 50", "over budget"]
+            for term in dismiss_terms:
+                if re.search(r'\b' + re.escape(term) + r'\b', lower_text):
+                    text_signals["isDismissalIntent"] = True
+                    text_signals["dismissalKeywords"].append(term)
+
+            # Price in text
+            if any(k in lower_text for k in ["free", "no cover", "pwyc", "pay what you can", "$0"]):
+                text_signals["detectedPrice"] = 0.0
+            else:
+                m_price = re.search(r'(?:door(?: rate| fee)?|tickets?|admission|price|is|costs?)[^$0-9]{0,20}\$?\s*([0-9]{1,3}(?:\.[0-9]{2})?)', lower_text)
+                if m_price:
+                    try:
+                        text_signals["detectedPrice"] = float(m_price.group(1))
+                    except ValueError:
+                        pass
+                if text_signals["detectedPrice"] is None:
+                    m_dollar = re.search(r'\$\s*([0-9]{1,3}(?:\.[0-9]{2})?)', instruction_text)
+                    if m_dollar:
+                        try:
+                            text_signals["detectedPrice"] = float(m_dollar.group(1))
+                        except ValueError:
+                            pass
+
+            # Title in text
+            m_title = re.search(r'(?:title|name|called|named)(?:\s+is|\s*:|\s+to)?\s+["\']([^"\']+)["\']', instruction_text, re.IGNORECASE)
+            if not m_title:
+                m_title = re.search(r'(?:change title to|rename to|title:)\s+([^\n,\.]+)', instruction_text, re.IGNORECASE)
+            if m_title:
+                text_signals["detectedTitle"] = m_title.group(1).strip()
+
+            # Date/Schedule in text
+            m_date = re.search(r'(?:date|schedule|time|on|at|happening)(?:\s+is|\s*:)?\s+([A-Za-z]+,?\s+[A-Za-z0-9\s•:\-]+)', instruction_text, re.IGNORECASE)
+            if m_date:
+                d_candidate = m_date.group(1).strip()
+                if len(d_candidate) >= 4 and len(d_candidate) <= 60:
+                    text_signals["detectedDate"] = d_candidate
+
+            # Category in text
+            for cat_key in ['music', 'shows', 'cinema', 'crafts', 'arts', 'activities', 'outdoors', 'trivia']:
+                if cat_key in lower_text or (cat_key == 'shows' and ('comedy' in lower_text or 'standup' in lower_text or 'improv' in lower_text)):
+                    text_signals["detectedCategory"] = 'shows' if ('comedy' in lower_text or 'standup' in lower_text or 'improv' in lower_text) else cat_key
+                    break
+
+            # 3. Parse Screenshot if attached
+            ocr_result = None
+            source_img = screenshot_path if (screenshot_path and os.path.exists(screenshot_path)) else screenshot_base64
+            if source_img and isinstance(source_img, str) and not source_img.startswith("data:"):
+                clean_path = source_img.replace("\\", "/").lstrip("/")
+                if clean_path.startswith("data/"):
+                    local_candidate = os.path.join(BASE_DIR, clean_path.replace("/", os.sep))
+                    if os.path.exists(local_candidate):
+                        source_img = local_candidate
+
+            if source_img:
+                try:
+                    ocr_result = verify_screenshot_against_event(source_img, card_data)
+                except Exception as e:
+                    logger.warning(f"Screenshot verification error in interpret: {e}")
+
+            # 4. Synthesize Card Fields with Priority: Curator Instruction > Screenshot OCR > Card Existing
+            final_title = text_signals["detectedTitle"] or (ocr_result and ocr_result.get("title", {}).get("extractedTitle")) or card_data.get("title") or "Event Title"
+            final_venue = text_signals["detectedVenue"] or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("venue")) or card_data.get("venue") or "Vancouver Venue"
+            final_address = card_data.get("address") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("address")) or "Vancouver, BC"
+            final_neighborhood = card_data.get("neighborhood") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("neighborhood")) or "Vancouver"
+            final_category = text_signals["detectedCategory"] or (ocr_result and ocr_result.get("dimensions", {}).get("category", {}).get("extracted")) or card_data.get("category") or "shows"
+            final_date = text_signals["detectedDate"] or (ocr_result and ocr_result.get("dimensions", {}).get("date", {}).get("extracted")) or card_data.get("dateSchedule") or card_data.get("frequencyLabel") or "Upcoming"
+            
+            # Price priority
+            final_price = None
+            if text_signals["detectedPrice"] is not None:
+                final_price = text_signals["detectedPrice"]
+            elif ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("extracted") is not None:
+                try:
+                    final_price = float(ocr_result["dimensions"]["price"]["extracted"])
+                except Exception:
+                    final_price = None
+            
+            if final_price is None:
+                try:
+                    final_price = float(card_data.get("attemptedPrice") or card_data.get("price") or 0.0)
+                except Exception:
+                    final_price = 0.0
+
+            # URL priority
+            final_url = (parsed_links[0]["url"] if parsed_links else None) or card_data.get("websiteUrl") or card_data.get("url") or "#"
+            final_provider = (parsed_links[0]["provider"] if parsed_links else None) or (ocr_result and ocr_result.get("dimensions", {}).get("link", {}).get("extracted")) or card_data.get("provider") or "Direct"
+
+            # 5. Determine Validity
+            is_valid = True
+            dismiss_reasons = []
+
+            if text_signals["isDismissalIntent"]:
+                is_valid = False
+                matched_str = ", ".join(text_signals["dismissalKeywords"])
+                dismiss_reasons.append(f"Curator instruction requested dismissal (keyword: '{matched_str}')")
+
+            if final_price is not None and final_price > 50.0:
+                is_valid = False
+                dismiss_reasons.append(f"Price (${final_price:.2f} CAD) exceeds strict Van50 $50 budget limit")
+
+            if ocr_result and (ocr_result.get("ocrSummary", {}).get("soldOut") or ocr_result.get("dimensions", {}).get("description", {}).get("details", {}).get("isSoldOut")):
+                is_valid = False
+                dismiss_reasons.append("Screenshot text indicates event is Sold Out / Off-sale")
+
+            if ocr_result and (ocr_result.get("ocrSummary", {}).get("privateEvent") or ocr_result.get("dimensions", {}).get("description", {}).get("details", {}).get("isPrivate")):
+                is_valid = False
+                dismiss_reasons.append("Screenshot text indicates a private or members-only booking")
+
+            category_labels = {
+                "shows": "🎭 Comedy & Shows",
+                "music": "🎵 Live Music",
+                "cinema": "🎬 Indie Cinema",
+                "crafts": "🎨 Crafts & Studios",
+                "arts": "🏛️ Museums & Arts",
+                "activities": "🎲 Games & Activities",
+                "outdoors": "🌊 Walks & Outdoors",
+                "trivia": "🍻 Drinks & Trivia",
+                "festivals": "🎪 Festivals & Fairs",
+                "social": "🤝 Social & Meetups"
+            }
+
+            price_label = "Free ($0)" if final_price == 0.0 else f"${final_price:.2f} all-in"
+            fee_breakdown = (ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("details", {}).get("breakdown")) or f"Verified rate: {price_label}"
+
+            card_preview = {
+                "id": card_data.get("id", "preview-card"),
+                "title": final_title,
+                "venue": final_venue,
+                "address": final_address,
+                "neighborhood": final_neighborhood,
+                "category": final_category,
+                "categoryLabel": category_labels.get(final_category, f"🏷️ {final_category.title()}"),
+                "dateSchedule": final_date,
+                "price": final_price,
+                "priceLabel": price_label,
+                "isFree": (final_price == 0.0),
+                "websiteUrl": final_url,
+                "provider": final_provider,
+                "feeBreakdown": fee_breakdown,
+                "description": (ocr_result and ocr_result.get("dimensions", {}).get("description", {}).get("extracted")) or card_data.get("description") or f"Curator verified event at {final_venue}."
+            }
+
+            signal_chips = {
+                "notes": ("Dismissal intent" if text_signals["isDismissalIntent"] else (f"${final_price:.2f} CAD" if text_signals["detectedPrice"] is not None else "Analyzing")) if instruction_text else "None",
+                "links": f"{parsed_links[0]['provider']} ({parsed_links[0]['domain']})" if parsed_links else "None",
+                "proof": ("✓ 7 Dimensions Extracted" if ocr_result else "Attached") if bool(source_img) else "None"
+            }
+
+            return self._send_json(200, {
+                "success": True,
+                "isValid": is_valid,
+                "intendedAction": "approve" if is_valid else "dismiss",
+                "dismissReason": "; ".join(dismiss_reasons) if dismiss_reasons else None,
+                "dismissReasons": dismiss_reasons,
+                "cardPreview": card_preview,
+                "parsedLinks": parsed_links,
+                "textSignals": text_signals,
+                "hasScreenshot": bool(source_img),
+                "ocrResult": ocr_result,
+                "extractedTitle": final_title,
+                "extractedPrice": final_price,
+                "extractedCategory": final_category,
+                "extractedDate": final_date,
+                "extractedVenue": final_venue,
+                "auditNote": fee_breakdown,
+                "signalChips": signal_chips
+            })
+
         # 5. API: Instruct AI Assistant (Plain English & Screenshot Queue)
         if path == "/api/curator/instruction":
             instruction_text = (payload.get("instructionText") or "").strip()

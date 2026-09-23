@@ -182,22 +182,22 @@
 
   <!-- Instruct AI Assistant Modal (Zero Coding, Plain English & Screenshots) -->
   <div class="curator-modal-overlay" id="ai-instruction-modal">
-    <div class="curator-modal-card" style="max-width: 600px;">
+    <div class="curator-modal-card" style="max-width: 640px;">
       <button type="button" class="curator-modal-close-btn" id="btn-close-ai-modal" aria-label="Close modal">✕</button>
 
       <div class="curator-modal-header" style="margin-bottom: 12px; padding-right: 28px;">
-        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">📸</div>
-        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Verify via Screenshot &amp; Align Dimensions</h2>
-        <p class="curator-modal-desc" style="font-size: 0.82rem;">Upload or paste (Ctrl+V) a screenshot to auto-extract all 7 live dimensions, or provide instructions for the crawlers.</p>
+        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">🤖</div>
+        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Instruct AI Assistant</h2>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Type instructions, drop links, or paste screenshots (<kbd style="background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 3px;">Ctrl + V</kbd>). AI analyzes all inputs and renders a real-time card preview or dismissal explanation.</p>
       </div>
 
-      <!-- Mode Selector Tabs -->
-      <div style="display: flex; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;" id="ai-modal-mode-tabs">
-        <button type="button" id="tab-mode-screenshot" class="curator-filter-pill active" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">📸 1. Verify via Screenshot (Auto-Extracts 7 Dims)</button>
+      <!-- Mode Selector Tabs (Hidden for streamlined unified view, kept for DOM compatibility) -->
+      <div style="display: none; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;" id="ai-modal-mode-tabs">
+        <button type="button" id="tab-mode-screenshot" class="curator-filter-pill active" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">📸 1. Verify via Screenshot</button>
         <button type="button" id="tab-mode-instruct" class="curator-filter-pill" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">🤖 2. Crawler Instructions / Notes</button>
       </div>
 
-      <form id="ai-instruction-form">
+      <form id="ai-instruction-form" onsubmit="return false;">
         <input type="hidden" id="ai-inst-event-id">
         <input type="hidden" id="ai-inst-venue">
         <input type="hidden" id="ai-inst-title">
@@ -214,23 +214,27 @@
           <!-- Plain English Instructions Block -->
           <div id="ai-instruction-text-block">
             <label class="curator-label" for="ai-instruction-text" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>Plain English Instructions for AI <span id="ai-instruction-required-star" style="color: #f43f5e; display: none;">*</span></span>
-              <span id="ai-instruction-hint" style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Optional if screenshot proof is attached</span>
+              <span>Plain English Instructions &amp; Links for AI <span id="ai-instruction-required-star" style="color: #f43f5e; display: none;">*</span></span>
+              <span id="ai-instruction-hint" style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Drop links or explain what to fix / dismiss</span>
             </label>
-            <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 75px; margin-top: 4px; font-family: inherit; font-size: 0.88rem; line-height: 1.4;" placeholder="e.g.: 'The scraper picked up the $65 VIP tier instead of the $25 General Admission ticket shown at the bottom of the page. Please target the GA price for this venue.'"></textarea>
+            <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 85px; margin-top: 4px; font-family: inherit; font-size: 0.88rem; line-height: 1.45;" placeholder="e.g.: 'The price is $15 door rate, title is East Van Comedy Showcase, happening Saturday at 8pm. Ticket link: https://...' or 'This venue is private bookings only, please dismiss.'"></textarea>
           </div>
 
-          <!-- Screenshot Drop / Paste Zone (Supports Multiple Screenshots) -->
+          <!-- Screenshot Drop / Paste Zone (Paste Ctrl+V, No Auto-File Picker) -->
           <div id="ai-screenshot-dropzone-block">
             <label class="curator-label" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>📸 Screenshot Proof (Auto-Extracts 7 Dimensions on Upload/Paste)</span>
-              <span style="font-size: 0.72rem; color: #38bdf8; font-weight: normal;">Paste image with Ctrl+V</span>
+              <span>📸 Screenshot Proof (Paste with Ctrl + V)</span>
+              <span style="font-size: 0.72rem; color: #38bdf8; font-weight: normal;">Optional visual proof</span>
             </label>
-            <div id="ai-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Click to browse or paste screenshots" style="padding: 10px;">
-              <div id="ai-dropzone-prompt" style="text-align: center; padding: 8px; cursor: pointer;">
-                <div style="font-size: 1.4rem; margin-bottom: 2px;">📋 / 🖼️</div>
-                <div style="font-weight: 500; font-size: 0.82rem; color: #e2e8f0;">Click to select screenshot, or paste image with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl + V</kbd></div>
-                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Automatically extracts Schedule, Frequency, Category, Location, Price, Link &amp; Event Name</div>
+            <div id="ai-screenshot-dropzone" class="ai-screenshot-dropzone" tabindex="0" title="Paste screenshot (Ctrl+V) or drop image" style="padding: 10px;">
+              <div id="ai-dropzone-prompt" style="text-align: center; padding: 8px 6px; cursor: default;">
+                <div style="font-size: 1.3rem; margin-bottom: 2px;">📋 / 🖼️</div>
+                <div style="font-weight: 600; font-size: 0.84rem; color: #e2e8f0;">
+                  Paste screenshot with <kbd style="background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #38bdf8;">Ctrl + V</kbd>, or drop image here
+                </div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
+                  Auto-reads tickets, schedule, door rates &amp; lineup. <span id="ai-screenshot-browse-link" style="color: #38bdf8; text-decoration: underline; cursor: pointer;">or browse files</span>
+                </div>
               </div>
               <input type="file" id="ai-screenshot-file-input" accept="image/*" multiple style="display: none;">
               <!-- Multi-Screenshot Preview Gallery -->
@@ -240,6 +244,71 @@
                   <button type="button" id="btn-add-more-screenshots" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #d8b4fe; border-radius: 4px; padding: 2px 8px; font-size: 0.75rem; cursor: pointer;">+ Add More</button>
                 </div>
                 <div id="ai-screenshot-gallery-grid" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time AI Interpretation & Live Card Preview Container -->
+          <div id="ai-interpretation-preview-container" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 14px; margin-top: 2px; transition: all 0.25s ease;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.2rem;">✨</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #e2e8f0;">AI Live Interpretation &amp; Preview</div>
+                  <div style="font-size: 0.72rem; color: #94a3b8;">Synthesizes instructions, dropped links &amp; screenshots into an event state.</div>
+                </div>
+              </div>
+              <div id="ai-interpretation-status-pill" class="dim-pill pill-confirmed" style="font-size: 0.75rem; padding: 3px 10px;">
+                Ready
+              </div>
+            </div>
+
+            <!-- Signal Analysis Chips -->
+            <div id="ai-signals-chips" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.74rem;">
+              <span class="ai-signal-chip" id="ai-chip-notes">📝 Notes: Analyzing...</span>
+              <span class="ai-signal-chip" id="ai-chip-links" style="display: none;">🔗 Link: None</span>
+              <span class="ai-signal-chip" id="ai-chip-proof" style="display: none;">📸 Proof: None</span>
+            </div>
+
+            <!-- Loading Spinner for AI Interpretation -->
+            <div id="ai-interpretation-loading" style="display: none; padding: 14px; text-align: center; color: #94a3b8; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: 8px;">
+              <span style="display: inline-block; font-size: 1.2rem; animation: spin 1s linear infinite; margin-right: 6px;">⚡</span>
+              <span>AI Assistant reading instructions, inspecting links, and extracting card preview...</span>
+            </div>
+
+            <!-- State A: Valid Event Card Live Preview -->
+            <div id="ai-card-preview-wrapper" style="display: none;">
+              <div style="font-size: 0.74rem; font-weight: 700; color: #34d399; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <span>🎟️</span> Live Card Preview (Will be added to catalog)
+              </div>
+              <div id="ai-live-card-preview" class="ai-live-card-preview-box"></div>
+              <div style="margin-top: 12px; display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
+                <button type="button" class="btn-curator btn-curator-primary" id="btn-approve-interpreted-card" style="font-size: 0.9rem; padding: 10px 18px; font-weight: 700; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); display: inline-flex; align-items: center; gap: 6px;">
+                  ✅ Approve Card to Live Catalog
+                </button>
+              </div>
+            </div>
+
+            <!-- State B: Dismissal & Exclusion Notice -->
+            <div id="ai-dismissal-preview-wrapper" style="display: none; background: rgba(239, 68, 68, 0.12); border: 1.5px solid rgba(239, 68, 68, 0.4); border-radius: 8px; padding: 14px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <span style="font-size: 1.6rem; line-height: 1;">🛑</span>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: #f87171; font-size: 0.95rem; margin-bottom: 4px;" id="ai-dismissal-title">
+                    This Event Will Be Dismissed &amp; Archived
+                  </div>
+                  <div style="font-size: 0.82rem; color: #fecaca; line-height: 1.45;" id="ai-dismissal-reason">
+                    Explaining why...
+                  </div>
+                  <div style="font-size: 0.74rem; color: #94a3b8; margin-top: 8px; border-top: 1px dashed rgba(239, 68, 68, 0.3); padding-top: 6px;">
+                    🧠 AI scrapers will record this rule and permanently skip this format/venue on future crawls.
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button type="button" class="btn-curator btn-curator-danger" id="btn-confirm-interpreted-dismiss" style="font-size: 0.88rem; padding: 9px 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+                  🛑 Confirm Dismissal &amp; Teach AI
+                </button>
               </div>
             </div>
           </div>

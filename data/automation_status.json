@@ -1,5 +1,5 @@
 {
-  "status": "success",
+  "status": "idle",
   "automationEnabled": true,
   "lastRunAt": "2026-09-23T09:54:05.826199",
   "nextRunAt": "2026-09-24T04:00:00",
@@ -89,8 +89,8 @@
   },
   "testKey": "automation_unit_test",
   "testTimestamp": "2026-09-23T09:52:40.966680",
-  "updatedAt": "2026-09-23T09:54:05.863333",
-  "currentStep": "idle",
+  "updatedAt": "2026-09-23T10:00:37.442439",
+  "currentStep": null,
   "startedAt": "2026-09-23T09:52:41.121995",
   "durationSeconds": 84.71,
   "backupFile": "events_2026-09-23_095241.json",

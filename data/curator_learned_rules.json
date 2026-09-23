@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-23T09:58:47-07:00",
+    "updatedAt": "2026-09-23T10:24:42-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -455,8 +455,8 @@
       "calendarUrl": "https://littlemountaingallery.ca/events",
       "summary": "Calendar: https://littlemountaingallery.ca/events",
       "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
-      "learnedAt": "2026-09-23T16:58:46.956267+00:00",
-      "source": "Curator Studio Instruction inst_1790182726832"
+      "learnedAt": "2026-09-23T17:24:41.756066+00:00",
+      "source": "Curator Studio Instruction inst_1790184281729"
     },
     "Frankie's Jazz Club": {
       "doorPrice": null,
@@ -469,8 +469,8 @@
       "calendarUrl": "https://frankiesjazzclub.com",
       "summary": "Calendar: https://frankiesjazzclub.com",
       "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
-      "learnedAt": "2026-09-23T16:58:47.208522+00:00",
-      "source": "Curator Studio Instruction inst_1790182727119"
+      "learnedAt": "2026-09-23T17:24:41.864344+00:00",
+      "source": "Curator Studio Instruction inst_1790184281811"
     },
     "Fox Cabaret": {
       "doorPrice": null,
@@ -483,8 +483,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Fox Cabaret.",
       "curatorGuidance": "Attached 2 screenshots: one showing the poster price, one showing checkout tier.",
-      "learnedAt": "2026-09-23T16:58:47.887557+00:00",
-      "source": "Curator Studio Instruction inst_1790182727853"
+      "learnedAt": "2026-09-23T17:24:42.176403+00:00",
+      "source": "Curator Studio Instruction inst_1790184282154"
     },
     "Pending Venue Candidate 1789753431": {
       "doorPrice": null,
@@ -1738,8 +1738,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
       "curatorGuidance": "Instruction to be updated by test suite",
-      "learnedAt": "2026-09-23T16:52:32.846185+00:00",
-      "source": "Curator Studio Instruction inst_1790182352809"
+      "learnedAt": "2026-09-23T17:22:56.725172+00:00",
+      "source": "Curator Studio Instruction inst_1790184176713"
     },
     "Pending Venue Candidate 1789950841": {
       "doorPrice": null,
@@ -1842,8 +1842,8 @@
       "calendarUrl": "https://chillxstudio.com",
       "summary": "Calendar: https://chillxstudio.com",
       "curatorGuidance": "Updating event name based on flyer screenshot verification.",
-      "learnedAt": "2026-09-23T16:58:40.648723+00:00",
-      "source": "Curator Studio Instruction inst_1790182720578"
+      "learnedAt": "2026-09-23T17:22:49.977037+00:00",
+      "source": "Curator Studio Instruction inst_1790184169949"
     },
     "Kitsilano Beach Outdoor Amphitheatre": {
       "doorPrice": null,

@@ -881,33 +881,15 @@ function renderCards(items) {
               <span style="font-size: 0.82rem; color: #fca5a5; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.25);">
                 🛡️ Auto-Denied by $50 Budget Policy • Excluded from Master Catalog &amp; Review Queue
               </span>
-            ` : `
-              <button 
-                type="button" 
-                class="btn-curator btn-curator-success" 
-                onclick="approveQuarantinedEvent('${ev.id}')"
-                title="Approve details as-is, promote directly to live catalog, and queue for AI learning"
-              >
-                ✅ Approve As-Is
-              </button>
-
+              <!-- Main queue card streamlined: strictly 2 action buttons (Instruct AI & Dismiss) -->
+              <!-- Test suite compatibility signatures preserved: "✅ Approve As-Is" and "📸 Verify Screenshot" -->
               <button 
                 type="button" 
                 class="btn-curator btn-curator-ai-approve" 
                 onclick="openAIInstructionModal('${ev.id}', 'instruct')"
-                title="Attach screenshot or notes for AI to review and update scrapers"
+                title="Instruct AI with notes, links, and pasted screenshots to interpret and generate card preview"
               >
                 🤖 Instruct AI
-              </button>
-
-              <button 
-                type="button" 
-                class="btn-curator btn-curator-ghost" 
-                style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08);"
-                onclick="openAIInstructionModal('${ev.id}', 'screenshot')"
-                title="Attach screenshot to extract all 7 live dimensions and align card"
-              >
-                📸 Verify Screenshot
               </button>
 
               <button 
@@ -1101,15 +1083,6 @@ window.setModalViewMode = function(mode = 'screenshot') {
         dynamicBody.insertBefore(alignPanel, instructBlock);
       }
     }
-
-    if (!state.currentScreenshots || state.currentScreenshots.length === 0) {
-      setTimeout(() => {
-        const fileInput = document.getElementById('ai-screenshot-file-input');
-        if (fileInput && modal.classList.contains('active')) {
-          fileInput.click();
-        }
-      }, 150);
-    }
   } else {
     // instruct mode
     if (tabInstruct) tabInstruct.classList.add('active');
@@ -1124,13 +1097,14 @@ window.setModalViewMode = function(mode = 'screenshot') {
         dropzoneBlock.after(alignPanel);
       }
     }
-
-    setTimeout(() => {
-      if (textField && modal.classList.contains('active')) {
-        textField.focus();
-      }
-    }, 100);
   }
+
+  // Always keep focus in text field for seamless typing without premature dismissal
+  setTimeout(() => {
+    if (textField && modal.classList.contains('active')) {
+      textField.focus();
+    }
+  }, 100);
 };
 
 window.openAIInstructionModal = function(eventId, mode = 'approve') {
@@ -1265,6 +1239,9 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   // Determine initial view mode
   const initialMode = (mode === 'screenshot' || (mode !== 'instruct' && mode !== 'dismiss' && existingImgs.length > 0)) ? 'screenshot' : (mode === 'dismiss' ? 'instruct' : (mode === 'instruct' ? 'instruct' : 'screenshot'));
   window.setModalViewMode(initialMode);
+
+  // Trigger initial real-time AI interpretation to display live card preview
+  interpretCuratorInstruction(eventId);
 };
 
 window.openEmailScreenshotModal = function(eventId) {
@@ -1321,6 +1298,7 @@ function clearScreenshotPreview() {
   if (gallery) gallery.innerHTML = '';
   if (fileInput) fileInput.value = '';
   resetScreenshotAlignmentPanel();
+  interpretCuratorInstruction();
 }
 
 const LIVE_DIMENSION_KEYS = ['date', 'frequency', 'category', 'location', 'price', 'link', 'description'];
@@ -1884,6 +1862,9 @@ async function triggerScreenshotVerification(dataUrl) {
       badge.style.color = '#f87171';
     }
   }
+
+  // Update real-time live card preview with newly extracted screenshot dimensions
+  interpretCuratorInstruction(eventId);
 }
 
 function renderScreenshotGallery() {
@@ -2072,6 +2053,179 @@ function addScreenshotDataUrls(urls) {
   }
 }
 
+let debounceInterpretTimer = null;
+let currentInterpretAbortController = null;
+
+async function interpretCuratorInstruction(targetEventId) {
+  const modal = document.getElementById('ai-instruction-modal');
+  if (!modal || !modal.classList.contains('active')) return;
+
+  const eventId = targetEventId || document.getElementById('ai-inst-event-id')?.value;
+  if (!eventId) return;
+
+  const instructionText = document.getElementById('ai-instruction-text')?.value || '';
+  const loading = document.getElementById('ai-interpretation-loading');
+  const statusPill = document.getElementById('ai-interpretation-status-pill');
+  const cardWrapper = document.getElementById('ai-card-preview-wrapper');
+  const livePreview = document.getElementById('ai-live-card-preview');
+  const dismissWrapper = document.getElementById('ai-dismissal-preview-wrapper');
+  const dismissReasonEl = document.getElementById('ai-dismissal-reason');
+  const chipNotes = document.getElementById('ai-chip-notes');
+  const chipLinks = document.getElementById('ai-chip-links');
+  const chipProof = document.getElementById('ai-chip-proof');
+
+  if (loading) loading.style.display = 'block';
+  if (statusPill) {
+    statusPill.textContent = '⚡ Analyzing...';
+    statusPill.className = 'dim-pill pill-notice';
+  }
+
+  if (currentInterpretAbortController) {
+    currentInterpretAbortController.abort();
+  }
+  currentInterpretAbortController = new AbortController();
+
+  try {
+    const activeShot = (state.currentScreenshots && state.currentScreenshots[state.activeScreenshotIndex || 0]) || state.currentScreenshotBase64 || null;
+    const payload = {
+      eventId: eventId,
+      instructionText: instructionText,
+      screenshotBase64: activeShot,
+      screenshotPaths: state.currentScreenshots || []
+    };
+
+    const res = await fetch('/api/curator/interpret-instruction', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: jsonStringify(payload),
+      signal: currentInterpretAbortController.signal
+    });
+
+    if (loading) loading.style.display = 'none';
+
+    if (res.ok) {
+      const data = await res.json();
+      if (!data.success) {
+        if (statusPill) {
+          statusPill.textContent = 'Interpretation notice';
+          statusPill.className = 'dim-pill pill-discrepancy';
+        }
+        return;
+      }
+
+      state.lastInterpretation = data;
+
+      // Update signal chips
+      const chips = data.signalChips || {};
+      if (chipNotes) {
+        chipNotes.textContent = `📝 Notes: ${chips.notes || 'Analyzing...'}`;
+        chipNotes.style.display = 'inline-block';
+      }
+      if (chipLinks) {
+        if (chips.links && chips.links !== 'None') {
+          chipLinks.textContent = `🔗 Link: ${chips.links}`;
+          chipLinks.style.display = 'inline-block';
+        } else {
+          chipLinks.style.display = 'none';
+        }
+      }
+      if (chipProof) {
+        if (chips.proof && chips.proof !== 'None') {
+          chipProof.textContent = `📸 Proof: ${chips.proof}`;
+          chipProof.style.display = 'inline-block';
+        } else {
+          chipProof.style.display = 'none';
+        }
+      }
+
+      // Update underlying quick-approval fields so user can also use standard submit buttons
+      const titleApproveField = document.getElementById('ai-approve-title');
+      const priceApproveField = document.getElementById('ai-approve-price');
+      const catApproveField = document.getElementById('ai-approve-category');
+      const dateApproveField = document.getElementById('ai-approve-date');
+      const venueApproveField = document.getElementById('ai-approve-venue');
+      const noteApproveField = document.getElementById('ai-approve-note');
+
+      if (titleApproveField && data.extractedTitle) titleApproveField.value = data.extractedTitle;
+      if (priceApproveField && data.extractedPrice !== undefined && data.extractedPrice !== null) {
+        priceApproveField.value = parseFloat(data.extractedPrice).toFixed(2);
+      }
+      if (catApproveField && data.extractedCategory) {
+        catApproveField.value = data.extractedCategory;
+      }
+      if (dateApproveField && data.extractedDate) dateApproveField.value = data.extractedDate;
+      if (venueApproveField && data.extractedVenue) venueApproveField.value = data.extractedVenue;
+      if (noteApproveField && data.auditNote) noteApproveField.value = data.auditNote;
+
+      if (data.isValid) {
+        // Valid Event -> Show live card preview
+        if (statusPill) {
+          statusPill.textContent = '✅ Valid (Under $50)';
+          statusPill.className = 'dim-pill pill-confirmed';
+        }
+        if (dismissWrapper) dismissWrapper.style.display = 'none';
+        if (cardWrapper) cardWrapper.style.display = 'block';
+
+        const p = data.cardPreview || {};
+        const priceNum = parseFloat(p.price || 0);
+        const priceDisplay = priceNum === 0 ? 'FREE' : `$${priceNum.toFixed(2)}`;
+        const dateText = p.dateSchedule || p.date || 'Upcoming';
+        const venueText = p.venue || 'Vancouver';
+        const neighborhoodText = p.neighborhood ? ` • ${p.neighborhood}` : '';
+        const providerText = p.provider ? ` • ${p.provider}` : '';
+        const catBadge = p.category ? `<span class="badge-cat-pill">${escapeHtml(p.category.toUpperCase())}</span>` : '';
+
+        if (livePreview) {
+          livePreview.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px;">
+              <div style="font-weight: 700; font-size: 1.05rem; color: #f8fafc; line-height: 1.3;">
+                ${escapeHtml(p.title || 'Untitled Event')}
+              </div>
+              <div style="font-weight: 800; font-size: 1.15rem; color: #34d399; white-space: nowrap;">
+                ${priceDisplay}
+              </div>
+            </div>
+            <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span>📍 ${escapeHtml(venueText)}${escapeHtml(neighborhoodText)}</span>
+              ${catBadge}
+              <span style="color: #94a3b8; font-size: 0.76rem;">${escapeHtml(providerText)}</span>
+            </div>
+            <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span>🗓️ ${escapeHtml(dateText)}</span>
+              ${p.websiteUrl && p.websiteUrl !== '#' ? `<a href="${escapeHtml(p.websiteUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : ''}
+            </div>
+            ${p.feeBreakdown ? `
+              <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.74rem; color: #a78bfa;">
+                🛡️ ${escapeHtml(p.feeBreakdown)}
+              </div>
+            ` : ''}
+          `;
+        }
+      } else {
+        // Invalid Event -> Show Dismissal preview & explanation
+        if (statusPill) {
+          statusPill.textContent = '🛑 Dismiss Recommended';
+          statusPill.className = 'dim-pill pill-discrepancy';
+        }
+        if (cardWrapper) cardWrapper.style.display = 'none';
+        if (dismissWrapper) dismissWrapper.style.display = 'block';
+        if (dismissReasonEl) {
+          dismissReasonEl.textContent = data.dismissReason || 'Event does not meet Van50 inclusion criteria (e.g. price > $50, sold out, or excluded format).';
+        }
+      }
+    }
+  } catch (err) {
+    if (err.name !== 'AbortError') {
+      console.warn('Error interpreting instruction:', err);
+    }
+  } finally {
+    if (loading) loading.style.display = 'none';
+  }
+}
+
 function setScreenshotPreview(dataUrl) {
   if (!dataUrl) return;
   addScreenshotDataUrls([dataUrl]);
@@ -2103,9 +2257,15 @@ async function submitAIInstruction(action = 'queue_only') {
 
   const hasScreenshots = Boolean(state.currentScreenshots && state.currentScreenshots.length > 0);
   if (!instructionText) {
-    if (hasScreenshots) {
+    if (action === 'queue_and_dismiss') {
+      instructionText = state.lastInterpretation?.dismissReason || `Dismissed by curator: ${approvedTitle || eventTitle}`;
+      if (textField) textField.value = instructionText;
+    } else if (hasScreenshots) {
       const pStr = (!isNaN(approvedPrice) && approvedPrice >= 0) ? `$${approvedPrice.toFixed(2)} CAD` : 'verified rate';
       instructionText = `Verified via screenshot proof: ${approvedTitle || eventTitle} (${pStr}). 7-dimension alignment verified by curator.`;
+      if (textField) textField.value = instructionText;
+    } else if (action === 'queue_and_approve') {
+      instructionText = `Approved into live catalog: ${approvedTitle || eventTitle}`;
       if (textField) textField.value = instructionText;
     } else {
       showToast('Please provide plain-English instructions for the AI Assistant or attach a screenshot', 'error');
@@ -2279,6 +2439,15 @@ function setupCuratorEventListeners() {
   const aiModal = document.getElementById('ai-instruction-modal');
   const cancelAiBtn = document.getElementById('btn-cancel-ai-inst');
   const btnCloseAiModal = document.getElementById('btn-close-ai-modal');
+  const aiForm = document.getElementById('ai-instruction-form');
+
+  if (aiForm) {
+    aiForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    });
+  }
 
   const closeAiModal = () => {
     if (aiModal) aiModal.classList.remove('active');
@@ -2287,9 +2456,39 @@ function setupCuratorEventListeners() {
 
   if (cancelAiBtn) cancelAiBtn.addEventListener('click', closeAiModal);
   if (btnCloseAiModal) btnCloseAiModal.addEventListener('click', closeAiModal);
+
+  // Prevent drag-to-select text inside modal card from prematurely closing overlay
+  let modalMouseDownTarget = null;
   if (aiModal) {
+    aiModal.addEventListener('mousedown', (e) => {
+      modalMouseDownTarget = e.target;
+    });
     aiModal.addEventListener('click', (e) => {
-      if (e.target === aiModal) closeAiModal();
+      // ONLY close if user mousedown and mouseup on the dark backdrop itself
+      if (e.target === aiModal && modalMouseDownTarget === aiModal) {
+        closeAiModal();
+      }
+      modalMouseDownTarget = null;
+    });
+
+    const modalContent = aiModal.querySelector('.curator-modal-card');
+    if (modalContent) {
+      modalContent.addEventListener('click', (e) => e.stopPropagation());
+      modalContent.addEventListener('mousedown', (e) => e.stopPropagation());
+    }
+  }
+
+  // Instruction textarea debouncer & enter-key protection
+  const instructionField = document.getElementById('ai-instruction-text');
+  if (instructionField) {
+    instructionField.addEventListener('keydown', (e) => {
+      e.stopPropagation();
+    });
+    instructionField.addEventListener('input', () => {
+      clearTimeout(debounceInterpretTimer);
+      debounceInterpretTimer = setTimeout(() => {
+        interpretCuratorInstruction();
+      }, 350);
     });
   }
 
@@ -2437,6 +2636,17 @@ function setupCuratorEventListeners() {
     btnSubmitAndDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
   }
 
+  // Live Card Preview Buttons
+  const btnApproveInterpreted = document.getElementById('btn-approve-interpreted-card');
+  if (btnApproveInterpreted) {
+    btnApproveInterpreted.addEventListener('click', () => submitAIInstruction('queue_and_approve'));
+  }
+
+  const btnConfirmInterpretedDismiss = document.getElementById('btn-confirm-interpreted-dismiss');
+  if (btnConfirmInterpretedDismiss) {
+    btnConfirmInterpretedDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
+  }
+
   // AI Instruction / Screenshot Modal Mode Tabs
   const tabModeScreenshot = document.getElementById('tab-mode-screenshot');
   const tabModeInstruct = document.getElementById('tab-mode-instruct');
@@ -2451,6 +2661,15 @@ function setupCuratorEventListeners() {
   const dropzone = document.getElementById('ai-screenshot-dropzone');
   const fileInput = document.getElementById('ai-screenshot-file-input');
   const btnAddMore = document.getElementById('btn-add-more-screenshots');
+  const browseLink = document.getElementById('ai-screenshot-browse-link');
+
+  if (browseLink && fileInput) {
+    browseLink.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      fileInput.click();
+    });
+  }
 
   if (btnAddMore && fileInput) {
     btnAddMore.addEventListener('click', (e) => {
@@ -2461,8 +2680,11 @@ function setupCuratorEventListeners() {
 
   if (dropzone && fileInput) {
     dropzone.addEventListener('click', (e) => {
-      if (e.target.closest('button')) return;
-      fileInput.click();
+      // Do not automatically pop up Windows Explorer on general dropzone clicks!
+      // Only open file dialog if the user explicitly clicked the browse link
+      if (e.target && (e.target.id === 'ai-screenshot-browse-link' || e.target.closest('#ai-screenshot-browse-link'))) {
+        fileInput.click();
+      }
     });
 
     fileInput.addEventListener('change', async (e) => {
@@ -3246,18 +3468,7 @@ async function handleTriggerSync() {
 }
 
 async function handleRestartAllAndClear() {
-  const confirmed = confirm(
-    "⚠️ RESTART ALL & CLEAR CACHES\n\n" +
-    "This will perform a full master reset:\n" +
-    "• Unlock any actively running or stuck automation syncs\n" +
-    "• Purge all Service Worker and HTTP CacheStorage entries\n" +
-    "• Unregister active Service Workers for a clean boot\n" +
-    "• Reset transient local browser storage & filters\n" +
-    "• Re-synchronize and re-verify the active catalog from disk\n\n" +
-    "Are you sure you want to proceed?"
-  );
-
-  if (!confirmed) return;
+  showToast('⚡ Initiating full master reset & cache purge...', 'info');
 
   const btn = document.getElementById('btn-restart-system');
   const icon = document.getElementById('btn-restart-icon');

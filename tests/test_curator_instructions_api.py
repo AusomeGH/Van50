@@ -239,6 +239,97 @@ class TestCuratorInstructionsAPI(unittest.TestCase):
         self.assertEqual(len(saved["screenshotPaths"]), 2)
         self.assertTrue(saved["hasScreenshot"])
 
+    def test_08_interpret_instruction_valid_event_with_link_and_card_preview(self):
+        """AI Assistant parses notes, extracts dropped ticketing links, and generates a valid card preview under $50."""
+        payload = {
+            "eventId": "test-interpret-01",
+            "instructionText": "Title is 'East Van Indie Comedy', happening Saturday at 8pm. Door rate is $15. Ticket link: https://www.eventbrite.com/e/east-van-indie-comedy-tickets-99999",
+            "venueName": "Fox Cabaret"
+        }
+        req = urllib.request.Request(
+            f"{self.BASE_URL}/api/curator/interpret-instruction",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Content-Type": "application/json",
+                "Curator-Token": self.TOKEN
+            }
+        )
+        res = json.loads(urllib.request.urlopen(req).read().decode("utf-8"))
+        self.assertTrue(res["success"])
+        self.assertTrue(res["isValid"], "Event under $50 should be evaluated as valid")
+        self.assertEqual(res["intendedAction"], "approve")
+        self.assertEqual(res["extractedPrice"], 15.0)
+        self.assertEqual(res["extractedTitle"], "East Van Indie Comedy")
+
+        # Verify parsed links
+        links = res.get("parsedLinks", [])
+        self.assertGreaterEqual(len(links), 1)
+        self.assertEqual(links[0]["provider"], "Eventbrite")
+        self.assertEqual(links[0]["url"], "https://www.eventbrite.com/e/east-van-indie-comedy-tickets-99999")
+
+        # Verify live card preview
+        preview = res.get("cardPreview", {})
+        self.assertEqual(preview["title"], "East Van Indie Comedy")
+        self.assertEqual(preview["price"], 15.0)
+        self.assertEqual(preview["provider"], "Eventbrite")
+        self.assertEqual(preview["websiteUrl"], "https://www.eventbrite.com/e/east-van-indie-comedy-tickets-99999")
+
+    def test_09_interpret_instruction_dismiss_price_over_50(self):
+        """AI Assistant evaluates events over $50 as invalid and generates dismissal explanation."""
+        payload = {
+            "eventId": "test-interpret-02",
+            "instructionText": "The tickets cost $65 CAD plus taxes. Please dismiss.",
+            "venueName": "Commodore Ballroom"
+        }
+        req = urllib.request.Request(
+            f"{self.BASE_URL}/api/curator/interpret-instruction",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Content-Type": "application/json",
+                "Curator-Token": self.TOKEN
+            }
+        )
+        res = json.loads(urllib.request.urlopen(req).read().decode("utf-8"))
+        self.assertTrue(res["success"])
+        self.assertFalse(res["isValid"], "Event over $50 must be evaluated as invalid")
+        self.assertEqual(res["intendedAction"], "dismiss")
+        self.assertIn("exceeds strict Van50 $50 budget limit", res["dismissReason"])
+
+    def test_10_interpret_instruction_dismiss_keyword(self):
+        """AI Assistant detects curator intent to dismiss (e.g. private event or multi-week course)."""
+        payload = {
+            "eventId": "test-interpret-03",
+            "instructionText": "This venue is private bookings only, please ignore and skip.",
+            "venueName": "Private Loft"
+        }
+        req = urllib.request.Request(
+            f"{self.BASE_URL}/api/curator/interpret-instruction",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Content-Type": "application/json",
+                "Curator-Token": self.TOKEN
+            }
+        )
+        res = json.loads(urllib.request.urlopen(req).read().decode("utf-8"))
+        self.assertTrue(res["success"])
+        self.assertFalse(res["isValid"])
+        self.assertEqual(res["intendedAction"], "dismiss")
+        self.assertIn("requested dismissal", res["dismissReason"])
+
+    def test_11_main_page_two_buttons_only(self):
+        """Main review queue cards in js/curator.js render strictly Instruct AI and Dismiss buttons."""
+        curator_js_path = os.path.join(ROOT_DIR, "js", "curator.js")
+        with open(curator_js_path, "r", encoding="utf-8") as f:
+            js = f.read()
+
+        # Check that the card actions template has Instruct AI and Dismiss
+        self.assertIn("🤖 Instruct AI", js)
+        self.assertIn("🚫 Dismiss", js)
+        self.assertIn("strictly 2 action buttons", js)
+
+        # Check no automatic file picker click in setModalViewMode
+        self.assertNotIn("fileInput.click()", js.split("window.setModalViewMode")[1].split("window.openAIInstructionModal")[0])
+
 
 if __name__ == "__main__":
     unittest.main()
