@@ -2789,9 +2789,6 @@ function renderSingleEventCardHtml(ev) {
 
           ${ctaButtonHtml}
         </div>
-
-          ${ctaButtonHtml}
-        </div>
       </article>
     `;
 }
