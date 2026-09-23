@@ -341,17 +341,35 @@
                   </button>
                 </div>
 
-                <!-- Dimension 7: Description, Lineup & Restrictions -->
+                <!-- Dimension 7: Event Name, Lineup & Restrictions -->
                 <div class="curator-dimension-card" id="ai-dim-card-description" style="grid-column: 1 / -1;">
                   <div class="dim-card-header">
-                    <span class="dim-card-title"><span>📝</span> 7. Description, Lineup & Restrictions</span>
+                    <span class="dim-card-title"><span>📝</span> 7. Event Name, Lineup & Restrictions</span>
                     <span class="dim-pill" id="ai-dim-badge-description">Checking...</span>
                   </div>
-                  <div class="dim-val-prominent" id="ai-dim-val-description">No details extracted</div>
+
+                  <!-- Dedicated Event Name / Title Extraction Row -->
+                  <div class="dim-event-title-box" id="ai-dim-title-box" style="margin-bottom: 8px; padding: 8px 10px; background: rgba(255, 255, 255, 0.04); border-radius: 6px; border: 1px dashed rgba(255, 255, 255, 0.18);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px;">
+                      <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Extracted Event Name / Title:</span>
+                      <span id="ai-dim-badge-title" class="dim-pill dim-pill-unconfirmed" style="font-size: 0.68rem; padding: 2px 7px;">No Title Detected</span>
+                    </div>
+                    <div class="dim-val-prominent" id="ai-dim-val-title" style="font-size: 0.95rem; font-weight: 700; color: #f8fafc; margin-bottom: 2px;">No event title detected</div>
+                    <div class="dim-compare-row" id="ai-dim-compare-title" style="font-size: 0.74rem; color: #94a3b8;">Card: Untitled Event</div>
+                  </div>
+
+                  <!-- General Description / Lineup / Policy Details -->
+                  <div class="dim-val-prominent" id="ai-dim-val-description" style="font-size: 0.82rem; font-weight: 500; color: #cbd5e1;">No details extracted</div>
                   <div class="dim-compare-row" id="ai-dim-compare-description">Card: Title</div>
-                  <button type="button" class="btn-dim-apply" id="btn-apply-dim-description" data-dim="description" title="Apply lineup & restrictions note">
-                    ⚡ Apply Lineup & Notes
-                  </button>
+
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+                    <button type="button" class="btn-dim-apply" id="btn-apply-dim-title" data-dim="title" title="Apply extracted event name to card">
+                      ⚡ Apply Event Name
+                    </button>
+                    <button type="button" class="btn-dim-apply" id="btn-apply-dim-description" data-dim="description" title="Apply lineup & restrictions note">
+                      ⚡ Apply Lineup & Notes
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -381,6 +399,16 @@
           <!-- Quick Approval Overrides (for "Approve As-Is") -->
           <div id="ai-quick-approval-box" style="background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px;">
             <div style="font-weight: 600; font-size: 0.82rem; color: #34d399; margin-bottom: 8px;">✨ Catalog Details (Applied from Screenshot or Manual Edits)</div>
+
+            <!-- Verified Event Name / Title Override Field -->
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                <label class="curator-label" for="ai-approve-title" style="font-size: 0.75rem;">Verified Event Name / Title</label>
+                <span id="ai-approve-title-badge" style="display: none; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; background: rgba(245, 158, 11, 0.25); color: #fcd34d; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.5);">⚠️ Event Name Changed</span>
+              </div>
+              <input type="text" id="ai-approve-title" class="curator-input" style="width: 100%;" placeholder="e.g. East Van Comedy Showcase: Late Night Edition">
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label class="curator-label" style="font-size: 0.75rem;">Verified Price (CAD, max $50)</label>

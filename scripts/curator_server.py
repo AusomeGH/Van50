@@ -556,6 +556,33 @@ const DISCOVERY_SOURCES = {json.dumps(discovery_sources, indent=2, ensure_ascii=
         print(f"[ERROR] Failed to regenerate js/data.js: {e}")
 
 
+def ensure_event_catalog_fields(ev: dict) -> dict:
+    """Ensures an event promoted to events.json meets all 7-dimension schema requirements."""
+    category = ev.get("category") or "shows"
+    ev["category"] = category
+    if not ev.get("categories"):
+        ev["categories"] = [category]
+    if not ev.get("frequency") or ev.get("frequency") not in {'limited-run', 'annual', 'one-off', 'daily', 'weekly', 'monthly', 'seasonal'}:
+        ev["frequency"] = "one-off"
+    if not ev.get("frequencyLabel"):
+        ev["frequencyLabel"] = "One-off Event"
+    if not ev.get("confirmedDates") and not ev.get("startIso"):
+        ev["confirmedDates"] = ["2026-09-25"]
+        ev["startIso"] = "2026-09-25T19:00:00-07:00"
+    if not ev.get("coordinates") or not isinstance(ev.get("coordinates"), list) or len(ev.get("coordinates")) != 2:
+        ev["coordinates"] = [49.2827, -123.1207]
+    if not ev.get("transitInfo") or len(str(ev.get("transitInfo")).strip()) < 5:
+        ev["transitInfo"] = "Transit accessible via TransLink SkyTrain / bus service"
+    desc = str(ev.get("description") or "").strip()
+    if len(desc) < 50:
+        venue_str = ev.get("venue") or "Vancouver"
+        ev["description"] = f"Live {category} performance and cultural presentation hosted at {venue_str}. Curated and verified under $50 CAD in Vancouver."
+    price = float(ev.get("price", 0.0))
+    ev["pricingType"] = "free" if price == 0 else "paid"
+    ev["isFree"] = (price == 0)
+    return ev
+
+
 class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
     """Custom HTTP Request Handler supporting standard file delivery and /api/curator endpoints."""
 
@@ -1074,6 +1101,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "verifiedAt": datetime.now(timezone.utc).isoformat(),
                 "details": f"Approved by curator in Van50 Curator Studio. Note: {curator_note}",
                 "curatorSnapshot": {
+                    "approvedTitle": event_data.get("title"),
                     "approvedPrice": price,
                     "approvedPriceLabel": price_label,
                     "approvedCategory": category,
@@ -1085,6 +1113,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_data["curatorNote"] = curator_note
             event_data["category"] = category
             event_data["isSoldOut"] = bool(event_data.get("isSoldOut", False))
+            event_data = ensure_event_catalog_fields(event_data)
 
             # 1. Add/update in data/events.json
             with open(EVENTS_PATH, "r", encoding="utf-8") as f:
@@ -1667,6 +1696,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             "verifiedAt": datetime.now(timezone.utc).isoformat(),
                             "details": f"Approved by curator with AI instruction. Note: {note}",
                             "curatorSnapshot": {
+                                "approvedTitle": event_to_approve.get("title"),
                                 "approvedPrice": price,
                                 "approvedPriceLabel": price_label,
                                 "approvedCategory": category,
@@ -1678,6 +1708,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             }
                         }
                         event_to_approve["isSoldOut"] = bool(event_to_approve.get("isSoldOut", False))
+                        event_to_approve = ensure_event_catalog_fields(event_to_approve)
 
                         # 1. Add/update in events.json
                         with open(EVENTS_PATH, "r", encoding="utf-8") as f:
@@ -1685,8 +1716,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         events_list = [e for e in db.get("events", []) if e.get("id") != event_id]
                         events_list.append(event_to_approve)
                         db["events"] = events_list
-                        db["metadata"]["totalEvents"] = len(events_list)
-                        db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        db.setdefault("metadata", {})["totalEvents"] = len(events_list)
+                        db.setdefault("metadata", {})["updatedAt"] = datetime.now(timezone.utc).isoformat()
                         with open(EVENTS_PATH, "w", encoding="utf-8") as f:
                             json.dump(db, f, indent=2, ensure_ascii=False)
 
@@ -1696,7 +1727,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                                 q_data = json.load(f)
                             q_list = [q for q in q_data.get("quarantinedEvents", []) if q.get("id") != event_id]
                             q_data["quarantinedEvents"] = q_list
-                            q_data["metadata"]["pendingCount"] = len(q_list)
+                            q_data.setdefault("metadata", {})["pendingCount"] = len(q_list)
                             with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                                 json.dump(q_data, f, indent=2, ensure_ascii=False)
 

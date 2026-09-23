@@ -113,7 +113,44 @@ def run_ocr_on_base64(base64_data: str) -> Tuple[str, str]:
         raise
 
 
-def parse_ocr_text(text: str) -> Dict[str, Any]:
+BOILERPLATE_TITLE_HEADERS = {
+    "eventbrite", "showpass", "ticketmaster", "ticketweb", "admitone", "dice",
+    "ticket tailor", "zeffy", "vtix", "opentable", "paypal",
+    "order confirmation", "order summary", "your order", "your tickets",
+    "ticket details", "checkout", "cart", "tax invoice", "receipt",
+    "general admission", "admission", "vancouver", "bc", "canada",
+    "total", "subtotal", "date", "time", "venue", "location", "doors",
+    "show", "19+ only", "all ages", "vip admission", "advance ticket",
+    "curated vancouver outings", "upcoming weekend", "doors open"
+}
+
+
+def clean_extracted_title(cand: str) -> str:
+    """Cleans up raw candidate event title text."""
+    if not cand:
+        return ""
+    cand = cand.strip()
+    cand = re.sub(r'^\d{1,2}[\.\)]\s*', '', cand).strip()
+    cand = re.sub(r'^[“"\'`]+|[”"\'`]+$', '', cand).strip()
+    cand = re.sub(r'\s+Venue\s*:.*$', '', cand, flags=re.IGNORECASE).strip()
+    cand = re.sub(r'\s+Date\s*(&|and)?\s*Time.*$', '', cand, flags=re.IGNORECASE).strip()
+    cand = re.sub(r'\s+Tickets\s*:?.*$', '', cand, flags=re.IGNORECASE).strip()
+    cand = re.sub(r'\s+Price\s*:?.*$', '', cand, flags=re.IGNORECASE).strip()
+    cand = re.sub(r'[:\-–—]\s*$', '', cand).strip()
+    return cand
+
+
+def is_title_boilerplate(text: str) -> bool:
+    """Checks if candidate string is generic platform/ticketing boilerplate."""
+    lt = text.lower().strip()
+    if lt in BOILERPLATE_TITLE_HEADERS:
+        return True
+    if any(b in lt for b in ["order confirmation", "order summary", "tax invoice", "receipt", "general admission", "curated vancouver outings"]):
+        return True
+    return False
+
+
+def parse_ocr_text(text: str, target_venue: str = None) -> Dict[str, Any]:
     """
     Parses OCR text with heuristics tailored to Canadian ticketing platforms & venue notices:
     Extracts all 7 live dimensions:
@@ -123,7 +160,7 @@ def parse_ocr_text(text: str) -> Dict[str, Any]:
     4. Location / Venue & Street Address / Neighborhood
     5. Price (<= $50 CAD ceiling, base price, fees, GST, tiers)
     6. Link & Ticketing Provider
-    7. Description, Lineup, Age Policy & Restrictions
+    7. Event Name / Title, Description, Lineup, Age Policy & Restrictions
     """
     normalized_text = " ".join(text.split())
     lower_text = normalized_text.lower()
@@ -378,10 +415,90 @@ def parse_ocr_text(text: str) -> Dict[str, Any]:
     m_urls = re.findall(r'https?://[^\s)]+', normalized_text)
 
     # ----------------------------------------------------
-    # 7. DESCRIPTION, LINEUP & AGE POLICY (Dimension 7)
+    # 7. EVENT NAME / TITLE, LINEUP & AGE POLICY (Dimension 7)
     # ----------------------------------------------------
-    m_title = re.search(r'(?:^\d+\.\s*|showcase:\s*|\bfeaturing\s*:?\s*)([A-Z][^\n:]{5,60})', normalized_text)
-    detected_title = m_title.group(1).strip() if m_title else None
+    title_candidates = []
+
+    # Heuristic A: Explicit Labels ("Event:", "Show:", "Title:", "Order for:", "Tickets to:", "Admission to:")
+    lbl_re = re.compile(
+        r'(?:event(?:\s*name)?|show(?:\s*title)?|title|order\s+for|tickets?\s+(?:to|for)|admission\s+(?:to|for))\s*[:\-–]\s*([A-Z0-9][^\n\r|;]{3,80})',
+        re.IGNORECASE
+    )
+    for m in lbl_re.finditer(text):
+        c = clean_extracted_title(m.group(1))
+        if len(c) >= 3 and not is_title_boilerplate(c) and c not in title_candidates:
+            title_candidates.append(c)
+
+    # Heuristic B: Numbered listings in digests / newsletters ("1. Title Venue: ...")
+    num_re = re.compile(
+        r'(?:^|\n|\b)\d{1,2}[\.\)]\s+([A-Z0-9][^\n\r]+?)(?=\s+(?:Venue\s*:|Date\s*(?:&|and)\s*Time|Price\s*:|Catch\s+|Discover\s+|RSVP|\$\d|\n|$))',
+        re.IGNORECASE
+    )
+    for m in num_re.finditer(text):
+        c = clean_extracted_title(m.group(1))
+        if len(c) >= 4 and not is_title_boilerplate(c) and c not in title_candidates:
+            title_candidates.append(c)
+
+    # Heuristic C: Presents / Starring ("THE RIO THEATRE PRESENTS <Title>")
+    pres_re = re.compile(
+        r'(?:presents|presenting|showcasing)\s*[:\-–]?\s*([A-Z0-9][^\n\r|;]{3,70})',
+        re.IGNORECASE
+    )
+    for m in pres_re.finditer(text):
+        c = clean_extracted_title(m.group(1))
+        c = re.sub(r'\s+(?:friday|saturday|sunday|monday|tuesday|wednesday|thursday|doors|tickets).*$', '', c, flags=re.IGNORECASE).strip()
+        if len(c) >= 4 and not is_title_boilerplate(c) and c not in title_candidates:
+            title_candidates.append(c)
+
+    # Heuristic D: Quoted Titles ("Midnight Comedy")
+    quote_re = re.compile(r'["“\']([A-Z0-9][^"”\'\n\r]{4,70})["”\']')
+    for m in quote_re.finditer(text):
+        c = clean_extracted_title(m.group(1))
+        if len(c) >= 4 and not is_title_boilerplate(c) and c not in title_candidates:
+            title_candidates.append(c)
+
+    # Heuristic E: Prominent Non-Boilerplate Headline Lines
+    for line in text.splitlines():
+        line_clean = line.strip()
+        if len(line_clean) < 4 or len(line_clean) > 85:
+            continue
+        if is_title_boilerplate(line_clean):
+            continue
+        if re.match(r'^(?:date|time|venue|location|price|total|subtotal|order\s+for|tickets?|fee|doors|age|policy)\s*[:\-–]', line_clean, re.I):
+            continue
+        if line_clean.lower().endswith("presents") or line_clean.lower().endswith("presenting"):
+            continue
+        if re.match(r'^\$?\d+(?:\.\d{2})?(?:\s*cad)?$', line_clean, re.I):
+            continue
+        if re.search(r'^(?:friday|saturday|sunday|monday|tuesday|wednesday|thursday|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)', line_clean.lower()):
+            continue
+        if re.search(r'tickets?\s+\$\d+', line_clean.lower()):
+            continue
+        words = line_clean.split()
+        if len(words) >= 2 and words[0][0].isupper():
+            c = clean_extracted_title(line_clean)
+            if c and not is_title_boilerplate(c) and c not in title_candidates:
+                title_candidates.append(c)
+
+    # Prioritize candidate closest to target_venue or detected_venue if multiple exist
+    venue_for_ranking = target_venue or detected_venue
+    if venue_for_ranking and len(title_candidates) > 1:
+        v_idx = text.lower().find(venue_for_ranking.lower())
+        if v_idx != -1:
+            best_cand = None
+            min_dist = float('inf')
+            for c in title_candidates:
+                c_idx = text.find(c)
+                if c_idx != -1:
+                    dist = abs(v_idx - c_idx)
+                    if dist < min_dist:
+                        min_dist = dist
+                        best_cand = c
+            if best_cand:
+                title_candidates.remove(best_cand)
+                title_candidates.insert(0, best_cand)
+
+    detected_title = title_candidates[0] if title_candidates else None
 
     m_lineup = re.search(r'(?:featuring|lineup|alongside|with guest|hosted by)\s*:?\s*([^.\n;]+)', normalized_text, re.IGNORECASE)
     detected_lineup = m_lineup.group(1).strip() if m_lineup else None
@@ -479,15 +596,43 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
 
     # 2. Title & Artist Alignment Check
     title_match = False
-    detected_t = ocr_data.get("detected_title") or ""
-    if card_artist and card_artist.lower() in raw_ocr:
+    title_change_detected = False
+    detected_t = (ocr_data.get("detected_title") or "").strip()
+    
+    if detected_t and card_title:
+        clean_c = re.sub(r'[:\-–—].*$', '', card_title).strip().lower()
+        clean_d = re.sub(r'[:\-–—].*$', '', detected_t).strip().lower()
+        overlap = _token_overlap(detected_t, card_title)
+        
+        if (detected_t.lower() == card_title.lower() or 
+            (clean_c and clean_d and clean_c == clean_d) or
+            overlap >= 0.5 or 
+            (len(clean_c) >= 5 and clean_c in detected_t.lower()) or 
+            (len(clean_d) >= 5 and clean_d in card_title.lower())):
+            title_match = True
+            title_change_detected = False
+        else:
+            title_match = False
+            title_change_detected = True
+    elif card_artist and card_artist.lower() in raw_ocr:
         title_match = True
+        title_change_detected = False
     elif card_title:
-        clean_title = re.sub(r'[:\-–—].*$', '', card_title).strip()
-        if clean_title.lower() in raw_ocr or _token_overlap(clean_title, raw_ocr) >= 0.4:
+        clean_c = re.sub(r'[:\-–—].*$', '', card_title).strip().lower()
+        if clean_c in raw_ocr or _token_overlap(clean_c, raw_ocr) >= 0.4:
             title_match = True
-        elif detected_t and _token_overlap(detected_t, card_title) >= 0.4:
-            title_match = True
+            title_change_detected = False
+        elif detected_t:
+            title_match = False
+            title_change_detected = True
+
+    title_discrepancy = None
+    if title_change_detected and detected_t:
+        title_discrepancy = {
+            "cardTitle": card_title,
+            "screenshotTitle": detected_t,
+            "message": f'Event Name Change Detected: Screenshot shows "{detected_t}" (Card currently has "{card_title}").'
+        }
 
     # 3. Price Alignment Check
     ocr_price = ocr_data.get("total_price")
@@ -695,16 +840,24 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "description": {
             "key": "description",
-            "name": "7. Description & Details",
+            "name": "7. Event Name, Lineup & Restrictions",
             "icon": "📝",
-            "extracted": ocr_data.get("detected_title") or card_title,
+            "extracted": detected_t or card_title,
             "displayValue": desc_display,
             "cardValue": card_title,
             "isMatch": title_match,
-            "canApply": bool(ocr_data.get("detected_title") or ocr_data.get("detected_lineup")),
-            "status": "confirmed" if title_match else "notice",
+            "canApply": bool(detected_t or ocr_data.get("detected_lineup")),
+            "status": "confirmed" if title_match else ("discrepancy" if title_change_detected else "notice"),
+            "extractedTitle": detected_t,
+            "cardTitle": card_title,
+            "hasTitleChange": title_change_detected,
+            "titleChangeDetected": title_change_detected,
             "details": {
-                "title": ocr_data.get("detected_title") or card_title,
+                "title": detected_t or card_title,
+                "extractedTitle": detected_t,
+                "cardTitle": card_title,
+                "hasTitleChange": title_change_detected,
+                "titleChangeMessage": f'Event renamed to: {detected_t}' if title_change_detected else None,
                 "lineup": ocr_data.get("detected_lineup") or card_artist,
                 "agePolicy": ocr_data.get("age_policy", "All Ages"),
                 "isSoldOut": ocr_data.get("is_sold_out", False),
@@ -716,6 +869,14 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
 
     is_fully_aligned = venue_match and title_match and price_match
     
+    comp_warnings = []
+    if status_warning:
+        comp_warnings.append(status_warning)
+    if price_discrepancy and price_discrepancy.get("message"):
+        comp_warnings.append(price_discrepancy["message"])
+    if title_discrepancy and title_discrepancy.get("message"):
+        comp_warnings.append(title_discrepancy["message"])
+
     return {
         "success": True,
         "isFullyAligned": is_fully_aligned,
@@ -727,7 +888,12 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "title": {
             "cardTitle": card_title,
-            "matchedInScreenshot": title_match
+            "extractedTitle": detected_t,
+            "matchedInScreenshot": title_match,
+            "hasTitleChange": title_change_detected,
+            "titleChangeDetected": title_change_detected,
+            "suggestedTitle": detected_t if title_change_detected else card_title,
+            "discrepancy": title_discrepancy
         },
         "price": {
             "cardPrice": card_price,
@@ -743,7 +909,8 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "agePolicy": ocr_data.get("age_policy"),
         "statusWarning": status_warning,
-        "provider": ocr_provider
+        "provider": ocr_provider,
+        "warnings": comp_warnings
     }
 
 
@@ -759,7 +926,8 @@ def verify_screenshot_against_event(image_path_or_base64: str, event_card: Dict[
         else:
             text = run_native_ocr(image_path_or_base64)
             
-        parsed = parse_ocr_text(text)
+        target_venue = (event_card or {}).get("venue", "")
+        parsed = parse_ocr_text(text, target_venue=target_venue)
         comparison = compare_ocr_with_card(parsed, event_card)
         comparison["extracted"] = parsed
         comparison["aligned"] = comparison.get("isFullyAligned", False)
@@ -770,8 +938,8 @@ def verify_screenshot_against_event(image_path_or_base64: str, event_card: Dict[
             "priceMatch": comparison.get("price", {}).get("isMatch", False),
         }
         comparison["ocrSummary"] = {
-            "detectedVenue": event_card.get("venue") if comparison["alignment"]["venueMatch"] else None,
-            "detectedTitle": event_card.get("title") if comparison["alignment"]["titleMatch"] else None,
+            "detectedVenue": event_card.get("venue") if comparison["alignment"]["venueMatch"] else parsed.get("detected_venue"),
+            "detectedTitle": parsed.get("detected_title") or (event_card.get("title") if comparison["alignment"]["titleMatch"] else None),
             "detectedDate": parsed.get("extracted_date"),
             "agePolicy": parsed.get("age_policy") or "Standard / All Ages",
             "soldOut": parsed.get("is_sold_out", False),
@@ -784,6 +952,9 @@ def verify_screenshot_against_event(image_path_or_base64: str, event_card: Dict[
         disc = comparison.get("price", {}).get("discrepancy")
         if disc and isinstance(disc, dict) and disc.get("message"):
             comparison["warnings"].append(disc["message"])
+        title_disc = comparison.get("title", {}).get("discrepancy")
+        if title_disc and isinstance(title_disc, dict) and title_disc.get("message"):
+            comparison["warnings"].append(title_disc["message"])
         return comparison
     finally:
         if temp_path and os.path.exists(temp_path):

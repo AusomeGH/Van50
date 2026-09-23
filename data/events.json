@@ -564,92 +564,6 @@
       ]
     },
     {
-      "id": "eb-standup-mental-health",
-      "title": "Stand Up For Mental Health Showcase",
-      "artist": null,
-      "performers": null,
-      "venue": "Chill x Studio",
-      "venueAliases": [],
-      "address": "1227 Richards St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "price": 12.06,
-      "priceLabel": "$12.06 all-in",
-      "pricingType": "platform",
-      "tiers": [
-        {
-          "name": "General Admission",
-          "price": 12.06
-        }
-      ],
-      "isFree": false,
-      "isDaily": false,
-      "frequency": "one-off",
-      "frequencyLabel": "One-Off Show (Sept 22)",
-      "daysOfWeek": [
-        "tue"
-      ],
-      "timeSlots": [
-        "early-evening"
-      ],
-      "category": "shows",
-      "categoryLabel": "Comedy & Shows",
-      "categoryIcon": "🎭",
-      "subTags": [
-        "mental-health",
-        "yaletown",
-        "stand-up",
-        "stand-up-for-mental-health-summer-class-debut",
-        "stand-up-for-mental-health-summer-class-debut-tickets",
-        "community-comedy"
-      ],
-      "dateSchedule": "Tuesday, Sept 22 • 7:30 PM",
-      "startIso": "2026-09-22T19:30:00-07:00",
-      "endIso": "2026-09-22T21:30:00-07:00",
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-      "venueUrl": "https://chillxstudio.com",
-      "ticketProvider": "Eventbrite Verified",
-      "rawProvider": "Eventbrite",
-      "coordinates": [
-        49.2748,
-        -123.1265
-      ],
-      "transitInfo": "3 min walk from Yaletown-Roundhouse Canada Line",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "An uplifting evening of laughter and community healing at Heritage Hall, where new graduates of the comedy-training program perform original stand-up sets dispelling mental health stigma through humor.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "schema_jsonld",
-        "verifiedTotal": 12.06,
-        "feeBreakdown": "$12.06 live checkout rate verified via Eventbrite schema payload (CAD)",
-        "verifiedAt": "2026-09-22T11:07:17-07:00",
-        "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "dedicated_page",
-        "matched_tokens": [
-          "stand",
-          "mental",
-          "health",
-          "stand-up"
-        ],
-        "evidence_snippet": "...stand up for mental health summer class debut tickets, tuesday, september 22 • 7...",
-        "reason": "Affirmatively verified event on dedicated landing page (stand, mental, health, stand-up)"
-      },
-      "categories": [
-        "comedy",
-        "shows",
-        "social"
-      ]
-    },
-    {
       "id": "cinematheque-samurai-prisoner",
       "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
       "artist": null,
@@ -753,96 +667,6 @@
         "arts",
         "cinema",
         "culture"
-      ]
-    },
-    {
-      "id": "biltmore-cabaret-indie-music",
-      "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
-      "artist": "Local indie bands & resident DJs",
-      "performers": null,
-      "venue": "The Biltmore Cabaret",
-      "venueAliases": [],
-      "address": "2755 Prince Edward St, Vancouver",
-      "neighborhood": "Mount Pleasant & South Vancouver",
-      "price": 9.0,
-      "priceLabel": "$9.00 adv / $15.00 door",
-      "pricingType": "tiered",
-      "tiers": [
-        {
-          "name": "Advance Online Presale",
-          "price": 9.0,
-          "label": "$9.00 adv"
-        },
-        {
-          "name": "At-The-Door Cover Charge",
-          "price": 15.0,
-          "label": "$15.00 door"
-        }
-      ],
-      "isFree": false,
-      "isDaily": false,
-      "frequency": "weekly",
-      "frequencyLabel": "Thursdays – Saturdays",
-      "daysOfWeek": [
-        "thu",
-        "fri",
-        "sat"
-      ],
-      "timeSlots": [
-        "early-evening",
-        "late-evening"
-      ],
-      "category": "music",
-      "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
-      "subTags": [
-        "indie-folk",
-        "live-band",
-        "biltmore",
-        "concert"
-      ],
-      "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
-      "startIso": "2026-10-17T19:00:00-07:00",
-      "endIso": "2026-10-17T23:00:00-07:00",
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://biltmorecabaret.com/event",
-      "venueUrl": "https://biltmorecabaret.com",
-      "ticketProvider": "AdmitOne Verified",
-      "rawProvider": "AdmitOne",
-      "coordinates": [
-        49.2602,
-        -123.0975
-      ],
-      "transitInfo": "Main & 12th Ave bus corridor",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "admitone_scraped",
-        "verifiedTotal": 9.0,
-        "feeBreakdown": "$9.00 all-in verified via AdmitOne checkout page",
-        "verifiedAt": "2026-09-22T11:07:23-07:00",
-        "details": "Scraped live from AdmitOne event page: https://admitone.com/events/vancouver"
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "calendar_mention",
-        "matched_tokens": [
-          "local"
-        ],
-        "evidence_snippet": "...reers browse events browse shows browse local events sell tickets online information privacy policy code of conduct addr...",
-        "reason": "Official venue calendar/schedule lists event token(s): ['local']"
-      },
-      "categories": [
-        "music",
-        "nightlife",
-        "social"
       ]
     },
     {
@@ -4754,6 +4578,124 @@
         "evidence_snippet": "VIFF 2026 Showcase: All We Imagine as Light Cannes Grand Prix Winner",
         "reason": "Affirmatively verified VIFF 2026 feature screening on viff.org"
       }
+    },
+    {
+      "id": "eb-standup-mental-health",
+      "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
+      "venue": "Chill x Studio",
+      "address": "1227 Richards St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 10.0,
+      "attemptedPriceLabel": "$10.00 door",
+      "provider": "Eventbrite",
+      "semanticProvider": "Eventbrite Verified",
+      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T11:07:29-07:00",
+      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "price": 10.0,
+      "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+      "dateSchedule": "Friday, September 25",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:12:22.889227+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:12:22.889248+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
+      },
+      "isSoldOut": false,
+      "categories": [
+        "shows"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "One-off Event",
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "startIso": "2026-09-25T19:00:00-07:00",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Transit accessible via TransLink SkyTrain / bus service",
+      "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
+      "pricingType": "paid",
+      "isFree": false
+    },
+    {
+      "id": "biltmore-cabaret-indie-music",
+      "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
+      "venue": "Chill x Studio",
+      "address": "2755 Prince Edward St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 11.0,
+      "attemptedPriceLabel": "$11.00 door",
+      "provider": "AdmitOne",
+      "semanticProvider": "AdmitOne Verified",
+      "websiteUrl": "https://biltmorecabaret.com/event",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T11:07:32-07:00",
+      "flagReason": "Could not parse live ticket prices from AdmitOne page (https://biltmorecabaret.com/event)",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "price": 10.0,
+      "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+      "dateSchedule": "Friday, September 25",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:15:06.727899+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:15:06.727924+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
+      },
+      "isSoldOut": false,
+      "categories": [
+        "shows"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "One-off Event",
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "startIso": "2026-09-25T19:00:00-07:00",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Transit accessible via TransLink SkyTrain / bus service",
+      "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
+      "pricingType": "paid",
+      "isFree": false
     }
-  ]
+  ],
+  "metadata": {
+    "totalEvents": 53,
+    "updatedAt": "2026-09-23T16:15:06.732471+00:00"
+  }
 }

@@ -1071,6 +1071,8 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const noteField = document.getElementById('ai-approve-note');
   const dateField = document.getElementById('ai-approve-date');
   const venueApproveField = document.getElementById('ai-approve-venue');
+  const titleApproveField = document.getElementById('ai-approve-title');
+  const titleBadge = document.getElementById('ai-approve-title-badge');
 
   // Configure modal presentation based on action mode
   if (mode === 'approve') {
@@ -1107,6 +1109,8 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (idField) idField.value = ev.id || '';
     if (venueField) venueField.value = ev.venue || '';
     if (titleField) titleField.value = ev.title || '';
+    if (titleApproveField) titleApproveField.value = ev.title || '';
+    if (titleBadge) titleBadge.style.display = 'none';
     const website = ev.websiteUrl || ev.url || '';
     if (urlField) urlField.value = website;
 
@@ -1148,6 +1152,7 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (q.approvedCategory && catField) catField.value = q.approvedCategory;
     if (q.approvedDate && dateField) dateField.value = q.approvedDate;
     if (q.approvedVenue && venueApproveField) venueApproveField.value = q.approvedVenue;
+    if (q.approvedTitle && titleApproveField) titleApproveField.value = q.approvedTitle;
     if (q.curatorNote && noteField) noteField.value = q.curatorNote;
     
     // Load screenshots (support both screenshotPaths array and single screenshotPath/screenshotBase64)
@@ -1289,6 +1294,21 @@ function resetScreenshotAlignmentPanel() {
     if (compEl) compEl.textContent = defaults[k]?.compare || '';
   });
 
+  const valTitleEl = document.getElementById('ai-dim-val-title');
+  if (valTitleEl) valTitleEl.textContent = 'No event title detected';
+
+  const compTitleEl = document.getElementById('ai-dim-compare-title');
+  if (compTitleEl) compTitleEl.textContent = 'Card: Untitled Event';
+
+  const badgeTitleEl = document.getElementById('ai-dim-badge-title');
+  if (badgeTitleEl) {
+    badgeTitleEl.textContent = 'No Title Detected';
+    badgeTitleEl.className = 'dim-pill dim-pill-unconfirmed';
+  }
+
+  const titleBadge = document.getElementById('ai-approve-title-badge');
+  if (titleBadge) titleBadge.style.display = 'none';
+
   const priceEl = document.getElementById('ai-ocr-detected-price');
   if (priceEl) {
     priceEl.textContent = '$0.00';
@@ -1323,6 +1343,7 @@ function resetScreenshotAlignmentPanel() {
 
 function applyAllExtractedDimensions(dims) {
   if (!dims) return;
+  const titleInput = document.getElementById('ai-approve-title');
   const priceInput = document.getElementById('ai-approve-price');
   const catInput = document.getElementById('ai-approve-category');
   const dateInput = document.getElementById('ai-approve-date');
@@ -1330,6 +1351,15 @@ function applyAllExtractedDimensions(dims) {
   const noteInput = document.getElementById('ai-approve-note');
 
   const highlightedEls = [];
+
+  // 0. Event Name / Title
+  if (titleInput) {
+    const extTitle = dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
+    if (extTitle && extTitle !== 'No event title detected') {
+      titleInput.value = extTitle;
+      highlightedEls.push(titleInput);
+    }
+  }
 
   // 1. Price
   if (priceInput && dims.price) {
@@ -1401,12 +1431,12 @@ function applyAllExtractedDimensions(dims) {
     }, 1500);
   });
 
-  showToast('⚡ Applied all 7 extracted live dimensions to card!', 'success');
+  showToast('⚡ Applied all extracted live dimensions and event title to card!', 'success');
 }
 
 function applySingleDimension(dimKey, dims) {
-  if (!dims || !dims[dimKey]) return;
-  const dim = dims[dimKey];
+  if (!dims) return;
+  const titleInput = document.getElementById('ai-approve-title');
   const priceInput = document.getElementById('ai-approve-price');
   const catInput = document.getElementById('ai-approve-category');
   const dateInput = document.getElementById('ai-approve-date');
@@ -1415,22 +1445,29 @@ function applySingleDimension(dimKey, dims) {
 
   let updatedEl = null;
 
-  if (dimKey === 'date' && dateInput) {
-    const d = dim.extracted || dim.displayValue;
+  if (dimKey === 'title' && titleInput) {
+    const extTitle = dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
+    if (extTitle && extTitle !== 'No event title detected') {
+      titleInput.value = extTitle;
+      updatedEl = titleInput;
+      showToast(`⚡ Applied extracted event name: "${extTitle}"`, 'success');
+    }
+  } else if (dimKey === 'date' && dateInput && dims.date) {
+    const d = dims.date.extracted || dims.date.displayValue;
     if (d) {
       dateInput.value = d;
       updatedEl = dateInput;
       showToast(`⚡ Applied extracted date: "${d}"`, 'success');
     }
-  } else if (dimKey === 'frequency' && noteInput) {
-    const f = dim.displayValue || dim.extracted;
+  } else if (dimKey === 'frequency' && noteInput && dims.frequency) {
+    const f = dims.frequency.displayValue || dims.frequency.extracted;
     if (f) {
       noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Recurrence: ${f}`;
       updatedEl = noteInput;
       showToast(`⚡ Applied frequency to audit notes!`, 'success');
     }
-  } else if (dimKey === 'category' && catInput) {
-    const c = (dim.extracted || dim.detected || '').toLowerCase();
+  } else if (dimKey === 'category' && catInput && dims.category) {
+    const c = (dims.category.extracted || dims.category.detected || '').toLowerCase();
     for (let opt of catInput.options) {
       if (opt.value === c || (c && opt.value.includes(c))) {
         catInput.value = opt.value;
@@ -1439,32 +1476,32 @@ function applySingleDimension(dimKey, dims) {
         break;
       }
     }
-  } else if (dimKey === 'location' && venueInput) {
-    const v = dim.details?.venue || dim.extracted || dim.venue;
+  } else if (dimKey === 'location' && venueInput && dims.location) {
+    const v = dims.location.details?.venue || dims.location.extracted || dims.location.venue;
     if (v) {
       venueInput.value = v;
       updatedEl = venueInput;
       showToast(`⚡ Applied venue: "${v}"`, 'success');
     }
-  } else if (dimKey === 'price' && priceInput) {
-    const p = dim.extracted !== null && dim.extracted !== undefined ? dim.extracted : dim.total;
+  } else if (dimKey === 'price' && priceInput && dims.price) {
+    const p = dims.price.extracted !== null && dims.price.extracted !== undefined ? dims.price.extracted : dims.price.total;
     if (p !== null && !isNaN(p)) {
       priceInput.value = parseFloat(p).toFixed(2);
       updatedEl = priceInput;
-      if (noteInput && dim.displayValue) {
-        noteInput.value = dim.displayValue;
+      if (noteInput && dims.price.displayValue) {
+        noteInput.value = dims.price.displayValue;
       }
       showToast(`⚡ Applied verified price $${parseFloat(p).toFixed(2)} CAD!`, 'success');
     }
-  } else if (dimKey === 'link' && noteInput) {
-    const prov = dim.displayValue || dim.extracted;
+  } else if (dimKey === 'link' && noteInput && dims.link) {
+    const prov = dims.link.displayValue || dims.link.extracted;
     if (prov) {
       noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Provider: ${prov}`;
       updatedEl = noteInput;
       showToast(`⚡ Applied ticketing provider details!`, 'success');
     }
-  } else if (dimKey === 'description' && noteInput) {
-    const desc = dim.displayValue || dim.extracted;
+  } else if (dimKey === 'description' && noteInput && dims.description) {
+    const desc = dims.description.displayValue || dims.description.extracted;
     if (desc) {
       noteInput.value = desc;
       updatedEl = noteInput;
@@ -1601,6 +1638,58 @@ async function triggerScreenshotVerification(dataUrl) {
           }
         });
 
+        // 3b. Dedicated Event Name / Title extraction row
+        const valTitleEl = document.getElementById('ai-dim-val-title');
+        const compTitleEl = document.getElementById('ai-dim-compare-title');
+        const badgeTitleEl = document.getElementById('ai-dim-badge-title');
+        const titleBadge = document.getElementById('ai-approve-title-badge');
+        const titleInput = document.getElementById('ai-approve-title');
+
+        const extractedTitle = data.title?.extractedTitle || dims.description?.extractedTitle || dims.description?.details?.extractedTitle || '';
+        const cardTitleStr = data.title?.cardTitle || '';
+        const hasTitleChange = Boolean(data.title?.hasTitleChange || dims.description?.hasTitleChange);
+        const isTitleMatch = Boolean(data.title?.matchedInScreenshot);
+
+        if (valTitleEl) {
+          valTitleEl.textContent = extractedTitle || 'No event title detected';
+        }
+        if (compTitleEl) {
+          compTitleEl.textContent = `Card: ${cardTitleStr || 'Untitled Event'}`;
+        }
+        if (badgeTitleEl) {
+          if (hasTitleChange) {
+            badgeTitleEl.textContent = '⚠️ Name Changed';
+            badgeTitleEl.className = 'dim-pill pill-discrepancy';
+          } else if (isTitleMatch) {
+            badgeTitleEl.textContent = '✓ Name Matches';
+            badgeTitleEl.className = 'dim-pill pill-confirmed';
+          } else if (extractedTitle) {
+            badgeTitleEl.textContent = '🔍 Extracted Name';
+            badgeTitleEl.className = 'dim-pill pill-inferred';
+          } else {
+            badgeTitleEl.textContent = 'No Title Detected';
+            badgeTitleEl.className = 'dim-pill dim-pill-unconfirmed';
+          }
+        }
+
+        if (hasTitleChange) {
+          if (titleBadge) titleBadge.style.display = 'inline-block';
+          if (titleInput && extractedTitle && (!titleInput.value || titleInput.value === cardTitleStr)) {
+            titleInput.value = extractedTitle;
+            titleInput.style.transition = 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+            titleInput.style.backgroundColor = 'rgba(245, 158, 11, 0.25)';
+            titleInput.style.borderColor = '#f59e0b';
+            titleInput.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.4)';
+            setTimeout(() => {
+              titleInput.style.backgroundColor = '';
+              titleInput.style.borderColor = '';
+              titleInput.style.boxShadow = '';
+            }, 2500);
+          }
+        } else {
+          if (titleBadge) titleBadge.style.display = 'none';
+        }
+
         // 4. Update Legacy Elements for 100% Backwards Compatibility
         const shotPrice = dims.price?.extracted ?? data.price?.screenshotPrice;
         const feeText = dims.price?.details?.breakdown || data.price?.feeBreakdown;
@@ -1660,9 +1749,19 @@ async function triggerScreenshotVerification(dataUrl) {
         // 6. Discrepancy Alert Banner
         if (discrepancyAlert) {
           const cardPrice = data.price?.cardPrice;
-          if (cardPrice !== null && shotPrice !== null && Math.abs(cardPrice - shotPrice) > 0.05) {
+          const hasPriceMismatch = (cardPrice !== null && shotPrice !== null && Math.abs(cardPrice - shotPrice) > 0.05);
+          const hasTitleMismatch = Boolean(data.title?.hasTitleChange);
+          const alertParts = [];
+          if (hasTitleMismatch && (data.title?.discrepancy?.message || extractedTitle)) {
+            const titleMsg = data.title?.discrepancy?.message || `Event Name Change: Screenshot shows "${extractedTitle}" (Card has "${cardTitleStr}").`;
+            alertParts.push(`⚠️ <strong>Event Name Change:</strong> ${escapeHtml(titleMsg)}`);
+          }
+          if (hasPriceMismatch) {
+            alertParts.push(`⚠️ <strong>Price Mismatch:</strong> Card has <strong>$${cardPrice.toFixed(2)}</strong>, but screenshot verified <strong>$${shotPrice.toFixed(2)} all-in</strong>.`);
+          }
+          if (alertParts.length > 0) {
             discrepancyAlert.style.display = 'block';
-            discrepancyAlert.innerHTML = `⚠️ <strong>Price Mismatch:</strong> Card has <strong>$${cardPrice.toFixed(2)}</strong>, but screenshot verified <strong>$${shotPrice.toFixed(2)} all-in</strong>. Click <em>⚡ Apply All Extracted Dimensions</em> to update.`;
+            discrepancyAlert.innerHTML = alertParts.join('<br>') + '<div style="margin-top: 4px; font-size: 0.76rem; color: #fde68a;">Click <em>⚡ Apply All Extracted Dimensions</em> or <em>⚡ Apply Event Name</em> to update.</div>';
           } else if (data.warnings && data.warnings.length > 0) {
             discrepancyAlert.style.display = 'block';
             discrepancyAlert.innerHTML = `⚠️ <strong>Notice:</strong> ` + data.warnings.map(escapeHtml).join('; ');
@@ -1862,6 +1961,7 @@ async function submitAIInstruction(action = 'queue_only') {
   const eventTitle = document.getElementById('ai-inst-title')?.value || '';
   const venueName = document.getElementById('ai-inst-venue')?.value || '';
   const sourceUrl = document.getElementById('ai-inst-url')?.value || '';
+  const approvedTitle = document.getElementById('ai-approve-title')?.value.trim() || eventTitle;
 
   let approvedPrice = parseFloat(document.getElementById('ai-approve-price')?.value);
   if ((isNaN(approvedPrice) || approvedPrice <= 0) && state.currentOcrVerification?.price?.screenshotPrice) {
@@ -1883,7 +1983,8 @@ async function submitAIInstruction(action = 'queue_only') {
   const payload = {
     instructionText: instructionText,
     eventId: eventId,
-    eventTitle: eventTitle,
+    eventTitle: approvedTitle || eventTitle,
+    approvedTitle: approvedTitle,
     venueName: approvedVenue || venueName,
     sourceUrl: sourceUrl,
     screenshotBase64: state.currentScreenshots[0] || state.currentScreenshotBase64 || null,
@@ -1919,13 +2020,15 @@ async function submitAIInstruction(action = 'queue_only') {
       const targetItem = state.quarantinedEvents.find(e => e.id === eventId);
       if (targetItem) {
         targetItem.dealtWith = true;
+        if (approvedTitle) targetItem.title = approvedTitle;
         const finalPaths = (data.screenshotPaths && data.screenshotPaths.length > 0)
           ? data.screenshotPaths
           : (data.screenshotPath ? [data.screenshotPath] : [...state.currentScreenshots]);
         targetItem.queuedInstruction = {
           instructionText: instructionText,
           eventId: eventId,
-          eventTitle: eventTitle,
+          eventTitle: approvedTitle || eventTitle,
+          approvedTitle: approvedTitle,
           venueName: venueName,
           sourceUrl: sourceUrl,
           screenshotPath: data.screenshotPath || finalPaths[0] || null,
