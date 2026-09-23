@@ -473,15 +473,95 @@ function renderCardScreenshotThumbnails(inst) {
   `;
 }
 
+function evaluateCuratorDateStatus(ev) {
+  const rawDateStr = formatCuratorDate(ev);
+  const isDateMissing = !rawDateStr || 
+                        rawDateStr === 'Schedule details pending review' || 
+                        (!ev.dateSchedule && !ev.startIso && (!ev.daysOfWeek || !ev.daysOfWeek.length) && !ev.isDaily);
+  
+  const reason = ev.quarantineReason || ev.flagReason || ev.archivedReason || '';
+  const reasonText = [reason, ev.quarantineReason, ev.flagReason, ev.archivedReason].filter(Boolean).join(' ').toLowerCase();
+  
+  const isScheduleFlagged = reasonText.includes('schedule') || 
+                            reasonText.includes('ended') || 
+                            reasonText.includes('expired') || 
+                            reasonText.includes('past date') || 
+                            reasonText.includes('schedule drift') || 
+                            reasonText.includes('drift') ||
+                            reasonText.includes('generic catalog index') || 
+                            reasonText.includes('generic link') || 
+                            reasonText.includes('bare root');
+
+  let isDatePast = false;
+  try {
+    const now = new Date();
+    const refYear = now.getFullYear() >= 2026 ? now.getFullYear() : 2026;
+    const refMonth = now.getFullYear() >= 2026 ? now.getMonth() : 8;
+    const refDay = now.getFullYear() >= 2026 ? now.getDate() : 22;
+    const todayStart = new Date(refYear, refMonth, refDay);
+
+    if (ev.endIso) {
+      const endDate = new Date(ev.endIso);
+      if (endDate < todayStart) {
+        isDatePast = true;
+      }
+    } else if (ev.startIso && !ev.isDaily && ev.frequency !== 'daily' && (!ev.daysOfWeek || !ev.daysOfWeek.length)) {
+      const startDate = new Date(ev.startIso);
+      if (startDate < todayStart) {
+        isDatePast = true;
+      }
+    }
+  } catch (e) {}
+
+  const isUnconfirmed = isDateMissing || isScheduleFlagged || isDatePast;
+
+  let diagnosticHtml = '';
+  if (isUnconfirmed) {
+    if (isDatePast) {
+      diagnosticHtml = `<span>📅 <strong>Event Date (Past / Expired):</strong> ${escapeHtml(rawDateStr)} — scheduled date has passed; needs upcoming show date</span>`;
+    } else if (reasonText.includes('schedule changed') || reasonText.includes('schedule drift')) {
+      diagnosticHtml = `<span>📅 <strong>Event Date (Schedule Drift):</strong> ${escapeHtml(rawDateStr)} — live source differs from saved schedule</span>`;
+    } else if (reasonText.includes('generic') || reasonText.includes('catalog index') || reasonText.includes('bare root')) {
+      diagnosticHtml = `<span>📅 <strong>Event Date (Unconfirmed):</strong> Specific show date unconfirmed (links to general venue calendar)</span>`;
+    } else if (isDateMissing) {
+      diagnosticHtml = `<span>📅 <strong>Event Date (Unconfirmed):</strong> Show date &amp; time not confirmed by automated crawl (pending curator review)</span>`;
+    } else {
+      diagnosticHtml = `<span>📅 <strong>Event Date (Unconfirmed):</strong> ${escapeHtml(rawDateStr)} (requires curator verification)</span>`;
+    }
+  } else {
+    diagnosticHtml = `<span>📅 <strong>Event Date:</strong> ${escapeHtml(rawDateStr)}</span>`;
+  }
+
+  return {
+    isUnconfirmed,
+    rawDateStr,
+    isDateMissing,
+    isScheduleFlagged,
+    isDatePast,
+    diagnosticHtml
+  };
+}
+
+function isCuratorDateUnconfirmed(ev) {
+  return evaluateCuratorDateStatus(ev).isUnconfirmed;
+}
+
 function generateCuratorDiagnostics(ev) {
   const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
   const isBudgetExceeded = attemptedPrice > 50.0;
   const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
   const hasDrift = isDrift(ev);
-  const reason = ev.quarantineReason || ev.flagReason || ev.archivedReason || 'Live checkout could not be verified automatically';
+
+  // --- DATE EVALUATION: Confirmed vs Unconfirmed Details ---
+  const dateStatus = evaluateCuratorDateStatus(ev);
 
   const confirmedItems = [];
   confirmedItems.push(`<span>📍 <strong>Venue:</strong> ${escapeHtml(ev.venue || 'Known Venue')}${ev.neighborhood ? ' (' + escapeHtml(ev.neighborhood) + ')' : ''}</span>`);
+
+  // 1. If Date is confirmed, include it directly in Confirmed Details
+  if (!dateStatus.isUnconfirmed) {
+    confirmedItems.push(dateStatus.diagnosticHtml);
+  }
   
   if (ev.address) {
     confirmedItems.push(`<span>🗺️ <strong>Address:</strong> ${escapeHtml(ev.address)}</span>`);
@@ -506,6 +586,12 @@ function generateCuratorDiagnostics(ev) {
   if (isAutoDenied || isBudgetExceeded) {
     issuesItems.push(`<span>🚨 <strong>Budget Cap Exceeded:</strong> Rate of $${attemptedPrice.toFixed(2)} CAD exceeds strict $50.00 ceiling</span>`);
   }
+
+  // 2. If Date is unconfirmed, include it with specific diagnosis in Unconfirmed Details / Issues
+  if (dateStatus.isUnconfirmed) {
+    issuesItems.push(dateStatus.diagnosticHtml);
+  }
+
   if (hasDrift) {
     issuesItems.push(`<span>⚠️ <strong>Audit Drift:</strong> Detected pricing or schedule changed from previous baseline</span>`);
   }
@@ -538,7 +624,7 @@ function generateCuratorDiagnostics(ev) {
 
       <div class="curator-issues-box">
         <div class="curator-issues-title">
-          <span>⚠️ Issues / Needs Review</span>
+          <span>⚠️ Unconfirmed Details / Issues</span>
           <span style="font-size: 0.72rem; opacity: 0.8; margin-left: auto;">${issuesItems.length} flagged</span>
         </div>
         <ul class="curator-diag-list">
@@ -617,6 +703,9 @@ function renderCards(items) {
             <span class="curator-date-banner-label">Event Schedule / Day:</span>
             <span class="curator-date-banner-text">${escapeHtml(curatorDateStr)}</span>
           </div>
+          ${isCuratorDateUnconfirmed(ev)
+            ? '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-color: rgba(245, 158, 11, 0.5);">⚠️ Unconfirmed Date</span>'
+            : '<span class="curator-badge-pill" style="margin-left: auto; background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">✅ Confirmed Date</span>'}
         </div>
 
         <!-- Diagnostics Grid: Confirmed Details vs. Issues / Needs Review -->
@@ -762,6 +851,17 @@ function renderCards(items) {
             </div>
 
             <div class="curator-field-group">
+              <label class="curator-label">Event Date / Schedule</label>
+              <input 
+                type="text" 
+                id="edit-date-${ev.id}" 
+                class="curator-input" 
+                value="${escapeHtml(ev.dateSchedule || (ev.startIso ? formatCuratorDate(ev) : ''))}" 
+                placeholder="e.g. Tuesday, Sept 22 • 7:30 PM"
+              >
+            </div>
+
+            <div class="curator-field-group">
               <label class="curator-label">Fee Breakdown / Audit Note</label>
               <input 
                 type="text" 
@@ -859,6 +959,8 @@ window.approveQuarantinedEvent = async function(eventId) {
     return;
   }
 
+  const dateInput = document.getElementById(`edit-date-${eventId}`);
+
   const payloadEvent = {
     ...original,
     price: price,
@@ -866,6 +968,7 @@ window.approveQuarantinedEvent = async function(eventId) {
     pricingType: price === 0 ? 'free' : 'fixed',
     isFree: price === 0,
     category: categorySelect ? categorySelect.value : original.category || 'shows',
+    dateSchedule: dateInput && dateInput.value.trim() ? dateInput.value.trim() : (original.dateSchedule || original.frequencyLabel || 'Upcoming'),
     feeBreakdown: feeInput ? feeInput.value.trim() : `Curator approved: $${price.toFixed(2)} CAD`,
     isDaily: original.isDaily || false,
     frequency: original.frequency || 'one-time',

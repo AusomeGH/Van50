@@ -799,8 +799,28 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     continue
                 filtered_q.append(ev)
 
+            # Hydrate date fields from events.json if missing from quarantine queue
+            catalog_lookup = {}
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        c_data = json.load(ef)
+                        for cev in c_data.get("events", []):
+                            cid = cev.get("id")
+                            if cid:
+                                catalog_lookup[cid] = cev
+                except Exception:
+                    pass
+
             for ev in filtered_q:
                 eid = ev.get("id")
+                if eid in catalog_lookup:
+                    cev = catalog_lookup[eid]
+                    for date_field in ["dateSchedule", "startIso", "endIso", "frequency", "frequencyLabel", "daysOfWeek", "isDaily"]:
+                        if date_field not in ev or not ev[date_field]:
+                            if date_field in cev and cev[date_field]:
+                                ev[date_field] = cev[date_field]
+
                 if eid in instructions_map:
                     ev["dealtWith"] = True
                     ev["queuedInstruction"] = instructions_map[eid]
@@ -1033,6 +1053,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_data["venue"] = sanitize_text(str(event_data.get("venue", "")))
             event_data["description"] = sanitize_text(str(event_data.get("description", "")))
             event_data["neighborhood"] = sanitize_text(str(event_data.get("neighborhood", "")))
+            if "dateSchedule" in event_data and event_data["dateSchedule"]:
+                event_data["dateSchedule"] = sanitize_text(str(event_data["dateSchedule"]))
             category = sanitize_text(str(event_data.get("category") or "shows"))
             source_url = sanitize_text(str(event_data.get("websiteUrl") or event_data.get("url") or ""))
 
