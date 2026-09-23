@@ -1,11 +1,178 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-22T16:59:34.148852+00:00",
-    "pendingCount": 0,
+    "updatedAt": "2026-09-23T11:08:09-07:00",
+    "pendingCount": 6,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
+    {
+      "id": "eb-standup-mental-health",
+      "title": "Stand Up For Mental Health Showcase",
+      "venue": "Chill x Studio",
+      "address": "1227 Richards St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 10.0,
+      "attemptedPriceLabel": "$10.00 door",
+      "provider": "Eventbrite",
+      "semanticProvider": "Eventbrite Verified",
+      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T11:07:29-07:00",
+      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "biltmore-cabaret-indie-music",
+      "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+      "venue": "The Biltmore Cabaret",
+      "address": "2755 Prince Edward St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 11.0,
+      "attemptedPriceLabel": "$11.00 door",
+      "provider": "AdmitOne",
+      "semanticProvider": "AdmitOne Verified",
+      "websiteUrl": "https://biltmorecabaret.com/event",
+      "category": "music",
+      "flaggedAt": "2026-09-23T11:07:32-07:00",
+      "flagReason": "Could not parse live ticket prices from AdmitOne page (https://biltmorecabaret.com/event)",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "kitsilano-showboat",
+      "title": "Kitsilano Showboat: Community Summer Stage",
+      "artist": "Local bands & community ensembles",
+      "performers": null,
+      "venue": "Kitsilano Beach Outdoor Amphitheatre",
+      "venueAliases": [],
+      "address": "2300 Cornwall Ave, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "tiers": [],
+      "isFree": true,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Mon, Wed, Fri)",
+      "daysOfWeek": [
+        "mon",
+        "wed",
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "outdoor-theatre",
+        "community-concert",
+        "kits-beach",
+        "live-music"
+      ],
+      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
+      "startIso": "2026-09-09T19:00:00-07:00",
+      "endIso": "2026-09-30T21:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "venueUrl": "https://kitsilanoshowboat.com",
+      "ticketProvider": "Free Public Access",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2742,
+        -123.1558
+      ],
+      "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_bylaw_rate",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+        "verifiedAt": "2026-09-23T11:07:25-07:00",
+        "details": "Verified via official municipal park bylaw / published community schedule."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
+      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "dealtWith": false
+    },
+    {
+      "id": "sun-yat-sen-park",
+      "title": "Dr. Sun Yat-Sen Public Chinese Garden Park",
+      "artist": null,
+      "performers": null,
+      "venue": "Dr. Sun Yat-Sen Public Courtyard",
+      "venueAliases": [],
+      "address": "578 Carrall St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 0.0,
+      "priceLabel": "Free ()",
+      "pricingType": "free",
+      "tiers": [],
+      "isFree": true,
+      "isDaily": true,
+      "frequency": "daily",
+      "frequencyLabel": "Daily Spot",
+      "daysOfWeek": [
+        "daily"
+      ],
+      "timeSlots": [
+        "early-morning",
+        "afternoon"
+      ],
+      "category": "arts",
+      "categoryLabel": "Museums & Visual Arts",
+      "categoryIcon": "🏮",
+      "subTags": [
+        "ming-dynasty",
+        "heritage-courtyard",
+        "koi-pond",
+        "chinatown"
+      ],
+      "dateSchedule": "Daily • 9:30 AM - 4:30 PM",
+      "startIso": "2026-09-08T09:30:00-07:00",
+      "endIso": null,
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://vancouverchinesegarden.com/visit/",
+      "venueUrl": "https://vancouverchinesegarden.com/visit/",
+      "ticketProvider": "Free Public Access",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2798,
+        -123.104
+      ],
+      "transitInfo": "5 min walk from Stadium-Chinatown SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "The outer Ming Dynasty-style courtyard is completely free to enter, featuring stone pathways, jade ponds, weeping willows, and classical pavilion architecture.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "curator_learned_override",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Free public access to outer courtyard",
+        "verifiedAt": "2026-09-23T11:07:25-07:00",
+        "details": "Automatically verified by Van50 Curator Learned Rules Engine."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: HTTP error 403 (Forbidden)",
+      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "dealtWith": false
+    },
     {
       "id": "portside-pub-trivia",
       "title": "The Portside Pub: Gastown Brainstormer Trivia",
@@ -43,7 +210,7 @@
       "endIso": "2026-12-31T22:00:00-07:00",
       "confirmedDates": [],
       "isSoldOut": false,
-      "websiteUrl": "https://theportsidepub.com/calendar",
+      "websiteUrl": "https://theportsidepub.com/bookings/",
       "venueUrl": "https://theportsidepub.com",
       "ticketProvider": "Walk-in / Table Reservation",
       "rawProvider": "OpenTable / Resy",
@@ -58,30 +225,117 @@
       "agePolicy": null,
       "admissionPolicy": null,
       "rovingNote": null,
-      "description": "Booking - Dinner Reservations are until 9pm throughout the week , kitchen closes at 11pm Sun-Thurs. Dinner Reservations are until 7pm Friday Portside Pub..",
+      "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
       "checkoutVerification": {
         "status": "verified_live",
         "method": "scraped_page_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 rate scraped live from published venue page",
-        "verifiedAt": "2026-09-22T11:07:21-07:00",
+        "verifiedAt": "2026-09-23T11:07:31-07:00",
         "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
       },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "calendar_mention",
-        "matched_tokens": [
-          "music",
-          "calendar"
-        ],
-        "evidence_snippet": "...shuck every friday &#038; saturday good music weekends sat 5 good music weekends sun 6 y2k labour day long weekend party...",
-        "reason": "Official venue calendar/schedule lists event token(s): ['music', 'calendar']"
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
+      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
+      "dealtWith": false
+    },
+    {
+      "id": "guilt-and-co-live-jazz",
+      "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+      "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
+      "performers": null,
+      "venue": "Guilt & Co.",
+      "venueAliases": [
+        "Guilt and Co",
+        "Guilt & Co",
+        "Guilt and Company"
+      ],
+      "address": "1 Alexander St (Below Ground), Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 0.0,
+      "priceLabel": "Free – $10.00 all-in",
+      "pricingType": "door",
+      "tiers": [
+        {
+          "name": "Early Show (Pay-What-You-Can)",
+          "basePrice": 0.0,
+          "price": 0.0,
+          "label": "PWYC ($0 minimum)"
+        },
+        {
+          "name": "Late Show General Door Admission",
+          "basePrice": 7.0,
+          "price": 7.0,
+          "label": "$7.00 door"
+        },
+        {
+          "name": "Weekend Feature Late Set",
+          "basePrice": 10.0,
+          "price": 10.0,
+          "label": "$10.00 door"
+        }
+      ],
+      "isFree": false,
+      "isDaily": true,
+      "frequency": "daily",
+      "frequencyLabel": "Nightly (7 Days/Week)",
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "gastown",
+        "live-music",
+        "intimate-lounge",
+        "cocktails",
+        "soul-music",
+        "beer"
+      ],
+      "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
+      "startIso": "2026-09-09T19:00:00-07:00",
+      "endIso": null,
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "ticketProvider": "By-Donation / Artist Contribution",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2835,
+        -123.1039
+      ],
+      "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Guilt & Company Home Page Calendar of Events",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
+        "verifiedAt": "2026-09-23T11:07:53-07:00",
+        "details": "Verified via venue official artist contribution and door policy."
       },
-      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://theportsidepub.com/calendar/ does not contain any event mentions matching ['gastown', 'brainstormer', 'trivia', 'pub-trivia']",
-      "quarantinedAt": "2026-09-22T18:27:24.612560+00:00",
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
+      "quarantinedAt": "2026-09-23T11:08:26.506026+00:00",
       "dealtWith": false
     }
   ],
-  "pendingCount": 1,
-  "lastTriagedAt": "2026-09-22T16:59:51.872559+00:00"
+  "pendingCount": 6,
+  "lastTriagedAt": "2026-09-23T11:08:09.365744+00:00"
 }

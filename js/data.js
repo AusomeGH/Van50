@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-22T17:25:17.603798
+// AUTO-GENERATED from central data/events.json on 2026-09-23T08:17:19-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -4759,7 +4759,83 @@ const VANCOUVER_EVENTS = [
     }
   }
 ];
-const MANUAL_REVIEW_QUEUE = [];
+const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "portside-pub-trivia",
+    "title": "The Portside Pub: Gastown Brainstormer Trivia",
+    "artist": null,
+    "performers": null,
+    "venue": "The Portside Pub",
+    "venueAliases": [],
+    "address": "7 Alexander St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 12.0,
+    "priceLabel": "$12.00 all-in",
+    "pricingType": "food-drink",
+    "tiers": [],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Tuesdays)",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening"
+    ],
+    "category": "trivia",
+    "categoryLabel": "Drinks & Trivia",
+    "categoryIcon": "🧠",
+    "subTags": [
+      "pub-trivia",
+      "craft-beer",
+      "gastown-pub",
+      "trivia-night"
+    ],
+    "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
+    "startIso": "2026-09-08T19:30:00-07:00",
+    "endIso": "2026-12-31T22:00:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://theportsidepub.com/calendar",
+    "venueUrl": "https://theportsidepub.com",
+    "ticketProvider": "Walk-in / Table Reservation",
+    "rawProvider": "OpenTable / Resy",
+    "coordinates": [
+      49.2842,
+      -123.1042
+    ],
+    "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "Booking - Dinner Reservations are until 9pm throughout the week , kitchen closes at 11pm Sun-Thurs. Dinner Reservations are until 7pm Friday Portside Pub..",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "scraped_page_policy",
+      "verifiedTotal": 12.0,
+      "feeBreakdown": "$12.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-22T11:07:21-07:00",
+      "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
+    },
+    "semanticVerification": {
+      "is_verified": true,
+      "match_type": "calendar_mention",
+      "matched_tokens": [
+        "music",
+        "calendar"
+      ],
+      "evidence_snippet": "...shuck every friday &#038; saturday good music weekends sat 5 good music weekends sun 6 y2k labour day long weekend party...",
+      "reason": "Official venue calendar/schedule lists event token(s): ['music', 'calendar']"
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://theportsidepub.com/calendar/ does not contain any event mentions matching ['gastown', 'brainstormer', 'trivia', 'pub-trivia']",
+    "quarantinedAt": "2026-09-22T18:27:24.612560+00:00",
+    "dealtWith": false
+  }
+];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [
@@ -4769,4 +4845,546 @@ const NEIGHBORHOODS = [
   "Kitsilano, Point Grey & UBC",
   "Granville Island & False Creek",
   "North Shore, Burnaby & Metro"
+];
+
+// Days of the Week
+const DAYS_OF_WEEK = [
+  { id: "all", label: "All Days", icon: "🗓️" },
+  { id: "mon", label: "Mon", full: "Monday" },
+  { id: "tue", label: "Tue", full: "Tuesday" },
+  { id: "wed", label: "Wed", full: "Wednesday" },
+  { id: "thu", label: "Thu", full: "Thursday" },
+  { id: "fri", label: "Fri", full: "Friday" },
+  { id: "sat", label: "Sat", full: "Saturday" },
+  { id: "sun", label: "Sun", full: "Sunday" },
+  { id: "daily", label: "Daily Spots", icon: "☀️" }
+];
+
+// Time of Day Starting Slots
+const TIME_SLOTS = [
+  { id: "all", label: "Any Time", icon: "⏰" },
+  { id: "early-morning", label: "Early Morning", desc: "Before 12pm", icon: "🌅" },
+  { id: "afternoon", label: "Afternoon", desc: "12pm – 5pm", icon: "☀️" },
+  { id: "early-evening", label: "Early Evening", desc: "5pm – 8:30pm", icon: "🌆" },
+  { id: "late-evening", label: "Late Evening", desc: "8:30pm+", icon: "🌙" }
+];
+
+// Recurrence Frequency Metadata
+const FREQUENCIES = [
+  { id: "all", label: "All Frequencies", icon: "✨" },
+  { id: "weekly", label: "Weekly", icon: "🔄", color: "#a855f7" },
+  { id: "monthly", label: "Monthly", icon: "📅", color: "#06b6d4" },
+  { id: "daily", label: "Daily", icon: "☀️", color: "#f59e0b" },
+  { id: "one-off", label: "One-Off", icon: "🎟️", color: "#f43f5e" },
+  { id: "seasonal", label: "Seasonal", icon: "🌟", color: "#10b981" },
+  { id: "limited-run", label: "Limited Run", icon: "⏳", color: "#10b981" }
+];
+
+// Curated Category Taxonomy (Multi-Category Support)
+const CATEGORIES = [
+  { id: "all", label: "All", icon: "✨" },
+  { id: "music", label: "Live Music", icon: "🎵" },
+  { id: "shows", label: "Comedy & Stage", icon: "🎭" },
+  { id: "festivals", label: "Festivals", icon: "🎪" },
+  { id: "markets", label: "Markets", icon: "🧺" },
+  { id: "outdoors", label: "Outdoors", icon: "🌲" },
+  { id: "cinema", label: "Cinema", icon: "🎬" },
+  { id: "social", label: "Social & Arts", icon: "🎨" }
+];
+
+// Curated Venue Homepages Directory
+const VENUE_URLS = {
+  "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+  "Lynn Canyon Park": "https://ecologycentre.ca",
+  "Granville Island Public Market": "https://granvilleisland.com",
+  "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
+  "VPL Central Library (Level 9)": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+  "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
+  "UBC Rose Garden & Trail 6": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+  "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+  "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
+  "Little Mountain Gallery": "https://littlemountaingallery.ca",
+  "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
+  "Chill x Studio": "https://chillxstudio.com",
+  "VIFF Centre (Seymour Atrium)": "https://viff.org",
+  "The Cinematheque": "https://thecinematheque.ca",
+  "The Portside Pub": "https://theportsidepub.com",
+  "The Rio Theatre": "https://riotheatre.ca",
+  "The Fox Cabaret": "https://www.foxcabaret.com",
+  "The Biltmore Cabaret": "https://biltmorecabaret.com",
+  "Scotiabank Field at Nat Bailey Stadium": "https://www.milb.com/vancouver",
+  "Tightrope Impro Theatre": "https://tightropetheatre.com",
+  "The Improv Centre": "https://theimprovcentre.ca",
+  "The Rickshaw Theatre": "https://rickshawtheatre.com",
+  "Rickshaw Theatre": "https://rickshawtheatre.com",
+  "Hollywood Theatre": "https://hollywoodtheatre.ca",
+  "The Hollywood Theatre": "https://hollywoodtheatre.ca",
+  "Science World at TELUS World of Science": "https://www.scienceworld.ca",
+  "Public Disco Society": "https://publicdisco.ca",
+  "Public Disco": "https://publicdisco.ca",
+  "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
+  "Pizzeria Ludica": "https://www.pizzerialudica.com/",
+  "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+  "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
+  "The Shipyards District": "https://theshipyardsdistrict.ca",
+  "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
+  "Revue Stage Granville Island": "https://theimprovcentre.ca",
+  "The Revue Stage": "https://theimprovcentre.ca",
+  "Waterfront Theatre": "https://www.carouseltheatre.ca/waterfront-theatre/",
+  "The Nest (Granville Island)": "https://www.granvilleisland.com/directory/nest",
+  "Performance Works": "https://granvilleisland.com/directory/performance-works",
+  "Carousel Theatre": "https://www.carouseltheatre.ca",
+  "Arts Factory": "https://artsfactorysociety.ca",
+  "VIFF Centre": "https://viff.org",
+  "Rio Theatre": "https://riotheatre.ca",
+  "SFU Goldcorp Centre for the Arts": "https://www.sfu.ca/woodwards.html",
+  "Commercial Drive & Main Street": "https://www.carfreevancouver.org",
+  "West 4th Avenue (Burrard to Macdonald)": "https://khatsahlano.ca",
+  "John Hendry Park (Trout Lake)": "https://eatlocal.org/markets/trout-lake/",
+  "Kitsilano Community Centre Plaza": "https://eatlocal.org/markets/kitsilano/",
+  "Guilt & Co.": "https://www.guiltandcompany.com",
+  "UBC Instructional Resources Centre (IRC)": "https://vaninstitute.ca",
+  "Colony Main Street": "https://iq2000trivia.com",
+  "RUNVAN Clubhouse & Seawall": "https://runvan.org",
+  "Riley Park Plaza (Nat Bailey Stadium)": "https://eatlocal.org/markets/riley-park/",
+  "Nelson Park (West End)": "https://eatlocal.org/markets/west-end/",
+  "Dude Chilling Park (Guelph Park)": "https://eatlocal.org/markets/mount-pleasant/",
+  "Vancouver Art Gallery Plaza (North)": "https://eatlocal.org/markets/downtown/",
+  "Concord Community Park (False Creek)": "https://eatlocal.org/markets/false-creek/",
+  "UBC Farm (South Campus)": "https://ubcfarm.ubc.ca/markets/",
+  "2nd Floor Gastown": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+  "Frankie's Jazz Club": "https://www.coastaljazz.ca",
+  "The WISE Hall & Lounge": "https://thewise.ca",
+  "The Anza Club": "https://www.anzaclub.org",
+  "Red Gate Arts Society": "https://redgate.tv/tickets/",
+  "LanaLou's": "https://lanalous.com",
+  "The Roxy Cabaret": "https://www.roxyvan.com",
+  "Café au Clay Studios": "https://cafeauclay.com",
+  "Basic Inquiry Life Drawing Society": "https://lifedrawing.org",
+  "Hand Eye Ceramics": "https://handeyeceramics.com",
+  "Claymates Ceramics Studio": "https://claymatesceramicsstudio.com",
+  "Slice of Life Gallery & Studios": "https://www.slicevancouver.ca",
+  "Bentall Centre Dunsmuir Plaza": "https://bentallcentre.com",
+  "The Birdhouse": "https://www.birdhouse.ca",
+  "The Waldorf": "https://atthewaldorf.com",
+  "The Cobalt": "https://thecobalt.ca",
+  "The Shipyards Waterfront": "https://theshipyardsdistrict.ca",
+  "Commercial Drive": "https://www.carfreevancouver.org",
+  "Main Street": "https://www.carfreevancouver.org",
+  "Touchstone Theatre": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+  "Queen Elizabeth Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+  "Rupert Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+  "Central Park Pitch & Putt": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt"
+};
+
+// Curated Discovery Sources Directory
+const DISCOVERY_SOURCES = [
+  {
+    "id": "vancouver-is-awesome",
+    "name": "Vancouver Is Awesome",
+    "domain": "vancouverisawesome.com",
+    "eventsUrl": "https://www.vancouverisawesome.com/events",
+    "rssUrl": "https://www.vancouverisawesome.com/rss",
+    "type": "editorial_aggregator",
+    "typeLabel": "Editorial News & Community Calendar",
+    "focus": "Community culture, trending local happenings, weekend roundups, seasonal festivals",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or box office portal. Never use VIA article URL as final card destination.",
+    "status": "active"
+  },
+  {
+    "id": "do604",
+    "name": "Do604",
+    "domain": "do604.com",
+    "eventsUrl": "https://do604.com/events",
+    "rssUrl": "https://do604.com/events.rss",
+    "type": "nightlife_and_gigs_aggregator",
+    "typeLabel": "Live Music & Nightlife Directory",
+    "focus": "Live music, cover bands, indie rock, DJ & retro dance nights, brewery trivia, comedy, and RSVP giveaways",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "html_calendar_and_rss",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
+    "status": "active"
+  },
+  {
+    "id": "georgia-straight",
+    "name": "The Georgia Straight",
+    "domain": "straight.com",
+    "eventsUrl": "https://www.straight.com/listings",
+    "rssUrl": "https://www.straight.com/rss/listings",
+    "type": "cultural_directory",
+    "typeLabel": "Arts, Culture & Community Listings",
+    "focus": "Grassroots arts, live theatre, dance, jazz sessions, comedy showcases, and community submissions",
+    "bestForCategories": [
+      "music",
+      "shows",
+      "arts",
+      "cinema"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
+    "status": "active"
+  },
+  {
+    "id": "daily-hive-vancouver",
+    "name": "Daily Hive Vancouver",
+    "domain": "dailyhive.com",
+    "eventsUrl": "https://dailyhive.com/vancouver/events",
+    "rssUrl": "https://dailyhive.com/vancouver/feed",
+    "type": "editorial_lifestyle_aggregator",
+    "typeLabel": "Lifestyle & Pop-Up Event Coverage",
+    "focus": "Weekly 'Free & cheap things to do in Vancouver' roundups, night markets, food festivals, and seasonal pop-ups",
+    "bestForCategories": [
+      "activities",
+      "outdoors",
+      "shows"
+    ],
+    "harvestMethod": "rss_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Scan weekly weekend editorial lists, extract venue and dates, and resolve to official venue pages.",
+    "status": "active"
+  },
+  {
+    "id": "miss604",
+    "name": "Miss604 (Rebecca Bollwitt)",
+    "domain": "miss604.com",
+    "eventsUrl": "https://miss604.com/category/events",
+    "rssUrl": "https://miss604.com/feed",
+    "type": "independent_civic_guide",
+    "typeLabel": "Independent Vancouver Events & Heritage Guide",
+    "focus": "Civic gatherings, free outdoor festivals, park events, farmers markets, heritage and community activities",
+    "bestForCategories": [
+      "outdoors",
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "rss_and_blog_roundups",
+    "targetBudgetTier": "Free & budget ($0 - $25 CAD)",
+    "resolutionPolicy": "Extract structured bullet points from weekly 'Things to Do in Vancouver This Weekend' post published every Thursday; link directly to official host organization.",
+    "status": "active"
+  },
+  {
+    "id": "destination-vancouver",
+    "name": "Destination Vancouver",
+    "domain": "destinationvancouver.com",
+    "eventsUrl": "https://www.destinationvancouver.com/events/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Official Tourism & Civic Festival Calendar",
+    "focus": "Major city-wide street festivals (Khatsahlano, Car Free Days, Greek Day, Italian Day), fireworks, cultural celebrations",
+    "bestForCategories": [
+      "outdoors",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "Free & civic ($0 CAD)",
+    "resolutionPolicy": "High authority; use official festival domains and municipal event landing pages linked on each listing.",
+    "status": "active"
+  },
+  {
+    "id": "live-music-vancouver",
+    "name": "Live Music Vancouver",
+    "domain": "livemusicvancouver.com",
+    "eventsUrl": "https://www.livemusicvancouver.com/",
+    "rssUrl": null,
+    "type": "pub_and_club_gig_guide",
+    "typeLabel": "Local Pub & Bar Music Schedule",
+    "focus": "Vancouver bar and pub live music circuit (The Roxy, Blarney Stone, Rickshaw, LanaLou's, Fairview)",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "$0 - $20 CAD door",
+    "resolutionPolicy": "Extract gig date and performer, then match to venue's official ticket portal or verified door policy.",
+    "status": "active"
+  },
+  {
+    "id": "songkick-vancouver",
+    "name": "Songkick Vancouver",
+    "domain": "songkick.com",
+    "eventsUrl": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+    "rssUrl": null,
+    "type": "concert_and_gig_aggregator",
+    "typeLabel": "Concert & Touring Gig Directory",
+    "focus": "Live band tours, local venue shows, cover showcases, recurring club gigs",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract platform ticketing links (Ticketweb, Eventbrite, AXS, Showpass) and calculate all-in fees.",
+    "status": "active"
+  },
+  {
+    "id": "bandsintown-vancouver",
+    "name": "Bandsintown Vancouver",
+    "domain": "bandsintown.com",
+    "eventsUrl": "https://www.bandsintown.com/c/vancouver-canada",
+    "rssUrl": null,
+    "type": "concert_and_tour_aggregator",
+    "typeLabel": "Live Music & Artist Tour Tracker",
+    "focus": "Concerts, emerging artists, local stage performances across Metro Vancouver",
+    "bestForCategories": [
+      "music"
+    ],
+    "harvestMethod": "api_and_html",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Follow primary ticket provider link to obtain actual cart price and fee breakdown.",
+    "status": "active"
+  },
+  {
+    "id": "showpass-discover-vancouver",
+    "name": "Showpass Discover (Vancouver)",
+    "domain": "showpass.com",
+    "eventsUrl": "https://www.showpass.com/discover/?location=Vancouver",
+    "apiUrl": "https://www.showpass.com/api/public/events/?location=Vancouver",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Showpass)",
+    "focus": "Independent comedy, dance parties, community performances, seasonal attractions (e.g. Fox Cabaret, Bloedel, Little Mountain Gallery)",
+    "bestForCategories": [
+      "shows",
+      "music",
+      "activities"
+    ],
+    "harvestMethod": "direct_api",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Zero middleman: event is already on Showpass; query API directly for instant price verification.",
+    "status": "active"
+  },
+  {
+    "id": "eventbrite-vancouver",
+    "name": "Eventbrite Vancouver",
+    "domain": "eventbrite.ca",
+    "eventsUrl": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+    "apiUrl": "https://www.eventbrite.ca/api/v3/destination/events/?place_id=85633041",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Direct Platform Discovery (Eventbrite)",
+    "focus": "Free community workshops, underground music, indie showcases, pop-up markets, neighborhood festivals",
+    "bestForCategories": [
+      "activities",
+      "music",
+      "shows",
+      "trivia"
+    ],
+    "harvestMethod": "direct_api_and_search",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
+    "status": "active"
+  },
+  {
+    "id": "resident-advisor-vancouver",
+    "name": "Resident Advisor (Vancouver)",
+    "domain": "ra.co",
+    "eventsUrl": "https://ra.co/events/ca/vancouver",
+    "apiUrl": "https://ra.co/graphql",
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Electronic & Club Discovery (Resident Advisor)",
+    "focus": "Electronic music, dance parties, club nights, warehouse fundraisers, DJ sets, underground community parties",
+    "bestForCategories": [
+      "music",
+      "social",
+      "shows"
+    ],
+    "harvestMethod": "direct_graphql_api",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Query RA GraphQL API directly with Vancouver Area ID 39; filter for verified venue locations under $50 CAD total out-of-pocket.",
+    "status": "active"
+  },
+  {
+    "id": "ticketweb-vancouver",
+    "name": "TicketWeb (Vancouver)",
+    "domain": "ticketweb.ca",
+    "eventsUrl": "https://www.ticketweb.ca/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Mid-Sized Club & Live Music Ticketing",
+    "focus": "Indie rock, punk, metal, retro dance parties, touring live acts (Hollywood Theatre, Rickshaw, Wise Hall, Pearl)",
+    "bestForCategories": [
+      "music",
+      "shows"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract live Schema.org offers or venue event mirror; calculate exact all-in total with service fees and 5% GST; quarantine if > $50 CAD.",
+    "status": "active"
+  },
+  {
+    "id": "dice-vancouver",
+    "name": "DICE (Vancouver)",
+    "domain": "dice.fm",
+    "eventsUrl": "https://dice.fm/browse/vancouver",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Upfront Transparent Mobile Ticketing",
+    "focus": "Indie showcases, electronic, synth-pop, underground dance parties (Red Gate, Paradise)",
+    "bestForCategories": [
+      "music",
+      "shows"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse __NEXT_DATA__ event payload; verify upfront all-in pricing with zero hidden checkout fees.",
+    "status": "active"
+  },
+  {
+    "id": "shotgun-vancouver",
+    "name": "Shotgun (Vancouver)",
+    "domain": "shotgun.live",
+    "eventsUrl": "https://shotgun.live/en/cities/vancouver",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Underground Dance & Nightlife Ticketing",
+    "focus": "Electronic, techno, house, warehouse collectives, late-night parties",
+    "bestForCategories": [
+      "music",
+      "social"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse live event state and calculate platform commission and 5% GST; enforce <= $50 cap.",
+    "status": "active"
+  },
+  {
+    "id": "spektrix-thecultch",
+    "name": "Spektrix Performing Arts (The Cultch / PuSh)",
+    "domain": "thecultch.com",
+    "eventsUrl": "https://thecultch.com/whats-on/",
+    "apiUrl": null,
+    "type": "theatre_ticketing_system",
+    "typeLabel": "Independent Performing Arts & Theatre",
+    "focus": "Contemporary theatre, dance, circus, festival performances across York, Historic, and Culture Lab stages",
+    "bestForCategories": [
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "spektrix_components_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract accessible tiers (Under-30, Youth, Arts Worker, Preview) and verify with 5% GST.",
+    "status": "active"
+  },
+  {
+    "id": "tessitura-vancouver",
+    "name": "Tessitura (VSO / Arts Club / Bard on the Beach)",
+    "domain": "vancouversymphony.ca",
+    "eventsUrl": "https://www.vancouversymphony.ca/",
+    "apiUrl": null,
+    "type": "arts_enterprise_ticketing",
+    "typeLabel": "Institutional Performing Arts & Classical",
+    "focus": "Symphony concerts, major theatre productions, Shakespeare festival previews, youth/student rush",
+    "bestForCategories": [
+      "shows",
+      "arts"
+    ],
+    "harvestMethod": "tessitura_tnew_and_schema",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Filter for accessible rush tiers (Student Rush, Under-35 Symphony Pass, previews) under $50 all-in.",
+    "status": "active"
+  },
+  {
+    "id": "tickettailor-vancouver",
+    "name": "Ticket Tailor (Vancouver)",
+    "domain": "tickettailor.com",
+    "eventsUrl": "https://www.tickettailor.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Flat-Fee Grassroots & Community Ticketing",
+    "focus": "DIY concerts, craft fairs, drag shows, queer dances, community workshops",
+    "bestForCategories": [
+      "arts",
+      "music",
+      "activities"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse transparent low flat fees and calculate verified total out-of-pocket price.",
+    "status": "active"
+  },
+  {
+    "id": "zeffy-vancouver",
+    "name": "Zeffy (Vancouver Non-Profits)",
+    "domain": "zeffy.com",
+    "eventsUrl": "https://www.zeffy.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "100% Free Non-Profit & Charity Platform",
+    "focus": "Charity choir concerts, heritage walking tours, museum talks, community arts fundraisers",
+    "bestForCategories": [
+      "activities",
+      "arts",
+      "outdoors"
+    ],
+    "harvestMethod": "next_data_payload_and_schema",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Confirm $0 platform fee; verify 100% transparent admission for Canadian registered non-profits.",
+    "status": "active"
+  },
+  {
+    "id": "humanitix-vancouver",
+    "name": "Humanitix (Vancouver)",
+    "domain": "humanitix.com",
+    "eventsUrl": "https://humanitix.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Charity-Driven Community Ticketing",
+    "focus": "Community storytelling, environmental symposiums, local speaker panels, education",
+    "bestForCategories": [
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract transparent charity booking fee and calculate all-in checkout amount.",
+    "status": "active"
+  },
+  {
+    "id": "universe-vancouver",
+    "name": "Universe (Vancouver)",
+    "domain": "universe.com",
+    "eventsUrl": "https://www.universe.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Film Festivals & Pop-Up Events",
+    "focus": "DOXA Documentary Film Festival, Latin American Film Festival, food & craft beverage tastings",
+    "bestForCategories": [
+      "cinema",
+      "activities",
+      "arts"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Parse embedded state or Schema.org offers; enforce <= $50 total checkout.",
+    "status": "active"
+  },
+  {
+    "id": "vtix-vancouver",
+    "name": "VTix Online (Vancouver)",
+    "domain": "vtixonline.com",
+    "eventsUrl": "https://www.vtixonline.com/",
+    "apiUrl": null,
+    "type": "direct_ticketing_discovery",
+    "typeLabel": "Regional Performance & Box Office Ticketing",
+    "focus": "Hollywood Theatre special showcases, Shadbolt Centre performances, indie theatre and dance",
+    "bestForCategories": [
+      "shows",
+      "music"
+    ],
+    "harvestMethod": "html_and_schema_extraction",
+    "targetBudgetTier": "<= $50 CAD",
+    "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
+    "status": "active"
+  }
 ];

@@ -551,6 +551,7 @@ function generateCuratorDiagnostics(ev) {
   const isBudgetExceeded = attemptedPrice > 50.0;
   const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
   const hasDrift = isDrift(ev);
+  const reason = ev.quarantineReason || ev.flagReason || ev.archivedReason || '';
 
   // --- DATE EVALUATION: Confirmed vs Unconfirmed Details ---
   const dateStatus = evaluateCuratorDateStatus(ev);
@@ -791,10 +792,10 @@ function renderCards(items) {
             </div>
           </div>
         ` : `
-          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;' : ''}" title="${escapeHtml(ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}">
+          <div class="curator-flag-reason-box" style="${(isBudgetExceeded || isAutoDenied) ? 'background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5;' : ''}" title="${escapeHtml(ev.quarantineReason || ev.archivedReason || ev.flagReason || 'Live checkout could not be verified')}">
             <span class="curator-flag-icon">${(isBudgetExceeded || isAutoDenied) ? '🛡️' : '⚠️'}</span>
             <div>
-              <strong>${isAutoDenied ? 'Policy Denial:' : 'Quarantine Reason:'}</strong> ${escapeHtml(simplifyQuarantineReason(ev.archivedReason || ev.flagReason, attemptedPrice))}
+              <strong>${isAutoDenied ? 'Policy Denial:' : 'Quarantine Reason:'}</strong> ${escapeHtml(simplifyQuarantineReason(ev.quarantineReason || ev.archivedReason || ev.flagReason, attemptedPrice))}
             </div>
           </div>
         `}
