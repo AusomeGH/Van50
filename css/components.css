@@ -603,7 +603,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 20px 18px;
   display: flex;
   flex-direction: column;
   transition: all var(--transition-normal);
@@ -1153,27 +1153,69 @@
   margin-bottom: 16px;
 }
 
-/* Card Footer: Price & Ticket Action CTA */
+/* ==============================================================================
+   Card Pricing Section: Sub-details directly above green cost, footer locked at bottom
+   ============================================================================== */
+.card-pricing-block {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-price-subdetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.price-tiers-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.price-tier-tag {
+  font-size: 0.70rem;
+  opacity: 0.90;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.price-tier-tag strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Card Footer: Price on Left & Uniform Ticket Action CTA on Right */
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: auto;
+  gap: 10px;
+  min-height: 40px;
 }
 
 .price-box {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .price-main {
   font-family: var(--font-heading);
-  font-size: 1.18rem;
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--accent-primary);
+  line-height: 1.2;
 }
 
 .price-main.free {
@@ -1189,8 +1231,8 @@
 .price-breakdown-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 5px;
+  white-space: nowrap;
 }
 
 .price-info-popover {
@@ -1218,22 +1260,29 @@
 }
 
 .price-pretax-note {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
-  opacity: 0.88;
-  margin-top: 2px;
+  opacity: 0.90;
+  margin-top: 1px;
 }
 
+/* Uniform Ticket CTA Button - identical fixed width and height across all cards */
 .btn-ticket-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: var(--accent-primary);
-  color: var(--text-inverse);
+  justify-content: center;
+  text-align: center;
+  width: 164px;
+  min-width: 164px;
+  max-width: 164px;
+  height: 38px;
+  flex: 0 0 164px;
+  box-sizing: border-box;
+  white-space: nowrap;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.81rem;
   font-weight: 700;
-  padding: 8px 16px;
+  padding: 0 8px;
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
@@ -1245,6 +1294,15 @@
   transform: translateY(-1px);
   box-shadow: 0 0 18px rgba(16, 185, 129, 0.45);
   color: #fff;
+}
+
+@media (max-width: 480px) {
+  .btn-ticket-cta {
+    width: 152px;
+    min-width: 152px;
+    max-width: 152px;
+    font-size: 0.76rem;
+  }
 }
 
 /* Sold-Out Watermark Ribbon (Requirement 8) */

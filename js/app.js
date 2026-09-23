@@ -2655,6 +2655,20 @@ function renderSingleEventCardHtml(ev) {
       <span class="price-info-popover" title="${tooltipText.replace(/"/g, '&quot;')}" aria-label="Fee breakdown details">?</span>
     ` : '';
 
+    // Pricing sub-details: Pricing tiers & pre-tax notices situated directly above the green price
+    const hasTiers = Boolean(ev.tiers && ev.tiers.length > 1);
+    const hasPreTax = Boolean(preTaxNoteHtml);
+    const subdetailsHtml = (hasTiers || hasPreTax) ? `
+      <div class="card-price-subdetails">
+        ${hasTiers ? `
+          <div class="price-tiers-tags price-tiers-footer">
+            ${ev.tiers.map(t => `<span class="price-tier-tag">${t.name}: <strong>${t.label || ('$' + Number(t.price).toFixed(2))}</strong></span>`).join('')}
+          </div>
+        ` : ''}
+        ${preTaxNoteHtml}
+      </div>
+    ` : '';
+
     return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
@@ -2772,22 +2786,19 @@ function renderSingleEventCardHtml(ev) {
 
         ${subtagsHtml}
 
-        <!-- Card Footer: Standardized Checkout Price & Direct Ticket CTA -->
-        <div class="card-footer">
-          <div class="price-box">
-            <div class="price-breakdown-row">
-              <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
-              ${popoverHtml}
-            </div>
-            ${(ev.tiers && ev.tiers.length > 1) ? `
-              <div class="price-tiers-footer" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px;">
-                ${ev.tiers.map(t => `<span class="price-tier-tag" style="font-size: 0.70rem; opacity: 0.88; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px;">${t.name}: <strong>${t.label || ('$' + Number(t.price).toFixed(2))}</strong></span>`).join('')}
+        <!-- Card Pricing Section: Sub-details directly above green cost, footer locked at bottom -->
+        <div class="card-pricing-block">
+          ${subdetailsHtml}
+          <div class="card-footer">
+            <div class="price-box">
+              <div class="price-breakdown-row">
+                <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
+                ${popoverHtml}
               </div>
-            ` : ''}
-            ${preTaxNoteHtml}
-          </div>
+            </div>
 
-          ${ctaButtonHtml}
+            ${ctaButtonHtml}
+          </div>
         </div>
       </article>
     `;
