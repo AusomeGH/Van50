@@ -1,11 +1,95 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-23T09:53:40-07:00",
+    "updatedAt": "2026-09-24T11:07:48-07:00",
     "pendingCount": 2,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
+    {
+      "id": "portside-pub-trivia",
+      "title": "The Portside Pub: Gastown Brainstormer Trivia",
+      "venue": "The Portside Pub",
+      "address": "7 Alexander St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 0.0,
+      "attemptedPriceLabel": "Free ($0)",
+      "provider": "OpenTable / Resy",
+      "semanticProvider": "Walk-in / Table Reservation",
+      "websiteUrl": "https://theportsidepub.com/bookings/",
+      "category": "trivia",
+      "flaggedAt": "2026-09-24T11:07:20-07:00",
+      "flagReason": "⚠️ Re-quarantined due to page drift: Previously approved at $10.00 CAD on 2026-09-23 ('Screenshot OCR extracted actual showcase title and verified $10 door price.'), but live page now detects price change to $20.00 CAD.",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+    },
+    {
+      "id": "kitsilano-showboat",
+      "title": "Kitsilano Showboat: Community Summer Stage",
+      "artist": "Local bands & community ensembles",
+      "performers": null,
+      "venue": "Kitsilano Beach Outdoor Amphitheatre",
+      "venueAliases": [],
+      "address": "2300 Cornwall Ave, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "tiers": [],
+      "isFree": true,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Mon, Wed, Fri)",
+      "daysOfWeek": [
+        "mon",
+        "wed",
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "outdoor-theatre",
+        "community-concert",
+        "kits-beach",
+        "live-music"
+      ],
+      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
+      "startIso": "2026-09-09T19:00:00-07:00",
+      "endIso": "2026-09-30T21:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "venueUrl": "https://kitsilanoshowboat.com",
+      "ticketProvider": "Free Public Access",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2742,
+        -123.1558
+      ],
+      "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_bylaw_rate",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+        "verifiedAt": "2026-09-24T11:07:15-07:00",
+        "details": "Verified via official municipal park bylaw / published community schedule."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
+      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+      "dealtWith": false
+    },
     {
       "id": "biltmore-cabaret-indie-music",
       "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
@@ -89,7 +173,7 @@
         }
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-23T16:54:05.409030+00:00",
+      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
       "dealtWith": false
     },
     {
@@ -149,12 +233,12 @@
       "categoryLabel": "Live Music",
       "categoryIcon": "🎵",
       "subTags": [
-        "cocktails",
-        "beer",
-        "live-music",
         "live-jazz",
-        "guilt--company",
-        "gastown"
+        "live-music",
+        "gastown",
+        "cocktails",
+        "soul-music",
+        "beer"
       ],
       "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
       "startIso": "2026-09-09T19:00:00-07:00",
@@ -182,14 +266,74 @@
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
         "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-        "verifiedAt": "2026-09-23T09:53:13-07:00",
+        "verifiedAt": "2026-09-24T11:07:37-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-23T16:54:05.409030+00:00",
+      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+      "dealtWith": false
+    },
+    {
+      "id": "eb-standup-mental-health",
+      "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
+      "venue": "Chill x Studio",
+      "address": "1227 Richards St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "attemptedPrice": 10.0,
+      "attemptedPriceLabel": "$10.00 door",
+      "provider": "Eventbrite",
+      "semanticProvider": "Eventbrite Verified",
+      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T11:07:29-07:00",
+      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
+      "reviewStatus": "pending_manual_review",
+      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
+      "price": 10.0,
+      "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+      "dateSchedule": "Friday, September 25",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 10.0,
+        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
+        "verifiedAt": "2026-09-23T16:12:22.889227+00:00",
+        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
+        "curatorSnapshot": {
+          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
+          "approvedPrice": 10.0,
+          "approvedPriceLabel": "$10.00 CAD",
+          "approvedCategory": "shows",
+          "approvedDate": "Friday, September 25",
+          "approvedVenue": "Chill x Studio",
+          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
+          "approvedAt": "2026-09-23T16:12:22.889248+00:00",
+          "sourceUrl": "https://chillxstudio.com"
+        }
+      },
+      "isSoldOut": false,
+      "categories": [
+        "shows"
+      ],
+      "frequency": "one-off",
+      "frequencyLabel": "One-off Event",
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "startIso": "2026-09-25T19:00:00-07:00",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Transit accessible via TransLink SkyTrain / bus service",
+      "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
+      "pricingType": "paid",
+      "isFree": false,
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867 has insufficient event evidence (found [], required high-confidence multi-token match)",
+      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
       "dealtWith": false
     }
   ],
-  "pendingCount": 4,
-  "lastTriagedAt": "2026-09-23T16:53:40.055102+00:00"
+  "pendingCount": 5,
+  "lastTriagedAt": "2026-09-24T11:07:48.055663+00:00"
 }
