@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-24T11:08:04-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-25T11:08:01-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -63,7 +63,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:13-07:00",
+      "verifiedAt": "2026-09-25T11:07:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -137,7 +137,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:13-07:00",
+      "verifiedAt": "2026-09-25T11:07:14-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -213,7 +213,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:13-07:00",
+      "verifiedAt": "2026-09-25T11:07:15-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -290,7 +290,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:16-07:00",
+      "verifiedAt": "2026-09-25T11:07:17-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -363,7 +363,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:16-07:00",
+      "verifiedAt": "2026-09-25T11:07:17-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -438,7 +438,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:16-07:00",
+      "verifiedAt": "2026-09-25T11:07:17-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -481,12 +481,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
-      "botanical",
-      "vancouver",
-      "tropical-dome",
       "organization",
       "tickets",
-      "exotic-birds"
+      "exotic-birds",
+      "vancouver",
+      "rainforest",
+      "tropical-dome"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
     "startIso": "2026-09-08T10:00:00-07:00",
@@ -514,7 +514,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 9.97,
       "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-24T11:07:16-07:00",
+      "verifiedAt": "2026-09-25T11:07:17-07:00",
       "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
     },
     "semanticVerification": {
@@ -587,7 +587,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-24T11:07:18-07:00",
+      "verifiedAt": "2026-09-25T11:07:18-07:00",
       "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
     },
     "semanticVerification": {
@@ -690,7 +690,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-24T11:07:18-07:00",
+      "verifiedAt": "2026-09-25T11:07:19-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
     },
     "semanticVerification": {
@@ -704,7 +704,7 @@ const VANCOUVER_EVENTS = [
         "world"
       ],
       "evidence_snippet": "...what's on | vancouver international film festival skip to main content donate subscribe viff &#038; re...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['international', 'cinema', 'film', 'documentary', 'world'] alongside 11 active upcoming dates"
+      "reason": "Official venue calendar/schedule lists event token(s): ['international', 'cinema', 'film', 'documentary', 'world'] alongside 13 active upcoming dates"
     }
   },
   {
@@ -739,12 +739,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "improv",
-      "revue-stage",
-      "eventbrite",
-      "puff-the-magic-improv-show-sept-26-2026-vancouver",
       "live-comedy",
-      "granville-island"
+      "puff-the-magic-improv-show-sept-26-2026-vancouver",
+      "puff-the-magic-improv-show-sept-26-2026-tickets",
+      "revue-stage",
+      "granville-island",
+      "puff-the-magic-improv-show-sept-26-2026"
     ],
     "dateSchedule": "Saturday, Sept 26 • 8:00 PM (Doors 7:30 PM)",
     "startIso": "2026-09-26T20:00:00-07:00",
@@ -772,7 +772,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 20.0,
       "feeBreakdown": "$20.00 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-24T11:07:22-07:00",
+      "verifiedAt": "2026-09-25T11:07:22-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     },
     "semanticVerification": {
@@ -781,11 +781,10 @@ const VANCOUVER_EVENTS = [
       "matched_tokens": [
         "puff",
         "magic",
-        "improv",
-        "eventbrite"
+        "improv"
       ],
       "evidence_snippet": "...puff the magic improv show sept 26 2026 tickets, saturday, september 26 | eventb...",
-      "reason": "Affirmatively verified event on dedicated landing page (puff, magic, improv, eventbrite)"
+      "reason": "Affirmatively verified event on dedicated landing page (puff, magic, improv)"
     }
   },
   {
@@ -820,12 +819,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
+      "headliner",
+      "alistair-ogden-live-at-the-rio-theatre",
       "stand-up",
       "alistair-ogden-live-at-the-rio-theatre-tickets",
-      "alistair-ogden-live-at-the-rio-theatre-vancouver",
-      "cbc-comedy",
-      "alistair-ogden-live-at-the-rio-theatre",
-      "headliner"
+      "rio-theatre",
+      "cbc-comedy"
     ],
     "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
     "startIso": "2026-12-04T19:30:00-07:00",
@@ -853,7 +852,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-24T11:07:22-07:00",
+      "verifiedAt": "2026-09-25T11:07:23-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     },
     "semanticVerification": {
@@ -913,12 +912,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy-show",
-      "comedy",
-      "theatresports",
-      "improv",
       "improv-comedy",
-      "waterfront-theatre"
+      "comedy",
+      "comedy-show",
+      "waterfront-theatre",
+      "theatresports",
+      "granville-island"
     ],
     "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
     "startIso": "2026-09-11T19:30:00-07:00",
@@ -946,7 +945,7 @@ const VANCOUVER_EVENTS = [
       "method": "audienceview_scraped",
       "verifiedTotal": 10.0,
       "feeBreakdown": "$10.00 verified via AudienceView ticketing portal",
-      "verifiedAt": "2026-09-24T11:07:23-07:00",
+      "verifiedAt": "2026-09-25T11:07:23-07:00",
       "details": "Scraped from AudienceView portal on https://theimprovcentre.ca/shows/."
     },
     "semanticVerification": {
@@ -961,7 +960,7 @@ const VANCOUVER_EVENTS = [
         "ensemble"
       ],
       "evidence_snippet": "...out the improv centre&#8217;s hilarious comedy shows! our bar and lounge opens 1 hour before first showtime, unless othe...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['comedy', 'theatresports', 'granville', 'island', 'mainstage', 'ensemble'] alongside 18 active upcoming dates"
+      "reason": "Official venue calendar/schedule lists event token(s): ['comedy', 'theatresports', 'granville', 'island', 'mainstage', 'ensemble'] alongside 17 active upcoming dates"
     }
   },
   {
@@ -1035,7 +1034,7 @@ const VANCOUVER_EVENTS = [
       "method": "vso_published_rush_policy",
       "verifiedTotal": 25.2,
       "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-24T11:07:24-07:00",
+      "verifiedAt": "2026-09-25T11:07:24-07:00",
       "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
     },
     "semanticVerification": {
@@ -1110,7 +1109,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-24T11:07:25-07:00",
+      "verifiedAt": "2026-09-25T11:07:25-07:00",
       "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
     },
     "semanticVerification": {
@@ -1340,13 +1339,13 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Waterfront pier festival featuring free live concerts, artisan night market, food trucks, and fire pits with skyline views across Burrard Inlet.",
+    "description": "The Shipyards is a popular destination, public space located on the scenic City waterfront, surrounded by restaurants, cafes, shops and services.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "curator_learned_override",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free civic public space at The Shipyards",
-      "verifiedAt": "2026-09-24T11:07:36-07:00",
+      "verifiedAt": "2026-09-25T11:07:36-07:00",
       "details": "Automatically verified by Van50 Curator Learned Rules Engine."
     },
     "semanticVerification": {
@@ -1438,7 +1437,7 @@ const VANCOUVER_EVENTS = [
       "verifiedTotal": 7.24,
       "preTaxSticker": 6.9,
       "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:37-07:00",
       "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
     },
     "semanticVerification": {
@@ -1454,268 +1453,6 @@ const VANCOUVER_EVENTS = [
       ],
       "evidence_snippet": "...jobs media special events venue buyouts band submission contact home welcome guest list lost & found the roxy rollers me...",
       "reason": "Official venue calendar/schedule lists event token(s): ['band', 'line', 'dancing', 'rollers', 'dance', 'instructors'] alongside 23 active upcoming dates"
-    }
-  },
-  {
-    "id": "public-disco-warehouse-party",
-    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "artist": "Public Disco selectors & guest live electronic artists",
-    "performers": null,
-    "venue": "The Birdhouse",
-    "venueAliases": [],
-    "address": "44 W 4th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "priceLabel": "$15.00 – $25.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Tier 1 Early Bird",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00"
-      },
-      {
-        "name": "Tier 2 General Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00"
-      },
-      {
-        "name": "Door / Late Night",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal / Awaiting Schedule",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Music & Concerts",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "public-disco",
-      "electronic",
-      "house-music",
-      "dance-party",
-      "warehouse",
-      "mount-pleasant"
-    ],
-    "dateSchedule": "Awaiting next announced edition • Follow @publicdisco",
-    "startIso": null,
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://publicdisco.ca/events",
-    "venueUrl": "https://www.birdhouse.ca",
-    "ticketProvider": "Online Advance & Door Tickets",
-    "rawProvider": "Eventbrite / Public Disco",
-    "coordinates": [
-      49.2678,
-      -123.1065
-    ],
-    "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "The Birdhouse",
-    "agePolicy": "19+ (Valid Government Photo ID Required)",
-    "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
-    "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
-    "description": "Dance Music Events in Vancouver, Canada",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free public admission ('free outdoor') scraped live from published terms",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
-      "details": "Verified live from published terms on https://publicdisco.ca/events."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "calendar_mention",
-      "matched_tokens": [
-        "public",
-        "disco",
-        "warehouse",
-        "dance",
-        "guest",
-        "electronic",
-        "artists"
-      ],
-      "evidence_snippet": "...events &mdash; public disco 0 skip to content events info faq code of conduct lost &amp; found...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['public', 'disco', 'warehouse', 'dance', 'guest', 'electronic', 'artists'] alongside 70 active upcoming dates"
-    }
-  },
-  {
-    "id": "ra-2536883-he-ido",
-    "title": "Habibi Paradise",
-    "artist": "Parmis",
-    "performers": [
-      "Parmis"
-    ],
-    "venue": "The Lido",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Parmis"
-    ],
-    "address": "518 E Broadway, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "basePrice": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Thursday, Sep 24 • 9:00 PM",
-    "startIso": "2026-09-24T21:00:00.000",
-    "endIso": "2026-09-25T01:00:00.000",
-    "confirmedDates": [
-      "2026-09-24"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2536883",
-    "venueUrl": "https://ra.co/events/2536883",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2629,
-      -123.0927
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Lido. Featuring live performances by Parmis.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2536883"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2536883)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2542256-ero-s-elcome",
-    "title": "Cuba X Coltrane at Hero’s Welcome",
-    "artist": null,
-    "performers": null,
-    "venue": "Hero's Welcome",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver"
-    ],
-    "address": "3917 Main St, Vancouver, BC V5V 3P3",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 20.0,
-    "basePrice": 20.0,
-    "priceLabel": "$20.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Thursday, Sep 24 • 7:00 PM",
-    "startIso": "2026-09-24T19:00:00.000",
-    "endIso": "2026-09-24T22:00:00.000",
-    "confirmedDates": [
-      "2026-09-24"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2542256",
-    "venueUrl": "https://ra.co/events/2542256",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Hero's Welcome.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2542256"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2542256)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
     }
   },
   {
@@ -1788,7 +1525,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1798,6 +1535,94 @@ const VANCOUVER_EVENTS = [
         "2463411"
       ],
       "evidence_snippet": "Verified platform event slug on ra.co (/events/2463411)",
+      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
+    }
+  },
+  {
+    "id": "ra-2522899-latform9",
+    "title": "BlackBox: The Summer Closing Party",
+    "artist": "DJ dood, Weezie, Fisher Bryce, AVRY",
+    "performers": [
+      "DJ dood",
+      "Weezie",
+      "Fisher Bryce",
+      "AVRY"
+    ],
+    "venue": "Platform9",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "DJ dood",
+      "Weezie",
+      "Fisher Bryce"
+    ],
+    "address": "390 Industrial Ave, Vancouver, BC V6A 2P3 Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.0,
+    "basePrice": 20.0,
+    "priceLabel": "$20.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Sep 25 • 10:00 PM",
+    "startIso": "2026-09-25T22:00:00.000",
+    "endIso": "2026-09-26T04:00:00.000",
+    "confirmedDates": [
+      "2026-09-25"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2522899",
+    "venueUrl": "https://ra.co/events/2522899",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by DJ dood, Weezie, Fisher Bryce, AVRY.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "Live RA listing price: $20.00 advance",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    },
+    "semanticVerification": {
+      "is_verified": true,
+      "match_type": "bot_shielded_event_slug",
+      "matched_tokens": [
+        "2522899"
+      ],
+      "evidence_snippet": "Verified platform event slug on ra.co (/events/2522899)",
       "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
     }
   },
@@ -1873,7 +1698,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 40.0,
       "feeBreakdown": "Live RA listing price: $40.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1953,7 +1778,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 12.0,
       "feeBreakdown": "Live RA listing price: $12.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -2033,7 +1858,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 all-in",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -2116,7 +1941,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -2193,16 +2018,15 @@ const VANCOUVER_EVENTS = [
       -123.1207
     ],
     "transitInfo": "Accessible via TransLink transit routes",
-    "description": "ANALOG // Jay Tripwire & Tyler Stadius // Vinyl Set",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Gorg-O-Mish. Featuring live performances by Jay Tripwire.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "api_endpoint",
       "verifiedTotal": 25.0,
       "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-24T11:07:38-07:00",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
-    "scrapedDescription": "ANALOG // Jay Tripwire & Tyler Stadius // Vinyl Set",
     "semanticVerification": {
       "is_verified": true,
       "match_type": "bot_shielded_event_slug",
@@ -2214,85 +2038,86 @@ const VANCOUVER_EVENTS = [
     }
   },
   {
-    "id": "public-disco-block-party",
-    "title": "Public Disco: Open-Air Summer Block Party Series",
-    "venue": "Downtown Vancouver Plazas",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "Downtown Vancouver Plazas",
+    "id": "ra-2502018-ibrary-quare-ublic-ouse",
+    "title": "Andre Kronert- Vancouver",
+    "artist": "Andre Kronert",
+    "performers": [
+      "Andre Kronert"
+    ],
+    "venue": "Library Square Public House",
     "venueAliases": [
-      "Public Disco",
-      "Public Disco Vancouver",
-      "Public Disco Block Party"
+      "Resident Advisor",
+      "RA Vancouver",
+      "Andre Kronert"
     ],
-    "address": "505 Burrard St, Vancouver, BC",
+    "address": "300 W Georgia St; Vancouver, BC V6B 6B4; Canada",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "coordinates": [
-      49.2858,
-      -123.1187
+    "price": 25.0,
+    "basePrice": 25.0,
+    "priceLabel": "$25.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 25.0,
+        "price": 25.0,
+        "label": "$25.00 advance"
+      }
     ],
-    "transitInfo": "Vancouver City Centre SkyTrain Station (adjacent)",
-    "basePrice": 0.0,
-    "scrapedBasePrice": null,
-    "doorPolicyPrice": null,
-    "venueSubpageUrl": null,
-    "websiteUrl": "https://publicdisco.ca/events/downtown2026",
-    "venueUrl": "https://publicdisco.ca/events",
-    "category": "social",
-    "categoryLabel": "Community & Social",
-    "categoryIcon": "🪩",
-    "subTags": [
-      "public-disco",
-      "social",
-      "block-party",
-      "dance-party",
-      "open-air",
-      "djs"
-    ],
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal / Summer Series Concluded",
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
     "daysOfWeek": [
-      "all"
+      "fri"
     ],
     "timeSlots": [
-      "afternoon",
-      "early-evening"
+      "late-evening"
     ],
-    "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
-    "startIso": null,
-    "endIso": null,
-    "confirmedDates": [],
-    "isDaily": false,
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Sep 25 • 9:00 PM",
+    "startIso": "2026-09-25T21:00:00.000",
+    "endIso": "2026-09-26T03:00:00.000",
+    "confirmedDates": [
+      "2026-09-25"
+    ],
     "isSoldOut": false,
-    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "tiers": [],
+    "websiteUrl": "https://ra.co/events/2502018",
+    "venueUrl": "https://ra.co/events/2502018",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Library Square Public House. Featuring live performances by Andre Kronert.",
     "checkoutVerification": {
       "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-24T11:07:43-07:00",
-      "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
+      "method": "api_endpoint",
+      "verifiedTotal": 25.0,
+      "feeBreakdown": "Live RA listing price: $25.00 advance",
+      "verifiedAt": "2026-09-25T11:07:40-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
-    "isFree": true,
-    "pricingType": "free",
-    "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
-    "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-    "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
-    "scrapedDescription": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
-    "ticketProvider": "Downtown Vancouver Plazas Verified",
     "semanticVerification": {
       "is_verified": true,
-      "match_type": "dedicated_page",
+      "match_type": "bot_shielded_event_slug",
       "matched_tokens": [
-        "public",
-        "disco",
-        "block"
+        "2502018"
       ],
-      "evidence_snippet": "...public disco downtown block party vancouver 2026 | free event at vancouver art g...",
-      "reason": "Affirmatively verified event on dedicated landing page (public, disco, block)"
+      "evidence_snippet": "Verified platform event slug on ra.co (/events/2502018)",
+      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
     }
   },
   {
@@ -2537,13 +2362,14 @@ const VANCOUVER_EVENTS = [
         "viff",
         "union",
         "county",
+        "american",
         "dir",
         "adam",
         "meeks",
         "drama"
       ],
       "evidence_snippet": "...union county | viff centre skip to main content donate subscribe viff &#038; reconciliation van...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, union, county, dir, adam, meeks, drama)"
+      "reason": "Affirmatively verified event on dedicated landing page (viff, union, county, american, dir, adam, meeks, drama)"
     },
     "scrapedDescription": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids."
   },
@@ -2986,19 +2812,19 @@ const VANCOUVER_EVENTS = [
 ];
 const MANUAL_REVIEW_QUEUE = [
   {
-    "id": "portside-pub-trivia",
-    "title": "The Portside Pub: Gastown Brainstormer Trivia",
-    "venue": "The Portside Pub",
-    "address": "7 Alexander St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 0.0,
-    "attemptedPriceLabel": "Free ($0)",
-    "provider": "OpenTable / Resy",
-    "semanticProvider": "Walk-in / Table Reservation",
-    "websiteUrl": "https://theportsidepub.com/bookings/",
-    "category": "trivia",
-    "flaggedAt": "2026-09-24T11:07:20-07:00",
-    "flagReason": "⚠️ Re-quarantined due to page drift: Previously approved at $10.00 CAD on 2026-09-23 ('Screenshot OCR extracted actual showcase title and verified $10 door price.'), but live page now detects price change to $20.00 CAD.",
+    "id": "public-disco-warehouse-party",
+    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "venue": "The Birdhouse",
+    "address": "44 W 4th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "attemptedPriceLabel": "$20.00 door",
+    "provider": "Eventbrite / Public Disco",
+    "semanticProvider": "Online Advance & Door Tickets",
+    "websiteUrl": "https://publicdisco.ca/events",
+    "category": "music",
+    "flaggedAt": "2026-09-25T11:07:39-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://publicdisco.ca/events",
     "reviewStatus": "pending_manual_review",
     "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
   },
@@ -3062,11 +2888,76 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-24T11:07:15-07:00",
+      "verifiedAt": "2026-09-25T11:07:17-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+    "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
+    "dealtWith": false
+  },
+  {
+    "id": "portside-pub-trivia",
+    "title": "The Portside Pub: Gastown Brainstormer Trivia",
+    "artist": null,
+    "performers": null,
+    "venue": "The Portside Pub",
+    "venueAliases": [],
+    "address": "7 Alexander St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 12.0,
+    "priceLabel": "$12.00 all-in",
+    "pricingType": "food-drink",
+    "tiers": [],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "weekly",
+    "frequencyLabel": "Weekly (Tuesdays)",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening"
+    ],
+    "category": "trivia",
+    "categoryLabel": "Drinks & Trivia",
+    "categoryIcon": "🧠",
+    "subTags": [
+      "pub-trivia",
+      "craft-beer",
+      "gastown-pub",
+      "trivia-night"
+    ],
+    "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
+    "startIso": "2026-09-08T19:30:00-07:00",
+    "endIso": "2026-12-31T22:00:00-07:00",
+    "confirmedDates": [],
+    "isSoldOut": false,
+    "websiteUrl": "https://theportsidepub.com/bookings/",
+    "venueUrl": "https://theportsidepub.com",
+    "ticketProvider": "Walk-in / Table Reservation",
+    "rawProvider": "OpenTable / Resy",
+    "coordinates": [
+      49.2842,
+      -123.1042
+    ],
+    "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+    "organizer": null,
+    "isRoving": false,
+    "editionVenue": null,
+    "agePolicy": null,
+    "admissionPolicy": null,
+    "rovingNote": null,
+    "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "scraped_page_policy",
+      "verifiedTotal": 12.0,
+      "feeBreakdown": "$12.00 rate scraped live from published venue page",
+      "verifiedAt": "2026-09-25T11:07:21-07:00",
+      "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
+    },
+    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
+    "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
     "dealtWith": false
   },
   {
@@ -3152,7 +3043,7 @@ const MANUAL_REVIEW_QUEUE = [
       }
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+    "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
     "dealtWith": false
   },
   {
@@ -3212,11 +3103,11 @@ const MANUAL_REVIEW_QUEUE = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎵",
     "subTags": [
-      "live-jazz",
-      "live-music",
       "gastown",
-      "cocktails",
+      "guilt--company",
       "soul-music",
+      "live-jazz",
+      "intimate-lounge",
       "beer"
     ],
     "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
@@ -3245,71 +3136,11 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "venue_published_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-24T11:07:37-07:00",
+      "verifiedAt": "2026-09-25T11:07:37-07:00",
       "details": "Verified via venue official artist contribution and door policy."
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "eb-standup-mental-health",
-    "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
-    "venue": "Chill x Studio",
-    "address": "1227 Richards St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 10.0,
-    "attemptedPriceLabel": "$10.00 door",
-    "provider": "Eventbrite",
-    "semanticProvider": "Eventbrite Verified",
-    "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-    "category": "shows",
-    "flaggedAt": "2026-09-23T11:07:29-07:00",
-    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
-    "price": 10.0,
-    "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
-    "dateSchedule": "Friday, September 25",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 10.0,
-      "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-23T16:12:22.889227+00:00",
-      "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
-      "curatorSnapshot": {
-        "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
-        "approvedPrice": 10.0,
-        "approvedPriceLabel": "$10.00 CAD",
-        "approvedCategory": "shows",
-        "approvedDate": "Friday, September 25",
-        "approvedVenue": "Chill x Studio",
-        "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
-        "approvedAt": "2026-09-23T16:12:22.889248+00:00",
-        "sourceUrl": "https://chillxstudio.com"
-      }
-    },
-    "isSoldOut": false,
-    "categories": [
-      "shows"
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "One-off Event",
-    "confirmedDates": [
-      "2026-09-25"
-    ],
-    "startIso": "2026-09-25T19:00:00-07:00",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink SkyTrain / bus service",
-    "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
-    "pricingType": "paid",
-    "isFree": false,
-    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867 has insufficient event evidence (found [], required high-confidence multi-token match)",
-    "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+    "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
     "dealtWith": false
   }
 ];

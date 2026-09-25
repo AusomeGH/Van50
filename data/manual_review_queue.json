@@ -1,25 +1,25 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-24T11:07:48-07:00",
+    "updatedAt": "2026-09-25T11:07:45-07:00",
     "pendingCount": 2,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
     {
-      "id": "portside-pub-trivia",
-      "title": "The Portside Pub: Gastown Brainstormer Trivia",
-      "venue": "The Portside Pub",
-      "address": "7 Alexander St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "attemptedPrice": 0.0,
-      "attemptedPriceLabel": "Free ($0)",
-      "provider": "OpenTable / Resy",
-      "semanticProvider": "Walk-in / Table Reservation",
-      "websiteUrl": "https://theportsidepub.com/bookings/",
-      "category": "trivia",
-      "flaggedAt": "2026-09-24T11:07:20-07:00",
-      "flagReason": "⚠️ Re-quarantined due to page drift: Previously approved at $10.00 CAD on 2026-09-23 ('Screenshot OCR extracted actual showcase title and verified $10 door price.'), but live page now detects price change to $20.00 CAD.",
+      "id": "public-disco-warehouse-party",
+      "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+      "venue": "The Birdhouse",
+      "address": "44 W 4th Ave, Vancouver, BC",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "attemptedPriceLabel": "$20.00 door",
+      "provider": "Eventbrite / Public Disco",
+      "semanticProvider": "Online Advance & Door Tickets",
+      "websiteUrl": "https://publicdisco.ca/events",
+      "category": "music",
+      "flaggedAt": "2026-09-25T11:07:39-07:00",
+      "flagReason": "Could not dynamically verify live checkout pricing on host page: https://publicdisco.ca/events",
       "reviewStatus": "pending_manual_review",
       "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
     },
@@ -83,11 +83,76 @@
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-        "verifiedAt": "2026-09-24T11:07:15-07:00",
+        "verifiedAt": "2026-09-25T11:07:17-07:00",
         "details": "Verified via official municipal park bylaw / published community schedule."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+      "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
+      "dealtWith": false
+    },
+    {
+      "id": "portside-pub-trivia",
+      "title": "The Portside Pub: Gastown Brainstormer Trivia",
+      "artist": null,
+      "performers": null,
+      "venue": "The Portside Pub",
+      "venueAliases": [],
+      "address": "7 Alexander St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 12.0,
+      "priceLabel": "$12.00 all-in",
+      "pricingType": "food-drink",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Tuesdays)",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "trivia",
+      "categoryLabel": "Drinks & Trivia",
+      "categoryIcon": "🧠",
+      "subTags": [
+        "pub-trivia",
+        "craft-beer",
+        "gastown-pub",
+        "trivia-night"
+      ],
+      "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
+      "startIso": "2026-09-08T19:30:00-07:00",
+      "endIso": "2026-12-31T22:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://theportsidepub.com/bookings/",
+      "venueUrl": "https://theportsidepub.com",
+      "ticketProvider": "Walk-in / Table Reservation",
+      "rawProvider": "OpenTable / Resy",
+      "coordinates": [
+        49.2842,
+        -123.1042
+      ],
+      "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "scraped_page_policy",
+        "verifiedTotal": 12.0,
+        "feeBreakdown": "$12.00 rate scraped live from published venue page",
+        "verifiedAt": "2026-09-25T11:07:21-07:00",
+        "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
+      "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
       "dealtWith": false
     },
     {
@@ -173,7 +238,7 @@
         }
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+      "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
       "dealtWith": false
     },
     {
@@ -233,11 +298,11 @@
       "categoryLabel": "Live Music",
       "categoryIcon": "🎵",
       "subTags": [
-        "live-jazz",
-        "live-music",
         "gastown",
-        "cocktails",
+        "guilt--company",
         "soul-music",
+        "live-jazz",
+        "intimate-lounge",
         "beer"
       ],
       "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
@@ -266,74 +331,14 @@
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
         "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-        "verifiedAt": "2026-09-24T11:07:37-07:00",
+        "verifiedAt": "2026-09-25T11:07:37-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
-      "dealtWith": false
-    },
-    {
-      "id": "eb-standup-mental-health",
-      "title": "Indie Rock Showcase: The Sunset Collective (Verified)",
-      "venue": "Chill x Studio",
-      "address": "1227 Richards St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "attemptedPrice": 10.0,
-      "attemptedPriceLabel": "$10.00 door",
-      "provider": "Eventbrite",
-      "semanticProvider": "Eventbrite Verified",
-      "websiteUrl": "https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-      "category": "shows",
-      "flaggedAt": "2026-09-23T11:07:29-07:00",
-      "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867",
-      "reviewStatus": "pending_manual_review",
-      "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app.",
-      "price": 10.0,
-      "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
-      "dateSchedule": "Friday, September 25",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "manual_curator_review",
-        "verifiedTotal": 10.0,
-        "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
-        "verifiedAt": "2026-09-23T16:12:22.889227+00:00",
-        "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
-        "curatorSnapshot": {
-          "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
-          "approvedPrice": 10.0,
-          "approvedPriceLabel": "$10.00 CAD",
-          "approvedCategory": "shows",
-          "approvedDate": "Friday, September 25",
-          "approvedVenue": "Chill x Studio",
-          "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
-          "approvedAt": "2026-09-23T16:12:22.889248+00:00",
-          "sourceUrl": "https://chillxstudio.com"
-        }
-      },
-      "isSoldOut": false,
-      "categories": [
-        "shows"
-      ],
-      "frequency": "one-off",
-      "frequencyLabel": "One-off Event",
-      "confirmedDates": [
-        "2026-09-25"
-      ],
-      "startIso": "2026-09-25T19:00:00-07:00",
-      "coordinates": [
-        49.2827,
-        -123.1207
-      ],
-      "transitInfo": "Transit accessible via TransLink SkyTrain / bus service",
-      "description": "Live shows performance and cultural presentation hosted at Chill x Studio. Curated and verified under $50 CAD in Vancouver.",
-      "pricingType": "paid",
-      "isFree": false,
-      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://www.eventbrite.ca/e/stand-up-for-mental-health-summer-class-debut-tickets-1995574104867 has insufficient event evidence (found [], required high-confidence multi-token match)",
-      "quarantinedAt": "2026-09-24T11:08:04.476515+00:00",
+      "quarantinedAt": "2026-09-25T11:08:01.864901+00:00",
       "dealtWith": false
     }
   ],
   "pendingCount": 5,
-  "lastTriagedAt": "2026-09-24T11:07:48.055663+00:00"
+  "lastTriagedAt": "2026-09-25T11:07:45.274285+00:00"
 }
