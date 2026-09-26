@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-25T11:08:01.864901+00:00",
+    "updatedAt": "2026-09-26T11:07:57.661003+00:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -329,6 +329,7 @@
     "roxy-we-outside-prismin",
     "runvan-community-run",
     "science-world-after-dark",
+    "shipyards-live-night",
     "slice-of-life-clay-club",
     "slice-of-life-craft-night",
     "slice-of-life-lego-night",
