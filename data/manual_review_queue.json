@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-26T11:07:41-07:00",
+    "updatedAt": "2026-09-27T11:07:55-07:00",
     "pendingCount": 1,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -66,11 +66,11 @@
         "method": "official_bylaw_rate",
         "verifiedTotal": 0.0,
         "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-        "verifiedAt": "2026-09-26T11:07:11-07:00",
+        "verifiedAt": "2026-09-27T11:07:24-07:00",
         "details": "Verified via official municipal park bylaw / published community schedule."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-26T11:07:57.661003+00:00",
+      "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
       "dealtWith": false
     },
     {
@@ -131,11 +131,11 @@
         "method": "scraped_page_policy",
         "verifiedTotal": 12.0,
         "feeBreakdown": "$12.00 rate scraped live from published venue page",
-        "verifiedAt": "2026-09-26T11:07:14-07:00",
+        "verifiedAt": "2026-09-27T11:07:29-07:00",
         "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
-      "quarantinedAt": "2026-09-26T11:07:57.661003+00:00",
+      "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
       "dealtWith": false
     },
     {
@@ -221,7 +221,7 @@
         }
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-26T11:07:57.661003+00:00",
+      "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
       "dealtWith": false
     },
     {
@@ -281,12 +281,12 @@
       "categoryLabel": "Live Music",
       "categoryIcon": "🎵",
       "subTags": [
+        "live-music",
+        "beer",
+        "soul-music",
         "gastown",
         "cocktails",
-        "beer",
-        "guilt--company",
-        "live-music",
-        "live-jazz"
+        "intimate-lounge"
       ],
       "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
       "startIso": "2026-09-09T19:00:00-07:00",
@@ -314,14 +314,14 @@
         "method": "venue_published_policy",
         "verifiedTotal": 0.0,
         "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-        "verifiedAt": "2026-09-26T11:07:31-07:00",
+        "verifiedAt": "2026-09-27T11:07:44-07:00",
         "details": "Verified via venue official artist contribution and door policy."
       },
       "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-      "quarantinedAt": "2026-09-26T11:07:57.661003+00:00",
+      "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
       "dealtWith": false
     }
   ],
   "pendingCount": 4,
-  "lastTriagedAt": "2026-09-26T11:07:41.302725+00:00"
+  "lastTriagedAt": "2026-09-27T11:07:55.550578+00:00"
 }
