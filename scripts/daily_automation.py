@@ -29,11 +29,7 @@ QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 STATUS_PATH = os.path.join(DATA_DIR, "automation_status.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
-import sync_events
-from universal_venue_crawler import UniversalVenueCrawler
-from nomadic_resolver import NomadicLocationResolver
-from universal_festival_crawler import UniversalFestivalCrawler
-from universal_discovery_crawler import UniversalDiscoveryCrawler
+from gemini_event_scout import get_gemini_api_key, run_gemini_scouting_cycle, sync_master_catalogs
 from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
 
@@ -170,33 +166,27 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     # Step 1: Safety Backup
     backup_file = create_safety_backup(log_file_path)
 
-    # Step 2: Run Universal Crawlers & Dynamic Synchronization (using learned rules)
-    update_automation_status({"currentStep": "live_sync_crawlers"})
-    log_message("[PIPELINE STEP 1/3] Invoking venue adapters and universal synchronization worker...", log_file_path)
+    # Step 2: Run Gemini AI Autonomous Event Scout (Live Search Grounding + Fee Computation)
+    update_automation_status({"currentStep": "gemini_ai_scout"})
+    log_message("[PIPELINE STEP 1/2] Invoking Gemini AI Autonomous Event Scout...", log_file_path)
     
-    sync_ok = False
+    scout_ok = False
     try:
-        sync_ok = sync_events.run_sync()
-        log_message(f"[PIPELINE SYNC RESULT] sync_events.run_sync() returned: {sync_ok}", log_file_path)
-        # Follow-up auto-triage check to ensure freshly crawled items respect curator guidance
-        CuratorLearningEngine.process_pending_feedback()
+        api_key = get_gemini_api_key()
+        if api_key:
+            log_message("[GEMINI SCOUT] API key detected. Running autonomous discovery cycle with search grounding...", log_file_path)
+            structured_data = run_gemini_scouting_cycle(api_key)
+            if not dry_run:
+                sync_master_catalogs(structured_data)
+                scout_ok = True
+                scouted_count = len(structured_data.get("events_active", []))
+                log_message(f"[GEMINI SCOUT SUCCESS] Scouted and synchronized {scouted_count} events under $50 CAD.", log_file_path)
+            # Follow-up auto-triage check to ensure freshly crawled items respect curator guidance
+            CuratorLearningEngine.process_pending_feedback()
+        else:
+            log_message("[GEMINI SCOUT WARN] No GEMINI_API_KEY set; skipping live scouting cycle.", log_file_path)
     except Exception as e:
-        log_message(f"[PIPELINE ERROR] sync_events encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
-
-    # Step 2.5: Autonomous Festival Scout & Discovery Radar
-    try:
-        log_message("[PIPELINE STEP 2/3] Invoking Universal Festival Scout (30-day window checks)...", log_file_path)
-        fest_res = UniversalFestivalCrawler.run_cycle()
-        log_message(f"[FESTIVAL SCOUT] Active festivals: {fest_res.get('activeCount', 0)}, New venues detected: {len(fest_res.get('newlyDiscoveredVenues', []))}", log_file_path)
-    except Exception as e:
-        log_message(f"[FESTIVAL SCOUT WARN] Error: {e}", log_file_path)
-
-    try:
-        log_message("[PIPELINE STEP 2.5/3] Invoking Universal Discovery Radar across editorial feeds...", log_file_path)
-        disc_res = UniversalDiscoveryCrawler.harvest_all_sources()
-        log_message(f"[DISCOVERY RADAR] Found {disc_res.get('totalCandidatesFound', 0)} candidates from {disc_res.get('totalSources', 0)} feeds", log_file_path)
-    except Exception as e:
-        log_message(f"[DISCOVERY RADAR WARN] Error: {e}", log_file_path)
+        log_message(f"[GEMINI SCOUT ERROR] Scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
 
     # Step 2.8: Autonomous Link & Soft-404 Health Audit
     update_automation_status({"currentStep": "link_health_audit"})
@@ -226,7 +216,7 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
         try:
             with open(EVENTS_PATH, "r", encoding="utf-8") as f:
                 d = json.load(f)
-                total_events = len(d.get("events", []))
+                total_events = len(d) if isinstance(d, list) else len(d.get("events", []))
         except Exception:
             pass
 

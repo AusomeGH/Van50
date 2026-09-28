@@ -2764,7 +2764,7 @@ def _curator_daemon_scheduler_loop(target_time_str: str = "04:00"):
 
 
 def run_server(port=PORT):
-    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    socketserver.ThreadingTCPServer.allow_reuse_address = False
     scheduler_thread = threading.Thread(target=_curator_daemon_scheduler_loop, daemon=True)
     scheduler_thread.start()
     with socketserver.ThreadingTCPServer(("127.0.0.1", port), CuratorRequestHandler) as httpd:
