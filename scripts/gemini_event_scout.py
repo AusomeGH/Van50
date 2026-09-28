@@ -322,9 +322,12 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
     updated_events = []
     checked_count = 0
 
-    print(f"[AUDIT: events.json] Inspecting {len(events)} active events against today's date ({today_str})...")
+    # Prioritize unverified events or events not verified today
+    unverified = [e for e in events if f"({today_str})" not in (e.get("curator_notes") or "")]
+    already_verified = [e for e in events if f"({today_str})" in (e.get("curator_notes") or "")]
+    sorted_events = unverified + already_verified
 
-    for ev in events:
+    for ev in sorted_events:
         eid = ev.get("event_id")
         title = ev.get("event_name", "")
         venue = ev.get("venue_name", "")
@@ -460,6 +463,7 @@ Return strict JSON:
                         results["updated"] += 1
 
                     else:
+                        ev["curator_notes"] = f"AI-Verified ({today_str}): Confirmed active under $50 CAD."
                         results["verified"] += 1
 
             time.sleep(1.5)
