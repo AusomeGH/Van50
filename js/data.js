@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-27T11:08:10-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T11:08:48-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -63,7 +63,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:22-07:00",
+      "verifiedAt": "2026-09-28T11:07:58-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -137,7 +137,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:22-07:00",
+      "verifiedAt": "2026-09-28T11:07:59-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -213,7 +213,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:22-07:00",
+      "verifiedAt": "2026-09-28T11:07:59-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -290,7 +290,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:24-07:00",
+      "verifiedAt": "2026-09-28T11:08:01-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -363,7 +363,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:25-07:00",
+      "verifiedAt": "2026-09-28T11:08:01-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -438,7 +438,7 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:25-07:00",
+      "verifiedAt": "2026-09-28T11:08:02-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "semanticVerification": {
@@ -481,12 +481,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Museums & Visual Arts",
     "categoryIcon": "🦜",
     "subTags": [
-      "botanical",
-      "organization",
       "exotic-birds",
       "tickets",
-      "bloedel-conservatory",
-      "rainforest"
+      "rainforest",
+      "vancouver",
+      "botanical",
+      "tropical-dome"
     ],
     "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
     "startIso": "2026-09-08T10:00:00-07:00",
@@ -514,18 +514,17 @@ const VANCOUVER_EVENTS = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 9.97,
       "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-27T11:07:26-07:00",
+      "verifiedAt": "2026-09-28T11:08:02-07:00",
       "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
     },
     "semanticVerification": {
       "is_verified": true,
       "match_type": "dedicated_page",
       "matched_tokens": [
-        "organization",
         "tickets"
       ],
-      "evidence_snippet": "...\"amplitudeevent.track('header: register organization')\"> create event warning we cannot detect cookies in your browser....",
-      "reason": "Affirmatively verified event on dedicated landing page (organization, tickets)"
+      "evidence_snippet": "...ice or you will not be able to purchase tickets! [[ venue.name ]] [[ venue.city ]] ,&nbsp; [[ venue.province ]] view eve...",
+      "reason": "Affirmatively verified event on dedicated landing page (tickets)"
     }
   },
   {
@@ -587,7 +586,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-27T11:07:28-07:00",
+      "verifiedAt": "2026-09-28T11:08:04-07:00",
       "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
     },
     "semanticVerification": {
@@ -690,7 +689,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 16.5,
       "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-27T11:07:28-07:00",
+      "verifiedAt": "2026-09-28T11:08:05-07:00",
       "details": "Verified via VIFF Centre box office schedule (viff.org)."
     },
     "semanticVerification": {
@@ -698,13 +697,13 @@ const VANCOUVER_EVENTS = [
       "match_type": "calendar_mention",
       "matched_tokens": [
         "international",
-        "cinema",
         "film",
+        "cinema",
         "documentary",
         "world"
       ],
       "evidence_snippet": "...what's on | vancouver international film festival skip to main content donate subscribe viff &#038; re...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['international', 'cinema', 'film', 'documentary', 'world'] alongside 11 active upcoming dates"
+      "reason": "Official venue calendar/schedule lists event token(s): ['international', 'film', 'cinema', 'documentary', 'world'] alongside 10 active upcoming dates"
     }
   },
   {
@@ -739,12 +738,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "cbc-comedy",
+      "alistair-ogden-live-at-the-rio-theatre-tickets",
+      "headliner",
       "stand-up",
-      "alistair-ogden-live-at-the-rio-theatre-vancouver",
-      "alistair-ogden-live-at-the-rio-theatre",
-      "rio-theatre",
-      "alistair-ogden-live-at-the-rio-theatre-tickets"
+      "eventbrite",
+      "cbc-comedy",
+      "rio-theatre"
     ],
     "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
     "startIso": "2026-12-04T19:30:00-07:00",
@@ -772,7 +771,7 @@ const VANCOUVER_EVENTS = [
       "method": "schema_jsonld",
       "verifiedTotal": 27.96,
       "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-27T11:07:31-07:00",
+      "verifiedAt": "2026-09-28T11:08:07-07:00",
       "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
     },
     "semanticVerification": {
@@ -780,10 +779,12 @@ const VANCOUVER_EVENTS = [
       "match_type": "dedicated_page",
       "matched_tokens": [
         "alistair",
-        "ogden"
+        "ogden",
+        "eventbrite",
+        "headliner"
       ],
       "evidence_snippet": "...alistair ogden: live at the rio theatre tickets, friday, december 4 • 6 pm - 7:3...",
-      "reason": "Affirmatively verified event on dedicated landing page (alistair, ogden)"
+      "reason": "Affirmatively verified event on dedicated landing page (alistair, ogden, eventbrite, headliner)"
     }
   },
   {
@@ -831,11 +832,11 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "categoryIcon": "🎭",
     "subTags": [
+      "comedy-show",
       "theatresports",
       "granville-island",
-      "comedy-show",
       "comedy",
-      "improv",
+      "improv-comedy",
       "waterfront-theatre"
     ],
     "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
@@ -864,7 +865,7 @@ const VANCOUVER_EVENTS = [
       "method": "audienceview_scraped",
       "verifiedTotal": 10.0,
       "feeBreakdown": "$10.00 verified via AudienceView ticketing portal",
-      "verifiedAt": "2026-09-27T11:07:33-07:00",
+      "verifiedAt": "2026-09-28T11:08:08-07:00",
       "details": "Scraped from AudienceView portal on https://theimprovcentre.ca/shows/."
     },
     "semanticVerification": {
@@ -953,7 +954,7 @@ const VANCOUVER_EVENTS = [
       "method": "vso_published_rush_policy",
       "verifiedTotal": 25.2,
       "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-27T11:07:35-07:00",
+      "verifiedAt": "2026-09-28T11:08:09-07:00",
       "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
     },
     "semanticVerification": {
@@ -1028,7 +1029,7 @@ const VANCOUVER_EVENTS = [
       "method": "venue_published_policy",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-27T11:07:35-07:00",
+      "verifiedAt": "2026-09-28T11:08:10-07:00",
       "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
     },
     "semanticVerification": {
@@ -1178,7 +1179,7 @@ const VANCOUVER_EVENTS = [
     "agePolicy": null,
     "admissionPolicy": null,
     "rovingNote": null,
-    "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
+    "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
     "checkoutVerification": {
       "status": "verified_live",
       "method": "manual_curator_review",
@@ -1203,103 +1204,6 @@ const VANCOUVER_EVENTS = [
       ],
       "evidence_snippet": "Civic public access facility verified on official portal (art)",
       "reason": "Official municipal or public institution mandate confirmed"
-    }
-  },
-  {
-    "id": "roxy-country-sunday",
-    "title": "The Roxy Presents: Live Band Line Dancing",
-    "artist": "The Roxy Rollers Country Band & Dance Instructors",
-    "performers": null,
-    "venue": "The Roxy Cabaret",
-    "venueAliases": [
-      "The Roxy",
-      "Roxy Cabaret",
-      "Roxy Nightclub"
-    ],
-    "address": "932 Granville St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 7.24,
-    "priceLabel": "$7.24 – $8.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Advance Ticket",
-        "basePrice": 6.0,
-        "price": 7.24,
-        "label": "$7.24 all-in"
-      },
-      {
-        "name": "Door Admission",
-        "basePrice": 8.0,
-        "price": 8.0,
-        "label": "$8.00 door"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "limited-run",
-    "frequencyLabel": "Sunday, Sept 27",
-    "daysOfWeek": [],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "country",
-      "line-dancing",
-      "live-band",
-      "roxy-rollers",
-      "dance-lesson",
-      "granville-strip"
-    ],
-    "dateSchedule": "Sunday, Sept 27 • Doors 9:00 PM • Line Dancing 9:30 PM",
-    "startIso": "2026-09-27T21:00:00-07:00",
-    "endIso": "2026-09-28T02:00:00-07:00",
-    "confirmedDates": [
-      "2026-09-27"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://roxyvan.com/events",
-    "venueUrl": "https://www.roxyvan.com",
-    "ticketProvider": "Showpass Verified",
-    "rawProvider": "Showpass",
-    "coordinates": [
-      49.2804,
-      -123.1215
-    ],
-    "transitInfo": "Granville SkyTrain Station (4 min walk)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Special Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition. Advance tickets $6.00 + fee on Showpass, $8 at door.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 7.24,
-      "preTaxSticker": 6.9,
-      "feeBreakdown": "$6.00 base + $0.90 service charge + $0.34 GST ($1.24 total fees)",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
-      "details": "Extracted directly from live Showpass public API. Note: Showpass page displays $6.90 pre-tax before checkout."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "calendar_mention",
-      "matched_tokens": [
-        "band",
-        "line",
-        "dancing",
-        "rollers",
-        "dance",
-        "instructors"
-      ],
-      "evidence_snippet": "...jobs media special events venue buyouts band submission contact home welcome guest list lost & found the roxy rollers me...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['band', 'line', 'dancing', 'rollers', 'dance', 'instructors'] alongside 21 active upcoming dates"
     }
   },
   {
@@ -1382,7 +1286,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('free outdoor') scraped live from published terms",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events."
     },
     "semanticVerification": {
@@ -1399,249 +1303,6 @@ const VANCOUVER_EVENTS = [
       ],
       "evidence_snippet": "...events &mdash; public disco 0 skip to content events info faq code of conduct lost &amp; found...",
       "reason": "Official venue calendar/schedule lists event token(s): ['public', 'disco', 'warehouse', 'dance', 'guest', 'electronic', 'artists'] alongside 70 active upcoming dates"
-    }
-  },
-  {
-    "id": "ra-2507393-ortune-ound-lub",
-    "title": "Cult Member",
-    "artist": "Cult Member",
-    "performers": [
-      "Cult Member"
-    ],
-    "venue": "Fortune Sound Club",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Cult Member"
-    ],
-    "address": "147 E Pender St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.0,
-    "basePrice": 25.0,
-    "priceLabel": "$25.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Sunday, Sep 27 • 7:00 PM",
-    "startIso": "2026-09-27T19:00:00.000",
-    "endIso": "2026-09-28T22:00:00.000",
-    "confirmedDates": [
-      "2026-09-27"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2507393",
-    "venueUrl": "https://ra.co/events/2507393",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2808,
-      -123.0998
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Fortune Sound Club. Featuring live performances by Cult Member.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 25.0,
-      "feeBreakdown": "Live RA listing price: $25.00 advance",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2507393"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2507393)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2542260-ero-s-elcome",
-    "title": "Bill Runge Quartet at Hero’s Welcome",
-    "artist": null,
-    "performers": null,
-    "venue": "Hero's Welcome",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver"
-    ],
-    "address": "3917 Main St, Vancouver, BC V5V 3P3",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 10.0,
-    "basePrice": 10.0,
-    "priceLabel": "$10.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 10.0,
-        "price": 10.0,
-        "label": "$10.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Sunday, Sep 27 • 2:00 PM",
-    "startIso": "2026-09-27T14:00:00.000",
-    "endIso": "2026-09-27T17:00:00.000",
-    "confirmedDates": [
-      "2026-09-27"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2542260",
-    "venueUrl": "https://ra.co/events/2542260",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Hero's Welcome.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 10.0,
-      "feeBreakdown": "Live RA listing price: $10.00 advance",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2542260"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2542260)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2542263-eo",
-    "title": "Jonny Tobin Trio at Meo Chinatown",
-    "artist": null,
-    "performers": null,
-    "venue": "Meo",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver"
-    ],
-    "address": "265 East Pender Street",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "basePrice": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Sunday, Sep 27 • 7:00 PM",
-    "startIso": "2026-09-27T19:00:00.000",
-    "endIso": "2026-09-27T21:00:00.000",
-    "confirmedDates": [
-      "2026-09-27"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2542263",
-    "venueUrl": "https://ra.co/events/2542263",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2825,
-      -123.1055
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Meo.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2542263"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2542263)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
     }
   },
   {
@@ -1714,7 +1375,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 20.0,
       "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1797,7 +1458,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1880,7 +1541,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 49.5,
       "feeBreakdown": "Live RA listing price: $49.50 all-in",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1965,7 +1626,7 @@ const VANCOUVER_EVENTS = [
       "method": "api_endpoint",
       "verifiedTotal": 35.0,
       "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-27T11:07:45-07:00",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
       "details": "Authenticated directly via Resident Advisor GraphQL API."
     },
     "semanticVerification": {
@@ -1975,6 +1636,266 @@ const VANCOUVER_EVENTS = [
         "2542298"
       ],
       "evidence_snippet": "Verified platform event slug on ra.co (/events/2542298)",
+      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
+    }
+  },
+  {
+    "id": "ra-2535560-he-obalt",
+    "title": "goreshit & Bye2",
+    "artist": "goreshit, Bye2, Hitori Tori, RiDylan, TR4CK ID?",
+    "performers": [
+      "goreshit",
+      "Bye2",
+      "Hitori Tori",
+      "RiDylan",
+      "TR4CK ID?"
+    ],
+    "venue": "The Cobalt",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "goreshit",
+      "Bye2",
+      "Hitori Tori"
+    ],
+    "address": "917 Main St; Vancouver, BC V6A 2V8; Canada",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 20.0,
+    "basePrice": 20.0,
+    "priceLabel": "$20.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Thursday, Oct 1 • 9:00 PM",
+    "startIso": "2026-10-01T21:00:00.000",
+    "endIso": "2026-10-02T02:00:00.000",
+    "confirmedDates": [
+      "2026-10-01"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2535560",
+    "venueUrl": "https://ra.co/events/2535560",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2638,
+      -123.1012
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Cobalt. Featuring live performances by goreshit, Bye2, Hitori Tori, RiDylan, TR4CK ID?.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "Live RA listing price: $20.00 advance",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    },
+    "semanticVerification": {
+      "is_verified": true,
+      "match_type": "bot_shielded_event_slug",
+      "matched_tokens": [
+        "2535560"
+      ],
+      "evidence_snippet": "Verified platform event slug on ra.co (/events/2535560)",
+      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
+    }
+  },
+  {
+    "id": "ra-2494986-iff-entre",
+    "title": "The Last Angel of History",
+    "artist": "Speaker Music",
+    "performers": [
+      "Speaker Music"
+    ],
+    "venue": "Viff Centre",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "Speaker Music"
+    ],
+    "address": "1181 Seymour St.",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 35.0,
+    "basePrice": 35.0,
+    "priceLabel": "$35.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 35.0,
+        "price": 35.0,
+        "label": "$35.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Oct 2 • 5:00 PM",
+    "startIso": "2026-10-02T17:00:00.000",
+    "endIso": "2026-10-02T18:30:00.000",
+    "confirmedDates": [
+      "2026-10-02"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2494986",
+    "venueUrl": "https://ra.co/events/2494986",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Viff Centre. Featuring live performances by Speaker Music.",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 35.0,
+      "feeBreakdown": "Live RA listing price: $35.00 advance",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    },
+    "semanticVerification": {
+      "is_verified": true,
+      "match_type": "bot_shielded_event_slug",
+      "matched_tokens": [
+        "2494986"
+      ],
+      "evidence_snippet": "Verified platform event slug on ra.co (/events/2494986)",
+      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
+    }
+  },
+  {
+    "id": "ra-2523028-kylight-arehouse",
+    "title": "SQUASH: Amadeezy",
+    "artist": "Amadeezy, softesthan, 0xydr0p, Jer (CA)",
+    "performers": [
+      "Amadeezy",
+      "softesthan",
+      "0xydr0p",
+      "Jer (CA)"
+    ],
+    "venue": "Skylight Warehouse",
+    "venueAliases": [
+      "Resident Advisor",
+      "RA Vancouver",
+      "Amadeezy",
+      "softesthan",
+      "0xydr0p"
+    ],
+    "address": "1800 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 20.0,
+    "basePrice": 20.0,
+    "priceLabel": "$20.00 advance",
+    "pricingType": "platform",
+    "tiers": [
+      {
+        "name": "Standard RA Admission",
+        "basePrice": 20.0,
+        "price": 20.0,
+        "label": "$20.00 advance"
+      }
+    ],
+    "isFree": false,
+    "isDaily": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Confirmed Date",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "Friday, Oct 2 • 10:00 PM",
+    "startIso": "2026-10-02T22:00:00.000",
+    "endIso": "2026-10-03T03:00:00.000",
+    "confirmedDates": [
+      "2026-10-02"
+    ],
+    "isSoldOut": false,
+    "websiteUrl": "https://ra.co/events/2523028",
+    "venueUrl": "https://ra.co/events/2523028",
+    "provider": "Resident Advisor",
+    "semanticProvider": "Resident Advisor Verified",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2687,
+      -123.1012
+    ],
+    "transitInfo": "Accessible via TransLink transit routes",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Skylight Warehouse. Featuring live performances by Amadeezy, softesthan, 0xydr0p, Jer (CA).",
+    "checkoutVerification": {
+      "status": "verified_live",
+      "method": "api_endpoint",
+      "verifiedTotal": 20.0,
+      "feeBreakdown": "Live RA listing price: $20.00 advance",
+      "verifiedAt": "2026-09-28T11:08:22-07:00",
+      "details": "Authenticated directly via Resident Advisor GraphQL API."
+    },
+    "semanticVerification": {
+      "is_verified": true,
+      "match_type": "bot_shielded_event_slug",
+      "matched_tokens": [
+        "2523028"
+      ],
+      "evidence_snippet": "Verified platform event slug on ra.co (/events/2523028)",
       "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
     }
   },
@@ -2038,7 +1959,7 @@ const VANCOUVER_EVENTS = [
       "method": "scraped_page_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-27T11:07:50-07:00",
+      "verifiedAt": "2026-09-28T11:08:27-07:00",
       "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
     },
     "isFree": true,
@@ -2302,14 +2223,13 @@ const VANCOUVER_EVENTS = [
         "viff",
         "union",
         "county",
-        "american",
         "dir",
         "adam",
         "meeks",
         "drama"
       ],
       "evidence_snippet": "...union county | viff centre skip to main content donate subscribe viff &#038; reconciliation van...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, union, county, american, dir, adam, meeks, drama)"
+      "reason": "Affirmatively verified event on dedicated landing page (viff, union, county, dir, adam, meeks, drama)"
     },
     "scrapedDescription": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids."
   },
@@ -2472,11 +2392,10 @@ const VANCOUVER_EVENTS = [
         "dir",
         "rafael",
         "manuel",
-        "gleeson",
         "satire"
       ],
       "evidence_snippet": "...filipiñana | viff centre skip to main content donate subscribe viff &#038; reconciliation van...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, filipi, ana, dir, rafael, manuel, gleeson, satire)"
+      "reason": "Affirmatively verified event on dedicated landing page (viff, filipi, ana, dir, rafael, manuel, satire)"
     },
     "scrapedDescription": "Filipi&ntilde;ana features a luxury golf course in the Philippines in this striking composed comedy which mixes languid surrealism with pointed political satire."
   },
@@ -2811,11 +2730,11 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "official_bylaw_rate",
       "verifiedTotal": 0.0,
       "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-27T11:07:24-07:00",
+      "verifiedAt": "2026-09-28T11:08:01-07:00",
       "details": "Verified via official municipal park bylaw / published community schedule."
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
+    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
     "dealtWith": false
   },
   {
@@ -2876,11 +2795,11 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "scraped_page_policy",
       "verifiedTotal": 12.0,
       "feeBreakdown": "$12.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-27T11:07:29-07:00",
+      "verifiedAt": "2026-09-28T11:08:06-07:00",
       "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
-    "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
+    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
     "dealtWith": false
   },
   {
@@ -2966,7 +2885,7 @@ const MANUAL_REVIEW_QUEUE = [
       }
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
+    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
     "dealtWith": false
   },
   {
@@ -3026,11 +2945,11 @@ const MANUAL_REVIEW_QUEUE = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎵",
     "subTags": [
-      "live-music",
-      "beer",
-      "soul-music",
-      "gastown",
+      "guilt--company",
       "cocktails",
+      "beer",
+      "live-music",
+      "gastown",
       "intimate-lounge"
     ],
     "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
@@ -3059,11 +2978,11 @@ const MANUAL_REVIEW_QUEUE = [
       "method": "venue_published_policy",
       "verifiedTotal": 0.0,
       "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-27T11:07:44-07:00",
+      "verifiedAt": "2026-09-28T11:08:20-07:00",
       "details": "Verified via venue official artist contribution and door policy."
     },
     "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-27T11:08:10.900052+00:00",
+    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
     "dealtWith": false
   }
 ];
