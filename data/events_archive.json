@@ -3353,5 +3353,23 @@
     "discovery_url": "https://viff.org/whats-on/hanging-by-a-wire/",
     "archive_reason": "AI Audit: The theatrical run of 'Hanging by a Wire' at the VIFF Centre has concluded, with the final screening held on September 23, 2026. The official ticketing portal confirms the event has passed.",
     "archived_at": "2026-09-28"
+  },
+  {
+    "id": "public-disco-warehouse-party",
+    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "artist": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "venue": "The Birdhouse",
+    "address": "44 W 4th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "music",
+    "categoryLabel": "music",
+    "startIso": "T:00",
+    "websiteUrl": "https://publicdisco.ca/events",
+    "quarantineReason": "AI Audit: Cannot figure out details: The event could not be verified on official Public Disco channels or The Birdhouse listings, with missing dates and ambiguous details.",
+    "flaggedAt": "2026-09-28",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-09-28T12:54:54.153091"
   }
 ]

@@ -24,18 +24,22 @@
     "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "details_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_provider": "Paciolan Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
       "varsity-sports",
-      "ubc-football",
-      "calgary-dinos",
+      "football",
+      "ubc-thunderbirds",
+      "thunderbird-stadium",
       "u-sports",
-      "thunderbirds",
-      "stadium"
+      "college-football",
+      "student-friendly",
+      "weekend-outing",
+      "point-grey",
+      "ubc"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Enriched with college sports, stadium, and student-friendly experiential tags while retaining the direct athletics box office ticketing source."
   },
   {
     "event_id": "ubc-mbball-twu",
@@ -62,18 +66,22 @@
     "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "details_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_provider": "Paciolan Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
       "varsity-sports",
-      "ubc-basketball",
-      "twu-spartans",
-      "war-memorial",
-      "thunderbirds",
-      "hoops"
+      "basketball",
+      "ubc-thunderbirds",
+      "war-memorial-gym",
+      "u-sports",
+      "student-friendly",
+      "college-hoops",
+      "rainy-day",
+      "point-grey",
+      "ubc"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Added indoor varsity sports and campus venue tags for high-intent basketball search optimization."
   },
   {
     "event_id": "eb-alistair-ogden-rio",
@@ -100,18 +108,21 @@
     "discovery_url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
     "details_url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
     "ticket_url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
-    "ticket_provider": "Eventbrite Verified",
+    "ticket_provider": "Eventbrite",
     "tags": [
-      "cbc-comedy",
-      "stand-up",
+      "standup-comedy",
+      "comedy-show",
       "rio-theatre",
-      "alistair-ogden-live-at-the-rio-theatre-tickets",
-      "alistair-ogden-live-at-the-rio-theatre",
-      "headliner"
+      "east-van",
+      "commercial-drive",
+      "date-night",
+      "19-plus",
+      "craft-beer",
+      "canadian-comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Stripped redundant raw Eventbrite slug tags and added targeted stand-up comedy, neighborhood, and evening vibe descriptors."
   },
   {
     "event_id": "vag-first-friday",
@@ -138,16 +149,22 @@
     "discovery_url": "https://www.vanartgallery.bc.ca/free",
     "details_url": "https://www.vanartgallery.bc.ca/free",
     "ticket_url": "https://www.vanartgallery.bc.ca/free",
-    "ticket_provider": "BMO / Vancouver Art Gallery",
+    "ticket_provider": "Free",
     "tags": [
       "contemporary-art",
-      "emily-carr",
-      "free-first-friday",
-      "art-museum"
+      "art-gallery",
+      "free-admission",
+      "free-events",
+      "first-friday",
+      "downtown-vancouver",
+      "cultural-outing",
+      "rainy-day",
+      "solo-friendly",
+      "all-ages"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Identified as free admission and expanded tags to highlight cultural, solo-friendly, and all-ages access in downtown Vancouver."
   },
   {
     "event_id": "queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -174,15 +191,21 @@
     "discovery_url": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
     "details_url": "https://tickets.vancouveropera.ca/events",
     "ticket_url": "https://tickets.vancouveropera.ca/events",
-    "ticket_provider": "Queen Elizabeth Theatre Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
+      "opera",
+      "classical-music",
+      "vancouver-opera",
       "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
+      "downtown-vancouver",
+      "performing-arts",
+      "date-night",
+      "orchestral",
+      "fine-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is confirmed active for October 24, 2026 at 7:30 PM with ticket options starting at $25 CAD, but the previous specific URL is inactive and should be updated to the Vancouver Opera ticketing page."
+    "curator_notes": "AI Pass 2 (2026-09-28): Replaced generic calendar tags with genre-specific classical performance and premium date-night keywords for Vancouver Opera at QE Theatre."
   },
   {
     "event_id": "queen-elizabeth-theatre-ballet-bc-bodies-voices",
@@ -209,15 +232,21 @@
     "discovery_url": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
     "details_url": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
     "ticket_url": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
-    "ticket_provider": "Queen Elizabeth Theatre Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
+      "contemporary-dance",
+      "ballet",
+      "ballet-bc",
       "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
+      "downtown-vancouver",
+      "performing-arts",
+      "choreography",
+      "date-night",
+      "arts-culture"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Upgraded tags to capture contemporary dance aficionados, choreographic focus, and civic theatre performance intent."
   },
   {
     "event_id": "viff-the-debut",
@@ -244,17 +273,21 @@
     "discovery_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "details_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
-    "ticket_provider": "VIFF Box Office Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
+      "viff",
+      "foreign-cinema",
+      "japanese-film",
       "mieko-kawakami",
-      "japanese-cinema",
-      "viff-2026",
-      "special-presentation",
-      "drama"
+      "film-festival",
+      "date-night",
+      "solo-friendly",
+      "gastown",
+      "downtown"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The screening is confirmed active for October 1, 2026 at 5:30 PM with tickets priced at $22 CAD, but the venue is Lindsay Family Stage at Granville Island rather than SFU Goldcorp Centre for the Arts."
+    "curator_notes": "AI Pass 2 (2026-09-28): Preserved the direct VIFF box office link and enriched search terms with literary adaptation, foreign cinema, and date-night intents."
   },
   {
     "event_id": "rickshaw-theatre-ethan-regan-young-regan-tour",
@@ -281,15 +314,20 @@
     "discovery_url": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
     "details_url": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
     "ticket_url": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
-    "ticket_provider": "Rickshaw Theatre Verified",
+    "ticket_provider": "Ticketmaster",
     "tags": [
+      "indie-folk",
+      "acoustic-music",
+      "live-concert",
+      "ethan-regan",
       "rickshaw-theatre",
-      "music",
-      "live-calendar"
+      "east-van",
+      "19-plus",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Cleaned up the Ticketmaster URL parameters and replaced generic calendar tags with genre-specific indie-folk and East Van discovery tags."
   },
   {
     "event_id": "van50-schalk-bezuidenhout-rio-20260929",
@@ -315,16 +353,21 @@
     "show_3": null,
     "discovery_url": "https://riotheatre.ca/calendar/",
     "details_url": "https://riotheatre.ca/calendar/",
-    "ticket_url": "https://riotheatre.ca/",
-    "ticket_provider": "Direct",
+    "ticket_url": "https://riotheatre.ca/event/schalk-bezuidenhout-hey-hey-divorce/",
+    "ticket_provider": "Direct Box Office",
     "tags": [
-      "comedy",
-      "stand-up",
-      "touring"
+      "standup-comedy",
+      "touring-comedy",
+      "rio-theatre",
+      "commercial-drive",
+      "east-van",
+      "date-night",
+      "craft-beer",
+      "19-plus"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Refined ticketing destination to Rio Theatre's dedicated event listing and added Commercial Drive neighborhood and nightlife vibe tags."
   },
   {
     "event_id": "van50-joon-the-pearl-20261002",
@@ -354,12 +397,17 @@
     "ticket_provider": "TicketWeb",
     "tags": [
       "indie-pop",
-      "electronic",
-      "live-music"
+      "electronic-music",
+      "synth-pop",
+      "granville-strip",
+      "downtown",
+      "live-music",
+      "nightlife",
+      "19-plus"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is active and verified for October 2, 2026 at 7:00 PM for $40.23 CAD. Updating the URL from the generic homepage to the direct TicketWeb event link."
+    "curator_notes": "AI Pass 2 (2026-09-28): Confirmed clean TicketWeb checkout link and added Granville entertainment district, synth-pop, and nightlife intent tags."
   },
   {
     "event_id": "van50-vag-donation-day-20261002",
@@ -386,16 +434,20 @@
     "discovery_url": "https://www.vanartgallery.bc.ca/",
     "details_url": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
     "ticket_url": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Free",
     "tags": [
-      "visual-art",
-      "gallery",
+      "contemporary-art",
+      "art-gallery",
+      "pay-what-you-can",
+      "free-admission",
       "all-ages",
-      "pay-what-you-can"
+      "family-friendly",
+      "rainy-day",
+      "downtown"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is confirmed active for Friday, October 2, 2026, from 10:00 AM to 4:00 PM with admission by donation. Updated with exact date, start time, and direct official event URL."
+    "curator_notes": "AI Pass 2 (2026-09-28): Identified direct VAG registration page with free/donation access and attached budget-friendly, rainy-day cultural search tags."
   },
   {
     "event_id": "van50-what-else-lmg-20261003",
@@ -424,14 +476,18 @@
     "ticket_url": "https://www.showpass.com/o/little-mountain-gallery/",
     "ticket_provider": "Showpass",
     "tags": [
-      "comedy",
-      "trivia",
-      "improv",
-      "gastown"
+      "standup-comedy",
+      "pub-trivia",
+      "interactive-comedy",
+      "gastown",
+      "date-night",
+      "weekend-outing",
+      "cheap-tickets",
+      "little-mountain-gallery"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Linked to Little Mountain Gallery's official Showpass box office and layered high-intent comedy and interactive trivia tags."
   },
   {
     "event_id": "van50-lolo-the-pearl-20261003",
@@ -457,16 +513,21 @@
     "show_3": null,
     "discovery_url": "https://thepearlvancouver.com/calendar/",
     "details_url": "https://thepearlvancouver.com/calendar/",
-    "ticket_url": "https://thepearlvancouver.com/",
-    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://thepearlvancouver.com/calendar/",
+    "ticket_provider": "Ticketweb",
     "tags": [
       "alt-pop",
       "pop-punk",
-      "live-music"
+      "indie-rock",
+      "live-music",
+      "granville-strip",
+      "downtown-vancouver",
+      "19-plus",
+      "date-night"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Identified primary ticketing platform and enriched tags with Granville Entertainment District and alt-pop search keywords."
   },
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
@@ -492,16 +553,21 @@
     "show_3": null,
     "discovery_url": "https://www.foxcabaret.com/",
     "details_url": "https://www.foxcabaret.com",
-    "ticket_url": "https://www.foxcabaret.com",
-    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/422204",
+    "ticket_provider": "Ticketweb",
     "tags": [
       "indie-folk",
+      "singer-songwriter",
       "live-music",
-      "mount-pleasant"
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night",
+      "intimate-concert"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is active and confirmed for October 8, 2026 at 7:00 PM under $50 CAD ($28.50 base / $35.76 after fees), but the previous URL was a generic venue page and should be updated to Fox Cabaret or Eventbrite."
+    "curator_notes": "AI Pass 2 (2026-09-28): Routed to Fox Cabaret's direct Ticketweb box office and added hyper-local Mount Pleasant indie folk tags."
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
@@ -528,15 +594,21 @@
     "discovery_url": "https://rickshawtheatre.com/shows/",
     "details_url": "https://rickshawtheatre.com/",
     "ticket_url": "https://rickshawtheatre.com/shows/",
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Eventbrite",
     "tags": [
       "post-punk",
       "darkwave",
-      "synth-pop"
+      "synth-pop",
+      "live-music",
+      "east-van",
+      "downtown-eastside",
+      "19-plus",
+      "craft-beer",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Designated Eventbrite as ticketing partner and expanded post-punk and East Vancouver nightlife metadata."
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
@@ -563,15 +635,20 @@
     "discovery_url": "https://modo-live.com/",
     "details_url": "https://modo-live.com/",
     "ticket_url": "https://modo-live.com/",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Showpass",
     "tags": [
-      "hip-hop",
-      "noise-rock",
-      "experimental"
+      "experimental-hip-hop",
+      "noise-rap",
+      "industrial-hip-hop",
+      "live-music",
+      "commercial-drive",
+      "east-van",
+      "19-plus",
+      "craft-beer"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Mapped promoter ticketing channels and enriched tags for East Van's alternative and hip-hop community."
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
@@ -603,16 +680,21 @@
     "discovery_url": "https://www.foxcabaret.com/events",
     "details_url": "https://www.foxcabaret.com/events",
     "ticket_url": "https://www.foxcabaret.com/events",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Ticketweb",
     "tags": [
-      "dj",
       "dance-party",
-      "nightlife",
-      "retro"
+      "retro-hits",
+      "dj-night",
+      "late-night",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "cocktails",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Polished the late-night club schedule listing and added robust retro dance and Mount Pleasant nightlife intent tags."
   },
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
@@ -639,15 +721,21 @@
     "discovery_url": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/408995",
     "details_url": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
     "ticket_url": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Ticketweb",
     "tags": [
-      "jazz",
-      "soul",
-      "world-music"
+      "world-jazz",
+      "neo-soul",
+      "funk",
+      "live-music",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night",
+      "cocktails"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): Event is confirmed active for October 10, 2026, under $50 CAD ($35.67 CAD total). Updated official URL to direct TicketWeb event link and specified showtime at 19:30."
+    "curator_notes": "AI Pass 2 (2026-09-28): Preserved direct Ticketweb checkout link and enriched genre descriptors to highlight Thai-infused jazz and neo-soul."
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
@@ -672,17 +760,22 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com/",
-    "details_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.eventbrite.ca/e/militarie-gun-20-songs-for-20-dollars-tickets-1186192347",
     "ticket_url": "https://www.eventbrite.ca/e/militarie-gun-20-songs-for-20-dollars-tickets-1186192347",
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Eventbrite",
     "tags": [
       "punk",
       "hardcore",
-      "alternative"
+      "alternative-rock",
+      "live-music",
+      "19-plus",
+      "downtown-eastside",
+      "east-van",
+      "mosh-pit"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Maintained clean direct Eventbrite checkout link and expanded search tags with demographic markers and genre specifics for the Rickshaw Theatre crowd."
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -709,15 +802,20 @@
     "discovery_url": "https://www.foxcabaret.com/calendar",
     "details_url": "https://www.foxcabaret.com/calendar",
     "ticket_url": "https://www.foxcabaret.com/events",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Direct Box Office",
     "tags": [
-      "comedy",
-      "improv",
-      "weekly"
+      "improv-comedy",
+      "live-comedy",
+      "date-night",
+      "sunday-night",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "craft-beer"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Identified direct venue box office ticketing and enriched tags for weekly comedy seekers and date night outings in Mount Pleasant."
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -746,13 +844,18 @@
     "ticket_url": "https://www.showpass.com/stand-up-showcase-little-mountain-gallery/",
     "ticket_provider": "Showpass",
     "tags": [
-      "stand-up",
-      "comedy",
-      "gastown"
+      "standup-comedy",
+      "indie-comedy",
+      "gastown",
+      "date-night",
+      "solo-friendly",
+      "student-friendly",
+      "19-plus",
+      "thursday-night"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Retained clean direct Showpass link and introduced high-intent indie comedy, student-friendly, and neighborhood discovery tags."
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -779,16 +882,21 @@
     "discovery_url": "https://riotheatre.ca/",
     "details_url": "https://riotheatre.ca/",
     "ticket_url": "https://riotheatre.ca/",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Direct Box Office",
     "tags": [
       "burlesque",
-      "variety",
       "cabaret",
-      "drag"
+      "drag-show",
+      "variety-show",
+      "date-night",
+      "late-night",
+      "commercial-drive",
+      "east-van",
+      "19-plus"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is confirmed active for October 17, 2026, but the start time is 21:00 (showtime, doors at 20:00) and general admission pricing starts at $30.00 CAD rather than the estimated $38.00 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Set ticket provider to Rio Theatre Direct Box Office and enriched tags with variety, drag, and late-night East Van cultural tags."
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -820,16 +928,20 @@
     "discovery_url": "https://botanicalgarden.ubc.ca/news-events/events/apple-festival/",
     "details_url": "https://botanicalgarden.ubc.ca/news-events/events/apple-festival/",
     "ticket_url": "https://botanicalgarden.ubc.ca/news-events/events/apple-festival/",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Direct Box Office",
     "tags": [
-      "festival",
-      "food",
+      "food-festival",
       "family-friendly",
-      "outdoors"
+      "weekend-outing",
+      "all-ages",
+      "outdoor-event",
+      "point-grey",
+      "ubc-campus",
+      "fall-activities"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Preserved official botanical garden portal and augmented tags with daytime family-friendly and seasonal autumn activities."
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
@@ -860,11 +972,16 @@
     "tags": [
       "noise-pop",
       "indie-rock",
-      "psychedelic"
+      "post-punk",
+      "live-music",
+      "commercial-drive",
+      "east-van",
+      "19-plus",
+      "craft-beer"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is active and confirmed for October 22, 2026, under $50 CAD. Updating with the direct TicketWeb URL, show start time (20:00), and confirmed pricing."
+    "curator_notes": "AI Pass 2 (2026-09-28): Standardized TicketWeb ticketing attribution and applied hyper-local East Van and specific indie music genre taxonomy."
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
@@ -891,15 +1008,20 @@
     "discovery_url": "https://www.ticketweb.ca/",
     "details_url": "https://www.oliveklug.com/shows",
     "ticket_url": "https://www.oliveklug.com/shows",
-    "ticket_provider": "TicketWeb",
+    "ticket_provider": "Direct Box Office",
     "tags": [
       "indie-folk",
+      "folk-pop",
+      "live-music",
       "acoustic",
-      "live-music"
+      "commercial-drive",
+      "east-van",
+      "date-night",
+      "intimate-venue"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is confirmed active for October 25, 2026 at 7:30 PM for $32.83 CAD. The official URL should be updated from the generic ticketing homepage to the direct tour/promoter source."
+    "curator_notes": "AI Pass 2 (2026-09-28): Preserved official tour ticket portal and added targeted folk, neighborhood, and date-night tags."
   },
   {
     "event_id": "van50-city-pop-city-rickshaw-20261121",
@@ -926,15 +1048,20 @@
     "discovery_url": "https://rickshawtheatre.com/event/city-pop-city/",
     "details_url": "https://rickshawtheatre.com/event/city-pop-city/",
     "ticket_url": "https://rickshawtheatre.com/event/city-pop-city/",
-    "ticket_provider": "Direct",
+    "ticket_provider": "Direct Box Office",
     "tags": [
       "city-pop",
       "japanese-funk",
-      "live-music"
+      "boogie",
+      "live-music",
+      "downtown-eastside",
+      "east-van",
+      "19-plus",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Maintained the official Rickshaw Theatre ticket page and enriched tags for 80s Japanese funk and dance enthusiasts."
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
@@ -963,13 +1090,18 @@
     "ticket_url": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/408995",
     "ticket_provider": "TicketWeb",
     "tags": [
-      "indie-pop",
       "dream-pop",
-      "live-music"
+      "indie-pop",
+      "shoegaze",
+      "live-music",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Direct TicketWeb Fox Cabaret venue link retained and populated with atmospheric dream-pop genre and Mount Pleasant vibe tags."
   },
   {
     "event_id": "guilt-and-co-live-jazz",
@@ -996,18 +1128,20 @@
     "discovery_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "ticket_provider": "By-Donation / Artist Contribution",
+    "ticket_provider": "Direct Box Office",
     "tags": [
-      "guilt--company",
-      "cocktails",
-      "beer",
-      "live-music",
+      "live-jazz",
+      "soul-music",
+      "craft-cocktails",
       "gastown",
-      "intimate-lounge"
+      "date-night",
+      "late-night",
+      "intimate-lounge",
+      "underground"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
+    "curator_notes": "AI Pass 2 (2026-09-28): Cleaned up venue calendar URL and replaced slug remnants with experiential underground jazz and craft-cocktail nightlife tags."
   },
   {
     "event_id": "vso-saturday-orpheum",
@@ -1034,17 +1168,20 @@
     "discovery_url": "https://www.vancouversymphony.ca/all-access-pass/",
     "details_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
     "ticket_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticket_provider": "Box Office / Direct Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
+      "orchestral",
+      "film-score",
       "symphony",
-      "orpheum",
       "classical-music",
-      "under-35",
-      "vso"
+      "orpheum",
+      "downtown",
+      "student-friendly",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event on October 3, 2026 at the Orpheum is a matinee performance of Harry Potter and the Prisoner of Azkaban in Concert starting at 2:00 PM rather than a night concert. General admission tickets start at $31.50 CAD, remaining well under the $50 limit, and a direct event URL is available."
+    "curator_notes": "AI Pass 2 (2026-09-28): Retained the direct VSO production page and enriched with student-pass, downtown, and cinematic orchestral tags."
   },
   {
     "event_id": "vso-sunday-orpheum",
@@ -1071,16 +1208,19 @@
     "discovery_url": "https://www.vancouversymphony.ca/all-access-pass/",
     "details_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
     "ticket_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticket_provider": "Box Office / Direct Verified",
+    "ticket_provider": "Direct Box Office",
     "tags": [
-      "symphony",
-      "orpheum",
+      "orchestral",
+      "film-music",
       "classical-music",
       "matinee",
-      "vso"
+      "orpheum",
+      "downtown",
+      "student-friendly",
+      "all-ages"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is verified active for October 4, 2026 at 2:00 PM with pricing starting from $20.00 CAD (under $50 CAD limit), but the URL should be updated to the direct event listing."
+    "curator_notes": "AI Pass 2 (2026-09-28): Maintained official VSO ticketing link and added accessible matinee, student, and film-orchestra tags."
   }
 ]

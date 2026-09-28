@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T12:46:47-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T13:06:33-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -27,17 +27,21 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "varsity-sports",
-      "ubc-football",
-      "calgary-dinos",
+      "football",
+      "ubc-thunderbirds",
+      "thunderbird-stadium",
       "u-sports",
-      "thunderbirds",
-      "stadium"
+      "college-football",
+      "student-friendly",
+      "weekend-outing",
+      "point-grey",
+      "ubc"
     ],
     "dateSchedule": "2026-10-16 at 18:00",
     "startIso": "2026-10-16T18:00:00-07:00",
     "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticketProvider": "Paciolan Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -70,17 +74,21 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "varsity-sports",
-      "ubc-basketball",
-      "twu-spartans",
-      "war-memorial",
-      "thunderbirds",
-      "hoops"
+      "basketball",
+      "ubc-thunderbirds",
+      "war-memorial-gym",
+      "u-sports",
+      "student-friendly",
+      "college-hoops",
+      "rainy-day",
+      "point-grey",
+      "ubc"
     ],
     "dateSchedule": "2026-10-29 at 19:30",
     "startIso": "2026-10-29T19:30:00-07:00",
     "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticketProvider": "Paciolan Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -112,18 +120,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "cbc-comedy",
-      "stand-up",
+      "standup-comedy",
+      "comedy-show",
       "rio-theatre",
-      "alistair-ogden-live-at-the-rio-theatre-tickets",
-      "alistair-ogden-live-at-the-rio-theatre",
-      "headliner"
+      "east-van",
+      "commercial-drive",
+      "date-night",
+      "19-plus",
+      "craft-beer",
+      "canadian-comedy"
     ],
     "dateSchedule": "2026-12-04 at 19:30",
     "startIso": "2026-12-04T19:30:00-07:00",
     "websiteUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
     "venueUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
-    "ticketProvider": "Eventbrite Verified",
+    "ticketProvider": "Eventbrite",
     "coordinates": [
       49.2827,
       -123.1207
@@ -156,15 +167,21 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "contemporary-art",
-      "emily-carr",
-      "free-first-friday",
-      "art-museum"
+      "art-gallery",
+      "free-admission",
+      "free-events",
+      "first-friday",
+      "downtown-vancouver",
+      "cultural-outing",
+      "rainy-day",
+      "solo-friendly",
+      "all-ages"
     ],
     "dateSchedule": "2026-10-02 at 16:00",
     "startIso": "2026-10-02T16:00:00-07:00",
     "websiteUrl": "https://www.vanartgallery.bc.ca/free",
     "venueUrl": "https://www.vanartgallery.bc.ca/free",
-    "ticketProvider": "BMO / Vancouver Art Gallery",
+    "ticketProvider": "Free",
     "coordinates": [
       49.2827,
       -123.1207
@@ -196,15 +213,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "shows",
     "categoryIcon": "🎭",
     "subTags": [
+      "opera",
+      "classical-music",
+      "vancouver-opera",
       "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
+      "downtown-vancouver",
+      "performing-arts",
+      "date-night",
+      "orchestral",
+      "fine-arts"
     ],
     "dateSchedule": "2026-10-24 at 19:30",
     "startIso": "2026-10-24T19:30:00-07:00",
     "websiteUrl": "https://tickets.vancouveropera.ca/events",
     "venueUrl": "https://tickets.vancouveropera.ca/events",
-    "ticketProvider": "Queen Elizabeth Theatre Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -236,15 +259,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "shows",
     "categoryIcon": "🎭",
     "subTags": [
+      "contemporary-dance",
+      "ballet",
+      "ballet-bc",
       "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
+      "downtown-vancouver",
+      "performing-arts",
+      "choreography",
+      "date-night",
+      "arts-culture"
     ],
     "dateSchedule": "2026-11-05 at 19:30",
     "startIso": "2026-11-05T19:30:00-07:00",
     "websiteUrl": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
     "venueUrl": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
-    "ticketProvider": "Queen Elizabeth Theatre Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -276,17 +305,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "cinema",
     "categoryIcon": "🎭",
     "subTags": [
+      "viff",
+      "foreign-cinema",
+      "japanese-film",
       "mieko-kawakami",
-      "japanese-cinema",
-      "viff-2026",
-      "special-presentation",
-      "drama"
+      "film-festival",
+      "date-night",
+      "solo-friendly",
+      "gastown",
+      "downtown"
     ],
     "dateSchedule": "2026-10-01 at 17:30",
     "startIso": "2026-10-01T17:30:00-07:00",
     "websiteUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "venueUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
-    "ticketProvider": "VIFF Box Office Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -318,15 +351,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
+      "indie-folk",
+      "acoustic-music",
+      "live-concert",
+      "ethan-regan",
       "rickshaw-theatre",
-      "music",
-      "live-calendar"
+      "east-van",
+      "19-plus",
+      "weekend-outing"
     ],
     "dateSchedule": "2026-10-03 at 19:30",
     "startIso": "2026-10-03T19:30:00-07:00",
     "websiteUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
     "venueUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
-    "ticketProvider": "Rickshaw Theatre Verified",
+    "ticketProvider": "Ticketmaster",
     "coordinates": [
       49.2827,
       -123.1207
@@ -358,15 +396,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy",
-      "stand-up",
-      "touring"
+      "standup-comedy",
+      "touring-comedy",
+      "rio-theatre",
+      "commercial-drive",
+      "east-van",
+      "date-night",
+      "craft-beer",
+      "19-plus"
     ],
     "dateSchedule": "2026-09-29 at 19:00",
     "startIso": "2026-09-29T19:00:00-07:00",
-    "websiteUrl": "https://riotheatre.ca/",
+    "websiteUrl": "https://riotheatre.ca/event/schalk-bezuidenhout-hey-hey-divorce/",
     "venueUrl": "https://riotheatre.ca/calendar/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -399,8 +442,13 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "indie-pop",
-      "electronic",
-      "live-music"
+      "electronic-music",
+      "synth-pop",
+      "granville-strip",
+      "downtown",
+      "live-music",
+      "nightlife",
+      "19-plus"
     ],
     "dateSchedule": "2026-10-02 at 19:00",
     "startIso": "2026-10-02T19:00:00-07:00",
@@ -438,16 +486,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Art & Culture",
     "categoryIcon": "🎭",
     "subTags": [
-      "visual-art",
-      "gallery",
+      "contemporary-art",
+      "art-gallery",
+      "pay-what-you-can",
+      "free-admission",
       "all-ages",
-      "pay-what-you-can"
+      "family-friendly",
+      "rainy-day",
+      "downtown"
     ],
     "dateSchedule": "2026-10-02 at 10:00",
     "startIso": "2026-10-02T10:00:00-07:00",
     "websiteUrl": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
     "venueUrl": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Free",
     "coordinates": [
       49.2827,
       -123.1207
@@ -479,10 +531,14 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy",
-      "trivia",
-      "improv",
-      "gastown"
+      "standup-comedy",
+      "pub-trivia",
+      "interactive-comedy",
+      "gastown",
+      "date-night",
+      "weekend-outing",
+      "cheap-tickets",
+      "little-mountain-gallery"
     ],
     "dateSchedule": "2026-10-03 at 19:00",
     "startIso": "2026-10-03T19:00:00-07:00",
@@ -522,13 +578,18 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "alt-pop",
       "pop-punk",
-      "live-music"
+      "indie-rock",
+      "live-music",
+      "granville-strip",
+      "downtown-vancouver",
+      "19-plus",
+      "date-night"
     ],
     "dateSchedule": "2026-10-03 at 18:00",
     "startIso": "2026-10-03T18:00:00-07:00",
-    "websiteUrl": "https://thepearlvancouver.com/",
+    "websiteUrl": "https://thepearlvancouver.com/calendar/",
     "venueUrl": "https://thepearlvancouver.com/calendar/",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "Ticketweb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -561,14 +622,19 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "indie-folk",
+      "singer-songwriter",
       "live-music",
-      "mount-pleasant"
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night",
+      "intimate-concert"
     ],
     "dateSchedule": "2026-10-08 at 19:00",
     "startIso": "2026-10-08T19:00:00-07:00",
-    "websiteUrl": "https://www.foxcabaret.com",
+    "websiteUrl": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/422204",
     "venueUrl": "https://www.foxcabaret.com",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "Ticketweb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -602,13 +668,19 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "post-punk",
       "darkwave",
-      "synth-pop"
+      "synth-pop",
+      "live-music",
+      "east-van",
+      "downtown-eastside",
+      "19-plus",
+      "craft-beer",
+      "weekend-outing"
     ],
     "dateSchedule": "2026-10-09 at 19:00",
     "startIso": "2026-10-09T19:00:00-07:00",
     "websiteUrl": "https://rickshawtheatre.com/shows/",
     "venueUrl": "https://rickshawtheatre.com/",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "Eventbrite",
     "coordinates": [
       49.2827,
       -123.1207
@@ -640,15 +712,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎭",
     "subTags": [
-      "hip-hop",
-      "noise-rock",
-      "experimental"
+      "experimental-hip-hop",
+      "noise-rap",
+      "industrial-hip-hop",
+      "live-music",
+      "commercial-drive",
+      "east-van",
+      "19-plus",
+      "craft-beer"
     ],
     "dateSchedule": "2026-10-09 at 20:00",
     "startIso": "2026-10-09T20:00:00-07:00",
     "websiteUrl": "https://modo-live.com/",
     "venueUrl": "https://modo-live.com/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Showpass",
     "coordinates": [
       49.2827,
       -123.1207
@@ -680,16 +757,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎭",
     "subTags": [
-      "dj",
       "dance-party",
-      "nightlife",
-      "retro"
+      "retro-hits",
+      "dj-night",
+      "late-night",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "cocktails",
+      "weekend-outing"
     ],
     "dateSchedule": "2026-10-09 at 22:30",
     "startIso": "2026-10-09T22:30:00-07:00",
     "websiteUrl": "https://www.foxcabaret.com/events",
     "venueUrl": "https://www.foxcabaret.com/events",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Ticketweb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -721,15 +803,21 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎭",
     "subTags": [
-      "jazz",
-      "soul",
-      "world-music"
+      "world-jazz",
+      "neo-soul",
+      "funk",
+      "live-music",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night",
+      "cocktails"
     ],
     "dateSchedule": "2026-10-10 at 19:30",
     "startIso": "2026-10-10T19:30:00-07:00",
     "websiteUrl": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
     "venueUrl": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "Ticketweb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -763,13 +851,18 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "punk",
       "hardcore",
-      "alternative"
+      "alternative-rock",
+      "live-music",
+      "19-plus",
+      "downtown-eastside",
+      "east-van",
+      "mosh-pit"
     ],
     "dateSchedule": "2026-10-10 at 18:00",
     "startIso": "2026-10-10T18:00:00-07:00",
     "websiteUrl": "https://www.eventbrite.ca/e/militarie-gun-20-songs-for-20-dollars-tickets-1186192347",
-    "venueUrl": "https://rickshawtheatre.com/",
-    "ticketProvider": "TicketWeb",
+    "venueUrl": "https://www.eventbrite.ca/e/militarie-gun-20-songs-for-20-dollars-tickets-1186192347",
+    "ticketProvider": "Eventbrite",
     "coordinates": [
       49.2827,
       -123.1207
@@ -801,15 +894,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy",
-      "improv",
-      "weekly"
+      "improv-comedy",
+      "live-comedy",
+      "date-night",
+      "sunday-night",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "craft-beer"
     ],
     "dateSchedule": "2026-10-11 at 19:00",
     "startIso": "2026-10-11T19:00:00-07:00",
     "websiteUrl": "https://www.foxcabaret.com/events",
     "venueUrl": "https://www.foxcabaret.com/calendar",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -841,9 +939,14 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy",
     "categoryIcon": "🎭",
     "subTags": [
-      "stand-up",
-      "comedy",
-      "gastown"
+      "standup-comedy",
+      "indie-comedy",
+      "gastown",
+      "date-night",
+      "solo-friendly",
+      "student-friendly",
+      "19-plus",
+      "thursday-night"
     ],
     "dateSchedule": "2026-10-15 at 19:30",
     "startIso": "2026-10-15T19:30:00-07:00",
@@ -882,15 +985,20 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "burlesque",
-      "variety",
       "cabaret",
-      "drag"
+      "drag-show",
+      "variety-show",
+      "date-night",
+      "late-night",
+      "commercial-drive",
+      "east-van",
+      "19-plus"
     ],
     "dateSchedule": "2026-10-17 at 21:00",
     "startIso": "2026-10-17T21:00:00-07:00",
     "websiteUrl": "https://riotheatre.ca/",
     "venueUrl": "https://riotheatre.ca/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -922,16 +1030,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Community",
     "categoryIcon": "🎭",
     "subTags": [
-      "festival",
-      "food",
+      "food-festival",
       "family-friendly",
-      "outdoors"
+      "weekend-outing",
+      "all-ages",
+      "outdoor-event",
+      "point-grey",
+      "ubc-campus",
+      "fall-activities"
     ],
     "dateSchedule": "2026-10-17 at 11:00",
     "startIso": "2026-10-17T11:00:00-07:00",
     "websiteUrl": "https://botanicalgarden.ubc.ca/news-events/events/apple-festival/",
     "venueUrl": "https://botanicalgarden.ubc.ca/news-events/events/apple-festival/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -965,7 +1077,12 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "noise-pop",
       "indie-rock",
-      "psychedelic"
+      "post-punk",
+      "live-music",
+      "commercial-drive",
+      "east-van",
+      "19-plus",
+      "craft-beer"
     ],
     "dateSchedule": "2026-10-22 at 20:00",
     "startIso": "2026-10-22T20:00:00-07:00",
@@ -1004,14 +1121,19 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "subTags": [
       "indie-folk",
+      "folk-pop",
+      "live-music",
       "acoustic",
-      "live-music"
+      "commercial-drive",
+      "east-van",
+      "date-night",
+      "intimate-venue"
     ],
     "dateSchedule": "2026-10-25 at 19:30",
     "startIso": "2026-10-25T19:30:00-07:00",
     "websiteUrl": "https://www.oliveklug.com/shows",
     "venueUrl": "https://www.oliveklug.com/shows",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -1045,13 +1167,18 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "city-pop",
       "japanese-funk",
-      "live-music"
+      "boogie",
+      "live-music",
+      "downtown-eastside",
+      "east-van",
+      "19-plus",
+      "weekend-outing"
     ],
     "dateSchedule": "2026-11-21 at 19:30",
     "startIso": "2026-11-21T19:30:00-07:00",
     "websiteUrl": "https://rickshawtheatre.com/event/city-pop-city/",
     "venueUrl": "https://rickshawtheatre.com/event/city-pop-city/",
-    "ticketProvider": "Direct",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -1083,9 +1210,14 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "categoryIcon": "🎭",
     "subTags": [
-      "indie-pop",
       "dream-pop",
-      "live-music"
+      "indie-pop",
+      "shoegaze",
+      "live-music",
+      "mount-pleasant",
+      "main-street",
+      "19-plus",
+      "date-night"
     ],
     "dateSchedule": "2026-12-11 at 20:00",
     "startIso": "2026-12-11T20:00:00-07:00",
@@ -1123,18 +1255,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
-      "guilt--company",
-      "cocktails",
-      "beer",
-      "live-music",
+      "live-jazz",
+      "soul-music",
+      "craft-cocktails",
       "gastown",
-      "intimate-lounge"
+      "date-night",
+      "late-night",
+      "intimate-lounge",
+      "underground"
     ],
     "dateSchedule": "2026-09-28 at 19:00",
     "startIso": "2026-09-28T19:00:00-07:00",
     "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "ticketProvider": "By-Donation / Artist Contribution",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -1166,17 +1300,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
+      "orchestral",
+      "film-score",
       "symphony",
-      "orpheum",
       "classical-music",
-      "under-35",
-      "vso"
+      "orpheum",
+      "downtown",
+      "student-friendly",
+      "weekend-outing"
     ],
     "dateSchedule": "2026-10-03 at 14:00",
     "startIso": "2026-10-03T14:00:00-07:00",
     "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
     "venueUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticketProvider": "Box Office / Direct Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -1208,17 +1345,20 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
-      "symphony",
-      "orpheum",
+      "orchestral",
+      "film-music",
       "classical-music",
       "matinee",
-      "vso"
+      "orpheum",
+      "downtown",
+      "student-friendly",
+      "all-ages"
     ],
     "dateSchedule": "2026-10-04 at 14:00",
     "startIso": "2026-10-04T14:00:00-07:00",
     "websiteUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
     "venueUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticketProvider": "Box Office / Direct Verified",
+    "ticketProvider": "Direct Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -1228,24 +1368,7 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   }
 ];
-const MANUAL_REVIEW_QUEUE = [
-  {
-    "id": "public-disco-warehouse-party",
-    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "artist": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "venue": "The Birdhouse",
-    "address": "44 W 4th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "category": "music",
-    "categoryLabel": "music",
-    "startIso": "T:00",
-    "websiteUrl": "https://publicdisco.ca/events",
-    "quarantineReason": "AI Audit: Cannot figure out details: The event could not be verified on official Public Disco channels or The Birdhouse listings, with missing dates and ambiguous details.",
-    "flaggedAt": "2026-09-28"
-  }
-];
+const MANUAL_REVIEW_QUEUE = [];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [

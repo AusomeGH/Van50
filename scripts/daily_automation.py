@@ -31,6 +31,7 @@ STATUS_PATH = os.path.join(DATA_DIR, "automation_status.json")
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from gemini_event_scout import get_gemini_api_key, run_full_gemini_scouting_pipeline, run_gemini_scouting_cycle, sync_master_catalogs
 from gemini_email_scout import run_gemini_email_scout
+from refine_event_links_and_tags import run_event_refinement_pass
 from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
 
@@ -213,6 +214,23 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
             log_message("[EMAIL SCOUT WARN] No GEMINI_API_KEY set; skipping email scout.", log_file_path)
     except Exception as e:
         log_message(f"[EMAIL SCOUT ERROR] Email scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
+
+    # Step 2.6: Pass 2 AI Refinement & Search Tag Enrichment
+    update_automation_status({"currentStep": "gemini_pass_2_refine"})
+    log_message("[PIPELINE STEP 2.6/3] Running Gemini AI Pass 2 (Direct Ticketing Link Refinement & High-Intent Search Tag Enrichment)...", log_file_path)
+    refine_stats = {"refined_count": 0, "tags_generated": 0}
+    try:
+        if api_key:
+            refine_stats = run_event_refinement_pass(api_key=api_key, batch_size=6, dry_run=dry_run)
+            log_message(
+                f"[PASS 2 SUCCESS] Refined: {refine_stats.get('refined_count', 0)} events | "
+                f"Generated {refine_stats.get('tags_generated', 0)} high-intent search tags.",
+                log_file_path
+            )
+        else:
+            log_message("[PASS 2 WARN] No GEMINI_API_KEY set; skipping Pass 2 refinement.", log_file_path)
+    except Exception as e:
+        log_message(f"[PASS 2 ERROR] Refinement pass encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
 
     # Step 2.8: Autonomous Link & Soft-404 Health Audit
     update_automation_status({"currentStep": "link_health_audit"})
