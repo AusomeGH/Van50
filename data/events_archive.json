@@ -3249,5 +3249,18 @@
     "discovery_url": "https://publicdisco.ca/events/downtown2026",
     "archive_reason": "AI Audit: The event series concluded on Saturday, August 29, 2026, prior to today's date of 2026-09-28.",
     "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "queen-elizabeth-theatre-penn-teller",
+    "event_name": "Penn & Teller",
+    "category": "shows",
+    "venue_name": "Queen Elizabeth Theatre",
+    "full_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Get tickets for Penn and Teller at Queen Elizabeth Theatre in Vancouver. MRG Presale: April 23 @ 10:00 AM PT On Sale : April 24 @ 10:00 AM PT From humble beginnings 50 years...",
+    "attempted_price_cad": 90.14,
+    "discovery_url": "https://admitone.com/events/penn-and-teller-vancouver-160744",
+    "archive_reason": "AI Audit: Verified official entry tickets on AdmitONE start at .14 CAD, strictly exceeding the .00 CAD budget limit.",
+    "archived_at": "2026-09-28"
   }
 ]

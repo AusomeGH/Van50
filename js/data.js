@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T12:10:01-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T12:18:31-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -335,46 +335,6 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Ballet BC opens their season with a double bill from Dutch sibling choreographic duo Imre and Marne van Opstal, whose evocative work sees dance as a poetic, emotional laboratory. Nov 5 to 7, 2026, at the Queen Elizabeth Theatre in Vancouver.",
-    "isSoldOut": false
-  },
-  {
-    "id": "queen-elizabeth-theatre-penn-teller",
-    "title": "Penn & Teller",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 14.0,
-    "priceLabel": "$14.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "shows",
-    "categoryLabel": "shows",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
-    ],
-    "dateSchedule": "2026-11-10 at 19:30",
-    "startIso": "2026-11-10T19:30:00-07:00",
-    "websiteUrl": "https://admitone.com/events/penn-and-teller-vancouver-160744",
-    "venueUrl": "https://admitone.com/events/penn-and-teller-vancouver-160744",
-    "ticketProvider": "Admitone Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Get tickets for Penn and Teller at Queen Elizabeth Theatre in Vancouver. MRG Presale: April 23 @ 10:00 AM PT On Sale : April 24 @ 10:00 AM PT From humble beginnings 50 years...",
     "isSoldOut": false
   },
   {

@@ -294,41 +294,6 @@
     "curator_notes": ""
   },
   {
-    "event_id": "queen-elizabeth-theatre-penn-teller",
-    "event_name": "Penn & Teller",
-    "category": "shows",
-    "venue_name": "Queen Elizabeth Theatre",
-    "full_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Get tickets for Penn and Teller at Queen Elizabeth Theatre in Vancouver. MRG Presale: April 23 @ 10:00 AM PT On Sale : April 24 @ 10:00 AM PT From humble beginnings 50 years...",
-    "pricing_all_in_cad": {
-      "regular": 14.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-11-10",
-      "start_time": "19:30",
-      "end_time": "",
-      "cost": 14.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://admitone.com/events/penn-and-teller-vancouver-160744",
-    "details_url": "https://admitone.com/events/penn-and-teller-vancouver-160744",
-    "ticket_url": "https://admitone.com/events/penn-and-teller-vancouver-160744",
-    "ticket_provider": "Admitone Verified",
-    "tags": [
-      "queen-elizabeth-theatre",
-      "shows",
-      "live-calendar"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": ""
-  },
-  {
     "event_id": "viff-the-debut",
     "event_name": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
     "category": "cinema",
