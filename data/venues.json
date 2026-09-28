@@ -1025,5 +1025,165 @@
     "full_address": "115 Victory Ship Way, North Vancouver, BC V7L 0B2",
     "neighborhood": "Lower Lonsdale",
     "description": "Restored century-old wooden shipbuilding hall at The Shipyards featuring open-concept space and exposed wooden beam architecture."
+  },
+  {
+    "venue_name": "Annex",
+    "website_url": "https://vancouvercivictheatres.com/venues/annex/",
+    "calendar_url": "https://vancouvercivictheatres.com/events/",
+    "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
+    "neighborhood": "Downtown",
+    "description": "Vancouver Civic Theatres' intimate black-box and contemporary chamber performance venue."
+  },
+  {
+    "venue_name": "Croatian Cultural Centre",
+    "website_url": "https://croatiancentre.com",
+    "calendar_url": "https://croatiancentre.com/events/",
+    "full_address": "3250 Commercial Dr, Vancouver, BC V5N 4E4",
+    "neighborhood": "Commercial Drive",
+    "description": "Versatile community banquet and exhibition facility hosting cultural markets, trade shows, and community events."
+  },
+  {
+    "venue_name": "Fox Cabaret",
+    "website_url": "https://www.foxcabaret.com",
+    "calendar_url": "https://www.foxcabaret.com/calendar",
+    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant",
+    "description": "Former adult cinema converted into a stylish indie concert venue, dance club, and comedy lounge."
+  },
+  {
+    "venue_name": "The Show Cellar",
+    "website_url": "https://theshowcellar.com",
+    "calendar_url": "https://theshowcellar.com",
+    "full_address": "1755 Davie St, Vancouver, BC V6G 1W5",
+    "neighborhood": "West End",
+    "description": "Intimate subterranean comedy and cabaret space in the West End."
+  },
+  {
+    "venue_name": "The Polygon Gallery",
+    "website_url": "https://thepolygon.ca",
+    "calendar_url": "https://thepolygon.ca/exhibitions/",
+    "full_address": "101 Carrie Cates Ct, North Vancouver, BC V7M 3J4",
+    "neighborhood": "North Shore",
+    "description": "Award-winning waterfront visual arts and photography institution at Lower Lonsdale's Shipyards."
+  },
+  {
+    "venue_name": "Arts Club Theatre Company (Granville Island Stage)",
+    "website_url": "https://artsclub.com",
+    "calendar_url": "https://artsclub.com/shows",
+    "full_address": "1585 Johnston St, Vancouver, BC",
+    "neighborhood": "Granville Island",
+    "description": "Flagship 440-seat professional live theatre venue operated by Western Canada's largest theatre company."
+  },
+  {
+    "venue_name": "Pendulum Gallery",
+    "website_url": "https://www.pendulumgallery.bc.ca",
+    "calendar_url": "https://www.pendulumgallery.bc.ca/exhibitions",
+    "full_address": "885 W Georgia St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Public exhibition space in the HSBC Building atrium hosting curated contemporary visual arts and photography."
+  },
+  {
+    "venue_name": "Trout Lake Community Centre",
+    "website_url": "https://troutlakecc.com",
+    "calendar_url": "https://troutlakecc.com/events",
+    "full_address": "3360 Victoria Dr, Vancouver, BC",
+    "neighborhood": "Commercial Drive",
+    "description": "Civic recreation centre offering parkland access, community rooms, and outdoor athletic fields for public cultural events."
+  },
+  {
+    "venue_name": "The Orpheum",
+    "website_url": "https://vancouvercivictheatres.com/venues/the-orpheum",
+    "calendar_url": "https://vancouvercivictheatres.com/events",
+    "full_address": "601 Smithe St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Historic 1927 concert hall and theatre home to the Vancouver Symphony Orchestra and the Mighty Wurlitzer organ."
+  },
+  {
+    "venue_name": "VanDusen Botanical Garden",
+    "website_url": "https://vandusengarden.org",
+    "calendar_url": "https://vandusengarden.org/events",
+    "full_address": "5251 Oak St, Vancouver, BC",
+    "neighborhood": "South Cambie",
+    "description": "55-acre botanical garden showcasing more than 7,500 plant species, hedge maze, and seasonal displays."
+  },
+  {
+    "venue_name": "Contemporary Art Gallery (CAG)",
+    "website_url": "https://www.contemporaryartgallery.ca",
+    "calendar_url": "https://www.contemporaryartgallery.ca/exhibitions",
+    "full_address": "555 Nelson St, Vancouver, BC",
+    "neighborhood": "Yaletown",
+    "description": "Non-profit, free-entry public art institution focused exclusively on modern and contemporary visual work."
+  },
+  {
+    "venue_name": "LanaLou's Rock 'n' Roll Eatery",
+    "website_url": "https://lanalous.com/",
+    "calendar_url": "https://lanalous.com/events/",
+    "full_address": "362 Powell St, Vancouver, BC",
+    "neighborhood": "Strathcona",
+    "description": "Independent, artist-friendly live music venue, diner, and rehearsal hub in Strathcona."
+  },
+  {
+    "venue_name": "Guilt & Company",
+    "website_url": "https://www.guiltandcompany.com/",
+    "calendar_url": "https://www.guiltandcompany.com/live-music",
+    "full_address": "1 Alexander St, Vancouver, BC",
+    "neighborhood": "Gastown",
+    "description": "Subterranean Gastown lounge presenting two live sets nightly across jazz, soul, and world music."
+  },
+  {
+    "venue_name": "Vancouver Public Library Central Branch",
+    "website_url": "https://www.vpl.ca/",
+    "calendar_url": "https://vpl.bibliocommons.com/v2/events",
+    "full_address": "350 W Georgia St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Colosseum-inspired central library with free public rooftop garden, exhibition levels, and reading spaces."
+  },
+  {
+    "venue_name": "St. Andrew's-Wesley United Church",
+    "website_url": "https://standrewswesley.com/",
+    "calendar_url": "https://standrewswesley.com/events/",
+    "full_address": "1022 Nelson St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Historic gothic stone church hosting weekly Sunday Jazz Vespers and community cultural programming."
+  },
+  {
+    "venue_name": "The Annex",
+    "website_url": "https://vancouvercivictheatres.com/venues/the-annex",
+    "calendar_url": "https://vancouvercivictheatres.com/events",
+    "full_address": "823 Seymour St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Flexible, modern 285-seat performance venue operated by Vancouver Civic Theatres."
+  },
+  {
+    "venue_name": "The Waldorf Hotel",
+    "website_url": "https://thewaldorfhotel.com",
+    "calendar_url": "https://thewaldorfhotel.com/events",
+    "full_address": "1489 E Hastings St, Vancouver, BC",
+    "neighborhood": "Hastings-Sunrise",
+    "description": "Historic East Vancouver cultural hub featuring tiki decor, live music rooms, and alternative cabaret performances."
+  },
+  {
+    "venue_name": "Orpheum Theatre",
+    "website_url": "https://vancouvercivictheatres.com/venues/orpheum",
+    "calendar_url": "https://vancouvercivictheatres.com/events",
+    "full_address": "601 Smithe St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Opulent 1927 heritage concert hall home to the Vancouver Symphony Orchestra and the Wurlitzer pipe organ."
+  },
+  {
+    "venue_name": "Guilt & Co",
+    "website_url": "https://www.guiltandcompany.com",
+    "calendar_url": "https://www.guiltandcompany.com/live-music",
+    "full_address": "1 Alexander St, Vancouver, BC",
+    "neighborhood": "Gastown",
+    "description": "Intimate subterranean music lounge offering live jazz, funk, soul, and folk performances seven nights a week with pay-what-you-can or modest $5–$15 suggested cover."
+  },
+  {
+    "venue_name": "The Annex & Roundhouse Community Centre",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/roundhouse-community-centre.aspx",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
+    "full_address": "823 Seymour St / 181 Roundhouse Mews, Vancouver, BC",
+    "neighborhood": "Downtown / Yaletown",
+    "description": "Civic arts and cultural spaces hosting community chamber music, choral concerts, jazz residencies, and experimental acoustic sets ranging from free to $30 CAD."
   }
 ]

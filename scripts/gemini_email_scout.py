@@ -457,13 +457,15 @@ def run_gemini_email_scout(
                         ev["curator_notes"] = f"Ingested from email: {subj} ({datetime.now().strftime('%Y-%m-%d')})"
 
                         if status == "Auto-Approved" and ev.get("show_1", {}).get("date") and ev.get("ticket_url"):
-                            print(f"    ✓ Adding to Active Events: '{name}' at {ev.get('venue_name')}")
+                            price_val = float(ev.get("pricing_all_in_cad", {}).get("regular", 0.0) or 0.0)
+                            print(f'[NEW EVENT ADDED] "{name}" at {ev.get("venue_name")} (${price_val:.2f} CAD)', flush=True)
                             existing_events.append(ev)
                             known_ids.add(eid)
                             known_titles.add(name.lower())
                             stats["added_to_active"] += 1
                         else:
-                            print(f"    ⚠ Staging to Review Queue: '{name}'")
+                            q_msg = f"Ingested from email ({subj}): {ev.get('curator_notes', '')}"
+                            print(f'[QUARANTINED] "{name}" • Reason: {q_msg}', flush=True)
                             quarantined.append({
                                 "id": eid,
                                 "title": name,
@@ -474,7 +476,7 @@ def run_gemini_email_scout(
                                 "priceLabel": f"${ev.get('pricing_all_in_cad', {}).get('regular', 0.0):.2f} CAD",
                                 "category": ev.get("category"),
                                 "websiteUrl": ev.get("ticket_url") or ev.get("details_url"),
-                                "quarantineReason": f"Ingested from email ({subj}): {ev.get('curator_notes', '')}",
+                                "quarantineReason": q_msg,
                                 "flaggedAt": datetime.now().strftime("%Y-%m-%d")
                             })
                             known_ids.add(eid)
@@ -485,14 +487,14 @@ def run_gemini_email_scout(
                 for v in disc_venues:
                     v_name = v.get("venue_name")
                     if v_name and not any(ex.get("venue_name", "").lower() == v_name.lower() for ex in venues_data):
-                        print(f"  + Discovered new venue: {v_name}")
+                        print(f'[NEW VENUE ADDED] "{v_name}" ({v.get("neighborhood") or "Vancouver"})', flush=True)
                         venues_data.append(v)
 
                 # Merge discovered festivals
                 for f in disc_festivals:
                     f_name = f.get("festival_name")
                     if f_name and not any(ex.get("festival_name", "").lower() == f_name.lower() for ex in festivals_data):
-                        print(f"  + Discovered new festival: {f_name}")
+                        print(f'[NEW FESTIVAL ADDED] "{f_name}" ({f.get("location") or "Vancouver"})', flush=True)
                         festivals_data.append(f)
 
                 if mark_as_read and not dry_run:

@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.3.0",
-    "updatedAt": "2026-09-23T20:20:00-07:00",
-    "totalSources": 24,
+    "updatedAt": "2026-09-28",
+    "totalSources": 40,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -16,7 +16,12 @@
       "type": "editorial_aggregator",
       "typeLabel": "Editorial News & Community Calendar",
       "focus": "Community culture, trending local happenings, weekend roundups, seasonal festivals",
-      "bestForCategories": ["outdoors", "activities", "shows", "arts"],
+      "bestForCategories": [
+        "outdoors",
+        "activities",
+        "shows",
+        "arts"
+      ],
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or box office portal. Never use VIA article URL as final card destination.",
@@ -31,7 +36,11 @@
       "type": "nightlife_and_gigs_aggregator",
       "typeLabel": "Live Music & Nightlife Directory",
       "focus": "Live music, cover bands, indie rock, DJ & retro dance nights, brewery trivia, comedy, and RSVP giveaways",
-      "bestForCategories": ["music", "shows", "trivia"],
+      "bestForCategories": [
+        "music",
+        "shows",
+        "trivia"
+      ],
       "harvestMethod": "html_calendar_and_rss",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
@@ -46,7 +55,12 @@
       "type": "cultural_directory",
       "typeLabel": "Arts, Culture & Community Listings",
       "focus": "Grassroots arts, live theatre, dance, jazz sessions, comedy showcases, and community submissions",
-      "bestForCategories": ["music", "shows", "arts", "cinema"],
+      "bestForCategories": [
+        "music",
+        "shows",
+        "arts",
+        "cinema"
+      ],
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
@@ -61,7 +75,11 @@
       "type": "editorial_lifestyle_aggregator",
       "typeLabel": "Lifestyle & Pop-Up Event Coverage",
       "focus": "Weekly 'Free & cheap things to do in Vancouver' roundups, night markets, food festivals, and seasonal pop-ups",
-      "bestForCategories": ["activities", "outdoors", "shows"],
+      "bestForCategories": [
+        "activities",
+        "outdoors",
+        "shows"
+      ],
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Scan weekly weekend editorial lists, extract venue and dates, and resolve to official venue pages.",
@@ -76,7 +94,11 @@
       "type": "independent_civic_guide",
       "typeLabel": "Independent Vancouver Events & Heritage Guide",
       "focus": "Civic gatherings, free outdoor festivals, park events, farmers markets, heritage and community activities",
-      "bestForCategories": ["outdoors", "activities", "arts"],
+      "bestForCategories": [
+        "outdoors",
+        "activities",
+        "arts"
+      ],
       "harvestMethod": "rss_and_blog_roundups",
       "targetBudgetTier": "Free & budget ($0 - $25 CAD)",
       "resolutionPolicy": "Extract structured bullet points from weekly 'Things to Do in Vancouver This Weekend' post published every Thursday; link directly to official host organization.",
@@ -91,7 +113,11 @@
       "type": "civic_tourism_directory",
       "typeLabel": "Official Tourism & Civic Festival Calendar",
       "focus": "Major city-wide street festivals (Khatsahlano, Car Free Days, Greek Day, Italian Day), fireworks, cultural celebrations",
-      "bestForCategories": ["outdoors", "arts", "music"],
+      "bestForCategories": [
+        "outdoors",
+        "arts",
+        "music"
+      ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free & civic ($0 CAD)",
       "resolutionPolicy": "High authority; use official festival domains and municipal event landing pages linked on each listing.",
@@ -106,7 +132,9 @@
       "type": "pub_and_club_gig_guide",
       "typeLabel": "Local Pub & Bar Music Schedule",
       "focus": "Vancouver bar and pub live music circuit (The Roxy, Blarney Stone, Rickshaw, LanaLou's, Fairview)",
-      "bestForCategories": ["music"],
+      "bestForCategories": [
+        "music"
+      ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "$0 - $20 CAD door",
       "resolutionPolicy": "Extract gig date and performer, then match to venue's official ticket portal or verified door policy.",
@@ -121,7 +149,9 @@
       "type": "concert_and_gig_aggregator",
       "typeLabel": "Concert & Touring Gig Directory",
       "focus": "Live band tours, local venue shows, cover showcases, recurring club gigs",
-      "bestForCategories": ["music"],
+      "bestForCategories": [
+        "music"
+      ],
       "harvestMethod": "api_and_html",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract platform ticketing links (Ticketweb, Eventbrite, AXS, Showpass) and calculate all-in fees.",
@@ -136,7 +166,9 @@
       "type": "concert_and_tour_aggregator",
       "typeLabel": "Live Music & Artist Tour Tracker",
       "focus": "Concerts, emerging artists, local stage performances across Metro Vancouver",
-      "bestForCategories": ["music"],
+      "bestForCategories": [
+        "music"
+      ],
       "harvestMethod": "api_and_html",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Follow primary ticket provider link to obtain actual cart price and fee breakdown.",
@@ -151,7 +183,11 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Direct Platform Discovery (Showpass)",
       "focus": "Independent comedy, dance parties, community performances, seasonal attractions (e.g. Fox Cabaret, Bloedel, Little Mountain Gallery)",
-      "bestForCategories": ["shows", "music", "activities"],
+      "bestForCategories": [
+        "shows",
+        "music",
+        "activities"
+      ],
       "harvestMethod": "direct_api",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Zero middleman: event is already on Showpass; query API directly for instant price verification.",
@@ -166,7 +202,12 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Direct Platform Discovery (Eventbrite)",
       "focus": "Free community workshops, underground music, indie showcases, pop-up markets, neighborhood festivals",
-      "bestForCategories": ["activities", "music", "shows", "trivia"],
+      "bestForCategories": [
+        "activities",
+        "music",
+        "shows",
+        "trivia"
+      ],
       "harvestMethod": "direct_api_and_search",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
@@ -181,7 +222,11 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Electronic & Club Discovery (Resident Advisor)",
       "focus": "Electronic music, dance parties, club nights, warehouse fundraisers, DJ sets, underground community parties",
-      "bestForCategories": ["music", "social", "shows"],
+      "bestForCategories": [
+        "music",
+        "social",
+        "shows"
+      ],
       "harvestMethod": "direct_graphql_api",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Query RA GraphQL API directly with Vancouver Area ID 39; filter for verified venue locations under $50 CAD total out-of-pocket.",
@@ -196,7 +241,10 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Mid-Sized Club & Live Music Ticketing",
       "focus": "Indie rock, punk, metal, retro dance parties, touring live acts (Hollywood Theatre, Rickshaw, Wise Hall, Pearl)",
-      "bestForCategories": ["music", "shows"],
+      "bestForCategories": [
+        "music",
+        "shows"
+      ],
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract live Schema.org offers or venue event mirror; calculate exact all-in total with service fees and 5% GST; quarantine if > $50 CAD.",
@@ -211,7 +259,10 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Upfront Transparent Mobile Ticketing",
       "focus": "Indie showcases, electronic, synth-pop, underground dance parties (Red Gate, Paradise)",
-      "bestForCategories": ["music", "shows"],
+      "bestForCategories": [
+        "music",
+        "shows"
+      ],
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse __NEXT_DATA__ event payload; verify upfront all-in pricing with zero hidden checkout fees.",
@@ -226,7 +277,10 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Underground Dance & Nightlife Ticketing",
       "focus": "Electronic, techno, house, warehouse collectives, late-night parties",
-      "bestForCategories": ["music", "social"],
+      "bestForCategories": [
+        "music",
+        "social"
+      ],
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse live event state and calculate platform commission and 5% GST; enforce <= $50 cap.",
@@ -241,7 +295,10 @@
       "type": "theatre_ticketing_system",
       "typeLabel": "Independent Performing Arts & Theatre",
       "focus": "Contemporary theatre, dance, circus, festival performances across York, Historic, and Culture Lab stages",
-      "bestForCategories": ["shows", "arts"],
+      "bestForCategories": [
+        "shows",
+        "arts"
+      ],
       "harvestMethod": "spektrix_components_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract accessible tiers (Under-30, Youth, Arts Worker, Preview) and verify with 5% GST.",
@@ -256,7 +313,10 @@
       "type": "arts_enterprise_ticketing",
       "typeLabel": "Institutional Performing Arts & Classical",
       "focus": "Symphony concerts, major theatre productions, Shakespeare festival previews, youth/student rush",
-      "bestForCategories": ["shows", "arts"],
+      "bestForCategories": [
+        "shows",
+        "arts"
+      ],
       "harvestMethod": "tessitura_tnew_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Filter for accessible rush tiers (Student Rush, Under-35 Symphony Pass, previews) under $50 all-in.",
@@ -271,7 +331,11 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Flat-Fee Grassroots & Community Ticketing",
       "focus": "DIY concerts, craft fairs, drag shows, queer dances, community workshops",
-      "bestForCategories": ["arts", "music", "activities"],
+      "bestForCategories": [
+        "arts",
+        "music",
+        "activities"
+      ],
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse transparent low flat fees and calculate verified total out-of-pocket price.",
@@ -286,7 +350,11 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "100% Free Non-Profit & Charity Platform",
       "focus": "Charity choir concerts, heritage walking tours, museum talks, community arts fundraisers",
-      "bestForCategories": ["activities", "arts", "outdoors"],
+      "bestForCategories": [
+        "activities",
+        "arts",
+        "outdoors"
+      ],
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Confirm $0 platform fee; verify 100% transparent admission for Canadian registered non-profits.",
@@ -301,7 +369,10 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Charity-Driven Community Ticketing",
       "focus": "Community storytelling, environmental symposiums, local speaker panels, education",
-      "bestForCategories": ["activities", "arts"],
+      "bestForCategories": [
+        "activities",
+        "arts"
+      ],
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract transparent charity booking fee and calculate all-in checkout amount.",
@@ -316,7 +387,11 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Film Festivals & Pop-Up Events",
       "focus": "DOXA Documentary Film Festival, Latin American Film Festival, food & craft beverage tastings",
-      "bestForCategories": ["cinema", "activities", "arts"],
+      "bestForCategories": [
+        "cinema",
+        "activities",
+        "arts"
+      ],
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse embedded state or Schema.org offers; enforce <= $50 total checkout.",
@@ -331,7 +406,10 @@
       "type": "direct_ticketing_discovery",
       "typeLabel": "Regional Performance & Box Office Ticketing",
       "focus": "Hollywood Theatre special showcases, Shadbolt Centre performances, indie theatre and dance",
-      "bestForCategories": ["shows", "music"],
+      "bestForCategories": [
+        "shows",
+        "music"
+      ],
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
@@ -346,7 +424,10 @@
       "type": "civic_venue_calendar",
       "typeLabel": "Civic Performing Arts & Theatre Portal",
       "focus": "Live theatre, musicals, opera, ballet, symphonic concerts, and comedy showcases at Queen Elizabeth Theatre, Orpheum, Annex, and Vancouver Playhouse",
-      "bestForCategories": ["shows", "music"],
+      "bestForCategories": [
+        "shows",
+        "music"
+      ],
       "harvestMethod": "json_api_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Harvest live calendar from civic API and resolve outbound ticketing provider (Ticketmaster, VTix, AdmitOne, or box office). Strictly enforce <= $50 CAD cap.",
@@ -361,10 +442,305 @@
       "type": "theatrical_producer_portal",
       "typeLabel": "National Theatrical Touring Directory",
       "focus": "Touring Broadway musicals and major theatrical spectacles hosted at Queen Elizabeth Theatre",
-      "bestForCategories": ["shows"],
+      "bestForCategories": [
+        "shows"
+      ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Scan touring show calendar at Queen Elizabeth Theatre; resolve ticket link to Ticketmaster or Broadway box office. Flag or filter tiers > $50 CAD.",
+      "status": "active"
+    },
+    {
+      "id": "city-of-vancouver-culture",
+      "name": "City of Vancouver Parks, Recreation & Culture",
+      "domain": "vancouver.ca",
+      "eventsUrl": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+      "rssUrl": null,
+      "type": "civic_recreation_directory",
+      "typeLabel": "Municipal Parks, Recreation & Civic Directory",
+      "focus": "Free public access attractions, municipal parks, seawalls, beaches, drop-in recreation, and community centres",
+      "bestForCategories": [
+        "outdoors",
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free ($0 CAD)",
+      "resolutionPolicy": "Identify free civic amenities, seawalls, outdoor fitness, pitch & putts, and park trails; verify current open hours, seasonal schedules, and maintenance closures.",
+      "status": "active"
+    },
+    {
+      "id": "vpl-events",
+      "name": "Vancouver Public Library (VPL)",
+      "domain": "vpl.ca",
+      "eventsUrl": "https://www.vpl.ca/events",
+      "rssUrl": null,
+      "type": "civic_library_directory",
+      "typeLabel": "Public Library Civic Programs & Rooftop Access",
+      "focus": "Free public rooftop garden, author talks, civic workshops, book clubs, and cultural exhibits",
+      "bestForCategories": [
+        "Free Public Access",
+        "arts",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free ($0 CAD)",
+      "resolutionPolicy": "Direct civic authority; extract free drop-in library programs, Central branch rooftop garden access, and community maker sessions.",
+      "status": "active"
+    },
+    {
+      "id": "destination-vancouver-free",
+      "name": "Destination Vancouver: Free & Budget Outings",
+      "domain": "destinationvancouver.com",
+      "eventsUrl": "https://www.destinationvancouver.com/activities/free-and-nearly-free/",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Official Free & Low-Cost Civic Cultural Guide",
+      "focus": "Permanent free public attractions, viewpoints, historic heritage sites, and scenic outdoor destinations",
+      "bestForCategories": [
+        "Free Public Access",
+        "outdoors",
+        "arts"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free ($0 CAD)",
+      "resolutionPolicy": "Extract permanent free public destinations and verify open access hours and seasonal availability.",
+      "status": "active"
+    },
+    {
+      "id": "granville-island-daily",
+      "name": "Granville Island Cultural District",
+      "domain": "granvilleisland.com",
+      "eventsUrl": "https://granvilleisland.com/events",
+      "rssUrl": null,
+      "type": "cultural_precinct_directory",
+      "typeLabel": "Public Market, Busking & Artisan District",
+      "focus": "Daily public market boardwalk, artisan open studios, busking performances, and waterfront plazas",
+      "bestForCategories": [
+        "Free Public Access",
+        "outdoors",
+        "activities",
+        "shows"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free & budget ($0 - $20 CAD)",
+      "resolutionPolicy": "High authority cultural district; track daily public access market hours, live busking spots, and free outdoor public space.",
+      "status": "active"
+    },
+    {
+      "id": "polygon-gallery-free",
+      "name": "The Polygon Gallery",
+      "domain": "thepolygon.ca",
+      "eventsUrl": "https://thepolygon.ca/exhibitions/",
+      "rssUrl": null,
+      "type": "civic_art_gallery",
+      "typeLabel": "Waterfront Contemporary Art Gallery",
+      "focus": "Always by-donation / free public admission, photography, media arts exhibitions, and waterfront plaza talks",
+      "bestForCategories": [
+        "Free Public Access",
+        "arts"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free / By-Donation ($0 CAD)",
+      "resolutionPolicy": "Direct gallery portal; verify by-donation free entry policy, current exhibitions, and weekly operating hours.",
+      "status": "active"
+    },
+    {
+      "id": "cag-vancouver",
+      "name": "Contemporary Art Gallery (CAG)",
+      "domain": "contemporaryartgallery.ca",
+      "eventsUrl": "https://www.contemporaryartgallery.ca/exhibitions/",
+      "rssUrl": null,
+      "type": "civic_art_gallery",
+      "typeLabel": "Independent Contemporary Art Gallery",
+      "focus": "Always free public admission, contemporary visual arts, international artist exhibits, and public gallery walks",
+      "bestForCategories": [
+        "Free Public Access",
+        "arts"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Free ($0 CAD)",
+      "resolutionPolicy": "Direct gallery portal; verify permanent free public admission, current exhibition dates, and public access hours.",
+      "status": "active"
+    },
+    {
+      "id": "vancity-digest",
+      "name": "Vancity Digest",
+      "domain": "vancitydigest.ca",
+      "eventsUrl": "https://vancitydigest.ca",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Local Vancouver food, seasonal markets, and neighborhood happenings",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "stir-vancouver-arts-culture-hub",
+      "name": "Stir - Vancouver Arts & Culture Hub",
+      "domain": "createastir.ca",
+      "eventsUrl": "https://www.createastir.ca",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Independent visual art, dance, theatre, music reviews, and listings",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-s-best-places-calendar",
+      "name": "Vancouver's Best Places Calendar",
+      "domain": "vancouversbestplaces.com",
+      "eventsUrl": "https://vancouversbestplaces.com/events-calendar",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Comprehensive Metro Vancouver events, festivals, free attractions, and weekend guides",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "bc-culture-days-directory",
+      "name": "BC Culture Days Directory",
+      "domain": "culturedays.ca",
+      "eventsUrl": "https://culturedays.ca/en/events",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Free and pay-what-you-can province-wide arts and cultural programming",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "604-now-metro-vancouver-event-calendar",
+      "name": "604 Now Metro Vancouver Event Calendar",
+      "domain": "604now.com",
+      "eventsUrl": "https://604now.com/events",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Lifestyle and entertainment blog highlighting local markets, concerts, pop-ups, and food events across Metro Vancouver.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "curiocity-vancouver-things-to-do",
+      "name": "Curiocity Vancouver Things To Do",
+      "domain": "curiocity.com",
+      "eventsUrl": "https://curiocity.com/vancouver",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Social-first discovery platform covering dining deals, hidden scenic gems, seasonal markets, and budget-friendly activities.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "to-do-canada-vancouver-free-events",
+      "name": "To Do Canada (Vancouver Free Events)",
+      "domain": "todocanada.ca",
+      "eventsUrl": "https://www.todocanada.ca/city/vancouver/free-events",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Regional Canadian aggregator tracking free family outings, seasonal festivals, and scenic attractions.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "showhub-vancouver",
+      "name": "ShowHub Vancouver",
+      "domain": "showhub.ca",
+      "eventsUrl": "https://showhub.ca/",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Grassroots, ad-free Vancouver live music aggregator tracking 100+ shows, open mics, and jam sessions across 50+ independent venues weekly.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "rhythm-changes-gig-list",
+      "name": "Rhythm Changes (Gig List)",
+      "domain": "rhythmchanges.ca",
+      "eventsUrl": "https://www.rhythmchanges.ca/gig-list/",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Comprehensive, locally curated live jazz and improvised music calendar for Vancouver and British Columbia.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "sfu-public-square-civic-space-guide",
+      "name": "SFU Public Square Civic Space Guide",
+      "domain": "sfu.ca",
+      "eventsUrl": "https://www.sfu.ca/publicsquare",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Research-backed regional portal indexing free public spaces, community dialogs, and public forum activations across Greater Vancouver.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active"
     }
   ]

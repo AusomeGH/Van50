@@ -189,7 +189,15 @@ def run_event_refinement_pass(
                 ev["curator_notes"] = f"AI Pass 2 ({today_str}): {note}"
 
                 refined_count += 1
-                print(f"  ✓ Refined '{name}': {len(ev.get('tags', []))} tags | Provider: {ev.get('ticket_provider')}")
+                cat = ev.get("category", "")
+                if cat.lower() in ["free public access", "free-public-access"] or ev.get("lifecycle_type") == "perennial_drop_in":
+                    sched = ev.get("operating_hours") or "Open Daily"
+                    print(f'[CONFIRMED] "{name}" • Open Hours: {sched}', flush=True)
+                else:
+                    d = (ev.get("show_1") or {}).get("date") or "Upcoming"
+                    t = (ev.get("show_1") or {}).get("start_time") or ""
+                    sched = f"{d} at {t}" if t else d
+                    print(f'[CONFIRMED] "{name}" • Date: {sched}', flush=True)
 
             time.sleep(1.0)
 

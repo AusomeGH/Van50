@@ -33,6 +33,7 @@ window.TIME_SLOTS = window.TIME_SLOTS || [
 
 window.CATEGORIES = window.CATEGORIES || [
   { id: "all", label: "All", icon: "✨" },
+  { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
   { id: "music", label: "Live Music", icon: "🎵" },
   { id: "shows", label: "Comedy & Stage", icon: "🎭" },
   { id: "festivals", label: "Festivals", icon: "🎪" },
@@ -118,8 +119,20 @@ function normalizeActiveEvent(item) {
 
   const confirmedDates = [show1.date, show2.date, show3.date].filter(Boolean);
 
+  const catRaw = (item.category || "shows").toLowerCase();
+  const isFreePublic = catRaw.includes("public access") || catRaw.includes("free public") || catRaw === "free-public-access" || item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in";
+
   let dateSchedule = "Upcoming";
-  if (show1.date) {
+  const opHours = item.operating_hours || item.open_hours || item.hours || item.operatingHours || "";
+  if (isFreePublic) {
+    if (opHours) {
+      dateSchedule = `Open Daily: ${opHours}`;
+    } else if (show1.start_time && show1.end_time) {
+      dateSchedule = `Open: ${show1.start_time} – ${show1.end_time}`;
+    } else {
+      dateSchedule = "Open Daily to the Public";
+    }
+  } else if (show1.date) {
     dateSchedule = show1.date;
     if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
     if (confirmedDates.length > 1) {
@@ -127,10 +140,13 @@ function normalizeActiveEvent(item) {
     }
   }
 
-  const catRaw = (item.category || "shows").toLowerCase();
-  const cat = catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows"))));
+  const cat = isFreePublic
+    ? "free-public-access"
+    : (catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows")))));
   const hasFestivalAffiliation = item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "";
   const isFest = Boolean(hasFestivalAffiliation || catRaw.includes("festival") || (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival"))));
+
+  const finalPrice = isFreePublic ? 0.0 : price;
 
   return {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
@@ -139,20 +155,20 @@ function normalizeActiveEvent(item) {
     venue: item.venue_name || item.venue || "Vancouver Venue",
     address: item.full_address || item.address || "Vancouver, BC",
     neighborhood: item.neighborhood || "Vancouver",
-    price: price,
-    priceLabel: price === 0 ? "Free ($0)" : `$${price.toFixed(2)} CAD`,
-    pricingType: price === 0 ? "free" : "paid",
-    isFree: price === 0,
-    frequency: confirmedDates.length > 1 ? "limited-run" : "one-off",
-    frequencyLabel: confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing",
-    daysOfWeek: ["daily"],
-    timeSlots: ["early-evening", "late-evening"],
+    price: finalPrice,
+    priceLabel: finalPrice === 0 ? "Free ($0)" : `$${finalPrice.toFixed(2)} CAD`,
+    pricingType: finalPrice === 0 ? "free" : "paid",
+    isFree: finalPrice === 0,
+    frequency: isFreePublic ? "daily" : (confirmedDates.length > 1 ? "limited-run" : "one-off"),
+    frequencyLabel: isFreePublic ? "Open Daily Drop-In" : (confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing"),
+    daysOfWeek: isFreePublic ? ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"] : ["daily"],
+    timeSlots: isFreePublic ? ["early-morning", "afternoon", "early-evening"] : ["early-evening", "late-evening"],
     category: cat,
-    categoryLabel: item.category || "Shows & Arts",
-    categoryIcon: cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : "🎭"),
+    categoryLabel: isFreePublic ? "Free Public Access" : (item.category || "Shows & Arts"),
+    categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : "🎭")),
     subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
     dateSchedule: dateSchedule,
-    startIso: show1.date ? `${show1.date}T${show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
+    startIso: (!isFreePublic && show1.date) ? `${show1.date}T${show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
     endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
     confirmedDates: confirmedDates,
     isSoldOut: false,
@@ -160,11 +176,13 @@ function normalizeActiveEvent(item) {
     festivalAffiliation: hasFestivalAffiliation ? item.festival_affiliation : null,
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     venueUrl: item.details_url || item.websiteUrl || "#",
-    ticketProvider: item.ticket_provider || item.ticketProvider || "Direct",
-    rawProvider: item.ticket_provider || "Direct",
+    ticketProvider: item.ticket_provider || item.ticketProvider || (isFreePublic ? "Free Public Access" : "Direct"),
+    rawProvider: item.ticket_provider || (isFreePublic ? "Free Public Access" : "Direct"),
     coordinates: [49.2827, -123.1207],
     transitInfo: "Transit accessible via TransLink SkyTrain / bus service",
     description: item.description || "",
+    operatingHours: opHours || null,
+    lifecycleType: item.lifecycle_type || item.lifecycleType || (isFreePublic ? "perennial_drop_in" : "time_bound_event"),
     checkoutVerification: {
       status: "verified_live",
       method: "gemini_fee_computation",
@@ -804,6 +822,7 @@ window.renderFestivalSpotlight = renderFestivalSpotlight;
 if (typeof CATEGORIES === 'undefined') {
   window.CATEGORIES = [
     { id: "all", label: "All", icon: "✨" },
+    { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
     { id: "music", label: "Live Music", icon: "🎵" },
     { id: "shows", label: "Comedy & Stage", icon: "🎭" },
     { id: "festivals", label: "Festivals", icon: "🎪" },
@@ -1159,6 +1178,13 @@ function isEventInPast(ev, now = new Date()) {
       return true; // The entire multi-day run, recurring series, or seasonal edition has concluded
     }
   }
+  // Perennial drop-in and Free Public Access spots never expire by date; only if explicitly marked closed
+  if (ev.category === 'free-public-access' || ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in') {
+    if (ev.isClosed === true || ev.isTemporarilyClosed === true) {
+      return true;
+    }
+    return false;
+  }
 
   const isRecurring = ev.isDaily || ev.frequency === 'daily' || ev.frequency === 'weekly' || ev.frequency === 'monthly';
 
@@ -1270,6 +1296,13 @@ function applyFiltersAndRender() {
         ? ev.categories
         : [ev.category];
       const match = evCats.includes(state.category) ||
+        (state.category === 'free-public-access' && (
+          evCats.includes('free-public-access') ||
+          evCats.includes('free public access') ||
+          (ev.categoryLabel && ev.categoryLabel.toLowerCase().includes('public access')) ||
+          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('public-access') || t.toLowerCase().includes('drop-in') || t.toLowerCase().includes('free-access'))) ||
+          ev.lifecycleType === 'perennial_drop_in'
+        )) ||
         (state.category === 'markets' && (
           evCats.includes('markets') || 
           evCats.includes('market') || 
@@ -1286,7 +1319,7 @@ function applyFiltersAndRender() {
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
       if (state.dayOfWeek === 'daily') {
-        if (!ev.isDaily && ev.frequency !== 'daily' && (!ev.daysOfWeek || !ev.daysOfWeek.includes('daily'))) {
+        if (!ev.isDaily && ev.frequency !== 'daily' && (!ev.daysOfWeek || !ev.daysOfWeek.includes('daily')) && ev.category !== 'free-public-access') {
           return false;
         }
       } else {
@@ -1296,12 +1329,12 @@ function applyFiltersAndRender() {
             const d = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
             return !isNaN(d.getTime()) && DAY_CODES[d.getDay()] === state.dayOfWeek && dStr.slice(0, 10) >= todayStr;
           });
-          if (!hasMatchingConfirmed && !ev.isDaily) {
+          if (!hasMatchingConfirmed && !ev.isDaily && ev.category !== 'free-public-access') {
             return false;
           }
         } else {
           const days = ev.daysOfWeek || [];
-          if (!days.includes(state.dayOfWeek) && !ev.isDaily) {
+          if (!days.includes(state.dayOfWeek) && !ev.isDaily && ev.category !== 'free-public-access') {
             return false;
           }
         }

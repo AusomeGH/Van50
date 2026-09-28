@@ -139,18 +139,27 @@ def call_gemini_json_extractor(raw_content: str, api_key: str, model: str = "gem
     
     structuring_prompt = f"""
 You are the Van50 Data Extraction Engine. Today's date is {today_str}.
-Analyze the following event information discovered for Vancouver, BC, and extract all events that strictly cost $50.00 CAD or less per ticket ALL-IN (including taxes and estimated ticketing fees).
+Analyze the following event and public outing information discovered for Vancouver, BC, and extract all events and drop-in outings that strictly cost $50.00 CAD or less per person ALL-IN (including taxes and estimated ticketing fees).
 
 CRITICAL CONSTRAINTS:
 1. ONLY return events occurring in Vancouver, BC (or immediate Metro Vancouver transit hubs).
 2. HARD PRICE CAP: All-in cost must be <= $50.00 CAD.
    - True All-In Cost = Base Ticket + Platform Service Fee (estimate $2-$5 if on Eventbrite/Showpass/Ticketmaster) + 5% GST.
    - If base ticket is >= $43.00 CAD and fees are unverified, set approval_status to "Quarantined".
-3. VERIFIED REPEAT SHOWINGS (DO NOT GUESS):
-   - Only fill show_2 and show_3 if explicit calendar dates/times are verified.
-   - If an event claims to 'repeat weekly' or 'runs daily' but specific future dates are not confirmed, leave show_2 and show_3 completely EMPTY (null).
-   - NEVER invent or extrapolate dates. Empty fields are preferred over inaccurate guesses.
-4. Also extract any new Venues, Festivals, Ticketing Platforms, and Aggregator websites identified.
+   - For free drop-in public spaces, viewpoints, parks, and civic spots, cost is 0.00 CAD.
+3. CATEGORIES:
+   - "Free Public Access": Strictly for free public outings/attractions that require NO ticketing (parks, public gardens, scenic lookouts, galleries with free/by-donation entry, civic atriums, public markets).
+   - "Live Music", "Comedy", "Theatre", "Art & Culture", "Food & Drink", "Community", "Film", "Outdoor", "Sports".
+4. LIFECYCLE TYPE:
+   - "perennial_drop_in": Permanent or seasonal ongoing drop-in spots (parks, beaches, public galleries, civic spaces) that people can visit anytime during open hours without specific date-tickets.
+   - "time_bound_event": Scheduled concerts, comedy gigs, stage shows, film screenings with specific calendar dates.
+5. OPEN HOURS & OPERATING TIMES:
+   - For Free Public Access / drop-in spots, provide verified operating hours (e.g. "Daily 9:00 AM – 5:00 PM", "Tue–Sun 10:00 AM – 5:00 PM", "Dawn to Dusk").
+6. VERIFIED REPEAT SHOWINGS (DO NOT GUESS):
+   - For time-bound events, only fill show_2 and show_3 if explicit calendar dates/times are verified.
+   - If an event claims to 'repeat weekly' but specific future dates are not confirmed, leave show_2 and show_3 completely null.
+7. DISCOVERED SOURCES & CHANNELS:
+   - Extract any newly identified Vancouver event discovery websites, cultural blogs, municipal calendars, or aggregator feeds into "discovered_sources".
 
 RAW DISCOVERED CONTENT:
 {raw_content}
@@ -161,33 +170,36 @@ Output MUST be a single, valid JSON object with the following schema:
     {{
       "event_id": "van50-slug-id",
       "event_name": "Concise Descriptive Title",
-      "category": "Live Music | Comedy | Theatre | Art & Culture | Food & Drink | Community | Film | Outdoor | Sports",
-      "venue_name": "Venue Name",
+      "category": "Free Public Access | Live Music | Comedy | Theatre | Art & Culture | Food & Drink | Community | Film | Outdoor | Sports",
+      "lifecycle_type": "time_bound_event | perennial_drop_in",
+      "venue_name": "Venue or Location Name",
       "full_address": "Street address, Vancouver, BC",
-      "neighborhood": "Downtown | Mount Pleasant | Commercial Drive | Kitsilano | etc",
+      "neighborhood": "Downtown | Mount Pleasant | Commercial Drive | Kitsilano | Granville Island | North Shore | etc",
       "description": "2-3 sentence punchy summary",
       "pricing_all_in_cad": {{
-        "regular": 15.00,
+        "regular": 0.00,
         "senior": null,
         "student": null,
         "member": null
       }},
+      "operating_hours": "Daily 9:00 AM – 5:00 PM or Dawn to Dusk (or null if time_bound_event)",
+      "days_open": "Daily or Tue-Sun (or null)",
       "show_1": {{
         "date": "YYYY-MM-DD",
         "start_time": "HH:MM",
         "end_time": "HH:MM",
-        "cost": 15.00
+        "cost": 0.00
       }},
       "show_2": null,
       "show_3": null,
       "discovery_url": "URL where found",
-      "details_url": "Official event info URL",
-      "ticket_url": "Direct ticket purchase URL",
-      "ticket_provider": "Eventbrite | Showpass | Direct | Free",
-      "tags": ["indie", "live-music", "date-night"],
+      "details_url": "Official event or location info URL",
+      "ticket_url": "Direct ticket or visiting info URL",
+      "ticket_provider": "Free Public Access | Eventbrite | Showpass | Direct | etc",
+      "tags": ["free-admission", "drop-in", "public-access", "date-night"],
       "festival_affiliation": "None or Festival Name",
       "approval_status": "Auto-Approved | Quarantined",
-      "curator_notes": "Note about age limit (19+), door fee, or fee verification"
+      "curator_notes": "Note about verified access hours, fees, or 19+ age restriction"
     }}
   ],
   "discovered_venues": [
@@ -209,6 +221,17 @@ Output MUST be a single, valid JSON object with the following schema:
       "start_date": "YYYY-MM-DD",
       "end_date": "YYYY-MM-DD",
       "description": "Brief description"
+    }}
+  ],
+  "discovered_sources": [
+    {{
+      "source_name": "Source or Feed Name",
+      "domain": "domain.com",
+      "website_url": "https://...",
+      "events_url": "https://...",
+      "feed_type": "editorial_aggregator | civic_tourism_directory | community_guide",
+      "focus": "Brief focus description",
+      "target_budget_tier": "<= $50 CAD & free"
     }}
   ]
 }}
@@ -332,6 +355,12 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
         title = ev.get("event_name", "")
         venue = ev.get("venue_name", "")
         url = ev.get("ticket_url") or ev.get("details_url") or ev.get("discovery_url") or ""
+        category = ev.get("category", "")
+        lifecycle_type = ev.get("lifecycle_type", "")
+        is_perennial = (
+            lifecycle_type == "perennial_drop_in" or 
+            category.lower() in ["free public access", "free-public-access", "public access"]
+        )
 
         # Check showing dates
         s3 = (ev.get("show_3") or {}).get("date")
@@ -339,9 +368,9 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
         s1 = (ev.get("show_1") or {}).get("date")
         last_date = s3 or s2 or s1
 
-        # Automatic expiration check: date is strictly in the past
-        if last_date and last_date < today_str:
-            print(f"[AUDIT: ARCHIVE] Event '{title}' concluded on {last_date}. Moving to archive.")
+        # Automatic expiration check: ONLY for time-bound events with past dates
+        if not is_perennial and last_date and last_date < today_str:
+            print(f"[AUDIT: ARCHIVE] Event '{title}' concluded on {last_date}. Moving to archive.", flush=True)
             archived_events.append({
                 "event_id": eid,
                 "event_name": title,
@@ -358,13 +387,117 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
             results["archived"] += 1
             continue
 
-        # AI live verification for unverified active events
+        # AI live verification for active events
         is_already_verified = f"({today_str})" in (ev.get("curator_notes") or "")
         if not is_already_verified and (max_check is None or checked_count < max_check):
             checked_count += 1
             cost = (ev.get("pricing_all_in_cad") or {}).get("regular", 0.0)
-            print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...", flush=True)
 
+            # BRANCH A: Free Public Access / Perennial Drop-In Outings (Closure & Operating Hours Verification)
+            if is_perennial:
+                print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking Public Access & Open Hours: '{title}' at {venue}...", flush=True)
+                search_prompt = (
+                    f"Search Google for current public access status, operating hours, and closure announcements for Vancouver attraction or free public space: "
+                    f"'{title}' at '{venue}' (URL: '{url}'). "
+                    f"Determine:\n"
+                    f"1. Is this location currently OPEN to the public, or is it closed (e.g. seasonal winter shutdown, maintenance, renovations, private booking)?\n"
+                    f"2. What are the current verified visiting/operating hours (e.g. 'Daily 9:00 AM – 5:00 PM', 'Mon-Sun 10am-5pm', 'Dawn to Dusk')?\n"
+                    f"3. Is public walk-in admission still 100% free with no mandatory tickets?"
+                )
+                search_res = call_gemini_with_search(search_prompt, api_key)
+                if search_res:
+                    dec_prompt = f"""
+You are the Van50 Public Access Auditor. Today is {today_str}.
+Analyze the live web research for Vancouver public space / attraction '{title}' at '{venue}':
+
+RESEARCH:
+{search_res}
+
+RULES:
+- "OPEN": Location is currently OPEN to the public with verified operating hours and 100% free walk-in access.
+- "UPDATE": Location is open, but operating hours, visiting schedule, or URL should be updated.
+- "TEMPORARILY_CLOSED": Location is closed for renovations, maintenance, winter season, or public access is restricted. Flag for curator in quarantine.
+- "PERMANENTLY_CLOSED": Location has permanently closed. Move to archive.
+- "CANNOT_FIGURE_OUT": Ambiguous status or dead website. Flag for curator in quarantine.
+
+Return strict JSON:
+{{
+  "decision": "OPEN | UPDATE | TEMPORARILY_CLOSED | PERMANENTLY_CLOSED | CANNOT_FIGURE_OUT",
+  "reason": "Clear explanation of finding",
+  "operating_hours": "e.g. Daily 9:00 AM – 5:00 PM (or null)",
+  "updated_url": "URL or null"
+}}
+"""
+                    dec_data = call_gemini_direct_json(dec_prompt, api_key)
+                    if dec_data:
+                        dec = dec_data.get("decision", "OPEN")
+                        reason = dec_data.get("reason", "No reason provided")
+                        op_hours = dec_data.get("operating_hours") or ev.get("operating_hours") or "Open Daily"
+
+                        if dec == "PERMANENTLY_CLOSED":
+                            print(f"[AUDIT: ARCHIVE] Location '{title}' permanently closed: {reason}. Moving to archive.", flush=True)
+                            archived_events.append({
+                                "event_id": eid,
+                                "event_name": title,
+                                "category": ev.get("category", "Free Public Access"),
+                                "venue_name": venue,
+                                "full_address": ev.get("full_address", "Vancouver, BC"),
+                                "neighborhood": ev.get("neighborhood", "Vancouver"),
+                                "description": ev.get("description", ""),
+                                "attempted_price_cad": 0.0,
+                                "discovery_url": url,
+                                "archive_reason": f"AI Audit: {reason}",
+                                "archived_at": today_str
+                            })
+                            results["archived"] += 1
+                            continue
+
+                        elif dec in ("TEMPORARILY_CLOSED", "CANNOT_FIGURE_OUT"):
+                            print(f'[QUARANTINED] "{title}" • Reason: {reason}', flush=True)
+                            if eid not in quarantine_ids:
+                                quarantined.append({
+                                    "id": eid,
+                                    "title": title,
+                                    "artist": ev.get("artist") or title,
+                                    "venue": venue,
+                                    "address": ev.get("full_address", "Vancouver, BC"),
+                                    "neighborhood": ev.get("neighborhood", "Vancouver"),
+                                    "price": 0.0,
+                                    "priceLabel": "Free ($0)",
+                                    "category": "free-public-access",
+                                    "categoryLabel": "Free Public Access",
+                                    "startIso": None,
+                                    "websiteUrl": url,
+                                    "quarantineReason": f"AI Public Access Audit: {reason}",
+                                    "flaggedAt": today_str
+                                })
+                                quarantine_ids.add(eid)
+                            results["quarantined"] += 1
+                            continue
+
+                        elif dec == "UPDATE":
+                            if dec_data.get("operating_hours"):
+                                ev["operating_hours"] = dec_data["operating_hours"]
+                            if dec_data.get("updated_url"):
+                                ev["details_url"] = dec_data["updated_url"]
+                                ev["ticket_url"] = dec_data["updated_url"]
+                            ev["curator_notes"] = f"AI Updated ({today_str}): {reason}"
+                            print(f'[CONFIRMED] "{title}" • Open Hours: {ev.get("operating_hours", "Open Daily")} (Updated)', flush=True)
+                            results["updated"] += 1
+
+                        else:
+                            if dec_data.get("operating_hours"):
+                                ev["operating_hours"] = dec_data["operating_hours"]
+                            ev["curator_notes"] = f"AI-Verified ({today_str}): Confirmed open public access ({ev.get('operating_hours', 'Daily')})."
+                            print(f'[CONFIRMED] "{title}" • Open Hours: {ev.get("operating_hours", "Open Daily")}', flush=True)
+                            results["verified"] += 1
+
+                time.sleep(1.5)
+                updated_events.append(ev)
+                continue
+
+            # BRANCH B: Time-Bound Gigs, Concerts, Screenings & Special Events
+            print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...", flush=True)
             search_prompt = (
                 f"Search Google for current live event details for Vancouver event: "
                 f"'{title}' at '{venue}' (URL: '{url}', Date: '{last_date}', Stated Price: ${cost} CAD). "
@@ -423,7 +556,7 @@ Return strict JSON:
                         continue
 
                     elif dec == "CANNOT_FIGURE_OUT":
-                        print(f"  ⚠️ Cannot figure out: {reason}. Flagging for curator in quarantine.", flush=True)
+                        print(f'[QUARANTINED] "{title}" • Reason: {reason}', flush=True)
                         if eid not in quarantine_ids:
                             quarantined.append({
                                 "id": eid,
@@ -446,7 +579,6 @@ Return strict JSON:
                         continue
 
                     elif dec == "UPDATE":
-                        print(f"  ✓ Updating event details: {reason}", flush=True)
                         if dec_data.get("updated_date") and "show_1" in ev and ev["show_1"]:
                             ev["show_1"]["date"] = dec_data["updated_date"]
                         if dec_data.get("updated_start_time") and "show_1" in ev and ev["show_1"]:
@@ -461,10 +593,18 @@ Return strict JSON:
                             ev["ticket_url"] = dec_data["updated_url"]
                             ev["details_url"] = dec_data["updated_url"]
                         ev["curator_notes"] = f"AI Updated ({today_str}): {reason}"
+                        d_str = (ev.get("show_1") or {}).get("date") or last_date or "Upcoming"
+                        t_str = (ev.get("show_1") or {}).get("start_time") or ""
+                        sched = f"{d_str} at {t_str}" if t_str else d_str
+                        print(f'[CONFIRMED] "{title}" • Date: {sched} (Updated)', flush=True)
                         results["updated"] += 1
 
                     else:
                         ev["curator_notes"] = f"AI-Verified ({today_str}): Confirmed active under $50 CAD."
+                        d_str = (ev.get("show_1") or {}).get("date") or last_date or "Upcoming"
+                        t_str = (ev.get("show_1") or {}).get("start_time") or ""
+                        sched = f"{d_str} at {t_str}" if t_str else d_str
+                        print(f'[CONFIRMED] "{title}" • Date: {sched}', flush=True)
                         results["verified"] += 1
 
             time.sleep(1.5)
@@ -585,27 +725,36 @@ def scout_venues_directory(api_key: str, max_venues: int = 6) -> List[str]:
     return all_findings
 
 
-def scout_discovery_sources(api_key: str, max_sources: int = 4) -> List[str]:
+def scout_discovery_sources(api_key: str, max_sources: int = 8) -> List[str]:
     """
     5. discovery_sources.json:
-    Looks through the source websites to find additional events or changes.
+    Looks through the source websites to find additional events, daily drop-in outings,
+    Free Public Access destinations, and newly discovered community event feeds.
     """
     if not os.path.exists(DISCOVERY_SOURCES_JSON):
         return []
     with open(DISCOVERY_SOURCES_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
     sources = data.get("sources", [])
-    active_sources = [s for s in sources if s.get("status") == "active"][:max_sources]
+    active_sources = [s for s in sources if s.get("status") == "active"]
+    
+    # Prioritize civic & free drop-in sources + top editorial aggregators
+    civic_keywords = ["free", "culture", "library", "granville", "gallery", "civic", "vancouver"]
+    civic_sources = [s for s in active_sources if any(k in s.get("id", "").lower() or k in s.get("name", "").lower() for k in civic_keywords)]
+    other_sources = [s for s in active_sources if s not in civic_sources]
+    selected_sources = (civic_sources + other_sources)[:max_sources]
+
     all_findings = []
-    print(f"[SCOUT: discovery_sources.json] Reviewing {len(active_sources)} editorial discovery hubs...")
-    for src in active_sources:
+    print(f"[SCOUT: discovery_sources.json] Reviewing {len(selected_sources)} discovery hubs (civic, free drop-ins & editorial)...")
+    for src in selected_sources:
         name = src.get("name", "")
         events_url = src.get("eventsUrl", "")
         print(f"  • Searching discovery source: '{name}'...")
         prompt = (
-            f"Search Google for top upcoming events, concerts, and things to do in Vancouver BC listed on '{name}' "
+            f"Search Google for current events, concerts, and free public drop-in activities in Vancouver BC listed on or hosted by '{name}' "
             f"({events_url}) strictly costing $50 CAD or less all-in. "
-            f"Include exact dates, venue names, addresses, and canonical ticket links."
+            f"Focus on both scheduled performances and Free Public Access spots (viewpoints, galleries, parks, public market spaces) with their open hours. "
+            f"Also, if you discover any NEW high-quality Vancouver event calendars, municipal cultural feeds, or community blogs, extract their name and URL into discovered_sources."
         )
         res = call_gemini_with_search(prompt, api_key)
         if res:
@@ -682,7 +831,7 @@ def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -
 
     # Stage 5: discovery_sources.json
     print("\n--- STAGE 5/6: SCOUTING discovery_sources.json ---")
-    all_raw_findings.extend(scout_discovery_sources(api_key, max_sources=4))
+    all_raw_findings.extend(scout_discovery_sources(api_key, max_sources=8))
 
     # Stage 6: ticketing_sources.json
     print("\n--- STAGE 6/6: SCOUTING ticketing_sources.json ---")
@@ -709,6 +858,7 @@ def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -
     all_discovered_events = []
     all_discovered_venues = []
     all_discovered_festivals = []
+    all_discovered_sources = []
 
     for idx, chunk_text in enumerate(chunks, 1):
         print(f"  • Structuring batch {idx}/{len(chunks)} ({len(chunk_text)} chars)...")
@@ -717,12 +867,14 @@ def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -
             all_discovered_events.extend(chunk_data.get("events_active", []))
             all_discovered_venues.extend(chunk_data.get("discovered_venues", []))
             all_discovered_festivals.extend(chunk_data.get("discovered_festivals", []))
+            all_discovered_sources.extend(chunk_data.get("discovered_sources", []))
         time.sleep(1.5)
 
     structured_data = {
         "events_active": all_discovered_events,
         "discovered_venues": all_discovered_venues,
-        "discovered_festivals": all_discovered_festivals
+        "discovered_festivals": all_discovered_festivals,
+        "discovered_sources": all_discovered_sources
     }
 
     # Integrate into master catalogs
@@ -765,15 +917,21 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
         except Exception:
             archived_events = []
 
-    # 2. Archive concluded events
+    # 2. Archive concluded events (Strictly preserving perennial drop-in / Free Public Access spots)
     still_active = []
     for ev in active_events:
+        category = ev.get("category", "")
+        lifecycle_type = ev.get("lifecycle_type", "")
+        is_perennial = (
+            lifecycle_type == "perennial_drop_in" or 
+            category.lower() in ["free public access", "free-public-access", "public access"]
+        )
         s3_date = (ev.get("show_3") or {}).get("date")
         s2_date = (ev.get("show_2") or {}).get("date")
         s1_date = (ev.get("show_1") or {}).get("date")
         last_date = s3_date or s2_date or s1_date
         
-        if last_date and last_date < today_str:
+        if not is_perennial and last_date and last_date < today_str:
             ev["archived_at"] = today_str
             archived_events.append(ev)
         else:
@@ -800,15 +958,26 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     for ne in new_events:
         eid = ne.get("event_id") or re.sub(r"[^a-z0-9]+", "-", ne.get("event_name", "event").lower()).strip("-")
         ne["event_id"] = eid
+        cat = ne.get("category", "")
+        is_free_public = (
+            cat.lower() in ["free public access", "free-public-access", "public access"] or
+            ne.get("lifecycle_type") == "perennial_drop_in"
+        )
         
         # Enforce $50 CAD hard ceiling
         reg_price = (ne.get("pricing_all_in_cad") or {}).get("regular", 0.0) or 0.0
+        if is_free_public:
+            reg_price = 0.0
+            if "pricing_all_in_cad" in ne:
+                ne["pricing_all_in_cad"]["regular"] = 0.0
+
         if reg_price > 50.0:
             print(f"[FILTER] Excluded {ne.get('event_name')} - All-in price ${reg_price} exceeds $50.00 CAD")
             continue
 
         if ne.get("approval_status") == "Quarantined":
             quarantined_count += 1
+            q_reason = ne.get("curator_notes") or "Ticket price >= $43 CAD or unverified checkout service fees"
             if eid not in queue_ids:
                 queue_events.append({
                     "id": eid,
@@ -821,20 +990,24 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
                     "priceLabel": f"${reg_price:.2f}" if reg_price > 0 else "Free ($0)",
                     "category": (ne.get("category") or "General").lower(),
                     "categoryLabel": ne.get("category", "General"),
-                    "startIso": f"{ne.get('show_1', {}).get('date', '')}T{ne.get('show_1', {}).get('start_time', '19:00')}:00",
+                    "startIso": f"{ne.get('show_1', {}).get('date', '')}T{ne.get('show_1', {}).get('start_time', '19:00')}:00" if ne.get('show_1', {}).get('date') else None,
                     "websiteUrl": ne.get("ticket_url") or ne.get("details_url") or "",
-                    "quarantineReason": ne.get("curator_notes") or "Ticket price >= $43 CAD or unverified checkout service fees",
+                    "quarantineReason": q_reason,
                     "flaggedAt": today_str
                 })
                 queue_ids.add(eid)
-                print(f"[QUARANTINE] Routed {ne.get('event_name')} (${reg_price} CAD) to manual_review_queue.json")
+                print(f'[QUARANTINED] "{ne.get("event_name")}" • Reason: {q_reason}', flush=True)
             continue
 
         if eid not in existing_ids and eid not in existing_archive_ids:
             still_active.append(ne)
             existing_ids.add(eid)
             added_count += 1
-            print(f"[ADD] Added active verified event: {ne.get('event_name')} (${reg_price:.2f} CAD)")
+            if is_free_public:
+                op = ne.get("operating_hours") or "Open Daily"
+                print(f'[NEW EVENT ADDED] "{ne.get("event_name")}" at {ne.get("venue_name")} (Free Public Access - {op})', flush=True)
+            else:
+                print(f'[NEW EVENT ADDED] "{ne.get("event_name")}" at {ne.get("venue_name")} (${reg_price:.2f} CAD)', flush=True)
 
     # Save Events Active & Archive (Pure JSON)
     with open(EVENTS_JSON, "w", encoding="utf-8") as f:
@@ -864,6 +1037,8 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
         if vname and vname.lower() not in venue_names:
             venues.append(nv)
             venue_names.add(vname.lower())
+            nh = nv.get("neighborhood") or nv.get("full_address") or "Vancouver"
+            print(f'[NEW VENUE ADDED] "{vname}" ({nh})', flush=True)
 
     with open(VENUES_JSON, "w", encoding="utf-8") as f:
         json.dump(venues, f, indent=2, ensure_ascii=False)
@@ -882,14 +1057,66 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
         if fname and fname.lower() not in fest_names:
             festivals.append(nf)
             fest_names.add(fname.lower())
+            print(f'[NEW FESTIVAL ADDED] "{fname}" ({nf.get("location") or "Vancouver"})', flush=True)
 
     with open(FESTIVALS_JSON, "w", encoding="utf-8") as f:
         json.dump(festivals, f, indent=2, ensure_ascii=False)
 
-    # 6. Ensure default Ticketing Sources & Discovery Sources exist
+    # 6. Autonomously Register Discovered Sources (discovery_sources.json)
+    if os.path.exists(DISCOVERY_SOURCES_JSON):
+        try:
+            with open(DISCOVERY_SOURCES_JSON, "r", encoding="utf-8") as dsf:
+                disc_catalog = json.load(dsf)
+        except Exception:
+            disc_catalog = {"metadata": {"totalSources": 0}, "sources": []}
+        
+        existing_sources = disc_catalog.get("sources", [])
+        existing_domains = {s.get("domain", "").lower().replace("www.", "") for s in existing_sources if s.get("domain")}
+        existing_names = {s.get("name", "").lower() for s in existing_sources if s.get("name")}
+        sources_added = 0
+        
+        for ns in structured_data.get("discovered_sources", []):
+            s_name = (ns.get("source_name") or ns.get("name") or "").strip()
+            s_url = ns.get("events_url") or ns.get("website_url") or ""
+            if not s_name or not s_url:
+                continue
+            domain_match = re.search(r"https?://(?:www\.)?([^/]+)", s_url)
+            domain = domain_match.group(1).lower() if domain_match else (ns.get("domain") or "").lower().replace("www.", "")
+            
+            if domain and domain not in existing_domains and s_name.lower() not in existing_names:
+                slug_id = re.sub(r"[^a-z0-9]+", "-", s_name.lower()).strip("-")
+                new_src_entry = {
+                    "id": slug_id,
+                    "name": s_name,
+                    "domain": domain,
+                    "eventsUrl": s_url,
+                    "rssUrl": None,
+                    "type": ns.get("feed_type") or "editorial_aggregator",
+                    "typeLabel": "Discovered Community & Culture Source",
+                    "focus": ns.get("focus") or "Vancouver events & drop-in activities under $50 CAD",
+                    "bestForCategories": ["Free Public Access", "activities"],
+                    "harvestMethod": "html_calendar",
+                    "targetBudgetTier": ns.get("target_budget_tier") or "<= $50 CAD & free",
+                    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+                    "status": "active"
+                }
+                existing_sources.append(new_src_entry)
+                existing_domains.add(domain)
+                existing_names.add(s_name.lower())
+                sources_added += 1
+                print(f'[NEW SOURCE ADDED] "{s_name}" ({domain})', flush=True)
+                
+        if sources_added > 0:
+            disc_catalog["sources"] = existing_sources
+            disc_catalog.setdefault("metadata", {})["totalSources"] = len(existing_sources)
+            disc_catalog["metadata"]["updatedAt"] = today_str
+            with open(DISCOVERY_SOURCES_JSON, "w", encoding="utf-8") as dsf:
+                json.dump(disc_catalog, dsf, indent=2, ensure_ascii=False)
+
+    # 7. Ensure default Ticketing Sources & Discovery Sources exist
     init_default_sources()
 
-    # 7. Synchronize js/data.js
+    # 8. Synchronize js/data.js
     try:
         from curator_server import sync_js_data_file
         sync_js_data_file()

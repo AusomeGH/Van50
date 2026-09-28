@@ -476,32 +476,73 @@ def sync_js_data_file():
                     price = item.get("pricing_all_in_cad", {}).get("regular", 0.0) if isinstance(item.get("pricing_all_in_cad"), dict) else item.get("price", 0.0)
                     show1 = item.get("show_1") or {}
                     dates = [s.get("date") for s in [item.get("show_1"), item.get("show_2"), item.get("show_3")] if s and s.get("date")]
+                    
+                    cat_raw = str(item.get("category", "shows")).lower()
+                    is_free_public = (
+                        "public access" in cat_raw or
+                        cat_raw in ["free public access", "free-public-access", "public access"] or
+                        item.get("lifecycle_type") == "perennial_drop_in"
+                    )
+
+                    if is_free_public:
+                        cat_id = "free-public-access"
+                        cat_label = "Free Public Access"
+                        cat_icon = "🏛️"
+                        price_num = 0.0
+                        price_lbl = "Free ($0)"
+                        p_type = "free"
+                        is_free_bool = True
+                        freq = "daily"
+                        freq_lbl = "Open Daily Drop-In"
+                        op_hours = item.get("operating_hours") or item.get("open_hours") or ""
+                        if op_hours:
+                            date_sched = f"Open Daily: {op_hours}"
+                        elif show1.get("start_time") and show1.get("end_time"):
+                            date_sched = f"Open: {show1.get('start_time')} – {show1.get('end_time')}"
+                        else:
+                            date_sched = "Open Daily to the Public"
+                        start_iso_val = None
+                    else:
+                        cat_id = item.get("category", "shows")
+                        cat_label = item.get("category", "Shows & Arts")
+                        cat_icon = "🌊" if item.get("category") == "outdoors" else ("🎵" if item.get("category") == "music" else "🎭")
+                        price_num = float(price or 0.0)
+                        price_lbl = "Free ($0)" if price_num == 0 else f"${price_num:.2f} CAD"
+                        p_type = "free" if price_num == 0 else "paid"
+                        is_free_bool = price_num == 0
+                        freq = "limited-run" if len(dates) > 1 else "one-off"
+                        freq_lbl = "Verified Multiple Showings" if len(dates) > 1 else "Single Showing"
+                        date_sched = f"{show1.get('date', 'Upcoming')} at {show1.get('start_time', '19:00')}" if show1.get("date") else "Upcoming"
+                        start_iso_val = f"{show1.get('date')}T{show1.get('start_time', '19:00')}:00-07:00" if show1.get("date") else None
+
                     events.append({
                         "id": item.get("event_id") or item.get("id"),
                         "title": item.get("event_name") or item.get("title", "Event"),
                         "venue": item.get("venue_name") or item.get("venue", "Vancouver Venue"),
                         "address": item.get("full_address") or item.get("address", "Vancouver, BC"),
                         "neighborhood": item.get("neighborhood", "Downtown, Gastown & Yaletown"),
-                        "price": float(price or 0.0),
-                        "priceLabel": "Free ($0)" if float(price or 0.0) == 0 else f"${float(price):.2f} CAD",
-                        "pricingType": "free" if float(price or 0.0) == 0 else "paid",
-                        "isFree": float(price or 0.0) == 0,
-                        "frequency": "limited-run" if len(dates) > 1 else "one-off",
-                        "frequencyLabel": "Verified Multiple Showings" if len(dates) > 1 else "Single Showing",
-                        "daysOfWeek": ["daily"],
-                        "timeSlots": ["early-evening", "late-evening"],
-                        "category": item.get("category", "shows"),
-                        "categoryLabel": item.get("category", "Shows & Arts"),
-                        "categoryIcon": "🌊" if item.get("category") == "outdoors" else ("🎵" if item.get("category") == "music" else "🎭"),
+                        "price": price_num,
+                        "priceLabel": price_lbl,
+                        "pricingType": p_type,
+                        "isFree": is_free_bool,
+                        "frequency": freq,
+                        "frequencyLabel": freq_lbl,
+                        "daysOfWeek": ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"] if is_free_public else ["daily"],
+                        "timeSlots": ["early-morning", "afternoon", "early-evening"] if is_free_public else ["early-evening", "late-evening"],
+                        "category": cat_id,
+                        "categoryLabel": cat_label,
+                        "categoryIcon": cat_icon,
                         "subTags": item.get("tags") or [],
-                        "dateSchedule": f"{show1.get('date', 'Upcoming')} at {show1.get('start_time', '19:00')}" if show1.get("date") else "Upcoming",
-                        "startIso": f"{show1.get('date')}T{show1.get('start_time', '19:00')}:00-07:00" if show1.get("date") else None,
+                        "dateSchedule": date_sched,
+                        "startIso": start_iso_val,
                         "websiteUrl": item.get("ticket_url") or item.get("details_url") or item.get("discovery_url") or "#",
                         "venueUrl": item.get("details_url") or "#",
-                        "ticketProvider": item.get("ticket_provider", "Direct"),
+                        "ticketProvider": item.get("ticket_provider", "Direct" if not is_free_public else "Free Public Access"),
                         "coordinates": [49.2827, -123.1207],
                         "transitInfo": "Transit accessible via TransLink",
                         "description": item.get("description", ""),
+                        "operatingHours": item.get("operating_hours") or None,
+                        "lifecycleType": item.get("lifecycle_type") or ("perennial_drop_in" if is_free_public else "time_bound_event"),
                         "isSoldOut": False
                     })
             except Exception:
@@ -590,6 +631,7 @@ const FREQUENCIES = [
 // Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   {{ id: "all", label: "All", icon: "✨" }},
+  {{ id: "free-public-access", label: "Free Public Access", icon: "🏛️" }},
   {{ id: "music", label: "Live Music", icon: "🎵" }},
   {{ id: "shows", label: "Comedy & Stage", icon: "🎭" }},
   {{ id: "festivals", label: "Festivals", icon: "🎪" }},
