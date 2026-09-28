@@ -1,0 +1,47 @@
+[
+  {
+    "festival_name": "Vancouver Fringe Festival",
+    "website_url": "https://vancouverfringe.com",
+    "schedule_url": "https://vancouverfringe.com/shows/",
+    "location": "Waterfront Theatre, The Nest (Granville Island), Performance Works, Carousel Theatre, Arts Factory, The Revue Stage",
+    "start_date": "2026-09-10",
+    "end_date": "2026-09-20",
+    "description": "shows"
+  },
+  {
+    "festival_name": "Vancouver International Film Festival (VIFF)",
+    "website_url": "https://viff.org",
+    "schedule_url": "https://viff.org/festival/",
+    "location": "VIFF Centre, The Cinematheque, Rio Theatre, SFU Goldcorp Centre for the Arts",
+    "start_date": "2026-09-24",
+    "end_date": "2026-10-04",
+    "description": "cinema"
+  },
+  {
+    "festival_name": "Khatsahlano Street Party",
+    "website_url": "https://khatsahlano.com",
+    "schedule_url": "https://khatsahlano.com/lineup/",
+    "location": "West 4th Avenue (Burrard to MacDonald)",
+    "start_date": "2026-07-11",
+    "end_date": "2026-07-11",
+    "description": "music"
+  },
+  {
+    "festival_name": "Vancouver Folk Music Festival",
+    "website_url": "https://thefestival.bc.ca",
+    "schedule_url": "https://thefestival.bc.ca/artists/",
+    "location": "Jericho Beach Park",
+    "start_date": "2026-07-17",
+    "end_date": "2026-07-19",
+    "description": "music"
+  },
+  {
+    "festival_name": "Car Free Days Vancouver",
+    "website_url": "https://www.carfreevancouver.org",
+    "schedule_url": "https://www.carfreevancouver.org",
+    "location": "Commercial Drive, Main Street, Denman Street (West End)",
+    "start_date": "2026-09-06",
+    "end_date": "2026-09-20",
+    "description": "outdoors"
+  }
+]

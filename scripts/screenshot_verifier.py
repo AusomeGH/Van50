@@ -690,30 +690,38 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
     elif ocr_data.get("is_paused"):
         status_warning = "⚠️ Screenshot indicates regular programming is paused."
 
-    # Assemble Structured 7-Dimension Dictionary
-    # Dimension 1: Date & Time (Schedule)
-    date_display_parts = []
-    if ocr_date:
-        date_display_parts.append(ocr_date)
+    # Assemble Structured 13-Dimension Dictionary
+    # 1. Event Name
+    title_display = detected_t or card_title or "No title detected"
+
+    # 2. Date of Event (Calendar Date only)
+    date_display = ocr_date or "No date detected on screenshot"
+
+    # 3. Event Time (Doors & Show times)
+    time_parts = []
     if ocr_data.get("doors_time"):
-        date_display_parts.append(f"Doors: {ocr_data.get('doors_time')}")
+        time_parts.append(f"Doors: {ocr_data['doors_time']}")
     if ocr_data.get("show_time"):
-        date_display_parts.append(f"Show: {ocr_data.get('show_time')}")
-    date_display = " • ".join(date_display_parts) if date_display_parts else "No date detected on screenshot"
+        time_parts.append(f"Show: {ocr_data['show_time']}")
+    time_display = " • ".join(time_parts) if time_parts else "Doors/Show times not specified"
 
-    # Dimension 2: Frequency
+    # 4. Schedule & Recurrence
     freq_display = ocr_data.get("frequency_label", "One-off Show")
+    schedule_display = event_card.get("dateSchedule") or freq_display
 
-    # Dimension 3: Category
+    # 5. Frequency
+    # freq_display defined above
+
+    # 6. Category
     cat_keywords = ocr_data.get("category_keywords", [])
     cat_kw_str = f" ({', '.join(cat_keywords[:3])})" if cat_keywords else ""
     cat_display = f"{ocr_data.get('category_icon', '🏷️')} {ocr_data.get('category_label', 'Event')}{cat_kw_str}"
 
-    # Dimension 4: Venue & Location
+    # 7. Venue & Location
     loc_components = [c for c in [ocr_data.get("detected_venue"), ocr_data.get("detected_address"), ocr_data.get("detected_neighborhood")] if c]
     location_display = " • ".join(loc_components) if loc_components else (card_venue or "Venue unverified")
 
-    # Dimension 5: Price & Fees
+    # 8. Price & Fees
     if ocr_data.get("fee_breakdown"):
         price_display = ocr_data.get("fee_breakdown")
     elif ocr_price is not None:
@@ -721,28 +729,49 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
     else:
         price_display = "No checkout total detected"
 
-    # Dimension 6: Link & Provider
-    detected_urls = ocr_data.get("detected_urls", [])
-    link_display = f"{ocr_provider}" + (f" ({detected_urls[0]})" if detected_urls else "")
+    # 9. Event Link
+    detected_urls = ocr_data.get("detected_urls") or []
+    link_url = detected_urls[0] if detected_urls else (event_card.get("websiteUrl") or "")
+    link_display = link_url if link_url else "No link detected on screenshot"
 
-    # Dimension 7: Description, Lineup & Restrictions
-    desc_elements = []
-    if ocr_data.get("detected_title"):
-        desc_elements.append(f"Title: {ocr_data.get('detected_title')}")
-    if ocr_data.get("detected_lineup"):
-        desc_elements.append(f"Lineup: {ocr_data.get('detected_lineup')}")
-    if ocr_data.get("age_policy"):
-        desc_elements.append(f"Policy: {ocr_data.get('age_policy')}")
-    if ocr_data.get("is_sold_out"):
-        desc_elements.append("🚨 SOLD OUT")
-    elif ocr_data.get("is_private"):
-        desc_elements.append("🚨 PRIVATE EVENT")
-    desc_display = " • ".join(desc_elements) if desc_elements else (ocr_data.get("snippet", "")[:100] or card_title)
+    # 10. Ticketing Provider
+    provider_display = ocr_provider or "Direct / Box Office"
+
+    # 11. Description
+    desc_display = (ocr_data.get("snippet", "")[:120] or event_card.get("description", "")[:120] or card_title)
+
+    # 12. Lineup (Optional)
+    detected_lineup = ocr_data.get("detected_lineup") or card_artist or ""
+    lineup_display = detected_lineup if detected_lineup else "None specified (Solo / Non-lineup event)"
+
+    # 13. Restrictions & Policies (Optional)
+    age_policy = ocr_data.get("age_policy") or event_card.get("agePolicy") or ""
+    restrictions_display = age_policy if age_policy else "Standard / All Ages (No restrictions detected)"
 
     dimensions = {
+        "title": {
+            "key": "title",
+            "name": "1. Event Name",
+            "icon": "🏷️",
+            "extracted": detected_t or card_title,
+            "displayValue": title_display,
+            "cardValue": card_title or "Untitled Event",
+            "isMatch": title_match,
+            "canApply": bool(detected_t),
+            "status": "confirmed" if title_match else ("discrepancy" if title_change_detected else "unconfirmed"),
+            "extractedTitle": detected_t,
+            "cardTitle": card_title,
+            "hasTitleChange": title_change_detected,
+            "details": {
+                "title": detected_t or card_title,
+                "extractedTitle": detected_t,
+                "cardTitle": card_title,
+                "hasTitleChange": title_change_detected
+            }
+        },
         "date": {
             "key": "date",
-            "name": "1. Date & Schedule",
+            "name": "2. Date of Event",
             "icon": "📅",
             "extracted": ocr_date,
             "displayValue": date_display,
@@ -751,14 +780,42 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
             "canApply": bool(ocr_date),
             "status": "confirmed" if date_match else ("discrepancy" if ocr_date else "unconfirmed"),
             "details": {
-                "extractedDate": ocr_date,
+                "extractedDate": ocr_date
+            }
+        },
+        "time": {
+            "key": "time",
+            "name": "3. Event Time",
+            "icon": "⏰",
+            "extracted": time_display if time_parts else None,
+            "displayValue": time_display,
+            "cardValue": card_date or "Not specified",
+            "isMatch": bool(time_parts),
+            "canApply": bool(time_parts),
+            "status": "confirmed" if time_parts else "inferred",
+            "details": {
                 "doorsTime": ocr_data.get("doors_time"),
                 "showTime": ocr_data.get("show_time")
             }
         },
+        "schedule": {
+            "key": "schedule",
+            "name": "4. Schedule & Recurrence",
+            "icon": "🗓️",
+            "extracted": freq_display,
+            "displayValue": schedule_display,
+            "cardValue": event_card.get("dateSchedule") or card_date or "One-off",
+            "isMatch": True,
+            "canApply": True,
+            "status": "confirmed",
+            "details": {
+                "schedule": schedule_display,
+                "recurrence": freq_display
+            }
+        },
         "frequency": {
             "key": "frequency",
-            "name": "2. Frequency",
+            "name": "5. Frequency",
             "icon": "🔄",
             "extracted": ocr_freq,
             "displayValue": freq_display,
@@ -773,7 +830,7 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "category": {
             "key": "category",
-            "name": "3. Category",
+            "name": "6. Category",
             "icon": ocr_data.get("category_icon", "🏷️"),
             "extracted": ocr_cat,
             "displayValue": cat_display,
@@ -790,7 +847,7 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "location": {
             "key": "location",
-            "name": "4. Venue & Location",
+            "name": "7. Venue & Location",
             "icon": "📍",
             "extracted": ocr_data.get("detected_venue") or card_venue,
             "displayValue": location_display,
@@ -806,7 +863,7 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "price": {
             "key": "price",
-            "name": "5. Price (<= $50 CAD)",
+            "name": "8. Price & Fees (≤ $50 CAD)",
             "icon": "💰",
             "extracted": ocr_price,
             "displayValue": price_display,
@@ -825,44 +882,81 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         },
         "link": {
             "key": "link",
-            "name": "6. Link & Provider",
+            "name": "9. Event Link",
             "icon": "🔗",
-            "extracted": ocr_provider,
+            "extracted": link_url or None,
             "displayValue": link_display,
+            "cardValue": event_card.get("websiteUrl") or "Direct",
+            "isMatch": bool(link_url or event_card.get("websiteUrl")),
+            "canApply": bool(link_url),
+            "status": "confirmed" if link_url else "inferred",
+            "details": {
+                "url": link_url,
+                "detectedUrls": detected_urls
+            }
+        },
+        "provider": {
+            "key": "provider",
+            "name": "10. Ticketing Provider",
+            "icon": "🎟️",
+            "extracted": ocr_provider,
+            "displayValue": provider_display,
             "cardValue": card_provider,
             "isMatch": provider_match,
             "canApply": bool(ocr_provider != "Direct / Box Office"),
             "status": "confirmed" if provider_match else "inferred",
             "details": {
-                "provider": ocr_provider,
-                "urls": detected_urls
+                "provider": ocr_provider
             }
         },
         "description": {
             "key": "description",
-            "name": "7. Event Name, Lineup & Restrictions",
+            "name": "11. Description",
             "icon": "📝",
-            "extracted": detected_t or card_title,
+            "extracted": ocr_data.get("snippet", "") or card_title,
             "displayValue": desc_display,
-            "cardValue": card_title,
-            "isMatch": title_match,
-            "canApply": bool(detected_t or ocr_data.get("detected_lineup")),
-            "status": "confirmed" if title_match else ("discrepancy" if title_change_detected else "notice"),
+            "cardValue": event_card.get("description", "")[:120] or card_title,
+            "isMatch": True,
+            "canApply": bool(ocr_data.get("snippet")),
+            "status": "confirmed",
             "extractedTitle": detected_t,
-            "cardTitle": card_title,
             "hasTitleChange": title_change_detected,
-            "titleChangeDetected": title_change_detected,
             "details": {
-                "title": detected_t or card_title,
+                "snippet": ocr_data.get("snippet", ""),
                 "extractedTitle": detected_t,
-                "cardTitle": card_title,
-                "hasTitleChange": title_change_detected,
-                "titleChangeMessage": f'Event renamed to: {detected_t}' if title_change_detected else None,
-                "lineup": ocr_data.get("detected_lineup") or card_artist,
-                "agePolicy": ocr_data.get("age_policy", "All Ages"),
+                "hasTitleChange": title_change_detected
+            }
+        },
+        "lineup": {
+            "key": "lineup",
+            "name": "12. Lineup (Optional)",
+            "icon": "🎤",
+            "extracted": detected_lineup or None,
+            "displayValue": lineup_display,
+            "cardValue": card_artist or "None",
+            "isMatch": True,
+            "canApply": bool(detected_lineup),
+            "isOptional": True,
+            "status": "confirmed" if detected_lineup else "optional",
+            "details": {
+                "lineup": detected_lineup
+            }
+        },
+        "restrictions": {
+            "key": "restrictions",
+            "name": "13. Restrictions & Policies (Optional)",
+            "icon": "🔞",
+            "extracted": age_policy or None,
+            "displayValue": restrictions_display,
+            "cardValue": event_card.get("agePolicy") or "All Ages",
+            "isMatch": True,
+            "canApply": bool(age_policy),
+            "isOptional": True,
+            "status": "confirmed" if age_policy else "optional",
+            "details": {
+                "agePolicy": age_policy,
                 "isSoldOut": ocr_data.get("is_sold_out", False),
-                "isPrivate": ocr_data.get("is_private", False),
-                "snippet": ocr_data.get("snippet", "")
+                "isPrivate": ocr_data.get("is_private", False)
             }
         }
     }
@@ -881,7 +975,7 @@ def compare_ocr_with_card(ocr_data: Dict[str, Any], event_card: Dict[str, Any]) 
         "success": True,
         "isFullyAligned": is_fully_aligned,
         "dimensions": dimensions,
-        "dimensionCount": 7,
+        "dimensionCount": len(dimensions),
         "venue": {
             "cardVenue": card_venue,
             "matchedInScreenshot": venue_match

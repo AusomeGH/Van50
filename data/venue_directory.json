@@ -2,8 +2,8 @@
   "metadata": {
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
-    "totalVenues": 72,
-    "updatedAt": "2026-09-23T17:24:41.884533+00:00"
+    "totalVenues": 73,
+    "updatedAt": "2026-09-24T17:19:48.781980+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -260,7 +260,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "The scraper missed the $15 Early Bird student tier at the bottom of the page.",
         "summary": "Calendar: https://littlemountaingallery.ca/events",
-        "distilledAt": "2026-09-23T17:24:41.754213+00:00"
+        "distilledAt": "2026-09-23T19:38:55.283435+00:00"
       },
       "policySummary": "Calendar: https://littlemountaingallery.ca/events"
     },
@@ -345,7 +345,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Updating event name based on flyer screenshot verification.",
         "summary": "Calendar: https://chillxstudio.com",
-        "distilledAt": "2026-09-23T17:22:49.960747+00:00"
+        "distilledAt": "2026-09-23T20:09:04.234428+00:00"
       },
       "policySummary": "Calendar: https://chillxstudio.com"
     },
@@ -410,7 +410,28 @@
       "adapter": "CivicAttractionLiveAdapter",
       "managedEvents": [
         "portside-pub-trivia"
-      ]
+      ],
+      "curatorInstructions": "Updating event name based on flyer screenshot verification.",
+      "curatorNote": "Updating event name based on flyer screenshot verification.",
+      "curatorLearnedRules": {
+        "venueName": "The Portside Pub",
+        "category": "trivia",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://theportsidepub.com/bookings/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Updating event name based on flyer screenshot verification.",
+        "summary": "Calendar: https://theportsidepub.com/bookings/",
+        "distilledAt": "2026-09-23T19:18:09.486716+00:00"
+      },
+      "policySummary": "Calendar: https://theportsidepub.com/bookings/"
     },
     "The Rio Theatre": {
       "venueId": "the-rio-theatre",
@@ -557,7 +578,11 @@
       "ticketingProvider": "Box Office / Direct",
       "adapter": "ImprovCentreLiveAdapter",
       "managedEvents": [
-        "the-improv-centre-weekend"
+        "improv-centre-wednesday-triviaprov",
+        "improv-centre-thursday-blockbuster",
+        "improv-centre-friday-theatresports",
+        "improv-centre-saturday-theatresports",
+        "improv-centre-sunday-showcase"
       ]
     },
     "The Rickshaw Theatre": {
@@ -620,7 +645,8 @@
       "ticketingProvider": "Box Office / Direct",
       "adapter": "VSOLiveAdapter",
       "managedEvents": [
-        "vso-under-35-club"
+        "vso-saturday-orpheum",
+        "vso-sunday-orpheum"
       ]
     },
     "Pizzeria Ludica": {
@@ -832,13 +858,37 @@
       "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
       "category": "music",
       "venueUrl": "https://www.guiltandcompany.com",
-      "calendarUrl": "https://www.guiltandcompany.com",
-      "boxOfficeUrl": "https://www.guiltandcompany.com",
+      "calendarUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "boxOfficeUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
       "ticketingProvider": "Venue Door / Table Charge",
       "adapter": "GuiltAndCoLiveAdapter",
       "managedEvents": [
-        "guilt-and-co-live-jazz"
-      ]
+        "guilt-and-co-thursday-groove",
+        "guilt-and-co-friday-jazz",
+        "guilt-and-co-saturday-showcase",
+        "guilt-and-co-sunday-sessions"
+      ],
+      "curatorInstructions": "If a different day has different bands, they should be different cards.  There are also different price tiers depending on the time people arrive at the door.\nhttps://www.guiltandcompany.com/#ajsection-upcoming",
+      "curatorNote": "If a different day has different bands, they should be different cards.  There are also different price tiers depending on the time people arrive at the door.\nhttps://www.guiltandcompany.com/#ajsection-upcoming",
+      "curatorLearnedRules": {
+        "venueName": "Guilt & Co.",
+        "category": "music",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "If a different day has different bands, they should be different cards.  There are also different price tiers depending on the time people arrive at the door.\nhttps://www.guiltandcompany.com/#ajsection-upcoming",
+        "summary": "Calendar: https://www.guiltandcompany.com/#ajsection-upcoming",
+        "distilledAt": "2026-09-23T17:45:54.249017+00:00"
+      },
+      "policySummary": "Calendar: https://www.guiltandcompany.com/#ajsection-upcoming"
     },
     "UBC Instructional Resources Centre (IRC)": {
       "venueId": "ubc-instructional-resources-centre-irc",
@@ -1101,7 +1151,7 @@
         "blacklistPatterns": [],
         "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
         "summary": "Calendar: https://frankiesjazzclub.com",
-        "distilledAt": "2026-09-23T17:24:41.837556+00:00"
+        "distilledAt": "2026-09-23T19:38:55.371851+00:00"
       },
       "policySummary": "Calendar: https://frankiesjazzclub.com"
     },
@@ -1935,6 +1985,62 @@
         -123.0205
       ],
       "transitInfo": "SkyTrain Expo Line to Patterson Station (3 min walk)"
+    },
+    "Queen Elizabeth Theatre": {
+      "venueId": "queen-elizabeth-theatre",
+      "name": "Queen Elizabeth Theatre",
+      "aliases": [
+        "Queen Elizabeth Theatre",
+        "QET",
+        "Queen Elizabeth Theater"
+      ],
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "coordinates": [
+        49.2808,
+        -123.1132
+      ],
+      "transitInfo": "Stadium-Chinatown SkyTrain Station (Expo Line) or Vancouver City Centre (Canada Line) - 5 min walk",
+      "category": "shows",
+      "venueUrl": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
+      "calendarUrl": "https://vancouvercivictheatres.com/events/",
+      "broadwayCalendarUrl": "https://vancouver.broadway.com/shows/",
+      "boxOfficeUrl": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
+      "ticketingProvider": "Ticketmaster / Civic Theatres Box Office",
+      "adapter": "UniversalVenueCrawler",
+      "doorCover": null,
+      "priceRange": null,
+      "operatingDays": [],
+      "subTags": [
+        "theatre",
+        "broadway",
+        "shows",
+        "live-music",
+        "ballet",
+        "opera"
+      ],
+      "curatorInstructions": "Vancouver Civic Theatres & Broadway Across Canada. Sub-\\ options verified for Penn & Teller, Tosca, Ballet BC.",
+      "curatorNote": "Vancouver Civic Theatres & Broadway Across Canada. Sub-\\ options verified for Penn & Teller, Tosca, Ballet BC.",
+      "curatorLearnedRules": {
+        "venueName": "Queen Elizabeth Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://www.ticketmaster.ca/sting-tickets/artist/723578",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "Far too expensive",
+        "summary": "Calendar: https://www.ticketmaster.ca/sting-tickets/artist/723578",
+        "distilledAt": "2026-09-23T23:34:16.160768+00:00"
+      },
+      "policySummary": "Calendar: https://vancouvercivictheatres.com/events/ | Broadway: https://vancouver.broadway.com/shows/",
+      "managedEvents": []
     }
   }
 }

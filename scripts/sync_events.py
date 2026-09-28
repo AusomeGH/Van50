@@ -36,6 +36,7 @@ JS_DIR = os.path.join(BASE_DIR, 'js')
 JSON_PATH = os.path.join(DATA_DIR, 'events.json')
 JS_PATH = os.path.join(JS_DIR, 'data.js')
 MANUAL_REVIEW_PATH = os.path.join(DATA_DIR, 'manual_review_queue.json')
+ARCHIVE_PATH = os.path.join(DATA_DIR, 'archived_events.json')
 DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, 'discovery_sources.json')
 
 # ==============================================================================
@@ -71,8 +72,11 @@ def map_super_cluster(ev_or_venue):
         'showboat' in title_l or 'wreck beach' in title_l):
         return 'Kitsilano, Point Grey & UBC'
 
+    if 'queen elizabeth theatre' in venue_l:
+        return 'Downtown, Gastown & Yaletown'
+
     if ('mount pleasant' in old_n.lower() or 'south vancouver' in old_n.lower() or 
-        'cambie' in old_n.lower() or 'queen elizabeth' in venue_l or 'bloedel' in venue_l or 
+        'cambie' in old_n.lower() or 'queen elizabeth park' in venue_l or 'bloedel' in venue_l or 
         'riley park' in title_l or 'nat bailey' in venue_l or 'main street' in old_n.lower() or
         'marpole' in old_n.lower() or 'oakridge' in old_n.lower() or 'fraser' in old_n.lower() or
         'qe-park' in ev_id):
@@ -363,6 +367,13 @@ def get_curated_seed_catalog():
             "provider": "Showpass",
             "semanticProvider": "Showpass Verified",
             "pricingType": "platform",
+            "priceLabel": "$4.99 – $9.97 all-in (Preschool Free)",
+            "tiers": [
+                {"name": "Adult (19–64)", "basePrice": 9.50, "price": 9.97, "label": "$9.97 all-in"},
+                {"name": "Student / Senior (65+) / Youth (13–18)", "basePrice": 6.65, "price": 6.98, "label": "$6.98 all-in"},
+                {"name": "Child (5–12)", "basePrice": 4.75, "price": 4.99, "label": "$4.99 all-in"},
+                {"name": "Preschooler (0–4)", "basePrice": 0.0, "price": 0.0, "label": "Free"}
+            ],
             "isDaily": True,
             "frequency": "daily",
             "frequencyLabel": "Daily Spot",
@@ -411,33 +422,156 @@ def get_curated_seed_catalog():
             "description": "A welcoming, raucous weekly improv jam where performers of all skill levels team up for spontaneous scenes and games in Gastown."
         },
         {
-            "id": "ubc-thunderbirds-varsity",
-            "title": "UBC Thunderbirds: Home Varsity Games",
-            "venue": "War Memorial Gym & Thunderbird Stadium",
-            "address": "6081 University Blvd, Vancouver",
+            "id": "ubc-wsoc-ufv",
+            "title": "UBC Women's Soccer vs. UFV",
+            "venue": "Thunderbird Stadium",
+            "venueAliases": ["UBC Thunderbird Stadium"],
+            "address": "6288 Stadium Rd, Vancouver",
             "neighborhood": "Kitsilano",
-            "basePrice": 10.0,
-            "fee": 1.75,
+            "basePrice": 17.50,
             "provider": "Paciolan",
             "semanticProvider": "Paciolan Verified",
             "pricingType": "platform",
+            "tiers": [
+                {"name": "Adult General Admission", "basePrice": 17.50, "price": 17.50, "label": "$17.50 all-in"},
+                {"name": "Concession (Alumni, Seniors 65+, Staff)", "basePrice": 12.50, "price": 12.50, "label": "$12.50"},
+                {"name": "Youth (13–18)", "basePrice": 7.50, "price": 7.50, "label": "$7.50"},
+                {"name": "Child (12 and under)", "basePrice": 3.00, "price": 3.00, "label": "$3.00"},
+                {"name": "UBC Students", "basePrice": 0.0, "price": 0.0, "label": "Free with student ID"}
+            ],
             "isDaily": False,
-            "frequency": "weekly",
-            "frequencyLabel": "Weekly (Game Days)",
-            "daysOfWeek": ["fri", "sat"],
+            "frequency": "one-off",
+            "frequencyLabel": "Match Day",
+            "daysOfWeek": ["fri"],
             "timeSlots": ["early-evening"],
             "category": "activities",
             "categoryLabel": "Games & Activities",
             "categoryIcon": "🦅",
-            "subTags": ["varsity-sports", "basketball", "volleyball", "ubc-athletics"],
-            "dateSchedule": "Friday & Saturday Evenings • 6:00 PM & 8:00 PM",
-            "startIso": "2026-09-11T18:00:00-07:00",
-            "endIso": "2027-03-31T22:00:00-07:00",
+            "subTags": ["varsity-sports", "ubc-soccer", "womens-soccer", "cw-soccer", "thunderbirds", "ufv-cascades"],
+            "dateSchedule": "Friday, September 25, 2026 • 6:00 PM",
+            "startIso": "2026-09-25T18:00:00-07:00",
+            "endIso": "2026-09-25T20:30:00-07:00",
+            "confirmedDates": ["2026-09-25"],
             "isSoldOut": False,
             "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+            "venueUrl": "https://gothunderbirds.ca",
+            "coordinates": [49.2555, -123.2458],
+            "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+            "description": "The defending national champion UBC Thunderbirds women's soccer team hosts the Fraser Valley Cascades (UFV) in a fiery Canada West regular season home showdown at Thunderbird Stadium."
+        },
+        {
+            "id": "ubc-wsoc-twu",
+            "title": "UBC Women's Soccer vs. TWU",
+            "venue": "Thunderbird Stadium",
+            "venueAliases": ["UBC Thunderbird Stadium"],
+            "address": "6288 Stadium Rd, Vancouver",
+            "neighborhood": "Kitsilano",
+            "basePrice": 17.50,
+            "provider": "Paciolan",
+            "semanticProvider": "Paciolan Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Adult General Admission", "basePrice": 17.50, "price": 17.50, "label": "$17.50 all-in"},
+                {"name": "Concession (Alumni, Seniors 65+, Staff)", "basePrice": 12.50, "price": 12.50, "label": "$12.50"},
+                {"name": "Youth (13–18)", "basePrice": 7.50, "price": 7.50, "label": "$7.50"},
+                {"name": "Child (12 and under)", "basePrice": 3.00, "price": 3.00, "label": "$3.00"},
+                {"name": "UBC Students", "basePrice": 0.0, "price": 0.0, "label": "Free with student ID"}
+            ],
+            "isDaily": False,
+            "frequency": "one-off",
+            "frequencyLabel": "Match Day",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["early-evening"],
+            "category": "activities",
+            "categoryLabel": "Games & Activities",
+            "categoryIcon": "🦅",
+            "subTags": ["varsity-sports", "ubc-soccer", "womens-soccer", "twu-spartans", "rivalry", "thunderbirds"],
+            "dateSchedule": "Saturday, September 26, 2026 • 6:00 PM",
+            "startIso": "2026-09-26T18:00:00-07:00",
+            "endIso": "2026-09-26T20:30:00-07:00",
+            "confirmedDates": ["2026-09-26"],
+            "isSoldOut": False,
+            "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+            "venueUrl": "https://gothunderbirds.ca",
+            "coordinates": [49.2555, -123.2458],
+            "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+            "description": "A premier Lower Mainland derby as the UBC Thunderbirds battle the Trinity Western Spartans (TWU) under the lights at Thunderbird Stadium in a high-stakes Canada West rivalry match."
+        },
+        {
+            "id": "ubc-fball-uofc",
+            "title": "UBC Football vs. U of C",
+            "venue": "Thunderbird Stadium",
+            "venueAliases": ["UBC Thunderbird Stadium"],
+            "address": "6288 Stadium Rd, Vancouver",
+            "neighborhood": "Kitsilano",
+            "basePrice": 17.50,
+            "provider": "Paciolan",
+            "semanticProvider": "Paciolan Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Adult General Admission", "basePrice": 17.50, "price": 17.50, "label": "$17.50 all-in"},
+                {"name": "Concession (Alumni, Seniors 65+, Staff)", "basePrice": 12.50, "price": 12.50, "label": "$12.50"},
+                {"name": "Youth (13–18)", "basePrice": 7.50, "price": 7.50, "label": "$7.50"},
+                {"name": "Child (12 and under)", "basePrice": 3.00, "price": 3.00, "label": "$3.00"},
+                {"name": "UBC Students", "basePrice": 0.0, "price": 0.0, "label": "Free with student ID"}
+            ],
+            "isDaily": False,
+            "frequency": "one-off",
+            "frequencyLabel": "Game Day",
+            "daysOfWeek": ["fri"],
+            "timeSlots": ["early-evening"],
+            "category": "activities",
+            "categoryLabel": "Games & Activities",
+            "categoryIcon": "🦅",
+            "subTags": ["varsity-sports", "ubc-football", "calgary-dinos", "u-sports", "thunderbirds", "stadium"],
+            "dateSchedule": "Friday, October 16, 2026 • 6:00 PM",
+            "startIso": "2026-10-16T18:00:00-07:00",
+            "endIso": "2026-10-16T21:00:00-07:00",
+            "confirmedDates": ["2026-10-16"],
+            "isSoldOut": False,
+            "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+            "venueUrl": "https://gothunderbirds.ca",
+            "coordinates": [49.2555, -123.2458],
+            "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+            "description": "Friday night football under the campus floodlights as the UBC Thunderbirds clash with the perennial powerhouse Calgary Dinos (U of C) in a pivotal Canada West conference battle."
+        },
+        {
+            "id": "ubc-mbball-twu",
+            "title": "UBC Men's Basketball vs. TWU",
+            "venue": "War Memorial Gym",
+            "venueAliases": ["War Memorial Gymnasium UBC"],
+            "address": "6081 University Blvd, Vancouver",
+            "neighborhood": "Kitsilano",
+            "basePrice": 17.50,
+            "provider": "Paciolan",
+            "semanticProvider": "Paciolan Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Adult General Admission", "basePrice": 17.50, "price": 17.50, "label": "$17.50 all-in"},
+                {"name": "Concession (Alumni, Seniors 65+, Staff)", "basePrice": 12.50, "price": 12.50, "label": "$12.50"},
+                {"name": "Youth (13–18)", "basePrice": 7.50, "price": 7.50, "label": "$7.50"},
+                {"name": "Child (12 and under)", "basePrice": 3.00, "price": 3.00, "label": "$3.00"},
+                {"name": "UBC Students", "basePrice": 0.0, "price": 0.0, "label": "Free with student ID"}
+            ],
+            "isDaily": False,
+            "frequency": "one-off",
+            "frequencyLabel": "Game Night",
+            "daysOfWeek": ["thu"],
+            "timeSlots": ["early-evening"],
+            "category": "activities",
+            "categoryLabel": "Games & Activities",
+            "categoryIcon": "🦅",
+            "subTags": ["varsity-sports", "ubc-basketball", "twu-spartans", "war-memorial", "thunderbirds", "hoops"],
+            "dateSchedule": "Thursday, October 29, 2026 • 7:30 PM",
+            "startIso": "2026-10-29T19:30:00-07:00",
+            "endIso": "2026-10-29T22:00:00-07:00",
+            "confirmedDates": ["2026-10-29"],
+            "isSoldOut": False,
+            "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+            "venueUrl": "https://gothunderbirds.ca",
             "coordinates": [49.2662, -123.2483],
-            "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit to UBC Loop",
-            "description": "High-octane U SPORTS national championship varsity basketball, volleyball, and football matches on the UBC Point Grey campus."
+            "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit directly to UBC Loop beside War Memorial Gym",
+            "description": "Fast-paced hardwood action inside historic War Memorial Gym as the UBC Thunderbirds men's basketball squad tips off against regional rivals the Trinity Western Spartans (TWU)."
         },
         {
             "id": "eb-standup-mental-health",
@@ -495,40 +629,6 @@ def get_curated_seed_catalog():
             "coordinates": [49.2838, -123.1072],
             "transitInfo": "4 min walk from Waterfront SkyTrain",
             "description": "Midweek comedy laboratory where seasoned Vancouver touring comics and brave newcomers hone their tight five before weekend tours."
-        },
-        {
-            "id": "viff-centre-matinee",
-            "title": "VIFF Centre: Essential Indie Cinema & Matinee",
-            "venue": "VIFF Centre (Seymour Atrium)",
-            "address": "1181 Seymour St, Vancouver",
-            "neighborhood": "Downtown / West End",
-            "basePrice": 15.0,
-            "fee": 1.50,
-            "provider": "Agile Ticketing",
-            "semanticProvider": "Agile Ticketing Verified",
-            "pricingType": "platform",
-            "tiers": [
-                {"name": "General Admission (Adult)", "basePrice": 15.0, "price": 16.50, "label": "$16.50 all-in"},
-                {"name": "Senior (65+)", "basePrice": 13.0, "price": 14.50, "label": "$14.50 all-in"},
-                {"name": "Student / Youth", "basePrice": 12.0, "price": 13.50, "label": "$13.50 all-in"}
-            ],
-            "isDaily": False,
-            "frequency": "weekly",
-            "frequencyLabel": "Weekly (Daily Slots)",
-            "daysOfWeek": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-            "timeSlots": ["afternoon"],
-            "category": "cinema",
-            "categoryLabel": "Cinema",
-            "categoryIcon": "🎬",
-            "subTags": ["indie-film", "international-cinema", "viff", "matinee"],
-            "dateSchedule": "Weekday & Weekend Matinees • 1:30 PM & 4:00 PM",
-            "startIso": "2026-09-08T13:30:00-07:00",
-            "endIso": "2026-12-31T18:00:00-07:00",
-            "isSoldOut": False,
-            "websiteUrl": "https://viff.org/whats-on/a-sad-and-beautiful-world/#book",
-            "coordinates": [49.2774, -123.1251],
-            "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
-            "description": "State-of-the-art non-profit cinema operated by the Vancouver International Film Festival showing international award-winners and Canadian indies."
         },
         {
             "id": "cinematheque-samurai-prisoner",
@@ -949,37 +1049,169 @@ def get_curated_seed_catalog():
             "description": "Award-winning stand-up comedian Alistair Ogden (CBC Comedy, Just For Laughs) headlines an evening of high-energy comedy at The Rio Theatre."
         },
         {
-            "id": "the-improv-centre-weekend",
-            "title": "The Improv Centre: Granville Island Weekend Showcase",
+            "id": "improv-centre-wednesday-triviaprov",
+            "title": "The Improv Centre: TriviaProv & Improv Comedy",
+            "artist": "The Improv Centre Ensemble",
             "venue": "The Improv Centre",
             "address": "1502 Duranleau St, Vancouver",
             "neighborhood": "Granville Island",
-            "basePrice": 30.00,
-            "fee": 3.50,
-            "provider": "AudienceView",
-            "semanticProvider": "AudienceView Verified",
+            "basePrice": 15.50,
+            "provider": "Showpass Verified",
+            "semanticProvider": "Showpass Verified",
             "pricingType": "platform",
             "tiers": [
-                { "name": "Regular Theatre Seat", "basePrice": 33.50, "price": 33.50, "label": "$33.50 all-in" },
-                { "name": "Student / Senior Theatre Seat", "basePrice": 28.50, "price": 28.50, "label": "$28.50 all-in" }
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
             ],
             "isDaily": False,
             "frequency": "weekly",
-            "frequencyLabel": "Weekly (Fri & Sat)",
-            "daysOfWeek": ["fri", "sat"],
+            "frequencyLabel": "Wednesdays",
+            "daysOfWeek": ["wed"],
+            "timeSlots": ["early-evening"],
+            "category": "shows",
+            "categoryLabel": "Comedy & Shows",
+            "categoryIcon": "🎭",
+            "subTags": ["improv", "comedy", "triviaprov", "granville-island", "trivia"],
+            "dateSchedule": "Wednesdays • 7:00 PM (Doors 6:00 PM)",
+            "startIso": "2026-09-30T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7001",
+            "coordinates": [49.2711, -123.1342],
+            "transitInfo": "#50 False Creek South bus or Aquabus to Granville Island",
+            "description": "Calling all trivia lovers! TRIVIAPROV mixes trivia and live comedy. Compete in trivia against performers using your mobile device, with audience answers inspiring spontaneous improv scenes on stage."
+        },
+        {
+            "id": "improv-centre-thursday-blockbuster",
+            "title": "The Improv Centre: Blockbuster Movie Comedy",
+            "artist": "The Improv Centre Ensemble",
+            "venue": "The Improv Centre",
+            "address": "1502 Duranleau St, Vancouver",
+            "neighborhood": "Granville Island",
+            "basePrice": 15.50,
+            "provider": "Showpass Verified",
+            "semanticProvider": "Showpass Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays",
+            "daysOfWeek": ["thu"],
+            "timeSlots": ["early-evening"],
+            "category": "shows",
+            "categoryLabel": "Comedy & Shows",
+            "categoryIcon": "🎭",
+            "subTags": ["improv", "comedy", "blockbuster", "granville-island", "theatre"],
+            "dateSchedule": "Thursdays • 7:00 PM (Doors 6:00 PM)",
+            "startIso": "2026-10-01T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7002",
+            "coordinates": [49.2711, -123.1342],
+            "transitInfo": "#50 False Creek South bus or Aquabus to Granville Island",
+            "description": "Hollywood hits the stage! Improvised cinematic adventure where audience suggestions spawn movie genres, ridiculous villains, explosive set pieces, and Oscar-worthy laughs."
+        },
+        {
+            "id": "improv-centre-friday-theatresports",
+            "title": "The Improv Centre: Friday Night Theatresports™",
+            "artist": "The Improv Centre Mainstage Ensemble",
+            "venue": "The Improv Centre",
+            "address": "1502 Duranleau St, Vancouver",
+            "neighborhood": "Granville Island",
+            "basePrice": 15.50,
+            "provider": "Showpass Verified",
+            "semanticProvider": "Showpass Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Fridays",
+            "daysOfWeek": ["fri"],
             "timeSlots": ["early-evening", "late-evening"],
             "category": "shows",
             "categoryLabel": "Comedy & Shows",
             "categoryIcon": "🎭",
-            "subTags": ["theatresports", "waterfront-theatre", "granville-island", "improv"],
-            "dateSchedule": "Fridays & Saturdays • 7:30 PM & 9:30 PM",
-            "startIso": "2026-09-11T19:30:00-07:00",
-            "endIso": "2026-12-31T23:00:00-07:00",
+            "subTags": ["improv", "comedy", "theatresports", "granville-island", "dinner-theatre"],
+            "dateSchedule": "Fridays • Deadly Dinner Party 7:00 PM | Theatresports™ 9:00 PM",
+            "startIso": "2026-10-02T19:00:00-07:00",
+            "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://theimprovcentre.ca/shows/",
-            "coordinates": [49.2706, -123.1363],
-            "transitInfo": "#50 False Creek Bus or Aquabus ferry dock",
-            "description": "Vancouver's premier waterfront theatre dedicated entirely to spontaneous comedy on Granville Island since 1980."
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7003",
+            "coordinates": [49.2711, -123.1342],
+            "transitInfo": "#50 False Creek South bus or Aquabus to Granville Island",
+            "description": "Vancouver's flagship competitive comedy showdown! Two teams of razor-sharp comedians go head-to-head in hilarious scenes determined by audience suggestions and judged on the spot."
+        },
+        {
+            "id": "improv-centre-saturday-theatresports",
+            "title": "The Improv Centre: Saturday Prime Theatresports™",
+            "artist": "The Improv Centre Mainstage Ensemble",
+            "venue": "The Improv Centre",
+            "address": "1502 Duranleau St, Vancouver",
+            "neighborhood": "Granville Island",
+            "basePrice": 15.50,
+            "provider": "Showpass Verified",
+            "semanticProvider": "Showpass Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Saturdays",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "category": "shows",
+            "categoryLabel": "Comedy & Shows",
+            "categoryIcon": "🎭",
+            "subTags": ["improv", "comedy", "theatresports", "granville-island", "weekend"],
+            "dateSchedule": "Saturdays • Deadly Dinner Party 7:00 PM | Theatresports™ 9:00 PM",
+            "startIso": "2026-10-03T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7004",
+            "coordinates": [49.2711, -123.1342],
+            "transitInfo": "#50 False Creek South bus or Aquabus to Granville Island",
+            "description": "Saturday prime time comedy on Granville Island. High-stakes Theatresports™ with lightning-quick wit, unexpected twists, and audience participation in every round."
+        },
+        {
+            "id": "improv-centre-sunday-showcase",
+            "title": "The Improv Centre: Sunday Comedy Showcase",
+            "artist": "The Improv Centre Ensemble & Guest Troupes",
+            "venue": "The Improv Centre",
+            "address": "1502 Duranleau St, Vancouver",
+            "neighborhood": "Granville Island",
+            "basePrice": 15.50,
+            "provider": "Showpass Verified",
+            "semanticProvider": "Showpass Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays",
+            "daysOfWeek": ["sun"],
+            "timeSlots": ["early-evening"],
+            "category": "shows",
+            "categoryLabel": "Comedy & Shows",
+            "categoryIcon": "🎭",
+            "subTags": ["improv", "comedy", "showcase", "granville-island", "sunday-comedy"],
+            "dateSchedule": "Sundays • 7:00 PM (Doors 6:00 PM)",
+            "startIso": "2026-10-04T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7005",
+            "coordinates": [49.2711, -123.1342],
+            "transitInfo": "#50 False Creek South bus or Aquabus to Granville Island",
+            "description": "Close out your weekend with laughter! A dynamic mix of long-form improv, experimental formats, and special guest performers on the waterfront Granville Island stage."
         },
         # ======================================================================
         # SOLD-OUT WATERMARK DEMONSTRATION SHOW (Requirement 8)
@@ -1042,33 +1274,70 @@ def get_curated_seed_catalog():
             "description": "Explore the iconic geodesic dome kid-free with adult science shows, hands-on physics exhibits, drinks, and guest DJs across two floors."
         },
         {
-            "id": "vso-under-35-club",
-            "title": "Vancouver Symphony Orchestra Live at The Orpheum",
+            "id": "vso-saturday-orpheum",
+            "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
             "artist": "Vancouver Symphony Orchestra",
             "venue": "The Orpheum Theatre",
             "address": "601 Smithe St, Vancouver",
-            "neighborhood": "Downtown / West End",
-            "basePrice": 35.00,
-            "provider": "Box Office / Direct",
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 25.20,
+            "provider": "VSO Access Pass",
             "semanticProvider": "Box Office / Direct Verified",
             "pricingType": "platform",
+            "tiers": [
+                {"name": "Student Rush", "basePrice": 15.75, "price": 15.75, "label": "$15.75 all-in"},
+                {"name": "Under 35 Symphony Pass", "basePrice": 25.20, "price": 25.20, "label": "$25.20 all-in"}
+            ],
             "isDaily": False,
-            "frequency": "monthly",
-            "frequencyLabel": "Monthly Concerts",
-            "daysOfWeek": ["sat", "sun"],
+            "frequency": "weekly",
+            "frequencyLabel": "Saturdays",
+            "daysOfWeek": ["sat"],
             "timeSlots": ["early-evening"],
             "category": "music",
             "categoryLabel": "Live Music",
             "categoryIcon": "🎵",
             "subTags": ["symphony", "orpheum", "classical-music", "under-35", "vso"],
-            "dateSchedule": "Select Weekend Evenings • 8:00 PM",
-            "startIso": "2026-09-19T20:00:00-07:00",
-            "endIso": "2027-05-31T22:30:00-07:00",
+            "dateSchedule": "Saturdays • 8:00 PM Concert",
+            "startIso": "2026-10-03T20:00:00-07:00",
+            "endIso": None,
             "isSoldOut": False,
             "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
             "coordinates": [49.2804, -123.1206],
             "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
-            "description": "Experience world-class orchestral masterworks performed by the Vancouver Symphony Orchestra inside Vancouver's opulent 1927 Orpheum Theatre under a hand-painted ceiling dome. Standard balcony tickets start at $35, with $20 passes available for patrons under 35."
+            "description": "Experience world-class orchestral masterworks performed by the Vancouver Symphony Orchestra on Saturday evening inside the opulent 1927 Orpheum Theatre."
+        },
+        {
+            "id": "vso-sunday-orpheum",
+            "title": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
+            "artist": "Vancouver Symphony Orchestra",
+            "venue": "The Orpheum Theatre",
+            "address": "601 Smithe St, Vancouver",
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 25.20,
+            "provider": "VSO Access Pass",
+            "semanticProvider": "Box Office / Direct Verified",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "Student Rush", "basePrice": 15.75, "price": 15.75, "label": "$15.75 all-in"},
+                {"name": "Under 35 Symphony Pass", "basePrice": 25.20, "price": 25.20, "label": "$25.20 all-in"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays",
+            "daysOfWeek": ["sun"],
+            "timeSlots": ["afternoon", "early-evening"],
+            "category": "music",
+            "categoryLabel": "Live Music",
+            "categoryIcon": "🎵",
+            "subTags": ["symphony", "orpheum", "classical-music", "matinee", "vso"],
+            "dateSchedule": "Sundays • 2:00 PM Matinee / 7:00 PM Evening",
+            "startIso": "2026-10-04T14:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+            "coordinates": [49.2804, -123.1206],
+            "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
+            "description": "Sunday matinee and evening symphonic performances by the Vancouver Symphony Orchestra under the historic Orpheum ceiling dome."
         },
         {
             "id": "cultch-theatre-series",
@@ -1163,10 +1432,15 @@ def get_curated_seed_catalog():
             "venue": "Stanley Park Pitch & Putt",
             "address": "2099 Beach Ave, Vancouver",
             "neighborhood": "Downtown / West End",
-            "basePrice": 19.11,
+            "basePrice": 17.50,
             "provider": "Independent Box Office",
             "semanticProvider": "City of Vancouver Park",
             "pricingType": "door",
+            "priceLabel": "$12.25 – $17.50 door",
+            "tiers": [
+                {"name": "Adult (19–64)", "basePrice": 17.50, "price": 17.50, "label": "$17.50 door"},
+                {"name": "Student / Senior (65+) / Youth (<19)", "basePrice": 12.25, "price": 12.25, "label": "$12.25 door"}
+            ],
             "isDaily": True,
             "frequency": "daily",
             "frequencyLabel": "Daily Spot",
@@ -1195,6 +1469,14 @@ def get_curated_seed_catalog():
             "provider": "Box Office / Direct",
             "semanticProvider": "BMO / Vancouver Art Gallery",
             "pricingType": "free",
+            "priceLabel": "Free ($0)",
+            "tiers": [
+                {"name": "First Friday Night (All Ages)", "basePrice": 0.0, "price": 0.0, "label": "Free / By Donation"},
+                {"name": "Student (with valid ID)", "basePrice": 20.0, "price": 20.0, "label": "$20.00"},
+                {"name": "General Adult Admission", "basePrice": 29.0, "price": 29.0, "label": "$29.00"},
+                {"name": "Senior (65+)", "basePrice": 24.0, "price": 24.0, "label": "$24.00"},
+                {"name": "Children (12 & under)", "basePrice": 0.0, "price": 0.0, "label": "Free"}
+            ],
             "isDaily": False,
             "frequency": "monthly",
             "frequencyLabel": "Monthly (1st Friday)",
@@ -1394,34 +1676,142 @@ def get_curated_seed_catalog():
             "description": "Weekly Sunday neighborhood market in the heart of Kitsilano with farm-fresh Okanagan fruit, BC field vegetables, fresh pasta, artisanal cheeses, and live local acoustic music."
         },
         {
-            "id": "guilt-and-co-live-jazz",
-            "title": "Guilt & Co.: Nightly Live Jazz, Soul & Latin Music",
-            "artist": "Local jazz & soul ensembles",
+            "id": "guilt-and-co-thursday-groove",
+            "title": "Guilt & Co: Thursday Night Live Soul & Groove",
+            "artist": "Local Soul & Groove Ensembles",
             "venue": "Guilt & Co.",
             "venueAliases": ["Guilt and Co", "Guilt & Co", "Guilt and Company"],
             "address": "1 Alexander St (Below Ground), Vancouver",
-            "neighborhood": "Gastown / Chinatown",
-            "basePrice": 0.0,
-            "provider": "Box Office / Direct",
-            "semanticProvider": "By-Donation / Artist Contribution",
-            "pricingType": "donation",
-            "isDaily": True,
-            "frequency": "daily",
-            "frequencyLabel": "Nightly 7 Days/Week",
-            "daysOfWeek": ["daily"],
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 8.0,
+            "provider": "Door Cover at Entrance",
+            "semanticProvider": "Door Cover at Entrance",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.00, "label": "$8.00 door"},
+                {"name": "Thursday Late Set (After 8:00 PM)", "basePrice": 12.0, "price": 12.00, "label": "$12.00 door"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays",
+            "daysOfWeek": ["thu"],
             "timeSlots": ["early-evening", "late-evening"],
             "category": "music",
             "categoryLabel": "Live Music",
             "categoryIcon": "🎵",
-            "subTags": ["live-jazz", "gastown", "soul-music", "intimate-lounge", "cocktails"],
-            "dateSchedule": "Daily / Nightly Sets • 7:00 PM & 9:30 PM",
-            "startIso": "2026-09-09T19:00:00-07:00",
+            "subTags": ["live-soul", "gastown", "groove", "subterranean-lounge", "cocktails"],
+            "dateSchedule": "Thursdays • Sets at 7:00 PM & 9:30 PM (Closed Thu Sep 24 for Private Event • Resumes Thu Oct 1)",
+            "startIso": "2026-10-01T19:00:00-07:00",
+            "endIso": None,
+            "cancelledDates": ["2026-09-24"],
+            "isSoldOut": False,
+            "websiteUrl": "https://www.guiltandcompany.com",
+            "coordinates": [49.2835, -123.1039],
+            "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+            "rovingNote": "Notice: Closed Thursday September 24 for a private buyout event. Regular weekly Thursday Groove resumes October 1.",
+            "description": "Subterranean Gastown sanctuary featuring world-class live soul, Latin, and funk. Door cover is $8 before 8 PM, $12 after 8 PM. Notice: Closed Thursday, September 24 for a private event; live shows resume Friday, September 25."
+        },
+        {
+            "id": "guilt-and-co-friday-jazz",
+            "title": "Guilt & Co: Friday Night Prime Jazz & Funk Showcase",
+            "artist": "The Unbranded (7 PM) & Ezra Kwizera (10 PM)",
+            "venue": "Guilt & Co.",
+            "venueAliases": ["Guilt and Co", "Guilt & Co", "Guilt and Company"],
+            "address": "1 Alexander St (Below Ground), Vancouver",
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 8.0,
+            "provider": "Door Cover at Entrance",
+            "semanticProvider": "Door Cover at Entrance",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.00, "label": "$8.00 door"},
+                {"name": "Friday Prime Night (After 8:00 PM)", "basePrice": 15.0, "price": 15.00, "label": "$15.00 door"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Fridays",
+            "daysOfWeek": ["fri"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "category": "music",
+            "categoryLabel": "Live Music",
+            "categoryIcon": "🎵",
+            "subTags": ["live-jazz", "gastown", "funk", "subterranean-lounge", "cocktails"],
+            "dateSchedule": "Fridays • Sets at 7:00 PM & 10:00 PM",
+            "startIso": "2026-09-25T19:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
             "websiteUrl": "https://www.guiltandcompany.com",
             "coordinates": [49.2835, -123.1039],
             "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
-            "description": "Gastown's subterranean live music staple hosting world-class jazz, blues, Latin, and soul 365 nights a year. Free admission at the door with an optional suggested donation for the artists."
+            "description": "High-energy Friday live music underground in Gastown featuring The Unbranded (country/Americana at 7 PM) and Ezra Kwizera (soul/Afro-fusion at 10 PM). Door cover is $8 before 8 PM, $15 after 8 PM."
+        },
+        {
+            "id": "guilt-and-co-saturday-showcase",
+            "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+            "artist": "Hot Damn Scandal (7 PM) & The Smooth Sailors (10 PM)",
+            "venue": "Guilt & Co.",
+            "venueAliases": ["Guilt and Co", "Guilt & Co", "Guilt and Company"],
+            "address": "1 Alexander St (Below Ground), Vancouver",
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 8.0,
+            "provider": "Door Cover at Entrance",
+            "semanticProvider": "Door Cover at Entrance",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.00, "label": "$8.00 door"},
+                {"name": "Saturday Prime Night (After 8:00 PM)", "basePrice": 15.0, "price": 15.00, "label": "$15.00 door"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Saturdays",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "category": "music",
+            "categoryLabel": "Live Music",
+            "categoryIcon": "🎵",
+            "subTags": ["live-rnb", "gastown", "soul-party", "subterranean-lounge", "cocktails"],
+            "dateSchedule": "Saturdays • Sets at 7:00 PM & 10:00 PM",
+            "startIso": "2026-09-26T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://www.guiltandcompany.com",
+            "coordinates": [49.2835, -123.1039],
+            "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+            "description": "Saturday night underground live party featuring Hot Damn Scandal (cabaret Americana at 7 PM) and The Smooth Sailors (yacht rock revue at 10 PM). Cover: $8 early, $15 late."
+        },
+        {
+            "id": "guilt-and-co-sunday-sessions",
+            "title": "Guilt & Co: Sunday Evening Live Acoustic & Soul Sessions",
+            "artist": "Alex Flock (7 PM) & Paul Caldwell & the Human Condition (9 PM)",
+            "venue": "Guilt & Co.",
+            "venueAliases": ["Guilt and Co", "Guilt & Co", "Guilt and Company"],
+            "address": "1 Alexander St (Below Ground), Vancouver",
+            "neighborhood": "Downtown, Gastown & Yaletown",
+            "basePrice": 8.0,
+            "provider": "Door Cover at Entrance",
+            "semanticProvider": "Door Cover at Entrance",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.00, "label": "$8.00 door"},
+                {"name": "Sunday Night (After 8:00 PM)", "basePrice": 12.0, "price": 12.00, "label": "$12.00 door"}
+            ],
+            "isDaily": False,
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays",
+            "daysOfWeek": ["sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "category": "music",
+            "categoryLabel": "Live Music",
+            "categoryIcon": "🎵",
+            "subTags": ["acoustic-sessions", "gastown", "blues", "subterranean-lounge", "cocktails"],
+            "dateSchedule": "Sundays • Sets at 7:00 PM & 9:00 PM",
+            "startIso": "2026-09-27T19:00:00-07:00",
+            "endIso": None,
+            "isSoldOut": False,
+            "websiteUrl": "https://www.guiltandcompany.com",
+            "coordinates": [49.2835, -123.1039],
+            "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+            "description": "Wind down the weekend in Gastown featuring acoustic guitar virtuoso Alex Flock at 7 PM and Irish-Canadian songwriter Paul Caldwell at 9 PM. Cover: $8 early, $12 late."
         },
         {
             "id": "vancouver-institute-lectures",
@@ -2338,6 +2728,7 @@ VENUE_URLS = {
     "Public Disco Society": "https://publicdisco.ca",
     "Public Disco": "https://publicdisco.ca",
     "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
+    "Queen Elizabeth Theatre": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
     "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
@@ -2630,7 +3021,17 @@ def run_sync() -> bool:
 
         # 0. Skip permanently dismissed or archived items FIRST (honoring curator guidance)
         learned = load_curator_learned_rules()
-        if event_id in learned.get("archived_event_ids", []):
+        archived_ids = set(learned.get("archived_event_ids", []))
+        if os.path.exists(ARCHIVE_PATH):
+            try:
+                with open(ARCHIVE_PATH, "r", encoding="utf-8") as af:
+                    arch_d = json.load(af)
+                    for a_ev in arch_d.get("archivedEvents", []):
+                        if a_ev.get("id"):
+                            archived_ids.add(a_ev["id"])
+            except Exception:
+                pass
+        if event_id in archived_ids:
             print(f"[SKIP ARCHIVED] '{item['title']}' is permanently dismissed/archived.")
             continue
 
@@ -2729,27 +3130,55 @@ def run_sync() -> bool:
             continue
 
         if not search_res.get("isVerified", False):
-            flag_reason = search_res.get("quarantineReason", "Unverified live checkout pricing")
-            print(f"[QUARANTINE] '{item['title']}' flagged for manual review: {flag_reason}")
-            quarantined_item = {
-                "id": event_id,
-                "title": item['title'],
-                "venue": item['venue'],
-                "address": item.get('address', ''),
-                "neighborhood": item.get('neighborhood', ''),
-                "attemptedPrice": float(item.get('basePrice', 0.0)),
-                "attemptedPriceLabel": "Free ($0)" if (float(item.get('basePrice', 0.0)) == 0.0 or item.get('pricingType') == 'free') else f"${float(item.get('basePrice', 0.0)):.2f} door",
-                "provider": provider,
-                "semanticProvider": semantic_provider,
-                "websiteUrl": url,
-                "category": cat,
-                "flaggedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
-                "flagReason": flag_reason,
-                "reviewStatus": "pending_manual_review",
-                "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-            }
-            quarantined_events.append(quarantined_item)
-            continue
+            # Check if event has a curator approval or verification lock
+            curator_ver = item.get("checkoutVerification", {})
+            has_curator_approval = (
+                curator_ver.get("method") in ("manual_curator_review", "curator_screenshot_verification")
+                or item.get("reviewStatus") == "curator_approved"
+            )
+            # Cross-reference existing catalog in events.json for curator verification
+            if not has_curator_approval and os.path.exists(JSON_PATH):
+                try:
+                    with open(JSON_PATH, "r", encoding="utf-8") as f_cat:
+                        cat_data = json.load(f_cat)
+                        for existing_ev in cat_data.get("events", []):
+                            if existing_ev.get("id") == event_id:
+                                ex_ver = existing_ev.get("checkoutVerification", {})
+                                if ex_ver.get("method") in ("manual_curator_review", "curator_screenshot_verification") or existing_ev.get("reviewStatus") == "curator_approved":
+                                    has_curator_approval = True
+                                    item["checkoutVerification"] = ex_ver
+                                    item["price"] = float(existing_ev.get("price", item.get("price", 0.0)))
+                                    item["priceLabel"] = existing_ev.get("priceLabel", item.get("priceLabel"))
+                                    search_res["finalPrice"] = item["price"]
+                                    search_res["priceLabel"] = item["priceLabel"]
+                                    search_res["isVerified"] = True
+                                    search_res["verification"] = ex_ver
+                                    break
+                except Exception:
+                    pass
+
+            if not has_curator_approval:
+                flag_reason = search_res.get("quarantineReason", "Unverified live checkout pricing")
+                print(f"[QUARANTINE] '{item['title']}' flagged for manual review: {flag_reason}")
+                quarantined_item = {
+                    "id": event_id,
+                    "title": item['title'],
+                    "venue": item['venue'],
+                    "address": item.get('address', ''),
+                    "neighborhood": item.get('neighborhood', ''),
+                    "attemptedPrice": float(item.get('basePrice', 0.0)),
+                    "attemptedPriceLabel": "Free ($0)" if (float(item.get('basePrice', 0.0)) == 0.0 or item.get('pricingType') == 'free') else f"${float(item.get('basePrice', 0.0)):.2f} door",
+                    "provider": provider,
+                    "semanticProvider": semantic_provider,
+                    "websiteUrl": url,
+                    "category": cat,
+                    "flaggedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00"),
+                    "flagReason": flag_reason,
+                    "reviewStatus": "pending_manual_review",
+                    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+                }
+                quarantined_events.append(quarantined_item)
+                continue
 
         final_price = search_res["finalPrice"]
         price_label = search_res["priceLabel"]
@@ -2765,7 +3194,19 @@ def run_sync() -> bool:
                 if min_t == max_t:
                     price_label = f"${min_t:.2f} all-in"
                 elif min_t == 0:
-                    price_label = f"Free – ${max_t:.2f} all-in"
+                    is_student_or_child_only_free = any(
+                        float(t.get('price', 0.0)) == 0 and any(k in t.get('name', '').lower() for k in ['student', 'child', 'infant', 'youth', 'under'])
+                        for t in tiers
+                    )
+                    if is_student_or_child_only_free:
+                        adult_tiers = [float(t.get('price', 0.0)) for t in tiers if 'adult' in t.get('name', '').lower()]
+                        if adult_tiers:
+                            price_label = f"${adult_tiers[0]:.2f} all-in"
+                        else:
+                            paid_tiers = [float(t.get('price', 0.0)) for t in tiers if float(t.get('price', 0.0)) > 0]
+                            price_label = f"${min(paid_tiers):.2f} – ${max(paid_tiers):.2f} all-in" if paid_tiers else "Free ($0)"
+                    else:
+                        price_label = f"Free – ${max_t:.2f} all-in"
                 else:
                     price_label = f"${min_t:.2f} – ${max_t:.2f} all-in"
 
@@ -2873,7 +3314,14 @@ def run_sync() -> bool:
     # 4. Universal Venue Calendar Crawler & Automated Ingestion
     print("\n[SYNC] Running Universal Venue Calendar Crawler across registered directory venues...")
     try:
-        uv_verified, uv_quarantined = UniversalVenueCrawler.harvest_all_venues(["Hollywood Theatre", "Rickshaw Theatre", "The Rickshaw Theatre", "Public Disco Society"])
+        target_crawl_venues = [
+            "Hollywood Theatre",
+            "Rickshaw Theatre",
+            "The Rickshaw Theatre",
+            "Public Disco Society",
+            "Queen Elizabeth Theatre"
+        ]
+        uv_verified, uv_quarantined = UniversalVenueCrawler.harvest_all_venues(target_crawl_venues)
         for uv_ev in uv_verified:
             # Skip duplicates
             if any(e['id'] == uv_ev['id'] or e['title'].lower() == uv_ev['title'].lower() for e in verified_events):
@@ -2899,7 +3347,7 @@ def run_sync() -> bool:
 
         learned = load_curator_learned_rules()
         for q_ev in uv_quarantined:
-            if q_ev.get('id') in learned.get("archived_event_ids", []):
+            if q_ev.get('id') in learned.get("archived_event_ids", []) or q_ev.get('id') in archived_ids:
                 continue
             if not any(q.get('id') == q_ev.get('id') or q.get('title', '').lower() == q_ev.get('title', '').lower() for q in quarantined_events):
                 quarantined_events.append(q_ev)
@@ -3021,19 +3469,47 @@ def run_sync() -> bool:
         json.dump(database, f, indent=2, ensure_ascii=False)
     print(f"[OK] Successfully wrote {len(verified_events)} verified events to {JSON_PATH}")
 
-    # 2. Write data/manual_review_queue.json
+    # 2. Write data/manual_review_queue.json (Preserving pending curator & Antigravity review items)
+    existing_quarantined = []
+    if os.path.exists(MANUAL_REVIEW_PATH):
+        try:
+            with open(MANUAL_REVIEW_PATH, 'r', encoding='utf-8') as f_q:
+                q_data = json.load(f_q)
+                existing_quarantined = q_data.get("quarantinedEvents", [])
+        except Exception:
+            pass
+
+    combined_quarantined = []
+    seen_ids = set()
+    for eq in existing_quarantined:
+        eq_id = eq.get("id")
+        if eq_id and eq_id not in seen_ids:
+            if eq.get("reviewStatus") == "pending_antigravity_review" or eq.get("curatorAnnotation"):
+                combined_quarantined.append(eq)
+                seen_ids.add(eq_id)
+            elif not any(v.get("id") == eq_id for v in verified_events):
+                combined_quarantined.append(eq)
+                seen_ids.add(eq_id)
+
+    for nq in quarantined_events:
+        nq_id = nq.get("id")
+        if nq_id and nq_id not in seen_ids:
+            combined_quarantined.append(nq)
+            seen_ids.add(nq_id)
+
     review_queue_payload = {
         "metadata": {
             "version": "1.0.0",
             "updatedAt": timestamp,
-            "pendingCount": len(quarantined_events),
+            "pendingCount": len(combined_quarantined),
             "description": "Events quarantined for manual user review due to unverified live checkout pricing."
         },
-        "quarantinedEvents": quarantined_events
+        "quarantinedEvents": combined_quarantined,
+        "pendingCount": len(combined_quarantined)
     }
     with open(MANUAL_REVIEW_PATH, 'w', encoding='utf-8') as f:
         json.dump(review_queue_payload, f, indent=2, ensure_ascii=False)
-    print(f"[OK] Successfully wrote {len(quarantined_events)} quarantined events to {MANUAL_REVIEW_PATH}")
+    print(f"[OK] Successfully wrote {len(combined_quarantined)} quarantined events to {MANUAL_REVIEW_PATH}")
 
     # 3. Write client offline fallback js/data.js
     js_content = f"""// Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
@@ -3041,7 +3517,7 @@ def run_sync() -> bool:
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = {json.dumps(verified_events, indent=2, ensure_ascii=False)};
-const MANUAL_REVIEW_QUEUE = {json.dumps(quarantined_events, indent=2, ensure_ascii=False)};
+const MANUAL_REVIEW_QUEUE = {json.dumps(combined_quarantined, indent=2, ensure_ascii=False)};
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [

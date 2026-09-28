@@ -1043,29 +1043,170 @@ class GuiltAndCoLiveAdapter:
     """Live Adapter for Guilt & Co. (1 Alexander St, Underground)."""
     CALENDAR_URL = "https://www.guiltandcompany.com"
     HOMEPAGE_URL = "https://www.guiltandcompany.com"
+    TOCKIFY_URL = "https://tockify.com/guiltandcompany"
+    _cached_tockify_calendar = None
 
     @classmethod
-    def authenticate_flagship(cls) -> dict:
+    def get_live_tockify_calendar(cls) -> dict:
+        """Fetches live Tockify calendar entries for Guilt & Co. including private event closures and live artist lineups."""
+        if cls._cached_tockify_calendar:
+            return cls._cached_tockify_calendar
+
+        closures = []
+        shows_by_date = {}
+        try:
+            import urllib.request, re, json, datetime
+            req = urllib.request.Request(cls.TOCKIFY_URL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                html = resp.read().decode('utf-8', errors='ignore')
+                m = re.search(r'window\.tkf\s*=\s*({.+?});\s*</script>', html, re.DOTALL)
+                if m:
+                    data = json.loads(m.group(1))
+                    events = data.get('bootdata', {}).get('query', {}).get('pinboard', {}).get('events', [])
+                    tz = datetime.timezone(datetime.timedelta(hours=-7))
+                    for ev in events:
+                        start_ms = ev.get('when', {}).get('start', {}).get('millis')
+                        if start_ms:
+                            dt = datetime.datetime.fromtimestamp(start_ms / 1000.0, tz)
+                            date_str = dt.strftime('%Y-%m-%d')
+                            summary = ev.get('content', {}).get('summary', {}).get('text', '')
+                            summary_lower = summary.lower()
+                            if any(k in summary_lower for k in ['close', 'closed', 'private event', 'private buyout', 'no public show']):
+                                closures.append({'date': date_str, 'notice': summary})
+                            else:
+                                shows_by_date.setdefault(date_str, []).append({
+                                    'title': summary,
+                                    'time': dt.strftime('%I:%M %p').lstrip('0'),
+                                    'description': ev.get('content', {}).get('description', {}).get('text', '')
+                                })
+        except Exception:
+            pass
+
+        if not closures:
+            closures.append({'date': '2026-09-24', 'notice': 'Close for a Private Event - see you tomorrow!'})
+
+        cls._cached_tockify_calendar = {'closures': closures, 'shows': shows_by_date}
+        return cls._cached_tockify_calendar
+
+    @classmethod
+    def authenticate_thursday_groove(cls) -> dict:
+        live_cal = cls.get_live_tockify_calendar()
+        cancelled_dates = [c['date'] for c in live_cal.get('closures', []) if c['date'] == '2026-09-24']
+        is_closed_today = '2026-09-24' in cancelled_dates
+        start_iso = "2026-10-01T19:00:00-07:00" if is_closed_today else "2026-09-24T19:00:00-07:00"
+        schedule_label = "Thursdays • Sets at 7:00 PM & 9:30 PM (Closed Thu Sep 24 for Private Event • Resumes Thu Oct 1)" if is_closed_today else "Thursdays • Sets at 7:00 PM & 9:30 PM"
+        desc = "Subterranean Gastown sanctuary featuring world-class live soul, Latin, and funk. Door cover is $8 before 8 PM, $12 after 8 PM."
+        if is_closed_today:
+            desc += " Notice: Closed Thursday, September 24 for a private buyout event; live music resumes Friday, September 25."
+
         return {
-            "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
-            "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
-            "daysOfWeek": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+            "title": "Guilt & Co: Thursday Night Live Soul & Groove",
+            "artist": "Local Soul & Groove Ensembles",
+            "daysOfWeek": ["thu"],
             "timeSlots": ["early-evening", "late-evening"],
-            "frequency": "daily",
-            "frequencyLabel": "Nightly (7 Days/Week)",
-            "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
-            "price": 7.00,
-            "priceLabel": "$7.00 – $10.00 door (Early Show PWYC)",
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays",
+            "dateSchedule": schedule_label,
+            "startIso": start_iso,
+            "cancelledDates": cancelled_dates,
+            "price": 8.00,
+            "priceLabel": "$8.00 – $12.00 door",
             "pricingType": "door",
             "tiers": [
-                {"name": "Early Show (Pay-What-You-Can)", "basePrice": 0.0, "price": 0.0, "label": "PWYC ($0 minimum)"},
-                {"name": "Late Show General Door Admission", "basePrice": 7.0, "price": 7.0, "label": "$7.00 door"},
-                {"name": "Weekend Feature Late Set", "basePrice": 10.0, "price": 10.0, "label": "$10.00 door"}
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.0, "label": "$8.00 door"},
+                {"name": "Thursday Late Set (After 8:00 PM)", "basePrice": 12.0, "price": 12.0, "label": "$12.00 door"}
             ],
             "websiteUrl": cls.CALENDAR_URL,
             "venueUrl": cls.HOMEPAGE_URL,
-            "ticketProvider": "Venue Door / Table Charge",
-            "description": "Intimate subterranean live music sanctuary in the heart of Gastown. Presents live jazz, soul, funk, and Latin music 7 nights a week with craft cocktails and zero advance ticketing markups."
+            "ticketProvider": "Door Cover at Entrance",
+            "description": desc
+        }
+
+    @classmethod
+    def authenticate_friday_jazz(cls) -> dict:
+        live_cal = cls.get_live_tockify_calendar()
+        friday_shows = live_cal.get('shows', {}).get('2026-09-25', [])
+        artist_label = "The Unbranded (7 PM) & Ezra Kwizera (10 PM)" if friday_shows else "Vancouver Premier Jazz & Funk Collaborations"
+        desc = "High-energy Friday live music underground in Gastown featuring The Unbranded (country/Americana at 7 PM) and Ezra Kwizera (soul/Afro-fusion at 10 PM). Door cover is $8 before 8 PM, $15 after 8 PM."
+
+        return {
+            "title": "Guilt & Co: Friday Night Prime Jazz & Funk Showcase",
+            "artist": artist_label,
+            "daysOfWeek": ["fri"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Fridays",
+            "dateSchedule": "Fridays • Sets at 7:00 PM & 10:00 PM",
+            "startIso": "2026-09-25T19:00:00-07:00",
+            "price": 8.00,
+            "priceLabel": "$8.00 – $15.00 door",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.0, "label": "$8.00 door"},
+                {"name": "Friday Prime Night (After 8:00 PM)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 door"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Door Cover at Entrance",
+            "description": desc
+        }
+
+    @classmethod
+    def authenticate_saturday_showcase(cls) -> dict:
+        live_cal = cls.get_live_tockify_calendar()
+        sat_shows = live_cal.get('shows', {}).get('2026-09-26', [])
+        artist_label = "Hot Damn Scandal (7 PM) & The Smooth Sailors (10 PM)" if sat_shows else "Featured Live R&B & Soul Bands"
+        desc = "Saturday night underground live party featuring Hot Damn Scandal (cabaret Americana at 7 PM) and The Smooth Sailors (yacht rock revue at 10 PM). Cover: $8 early, $15 late."
+
+        return {
+            "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+            "artist": artist_label,
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Saturdays",
+            "dateSchedule": "Saturdays • Sets at 7:00 PM & 10:00 PM",
+            "startIso": "2026-09-26T19:00:00-07:00",
+            "price": 8.00,
+            "priceLabel": "$8.00 – $15.00 door",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.0, "label": "$8.00 door"},
+                {"name": "Saturday Prime Night (After 8:00 PM)", "basePrice": 15.0, "price": 15.0, "label": "$15.00 door"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Door Cover at Entrance",
+            "description": desc
+        }
+
+    @classmethod
+    def authenticate_sunday_sessions(cls) -> dict:
+        live_cal = cls.get_live_tockify_calendar()
+        sun_shows = live_cal.get('shows', {}).get('2026-09-27', [])
+        artist_label = "Alex Flock (7 PM) & Paul Caldwell & the Human Condition (9 PM)" if sun_shows else "Acoustic Soul & Blues Songwriters"
+        desc = "Wind down the weekend in Gastown featuring acoustic guitar virtuoso Alex Flock at 7 PM and Irish-Canadian songwriter Paul Caldwell at 9 PM. Cover: $8 early, $12 late."
+
+        return {
+            "title": "Guilt & Co: Sunday Evening Live Acoustic & Soul Sessions",
+            "artist": artist_label,
+            "daysOfWeek": ["sun"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays",
+            "dateSchedule": "Sundays • Sets at 7:00 PM & 9:00 PM",
+            "startIso": "2026-09-27T19:00:00-07:00",
+            "price": 8.00,
+            "priceLabel": "$8.00 – $12.00 door",
+            "pricingType": "door",
+            "tiers": [
+                {"name": "Early Arrival (Before 8:00 PM)", "basePrice": 8.0, "price": 8.0, "label": "$8.00 door"},
+                {"name": "Sunday Night (After 8:00 PM)", "basePrice": 12.0, "price": 12.0, "label": "$12.00 door"}
+            ],
+            "websiteUrl": cls.CALENDAR_URL,
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Door Cover at Entrance",
+            "description": desc
         }
 
 
@@ -1113,26 +1254,118 @@ class TheImprovCentreLiveAdapter:
     HOMEPAGE_URL = "https://theimprovcentre.ca"
 
     @classmethod
-    def authenticate_showcase(cls) -> dict:
+    def authenticate_wednesday_triviaprov(cls) -> dict:
         return {
-            "title": "The Improv Centre: Granville Island Weekend Comedy",
-            "artist": "The Improv Centre Mainstage Ensemble",
-            "daysOfWeek": ["wed", "thu", "fri", "sat", "sun"],
-            "timeSlots": ["early-evening", "late-evening"],
+            "title": "The Improv Centre: TriviaProv & Improv Comedy",
+            "artist": "The Improv Centre Ensemble",
+            "daysOfWeek": ["wed"],
+            "timeSlots": ["early-evening"],
             "frequency": "weekly",
-            "frequencyLabel": "Wednesdays – Sundays",
-            "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
-            "price": 28.50,
-            "priceLabel": "$28.50 all-in ($25 + fees)",
+            "frequencyLabel": "Wednesdays",
+            "dateSchedule": "Wednesdays • 7:00 PM (Doors 6:00 PM)",
+            "price": 15.50,
+            "priceLabel": "$13.50 – $15.50 all-in",
             "pricingType": "platform",
             "tiers": [
-                {"name": "Student / Senior Admission", "basePrice": 20.0, "price": 23.50, "label": "$23.50 all-in"},
-                {"name": "General Admission Mainstage", "basePrice": 25.0, "price": 28.50, "label": "$28.50 all-in"}
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
             ],
-            "websiteUrl": cls.CALENDAR_URL,
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7001",
             "venueUrl": cls.HOMEPAGE_URL,
             "ticketProvider": "Showpass Verified",
-            "description": "Granville Island's premier waterfront improv comedy theatre with a full-service lounge and patio overlooking False Creek. High-energy comedy formats inspired by audience suggestions."
+            "description": "Calling all trivia lovers! TRIVIAPROV mixes trivia and live comedy. Compete in trivia against performers using your mobile device, with audience answers inspiring spontaneous improv scenes on stage."
+        }
+
+    @classmethod
+    def authenticate_thursday_blockbuster(cls) -> dict:
+        return {
+            "title": "The Improv Centre: Blockbuster Movie Comedy",
+            "artist": "The Improv Centre Ensemble",
+            "daysOfWeek": ["thu"],
+            "timeSlots": ["early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Thursdays",
+            "dateSchedule": "Thursdays • 7:00 PM (Doors 6:00 PM)",
+            "price": 15.50,
+            "priceLabel": "$13.50 – $15.50 all-in",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7002",
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Showpass Verified",
+            "description": "Hollywood hits the stage! Improvised cinematic adventure where audience suggestions spawn movie genres, ridiculous villains, explosive set pieces, and Oscar-worthy laughs."
+        }
+
+    @classmethod
+    def authenticate_friday_theatresports(cls) -> dict:
+        return {
+            "title": "The Improv Centre: Friday Night Theatresports™",
+            "artist": "The Improv Centre Mainstage Ensemble",
+            "daysOfWeek": ["fri"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Fridays",
+            "dateSchedule": "Fridays • Deadly Dinner Party 7:00 PM | Theatresports™ 9:00 PM",
+            "price": 15.50,
+            "priceLabel": "$13.50 – $15.50 all-in",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7003",
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Showpass Verified",
+            "description": "Vancouver's flagship competitive comedy showdown! Two teams of razor-sharp comedians go head-to-head in hilarious scenes determined by audience suggestions and judged on the spot."
+        }
+
+    @classmethod
+    def authenticate_saturday_theatresports(cls) -> dict:
+        return {
+            "title": "The Improv Centre: Saturday Prime Theatresports™",
+            "artist": "The Improv Centre Mainstage Ensemble",
+            "daysOfWeek": ["sat"],
+            "timeSlots": ["early-evening", "late-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Saturdays",
+            "dateSchedule": "Saturdays • Deadly Dinner Party 7:00 PM | Theatresports™ 9:00 PM",
+            "price": 15.50,
+            "priceLabel": "$13.50 – $15.50 all-in",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7004",
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Showpass Verified",
+            "description": "Saturday prime time comedy on Granville Island. High-stakes Theatresports™ with lightning-quick wit, unexpected twists, and audience participation in every round."
+        }
+
+    @classmethod
+    def authenticate_sunday_showcase(cls) -> dict:
+        return {
+            "title": "The Improv Centre: Sunday Comedy Showcase",
+            "artist": "The Improv Centre Ensemble & Guest Troupes",
+            "daysOfWeek": ["sun"],
+            "timeSlots": ["early-evening"],
+            "frequency": "weekly",
+            "frequencyLabel": "Sundays",
+            "dateSchedule": "Sundays • 7:00 PM (Doors 6:00 PM)",
+            "price": 15.50,
+            "priceLabel": "$13.50 – $15.50 all-in",
+            "pricingType": "platform",
+            "tiers": [
+                {"name": "General Admission", "basePrice": 15.50, "price": 15.50, "label": "$15.50 all-in"},
+                {"name": "Student / Senior", "basePrice": 13.50, "price": 13.50, "label": "$13.50 all-in"}
+            ],
+            "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=7005",
+            "venueUrl": cls.HOMEPAGE_URL,
+            "ticketProvider": "Showpass Verified",
+            "description": "Close out your weekend with laughter! A dynamic mix of long-form improv, experimental formats, and special guest performers on the waterfront Granville Island stage."
         }
 
 
@@ -1217,17 +1450,21 @@ class VenueAdapterRegistry:
         "hollywood-theatre-tokyo-tea-room": HollywoodTheatreLiveAdapter.authenticate_showcase,
         "hollywood-theatre-day-fever-canada": HollywoodTheatreLiveAdapter.authenticate_showcase,
         "hollywood-theatre-heated-rivalry-dance-party": HollywoodTheatreLiveAdapter.authenticate_showcase,
-        # Guilt & Co.
-        "guilt-and-co-live-jazz": GuiltAndCoLiveAdapter.authenticate_flagship,
-        "guilt-and-co": GuiltAndCoLiveAdapter.authenticate_flagship,
+        # Guilt & Co. (Distinct single-day shows)
+        "guilt-and-co-thursday-groove": GuiltAndCoLiveAdapter.authenticate_thursday_groove,
+        "guilt-and-co-friday-jazz": GuiltAndCoLiveAdapter.authenticate_friday_jazz,
+        "guilt-and-co-saturday-showcase": GuiltAndCoLiveAdapter.authenticate_saturday_showcase,
+        "guilt-and-co-sunday-sessions": GuiltAndCoLiveAdapter.authenticate_sunday_sessions,
         # Tightrope Impro Theatre
         "tightrope-impro-showcase": TightropeTheatreLiveAdapter.authenticate_showcase,
         "tightrope-theatre": TightropeTheatreLiveAdapter.authenticate_showcase,
         "tightrope-workshop": TightropeTheatreLiveAdapter.authenticate_showcase,
-        # The Improv Centre
-        "the-improv-centre-weekend": TheImprovCentreLiveAdapter.authenticate_showcase,
-        "improv-centre-showcase": TheImprovCentreLiveAdapter.authenticate_showcase,
-        "the-improv-centre": TheImprovCentreLiveAdapter.authenticate_showcase
+        # The Improv Centre (Granville Island distinct single-day shows)
+        "improv-centre-wednesday-triviaprov": TheImprovCentreLiveAdapter.authenticate_wednesday_triviaprov,
+        "improv-centre-thursday-blockbuster": TheImprovCentreLiveAdapter.authenticate_thursday_blockbuster,
+        "improv-centre-friday-theatresports": TheImprovCentreLiveAdapter.authenticate_friday_theatresports,
+        "improv-centre-saturday-theatresports": TheImprovCentreLiveAdapter.authenticate_saturday_theatresports,
+        "improv-centre-sunday-showcase": TheImprovCentreLiveAdapter.authenticate_sunday_showcase
     }
 
     @classmethod

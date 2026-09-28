@@ -800,7 +800,26 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                     queue_data = json.load(f)
 
-            # Cross-reference with curator_instructions.json to annotate dealt-with items
+            # Load archived IDs to prevent lingering archived items in quarantine
+            archived_ids = set()
+            if os.path.exists(RULES_PATH):
+                try:
+                    with open(RULES_PATH, "r", encoding="utf-8") as rf:
+                        r_data = json.load(rf)
+                        archived_ids.update(r_data.get("archived_event_ids", []))
+                except Exception:
+                    pass
+            if os.path.exists(ARCHIVE_PATH):
+                try:
+                    with open(ARCHIVE_PATH, "r", encoding="utf-8") as af:
+                        a_data = json.load(af)
+                        for a_ev in a_data.get("archivedEvents", []):
+                            if a_ev.get("id"):
+                                archived_ids.add(a_ev["id"])
+                except Exception:
+                    pass
+
+            # Cross-reference with curator_instructions.json to annotate active pending items
             instructions_map = {}
             if os.path.exists(INSTRUCTIONS_PATH):
                 try:
@@ -808,15 +827,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         inst_data = json.load(inf)
                         for inst in inst_data.get("instructions", []):
                             eid = inst.get("eventId")
-                            if eid and inst.get("status") != "dismissed":
-                                if eid not in instructions_map or inst.get("status") == "pending":
+                            if eid and inst.get("status") == "pending" and not inst.get("applied"):
+                                if eid not in instructions_map:
                                     instructions_map[eid] = inst
                 except Exception:
                     pass
 
-            # Strict budget cap: exclude any events > $50.00 from curator triage
+            # Strict budget cap & archive filter
             filtered_q = []
             for ev in queue_data.get("quarantinedEvents", []):
+                eid = ev.get("id")
+                if eid in archived_ids:
+                    continue
                 try:
                     p = float(ev.get("attemptedPrice", ev.get("price", 0.0)))
                 except (ValueError, TypeError):
@@ -913,12 +935,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         inst_db = json.load(f)
                     inst_map = {}
                     for inst in inst_db.get("instructions", []):
-                        ev_id = inst.get("eventId")
-                        v_name = (inst.get("venueName") or "").lower().strip()
-                        if ev_id:
-                            inst_map[ev_id] = inst
-                        if v_name:
-                            inst_map[v_name] = inst
+                        if inst.get("status") == "pending" and not inst.get("applied"):
+                            ev_id = inst.get("eventId")
+                            v_name = (inst.get("venueName") or "").lower().strip()
+                            if ev_id:
+                                inst_map[ev_id] = inst
+                            if v_name:
+                                inst_map[v_name] = inst
                     for v in disc.get("discoveredVenues", []):
                         v_id = v.get("id")
                         v_nm = (v.get("name") or "").lower().strip()
@@ -1123,7 +1146,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             events_list = [e for e in events_list if e["id"] != ev_id]
             events_list.append(event_data)
             db["events"] = events_list
-            db["metadata"]["totalEvents"] = len(events_list)
+            db.setdefault("metadata", {})["totalEvents"] = len(events_list)
             db["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
             with open(EVENTS_PATH, "w", encoding="utf-8") as f:
                 json.dump(db, f, indent=2, ensure_ascii=False)
@@ -1134,7 +1157,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             q_list = q_data.get("quarantinedEvents", [])
             q_list = [q for q in q_list if q["id"] != ev_id]
             q_data["quarantinedEvents"] = q_list
-            q_data["metadata"]["pendingCount"] = len(q_list)
+            q_data.setdefault("metadata", {})["pendingCount"] = len(q_list)
             q_data["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
             with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                 json.dump(q_data, f, indent=2, ensure_ascii=False)
@@ -1798,7 +1821,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             approval_msg = ""
             distilled_rules = None
-            is_venue_item = str(event_id).startswith("discovered-") or payload.get("itemType") == "venue" or bool(payload.get("venueName"))
+            is_venue_item = str(event_id).startswith("discovered-") or str(event_id).startswith("pending-venue-") or str(event_id).startswith("venue-") or payload.get("itemType") == "venue" or (not event_id and bool(payload.get("venueName")))
             if is_venue_item and instruction_text:
                 v_target_name = sanitize_text(str(payload.get("venueName") or payload.get("eventTitle") or "").replace("Venue: ", "").strip())
                 if v_target_name:
@@ -1889,106 +1912,48 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         sync_js_data_file()
                         approval_msg = f" Venue '{venue_name}' approved and enrolled into Universal Venue Crawler."
                 else:
-                    event_to_approve = None
+                    # GATED PROTOCOL: Never release or evict quarantined events without Antigravity review!
+                    user_supplied_price = payload.get("approvedPrice")
                     if os.path.exists(MANUAL_QUEUE_PATH):
-                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
-                            q_data = json.load(f)
-                        q_list = q_data.get("quarantinedEvents", [])
-                        event_to_approve = next((q for q in q_list if q.get("id") == event_id), None)
-                    if not event_to_approve and payload.get("event"):
-                        event_to_approve = payload.get("event")
-
-                    if event_to_approve:
-                        # Auto-extract from screenshot if user did not type price explicitly
-                        user_supplied_price = payload.get("approvedPrice")
-                        fee_breakdown_override = None
-                        if user_supplied_price is None and primary_shot and os.path.exists(primary_shot):
-                            try:
-                                ocr_res = verify_screenshot_against_event(primary_shot, event_to_approve)
-                                extracted_ocr = ocr_res.get("extracted", {})
-                                if extracted_ocr.get("total_price") is not None:
-                                    price = float(extracted_ocr["total_price"])
-                                    fee_breakdown_override = extracted_ocr.get("fee_breakdown")
-                                    print(f"[CURATOR AUTO-OCR] Auto-applied verified screenshot price ${price:.2f} to '{event_id}'")
-                                else:
-                                    price = float(event_to_approve.get("price", 0.0))
-                            except Exception as e:
-                                print(f"[CURATOR AUTO-OCR WARN] {e}")
-                                price = float(event_to_approve.get("price", 0.0))
-                        else:
-                            price = float(user_supplied_price if user_supplied_price is not None else event_to_approve.get("price", 0.0))
-
-                        if price > 50.0:
-                            return self._send_json(400, {"error": f"Approved price ${price:.2f} CAD exceeds $50.00 CAD budget limit."})
-
-                        category = payload.get("approvedCategory") or event_to_approve.get("category", "shows")
-                        raw_price_label = payload.get("priceLabel") or ""
-                        if not raw_price_label or raw_price_label == "$0.00 door" or (price == 0 and "$0.00" in raw_price_label):
-                            price_label = "Free ($0)" if price == 0 else f"${price:.2f} CAD"
-                        else:
-                            price_label = raw_price_label
-
-                        create_backup_snapshot()
-
-                        note = payload.get("curatorNote", "") or event_to_approve.get("curatorNote", "")
-                        source_url = payload.get("sourceUrl", "") or event_to_approve.get("sourceUrl", "") or event_to_approve.get("ticketUrl", "")
-
-                        event_to_approve["price"] = price
-                        event_to_approve["category"] = category
-                        event_to_approve["curatorNote"] = note
-
-                        if payload.get("approvedDate"):
-                            event_to_approve["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
-                        if payload.get("approvedVenue"):
-                            event_to_approve["venue"] = sanitize_text(str(payload.get("approvedVenue")))
-                        if payload.get("approvedTitle"):
-                            event_to_approve["title"] = sanitize_text(str(payload.get("approvedTitle")))
-
-                        event_to_approve["checkoutVerification"] = {
-                            "status": "verified_live",
-                            "method": "curator_screenshot_verification" if fee_breakdown_override else "manual_curator_review",
-                            "verifiedTotal": price,
-                            "feeBreakdown": fee_breakdown_override or f"${price:.2f} CAD verified via Curator Studio review with AI instruction",
-                            "verifiedAt": datetime.now(timezone.utc).isoformat(),
-                            "details": f"Approved by curator with AI instruction. Note: {note}",
-                            "curatorSnapshot": {
-                                "approvedTitle": event_to_approve.get("title"),
-                                "approvedPrice": price,
-                                "approvedPriceLabel": price_label,
-                                "approvedCategory": category,
-                                "approvedDate": event_to_approve.get("dateSchedule"),
-                                "approvedVenue": event_to_approve.get("venue"),
-                                "curatorNote": note,
-                                "approvedAt": datetime.now(timezone.utc).isoformat(),
-                                "sourceUrl": source_url
-                            }
-                        }
-                        event_to_approve["isSoldOut"] = bool(event_to_approve.get("isSoldOut", False))
-                        event_to_approve = ensure_event_catalog_fields(event_to_approve)
-
-                        # 1. Add/update in events.json
-                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
-                            db = json.load(f)
-                        events_list = [e for e in db.get("events", []) if e.get("id") != event_id]
-                        events_list.append(event_to_approve)
-                        db["events"] = events_list
-                        db.setdefault("metadata", {})["totalEvents"] = len(events_list)
-                        db.setdefault("metadata", {})["updatedAt"] = datetime.now(timezone.utc).isoformat()
-                        with open(EVENTS_PATH, "w", encoding="utf-8") as f:
-                            json.dump(db, f, indent=2, ensure_ascii=False)
-
-                        # 2. Remove from manual_review_queue.json
-                        if os.path.exists(MANUAL_QUEUE_PATH):
+                        try:
                             with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                                 q_data = json.load(f)
-                            q_list = [q for q in q_data.get("quarantinedEvents", []) if q.get("id") != event_id]
+                            q_list = q_data.get("quarantinedEvents", [])
+                            matched_ev = None
+                            for q in q_list:
+                                if q.get("id") == event_id:
+                                    matched_ev = q
+                                    q["reviewStatus"] = "pending_antigravity_review"
+                                    if user_supplied_price is not None:
+                                        try:
+                                            q["attemptedPrice"] = float(user_supplied_price)
+                                        except (ValueError, TypeError):
+                                            pass
+                                    if payload.get("approvedTitle"):
+                                        q["title"] = sanitize_text(str(payload.get("approvedTitle")))
+                                    if payload.get("approvedCategory"):
+                                        q["category"] = sanitize_text(str(payload.get("approvedCategory")))
+                                    if payload.get("approvedDate"):
+                                        q["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
+                                    if payload.get("approvedVenue"):
+                                        q["venue"] = sanitize_text(str(payload.get("approvedVenue")))
+                                    q["curatorAnnotation"] = {
+                                        "instructionId": inst_id,
+                                        "note": instruction_text,
+                                        "proposedAction": action,
+                                        "userSuppliedPrice": float(user_supplied_price) if user_supplied_price is not None else None,
+                                        "screenshotPaths": screenshot_rel_paths,
+                                        "annotatedAt": datetime.now(timezone.utc).isoformat()
+                                    }
                             q_data["quarantinedEvents"] = q_list
-                            q_data.setdefault("metadata", {})["pendingCount"] = len(q_list)
                             with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                                 json.dump(q_data, f, indent=2, ensure_ascii=False)
+                            sync_js_data_file()
+                        except Exception as e:
+                            print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
 
-                        sync_js_data_file()
-                        approval_msg = f" Event '{event_to_approve.get('title')}' approved and promoted to catalog."
+                    ev_title_display = matched_ev.get("title") if matched_ev else event_id
+                    approval_msg = f" Notes & proof saved for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
 
             elif action in ("queue_and_dismiss", "queue_and_reject"):
                 if str(event_id).startswith("discovered-") or payload.get("itemType") == "venue":
@@ -2007,52 +1972,77 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             pass
                     approval_msg = f" Candidate venue '{venue_name or event_id}' dismissed."
                 else:
-                    event_to_dismiss = None
+                    # GATED PROTOCOL: Dismissals on events are proposed and held for Antigravity review
                     if os.path.exists(MANUAL_QUEUE_PATH):
-                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
-                            q_data = json.load(f)
-                        q_list = q_data.get("quarantinedEvents", [])
-                        event_to_dismiss = next((q for q in q_list if q.get("id") == event_id), None)
-                        new_q = [q for q in q_list if q.get("id") != event_id]
-                        q_data["quarantinedEvents"] = new_q
-                        q_data["metadata"]["pendingCount"] = len(new_q)
-                        with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
-                            json.dump(q_data, f, indent=2, ensure_ascii=False)
+                        try:
+                            with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                                q_data = json.load(f)
+                            q_list = q_data.get("quarantinedEvents", [])
+                            matched_ev = None
+                            for q in q_list:
+                                if q.get("id") == event_id:
+                                    matched_ev = q
+                                    q["reviewStatus"] = "pending_antigravity_review"
+                                    q["curatorAnnotation"] = {
+                                        "instructionId": inst_id,
+                                        "note": instruction_text,
+                                        "proposedAction": "dismiss",
+                                        "screenshotPaths": screenshot_rel_paths,
+                                        "annotatedAt": datetime.now(timezone.utc).isoformat()
+                                    }
+                            q_data["quarantinedEvents"] = q_list
+                            with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                                json.dump(q_data, f, indent=2, ensure_ascii=False)
+                            sync_js_data_file()
+                        except Exception as e:
+                            print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
 
-                    if event_to_dismiss:
-                        create_backup_snapshot()
-                        archive_db = {"metadata": {}, "archivedEvents": []}
-                        if os.path.exists(ARCHIVE_PATH):
-                            try:
-                                with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
-                                    archive_db = json.load(f)
-                            except Exception:
-                                pass
-                        archived_item = {
-                            **event_to_dismiss,
-                            "archivedAt": datetime.now(timezone.utc).isoformat(),
-                            "reviewStatus": "dismissed_by_curator",
-                            "archivedReason": f"Dismissed with AI instruction: {instruction_text[:120]}",
-                            "curatorInstructionId": inst_id
-                        }
-                        archive_db.setdefault("archivedEvents", []).append(archived_item)
-                        archive_db["metadata"]["totalArchived"] = len(archive_db["archivedEvents"])
-                        archive_db["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
-                        with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
-                            json.dump(archive_db, f, indent=2, ensure_ascii=False)
+                    ev_title_display = matched_ev.get("title") if matched_ev else event_id
+                    approval_msg = f" Dismissal proposed for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
 
-                    if os.path.exists(EVENTS_PATH):
-                        with open(EVENTS_PATH, "r", encoding="utf-8") as f:
-                            db = json.load(f)
-                        db_events = [e for e in db.get("events", []) if e.get("id") != event_id]
-                        if len(db_events) != len(db.get("events", [])):
-                            db["events"] = db_events
-                            db["metadata"]["totalEvents"] = len(db_events)
-                            with open(EVENTS_PATH, "w", encoding="utf-8") as f:
-                                json.dump(db, f, indent=2, ensure_ascii=False)
+            else:
+                if not is_venue_item and event_id:
+                    user_supplied_price = payload.get("approvedPrice")
+                    matched_ev = None
+                    if os.path.exists(MANUAL_QUEUE_PATH):
+                        try:
+                            with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                                q_data = json.load(f)
+                            q_list = q_data.get("quarantinedEvents", [])
+                            for q in q_list:
+                                if q.get("id") == event_id:
+                                    matched_ev = q
+                                    q["reviewStatus"] = "pending_antigravity_review"
+                                    if user_supplied_price is not None:
+                                        try:
+                                            q["attemptedPrice"] = float(user_supplied_price)
+                                        except (ValueError, TypeError):
+                                            pass
+                                    if payload.get("approvedTitle"):
+                                        q["title"] = sanitize_text(str(payload.get("approvedTitle")))
+                                    if payload.get("approvedCategory"):
+                                        q["category"] = sanitize_text(str(payload.get("approvedCategory")))
+                                    if payload.get("approvedDate"):
+                                        q["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
+                                    if payload.get("approvedVenue"):
+                                        q["venue"] = sanitize_text(str(payload.get("approvedVenue")))
+                                    q["curatorAnnotation"] = {
+                                        "instructionId": inst_id,
+                                        "note": instruction_text,
+                                        "proposedAction": "review",
+                                        "userSuppliedPrice": float(user_supplied_price) if user_supplied_price is not None else None,
+                                        "screenshotPaths": screenshot_rel_paths,
+                                        "annotatedAt": datetime.now(timezone.utc).isoformat()
+                                    }
+                            q_data["quarantinedEvents"] = q_list
+                            with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                                json.dump(q_data, f, indent=2, ensure_ascii=False)
+                            sync_js_data_file()
+                        except Exception as e:
+                            print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
 
-                    sync_js_data_file()
-                    approval_msg = f" Event '{event_to_dismiss.get('title')}' dismissed and moved to archive."
+                    ev_title_display = matched_ev.get("title") if matched_ev else event_id
+                    approval_msg = f" Notes & proof saved for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
 
             return self._send_json(200, {
                 "success": True,

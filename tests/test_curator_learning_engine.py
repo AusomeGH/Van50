@@ -94,25 +94,20 @@ class TestCuratorLearningEngine(unittest.TestCase):
         # Execute learning engine
         stats = CuratorLearningEngine.process_pending_feedback()
 
-        self.assertEqual(stats["archived"], 1)
+        # GATED PROTOCOL: Quarantined items are NEVER auto-archived; they remain held for Antigravity review
+        self.assertEqual(stats["archived"], 0)
         self.assertEqual(stats["instructionsProcessed"], 1)
 
-        # Verify queue was cleared
+        # Verify event was NOT purged from queue; it is marked pending_antigravity_review
         with open(self.queue_path, "r", encoding="utf-8") as f:
             updated_queue = json.load(f)
-        self.assertEqual(len(updated_queue["quarantinedEvents"]), 0)
+        self.assertEqual(len(updated_queue["quarantinedEvents"]), 1)
+        self.assertEqual(updated_queue["quarantinedEvents"][0]["reviewStatus"], "pending_antigravity_review")
 
-        # Verify event was archived
-        with open(self.archive_path, "r", encoding="utf-8") as f:
-            updated_archive = json.load(f)
-        self.assertEqual(len(updated_archive["archivedEvents"]), 1)
-        self.assertEqual(updated_archive["archivedEvents"][0]["id"], "test-soldout-gig-123")
-        self.assertTrue(updated_archive["archivedEvents"][0].get("isSoldOut"))
-
-        # Verify ID is in rules archived_event_ids
+        # Verify rules were still distilled (deep links, blacklists)
         with open(self.rules_path, "r", encoding="utf-8") as f:
             updated_rules = json.load(f)
-        self.assertIn("test-soldout-gig-123", updated_rules["archived_event_ids"])
+        self.assertIn("venue_calendar_deep_links", updated_rules)
 
     def test_distills_venue_policy_and_deep_links(self):
         """Verify that URLs and venue minimum spends are distilled into curator_learned_rules.json."""

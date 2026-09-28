@@ -4,7 +4,7 @@
     "festivalId": "viff-vancouver-film-festival",
     "festivalName": "Vancouver International Film Festival (VIFF)",
     "description": "Curated verified individual feature films and screenings strictly <=  CAD with live 200 OK links and non-spoiler synopses.",
-    "totalFilms": 5
+    "totalFilms": 6
   },
   "films": [
     {
@@ -20,9 +20,28 @@
       "address": "149 W Hastings St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 22.0,
-      "priceLabel": "$22.00 all-in",
+      "priceLabel": "$19.00 – $22.00 all-in",
       "pricingType": "festival_all_in",
-      "tiers": [],
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 22.0,
+          "price": 22.0,
+          "label": "$22.00 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 20.0,
+          "price": 20.0,
+          "label": "$20.00 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 19.0,
+          "price": 19.0,
+          "label": "$19.00 all-in"
+        }
+      ],
       "isFree": false,
       "isDaily": false,
       "isFestival": true,
@@ -88,8 +107,8 @@
       }
     },
     {
-      "id": "viff-all-we-imagine-as-light",
-      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Dir. Shannon Walsh)",
+      "id": "viff-the-sun-never-sets-oct2",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Friday Screening)",
       "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
       "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
       "venue": "VIFF Centre",
@@ -100,21 +119,38 @@
       "address": "1181 Seymour St, Vancouver",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "price": 20.9,
-      "priceLabel": "$20.90 all-in",
+      "priceLabel": "$16.80 – $20.90 all-in",
       "pricingType": "festival_all_in",
-      "tiers": [],
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
       "isFree": false,
       "isDaily": false,
       "isFestival": true,
       "festivalId": "viff-2026",
       "frequency": "limited-run",
-      "frequencyLabel": "Festival Showcase",
+      "frequencyLabel": "Screening",
       "daysOfWeek": [
-        "fri",
-        "sun"
+        "fri"
       ],
       "timeSlots": [
-        "afternoon",
         "early-evening"
       ],
       "category": "cinema",
@@ -130,11 +166,108 @@
         "viff-2026",
         "canadian-cinema"
       ],
-      "dateSchedule": "Friday, October 2 • 6:30 PM & Sunday, October 4 • 1:30 PM",
+      "dateSchedule": "Friday, October 2, 2026 • 6:30 PM",
       "startIso": "2026-10-02T18:30:00-07:00",
+      "endIso": "2026-10-02T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-02"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
+      "venueUrl": "https://viff.org",
+      "ticketProvider": "VIFF Box Office Verified",
+      "rawProvider": "VIFF Festival Ticketing",
+      "coordinates": [
+        49.2781,
+        -123.1245
+      ],
+      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
+      "description": "VIFF BC Spotlight. An affectionate and witty contemporary comedy-drama exploring summer romance, remote northern isolation, and unexpected cross-cultural connection in the Alaskan midnight sun.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "festival_charter_rate",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
+        "verifiedAt": "2026-09-22T12:15:00-07:00",
+        "details": "Verified via official VIFF 2026 single ticket rate charter."
+      },
+      "semanticVerification": {
+        "is_verified": true,
+        "match_type": "dedicated_page",
+        "matched_tokens": [
+          "sun",
+          "never",
+          "sets",
+          "viff"
+        ],
+        "evidence_snippet": "VIFF 2026 Spotlight: The Sun Never Sets directed by Shannon Walsh",
+        "reason": "Affirmatively verified VIFF 2026 screening on viff.org"
+      }
+    },
+    {
+      "id": "viff-the-sun-never-sets-oct4",
+      "title": "VIFF Spotlight: \"The Sun Never Sets\" (Sunday Matinee)",
+      "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
+      "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
+      "venue": "VIFF Centre",
+      "venueAliases": [
+        "VanCity Theatre",
+        "VIFF Hub"
+      ],
+      "address": "1181 Seymour St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$16.80 – $20.90 all-in",
+      "pricingType": "festival_all_in",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "isFestival": true,
+      "festivalId": "viff-2026",
+      "frequency": "limited-run",
+      "frequencyLabel": "Screening",
+      "daysOfWeek": [
+        "sun"
+      ],
+      "timeSlots": [
+        "afternoon"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema",
+      "categoryIcon": "🎬",
+      "categories": [
+        "cinema",
+        "festivals"
+      ],
+      "subTags": [
+        "bc-spotlight",
+        "indie-comedy",
+        "viff-2026",
+        "canadian-cinema"
+      ],
+      "dateSchedule": "Sunday, October 4, 2026 • 1:30 PM",
+      "startIso": "2026-10-04T13:30:00-07:00",
       "endIso": "2026-10-04T15:30:00-07:00",
       "confirmedDates": [
-        "2026-10-02",
         "2026-10-04"
       ],
       "isSoldOut": false,
@@ -160,179 +293,13 @@
         "is_verified": true,
         "match_type": "dedicated_page",
         "matched_tokens": [
-          "imagine",
-          "light",
-          "cannes",
-          "kapadia",
+          "sun",
+          "never",
+          "sets",
           "viff"
         ],
-        "evidence_snippet": "VIFF 2026 Showcase: All We Imagine as Light Cannes Grand Prix Winner",
-        "reason": "Affirmatively verified VIFF 2026 feature screening on viff.org"
-      }
-    },
-    {
-      "id": "viff-universal-language",
-      "title": "VIFF Showcase: \"Union County\" (American Indie • Dir. Adam Meeks)",
-      "artist": "Matthew Rankin, Rojina Esmaeili, Saba Vahedyousefi",
-      "performers": "Rojina Esmaeili, Saba Vahedyousefi, Matthew Rankin",
-      "venue": "The Cinematheque",
-      "venueAliases": [
-        "Pacific Cinematheque"
-      ],
-      "address": "1131 Howe St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "price": 20.9,
-      "priceLabel": "$20.90 all-in",
-      "pricingType": "festival_all_in",
-      "tiers": [],
-      "isFree": false,
-      "isDaily": false,
-      "isFestival": true,
-      "festivalId": "viff-2026",
-      "frequency": "limited-run",
-      "frequencyLabel": "Festival Showcase",
-      "daysOfWeek": [
-        "sat",
-        "tue"
-      ],
-      "timeSlots": [
-        "early-evening",
-        "late-evening"
-      ],
-      "category": "cinema",
-      "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
-      "categories": [
-        "cinema",
-        "festivals"
-      ],
-      "subTags": [
-        "american-indie",
-        "viff-2026",
-        "drama",
-        "premiere"
-      ],
-      "dateSchedule": "Saturday, October 3 • 6:30 PM & Tuesday, October 6 • 8:45 PM",
-      "startIso": "2026-10-03T18:30:00-07:00",
-      "endIso": "2026-10-06T20:45:00-07:00",
-      "confirmedDates": [
-        "2026-10-03",
-        "2026-10-06"
-      ],
-      "isSoldOut": false,
-      "websiteUrl": "https://viff.org/whats-on/union-county/",
-      "venueUrl": "https://thecinematheque.ca",
-      "ticketProvider": "VIFF Box Office Verified",
-      "rawProvider": "VIFF Festival Ticketing",
-      "coordinates": [
-        49.2795,
-        -123.1274
-      ],
-      "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-      "description": "In this gripping and empathetic addiction recovery drama, two foster brothers navigate probationary life, rural community bonds, and the tender fragility of starting over.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "festival_charter_rate",
-        "verifiedTotal": 20.9,
-        "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
-        "verifiedAt": "2026-09-22T12:15:00-07:00",
-        "details": "Verified via official VIFF 2026 single ticket rate charter."
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "dedicated_page",
-        "matched_tokens": [
-          "universal",
-          "language",
-          "rankin",
-          "cannes",
-          "viff"
-        ],
-        "evidence_snippet": "VIFF 2026 Showcase: Universal Language Matthew Rankin Directors Fortnight",
-        "reason": "Affirmatively verified VIFF 2026 screening at The Cinematheque on viff.org"
-      }
-    },
-    {
-      "id": "viff-flow",
-      "title": "VIFF Showcase: \"Hanging by a Wire\" (Himalayan High-Altitude Documentary)",
-      "artist": "Gints Zilbalodis, Matīss Kaža",
-      "performers": null,
-      "venue": "VIFF Centre",
-      "venueAliases": [
-        "VanCity Theatre",
-        "VIFF Hub"
-      ],
-      "address": "1181 Seymour St, Vancouver",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "price": 20.9,
-      "priceLabel": "$20.90 all-in",
-      "pricingType": "festival_all_in",
-      "tiers": [],
-      "isFree": false,
-      "isDaily": false,
-      "isFestival": true,
-      "festivalId": "viff-2026",
-      "frequency": "limited-run",
-      "frequencyLabel": "Festival Showcase",
-      "daysOfWeek": [
-        "sun",
-        "wed"
-      ],
-      "timeSlots": [
-        "afternoon",
-        "early-evening"
-      ],
-      "category": "cinema",
-      "categoryLabel": "Cinema",
-      "categoryIcon": "🎬",
-      "categories": [
-        "cinema",
-        "festivals"
-      ],
-      "subTags": [
-        "documentary",
-        "himalayas",
-        "viff-2026",
-        "survival"
-      ],
-      "dateSchedule": "Sunday, October 4 • 4:00 PM & Wednesday, October 7 • 6:30 PM",
-      "startIso": "2026-10-04T16:00:00-07:00",
-      "endIso": "2026-10-07T18:30:00-07:00",
-      "confirmedDates": [
-        "2026-10-04",
-        "2026-10-07"
-      ],
-      "isSoldOut": false,
-      "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-      "venueUrl": "https://viff.org",
-      "ticketProvider": "VIFF Box Office Verified",
-      "rawProvider": "VIFF Festival Ticketing",
-      "coordinates": [
-        49.2781,
-        -123.1245
-      ],
-      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
-      "description": "A pulse-pounding documentary recounting the harrowing August 2023 cable car disaster in the remote Himalayan mountains, where eight passengers were suspended 900 feet in mid-air.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "festival_charter_rate",
-        "verifiedTotal": 20.9,
-        "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
-        "verifiedAt": "2026-09-22T12:15:00-07:00",
-        "details": "Verified via official VIFF 2026 single ticket rate charter."
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "dedicated_page",
-        "matched_tokens": [
-          "flow",
-          "zilbalodis",
-          "animation",
-          "cannes",
-          "viff"
-        ],
-        "evidence_snippet": "VIFF 2026 Showcase: Flow animated feature directed by Gints Zilbalodis",
-        "reason": "Affirmatively verified VIFF 2026 screening at VIFF Centre on viff.org"
+        "evidence_snippet": "VIFF 2026 Spotlight: The Sun Never Sets directed by Shannon Walsh",
+        "reason": "Affirmatively verified VIFF 2026 matinee screening on viff.org"
       }
     },
     {
@@ -347,9 +314,28 @@
       "address": "1660 E Broadway, Vancouver",
       "neighborhood": "Commercial Drive & East Vancouver",
       "price": 22.0,
-      "priceLabel": "$22.00 all-in",
+      "priceLabel": "$19.00 – $22.00 all-in",
       "pricingType": "festival_all_in",
-      "tiers": [],
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 22.0,
+          "price": 22.0,
+          "label": "$22.00 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 20.0,
+          "price": 20.0,
+          "label": "$20.00 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 19.0,
+          "price": 19.0,
+          "label": "$19.00 all-in"
+        }
+      ],
       "isFree": false,
       "isDaily": false,
       "isFestival": true,
@@ -412,6 +398,408 @@
         ],
         "evidence_snippet": "VIFF 2026 Closing Gala: Wild Horse Nine directed by Martin McDonagh at Rio Theatre",
         "reason": "Affirmatively verified VIFF 2026 closing screening at Rio Theatre on viff.org"
+      }
+    },
+    {
+      "id": "viff-union-county-oct3",
+      "title": "VIFF Showcase: \"Union County\" (Saturday Screening)",
+      "artist": "Dir. Adam Meeks • Will Pouter, Noah Centenio",
+      "performers": [
+        "Will Pouter",
+        "Noah Centenio"
+      ],
+      "venue": "The Cinematheque",
+      "venueAliases": [
+        "Pacific Cinematheque"
+      ],
+      "address": "1131 Howe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$16.80 – $20.90 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "limited-run",
+      "frequencyLabel": "Festival Screening",
+      "daysOfWeek": [
+        "sat"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema & Screenings",
+      "categoryIcon": "🎬",
+      "subTags": [
+        "viff",
+        "film-festival",
+        "american-indie",
+        "the-cinematheque"
+      ],
+      "dateSchedule": "Saturday, October 3, 2026 • 6:30 PM",
+      "startIso": "2026-10-03T18:30:00-07:00",
+      "endIso": "2026-10-03T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-03"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/union-county/",
+      "venueUrl": "https://thecinematheque.ca",
+      "ticketProvider": "VIFF Official Box Office",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2785,
+        -123.1259
+      ],
+      "transitInfo": "5 min walk from Yaletown-Roundhouse SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "19+ (Licensed venue)",
+      "admissionPolicy": "VIFF festival ticket or pass required",
+      "rovingNote": null,
+      "description": "In the acclaimed addiction recovery drama Union County, Will Pouter and Noah Centenio star as foster brothers striving to break free from opioid dependence in rural Ohio.",
+      "buzzwords": [
+        "Addiction Recovery",
+        "Brotherhood",
+        "Rural America",
+        "Indie Drama"
+      ],
+      "ratings": [
+        {
+          "source": "Letterboxd",
+          "score": "3.8/5",
+          "icon": "🟢"
+        }
+      ],
+      "reviewQuote": "A tender, searing portrayal of kinship and survival.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_ticketing_portal",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "Adult $20.90 all-in, Senior $18.90, Student $16.80",
+        "verifiedAt": "2026-09-24T10:00:00-07:00",
+        "details": "Verified via official VIFF portal."
+      }
+    },
+    {
+      "id": "viff-union-county-oct6",
+      "title": "VIFF Showcase: \"Union County\" (Tuesday Screening)",
+      "artist": "Dir. Adam Meeks • Will Pouter, Noah Centenio",
+      "performers": [
+        "Will Pouter",
+        "Noah Centenio"
+      ],
+      "venue": "The Cinematheque",
+      "venueAliases": [
+        "Pacific Cinematheque"
+      ],
+      "address": "1131 Howe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$16.80 – $20.90 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "limited-run",
+      "frequencyLabel": "Festival Screening",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "timeSlots": [
+        "late-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema & Screenings",
+      "categoryIcon": "🎬",
+      "subTags": [
+        "viff",
+        "film-festival",
+        "american-indie",
+        "the-cinematheque"
+      ],
+      "dateSchedule": "Tuesday, October 6, 2026 • 8:45 PM",
+      "startIso": "2026-10-06T20:45:00-07:00",
+      "endIso": "2026-10-06T22:45:00-07:00",
+      "confirmedDates": [
+        "2026-10-06"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/union-county/",
+      "venueUrl": "https://thecinematheque.ca",
+      "ticketProvider": "VIFF Official Box Office",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2785,
+        -123.1259
+      ],
+      "transitInfo": "5 min walk from Yaletown-Roundhouse SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "19+ (Licensed venue)",
+      "admissionPolicy": "VIFF festival ticket or pass required",
+      "rovingNote": null,
+      "description": "Late evening screening of Union County at The Cinematheque. A raw, authentic portrait of fraternal loyalty and hardship in small-town America.",
+      "buzzwords": [
+        "Addiction Recovery",
+        "Brotherhood",
+        "Rural America",
+        "Indie Drama"
+      ],
+      "ratings": [
+        {
+          "source": "Letterboxd",
+          "score": "3.8/5",
+          "icon": "🟢"
+        }
+      ],
+      "reviewQuote": "A tender, searing portrayal of kinship and survival.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_ticketing_portal",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "Adult $20.90 all-in, Senior $18.90, Student $16.80",
+        "verifiedAt": "2026-09-24T10:00:00-07:00",
+        "details": "Verified via official VIFF portal."
+      }
+    },
+    {
+      "id": "viff-hanging-by-a-wire-oct4",
+      "title": "VIFF Showcase: \"Hanging by a Wire\" (Sunday Matinee)",
+      "artist": "Himalayan High-Altitude Documentary",
+      "venue": "VIFF Centre",
+      "venueAliases": [
+        "VIFF Centre - Vancity Theatre"
+      ],
+      "address": "1181 Seymour St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$16.80 – $20.90 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "limited-run",
+      "frequencyLabel": "Festival Screening",
+      "daysOfWeek": [
+        "sun"
+      ],
+      "timeSlots": [
+        "afternoon"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema & Screenings",
+      "categoryIcon": "🎬",
+      "subTags": [
+        "viff",
+        "film-festival",
+        "documentary",
+        "himalayas",
+        "viff-centre"
+      ],
+      "dateSchedule": "Sunday, October 4, 2026 • 4:00 PM",
+      "startIso": "2026-10-04T16:00:00-07:00",
+      "endIso": "2026-10-04T18:00:00-07:00",
+      "confirmedDates": [
+        "2026-10-04"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+      "venueUrl": "https://viff.org",
+      "ticketProvider": "VIFF Official Box Office",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2778,
+        -123.1245
+      ],
+      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages (PG)",
+      "admissionPolicy": "VIFF festival ticket or pass required",
+      "rovingNote": null,
+      "description": "August 22, 2023: a cable car carrying 8 school children and teachers is left suspended 900 feet above a Himalayan ravine when cables snap. A gripping chronicle of the high-stakes rescue.",
+      "buzzwords": [
+        "Survival",
+        "High Altitude",
+        "Rescue",
+        "Documentary"
+      ],
+      "ratings": [
+        {
+          "source": "IMDb",
+          "score": "7.9/10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "Heart-stopping suspense and profound human courage.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_ticketing_portal",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "Adult $20.90 all-in, Senior $18.90, Student $16.80",
+        "verifiedAt": "2026-09-24T10:00:00-07:00",
+        "details": "Verified via official VIFF portal."
+      }
+    },
+    {
+      "id": "viff-hanging-by-a-wire-oct7",
+      "title": "VIFF Showcase: \"Hanging by a Wire\" (Wednesday Screening)",
+      "artist": "Himalayan High-Altitude Documentary",
+      "venue": "VIFF Centre",
+      "venueAliases": [
+        "VIFF Centre - Vancity Theatre"
+      ],
+      "address": "1181 Seymour St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 20.9,
+      "priceLabel": "$16.80 – $20.90 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "basePrice": 20.9,
+          "price": 20.9,
+          "label": "$20.90 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 18.9,
+          "price": 18.9,
+          "label": "$18.90 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 16.8,
+          "price": 16.8,
+          "label": "$16.80 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "limited-run",
+      "frequencyLabel": "Festival Screening",
+      "daysOfWeek": [
+        "wed"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema & Screenings",
+      "categoryIcon": "🎬",
+      "subTags": [
+        "viff",
+        "film-festival",
+        "documentary",
+        "himalayas",
+        "viff-centre"
+      ],
+      "dateSchedule": "Wednesday, October 7, 2026 • 6:30 PM",
+      "startIso": "2026-10-07T18:30:00-07:00",
+      "endIso": "2026-10-07T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-10-07"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+      "venueUrl": "https://viff.org",
+      "ticketProvider": "VIFF Official Box Office",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2778,
+        -123.1245
+      ],
+      "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": "All Ages (PG)",
+      "admissionPolicy": "VIFF festival ticket or pass required",
+      "rovingNote": null,
+      "description": "Wednesday evening screening of Hanging by a Wire at VIFF Centre. Follow the gripping real-time survival and military rescue operations in Pakistan's Battagram region.",
+      "buzzwords": [
+        "Survival",
+        "High Altitude",
+        "Rescue",
+        "Documentary"
+      ],
+      "ratings": [
+        {
+          "source": "IMDb",
+          "score": "7.9/10",
+          "icon": "⭐"
+        }
+      ],
+      "reviewQuote": "Heart-stopping suspense and profound human courage.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_ticketing_portal",
+        "verifiedTotal": 20.9,
+        "feeBreakdown": "Adult $20.90 all-in, Senior $18.90, Student $16.80",
+        "verifiedAt": "2026-09-24T10:00:00-07:00",
+        "details": "Verified via official VIFF portal."
       }
     }
   ]

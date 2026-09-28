@@ -2,6 +2,7 @@
 Comprehensive test script for 7-Dimension Screenshot OCR verification.
 """
 import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import json
 import os
 

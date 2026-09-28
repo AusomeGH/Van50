@@ -1,0 +1,6 @@
+provider_name,website_url,notes
+Eventbrite,https://www.eventbrite.ca,Standard ticketing; adds platform service fee + GST at checkout
+Showpass,https://www.showpass.com,Local Canadian ticketing; adds $2-$4 service fee
+Ticketmaster,https://www.ticketmaster.ca,Major venue vendor; significant facility and processing fees
+ShowClix / PatronTechnology,https://www.showclix.com,Common for arts & film festivals
+Direct Venue Box Office,Direct,No third-party fees; cash or debit at door

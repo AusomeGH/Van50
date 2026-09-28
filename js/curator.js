@@ -1,8 +1,14 @@
 // Van50 Curator Studio — Client Application Logic
 // Orchestrates triage, sorting, field corrections, promotions to master, and algorithmic rule learning.
 
+const _urlParams = new URLSearchParams(window.location.search);
+const _tokenParam = _urlParams.get('token');
+if (_tokenParam) {
+  try { sessionStorage.setItem('van50_curator_token', _tokenParam); } catch (e) {}
+}
+
 const state = {
-  token: sessionStorage.getItem('van50_curator_token') || null,
+  token: sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token') || _tokenParam || null,
   quarantinedEvents: [],
   archivedEvents: [],
   activeFilter: 'all',
@@ -758,17 +764,11 @@ function renderCards(items) {
               <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
                 <span>🤖</span> Your AI Scraper Instruction:
               </strong>
-              <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
-                ${escapeHtml(
-                  (ev.queuedInstruction.action === 'queue_and_approve' || ev.queuedInstruction.actionTaken === 'queue_and_approve')
-                    ? '⚡ Approved & Training AI'
-                    : (ev.queuedInstruction.action === 'queue_and_dismiss' || ev.queuedInstruction.actionTaken === 'queue_and_dismiss')
-                      ? '🛑 Dismissed & Training AI'
-                      : '📋 Held for AI Review'
-                )}
+              <span class="curator-handled-tag" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #fde68a; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+                🟡 Awaiting Antigravity Review
               </span>
             </div>
-            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #c084fc; margin-bottom: 8px;">
+            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; margin-bottom: 8px;">
               “${escapeHtml(ev.queuedInstruction.instructionText || '')}”
             </div>
             ${renderCardScreenshotThumbnails(ev.queuedInstruction)}
@@ -776,8 +776,7 @@ function renderCards(items) {
               <span>🕒 Queued ${ev.queuedInstruction.createdAt ? new Date(ev.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
               ${ev.queuedInstruction.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(ev.queuedInstruction.approvedPrice).toFixed(2)} CAD</span>` : ''}
               <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
-                <button type="button" class="btn-curator btn-curator-success" onclick="approveQuarantinedEvent('${ev.id}')" style="padding: 4px 12px; font-size: 0.78rem; font-weight: 700; border-radius: 4px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);" title="Immediately approve and publish this event to live catalog">✅ Approve &amp; Push Live</button>
-                <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit / Add Proof</button>
+                <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit Notes / Proof</button>
               </div>
             </div>
           </div>
@@ -881,38 +880,38 @@ function renderCards(items) {
               <span style="font-size: 0.82rem; color: #fca5a5; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.25);">
                 🛡️ Auto-Denied by $50 Budget Policy • Excluded from Master Catalog &amp; Review Queue
               </span>
-              <!-- Main queue card streamlined: strictly 2 action buttons (Instruct AI & Dismiss) -->
-              <!-- Test suite compatibility signatures preserved: "✅ Approve As-Is" and "📸 Verify Screenshot" -->
+            ` : ''}
+            <!-- Main queue card streamlined: strictly 2 action buttons (Instruct AI & Dismiss) -->
+            <!-- Test suite compatibility signatures preserved: "✅ Approve As-Is" and "📸 Verify Screenshot" -->
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-ai-approve" 
+              onclick="openAIInstructionModal('${ev.id}', 'instruct')"
+              title="Instruct AI with notes, links, and pasted screenshots to interpret and generate card preview"
+            >
+              🤖 Instruct AI
+            </button>
+
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-danger" 
+              onclick="rejectQuarantinedEvent('${ev.id}')"
+              title="Dismiss and archive this event"
+            >
+              🚫 Dismiss
+            </button>
+
+            ${isDiscoveredVenue ? `
               <button 
                 type="button" 
-                class="btn-curator btn-curator-ai-approve" 
-                onclick="openAIInstructionModal('${ev.id}', 'instruct')"
-                title="Instruct AI with notes, links, and pasted screenshots to interpret and generate card preview"
+                class="btn-curator btn-curator-ghost" 
+                style="color: #34d399; border-color: rgba(16, 185, 129, 0.4);" 
+                onclick="openAddVenueModalFromEvent('${ev.id}')"
+                title="Enroll '${escapeHtml(ev.venue)}' into regular venue crawler"
               >
-                🤖 Instruct AI
+                🏛️ Add Venue to Crawler
               </button>
-
-              <button 
-                type="button" 
-                class="btn-curator btn-curator-danger" 
-                onclick="rejectQuarantinedEvent('${ev.id}')"
-                title="Dismiss and archive this event"
-              >
-                🚫 Dismiss
-              </button>
-
-              ${isDiscoveredVenue ? `
-                <button 
-                  type="button" 
-                  class="btn-curator btn-curator-ghost" 
-                  style="color: #34d399; border-color: rgba(16, 185, 129, 0.4);" 
-                  onclick="openAddVenueModalFromEvent('${ev.id}')"
-                  title="Enroll '${escapeHtml(ev.venue)}' into regular venue crawler"
-                >
-                  🏛️ Add Venue to Crawler
-                </button>
-              ` : ''}
-            `}
+            ` : ''}
           </div>
 
           <div>
@@ -1011,8 +1010,9 @@ window.approveQuarantinedEvent = async function(eventId) {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(`✅ Approved '${original.title}' as-is! Queued for AI learning.`, 'success');
-      state.quarantinedEvents = state.quarantinedEvents.filter(e => e.id !== eventId);
+      showToast(`🟡 '${original.title}' saved for Antigravity review. Event held in quarantine.`, 'info');
+      original.reviewStatus = 'pending_antigravity_review';
+      original.dealtWith = true;
       updateFilterCounts();
       applyFiltersAndRender();
       if (data.totalMasterEvents) {
@@ -1044,8 +1044,9 @@ window.rejectQuarantinedEvent = async function(eventId) {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(`Event '${original.title}' moved to archive.`, 'info');
-      state.quarantinedEvents = state.quarantinedEvents.filter(e => e.id !== eventId);
+      showToast(`🛑 Dismissal proposed for '${original.title}'. Awaiting Antigravity review.`, 'info');
+      original.reviewStatus = 'pending_antigravity_review';
+      original.dealtWith = true;
       updateFilterCounts();
       applyFiltersAndRender();
     } else {
@@ -1074,8 +1075,8 @@ window.setModalViewMode = function(mode = 'screenshot') {
     if (tabScreenshot) tabScreenshot.classList.add('active');
     if (tabInstruct) tabInstruct.classList.remove('active');
     if (modalIcon) modalIcon.textContent = '📸';
-    if (modalTitle) modalTitle.textContent = 'Screenshot Proof & 7-Dimension Verifier';
-    if (modalDesc) modalDesc.textContent = "Upload or paste (Ctrl+V) a screenshot to extract all 7 live dimensions (Schedule, Frequency, Category, Location, Price, Provider, Lineup) and align with this card.";
+    if (modalTitle) modalTitle.textContent = 'Screenshot Proof & 13-Dimension Verifier';
+    if (modalDesc) modalDesc.textContent = "Upload or paste (Ctrl+V) a screenshot to extract all 13 live dimensions (Name, Date, Time, Schedule, Frequency, Category, Location, Price, Link, Provider, Description, Lineup, Restrictions) and align with this card.";
 
     if (dynamicBody && dropzoneBlock && instructBlock) {
       dynamicBody.insertBefore(dropzoneBlock, instructBlock);
@@ -1301,7 +1302,21 @@ function clearScreenshotPreview() {
   interpretCuratorInstruction();
 }
 
-const LIVE_DIMENSION_KEYS = ['date', 'frequency', 'category', 'location', 'price', 'link', 'description'];
+const LIVE_DIMENSION_KEYS = [
+  'title',
+  'date',
+  'time',
+  'schedule',
+  'frequency',
+  'category',
+  'location',
+  'price',
+  'link',
+  'provider',
+  'description',
+  'lineup',
+  'restrictions'
+];
 
 function resetScreenshotAlignmentPanel() {
   state.currentOcrVerification = null;
@@ -1324,15 +1339,21 @@ function resetScreenshotAlignmentPanel() {
   const btnApplyAll = document.getElementById('btn-apply-all-dimensions');
   if (btnApplyAll) btnApplyAll.style.display = 'none';
 
-  // Reset all 7 dimension cards
+  // Reset all 13 dimension cards
   const defaults = {
+    title: { val: 'No event title detected', compare: 'Card: Untitled Event' },
     date: { val: 'No date detected', compare: 'Card: Pending Review' },
+    time: { val: 'Doors/Show time not specified', compare: 'Card: Not specified' },
+    schedule: { val: 'One-off Show', compare: 'Card: One-off Show' },
     frequency: { val: 'One-off Show', compare: 'Card: One-off Show' },
     category: { val: '🏷️ Event', compare: 'Card: Comedy & Shows' },
     location: { val: 'Venue unverified', compare: 'Card: Venue' },
     price: { val: '$0.00 CAD', compare: 'Card: $0.00' },
     link: { val: 'Direct / Box Office', compare: 'Card: Direct' },
-    description: { val: 'No details extracted', compare: 'Card: Title' }
+    provider: { val: 'Direct / Box Office', compare: 'Card: Direct' },
+    description: { val: 'No details extracted', compare: 'Card: Title' },
+    lineup: { val: 'None specified', compare: 'Card: None' },
+    restrictions: { val: 'All Ages / Standard', compare: 'Card: All Ages' }
   };
 
   LIVE_DIMENSION_KEYS.forEach(k => {
@@ -1340,26 +1361,24 @@ function resetScreenshotAlignmentPanel() {
     const badgeEl = document.getElementById(`ai-dim-badge-${k}`);
     const valEl = document.getElementById(`ai-dim-val-${k}`);
     const compEl = document.getElementById(`ai-dim-compare-${k}`);
-    if (cardEl) cardEl.className = 'curator-dimension-card';
-    if (badgeEl) {
-      badgeEl.textContent = 'Pending';
-      badgeEl.className = 'dim-pill dim-pill-unconfirmed';
+
+    if (k === 'lineup' || k === 'restrictions') {
+      if (cardEl) cardEl.className = 'curator-dimension-card dim-status-optional';
+      if (badgeEl) {
+        badgeEl.textContent = k === 'lineup' ? 'Optional / None' : 'Optional / Standard';
+        badgeEl.className = 'dim-pill dim-pill-optional';
+      }
+    } else {
+      if (cardEl) cardEl.className = 'curator-dimension-card';
+      if (badgeEl) {
+        badgeEl.textContent = 'Pending';
+        badgeEl.className = 'dim-pill dim-pill-unconfirmed';
+      }
     }
+
     if (valEl) valEl.textContent = defaults[k]?.val || 'Pending';
     if (compEl) compEl.textContent = defaults[k]?.compare || '';
   });
-
-  const valTitleEl = document.getElementById('ai-dim-val-title');
-  if (valTitleEl) valTitleEl.textContent = 'No event title detected';
-
-  const compTitleEl = document.getElementById('ai-dim-compare-title');
-  if (compTitleEl) compTitleEl.textContent = 'Card: Untitled Event';
-
-  const badgeTitleEl = document.getElementById('ai-dim-badge-title');
-  if (badgeTitleEl) {
-    badgeTitleEl.textContent = 'No Title Detected';
-    badgeTitleEl.className = 'dim-pill dim-pill-unconfirmed';
-  }
 
   const titleBadge = document.getElementById('ai-approve-title-badge');
   if (titleBadge) titleBadge.style.display = 'none';
@@ -1407,27 +1426,27 @@ function applyAllExtractedDimensions(dims) {
 
   const highlightedEls = [];
 
-  // 0. Event Name / Title
+  // 1. Event Name / Title
   if (titleInput) {
-    const extTitle = dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
-    if (extTitle && extTitle !== 'No event title detected') {
+    const extTitle = dims.title?.extractedTitle || dims.title?.extracted || dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
+    if (extTitle && extTitle !== 'No event title detected' && extTitle !== 'No title detected') {
       titleInput.value = extTitle;
       highlightedEls.push(titleInput);
     }
   }
 
-  // 1. Price
+  // 2. Price
   if (priceInput && dims.price) {
-    const p = dims.price.extracted !== null && dims.price.extracted !== undefined ? dims.price.extracted : dims.price.total;
+    const p = dims.price.extracted !== null && dims.price.extracted !== undefined ? dims.price.extracted : dims.price.details?.total;
     if (p !== null && p !== undefined && !isNaN(p)) {
       priceInput.value = parseFloat(p).toFixed(2);
       highlightedEls.push(priceInput);
     }
   }
 
-  // 2. Category
+  // 3. Category
   if (catInput && dims.category) {
-    const targetCat = (dims.category.extracted || dims.category.detected || '').toLowerCase();
+    const targetCat = (dims.category.extracted || dims.category.details?.category || dims.category.detected || '').toLowerCase();
     for (let opt of catInput.options) {
       if (opt.value === targetCat || (targetCat && opt.value.includes(targetCat))) {
         catInput.value = opt.value;
@@ -1437,16 +1456,16 @@ function applyAllExtractedDimensions(dims) {
     }
   }
 
-  // 3. Date
+  // 4. Date
   if (dateInput && dims.date) {
     const d = dims.date.extracted || dims.date.displayValue;
-    if (d && d !== 'No date detected on screenshot' && d !== 'No specific date detected') {
+    if (d && d !== 'No date detected on screenshot' && d !== 'No date detected' && d !== 'No specific date detected') {
       dateInput.value = d;
       highlightedEls.push(dateInput);
     }
   }
 
-  // 4. Venue & Location
+  // 5. Venue & Location
   if (venueInput && dims.location) {
     const v = dims.location.details?.venue || dims.location.extracted || dims.location.venue;
     if (v && v !== 'Venue unverified' && v !== 'Venue') {
@@ -1455,17 +1474,23 @@ function applyAllExtractedDimensions(dims) {
     }
   }
 
-  // 5. Note / Fee breakdown & Lineup
+  // 6. Note / Time, Fee breakdown, Lineup & Restrictions
   if (noteInput) {
     const notes = [];
     if (dims.price?.details?.breakdown) {
       notes.push(dims.price.details.breakdown);
     }
-    if (dims.description?.details?.lineup) {
-      notes.push(`Lineup: ${dims.description.details.lineup}`);
+    if (dims.time?.displayValue && dims.time.displayValue !== 'Doors/Show times not specified' && dims.time.displayValue !== 'Doors/Show time not specified') {
+      notes.push(dims.time.displayValue);
     }
-    if (dims.description?.details?.agePolicy && dims.description.details.agePolicy.includes('19+')) {
-      notes.push('Age: 19+ (Adult)');
+    if (dims.lineup?.extracted && dims.lineup.extracted !== 'None' && dims.lineup.extracted !== 'None specified') {
+      notes.push(`Lineup: ${dims.lineup.extracted}`);
+    }
+    if (dims.restrictions?.extracted && dims.restrictions.extracted !== 'All Ages' && dims.restrictions.extracted !== 'Standard') {
+      notes.push(`Policy: ${dims.restrictions.extracted}`);
+    }
+    if (dims.provider?.extracted && dims.provider.extracted !== 'Direct / Box Office' && dims.provider.extracted !== 'Direct') {
+      notes.push(`Tickets: ${dims.provider.extracted}`);
     }
     if (notes.length > 0) {
       noteInput.value = notes.join(' • ');
@@ -1501,18 +1526,34 @@ function applySingleDimension(dimKey, dims) {
   let updatedEl = null;
 
   if (dimKey === 'title' && titleInput) {
-    const extTitle = dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
-    if (extTitle && extTitle !== 'No event title detected') {
+    const extTitle = dims.title?.extractedTitle || dims.title?.extracted || dims.description?.extractedTitle || dims.description?.details?.extractedTitle || state.currentOcrVerification?.title?.extractedTitle;
+    if (extTitle && extTitle !== 'No event title detected' && extTitle !== 'No title detected') {
       titleInput.value = extTitle;
       updatedEl = titleInput;
       showToast(`⚡ Applied extracted event name: "${extTitle}"`, 'success');
     }
   } else if (dimKey === 'date' && dateInput && dims.date) {
     const d = dims.date.extracted || dims.date.displayValue;
-    if (d) {
+    if (d && d !== 'No date detected') {
       dateInput.value = d;
       updatedEl = dateInput;
       showToast(`⚡ Applied extracted date: "${d}"`, 'success');
+    }
+  } else if (dimKey === 'time' && noteInput && dims.time) {
+    const t = dims.time.displayValue || dims.time.extracted;
+    if (t && t !== 'Doors/Show times not specified' && t !== 'Doors/Show time not specified') {
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + t;
+      updatedEl = noteInput;
+      showToast(`⚡ Applied event time (${t}) to notes!`, 'success');
+    } else {
+      showToast(`No specific doors/show times detected on screenshot`, 'info');
+    }
+  } else if (dimKey === 'schedule' && noteInput && dims.schedule) {
+    const s = dims.schedule.displayValue || dims.schedule.extracted;
+    if (s) {
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Schedule: ${s}`;
+      updatedEl = noteInput;
+      showToast(`⚡ Applied schedule details!`, 'success');
     }
   } else if (dimKey === 'frequency' && noteInput && dims.frequency) {
     const f = dims.frequency.displayValue || dims.frequency.extracted;
@@ -1548,19 +1589,51 @@ function applySingleDimension(dimKey, dims) {
       }
       showToast(`⚡ Applied verified price $${parseFloat(p).toFixed(2)} CAD!`, 'success');
     }
-  } else if (dimKey === 'link' && noteInput && dims.link) {
-    const prov = dims.link.displayValue || dims.link.extracted;
+  } else if (dimKey === 'link' && dims.link) {
+    const l = dims.link.extracted || dims.link.displayValue;
+    if (l && String(l).startsWith('http')) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(l).catch(() => {});
+      }
+      showToast(`🔗 Event link copied to clipboard: ${l}`, 'success');
+    } else {
+      showToast(`Event link: ${l || 'Direct / Box Office'}`, 'info');
+    }
+  } else if (dimKey === 'provider' && noteInput && dims.provider) {
+    const prov = dims.provider.displayValue || dims.provider.extracted;
     if (prov) {
-      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Provider: ${prov}`;
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Tickets: ${prov}`;
       updatedEl = noteInput;
-      showToast(`⚡ Applied ticketing provider details!`, 'success');
+      showToast(`⚡ Applied ticketing provider: ${prov}`, 'success');
     }
   } else if (dimKey === 'description' && noteInput && dims.description) {
     const desc = dims.description.displayValue || dims.description.extracted;
     if (desc) {
-      noteInput.value = desc;
+      noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Desc: ${desc.substring(0, 100)}`;
       updatedEl = noteInput;
-      showToast(`⚡ Applied lineup and restriction details!`, 'success');
+      showToast(`⚡ Applied description snippet to notes!`, 'success');
+    }
+  } else if (dimKey === 'lineup' && dims.lineup) {
+    const lineup = dims.lineup.extracted || dims.lineup.details?.lineup;
+    if (lineup && lineup !== 'None' && lineup !== 'None specified') {
+      if (noteInput) {
+        noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Lineup: ${lineup}`;
+        updatedEl = noteInput;
+      }
+      showToast(`⚡ Applied artist lineup: "${lineup}"`, 'success');
+    } else {
+      showToast(`Lineup is optional and none was detected on screenshot.`, 'info');
+    }
+  } else if (dimKey === 'restrictions' && dims.restrictions) {
+    const policy = dims.restrictions.extracted || dims.restrictions.details?.agePolicy;
+    if (policy && policy !== 'All Ages' && policy !== 'Standard' && policy !== 'None') {
+      if (noteInput) {
+        noteInput.value = (noteInput.value ? noteInput.value + ' • ' : '') + `Policy: ${policy}`;
+        updatedEl = noteInput;
+      }
+      showToast(`⚡ Applied restrictions: "${policy}"`, 'success');
+    } else {
+      showToast(`Restrictions are optional (Standard / All Ages).`, 'info');
     }
   }
 
@@ -1626,7 +1699,7 @@ async function triggerScreenshotVerification(dataUrl) {
         // 1. Header Status Badge
         if (badge) {
           if (data.aligned || data.isFullyAligned) {
-            badge.textContent = '✓ 7/7 Dimensions Aligned';
+            badge.textContent = '✓ 13/13 Dimensions Aligned';
             badge.style.background = 'rgba(16, 185, 129, 0.25)';
             badge.style.color = '#34d399';
           } else if (data.warnings && data.warnings.length > 0) {
@@ -1634,7 +1707,7 @@ async function triggerScreenshotVerification(dataUrl) {
             badge.style.background = 'rgba(245, 158, 11, 0.25)';
             badge.style.color = '#fbbf24';
           } else {
-            badge.textContent = '✓ 7 Dimensions Extracted';
+            badge.textContent = '✓ 13 Dimensions Extracted';
             badge.style.background = 'rgba(56, 189, 248, 0.25)';
             badge.style.color = '#38bdf8';
           }
@@ -1645,7 +1718,7 @@ async function triggerScreenshotVerification(dataUrl) {
           btnApplyAll.style.display = 'inline-flex';
         }
 
-        // 3. Render All 7 Dimensions in the Interactive Grid
+        // 3. Render All 13 Dimensions in the Interactive Grid
         LIVE_DIMENSION_KEYS.forEach(k => {
           const dim = dims[k];
           if (!dim) return;
@@ -1656,16 +1729,19 @@ async function triggerScreenshotVerification(dataUrl) {
           const compEl = document.getElementById(`ai-dim-compare-${k}`);
 
           if (valEl) {
-            valEl.textContent = dim.displayValue || dim.extracted || 'Not detected';
+            valEl.textContent = dim.displayValue || dim.extracted || (dim.isOptional ? 'None specified' : 'Not detected');
           }
 
           if (compEl) {
-            const cardValStr = dim.cardValue || 'Pending Review';
+            const cardValStr = dim.cardValue || (dim.isOptional ? 'None' : 'Pending Review');
             compEl.textContent = `Card: ${cardValStr}`;
           }
 
           if (badgeEl) {
-            if (dim.isMatch) {
+            if (dim.status === 'optional' || (dim.isOptional && !dim.extracted)) {
+              badgeEl.textContent = k === 'lineup' ? 'Optional / None' : 'Optional / Standard';
+              badgeEl.className = 'dim-pill pill-optional';
+            } else if (dim.isMatch) {
               badgeEl.textContent = '✓ Verified Match';
               badgeEl.className = 'dim-pill pill-confirmed';
             } else if (dim.status === 'discrepancy') {
@@ -1675,13 +1751,15 @@ async function triggerScreenshotVerification(dataUrl) {
               badgeEl.textContent = '🔍 Extracted';
               badgeEl.className = 'dim-pill pill-inferred';
             } else {
-              badgeEl.textContent = 'Unconfirmed';
-              badgeEl.className = 'dim-pill pill-unconfirmed';
+              badgeEl.textContent = dim.isOptional ? 'Optional' : 'Unconfirmed';
+              badgeEl.className = dim.isOptional ? 'dim-pill pill-optional' : 'dim-pill pill-unconfirmed';
             }
           }
 
           if (cardEl) {
-            if (dim.isMatch) {
+            if (dim.status === 'optional' || (dim.isOptional && !dim.extracted)) {
+              cardEl.className = 'curator-dimension-card dim-status-optional';
+            } else if (dim.isMatch) {
               cardEl.className = 'curator-dimension-card dim-status-confirmed';
             } else if (dim.status === 'discrepancy') {
               cardEl.className = 'curator-dimension-card dim-status-discrepancy';
@@ -1838,7 +1916,7 @@ async function triggerScreenshotVerification(dataUrl) {
           }
         }
 
-        showToast('🔍 Extracted all 7 live dimensions from screenshot!', 'info');
+        showToast('🔍 Extracted all 13 live dimensions from screenshot!', 'info');
       } else {
         if (badge) {
           badge.textContent = 'OCR Notice';
@@ -1898,7 +1976,7 @@ function renderScreenshotGallery() {
           class="ai-gallery-item ${isActive ? 'active-screenshot-thumb' : ''}" 
           style="position: relative; width: 92px; height: 92px; border-radius: 6px; overflow: hidden; border: ${isActive ? '2.5px solid #38bdf8' : '1.5px solid rgba(168, 85, 247, 0.55)'}; background: #0f172a; flex-shrink: 0; box-shadow: ${isActive ? '0 0 14px rgba(56, 189, 248, 0.75)' : '0 2px 6px rgba(0,0,0,0.4)'}; cursor: pointer; transition: all 0.2s ease;"
           onclick="window.selectActiveScreenshot(${idx})"
-          title="${isActive ? 'Active Verifier Screenshot (Currently extracting dimensions)' : 'Click to verify and extract 7 dimensions from this screenshot'}"
+          title="${isActive ? 'Active Verifier Screenshot (Currently extracting dimensions)' : 'Click to verify and extract 13 dimensions from this screenshot'}"
         >
           <img src="${src}" alt="Screenshot #${idx + 1}" style="width: 100%; height: 100%; object-fit: cover;">
           ${isActive ? '<div class="active-shot-pill">Active</div>' : ''}
@@ -2046,7 +2124,7 @@ function addScreenshotDataUrls(urls) {
   }
   renderScreenshotGallery();
   if (addedCount > 0) {
-    showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added! Running 7-dimension verification...`, 'info');
+    showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added! Running 13-dimension verification...`, 'info');
     if (state.currentScreenshots && state.currentScreenshots.length > 0) {
       triggerScreenshotVerification(state.currentScreenshots[state.activeScreenshotIndex]);
     }
@@ -2262,7 +2340,7 @@ async function submitAIInstruction(action = 'queue_only') {
       if (textField) textField.value = instructionText;
     } else if (hasScreenshots) {
       const pStr = (!isNaN(approvedPrice) && approvedPrice >= 0) ? `$${approvedPrice.toFixed(2)} CAD` : 'verified rate';
-      instructionText = `Verified via screenshot proof: ${approvedTitle || eventTitle} (${pStr}). 7-dimension alignment verified by curator.`;
+      instructionText = `Verified via screenshot proof: ${approvedTitle || eventTitle} (${pStr}). 13-dimension alignment verified by curator.`;
       if (textField) textField.value = instructionText;
     } else if (action === 'queue_and_approve') {
       instructionText = `Approved into live catalog: ${approvedTitle || eventTitle}`;
@@ -2343,8 +2421,9 @@ async function submitAIInstruction(action = 'queue_only') {
         };
       }
 
-      if (action === 'queue_and_approve' || action === 'queue_and_dismiss') {
-        state.quarantinedEvents = state.quarantinedEvents.filter(e => e.id !== eventId);
+      // Keep event in quarantine queue awaiting Antigravity review
+      if (targetItem) {
+        targetItem.reviewStatus = 'pending_antigravity_review';
       }
 
       updateFilterCounts();
@@ -2637,9 +2716,13 @@ function setupCuratorEventListeners() {
   }
 
   // Live Card Preview Buttons
+  const btnQueueInterpreted = document.getElementById('btn-queue-interpreted-card');
+  if (btnQueueInterpreted) {
+    btnQueueInterpreted.addEventListener('click', () => submitAIInstruction('queue_only'));
+  }
   const btnApproveInterpreted = document.getElementById('btn-approve-interpreted-card');
   if (btnApproveInterpreted) {
-    btnApproveInterpreted.addEventListener('click', () => submitAIInstruction('queue_and_approve'));
+    btnApproveInterpreted.addEventListener('click', () => submitAIInstruction('queue_only'));
   }
 
   const btnConfirmInterpretedDismiss = document.getElementById('btn-confirm-interpreted-dismiss');

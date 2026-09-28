@@ -1,9 +1,9 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-23T16:54:05.409030+00:00",
+    "updatedAt": "2026-09-26T11:01:37.352295+00:00",
     "description": "Events permanently dismissed or archived by the curator.",
-    "totalArchived": 172,
+    "totalArchived": 191,
     "archivedCount": 170
   },
   "archivedEvents": [
@@ -12377,81 +12377,6 @@
       "isConcluded": true
     },
     {
-      "id": "kitsilano-showboat",
-      "title": "Kitsilano Showboat: Community Summer Stage",
-      "artist": "Local bands & community ensembles",
-      "performers": null,
-      "venue": "Kitsilano Beach Outdoor Amphitheatre",
-      "venueAliases": [],
-      "address": "2300 Cornwall Ave, Vancouver",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
-      "price": 0.0,
-      "priceLabel": "Free ($0)",
-      "pricingType": "free",
-      "tiers": [],
-      "isFree": true,
-      "isDaily": false,
-      "frequency": "weekly",
-      "frequencyLabel": "Weekly (Mon, Wed, Fri)",
-      "daysOfWeek": [
-        "mon",
-        "wed",
-        "fri"
-      ],
-      "timeSlots": [
-        "early-evening"
-      ],
-      "category": "music",
-      "categoryLabel": "Live Music",
-      "categoryIcon": "🎵",
-      "subTags": [
-        "outdoor-theatre",
-        "community-concert",
-        "kits-beach",
-        "live-music"
-      ],
-      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
-      "startIso": "2026-09-09T19:00:00-07:00",
-      "endIso": "2026-09-30T21:00:00-07:00",
-      "confirmedDates": [],
-      "isSoldOut": false,
-      "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
-      "venueUrl": "https://kitsilanoshowboat.com",
-      "ticketProvider": "Free Public Access",
-      "rawProvider": "Box Office / Direct",
-      "coordinates": [
-        49.2742,
-        -123.1558
-      ],
-      "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
-      "organizer": null,
-      "isRoving": false,
-      "editionVenue": null,
-      "agePolicy": null,
-      "admissionPolicy": null,
-      "rovingNote": null,
-      "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
-      "checkoutVerification": {
-        "status": "verified_live",
-        "method": "official_bylaw_rate",
-        "verifiedTotal": 0.0,
-        "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-        "verifiedAt": "2026-09-22T11:07:13-07:00",
-        "details": "Verified via official municipal park bylaw / published community schedule."
-      },
-      "semanticVerification": {
-        "is_verified": true,
-        "match_type": "calendar_mention",
-        "matched_tokens": [
-          "showboat"
-        ],
-        "evidence_snippet": "...calendar &#8211; kitsilano showboat skip to content home schedule performers gallery donate supporters volu...",
-        "reason": "Official venue calendar/schedule lists event token(s): ['showboat']"
-      },
-      "archivedAt": "2026-09-22T18:55:32.368755+00:00",
-      "archiveReason": "2026 summer season concluded in August; live calendar has zero September dates"
-    },
-    {
       "id": "shipyards-live-night",
       "title": "The Shipyards Live: Waterfront Music & Night Market",
       "venue": "The Shipyards District",
@@ -12759,6 +12684,859 @@
       "archivedReason": "Auto-Archived: Scheduled run ended on 2026-09-22",
       "reviewStatus": "concluded",
       "isConcluded": true
+    },
+    {
+      "id": "portside-pub-trivia",
+      "title": "The Portside Pub: Gastown Brainstormer Trivia",
+      "artist": null,
+      "performers": null,
+      "venue": "The Portside Pub",
+      "venueAliases": [],
+      "address": "7 Alexander St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 12.0,
+      "priceLabel": "$12.00 all-in",
+      "pricingType": "food-drink",
+      "tiers": [],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Tuesdays)",
+      "daysOfWeek": [
+        "tue"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "trivia",
+      "categoryLabel": "Drinks & Trivia",
+      "categoryIcon": "🧠",
+      "subTags": [
+        "pub-trivia",
+        "craft-beer",
+        "gastown-pub",
+        "trivia-night"
+      ],
+      "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
+      "startIso": "2026-09-08T19:30:00-07:00",
+      "endIso": "2026-12-31T22:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://theportsidepub.com/bookings/",
+      "venueUrl": "https://theportsidepub.com",
+      "ticketProvider": "Walk-in / Table Reservation",
+      "rawProvider": "OpenTable / Resy",
+      "coordinates": [
+        49.2842,
+        -123.1042
+      ],
+      "transitInfo": "4 min walk from Waterfront SkyTrain Station",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "scraped_page_policy",
+        "verifiedTotal": 12.0,
+        "feeBreakdown": "$12.00 rate scraped live from published venue page",
+        "verifiedAt": "2026-09-23T10:45:58-07:00",
+        "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
+      "quarantinedAt": "2026-09-23T17:46:21.516322+00:00",
+      "dealtWith": false,
+      "archivedAt": "2026-09-23T19:39:01.306427+00:00",
+      "archivedReason": "Curator guidance: Updating event name based on flyer screenshot verification.",
+      "reviewStatus": "dismissed_by_curator"
+    },
+    {
+      "id": "kitsilano-showboat",
+      "title": "Kitsilano Showboat: Community Summer Stage",
+      "artist": "Local bands & community ensembles",
+      "performers": null,
+      "venue": "Kitsilano Beach Outdoor Amphitheatre",
+      "venueAliases": [],
+      "address": "2300 Cornwall Ave, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "tiers": [],
+      "isFree": true,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Weekly (Mon, Wed, Fri)",
+      "daysOfWeek": [
+        "mon",
+        "wed",
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "outdoor-theatre",
+        "community-concert",
+        "kits-beach",
+        "live-music"
+      ],
+      "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
+      "startIso": "2026-09-09T19:00:00-07:00",
+      "endIso": "2026-09-30T21:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "venueUrl": "https://kitsilanoshowboat.com",
+      "ticketProvider": "Free Public Access",
+      "rawProvider": "Box Office / Direct",
+      "coordinates": [
+        49.2742,
+        -123.1558
+      ],
+      "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "official_bylaw_rate",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
+        "verifiedAt": "2026-09-23T12:47:47-07:00",
+        "details": "Verified via official municipal park bylaw / published community schedule."
+      },
+      "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
+      "quarantinedAt": "2026-09-23T19:48:12.090737+00:00",
+      "dealtWith": false,
+      "archivedAt": "2026-09-23T20:03:20.789519+00:00",
+      "archivedReason": "Curator guidance: This series of events is now over for the summer.",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "biltmore-cabaret-indie-music",
+      "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+      "artist": "Local indie bands & resident DJs",
+      "performers": null,
+      "venue": "The Biltmore Cabaret",
+      "venueAliases": [],
+      "address": "2755 Prince Edward St, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "price": 11.0,
+      "priceLabel": "$11.00 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "General Admission",
+          "basePrice": 11.0,
+          "price": 11.0,
+          "label": "$11.00 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "weekly",
+      "frequencyLabel": "Thursdays – Saturdays",
+      "daysOfWeek": [
+        "thu",
+        "fri",
+        "sat"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "indie-folk",
+        "live-band",
+        "biltmore",
+        "concert"
+      ],
+      "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
+      "startIso": "2026-10-17T19:00:00-07:00",
+      "endIso": "2026-10-17T23:00:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://biltmorecabaret.com/event",
+      "venueUrl": "https://biltmorecabaret.com/event",
+      "ticketProvider": "AdmitOne Verified",
+      "rawProvider": "AdmitOne",
+      "coordinates": [
+        49.2602,
+        -123.0975
+      ],
+      "transitInfo": "Main & 12th Ave bus corridor",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "manual_curator_review",
+        "verifiedTotal": 11.0,
+        "feeBreakdown": "$11.00 door price verified via curator review / Biltmore Cabaret Live Adapter",
+        "verifiedAt": "2026-09-23T20:03:20.789519+00:00",
+        "details": "Verified via Curator Studio review with Biltmore live adapter."
+      },
+      "archivedAt": "2026-09-23T20:05:38.197027+00:00",
+      "archivedReason": "Auto-Archived: Calendar or ticketing platform contains zero active dates / concluded season (Link: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings)",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-broadway-across-canada-disneys-beauty-th",
+      "title": "Broadway Across Canada: Disney's Beauty & The Beast",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:23-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
+      "reviewStatus": "pending_manual_review",
+      "archivedReason": "Dismissed by curator",
+      "archivedAt": "2026-09-23T16:20:05.558514"
+    },
+    {
+      "id": "queen-elizabeth-theatre-boynextdoor",
+      "title": "BOYNEXTDOOR",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:18-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:22:39.236944+00:00",
+      "archivedReason": "Dismissed with AI instruction: Too expensive.\nhttps://www.ticketmaster.ca/raffi-vancouver-british-columbia-11-14-2026/event/1100643D9D237483",
+      "curatorInstructionId": "inst_1790205759086"
+    },
+    {
+      "id": "queen-elizabeth-theatre-beck-ride-lonesome-tour",
+      "title": "Beck: Ride Lonesome Tour",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/event/11006489918258F5",
+      "category": "music",
+      "flaggedAt": "2026-09-23T13:33:15-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/11006489918258F5",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:23:21.272531+00:00",
+      "archivedReason": "Dismissed with AI instruction: Too expensive",
+      "curatorInstructionId": "inst_1790205801070"
+    },
+    {
+      "id": "queen-elizabeth-theatre-sting-30",
+      "title": "Sting 3.0",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/sting-tickets/artist/723578",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:11-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sting-tickets/artist/723578",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:34:16.297063+00:00",
+      "archivedReason": "Dismissed with AI instruction: Far too expensive",
+      "curatorInstructionId": "inst_1790206456001"
+    },
+    {
+      "id": "queen-elizabeth-theatre-hermanos-gutiérrez",
+      "title": "Hermanos Gutiérrez",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/event/110064BCBBE69477",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:03-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/110064BCBBE69477",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-for-king-country",
+      "title": "For King + Country",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/for-king-countrys-the-most-beautiful-vancouver-british-columbia-09-25-2026/event/110064AC01F3DB98",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:04-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/for-king-countrys-the-most-beautiful-vancouver-british-columbia-09-25-2026/event/110064AC01F3DB98",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-nikki-glaser-the-stunning-tour",
+      "title": "Nikki Glaser - The Stunning Tour",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/nikki-glaser-tickets/artist/1536543",
+      "category": "music",
+      "flaggedAt": "2026-09-23T13:33:06-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/nikki-glaser-tickets/artist/1536543",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-broadway-across-canada-juliet",
+      "title": "Broadway Across Canada: & Juliet",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-09-29-2026/event/110064A6C311D5BA",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:09-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-09-29-2026/event/110064A6C311D5BA",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-khan-saab",
+      "title": "Khan Saab",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:11-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-undertale-the-determination-symphony",
+      "title": "Undertale: The Determination Symphony",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A9DFB3",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:14-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A9DFB3",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-sunanda-sharma-victory-tour",
+      "title": "Sunanda Sharma Victory Tour",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
+      "category": "music",
+      "flaggedAt": "2026-09-23T13:33:14-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "queen-elizabeth-theatre-raffi",
+      "title": "Raffi",
+      "venue": "Queen Elizabeth Theatre",
+      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "attemptedPrice": 20.0,
+      "websiteUrl": "https://www.ticketmaster.ca/raffi-tickets/artist/753662",
+      "category": "shows",
+      "flaggedAt": "2026-09-23T13:33:21-07:00",
+      "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/raffi-tickets/artist/753662",
+      "reviewStatus": "dismissed_by_curator",
+      "archivedAt": "2026-09-23T23:35:19.857836+00:00",
+      "archivedReason": "Curator guidance: Far too expensive",
+      "isConcluded": true
+    },
+    {
+      "id": "ra-2543528-leach-istening-oom",
+      "title": "Tacophonica",
+      "artist": "RUGE, Ev O'Reilly, Lalo Campo",
+      "performers": [
+        "RUGE",
+        "Ev O'Reilly",
+        "Lalo Campo"
+      ],
+      "venue": "Bleach Listening Room",
+      "venueAliases": [
+        "Resident Advisor",
+        "RA Vancouver",
+        "RUGE",
+        "Ev O'Reilly",
+        "Lalo Campo"
+      ],
+      "address": "611 Gore Ave, Vancouver, BC, V6A 2Z8",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 0.0,
+      "basePrice": 0.0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "tiers": [
+        {
+          "name": "Standard RA Admission",
+          "basePrice": 0.0,
+          "price": 0.0,
+          "label": "Free ($0)"
+        }
+      ],
+      "isFree": true,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Confirmed Date",
+      "daysOfWeek": [
+        "wed"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "electronic",
+        "dance-party",
+        "club-night",
+        "dj-set",
+        "ra-vancouver"
+      ],
+      "dateSchedule": "Wednesday, Sep 23 • 6:00 PM",
+      "startIso": "2026-09-23T18:00:00.000",
+      "endIso": "2026-09-23T23:00:00.000",
+      "confirmedDates": [
+        "2026-09-23"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://ra.co/events/2543528",
+      "venueUrl": "https://bleachstudios.xyz/",
+      "provider": "Resident Advisor",
+      "semanticProvider": "Resident Advisor Verified",
+      "ticketProvider": "Resident Advisor Verified",
+      "coordinates": [
+        49.2827,
+        -123.1207
+      ],
+      "transitInfo": "Accessible via TransLink transit routes",
+      "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Bleach Listening Room. Featuring live performances by RUGE, Ev O'Reilly, Lalo Campo.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "api_endpoint",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Live RA listing price: Free ($0)",
+        "verifiedAt": "2026-09-23T16:35:29-07:00",
+        "details": "Authenticated directly via Resident Advisor GraphQL API."
+      },
+      "archivedAt": "2026-09-23T23:35:58.184522+00:00",
+      "archivedReason": "Auto-Archived: Scheduled run ended on 2026-09-23",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "ra-2543745-he-ido",
+      "title": "Wednesday Music with Dairy Free",
+      "artist": "Dairy Free",
+      "performers": [
+        "Dairy Free"
+      ],
+      "venue": "The Lido",
+      "venueAliases": [
+        "Resident Advisor",
+        "RA Vancouver",
+        "Dairy Free"
+      ],
+      "address": "518 E Broadway, Vancouver",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "price": 0.0,
+      "basePrice": 0.0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "tiers": [
+        {
+          "name": "Standard RA Admission",
+          "basePrice": 0.0,
+          "price": 0.0,
+          "label": "Free ($0)"
+        }
+      ],
+      "isFree": true,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Confirmed Date",
+      "daysOfWeek": [
+        "wed"
+      ],
+      "timeSlots": [
+        "late-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "electronic",
+        "dance-party",
+        "club-night",
+        "dj-set",
+        "ra-vancouver"
+      ],
+      "dateSchedule": "Wednesday, Sep 23 • 9:00 PM",
+      "startIso": "2026-09-23T21:00:00.000",
+      "endIso": "2026-09-24T01:00:00.000",
+      "confirmedDates": [
+        "2026-09-23"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://ra.co/events/2543745",
+      "venueUrl": "https://ra.co/clubs/107753",
+      "provider": "Resident Advisor",
+      "semanticProvider": "Resident Advisor Verified",
+      "ticketProvider": "Resident Advisor Verified",
+      "coordinates": [
+        49.2629,
+        -123.0927
+      ],
+      "transitInfo": "Accessible via TransLink transit routes",
+      "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Lido. Featuring live performances by Dairy Free.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "api_endpoint",
+        "verifiedTotal": 0.0,
+        "feeBreakdown": "Live RA listing price: Free ($0)",
+        "verifiedAt": "2026-09-23T17:41:33-07:00",
+        "details": "Authenticated directly via Resident Advisor GraphQL API."
+      },
+      "archivedAt": "2026-09-24T00:42:37.164586+00:00",
+      "archivedReason": "Auto-Archived: All confirmed show dates concluded (latest: 2026-09-23)",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "cinematheque-samurai-prisoner",
+      "title": "\"The Samurai and the Prisoner\" (Vancouver Premiere • Dir. Kiyoshi Kurosawa)",
+      "artist": null,
+      "performers": null,
+      "venue": "The Cinematheque",
+      "venueAliases": [],
+      "address": "1131 Howe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 15.0,
+      "priceLabel": "$11.00 – $15.00 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "General Admission",
+          "basePrice": 15.0,
+          "price": 15.0,
+          "label": "$15.00 all-in"
+        },
+        {
+          "name": "Senior (65+)",
+          "basePrice": 13.0,
+          "price": 13.0,
+          "label": "$13.00 all-in"
+        },
+        {
+          "name": "Student / Youth",
+          "basePrice": 11.0,
+          "price": 11.0,
+          "label": "$11.00 all-in"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "limited-run",
+      "frequencyLabel": "Limited Run",
+      "daysOfWeek": [
+        "tue",
+        "thu",
+        "sat"
+      ],
+      "timeSlots": [
+        "afternoon",
+        "early-evening"
+      ],
+      "category": "cinema",
+      "categoryLabel": "Cinema",
+      "categoryIcon": "🎬",
+      "subTags": [
+        "vancouver",
+        "cinematheque",
+        "kurosawa",
+        "cinema",
+        "vancouver-premiere",
+        "samurai"
+      ],
+      "dateSchedule": "Tuesday, September 22 • 7:00 PM (Also Sep 24 & 26)",
+      "startIso": "2026-09-22T19:00:00-07:00",
+      "endIso": "2026-09-26T21:30:00-07:00",
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://thecinematheque.ca/films/2026/samurai-prisoner",
+      "venueUrl": "https://thecinematheque.ca/films/",
+      "ticketProvider": "Agile Ticketing Verified",
+      "rawProvider": "Agile Ticketing",
+      "coordinates": [
+        49.2795,
+        -123.1274
+      ],
+      "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Kurosawa Kiyoshi’s latest picture The Samurai and the Prisoner, set during Japan’s war-ravaged 16th century, is unlike any other in the auteur’s already genre-omnivorous catalogue.",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 15.0,
+        "feeBreakdown": "General Admission ($15.00), Senior ($13.00), Student ($11.00) verified via The Cinematheque",
+        "verifiedAt": "2026-09-24T04:00:15-07:00",
+        "details": "Verified via The Cinematheque box office rates (thecinematheque.ca)."
+      },
+      "archivedAt": "2026-09-24T11:01:33.227976+00:00",
+      "archivedReason": "Auto-Archived: One-off performance concluded (2026-09-22)",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "guilt-and-co-live-jazz",
+      "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+      "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
+      "performers": null,
+      "venue": "Guilt & Co.",
+      "venueAliases": [
+        "Guilt and Co",
+        "Guilt & Co",
+        "Guilt and Company"
+      ],
+      "address": "1 Alexander St (Below Ground), Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 8.0,
+      "priceLabel": "$8.00 – $15.00 all-in",
+      "pricingType": "door",
+      "tiers": [
+        {
+          "name": "Early Arrival (Before 8:00 PM)",
+          "basePrice": 8.0,
+          "price": 8.0,
+          "label": "$8.00 door"
+        },
+        {
+          "name": "Weeknights (Sun–Thu after 8:00 PM)",
+          "basePrice": 12.0,
+          "price": 12.0,
+          "label": "$12.00 door"
+        },
+        {
+          "name": "Weekends (Fri–Sat after 8:00 PM)",
+          "basePrice": 15.0,
+          "price": 15.0,
+          "label": "$15.00 door"
+        }
+      ],
+      "isFree": false,
+      "isDaily": true,
+      "frequency": "daily",
+      "frequencyLabel": "Nightly (7 Days/Week)",
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "timeSlots": [
+        "early-evening",
+        "late-evening"
+      ],
+      "category": "music",
+      "categoryLabel": "Live Music",
+      "categoryIcon": "🎵",
+      "subTags": [
+        "live-jazz",
+        "live-music",
+        "beer",
+        "cocktails",
+        "soul-music",
+        "guilt--company"
+      ],
+      "dateSchedule": "Daily • Early Set 7:00 PM • Late Set 9:30 PM",
+      "startIso": "2026-09-09T19:00:00-07:00",
+      "endIso": null,
+      "confirmedDates": [],
+      "isSoldOut": false,
+      "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "ticketProvider": "Door Cover at Entrance",
+      "rawProvider": "Door Cover",
+      "coordinates": [
+        49.2835,
+        -123.1039
+      ],
+      "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "Guilt & Company Home Page Calendar of Events",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "curator_learned_override",
+        "verifiedTotal": 8.0,
+        "feeBreakdown": "$8.00 – $15.00 door cover ($8 before 8pm, $12 Sun–Thu after 8pm, $15 Fri–Sat after 8pm)",
+        "verifiedAt": "2026-09-24T04:00:28-07:00",
+        "details": "Automatically verified by Van50 Curator Learned Rules Engine."
+      },
+      "archivedAt": "2026-09-24T11:01:33.227976+00:00",
+      "archivedReason": "Auto-Archived: Calendar or ticketing platform contains zero active dates / concluded season (Link: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings)",
+      "reviewStatus": "concluded",
+      "isConcluded": true
+    },
+    {
+      "id": "ubc-wsoc-ufv",
+      "title": "UBC Women's Soccer vs. UFV",
+      "artist": null,
+      "performers": null,
+      "venue": "Thunderbird Stadium",
+      "venueAliases": [
+        "UBC Thunderbird Stadium"
+      ],
+      "address": "6288 Stadium Rd, Vancouver",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "price": 17.5,
+      "priceLabel": "$17.50 all-in",
+      "pricingType": "platform",
+      "tiers": [
+        {
+          "name": "Adult General Admission",
+          "price": 17.5,
+          "label": "$17.50 all-in"
+        },
+        {
+          "name": "Concession (Alumni, Seniors 65+, Staff)",
+          "price": 12.5,
+          "label": "$12.50"
+        },
+        {
+          "name": "Youth (13–18)",
+          "price": 7.5,
+          "label": "$7.50"
+        },
+        {
+          "name": "Child (12 and under)",
+          "price": 3.0,
+          "label": "$3.00"
+        },
+        {
+          "name": "UBC Students",
+          "price": 0.0,
+          "label": "Free with student ID"
+        }
+      ],
+      "isFree": false,
+      "isDaily": false,
+      "frequency": "one-off",
+      "frequencyLabel": "Match Day",
+      "daysOfWeek": [
+        "fri"
+      ],
+      "timeSlots": [
+        "early-evening"
+      ],
+      "category": "activities",
+      "categoryLabel": "Games & Activities",
+      "categoryIcon": "🦅",
+      "subTags": [
+        "varsity-sports",
+        "ubc-soccer",
+        "womens-soccer",
+        "cw-soccer",
+        "thunderbirds",
+        "ufv-cascades"
+      ],
+      "dateSchedule": "Friday, September 25, 2026 • 6:00 PM",
+      "startIso": "2026-09-25T18:00:00-07:00",
+      "endIso": "2026-09-25T20:30:00-07:00",
+      "confirmedDates": [
+        "2026-09-25"
+      ],
+      "isSoldOut": false,
+      "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+      "venueUrl": "https://www.google.com/search?q=Thunderbird+Stadium+Vancouver",
+      "ticketProvider": "Paciolan Verified",
+      "rawProvider": "Paciolan",
+      "coordinates": [
+        49.2555,
+        -123.2458
+      ],
+      "transitInfo": "R4 41st Ave RapidBus to UBC Loop, then 5 min walk or campus shuttle to Thunderbird Stadium",
+      "organizer": null,
+      "isRoving": false,
+      "editionVenue": null,
+      "agePolicy": null,
+      "admissionPolicy": null,
+      "rovingNote": null,
+      "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+      "checkoutVerification": {
+        "status": "verified_live",
+        "method": "venue_published_policy",
+        "verifiedTotal": 17.5,
+        "feeBreakdown": "$17.50 adult conference ticket ($12.50 concession / $7.50 youth / $3 child / UBC students free with ID)",
+        "verifiedAt": "2026-09-26T04:00:08-07:00",
+        "details": "Verified live from official UBC Athletics published rate card on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
+      },
+      "archivedAt": "2026-09-26T11:01:37.352295+00:00",
+      "archivedReason": "Auto-Archived: Scheduled run ended on 2026-09-25",
+      "reviewStatus": "concluded",
+      "isConcluded": true
     }
-  ]
+  ],
+  "totalArchived": 188
 }

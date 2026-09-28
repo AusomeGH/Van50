@@ -971,6 +971,17 @@ body {
   border-color: rgba(239, 68, 68, 0.4);
 }
 
+.dim-pill.pill-optional,
+.dim-pill.dim-pill-optional {
+  background: rgba(168, 85, 247, 0.15);
+  color: #d8b4fe;
+  border-color: rgba(168, 85, 247, 0.35);
+}
+
+.curator-dimension-card.dim-status-optional {
+  border-left-color: #a855f7;
+}
+
 .dim-event-title-box {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 6px;

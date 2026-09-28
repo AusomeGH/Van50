@@ -141,15 +141,10 @@ async function loadCentralReference() {
 }
 
 function showSyncTimestamp(isoStr, count) {
+  const badge = document.getElementById('sync-status-badge');
+  if (badge) badge.style.display = 'none';
   const badgeText = document.getElementById('sync-status-text');
-  if (!badgeText) return;
-  try {
-    const d = new Date(isoStr);
-    const timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    badgeText.textContent = `100% Live Checkout Verified • Auto-Synced (${count} Active Events • ${timeStr})`;
-  } catch (e) {
-    badgeText.textContent = `100% Live Checkout Verified • Auto-Synced (${count} Active Events)`;
-  }
+  if (badgeText) badgeText.style.display = 'none';
 }
 
 // ==============================================================================
@@ -195,6 +190,14 @@ function setupEventListeners() {
   }
 
   if (searchInput) {
+    const _urlParams = new URLSearchParams(window.location.search);
+    const _qParam = _urlParams.get('search') || _urlParams.get('q');
+    if (_qParam) {
+      searchInput.value = _qParam;
+      state.searchQuery = _qParam.trim();
+      updateClearBtnVisibility();
+    }
+
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value.trim();
       updateClearBtnVisibility();
@@ -885,6 +888,16 @@ function isAwaitingSchedule(ev) {
  * Returns: { hasEnded: boolean, closingMinutes: number, closingTimeStr: string }
  */
 function getEventClosingTimeToday(ev, now = new Date()) {
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+
+  // Check explicit cancellation / private buyout / closure exceptions
+  if (Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(todayStr)) {
+    return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Private Event)' };
+  }
+
   const ds = ev.dateSchedule || '';
   const nowHours = now.getHours();
   const nowMins = now.getMinutes();
@@ -1133,7 +1146,7 @@ function applyFiltersAndRender() {
       if (ev.price <= 0 && !hasPaidTier) return false;
     } else {
       // Slider Range
-      const effectiveMin = ev.price;
+      const effectiveMin = Array.isArray(ev.tiers) && ev.tiers.length > 0 ? Math.min(ev.price, ...ev.tiers.map(t => t.price)) : ev.price;
       const effectiveMax = hasPaidTier ? Math.max(ev.price, ...ev.tiers.map(t => t.price)) : ev.price;
       if (effectiveMax < state.minBudget || effectiveMin > state.maxBudget) return false;
     }
@@ -1263,10 +1276,6 @@ function applyFiltersAndRender() {
   // Update Results Counter (with internal ended events tracker & active tag indicator)
   const countBar = document.getElementById('results-count');
   if (countBar) {
-    const expiredNote = state.expiredCount > 0 
-      ? ` <span style="font-size: 0.78rem; opacity: 0.7; margin-left: 8px;">(${state.expiredCount} past & concluded events filtered)</span>` 
-      : '';
-
     const tagBadgeHtml = state.selectedTag ? `
       <div class="active-tag-pill" title="Filtered by #${state.selectedTag}. Click ✕ to clear.">
         <span class="tag-label">Tag:</span>
@@ -1292,7 +1301,7 @@ function applyFiltersAndRender() {
 
     countBar.innerHTML = `
       <div class="results-count-text">
-        Showing <strong>${filtered.length}</strong> active outings under $50 CAD${expiredNote}
+        Showing <strong>${filtered.length}</strong> active outings under $50 CAD
       </div>
       ${tagBadgeHtml}
       ${crossCategoryBannerHtml}
@@ -2007,13 +2016,17 @@ function getEventTimeBucket(ev, now = new Date()) {
     const d = new Date(ev.startIso);
     if (!isNaN(d.getTime())) {
       const startDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      if (startDay.getTime() === today.getTime()) {
-        const status = getEventClosingTimeToday(ev, now);
-        if (!status.hasEnded) {
+      const dKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const isDateCancelled = Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(dKey);
+      if (!isDateCancelled) {
+        if (startDay.getTime() === today.getTime()) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (!status.hasEnded) {
+            return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+          }
+        } else if (startDay > today) {
           return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
         }
-      } else if (startDay > today) {
-        return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
       }
     }
   }
@@ -2027,11 +2040,15 @@ function getEventTimeBucket(ev, now = new Date()) {
       for (let offset = 0; offset < 28; offset++) {
         const candidate = new Date(today);
         candidate.setDate(candidate.getDate() + offset);
+        const candKey = `${candidate.getFullYear()}-${String(candidate.getMonth() + 1).padStart(2, '0')}-${String(candidate.getDate()).padStart(2, '0')}`;
+        if (Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(candKey)) {
+          continue;
+        }
         if (targetDays.includes(candidate.getDay())) {
           if (offset === 0) {
             const status = getEventClosingTimeToday(ev, now);
             if (status.hasEnded) {
-              // Today's session has ended -> move to next occurrence!
+              // Today's session has ended or is closed -> move to next occurrence!
               continue;
             }
           }
@@ -2388,22 +2405,26 @@ function formatCardTopDate(ev) {
     try {
       const d = new Date(ev.startIso);
       const dZero = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      if (dZero.getTime() === today.getTime()) {
-        const status = getEventClosingTimeToday(ev, now);
-        if (!status.hasEnded) {
+      const dKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const isDateCancelled = Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(dKey);
+      if (!isDateCancelled) {
+        if (dZero.getTime() === today.getTime()) {
+          const status = getEventClosingTimeToday(ev, now);
+          if (!status.hasEnded) {
+            const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
+            return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+          }
+        } else if (dZero > today) {
+          const isTomorrow = dZero.getTime() === tomorrow.getTime();
           const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
           const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
-          return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
-        }
-      } else if (dZero > today) {
-        const isTomorrow = dZero.getTime() === tomorrow.getTime();
-        const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
 
-        if (isTomorrow) {
-          return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
-        } else {
-          return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+          if (isTomorrow) {
+            return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+          } else {
+            return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+          }
         }
       }
     } catch (e) {}
@@ -2418,7 +2439,12 @@ function formatCardTopDate(ev) {
       const targetDay = DAY_MAP[dow.toLowerCase()];
       if (targetDay !== undefined) {
         let diff = (targetDay - curDay + 7) % 7;
-        if (diff === 0) {
+        const candDate = new Date(today);
+        candDate.setDate(candDate.getDate() + diff);
+        const candKey = `${candDate.getFullYear()}-${String(candDate.getMonth() + 1).padStart(2, '0')}-${String(candDate.getDate()).padStart(2, '0')}`;
+        if (Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(candKey)) {
+          diff += 7;
+        } else if (diff === 0) {
           const status = getEventClosingTimeToday(ev, now);
           if (status.hasEnded) {
             diff = 7;
@@ -2484,6 +2510,68 @@ function formatCardDisplayTitle(rawTitle, ev) {
   return t;
 }
 
+function getTierMeta(name, price) {
+  const n = (name || '').toLowerCase();
+  let className = '';
+  let icon = '🎟️';
+
+  if (n.includes('student') || n.includes('under 30') || n.includes('under-30') || n.includes('under 35') || n.includes('ubc')) {
+    className = 'tier-student';
+    icon = '🎓';
+  } else if (n.includes('senior') || n.includes('concession') || n.includes('65+') || n.includes('alumni') || n.includes('staff')) {
+    className = 'tier-senior';
+    icon = '👵';
+  } else if (n.includes('youth') || n.includes('teen')) {
+    className = 'tier-youth';
+    icon = '🧒';
+  } else if (n.includes('child') || n.includes('preschool') || n.includes('kid')) {
+    className = 'tier-child';
+    icon = '🧸';
+  } else if (n.includes('adult') || n.includes('general') || n.includes('standard')) {
+    className = 'tier-adult';
+    icon = '🎟️';
+  } else if (n.includes('advance') || n.includes('early bird')) {
+    className = 'tier-advance';
+    icon = '⚡';
+  } else if (n.includes('door') || n.includes('rush')) {
+    className = 'tier-door';
+    icon = '🚪';
+  }
+
+  return { className, icon };
+}
+
+function renderAdmissionTiersHtml(ev) {
+  if (!Array.isArray(ev.tiers) || ev.tiers.length <= 1) {
+    return '';
+  }
+
+  const pillsHtml = ev.tiers.map(t => {
+    const meta = getTierMeta(t.name, t.price);
+    const valText = t.label || (t.price === 0 ? 'Free' : `$${Number(t.price).toFixed(2)}`);
+    const isFreeVal = t.price === 0 || valText.toLowerCase().includes('free');
+    return `
+      <span class="price-tier-tag ${meta.className}" title="${t.name}: ${valText}">
+        <span class="tier-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="tier-name">${t.name}</span><span class="tier-colon">:</span>
+        <strong class="tier-val ${isFreeVal ? 'tier-free' : ''}">${valText}</strong>
+      </span>
+    `;
+  }).join('');
+
+  return `
+    <div class="card-admission-rates">
+      <div class="admission-rates-header">
+        <span class="rates-header-icon" aria-hidden="true">🏷️</span>
+        <span>Admission Rates (${ev.tiers.length} Tiers)</span>
+      </div>
+      <div class="price-tiers-tags">
+        ${pillsHtml}
+      </div>
+    </div>
+  `;
+}
+
 function renderSingleEventCardHtml(ev) {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
@@ -2492,7 +2580,13 @@ function renderSingleEventCardHtml(ev) {
     const topDate = formatCardTopDate(ev);
     
     // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
-    const venueUrl = ev.venueUrl || (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
+    let venueUrl = ev.venueUrl;
+    if (!venueUrl || /ra\.co\/events\/\d+/i.test(venueUrl) || /residentadvisor\.net\/events\/\d+/i.test(venueUrl)) {
+      venueUrl = (typeof VENUE_URLS !== 'undefined' ? (VENUE_URLS[ev.venue] || VENUE_URLS[ev.venue.replace(/^(The\s+)/i, '')]) : null) || ev.raVenueUrl || null;
+    }
+    if (!venueUrl) {
+      venueUrl = (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
+    }
     const hasCoords = ev.coordinates && Array.isArray(ev.coordinates) && ev.coordinates.length >= 2;
     const gmapsUrl = hasCoords 
       ? `https://www.google.com/maps?q=${ev.coordinates[0]},${ev.coordinates[1]}+(${encodeURIComponent(ev.venue || 'Vancouver')})`
@@ -2651,20 +2745,13 @@ function renderSingleEventCardHtml(ev) {
       }
     }
 
-    const popoverHtml = tooltipText ? `
-      <span class="price-info-popover" title="${tooltipText.replace(/"/g, '&quot;')}" aria-label="Fee breakdown details">?</span>
-    ` : '';
 
-    // Pricing sub-details: Pricing tiers & pre-tax notices situated directly above the green price
-    const hasTiers = Boolean(ev.tiers && ev.tiers.length > 1);
+    // Pricing sub-details: Rich Admission Rates (Student, Adult, Senior, etc.) & pre-tax notices
+    const admissionRatesHtml = renderAdmissionTiersHtml(ev);
     const hasPreTax = Boolean(preTaxNoteHtml);
-    const subdetailsHtml = (hasTiers || hasPreTax) ? `
+    const subdetailsHtml = (admissionRatesHtml || hasPreTax) ? `
       <div class="card-price-subdetails">
-        ${hasTiers ? `
-          <div class="price-tiers-tags price-tiers-footer">
-            ${ev.tiers.map(t => `<span class="price-tier-tag">${t.name}: <strong>${t.label || ('$' + Number(t.price).toFixed(2))}</strong></span>`).join('')}
-          </div>
-        ` : ''}
+        ${admissionRatesHtml}
         ${preTaxNoteHtml}
       </div>
     ` : '';
@@ -2793,7 +2880,6 @@ function renderSingleEventCardHtml(ev) {
             <div class="price-box">
               <div class="price-breakdown-row">
                 <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
-                ${popoverHtml}
               </div>
             </div>
 

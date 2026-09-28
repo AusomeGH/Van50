@@ -1,0 +1,27 @@
+[
+  {
+    "provider_name": "Eventbrite",
+    "website_url": "https://www.eventbrite.ca",
+    "notes": "Standard ticketing; adds platform service fee + GST at checkout"
+  },
+  {
+    "provider_name": "Showpass",
+    "website_url": "https://www.showpass.com",
+    "notes": "Local Canadian ticketing; adds $2-$4 service fee"
+  },
+  {
+    "provider_name": "Ticketmaster",
+    "website_url": "https://www.ticketmaster.ca",
+    "notes": "Major venue vendor; significant facility and processing fees"
+  },
+  {
+    "provider_name": "ShowClix / PatronTechnology",
+    "website_url": "https://www.showclix.com",
+    "notes": "Common for arts & film festivals"
+  },
+  {
+    "provider_name": "Direct Venue Box Office",
+    "website_url": "Direct",
+    "notes": "No third-party fees; cash or debit at door"
+  }
+]

@@ -1165,29 +1165,142 @@
   justify-content: flex-end;
 }
 
+/* Card Price Sub-details & Admission Rates Container */
 .card-price-subdetails {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.card-admission-rates {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.admission-rates-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.rates-header-icon {
+  font-size: 0.75rem;
 }
 
 .price-tiers-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
 }
 
 .price-tier-tag {
-  font-size: 0.70rem;
-  opacity: 0.90;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  padding: 2px 7px;
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px 8px;
+  border-radius: 6px;
   color: var(--text-secondary);
-  white-space: nowrap;
+  line-height: 1.35;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.price-tier-tag .tier-icon {
+  font-size: 0.8rem;
+}
+
+.price-tier-tag .tier-name {
+  font-weight: 500;
+}
+
+.price-tier-tag .tier-colon {
+  opacity: 0.6;
+}
+
+.price-tier-tag strong.tier-val {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Demographic Tier Category Accents */
+.price-tier-tag.tier-student {
+  background: rgba(56, 189, 248, 0.10);
+  border-color: rgba(56, 189, 248, 0.28);
+  color: #bae6fd;
+}
+
+.price-tier-tag.tier-student strong.tier-val {
+  color: #38bdf8;
+}
+
+.price-tier-tag.tier-adult {
+  background: rgba(16, 185, 129, 0.10);
+  border-color: rgba(16, 185, 129, 0.28);
+  color: #a7f3d0;
+}
+
+.price-tier-tag.tier-adult strong.tier-val {
+  color: #34d399;
+}
+
+.price-tier-tag.tier-senior {
+  background: rgba(245, 158, 11, 0.10);
+  border-color: rgba(245, 158, 11, 0.28);
+  color: #fde68a;
+}
+
+.price-tier-tag.tier-senior strong.tier-val {
+  color: #fbbf24;
+}
+
+.price-tier-tag.tier-youth {
+  background: rgba(168, 85, 247, 0.10);
+  border-color: rgba(168, 85, 247, 0.28);
+  color: #e9d5ff;
+}
+
+.price-tier-tag.tier-youth strong.tier-val {
+  color: #c084fc;
+}
+
+.price-tier-tag.tier-child {
+  background: rgba(236, 72, 153, 0.10);
+  border-color: rgba(236, 72, 153, 0.28);
+  color: #fbcfe8;
+}
+
+.price-tier-tag.tier-child strong.tier-val {
+  color: #f472b6;
+}
+
+.price-tier-tag.tier-advance, .price-tier-tag.tier-door {
+  background: rgba(236, 72, 153, 0.10);
+  border-color: rgba(236, 72, 153, 0.28);
+  color: #fbcfe8;
+}
+
+.price-tier-tag.tier-advance strong.tier-val, .price-tier-tag.tier-door strong.tier-val {
+  color: #f472b6;
+}
+
+.price-tier-tag strong.tier-free {
+  color: #34d399 !important;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
 }
 
 .price-tier-tag strong {

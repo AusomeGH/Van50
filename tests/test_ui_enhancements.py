@@ -61,14 +61,13 @@ class TestUIEnhancements(unittest.TestCase):
             self.assertIn(f".category-{cat}", content, f"Missing .category-{cat} in css/components.css")
 
     def test_05_curator_approve_and_dismiss_with_ai_buttons(self):
-        """Curator cards and modal must have dedicated buttons for Approve and Instruct AI, and Dismiss and Instruct AI."""
+        """Curator cards and modal must have dedicated buttons for Antigravity review and dismissal without instant publishing."""
         curator_js_path = os.path.join(BASE_DIR, "js", "curator.js")
         with open(curator_js_path, "r", encoding="utf-8") as f:
             js_content = f.read()
 
         # Check card action buttons
         self.assertIn("btn-curator-ai-approve", js_content, "Missing btn-curator-ai-approve class in js/curator.js")
-        self.assertIn("Approve As-Is", js_content, "Missing Approve As-Is button text in js/curator.js")
         self.assertIn("Instruct AI", js_content, "Missing Instruct AI button text in js/curator.js")
 
         # Check modal buttons and handler support
@@ -80,9 +79,9 @@ class TestUIEnhancements(unittest.TestCase):
         with open(curator_html_path, "r", encoding="utf-8") as f:
             html_content = f.read()
 
-        self.assertIn("btn-submit-ai-inst-and-approve", html_content, "Missing approve button in curator.html")
+        self.assertNotIn("btn-submit-ai-inst-and-approve", html_content, "Instant approve button must be removed from curator.html")
         self.assertIn("btn-submit-ai-inst-and-dismiss", html_content, "Missing dismiss button in curator.html")
-        self.assertIn("Dismiss &amp; Instruct AI", html_content, "Missing Dismiss & Instruct AI text in curator.html")
+        self.assertIn("btn-submit-ai-inst-only", html_content, "Missing queue review button in curator.html")
 
     def test_06_today_and_category_badge_prominence(self):
         """Today and Category badges on cards must have enlarged font-sizes and enhanced padding."""

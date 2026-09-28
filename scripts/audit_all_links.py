@@ -437,13 +437,16 @@ def run_link_health_audit(
 
             # Check if event has concluded
             concluded, conc_reason = is_event_concluded(ev, now_dt)
-            if not concluded and issue_info and issue_info.get('isSoft404'):
+            if not concluded and issue_info:
                 r_lower = reason.lower()
-                if "event ended" in r_lower or "has ended" in r_lower or "expired" in r_lower:
+                if "event ended" in r_lower or "has ended" in r_lower or "expired" in r_lower or "zero active dates" in r_lower or "no active dates" in r_lower:
                     concluded = True
-                    conc_reason = "Ticketing platform confirmed event has ended"
+                    conc_reason = "Calendar or ticketing platform contains zero active dates / concluded season"
 
-            if concluded:
+            if eid in arch_ids_set or eid in existing_arch_ids:
+                # Already archived event should never be active or quarantined
+                continue
+            elif concluded:
                 # AUTO-ARCHIVE CONCLUDED EVENT
                 arch_copy = dict(ev)
                 arch_copy["archivedAt"] = now_iso

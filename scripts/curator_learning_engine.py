@@ -34,13 +34,20 @@ class CuratorLearningEngine:
         "private rentals", "exclusive for children", "exclusively for children",
         "merchandise page", "isn't for the event", "not for the event",
         "paused for fringe", "paused", "not in vancouver", "too expensive",
-        "exceeds $50", "strictly exceeds", "exclude and not added", "wrong location"
+        "exceeds $50", "strictly exceeds", "exclude and not added", "wrong location",
+        "over for the summer", "season over", "season is over", "done for the season", 
+        "finished for the summer", "no longer running", "over $50", "far too expensive",
+        "way above", "above $50", "above the $50 threshold"
     ]
 
     PROMOTION_KEYWORDS = [
-        "approved as-is", "verified price", "promote", "approved GA", "ticket price is $",
+        "approved as-is", "verified price", "promote", "approved ga", "ticket price is $",
         "cover is $", "looks good", "good to me", "under 50 bucks", "under $50", "approved",
-        "all good", "looks fine", "good to go", "valid"
+        "all good", "looks fine", "good to go", "valid",
+        "cheap tickets", "under the threshold", "under threshold", "tickets under",
+        "limited tickets are under", "tickets are under", "tickets under $50", "under $50.00",
+        "limited number of cheap", "has tickets under", "options under", "cheap",
+        "verified rate"
     ]
 
     @classmethod
@@ -145,22 +152,32 @@ class CuratorLearningEngine:
                 continue
 
             text = (inst.get("instructionText") or "").strip()
-            text_lower = text.lower()
+            curator_note = (inst.get("curatorNote") or "").strip()
+            full_text = f"{text} {curator_note}".strip()
+            text_lower = full_text.lower()
             ev_id = inst.get("eventId")
+            ev_title = inst.get("eventTitle") or ""
             venue_name = inst.get("venueName") or ""
             action = inst.get("action") or inst.get("actionTaken")
 
             stats["instructionsProcessed"] += 1
 
-            # A. Extract URLs and register deep links
-            urls = re.findall(r'https?://[^\s<>"]+', text)
+            # Determine whether this instruction targets a specific event or an entire venue
+            is_venue_inst = bool(
+                (ev_id and (ev_id.startswith("discovered-") or ev_id.startswith("pending-venue-") or ev_id.startswith("venue-"))) or
+                (not ev_id and venue_name) or
+                (ev_title.startswith("Venue:"))
+            )
+
+            # A. Extract URLs and register deep links (venue-level only)
+            urls = re.findall(r'https?://[^\s<>"]+', full_text)
             for u in urls:
                 clean_u = u.rstrip(".,;)")
-                if venue_name and "tickets" not in venue_name.lower():
+                if is_venue_inst and venue_name and "tickets" not in venue_name.lower():
                     deep_links[venue_name] = clean_u
                     stats["rulesAdded"] += 1
-                if "schedule" in clean_u or "shows" in clean_u or "events" in clean_u:
-                    if venue_name and venue_name not in deep_links:
+                elif any(kw in clean_u.lower() for kw in ["/events", "/schedule", "/shows", "/calendar"]):
+                    if venue_name and ("ticketmaster.com" not in clean_u and "ticketmaster.ca" not in clean_u):
                         deep_links[venue_name] = clean_u
 
             # B. Extract Blacklist Patterns from comments (e.g. PayPal, merchandise /shop)
@@ -205,33 +222,64 @@ class CuratorLearningEngine:
                 }
                 stats["rulesAdded"] += 1
 
-            # D. Find matching quarantined events
+            # D. Find matching events across quarantine, active catalog, AND archive (to support rescue/un-archive)
             matching_events = []
-            for qe in quarantined:
-                q_id = qe.get("id")
-                q_venue = (qe.get("venue") or "").lower()
-                q_title = (qe.get("title") or "").lower()
+            all_candidates = list(quarantined)
+            for ev in events_list:
+                if not any(c.get("id") == ev.get("id") for c in all_candidates):
+                    all_candidates.append(ev)
+            for ar in archived_list:
+                if not any(c.get("id") == ar.get("id") for c in all_candidates):
+                    all_candidates.append(ar)
+
+            for cand in all_candidates:
+                q_id = cand.get("id")
+                q_venue = (cand.get("venue") or "").lower()
+                q_title = (cand.get("title") or "").lower()
 
                 match = False
-                if ev_id and q_id == ev_id:
-                    match = True
-                elif venue_name and venue_name.lower() in q_venue:
-                    match = True
-                elif q_venue and q_venue in (venue_name.lower()):
-                    match = True
+                if is_venue_inst:
+                    # Venue-level matching applies to all events at venue
+                    if venue_name and venue_name.lower() in q_venue:
+                        match = True
+                    elif q_venue and venue_name and q_venue in venue_name.lower():
+                        match = True
+                else:
+                    # Specific event instruction: ONLY match the specific target event!
+                    if ev_id and q_id == ev_id:
+                        match = True
+                    elif ev_id and q_id and (ev_id in q_id or q_id in ev_id):
+                        match = True
+                    elif ev_title and ev_title.lower() == q_title:
+                        match = True
                 
-                if match and qe not in matching_events:
-                    matching_events.append(qe)
+                if match and cand not in matching_events:
+                    matching_events.append(cand)
 
             # E. Determine Triage Decision for matching events
             is_dismiss = action in ("queue_and_dismiss", "dismiss") or any(kw in text_lower for kw in cls.DISMISS_KEYWORDS)
             is_promote = not is_dismiss and (action in ("queue_and_approve", "approve") or any(kw in text_lower for kw in cls.PROMOTION_KEYWORDS))
+
+            # Extract price if explicitly mentioned in curator note or text (e.g. "Verified rate: $20.00 all-in")
+            curator_price_override = None
+            m_rate = re.search(r'(?:verified rate|rate|price|cover|tickets?)\s*(?:is|:)?\s*\$?(\d+(?:\.\d{2})?)', text_lower)
+            if m_rate:
+                try:
+                    c_p = float(m_rate.group(1))
+                    if 0.0 <= c_p <= 50.0:
+                        curator_price_override = c_p
+                except ValueError:
+                    pass
 
             # Check for Showpass or direct ticket link in promotion
             direct_showpass = next((u.rstrip(".,;)") for u in urls if "showpass.com" in u), None)
             
             for item in matching_events:
                 eid = item.get("id")
+                # GATED PROTOCOL: Never release or evict quarantined items without Antigravity review!
+                if any(q.get("id") == eid for q in quarantined) or item.get("reviewStatus") == "pending_antigravity_review":
+                    item["reviewStatus"] = "pending_antigravity_review"
+                    continue
                 
                 if is_promote:
                     # Promote to live catalog
@@ -239,14 +287,17 @@ class CuratorLearningEngine:
                         item["websiteUrl"] = direct_showpass
                     item["reviewStatus"] = "curator_approved"
                     item["promotedAt"] = now_iso
-                    item["curatorGuidance"] = text
+                    item["curatorGuidance"] = full_text
                     
                     # Ensure required event metadata fields are set
-                    price_val = float(item.get("attemptedPrice", item.get("price", 20.0)))
+                    if curator_price_override is not None:
+                        price_val = curator_price_override
+                    else:
+                        price_val = float(item.get("attemptedPrice", item.get("price", 20.0)))
                     item["price"] = price_val
                     item["isFree"] = price_val == 0
                     item["pricingType"] = "free" if price_val == 0 else "fixed"
-                    if not item.get("priceLabel"):
+                    if not item.get("priceLabel") or curator_price_override is not None:
                         item["priceLabel"] = "Free ($0)" if price_val == 0 else f"${price_val:.2f} all-in"
                     if not item.get("category"):
                         item["category"] = "shows"
@@ -260,6 +311,16 @@ class CuratorLearningEngine:
                         item["description"] = f"Live performance at {item.get('venue', 'Vancouver, BC')}."
                     if not item.get("ticketProvider"):
                         item["ticketProvider"] = "Curator Verified"
+
+                    # Lock checkout verification so crawler doesn't re-quarantine
+                    item["checkoutVerification"] = {
+                        "status": "verified_live",
+                        "method": "manual_curator_review",
+                        "verifiedTotal": price_val,
+                        "feeBreakdown": f"${price_val:.2f} CAD verified via Curator review",
+                        "verifiedAt": now_iso,
+                        "details": f"Approved by curator: {text[:100]}"
+                    }
 
                     # Ensure coordinates are set for map compliance
                     if not item.get("coordinates") or not isinstance(item.get("coordinates"), list) or len(item.get("coordinates")) != 2:
@@ -286,9 +347,15 @@ class CuratorLearningEngine:
                     # Archive event
                     item["archivedAt"] = now_iso
                     item["archivedReason"] = f"Curator guidance: {text}"
-                    item["reviewStatus"] = "dismissed_by_curator" if "sold out" not in text_lower else "sold_out"
-                    if "sold out" in text_lower:
+                    is_concluded = any(k in text_lower for k in ["over for the summer", "season over", "season is over", "concluded", "ended", "done for the season"])
+                    if is_concluded:
+                        item["reviewStatus"] = "concluded"
+                        item["isConcluded"] = True
+                    elif "sold out" in text_lower:
+                        item["reviewStatus"] = "sold_out"
                         item["isSoldOut"] = True
+                    else:
+                        item["reviewStatus"] = "dismissed_by_curator"
                     
                     # Add to archived_list if not present
                     if not any(a.get("id") == eid for a in archived_list):
@@ -296,6 +363,9 @@ class CuratorLearningEngine:
                     
                     archived_ids_set.add(eid)
                     stats["archived"] += 1
+
+            if is_dismiss and ev_id:
+                archived_ids_set.add(ev_id)
 
             # Mark instruction as applied
             inst["applied"] = True
@@ -366,12 +436,14 @@ class CuratorLearningEngine:
                         break
                 ev["coordinates"] = matched_coords or [49.2827, -123.1207]
 
-        # 3. Purge archived or promoted items from quarantined queue
+        # 3. Quarantined queue retention: NEVER evict items awaiting Antigravity review!
         archived_and_promoted_ids = {a.get("id") for a in archived_list} | {e.get("id") for e in events_list} | archived_ids_set
-        kept_quarantine = [
-            q for q in quarantined 
-            if q.get("id") not in archived_and_promoted_ids
-        ]
+        kept_quarantine = []
+        for q in quarantined:
+            if q.get("reviewStatus") == "pending_antigravity_review" or q.get("curatorAnnotation"):
+                kept_quarantine.append(q)
+            elif q.get("id") not in archived_and_promoted_ids:
+                kept_quarantine.append(q)
 
         # 4. Save updated manual_review_queue.json
         queue_data["quarantinedEvents"] = kept_quarantine

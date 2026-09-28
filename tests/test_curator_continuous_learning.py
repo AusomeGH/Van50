@@ -122,16 +122,17 @@ class TestCuratorContinuousLearning(unittest.TestCase):
         self.assertIn("Pending AI Queue Items", text)
 
     def test_03_ui_button_labels(self):
-        """curator.html and curator.js include 'Approve As-Is' and 'Instruct AI' button text."""
+        """curator.html and curator.js enforce Antigravity review protocol with no instant publish or full sync buttons."""
         with open(CURATOR_HTML_PATH, "r", encoding="utf-8") as f:
             html_content = f.read()
-        self.assertIn("🤖 Instruct AI", html_content)
-        self.assertIn("✅ Approve As-Is", html_content)
+        self.assertNotIn("btn-trigger-sync", html_content, "Full Sync button must be removed")
+        self.assertNotIn("btn-submit-ai-inst-and-approve", html_content, "Instant publish button must be removed")
+        self.assertIn("Queue for Antigravity Review", html_content)
 
         with open(CURATOR_JS_PATH, "r", encoding="utf-8") as f:
             js_content = f.read()
-        self.assertIn("✅ Approve As-Is", js_content)
-        self.assertIn("🤖 Instruct AI", js_content)
+        self.assertIn("Awaiting Antigravity Review", js_content)
+        self.assertIn("pending_antigravity_review", js_content)
 
 
 if __name__ == "__main__":

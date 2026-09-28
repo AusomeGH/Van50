@@ -164,23 +164,29 @@ class TestCuratorInstructionsAPI(unittest.TestCase):
         )
         res = json.loads(urllib.request.urlopen(req).read().decode("utf-8"))
         self.assertTrue(res["success"])
-        self.assertIn("approved", res["message"].lower())
+        self.assertIn("antigravity review", res["message"].lower())
 
-        # Verify event was added to events.json with curatorSnapshot
+        # GATED PROTOCOL: Verify event remains in manual_review_queue.json under pending_antigravity_review
+        with open(QUEUE_PATH, "r", encoding="utf-8") as f:
+            queue_db = json.load(f)
+        held_ev = next((e for e in queue_db["quarantinedEvents"] if e["id"] == test_ev_id), None)
+        self.assertIsNotNone(held_ev)
+        self.assertEqual(held_ev.get("reviewStatus"), "pending_antigravity_review")
+        self.assertIn("curatorAnnotation", held_ev)
+        ann = held_ev["curatorAnnotation"]
+        self.assertEqual(ann["userSuppliedPrice"], 25.0)
+        self.assertEqual(ann["note"], "Fix scraper to target General Admission tier.")
+
+        # Verify event was NOT leaked into events.json
         with open(EVENTS_PATH, "r", encoding="utf-8") as f:
             events_db = json.load(f)
-        approved_ev = next((e for e in events_db["events"] if e["id"] == test_ev_id), None)
-        self.assertIsNotNone(approved_ev)
-        self.assertEqual(approved_ev["price"], 25.0)
-        self.assertIn("curatorSnapshot", approved_ev["checkoutVerification"])
-        snap = approved_ev["checkoutVerification"]["curatorSnapshot"]
-        self.assertEqual(snap["approvedPrice"], 25.0)
-        self.assertEqual(snap["curatorNote"], "Curator verified door price")
+        leaked_ev = next((e for e in events_db.get("events", []) if e["id"] == test_ev_id), None)
+        self.assertIsNone(leaked_ev)
 
-        # Cleanup test event
-        events_db["events"] = [e for e in events_db["events"] if e["id"] != test_ev_id]
-        with open(EVENTS_PATH, "w", encoding="utf-8") as f:
-            json.dump(events_db, f, indent=2)
+        # Cleanup test event from queue
+        queue_db["quarantinedEvents"] = [e for e in queue_db["quarantinedEvents"] if e["id"] != test_ev_id]
+        with open(QUEUE_PATH, "w", encoding="utf-8") as f:
+            json.dump(queue_db, f, indent=2)
 
     def test_06_get_instructions_and_status_count(self):
         """GET /api/curator/instructions and status endpoint report pending counts."""

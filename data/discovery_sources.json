@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "1.2.0",
-    "updatedAt": "2026-09-10T15:00:00-07:00",
-    "totalSources": 22,
+    "version": "1.3.0",
+    "updatedAt": "2026-09-23T20:20:00-07:00",
+    "totalSources": 24,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -335,6 +335,36 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-civic-theatres",
+      "name": "Vancouver Civic Theatres",
+      "domain": "vancouvercivictheatres.com",
+      "eventsUrl": "https://vancouvercivictheatres.com/events/",
+      "apiUrl": "https://vancouvercivictheatres.com/umbraco/api/eventsListing/GetAllEvents/",
+      "type": "civic_venue_calendar",
+      "typeLabel": "Civic Performing Arts & Theatre Portal",
+      "focus": "Live theatre, musicals, opera, ballet, symphonic concerts, and comedy showcases at Queen Elizabeth Theatre, Orpheum, Annex, and Vancouver Playhouse",
+      "bestForCategories": ["shows", "music"],
+      "harvestMethod": "json_api_and_html",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Harvest live calendar from civic API and resolve outbound ticketing provider (Ticketmaster, VTix, AdmitOne, or box office). Strictly enforce <= $50 CAD cap.",
+      "status": "active"
+    },
+    {
+      "id": "broadway-across-canada",
+      "name": "Broadway Across Canada (Vancouver)",
+      "domain": "vancouver.broadway.com",
+      "eventsUrl": "https://vancouver.broadway.com/shows/",
+      "apiUrl": null,
+      "type": "theatrical_producer_portal",
+      "typeLabel": "National Theatrical Touring Directory",
+      "focus": "Touring Broadway musicals and major theatrical spectacles hosted at Queen Elizabeth Theatre",
+      "bestForCategories": ["shows"],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Scan touring show calendar at Queen Elizabeth Theatre; resolve ticket link to Ticketmaster or Broadway box office. Flag or filter tiers > $50 CAD.",
       "status": "active"
     }
   ]

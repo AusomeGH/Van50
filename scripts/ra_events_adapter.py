@@ -45,6 +45,27 @@ KNOWN_VENUE_COORDS = {
     "The Biltmore Cabaret": ([49.2605, -123.1009], "2755 Prince Edward St, Vancouver", "Mount Pleasant")
 }
 
+KNOWN_VENUE_WEBSITES = {
+    "Hero's Welcome": "https://heros-welcome.com/",
+    "Village Studios": "https://villagestudios.life/",
+    "Celebrities Night Club": "https://celebritiesnightclub.com/",
+    "Celebrities Nightclub": "https://celebritiesnightclub.com/",
+    "The American": "https://theamerican.bar/",
+    "Bleach Listening Room": "https://bleachstudios.xyz/",
+    "Fortune Sound Club": "https://fortunesoundclub.com/",
+    "The Pearl": "https://thepearlvancouver.com/",
+    "The Birdhouse": "https://thebirdhouse.ca/",
+    "The Red Room": "https://redroomvancouver.com/",
+    "The Rickshaw Theatre": "https://rickshawtheatre.com/",
+    "Rickshaw Theatre": "https://rickshawtheatre.com/",
+    "The Fox Cabaret": "https://www.foxcabaret.com/",
+    "The Biltmore Cabaret": "https://biltmorecabaret.com/",
+    "33 Acres Brewing Company": "https://33acresbrewing.com/",
+    "The Astoria": "https://astoriahotel.ca/",
+    "The Lido": "https://ra.co/clubs/107753",
+    "Platform9": "https://ra.co/clubs/207030",
+}
+
 class ResidentAdvisorAdapter:
     """Live harvester for Resident Advisor Vancouver events."""
 
@@ -69,6 +90,7 @@ class ResidentAdvisorAdapter:
                   id
                   name
                   address
+                  contentUrl
                 }
                 artists {
                   id
@@ -199,6 +221,22 @@ class ResidentAdvisorAdapter:
             # Generate unique deterministic slug ID
             slug_base = re.sub(r'[^a-z0-9]+', '-', f"ra-{ev.get('id')}-{v_name}").strip('-').lower()
 
+            # Resolve authentic venue website or RA club page (never link venue to event page)
+            venue_site_url = KNOWN_VENUE_WEBSITES.get(v_name)
+            if not venue_site_url:
+                for k_name, k_url in KNOWN_VENUE_WEBSITES.items():
+                    if k_name.lower() in v_name.lower() or v_name.lower() in k_name.lower():
+                        venue_site_url = k_url
+                        break
+            if not venue_site_url:
+                if v_obj.get("contentUrl"):
+                    v_url_slug = v_obj["contentUrl"]
+                    venue_site_url = f"https://ra.co{v_url_slug}" if v_url_slug.startswith("/") else f"https://ra.co/{v_url_slug}"
+                elif v_obj.get("id"):
+                    venue_site_url = f"https://ra.co/clubs/{v_obj['id']}"
+                else:
+                    venue_site_url = "https://ra.co/events/ca/vancouver"
+
             record = {
                 "id": slug_base,
                 "title": ev.get("title").strip(),
@@ -229,7 +267,7 @@ class ResidentAdvisorAdapter:
                 "confirmedDates": [confirmed_date] if confirmed_date else [],
                 "isSoldOut": False,
                 "websiteUrl": f"https://ra.co{ev.get('contentUrl')}",
-                "venueUrl": f"https://ra.co{ev.get('contentUrl')}",
+                "venueUrl": venue_site_url,
                 "provider": "Resident Advisor",
                 "semanticProvider": "Resident Advisor Verified",
                 "ticketProvider": "Resident Advisor Verified",

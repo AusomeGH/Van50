@@ -403,6 +403,102 @@ class UniversalVenueCrawler:
         }
 
     @classmethod
+    def parse_vancouver_civic_theatres(cls, venue_meta: dict) -> list:
+        """Extracts upcoming events at Queen Elizabeth Theatre from Vancouver Civic Theatres JSON API."""
+        api_url = "https://vancouvercivictheatres.com/umbraco/api/eventsListing/GetAllEvents/"
+        html_or_json = fetch_html(api_url, timeout=10)
+        events = []
+        if not html_or_json:
+            return events
+        try:
+            data = json.loads(html_or_json)
+            now_str = datetime.now().strftime("%Y-%m-%d")
+            for d in data:
+                if 'queen elizabeth' not in str(d.get('venue', '')).lower():
+                    continue
+                end_d = str(d.get('endDate') or d.get('startDate') or '')
+                if end_d < now_str:
+                    continue
+                title = (d.get('title') or '').strip()
+                if not title or len(title) < 3:
+                    continue
+                det_url = urljoin("https://vancouvercivictheatres.com", d.get('details_url', ''))
+                t_url = d.get('tickets_url') or det_url
+                start_iso = f"{d.get('startDate')}T19:30:00-07:00" if d.get('startDate') else None
+                end_iso = f"{d.get('endDate')}T22:00:00-07:00" if d.get('endDate') else None
+                confirmed_dates = []
+                if d.get('startDate'):
+                    confirmed_dates.append(d['startDate'])
+                    if d.get('endDate') and d['endDate'] != d['startDate']:
+                        confirmed_dates.append(d['endDate'])
+                events.append({
+                    "title": title,
+                    "ticketUrl": t_url,
+                    "venueSubpageUrl": det_url,
+                    "dateStr": d.get('dateRange') or d.get('startDate', ''),
+                    "startIso": start_iso,
+                    "endIso": end_iso,
+                    "confirmedDates": confirmed_dates,
+                    "description": d.get('description', ''),
+                    "isInternal": False,
+                    "detection": "civic_theatres_api"
+                })
+        except Exception as e:
+            print(f"[CRAWLER ERROR] Failed to parse Vancouver Civic Theatres API: {e}")
+        return events
+
+    @classmethod
+    def parse_broadway_vancouver(cls, venue_meta: dict) -> list:
+        """Extracts touring Broadway productions playing at Queen Elizabeth Theatre from Broadway in Vancouver."""
+        calendar_url = "https://vancouver.broadway.com/shows/"
+        html = fetch_html(calendar_url, timeout=10)
+        events = []
+        if not html:
+            return events
+        try:
+            soup = BeautifulSoup(html, 'html.parser')
+            seen = set()
+            for a in soup.find_all('a', href=True):
+                href = a['href']
+                if '/shows/' in href and href != '/shows/' and not href.endswith('/shows/') and '#' not in href:
+                    raw_title = a.get_text(strip=True)
+                    if not raw_title or len(raw_title) < 3 or raw_title.lower() in ['learn more', 'shows', 'subscribe']:
+                        continue
+                    if 'on sale' in raw_title.lower():
+                        continue
+                    if raw_title in seen:
+                        continue
+                    seen.add(raw_title)
+
+                    full_show_url = urljoin(calendar_url, href)
+                    show_html = fetch_html(full_show_url, timeout=8)
+                    ticket_url = full_show_url
+                    show_desc = f"Broadway Across Canada touring production of {raw_title} at Queen Elizabeth Theatre."
+                    date_str = ""
+                    if show_html:
+                        sub_soup = BeautifulSoup(show_html, 'html.parser')
+                        for sa in sub_soup.find_all('a', href=True):
+                            if 'ticketmaster' in sa.get('href', '').lower() or 'buy tickets' in sa.get_text(strip=True).lower():
+                                ticket_url = sa['href']
+                                break
+                        m_date = re.search(r'([A-Z][a-z]{2}\s+\d+\s*[-–]\s*(?:[A-Z][a-z]{2}\s+)?\d+,\s*202\d)', show_html)
+                        if m_date:
+                            date_str = m_date.group(1)
+
+                    events.append({
+                        "title": f"Broadway Across Canada: {raw_title}",
+                        "ticketUrl": ticket_url,
+                        "venueSubpageUrl": full_show_url,
+                        "dateStr": date_str or "Upcoming Broadway Season",
+                        "description": show_desc,
+                        "isInternal": False,
+                        "detection": "broadway_across_canada"
+                    })
+        except Exception as e:
+            print(f"[CRAWLER ERROR] Failed to parse Broadway Vancouver: {e}")
+        return events
+
+    @classmethod
     def crawl_venue(cls, venue_name: str, venue_meta: dict, max_candidates: int = 15) -> list:
         """Crawls a single venue's calendar and returns candidate event items."""
         calendar_url = venue_meta.get('calendarUrl')
@@ -418,20 +514,29 @@ class UniversalVenueCrawler:
         soup = BeautifulSoup(html, 'html.parser')
         raw_candidates = []
 
-        # 1. Try Squarespace Eventlist
-        sqs_events = cls.parse_squarespace_events(soup, calendar_url)
-        if sqs_events:
-            raw_candidates.extend(sqs_events)
+        # 0. Specialized high-fidelity parser for Vancouver Civic Theatres & Broadway Across Canada
+        if venue_name == "Queen Elizabeth Theatre" or "vancouvercivictheatres.com" in calendar_url:
+            civic_events = cls.parse_vancouver_civic_theatres(venue_meta)
+            broadway_events = cls.parse_broadway_vancouver(venue_meta)
+            for be in broadway_events:
+                if not any(be['title'].lower() in ce['title'].lower() or ce['title'].lower() in be['title'].lower() for ce in civic_events):
+                    civic_events.append(be)
+            raw_candidates.extend(civic_events)
         else:
-            # 2. Try Schema.org JSON-LD
-            schema_events = cls.parse_schema_jsonld(soup, calendar_url)
-            raw_candidates.extend(schema_events)
+            # 1. Try Squarespace Eventlist
+            sqs_events = cls.parse_squarespace_events(soup, calendar_url)
+            if sqs_events:
+                raw_candidates.extend(sqs_events)
+            else:
+                # 2. Try Schema.org JSON-LD
+                schema_events = cls.parse_schema_jsonld(soup, calendar_url)
+                raw_candidates.extend(schema_events)
 
-            # 3. Try DOM Outbound Link Heuristics
-            dom_events = cls.parse_dom_links(soup, calendar_url)
-            for de in dom_events:
-                if not any(de['title'].lower() in sc['title'].lower() for sc in raw_candidates):
-                    raw_candidates.append(de)
+                # 3. Try DOM Outbound Link Heuristics
+                dom_events = cls.parse_dom_links(soup, calendar_url)
+                for de in dom_events:
+                    if not any(de['title'].lower() in sc['title'].lower() for sc in raw_candidates):
+                        raw_candidates.append(de)
 
         candidates = []
         for cand in raw_candidates[:max_candidates]:

@@ -1,0 +1,586 @@
+[
+  {
+    "venue_name": "Stanley Park Seawall",
+    "website_url": "",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "full_address": "Georgia St & Park Dr, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Lynn Canyon Park",
+    "website_url": "",
+    "calendar_url": "https://ecologycentre.ca",
+    "full_address": "3663 Park Rd, North Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": ""
+  },
+  {
+    "venue_name": "Granville Island Public Market",
+    "website_url": "",
+    "calendar_url": "https://granvilleisland.com/public-market",
+    "full_address": "1689 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
+    "website_url": "",
+    "calendar_url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "full_address": "2300 Cornwall Ave, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "VPL Central Library (Level 9)",
+    "website_url": "",
+    "calendar_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "full_address": "350 W Georgia St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Dr. Sun Yat-Sen Public Courtyard",
+    "website_url": "",
+    "calendar_url": "https://vancouverchinesegarden.com/visit/",
+    "full_address": "578 Carrall St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "UBC Rose Garden & Trail 6",
+    "website_url": "",
+    "calendar_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "full_address": "6301 NW Marine Dr, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Queen Elizabeth Park",
+    "website_url": "",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "full_address": "4600 Cambie St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Little Mountain Gallery",
+    "website_url": "",
+    "calendar_url": "https://littlemountaingallery.ca/events",
+    "full_address": "110 Water St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Bloedel Conservatory",
+    "website_url": "",
+    "calendar_url": "https://www.showpass.com/o/bloedel-conservatory/",
+    "full_address": "4600 Cambie St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "War Memorial Gym & Thunderbird Stadium",
+    "website_url": "",
+    "calendar_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "full_address": "6081 University Blvd, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Chill x Studio",
+    "website_url": "",
+    "calendar_url": "https://chillxstudio.com",
+    "full_address": "1227 Richards St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "VIFF Centre (Seymour Atrium)",
+    "website_url": "",
+    "calendar_url": "https://viff.org/whats-on/",
+    "full_address": "1181 Seymour St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Cinematheque",
+    "website_url": "",
+    "calendar_url": "https://thecinematheque.ca/films/calendar",
+    "full_address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Portside Pub",
+    "website_url": "",
+    "calendar_url": "https://theportsidepub.com/bookings/",
+    "full_address": "7 Alexander St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Rio Theatre",
+    "website_url": "",
+    "calendar_url": "https://riotheatre.ca/calendar/",
+    "full_address": "1660 E Broadway, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Fox Cabaret",
+    "website_url": "",
+    "calendar_url": "https://www.foxcabaret.com/",
+    "full_address": "2321 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Biltmore Cabaret",
+    "website_url": "",
+    "calendar_url": "https://biltmorecabaret.com/",
+    "full_address": "2755 Prince Edward St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Scotiabank Field at Nat Bailey Stadium",
+    "website_url": "",
+    "calendar_url": "https://www.milb.com/vancouver/schedule",
+    "full_address": "4601 Ontario St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Revue Stage Granville Island",
+    "website_url": "",
+    "calendar_url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "full_address": "1601 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "Tightrope Impro Theatre",
+    "website_url": "",
+    "calendar_url": "https://tightropetheatre.com/shows",
+    "full_address": "1330 Napier St, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Improv Centre",
+    "website_url": "",
+    "calendar_url": "https://theimprovcentre.ca/shows/",
+    "full_address": "1502 Duranleau St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "The Rickshaw Theatre",
+    "website_url": "",
+    "calendar_url": "https://rickshawtheatre.com/events/",
+    "full_address": "254 E Hastings St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Science World at TELUS World of Science",
+    "website_url": "",
+    "calendar_url": "https://www.scienceworld.ca/after-dark/",
+    "full_address": "1455 Quebec St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "The Orpheum Theatre",
+    "website_url": "",
+    "calendar_url": "https://www.vancouversymphony.ca/concerts/",
+    "full_address": "601 Smithe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Pizzeria Ludica",
+    "website_url": "",
+    "calendar_url": "https://www.pizzerialudica.com/",
+    "full_address": "189 Keefer Pl, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Stanley Park Pitch & Putt",
+    "website_url": "",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "full_address": "2099 Beach Ave, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Vancouver Art Gallery",
+    "website_url": "",
+    "calendar_url": "https://www.vanartgallery.bc.ca/visit/",
+    "full_address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Shipyards District",
+    "website_url": "",
+    "calendar_url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "full_address": "125 Victory Ship Way, North Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": ""
+  },
+  {
+    "venue_name": "Kitsilano Beach Park",
+    "website_url": "",
+    "calendar_url": "https://kitsilanoshowboat.com/",
+    "full_address": "1499 Arbutus St, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Commercial Drive & Main Street",
+    "website_url": "",
+    "calendar_url": "https://www.carfreevancouver.org",
+    "full_address": "Commercial Dr & Main St, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "West 4th Avenue (Burrard to Macdonald)",
+    "website_url": "",
+    "calendar_url": "https://khatsahlano.ca",
+    "full_address": "West 4th Ave, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "John Hendry Park (Trout Lake)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/trout-lake/",
+    "full_address": "3360 Victoria Dr, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Kitsilano Community Centre Plaza",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/kitsilano/",
+    "full_address": "2690 Larch St, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Guilt & Co.",
+    "website_url": "",
+    "calendar_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "full_address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "UBC Instructional Resources Centre (IRC)",
+    "website_url": "",
+    "calendar_url": "https://vaninstitute.ca",
+    "full_address": "2194 Health Sciences Mall, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Colony Main Street",
+    "website_url": "",
+    "calendar_url": "https://iq2000trivia.com",
+    "full_address": "2904 Main St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "RUNVAN Clubhouse & Seawall",
+    "website_url": "",
+    "calendar_url": "https://runvan.org",
+    "full_address": "1288 W Georgia St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/riley-park/",
+    "full_address": "4601 Ontario St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Nelson Park (West End)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/west-end/",
+    "full_address": "1100 Comox St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Dude Chilling Park (Guelph Park)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/mount-pleasant/",
+    "full_address": "2390 Brunswick St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Vancouver Art Gallery Plaza (North)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/downtown/",
+    "full_address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Concord Community Park (False Creek)",
+    "website_url": "",
+    "calendar_url": "https://eatlocal.org/markets/false-creek/",
+    "full_address": "50 Pacific Blvd, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "UBC Farm (South Campus)",
+    "website_url": "",
+    "calendar_url": "https://ubcfarm.ubc.ca/markets/",
+    "full_address": "3461 Ross Dr, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "2nd Floor Gastown",
+    "website_url": "",
+    "calendar_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "full_address": "300 Water St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Frankie's Jazz Club",
+    "website_url": "",
+    "calendar_url": "https://frankiesjazzclub.com",
+    "full_address": "755 Beatty St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The WISE Hall & Lounge",
+    "website_url": "",
+    "calendar_url": "https://wisehall.ca",
+    "full_address": "1882 Adanac St, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Anza Club",
+    "website_url": "",
+    "calendar_url": "https://anzaclub.org",
+    "full_address": "3 W 8th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Red Gate Arts Society",
+    "website_url": "",
+    "calendar_url": "https://redgate.tv/tickets/",
+    "full_address": "1151 E Hastings St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "LanaLou's",
+    "website_url": "",
+    "calendar_url": "https://lanalous.com",
+    "full_address": "362 Powell St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Roxy Cabaret",
+    "website_url": "",
+    "calendar_url": "https://roxyvan.com/events",
+    "full_address": "932 Granville St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Café au Clay Studios",
+    "website_url": "",
+    "calendar_url": "https://cafeauclay.com/products/drop-in-pottery-painting",
+    "full_address": "1612 W 3rd Ave, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "Basic Inquiry Life Drawing Society",
+    "website_url": "",
+    "calendar_url": "https://lifedrawing.org/sessions",
+    "full_address": "1011 Main St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Hand Eye Ceramics",
+    "website_url": "",
+    "calendar_url": "https://handeyeceramics.com/open-studio",
+    "full_address": "2202 Clark Dr, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Claymates Ceramics Studio",
+    "website_url": "",
+    "calendar_url": "https://claymatesceramicsstudio.com",
+    "full_address": "1268 E Hastings St, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Slice of Life Gallery & Studios",
+    "website_url": "",
+    "calendar_url": "https://www.slicevancouver.ca/events",
+    "full_address": "1636 Venables St, Vancouver",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Public Disco Society",
+    "website_url": "",
+    "calendar_url": "https://publicdisco.ca/events",
+    "full_address": "Bentall Centre Dunsmuir Plaza (Roving / Open-Air & Club)",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Bentall Centre Dunsmuir Plaza",
+    "website_url": "",
+    "calendar_url": "https://publicdisco.ca/events",
+    "full_address": "1055 Dunsmuir St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "The Birdhouse",
+    "website_url": "",
+    "calendar_url": "https://publicdisco.ca/events",
+    "full_address": "44 W 4th Ave, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Shipyards Waterfront",
+    "website_url": "",
+    "calendar_url": "https://publicdisco.ca/events",
+    "full_address": "125 Victory Ship Way, North Vancouver, BC",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": ""
+  },
+  {
+    "venue_name": "Hollywood Theatre",
+    "website_url": "",
+    "calendar_url": "https://www.ticketmaster.ca/event/110064638F595700",
+    "full_address": "3123 W Broadway, Vancouver, BC",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": ""
+  },
+  {
+    "venue_name": "Rickshaw Theatre",
+    "website_url": "",
+    "calendar_url": "https://rickshawtheatre.com/",
+    "full_address": "254 E Hastings St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Waterfront Theatre",
+    "website_url": "",
+    "calendar_url": "https://www.carouseltheatre.ca/waterfront-theatre/",
+    "full_address": "1412 Cartwright St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "description": ""
+  },
+  {
+    "venue_name": "The Waldorf",
+    "website_url": "",
+    "calendar_url": "https://atthewaldorf.com/events",
+    "full_address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "The Cobalt",
+    "website_url": "",
+    "calendar_url": "https://thecobalt.ca/events",
+    "full_address": "917 Main St, Vancouver, BC V6A 2V8",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Carousel Theatre",
+    "website_url": "",
+    "calendar_url": "https://vancouverfringe.com/shows/",
+    "full_address": "Carousel Theatre, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Commercial Drive",
+    "website_url": "",
+    "calendar_url": "https://www.carfreevancouver.org",
+    "full_address": "Commercial Drive, Vancouver, BC",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Main Street",
+    "website_url": "",
+    "calendar_url": "https://www.carfreevancouver.org",
+    "full_address": "Main Street, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Touchstone Theatre",
+    "website_url": "",
+    "calendar_url": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+    "full_address": "Touchstone Theatre, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  },
+  {
+    "venue_name": "Queen Elizabeth Park Pitch & Putt",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+    "calendar_url": "",
+    "full_address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Rupert Park Pitch & Putt",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+    "calendar_url": "",
+    "full_address": "3402 Charles St, Vancouver, BC",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": ""
+  },
+  {
+    "venue_name": "Central Park Pitch & Putt",
+    "website_url": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+    "calendar_url": "",
+    "full_address": "Kingsway & Boundary Rd, Central Park, Vancouver/Burnaby, BC",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": ""
+  },
+  {
+    "venue_name": "Queen Elizabeth Theatre",
+    "website_url": "",
+    "calendar_url": "https://vancouvercivictheatres.com/events/",
+    "full_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": ""
+  }
+]
