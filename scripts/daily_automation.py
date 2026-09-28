@@ -29,7 +29,7 @@ QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 STATUS_PATH = os.path.join(DATA_DIR, "automation_status.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
-from gemini_event_scout import get_gemini_api_key, run_gemini_scouting_cycle, sync_master_catalogs
+from gemini_event_scout import get_gemini_api_key, run_full_gemini_scouting_pipeline, run_gemini_scouting_cycle, sync_master_catalogs
 from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
 
@@ -166,21 +166,25 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     # Step 1: Safety Backup
     backup_file = create_safety_backup(log_file_path)
 
-    # Step 2: Run Gemini AI Autonomous Event Scout (Live Search Grounding + Fee Computation)
+    # Step 2: Run 6-File Gemini AI Autonomous Event Pipeline
     update_automation_status({"currentStep": "gemini_ai_scout"})
-    log_message("[PIPELINE STEP 1/2] Invoking Gemini AI Autonomous Event Scout...", log_file_path)
+    log_message("[PIPELINE STEP 1/2] Invoking Gemini AI 6-File Autonomous Pipeline...", log_file_path)
     
     scout_ok = False
     try:
         api_key = get_gemini_api_key()
         if api_key:
-            log_message("[GEMINI SCOUT] API key detected. Running autonomous discovery cycle with search grounding...", log_file_path)
-            structured_data = run_gemini_scouting_cycle(api_key)
-            if not dry_run:
-                sync_master_catalogs(structured_data)
-                scout_ok = True
-                scouted_count = len(structured_data.get("events_active", []))
-                log_message(f"[GEMINI SCOUT SUCCESS] Scouted and synchronized {scouted_count} events under $50 CAD.", log_file_path)
+            log_message("[GEMINI PIPELINE] API key detected. Running 6-file autonomous audit and discovery...", log_file_path)
+            pipeline_result = run_full_gemini_scouting_pipeline(api_key, audit_events=True)
+            scout_ok = True
+            scouted_count = len(pipeline_result.get("structured_data", {}).get("events_active", []))
+            audit_res = pipeline_result.get("audit_results", {})
+            log_message(
+                f"[GEMINI PIPELINE SUCCESS] Scouted {scouted_count} events under $50 CAD. "
+                f"Audit: {audit_res.get('verified', 0)} verified, {audit_res.get('updated', 0)} updated, "
+                f"{audit_res.get('archived', 0)} archived, {audit_res.get('quarantined', 0)} quarantined.",
+                log_file_path
+            )
             # Follow-up auto-triage check to ensure freshly crawled items respect curator guidance
             CuratorLearningEngine.process_pending_feedback()
         else:

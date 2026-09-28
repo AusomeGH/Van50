@@ -33,6 +33,7 @@ VENUES_JSON = os.path.join(DATA_DIR, "venues.json")
 FESTIVALS_JSON = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_JSON = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_JSON = os.path.join(DATA_DIR, "discovery_sources.json")
+ORGANIZERS_JSON = os.path.join(DATA_DIR, "organizers_directory.json")
 
 
 
@@ -244,39 +245,459 @@ Output MUST be a single, valid JSON object with the following schema:
     return None
 
 
-def run_gemini_scouting_cycle(api_key: str) -> Dict[str, Any]:
+def call_gemini_direct_json(prompt: str, api_key: str, model: str = "gemini-3.8-flash") -> Optional[Dict[str, Any]]:
+    """Calls Gemini REST API directly with responseMimeType: application/json."""
+    import urllib.request
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    payload = {
+        "contents": [
+            {"parts": [{"text": prompt}]}
+        ],
+        "generationConfig": {
+            "temperature": 0.1,
+            "responseMimeType": "application/json"
+        }
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            candidates = data.get("candidates", [])
+            if candidates:
+                part_text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                clean_json = re.sub(r"^```json\s*", "", part_text.strip())
+                clean_json = re.sub(r"\s*```$", "", clean_json)
+                return json.loads(clean_json)
+    except Exception as e:
+        print(f"[ERROR] Direct JSON call failed: {e}")
+    return None
+
+
+def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[str, Any]:
     """
-    Executes discovery search across top Vancouver sources via Gemini Search Grounding.
+    1. events.json:
+    - Double checks all details and links and ensures they are correct, or corrects them.
+    - If the AI can't figure it out, flags it for the curator and adds it to the Quarantine.
+    - If the event has ended/concluded, moves it to events_archive.json.
     """
     today_str = datetime.now().strftime("%Y-%m-%d")
-    queries = [
-        "Upcoming events concerts comedy shows things to do in Vancouver BC under 50 CAD schedule dates prices tickets",
-        "Vancouver indie concerts live music comedy theater tickets under 50 CAD schedule Little Mountain Gallery Rio Theatre Fox Cabaret Rickshaw The Pearl WISE Hall",
-        "Upcoming community festivals free events art exhibitions Vancouver Metro Vancouver schedule dates"
+    results = {"verified": 0, "updated": 0, "archived": 0, "quarantined": 0}
+
+    if not os.path.exists(EVENTS_JSON):
+        return results
+
+    with open(EVENTS_JSON, "r", encoding="utf-8") as f:
+        events = json.load(f)
+
+    archived_events = []
+    if os.path.exists(EVENTS_ARCHIVE_JSON):
+        try:
+            with open(EVENTS_ARCHIVE_JSON, "r", encoding="utf-8") as f:
+                archived_events = json.load(f)
+        except Exception:
+            pass
+
+    queue_data = {
+        "metadata": {
+            "version": "1.0.0",
+            "updatedAt": today_str,
+            "pendingCount": 0,
+            "description": "Events quarantined for manual curator review due to ambiguous status, unverified checkout pricing, or unresolvable links."
+        },
+        "quarantinedEvents": []
+    }
+    if os.path.exists(QUEUE_PATH):
+        try:
+            with open(QUEUE_PATH, "r", encoding="utf-8") as f:
+                queue_data = json.load(f)
+        except Exception:
+            pass
+    quarantined = queue_data.get("quarantinedEvents", [])
+    quarantine_ids = {q.get("id") or q.get("event_id") for q in quarantined}
+
+    updated_events = []
+    checked_count = 0
+
+    print(f"[AUDIT: events.json] Inspecting {len(events)} active events against today's date ({today_str})...")
+
+    for ev in events:
+        eid = ev.get("event_id")
+        title = ev.get("event_name", "")
+        venue = ev.get("venue_name", "")
+        url = ev.get("ticket_url") or ev.get("details_url") or ev.get("discovery_url") or ""
+
+        # Check showing dates
+        s3 = (ev.get("show_3") or {}).get("date")
+        s2 = (ev.get("show_2") or {}).get("date")
+        s1 = (ev.get("show_1") or {}).get("date")
+        last_date = s3 or s2 or s1
+
+        # Automatic expiration check: date is strictly in the past
+        if last_date and last_date < today_str:
+            print(f"[AUDIT: ARCHIVE] Event '{title}' concluded on {last_date}. Moving to archive.")
+            archived_events.append({
+                "event_id": eid,
+                "event_name": title,
+                "category": ev.get("category", "General"),
+                "venue_name": venue,
+                "full_address": ev.get("full_address", "Vancouver, BC"),
+                "neighborhood": ev.get("neighborhood", "Vancouver"),
+                "description": ev.get("description", ""),
+                "attempted_price_cad": (ev.get("pricing_all_in_cad") or {}).get("regular", 0.0),
+                "discovery_url": url,
+                "archive_reason": f"AI Audit: Event date {last_date} has concluded",
+                "archived_at": today_str
+            })
+            results["archived"] += 1
+            continue
+
+        # AI live verification for active events up to max_check
+        if max_check is None or checked_count < max_check:
+            checked_count += 1
+            cost = (ev.get("pricing_all_in_cad") or {}).get("regular", 0.0)
+            print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...")
+
+            search_prompt = (
+                f"Search Google for current live event details for Vancouver event: "
+                f"'{title}' at '{venue}' (URL: '{url}', Date: '{last_date}', Stated Price: ${cost} CAD). "
+                f"Determine:\n"
+                f"1. Is this event still valid, active, and upcoming?\n"
+                f"2. Are the date, start time, and pricing <= $50 CAD accurate, or should they be updated?\n"
+                f"3. Is the official URL active, or is there an updated direct link?\n"
+                f"4. Can this event be verified, or is it unresolvable / dead link with no replacement?"
+            )
+            search_res = call_gemini_with_search(search_prompt, api_key)
+            if search_res:
+                dec_prompt = f"""
+You are the Van50 Event Auditor. Today is {today_str}.
+Analyze the live web research for event '{title}' at '{venue}':
+
+RESEARCH:
+{search_res}
+
+RULES:
+- "VALID": Event is confirmed active with accurate details under $50 CAD.
+- "UPDATE": Event is active, but dates, start times, price, or official URL should be updated.
+- "CONCLUDED": Event or season has ended, move to archive.
+- "CANNOT_FIGURE_OUT": Official page is dead/missing, event status is ambiguous/unresolvable, or pricing exceeds $50. Flag for curator review in quarantine.
+
+Return strict JSON:
+{{
+  "decision": "VALID | UPDATE | CONCLUDED | CANNOT_FIGURE_OUT",
+  "reason": "Clear explanation of finding",
+  "updated_date": "YYYY-MM-DD or null",
+  "updated_start_time": "HH:MM or null",
+  "updated_cost": 0.0,
+  "updated_url": "URL or null"
+}}
+"""
+                dec_data = call_gemini_direct_json(dec_prompt, api_key)
+                if dec_data:
+                    dec = dec_data.get("decision", "VALID")
+                    reason = dec_data.get("reason", "No reason provided")
+
+                    if dec == "CONCLUDED":
+                        print(f"  ✓ Concluded: {reason}")
+                        archived_events.append({
+                            "event_id": eid,
+                            "event_name": title,
+                            "category": ev.get("category", "General"),
+                            "venue_name": venue,
+                            "full_address": ev.get("full_address", "Vancouver, BC"),
+                            "neighborhood": ev.get("neighborhood", "Vancouver"),
+                            "description": ev.get("description", ""),
+                            "attempted_price_cad": cost,
+                            "discovery_url": url,
+                            "archive_reason": f"AI Audit: {reason}",
+                            "archived_at": today_str
+                        })
+                        results["archived"] += 1
+                        continue
+
+                    elif dec == "CANNOT_FIGURE_OUT":
+                        print(f"  ⚠️ Cannot figure out: {reason}. Flagging for curator in quarantine.")
+                        if eid not in quarantine_ids:
+                            quarantined.append({
+                                "id": eid,
+                                "title": title,
+                                "artist": ev.get("artist") or title,
+                                "venue": venue,
+                                "address": ev.get("full_address", "Vancouver, BC"),
+                                "neighborhood": ev.get("neighborhood", "Vancouver"),
+                                "price": cost,
+                                "priceLabel": f"${cost:.2f} CAD" if cost > 0 else "Free ($0)",
+                                "category": ev.get("category", "general").lower(),
+                                "categoryLabel": ev.get("category", "General"),
+                                "startIso": f"{last_date}T{(ev.get('show_1') or {}).get('start_time', '19:00')}:00",
+                                "websiteUrl": url,
+                                "quarantineReason": f"AI Audit: Cannot figure out details: {reason}",
+                                "flaggedAt": today_str
+                            })
+                            quarantine_ids.add(eid)
+                        results["quarantined"] += 1
+                        continue
+
+                    elif dec == "UPDATE":
+                        print(f"  ✓ Updating event details: {reason}")
+                        if dec_data.get("updated_date") and "show_1" in ev and ev["show_1"]:
+                            ev["show_1"]["date"] = dec_data["updated_date"]
+                        if dec_data.get("updated_start_time") and "show_1" in ev and ev["show_1"]:
+                            ev["show_1"]["start_time"] = dec_data["updated_start_time"]
+                        if dec_data.get("updated_cost") is not None and float(dec_data["updated_cost"]) <= 50.0:
+                            new_cost = float(dec_data["updated_cost"])
+                            if "pricing_all_in_cad" in ev:
+                                ev["pricing_all_in_cad"]["regular"] = new_cost
+                            if "show_1" in ev and ev["show_1"]:
+                                ev["show_1"]["cost"] = new_cost
+                        if dec_data.get("updated_url"):
+                            ev["ticket_url"] = dec_data["updated_url"]
+                            ev["details_url"] = dec_data["updated_url"]
+                        ev["curator_notes"] = f"AI Updated ({today_str}): {reason}"
+                        results["updated"] += 1
+
+                    else:
+                        results["verified"] += 1
+
+            time.sleep(1.5)
+
+        updated_events.append(ev)
+
+    # Save mutated catalogs
+    with open(EVENTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(updated_events, f, indent=2, ensure_ascii=False)
+
+    with open(EVENTS_ARCHIVE_JSON, "w", encoding="utf-8") as f:
+        json.dump(archived_events, f, indent=2, ensure_ascii=False)
+
+    queue_data["quarantinedEvents"] = quarantined
+    queue_data["pendingCount"] = len(quarantined)
+    with open(QUEUE_PATH, "w", encoding="utf-8") as f:
+        json.dump(queue_data, f, indent=2, ensure_ascii=False)
+
+    return results
+
+
+def scout_organizers_directory(api_key: str) -> List[str]:
+    """
+    2. organizers_directory.json:
+    Looks through organizers' websites and feeds to find additional events or changes.
+    """
+    if not os.path.exists(ORGANIZERS_JSON):
+        return []
+    with open(ORGANIZERS_JSON, "r", encoding="utf-8") as f:
+        org_data = json.load(f)
+    organizers = org_data.get("organizers", {})
+    all_findings = []
+    print(f"[SCOUT: organizers_directory.json] Reviewing {len(organizers)} organizers...")
+    for org_id, org in organizers.items():
+        name = org.get("name", org_id)
+        web_url = org.get("websiteUrl", "")
+        events_url = org.get("eventsUrl") or org.get("ticketingPortal") or ""
+        print(f"  • Searching organizer: '{name}'...")
+        prompt = (
+            f"Search Google for upcoming events, parties, performances, and shows organized by '{name}' in Vancouver BC "
+            f"(Website: {web_url}, Events URL: {events_url}). "
+            f"Look for upcoming dates, exact venues, direct links, and ticket prices under $50 CAD all-in."
+        )
+        res = call_gemini_with_search(prompt, api_key)
+        if res:
+            all_findings.append(res)
+        time.sleep(1.5)
+    return all_findings
+
+
+def scout_festivals(api_key: str) -> List[str]:
+    """
+    3. festivals.json:
+    Looks through festival websites to find additional events or changes.
+    """
+    if not os.path.exists(FESTIVALS_JSON):
+        return []
+    with open(FESTIVALS_JSON, "r", encoding="utf-8") as f:
+        festivals = json.load(f)
+    all_findings = []
+    print(f"[SCOUT: festivals.json] Reviewing {len(festivals)} festivals...")
+    for fest in festivals:
+        name = fest.get("festival_name", "")
+        web_url = fest.get("website_url", "")
+        sched_url = fest.get("schedule_url", "")
+        print(f"  • Searching festival: '{name}'...")
+        prompt = (
+            f"Search Google for current/upcoming shows, screenings, concerts, and schedule programming for '{name}' in Vancouver BC "
+            f"(Website: {web_url}, Schedule: {sched_url}). "
+            f"Find specific individual events or screenings strictly costing $50 CAD or less all-in with dates, times, and direct ticket links."
+        )
+        res = call_gemini_with_search(prompt, api_key)
+        if res:
+            all_findings.append(res)
+        time.sleep(1.5)
+    return all_findings
+
+
+def scout_venues_directory(api_key: str, max_venues: int = 6) -> List[str]:
+    """
+    4. venues.json:
+    Looks through the venue websites to find additional events or changes
+    (such as recurring weekly programming like karaoke, trivia, comedy, resident DJ sets, concerts).
+    """
+    if not os.path.exists(VENUES_JSON):
+        return []
+    with open(VENUES_JSON, "r", encoding="utf-8") as f:
+        venues = json.load(f)
+
+    target_keywords = ["pub", "cabaret", "theatre", "hall", "studio", "lounge", "improv", "gallery", "market", "club"]
+    priority_venues = [
+        v for v in venues
+        if any(k in v.get("venue_name", "").lower() or k in v.get("description", "").lower() for k in target_keywords)
     ]
+    selected_venues = priority_venues[:max_venues]
+    all_findings = []
+    print(f"[SCOUT: venues.json] Reviewing {len(selected_venues)} priority performance/music venues...")
+    for venue in selected_venues:
+        name = venue.get("venue_name", "")
+        web_url = venue.get("website_url", "")
+        cal_url = venue.get("calendar_url", "")
+        print(f"  • Searching venue: '{name}'...")
+        prompt = (
+            f"Search Google for current events, concerts, weekly resident nights (trivia, karaoke, comedy, retro DJ nights), and shows at "
+            f"'{name}' in Vancouver BC (Website: {web_url}, Calendar: {cal_url}). "
+            f"Extract verified dates, times, door prices / ticket costs under $50 CAD all-in, and direct links."
+        )
+        res = call_gemini_with_search(prompt, api_key)
+        if res:
+            all_findings.append(res)
+        time.sleep(1.5)
+    return all_findings
+
+
+def scout_discovery_sources(api_key: str, max_sources: int = 4) -> List[str]:
+    """
+    5. discovery_sources.json:
+    Looks through the source websites to find additional events or changes.
+    """
+    if not os.path.exists(DISCOVERY_SOURCES_JSON):
+        return []
+    with open(DISCOVERY_SOURCES_JSON, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    sources = data.get("sources", [])
+    active_sources = [s for s in sources if s.get("status") == "active"][:max_sources]
+    all_findings = []
+    print(f"[SCOUT: discovery_sources.json] Reviewing {len(active_sources)} editorial discovery hubs...")
+    for src in active_sources:
+        name = src.get("name", "")
+        events_url = src.get("eventsUrl", "")
+        print(f"  • Searching discovery source: '{name}'...")
+        prompt = (
+            f"Search Google for top upcoming events, concerts, and things to do in Vancouver BC listed on '{name}' "
+            f"({events_url}) strictly costing $50 CAD or less all-in. "
+            f"Include exact dates, venue names, addresses, and canonical ticket links."
+        )
+        res = call_gemini_with_search(prompt, api_key)
+        if res:
+            all_findings.append(res)
+        time.sleep(1.5)
+    return all_findings
+
+
+def scout_ticketing_sources(api_key: str) -> List[str]:
+    """
+    6. ticketing_sources.json:
+    Looks through ticketing websites to find additional events or changes.
+    """
+    if not os.path.exists(TICKETING_SOURCES_JSON):
+        return []
+    with open(TICKETING_SOURCES_JSON, "r", encoding="utf-8") as f:
+        platforms = json.load(f)
+    all_findings = []
+    print(f"[SCOUT: ticketing_sources.json] Reviewing {len(platforms)} ticketing platforms...")
+    for plat in platforms:
+        name = plat.get("provider_name", "")
+        url = plat.get("website_url", "")
+        if url == "Direct":
+            continue
+        print(f"  • Searching ticketing platform: '{name}'...")
+        prompt = (
+            f"Search Google for upcoming ticketed events in Vancouver BC on '{name}' ({url}) "
+            f"with total all-in ticket price <= $50 CAD (including estimated platform fees and 5% GST). "
+            f"Include specific dates, artists/performers, venue locations, and direct ticket checkout URLs."
+        )
+        res = call_gemini_with_search(prompt, api_key)
+        if res:
+            all_findings.append(res)
+        time.sleep(1.5)
+    return all_findings
+
+
+def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -> Dict[str, Any]:
+    """
+    Executes the complete 6-file AI pipeline requested:
+    1. events.json - Audit, correct, or quarantine
+    2. organizers_directory.json - Discover organizer events & changes
+    3. festivals.json - Discover festival events & changes
+    4. venues.json - Discover venue weekly/upcoming events & changes
+    5. discovery_sources.json - Discover editorial events & changes
+    6. ticketing_sources.json - Discover platform events & changes
+    Consolidates findings and synchronizes master catalogs.
+    """
+    print("=== STARTING 6-FILE AUTONOMOUS GEMINI PIPELINE ===")
+
+    # Stage 1: events.json
+    audit_results = {}
+    if audit_events:
+        print("\n--- STAGE 1/6: AUDITING & VERIFYING events.json ---")
+        audit_results = audit_and_verify_active_events(api_key, max_check=10)
+        print(f"[AUDIT SUMMARY] Verified: {audit_results.get('verified', 0)} | "
+              f"Updated: {audit_results.get('updated', 0)} | "
+              f"Archived: {audit_results.get('archived', 0)} | "
+              f"Quarantined: {audit_results.get('quarantined', 0)}")
 
     all_raw_findings = []
-    print(f"[SCOUT] Initiating Gemini Search across {len(queries)} search queries...")
-    for idx, q in enumerate(queries, 1):
-        print(f"[SCOUT] Query {idx}/{len(queries)}: '{q[:60]}...'")
-        res = call_gemini_with_search(
-            f"Search Google for current, active upcoming events in Vancouver BC Canada: {q}. "
-            f"Include exact venues, ticket prices with fees, dates, and direct links.",
-            api_key
-        )
-        if res:
-            all_raw_findings.append(res)
-        time.sleep(2)  # Respect rate limits
 
+    # Stage 2: organizers_directory.json
+    print("\n--- STAGE 2/6: SCOUTING organizers_directory.json ---")
+    all_raw_findings.extend(scout_organizers_directory(api_key))
+
+    # Stage 3: festivals.json
+    print("\n--- STAGE 3/6: SCOUTING festivals.json ---")
+    all_raw_findings.extend(scout_festivals(api_key))
+
+    # Stage 4: venues.json
+    print("\n--- STAGE 4/6: SCOUTING venues.json ---")
+    all_raw_findings.extend(scout_venues_directory(api_key, max_venues=6))
+
+    # Stage 5: discovery_sources.json
+    print("\n--- STAGE 5/6: SCOUTING discovery_sources.json ---")
+    all_raw_findings.extend(scout_discovery_sources(api_key, max_sources=4))
+
+    # Stage 6: ticketing_sources.json
+    print("\n--- STAGE 6/6: SCOUTING ticketing_sources.json ---")
+    all_raw_findings.extend(scout_ticketing_sources(api_key))
+
+    # Consolidate and extract structured events
     combined_raw = "\n\n--- NEXT DISCOVERY BLOCK ---\n\n".join(all_raw_findings)
-    print(f"[SCOUT] Discovered {len(combined_raw)} characters of live event intelligence. Structuring with Gemini...")
-    
+    print(f"\n[SCOUT] Discovered {len(combined_raw)} characters of intelligence across all 6 files. Structuring with Gemini...")
+
     structured_data = call_gemini_json_extractor(combined_raw, api_key)
     if not structured_data:
-        print("[WARN] Gemini structuring did not return valid JSON. Skipping merge.")
-        return {"events_active": [], "discovered_venues": [], "discovered_festivals": []}
+        structured_data = {"events_active": [], "discovered_venues": [], "discovered_festivals": []}
 
-    return structured_data
+    # Integrate into master catalogs
+    sync_master_catalogs(structured_data)
+
+    return {
+        "audit_results": audit_results,
+        "structured_data": structured_data
+    }
+
+
+def run_gemini_scouting_cycle(api_key: str) -> Dict[str, Any]:
+    """Backward-compatible entry point calling the complete 6-file pipeline."""
+    res = run_full_gemini_scouting_pipeline(api_key, audit_events=True)
+    return res.get("structured_data", {"events_active": [], "discovered_venues": [], "discovered_festivals": []})
 
 
 def sync_master_catalogs(structured_data: Dict[str, Any]):
