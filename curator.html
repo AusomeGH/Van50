@@ -56,8 +56,8 @@
           <span>🏛️ Discovered Venues:</span>
           <span class="stat-val" id="stat-discovered-venues-count">0</span>
         </div>
-        <div class="stat-pill" title="Verified active catalog items">
-          <span>✅ Master Events:</span>
+        <div class="stat-pill clickable-pill" id="stat-master-pill" style="cursor: pointer;" title="Click to inspect and search Master Catalogs (events, venues, festivals, ticketing, discovery)">
+          <span>✅ Master Catalogs:</span>
           <span class="stat-val" id="stat-master-count">0</span>
         </div>
       </div>
@@ -954,6 +954,46 @@
     </div>
   </div>
 
+  <!-- Master Catalogs Inspector Modal (Active Events, Venues, Festivals, Ticketing, Discovery, Archive) -->
+  <div class="curator-modal-overlay" id="master-catalogs-modal">
+    <div class="curator-modal-card manager-modal-card" style="max-width: 960px;">
+      <button type="button" class="curator-modal-close-btn" id="btn-close-master-modal" aria-label="Close modal">✕</button>
+
+      <div class="curator-modal-header" style="margin-bottom: 12px; padding-right: 28px;">
+        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">📚</div>
+        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Van50 Master Catalogs Inspector</h2>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Inspect and query the central JSON master databases: Active Events, Master Venues, Festivals, Ticketing Providers, Discovery Sources, and Archived Events.</p>
+      </div>
+
+      <!-- Controls & Tabs -->
+      <div class="manager-filter-bar">
+        <div class="manager-search-box">
+          <span class="curator-search-icon">🔍</span>
+          <input type="text" id="master-search-input" class="curator-search-input" placeholder="Search entries by name, venue, neighborhood, tags...">
+        </div>
+
+        <div class="curator-pills-group" id="master-tab-group" style="margin: 0;">
+          <button type="button" class="curator-filter-pill active" data-master-tab="events_active">🌲 Active Events (<span id="master-count-active">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="venues_master">🏛️ Master Venues (<span id="master-count-venues">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="festivals_master">🎪 Festivals (<span id="master-count-festivals">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="ticketing_sources">🎫 Ticketing (<span id="master-count-ticketing">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="discovery_sources">🌐 Discovery (<span id="master-count-discovery">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="events_archive">📦 Archive (<span id="master-count-archive">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Catalog Items List Container -->
+      <div id="master-catalogs-list-container" class="manager-list-container" style="max-height: 58vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <span id="master-status-footer" style="font-size: 0.8rem; color: #94a3b8;">Loading master catalogs...</span>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-master-bottom">Close</button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Toast Feedback -->
   <div class="curator-toast" id="curator-toast"></div>
@@ -976,6 +1016,6 @@
       });
     }
   </script>
-  <script src="js/curator.js?v=1.2.2"></script>
+  <script src="js/curator.js?v=1.3.0"></script>
 </body>
 </html>

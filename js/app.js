@@ -129,6 +129,8 @@ function normalizeActiveEvent(item) {
 
   const catRaw = (item.category || "shows").toLowerCase();
   const cat = catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows"))));
+  const hasFestivalAffiliation = item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "";
+  const isFest = Boolean(hasFestivalAffiliation || catRaw.includes("festival") || (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival"))));
 
   return {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
@@ -154,6 +156,8 @@ function normalizeActiveEvent(item) {
     endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
     confirmedDates: confirmedDates,
     isSoldOut: false,
+    isFestival: isFest,
+    festivalAffiliation: hasFestivalAffiliation ? item.festival_affiliation : null,
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     venueUrl: item.details_url || item.websiteUrl || "#",
     ticketProvider: item.ticket_provider || item.ticketProvider || "Direct",
@@ -223,6 +227,17 @@ async function loadCentralReference() {
     renderFestivalSpotlight();
     applyFiltersAndRender();
   }
+
+  // Also load venues_master.json to enrich venue calendar & details
+  try {
+    const vRes = await fetch(`data/venues_master.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
+    if (vRes.ok) {
+      const vList = await vRes.json();
+      if (Array.isArray(vList)) {
+        window.VENUES_MASTER = vList;
+      }
+    }
+  } catch (e) {}
 
   // Also load quarantined manual review queue
   try {

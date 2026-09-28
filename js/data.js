@@ -1,35 +1,29 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T11:08:48-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T09:34:08-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
   {
     "id": "seawall-lost-lagoon",
     "title": "Stanley Park Seawall & Lost Lagoon Walk",
-    "artist": null,
-    "performers": null,
     "venue": "Stanley Park Seawall",
-    "venueAliases": [],
     "address": "Georgia St & Park Dr, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "outdoors",
-    "categoryLabel": "Walks & Outdoors",
+    "categoryLabel": "outdoors",
     "categoryIcon": "🌊",
     "subTags": [
       "seawall",
@@ -37,889 +31,460 @@ const VANCOUVER_EVENTS = [
       "stanley-park",
       "sunset"
     ],
-    "dateSchedule": "Daily • Open 24/7 (Best at sunset)",
+    "dateSchedule": "2026-09-08 at 06:00",
     "startIso": "2026-09-08T06:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2988,
-      -123.1384
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:07:58-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "stanley",
-        "park"
-      ],
-      "evidence_snippet": "Municipal civic facility path verified: /parks-recreation-culture/stanley-park.aspx",
-      "reason": "Official City of Vancouver / VPL park board facility path confirmed"
-    }
+    "isSoldOut": false
   },
   {
     "id": "lynn-canyon-bridge",
     "title": "Lynn Canyon Suspension Bridge & Twin Falls",
-    "artist": null,
-    "performers": null,
     "venue": "Lynn Canyon Park",
-    "venueAliases": [],
     "address": "3663 Park Rd, North Vancouver",
     "neighborhood": "North Shore, Burnaby & Metro",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "outdoors",
-    "categoryLabel": "Walks & Outdoors",
-    "categoryIcon": "🌲",
+    "categoryLabel": "outdoors",
+    "categoryIcon": "🌊",
     "subTags": [
       "suspension-bridge",
       "rainforest",
       "twin-falls",
       "free-hike"
     ],
-    "dateSchedule": "Daily • 7:00 AM - 7:00 PM",
+    "dateSchedule": "2026-09-08 at 07:00",
     "startIso": "2026-09-08T07:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://ecologycentre.ca/trail-information/",
     "venueUrl": "https://ecologycentre.ca/trail-information/",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.3438,
-      -123.0189
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Visit the Ecology Centre, nestled in the temperate rainforest. Explore our nature museum, shop sustainable gifts, or join one of our engaging programs.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:07:59-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "lynn",
-        "canyon",
-        "park",
-        "rainforest"
-      ],
-      "evidence_snippet": "Civic public access facility verified on official portal (lynn, canyon, park, rainforest)",
-      "reason": "Official municipal or public institution mandate confirmed"
-    }
+    "isSoldOut": false
   },
   {
     "id": "granville-island-market",
     "title": "Granville Island Public Market Boardwalk",
-    "artist": null,
-    "performers": null,
     "venue": "Granville Island Public Market",
-    "venueAliases": [],
     "address": "1689 Johnston St, Vancouver",
     "neighborhood": "Granville Island & False Creek",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "outdoors",
-    "categoryLabel": "Walks & Outdoors",
-    "categoryIcon": "⛵",
+    "categoryLabel": "outdoors",
+    "categoryIcon": "🌊",
     "subTags": [
       "public-market",
       "boardwalk",
       "buskers",
       "false-creek"
     ],
-    "dateSchedule": "Daily • 9:00 AM - 6:00 PM",
+    "dateSchedule": "2026-09-08 at 09:00",
     "startIso": "2026-09-08T09:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://granvilleisland.com/public-market",
-    "venueUrl": "https://granvilleisland.com",
+    "venueUrl": "https://granvilleisland.com/public-market",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2718,
-      -123.1342
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "#50 False Creek bus or False Creek Aquabus ferry docks",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "The Granville Island Public Market is the jewel in the Island’s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:07:59-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "granville",
-        "island",
-        "public",
-        "market",
-        "buskers"
-      ],
-      "evidence_snippet": "Civic public access facility verified on official portal (granville, island, public, market, buskers)",
-      "reason": "Official municipal or public institution mandate confirmed"
-    }
+    "isSoldOut": false
   },
   {
     "id": "vpl-central-rooftop",
     "title": "Vancouver Public Library Central Rooftop Garden",
-    "artist": null,
-    "performers": null,
     "venue": "VPL Central Library (Level 9)",
-    "venueAliases": [],
     "address": "350 W Georgia St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🏛️",
+    "categoryLabel": "arts",
+    "categoryIcon": "🎭",
     "subTags": [
       "architecture",
       "rooftop-terrace",
       "quiet-spot",
       "city-views"
     ],
-    "dateSchedule": "Monday - Sunday • 10:00 AM - 6:00 PM",
+    "dateSchedule": "2026-09-08 at 10:00",
     "startIso": "2026-09-08T10:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://www.vpl.ca/branches/central/level-9/roofgarden",
     "venueUrl": "https://www.vpl.ca/branches/central/level-9/roofgarden",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2801,
-      -123.1154
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "3 min walk from Vancouver City Centre SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Architectural Roman Colosseum-inspired central library featuring the free public Phillips, Hager and North Garden rooftop terrace on Level 9 with city skyline and mountain views.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:08:01-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "level"
-      ],
-      "evidence_snippet": "Municipal civic facility path verified: /branches/central/level-9/roofgarden",
-      "reason": "Official City of Vancouver / VPL park board facility path confirmed"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+    "isSoldOut": false
   },
   {
     "id": "ubc-rose-garden",
     "title": "UBC Rose Garden & Wreck Beach Trail",
-    "artist": null,
-    "performers": null,
     "venue": "UBC Rose Garden & Trail 6",
-    "venueAliases": [],
     "address": "6301 NW Marine Dr, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "outdoors",
-    "categoryLabel": "Walks & Outdoors",
-    "categoryIcon": "🌹",
+    "categoryLabel": "outdoors",
+    "categoryIcon": "🌊",
     "subTags": [
       "rose-garden",
       "ocean-view",
       "ubc",
       "coastal-trail"
     ],
-    "dateSchedule": "Daily • Daylight hours (Best June - September)",
+    "dateSchedule": "2026-09-08 at 08:00",
     "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "venueUrl": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2694,
-      -123.2562
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "R4 RapidBus or Broadway Rapid Transit directly to UBC Bus Exchange",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "The Rose Garden at UBC Vancouver has stunning ocean and mountain views, and more than a dozen types of roses blooming abundantly between June and September.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:08:01-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "ubc",
-        "rose",
-        "garden"
-      ],
-      "evidence_snippet": "Civic public access facility verified on official portal (ubc, rose, garden)",
-      "reason": "Official municipal or public institution mandate confirmed"
-    }
+    "isSoldOut": false
   },
   {
     "id": "queen-elizabeth-quarry",
     "title": "Queen Elizabeth Park Quarry Gardens & Viewpoint",
-    "artist": null,
-    "performers": null,
     "venue": "Queen Elizabeth Park",
-    "venueAliases": [],
     "address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "outdoors",
-    "categoryLabel": "Walks & Outdoors",
-    "categoryIcon": "🌺",
+    "categoryLabel": "outdoors",
+    "categoryIcon": "🌊",
     "subTags": [
       "quarry-garden",
       "panoramic-view",
       "cambie-corridor",
       "city-view"
     ],
-    "dateSchedule": "Daily • 6:00 AM - 10:00 PM",
+    "dateSchedule": "2026-09-08 at 06:00",
     "startIso": "2026-09-08T06:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2417,
-      -123.1126
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "10 min walk from King Edward Canada Line station",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:08:02-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "queen",
-        "elizabeth",
-        "park"
-      ],
-      "evidence_snippet": "Municipal civic facility path verified: /parks-recreation-culture/queen-elizabeth-park.aspx",
-      "reason": "Official City of Vancouver / VPL park board facility path confirmed"
-    }
+    "isSoldOut": false
   },
   {
-    "id": "bloedel-conservatory-dome",
-    "title": "Bloedel Conservatory: Tropical Rainforest Dome",
-    "artist": null,
-    "performers": null,
-    "venue": "Bloedel Conservatory",
-    "venueAliases": [],
-    "address": "4600 Cambie St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 9.97,
-    "priceLabel": "$9.97 all-in ($9.50 + 5% GST)",
-    "pricingType": "platform",
-    "tiers": [],
+    "id": "ubc-wsoc-twu",
+    "title": "UBC Women's Soccer vs. TWU",
+    "venue": "Thunderbird Stadium",
+    "address": "6288 Stadium Rd, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "price": 17.5,
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🦜",
-    "subTags": [
-      "exotic-birds",
-      "tickets",
-      "rainforest",
-      "vancouver",
-      "botanical",
-      "tropical-dome"
-    ],
-    "dateSchedule": "Daily • 10:00 AM - 5:00 PM",
-    "startIso": "2026-09-08T10:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
-    "venueUrl": "https://www.showpass.com/o/bloedel-conservatory/",
-    "ticketProvider": "Showpass Verified",
-    "rawProvider": "Showpass",
-    "coordinates": [
-      49.2423,
-      -123.1144
-    ],
-    "transitInfo": "12 min walk from King Edward Canada Line station",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Lush domed tropical paradise atop Queen Elizabeth Park containing over 500 exotic plants and flowers and more than 100 free-flying tropical birds.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 9.97,
-      "feeBreakdown": "$9.50 official adult admission + 5% GST verified via City of Vancouver Park Board",
-      "verifiedAt": "2026-09-28T11:08:02-07:00",
-      "details": "Verified dynamically via official City of Vancouver Board of Parks and Recreation fee schedule."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "tickets"
-      ],
-      "evidence_snippet": "...ice or you will not be able to purchase tickets! [[ venue.name ]] [[ venue.city ]] ,&nbsp; [[ venue.province ]] view eve...",
-      "reason": "Affirmatively verified event on dedicated landing page (tickets)"
-    }
-  },
-  {
-    "id": "ubc-thunderbirds-varsity",
-    "title": "UBC Thunderbirds: Home Varsity Games",
-    "artist": null,
-    "performers": null,
-    "venue": "War Memorial Gym & Thunderbird Stadium",
-    "venueAliases": [],
-    "address": "6081 University Blvd, Vancouver",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "platform",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Game Days)",
-    "daysOfWeek": [
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "🦅",
-    "subTags": [
-      "varsity-sports",
-      "basketball",
-      "volleyball",
-      "ubc-athletics"
-    ],
-    "dateSchedule": "Friday & Saturday Evenings • 6:00 PM & 8:00 PM",
-    "startIso": "2026-09-11T18:00:00-07:00",
-    "endIso": "2027-03-31T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "venueUrl": "https://gothunderbirds.ca",
-    "ticketProvider": "Paciolan Verified",
-    "rawProvider": "Paciolan",
-    "coordinates": [
-      49.2662,
-      -123.2483
-    ],
-    "transitInfo": "R4 41st Ave RapidBus or Broadway Rapid Transit to UBC Loop",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free public admission ('free admission') scraped live from published terms",
-      "verifiedAt": "2026-09-28T11:08:04-07:00",
-      "details": "Verified live from published terms on https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "ubc",
-        "thunderbirds",
-        "games",
-        "home",
-        "basketball",
-        "volleyball"
-      ],
-      "evidence_snippet": "...ubc thunderbirds tickets: pricing, entry policies and 2025–26 season information...",
-      "reason": "Affirmatively verified event on dedicated landing page (ubc, thunderbirds, games, home, basketball, volleyball)"
-    }
-  },
-  {
-    "id": "viff-centre-matinee",
-    "title": "VIFF Centre: International Cinema & Film Screenings",
-    "artist": "Auteur, documentary & world cinema",
-    "performers": null,
-    "venue": "VIFF Centre (Seymour Atrium)",
-    "venueAliases": [],
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 16.5,
-    "priceLabel": "$13.50 – $16.50 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission (Adult)",
-        "basePrice": 15.0,
-        "price": 16.5,
-        "label": "$16.50 all-in"
-      },
-      {
-        "name": "Senior (65+)",
-        "basePrice": 13.0,
-        "price": 14.5,
-        "label": "$14.50 all-in"
-      },
-      {
-        "name": "Student / Youth",
-        "basePrice": 12.0,
-        "price": 13.5,
-        "label": "$13.50 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily (7 Days a Week)",
-    "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "afternoon",
       "early-evening",
       "late-evening"
     ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
+    "category": "activities",
+    "categoryLabel": "activities",
+    "categoryIcon": "🎭",
     "subTags": [
-      "indie-film",
-      "international-cinema",
-      "viff",
-      "matinee"
+      "varsity-sports",
+      "ubc-soccer",
+      "womens-soccer",
+      "twu-spartans",
+      "rivalry",
+      "thunderbirds"
     ],
-    "dateSchedule": "Daily • Afternoon & Evening Screenings",
-    "startIso": "2026-09-08T13:30:00-07:00",
-    "endIso": "2026-12-31T18:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/",
-    "venueUrl": "https://viff.org/whats-on/",
-    "ticketProvider": "Agile Ticketing Verified",
-    "rawProvider": "Agile Ticketing",
+    "dateSchedule": "2026-09-26 at 18:00",
+    "startIso": "2026-09-26T18:00:00-07:00",
+    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "ticketProvider": "Paciolan Verified",
     "coordinates": [
-      49.2774,
-      -123.1251
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "4 min walk from Yaletown-Roundhouse Canada Line",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "See what&#039;s on at the VIFF Centre! Showtimes for exceptional films at one of Vancouver&#039;s premium cinemas.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 16.5,
-      "feeBreakdown": "$15.00 base adult + $1.50 Agile web fee (Student from $13.50)",
-      "verifiedAt": "2026-09-28T11:08:05-07:00",
-      "details": "Verified via VIFF Centre box office schedule (viff.org)."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "calendar_mention",
-      "matched_tokens": [
-        "international",
-        "film",
-        "cinema",
-        "documentary",
-        "world"
-      ],
-      "evidence_snippet": "...what's on | vancouver international film festival skip to main content donate subscribe viff &#038; re...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['international', 'film', 'cinema', 'documentary', 'world'] alongside 10 active upcoming dates"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "isSoldOut": false
+  },
+  {
+    "id": "ubc-fball-uofc",
+    "title": "UBC Football vs. U of C",
+    "venue": "Thunderbird Stadium",
+    "address": "6288 Stadium Rd, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "price": 17.5,
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "activities",
+    "categoryLabel": "activities",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "varsity-sports",
+      "ubc-football",
+      "calgary-dinos",
+      "u-sports",
+      "thunderbirds",
+      "stadium"
+    ],
+    "dateSchedule": "2026-10-16 at 18:00",
+    "startIso": "2026-10-16T18:00:00-07:00",
+    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "ticketProvider": "Paciolan Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "isSoldOut": false
+  },
+  {
+    "id": "ubc-mbball-twu",
+    "title": "UBC Men's Basketball vs. TWU",
+    "venue": "War Memorial Gym",
+    "address": "6081 University Blvd, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "price": 17.5,
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "activities",
+    "categoryLabel": "activities",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "varsity-sports",
+      "ubc-basketball",
+      "twu-spartans",
+      "war-memorial",
+      "thunderbirds",
+      "hoops"
+    ],
+    "dateSchedule": "2026-10-29 at 19:30",
+    "startIso": "2026-10-29T19:30:00-07:00",
+    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "ticketProvider": "Paciolan Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "isSoldOut": false
+  },
+  {
+    "id": "eb-puff-magic-improv",
+    "title": "Puff the Magic Improv Show (Revue Stage)",
+    "venue": "Revue Stage Granville Island",
+    "address": "1601 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categoryLabel": "shows",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "granville-island",
+      "revue-stage",
+      "improv",
+      "puff-the-magic-improv-show-sept-26-2026-vancouver",
+      "puff-the-magic-improv-show-sept-26-2026",
+      "puff-the-magic-improv-show-sept-26-2026-tickets"
+    ],
+    "dateSchedule": "2026-09-26 at 20:00",
+    "startIso": "2026-09-26T20:00:00-07:00",
+    "websiteUrl": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "venueUrl": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "ticketProvider": "Eventbrite Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Puff is the IMPROV show that elevates comedy to that DRAGON level.19+ Presented at the beautiful Revue Stage on Granville Island!",
+    "isSoldOut": false
   },
   {
     "id": "eb-alistair-ogden-rio",
     "title": "Alistair Ogden Live at The Rio Theatre",
-    "artist": null,
-    "performers": null,
     "venue": "The Rio Theatre",
-    "venueAliases": [],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
     "price": 27.96,
-    "priceLabel": "$27.96 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 27.96
-      }
-    ],
+    "priceLabel": "$27.96 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
     "frequency": "one-off",
-    "frequencyLabel": "One-Off Show (Dec 4)",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "shows",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "alistair-ogden-live-at-the-rio-theatre-tickets",
-      "headliner",
-      "stand-up",
-      "eventbrite",
-      "cbc-comedy",
-      "rio-theatre"
-    ],
-    "dateSchedule": "Friday, Dec 4 • 7:30 PM (Doors 6:30 PM)",
-    "startIso": "2026-12-04T19:30:00-07:00",
-    "endIso": "2026-12-04T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
-    "venueUrl": "https://riotheatre.ca/calendar/",
-    "ticketProvider": "Eventbrite Verified",
-    "rawProvider": "Eventbrite",
-    "coordinates": [
-      49.2627,
-      -123.0699
-    ],
-    "transitInfo": "Steps from Commercial-Broadway SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Hello! It's me! Vancouver's hometown boy returning to an iconic East Van theatre for my biggest stand up comedy show yet. Don't miss it.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "schema_jsonld",
-      "verifiedTotal": 27.96,
-      "feeBreakdown": "$27.96 live checkout rate verified via Eventbrite schema payload (CAD)",
-      "verifiedAt": "2026-09-28T11:08:07-07:00",
-      "details": "Parsed from Eventbrite Schema.org JSON-LD (CAD)."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "alistair",
-        "ogden",
-        "eventbrite",
-        "headliner"
-      ],
-      "evidence_snippet": "...alistair ogden: live at the rio theatre tickets, friday, december 4 • 6 pm - 7:3...",
-      "reason": "Affirmatively verified event on dedicated landing page (alistair, ogden, eventbrite, headliner)"
-    }
-  },
-  {
-    "id": "the-improv-centre-weekend",
-    "title": "The Improv Centre: Granville Island Weekend Comedy",
-    "artist": "The Improv Centre Mainstage Ensemble",
-    "performers": null,
-    "venue": "The Improv Centre",
-    "venueAliases": [],
-    "address": "1502 Duranleau St, Vancouver",
-    "neighborhood": "Granville Island & False Creek",
-    "price": 10.0,
-    "priceLabel": "$23.50 – $28.50 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Student / Senior Admission",
-        "basePrice": 20.0,
-        "price": 23.5,
-        "label": "$23.50 all-in"
-      },
-      {
-        "name": "General Admission Mainstage",
-        "basePrice": 25.0,
-        "price": 28.5,
-        "label": "$28.50 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Wednesdays – Sundays",
-    "daysOfWeek": [
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
+      "daily"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
     "category": "shows",
-    "categoryLabel": "Comedy & Shows",
+    "categoryLabel": "shows",
     "categoryIcon": "🎭",
     "subTags": [
-      "comedy-show",
-      "theatresports",
-      "granville-island",
-      "comedy",
-      "improv-comedy",
-      "waterfront-theatre"
+      "cbc-comedy",
+      "stand-up",
+      "rio-theatre",
+      "alistair-ogden-live-at-the-rio-theatre-tickets",
+      "alistair-ogden-live-at-the-rio-theatre",
+      "headliner"
     ],
-    "dateSchedule": "Wednesday – Sunday • 7:30 PM (Fri/Sat 7:30 & 9:30 PM)",
-    "startIso": "2026-09-11T19:30:00-07:00",
-    "endIso": "2026-12-31T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://theimprovcentre.ca/shows/",
-    "venueUrl": "https://theimprovcentre.ca/shows/",
-    "ticketProvider": "AudienceView Verified",
-    "rawProvider": "AudienceView",
+    "dateSchedule": "2026-12-04 at 19:30",
+    "startIso": "2026-12-04T19:30:00-07:00",
+    "websiteUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+    "venueUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+    "ticketProvider": "Eventbrite Verified",
     "coordinates": [
-      49.2706,
-      -123.1363
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "#50 False Creek Bus or Aquabus ferry dock",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Check out The Improv Centre’s hilarious comedy shows! Our bar and lounge opens 1 hour before first showtime, unless otherwise specified. Shows run 90 minutes long and include a 15-minute intermission, unless otherwise specified.As we are a licensed facility, people under the age of 19 are...",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "audienceview_scraped",
-      "verifiedTotal": 10.0,
-      "feeBreakdown": "$10.00 verified via AudienceView ticketing portal",
-      "verifiedAt": "2026-09-28T11:08:08-07:00",
-      "details": "Scraped from AudienceView portal on https://theimprovcentre.ca/shows/."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "calendar_mention",
-      "matched_tokens": [
-        "comedy",
-        "theatresports",
-        "granville",
-        "island",
-        "mainstage",
-        "ensemble"
-      ],
-      "evidence_snippet": "...out the improv centre&#8217;s hilarious comedy shows! our bar and lounge opens 1 hour before first showtime, unless othe...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['comedy', 'theatresports', 'granville', 'island', 'mainstage', 'ensemble'] alongside 18 active upcoming dates"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Hello! It's me! Vancouver's hometown boy returning to an iconic East Van theatre for my biggest stand up comedy show yet. Don't miss it.",
+    "isSoldOut": false
   },
   {
-    "id": "vso-under-35-club",
-    "title": "Vancouver Symphony Orchestra Live at The Orpheum",
-    "artist": "Vancouver Symphony Orchestra",
-    "performers": null,
+    "id": "vso-saturday-orpheum",
+    "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
     "venue": "The Orpheum Theatre",
-    "venueAliases": [],
     "address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 25.2,
-    "priceLabel": "$15.75 – $25.20 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Student Rush",
-        "price": 15.75,
-        "label": "$15.75 all-in"
-      },
-      {
-        "name": "Under 35 Symphony Pass",
-        "price": 25.2,
-        "label": "$25.20 all-in"
-      }
-    ],
+    "priceLabel": "$25.20 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly Concerts",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "daily"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "symphony",
@@ -928,329 +493,248 @@ const VANCOUVER_EVENTS = [
       "under-35",
       "vso"
     ],
-    "dateSchedule": "Select Weekend Evenings • 8:00 PM",
-    "startIso": "2026-09-19T20:00:00-07:00",
-    "endIso": "2027-05-31T22:30:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
+    "dateSchedule": "2026-10-03 at 20:00",
+    "startIso": "2026-10-03T20:00:00-07:00",
     "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
-    "venueUrl": "https://vancouvercivictheatres.com/venues/orpheum/",
+    "venueUrl": "https://www.vancouversymphony.ca/all-access-pass/",
     "ticketProvider": "Box Office / Direct Verified",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2804,
-      -123.1206
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "Steps from Vancouver City Centre SkyTrain station",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "vso_published_rush_policy",
-      "verifiedTotal": 25.2,
-      "feeBreakdown": "$20.00 VSO rush admission + $4.00 Orpheum CIF fee + 5% GST",
-      "verifiedAt": "2026-09-28T11:08:09-07:00",
-      "details": "Verified via VSO Under-35 and Rush ticketing policy on https://www.vancouversymphony.ca/all-access-pass/."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "symphony",
-        "orchestra",
-        "vso"
-      ],
-      "evidence_snippet": "...all access pass - vancouver symphony orchestra skip to main content concerts tickets & events concerts serie...",
-      "reason": "Affirmatively verified event on dedicated landing page (symphony, orchestra, vso)"
-    }
+    "isSoldOut": false
   },
   {
-    "id": "ludica-boardgames",
-    "title": "Pizzeria Ludica: 1,200+ Board Game Night",
-    "artist": null,
-    "performers": null,
-    "venue": "Pizzeria Ludica",
-    "venueAliases": [],
-    "address": "189 Keefer Pl, Vancouver",
+    "id": "vso-sunday-orpheum",
+    "title": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
+    "venue": "The Orpheum Theatre",
+    "address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.0,
-    "priceLabel": "$20.00 game cover",
-    "pricingType": "minimum-spend",
-    "tiers": [],
+    "price": 25.2,
+    "priceLabel": "$25.20 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "afternoon",
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "symphony",
+      "orpheum",
+      "classical-music",
+      "matinee",
+      "vso"
+    ],
+    "dateSchedule": "2026-10-04 at 14:00",
+    "startIso": "2026-10-04T14:00:00-07:00",
+    "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+    "venueUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+    "ticketProvider": "Box Office / Direct Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
+    "isSoldOut": false
+  },
+  {
+    "id": "ludica-boardgames",
+    "title": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "venue": "Pizzeria Ludica",
+    "address": "189 Keefer Pl, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
       "early-evening",
       "late-evening"
     ],
     "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "🎲",
+    "categoryLabel": "activities",
+    "categoryIcon": "🎭",
     "subTags": [
       "board-games",
       "tabletop",
       "wood-fired-pizza",
       "craft-beer"
     ],
-    "dateSchedule": "Daily from 4:30 PM • 2-Hour Table Limit When Busy",
+    "dateSchedule": "2026-09-08 at 16:30",
     "startIso": "2026-09-08T16:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://www.pizzerialudica.com/",
     "venueUrl": "https://www.pizzerialudica.com/",
     "ticketProvider": "Walk-in / Table Reservation",
-    "rawProvider": "Independent Box Office",
     "coordinates": [
-      49.2801,
-      -123.1074
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "3 min walk from Stadium-Chinatown SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Immerse yourself in Vancouver's ultimate board game parlor with over 1,200 titles ranging from party games to deep strategy epics. Enjoy authentic wood-fired Neapolitan pizza, craft beers, and Italian sodas with a $20.00 minimum spend per person (no separate game cover charge). Please note: During peak, busy evenings, table seating has a 2-hour maximum duration.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Game library cover / food-drink table policy (~ $20.00) verified via venue policy",
-      "verifiedAt": "2026-09-28T11:08:10-07:00",
-      "details": "Verified dynamically via venue policy on https://www.pizzerialudica.com/."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "game",
-        "board"
-      ],
-      "evidence_snippet": "...0 - ndtr eat. sip. play. pizza • beer • games • pizza • beer • games • pizza • beer • games • welcome to ludica vancouve...",
-      "reason": "Affirmatively verified event on dedicated landing page (game, board)"
-    }
+    "isSoldOut": false
   },
   {
     "id": "stanley-pitch-putt",
     "title": "Stanley Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "performers": null,
     "venue": "Stanley Park Pitch & Putt",
-    "venueAliases": [],
     "address": "2099 Beach Ave, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 17.5,
-    "priceLabel": "$17.50 door",
-    "pricingType": "door",
-    "tiers": [],
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Spot",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
       "daily"
     ],
     "timeSlots": [
-      "early-morning",
-      "afternoon"
+      "early-evening",
+      "late-evening"
     ],
     "category": "activities",
-    "categoryLabel": "Games & Activities",
-    "categoryIcon": "⛳",
+    "categoryLabel": "activities",
+    "categoryIcon": "🎭",
     "subTags": [
       "pitch-and-putt",
       "golf",
       "stanley-park",
       "english-bay"
     ],
-    "dateSchedule": "Daily • Daylight hours (First come, first served)",
+    "dateSchedule": "2026-09-08 at 08:00",
     "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "ticketProvider": "City of Vancouver Park",
-    "rawProvider": "Independent Box Office",
     "coordinates": [
-      49.2908,
-      -123.1448
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 19.11,
-      "feeBreakdown": "Verified via Curator Studio review (Independent Box Office)",
-      "verifiedAt": "2026-09-17T02:06:31.274685+00:00",
-      "details": "Approved by curator in Van50 Curator Studio. Note: Approved by curator in Van50 Curator Studio.",
-      "curatorSnapshot": {
-        "approvedPrice": 19.11,
-        "approvedPriceLabel": "$19.11 door",
-        "approvedCategory": "activities",
-        "curatorNote": "Approved by curator in Van50 Curator Studio.",
-        "approvedAt": "2026-09-17T02:06:31.274722+00:00",
-        "sourceUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx"
-      }
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "stanley",
-        "park",
-        "pitch",
-        "putt"
-      ],
-      "evidence_snippet": "Municipal civic facility path verified: /parks-recreation-culture/stanley-park-pitch-putt.aspx",
-      "reason": "Official City of Vancouver / VPL park board facility path confirmed"
-    }
+    "isSoldOut": false
   },
   {
     "id": "vag-first-friday",
     "title": "Vancouver Art Gallery: Free First Friday Nights",
-    "artist": null,
-    "performers": null,
     "venue": "Vancouver Art Gallery",
-    "venueAliases": [],
     "address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 0.0,
     "priceLabel": "Free ($0)",
     "pricingType": "free",
-    "tiers": [],
     "isFree": true,
-    "isDaily": false,
-    "frequency": "monthly",
-    "frequencyLabel": "Monthly (1st Friday)",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "fri"
+      "daily"
     ],
     "timeSlots": [
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "arts",
-    "categoryLabel": "Museums & Visual Arts",
-    "categoryIcon": "🏛️",
+    "categoryLabel": "arts",
+    "categoryIcon": "🎭",
     "subTags": [
       "contemporary-art",
       "emily-carr",
       "free-first-friday",
       "art-museum"
     ],
-    "dateSchedule": "First Friday of Each Month • 4:00 PM - 8:00 PM",
+    "dateSchedule": "2026-10-02 at 16:00",
     "startIso": "2026-10-02T16:00:00-07:00",
-    "endIso": "2026-10-02T20:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://www.vanartgallery.bc.ca/free",
-    "venueUrl": "https://www.vanartgallery.bc.ca",
+    "venueUrl": "https://www.vanartgallery.bc.ca/free",
     "ticketProvider": "BMO / Vancouver Art Gallery",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2828,
-      -123.1205
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "1 min walk from City Centre / Granville SkyTrain",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "100% free admission on the first Friday of each month. Explore major contemporary exhibits, Emily Carr masterworks, and live courtyard programming.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Verified via Curator Studio review (Box Office / Direct)",
-      "verifiedAt": "2026-09-17T02:06:28.798433+00:00",
-      "details": "Approved by curator in Van50 Curator Studio. Note: Approved by curator in Van50 Curator Studio.",
-      "curatorSnapshot": {
-        "approvedPrice": 0.0,
-        "approvedPriceLabel": "$0.00 door",
-        "approvedCategory": "activities",
-        "curatorNote": "Approved by curator in Van50 Curator Studio.",
-        "approvedAt": "2026-09-17T02:06:28.798477+00:00",
-        "sourceUrl": "https://www.vanartgallery.bc.ca/visit/"
-      }
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "art"
-      ],
-      "evidence_snippet": "Civic public access facility verified on official portal (art)",
-      "reason": "Official municipal or public institution mandate confirmed"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
+    "isSoldOut": false
+  },
+  {
+    "id": "roxy-country-sunday",
+    "title": "The Roxy Presents: Live Band Line Dancing",
+    "venue": "The Roxy Cabaret",
+    "address": "932 Granville St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 7.24,
+    "priceLabel": "$7.24 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "country",
+      "line-dancing",
+      "live-band",
+      "roxy-rollers",
+      "dance-lesson",
+      "granville-strip"
+    ],
+    "dateSchedule": "2026-09-27 at 21:00",
+    "startIso": "2026-09-27T21:00:00-07:00",
+    "websiteUrl": "https://roxyvan.com/events",
+    "venueUrl": "https://roxyvan.com/events",
+    "ticketProvider": "Showpass Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Special Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition. Advance tickets $6.00 + fee on Showpass, $8 at door.",
+    "isSoldOut": false
   },
   {
     "id": "public-disco-warehouse-party",
     "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "artist": "Public Disco selectors & guest live electronic artists",
-    "performers": null,
     "venue": "The Birdhouse",
-    "venueAliases": [],
     "address": "44 W 4th Ave, Vancouver, BC",
     "neighborhood": "Mount Pleasant & South Vancouver",
     "price": 0.0,
-    "priceLabel": "$15.00 – $25.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Tier 1 Early Bird",
-        "basePrice": 15.0,
-        "price": 15.0,
-        "label": "$15.00"
-      },
-      {
-        "name": "Tier 2 General Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00"
-      },
-      {
-        "name": "Door / Late Night",
-        "basePrice": 25.0,
-        "price": 25.0,
-        "label": "$25.00"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal / Awaiting Schedule",
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "fri",
-      "sat"
+      "daily"
     ],
     "timeSlots": [
+      "early-evening",
       "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Music & Concerts",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "public-disco",
@@ -1260,173 +744,166 @@ const VANCOUVER_EVENTS = [
       "warehouse",
       "mount-pleasant"
     ],
-    "dateSchedule": "Awaiting next announced edition • Follow @publicdisco",
+    "dateSchedule": "Upcoming",
     "startIso": null,
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://publicdisco.ca/events",
-    "venueUrl": "https://www.birdhouse.ca",
+    "venueUrl": "https://publicdisco.ca/events",
     "ticketProvider": "Online Advance & Door Tickets",
-    "rawProvider": "Eventbrite / Public Disco",
     "coordinates": [
-      49.2678,
-      -123.1065
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "The Birdhouse",
-    "agePolicy": "19+ (Valid Government Photo ID Required)",
-    "admissionPolicy": "Advance & Door Ticketed Fundraiser ($15 – $25)",
-    "rovingNote": "Nomadic evening club fundraiser series hosted at licensed East Van venues (The Birdhouse / Red Gate Arts Society).",
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Dance Music Events in Vancouver, Canada",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free public admission ('free outdoor') scraped live from published terms",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Verified live from published terms on https://publicdisco.ca/events."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "calendar_mention",
-      "matched_tokens": [
-        "public",
-        "disco",
-        "warehouse",
-        "dance",
-        "guest",
-        "electronic",
-        "artists"
-      ],
-      "evidence_snippet": "...events &mdash; public disco 0 skip to content events info faq code of conduct lost &amp; found...",
-      "reason": "Official venue calendar/schedule lists event token(s): ['public', 'disco', 'warehouse', 'dance', 'guest', 'electronic', 'artists'] alongside 70 active upcoming dates"
-    }
+    "isSoldOut": false
   },
   {
-    "id": "ra-2537020-ollywood-heatre",
-    "title": "Tricky",
-    "artist": "Tricky",
-    "performers": [
-      "Tricky"
+    "id": "ra-2477877-he-pot",
+    "title": "VANTANIOR - Dark Bass in the Black",
+    "venue": "The Spot",
+    "address": "520 Alexander Street",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 35.0,
+    "priceLabel": "$35.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
     ],
-    "venue": "Hollywood Theatre",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Tricky"
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
     ],
-    "address": "3123 W Broadway Vancouver, BC V6K 2H2",
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "2026-09-26 at 21:00",
+    "startIso": "2026-09-26T21:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2477877",
+    "venueUrl": "https://ra.co/events/2477877",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Spot.",
+    "isSoldOut": false
+  },
+  {
+    "id": "ra-2502822-latform9",
+    "title": "Thump! presents 1morning (Ilian Tape)",
+    "venue": "Platform9",
+    "address": "390 Industrial Ave, Vancouver, BC V6A 2P3 Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 22.0,
+    "priceLabel": "$22.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "2026-09-26 at 23:00",
+    "startIso": "2026-09-26T23:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2502822",
+    "venueUrl": "https://ra.co/events/2502822",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by 1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey.",
+    "isSoldOut": false
+  },
+  {
+    "id": "ra-2524035-he-argrove",
+    "title": "DECEL / DIVERGE Art Rave + Manifesto Drop",
+    "venue": "The Hargrove",
+    "address": "Back Alley Entrance, 150 E 3rd Ave, Vancouver, BC V5T 3C1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.0,
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "2026-09-26 at 21:00",
+    "startIso": "2026-09-26T21:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2524035",
+    "venueUrl": "https://ra.co/events/2524035",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Hargrove.",
+    "isSoldOut": false
+  },
+  {
+    "id": "ra-2537105-he-ed-oom",
+    "title": "HEYZ at SUBculture Saturdays",
+    "venue": "The Red Room",
+    "address": "398 Richards St, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
     "price": 20.0,
-    "basePrice": 20.0,
-    "priceLabel": "$20.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 advance"
-      }
-    ],
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
     "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "tue"
+      "daily"
     ],
     "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Tuesday, Sep 29 • 7:00 PM",
-    "startIso": "2026-09-29T19:00:00.000",
-    "endIso": "2026-09-29T22:00:00.000",
-    "confirmedDates": [
-      "2026-09-29"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2537020",
-    "venueUrl": "https://ra.co/events/2537020",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Hollywood Theatre. Featuring live performances by Tricky.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2537020"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2537020)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2541336-he-ido",
-    "title": "widdows95 all nite long part 2",
-    "artist": "widdows95",
-    "performers": [
-      "widdows95"
-    ],
-    "venue": "The Lido",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "widdows95"
-    ],
-    "address": "518 E Broadway, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "basePrice": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
+      "early-evening",
       "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "electronic",
@@ -1435,255 +912,40 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Tuesday, Sep 29 • 9:00 PM",
-    "startIso": "2026-09-29T21:00:00.000",
-    "endIso": "2026-09-30T01:00:00.000",
-    "confirmedDates": [
-      "2026-09-29"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2541336",
-    "venueUrl": "https://ra.co/events/2541336",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2629,
-      -123.0927
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Lido. Featuring live performances by widdows95.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Live RA listing price: Free ($0)",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2541336"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2541336)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2542270-ommodore-allroom",
-    "title": "K&D Kicks 30 Anniversary Tour",
-    "artist": "Kruder & Dorfmeister",
-    "performers": [
-      "Kruder & Dorfmeister"
-    ],
-    "venue": "Commodore Ballroom",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Kruder & Dorfmeister"
-    ],
-    "address": "868 Granville St; Vancouver, BC V6B 2C9; Canada",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 49.5,
-    "basePrice": 49.5,
-    "priceLabel": "$49.50 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 49.5,
-        "price": 49.5,
-        "label": "$49.50 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Tuesday, Sep 29 • 7:00 PM",
-    "startIso": "2026-09-29T19:00:00.000",
-    "endIso": "2026-09-29T22:00:00.000",
-    "confirmedDates": [
-      "2026-09-29"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2542270",
-    "venueUrl": "https://ra.co/events/2542270",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
+    "dateSchedule": "2026-09-26 at 23:00",
+    "startIso": "2026-09-26T23:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2537105",
+    "venueUrl": "https://ra.co/events/2537105",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
       49.2827,
       -123.1207
     ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Commodore Ballroom. Featuring live performances by Kruder & Dorfmeister.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 49.5,
-      "feeBreakdown": "Live RA listing price: $49.50 all-in",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2542270"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2542270)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Red Room.",
+    "isSoldOut": false
   },
   {
-    "id": "ra-2542298-ommodore-allroom",
-    "title": "Channel Tres: The Enigma Tour",
-    "artist": "Channel Tres, KILIMANJARO",
-    "performers": [
-      "Channel Tres",
-      "KILIMANJARO"
-    ],
-    "venue": "Commodore Ballroom",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Channel Tres",
-      "KILIMANJARO"
-    ],
-    "address": "868 Granville St; Vancouver, BC V6B 2C9; Canada",
+    "id": "ra-2541275-eo",
+    "title": "An evening with Bobby Double at Meo",
+    "venue": "Meo",
+    "address": "265 East Pender Street",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 35.0,
-    "basePrice": 35.0,
-    "priceLabel": "$35.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 35.0,
-        "price": 35.0,
-        "label": "$35.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "wed"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Wednesday, Sep 30 • 7:00 PM",
-    "startIso": "2026-09-30T19:00:00.000",
-    "endIso": "2026-09-30T22:00:00.000",
-    "confirmedDates": [
-      "2026-09-30"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2542298",
-    "venueUrl": "https://ra.co/events/2542298",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Commodore Ballroom. Featuring live performances by Channel Tres, KILIMANJARO.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 35.0,
-      "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2542298"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2542298)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2535560-he-obalt",
-    "title": "goreshit & Bye2",
-    "artist": "goreshit, Bye2, Hitori Tori, RiDylan, TR4CK ID?",
-    "performers": [
-      "goreshit",
-      "Bye2",
-      "Hitori Tori",
-      "RiDylan",
-      "TR4CK ID?"
-    ],
-    "venue": "The Cobalt",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "goreshit",
-      "Bye2",
-      "Hitori Tori"
-    ],
-    "address": "917 Main St; Vancouver, BC V6A 2V8; Canada",
-    "neighborhood": "Mount Pleasant & South Vancouver",
     "price": 20.0,
-    "basePrice": 20.0,
-    "priceLabel": "$20.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 advance"
-      }
-    ],
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
     "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "thu"
+      "daily"
     ],
     "timeSlots": [
+      "early-evening",
       "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "electronic",
@@ -1692,169 +954,40 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Thursday, Oct 1 • 9:00 PM",
-    "startIso": "2026-10-01T21:00:00.000",
-    "endIso": "2026-10-02T02:00:00.000",
-    "confirmedDates": [
-      "2026-10-01"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2535560",
-    "venueUrl": "https://ra.co/events/2535560",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
-    "ticketProvider": "Resident Advisor Verified",
-    "coordinates": [
-      49.2638,
-      -123.1012
-    ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Cobalt. Featuring live performances by goreshit, Bye2, Hitori Tori, RiDylan, TR4CK ID?.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2535560"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2535560)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
-  },
-  {
-    "id": "ra-2494986-iff-entre",
-    "title": "The Last Angel of History",
-    "artist": "Speaker Music",
-    "performers": [
-      "Speaker Music"
-    ],
-    "venue": "Viff Centre",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Speaker Music"
-    ],
-    "address": "1181 Seymour St.",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 35.0,
-    "basePrice": 35.0,
-    "priceLabel": "$35.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 35.0,
-        "price": 35.0,
-        "label": "$35.00 advance"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "electronic",
-      "dance-party",
-      "club-night",
-      "dj-set",
-      "ra-vancouver"
-    ],
-    "dateSchedule": "Friday, Oct 2 • 5:00 PM",
-    "startIso": "2026-10-02T17:00:00.000",
-    "endIso": "2026-10-02T18:30:00.000",
-    "confirmedDates": [
-      "2026-10-02"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2494986",
-    "venueUrl": "https://ra.co/events/2494986",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
+    "dateSchedule": "2026-09-26 at 22:00",
+    "startIso": "2026-09-26T22:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2541275",
+    "venueUrl": "https://ra.co/events/2541275",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
       49.2827,
       -123.1207
     ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Viff Centre. Featuring live performances by Speaker Music.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 35.0,
-      "feeBreakdown": "Live RA listing price: $35.00 advance",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2494986"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2494986)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Meo. Featuring live performances by Bobby Myseh, Body Double.",
+    "isSoldOut": false
   },
   {
-    "id": "ra-2523028-kylight-arehouse",
-    "title": "SQUASH: Amadeezy",
-    "artist": "Amadeezy, softesthan, 0xydr0p, Jer (CA)",
-    "performers": [
-      "Amadeezy",
-      "softesthan",
-      "0xydr0p",
-      "Jer (CA)"
-    ],
-    "venue": "Skylight Warehouse",
-    "venueAliases": [
-      "Resident Advisor",
-      "RA Vancouver",
-      "Amadeezy",
-      "softesthan",
-      "0xydr0p"
-    ],
-    "address": "1800 Main St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 20.0,
-    "basePrice": 20.0,
-    "priceLabel": "$20.00 advance",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "Standard RA Admission",
-        "basePrice": 20.0,
-        "price": 20.0,
-        "label": "$20.00 advance"
-      }
-    ],
+    "id": "ra-2543749-org-ish",
+    "title": "Gorg-O-Mish presents: Ricco, C-Star & Madam Lola",
+    "venue": "Gorg-O-Mish",
+    "address": "695 Smithe St; Vancouver, BC V6B 2C9; Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.0,
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
     "frequency": "one-off",
-    "frequencyLabel": "Confirmed Date",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "fri"
+      "daily"
     ],
     "timeSlots": [
+      "early-evening",
       "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "electronic",
@@ -1863,70 +996,125 @@ const VANCOUVER_EVENTS = [
       "dj-set",
       "ra-vancouver"
     ],
-    "dateSchedule": "Friday, Oct 2 • 10:00 PM",
-    "startIso": "2026-10-02T22:00:00.000",
-    "endIso": "2026-10-03T03:00:00.000",
-    "confirmedDates": [
-      "2026-10-02"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://ra.co/events/2523028",
-    "venueUrl": "https://ra.co/events/2523028",
-    "provider": "Resident Advisor",
-    "semanticProvider": "Resident Advisor Verified",
+    "dateSchedule": "2026-09-26 at 23:59",
+    "startIso": "2026-09-26T23:59:00-07:00",
+    "websiteUrl": "https://ra.co/events/2543749",
+    "venueUrl": "https://ra.co/events/2543749",
     "ticketProvider": "Resident Advisor Verified",
     "coordinates": [
-      49.2687,
-      -123.1012
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "Accessible via TransLink transit routes",
-    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Skylight Warehouse. Featuring live performances by Amadeezy, softesthan, 0xydr0p, Jer (CA).",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "api_endpoint",
-      "verifiedTotal": 20.0,
-      "feeBreakdown": "Live RA listing price: $20.00 advance",
-      "verifiedAt": "2026-09-28T11:08:22-07:00",
-      "details": "Authenticated directly via Resident Advisor GraphQL API."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "2523028"
-      ],
-      "evidence_snippet": "Verified platform event slug on ra.co (/events/2523028)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    }
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Gorg-O-Mish. Featuring live performances by Ricco, C-Star.",
+    "isSoldOut": false
+  },
+  {
+    "id": "ra-2544313-he-ed-oom",
+    "title": "PINEO & LOEB x Rumpus",
+    "venue": "The Red Room",
+    "address": "398 Richards St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 31.6,
+    "priceLabel": "$31.60 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "2026-09-26 at 21:30",
+    "startIso": "2026-09-26T21:30:00-07:00",
+    "websiteUrl": "https://ra.co/events/2544313",
+    "venueUrl": "https://ra.co/events/2544313",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Red Room.",
+    "isSoldOut": false
+  },
+  {
+    "id": "ra-2546198-okal-ekondo",
+    "title": "captivate listening session",
+    "venue": "Lokal Sekondo",
+    "address": "1966 W 4th Ave, Vancouver, BC V6J 1M5",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 10.0,
+    "priceLabel": "$10.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "dateSchedule": "2026-09-26 at 20:00",
+    "startIso": "2026-09-26T20:00:00-07:00",
+    "websiteUrl": "https://ra.co/events/2546198",
+    "venueUrl": "https://ra.co/events/2546198",
+    "ticketProvider": "Resident Advisor Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Lokal Sekondo. Featuring live performances by captivate.",
+    "isSoldOut": false
   },
   {
     "id": "public-disco-block-party",
     "title": "Public Disco: Open-Air Summer Block Party Series",
     "venue": "Downtown Vancouver Plazas",
-    "organizer": "Public Disco Society",
-    "isRoving": true,
-    "editionVenue": "Downtown Vancouver Plazas",
-    "venueAliases": [
-      "Public Disco",
-      "Public Disco Vancouver",
-      "Public Disco Block Party"
-    ],
     "address": "505 Burrard St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "coordinates": [
-      49.2858,
-      -123.1187
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
     ],
-    "transitInfo": "Vancouver City Centre SkyTrain Station (adjacent)",
-    "basePrice": 0.0,
-    "scrapedBasePrice": null,
-    "doorPolicyPrice": null,
-    "venueSubpageUrl": null,
-    "websiteUrl": "https://publicdisco.ca/events/downtown2026",
-    "venueUrl": "https://publicdisco.ca/events",
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
     "category": "social",
-    "categoryLabel": "Community & Social",
-    "categoryIcon": "🪩",
+    "categoryLabel": "social",
+    "categoryIcon": "🎭",
     "subTags": [
       "public-disco",
       "social",
@@ -1935,87 +1123,161 @@ const VANCOUVER_EVENTS = [
       "open-air",
       "djs"
     ],
-    "frequency": "seasonal",
-    "frequencyLabel": "Seasonal / Summer Series Concluded",
+    "dateSchedule": "Upcoming",
+    "startIso": null,
+    "websiteUrl": "https://publicdisco.ca/events/downtown2026",
+    "venueUrl": "https://publicdisco.ca/events/downtown2026",
+    "ticketProvider": "Downtown Vancouver Plazas Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
+    "isSoldOut": false
+  },
+  {
+    "id": "queen-elizabeth-theatre-vancouver-opera-tosca",
+    "title": "Vancouver Opera: Tosca",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 25.0,
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "all"
+      "daily"
     ],
     "timeSlots": [
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
-    "dateSchedule": "Summer 2026 series concluded (Aug 29) • Awaiting 2027 season",
-    "startIso": null,
-    "endIso": null,
-    "confirmedDates": [],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "tiers": [],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free public admission ('Free Event') scraped live from published terms",
-      "verifiedAt": "2026-09-28T11:08:27-07:00",
-      "details": "Verified live from published terms on https://publicdisco.ca/events/downtown2026."
-    },
-    "isFree": true,
-    "pricingType": "free",
-    "agePolicy": "All-Ages (Licensed 19+ Areas with ID)",
-    "admissionPolicy": "Free Public Admission (100% Free, No Tickets Required)",
-    "rovingNote": "📍 Public Disco's free community block party series concluded for the 2026 summer season on August 29. (Note: Oct 3 Shipyards Festival is ticketed at $57.50+ CAD and quarantined for exceeding the $50 cap).",
-    "scrapedDescription": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
-    "ticketProvider": "Downtown Vancouver Plazas Verified",
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "public",
-        "disco",
-        "block"
-      ],
-      "evidence_snippet": "...public disco downtown block party vancouver 2026 | free event at vancouver art g...",
-      "reason": "Affirmatively verified event on dedicated landing page (public, disco, block)"
-    }
+    "category": "shows",
+    "categoryLabel": "shows",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "queen-elizabeth-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "dateSchedule": "2026-10-24 at 19:30",
+    "startIso": "2026-10-24T19:30:00-07:00",
+    "websiteUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
+    "venueUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
+    "ticketProvider": "Queen Elizabeth Theatre Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Vancouver Opera presents Tosca—a breathtaking opera where love burns bright against the dark tides of tyranny. Oct 24 to Nov 1, 2026, at the Queen Elizabeth Theatre.",
+    "isSoldOut": false
+  },
+  {
+    "id": "queen-elizabeth-theatre-ballet-bc-bodies-voices",
+    "title": "Ballet BC: Bodies & Voices",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 19.0,
+    "priceLabel": "$19.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categoryLabel": "shows",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "queen-elizabeth-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "dateSchedule": "2026-11-05 at 19:30",
+    "startIso": "2026-11-05T19:30:00-07:00",
+    "websiteUrl": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
+    "venueUrl": "https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/",
+    "ticketProvider": "Queen Elizabeth Theatre Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Ballet BC opens their season with a double bill from Dutch sibling choreographic duo Imre and Marne van Opstal, whose evocative work sees dance as a poetic, emotional laboratory. Nov 5 to 7, 2026, at the Queen Elizabeth Theatre in Vancouver.",
+    "isSoldOut": false
+  },
+  {
+    "id": "queen-elizabeth-theatre-penn-teller",
+    "title": "Penn & Teller",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 14.0,
+    "priceLabel": "$14.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "shows",
+    "categoryLabel": "shows",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "queen-elizabeth-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "dateSchedule": "2026-11-10 at 19:30",
+    "startIso": "2026-11-10T19:30:00-07:00",
+    "websiteUrl": "https://admitone.com/events/penn-and-teller-vancouver-160744",
+    "venueUrl": "https://admitone.com/events/penn-and-teller-vancouver-160744",
+    "ticketProvider": "Admitone Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Get tickets for Penn and Teller at Queen Elizabeth Theatre in Vancouver. MRG Presale: April 23 @ 10:00 AM PT On Sale : April 24 @ 10:00 AM PT From humble beginnings 50 years...",
+    "isSoldOut": false
   },
   {
     "id": "viff-the-debut",
     "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
-    "artist": "Jesse Eisenberg, Julianne Moore, Paul Giamatti",
-    "performers": "Jesse Eisenberg, Julianne Moore, Paul Giamatti",
     "venue": "SFU Goldcorp Centre for the Arts",
-    "venueAliases": [
-      "SFU Woodward's",
-      "Goldcorp Centre"
-    ],
     "address": "149 W Hastings St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 22.0,
-    "priceLabel": "$22.00 all-in",
-    "pricingType": "festival_all_in",
-    "tiers": [],
+    "priceLabel": "$22.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
-    "isFestival": true,
-    "festivalId": "viff-2026",
-    "frequency": "limited-run",
-    "frequencyLabel": "Festival Gala",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "thu"
+      "daily"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "categories": [
-      "cinema",
-      "festivals"
-    ],
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
     "subTags": [
       "mieko-kawakami",
       "japanese-cinema",
@@ -2023,595 +1285,370 @@ const VANCOUVER_EVENTS = [
       "special-presentation",
       "drama"
     ],
-    "dateSchedule": "Thursday, October 1 • 7:00 PM (Opening Gala)",
+    "dateSchedule": "2026-10-01 at 19:00",
     "startIso": "2026-10-01T19:00:00-07:00",
-    "endIso": "2026-10-01T21:30:00-07:00",
-    "confirmedDates": [
-      "2026-10-01"
-    ],
-    "isSoldOut": false,
     "websiteUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
-    "venueUrl": "https://www.sfu.ca/woodwards.html",
+    "venueUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "ticketProvider": "VIFF Box Office Verified",
-    "rawProvider": "VIFF Festival Ticketing",
     "coordinates": [
-      49.2828,
-      -123.1085
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "3 min walk from Waterfront SkyTrain Station",
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Based on Mieko Kawakami&#039;s acclaimed novel, All the Lovers in the Night is a tender, luminous portrait of loneliness, intimacy, and the courage to be seen.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_rate",
-      "verifiedTotal": 22.0,
-      "feeBreakdown": "$20.00 ticket + $2.00 VIFF society membership = $22.00 all-in checkout",
-      "verifiedAt": "2026-09-22T12:15:00-07:00",
-      "details": "Verified via official VIFF 2026 single ticket rate charter."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "viff",
-        "all",
-        "lovers",
-        "special",
-        "mieko",
-        "kawakami",
-        "drama"
-      ],
-      "evidence_snippet": "...all the lovers in the night | viff 2026 skip to main content donate subscribe viff &#038; reconciliation vanco...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, all, lovers, special, mieko, kawakami, drama)"
-    },
-    "scrapedDescription": "Based on Mieko Kawakami&#039;s acclaimed novel, All the Lovers in the Night is a tender, luminous portrait of loneliness, intimacy, and the courage to be seen."
+    "isSoldOut": false
   },
   {
-    "id": "viff-all-we-imagine-as-light",
-    "title": "VIFF Spotlight: \"The Sun Never Sets\" (Dir. Shannon Walsh)",
-    "artist": "Payal Kapadia, Kani Kusruti, Divya Prabha",
-    "performers": "Kani Kusruti, Divya Prabha, Chhaya Kadam",
+    "id": "viff-the-sun-never-sets-oct2",
+    "title": "VIFF Spotlight: \"The Sun Never Sets\" (Friday Screening)",
     "venue": "VIFF Centre",
-    "venueAliases": [
-      "VanCity Theatre",
-      "VIFF Hub"
-    ],
     "address": "1181 Seymour St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 20.9,
-    "priceLabel": "$20.90 all-in",
-    "pricingType": "festival_all_in",
-    "tiers": [],
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
-    "isFestival": true,
-    "festivalId": "viff-2026",
-    "frequency": "limited-run",
-    "frequencyLabel": "Festival Showcase",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "fri",
-      "sun"
+      "daily"
     ],
     "timeSlots": [
-      "afternoon",
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "categories": [
-      "cinema",
-      "festivals"
-    ],
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
     "subTags": [
       "bc-spotlight",
       "indie-comedy",
       "viff-2026",
       "canadian-cinema"
     ],
-    "dateSchedule": "Friday, October 2 • 6:30 PM & Sunday, October 4 • 1:30 PM",
+    "dateSchedule": "2026-10-02 at 18:30",
     "startIso": "2026-10-02T18:30:00-07:00",
-    "endIso": "2026-10-04T15:30:00-07:00",
-    "confirmedDates": [
-      "2026-10-02",
-      "2026-10-04"
-    ],
-    "isSoldOut": false,
     "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
-    "venueUrl": "https://viff.org/whats-on/",
+    "venueUrl": "https://viff.org/whats-on/the-sun-never-sets/",
     "ticketProvider": "VIFF Box Office Verified",
-    "rawProvider": "VIFF Festival Ticketing",
     "coordinates": [
-      49.2781,
-      -123.1245
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
+    "transitInfo": "Transit accessible via TransLink",
     "description": "The Sun Never Sets in Alaska (in the summer), but love affairs don&#039;t last forever in this affectionate indie rom-com with Dakota Fanning.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_rate",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
-      "verifiedAt": "2026-09-22T12:15:00-07:00",
-      "details": "Verified via official VIFF 2026 single ticket rate charter."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "sun",
-        "never",
-        "sets",
-        "dir"
-      ],
-      "evidence_snippet": "...the sun never sets | viff centre skip to main content donate subscribe viff &#038; r...",
-      "reason": "Affirmatively verified event on dedicated landing page (sun, never, sets, dir)"
-    },
-    "scrapedDescription": "The Sun Never Sets in Alaska (in the summer), but love affairs don&#039;t last forever in this affectionate indie rom-com with Dakota Fanning."
+    "isSoldOut": false
   },
   {
-    "id": "viff-universal-language",
-    "title": "VIFF Showcase: \"Union County\" (American Indie • Dir. Adam Meeks)",
-    "artist": "Matthew Rankin, Rojina Esmaeili, Saba Vahedyousefi",
-    "performers": "Rojina Esmaeili, Saba Vahedyousefi, Matthew Rankin",
-    "venue": "The Cinematheque",
-    "venueAliases": [
-      "Pacific Cinematheque"
-    ],
-    "address": "1131 Howe St, Vancouver",
+    "id": "viff-the-sun-never-sets-oct4",
+    "title": "VIFF Spotlight: \"The Sun Never Sets\" (Sunday Matinee)",
+    "venue": "VIFF Centre",
+    "address": "1181 Seymour St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "price": 20.9,
-    "priceLabel": "$20.90 all-in",
-    "pricingType": "festival_all_in",
-    "tiers": [],
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
-    "isFestival": true,
-    "festivalId": "viff-2026",
-    "frequency": "limited-run",
-    "frequencyLabel": "Festival Showcase",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "sat",
-      "tue"
+      "daily"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
     "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "categories": [
-      "cinema",
-      "festivals"
-    ],
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
     "subTags": [
-      "american-indie",
+      "bc-spotlight",
+      "indie-comedy",
       "viff-2026",
-      "drama",
-      "premiere"
+      "canadian-cinema"
     ],
-    "dateSchedule": "Saturday, October 3 • 6:30 PM & Tuesday, October 6 • 8:45 PM",
-    "startIso": "2026-10-03T18:30:00-07:00",
-    "endIso": "2026-10-06T20:45:00-07:00",
-    "confirmedDates": [
-      "2026-10-03",
-      "2026-10-06"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/union-county/",
-    "venueUrl": "https://thecinematheque.ca/films/",
+    "dateSchedule": "2026-10-04 at 13:30",
+    "startIso": "2026-10-04T13:30:00-07:00",
+    "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
+    "venueUrl": "https://viff.org/whats-on/the-sun-never-sets/",
     "ticketProvider": "VIFF Box Office Verified",
-    "rawProvider": "VIFF Festival Ticketing",
     "coordinates": [
-      49.2795,
-      -123.1274
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "5 min walk from Vancouver City Centre SkyTrain",
-    "description": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_rate",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
-      "verifiedAt": "2026-09-22T12:15:00-07:00",
-      "details": "Verified via official VIFF 2026 single ticket rate charter."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "viff",
-        "union",
-        "county",
-        "dir",
-        "adam",
-        "meeks",
-        "drama"
-      ],
-      "evidence_snippet": "...union county | viff centre skip to main content donate subscribe viff &#038; reconciliation van...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, union, county, dir, adam, meeks, drama)"
-    },
-    "scrapedDescription": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids."
-  },
-  {
-    "id": "viff-flow",
-    "title": "VIFF Showcase: \"Hanging by a Wire\" (Himalayan High-Altitude Documentary)",
-    "artist": "Gints Zilbalodis, Matīss Kaža",
-    "performers": null,
-    "venue": "VIFF Centre",
-    "venueAliases": [
-      "VanCity Theatre",
-      "VIFF Hub"
-    ],
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 all-in",
-    "pricingType": "festival_all_in",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "isFestival": true,
-    "festivalId": "viff-2026",
-    "frequency": "limited-run",
-    "frequencyLabel": "Festival Showcase",
-    "daysOfWeek": [
-      "sun",
-      "wed"
-    ],
-    "timeSlots": [
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "categories": [
-      "cinema",
-      "festivals"
-    ],
-    "subTags": [
-      "documentary",
-      "himalayas",
-      "viff-2026",
-      "survival"
-    ],
-    "dateSchedule": "Sunday, October 4 • 4:00 PM & Wednesday, October 7 • 6:30 PM",
-    "startIso": "2026-10-04T16:00:00-07:00",
-    "endIso": "2026-10-07T18:30:00-07:00",
-    "confirmedDates": [
-      "2026-10-04",
-      "2026-10-07"
-    ],
-    "isSoldOut": false,
-    "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-    "venueUrl": "https://viff.org/whats-on/",
-    "ticketProvider": "VIFF Box Office Verified",
-    "rawProvider": "VIFF Festival Ticketing",
-    "coordinates": [
-      49.2781,
-      -123.1245
-    ],
-    "transitInfo": "4 min walk from Yaletown-Roundhouse SkyTrain Station",
-    "description": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_rate",
-      "verifiedTotal": 20.9,
-      "feeBreakdown": "$18.00 ticket + $2.00 VIFF society membership + $0.90 fee = $20.90 all-in checkout",
-      "verifiedAt": "2026-09-22T12:15:00-07:00",
-      "details": "Verified via official VIFF 2026 single ticket rate charter."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "hanging",
-        "wire",
-        "documentary",
-        "mat",
-        "himalayas"
-      ],
-      "evidence_snippet": "...hanging by a wire | viff centre skip to main content donate subscribe viff &#038...",
-      "reason": "Affirmatively verified event on dedicated landing page (hanging, wire, documentary, mat, himalayas)"
-    },
-    "scrapedDescription": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap."
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "The Sun Never Sets in Alaska (in the summer), but love affairs don&#039;t last forever in this affectionate indie rom-com with Dakota Fanning.",
+    "isSoldOut": false
   },
   {
     "id": "viff-wild-horse-nine",
     "title": "VIFF Showcase: \"Filipiñana\" (Dir. Rafael Manuel • Cannes Winner)",
-    "artist": "Martin McDonagh, Colin Farrell, Brendan Gleeson",
-    "performers": "Colin Farrell, Brendan Gleeson, Kerry Condon",
     "venue": "The Rio Theatre",
-    "venueAliases": [
-      "Rio Theatre Vancouver"
-    ],
     "address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
     "price": 22.0,
-    "priceLabel": "$22.00 all-in",
-    "pricingType": "festival_all_in",
-    "tiers": [],
+    "priceLabel": "$22.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": false,
-    "isFestival": true,
-    "festivalId": "viff-2026",
-    "frequency": "limited-run",
-    "frequencyLabel": "Festival Closing Gala",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "sun"
+      "daily"
     ],
     "timeSlots": [
-      "early-evening"
+      "early-evening",
+      "late-evening"
     ],
     "category": "cinema",
-    "categoryLabel": "Cinema",
-    "categoryIcon": "🎬",
-    "categories": [
-      "cinema",
-      "festivals"
-    ],
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
     "subTags": [
       "cannes-winner",
       "satire",
       "viff-2026",
       "world-cinema"
     ],
-    "dateSchedule": "Sunday, October 11 • 7:30 PM (Closing Gala)",
+    "dateSchedule": "2026-10-11 at 19:30",
     "startIso": "2026-10-11T19:30:00-07:00",
-    "endIso": "2026-10-11T22:00:00-07:00",
-    "confirmedDates": [
-      "2026-10-11"
-    ],
-    "isSoldOut": false,
     "websiteUrl": "https://viff.org/whats-on/filipinana/",
-    "venueUrl": "https://riotheatre.ca/calendar/",
+    "venueUrl": "https://viff.org/whats-on/filipinana/",
     "ticketProvider": "VIFF Box Office Verified",
-    "rawProvider": "VIFF Festival Ticketing",
     "coordinates": [
-      49.2627,
-      -123.0694
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "Steps from Commercial-Broadway SkyTrain Station",
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Filipi&ntilde;ana features a luxury golf course in the Philippines in this striking composed comedy which mixes languid surrealism with pointed political satire.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "festival_charter_rate",
-      "verifiedTotal": 22.0,
-      "feeBreakdown": "$20.00 ticket + $2.00 VIFF society membership = $22.00 all-in checkout",
-      "verifiedAt": "2026-09-22T12:15:00-07:00",
-      "details": "Verified via official VIFF 2026 single ticket rate charter."
-    },
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "dedicated_page",
-      "matched_tokens": [
-        "viff",
-        "filipi",
-        "ana",
-        "dir",
-        "rafael",
-        "manuel",
-        "satire"
-      ],
-      "evidence_snippet": "...filipiñana | viff centre skip to main content donate subscribe viff &#038; reconciliation van...",
-      "reason": "Affirmatively verified event on dedicated landing page (viff, filipi, ana, dir, rafael, manuel, satire)"
-    },
-    "scrapedDescription": "Filipi&ntilde;ana features a luxury golf course in the Philippines in this striking composed comedy which mixes languid surrealism with pointed political satire."
+    "isSoldOut": false
+  },
+  {
+    "id": "viff-union-county-oct3",
+    "title": "VIFF Showcase: \"Union County\" (Saturday Screening)",
+    "venue": "The Cinematheque",
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "viff",
+      "film-festival",
+      "american-indie",
+      "the-cinematheque"
+    ],
+    "dateSchedule": "2026-10-03 at 18:30",
+    "startIso": "2026-10-03T18:30:00-07:00",
+    "websiteUrl": "https://viff.org/whats-on/union-county/",
+    "venueUrl": "https://viff.org/whats-on/union-county/",
+    "ticketProvider": "VIFF Official Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids.",
+    "isSoldOut": false
+  },
+  {
+    "id": "viff-union-county-oct6",
+    "title": "VIFF Showcase: \"Union County\" (Tuesday Screening)",
+    "venue": "The Cinematheque",
+    "address": "1131 Howe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "viff",
+      "film-festival",
+      "american-indie",
+      "the-cinematheque"
+    ],
+    "dateSchedule": "2026-10-06 at 20:45",
+    "startIso": "2026-10-06T20:45:00-07:00",
+    "websiteUrl": "https://viff.org/whats-on/union-county/",
+    "venueUrl": "https://viff.org/whats-on/union-county/",
+    "ticketProvider": "VIFF Official Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids.",
+    "isSoldOut": false
+  },
+  {
+    "id": "viff-hanging-by-a-wire-oct4",
+    "title": "VIFF Showcase: \"Hanging by a Wire\" (Sunday Matinee)",
+    "venue": "VIFF Centre",
+    "address": "1181 Seymour St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "viff",
+      "film-festival",
+      "documentary",
+      "himalayas",
+      "viff-centre"
+    ],
+    "dateSchedule": "2026-10-04 at 16:00",
+    "startIso": "2026-10-04T16:00:00-07:00",
+    "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+    "venueUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+    "ticketProvider": "VIFF Official Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap.",
+    "isSoldOut": false
+  },
+  {
+    "id": "viff-hanging-by-a-wire-oct7",
+    "title": "VIFF Showcase: \"Hanging by a Wire\" (Wednesday Screening)",
+    "venue": "VIFF Centre",
+    "address": "1181 Seymour St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.9,
+    "priceLabel": "$20.90 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "cinema",
+    "categoryLabel": "cinema",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "viff",
+      "film-festival",
+      "documentary",
+      "himalayas",
+      "viff-centre"
+    ],
+    "dateSchedule": "2026-10-07 at 18:30",
+    "startIso": "2026-10-07T18:30:00-07:00",
+    "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+    "venueUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
+    "ticketProvider": "VIFF Official Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap.",
+    "isSoldOut": false
   },
   {
     "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
     "title": "Ethan Regan - Young Regan Tour",
     "venue": "Rickshaw Theatre",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "venueAliases": [
-      "The Rickshaw Theatre",
-      "Rickshaw"
-    ],
     "address": "254 E Hastings St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "coordinates": [
-      49.2811,
-      -123.0984
+    "price": 29.5,
+    "priceLabel": "$29.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
     ],
-    "transitInfo": "#14, #16, or #20 bus along E Hastings St to Main St",
-    "basePrice": 36.0,
-    "scrapedBasePrice": 36.0,
-    "venueSubpageUrl": "https://rickshawtheatre.com/show_listings/ethan-regan/",
-    "websiteUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
-    "venueUrl": "https://rickshawtheatre.com",
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "rickshaw-theatre",
       "music",
       "live-calendar"
     ],
+    "dateSchedule": "2026-10-03 at 19:30",
+    "startIso": "2026-10-03T19:30:00-07:00",
+    "websiteUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
+    "venueUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51",
+    "ticketProvider": "Rickshaw Theatre Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Rising indie-folk singer-songwriter Ethan Regan brings his heartfelt acoustic melodies and emotive storytelling to the historic Rickshaw Theatre, performing tracks from his album 'Young Regan' with special guest harf.",
+    "isSoldOut": false
+  },
+  {
+    "id": "central-park-pitch-putt",
+    "title": "Central Park Pitch & Putt: 18-Hole Round",
+    "venue": "Central Park Pitch & Putt",
+    "address": "Kingsway & Boundary Rd, Central Park, Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "price": 17.5,
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
     "frequency": "one-off",
-    "frequencyLabel": "Live Showcase",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "sat"
+      "daily"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
-    "dateSchedule": "Oct 3, 2026",
-    "startIso": "2026-10-03T19:30:00-07:00",
-    "endIso": null,
-    "confirmedDates": [
-      "2026-10-03"
-    ],
-    "isDaily": false,
-    "isSoldOut": false,
-    "description": "Rising indie-folk singer-songwriter Ethan Regan brings his heartfelt acoustic melodies and emotive storytelling to the historic Rickshaw Theatre, performing tracks from his album 'Young Regan' with special guest harf.",
-    "price": 29.5,
-    "priceLabel": "$29.50 adv / $40.00 door",
-    "tiers": [
-      {
-        "name": "Advance Presale Ticket",
-        "price": 29.5,
-        "label": "$29.50 all-in"
-      },
-      {
-        "name": "At-The-Door Box Office Admission",
-        "price": 40.0,
-        "label": "$40.00 door"
-      }
-    ],
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 49.25,
-      "feeBreakdown": "$49.25 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-12T19:57:51.132156+00:00",
-      "details": "Approved by curator with AI instruction. Note: Verified door rate for Rickshaw Theatre",
-      "curatorSnapshot": {
-        "approvedPrice": 49.25,
-        "approvedPriceLabel": "$49.25 CAD",
-        "approvedCategory": "music",
-        "curatorNote": "Verified door rate for Rickshaw Theatre",
-        "approvedAt": "2026-09-12T19:57:51.132165+00:00",
-        "sourceUrl": "https://www.ticketmaster.ca/event/110064BBA2ED6B51"
-      }
-    },
-    "isFree": false,
-    "ticketProvider": "Rickshaw Theatre Verified",
-    "categories": [
-      "music",
-      "nightlife",
-      "social"
-    ],
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "bot_shielded_event_slug",
-      "matched_tokens": [
-        "110064BBA2ED6B51"
-      ],
-      "evidence_snippet": "Verified platform event slug on www.ticketmaster.ca (/event/110064BBA2ED6B51)",
-      "reason": "Direct ticketing provider platform slug verified (bot-protected live endpoint)"
-    },
-    "pricingType": "tiered"
-  },
-  {
-    "id": "qe-park-pitch-putt",
-    "title": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "performers": null,
-    "venue": "Queen Elizabeth Park Pitch & Putt",
-    "venueAliases": [
-      "Queen Elizabeth Pitch and Putt",
-      "QE Pitch & Putt",
-      "QE Golf"
-    ],
-    "address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 17.5,
-    "priceLabel": "$17.50 door",
-    "pricingType": "door",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Outing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
     "category": "outdoors",
-    "categoryLabel": "Outdoors",
-    "categoryIcon": "🌲",
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "queen-elizabeth-park",
-      "cambie",
-      "outdoors"
-    ],
-    "dateSchedule": "Daily • Daylight hours (First-come, first-served)",
-    "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
-    "ticketProvider": "City of Vancouver Park Board",
-    "rawProvider": "Independent Box Office",
-    "coordinates": [
-      49.2395,
-      -123.114
-    ],
-    "transitInfo": "SkyTrain Canada Line to King Edward Station or #15 Cambie bus",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Perched on Little Mountain with panoramic skyline and mountain views, this 18-hole pitch and putt features manicured greens and holes ranging from 45 to 110 yards.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 15.75,
-      "feeBreakdown": "Direct Park Board walk-up fee (.75 all-in CAD)",
-      "verifiedAt": "2026-09-18T17:54:20.374260",
-      "details": "Verified City of Vancouver Park Board tariff."
-    },
-    "categories": [
-      "activities",
-      "outdoors",
-      "social",
-      "sports"
-    ],
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "queen",
-        "elizabeth",
-        "pitch",
-        "putt"
-      ],
-      "evidence_snippet": "Municipal civic facility path verified: /parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
-      "reason": "Official City of Vancouver / VPL park board facility path confirmed"
-    }
-  },
-  {
-    "id": "central-park-pitch-putt",
-    "title": "Central Park Pitch & Putt: 18-Hole Round",
-    "artist": null,
-    "performers": null,
-    "venue": "Central Park Pitch & Putt",
-    "venueAliases": [
-      "Central Park Golf",
-      "Patterson Pitch & Putt"
-    ],
-    "address": "Kingsway & Boundary Rd, Central Park, Vancouver",
-    "neighborhood": "North Shore, Burnaby & Metro",
-    "price": 17.5,
-    "priceLabel": "$17.50 door",
-    "pricingType": "door",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Daily Outing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon"
-    ],
-    "category": "outdoors",
-    "categoryLabel": "Outdoors",
-    "categoryIcon": "🌲",
+    "categoryLabel": "outdoors",
+    "categoryIcon": "🌊",
     "subTags": [
       "pitch-and-putt",
       "golf",
@@ -2619,54 +1656,18 @@ const VANCOUVER_EVENTS = [
       "patterson-skytrain",
       "outdoors"
     ],
-    "dateSchedule": "Daily • Daylight hours (First-come, first-served)",
+    "dateSchedule": "2026-09-08 at 08:00",
     "startIso": "2026-09-08T08:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
     "websiteUrl": "https://www.golfburnaby.ca/golf/central-park",
-    "venueUrl": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+    "venueUrl": "https://www.golfburnaby.ca/golf/central-park",
     "ticketProvider": "Burnaby Parks & Recreation",
-    "rawProvider": "Independent Box Office",
     "coordinates": [
-      49.228,
-      -123.0205
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "SkyTrain Expo Line to Patterson Station (3 min walk)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "An 18-hole par-3 pitch and putt course carved into the towering fir and cedar forests of Central Park directly beside Patterson SkyTrain station.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 14.0,
-      "feeBreakdown": "Direct municipal walk-up fee (.00 all-in CAD)",
-      "verifiedAt": "2026-09-18T17:54:20.374305",
-      "details": "Verified Central Park golf tariff."
-    },
-    "categories": [
-      "activities",
-      "outdoors",
-      "social",
-      "sports"
-    ],
-    "semanticVerification": {
-      "is_verified": true,
-      "match_type": "civic_mandate",
-      "matched_tokens": [
-        "central",
-        "park",
-        "pitch",
-        "putt",
-        "golf"
-      ],
-      "evidence_snippet": "Civic public access facility verified on official portal (central, park, pitch, putt, golf)",
-      "reason": "Official municipal or public institution mandate confirmed"
-    }
+    "isSoldOut": false
   }
 ];
 const MANUAL_REVIEW_QUEUE = [
@@ -3073,6 +2074,7 @@ const VENUE_URLS = {
   "Public Disco Society": "https://publicdisco.ca",
   "Public Disco": "https://publicdisco.ca",
   "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
+  "Queen Elizabeth Theatre": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
   "Pizzeria Ludica": "https://www.pizzerialudica.com/",
   "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
   "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
@@ -3535,6 +2537,41 @@ const DISCOVERY_SOURCES = [
     "harvestMethod": "html_and_schema_extraction",
     "targetBudgetTier": "<= $50 CAD",
     "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
+    "status": "active"
+  },
+  {
+    "id": "vancouver-civic-theatres",
+    "name": "Vancouver Civic Theatres",
+    "domain": "vancouvercivictheatres.com",
+    "eventsUrl": "https://vancouvercivictheatres.com/events/",
+    "apiUrl": "https://vancouvercivictheatres.com/umbraco/api/eventsListing/GetAllEvents/",
+    "type": "civic_venue_calendar",
+    "typeLabel": "Civic Performing Arts & Theatre Portal",
+    "focus": "Live theatre, musicals, opera, ballet, symphonic concerts, and comedy showcases at Queen Elizabeth Theatre, Orpheum, Annex, and Vancouver Playhouse",
+    "bestForCategories": [
+      "shows",
+      "music"
+    ],
+    "harvestMethod": "json_api_and_html",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Harvest live calendar from civic API and resolve outbound ticketing provider (Ticketmaster, VTix, AdmitOne, or box office). Strictly enforce <= $50 CAD cap.",
+    "status": "active"
+  },
+  {
+    "id": "broadway-across-canada",
+    "name": "Broadway Across Canada (Vancouver)",
+    "domain": "vancouver.broadway.com",
+    "eventsUrl": "https://vancouver.broadway.com/shows/",
+    "apiUrl": null,
+    "type": "theatrical_producer_portal",
+    "typeLabel": "National Theatrical Touring Directory",
+    "focus": "Touring Broadway musicals and major theatrical spectacles hosted at Queen Elizabeth Theatre",
+    "bestForCategories": [
+      "shows"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Scan touring show calendar at Queen Elizabeth Theatre; resolve ticket link to Ticketmaster or Broadway box office. Flag or filter tiers > $50 CAD.",
     "status": "active"
   }
 ];

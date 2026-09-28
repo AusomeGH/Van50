@@ -90,39 +90,45 @@ def sanitize_text(text: str) -> str:
 
 
 def create_backup_snapshot():
-    """Creates a timestamped snapshot of data/events.json prior to mutation."""
-    if not os.path.exists(EVENTS_PATH):
-        return
+    """Creates a timestamped snapshot of data/events_active.json and data/events.json prior to mutation."""
     os.makedirs(BACKUP_DIR, exist_ok=True)
     ts = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    backup_file = os.path.join(BACKUP_DIR, f"events_{ts}.json")
-    try:
-        shutil.copy2(EVENTS_PATH, backup_file)
-        # Keep only latest 20 backups
-        backups = sorted([os.path.join(BACKUP_DIR, f) for f in os.listdir(BACKUP_DIR) if f.startswith("events_")])
-        if len(backups) > 20:
-            for b in backups[:-20]:
-                try:
-                    os.remove(b)
-                except Exception:
-                    pass
-    except Exception as e:
-        print(f"[WARN] Failed to create backup: {e}")
+    if os.path.exists(EVENTS_ACTIVE_PATH):
+        try:
+            shutil.copy2(EVENTS_ACTIVE_PATH, os.path.join(BACKUP_DIR, f"events_active_{ts}.json"))
+        except Exception as e:
+            print(f"[WARN] Failed to backup events_active: {e}")
+    if os.path.exists(EVENTS_PATH):
+        try:
+            shutil.copy2(EVENTS_PATH, os.path.join(BACKUP_DIR, f"events_{ts}.json"))
+            backups = sorted([os.path.join(BACKUP_DIR, f) for f in os.listdir(BACKUP_DIR) if f.startswith("events_")])
+            if len(backups) > 20:
+                for b in backups[:-20]:
+                    try:
+                        os.remove(b)
+                    except Exception:
+                        pass
+        except Exception as e:
+            print(f"[WARN] Failed to create backup: {e}")
 
 
 def create_venue_backup_snapshot():
-    """Creates a timestamped snapshot of data/venue_directory.json prior to mutation."""
-    if not os.path.exists(VENUE_DIR_PATH):
-        return None
+    """Creates a timestamped snapshot of data/venues_master.json and data/venue_directory.json prior to mutation."""
     os.makedirs(BACKUP_DIR, exist_ok=True)
     ts = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    dest = os.path.join(BACKUP_DIR, f"venues_{ts}.json")
-    try:
-        shutil.copy2(VENUE_DIR_PATH, dest)
-        return f"venues_{ts}.json"
-    except Exception as e:
-        print(f"[WARN] Failed to create venue backup: {e}")
-        return None
+    if os.path.exists(VENUES_MASTER_PATH):
+        try:
+            shutil.copy2(VENUES_MASTER_PATH, os.path.join(BACKUP_DIR, f"venues_master_{ts}.json"))
+        except Exception as e:
+            print(f"[WARN] Failed to backup venues_master: {e}")
+    if os.path.exists(VENUE_DIR_PATH):
+        try:
+            shutil.copy2(VENUE_DIR_PATH, os.path.join(BACKUP_DIR, f"venues_{ts}.json"))
+            return f"venues_{ts}.json"
+        except Exception as e:
+            print(f"[WARN] Failed to create venue backup: {e}")
+            return None
+    return f"venues_master_{ts}.json"
 
 
 def save_screenshots_from_payload(payload: dict, ts_base: int = None) -> list:
@@ -460,7 +466,46 @@ def sync_js_data_file():
     """Regenerates js/data.js from data/events.json and data/manual_review_queue.json."""
     try:
         events = []
-        if os.path.exists(EVENTS_PATH):
+        if os.path.exists(EVENTS_ACTIVE_PATH):
+            try:
+                with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as af:
+                    act_list = json.load(af)
+                for item in (act_list if isinstance(act_list, list) else []):
+                    price = item.get("pricing_all_in_cad", {}).get("regular", 0.0) if isinstance(item.get("pricing_all_in_cad"), dict) else item.get("price", 0.0)
+                    show1 = item.get("show_1") or {}
+                    dates = [s.get("date") for s in [item.get("show_1"), item.get("show_2"), item.get("show_3")] if s and s.get("date")]
+                    events.append({
+                        "id": item.get("event_id") or item.get("id"),
+                        "title": item.get("event_name") or item.get("title", "Event"),
+                        "venue": item.get("venue_name") or item.get("venue", "Vancouver Venue"),
+                        "address": item.get("full_address") or item.get("address", "Vancouver, BC"),
+                        "neighborhood": item.get("neighborhood", "Downtown, Gastown & Yaletown"),
+                        "price": float(price or 0.0),
+                        "priceLabel": "Free ($0)" if float(price or 0.0) == 0 else f"${float(price):.2f} CAD",
+                        "pricingType": "free" if float(price or 0.0) == 0 else "paid",
+                        "isFree": float(price or 0.0) == 0,
+                        "frequency": "limited-run" if len(dates) > 1 else "one-off",
+                        "frequencyLabel": "Verified Multiple Showings" if len(dates) > 1 else "Single Showing",
+                        "daysOfWeek": ["daily"],
+                        "timeSlots": ["early-evening", "late-evening"],
+                        "category": item.get("category", "shows"),
+                        "categoryLabel": item.get("category", "Shows & Arts"),
+                        "categoryIcon": "🌊" if item.get("category") == "outdoors" else ("🎵" if item.get("category") == "music" else "🎭"),
+                        "subTags": item.get("tags") or [],
+                        "dateSchedule": f"{show1.get('date', 'Upcoming')} at {show1.get('start_time', '19:00')}" if show1.get("date") else "Upcoming",
+                        "startIso": f"{show1.get('date')}T{show1.get('start_time', '19:00')}:00-07:00" if show1.get("date") else None,
+                        "websiteUrl": item.get("ticket_url") or item.get("details_url") or item.get("discovery_url") or "#",
+                        "venueUrl": item.get("details_url") or "#",
+                        "ticketProvider": item.get("ticket_provider", "Direct"),
+                        "coordinates": [49.2827, -123.1207],
+                        "transitInfo": "Transit accessible via TransLink",
+                        "description": item.get("description", ""),
+                        "isSoldOut": False
+                    })
+            except Exception:
+                pass
+
+        if not events and os.path.exists(EVENTS_PATH):
             with open(EVENTS_PATH, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 events = data if isinstance(data, list) else data.get("events", [])
@@ -482,7 +527,8 @@ def sync_js_data_file():
         if os.path.exists(disc_path):
             try:
                 with open(disc_path, "r", encoding="utf-8") as f:
-                    discovery_sources = json.load(f).get("sources", [])
+                    raw_disc = json.load(f)
+                    discovery_sources = raw_disc.get("sources", []) if isinstance(raw_disc, dict) else raw_disc
             except Exception as e:
                 print(f"[WARN] Failed to load discovery sources: {e}")
 
@@ -714,6 +760,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         ])
                 except Exception:
                     pass
+
             # 1. Master Active Events Count (checks events_active.json first)
             if os.path.exists(EVENTS_ACTIVE_PATH):
                 try:
@@ -930,6 +977,32 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         if path == "/api/curator/archived":
             if not self._check_authenticated():
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            if os.path.exists(EVENTS_ARCHIVE_PATH):
+                try:
+                    with open(EVENTS_ARCHIVE_PATH, "r", encoding="utf-8") as af:
+                        arch_raw = json.load(af)
+                    raw_items = arch_raw if isinstance(arch_raw, list) else arch_raw.get("archivedEvents", [])
+                    arch_filtered = []
+                    for x in raw_items:
+                        p = float(x.get("attempted_price_cad") if x.get("attempted_price_cad") is not None else x.get("attemptedPrice", x.get("price", 0.0)) or 0.0)
+                        if p <= 50.0 and x.get("reviewStatus") != "denied_auto_budget":
+                            arch_filtered.append({
+                                "id": x.get("event_id") or x.get("id"),
+                                "title": x.get("event_name") or x.get("title", "Archived Event"),
+                                "venue": x.get("venue_name") or x.get("venue", ""),
+                                "address": x.get("full_address") or x.get("address", ""),
+                                "neighborhood": x.get("neighborhood", ""),
+                                "attemptedPrice": p,
+                                "price": p,
+                                "websiteUrl": x.get("discovery_url") or x.get("websiteUrl") or "",
+                                "category": x.get("category", "General"),
+                                "flagReason": x.get("archive_reason") or x.get("archivedReason") or x.get("flagReason") or "Archived",
+                                "archivedReason": x.get("archive_reason") or x.get("archivedReason") or "Dismissed by curator",
+                                "archivedAt": x.get("archived_at") or x.get("archivedAt")
+                            })
+                    return self._send_json(200, {"metadata": {}, "archivedEvents": arch_filtered})
+                except Exception:
+                    pass
             if os.path.exists(ARCHIVE_PATH):
                 with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
                     arch_full = json.load(f)
@@ -1106,6 +1179,9 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 return self._send_forbidden("Access Denied: Directory browsing is disabled.")
 
         return super().do_GET()
+
+
+
 
     def do_POST(self):
         parsed = urlparse(self.path)
@@ -1352,7 +1428,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "success": True,
                 "message": f"Successfully approved '{event_data.get('title')}' and queued for AI learning.",
                 "remainingQuarantine": len(q_list),
-                "totalMasterEvents": len(events_list)
+                "totalMasterEvents": len(active_list) if ('active_list' in locals() and active_list) else len(events_list)
             })
 
         # 3. API: Reject event & archive
@@ -1401,8 +1477,29 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 print(f"[WARN] Failed to write events_archive.json: {e}")
 
+            # Remove from events_active.json if present
+            if os.path.exists(EVENTS_ACTIVE_PATH):
+                try:
+                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as eaf:
+                        act_list = json.load(eaf)
+                    act_list = [x for x in (act_list if isinstance(act_list, list) else []) if (x.get("event_id") or x.get("id")) != ev_id]
+                    with open(EVENTS_ACTIVE_PATH, "w", encoding="utf-8") as eaf:
+                        json.dump(act_list, eaf, indent=2, ensure_ascii=False)
+                except Exception as e:
+                    print(f"[WARN] Failed to clean events_active.json: {e}")
 
-            # Record in learned rules archived IDs
+            # Remove from events.json if present
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                        db = json.load(ef)
+                    db["events"] = [e for e in db.get("events", []) if e.get("id") != ev_id]
+                    db.setdefault("metadata", {})["totalEvents"] = len(db["events"])
+                    with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                        json.dump(db, ef, indent=2, ensure_ascii=False)
+                except Exception as e:
+                    print(f"[WARN] Failed to clean events.json: {e}")
+
             try:
                 with open(RULES_PATH, "r", encoding="utf-8") as f:
                     r_data = json.load(f)
@@ -2069,6 +2166,30 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                                     json.dump(disc_data, df, indent=2, ensure_ascii=False)
                             except Exception:
                                 pass
+                        if os.path.exists(VENUES_MASTER_PATH):
+                            try:
+                                with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as vmf:
+                                    vm_list = json.load(vmf)
+                                existing = next((v for v in vm_list if (v.get("venue_name") or "").lower() == venue_name.lower()), None)
+                                if existing:
+                                    existing["website_url"] = v_url or existing.get("website_url", "")
+                                    existing["calendar_url"] = v_url or existing.get("calendar_url", "")
+                                    existing["full_address"] = v_addr or existing.get("full_address", "")
+                                    existing["neighborhood"] = v_neigh or existing.get("neighborhood", "")
+                                else:
+                                    vm_list.append({
+                                        "venue_name": venue_name,
+                                        "website_url": v_url,
+                                        "calendar_url": v_url,
+                                        "full_address": v_addr,
+                                        "neighborhood": v_neigh,
+                                        "description": instruction_text or f"Discovered venue: {venue_name}"
+                                    })
+                                with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
+                                    json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
+                            except Exception as ex:
+                                print(f"[WARN] Failed to update venues_master.json: {ex}")
+
                         sync_js_data_file()
                         approval_msg = f" Venue '{venue_name}' approved and enrolled into Universal Venue Crawler."
                 else:

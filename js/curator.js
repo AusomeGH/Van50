@@ -32,7 +32,17 @@ const state = {
   rulesSearchQuery: '',
   instructionsList: [],
   activeInstFilter: 'all',
-  instructionsSearchQuery: ''
+  instructionsSearchQuery: '',
+  masterTab: 'events_active',
+  masterSearchQuery: '',
+  masterCatalogsData: {
+    events_active: [],
+    venues_master: [],
+    festivals_master: [],
+    ticketing_sources: [],
+    discovery_sources: [],
+    events_archive: []
+  }
 };
 
 function initApp() {
@@ -2699,6 +2709,45 @@ function setupCuratorEventListeners() {
   const instEditForm = document.getElementById('instruction-edit-form');
   if (instEditForm) instEditForm.addEventListener('submit', saveInstructionChanges);
 
+  // Master Catalogs Pill & Modal Listeners
+  const masterPill = document.getElementById('stat-master-pill');
+  if (masterPill) masterPill.addEventListener('click', openMasterCatalogsModal);
+
+  const masterModal = document.getElementById('master-catalogs-modal');
+  const closeMasterBtn = document.getElementById('btn-close-master-modal');
+  const closeMasterBottom = document.getElementById('btn-close-master-bottom');
+  const closeMaster = () => {
+    if (masterModal) masterModal.classList.remove('active');
+  };
+  if (closeMasterBtn) closeMasterBtn.addEventListener('click', closeMaster);
+  if (closeMasterBottom) closeMasterBottom.addEventListener('click', closeMaster);
+  if (masterModal) {
+    masterModal.addEventListener('click', (e) => {
+      if (e.target === masterModal) closeMaster();
+    });
+  }
+
+  const masterTabGroup = document.getElementById('master-tab-group');
+  if (masterTabGroup) {
+    masterTabGroup.addEventListener('click', (e) => {
+      const pill = e.target.closest('.curator-filter-pill');
+      if (!pill) return;
+      masterTabGroup.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      state.masterTab = pill.dataset.masterTab || 'events_active';
+      renderMasterCatalogList();
+      fetchMasterCatalog(state.masterTab);
+    });
+  }
+
+  const masterSearchInput = document.getElementById('master-search-input');
+  if (masterSearchInput) {
+    masterSearchInput.addEventListener('input', () => {
+      state.masterSearchQuery = masterSearchInput.value;
+      renderMasterCatalogList();
+    });
+  }
+
 
   const btnSubmitOnly = document.getElementById('btn-submit-ai-inst-only');
   if (btnSubmitOnly) {
@@ -4333,4 +4382,239 @@ function toggleCuratorAccessibility() {
 window.initCuratorAccessibility = initCuratorAccessibility;
 window.setCuratorAccessibility = setCuratorAccessibility;
 window.toggleCuratorAccessibility = toggleCuratorAccessibility;
+
+// ==============================================================================
+// 11. MASTER CATALOGS INSPECTOR ENGINE (events_active, venues, festivals, etc.)
+// ==============================================================================
+
+window.openMasterCatalogsModal = async function() {
+  if (!state.token) {
+    showToast('Please authenticate into Curator Studio first', 'warning');
+    return;
+  }
+
+  const modal = document.getElementById('master-catalogs-modal');
+  if (!modal) return;
+  modal.classList.add('active');
+
+  // Trigger loading active tab and all badge counts
+  fetchMasterCatalog(state.masterTab || 'events_active');
+  fetchAllMasterCatalogCounts();
+};
+
+async function fetchAllMasterCatalogCounts() {
+  const tabs = ['events_active', 'venues_master', 'festivals_master', 'ticketing_sources', 'discovery_sources', 'events_archive'];
+  for (const t of tabs) {
+    fetchMasterCatalog(t, false);
+  }
+}
+
+async function fetchMasterCatalog(tabName, renderIfActive = true) {
+  if (!state.token) return;
+
+  const urlMap = {
+    events_active: '/api/curator/events/active',
+    venues_master: '/api/curator/venues/master',
+    festivals_master: '/api/curator/festivals/master',
+    ticketing_sources: '/api/curator/ticketing_sources',
+    discovery_sources: '/api/curator/discovery_sources',
+    events_archive: '/api/curator/archived'
+  };
+
+  const url = urlMap[tabName];
+  if (!url) return;
+
+  try {
+    const res = await fetch(`${url}?_t=${Date.now()}`, {
+      headers: { 'Curator-Token': state.token },
+      cache: 'no-store'
+    });
+    if (res.ok) {
+      const data = await res.json();
+      let list = [];
+      if (tabName === 'events_active') list = data.events || [];
+      else if (tabName === 'venues_master') list = data.venues || [];
+      else if (tabName === 'festivals_master') list = data.festivals || [];
+      else if (tabName === 'ticketing_sources') list = data.ticketingSources || [];
+      else if (tabName === 'discovery_sources') list = data.discoverySources || (Array.isArray(data) ? data : []);
+      else if (tabName === 'events_archive') list = data.archivedEvents || [];
+
+      state.masterCatalogsData[tabName] = list;
+
+      const badgeIdMap = {
+        events_active: 'master-count-active',
+        venues_master: 'master-count-venues',
+        festivals_master: 'master-count-festivals',
+        ticketing_sources: 'master-count-ticketing',
+        discovery_sources: 'master-count-discovery',
+        events_archive: 'master-count-archive'
+      };
+      const badgeEl = document.getElementById(badgeIdMap[tabName]);
+      if (badgeEl) badgeEl.textContent = list.length;
+
+      if (tabName === 'events_active') {
+        const elM = document.getElementById('stat-master-count');
+        if (elM) elM.textContent = list.length;
+      }
+
+      if (renderIfActive && state.masterTab === tabName) {
+        renderMasterCatalogList();
+      }
+    }
+  } catch (err) {
+    console.warn(`Could not load catalog ${tabName}:`, err);
+  }
+}
+
+function renderMasterCatalogList() {
+  const container = document.getElementById('master-catalogs-list-container');
+  const footerStatus = document.getElementById('master-status-footer');
+  if (!container) return;
+
+  const currentTab = state.masterTab || 'events_active';
+  const rawList = state.masterCatalogsData[currentTab] || [];
+  const query = (state.masterSearchQuery || '').toLowerCase().trim();
+
+  let list = rawList;
+  if (query) {
+    list = rawList.filter(item => {
+      const jsonStr = JSON.stringify(item).toLowerCase();
+      return jsonStr.includes(query);
+    });
+  }
+
+  if (footerStatus) {
+    footerStatus.textContent = `Showing ${list.length} of ${rawList.length} items in ${currentTab.replace('_', ' ')}.`;
+  }
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px; color: #94a3b8;">
+        <div style="font-size: 2.2rem; margin-bottom: 8px;">🔍</div>
+        <div style="font-size: 1rem; font-weight: 600; color: #e2e8f0;">No matching entries found</div>
+        <div style="font-size: 0.82rem; margin-top: 4px;">Try a different search term or switch catalogs above.</div>
+      </div>
+    `;
+    return;
+  }
+
+  if (currentTab === 'events_active') {
+    container.innerHTML = list.map(ev => {
+      const p = ev.pricing_all_in_cad?.regular ?? ev.price ?? 0;
+      const priceBadge = p === 0 ? '<span style="color: #4ade80; font-weight: 700;">Free ($0)</span>' : `<span style="color: #38bdf8; font-weight: 700;">$${Number(p).toFixed(2)} CAD</span>`;
+      const show1 = ev.show_1 || {};
+      const dates = [ev.show_1?.date, ev.show_2?.date, ev.show_3?.date].filter(Boolean);
+      const showingsBadge = dates.length > 1 ? `<span style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 4px; padding: 2px 6px; font-size: 0.72rem;">${dates.length} Verified Showings</span>` : '';
+      const tags = (ev.tags || []).map(t => `<span style="background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.72rem; color: #94a3b8;">#${t}</span>`).join(' ');
+
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+            <div>
+              <strong style="color: #f8fafc; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
+              <div style="color: #38bdf8; font-size: 0.84rem; margin-top: 2px;">📍 ${escapeHtml(ev.venue_name || ev.venue || '')} • <span style="color: #94a3b8;">${escapeHtml(ev.neighborhood || '')}</span></div>
+            </div>
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+              ${priceBadge}
+              ${showingsBadge}
+            </div>
+          </div>
+          <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">${escapeHtml(ev.description || 'No description provided.')}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.76rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px;">
+            <div>📅 Show 1: ${show1.date || 'Upcoming'} ${show1.start_time ? `at ${show1.start_time}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
+            <div style="display: flex; gap: 8px;">
+              ${tags}
+              ${ev.ticket_url ? `<a href="${escapeHtml(ev.ticket_url)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else if (currentTab === 'venues_master') {
+    container.innerHTML = list.map(vm => {
+      const vname = vm.venue_name || vm.name || 'Venue';
+      const addr = vm.full_address || vm.address || 'Vancouver, BC';
+      const neigh = vm.neighborhood || 'Vancouver';
+      const calUrl = vm.calendar_url || vm.website_url || '';
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #f8fafc; font-size: 0.95rem;">🏛️ ${escapeHtml(vname)}</strong>
+            <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.75rem;">${escapeHtml(neigh)}</span>
+          </div>
+          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(addr)}</div>
+          ${vm.description ? `<div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
+          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
+            ${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
+            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(vm.website_url)}" target="_blank" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else if (currentTab === 'festivals_master') {
+    container.innerHTML = list.map(fm => {
+      const fname = fm.festival_name || fm.name || 'Festival';
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #f8fafc; font-size: 0.95rem;">🎪 ${escapeHtml(fname)}</strong>
+            <span style="color: #c084fc; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || '')} to ${escapeHtml(fm.end_date || '')}</span>
+          </div>
+          <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || 'Vancouver, BC')} • Genre: <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'General')}</strong></div>
+          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
+            ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
+            ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else if (currentTab === 'ticketing_sources') {
+    container.innerHTML = list.map(ts => {
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong style="color: #f8fafc; font-size: 0.95rem;">🎫 ${escapeHtml(ts.provider_name || 'Provider')}</strong>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">💡 ${escapeHtml(ts.notes || 'Ticketing source')}</div>
+          </div>
+          <div>
+            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(ts.website_url)}" target="_blank" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else if (currentTab === 'discovery_sources') {
+    container.innerHTML = list.map(ds => {
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #f8fafc; font-size: 0.95rem;">🌐 ${escapeHtml(ds.name || ds.domain || 'Discovery Feed')}</strong>
+            <span style="background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem;">${escapeHtml(ds.typeLabel || ds.type || 'Aggregator')}</span>
+          </div>
+          <div style="font-size: 0.82rem; color: #cbd5e1;">🎯 ${escapeHtml(ds.focus || '')}</div>
+          <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 2px;">Policy: ${escapeHtml(ds.resolutionPolicy || 'Extract outbound canonical ticket portal')}</div>
+          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
+            ${ds.eventsUrl ? `<a href="${escapeHtml(ds.eventsUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } else if (currentTab === 'events_archive') {
+    container.innerHTML = list.map(ar => {
+      const p = ar.attempted_price_cad ?? ar.attemptedPrice ?? ar.price ?? 0;
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="color: #f8fafc; font-size: 0.92rem;">📦 ${escapeHtml(ar.event_name || ar.title || 'Archived Event')}</strong>
+            <span style="color: #f43f5e; font-size: 0.82rem; font-weight: 600;">$${Number(p).toFixed(2)} CAD</span>
+          </div>
+          <div style="font-size: 0.8rem; color: #94a3b8;">📍 ${escapeHtml(ar.venue_name || ar.venue || '')}</div>
+          <div style="font-size: 0.78rem; color: #f87171; background: rgba(244, 63, 94, 0.08); padding: 4px 8px; border-radius: 4px; margin-top: 2px;">Reason: ${escapeHtml(ar.archive_reason || ar.archivedReason || ar.flagReason || 'Dismissed by curator')}</div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+window.fetchMasterCatalog = fetchMasterCatalog;
+window.renderMasterCatalogList = renderMasterCatalogList;
 
