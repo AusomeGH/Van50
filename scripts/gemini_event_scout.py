@@ -26,11 +26,11 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
 QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 
-# Master JSON Catalogs
-EVENTS_ACTIVE_JSON = os.path.join(DATA_DIR, "events_active.json")
+# Clean JSON Catalogs (Option 2)
+EVENTS_JSON = os.path.join(DATA_DIR, "events.json")
 EVENTS_ARCHIVE_JSON = os.path.join(DATA_DIR, "events_archive.json")
-VENUES_MASTER_JSON = os.path.join(DATA_DIR, "venues_master.json")
-FESTIVALS_MASTER_JSON = os.path.join(DATA_DIR, "festivals_master.json")
+VENUES_JSON = os.path.join(DATA_DIR, "venues.json")
+FESTIVALS_JSON = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_JSON = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_JSON = os.path.join(DATA_DIR, "discovery_sources.json")
 
@@ -281,17 +281,17 @@ def run_gemini_scouting_cycle(api_key: str) -> Dict[str, Any]:
 
 def sync_master_catalogs(structured_data: Dict[str, Any]):
     """
-    Integrates newly discovered data into the master JSON database files:
-    events_active.json, events_archive.json, venues_master.json,
-    festivals_master.json, ticketing_sources.json, discovery_sources.json
+    Integrates newly discovered data into the clean JSON database files:
+    events.json, events_archive.json, venues.json, festivals.json,
+    ticketing_sources.json, discovery_sources.json
     """
     today_str = datetime.now().strftime("%Y-%m-%d")
 
     # 1. Load existing Active & Archived Events
     active_events = []
-    if os.path.exists(EVENTS_ACTIVE_JSON):
+    if os.path.exists(EVENTS_JSON):
         try:
-            with open(EVENTS_ACTIVE_JSON, "r", encoding="utf-8") as f:
+            with open(EVENTS_JSON, "r", encoding="utf-8") as f:
                 active_events = json.load(f)
         except Exception:
             active_events = []
@@ -376,7 +376,7 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             print(f"[ADD] Added active verified event: {ne.get('event_name')} (${reg_price:.2f} CAD)")
 
     # Save Events Active & Archive (Pure JSON)
-    with open(EVENTS_ACTIVE_JSON, "w", encoding="utf-8") as f:
+    with open(EVENTS_JSON, "w", encoding="utf-8") as f:
         json.dump(still_active, f, indent=2, ensure_ascii=False)
 
     with open(EVENTS_ARCHIVE_JSON, "w", encoding="utf-8") as f:
@@ -389,11 +389,11 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     with open(QUEUE_PATH, "w", encoding="utf-8") as qf:
         json.dump(queue_data, qf, indent=2, ensure_ascii=False)
 
-    # 4. Update Venues Master (JSON)
+    # 4. Update Venues (JSON)
     venues = []
-    if os.path.exists(VENUES_MASTER_JSON):
+    if os.path.exists(VENUES_JSON):
         try:
-            with open(VENUES_MASTER_JSON, "r", encoding="utf-8") as f:
+            with open(VENUES_JSON, "r", encoding="utf-8") as f:
                 venues = json.load(f)
         except Exception:
             pass
@@ -404,14 +404,14 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             venues.append(nv)
             venue_names.add(vname.lower())
 
-    with open(VENUES_MASTER_JSON, "w", encoding="utf-8") as f:
+    with open(VENUES_JSON, "w", encoding="utf-8") as f:
         json.dump(venues, f, indent=2, ensure_ascii=False)
 
-    # 5. Update Festivals Master (JSON)
+    # 5. Update Festivals (JSON)
     festivals = []
-    if os.path.exists(FESTIVALS_MASTER_JSON):
+    if os.path.exists(FESTIVALS_JSON):
         try:
-            with open(FESTIVALS_MASTER_JSON, "r", encoding="utf-8") as f:
+            with open(FESTIVALS_JSON, "r", encoding="utf-8") as f:
                 festivals = json.load(f)
         except Exception:
             pass
@@ -422,7 +422,7 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             festivals.append(nf)
             fest_names.add(fname.lower())
 
-    with open(FESTIVALS_MASTER_JSON, "w", encoding="utf-8") as f:
+    with open(FESTIVALS_JSON, "w", encoding="utf-8") as f:
         json.dump(festivals, f, indent=2, ensure_ascii=False)
 
     # 6. Ensure default Ticketing Sources & Discovery Sources exist
@@ -440,9 +440,9 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     print(f" • Active Events: {len(still_active)} (+{added_count} new)")
     print(f" • Quarantined Queue: {len(queue_events)} (+{quarantined_count} queued for review)")
     print(f" • Archived Events: {len(archived_events)}")
-    print(f" • Venues Master: {len(venues)}")
-    print(f" • Festivals Master: {len(festivals)}")
-    print(f" • JSON Catalogs updated: {EVENTS_ACTIVE_JSON}, {QUEUE_PATH}, {VENUES_MASTER_JSON}, {FESTIVALS_MASTER_JSON}")
+    print(f" • Venues: {len(venues)}")
+    print(f" • Festivals: {len(festivals)}")
+    print(f" • JSON Catalogs updated: {EVENTS_JSON}, {QUEUE_PATH}, {VENUES_JSON}, {FESTIVALS_JSON}")
 
 
 def init_default_sources():
@@ -475,8 +475,8 @@ def bootstrap_from_existing_data():
     Populates master catalogs from existing events.json, venue_directory.json,
     and festival_registry.json if active tables are not yet generated.
     """
-    # Bootstrap Venues Master
-    if not os.path.exists(VENUES_MASTER_JSON):
+    # Bootstrap Venues
+    if not os.path.exists(VENUES_JSON):
         vdir_path = os.path.join(DATA_DIR, "venue_directory.json")
         venues_list = []
         if os.path.exists(vdir_path):
@@ -497,11 +497,11 @@ def bootstrap_from_existing_data():
                         })
             except Exception:
                 pass
-        with open(VENUES_MASTER_JSON, "w", encoding="utf-8") as f:
+        with open(VENUES_JSON, "w", encoding="utf-8") as f:
             json.dump(venues_list, f, indent=2, ensure_ascii=False)
 
-    # Bootstrap Festivals Master
-    if not os.path.exists(FESTIVALS_MASTER_JSON):
+    # Bootstrap Festivals
+    if not os.path.exists(FESTIVALS_JSON):
         freg_path = os.path.join(DATA_DIR, "festival_registry.json")
         fest_list = []
         if os.path.exists(freg_path):
@@ -520,11 +520,11 @@ def bootstrap_from_existing_data():
                         })
             except Exception:
                 pass
-        with open(FESTIVALS_MASTER_JSON, "w", encoding="utf-8") as f:
+        with open(FESTIVALS_JSON, "w", encoding="utf-8") as f:
             json.dump(fest_list, f, indent=2, ensure_ascii=False)
 
-    # Bootstrap Events Active
-    if not os.path.exists(EVENTS_ACTIVE_JSON):
+    # Bootstrap Events
+    if not os.path.exists(EVENTS_JSON):
         events_list = []
         if os.path.exists(EVENTS_PATH):
             try:
@@ -572,7 +572,7 @@ def bootstrap_from_existing_data():
                         })
             except Exception:
                 pass
-        with open(EVENTS_ACTIVE_JSON, "w", encoding="utf-8") as f:
+        with open(EVENTS_JSON, "w", encoding="utf-8") as f:
             json.dump(events_list, f, indent=2, ensure_ascii=False)
 
     init_default_sources()

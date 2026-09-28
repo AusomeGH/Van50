@@ -25,7 +25,7 @@ from urllib.parse import urlparse, parse_qs
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
-EVENTS_ACTIVE_PATH = os.path.join(DATA_DIR, "events_active.json")
+EVENTS_ACTIVE_PATH = os.path.join(DATA_DIR, "events.json")
 MANUAL_QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 RULES_PATH = os.path.join(DATA_DIR, "curator_learned_rules.json")
 ARCHIVE_PATH = os.path.join(DATA_DIR, "archived_events.json")
@@ -36,10 +36,12 @@ JS_DATA_PATH = os.path.join(BASE_DIR, "js", "data.js")
 BACKUP_DIR = os.path.join(DATA_DIR, "backups")
 LOGS_DIR = os.path.join(DATA_DIR, "automation_logs")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
-VENUE_DIR_PATH = os.path.join(DATA_DIR, "venue_directory.json")
-VENUES_MASTER_PATH = os.path.join(DATA_DIR, "venues_master.json")
-FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
-FESTIVALS_MASTER_PATH = os.path.join(DATA_DIR, "festivals_master.json")
+VENUE_DIR_PATH = os.path.join(DATA_DIR, "venues.json")
+VENUES_MASTER_PATH = os.path.join(DATA_DIR, "venues.json")
+VENUES_PATH = os.path.join(DATA_DIR, "venues.json")
+FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festivals.json")
+FESTIVALS_MASTER_PATH = os.path.join(DATA_DIR, "festivals.json")
+FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_PATH = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, "discovery_sources.json")
 
@@ -1078,27 +1080,27 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, fests)
 
-        # 8. API: Get Venues Master (venues_master.json)
-        if path == "/api/curator/venues/master":
+        # 8. API: Get Venues (venues.json)
+        if path in ("/api/curator/venues", "/api/curator/venues/master"):
             if not self._check_authenticated():
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
             venues = []
-            if os.path.exists(VENUES_MASTER_PATH):
+            if os.path.exists(VENUES_PATH):
                 try:
-                    with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as f:
+                    with open(VENUES_PATH, "r", encoding="utf-8") as f:
                         venues = json.load(f)
                 except Exception:
                     pass
             return self._send_json(200, {"venues": venues, "total": len(venues)})
 
-        # 9. API: Get Festivals Master (festivals_master.json)
-        if path == "/api/curator/festivals/master":
+        # 9. API: Get Festivals (festivals.json)
+        if path in ("/api/curator/festivals", "/api/curator/festivals/master"):
             if not self._check_authenticated():
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
             fests = []
-            if os.path.exists(FESTIVALS_MASTER_PATH):
+            if os.path.exists(FESTIVALS_PATH):
                 try:
-                    with open(FESTIVALS_MASTER_PATH, "r", encoding="utf-8") as f:
+                    with open(FESTIVALS_PATH, "r", encoding="utf-8") as f:
                         fests = json.load(f)
                 except Exception:
                     pass
@@ -1130,14 +1132,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, {"discoverySources": sources, "total": len(sources)})
 
-        # 12. API: Get Active Events Master (events_active.json)
-        if path == "/api/curator/events/active":
+        # 12. API: Get Active Events (events.json)
+        if path in ("/api/curator/events", "/api/curator/events/active"):
             if not self._check_authenticated():
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
             active_events = []
-            if os.path.exists(EVENTS_ACTIVE_PATH):
+            if os.path.exists(EVENTS_PATH):
                 try:
-                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as f:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as f:
                         active_events = json.load(f)
                 except Exception:
                     pass

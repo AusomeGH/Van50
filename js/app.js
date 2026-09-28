@@ -180,41 +180,26 @@ function normalizeActiveEvent(item) {
   };
 }
 
-// Asynchronously load central reference data feed (data/events_active.json as primary, fallback to data/events.json)
+// Asynchronously load central reference data feed (data/events.json)
 async function loadCentralReference() {
   let loadedEvents = null;
   let updatedAt = null;
 
-  // 1. Try loading new events_active.json first
+  // 1. Load clean events.json
   try {
-    const res = await fetch(`data/events_active.json?v=6.0.0&t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetch(`data/events.json?v=7.0.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       const rawList = Array.isArray(data) ? data : (data.events || []);
       if (rawList.length > 0) {
         loadedEvents = rawList.map(normalizeActiveEvent);
       }
+      if (data.metadata && data.metadata.updatedAt) {
+        updatedAt = data.metadata.updatedAt;
+      }
     }
   } catch (err) {
-    console.log('Could not load events_active.json, checking legacy events.json.');
-  }
-
-  // 2. Fallback to legacy events.json if events_active.json is empty
-  if (!loadedEvents) {
-    try {
-      const res = await fetch(`data/events.json?v=5.7.0&t=${Date.now()}`, { cache: 'no-store' });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.events && Array.isArray(data.events)) {
-          loadedEvents = data.events;
-          if (data.metadata && data.metadata.updatedAt) {
-            updatedAt = data.metadata.updatedAt;
-          }
-        }
-      }
-    } catch (err) {
-      console.log('Using offline embedded reference sheet.');
-    }
+    console.log('Using offline embedded reference sheet.');
   }
 
   if (loadedEvents && loadedEvents.length > 0) {
@@ -228,16 +213,29 @@ async function loadCentralReference() {
     applyFiltersAndRender();
   }
 
-  // Also load venues_master.json to enrich venue calendar & details
+  // Also load venues.json to enrich venue calendar & details
   try {
-    const vRes = await fetch(`data/venues_master.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
+    const vRes = await fetch(`data/venues.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
     if (vRes.ok) {
       const vList = await vRes.json();
       if (Array.isArray(vList)) {
+        window.VENUES = vList;
         window.VENUES_MASTER = vList;
       }
     }
   } catch (e) {}
+
+  // Also load festivals.json
+  try {
+    const fRes = await fetch(`data/festivals.json?v=2.0.0&t=${Date.now()}`, { cache: 'no-store' });
+    if (fRes.ok) {
+      const fList = await fRes.json();
+      if (Array.isArray(fList)) {
+        window.FESTIVALS = fList;
+      }
+    }
+  } catch (e) {}
+
 
   // Also load quarantined manual review queue
   try {

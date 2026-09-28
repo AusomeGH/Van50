@@ -1,555 +1,900 @@
 [
   {
     "venue_name": "Stanley Park Seawall",
-    "website_url": "",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "full_address": "Georgia St & Park Dr, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2988,
+      -123.1384
+    ],
+    "transit_info": "#19 bus to Stanley Park or 5 min walk from Denman St"
   },
   {
     "venue_name": "Lynn Canyon Park",
-    "website_url": "",
+    "website_url": "https://ecologycentre.ca",
     "calendar_url": "https://ecologycentre.ca",
     "full_address": "3663 Park Rd, North Vancouver",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.3438,
+      -123.0189
+    ],
+    "transit_info": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate"
   },
   {
     "venue_name": "Granville Island Public Market",
-    "website_url": "",
+    "website_url": "https://granvilleisland.com",
     "calendar_url": "https://granvilleisland.com/public-market",
     "full_address": "1689 Johnston St, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2718,
+      -123.1342
+    ],
+    "transit_info": "#50 False Creek bus or False Creek Aquabus ferry docks"
   },
   {
     "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
-    "website_url": "",
+    "website_url": "https://kitsilanoshowboat.com",
     "calendar_url": "https://kitsilanoshowboat.com/homepage/calendar/",
     "full_address": "2300 Cornwall Ave, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2742,
+      -123.1558
+    ],
+    "transit_info": "#2 Burrard or #4 / #7 bus from Downtown Vancouver"
   },
   {
     "venue_name": "VPL Central Library (Level 9)",
-    "website_url": "",
+    "website_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
     "calendar_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
     "full_address": "350 W Georgia St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "arts",
+    "coordinates": [
+      49.2801,
+      -123.1154
+    ],
+    "transit_info": "3 min walk from Vancouver City Centre SkyTrain"
   },
   {
     "venue_name": "Dr. Sun Yat-Sen Public Courtyard",
-    "website_url": "",
+    "website_url": "https://vancouverchinesegarden.com/visit/",
     "calendar_url": "https://vancouverchinesegarden.com/visit/",
     "full_address": "578 Carrall St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "arts",
+    "coordinates": [
+      49.2798,
+      -123.104
+    ],
+    "transit_info": "5 min walk from Stadium-Chinatown SkyTrain"
   },
   {
     "venue_name": "UBC Rose Garden & Trail 6",
-    "website_url": "",
+    "website_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "calendar_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "full_address": "6301 NW Marine Dr, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2694,
+      -123.2562
+    ],
+    "transit_info": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange"
   },
   {
     "venue_name": "Queen Elizabeth Park",
-    "website_url": "",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "calendar_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "full_address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2417,
+      -123.1126
+    ],
+    "transit_info": "10 min walk from King Edward Canada Line station"
   },
   {
     "venue_name": "Little Mountain Gallery",
-    "website_url": "",
+    "website_url": "https://littlemountaingallery.ca",
     "calendar_url": "https://littlemountaingallery.ca/events",
     "full_address": "110 Water St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2838,
+      -123.1072
+    ],
+    "transit_info": "4 min walk from Waterfront SkyTrain station"
   },
   {
     "venue_name": "Bloedel Conservatory",
-    "website_url": "",
+    "website_url": "https://www.showpass.com/o/bloedel-conservatory/",
     "calendar_url": "https://www.showpass.com/o/bloedel-conservatory/",
     "full_address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "arts",
+    "coordinates": [
+      49.2423,
+      -123.1144
+    ],
+    "transit_info": "12 min walk from King Edward Canada Line station"
   },
   {
     "venue_name": "War Memorial Gym & Thunderbird Stadium",
-    "website_url": "",
+    "website_url": "https://gothunderbirds.ca",
     "calendar_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "full_address": "6081 University Blvd, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2662,
+      -123.2483
+    ],
+    "transit_info": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop"
   },
   {
     "venue_name": "Chill x Studio",
-    "website_url": "",
+    "website_url": "https://chillxstudio.com",
     "calendar_url": "https://chillxstudio.com",
     "full_address": "1227 Richards St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2748,
+      -123.1265
+    ],
+    "transit_info": "3 min walk from Yaletown-Roundhouse Canada Line"
   },
   {
     "venue_name": "VIFF Centre (Seymour Atrium)",
-    "website_url": "",
+    "website_url": "https://viff.org",
     "calendar_url": "https://viff.org/whats-on/",
     "full_address": "1181 Seymour St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "cinema",
+    "coordinates": [
+      49.2774,
+      -123.1251
+    ],
+    "transit_info": "4 min walk from Yaletown-Roundhouse Canada Line"
   },
   {
     "venue_name": "The Cinematheque",
-    "website_url": "",
+    "website_url": "https://thecinematheque.ca",
     "calendar_url": "https://thecinematheque.ca/films/calendar",
     "full_address": "1131 Howe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "cinema",
+    "coordinates": [
+      49.2795,
+      -123.1274
+    ],
+    "transit_info": "5 min walk from Vancouver City Centre SkyTrain"
   },
   {
     "venue_name": "The Portside Pub",
-    "website_url": "",
+    "website_url": "https://theportsidepub.com",
     "calendar_url": "https://theportsidepub.com/bookings/",
     "full_address": "7 Alexander St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "trivia",
+    "coordinates": [
+      49.2842,
+      -123.1042
+    ],
+    "transit_info": "4 min walk from Waterfront SkyTrain Station"
   },
   {
     "venue_name": "The Rio Theatre",
-    "website_url": "",
+    "website_url": "https://riotheatre.ca",
     "calendar_url": "https://riotheatre.ca/calendar/",
     "full_address": "1660 E Broadway, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "cinema",
+    "coordinates": [
+      49.2627,
+      -123.0699
+    ],
+    "transit_info": "Steps from Commercial-Broadway SkyTrain Interchange"
   },
   {
     "venue_name": "The Fox Cabaret",
-    "website_url": "",
+    "website_url": "https://www.foxcabaret.com",
     "calendar_url": "https://www.foxcabaret.com/",
     "full_address": "2321 Main St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "cinema",
+    "coordinates": [
+      49.2638,
+      -123.1012
+    ],
+    "transit_info": "Main & 7th Ave bus stop • 10 min walk from SkyTrain"
   },
   {
     "venue_name": "The Biltmore Cabaret",
-    "website_url": "",
+    "website_url": "https://biltmorecabaret.com",
     "calendar_url": "https://biltmorecabaret.com/",
     "full_address": "2755 Prince Edward St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2602,
+      -123.0975
+    ],
+    "transit_info": "Main & 12th Ave bus corridor"
   },
   {
     "venue_name": "Scotiabank Field at Nat Bailey Stadium",
-    "website_url": "",
+    "website_url": "https://www.milb.com/vancouver",
     "calendar_url": "https://www.milb.com/vancouver/schedule",
     "full_address": "4601 Ontario St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2428,
+      -123.1098
+    ],
+    "transit_info": "#3 Main Bus or 12 min walk from King Edward Canada Line"
   },
   {
     "venue_name": "Revue Stage Granville Island",
-    "website_url": "",
+    "website_url": "https://theimprovcentre.ca",
     "calendar_url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
     "full_address": "1601 Johnston St, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2711,
+      -123.1332
+    ],
+    "transit_info": "#50 False Creek bus or Aquabus ferry dock"
   },
   {
     "venue_name": "Tightrope Impro Theatre",
-    "website_url": "",
+    "website_url": "https://tightropetheatre.com",
     "calendar_url": "https://tightropetheatre.com/shows",
     "full_address": "1330 Napier St, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2748,
+      -123.0768
+    ],
+    "transit_info": "Commercial & Hastings bus corridor"
   },
   {
     "venue_name": "The Improv Centre",
-    "website_url": "",
+    "website_url": "https://theimprovcentre.ca",
     "calendar_url": "https://theimprovcentre.ca/shows/",
     "full_address": "1502 Duranleau St, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2706,
+      -123.1363
+    ],
+    "transit_info": "#50 False Creek Bus or Aquabus ferry dock"
   },
   {
     "venue_name": "The Rickshaw Theatre",
-    "website_url": "",
+    "website_url": "https://rickshawtheatre.com",
     "calendar_url": "https://rickshawtheatre.com/events/",
     "full_address": "254 E Hastings St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2813,
+      -123.0984
+    ],
+    "transit_info": "5 min walk from Main & Hastings bus hub"
   },
   {
     "venue_name": "Science World at TELUS World of Science",
-    "website_url": "",
+    "website_url": "https://www.scienceworld.ca",
     "calendar_url": "https://www.scienceworld.ca/after-dark/",
     "full_address": "1455 Quebec St, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2734,
+      -123.1038
+    ],
+    "transit_info": "1 min walk from Main Street-Science World SkyTrain"
   },
   {
     "venue_name": "The Orpheum Theatre",
-    "website_url": "",
+    "website_url": "https://vancouvercivictheatres.com/venues/orpheum/",
     "calendar_url": "https://www.vancouversymphony.ca/concerts/",
     "full_address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2804,
+      -123.1206
+    ],
+    "transit_info": "Steps from Vancouver City Centre SkyTrain station"
   },
   {
     "venue_name": "Pizzeria Ludica",
-    "website_url": "",
+    "website_url": "https://www.pizzerialudica.com/",
     "calendar_url": "https://www.pizzerialudica.com/",
     "full_address": "189 Keefer Pl, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2801,
+      -123.1074
+    ],
+    "transit_info": "3 min walk from Stadium-Chinatown SkyTrain"
   },
   {
     "venue_name": "Stanley Park Pitch & Putt",
-    "website_url": "",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "full_address": "2099 Beach Ave, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2908,
+      -123.1448
+    ],
+    "transit_info": "#19 bus to Stanley Park or 10 min walk from Denman St"
   },
   {
     "venue_name": "Vancouver Art Gallery",
-    "website_url": "",
+    "website_url": "https://www.vanartgallery.bc.ca",
     "calendar_url": "https://www.vanartgallery.bc.ca/visit/",
     "full_address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "arts",
+    "coordinates": [
+      49.283,
+      -123.1205
+    ],
+    "transit_info": "1 min walk from City Centre / Granville SkyTrain"
   },
   {
     "venue_name": "The Shipyards District",
-    "website_url": "",
+    "website_url": "https://theshipyardsdistrict.ca",
     "calendar_url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
     "full_address": "125 Victory Ship Way, North Vancouver",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.3113,
+      -123.0818
+    ],
+    "transit_info": "5 min walk from Lonsdale Quay SeaBus terminal"
   },
   {
     "venue_name": "Kitsilano Beach Park",
-    "website_url": "",
+    "website_url": "https://kitsilanoshowboat.com/",
     "calendar_url": "https://kitsilanoshowboat.com/",
     "full_address": "1499 Arbutus St, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2724,
+      -123.1534
+    ],
+    "transit_info": "#2 Burrard or #4 bus"
   },
   {
     "venue_name": "Commercial Drive & Main Street",
-    "website_url": "",
+    "website_url": "https://www.carfreevancouver.org",
     "calendar_url": "https://www.carfreevancouver.org",
     "full_address": "Commercial Dr & Main St, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2685,
+      -123.0694
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain or Main St-Science World SkyTrain"
   },
   {
     "venue_name": "West 4th Avenue (Burrard to Macdonald)",
-    "website_url": "",
+    "website_url": "https://khatsahlano.ca",
     "calendar_url": "https://khatsahlano.ca",
     "full_address": "West 4th Ave, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2681,
+      -123.1582
+    ],
+    "transit_info": "#4 or #7 bus directly along West 4th Avenue"
   },
   {
     "venue_name": "John Hendry Park (Trout Lake)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/trout-lake/",
     "calendar_url": "https://eatlocal.org/markets/trout-lake/",
     "full_address": "3360 Victoria Dr, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2558,
+      -123.0642
+    ],
+    "transit_info": "10 min walk from Commercial-Broadway SkyTrain Station"
   },
   {
     "venue_name": "Kitsilano Community Centre Plaza",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/kitsilano/",
     "calendar_url": "https://eatlocal.org/markets/kitsilano/",
     "full_address": "2690 Larch St, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2618,
+      -123.1617
+    ],
+    "transit_info": "#99 B-Line or #9 to Broadway & Larch St"
   },
   {
     "venue_name": "Guilt & Co.",
-    "website_url": "",
+    "website_url": "https://www.guiltandcompany.com",
     "calendar_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "full_address": "1 Alexander St (Below Ground), Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "5 min walk from Waterfront Station (SkyTrain & SeaBus)"
   },
   {
     "venue_name": "UBC Instructional Resources Centre (IRC)",
-    "website_url": "",
+    "website_url": "https://vaninstitute.ca",
     "calendar_url": "https://vaninstitute.ca",
     "full_address": "2194 Health Sciences Mall, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "arts",
+    "coordinates": [
+      49.2647,
+      -123.2492
+    ],
+    "transit_info": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop"
   },
   {
     "venue_name": "Colony Main Street",
-    "website_url": "",
+    "website_url": "https://iq2000trivia.com",
     "calendar_url": "https://iq2000trivia.com",
     "full_address": "2904 Main St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "trivia",
+    "coordinates": [
+      49.2586,
+      -123.1009
+    ],
+    "transit_info": "#3 Main St bus to 13th Avenue"
   },
   {
     "venue_name": "RUNVAN Clubhouse & Seawall",
-    "website_url": "",
+    "website_url": "https://runvan.org",
     "calendar_url": "https://runvan.org",
     "full_address": "1288 W Georgia St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2882,
+      -123.1278
+    ],
+    "transit_info": "Burrard SkyTrain Station (7 min walk)"
   },
   {
     "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/riley-park/",
     "calendar_url": "https://eatlocal.org/markets/riley-park/",
     "full_address": "4601 Ontario St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2435,
+      -123.1066
+    ],
+    "transit_info": "#3 Main St bus or King Edward Canada Line station (12 min walk)"
   },
   {
     "venue_name": "Nelson Park (West End)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/west-end/",
     "calendar_url": "https://eatlocal.org/markets/west-end/",
     "full_address": "1100 Comox St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2818,
+      -123.1302
+    ],
+    "transit_info": "Burrard SkyTrain station or #5 / #6 Robson/Davie bus"
   },
   {
     "venue_name": "Dude Chilling Park (Guelph Park)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/mount-pleasant/",
     "calendar_url": "https://eatlocal.org/markets/mount-pleasant/",
     "full_address": "2390 Brunswick St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2638,
+      -123.0954
+    ],
+    "transit_info": "#8 Fraser bus or #9 / #99 Broadway to Fraser St"
   },
   {
     "venue_name": "Vancouver Art Gallery Plaza (North)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/downtown/",
     "calendar_url": "https://eatlocal.org/markets/downtown/",
     "full_address": "750 Hornby St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2831,
+      -123.1205
+    ],
+    "transit_info": "Vancouver City Centre or Granville SkyTrain Station (2 min walk)"
   },
   {
     "venue_name": "Concord Community Park (False Creek)",
-    "website_url": "",
+    "website_url": "https://eatlocal.org/markets/false-creek/",
     "calendar_url": "https://eatlocal.org/markets/false-creek/",
     "full_address": "50 Pacific Blvd, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2743,
+      -123.1118
+    ],
+    "transit_info": "Stadium-Chinatown SkyTrain Station (6 min walk along seawall)"
   },
   {
     "venue_name": "UBC Farm (South Campus)",
-    "website_url": "",
+    "website_url": "https://ubcfarm.ubc.ca/markets/",
     "calendar_url": "https://ubcfarm.ubc.ca/markets/",
     "full_address": "3461 Ross Dr, Vancouver",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "activities",
+    "coordinates": [
+      49.2526,
+      -123.2384
+    ],
+    "transit_info": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus"
   },
   {
     "venue_name": "2nd Floor Gastown",
-    "website_url": "",
+    "website_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
     "calendar_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
     "full_address": "300 Water St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "Waterfront Station (3 min walk)"
   },
   {
     "venue_name": "Frankie's Jazz Club",
-    "website_url": "",
+    "website_url": "https://www.coastaljazz.ca",
     "calendar_url": "https://frankiesjazzclub.com",
     "full_address": "755 Beatty St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2778,
+      -123.1147
+    ],
+    "transit_info": "Stadium-Chinatown SkyTrain Station (2 min walk)"
   },
   {
     "venue_name": "The WISE Hall & Lounge",
-    "website_url": "",
+    "website_url": "https://thewise.ca",
     "calendar_url": "https://wisehall.ca",
     "full_address": "1882 Adanac St, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2774,
+      -123.0673
+    ],
+    "transit_info": "#20 Victoria or #14 Hastings bus to Commercial & Adanac"
   },
   {
     "venue_name": "The Anza Club",
-    "website_url": "",
+    "website_url": "https://www.anzaclub.org",
     "calendar_url": "https://anzaclub.org",
     "full_address": "3 W 8th Ave, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2638,
+      -123.1068
+    ],
+    "transit_info": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)"
   },
   {
     "venue_name": "Red Gate Arts Society",
-    "website_url": "",
+    "website_url": "https://redgate.tv/tickets/",
     "calendar_url": "https://redgate.tv/tickets/",
     "full_address": "1151 E Hastings St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2811,
+      -123.0805
+    ],
+    "transit_info": "#14 or #16 Hastings bus directly to Clark Dr"
   },
   {
     "venue_name": "LanaLou's",
-    "website_url": "",
+    "website_url": "https://lanalous.com",
     "calendar_url": "https://lanalous.com",
     "full_address": "362 Powell St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2831,
+      -123.0954
+    ],
+    "transit_info": "#4 or #7 Powell bus to Dunlevy Ave"
   },
   {
     "venue_name": "The Roxy Cabaret",
-    "website_url": "",
+    "website_url": "https://www.roxyvan.com",
     "calendar_url": "https://roxyvan.com/events",
     "full_address": "932 Granville St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2804,
+      -123.1215
+    ],
+    "transit_info": "Granville SkyTrain Station (4 min walk)"
   },
   {
     "venue_name": "Café au Clay Studios",
-    "website_url": "",
+    "website_url": "https://cafeauclay.com",
     "calendar_url": "https://cafeauclay.com/products/drop-in-pottery-painting",
     "full_address": "1612 W 3rd Ave, Vancouver",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "crafts",
+    "coordinates": [
+      49.2698,
+      -123.1415
+    ],
+    "transit_info": "#84 or #50 bus to 4th Ave & Fir St (3 min walk)"
   },
   {
     "venue_name": "Basic Inquiry Life Drawing Society",
-    "website_url": "",
+    "website_url": "https://lifedrawing.org",
     "calendar_url": "https://lifedrawing.org/sessions",
     "full_address": "1011 Main St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "crafts",
+    "coordinates": [
+      49.2778,
+      -123.0998
+    ],
+    "transit_info": "Main Street-Science World SkyTrain Station (4 min walk)"
   },
   {
     "venue_name": "Hand Eye Ceramics",
-    "website_url": "",
+    "website_url": "https://handeyeceramics.com",
     "calendar_url": "https://handeyeceramics.com/open-studio",
     "full_address": "2202 Clark Dr, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "crafts",
+    "coordinates": [
+      49.2655,
+      -123.0776
+    ],
+    "transit_info": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station"
   },
   {
     "venue_name": "Claymates Ceramics Studio",
-    "website_url": "",
+    "website_url": "https://claymatesceramicsstudio.com",
     "calendar_url": "https://claymatesceramicsstudio.com",
     "full_address": "1268 E Hastings St, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "crafts",
+    "coordinates": [
+      49.2813,
+      -123.0782
+    ],
+    "transit_info": "#14, #16, or #20 Hastings bus to Clark Dr"
   },
   {
     "venue_name": "Slice of Life Gallery & Studios",
-    "website_url": "",
+    "website_url": "https://www.slicevancouver.ca",
     "calendar_url": "https://www.slicevancouver.ca/events",
     "full_address": "1636 Venables St, Vancouver",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "crafts",
+    "coordinates": [
+      49.2764,
+      -123.0715
+    ],
+    "transit_info": "#20 Commercial bus to Venables St (2 min walk)"
   },
   {
     "venue_name": "Public Disco Society",
-    "website_url": "",
+    "website_url": "https://publicdisco.ca",
     "calendar_url": "https://publicdisco.ca/events",
     "full_address": "Bentall Centre Dunsmuir Plaza (Roving / Open-Air & Club)",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "social",
+    "coordinates": [
+      49.2847,
+      -123.1192
+    ],
+    "transit_info": "Burrard SkyTrain Station (adjacent to Bentall Plaza)"
   },
   {
     "venue_name": "Bentall Centre Dunsmuir Plaza",
-    "website_url": "",
+    "website_url": "https://bentallcentre.com",
     "calendar_url": "https://publicdisco.ca/events",
     "full_address": "1055 Dunsmuir St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "social",
+    "coordinates": [
+      49.2847,
+      -123.1192
+    ],
+    "transit_info": "Burrard SkyTrain Station (direct plaza level access)"
   },
   {
     "venue_name": "The Birdhouse",
-    "website_url": "",
+    "website_url": "https://www.birdhouse.ca",
     "calendar_url": "https://publicdisco.ca/events",
     "full_address": "44 W 4th Ave, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "social",
+    "coordinates": [
+      49.2678,
+      -123.1065
+    ],
+    "transit_info": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)"
   },
   {
     "venue_name": "The Shipyards Waterfront",
-    "website_url": "",
+    "website_url": "https://theshipyardsdistrict.ca",
     "calendar_url": "https://publicdisco.ca/events",
     "full_address": "125 Victory Ship Way, North Vancouver, BC",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": ""
+    "description": "social",
+    "coordinates": [
+      49.3117,
+      -123.0805
+    ],
+    "transit_info": "SeaBus to Lonsdale Quay + 3 min walk east along waterfront"
   },
   {
     "venue_name": "Hollywood Theatre",
-    "website_url": "",
+    "website_url": "https://hollywoodtheatre.ca/",
     "calendar_url": "https://www.ticketmaster.ca/event/110064638F595700",
     "full_address": "3123 W Broadway, Vancouver, BC",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2642,
+      -123.1754
+    ],
+    "transit_info": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St"
   },
   {
     "venue_name": "Rickshaw Theatre",
-    "website_url": "",
+    "website_url": "https://rickshawtheatre.com/",
     "calendar_url": "https://rickshawtheatre.com/",
     "full_address": "254 E Hastings St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "#14, #16, or #20 bus along E Hastings St to Main St"
   },
   {
     "venue_name": "Waterfront Theatre",
-    "website_url": "",
+    "website_url": "https://www.carouseltheatre.ca/waterfront-theatre/",
     "calendar_url": "https://www.carouseltheatre.ca/waterfront-theatre/",
     "full_address": "1412 Cartwright St, Vancouver, BC",
     "neighborhood": "Granville Island & False Creek",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "The Waldorf",
-    "website_url": "",
+    "website_url": "https://atthewaldorf.com",
     "calendar_url": "https://atthewaldorf.com/events",
     "full_address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2813,
+      -123.0734
+    ],
+    "transit_info": "#14, #16, #20 bus or #R5 RapidBus on Hastings St (10 min from Downtown)"
   },
   {
     "venue_name": "The Cobalt",
-    "website_url": "",
+    "website_url": "https://thecobalt.ca",
     "calendar_url": "https://thecobalt.ca/events",
     "full_address": "917 Main St, Vancouver, BC V6A 2V8",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "music",
+    "coordinates": [
+      49.2764,
+      -123.0999
+    ],
+    "transit_info": "5 min walk from Main Street-Science World SkyTrain Station or #3 / #8 / #19 / #22 bus"
   },
   {
     "venue_name": "Carousel Theatre",
-    "website_url": "",
+    "website_url": "https://vancouverfringe.com/shows/",
     "calendar_url": "https://vancouverfringe.com/shows/",
     "full_address": "Carousel Theatre, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "Commercial Drive",
-    "website_url": "",
+    "website_url": "https://www.carfreevancouver.org",
     "calendar_url": "https://www.carfreevancouver.org",
     "full_address": "Commercial Drive, Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "Main Street",
-    "website_url": "",
+    "website_url": "https://www.carfreevancouver.org",
     "calendar_url": "https://www.carfreevancouver.org",
     "full_address": "Main Street, Vancouver, BC",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "Touchstone Theatre",
-    "website_url": "",
+    "website_url": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
     "calendar_url": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
     "full_address": "Touchstone Theatre, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "description": "shows",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "Queen Elizabeth Park Pitch & Putt",
@@ -557,7 +902,12 @@
     "calendar_url": "",
     "full_address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC",
     "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.2395,
+      -123.114
+    ],
+    "transit_info": "SkyTrain Canada Line to King Edward Station or #15 Cambie bus"
   },
   {
     "venue_name": "Rupert Park Pitch & Putt",
@@ -565,7 +915,12 @@
     "calendar_url": "",
     "full_address": "3402 Charles St, Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.274,
+      -123.0335
+    ],
+    "transit_info": "#9 or #99 B-Line to Boundary / Broadway or #16 Renfrew bus"
   },
   {
     "venue_name": "Central Park Pitch & Putt",
@@ -573,7 +928,12 @@
     "calendar_url": "",
     "full_address": "Kingsway & Boundary Rd, Central Park, Vancouver/Burnaby, BC",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": ""
+    "description": "outdoors",
+    "coordinates": [
+      49.228,
+      -123.0205
+    ],
+    "transit_info": "SkyTrain Expo Line to Patterson Station (3 min walk)"
   },
   {
     "venue_name": "Queen Elizabeth Theatre",
@@ -581,7 +941,12 @@
     "calendar_url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
     "full_address": "Queen Elizabeth Theatre, Vancouver, BC",
     "neighborhood": "Downtown / West End",
-    "description": "Standard venue record registered for Queen Elizabeth Theatre."
+    "description": "Standard venue record registered for Queen Elizabeth Theatre.",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transit_info": "Check TransLink for nearest transit route"
   },
   {
     "venue_name": "The Pearl",
