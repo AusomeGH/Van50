@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T12:18:31-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T12:32:58-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -133,90 +133,6 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   },
   {
-    "id": "vso-saturday-orpheum",
-    "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "venue": "The Orpheum Theatre",
-    "address": "601 Smithe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 31.5,
-    "priceLabel": "$31.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "symphony",
-      "orpheum",
-      "classical-music",
-      "under-35",
-      "vso"
-    ],
-    "dateSchedule": "2026-10-03 at 14:00",
-    "startIso": "2026-10-03T14:00:00-07:00",
-    "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "venueUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticketProvider": "Box Office / Direct Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
-    "isSoldOut": false
-  },
-  {
-    "id": "vso-sunday-orpheum",
-    "title": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
-    "venue": "The Orpheum Theatre",
-    "address": "601 Smithe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.0,
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "symphony",
-      "orpheum",
-      "classical-music",
-      "matinee",
-      "vso"
-    ],
-    "dateSchedule": "2026-10-04 at 14:00",
-    "startIso": "2026-10-04T14:00:00-07:00",
-    "websiteUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "venueUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticketProvider": "Box Office / Direct Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
-    "isSoldOut": false
-  },
-  {
     "id": "vag-first-friday",
     "title": "Vancouver Art Gallery: Free First Friday Nights",
     "venue": "Vancouver Art Gallery",
@@ -286,8 +202,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "2026-10-24 at 19:30",
     "startIso": "2026-10-24T19:30:00-07:00",
-    "websiteUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
-    "venueUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
+    "websiteUrl": "https://tickets.vancouveropera.ca/events",
+    "venueUrl": "https://tickets.vancouveropera.ca/events",
     "ticketProvider": "Queen Elizabeth Theatre Verified",
     "coordinates": [
       49.2827,
@@ -366,8 +282,8 @@ const VANCOUVER_EVENTS = [
       "special-presentation",
       "drama"
     ],
-    "dateSchedule": "2026-10-01 at 19:00",
-    "startIso": "2026-10-01T19:00:00-07:00",
+    "dateSchedule": "2026-10-01 at 17:30",
+    "startIso": "2026-10-01T17:30:00-07:00",
     "websiteUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "venueUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "ticketProvider": "VIFF Box Office Verified",
@@ -377,295 +293,6 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Based on Mieko Kawakami&#039;s acclaimed novel, All the Lovers in the Night is a tender, luminous portrait of loneliness, intimacy, and the courage to be seen.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-the-sun-never-sets-oct2",
-    "title": "VIFF Spotlight: \"The Sun Never Sets\" (Friday Screening)",
-    "venue": "VIFF Centre",
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "bc-spotlight",
-      "indie-comedy",
-      "viff-2026",
-      "canadian-cinema"
-    ],
-    "dateSchedule": "2026-10-02 at 18:30",
-    "startIso": "2026-10-02T18:30:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
-    "venueUrl": "https://viff.org/whats-on/the-sun-never-sets/",
-    "ticketProvider": "VIFF Box Office Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "The Sun Never Sets in Alaska (in the summer), but love affairs don&#039;t last forever in this affectionate indie rom-com with Dakota Fanning.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-the-sun-never-sets-oct4",
-    "title": "VIFF Spotlight: \"The Sun Never Sets\" (Sunday Matinee)",
-    "venue": "VIFF Centre",
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "bc-spotlight",
-      "indie-comedy",
-      "viff-2026",
-      "canadian-cinema"
-    ],
-    "dateSchedule": "2026-10-04 at 13:30",
-    "startIso": "2026-10-04T13:30:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/the-sun-never-sets/",
-    "venueUrl": "https://viff.org/whats-on/the-sun-never-sets/",
-    "ticketProvider": "VIFF Box Office Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "The Sun Never Sets in Alaska (in the summer), but love affairs don&#039;t last forever in this affectionate indie rom-com with Dakota Fanning.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-wild-horse-nine",
-    "title": "VIFF Showcase: \"Filipiñana\" (Dir. Rafael Manuel • Cannes Winner)",
-    "venue": "The Rio Theatre",
-    "address": "1660 E Broadway, Vancouver",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 22.0,
-    "priceLabel": "$22.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "cannes-winner",
-      "satire",
-      "viff-2026",
-      "world-cinema"
-    ],
-    "dateSchedule": "2026-10-11 at 19:30",
-    "startIso": "2026-10-11T19:30:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/filipinana/",
-    "venueUrl": "https://viff.org/whats-on/filipinana/",
-    "ticketProvider": "VIFF Box Office Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Filipi&ntilde;ana features a luxury golf course in the Philippines in this striking composed comedy which mixes languid surrealism with pointed political satire.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-union-county-oct3",
-    "title": "VIFF Showcase: \"Union County\" (Saturday Screening)",
-    "venue": "The Cinematheque",
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "viff",
-      "film-festival",
-      "american-indie",
-      "the-cinematheque"
-    ],
-    "dateSchedule": "2026-10-03 at 18:30",
-    "startIso": "2026-10-03T18:30:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/union-county/",
-    "venueUrl": "https://viff.org/whats-on/union-county/",
-    "ticketProvider": "VIFF Official Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-union-county-oct6",
-    "title": "VIFF Showcase: \"Union County\" (Tuesday Screening)",
-    "venue": "The Cinematheque",
-    "address": "1131 Howe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "viff",
-      "film-festival",
-      "american-indie",
-      "the-cinematheque"
-    ],
-    "dateSchedule": "2026-10-06 at 20:45",
-    "startIso": "2026-10-06T20:45:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/union-county/",
-    "venueUrl": "https://viff.org/whats-on/union-county/",
-    "ticketProvider": "VIFF Official Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "In the addiction recovery drama Union County, Will Pouter and Noah Centenio are foster brothers trying to get free of their dependence on opioids.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-hanging-by-a-wire-oct4",
-    "title": "VIFF Showcase: \"Hanging by a Wire\" (Sunday Matinee)",
-    "venue": "VIFF Centre",
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "viff",
-      "film-festival",
-      "documentary",
-      "himalayas",
-      "viff-centre"
-    ],
-    "dateSchedule": "2026-10-04 at 16:00",
-    "startIso": "2026-10-04T16:00:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-    "venueUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-    "ticketProvider": "VIFF Official Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap.",
-    "isSoldOut": false
-  },
-  {
-    "id": "viff-hanging-by-a-wire-oct7",
-    "title": "VIFF Showcase: \"Hanging by a Wire\" (Wednesday Screening)",
-    "venue": "VIFF Centre",
-    "address": "1181 Seymour St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.9,
-    "priceLabel": "$20.90 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "cinema",
-    "categoryLabel": "cinema",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "viff",
-      "film-festival",
-      "documentary",
-      "himalayas",
-      "viff-centre"
-    ],
-    "dateSchedule": "2026-10-07 at 18:30",
-    "startIso": "2026-10-07T18:30:00-07:00",
-    "websiteUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-    "venueUrl": "https://viff.org/whats-on/hanging-by-a-wire/",
-    "ticketProvider": "VIFF Official Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "The Himalayas, Aug 22, 2023: a cable car bearing 8 passengers is left hanging by a wire 900 feet above the ground when two out of three cables snap.",
     "isSoldOut": false
   },
   {
@@ -775,10 +402,10 @@ const VANCOUVER_EVENTS = [
       "electronic",
       "live-music"
     ],
-    "dateSchedule": "2026-10-02 at 18:00",
-    "startIso": "2026-10-02T18:00:00-07:00",
-    "websiteUrl": "https://www.ticketweb.ca/",
-    "venueUrl": "https://thepearlvancouver.com/calendar/",
+    "dateSchedule": "2026-10-02 at 19:00",
+    "startIso": "2026-10-02T19:00:00-07:00",
+    "websiteUrl": "https://www.ticketweb.ca/event/joon-with-lauryn-kovacs-the-pearl-tickets/13812833",
+    "venueUrl": "https://www.ticketweb.ca/event/joon-with-lauryn-kovacs-the-pearl-tickets/13812833",
     "ticketProvider": "TicketWeb",
     "coordinates": [
       49.2827,
@@ -794,10 +421,10 @@ const VANCOUVER_EVENTS = [
     "venue": "Vancouver Art Gallery",
     "address": "750 Hornby St, Vancouver, BC V6Z 2H7",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 5.0,
-    "priceLabel": "$5.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
     "frequency": "one-off",
     "frequencyLabel": "Single Showing",
     "daysOfWeek": [
@@ -818,8 +445,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "2026-10-02 at 10:00",
     "startIso": "2026-10-02T10:00:00-07:00",
-    "websiteUrl": "https://www.vanartgallery.bc.ca/",
-    "venueUrl": "https://www.vanartgallery.bc.ca/",
+    "websiteUrl": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
+    "venueUrl": "https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -939,8 +566,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "2026-10-08 at 19:00",
     "startIso": "2026-10-08T19:00:00-07:00",
-    "websiteUrl": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/408995",
-    "venueUrl": "https://www.foxcabaret.com/",
+    "websiteUrl": "https://www.foxcabaret.com",
+    "venueUrl": "https://www.foxcabaret.com",
     "ticketProvider": "TicketWeb",
     "coordinates": [
       49.2827,
@@ -1098,10 +725,10 @@ const VANCOUVER_EVENTS = [
       "soul",
       "world-music"
     ],
-    "dateSchedule": "2026-10-10 at 19:00",
-    "startIso": "2026-10-10T19:00:00-07:00",
-    "websiteUrl": "https://www.ticketweb.ca/venue/the-fox-cabaret-vancouver-bc/408995",
-    "venueUrl": "https://www.foxcabaret.com/events",
+    "dateSchedule": "2026-10-10 at 19:30",
+    "startIso": "2026-10-10T19:30:00-07:00",
+    "websiteUrl": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
+    "venueUrl": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
     "ticketProvider": "TicketWeb",
     "coordinates": [
       49.2827,
@@ -1237,8 +864,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 38.0,
-    "priceLabel": "$38.00 CAD",
+    "price": 30.0,
+    "priceLabel": "$30.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -1259,8 +886,8 @@ const VANCOUVER_EVENTS = [
       "cabaret",
       "drag"
     ],
-    "dateSchedule": "2026-10-17 at 20:00",
-    "startIso": "2026-10-17T20:00:00-07:00",
+    "dateSchedule": "2026-10-17 at 21:00",
+    "startIso": "2026-10-17T21:00:00-07:00",
     "websiteUrl": "https://riotheatre.ca/",
     "venueUrl": "https://riotheatre.ca/",
     "ticketProvider": "Direct",
@@ -1319,8 +946,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 31.0,
-    "priceLabel": "$31.00 CAD",
+    "price": 22.5,
+    "priceLabel": "$22.50 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -1340,10 +967,10 @@ const VANCOUVER_EVENTS = [
       "indie-rock",
       "psychedelic"
     ],
-    "dateSchedule": "2026-10-22 at 19:00",
-    "startIso": "2026-10-22T19:00:00-07:00",
-    "websiteUrl": "https://www.ticketweb.ca/",
-    "venueUrl": "https://modo-live.com/",
+    "dateSchedule": "2026-10-22 at 20:00",
+    "startIso": "2026-10-22T20:00:00-07:00",
+    "websiteUrl": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603",
+    "venueUrl": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603",
     "ticketProvider": "TicketWeb",
     "coordinates": [
       49.2827,
@@ -1380,10 +1007,10 @@ const VANCOUVER_EVENTS = [
       "acoustic",
       "live-music"
     ],
-    "dateSchedule": "2026-10-25 at 19:00",
-    "startIso": "2026-10-25T19:00:00-07:00",
-    "websiteUrl": "https://www.ticketweb.ca/",
-    "venueUrl": "https://www.ticketweb.ca/",
+    "dateSchedule": "2026-10-25 at 19:30",
+    "startIso": "2026-10-25T19:30:00-07:00",
+    "websiteUrl": "https://www.oliveklug.com/shows",
+    "venueUrl": "https://www.oliveklug.com/shows",
     "ticketProvider": "TicketWeb",
     "coordinates": [
       49.2827,
@@ -1514,6 +1141,90 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Guilt & Company Home Page Calendar of Events",
+    "isSoldOut": false
+  },
+  {
+    "id": "vso-saturday-orpheum",
+    "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+    "venue": "The Orpheum Theatre",
+    "address": "601 Smithe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 31.5,
+    "priceLabel": "$31.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "symphony",
+      "orpheum",
+      "classical-music",
+      "under-35",
+      "vso"
+    ],
+    "dateSchedule": "2026-10-03 at 14:00",
+    "startIso": "2026-10-03T14:00:00-07:00",
+    "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+    "venueUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+    "ticketProvider": "Box Office / Direct Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
+    "isSoldOut": false
+  },
+  {
+    "id": "vso-sunday-orpheum",
+    "title": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
+    "venue": "The Orpheum Theatre",
+    "address": "601 Smithe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "music",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "subTags": [
+      "symphony",
+      "orpheum",
+      "classical-music",
+      "matinee",
+      "vso"
+    ],
+    "dateSchedule": "2026-10-04 at 14:00",
+    "startIso": "2026-10-04T14:00:00-07:00",
+    "websiteUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
+    "venueUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
+    "ticketProvider": "Box Office / Direct Verified",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
     "isSoldOut": false
   }
 ];

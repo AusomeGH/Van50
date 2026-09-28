@@ -363,7 +363,7 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
         if not is_already_verified and (max_check is None or checked_count < max_check):
             checked_count += 1
             cost = (ev.get("pricing_all_in_cad") or {}).get("regular", 0.0)
-            print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...")
+            print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...", flush=True)
 
             search_prompt = (
                 f"Search Google for current live event details for Vancouver event: "
@@ -405,7 +405,7 @@ Return strict JSON:
                     reason = dec_data.get("reason", "No reason provided")
 
                     if dec == "CONCLUDED":
-                        print(f"  ✓ Concluded: {reason}")
+                        print(f"  ✓ Concluded: {reason}", flush=True)
                         archived_events.append({
                             "event_id": eid,
                             "event_name": title,
@@ -423,7 +423,7 @@ Return strict JSON:
                         continue
 
                     elif dec == "CANNOT_FIGURE_OUT":
-                        print(f"  ⚠️ Cannot figure out: {reason}. Flagging for curator in quarantine.")
+                        print(f"  ⚠️ Cannot figure out: {reason}. Flagging for curator in quarantine.", flush=True)
                         if eid not in quarantine_ids:
                             quarantined.append({
                                 "id": eid,
@@ -446,7 +446,7 @@ Return strict JSON:
                         continue
 
                     elif dec == "UPDATE":
-                        print(f"  ✓ Updating event details: {reason}")
+                        print(f"  ✓ Updating event details: {reason}", flush=True)
                         if dec_data.get("updated_date") and "show_1" in ev and ev["show_1"]:
                             ev["show_1"]["date"] = dec_data["updated_date"]
                         if dec_data.get("updated_start_time") and "show_1" in ev and ev["show_1"]:
@@ -482,6 +482,12 @@ Return strict JSON:
     queue_data["pendingCount"] = len(quarantined)
     with open(QUEUE_PATH, "w", encoding="utf-8") as f:
         json.dump(queue_data, f, indent=2, ensure_ascii=False)
+
+    try:
+        from curator_server import sync_js_data_file
+        sync_js_data_file()
+    except Exception as e:
+        print(f"[WARN] js/data.js sync note: {e}")
 
     return results
 
