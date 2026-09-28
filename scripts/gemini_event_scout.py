@@ -11,7 +11,6 @@ from __future__ import annotations
 import os
 import sys
 import json
-import csv
 import re
 import time
 import argparse
@@ -27,19 +26,14 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
 QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 
-# Relabeled Catalog Paths (JSON & CSV)
+# Master JSON Catalogs
 EVENTS_ACTIVE_JSON = os.path.join(DATA_DIR, "events_active.json")
-EVENTS_ACTIVE_CSV = os.path.join(DATA_DIR, "events_active.csv")
 EVENTS_ARCHIVE_JSON = os.path.join(DATA_DIR, "events_archive.json")
-EVENTS_ARCHIVE_CSV = os.path.join(DATA_DIR, "events_archive.csv")
 VENUES_MASTER_JSON = os.path.join(DATA_DIR, "venues_master.json")
-VENUES_MASTER_CSV = os.path.join(DATA_DIR, "venues_master.csv")
 FESTIVALS_MASTER_JSON = os.path.join(DATA_DIR, "festivals_master.json")
-FESTIVALS_MASTER_CSV = os.path.join(DATA_DIR, "festivals_master.csv")
 TICKETING_SOURCES_JSON = os.path.join(DATA_DIR, "ticketing_sources.json")
-TICKETING_SOURCES_CSV = os.path.join(DATA_DIR, "ticketing_sources.csv")
 DISCOVERY_SOURCES_JSON = os.path.join(DATA_DIR, "discovery_sources.json")
-DISCOVERY_SOURCES_CSV = os.path.join(DATA_DIR, "discovery_sources.csv")
+
 
 
 def load_env():
@@ -285,86 +279,11 @@ def run_gemini_scouting_cycle(api_key: str) -> Dict[str, Any]:
     return structured_data
 
 
-def save_csv(filepath: str, fieldnames: List[str], rows: List[Dict[str, Any]]):
-    """Writes tabular data to CSV with UTF-8 encoding."""
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    with open(filepath, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
-        writer.writeheader()
-        for r in rows:
-            # Flatten or format null values as empty string
-            row_dict = {}
-            for k in fieldnames:
-                val = r.get(k, "")
-                if val is None:
-                    row_dict[k] = ""
-                elif isinstance(val, (list, dict)):
-                    row_dict[k] = json.dumps(val, ensure_ascii=False)
-                else:
-                    row_dict[k] = str(val)
-            writer.writerow(row_dict)
-
-
-def export_active_events_to_csv(events: List[Dict[str, Any]], filepath: str):
-    """Exports events to a flat CSV matching the user's exact specification."""
-    fieldnames = [
-        "Event_ID", "Event_Name", "Category", "Venue_Name", "Full_Address", "Neighborhood",
-        "Description", "Regular_All_In_CAD", "Senior_All_In_CAD", "Student_All_In_CAD", "Member_All_In_CAD",
-        "Show_1_Date", "Show_1_Start_Time", "Show_1_End_Time", "Show_1_All_In_Cost",
-        "Show_2_Date", "Show_2_Start_Time", "Show_2_End_Time", "Show_2_All_In_Cost",
-        "Show_3_Date", "Show_3_Start_Time", "Show_3_End_Time", "Show_3_All_In_Cost",
-        "Discovery_URL", "Details_URL", "Ticket_URL", "Ticket_Provider",
-        "Tags", "Festival_Affiliation", "Approval_Status", "Curator_Notes"
-    ]
-
-    flat_rows = []
-    for ev in events:
-        p = ev.get("pricing_all_in_cad", {}) or {}
-        s1 = ev.get("show_1", {}) or {}
-        s2 = ev.get("show_2", {}) or {}
-        s3 = ev.get("show_3", {}) or {}
-
-        flat_rows.append({
-            "Event_ID": ev.get("event_id", ""),
-            "Event_Name": ev.get("event_name", ""),
-            "Category": ev.get("category", ""),
-            "Venue_Name": ev.get("venue_name", ""),
-            "Full_Address": ev.get("full_address", ""),
-            "Neighborhood": ev.get("neighborhood", ""),
-            "Description": ev.get("description", ""),
-            "Regular_All_In_CAD": p.get("regular", ""),
-            "Senior_All_In_CAD": p.get("senior", "") if p.get("senior") is not None else "",
-            "Student_All_In_CAD": p.get("student", "") if p.get("student") is not None else "",
-            "Member_All_In_CAD": p.get("member", "") if p.get("member") is not None else "",
-            "Show_1_Date": s1.get("date", ""),
-            "Show_1_Start_Time": s1.get("start_time", ""),
-            "Show_1_End_Time": s1.get("end_time", ""),
-            "Show_1_All_In_Cost": s1.get("cost", ""),
-            "Show_2_Date": s2.get("date", "") if s2 else "",
-            "Show_2_Start_Time": s2.get("start_time", "") if s2 else "",
-            "Show_2_End_Time": s2.get("end_time", "") if s2 else "",
-            "Show_2_All_In_Cost": s2.get("cost", "") if s2 else "",
-            "Show_3_Date": s3.get("date", "") if s3 else "",
-            "Show_3_Start_Time": s3.get("start_time", "") if s3 else "",
-            "Show_3_End_Time": s3.get("end_time", "") if s3 else "",
-            "Show_3_All_In_Cost": s3.get("cost", "") if s3 else "",
-            "Discovery_URL": ev.get("discovery_url", ""),
-            "Details_URL": ev.get("details_url", ""),
-            "Ticket_URL": ev.get("ticket_url", ""),
-            "Ticket_Provider": ev.get("ticket_provider", ""),
-            "Tags": ", ".join(ev.get("tags", [])) if isinstance(ev.get("tags"), list) else ev.get("tags", ""),
-            "Festival_Affiliation": ev.get("festival_affiliation", "None"),
-            "Approval_Status": ev.get("approval_status", "Auto-Approved"),
-            "Curator_Notes": ev.get("curator_notes", "")
-        })
-
-    save_csv(filepath, fieldnames, flat_rows)
-
-
 def sync_master_catalogs(structured_data: Dict[str, Any]):
     """
-    Integrates newly discovered data into the master database files:
-    Events_Active, Events_Archive, Venues_Master, Festivals_Master, Ticketing_Sources, Discovery_Sources
+    Integrates newly discovered data into the master JSON database files:
+    events_active.json, events_archive.json, venues_master.json,
+    festivals_master.json, ticketing_sources.json, discovery_sources.json
     """
     today_str = datetime.now().strftime("%Y-%m-%d")
 
@@ -388,7 +307,6 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     # 2. Archive concluded events
     still_active = []
     for ev in active_events:
-        # Check latest show date
         s3_date = (ev.get("show_3") or {}).get("date")
         s2_date = (ev.get("show_2") or {}).get("date")
         s1_date = (ev.get("show_1") or {}).get("date")
@@ -424,16 +342,14 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             existing_ids.add(eid)
             added_count += 1
 
-    # Save Events Active & Archive (JSON + CSV)
+    # Save Events Active & Archive (JSON)
     with open(EVENTS_ACTIVE_JSON, "w", encoding="utf-8") as f:
         json.dump(still_active, f, indent=2, ensure_ascii=False)
-    export_active_events_to_csv(still_active, EVENTS_ACTIVE_CSV)
 
     with open(EVENTS_ARCHIVE_JSON, "w", encoding="utf-8") as f:
         json.dump(archived_events, f, indent=2, ensure_ascii=False)
-    export_active_events_to_csv(archived_events, EVENTS_ARCHIVE_CSV)
 
-    # 4. Update Venues Master
+    # 4. Update Venues Master (JSON)
     venues = []
     if os.path.exists(VENUES_MASTER_JSON):
         try:
@@ -450,9 +366,8 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
 
     with open(VENUES_MASTER_JSON, "w", encoding="utf-8") as f:
         json.dump(venues, f, indent=2, ensure_ascii=False)
-    save_csv(VENUES_MASTER_CSV, ["venue_name", "website_url", "calendar_url", "full_address", "neighborhood", "description"], venues)
 
-    # 5. Update Festivals Master
+    # 5. Update Festivals Master (JSON)
     festivals = []
     if os.path.exists(FESTIVALS_MASTER_JSON):
         try:
@@ -469,7 +384,6 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
 
     with open(FESTIVALS_MASTER_JSON, "w", encoding="utf-8") as f:
         json.dump(festivals, f, indent=2, ensure_ascii=False)
-    save_csv(FESTIVALS_MASTER_CSV, ["festival_name", "website_url", "schedule_url", "location", "start_date", "end_date", "description"], festivals)
 
     # 6. Ensure default Ticketing Sources & Discovery Sources exist
     init_default_sources()
@@ -479,11 +393,11 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     print(f" • Archived Events: {len(archived_events)}")
     print(f" • Venues Master: {len(venues)}")
     print(f" • Festivals Master: {len(festivals)}")
-    print(f" • CSVs updated: {EVENTS_ACTIVE_CSV}, {VENUES_MASTER_CSV}, {FESTIVALS_MASTER_CSV}")
+    print(f" • JSON Catalogs updated: {EVENTS_ACTIVE_JSON}, {VENUES_MASTER_JSON}, {FESTIVALS_MASTER_JSON}")
 
 
 def init_default_sources():
-    """Initializes standard Ticketing & Discovery sources if not already present."""
+    """Initializes standard Ticketing & Discovery sources in pure JSON."""
     if not os.path.exists(TICKETING_SOURCES_JSON):
         default_providers = [
             {"provider_name": "Eventbrite", "website_url": "https://www.eventbrite.ca", "notes": "Standard ticketing; adds platform service fee + GST at checkout"},
@@ -493,8 +407,7 @@ def init_default_sources():
             {"provider_name": "Direct Venue Box Office", "website_url": "Direct", "notes": "No third-party fees; cash or debit at door"}
         ]
         with open(TICKETING_SOURCES_JSON, "w", encoding="utf-8") as f:
-            json.dump(default_providers, f, indent=2)
-        save_csv(TICKETING_SOURCES_CSV, ["provider_name", "website_url", "notes"], default_providers)
+            json.dump(default_providers, f, indent=2, ensure_ascii=False)
 
     if not os.path.exists(DISCOVERY_SOURCES_JSON):
         default_aggregators = [
@@ -505,8 +418,7 @@ def init_default_sources():
             {"source_name": "Destination Vancouver", "website_url": "https://www.destinationvancouver.com", "feed_type": "Tourism & Public Festivals"}
         ]
         with open(DISCOVERY_SOURCES_JSON, "w", encoding="utf-8") as f:
-            json.dump(default_aggregators, f, indent=2)
-        save_csv(DISCOVERY_SOURCES_CSV, ["source_name", "website_url", "feed_type"], default_aggregators)
+            json.dump(default_aggregators, f, indent=2, ensure_ascii=False)
 
 
 def bootstrap_from_existing_data():
@@ -538,7 +450,6 @@ def bootstrap_from_existing_data():
                 pass
         with open(VENUES_MASTER_JSON, "w", encoding="utf-8") as f:
             json.dump(venues_list, f, indent=2, ensure_ascii=False)
-        save_csv(VENUES_MASTER_CSV, ["venue_name", "website_url", "calendar_url", "full_address", "neighborhood", "description"], venues_list)
 
     # Bootstrap Festivals Master
     if not os.path.exists(FESTIVALS_MASTER_JSON):
@@ -562,7 +473,6 @@ def bootstrap_from_existing_data():
                 pass
         with open(FESTIVALS_MASTER_JSON, "w", encoding="utf-8") as f:
             json.dump(fest_list, f, indent=2, ensure_ascii=False)
-        save_csv(FESTIVALS_MASTER_CSV, ["festival_name", "website_url", "schedule_url", "location", "start_date", "end_date", "description"], fest_list)
 
     # Bootstrap Events Active
     if not os.path.exists(EVENTS_ACTIVE_JSON):
@@ -615,7 +525,9 @@ def bootstrap_from_existing_data():
                 pass
         with open(EVENTS_ACTIVE_JSON, "w", encoding="utf-8") as f:
             json.dump(events_list, f, indent=2, ensure_ascii=False)
-        export_active_events_to_csv(events_list, EVENTS_ACTIVE_CSV)
+
+    init_default_sources()
+
 
     init_default_sources()
 
