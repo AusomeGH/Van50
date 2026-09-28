@@ -30,6 +30,7 @@ STATUS_PATH = os.path.join(DATA_DIR, "automation_status.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from gemini_event_scout import get_gemini_api_key, run_full_gemini_scouting_pipeline, run_gemini_scouting_cycle, sync_master_catalogs
+from gemini_email_scout import run_gemini_email_scout
 from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
 
@@ -191,6 +192,27 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
             log_message("[GEMINI SCOUT WARN] No GEMINI_API_KEY set; skipping live scouting cycle.", log_file_path)
     except Exception as e:
         log_message(f"[GEMINI SCOUT ERROR] Scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
+
+    # Step 2.5: Autonomous Email & Newsletter Scout (van50.submit@gmail.com)
+    update_automation_status({"currentStep": "gemini_email_scout"})
+    log_message("[PIPELINE STEP 2.5/3] Invoking Gemini AI Email & Newsletter Scout (van50.submit@gmail.com)...", log_file_path)
+    email_stats = {"emails_checked": 0, "events_found": 0, "added_to_active": 0, "staged_for_review": 0, "skipped": 0}
+    try:
+        api_key = get_gemini_api_key()
+        if api_key:
+            email_stats = run_gemini_email_scout(api_key=api_key, unread_only=False, limit=25, mark_as_read=False, dry_run=dry_run)
+            log_message(
+                f"[EMAIL SCOUT SUCCESS] Checked: {email_stats.get('emails_checked', 0)} emails | "
+                f"Events Discovered: {email_stats.get('events_found', 0)} | "
+                f"Active Added: {email_stats.get('added_to_active', 0)} | "
+                f"Staged for Review: {email_stats.get('staged_for_review', 0)} | "
+                f"Skipped (non-event / >$50): {email_stats.get('skipped', 0)}",
+                log_file_path
+            )
+        else:
+            log_message("[EMAIL SCOUT WARN] No GEMINI_API_KEY set; skipping email scout.", log_file_path)
+    except Exception as e:
+        log_message(f"[EMAIL SCOUT ERROR] Email scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
 
     # Step 2.8: Autonomous Link & Soft-404 Health Audit
     update_automation_status({"currentStep": "link_health_audit"})

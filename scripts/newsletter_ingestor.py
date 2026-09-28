@@ -737,6 +737,33 @@ def process_inbound_folder(folder_path: str = INBOUND_FOLDER, dry_run: bool = Fa
 
 def run_newsletter_ingestion(unread_only: bool = True, limit: int = 20, dry_run: bool = False) -> Dict[str, Any]:
     """Programmatic entrypoint used by Curator Server API and automation pipelines."""
+    # Prioritize Gemini AI-powered email scout
+    try:
+        from gemini_email_scout import run_gemini_email_scout
+        gemini_stats = run_gemini_email_scout(
+            unread_only=unread_only,
+            limit=limit,
+            mark_as_read=not dry_run,
+            dry_run=dry_run
+        )
+        if gemini_stats.get("success", True) and not gemini_stats.get("error"):
+            return {
+                "success": True,
+                "aiPowered": True,
+                "emailsChecked": gemini_stats.get("emails_checked", 0),
+                "candidatesFound": gemini_stats.get("events_found", 0),
+                "queued": gemini_stats.get("staged_for_review", 0),
+                "addedActive": gemini_stats.get("added_to_active", 0),
+                "skipped": gemini_stats.get("skipped", 0),
+                "message": (
+                    f"Gemini AI evaluated {gemini_stats.get('emails_checked', 0)} emails. "
+                    f"Added {gemini_stats.get('added_to_active', 0)} active events, "
+                    f"staged {gemini_stats.get('staged_for_review', 0)} for review."
+                )
+            }
+    except Exception as gem_err:
+        print(f"[NEWSLETTER] Gemini AI scout note: {gem_err}. Falling back to standard pipeline...")
+
     user, password, server, port, folder = get_gmail_credentials()
 
     if not user or not password:

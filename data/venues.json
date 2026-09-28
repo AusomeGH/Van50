@@ -1011,5 +1011,19 @@
     "full_address": "524 Main St, Vancouver, BC V6A 2T9",
     "neighborhood": "Chinatown",
     "description": "Second-floor Chinatown speakeasy-style room hosting independent jazz, comedy, and underground performing arts."
+  },
+  {
+    "venue_name": "The Shipyards",
+    "website_url": "https://theshipyards.ca",
+    "full_address": "125 Victory Ship Way, North Vancouver, BC V7L 0B2",
+    "neighborhood": "Lower Lonsdale",
+    "description": "Historic waterfront public space in North Vancouver hosting outdoor plazas, heritage buildings, community events, and cultural festivals."
+  },
+  {
+    "venue_name": "The Pipe Shop Venue",
+    "website_url": "https://theshipyards.ca/pipe-shop",
+    "full_address": "115 Victory Ship Way, North Vancouver, BC V7L 0B2",
+    "neighborhood": "Lower Lonsdale",
+    "description": "Restored century-old wooden shipbuilding hall at The Shipyards featuring open-concept space and exposed wooden beam architecture."
   }
 ]

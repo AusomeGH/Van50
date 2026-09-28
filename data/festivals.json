@@ -61,5 +61,13 @@
     "start_date": "2026-10-30",
     "end_date": "2026-11-07",
     "description": "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theater pieces celebrating DTES culture."
+  },
+  {
+    "festival_name": "Public Disco Festival",
+    "website_url": "https://publicdisco.ca",
+    "schedule_url": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4?referral=laylo",
+    "start_date": "2026-10-03",
+    "end_date": "2026-10-03",
+    "description": "Open-air electronic and dance music festival transforming urban public spaces in Metro Vancouver with multiple stages, sound installations, and local art."
   }
 ]
