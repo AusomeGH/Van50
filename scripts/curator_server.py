@@ -25,9 +25,11 @@ from urllib.parse import urlparse, parse_qs
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
+EVENTS_ACTIVE_PATH = os.path.join(DATA_DIR, "events_active.json")
 MANUAL_QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 RULES_PATH = os.path.join(DATA_DIR, "curator_learned_rules.json")
 ARCHIVE_PATH = os.path.join(DATA_DIR, "archived_events.json")
+EVENTS_ARCHIVE_PATH = os.path.join(DATA_DIR, "events_archive.json")
 INSTRUCTIONS_PATH = os.path.join(DATA_DIR, "curator_instructions.json")
 SCREENSHOTS_DIR = os.path.join(DATA_DIR, "curator_screenshots")
 JS_DATA_PATH = os.path.join(BASE_DIR, "js", "data.js")
@@ -35,7 +37,11 @@ BACKUP_DIR = os.path.join(DATA_DIR, "backups")
 LOGS_DIR = os.path.join(DATA_DIR, "automation_logs")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
 VENUE_DIR_PATH = os.path.join(DATA_DIR, "venue_directory.json")
+VENUES_MASTER_PATH = os.path.join(DATA_DIR, "venues_master.json")
 FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
+FESTIVALS_MASTER_PATH = os.path.join(DATA_DIR, "festivals_master.json")
+TICKETING_SOURCES_PATH = os.path.join(DATA_DIR, "ticketing_sources.json")
+DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, "discovery_sources.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
@@ -50,8 +56,10 @@ BLOCKED_DATA_FILES = {
     "curator_instructions.json",
     "curator_learned_rules.json",
     "archived_events.json",
+    "events_archive.json",
     ".curator_secret.json"
 }
+
 BLOCKED_DIRS = {"scripts", "tests", "scratch", "backups", ".git", ".agents", ".vscode"}
 
 # Sliding-window rate limiter for mutating API calls: { ip: [timestamp1, timestamp2, ...] }
@@ -706,13 +714,22 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         ])
                 except Exception:
                     pass
-            if os.path.exists(EVENTS_PATH):
+            # 1. Master Active Events Count (checks events_active.json first)
+            if os.path.exists(EVENTS_ACTIVE_PATH):
+                try:
+                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as f:
+                        act_data = json.load(f)
+                        m_count = len(act_data) if isinstance(act_data, list) else len(act_data.get("events", []))
+                except Exception:
+                    pass
+            elif os.path.exists(EVENTS_PATH):
                 try:
                     with open(EVENTS_PATH, "r", encoding="utf-8") as f:
                         m_data = json.load(f)
                         m_count = len(m_data.get("events", []))
                 except Exception:
                     pass
+
             if os.path.exists(RULES_PATH):
                 try:
                     with open(RULES_PATH, "r", encoding="utf-8") as f:
@@ -726,13 +743,20 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            # 2. Archived Events Count (checks events_archive.json first)
             a_count = 0
-            if os.path.exists(ARCHIVE_PATH):
+            if os.path.exists(EVENTS_ARCHIVE_PATH):
+                try:
+                    with open(EVENTS_ARCHIVE_PATH, "r", encoding="utf-8") as f:
+                        a_data = json.load(f)
+                        a_count = len(a_data) if isinstance(a_data, list) else len(a_data.get("archivedEvents", []))
+                except Exception:
+                    pass
+            elif os.path.exists(ARCHIVE_PATH):
                 try:
                     with open(ARCHIVE_PATH, "r", encoding="utf-8") as f:
                         a_data = json.load(f)
                         arch_events = a_data.get("archivedEvents", [])
-                        # Non-budget archived items
                         a_count = len([x for x in arch_events if x.get("reviewStatus") != "denied_auto_budget" and float(x.get("attemptedPrice", x.get("price", 0.0))) <= 50.0])
                 except Exception:
                     pass
@@ -755,14 +779,26 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            # 3. Master Venues Names (checks venues_master.json first)
             known_venues = []
-            if os.path.exists(VENUE_DIR_PATH):
+            if os.path.exists(VENUES_MASTER_PATH):
+                try:
+                    with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as f:
+                        v_master = json.load(f)
+                        for vm in (v_master if isinstance(v_master, list) else []):
+                            vname = vm.get("venue_name") or vm.get("name")
+                            if vname and vname not in known_venues:
+                                known_venues.append(vname)
+                except Exception:
+                    pass
+            if not known_venues and os.path.exists(VENUE_DIR_PATH):
                 try:
                     with open(VENUE_DIR_PATH, "r", encoding="utf-8") as f:
                         vd = json.load(f)
                         known_venues = list(vd.get("venues", {}).keys())
                 except Exception:
                     pass
+
 
             link_audit_data = None
             audit_report_path = os.path.join(LOGS_DIR, "link_audit_latest.json")
@@ -969,6 +1005,72 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, fests)
 
+        # 8. API: Get Venues Master (venues_master.json)
+        if path == "/api/curator/venues/master":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            venues = []
+            if os.path.exists(VENUES_MASTER_PATH):
+                try:
+                    with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as f:
+                        venues = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, {"venues": venues, "total": len(venues)})
+
+        # 9. API: Get Festivals Master (festivals_master.json)
+        if path == "/api/curator/festivals/master":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            fests = []
+            if os.path.exists(FESTIVALS_MASTER_PATH):
+                try:
+                    with open(FESTIVALS_MASTER_PATH, "r", encoding="utf-8") as f:
+                        fests = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, {"festivals": fests, "total": len(fests)})
+
+        # 10. API: Get Ticketing Sources (ticketing_sources.json)
+        if path == "/api/curator/ticketing_sources":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            sources = []
+            if os.path.exists(TICKETING_SOURCES_PATH):
+                try:
+                    with open(TICKETING_SOURCES_PATH, "r", encoding="utf-8") as f:
+                        sources = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, {"ticketingSources": sources, "total": len(sources)})
+
+        # 11. API: Get Discovery Sources (discovery_sources.json)
+        if path == "/api/curator/discovery_sources":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            sources = []
+            if os.path.exists(DISCOVERY_SOURCES_PATH):
+                try:
+                    with open(DISCOVERY_SOURCES_PATH, "r", encoding="utf-8") as f:
+                        sources = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, {"discoverySources": sources, "total": len(sources)})
+
+        # 12. API: Get Active Events Master (events_active.json)
+        if path == "/api/curator/events/active":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            active_events = []
+            if os.path.exists(EVENTS_ACTIVE_PATH):
+                try:
+                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as f:
+                        active_events = json.load(f)
+                except Exception:
+                    pass
+            return self._send_json(200, {"events": active_events, "total": len(active_events)})
+
+
         # Standard file serving for web UI with path filtering & access control
         # 1. Traversal & boundary check
         rel_path = path.lstrip("/\\")
@@ -1151,6 +1253,51 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             with open(EVENTS_PATH, "w", encoding="utf-8") as f:
                 json.dump(db, f, indent=2, ensure_ascii=False)
 
+            # 1b. Add/update in data/events_active.json
+            try:
+                active_list = []
+                if os.path.exists(EVENTS_ACTIVE_PATH):
+                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as af:
+                        active_list = json.load(af)
+                active_list = [x for x in active_list if (x.get("event_id") or x.get("id")) != ev_id]
+                active_item = {
+                    "event_id": ev_id,
+                    "event_name": event_data.get("title", ""),
+                    "category": event_data.get("category", "General"),
+                    "venue_name": event_data.get("venue", ""),
+                    "full_address": event_data.get("address", ""),
+                    "neighborhood": event_data.get("neighborhood", ""),
+                    "description": event_data.get("description", ""),
+                    "pricing_all_in_cad": {
+                        "regular": price,
+                        "senior": None,
+                        "student": None,
+                        "member": None
+                    },
+                    "show_1": {
+                        "date": (event_data.get("startIso") or "")[:10],
+                        "start_time": (event_data.get("startIso") or "")[11:16],
+                        "end_time": (event_data.get("endIso") or "")[11:16],
+                        "cost": price
+                    },
+                    "show_2": None,
+                    "show_3": None,
+                    "discovery_url": source_url,
+                    "details_url": source_url,
+                    "ticket_url": event_data.get("websiteUrl") or source_url,
+                    "ticket_provider": event_data.get("ticketProvider", "Direct"),
+                    "tags": event_data.get("subTags", []),
+                    "festival_affiliation": "None",
+                    "approval_status": "Curator-Approved",
+                    "curator_notes": curator_note
+                }
+                active_list.append(active_item)
+                with open(EVENTS_ACTIVE_PATH, "w", encoding="utf-8") as af:
+                    json.dump(active_list, af, indent=2, ensure_ascii=False)
+            except Exception as ex:
+                print(f"[WARN] Failed to write events_active.json: {ex}")
+
+
             # 2. Remove from data/manual_review_queue.json
             with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                 q_data = json.load(f)
@@ -1241,6 +1388,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 arch_data["archivedEvents"].append(rejected_item)
                 with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
                     json.dump(arch_data, f, indent=2, ensure_ascii=False)
+
+            # Save to events_archive.json as well
+            try:
+                arch_json_list = []
+                if os.path.exists(EVENTS_ARCHIVE_PATH):
+                    with open(EVENTS_ARCHIVE_PATH, "r", encoding="utf-8") as eaf:
+                        arch_json_list = json.load(eaf)
+                arch_json_list.append(rejected_item or {"event_id": ev_id, "archivedReason": reason})
+                with open(EVENTS_ARCHIVE_PATH, "w", encoding="utf-8") as eaf:
+                    json.dump(arch_json_list, eaf, indent=2, ensure_ascii=False)
+            except Exception as e:
+                print(f"[WARN] Failed to write events_archive.json: {e}")
+
 
             # Record in learned rules archived IDs
             try:
@@ -2371,6 +2531,27 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     json.dump(venue_dir_data, f, indent=2, ensure_ascii=False)
             except Exception as e:
                 return self._send_json(500, {"error": f"Failed saving venue directory: {e}"})
+
+            # Also update venues_master.json
+            try:
+                vm_list = []
+                if os.path.exists(VENUES_MASTER_PATH):
+                    with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as vmf:
+                        vm_list = json.load(vmf)
+                vm_list = [v for v in vm_list if (v.get("venue_name") or "").lower() != name.lower()]
+                vm_list.append({
+                    "venue_name": name,
+                    "website_url": venue_url,
+                    "calendar_url": calendar_url,
+                    "full_address": address,
+                    "neighborhood": neighborhood,
+                    "description": distilled_rules.get("summary", "") or f"Verified venue in {neighborhood}."
+                })
+                with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
+                    json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
+            except Exception as e:
+                print(f"[WARN] Failed updating venues_master.json: {e}")
+
 
             # Mark in discovered_venues.json as approved if exists
             if os.path.exists(DISCOVERED_VENUES_PATH):

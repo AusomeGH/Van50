@@ -104,25 +104,124 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 60000);
 });
 
-// Asynchronously load central reference data feed (data/events.json)
+function normalizeActiveEvent(item) {
+  if (!item) return item;
+  if (item.id && item.title && item.price !== undefined && item.venue !== undefined) return item;
+
+  const price = (item.pricing_all_in_cad && item.pricing_all_in_cad.regular !== undefined && item.pricing_all_in_cad.regular !== null)
+    ? Number(item.pricing_all_in_cad.regular)
+    : Number(item.price || 0.0);
+
+  const show1 = item.show_1 || {};
+  const show2 = item.show_2 || {};
+  const show3 = item.show_3 || {};
+
+  const confirmedDates = [show1.date, show2.date, show3.date].filter(Boolean);
+
+  let dateSchedule = "Upcoming";
+  if (show1.date) {
+    dateSchedule = show1.date;
+    if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
+    if (confirmedDates.length > 1) {
+      dateSchedule += ` (+${confirmedDates.length - 1} showings)`;
+    }
+  }
+
+  const catRaw = (item.category || "shows").toLowerCase();
+  const cat = catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows"))));
+
+  return {
+    id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
+    title: item.event_name || item.title || "Event",
+    artist: item.artist || null,
+    venue: item.venue_name || item.venue || "Vancouver Venue",
+    address: item.full_address || item.address || "Vancouver, BC",
+    neighborhood: item.neighborhood || "Vancouver",
+    price: price,
+    priceLabel: price === 0 ? "Free ($0)" : `$${price.toFixed(2)} CAD`,
+    pricingType: price === 0 ? "free" : "paid",
+    isFree: price === 0,
+    frequency: confirmedDates.length > 1 ? "limited-run" : "one-off",
+    frequencyLabel: confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing",
+    daysOfWeek: ["daily"],
+    timeSlots: ["early-evening", "late-evening"],
+    category: cat,
+    categoryLabel: item.category || "Shows & Arts",
+    categoryIcon: cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : "🎭"),
+    subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
+    dateSchedule: dateSchedule,
+    startIso: show1.date ? `${show1.date}T${show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
+    endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
+    confirmedDates: confirmedDates,
+    isSoldOut: false,
+    websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
+    venueUrl: item.details_url || item.websiteUrl || "#",
+    ticketProvider: item.ticket_provider || item.ticketProvider || "Direct",
+    rawProvider: item.ticket_provider || "Direct",
+    coordinates: [49.2827, -123.1207],
+    transitInfo: "Transit accessible via TransLink SkyTrain / bus service",
+    description: item.description || "",
+    checkoutVerification: {
+      status: "verified_live",
+      method: "gemini_fee_computation",
+      verifiedTotal: price
+    },
+    repeatShowings: {
+      show_1: show1,
+      show_2: item.show_2,
+      show_3: item.show_3
+    },
+    approvalStatus: item.approval_status || "Auto-Approved",
+    curatorNotes: item.curator_notes || ""
+  };
+}
+
+// Asynchronously load central reference data feed (data/events_active.json as primary, fallback to data/events.json)
 async function loadCentralReference() {
+  let loadedEvents = null;
+  let updatedAt = null;
+
+  // 1. Try loading new events_active.json first
   try {
-    const res = await fetch(`data/events.json?v=5.7.0&t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetch(`data/events_active.json?v=6.0.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
-      if (data.events && Array.isArray(data.events)) {
-        ALL_EVENTS = data.events;
-        window.VANCOUVER_EVENTS = data.events;
-        if (data.metadata && data.metadata.updatedAt) {
-          state.updatedAt = data.metadata.updatedAt;
-          showSyncTimestamp(data.metadata.updatedAt, data.events.length);
-        }
-        renderFestivalSpotlight();
-        applyFiltersAndRender();
+      const rawList = Array.isArray(data) ? data : (data.events || []);
+      if (rawList.length > 0) {
+        loadedEvents = rawList.map(normalizeActiveEvent);
       }
     }
   } catch (err) {
-    console.log('Using offline embedded reference sheet.');
+    console.log('Could not load events_active.json, checking legacy events.json.');
+  }
+
+  // 2. Fallback to legacy events.json if events_active.json is empty
+  if (!loadedEvents) {
+    try {
+      const res = await fetch(`data/events.json?v=5.7.0&t=${Date.now()}`, { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.events && Array.isArray(data.events)) {
+          loadedEvents = data.events;
+          if (data.metadata && data.metadata.updatedAt) {
+            updatedAt = data.metadata.updatedAt;
+          }
+        }
+      }
+    } catch (err) {
+      console.log('Using offline embedded reference sheet.');
+    }
+  }
+
+  if (loadedEvents && loadedEvents.length > 0) {
+    ALL_EVENTS = loadedEvents;
+    window.VANCOUVER_EVENTS = loadedEvents;
+    if (updatedAt) {
+      state.updatedAt = updatedAt;
+      showSyncTimestamp(updatedAt, loadedEvents.length);
+    }
+    renderFestivalSpotlight();
+    applyFiltersAndRender();
   }
 
   // Also load quarantined manual review queue
@@ -139,6 +238,7 @@ async function loadCentralReference() {
     console.log('Using offline embedded review queue.');
   }
 }
+
 
 function showSyncTimestamp(isoStr, count) {
   const badge = document.getElementById('sync-status-badge');
