@@ -2481,5 +2481,760 @@
     "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "archive_reason": "Auto-Archived: Scheduled run ended on 2026-09-25",
     "archived_at": "2026-09-26T11:01:37.352295+00:00"
+  },
+  {
+    "event_id": "seawall-lost-lagoon",
+    "event_name": "Stanley Park Seawall & Lost Lagoon Walk",
+    "category": "outdoors",
+    "venue_name": "Stanley Park Seawall",
+    "full_address": "Georgia St & Park Dr, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "06:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "seawall",
+      "ocean-walk",
+      "stanley-park",
+      "sunset"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "lynn-canyon-bridge",
+    "event_name": "Lynn Canyon Suspension Bridge & Twin Falls",
+    "category": "outdoors",
+    "venue_name": "Lynn Canyon Park",
+    "full_address": "3663 Park Rd, North Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": "Visit the Ecology Centre, nestled in the temperate rainforest. Explore our nature museum, shop sustainable gifts, or join one of our engaging programs.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "07:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ecologycentre.ca/trail-information/",
+    "details_url": "https://ecologycentre.ca/trail-information/",
+    "ticket_url": "https://ecologycentre.ca/trail-information/",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "suspension-bridge",
+      "rainforest",
+      "twin-falls",
+      "free-hike"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "granville-island-market",
+    "event_name": "Granville Island Public Market Boardwalk",
+    "category": "outdoors",
+    "venue_name": "Granville Island Public Market",
+    "full_address": "1689 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": "The Granville Island Public Market is the jewel in the Island’s crown. An indoor market featuring a fascinating assortment of colourful food, produce stores",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "09:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://granvilleisland.com/public-market",
+    "details_url": "https://granvilleisland.com/public-market",
+    "ticket_url": "https://granvilleisland.com/public-market",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "public-market",
+      "boardwalk",
+      "buskers",
+      "false-creek"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "vpl-central-rooftop",
+    "event_name": "Vancouver Public Library Central Rooftop Garden",
+    "category": "arts",
+    "venue_name": "VPL Central Library (Level 9)",
+    "full_address": "350 W Georgia St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "With views of the city skyline from a unique vantage point, the Phillips, Hager and North Garden on Level 9 provides Vancouver a publicly accessible rooftop garden within the downtown core. Whether you are seeking a respite from your busy day or a place to connect with friends, it is Vancouver’s natural meeting place.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "10:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "details_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "ticket_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "architecture",
+      "rooftop-terrace",
+      "quiet-spot",
+      "city-views"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ubc-rose-garden",
+    "event_name": "UBC Rose Garden & Wreck Beach Trail",
+    "category": "outdoors",
+    "venue_name": "UBC Rose Garden & Trail 6",
+    "full_address": "6301 NW Marine Dr, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": "The Rose Garden at UBC Vancouver has stunning ocean and mountain views, and more than a dozen types of roses blooming abundantly between June and September.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "08:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "details_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "ticket_url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "rose-garden",
+      "ocean-view",
+      "ubc",
+      "coastal-trail"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "queen-elizabeth-quarry",
+    "event_name": "Queen Elizabeth Park Quarry Gardens & Viewpoint",
+    "category": "outdoors",
+    "venue_name": "Queen Elizabeth Park",
+    "full_address": "4600 Cambie St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "06:00",
+      "end_time": "",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "quarry-garden",
+      "panoramic-view",
+      "cambie-corridor",
+      "city-view"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ubc-wsoc-twu",
+    "event_name": "UBC Women's Soccer vs. TWU",
+    "category": "activities",
+    "venue_name": "Thunderbird Stadium",
+    "full_address": "6288 Stadium Rd, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "pricing_all_in_cad": {
+      "regular": 17.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "18:00",
+      "end_time": "",
+      "cost": 17.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "details_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+    "ticket_provider": "Paciolan Verified",
+    "tags": [
+      "varsity-sports",
+      "ubc-soccer",
+      "womens-soccer",
+      "twu-spartans",
+      "rivalry",
+      "thunderbirds"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "eb-puff-magic-improv",
+    "event_name": "Puff the Magic Improv Show (Revue Stage)",
+    "category": "shows",
+    "venue_name": "Revue Stage Granville Island",
+    "full_address": "1601 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "description": "Puff is the IMPROV show that elevates comedy to that DRAGON level.19+ Presented at the beautiful Revue Stage on Granville Island!",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "20:00",
+      "end_time": "",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "details_url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "ticket_url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "ticket_provider": "Eventbrite Verified",
+    "tags": [
+      "granville-island",
+      "revue-stage",
+      "improv",
+      "puff-the-magic-improv-show-sept-26-2026-vancouver",
+      "puff-the-magic-improv-show-sept-26-2026",
+      "puff-the-magic-improv-show-sept-26-2026-tickets"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ludica-boardgames",
+    "event_name": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "category": "activities",
+    "venue_name": "Pizzeria Ludica",
+    "full_address": "189 Keefer Pl, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Immerse yourself in Vancouver's ultimate board game parlor with over 1,200 titles ranging from party games to deep strategy epics. Enjoy authentic wood-fired Neapolitan pizza, craft beers, and Italian sodas with a $20.00 minimum spend per person (no separate game cover charge). Please note: During peak, busy evenings, table seating has a 2-hour maximum duration.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "16:30",
+      "end_time": "",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.pizzerialudica.com/",
+    "details_url": "https://www.pizzerialudica.com/",
+    "ticket_url": "https://www.pizzerialudica.com/",
+    "ticket_provider": "Walk-in / Table Reservation",
+    "tags": [
+      "board-games",
+      "tabletop",
+      "wood-fired-pizza",
+      "craft-beer"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "stanley-pitch-putt",
+    "event_name": "Stanley Park Pitch & Putt: 18-Hole Round",
+    "category": "activities",
+    "venue_name": "Stanley Park Pitch & Putt",
+    "full_address": "2099 Beach Ave, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay.",
+    "pricing_all_in_cad": {
+      "regular": 17.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "08:00",
+      "end_time": "",
+      "cost": 17.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "ticket_provider": "City of Vancouver Park",
+    "tags": [
+      "pitch-and-putt",
+      "golf",
+      "stanley-park",
+      "english-bay"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "roxy-country-sunday",
+    "event_name": "The Roxy Presents: Live Band Line Dancing",
+    "category": "music",
+    "venue_name": "The Roxy Cabaret",
+    "full_address": "932 Granville St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Special Sunday country night at The Roxy featuring professional line dancing instruction at 9:30 PM followed by live country hits performed by The Roxy Rollers Country Edition. Advance tickets $6.00 + fee on Showpass, $8 at door.",
+    "pricing_all_in_cad": {
+      "regular": 7.24,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-27",
+      "start_time": "21:00",
+      "end_time": "",
+      "cost": 7.24
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://roxyvan.com/events",
+    "details_url": "https://roxyvan.com/events",
+    "ticket_url": "https://roxyvan.com/events",
+    "ticket_provider": "Showpass Verified",
+    "tags": [
+      "country",
+      "line-dancing",
+      "live-band",
+      "roxy-rollers",
+      "dance-lesson",
+      "granville-strip"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2477877-he-pot",
+    "event_name": "VANTANIOR - Dark Bass in the Black",
+    "category": "music",
+    "venue_name": "The Spot",
+    "full_address": "520 Alexander Street",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Spot.",
+    "pricing_all_in_cad": {
+      "regular": 35.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "21:00",
+      "end_time": "",
+      "cost": 35.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2477877",
+    "details_url": "https://ra.co/events/2477877",
+    "ticket_url": "https://ra.co/events/2477877",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2502822-latform9",
+    "event_name": "Thump! presents 1morning (Ilian Tape)",
+    "category": "music",
+    "venue_name": "Platform9",
+    "full_address": "390 Industrial Ave, Vancouver, BC V6A 2P3 Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Platform9. Featuring live performances by 1morning, AWood, NOTEVENDOWN, Max Ulis, DJ Hockey.",
+    "pricing_all_in_cad": {
+      "regular": 22.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "23:00",
+      "end_time": "",
+      "cost": 22.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2502822",
+    "details_url": "https://ra.co/events/2502822",
+    "ticket_url": "https://ra.co/events/2502822",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2524035-he-argrove",
+    "event_name": "DECEL / DIVERGE Art Rave + Manifesto Drop",
+    "category": "music",
+    "venue_name": "The Hargrove",
+    "full_address": "Back Alley Entrance, 150 E 3rd Ave, Vancouver, BC V5T 3C1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Hargrove.",
+    "pricing_all_in_cad": {
+      "regular": 25.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "21:00",
+      "end_time": "",
+      "cost": 25.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2524035",
+    "details_url": "https://ra.co/events/2524035",
+    "ticket_url": "https://ra.co/events/2524035",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2537105-he-ed-oom",
+    "event_name": "HEYZ at SUBculture Saturdays",
+    "category": "music",
+    "venue_name": "The Red Room",
+    "full_address": "398 Richards St, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Red Room.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "23:00",
+      "end_time": "",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2537105",
+    "details_url": "https://ra.co/events/2537105",
+    "ticket_url": "https://ra.co/events/2537105",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2541275-eo",
+    "event_name": "An evening with Bobby Double at Meo",
+    "category": "music",
+    "venue_name": "Meo",
+    "full_address": "265 East Pender Street",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Meo. Featuring live performances by Bobby Myseh, Body Double.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "22:00",
+      "end_time": "",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2541275",
+    "details_url": "https://ra.co/events/2541275",
+    "ticket_url": "https://ra.co/events/2541275",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2543749-org-ish",
+    "event_name": "Gorg-O-Mish presents: Ricco, C-Star & Madam Lola",
+    "category": "music",
+    "venue_name": "Gorg-O-Mish",
+    "full_address": "695 Smithe St; Vancouver, BC V6B 2C9; Canada",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Gorg-O-Mish. Featuring live performances by Ricco, C-Star.",
+    "pricing_all_in_cad": {
+      "regular": 25.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "23:59",
+      "end_time": "",
+      "cost": 25.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2543749",
+    "details_url": "https://ra.co/events/2543749",
+    "ticket_url": "https://ra.co/events/2543749",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2544313-he-ed-oom",
+    "event_name": "PINEO & LOEB x Rumpus",
+    "category": "music",
+    "venue_name": "The Red Room",
+    "full_address": "398 Richards St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at The Red Room.",
+    "pricing_all_in_cad": {
+      "regular": 31.6,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "21:30",
+      "end_time": "",
+      "cost": 31.6
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2544313",
+    "details_url": "https://ra.co/events/2544313",
+    "ticket_url": "https://ra.co/events/2544313",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "ra-2546198-okal-ekondo",
+    "event_name": "captivate listening session",
+    "category": "music",
+    "venue_name": "Lokal Sekondo",
+    "full_address": "1966 W 4th Ave, Vancouver, BC V6J 1M5",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Featured Vancouver electronic music and dance event authenticated via Resident Advisor at Lokal Sekondo. Featuring live performances by captivate.",
+    "pricing_all_in_cad": {
+      "regular": 10.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-26",
+      "start_time": "20:00",
+      "end_time": "",
+      "cost": 10.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://ra.co/events/2546198",
+    "details_url": "https://ra.co/events/2546198",
+    "ticket_url": "https://ra.co/events/2546198",
+    "ticket_provider": "Resident Advisor Verified",
+    "tags": [
+      "electronic",
+      "dance-party",
+      "club-night",
+      "dj-set",
+      "ra-vancouver"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "central-park-pitch-putt",
+    "event_name": "Central Park Pitch & Putt: 18-Hole Round",
+    "category": "outdoors",
+    "venue_name": "Central Park Pitch & Putt",
+    "full_address": "Kingsway & Boundary Rd, Central Park, Vancouver",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "description": "An 18-hole par-3 pitch and putt course carved into the towering fir and cedar forests of Central Park directly beside Patterson SkyTrain station.",
+    "pricing_all_in_cad": {
+      "regular": 17.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-08",
+      "start_time": "08:00",
+      "end_time": "",
+      "cost": 17.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.golfburnaby.ca/golf/central-park",
+    "details_url": "https://www.golfburnaby.ca/golf/central-park",
+    "ticket_url": "https://www.golfburnaby.ca/golf/central-park",
+    "ticket_provider": "Burnaby Parks & Recreation",
+    "tags": [
+      "pitch-and-putt",
+      "golf",
+      "central-park",
+      "patterson-skytrain",
+      "outdoors"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "",
+    "archived_at": "2026-09-28"
   }
 ]

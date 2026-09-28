@@ -436,9 +436,28 @@
       "discoveredVia": "Miss604 (Rebecca Bollwitt)",
       "discoverySourceId": "miss604",
       "sampleEvent": "Mrs. Doubtfire in Vancouver",
-      "status": "pending",
+      "status": "approved",
       "discoveredAt": "2026-09-23T16:53:51.018366+00:00",
-      "curatorNote": ""
+      "curatorNote": "",
+      "approvedAt": "2026-09-28T16:44:10.060800+00:00",
+      "curatorLearnedRules": {
+        "venueName": "Queen Elizabeth Theatre",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Queen Elizabeth Theatre.",
+        "distilledAt": "2026-09-28T16:44:10.030795+00:00"
+      }
     }
   ]
 }

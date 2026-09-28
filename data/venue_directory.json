@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "Van50 Permanent Venue Directory: Invariant physical metadata and calendar endpoints.",
     "totalVenues": 73,
-    "updatedAt": "2026-09-28T16:17:26.531545+00:00"
+    "updatedAt": "2026-09-28T16:44:10.055743+00:00"
   },
   "venues": {
     "Stanley Park Seawall": {
@@ -464,7 +464,7 @@
         49.2638,
         -123.1012
       ],
-      "transitInfo": "Main & 7th Ave bus stop \u2022 10 min walk from SkyTrain",
+      "transitInfo": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
       "category": "cinema",
       "venueUrl": "https://www.foxcabaret.com",
       "calendarUrl": "https://www.foxcabaret.com/",
@@ -1283,9 +1283,9 @@
         "roxy-live-acts-showcase"
       ]
     },
-    "Caf\u00e9 au Clay Studios": {
+    "Café au Clay Studios": {
       "venueId": "cafe-au-clay",
-      "name": "Caf\u00e9 au Clay Studios",
+      "name": "Café au Clay Studios",
       "aliases": [
         "Cafe au Clay",
         "Cafe au Clay Pottery",
@@ -1990,42 +1990,32 @@
       "venueId": "queen-elizabeth-theatre",
       "name": "Queen Elizabeth Theatre",
       "aliases": [
-        "Queen Elizabeth Theatre",
-        "QET",
-        "Queen Elizabeth Theater"
+        "Queen Elizabeth Theatre"
       ],
-      "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
-      "neighborhood": "Downtown, Gastown & Yaletown",
+      "address": "Queen Elizabeth Theatre, Vancouver, BC",
+      "neighborhood": "Downtown / West End",
       "coordinates": [
-        49.2808,
-        -123.1132
+        49.2827,
+        -123.1207
       ],
-      "transitInfo": "Stadium-Chinatown SkyTrain Station (Expo Line) or Vancouver City Centre (Canada Line) - 5 min walk",
+      "transitInfo": "Check TransLink for nearest transit route",
       "category": "shows",
-      "venueUrl": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
-      "calendarUrl": "https://vancouvercivictheatres.com/events/",
-      "broadwayCalendarUrl": "https://vancouver.broadway.com/shows/",
-      "boxOfficeUrl": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
-      "ticketingProvider": "Ticketmaster / Civic Theatres Box Office",
+      "venueUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "calendarUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "boxOfficeUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "ticketingProvider": "Universal Ticketing",
       "adapter": "UniversalVenueCrawler",
       "doorCover": null,
       "priceRange": null,
       "operatingDays": [],
-      "subTags": [
-        "theatre",
-        "broadway",
-        "shows",
-        "live-music",
-        "ballet",
-        "opera"
-      ],
-      "curatorInstructions": "Vancouver Civic Theatres & Broadway Across Canada. Sub-\\ options verified for Penn & Teller, Tosca, Ballet BC.",
-      "curatorNote": "Vancouver Civic Theatres & Broadway Across Canada. Sub-\\ options verified for Penn & Teller, Tosca, Ballet BC.",
+      "subTags": [],
+      "curatorInstructions": "",
+      "curatorNote": "",
       "curatorLearnedRules": {
         "venueName": "Queen Elizabeth Theatre",
         "category": "shows",
         "neighborhood": "Downtown / West End",
-        "calendarUrl": "https://www.ticketmaster.ca/sting-tickets/artist/723578",
+        "calendarUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
         "doorPrice": null,
         "priceRange": null,
         "pricingType": "standard",
@@ -2035,11 +2025,11 @@
         "scheduleDays": [],
         "genres": [],
         "blacklistPatterns": [],
-        "curatorGuidance": "Far too expensive",
-        "summary": "Calendar: https://www.ticketmaster.ca/sting-tickets/artist/723578",
-        "distilledAt": "2026-09-23T23:34:16.160768+00:00"
+        "curatorGuidance": "",
+        "summary": "Standard venue record registered for Queen Elizabeth Theatre.",
+        "distilledAt": "2026-09-28T16:44:10.030795+00:00"
       },
-      "policySummary": "Calendar: https://vancouvercivictheatres.com/events/ | Broadway: https://vancouver.broadway.com/shows/",
+      "policySummary": "Standard venue record registered for Queen Elizabeth Theatre.",
       "managedEvents": []
     }
   }

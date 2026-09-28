@@ -43,5 +43,23 @@
     "start_date": "2026-09-06",
     "end_date": "2026-09-20",
     "description": "outdoors"
+  },
+  {
+    "festival_name": "BC Culture Days",
+    "website_url": "https://culturedays.ca/en/bc",
+    "schedule_url": "https://culturedays.ca/en/bc",
+    "location": "Multiple Venues across Metro Vancouver",
+    "start_date": "2026-09-20",
+    "end_date": "2026-10-15",
+    "description": "Province-wide arts and culture festival providing free access to interactive workshops, open artist studios, and live pop-up music."
+  },
+  {
+    "festival_name": "Downtown Eastside Heart of the City Festival",
+    "website_url": "https://www.heartofthecityfestival.com/",
+    "schedule_url": "https://curiocity.com/free-festival-100-arts-culture-events-vancouver-fall/",
+    "location": "Over 30 Venues across Vancouver's Downtown Eastside",
+    "start_date": "2026-10-30",
+    "end_date": "2026-11-07",
+    "description": "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theater pieces celebrating DTES culture."
   }
 ]

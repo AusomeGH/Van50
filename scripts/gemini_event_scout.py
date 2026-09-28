@@ -3,8 +3,8 @@
 Van50 Gemini AI Autonomous Event Scout & Curator
 =================================================
 Automated event discovery, full-fee computation (under $50 CAD),
-verified repeating event resolution, and catalog maintenance using Gemini AI.
-Outputs both structured JSON and CSV files for easy integration into spreadsheets and web apps.
+verified repeating event resolution, and master catalog maintenance using Gemini AI.
+Maintains pure JSON master catalogs across active events, archives, venues, festivals, and ticketing sources.
 """
 
 from __future__ import annotations
@@ -65,7 +65,7 @@ def get_gemini_api_key() -> str:
     return key
 
 
-def call_gemini_with_search(prompt: str, api_key: str, model: str = "gemini-2.5-flash") -> Optional[str]:
+def call_gemini_with_search(prompt: str, api_key: str, model: str = "gemini-3.8-flash") -> Optional[str]:
     """
     Calls the Gemini REST API with Google Search Grounding enabled.
     Falls back gracefully if search tool is not supported in a given region.
@@ -126,7 +126,7 @@ def call_gemini_with_search(prompt: str, api_key: str, model: str = "gemini-2.5-
     return None
 
 
-def call_gemini_json_extractor(raw_content: str, api_key: str, model: str = "gemini-2.5-flash") -> Optional[Dict[str, Any]]:
+def call_gemini_json_extractor(raw_content: str, api_key: str, model: str = "gemini-3.8-flash") -> Optional[Dict[str, Any]]:
     """
     Takes discovered web event text and parses it into strict structured JSON.
     """
@@ -250,9 +250,9 @@ def run_gemini_scouting_cycle(api_key: str) -> Dict[str, Any]:
     """
     today_str = datetime.now().strftime("%Y-%m-%d")
     queries = [
-        f"Vancouver BC events activities things to do {today_str} this week weekend under $50 CAD Daily Hive Vancouver Is Awesome Do604",
-        "Vancouver indie concerts live music comedy theater tickets under 50 CAD upcoming dates schedule",
-        "Upcoming festivals free community events art exhibits Vancouver Metro Vancouver this month"
+        "Upcoming events concerts comedy shows things to do in Vancouver BC under 50 CAD schedule dates prices tickets",
+        "Vancouver indie concerts live music comedy theater tickets under 50 CAD schedule Little Mountain Gallery Rio Theatre Fox Cabaret Rickshaw The Pearl WISE Hall",
+        "Upcoming community festivals free events art exhibitions Vancouver Metro Vancouver schedule dates"
     ]
 
     all_raw_findings = []
@@ -320,9 +320,21 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
 
     # 3. Add new discovered events (deduplicating by title/slug)
     existing_ids = {e.get("event_id") for e in still_active}
+    existing_archive_ids = {e.get("event_id") for e in archived_events}
     new_events = structured_data.get("events_active", [])
     added_count = 0
     quarantined_count = 0
+
+    # Load manual review queue for quarantined events
+    queue_data = {"metadata": {"version": "1.0.0", "updatedAt": today_str, "pendingCount": 0, "description": "Events quarantined for manual user review due to unverified live checkout pricing."}, "quarantinedEvents": []}
+    if os.path.exists(QUEUE_PATH):
+        try:
+            with open(QUEUE_PATH, "r", encoding="utf-8") as qf:
+                queue_data = json.load(qf)
+        except Exception:
+            pass
+    queue_events = queue_data.get("quarantinedEvents", [])
+    queue_ids = {q.get("id") or q.get("event_id") for q in queue_events}
 
     for ne in new_events:
         eid = ne.get("event_id") or re.sub(r"[^a-z0-9]+", "-", ne.get("event_name", "event").lower()).strip("-")
@@ -336,18 +348,46 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
 
         if ne.get("approval_status") == "Quarantined":
             quarantined_count += 1
+            if eid not in queue_ids:
+                queue_events.append({
+                    "id": eid,
+                    "title": ne.get("event_name", "Event"),
+                    "artist": ne.get("event_name", "Artist"),
+                    "venue": ne.get("venue_name", "Vancouver Venue"),
+                    "address": ne.get("full_address", "Vancouver, BC"),
+                    "neighborhood": ne.get("neighborhood", "Vancouver"),
+                    "price": reg_price,
+                    "priceLabel": f"${reg_price:.2f}" if reg_price > 0 else "Free ($0)",
+                    "category": (ne.get("category") or "General").lower(),
+                    "categoryLabel": ne.get("category", "General"),
+                    "startIso": f"{ne.get('show_1', {}).get('date', '')}T{ne.get('show_1', {}).get('start_time', '19:00')}:00",
+                    "websiteUrl": ne.get("ticket_url") or ne.get("details_url") or "",
+                    "quarantineReason": ne.get("curator_notes") or "Ticket price >= $43 CAD or unverified checkout service fees",
+                    "flaggedAt": today_str
+                })
+                queue_ids.add(eid)
+                print(f"[QUARANTINE] Routed {ne.get('event_name')} (${reg_price} CAD) to manual_review_queue.json")
+            continue
 
-        if eid not in existing_ids:
+        if eid not in existing_ids and eid not in existing_archive_ids:
             still_active.append(ne)
             existing_ids.add(eid)
             added_count += 1
+            print(f"[ADD] Added active verified event: {ne.get('event_name')} (${reg_price:.2f} CAD)")
 
-    # Save Events Active & Archive (JSON)
+    # Save Events Active & Archive (Pure JSON)
     with open(EVENTS_ACTIVE_JSON, "w", encoding="utf-8") as f:
         json.dump(still_active, f, indent=2, ensure_ascii=False)
 
     with open(EVENTS_ARCHIVE_JSON, "w", encoding="utf-8") as f:
         json.dump(archived_events, f, indent=2, ensure_ascii=False)
+
+    # Save Manual Review Queue if updated
+    queue_data["quarantinedEvents"] = queue_events
+    queue_data["metadata"]["pendingCount"] = len(queue_events)
+    queue_data["metadata"]["updatedAt"] = today_str
+    with open(QUEUE_PATH, "w", encoding="utf-8") as qf:
+        json.dump(queue_data, qf, indent=2, ensure_ascii=False)
 
     # 4. Update Venues Master (JSON)
     venues = []
@@ -388,12 +428,21 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     # 6. Ensure default Ticketing Sources & Discovery Sources exist
     init_default_sources()
 
+    # 7. Synchronize js/data.js
+    try:
+        from curator_server import sync_js_data_file
+        sync_js_data_file()
+        print("[OK] Synchronized js/data.js with active catalog.")
+    except Exception as e:
+        print(f"[WARN] Could not sync js/data.js: {e}")
+
     print(f"\n[CATALOG SYNC COMPLETE]")
-    print(f" • Active Events: {len(still_active)} (+{added_count} new, {quarantined_count} quarantined)")
+    print(f" • Active Events: {len(still_active)} (+{added_count} new)")
+    print(f" • Quarantined Queue: {len(queue_events)} (+{quarantined_count} queued for review)")
     print(f" • Archived Events: {len(archived_events)}")
     print(f" • Venues Master: {len(venues)}")
     print(f" • Festivals Master: {len(festivals)}")
-    print(f" • JSON Catalogs updated: {EVENTS_ACTIVE_JSON}, {VENUES_MASTER_JSON}, {FESTIVALS_MASTER_JSON}")
+    print(f" • JSON Catalogs updated: {EVENTS_ACTIVE_JSON}, {QUEUE_PATH}, {VENUES_MASTER_JSON}, {FESTIVALS_MASTER_JSON}")
 
 
 def init_default_sources():
@@ -535,14 +584,14 @@ def bootstrap_from_existing_data():
 def main():
     parser = argparse.ArgumentParser(description="Van50 Gemini AI Autonomous Event Scout")
     parser.add_argument("--dry-run", action="store_true", help="Run without mutating files")
-    parser.add_argument("--bootstrap-only", action="store_true", help="Bootstrap catalog CSV/JSON from existing data without running AI queries")
+    parser.add_argument("--bootstrap-only", action="store_true", help="Bootstrap catalog JSON from existing data without running AI queries")
     args = parser.parse_args()
 
     # Always ensure baseline catalogs are initialized
     bootstrap_from_existing_data()
 
     if args.bootstrap_only:
-        print("[BOOTSTRAP] Successfully initialized master catalogs and CSV files.")
+        print("[BOOTSTRAP] Successfully initialized master catalogs in pure JSON.")
         return
 
     api_key = get_gemini_api_key()

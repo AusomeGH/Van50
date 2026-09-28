@@ -577,10 +577,74 @@
   },
   {
     "venue_name": "Queen Elizabeth Theatre",
-    "website_url": "",
-    "calendar_url": "https://vancouvercivictheatres.com/events/",
-    "full_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": ""
+    "website_url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+    "calendar_url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+    "full_address": "Queen Elizabeth Theatre, Vancouver, BC",
+    "neighborhood": "Downtown / West End",
+    "description": "Standard venue record registered for Queen Elizabeth Theatre."
+  },
+  {
+    "venue_name": "The Pearl",
+    "website_url": "https://thepearlvancouver.com/",
+    "calendar_url": "https://thepearlvancouver.com/calendar/",
+    "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
+    "neighborhood": "Downtown",
+    "description": "Revitalized Granville entertainment strip live concert hall and nightclub featuring indie, electronic, and touring acts."
+  },
+  {
+    "venue_name": "The WISE Hall",
+    "website_url": "https://modo-live.com/",
+    "calendar_url": "https://www.ticketweb.ca/",
+    "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+    "neighborhood": "Commercial Drive",
+    "description": "Community-operated social hall and performance room hosting eclectic indie, punk, folk, and community gatherings."
+  },
+  {
+    "venue_name": "Bill Reid Gallery of Northwest Coast Art",
+    "website_url": "https://www.billreidgallery.ca/",
+    "calendar_url": "https://www.billreidgallery.ca/pages/exhibitions",
+    "full_address": "639 Hornby St, Vancouver, BC V6C 2G3",
+    "neighborhood": "Downtown",
+    "description": "Public gallery dedicated to celebrating contemporary Indigenous Northwest Coast art and honoring master Haida artist Bill Reid."
+  },
+  {
+    "venue_name": "Burnaby Art Gallery",
+    "website_url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+    "calendar_url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+    "full_address": "6344 Deer Lake Ave, Burnaby, BC V5G 2J3",
+    "neighborhood": "Burnaby",
+    "description": "Dedicated contemporary works on paper art gallery set inside the historic Ceperley House in Deer Lake Park."
+  },
+  {
+    "venue_name": "UBC Botanical Garden",
+    "website_url": "https://botanicalgarden.ubc.ca/",
+    "calendar_url": "https://botanicalgarden.ubc.ca/news-events/events/",
+    "full_address": "6804 SW Marine Dr, Vancouver, BC V6T 1Z4",
+    "neighborhood": "Point Grey",
+    "description": "University botanical research garden showcasing global plant diversity and hosting signature annual harvest festivals."
+  },
+  {
+    "venue_name": "The Cambrian Hall",
+    "website_url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+    "calendar_url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+    "full_address": "215 E 17th Ave, Vancouver, BC V5V 1A6",
+    "neighborhood": "Mount Pleasant",
+    "description": "Community hall host to weekly Friday night stand-up comedy staple Jokes Please!."
+  },
+  {
+    "venue_name": "The Show Cellar inside The Park Pub",
+    "website_url": "https://www.thecomedydepartment.com/",
+    "calendar_url": "https://www.thecomedydepartment.com/vancouver-shows/",
+    "full_address": "1755 Davie St, Vancouver, BC V6G 1W5",
+    "neighborhood": "West End",
+    "description": "Intimate subterranean comedy club hosting weekly Saturday improv and stand-up showcases by The Comedy Department."
+  },
+  {
+    "venue_name": "The China Cloud Studios",
+    "website_url": "https://do604.com/events/comedy",
+    "calendar_url": "https://do604.com/events/comedy",
+    "full_address": "524 Main St, Vancouver, BC V6A 2T9",
+    "neighborhood": "Chinatown",
+    "description": "Second-floor Chinatown speakeasy-style room hosting independent jazz, comedy, and underground performing arts."
   }
 ]

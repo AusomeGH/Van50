@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-28T09:17:26-07:00",
+    "updatedAt": "2026-09-28T09:44:10-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -136,7 +136,8 @@
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com/homepage/calendar/",
     "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
     "Pending Venue Candidate 1790182361": "https://pendingvenue.example.com",
-    "Test QA Cellar 1790182362": "https://testcellar.example.com/events"
+    "Test QA Cellar 1790182362": "https://testcellar.example.com/events",
+    "Queen Elizabeth Theatre": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -1907,6 +1908,20 @@
       "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
       "learnedAt": "2026-09-23T16:52:42.346269+00:00",
       "source": "Curator Studio Instruction inst_1790182362135"
+    },
+    "Queen Elizabeth Theatre": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "summary": "Standard venue record registered for Queen Elizabeth Theatre.",
+      "curatorGuidance": "",
+      "learnedAt": "2026-09-28T16:44:10.035688+00:00",
+      "source": "Curator Studio Instruction"
     }
   },
   "notes": {
