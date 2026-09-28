@@ -22,7 +22,7 @@ except ImportError:
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
+FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festivals.json")
 VENUE_DIRECTORY_PATH = os.path.join(DATA_DIR, "venue_directory.json")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
 CURATOR_RULES_PATH = os.path.join(DATA_DIR, "curator_learned_rules.json")
@@ -123,7 +123,7 @@ class UniversalFestivalCrawler:
         try:
             with open(FESTIVAL_REGISTRY_PATH, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                return data.get("festivals", [])
+                return data if isinstance(data, list) else data.get("festivals", [])
         except Exception as e:
             print(f"[FESTIVAL CRAWLER] Error loading festivals: {e}")
             return []

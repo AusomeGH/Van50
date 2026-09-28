@@ -17,8 +17,8 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NOMADIC_PATH = os.path.join(BASE_DIR, "data", "nomadic_organizers.json")
-VENUES_PATH = os.path.join(BASE_DIR, "data", "venues_directory.json")
+NOMADIC_PATH = os.path.join(BASE_DIR, "data", "organizers_directory.json")
+VENUES_PATH = os.path.join(BASE_DIR, "data", "venues.json")
 
 
 class NomadicLocationResolver:
@@ -34,10 +34,18 @@ class NomadicLocationResolver:
                 try:
                     with open(NOMADIC_PATH, "r", encoding="utf-8") as f:
                         data = json.load(f)
-                        cls._ORGANIZERS_CACHE = {org["id"]: org for org in data.get("organizers", [])}
-                        # Also key by lowercase name
-                        for org in data.get("organizers", []):
-                            cls._ORGANIZERS_CACHE[org["name"].lower()] = org
+                        raw_orgs = data.get("organizers", {})
+                        if isinstance(raw_orgs, dict):
+                            org_list = list(raw_orgs.values())
+                        else:
+                            org_list = raw_orgs
+                        cls._ORGANIZERS_CACHE = {}
+                        for org in org_list:
+                            oid = org.get("id") or org.get("name", "").lower()
+                            cls._ORGANIZERS_CACHE[oid] = org
+                            cls._ORGANIZERS_CACHE[org.get("name", "").lower()] = org
+                            for alias in org.get("aliases", []):
+                                cls._ORGANIZERS_CACHE[alias.lower()] = org
                 except Exception as e:
                     print(f"[NOMADIC WARN] Failed to load {NOMADIC_PATH}: {e}")
                     cls._ORGANIZERS_CACHE = {}
@@ -49,12 +57,18 @@ class NomadicLocationResolver:
                 try:
                     with open(VENUES_PATH, "r", encoding="utf-8") as f:
                         data = json.load(f)
-                        cls._VENUES_CACHE = {v["name"].lower(): v for v in data.get("venues", [])}
+                        raw_venues = data if isinstance(data, list) else data.get("venues", [])
+                        cls._VENUES_CACHE = {}
+                        for v in raw_venues:
+                            vname = v.get("venue_name") or v.get("name") or ""
+                            if vname:
+                                cls._VENUES_CACHE[vname.lower()] = v
                 except Exception as e:
                     print(f"[NOMADIC WARN] Failed to load {VENUES_PATH}: {e}")
                     cls._VENUES_CACHE = {}
             else:
                 cls._VENUES_CACHE = {}
+
 
     @classmethod
     def is_nomadic_organizer(cls, identifier: str) -> bool:

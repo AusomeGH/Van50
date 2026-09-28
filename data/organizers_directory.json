@@ -9,7 +9,11 @@
     "public-disco-society": {
       "id": "public-disco-society",
       "name": "Public Disco Society",
-      "aliases": ["Public Disco", "Public Disco Vancouver", "Public Disco Society"],
+      "aliases": [
+        "Public Disco",
+        "Public Disco Vancouver",
+        "Public Disco Society"
+      ],
       "type": "non_profit_arts_society",
       "focus": "Open-air daytime dance block parties (free) and ticketed evening warehouse/club fundraisers",
       "websiteUrl": "https://publicdisco.ca",
@@ -30,12 +34,117 @@
         "plazaEvents": "All-Ages (Licensed 19+ Beer Garden)",
         "warehouseEvents": "19+ (Government Photo ID Required)"
       },
-      "active": true
+      "active": true,
+      "locationPatterns": {
+        "water street": {
+          "venueName": "Gastown (Water Street)",
+          "address": "Water St & Carrall St, Gastown, Vancouver",
+          "neighborhood": "Gastown / Chinatown",
+          "coordinates": [
+            49.2838,
+            -123.1093
+          ],
+          "transitInfo": "2 min walk from Waterfront SkyTrain (Expo, Millennium & Canada Lines)"
+        },
+        "granville street": {
+          "venueName": "Granville Street Pedestrian Zone",
+          "address": "Granville St & Robson St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [
+            49.2808,
+            -123.1205
+          ],
+          "transitInfo": "Directly outside Granville and Vancouver City Centre SkyTrain Stations"
+        },
+        "mount pleasant": {
+          "venueName": "Mount Pleasant (4th & Ontario)",
+          "address": "2114 Ontario St & E 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [
+            49.2668,
+            -123.1054
+          ],
+          "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)"
+        },
+        "4th & ontario": {
+          "venueName": "Mount Pleasant (4th & Ontario)",
+          "address": "2114 Ontario St & E 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [
+            49.2668,
+            -123.1054
+          ],
+          "transitInfo": "#8 Main bus or Olympic Village Canada Line (8 min walk)"
+        },
+        "granville island": {
+          "venueName": "Granville Island (Lot 55)",
+          "address": "Lot 55 beneath Granville Bridge, Granville Island, Vancouver",
+          "neighborhood": "Granville Island",
+          "coordinates": [
+            49.2711,
+            -123.1347
+          ],
+          "transitInfo": "#50 False Creek bus or False Creek Ferries / Aquabus"
+        },
+        "city centre artist lodge": {
+          "venueName": "City Centre Artist Lodge",
+          "address": "2111 Main St, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [
+            49.2662,
+            -123.0978
+          ],
+          "transitInfo": "#8 Main bus directly to 5th Ave"
+        },
+        "shipyards": {
+          "venueName": "The Shipyards Waterfront",
+          "address": "125 Victory Ship Way, North Vancouver",
+          "neighborhood": "North Shore / Burnaby",
+          "coordinates": [
+            49.3117,
+            -123.0811
+          ],
+          "transitInfo": "SeaBus from Waterfront Station to Lonsdale Quay (2 min walk)"
+        },
+        "bentall centre": {
+          "venueName": "Bentall Centre Dunsmuir Plaza",
+          "address": "505 Burrard St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [
+            49.2847,
+            -123.1189
+          ],
+          "transitInfo": "Direct concourse connection at Burrard SkyTrain Station"
+        },
+        "birdhouse": {
+          "venueName": "The Birdhouse",
+          "address": "44 W 4th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [
+            49.2675,
+            -123.1065
+          ],
+          "transitInfo": "Olympic Village SkyTrain (7 min walk) or #84 UBC bus"
+        },
+        "downtown": {
+          "venueName": "Downtown Vancouver Plazas",
+          "address": "Granville St & Georgia St, Vancouver",
+          "neighborhood": "Downtown / West End",
+          "coordinates": [
+            49.2831,
+            -123.1165
+          ],
+          "transitInfo": "Granville or Vancouver City Centre SkyTrain Station"
+        }
+      }
     },
     "iq-2000-trivia": {
       "id": "iq-2000-trivia",
       "name": "IQ 2000 Trivia",
-      "aliases": ["IQ 2000", "IQ 2000 Pub Trivia"],
+      "aliases": [
+        "IQ 2000",
+        "IQ 2000 Pub Trivia"
+      ],
       "type": "independent_producer",
       "focus": "High-energy comedic multi-round pub trivia nights across Vancouver bars and community halls",
       "websiteUrl": "https://iq2000trivia.com",
@@ -58,7 +167,11 @@
     "eatlocal-vancouver": {
       "id": "eatlocal-vancouver",
       "name": "Vancouver Farmers Markets (EatLocal)",
-      "aliases": ["EatLocal", "Vancouver Farmers Markets", "VFM"],
+      "aliases": [
+        "EatLocal",
+        "Vancouver Farmers Markets",
+        "VFM"
+      ],
       "type": "registered_charity",
       "focus": "Rotating community agricultural and artisan street markets across Vancouver parks and civic plazas",
       "websiteUrl": "https://eatlocal.org",
@@ -84,7 +197,10 @@
     "car-free-vancouver-society": {
       "id": "car-free-vancouver-society",
       "name": "Car Free Vancouver Society",
-      "aliases": ["Car Free Day", "Car Free Vancouver"],
+      "aliases": [
+        "Car Free Day",
+        "Car Free Vancouver"
+      ],
       "type": "non_profit_society",
       "focus": "Annual pedestrian street festivals celebrating local art, music, food, and community culture",
       "websiteUrl": "https://www.carfreevancouver.org",
@@ -100,12 +216,37 @@
       "agePolicy": {
         "streetFestivals": "All-Ages Family Friendly"
       },
-      "active": true
+      "active": true,
+      "locationPatterns": {
+        "commercial drive": {
+          "venueName": "Commercial Drive (Grandview to 1st)",
+          "address": "Commercial Drive from N Grandview to 1st Ave, Vancouver",
+          "neighborhood": "Commercial Drive",
+          "coordinates": [
+            49.2715,
+            -123.0694
+          ],
+          "transitInfo": "Commercial-Broadway SkyTrain Station (Expo & Millennium lines)"
+        },
+        "main street": {
+          "venueName": "Main Street (10th to 30th Ave)",
+          "address": "Main St from 10th Ave to 30th Ave, Vancouver",
+          "neighborhood": "Mount Pleasant",
+          "coordinates": [
+            49.2608,
+            -123.1012
+          ],
+          "transitInfo": "#8 Main or #9 / 99 B-Line Broadway bus"
+        }
+      }
     },
     "khatsahlano-festival": {
       "id": "khatsahlano-festival",
       "name": "Khatsahlano Street Party (Kitsilano 4th Ave BIA)",
-      "aliases": ["Khatsahlano", "Khatsahlano Music + Arts Festival"],
+      "aliases": [
+        "Khatsahlano",
+        "Khatsahlano Music + Arts Festival"
+      ],
       "type": "bia_arts_festival",
       "focus": "Vancouver's largest free 10-block outdoor music and community street party on West 4th Avenue",
       "websiteUrl": "https://khatsahlano.ca",
@@ -120,12 +261,27 @@
       "agePolicy": {
         "streetFestival": "All-Ages (Licensed 19+ Beer Gardens with ID)"
       },
-      "active": true
+      "active": true,
+      "locationPatterns": {
+        "west 4th": {
+          "venueName": "West 4th Avenue (Burrard to Macdonald)",
+          "address": "West 4th Ave from Burrard St to Macdonald St, Vancouver",
+          "neighborhood": "Kitsilano",
+          "coordinates": [
+            49.2683,
+            -123.161
+          ],
+          "transitInfo": "#4 or #7 bus directly along 4th Ave from Downtown"
+        }
+      }
     },
     "runvan-society": {
       "id": "runvan-society",
       "name": "RUNVAN (Vancouver International Marathon Society)",
-      "aliases": ["RUNVAN", "RUNVAN Club"],
+      "aliases": [
+        "RUNVAN",
+        "RUNVAN Club"
+      ],
       "type": "non_profit_sports_society",
       "focus": "Free weekly community social running groups along Vancouver seawalls and parks",
       "websiteUrl": "https://runvan.org",

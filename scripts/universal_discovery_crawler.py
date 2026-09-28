@@ -27,7 +27,7 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, "discovery_sources.json")
 VENUE_DIR_PATH = os.path.join(DATA_DIR, "venue_directory.json")
 DISCOVERED_VENUES_PATH = os.path.join(DATA_DIR, "discovered_venues.json")
-FESTIVAL_REGISTRY_PATH = os.path.join(DATA_DIR, "festival_registry.json")
+FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
 
 
 class UniversalDiscoveryCrawler:
