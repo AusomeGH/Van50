@@ -231,7 +231,7 @@ Output MUST be a single, valid JSON object with the following schema:
     )
 
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             candidates = data.get("candidates", [])
             if candidates:
@@ -677,13 +677,42 @@ def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -
     print("\n--- STAGE 6/6: SCOUTING ticketing_sources.json ---")
     all_raw_findings.extend(scout_ticketing_sources(api_key))
 
-    # Consolidate and extract structured events
-    combined_raw = "\n\n--- NEXT DISCOVERY BLOCK ---\n\n".join(all_raw_findings)
-    print(f"\n[SCOUT] Discovered {len(combined_raw)} characters of intelligence across all 6 files. Structuring with Gemini...")
+    # Chunk findings into manageable batches of ~25,000 characters to prevent timeouts
+    chunks = []
+    current_chunk = []
+    current_len = 0
+    for finding in all_raw_findings:
+        if current_len + len(finding) > 25000 and current_chunk:
+            chunks.append("\n\n--- NEXT DISCOVERY BLOCK ---\n\n".join(current_chunk))
+            current_chunk = [finding]
+            current_len = len(finding)
+        else:
+            current_chunk.append(finding)
+            current_len += len(finding)
+    if current_chunk:
+        chunks.append("\n\n--- NEXT DISCOVERY BLOCK ---\n\n".join(current_chunk))
 
-    structured_data = call_gemini_json_extractor(combined_raw, api_key)
-    if not structured_data:
-        structured_data = {"events_active": [], "discovered_venues": [], "discovered_festivals": []}
+    total_chars = sum(len(f) for f in all_raw_findings)
+    print(f"\n[SCOUT] Discovered {len(all_raw_findings)} intelligence blocks ({total_chars} chars). Structuring across {len(chunks)} batches...")
+
+    all_discovered_events = []
+    all_discovered_venues = []
+    all_discovered_festivals = []
+
+    for idx, chunk_text in enumerate(chunks, 1):
+        print(f"  • Structuring batch {idx}/{len(chunks)} ({len(chunk_text)} chars)...")
+        chunk_data = call_gemini_json_extractor(chunk_text, api_key)
+        if chunk_data:
+            all_discovered_events.extend(chunk_data.get("events_active", []))
+            all_discovered_venues.extend(chunk_data.get("discovered_venues", []))
+            all_discovered_festivals.extend(chunk_data.get("discovered_festivals", []))
+        time.sleep(1.5)
+
+    structured_data = {
+        "events_active": all_discovered_events,
+        "discovered_venues": all_discovered_venues,
+        "discovered_festivals": all_discovered_festivals
+    }
 
     # Integrate into master catalogs
     sync_master_catalogs(structured_data)
@@ -1022,13 +1051,10 @@ def main():
         sys.exit(1)
 
     print("=== VAN50 GEMINI AI AUTONOMOUS SCOUT ===")
-    structured_data = run_gemini_scouting_cycle(api_key)
-    
-    if not args.dry_run:
-        sync_master_catalogs(structured_data)
-    else:
+    pipeline_res = run_full_gemini_scouting_pipeline(api_key, audit_events=True)
+    if args.dry_run:
         print("[DRY-RUN] Discovered data:")
-        print(json.dumps(structured_data, indent=2))
+        print(json.dumps(pipeline_res.get("structured_data", {}), indent=2))
 
 
 if __name__ == "__main__":

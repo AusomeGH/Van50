@@ -2,10 +2,27 @@
   "metadata": {
     "version": "1.0.0",
     "updatedAt": "2026-09-28",
-    "pendingCount": 0,
+    "pendingCount": 1,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": [],
-  "pendingCount": 0,
+  "quarantinedEvents": [
+    {
+      "id": "public-disco-warehouse-party",
+      "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+      "artist": "Public Disco: Warehouse & Club Dance Fundraiser",
+      "venue": "The Birdhouse",
+      "address": "44 W 4th Ave, Vancouver, BC",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "category": "music",
+      "categoryLabel": "music",
+      "startIso": "T:00",
+      "websiteUrl": "https://publicdisco.ca/events",
+      "quarantineReason": "AI Audit: Cannot figure out details: The event could not be verified on official Public Disco channels or The Birdhouse listings, with missing dates and ambiguous details.",
+      "flaggedAt": "2026-09-28"
+    }
+  ],
+  "pendingCount": 1,
   "lastTriagedAt": "2026-09-28T10:28:12.667528"
 }

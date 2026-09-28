@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T10:28:13-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T12:10:01-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -138,8 +138,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Orpheum Theatre",
     "address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.2,
-    "priceLabel": "$25.20 CAD",
+    "price": 31.5,
+    "priceLabel": "$31.50 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -161,10 +161,10 @@ const VANCOUVER_EVENTS = [
       "under-35",
       "vso"
     ],
-    "dateSchedule": "2026-10-03 at 20:00",
-    "startIso": "2026-10-03T20:00:00-07:00",
-    "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
-    "venueUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+    "dateSchedule": "2026-10-03 at 14:00",
+    "startIso": "2026-10-03T14:00:00-07:00",
+    "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+    "venueUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
     "ticketProvider": "Box Office / Direct Verified",
     "coordinates": [
       49.2827,
@@ -180,8 +180,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Orpheum Theatre",
     "address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 25.2,
-    "priceLabel": "$25.20 CAD",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -205,8 +205,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "2026-10-04 at 14:00",
     "startIso": "2026-10-04T14:00:00-07:00",
-    "websiteUrl": "https://www.vancouversymphony.ca/all-access-pass/",
-    "venueUrl": "https://www.vancouversymphony.ca/all-access-pass/",
+    "websiteUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
+    "venueUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
     "ticketProvider": "Box Office / Direct Verified",
     "coordinates": [
       49.2827,
@@ -255,92 +255,6 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Through the generous support of BMO, the Vancouver Art Gallery offers free admission from 4 to 8 PM on the first Friday of every month.",
-    "isSoldOut": false
-  },
-  {
-    "id": "public-disco-warehouse-party",
-    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "venue": "The Birdhouse",
-    "address": "44 W 4th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "public-disco",
-      "electronic",
-      "house-music",
-      "dance-party",
-      "warehouse",
-      "mount-pleasant"
-    ],
-    "dateSchedule": "Upcoming",
-    "startIso": null,
-    "websiteUrl": "https://publicdisco.ca/events",
-    "venueUrl": "https://publicdisco.ca/events",
-    "ticketProvider": "Online Advance & Door Tickets",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Dance Music Events in Vancouver, Canada",
-    "isSoldOut": false
-  },
-  {
-    "id": "public-disco-block-party",
-    "title": "Public Disco: Open-Air Summer Block Party Series",
-    "venue": "Downtown Vancouver Plazas",
-    "address": "505 Burrard St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "social",
-    "categoryLabel": "social",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "public-disco",
-      "social",
-      "block-party",
-      "dance-party",
-      "open-air",
-      "djs"
-    ],
-    "dateSchedule": "Upcoming",
-    "startIso": null,
-    "websiteUrl": "https://publicdisco.ca/events/downtown2026",
-    "venueUrl": "https://publicdisco.ca/events/downtown2026",
-    "ticketProvider": "Downtown Vancouver Plazas Verified",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
     "isSoldOut": false
   },
   {
@@ -1643,7 +1557,24 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   }
 ];
-const MANUAL_REVIEW_QUEUE = [];
+const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "public-disco-warehouse-party",
+    "title": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "artist": "Public Disco: Warehouse & Club Dance Fundraiser",
+    "venue": "The Birdhouse",
+    "address": "44 W 4th Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "music",
+    "categoryLabel": "music",
+    "startIso": "T:00",
+    "websiteUrl": "https://publicdisco.ca/events",
+    "quarantineReason": "AI Audit: Cannot figure out details: The event could not be verified on official Public Disco channels or The Birdhouse listings, with missing dates and ambiguous details.",
+    "flaggedAt": "2026-09-28"
+  }
+];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [

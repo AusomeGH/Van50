@@ -122,22 +122,22 @@
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
     "pricing_all_in_cad": {
-      "regular": 25.2,
+      "regular": 31.5,
       "senior": null,
       "student": null,
       "member": null
     },
     "show_1": {
       "date": "2026-10-03",
-      "start_time": "20:00",
+      "start_time": "14:00",
       "end_time": "",
-      "cost": 25.2
+      "cost": 31.5
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.vancouversymphony.ca/all-access-pass/",
-    "details_url": "https://www.vancouversymphony.ca/all-access-pass/",
-    "ticket_url": "https://www.vancouversymphony.ca/all-access-pass/",
+    "details_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+    "ticket_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
     "ticket_provider": "Box Office / Direct Verified",
     "tags": [
       "symphony",
@@ -148,7 +148,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": ""
+    "curator_notes": "AI Updated (2026-09-28): The event on October 3, 2026 at the Orpheum is a matinee performance of Harry Potter and the Prisoner of Azkaban in Concert starting at 2:00 PM rather than a night concert. General admission tickets start at $31.50 CAD, remaining well under the $50 limit, and a direct event URL is available."
   },
   {
     "event_id": "vso-sunday-orpheum",
@@ -159,7 +159,7 @@
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
     "pricing_all_in_cad": {
-      "regular": 25.2,
+      "regular": 20.0,
       "senior": null,
       "student": null,
       "member": null
@@ -168,13 +168,13 @@
       "date": "2026-10-04",
       "start_time": "14:00",
       "end_time": "",
-      "cost": 25.2
+      "cost": 20.0
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.vancouversymphony.ca/all-access-pass/",
-    "details_url": "https://www.vancouversymphony.ca/all-access-pass/",
-    "ticket_url": "https://www.vancouversymphony.ca/all-access-pass/",
+    "details_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
+    "ticket_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
     "ticket_provider": "Box Office / Direct Verified",
     "tags": [
       "symphony",
@@ -185,7 +185,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": ""
+    "curator_notes": "AI Updated (2026-09-28): The event is verified active for October 4, 2026 at 2:00 PM with pricing starting from $20.00 CAD (under $50 CAD limit), but the URL should be updated to the direct event listing."
   },
   {
     "event_id": "vag-first-friday",
@@ -218,82 +218,6 @@
       "emily-carr",
       "free-first-friday",
       "art-museum"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": ""
-  },
-  {
-    "event_id": "public-disco-warehouse-party",
-    "event_name": "Public Disco: Warehouse & Club Dance Fundraiser",
-    "category": "music",
-    "venue_name": "The Birdhouse",
-    "full_address": "44 W 4th Ave, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Dance Music Events in Vancouver, Canada",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "",
-      "start_time": "",
-      "end_time": "",
-      "cost": 0.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://publicdisco.ca/events",
-    "details_url": "https://publicdisco.ca/events",
-    "ticket_url": "https://publicdisco.ca/events",
-    "ticket_provider": "Online Advance & Door Tickets",
-    "tags": [
-      "public-disco",
-      "electronic",
-      "house-music",
-      "dance-party",
-      "warehouse",
-      "mount-pleasant"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": ""
-  },
-  {
-    "event_id": "public-disco-block-party",
-    "event_name": "Public Disco: Open-Air Summer Block Party Series",
-    "category": "social",
-    "venue_name": "Downtown Vancouver Plazas",
-    "full_address": "505 Burrard St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "",
-      "start_time": "",
-      "end_time": "",
-      "cost": 0.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://publicdisco.ca/events/downtown2026",
-    "details_url": "https://publicdisco.ca/events/downtown2026",
-    "ticket_url": "https://publicdisco.ca/events/downtown2026",
-    "ticket_provider": "Downtown Vancouver Plazas Verified",
-    "tags": [
-      "public-disco",
-      "social",
-      "block-party",
-      "dance-party",
-      "open-air",
-      "djs"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",

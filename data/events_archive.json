@@ -3236,5 +3236,18 @@
     "discovery_url": "https://biltmorecabaret.com/event",
     "archive_reason": "AI Verified: The event 'Live Indie Music & Guilty Pleasures' is no longer running and has long ceased regular operations at The Biltmore Cabaret, with no scheduled upcoming dates on the venue's calendar. Because the event series is discontinued at this location, it should be archived.",
     "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "public-disco-block-party",
+    "event_name": "Public Disco: Open-Air Summer Block Party Series",
+    "category": "social",
+    "venue_name": "Downtown Vancouver Plazas",
+    "full_address": "505 Burrard St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Public Disco’s Downtown Block Party returns August 29 to the Vancouver Art Gallery North Plaza with all-vinyl DJ sets, record market, and a free all-ages dance floor.",
+    "attempted_price_cad": 0.0,
+    "discovery_url": "https://publicdisco.ca/events/downtown2026",
+    "archive_reason": "AI Audit: The event series concluded on Saturday, August 29, 2026, prior to today's date of 2026-09-28.",
+    "archived_at": "2026-09-28"
   }
 ]
