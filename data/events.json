@@ -1409,5 +1409,43 @@
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "All-in cost confirmed at $32.06 CAD including processing fees."
+  },
+  {
+    "event_id": "guilt-and-co-live-jazz",
+    "event_name": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+    "category": "music",
+    "venue_name": "Guilt & Co.",
+    "full_address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Guilt & Company Home Page Calendar of Events",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": null,
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "By-Donation / Artist Contribution",
+    "tags": [
+      "guilt--company",
+      "cocktails",
+      "beer",
+      "live-music",
+      "gastown",
+      "intimate-lounge"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "AI-Verified: Guilt & Co. runs live music performances nightly year-round with upcoming verified shows starting tonight, September 28, 2026. Admission is well under the $50 cap, with door cover charges ranging from $8 to $15 CAD depending on arrival time and day."
   }
 ]

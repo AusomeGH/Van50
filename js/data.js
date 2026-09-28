@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T10:07:16-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T10:28:13-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1598,282 +1598,28 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "description": "Dreamy, atmospheric indie pop sounds from Ruby Haunt with support from VHS Ghost.",
     "isSoldOut": false
-  }
-];
-const MANUAL_REVIEW_QUEUE = [
-  {
-    "id": "kitsilano-showboat",
-    "title": "Kitsilano Showboat: Community Summer Stage",
-    "artist": "Local bands & community ensembles",
-    "performers": null,
-    "venue": "Kitsilano Beach Outdoor Amphitheatre",
-    "venueAliases": [],
-    "address": "2300 Cornwall Ave, Vancouver",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "tiers": [],
-    "isFree": true,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Mon, Wed, Fri)",
-    "daysOfWeek": [
-      "mon",
-      "wed",
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "outdoor-theatre",
-      "community-concert",
-      "kits-beach",
-      "live-music"
-    ],
-    "dateSchedule": "Mon, Wed & Fri Evenings • 7:00 PM - 9:00 PM",
-    "startIso": "2026-09-09T19:00:00-07:00",
-    "endIso": "2026-09-30T21:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
-    "venueUrl": "https://kitsilanoshowboat.com",
-    "ticketProvider": "Free Public Access",
-    "rawProvider": "Box Office / Direct",
-    "coordinates": [
-      49.2742,
-      -123.1558
-    ],
-    "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "official_bylaw_rate",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "Free ($0) public access per municipal / community open access charter",
-      "verifiedAt": "2026-09-28T11:08:01-07:00",
-      "details": "Verified via official municipal park bylaw / published community schedule."
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://kitsilanoshowboat.com/homepage/calendar/ contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "portside-pub-trivia",
-    "title": "The Portside Pub: Gastown Brainstormer Trivia",
-    "artist": null,
-    "performers": null,
-    "venue": "The Portside Pub",
-    "venueAliases": [],
-    "address": "7 Alexander St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 12.0,
-    "priceLabel": "$12.00 all-in",
-    "pricingType": "food-drink",
-    "tiers": [],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Weekly (Tuesdays)",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
-      "early-evening"
-    ],
-    "category": "trivia",
-    "categoryLabel": "Drinks & Trivia",
-    "categoryIcon": "🧠",
-    "subTags": [
-      "pub-trivia",
-      "craft-beer",
-      "gastown-pub",
-      "trivia-night"
-    ],
-    "dateSchedule": "Tuesdays • 7:30 PM (Teams of 1-6)",
-    "startIso": "2026-09-08T19:30:00-07:00",
-    "endIso": "2026-12-31T22:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://theportsidepub.com/bookings/",
-    "venueUrl": "https://theportsidepub.com",
-    "ticketProvider": "Walk-in / Table Reservation",
-    "rawProvider": "OpenTable / Resy",
-    "coordinates": [
-      49.2842,
-      -123.1042
-    ],
-    "transitInfo": "4 min walk from Waterfront SkyTrain Station",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "scraped_page_policy",
-      "verifiedTotal": 12.0,
-      "feeBreakdown": "$12.00 rate scraped live from published venue page",
-      "verifiedAt": "2026-09-28T11:08:06-07:00",
-      "details": "Scraped live from published terms on https://theportsidepub.com/bookings/."
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Page at https://theportsidepub.com/bookings/ has insufficient event evidence (found [], required high-confidence multi-token match)",
-    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
-    "dealtWith": false
-  },
-  {
-    "id": "biltmore-cabaret-indie-music",
-    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
-    "artist": "Local indie bands & resident DJs",
-    "performers": null,
-    "venue": "The Biltmore Cabaret",
-    "venueAliases": [],
-    "address": "2755 Prince Edward St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 10.0,
-    "priceLabel": "$10.00 all-in",
-    "pricingType": "platform",
-    "tiers": [
-      {
-        "name": "General Admission",
-        "basePrice": 11.0,
-        "price": 11.0,
-        "label": "$11.00 all-in"
-      }
-    ],
-    "isFree": false,
-    "isDaily": false,
-    "frequency": "weekly",
-    "frequencyLabel": "Thursdays – Saturdays",
-    "daysOfWeek": [
-      "thu",
-      "fri",
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "indie-folk",
-      "live-band",
-      "biltmore",
-      "concert"
-    ],
-    "dateSchedule": "Thursday – Saturday • Doors 7:00 PM (Dance Nights 10:30 PM)",
-    "startIso": "2026-10-17T19:00:00-07:00",
-    "endIso": "2026-10-17T23:00:00-07:00",
-    "confirmedDates": [],
-    "isSoldOut": false,
-    "websiteUrl": "https://biltmorecabaret.com/event",
-    "venueUrl": "https://biltmorecabaret.com/event",
-    "ticketProvider": "AdmitOne Verified",
-    "rawProvider": "AdmitOne",
-    "coordinates": [
-      49.2602,
-      -123.0975
-    ],
-    "transitInfo": "Main & 12th Ave bus corridor",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
-    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "manual_curator_review",
-      "verifiedTotal": 10.0,
-      "feeBreakdown": "$10.00 CAD verified via Curator Studio review with AI instruction",
-      "verifiedAt": "2026-09-23T16:15:06.727899+00:00",
-      "details": "Approved by curator with AI instruction. Note: Screenshot OCR extracted actual showcase title and verified $10 door price.",
-      "curatorSnapshot": {
-        "approvedTitle": "Indie Rock Showcase: The Sunset Collective (Verified)",
-        "approvedPrice": 10.0,
-        "approvedPriceLabel": "$10.00 CAD",
-        "approvedCategory": "shows",
-        "approvedDate": "Friday, September 25",
-        "approvedVenue": "Chill x Studio",
-        "curatorNote": "Screenshot OCR extracted actual showcase title and verified $10 door price.",
-        "approvedAt": "2026-09-23T16:15:06.727924+00:00",
-        "sourceUrl": "https://chillxstudio.com"
-      }
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
-    "dealtWith": false
   },
   {
     "id": "guilt-and-co-live-jazz",
     "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
-    "artist": "Resident & guest Vancouver jazz, soul, funk & roots artists",
-    "performers": null,
     "venue": "Guilt & Co.",
-    "venueAliases": [
-      "Guilt and Co",
-      "Guilt & Co",
-      "Guilt and Company"
-    ],
     "address": "1 Alexander St (Below Ground), Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free – $10.00 all-in",
-    "pricingType": "door",
-    "tiers": [
-      {
-        "name": "Early Show (Pay-What-You-Can)",
-        "basePrice": 0.0,
-        "price": 0.0,
-        "label": "PWYC ($0 minimum)"
-      },
-      {
-        "name": "Late Show General Door Admission",
-        "basePrice": 7.0,
-        "price": 7.0,
-        "label": "$7.00 door"
-      },
-      {
-        "name": "Weekend Feature Late Set",
-        "basePrice": 10.0,
-        "price": 10.0,
-        "label": "$10.00 door"
-      }
-    ],
+    "price": 8.0,
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
     "isFree": false,
-    "isDaily": true,
-    "frequency": "daily",
-    "frequencyLabel": "Nightly (7 Days/Week)",
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
     "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
+      "daily"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
     "category": "music",
-    "categoryLabel": "Live Music",
+    "categoryLabel": "music",
     "categoryIcon": "🎵",
     "subTags": [
       "guilt--company",
@@ -1883,40 +1629,21 @@ const MANUAL_REVIEW_QUEUE = [
       "gastown",
       "intimate-lounge"
     ],
-    "dateSchedule": "Daily • Early Show 7:00 PM (PWYC) • Late Show 9:30 PM",
-    "startIso": "2026-09-09T19:00:00-07:00",
-    "endIso": null,
-    "confirmedDates": [],
-    "isSoldOut": false,
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
     "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticketProvider": "By-Donation / Artist Contribution",
-    "rawProvider": "Box Office / Direct",
     "coordinates": [
-      49.2835,
-      -123.1039
+      49.2827,
+      -123.1207
     ],
-    "transitInfo": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
-    "organizer": null,
-    "isRoving": false,
-    "editionVenue": null,
-    "agePolicy": null,
-    "admissionPolicy": null,
-    "rovingNote": null,
+    "transitInfo": "Transit accessible via TransLink",
     "description": "Guilt & Company Home Page Calendar of Events",
-    "checkoutVerification": {
-      "status": "verified_live",
-      "method": "venue_published_policy",
-      "verifiedTotal": 0.0,
-      "feeBreakdown": "No cover charge ($0.00 door); suggested artist donation ($5–$15) added to table bill or cash jar",
-      "verifiedAt": "2026-09-28T11:08:20-07:00",
-      "details": "Verified via venue official artist contribution and door policy."
-    },
-    "quarantineReason": "Automated 4:00 AM Link Audit: Semantic Grounding Failed: Official calendar at https://www.guiltandcompany.com/#ajsection-upcoming contains zero active dates or upcoming schedule listings",
-    "quarantinedAt": "2026-09-28T11:08:48.563404+00:00",
-    "dealtWith": false
+    "isSoldOut": false
   }
 ];
+const MANUAL_REVIEW_QUEUE = [];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [
@@ -2049,14 +1776,7 @@ const VENUE_URLS = {
   "Bentall Centre Dunsmuir Plaza": "https://bentallcentre.com",
   "The Birdhouse": "https://www.birdhouse.ca",
   "The Waldorf": "https://atthewaldorf.com",
-  "The Cobalt": "https://thecobalt.ca",
-  "The Shipyards Waterfront": "https://theshipyardsdistrict.ca",
-  "Commercial Drive": "https://www.carfreevancouver.org",
-  "Main Street": "https://www.carfreevancouver.org",
-  "Touchstone Theatre": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
-  "Queen Elizabeth Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
-  "Rupert Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
-  "Central Park Pitch & Putt": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt"
+  "The Cobalt": "https://thecobalt.ca"
 };
 
 // Curated Discovery Sources Directory

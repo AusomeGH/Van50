@@ -1,0 +1,38 @@
+[
+  {
+    "id": "kitsilano-showboat",
+    "title": "Kitsilano Showboat: Community Summer Stage",
+    "venue": "Kitsilano Beach Outdoor Amphitheatre",
+    "decision": "ARCHIVE",
+    "reason": "The Kitsilano Showboat has concluded its 2026 summer season as of August 23, 2026, with no remaining dates scheduled for the year. Per the curation rules, seasonal summer series that have ended for the year must be archived until the following season.",
+    "price": 0.0,
+    "verified_date": null
+  },
+  {
+    "id": "portside-pub-trivia",
+    "title": "The Portside Pub: Gastown Brainstormer Trivia",
+    "venue": "The Portside Pub",
+    "decision": "ARCHIVE",
+    "reason": "Gastown Brainstormer Trivia is not taking place at The Portside Pub and no active trivia events exist on the venue's schedule. The pub's current regular weeknight programming consists of Karaoke Wednesdays and retro DJ nights on Thursdays. Therefore, this listing is permanently discontinued or nonexistent and should be archived.",
+    "price": 0.0,
+    "verified_date": null
+  },
+  {
+    "id": "biltmore-cabaret-indie-music",
+    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "venue": "The Biltmore Cabaret",
+    "decision": "ARCHIVE",
+    "reason": "The event 'Live Indie Music & Guilty Pleasures' is no longer running and has long ceased regular operations at The Biltmore Cabaret, with no scheduled upcoming dates on the venue's calendar. Because the event series is discontinued at this location, it should be archived.",
+    "price": 0.0,
+    "verified_date": null
+  },
+  {
+    "id": "guilt-and-co-live-jazz",
+    "title": "Live Jazz, Soul & R&B Nightly at Guilt & Co.",
+    "venue": "Guilt & Co.",
+    "decision": "RESTORE",
+    "reason": "Guilt & Co. runs live music performances nightly year-round with upcoming verified shows starting tonight, September 28, 2026. Admission is well under the $50 cap, with door cover charges ranging from $8 to $15 CAD depending on arrival time and day.",
+    "price": 8.0,
+    "verified_date": "2026-09-28"
+  }
+]

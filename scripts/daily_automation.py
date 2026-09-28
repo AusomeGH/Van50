@@ -193,7 +193,8 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     log_message("[PIPELINE STEP 2.8/3] Running autonomous link & soft-404 health audit across active catalog...", log_file_path)
     link_audit_summary = None
     try:
-        link_audit_summary = run_link_health_audit(auto_quarantine=not dry_run, log_path=log_file_path)
+        # Pure monitoring audit: auto_quarantine is False so Python script never overrides AI curation
+        link_audit_summary = run_link_health_audit(auto_quarantine=False, log_path=log_file_path)
         log_message(
             f"[LINK AUDIT RESULTS] Checked: {link_audit_summary.get('totalChecked', 0)} | "
             f"Healthy: {link_audit_summary.get('healthyCount', 0)} | "

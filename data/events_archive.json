@@ -2223,45 +2223,6 @@
     "archived_at": "2026-09-23T16:54:05.409030+00:00"
   },
   {
-    "event_id": "portside-pub-trivia",
-    "event_name": "The Portside Pub: Gastown Brainstormer Trivia",
-    "category": "trivia",
-    "venue_name": "The Portside Pub",
-    "full_address": "7 Alexander St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
-    "attempted_price_cad": 12.0,
-    "discovery_url": "https://theportsidepub.com/bookings/",
-    "archive_reason": "Curator guidance: Updating event name based on flyer screenshot verification.",
-    "archived_at": "2026-09-23T19:39:01.306427+00:00"
-  },
-  {
-    "event_id": "kitsilano-showboat",
-    "event_name": "Kitsilano Showboat: Community Summer Stage",
-    "category": "music",
-    "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
-    "full_address": "2300 Cornwall Ave, Vancouver",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
-    "attempted_price_cad": 0.0,
-    "discovery_url": "https://kitsilanoshowboat.com/homepage/calendar/",
-    "archive_reason": "Curator guidance: This series of events is now over for the summer.",
-    "archived_at": "2026-09-23T20:03:20.789519+00:00"
-  },
-  {
-    "event_id": "biltmore-cabaret-indie-music",
-    "event_name": "Live Indie Music & Guilty Pleasures at The Biltmore",
-    "category": "music",
-    "venue_name": "The Biltmore Cabaret",
-    "full_address": "2755 Prince Edward St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
-    "attempted_price_cad": 11.0,
-    "discovery_url": "https://biltmorecabaret.com/event",
-    "archive_reason": "Auto-Archived: Calendar or ticketing platform contains zero active dates / concluded season (Link: Semantic Grounding Failed: Official calendar at https://www.biltmorecabaret.com/event contains zero active dates or upcoming schedule listings)",
-    "archived_at": "2026-09-23T20:05:38.197027+00:00"
-  },
-  {
     "event_id": "queen-elizabeth-theatre-broadway-across-canada-disneys-beauty-th",
     "event_name": "Broadway Across Canada: Disney's Beauty & The Beast",
     "category": "shows",
@@ -3235,6 +3196,45 @@
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "kitsilano-showboat",
+    "event_name": "Kitsilano Showboat: Community Summer Stage",
+    "category": "music",
+    "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
+    "full_address": "2300 Cornwall Ave, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": "Since 1935, this beloved open-air outdoor stage overlooking English Bay and the North Shore mountains hosts free community concerts, jazz, and folk.",
+    "attempted_price_cad": 0.0,
+    "discovery_url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "archive_reason": "AI Verified: The Kitsilano Showboat has concluded its 2026 summer season as of August 23, 2026, with no remaining dates scheduled for the year. Per the curation rules, seasonal summer series that have ended for the year must be archived until the following season.",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "portside-pub-trivia",
+    "event_name": "The Portside Pub: Gastown Brainstormer Trivia",
+    "category": "trivia",
+    "venue_name": "The Portside Pub",
+    "full_address": "7 Alexander St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "East Coast-inspired multi-level Gastown pub hosting legendary weekly trivia with craft beer specials, brewery prizes, and zero entry fee.",
+    "attempted_price_cad": 12.0,
+    "discovery_url": "https://theportsidepub.com/bookings/",
+    "archive_reason": "AI Verified: Gastown Brainstormer Trivia is not taking place at The Portside Pub and no active trivia events exist on the venue's schedule. The pub's current regular weeknight programming consists of Karaoke Wednesdays and retro DJ nights on Thursdays. Therefore, this listing is permanently discontinued or nonexistent and should be archived.",
+    "archived_at": "2026-09-28"
+  },
+  {
+    "event_id": "biltmore-cabaret-indie-music",
+    "event_name": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "category": "music",
+    "venue_name": "The Biltmore Cabaret",
+    "full_address": "2755 Prince Edward St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": "Mount Pleasant's iconic underground venue with decades of musical heritage. Hosts live indie concerts, local emerging artist showcases, and touring bands.",
+    "attempted_price_cad": 10.0,
+    "discovery_url": "https://biltmorecabaret.com/event",
+    "archive_reason": "AI Verified: The event 'Live Indie Music & Guilty Pleasures' is no longer running and has long ceased regular operations at The Biltmore Cabaret, with no scheduled upcoming dates on the venue's calendar. Because the event series is discontinued at this location, it should be archived.",
     "archived_at": "2026-09-28"
   }
 ]
