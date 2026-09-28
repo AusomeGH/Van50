@@ -358,8 +358,9 @@ def audit_and_verify_active_events(api_key: str, max_check: int = 15) -> Dict[st
             results["archived"] += 1
             continue
 
-        # AI live verification for active events up to max_check
-        if max_check is None or checked_count < max_check:
+        # AI live verification for unverified active events
+        is_already_verified = f"({today_str})" in (ev.get("curator_notes") or "")
+        if not is_already_verified and (max_check is None or checked_count < max_check):
             checked_count += 1
             cost = (ev.get("pricing_all_in_cad") or {}).get("regular", 0.0)
             print(f"[AUDIT {checked_count}/{max_check or len(events)}] Checking '{title}' at {venue}...")
@@ -653,7 +654,7 @@ def run_full_gemini_scouting_pipeline(api_key: str, audit_events: bool = True) -
     audit_results = {}
     if audit_events:
         print("\n--- STAGE 1/6: AUDITING & VERIFYING events.json ---")
-        audit_results = audit_and_verify_active_events(api_key, max_check=10)
+        audit_results = audit_and_verify_active_events(api_key, max_check=None)
         print(f"[AUDIT SUMMARY] Verified: {audit_results.get('verified', 0)} | "
               f"Updated: {audit_results.get('updated', 0)} | "
               f"Archived: {audit_results.get('archived', 0)} | "
