@@ -1,60 +1,8 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T16:49:39-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T17:02:38-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
-  {
-    "id": "van50-queen-elizabeth-park-gardens",
-    "title": "Queen Elizabeth Park & Quarry Gardens",
-    "venue": "Queen Elizabeth Park",
-    "address": "4600 Cambie St, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "daily",
-    "frequencyLabel": "Open Daily Drop-In",
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "free-public-access",
-    "categoryLabel": "Free Public Access",
-    "categoryIcon": "🏛️",
-    "subTags": [
-      "free-admission",
-      "viewpoint",
-      "botanical-garden",
-      "park",
-      "skyline-views"
-    ],
-    "dateSchedule": "Open Daily: Daily 6:00 AM – 10:00 PM",
-    "startIso": null,
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "ticketProvider": "Free Public Access",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Perched at the highest point in Vancouver, offering panoramic mountain and skyline views, sunken quarry gardens, and walking arboretums.",
-    "operatingHours": "Daily 6:00 AM – 10:00 PM",
-    "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false
-  },
   {
     "id": "van50-granville-island-public-market",
     "title": "Granville Island Public Market & Boardwalks",
@@ -92,7 +40,7 @@ const VANCOUVER_EVENTS = [
       "waterfront",
       "false-creek"
     ],
-    "dateSchedule": "Open Daily: Daily 9:00 AM – 6:00 PM",
+    "dateSchedule": "Open Daily: Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
     "startIso": null,
     "websiteUrl": "https://granvilleisland.com",
     "venueUrl": "https://granvilleisland.com",
@@ -103,7 +51,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views.",
-    "operatingHours": "Daily 9:00 AM – 6:00 PM",
+    "operatingHours": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -144,7 +92,7 @@ const VANCOUVER_EVENTS = [
       "coastal",
       "totem-poles"
     ],
-    "dateSchedule": "Open Daily: Park grounds daily 6:00 AM – 10:00 PM; Seawall walkway accessible 24/7",
+    "dateSchedule": "Open Daily: Daily: 6:00 AM – 10:00 PM",
     "startIso": null,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
@@ -155,7 +103,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "World-famous paved seawall looping around coastal rainforest, historic First Nations Totem Poles, Brockton Point Lighthouse, and dramatic Lions Gate Bridge viewpoints.",
-    "operatingHours": "Park grounds daily 6:00 AM – 10:00 PM; Seawall walkway accessible 24/7",
+    "operatingHours": "Daily: 6:00 AM – 10:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -196,7 +144,7 @@ const VANCOUVER_EVENTS = [
       "emily-carr",
       "first-friday"
     ],
-    "dateSchedule": "Open Daily: First Friday of each month 4:00 PM – 8:00 PM",
+    "dateSchedule": "Open Daily: First Friday of each month: 4:00 PM – 8:00 PM",
     "startIso": null,
     "websiteUrl": "https://www.vanartgallery.bc.ca",
     "venueUrl": "https://www.vanartgallery.bc.ca",
@@ -207,7 +155,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Monthly free-admission access to British Columbia's premier visual arts museum, featuring rotating contemporary collections and historical Canadian masterworks.",
-    "operatingHours": "First Friday of each month 4:00 PM – 8:00 PM",
+    "operatingHours": "First Friday of each month: 4:00 PM – 8:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -247,7 +195,7 @@ const VANCOUVER_EVENTS = [
       "burrard-inlet",
       "waterfront-views"
     ],
-    "dateSchedule": "Open Daily: Daily 7:00 AM – 10:00 PM",
+    "dateSchedule": "Open Daily: Daily: 7:00 AM – 11:00 PM",
     "startIso": null,
     "websiteUrl": "https://www.canadaplace.ca",
     "venueUrl": "https://www.canadaplace.ca",
@@ -258,7 +206,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Harborfront interpretive promenade with striking views of Burrard Inlet, seaplane landings, North Shore mountain peaks, and port shipping traffic.",
-    "operatingHours": "Daily 7:00 AM – 10:00 PM",
+    "operatingHours": "Daily: 7:00 AM – 11:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -299,7 +247,7 @@ const VANCOUVER_EVENTS = [
       "visual-art",
       "shipyards"
     ],
-    "dateSchedule": "Open Daily: Wed–Sun 10:00 AM – 5:00 PM (open until 8:00 PM on Thursdays)",
+    "dateSchedule": "Open Daily: Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
     "startIso": null,
     "websiteUrl": "https://thepolygon.ca",
     "venueUrl": "https://thepolygon.ca",
@@ -310,7 +258,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Renowned contemporary photography and media art gallery at the foot of Lonsdale Quay, offering world-class visual exhibits and floor-to-ceiling vistas of the Vancouver skyline.",
-    "operatingHours": "Wed–Sun 10:00 AM – 5:00 PM (open until 8:00 PM on Thursdays)",
+    "operatingHours": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -351,7 +299,7 @@ const VANCOUVER_EVENTS = [
       "heritage",
       "peaceful-spot"
     ],
-    "dateSchedule": "Open Daily: Daily 10:00 AM – 4:30 PM",
+    "dateSchedule": "Open Daily: Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)",
     "startIso": null,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-chinese-garden.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-chinese-garden.aspx",
@@ -362,7 +310,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Serene urban heritage park featuring Ming Dynasty style architecture, limestone scholar rocks, quiet covered pavilions, and tranquil koi ponds in historic Chinatown.",
-    "operatingHours": "Daily 10:00 AM – 4:30 PM",
+    "operatingHours": "Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -397,8 +345,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "2026-09-30 at 12:30",
     "startIso": "2026-09-30T12:30:00-07:00",
-    "websiteUrl": "https://dailyhive.com/vancouver/events",
-    "venueUrl": "https://dailyhive.com/vancouver/events",
+    "websiteUrl": "https://troutlakecc.com/",
+    "venueUrl": "https://troutlakecc.com/",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -416,8 +364,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Improv Centre",
     "address": "1502 Duranleau St, Vancouver, BC",
     "neighborhood": "Granville Island & False Creek",
-    "price": 38.18,
-    "priceLabel": "$38.18 CAD",
+    "price": 33.5,
+    "priceLabel": "$33.50 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -441,8 +389,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "Upcoming",
     "startIso": null,
-    "websiteUrl": "https://theimprovcentre.ca",
-    "venueUrl": "https://theimprovcentre.ca",
+    "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "venueUrl": "https://theimprovcentre.ca/shows/",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -484,8 +432,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "Upcoming",
     "startIso": null,
-    "websiteUrl": "https://theimprovcentre.ca",
-    "venueUrl": "https://theimprovcentre.ca",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "venueUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -503,8 +451,8 @@ const VANCOUVER_EVENTS = [
     "venue": "Arts Club Theatre Company (Granville Island Stage)",
     "address": "1585 Johnston St, Vancouver, BC",
     "neighborhood": "Granville Island & False Creek",
-    "price": 44.95,
-    "priceLabel": "$44.95 CAD",
+    "price": 39.0,
+    "priceLabel": "$39.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -527,8 +475,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "Upcoming",
     "startIso": null,
-    "websiteUrl": "https://artsclub.com",
-    "venueUrl": "https://artsclub.com",
+    "websiteUrl": "https://artsclub.com/shows/2026-2027/heist",
+    "venueUrl": "https://artsclub.com/shows/2026-2027/heist",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -536,50 +484,6 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "A high-octane theatrical caper packed with illusion, technology, and suspense by playwright Arun Lakra. Follows a crew attempting a high-stakes museum heist against insurmountable odds.",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "id": "van50-vancouver-etsy-co-fall-pop-up",
-    "title": "Vancouver Etsy Co Fall Pop-Up Market",
-    "venue": "Robson Square Ice Rink Plaza",
-    "address": "800 Robson St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "Art & Culture",
-    "categoryLabel": "Art & Culture",
-    "categoryIcon": "🎭",
-    "subTags": [
-      "free-admission",
-      "craft-market",
-      "artisan",
-      "robson-square",
-      "shopping"
-    ],
-    "dateSchedule": "2026-10-03 at 10:00",
-    "startIso": "2026-10-03T10:00:00-07:00",
-    "websiteUrl": "https://dailyhive.com/vancouver/events",
-    "venueUrl": "https://dailyhive.com/vancouver/events",
-    "ticketProvider": "Free Public Access",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "An open-air seasonal pop-up featuring over 70 local artisans, independent makers, interactive DIY craft tables, and live doodle art in the heart of downtown Vancouver.",
     "operatingHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false
@@ -615,8 +519,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "Upcoming",
     "startIso": null,
-    "websiteUrl": "https://dailyhive.com/vancouver/events",
-    "venueUrl": "https://dailyhive.com/vancouver/events",
+    "websiteUrl": "https://www.vancouvercroissantcrawl.com",
+    "venueUrl": "https://www.vancouvercroissantcrawl.com",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -634,8 +538,8 @@ const VANCOUVER_EVENTS = [
     "venue": "Confederation Park",
     "address": "120 North Willingdon Ave, Burnaby, BC",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "price": 4.5,
-    "priceLabel": "$4.50 CAD",
+    "price": 5.0,
+    "priceLabel": "$5.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -658,8 +562,8 @@ const VANCOUVER_EVENTS = [
     ],
     "dateSchedule": "Upcoming",
     "startIso": null,
-    "websiteUrl": "https://burnabyrailway.org",
-    "venueUrl": "https://burnabyrailway.org",
+    "websiteUrl": "https://bcsme.org/hours-and-rates",
+    "venueUrl": "https://bcsme.org/hours-and-rates",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -813,7 +717,7 @@ const VANCOUVER_EVENTS = [
       "drop-in",
       "downtown"
     ],
-    "dateSchedule": "Open Daily: 24/7 public access",
+    "dateSchedule": "Open Daily: Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)",
     "startIso": null,
     "websiteUrl": "https://www.robsonsquare.gov.bc.ca",
     "venueUrl": "https://www.robsonsquare.gov.bc.ca",
@@ -824,7 +728,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Arthur Erickson-designed civic gathering plaza linking the Vancouver Art Gallery and Provincial Law Courts. Frequently hosts drop-in street dancers, acoustic sets, and community pop-ups.",
-    "operatingHours": "24/7 public access",
+    "operatingHours": "Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -864,7 +768,7 @@ const VANCOUVER_EVENTS = [
       "drop-in",
       "downtown-vancouver"
     ],
-    "dateSchedule": "Open Daily: Mon–Wed 9:00 AM – 5:00 PM, Thu–Fri 9:00 AM – 6:00 PM, Sat 10:00 AM – 4:00 PM",
+    "dateSchedule": "Open Daily: Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed",
     "startIso": null,
     "websiteUrl": "https://pendulumgallery.bc.ca",
     "venueUrl": "https://pendulumgallery.bc.ca",
@@ -875,7 +779,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "A month-long exhibition showcasing nearly 100 works by emerging and established Canadian artists prior to auction. Visitors can enjoy visual arts in a striking glass-atrium civic space free of charge.",
-    "operatingHours": "Mon–Wed 9:00 AM – 5:00 PM, Thu–Fri 9:00 AM – 6:00 PM, Sat 10:00 AM – 4:00 PM",
+    "operatingHours": "Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -885,8 +789,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Orpheum",
     "address": "601 Smithe St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 22.0,
-    "priceLabel": "$22.00 CAD",
+    "price": 21.0,
+    "priceLabel": "$21.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -907,9 +811,9 @@ const VANCOUVER_EVENTS = [
       "historic-theatre",
       "live-music"
     ],
-    "dateSchedule": "2026-09-28 at 19:00",
-    "startIso": "2026-09-28T19:00:00-07:00",
-    "websiteUrl": "https://ticketmaster.ca",
+    "dateSchedule": "2026-10-26 at 19:30",
+    "startIso": "2026-10-26T19:30:00-07:00",
+    "websiteUrl": "https://vancouvercivictheatres.com",
     "venueUrl": "https://vancouvercivictheatres.com",
     "ticketProvider": "Ticketmaster",
     "coordinates": [
@@ -920,57 +824,6 @@ const VANCOUVER_EVENTS = [
     "description": "Screenings of classic silent cinema accompanied by live accompaniment on the historic Mighty Wurlitzer pipe organ at Vancouver's iconic theatre.",
     "operatingHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "id": "van50-harvest-days-vandusen",
-    "title": "Harvest Days at VanDusen Botanical Garden",
-    "venue": "VanDusen Botanical Garden",
-    "address": "5251 Oak St, Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "daily",
-    "frequencyLabel": "Open Daily Drop-In",
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "free-public-access",
-    "categoryLabel": "Free Public Access",
-    "categoryIcon": "🏛️",
-    "subTags": [
-      "fall-harvest",
-      "botanical-gardens",
-      "family-friendly",
-      "acoustic-music"
-    ],
-    "dateSchedule": "Open Daily: 10:30 AM – 4:30 PM (Gates close 4:00 PM)",
-    "startIso": null,
-    "websiteUrl": "https://vandusengarden.org",
-    "venueUrl": "https://vandusengarden.org",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Autumn seasonal family-friendly drop-in programming across 55 acres of botanical gardens, complete with live acoustic music, seasonal photo areas, and harvest displays.",
-    "operatingHours": "10:30 AM – 4:30 PM (Gates close 4:00 PM)",
-    "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
   {
@@ -1052,7 +905,7 @@ const VANCOUVER_EVENTS = [
       "visual-arts",
       "yaletown"
     ],
-    "dateSchedule": "Open Daily: Wed–Sun 12:00 PM – 6:00 PM",
+    "dateSchedule": "Open Daily: Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays)",
     "startIso": null,
     "websiteUrl": "https://www.contemporaryartgallery.ca",
     "venueUrl": "https://www.contemporaryartgallery.ca",
@@ -1063,7 +916,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "An independent, non-profit public art gallery showcasing cutting-edge regional and international contemporary visual art and artist talks.",
-    "operatingHours": "Wed–Sun 12:00 PM – 6:00 PM",
+    "operatingHours": "Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays)",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1104,7 +957,7 @@ const VANCOUVER_EVENTS = [
       "heritage",
       "free-admission"
     ],
-    "dateSchedule": "Open Daily: Tue–Sun 9:30 AM – 4:00 PM",
+    "dateSchedule": "Open Daily: Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)",
     "startIso": null,
     "websiteUrl": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-park.aspx",
     "venueUrl": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-park.aspx",
@@ -1115,7 +968,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Tranquil Ming Dynasty-style classical Chinese public park in Chinatown featuring pavilions, limestone scholar rocks, and a serene koi pond.",
-    "operatingHours": "Tue–Sun 9:30 AM – 4:00 PM",
+    "operatingHours": "Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1157,7 +1010,7 @@ const VANCOUVER_EVENTS = [
       "rooftop-garden",
       "civic-space"
     ],
-    "dateSchedule": "Open Daily: Mon–Thu 9:30 AM – 8:30 PM, Fri–Sat 9:30 AM – 5:00 PM, Sun 11:00 AM – 5:00 PM",
+    "dateSchedule": "Open Daily: Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
     "startIso": null,
     "websiteUrl": "https://www.vpl.ca/",
     "venueUrl": "https://www.vpl.ca/central",
@@ -1168,7 +1021,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Perched on the 9th floor of the iconic Central Library, this public rooftop garden features lush native planting and panoramic downtown views, plus rotating free civic art exhibitions on Level 8.",
-    "operatingHours": "Mon–Thu 9:30 AM – 8:30 PM, Fri–Sat 9:30 AM – 5:00 PM, Sun 11:00 AM – 5:00 PM",
+    "operatingHours": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1209,7 +1062,7 @@ const VANCOUVER_EVENTS = [
       "contemporary-art",
       "culture"
     ],
-    "dateSchedule": "Open Daily: Tue–Sun 12:00 PM – 6:00 PM (Closed Mondays)",
+    "dateSchedule": "Open Daily: Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
     "startIso": null,
     "websiteUrl": "https://www.contemporaryartgallery.ca/visit/",
     "venueUrl": "https://www.contemporaryartgallery.ca/visit/",
@@ -1220,7 +1073,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Vancouver's premier independent public gallery dedicated exclusively to regional and international contemporary visual art and artist talks.",
-    "operatingHours": "Tue–Sun 12:00 PM – 6:00 PM (Closed Mondays)",
+    "operatingHours": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1262,7 +1115,7 @@ const VANCOUVER_EVENTS = [
       "waterfront",
       "patio"
     ],
-    "dateSchedule": "Open Daily: Seawall: 24/7; Batch Patio: Daily ~12:00 PM – 10:00 PM (weather dependent)",
+    "dateSchedule": "Open Daily: Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
     "startIso": null,
     "websiteUrl": "https://batchvancouver.com/",
     "venueUrl": "https://batchvancouver.com/",
@@ -1273,60 +1126,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Scenic pedestrian promenade along the False Creek seawall with sightlines of Science World and BC Place, featuring open-air firepits and live acoustic sets at Batch patio.",
-    "operatingHours": "Seawall: 24/7; Batch Patio: Daily ~12:00 PM – 10:00 PM (weather dependent)",
-    "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false
-  },
-  {
-    "id": "van50-guilt-and-co-nightly-sessions",
-    "title": "Nightly Live Music & GroundUp Sets at Guilt & Company",
-    "venue": "Guilt & Company",
-    "address": "1 Alexander St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "daily",
-    "frequencyLabel": "Open Daily Drop-In",
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "free-public-access",
-    "categoryLabel": "Free Public Access",
-    "categoryIcon": "🏛️",
-    "subTags": [
-      "live-music",
-      "jazz",
-      "funk",
-      "gastown",
-      "nightlife",
-      "pay-what-you-can"
-    ],
-    "dateSchedule": "Open Daily: Daily 7:00 PM – Late",
-    "startIso": null,
-    "websiteUrl": "https://www.guiltandcompany.com/",
-    "venueUrl": "https://www.guiltandcompany.com/",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Intimate subterranean Gastown hub presenting two live sets nightly covering jazz, funk, Latin, and soul under an accessible charitable donation admission model.",
-    "operatingHours": "Daily 7:00 PM – Late",
+    "operatingHours": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1372,58 +1172,6 @@ const VANCOUVER_EVENTS = [
     "description": "Weekly Sunday afternoon service pairing spiritual reflection with world-class live jazz from prominent Vancouver instrumentalists and vocalists in a historic gothic-revival sanctuary.",
     "operatingHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "id": "van50-frankies-jazz-after-dark",
-    "title": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
-    "venue": "Frankie's Jazz Club",
-    "address": "755 Beatty St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 0.0,
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "frequency": "daily",
-    "frequencyLabel": "Open Daily Drop-In",
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "category": "free-public-access",
-    "categoryLabel": "Free Public Access",
-    "categoryIcon": "🏛️",
-    "subTags": [
-      "live-music",
-      "jazz",
-      "blues",
-      "downtown",
-      "listening-room"
-    ],
-    "dateSchedule": "Open Daily: Wednesdays 8:00 PM – 10:30 PM, Fri–Sat 11:00 PM – Late",
-    "startIso": null,
-    "websiteUrl": "https://frankiesjazzclub.ca/",
-    "venueUrl": "https://frankiesjazzclub.ca/",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Premier downtown listening room showcasing local roots, blues, and jazz talents, including midweek sessions and late-night weekend sets.",
-    "operatingHours": "Wednesdays 8:00 PM – 10:30 PM, Fri–Sat 11:00 PM – Late",
-    "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
   {
@@ -1476,8 +1224,8 @@ const VANCOUVER_EVENTS = [
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 39.75,
-    "priceLabel": "$39.75 CAD",
+    "price": 35.0,
+    "priceLabel": "$35.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -1498,8 +1246,8 @@ const VANCOUVER_EVENTS = [
       "rickshaw",
       "19-plus"
     ],
-    "dateSchedule": "2026-09-28 at 18:30",
-    "startIso": "2026-09-28T18:30:00-07:00",
+    "dateSchedule": "2026-10-07 at 18:30",
+    "startIso": "2026-10-07T18:30:00-07:00",
     "websiteUrl": "https://rickshawtheatre.com",
     "venueUrl": "https://rickshawtheatre.com",
     "ticketProvider": "Direct",
@@ -1541,10 +1289,10 @@ const VANCOUVER_EVENTS = [
       "punk",
       "mount-pleasant"
     ],
-    "dateSchedule": "2026-09-28 at 20:00",
-    "startIso": "2026-09-28T20:00:00-07:00",
-    "websiteUrl": "https://www.foxcabaret.com",
-    "venueUrl": "https://www.foxcabaret.com",
+    "dateSchedule": "2026-11-05 at 19:00",
+    "startIso": "2026-11-05T19:00:00-07:00",
+    "websiteUrl": "https://www.showpass.com/miesha-and-the-spanks-2026/",
+    "venueUrl": "https://www.showpass.com/miesha-and-the-spanks-2026/",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -1562,8 +1310,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Annex",
     "address": "823 Seymour St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 34.5,
-    "priceLabel": "$34.50 CAD",
+    "price": 21.02,
+    "priceLabel": "$21.02 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -1584,10 +1332,10 @@ const VANCOUVER_EVENTS = [
       "civic-theatres",
       "fusion"
     ],
-    "dateSchedule": "2026-09-28 at 19:30",
-    "startIso": "2026-09-28T19:30:00-07:00",
-    "websiteUrl": "https://vancouvercivictheatres.com",
-    "venueUrl": "https://vancouvercivictheatres.com",
+    "dateSchedule": "2026-10-15 at 19:30",
+    "startIso": "2026-10-15T19:30:00-07:00",
+    "websiteUrl": "https://www.showpass.com/raagaverse-strings/",
+    "venueUrl": "https://www.showpass.com/raagaverse-strings/",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -1605,8 +1353,8 @@ const VANCOUVER_EVENTS = [
     "venue": "The Waldorf Hotel",
     "address": "1489 E Hastings St, Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
-    "price": 24.15,
-    "priceLabel": "$24.15 CAD",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "frequency": "one-off",
@@ -1627,8 +1375,8 @@ const VANCOUVER_EVENTS = [
       "dark-comedy",
       "performance-art"
     ],
-    "dateSchedule": "2026-09-28 at 20:00",
-    "startIso": "2026-09-28T20:00:00-07:00",
+    "dateSchedule": "2026-10-24 at 20:00",
+    "startIso": "2026-10-24T20:00:00-07:00",
     "websiteUrl": "https://thewaldorfhotel.com",
     "venueUrl": "https://thewaldorfhotel.com",
     "ticketProvider": "Direct",
@@ -1671,10 +1419,10 @@ const VANCOUVER_EVENTS = [
       "organ-performance",
       "historic-theatre"
     ],
-    "dateSchedule": "2026-09-28 at 19:30",
-    "startIso": "2026-09-28T19:30:00-07:00",
-    "websiteUrl": "https://vancouvercivictheatres.com",
-    "venueUrl": "https://vancouvercivictheatres.com",
+    "dateSchedule": "2026-10-26 at 19:30",
+    "startIso": "2026-10-26T19:30:00-07:00",
+    "websiteUrl": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
+    "venueUrl": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
     "ticketProvider": "Direct",
     "coordinates": [
       49.2827,
@@ -1723,7 +1471,7 @@ const VANCOUVER_EVENTS = [
       "public-market",
       "buskers"
     ],
-    "dateSchedule": "Open Daily: Monday – Sunday 9:00 AM – 6:00 PM",
+    "dateSchedule": "Open Daily: Daily 9:00 AM – 6:00 PM",
     "startIso": null,
     "websiteUrl": "https://granvilleisland.com",
     "venueUrl": "https://granvilleisland.com",
@@ -1734,7 +1482,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "A vibrant seaside indoor market bustling with independent culinary artisans, local produce, and waterfront buskers. Free to browse daily with scenic marine views along False Creek.",
-    "operatingHours": "Monday – Sunday 9:00 AM – 6:00 PM",
+    "operatingHours": "Daily 9:00 AM – 6:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1775,7 +1523,7 @@ const VANCOUVER_EVENTS = [
       "waterfront",
       "scenic-viewpoint"
     ],
-    "dateSchedule": "Open Daily: Daily 24 hours (walkway lit until 10:00 PM)",
+    "dateSchedule": "Open Daily: Daily: 7:00 AM – 11:00 PM",
     "startIso": null,
     "websiteUrl": "https://www.canadaplace.ca",
     "venueUrl": "https://www.canadaplace.ca",
@@ -1786,7 +1534,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "An iconic outdoor waterfront promenade extending into Burrard Inlet with unobstructed vistas of Stanley Park and the North Shore mountains. Includes interpretive historical plaques along The Canadian Trail.",
-    "operatingHours": "Daily 24 hours (walkway lit until 10:00 PM)",
+    "operatingHours": "Daily: 7:00 AM – 11:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -1827,7 +1575,7 @@ const VANCOUVER_EVENTS = [
       "civic-plaza",
       "downtown"
     ],
-    "dateSchedule": "Open Daily: Open 24 hours daily",
+    "dateSchedule": "Open Daily: Open 24/7",
     "startIso": null,
     "websiteUrl": "https://vancouver.ca",
     "venueUrl": "https://vancouver.ca",
@@ -1838,7 +1586,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "Vancouver's central civic gathering space designed by Arthur Erickson, offering expansive pedestrian seating, sunken steps, and rotating grassroots community activations.",
-    "operatingHours": "Open 24 hours daily",
+    "operatingHours": "Open 24/7",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -2207,6 +1955,58 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations.",
     "operatingHours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
+    "lifecycleType": "perennial_drop_in",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-queen-elizabeth-park-gardens",
+    "title": "Queen Elizabeth Park & Quarry Gardens",
+    "venue": "Queen Elizabeth Park",
+    "address": "4600 Cambie St, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "frequency": "daily",
+    "frequencyLabel": "Open Daily Drop-In",
+    "daysOfWeek": [
+      "daily",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon",
+      "early-evening"
+    ],
+    "category": "free-public-access",
+    "categoryLabel": "Free Public Access",
+    "categoryIcon": "🏛️",
+    "subTags": [
+      "free-admission",
+      "viewpoint",
+      "botanical-garden",
+      "park",
+      "skyline-views"
+    ],
+    "dateSchedule": "Open Daily: Daily 6:00 AM – 10:00 PM",
+    "startIso": null,
+    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "ticketProvider": "Free Public Access",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Perched at the highest point in Vancouver, offering panoramic mountain and skyline views, sunken quarry gardens, and walking arboretums.",
+    "operatingHours": "Daily 6:00 AM – 10:00 PM",
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
   },
@@ -3852,7 +3652,56 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   }
 ];
-const MANUAL_REVIEW_QUEUE = [];
+const MANUAL_REVIEW_QUEUE = [
+  {
+    "id": "van50-harvest-days-vandusen",
+    "title": "Harvest Days at VanDusen Botanical Garden",
+    "artist": "Harvest Days at VanDusen Botanical Garden",
+    "venue": "VanDusen Botanical Garden",
+    "address": "5251 Oak St, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "free-public-access",
+    "categoryLabel": "Free Public Access",
+    "startIso": null,
+    "websiteUrl": "https://vandusengarden.org",
+    "quarantineReason": "AI Public Access Audit: Harvest Days at VanDusen Botanical Garden requires paid admission and does not offer 100% free walk-in public access; access is restricted to paying visitors and VBGA members.",
+    "flaggedAt": "2026-09-28"
+  },
+  {
+    "id": "van50-guilt-and-co-nightly-sessions",
+    "title": "Nightly Live Music & GroundUp Sets at Guilt & Company",
+    "artist": "Nightly Live Music & GroundUp Sets at Guilt & Company",
+    "venue": "Guilt & Company",
+    "address": "1 Alexander St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "free-public-access",
+    "categoryLabel": "Free Public Access",
+    "startIso": null,
+    "websiteUrl": "https://www.guiltandcompany.com/",
+    "quarantineReason": "AI Public Access Audit: Public access is restricted as admission is no longer 100% free. Guilt & Company has transitioned from a pay-what-you-can donation model to charging a mandatory per-set artist cover fee ($7–$15). Flagged for curator review.",
+    "flaggedAt": "2026-09-28"
+  },
+  {
+    "id": "van50-frankies-jazz-after-dark",
+    "title": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
+    "artist": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
+    "venue": "Frankie's Jazz Club",
+    "address": "755 Beatty St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "free-public-access",
+    "categoryLabel": "Free Public Access",
+    "startIso": null,
+    "websiteUrl": "https://frankiesjazzclub.ca/",
+    "quarantineReason": "AI Public Access Audit: Public access is restricted: Frankie's Jazz Club is a commercial ticketed venue requiring paid tickets ($20–$35+) for main shows and a mandatory $10 cover charge for late-night sets, failing the requirement for 100% free walk-in public access.",
+    "flaggedAt": "2026-09-28"
+  }
+];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [

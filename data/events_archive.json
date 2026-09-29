@@ -3371,5 +3371,18 @@
     "flaggedAt": "2026-09-28",
     "archivedReason": "Dismissed by curator",
     "archivedAt": "2026-09-28T12:54:54.153091"
+  },
+  {
+    "event_id": "van50-vancouver-etsy-co-fall-pop-up",
+    "event_name": "Vancouver Etsy Co Fall Pop-Up Market",
+    "category": "Art & Culture",
+    "venue_name": "Robson Square Ice Rink Plaza",
+    "full_address": "800 Robson St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "An open-air seasonal pop-up featuring over 70 local artisans, independent makers, interactive DIY craft tables, and live doodle art in the heart of downtown Vancouver.",
+    "attempted_price_cad": 0.0,
+    "discovery_url": "https://dailyhive.com/vancouver/events",
+    "archive_reason": "AI Audit: The event was a single-day market held on Saturday, September 26, 2026, and has already concluded.",
+    "archived_at": "2026-09-28"
   }
 ]

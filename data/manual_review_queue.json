@@ -5,7 +5,56 @@
     "pendingCount": 0,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": [],
-  "pendingCount": 0,
+  "quarantinedEvents": [
+    {
+      "id": "van50-harvest-days-vandusen",
+      "title": "Harvest Days at VanDusen Botanical Garden",
+      "artist": "Harvest Days at VanDusen Botanical Garden",
+      "venue": "VanDusen Botanical Garden",
+      "address": "5251 Oak St, Vancouver, BC",
+      "neighborhood": "South Cambie",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "category": "free-public-access",
+      "categoryLabel": "Free Public Access",
+      "startIso": null,
+      "websiteUrl": "https://vandusengarden.org",
+      "quarantineReason": "AI Public Access Audit: Harvest Days at VanDusen Botanical Garden requires paid admission and does not offer 100% free walk-in public access; access is restricted to paying visitors and VBGA members.",
+      "flaggedAt": "2026-09-28"
+    },
+    {
+      "id": "van50-guilt-and-co-nightly-sessions",
+      "title": "Nightly Live Music & GroundUp Sets at Guilt & Company",
+      "artist": "Nightly Live Music & GroundUp Sets at Guilt & Company",
+      "venue": "Guilt & Company",
+      "address": "1 Alexander St, Vancouver, BC",
+      "neighborhood": "Gastown",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "category": "free-public-access",
+      "categoryLabel": "Free Public Access",
+      "startIso": null,
+      "websiteUrl": "https://www.guiltandcompany.com/",
+      "quarantineReason": "AI Public Access Audit: Public access is restricted as admission is no longer 100% free. Guilt & Company has transitioned from a pay-what-you-can donation model to charging a mandatory per-set artist cover fee ($7–$15). Flagged for curator review.",
+      "flaggedAt": "2026-09-28"
+    },
+    {
+      "id": "van50-frankies-jazz-after-dark",
+      "title": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
+      "artist": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
+      "venue": "Frankie's Jazz Club",
+      "address": "755 Beatty St, Vancouver, BC",
+      "neighborhood": "Downtown",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "category": "free-public-access",
+      "categoryLabel": "Free Public Access",
+      "startIso": null,
+      "websiteUrl": "https://frankiesjazzclub.ca/",
+      "quarantineReason": "AI Public Access Audit: Public access is restricted: Frankie's Jazz Club is a commercial ticketed venue requiring paid tickets ($20–$35+) for main shows and a mandatory $10 cover charge for late-night sets, failing the requirement for 100% free walk-in public access.",
+      "flaggedAt": "2026-09-28"
+    }
+  ],
+  "pendingCount": 3,
   "lastTriagedAt": "2026-09-28T10:28:12.667528"
 }

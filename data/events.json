@@ -1,40 +1,5 @@
 [
   {
-    "event_id": "van50-queen-elizabeth-park-gardens",
-    "event_name": "Queen Elizabeth Park & Quarry Gardens",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Queen Elizabeth Park",
-    "full_address": "4600 Cambie St, Vancouver, BC",
-    "neighborhood": "Riley Park",
-    "description": "Perched at the highest point in Vancouver, offering panoramic mountain and skyline views, sunken quarry gardens, and walking arboretums.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Daily 6:00 AM – 10:00 PM",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "viewpoint",
-      "botanical-garden",
-      "park",
-      "skyline-views"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily 6:00 AM – 10:00 PM)."
-  },
-  {
     "event_id": "van50-granville-island-public-market",
     "event_name": "Granville Island Public Market & Boardwalks",
     "category": "Free Public Access",
@@ -49,7 +14,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Daily 9:00 AM – 6:00 PM",
+    "operating_hours": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -67,7 +32,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free public access year-round. Food and craft purchases are optional."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7)."
   },
   {
     "event_id": "van50-stanley-park-seawall",
@@ -84,7 +49,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Park grounds daily 6:00 AM – 10:00 PM; Seawall walkway accessible 24/7",
+    "operating_hours": "Daily: 6:00 AM – 10:00 PM",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -102,7 +67,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Pedestrian seawall route is fully open and free at all times; separate bike lane available."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily: 6:00 AM – 10:00 PM)."
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-first-fridays",
@@ -119,7 +84,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "First Friday of each month 4:00 PM – 8:00 PM",
+    "operating_hours": "First Friday of each month: 4:00 PM – 8:00 PM",
     "days_open": "Monthly (First Friday)",
     "show_1": null,
     "show_2": null,
@@ -137,7 +102,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free admission window occurs specifically from 4 PM to 8 PM on the first Friday of each month; advance online reservation strongly recommended due to popularity."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (First Friday of each month: 4:00 PM – 8:00 PM)."
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -154,7 +119,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Daily 7:00 AM – 10:00 PM",
+    "operating_hours": "Daily: 7:00 AM – 11:00 PM",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -171,7 +136,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Outdoor walkway open free to the general public every day."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily: 7:00 AM – 11:00 PM)."
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -188,7 +153,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Wed–Sun 10:00 AM – 5:00 PM (open until 8:00 PM on Thursdays)",
+    "operating_hours": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
     "days_open": "Wed-Sun",
     "show_1": null,
     "show_2": null,
@@ -206,7 +171,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Admission is by donation courtesy of BMO Financial Group. Accessible via SeaBus from Waterfront Station."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed)."
   },
   {
     "event_id": "van50-sun-yat-sen-public-park-garden",
@@ -223,7 +188,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Daily 10:00 AM – 4:30 PM",
+    "operating_hours": "Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -241,7 +206,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "The public park and courtyard section is free of charge; the adjacent cultural museum requires paid ticketing."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays))."
   },
   {
     "event_id": "van50-truth-reconciliation-film-screening-2026",
@@ -269,8 +234,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://dailyhive.com/vancouver/events",
-    "ticket_url": "https://dailyhive.com/vancouver/events",
+    "details_url": "https://troutlakecc.com/",
+    "ticket_url": "https://troutlakecc.com/",
     "ticket_provider": "Free Public Access",
     "tags": [
       "free-admission",
@@ -281,7 +246,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free public outdoor screening. Advance online registration requested."
+    "curator_notes": "AI Updated (2026-09-28): The event is confirmed active and free on September 30, 2026, starting at 12:30 PM. The URL is updated from a generic portal to the official community centre website."
   },
   {
     "event_id": "van50-theatresports-improv-centre",
@@ -293,7 +258,7 @@
     "neighborhood": "Granville Island",
     "description": "Vancouver's premier competitive unscripted comedy tournament where teams of quick-witted comedians duel for audience laughter and votes. High-energy, completely spontaneous theatre on Granville Island.",
     "pricing_all_in_cad": {
-      "regular": 38.18,
+      "regular": 33.5,
       "senior": null,
       "student": null,
       "member": null
@@ -304,8 +269,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://theimprovcentre.ca",
-    "ticket_url": "https://theimprovcentre.ca",
+    "details_url": "https://theimprovcentre.ca/shows/",
+    "ticket_url": "https://theimprovcentre.ca/shows/",
     "ticket_provider": "Direct",
     "tags": [
       "comedy",
@@ -316,7 +281,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Base ticket starts at $33.50 CAD; calculated all-in cost is approximately $38.18 CAD including fees and 5% GST."
+    "curator_notes": "AI Updated (2026-09-28): Theatresports™ is actively running weekly on Fridays and Saturdays at 9:00 PM. Updating next upcoming date to 2026-10-02, start time to 21:00, starting regular ticket price to $33.50 CAD, and direct ticket URL."
   },
   {
     "event_id": "van50-deadly-dinner-party",
@@ -339,8 +304,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://theimprovcentre.ca",
-    "ticket_url": "https://theimprovcentre.ca",
+    "details_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
     "ticket_provider": "Direct",
     "tags": [
       "comedy",
@@ -350,7 +315,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Base price from $33.50 CAD; all-in price remains comfortably below the $50 cap at roughly $38.18 CAD."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and under $50 CAD, running Fridays and Saturdays through October 30, 2026. Date was previously missing and needs to be set to the next upcoming performance date along with start time and ticketing link."
   },
   {
     "event_id": "van50-heist-arts-club",
@@ -362,7 +327,7 @@
     "neighborhood": "Granville Island",
     "description": "A high-octane theatrical caper packed with illusion, technology, and suspense by playwright Arun Lakra. Follows a crew attempting a high-stakes museum heist against insurmountable odds.",
     "pricing_all_in_cad": {
-      "regular": 44.95,
+      "regular": 39.0,
       "senior": null,
       "student": null,
       "member": null
@@ -373,8 +338,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://artsclub.com",
-    "ticket_url": "https://artsclub.com",
+    "details_url": "https://artsclub.com/shows/2026-2027/heist",
+    "ticket_url": "https://artsclub.com/shows/2026-2027/heist",
     "ticket_provider": "Direct",
     "tags": [
       "theatre",
@@ -384,47 +349,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Select tickets from $39.00 CAD base. Estimated all-in cost with ticketing fee and GST is $44.95 CAD, within the $50 CAD limit."
-  },
-  {
-    "event_id": "van50-vancouver-etsy-co-fall-pop-up",
-    "event_name": "Vancouver Etsy Co Fall Pop-Up Market",
-    "category": "Art & Culture",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Robson Square Ice Rink Plaza",
-    "full_address": "800 Robson St, Vancouver, BC",
-    "neighborhood": "Downtown",
-    "description": "An open-air seasonal pop-up featuring over 70 local artisans, independent makers, interactive DIY craft tables, and live doodle art in the heart of downtown Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "10:00",
-      "end_time": "17:00",
-      "cost": 0.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://dailyhive.com/vancouver/events",
-    "ticket_url": "https://dailyhive.com/vancouver/events",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "craft-market",
-      "artisan",
-      "robson-square",
-      "shopping"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Admission is completely free; purchases and workshop materials pay-as-you-go."
+    "curator_notes": "AI Updated (2026-09-28): The production is currently active and running through October 18, 2026. The URL, pricing (starts at $39 CAD), start time, and venue details require updating."
   },
   {
     "event_id": "van50-metro-vancouver-croissant-crawl",
@@ -447,8 +372,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://dailyhive.com/vancouver/events",
-    "ticket_url": "https://dailyhive.com/vancouver/events",
+    "details_url": "https://www.vancouvercroissantcrawl.com",
+    "ticket_url": "https://www.vancouvercroissantcrawl.com",
     "ticket_provider": "Free Public Access",
     "tags": [
       "food-crawl",
@@ -459,7 +384,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free to participate self-guided tour; pastry purchases à la carte typically $5–$12 CAD each."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and ongoing through October 4, 2026. Missing date and generic URL need to be updated with the official event dates and direct website."
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -471,7 +396,7 @@
     "neighborhood": "Burnaby",
     "description": "Ride handcrafted miniature steam and diesel trains through a scenic 3-km outdoor track winding through Confederation Park's woodland landscape.",
     "pricing_all_in_cad": {
-      "regular": 4.5,
+      "regular": 5.0,
       "senior": 4.5,
       "student": 4.5,
       "member": 4.5
@@ -482,8 +407,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://burnabyrailway.org",
-    "ticket_url": "https://burnabyrailway.org",
+    "details_url": "https://bcsme.org/hours-and-rates",
+    "ticket_url": "https://bcsme.org/hours-and-rates",
     "ticket_provider": "Direct",
     "tags": [
       "miniature-railway",
@@ -493,7 +418,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Runs weekends through early fall, 11:00 AM – 5:00 PM. Tickets ~$4.50 CAD per ride."
+    "curator_notes": "AI Updated (2026-09-28): The seasonal miniature train rides remain active through October 12, 2026. Operating hours start at 11:00 AM on weekends and holidays, single ticket pricing has updated to $5.00 CAD, and the direct schedule page is available."
   },
   {
     "event_id": "van50-stanley-park-seawall-brockton-point",
@@ -529,7 +454,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free public access year-round. Park grounds open 6:00 AM to 10:00 PM daily."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily 6:00 AM – 10:00 PM)."
   },
   {
     "event_id": "van50-pendulum-gallery",
@@ -581,7 +506,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "24/7 public access",
+    "operating_hours": "Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -599,7 +524,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Open 24/7 public civic plaza. Free access."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM))."
   },
   {
     "event_id": "van50-splash-pendulum-gallery-2026",
@@ -616,7 +541,7 @@
       "student": null,
       "member": null
     },
-    "operating_hours": "Mon–Wed 9:00 AM – 5:00 PM, Thu–Fri 9:00 AM – 6:00 PM, Sat 10:00 AM – 4:00 PM",
+    "operating_hours": "Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed",
     "days_open": "Mon-Sat",
     "show_1": null,
     "show_2": null,
@@ -633,7 +558,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free drop-in public gallery inside the HSBC Building atrium. Closed on Sundays."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed)."
   },
   {
     "event_id": "van50-silent-movie-mondays-orpheum",
@@ -645,7 +570,7 @@
     "neighborhood": "Downtown",
     "description": "Screenings of classic silent cinema accompanied by live accompaniment on the historic Mighty Wurlitzer pipe organ at Vancouver's iconic theatre.",
     "pricing_all_in_cad": {
-      "regular": 22.0,
+      "regular": 21.0,
       "senior": 16.5,
       "student": 16.5,
       "member": null
@@ -653,16 +578,16 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
-      "start_time": "19:00",
+      "date": "2026-10-26",
+      "start_time": "19:30",
       "end_time": "21:30",
-      "cost": 22.0
+      "cost": 21.0
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.straight.com/listings",
     "details_url": "https://vancouvercivictheatres.com",
-    "ticket_url": "https://ticketmaster.ca",
+    "ticket_url": "https://vancouvercivictheatres.com",
     "ticket_provider": "Ticketmaster",
     "tags": [
       "silent-film",
@@ -672,41 +597,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "All-in cost ranges between $16.50 and $22.00 CAD inclusive of fees and 5% GST."
-  },
-  {
-    "event_id": "van50-harvest-days-vandusen",
-    "event_name": "Harvest Days at VanDusen Botanical Garden",
-    "category": "Outdoor",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "VanDusen Botanical Garden",
-    "full_address": "5251 Oak St, Vancouver, BC",
-    "neighborhood": "South Cambie",
-    "description": "Autumn seasonal family-friendly drop-in programming across 55 acres of botanical gardens, complete with live acoustic music, seasonal photo areas, and harvest displays.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 11.0,
-      "student": 11.0,
-      "member": 0.0
-    },
-    "operating_hours": "10:30 AM – 4:30 PM (Gates close 4:00 PM)",
-    "days_open": "Weekends & select dates",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/events",
-    "details_url": "https://vandusengarden.org",
-    "ticket_url": "https://vandusengarden.org",
-    "ticket_provider": "Direct",
-    "tags": [
-      "fall-harvest",
-      "botanical-gardens",
-      "family-friendly",
-      "acoustic-music"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Children under 5 enter free. Ticket pricing includes all applicable taxes."
+    "curator_notes": "AI Updated (2026-09-28): The event was not held on September 28, 2026, but the series is active with the next screening scheduled for October 26, 2026 at 7:30 PM for $21.00 CAD."
   },
   {
     "event_id": "van50-first-friday-vancouver-art-gallery",
@@ -745,7 +636,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Advance online registration is required. First Friday of each month from 4:00 PM – 8:00 PM."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
   },
   {
     "event_id": "van50-contemporary-art-gallery",
@@ -762,7 +653,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Wed–Sun 12:00 PM – 6:00 PM",
+    "operating_hours": "Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays)",
     "days_open": "Wed-Sun",
     "show_1": null,
     "show_2": null,
@@ -779,7 +670,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free admission by donation. Closed Monday and Tuesday."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays))."
   },
   {
     "event_id": "van50-dr-sun-yat-sen-public-park",
@@ -796,7 +687,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Tue–Sun 9:30 AM – 4:00 PM",
+    "operating_hours": "Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)",
     "days_open": "Tue-Sun",
     "show_1": null,
     "show_2": null,
@@ -814,7 +705,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "City park section is free drop-in access; separate from the adjacent ticketed Classical Chinese Garden society site. Closed Mondays."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays))."
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -831,7 +722,7 @@
       "student": null,
       "member": null
     },
-    "operating_hours": "Mon–Thu 9:30 AM – 8:30 PM, Fri–Sat 9:30 AM – 5:00 PM, Sun 11:00 AM – 5:00 PM",
+    "operating_hours": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -850,7 +741,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Elevator access to 9th-floor rooftop and 8th-floor gallery is completely free to the public during branch open hours."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM)."
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -867,7 +758,7 @@
       "student": null,
       "member": null
     },
-    "operating_hours": "Tue–Sun 12:00 PM – 6:00 PM (Closed Mondays)",
+    "operating_hours": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
     "days_open": "Tue-Sun",
     "show_1": null,
     "show_2": null,
@@ -885,7 +776,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Admission is completely free year-round; voluntary donations are accepted at entry."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed)."
   },
   {
     "event_id": "van50-plaza-of-nations-batch-patio",
@@ -902,7 +793,7 @@
       "student": null,
       "member": null
     },
-    "operating_hours": "Seawall: 24/7; Batch Patio: Daily ~12:00 PM – 10:00 PM (weather dependent)",
+    "operating_hours": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -921,43 +812,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Public seawall is always open. Outdoor patio seating and live singer-songwriter sessions are free drop-in."
-  },
-  {
-    "event_id": "van50-guilt-and-co-nightly-sessions",
-    "event_name": "Nightly Live Music & GroundUp Sets at Guilt & Company",
-    "category": "Live Music",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Guilt & Company",
-    "full_address": "1 Alexander St, Vancouver, BC",
-    "neighborhood": "Gastown",
-    "description": "Intimate subterranean Gastown hub presenting two live sets nightly covering jazz, funk, Latin, and soul under an accessible charitable donation admission model.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": "Daily 7:00 PM – Late",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.guiltandcompany.com/",
-    "details_url": "https://www.guiltandcompany.com/",
-    "ticket_url": "https://www.guiltandcompany.com/",
-    "ticket_provider": "Direct",
-    "tags": [
-      "live-music",
-      "jazz",
-      "funk",
-      "gastown",
-      "nightlife",
-      "pay-what-you-can"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "19+ venue. Admission operates on a Pay-What-You-Can (PWYC) model via GroundUp, with a suggested door contribution of $5–$10."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed)."
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
@@ -997,42 +852,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "All-ages welcome. Admission is free; $10 suggested donation at the door supports the musicians."
-  },
-  {
-    "event_id": "van50-frankies-jazz-after-dark",
-    "event_name": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
-    "category": "Live Music",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Frankie's Jazz Club",
-    "full_address": "755 Beatty St, Vancouver, BC",
-    "neighborhood": "Downtown",
-    "description": "Premier downtown listening room showcasing local roots, blues, and jazz talents, including midweek sessions and late-night weekend sets.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": "Wednesdays 8:00 PM – 10:30 PM, Fri–Sat 11:00 PM – Late",
-    "days_open": "Wed, Fri-Sat",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.livemusicvancouver.com/",
-    "details_url": "https://frankiesjazzclub.ca/",
-    "ticket_url": "https://frankiesjazzclub.ca/",
-    "ticket_provider": "Direct",
-    "tags": [
-      "live-music",
-      "jazz",
-      "blues",
-      "downtown",
-      "listening-room"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Cover charge ranges from $5 for early Wednesday sets up to $20–$30 for weekend headliners, well under the $50 cap."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
   },
   {
     "event_id": "van50-lanalous-saturday-afternoon-sessions",
@@ -1072,7 +892,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Saturday afternoon 4:00 PM – 7:00 PM session is free drop-in with food/drink purchase; evening bills range from $10–$15 at the door."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD."
   },
   {
     "event_id": "rickshaw-evergrey-metal-showcase",
@@ -1084,7 +904,7 @@
     "neighborhood": "Downtown Eastside",
     "description": "Melodic progressive metal veterans Evergrey take the Rickshaw Theatre stage, supported by HammerFall and Elvenking. High-octane guitars and heavy anthems headline this 19+ club show.",
     "pricing_all_in_cad": {
-      "regular": 39.75,
+      "regular": 35.0,
       "senior": null,
       "student": null,
       "member": null
@@ -1092,10 +912,10 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
+      "date": "2026-10-07",
       "start_time": "18:30",
       "end_time": "23:00",
-      "cost": 39.75
+      "cost": 35.0
     },
     "show_2": null,
     "show_3": null,
@@ -1111,7 +931,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Estimated base ticket ~$35.00 CAD plus service fees and 5% GST equals ~$39.75 CAD all-in. Strictly 19+ entry."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and under $50 CAD, but the scheduled date is October 7, 2026 with doors opening at 6:30 PM."
   },
   {
     "event_id": "fox-cabaret-miesha-and-the-spanks",
@@ -1131,16 +951,16 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
-      "start_time": "20:00",
+      "date": "2026-11-05",
+      "start_time": "19:00",
       "end_time": "23:30",
       "cost": 28.25
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
-    "details_url": "https://www.foxcabaret.com",
-    "ticket_url": "https://www.foxcabaret.com",
+    "details_url": "https://www.showpass.com/miesha-and-the-spanks-2026/",
+    "ticket_url": "https://www.showpass.com/miesha-and-the-spanks-2026/",
     "ticket_provider": "Direct",
     "tags": [
       "live-music",
@@ -1150,7 +970,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Tiered tickets $15-$25 CAD base. Top tier calculated with estimated fees and GST ($25 + $2 fee + 5% GST = $28.25 CAD)."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and verified under $50 CAD, but the date takes place on November 5, 2026 at 19:00 with direct ticketing via Showpass."
   },
   {
     "event_id": "annex-raagaverse-strings",
@@ -1162,7 +982,7 @@
     "neighborhood": "Downtown",
     "description": "An evocative collaboration combining Indo-jazz fusion ensemble Raagaverse with contemporary chamber strings. Traditional Indian classical melodies meet sophisticated western jazz arrangements.",
     "pricing_all_in_cad": {
-      "regular": 34.5,
+      "regular": 21.02,
       "senior": null,
       "student": null,
       "member": null
@@ -1170,16 +990,16 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
+      "date": "2026-10-15",
       "start_time": "19:30",
       "end_time": "21:30",
-      "cost": 34.5
+      "cost": 21.02
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
-    "details_url": "https://vancouvercivictheatres.com",
-    "ticket_url": "https://vancouvercivictheatres.com",
+    "details_url": "https://www.showpass.com/raagaverse-strings/",
+    "ticket_url": "https://www.showpass.com/raagaverse-strings/",
     "ticket_provider": "Direct",
     "tags": [
       "live-music",
@@ -1189,7 +1009,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Tiered pricing $18-$30 CAD base. High-tier all-in calculated at $30 + $3 fee + GST = $34.50 CAD."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and under $50 CAD, but the date must be updated from 2026-09-28 to 2026-10-15, start time set to 19:30, and ticket link updated to Showpass."
   },
   {
     "event_id": "waldorf-tim-burtons-funeral-cabaret",
@@ -1201,7 +1021,7 @@
     "neighborhood": "Hastings-Sunrise",
     "description": "A seasonal dark-comedy and alternative performance art cabaret exploring gothic aesthetics and theatrical eccentricity. A boundary-pushing night of off-beat variety acts at the historic Waldorf.",
     "pricing_all_in_cad": {
-      "regular": 24.15,
+      "regular": 20.0,
       "senior": null,
       "student": null,
       "member": null
@@ -1209,10 +1029,10 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
+      "date": "2026-10-24",
       "start_time": "20:00",
       "end_time": "22:30",
-      "cost": 24.15
+      "cost": 20.0
     },
     "show_2": null,
     "show_3": null,
@@ -1228,7 +1048,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Base price $20.00 CAD plus $3 fee and 5% GST brings total to $24.15 CAD."
+    "curator_notes": "AI Updated (2026-09-28): The event is active and under $50 CAD, but the date needs to be updated to October 24, 2026, and start time confirmed for 8:00 PM."
   },
   {
     "event_id": "orpheum-silent-movie-mondays",
@@ -1248,7 +1068,7 @@
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-09-28",
+      "date": "2026-10-26",
       "start_time": "19:30",
       "end_time": "21:30",
       "cost": 26.78
@@ -1256,8 +1076,8 @@
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
-    "details_url": "https://vancouvercivictheatres.com",
-    "ticket_url": "https://vancouvercivictheatres.com",
+    "details_url": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
+    "ticket_url": "https://vancouvercivictheatres.com/events/vct-presents-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
     "ticket_provider": "Direct",
     "tags": [
       "film",
@@ -1268,7 +1088,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Base price ~$15.00 – $22.50 CAD. Max base $22.50 + $3.00 service fee + 5% GST = $26.78 CAD."
+    "curator_notes": "AI Updated (2026-09-28): The event series is active, but the date on 2026-09-28 is incorrect for Vancouver's Orpheum Theatre. The next upcoming screening is on October 26, 2026 at 7:30 PM for $26.78 CAD (including fees)."
   },
   {
     "event_id": "granville-island-public-market-drop-in",
@@ -1285,7 +1105,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Monday – Sunday 9:00 AM – 6:00 PM",
+    "operating_hours": "Daily 9:00 AM – 6:00 PM",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -1303,7 +1123,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Free public entry; purchases optional."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily 9:00 AM – 6:00 PM)."
   },
   {
     "event_id": "canada-place-promenade-trail",
@@ -1320,7 +1140,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Daily 24 hours (walkway lit until 10:00 PM)",
+    "operating_hours": "Daily: 7:00 AM – 11:00 PM",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -1338,7 +1158,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Completely free open-air public trail accessible at all hours."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily: 7:00 AM – 11:00 PM)."
   },
   {
     "event_id": "robson-square-plaza-gathering",
@@ -1355,7 +1175,7 @@
       "student": 0.0,
       "member": 0.0
     },
-    "operating_hours": "Open 24 hours daily",
+    "operating_hours": "Open 24/7",
     "days_open": "Daily",
     "show_1": null,
     "show_2": null,
@@ -1373,7 +1193,7 @@
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Open pedestrian zone, fully accessible without admission."
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Open 24/7)."
   },
   {
     "event_id": "contemporary-art-gallery-cag-admission",
@@ -1623,6 +1443,41 @@
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "Boardwalk open 24/7; Quay market halls operate daily 9:00 AM – 7:00 PM. Directly accessible from Waterfront Station via the SeaBus transit hub."
+  },
+  {
+    "event_id": "van50-queen-elizabeth-park-gardens",
+    "event_name": "Queen Elizabeth Park & Quarry Gardens",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Queen Elizabeth Park",
+    "full_address": "4600 Cambie St, Vancouver, BC",
+    "neighborhood": "Riley Park",
+    "description": "Perched at the highest point in Vancouver, offering panoramic mountain and skyline views, sunken quarry gardens, and walking arboretums.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Daily 6:00 AM – 10:00 PM",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "viewpoint",
+      "botanical-garden",
+      "park",
+      "skyline-views"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily 6:00 AM – 10:00 PM)."
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
