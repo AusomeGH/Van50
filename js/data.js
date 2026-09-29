@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-28T17:37:34-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-28T17:43:36-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -3684,6 +3684,439 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-vancouver-art-gallery-appoints-eva-respini-si",
+    "title": "Vancouver Art Gallery appoints Eva Respini, Sirish Rao as permanent co-CEOs",
+    "venue": "Vancouver Art Gallery",
+    "address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://www.vancouverisawesome.com/hospitality-marketing-tourism/vancouver-art-gallery-appoints-eva-respini-sirish-rao-as-permanent-co-ceos-12833026",
+    "venueUrl": "https://www.vancouverisawesome.com/hospitality-marketing-tourism/vancouver-art-gallery-appoints-eva-respini-sirish-rao-as-permanent-co-ceos-12833026",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Respini and Rao will continue a shared leadership model as the gallery advances plans for its new home",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-nurse-the-dead-is-coming-to-vancouver-for-a-s",
+    "title": "‘Nurse The Dead’ Is Coming To Vancouver For A Special Filipino Community Screening",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Film",
+    "categoryLabel": "Film",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "film",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://604now.com/nurse-the-dead-vancouver-community-screening/",
+    "venueUrl": "https://604now.com/nurse-the-dead-vancouver-community-screening/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Vancouver’s Filipino community is getting another major cultural event this month. The Filipino Legacy Society (FLS) is hosting a special Vancouver screening of Nurse the Dead on September 29 at [&#8230;] The post &#8216;Nurse The Dead&#821...",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-october-events-in-vancouver-2026",
+    "title": "October Events in Vancouver 2026",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Live Music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "music",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "live-music"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/october-events-in-vancouver-2026/",
+    "venueUrl": "https://miss604.com/2026/09/october-events-in-vancouver-2026/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Best events in Vancouver this month - October edition! Enjoy harvest celebrations, Halloween haunts, live music, and more around Metro Vancouver and the Fraser Valley. The post October Events in Vancouver 2026 appeared first on Vancouver Bl...",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-polygon-award-in-first-nations-art-award-2026",
+    "title": "Polygon Award in First Nations Art Award 2026",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/polygon-award-in-first-nations-art-award-2026/",
+    "venueUrl": "https://miss604.com/2026/09/polygon-award-in-first-nations-art-award-2026/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "The BC Achievement Foundation has announced the recipients of the 2026 Polygon Award in First Nations Art, tickets for the awards ceremony on November 24th in Vancouver are now available. The post Polygon Award in First Nations Art Award 20...",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-vancouver-art-gallery-celebrates-95-years",
+    "title": "Vancouver Art Gallery Celebrates 95 Years",
+    "venue": "Vancouver Art Gallery",
+    "address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/vancouver-art-gallery-celebrates-95-years/",
+    "venueUrl": "https://miss604.com/2026/09/vancouver-art-gallery-celebrates-95-years/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "The Vancouver Art Gallery is celebrating its 95th anniversary this October, marking nearly a century as an integral part of Vancouver's cultural life. To mark the occasion, the Gallery will open its doors by donation on Friday, October 2nd....",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-new-single-our-year-from-tegan-and-sara",
+    "title": "New Single Our Year from Tegan and Sara",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Live Music",
+    "categoryLabel": "Live Music",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "music",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "live-music"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/new-single-our-year-from-tegan-and-sara/",
+    "venueUrl": "https://miss604.com/2026/09/new-single-our-year-from-tegan-and-sara/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Tegan and Sara release “Our Year,” their first new single since the 2022 release of their acclaimed tenth studio album, Crybaby. The West Coast collaboration features Lights and is produced by Felix Cartal, melding three distinct artists wi...",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-indigenous-business-awards-2026",
+    "title": "Indigenous Business Awards 2026",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/indigenous-business-awards-2026/",
+    "venueUrl": "https://miss604.com/2026/09/indigenous-business-awards-2026/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "BC Achievement Foundation has announced the 2026 recipients of the Indigenous Business Awards. Get tickets to the gala November 4th in Vancouver. The post Indigenous Business Awards 2026 appeared first on Vancouver Blog Miss604 .",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-october-is-langley-burger-month",
+    "title": "October is Langley Burger Month",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/october-is-langley-burger-month/",
+    "venueUrl": "https://miss604.com/2026/09/october-is-langley-burger-month/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Langley Burger Month (October 1-31) showcases 19 independent eateries, each serving up their signature take on the delicious handheld classic. The post October is Langley Burger Month appeared first on Vancouver Blog Miss604 .",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-mrs-doubtfire-in-vancouver",
+    "title": "Mrs. Doubtfire in Vancouver",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Queen Elizabeth Theatre, Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Art & Culture",
+    "categoryLabel": "Art & Culture",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+    "venueUrl": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "Tickets are now on sale for the Broadway Across Canada production of Mrs. Doubtfire on stage in Vancouver January 19 to 24, 2027 at the Queen Elizabeth Theatre. The post Mrs. Doubtfire in Vancouver appeared first on Vancouver Blog Miss604 .",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "id": "van50-whistler-outdoor-festival",
+    "title": "Whistler Outdoor Festival",
+    "venue": "Vancouver Cultural Venue",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.5,
+    "priceLabel": "$18.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "daysOfWeek": [
+      "daily"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "category": "Outdoor",
+    "categoryLabel": "Outdoor",
+    "categoryIcon": "🎭",
+    "subTags": [
+      "outdoors",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "outdoor"
+    ],
+    "dateSchedule": "2026-09-28 at 19:00",
+    "startIso": "2026-09-28T19:00:00-07:00",
+    "websiteUrl": "https://miss604.com/2026/09/whistler-outdoor-festival/",
+    "venueUrl": "https://miss604.com/2026/09/whistler-outdoor-festival/",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "description": "There's a new seasonal event happening up the Sea to Sky as the inaugural Whistler Outdoor Festival features outdoor activities, arts and culture, great dining deals and a full calendar of events throughout Thanksgiving weekend. The post Wh...",
     "operatingHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false

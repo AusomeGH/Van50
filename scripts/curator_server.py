@@ -1332,6 +1332,24 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "message": "Antigravity Autonomous QC Pass launched in background."
             })
 
+        # API: Trigger Antigravity Autonomous Event Scout (Crawl discovery feeds & venues)
+        if path == "/api/curator/crawl-events":
+            def _scout_worker():
+                import subprocess
+                scripts_dir = os.path.join(BASE_DIR, "scripts")
+                scout_script = os.path.join(scripts_dir, "antigravity_event_scout.py")
+                cmd = [sys.executable, scout_script]
+                try:
+                    subprocess.Popen(cmd, cwd=BASE_DIR)
+                except Exception as ex:
+                    print(f"[ERROR] Failed to launch Antigravity Event Scout: {ex}")
+
+            threading.Thread(target=_scout_worker, daemon=True).start()
+            return self._send_json(200, {
+                "success": True,
+                "message": "Antigravity Event Scout launched in background."
+            })
+
         # Sliding window rate limit on mutating endpoints
         if path in {
             "/api/curator/approve", "/api/curator/reject", "/api/curator/rules", 

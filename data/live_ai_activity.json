@@ -1,12 +1,12 @@
 {
   "status": "idle",
   "current_task": "Antigravity AI Engine (Ultra)",
-  "current_step": "Audit Complete: 76 verified active, 0 quarantined, 0 archived.",
+  "current_step": "Audit Complete: 86 verified active, 0 quarantined, 0 archived.",
   "progress_percent": 100,
-  "last_updated": "2026-09-28T17:37:34.571364",
+  "last_updated": "2026-09-28T17:43:36.429513",
   "stats": {
-    "confirmed": 96,
-    "new_events": 33,
+    "confirmed": 182,
+    "new_events": 45,
     "new_venues": 10,
     "new_sources": 10,
     "quarantined": 3,
@@ -14,532 +14,604 @@
   },
   "recent_logs": [
     {
-      "id": "log_1",
-      "timestamp": "16:58:12",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Brockton Point\" • Open Hours: 24/7 Daily"
-    },
-    {
-      "id": "log_2",
-      "timestamp": "16:58:24",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Queen Elizabeth Park & Quarry Gardens\" • Open Hours: 06:00 – 22:00 Daily"
-    },
-    {
-      "id": "log_3",
-      "timestamp": "16:58:39",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Stir Vancouver Arts & Culture Hub\" (createastir.ca)"
-    },
-    {
-      "id": "log_4",
-      "timestamp": "16:58:55",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Contemporary Art Gallery\" (Yaletown)"
-    },
-    {
-      "id": "log_5",
-      "timestamp": "16:59:10",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Contemporary Art Gallery Free Public Admission\" at Contemporary Art Gallery ($0.00 CAD | Free Public Access - 12:00 – 18:00 Tue–Sun)"
-    },
-    {
-      "id": "log_6",
-      "timestamp": "16:59:30",
-      "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"Harvest Days at VanDusen Botanical Garden\" • Reason: AI Public Access Audit: Harvest Days at VanDusen Botanical Garden requires paid admission and does not offer 100% free walk-in public access."
-    },
-    {
-      "id": "log_7",
-      "timestamp": "17:00:02",
-      "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"Nightly Live Music & GroundUp Sets at Guilt & Company\" • Reason: AI Public Access Audit: Mandatory per-set artist cover fee ($7–$15); not free walk-in."
-    },
-    {
-      "id": "log_8",
-      "timestamp": "17:00:25",
-      "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"Frankie's Jazz Club: Weekly Roots & Late-Night Sets\" • Reason: AI Public Access Audit: Commercial ticketed venue ($20–$35+) with mandatory late-night cover."
-    },
-    {
-      "id": "log_9",
-      "timestamp": "17:00:50",
-      "type": "ARCHIVED",
-      "message": "[ARCHIVED] \"Vancouver Etsy Co Fall Pop-Up Market\" • Reason: Event was a single-day market on Sept 26, 2026, and has concluded."
-    },
-    {
-      "id": "log_10",
-      "timestamp": "17:01:15",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Public Library Central Branch Rooftop Garden\" • Open Hours: 10:00 – 20:30 Mon–Thu, 10:00 – 18:00 Fri–Sat, 11:00 – 18:00 Sun"
-    },
-    {
-      "id": "log_1790640865790",
-      "timestamp": "17:14:25",
-      "type": "INFO",
-      "message": "Created safety backup: events_2026-09-28_171425.json"
-    },
-    {
-      "id": "log_1790642250749",
-      "timestamp": "17:37:30",
-      "type": "INFO",
-      "message": "Safety snapshot preserved: events_antigravity_2026-09-28_173730.json"
-    },
-    {
-      "id": "log_1790642250817",
-      "timestamp": "17:37:30",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Pendulum Gallery\" • Open Hours: Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM"
-    },
-    {
-      "id": "log_1790642250884",
-      "timestamp": "17:37:30",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG)\" • Open Hours: Wednesday – Sunday 12:00 PM – 6:00 PM (Closed Monday & Tuesday)"
-    },
-    {
-      "id": "log_1790642250928",
-      "timestamp": "17:37:30",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Public Park\" • Open Hours: Tuesday – Sunday 10:00 AM – 4:30 PM"
-    },
-    {
-      "id": "log_1790642250958",
-      "timestamp": "17:37:30",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Public Library (Central Branch) & Rooftop Garden\" • Open Hours: Monday – Thursday 9:30 AM – 8:30 PM; Friday – Saturday 9:30 AM – 5:00 PM; Sunday 11:00 AM – 5:00 PM"
-    },
-    {
-      "id": "log_1790642250984",
-      "timestamp": "17:37:30",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Rose Garden\" • Open Hours: Daily 6:00 AM – 10:00 PM"
-    },
-    {
-      "id": "log_1790642251013",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights & Youth Access\" • Open Hours: Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)"
-    },
-    {
-      "id": "log_1790642251040",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Park Courtyard\" • Open Hours: Daily 10:00 AM – 4:00 PM"
-    },
-    {
-      "id": "log_1790642251070",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Shipyards & Lonsdale Quay Waterfront Promenade\" • Open Hours: Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)"
-    },
-    {
-      "id": "log_1790642251095",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Granville Island Public Market & Boardwalks\" • Open Hours: Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7"
-    },
-    {
-      "id": "log_1790642251122",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Scenic Viewpoints\" • Open Hours: Daily: 6:00 AM – 10:00 PM"
-    },
-    {
-      "id": "log_1790642251148",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery – Free First Friday Nights\" • Open Hours: First Friday of each month: 4:00 PM – 8:00 PM"
-    },
-    {
-      "id": "log_1790642251177",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Canada Place Promenade & The Canadian Trail\" • Open Hours: Daily: 7:00 AM – 11:00 PM"
-    },
-    {
-      "id": "log_1790642251241",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Polygon Gallery Admission by Donation\" • Open Hours: Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed"
-    },
-    {
-      "id": "log_1790642251316",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Garden (Public Park Section)\" • Open Hours: Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)"
-    },
-    {
-      "id": "log_1790642251396",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Truth & Reconciliation Public Film Screening\" • Date: 2026-09-30 at 12:30 ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642251429",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Theatresports™\" • Date: Upcoming ($33.50 CAD)"
-    },
-    {
-      "id": "log_1790642251471",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Deadly Dinner Party\" • Date: Upcoming ($38.18 CAD)"
-    },
-    {
-      "id": "log_1790642251499",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"HEIST by Arun Lakra\" • Date: Upcoming ($39.00 CAD)"
-    },
-    {
-      "id": "log_1790642251522",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Metro Vancouver Croissant Crawl\" • Date: Upcoming ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642251544",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Burnaby Central Railway Miniature Train Rides\" • Date: Upcoming ($5.00 CAD)"
-    },
-    {
-      "id": "log_1790642251571",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Brockton Point\" • Open Hours: Daily 6:00 AM – 10:00 PM"
-    },
-    {
-      "id": "log_1790642251593",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Robson Square & šxʷƛ̓ənəq Xwtl'e7énk Square\" • Open Hours: Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)"
-    },
-    {
-      "id": "log_1790642251617",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Splash Annual Art Exhibition at Pendulum Gallery\" • Open Hours: Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed"
-    },
-    {
-      "id": "log_1790642251641",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Silent Movie Mondays at The Orpheum\" • Date: 2026-10-26 at 19:30 ($21.00 CAD)"
-    },
-    {
-      "id": "log_1790642251666",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"First Friday Free Evenings at Vancouver Art Gallery\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642251691",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG)\" • Open Hours: Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays)"
-    },
-    {
-      "id": "log_1790642251715",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Courtyard & Park\" • Open Hours: Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)"
-    },
-    {
-      "id": "log_1790642251751",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries\" • Open Hours: Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM"
-    },
-    {
-      "id": "log_1790642251779",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG) Public Exhibitions\" • Open Hours: Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed"
-    },
-    {
-      "id": "log_1790642251840",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Plaza of Nations Waterfront Esplanade & Batch Patio\" • Open Hours: Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed"
-    },
-    {
-      "id": "log_1790642251869",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Sunday Jazz Vespers at St. Andrew's-Wesley\" • Date: 2026-10-04 at 16:00 ($10.00 CAD)"
-    },
-    {
-      "id": "log_1790642251893",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Saturday Afternoon Roots & Blues Sessions with Mike VanEyes\" • Date: 2026-10-03 at 16:00 ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642251928",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Evergrey with HammerFall & Elvenking\" • Date: 2026-10-07 at 18:30 ($35.00 CAD)"
-    },
-    {
-      "id": "log_1790642251967",
-      "timestamp": "17:37:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Miesha and The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($28.25 CAD)"
-    },
-    {
-      "id": "log_1790642252007",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Raagaverse + Strings\" • Date: 2026-10-15 at 19:30 ($21.02 CAD)"
-    },
-    {
-      "id": "log_1790642252039",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Tim Burton’s Funeral: A Naturally Freaky Cabaret\" • Date: 2026-10-24 at 20:00 ($20.00 CAD)"
-    },
-    {
-      "id": "log_1790642252071",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Silent Movie Mondays\" • Date: 2026-10-26 at 19:30 ($26.78 CAD)"
-    },
-    {
-      "id": "log_1790642252097",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Granville Island Public Market\" • Open Hours: Daily 9:00 AM – 6:00 PM"
-    },
-    {
-      "id": "log_1790642252123",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Canada Place Promenade & The Canadian Trail\" • Open Hours: Daily: 7:00 AM – 11:00 PM"
-    },
-    {
-      "id": "log_1790642252156",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Robson Square & 800 Robson Plaza\" • Open Hours: Open 24/7"
-    },
-    {
-      "id": "log_1790642252182",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Queen Elizabeth Park & Quarry Gardens\" • Open Hours: Daily 6:00 AM – 10:00 PM"
-    },
-    {
-      "id": "log_1790642252209",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!\" • Date: 2027-01-22 at 19:00 ($17.31 CAD)"
-    },
-    {
-      "id": "log_1790642252236",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Raagaverse + Strings\" • Date: 2026-10-15 at 19:30 ($34.50 CAD)"
-    },
-    {
-      "id": "log_1790642252262",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Tim Burton’s Funeral – A Naturally Freaky Cabaret\" • Date: 2026-10-24 at 20:00 ($24.00 CAD)"
-    },
-    {
-      "id": "log_1790642252290",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Witches Harvest Market\" • Date: 2026-10-25 at 11:00 ($5.00 CAD)"
-    },
-    {
-      "id": "log_1790642252314",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Miesha & The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($15.00 CAD)"
-    },
-    {
-      "id": "log_1790642252346",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Football vs. U of C\" • Date: 2026-10-16 at 18:00 ($17.50 CAD)"
-    },
-    {
-      "id": "log_1790642252377",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Men's Basketball vs. TWU\" • Date: 2026-10-29 at 19:30 ($17.50 CAD)"
-    },
-    {
-      "id": "log_1790642252425",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Alistair Ogden Live at The Rio Theatre\" • Date: 2026-12-04 at 19:30 ($27.96 CAD)"
-    },
-    {
-      "id": "log_1790642252493",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642252532",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Opera: Tosca\" • Date: 2026-10-24 at 19:30 ($25.00 CAD)"
-    },
-    {
-      "id": "log_1790642252574",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ballet BC: Bodies & Voices\" • Date: 2026-11-05 at 19:30 ($19.00 CAD)"
-    },
-    {
-      "id": "log_1790642252617",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)\" • Date: 2026-10-01 at 17:30 ($22.00 CAD)"
-    },
-    {
-      "id": "log_1790642252660",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ethan Regan - Young Regan Tour\" • Date: 2026-10-03 at 19:30 ($29.50 CAD)"
-    },
-    {
-      "id": "log_1790642252709",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Schalk Bezuidenhout: Hey Hey Divorcè\" • Date: 2026-09-29 at 19:00 ($43.00 CAD)"
-    },
-    {
-      "id": "log_1790642252739",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"JOON with Lauryn Kovacs\" • Date: 2026-10-02 at 19:00 ($40.23 CAD)"
-    },
-    {
-      "id": "log_1790642252774",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery Admission by Donation Day\" • Date: 2026-10-02 at 10:00 ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790642252814",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"What Else? (Live Comedy & Trivia Show)\" • Date: 2026-10-03 at 19:00 ($19.50 CAD)"
-    },
-    {
-      "id": "log_1790642252858",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"LØLØ: God Forbid a Girl Goes on Tour\" • Date: 2026-10-03 at 18:00 ($45.00 CAD)"
-    },
-    {
-      "id": "log_1790642252938",
-      "timestamp": "17:37:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Babes In Canyon w/ Anna Smyrk & Shelby Natasha\" • Date: 2026-10-08 at 19:00 ($28.50 CAD)"
-    },
-    {
-      "id": "log_1790642253003",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"ACTORS with Sacred Skin & MØAA\" • Date: 2026-10-09 at 19:00 ($35.00 CAD)"
-    },
-    {
-      "id": "log_1790642253038",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dälek\" • Date: 2026-10-09 at 20:00 ($31.50 CAD)"
-    },
-    {
-      "id": "log_1790642253068",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"00s vs 10s & Ultimate 90s Weekend Dance Parties\" • Date: 2026-10-10 at 22:30 ($18.00 CAD)"
-    },
-    {
-      "id": "log_1790642253095",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"SALIN (Live Soul & World Jazz)\" • Date: 2026-10-10 at 19:30 ($35.67 CAD)"
-    },
-    {
-      "id": "log_1790642253122",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Militarie Gun with Softcult, Shady Nasty & Dazy\" • Date: 2026-10-10 at 18:00 ($25.50 CAD)"
-    },
-    {
-      "id": "log_1790642253151",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Sunday Service (Live Improv Comedy)\" • Date: 2026-10-11 at 19:00 ($17.50 CAD)"
-    },
-    {
-      "id": "log_1790642253188",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stand-Up Showcase at Little Mountain Gallery\" • Date: 2026-10-15 at 19:30 ($15.00 CAD)"
-    },
-    {
-      "id": "log_1790642253229",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Rio Theatre Burlesque & Variety Show\" • Date: 2026-10-17 at 21:00 ($30.00 CAD)"
-    },
-    {
-      "id": "log_1790642253263",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Apple Festival (35th Annual)\" • Date: 2026-10-18 at 11:00 ($12.00 CAD)"
-    },
-    {
-      "id": "log_1790642253307",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dummy with Golomb & worrywart\" • Date: 2026-10-22 at 20:00 ($22.50 CAD)"
-    },
-    {
-      "id": "log_1790642253341",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Olive Klug with Frail Talk\" • Date: 2026-10-25 at 19:30 ($32.83 CAD)"
-    },
-    {
-      "id": "log_1790642253389",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"City Pop City (Chen Baker & Technodelic)\" • Date: 2026-11-21 at 19:30 ($35.50 CAD)"
-    },
-    {
-      "id": "log_1790642253437",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ruby Haunt with VHS Ghost\" • Date: 2026-12-11 at 20:00 ($32.06 CAD)"
-    },
-    {
-      "id": "log_1790642253479",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Live Jazz, Soul & R&B Nightly at Guilt & Co.\" • Date: 2026-09-28 at 19:00 ($8.00 CAD)"
-    },
-    {
-      "id": "log_1790642253519",
-      "timestamp": "17:37:33",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Saturday Night at The Orpheum\" • Date: 2026-10-03 at 14:00 ($31.50 CAD)"
-    },
-    {
       "id": "log_1790642253551",
       "timestamp": "17:37:33",
       "type": "CONFIRMED",
       "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Sunday Concert at The Orpheum\" • Date: 2026-10-04 at 14:00 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1790642547714",
+      "timestamp": "17:42:27",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Former 'American Idol' singer Caleb Flynn is on trial in wife's killing. He says a burglar did it\" at Vancouver Cultural Venue ($18.50 CAD | Vancouver Is Awesome)"
+    },
+    {
+      "id": "log_1790642547793",
+      "timestamp": "17:42:27",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Man on Utah's death row for decades ordered released on bail after DNA tests show no match to him\" at Vancouver Cultural Venue ($18.50 CAD | Vancouver Is Awesome)"
+    },
+    {
+      "id": "log_1790642547856",
+      "timestamp": "17:42:27",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery appoints Eva Respini, Sirish Rao as permanent co-CEOs\" at Vancouver Art Gallery ($18.50 CAD | Vancouver Is Awesome)"
+    },
+    {
+      "id": "log_1790642550621",
+      "timestamp": "17:42:30",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"‘Nurse The Dead’ Is Coming To Vancouver For A Special Filipino Community Screening\" at Vancouver Cultural Venue ($18.50 CAD | 604 Now)"
+    },
+    {
+      "id": "log_1790642555510",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"October Events in Vancouver 2026\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555576",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Polygon Award in First Nations Art Award 2026\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555634",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery Celebrates 95 Years\" at Vancouver Art Gallery ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555693",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"New Single Our Year from Tegan and Sara\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555764",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Indigenous Business Awards 2026\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555794",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"October is Langley Burger Month\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555829",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Mrs. Doubtfire in Vancouver\" at Queen Elizabeth Theatre ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642555855",
+      "timestamp": "17:42:35",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Whistler Outdoor Festival\" at Vancouver Cultural Venue ($18.50 CAD | Miss604)"
+    },
+    {
+      "id": "log_1790642613334",
+      "timestamp": "17:43:33",
+      "type": "INFO",
+      "message": "Safety snapshot preserved: events_antigravity_2026-09-28_174333.json"
+    },
+    {
+      "id": "log_1790642613400",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Pendulum Gallery\" • Open Hours: Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM"
+    },
+    {
+      "id": "log_1790642613443",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG)\" • Open Hours: Wednesday – Sunday 12:00 PM – 6:00 PM (Closed Monday & Tuesday)"
+    },
+    {
+      "id": "log_1790642613489",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Public Park\" • Open Hours: Tuesday – Sunday 10:00 AM – 4:30 PM"
+    },
+    {
+      "id": "log_1790642613536",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Public Library (Central Branch) & Rooftop Garden\" • Open Hours: Monday – Thursday 9:30 AM – 8:30 PM; Friday – Saturday 9:30 AM – 5:00 PM; Sunday 11:00 AM – 5:00 PM"
+    },
+    {
+      "id": "log_1790642613582",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Stanley Park Seawall & Rose Garden\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+    },
+    {
+      "id": "log_1790642613627",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights & Youth Access\" • Open Hours: Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)"
+    },
+    {
+      "id": "log_1790642613672",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Park Courtyard\" • Open Hours: Daily 10:00 AM – 4:00 PM"
+    },
+    {
+      "id": "log_1790642613698",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"The Shipyards & Lonsdale Quay Waterfront Promenade\" • Open Hours: Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)"
+    },
+    {
+      "id": "log_1790642613717",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Granville Island Public Market & Boardwalks\" • Open Hours: Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7"
+    },
+    {
+      "id": "log_1790642613734",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Stanley Park Seawall & Scenic Viewpoints\" • Open Hours: Daily: 6:00 AM – 10:00 PM"
+    },
+    {
+      "id": "log_1790642613754",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery – Free First Friday Nights\" • Open Hours: First Friday of each month: 4:00 PM – 8:00 PM"
+    },
+    {
+      "id": "log_1790642613781",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Canada Place Promenade & The Canadian Trail\" • Open Hours: Daily: 7:00 AM – 11:00 PM"
+    },
+    {
+      "id": "log_1790642613801",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"The Polygon Gallery Admission by Donation\" • Open Hours: Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed"
+    },
+    {
+      "id": "log_1790642613827",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Garden (Public Park Section)\" • Open Hours: Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)"
+    },
+    {
+      "id": "log_1790642613871",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Truth & Reconciliation Public Film Screening\" • Date: 2026-09-30 at 12:30 ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642613904",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Theatresports™\" • Date: Upcoming ($33.50 CAD)"
+    },
+    {
+      "id": "log_1790642613928",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Deadly Dinner Party\" • Date: Upcoming ($38.18 CAD)"
+    },
+    {
+      "id": "log_1790642613946",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"HEIST by Arun Lakra\" • Date: Upcoming ($39.00 CAD)"
+    },
+    {
+      "id": "log_1790642613969",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Metro Vancouver Croissant Crawl\" • Date: Upcoming ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642613990",
+      "timestamp": "17:43:33",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Burnaby Central Railway Miniature Train Rides\" • Date: Upcoming ($5.00 CAD)"
+    },
+    {
+      "id": "log_1790642614015",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Stanley Park Seawall & Brockton Point\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+    },
+    {
+      "id": "log_1790642614033",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Robson Square & šxʷƛ̓ənəq Xwtl'e7énk Square\" • Open Hours: Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)"
+    },
+    {
+      "id": "log_1790642614052",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Splash Annual Art Exhibition at Pendulum Gallery\" • Open Hours: Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed"
+    },
+    {
+      "id": "log_1790642614070",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Silent Movie Mondays at The Orpheum\" • Date: 2026-10-26 at 19:30 ($21.00 CAD)"
+    },
+    {
+      "id": "log_1790642614094",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"First Friday Free Evenings at Vancouver Art Gallery\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642614110",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG)\" • Open Hours: Tuesday – Sunday 12:00 PM – 6:00 PM (Closed Mondays)"
+    },
+    {
+      "id": "log_1790642614129",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Courtyard & Park\" • Open Hours: Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)"
+    },
+    {
+      "id": "log_1790642614148",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries\" • Open Hours: Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM"
+    },
+    {
+      "id": "log_1790642614180",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG) Public Exhibitions\" • Open Hours: Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed"
+    },
+    {
+      "id": "log_1790642614214",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Plaza of Nations Waterfront Esplanade & Batch Patio\" • Open Hours: Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed"
+    },
+    {
+      "id": "log_1790642614246",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Sunday Jazz Vespers at St. Andrew's-Wesley\" • Date: 2026-10-04 at 16:00 ($10.00 CAD)"
+    },
+    {
+      "id": "log_1790642614278",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Saturday Afternoon Roots & Blues Sessions with Mike VanEyes\" • Date: 2026-10-03 at 16:00 ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642614309",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Evergrey with HammerFall & Elvenking\" • Date: 2026-10-07 at 18:30 ($35.00 CAD)"
+    },
+    {
+      "id": "log_1790642614331",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Miesha and The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($28.25 CAD)"
+    },
+    {
+      "id": "log_1790642614355",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Raagaverse + Strings\" • Date: 2026-10-15 at 19:30 ($21.02 CAD)"
+    },
+    {
+      "id": "log_1790642614381",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Tim Burton’s Funeral: A Naturally Freaky Cabaret\" • Date: 2026-10-24 at 20:00 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1790642614405",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Silent Movie Mondays\" • Date: 2026-10-26 at 19:30 ($26.78 CAD)"
+    },
+    {
+      "id": "log_1790642614424",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Granville Island Public Market\" • Open Hours: Daily 9:00 AM – 6:00 PM"
+    },
+    {
+      "id": "log_1790642614442",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Canada Place Promenade & The Canadian Trail\" • Open Hours: Daily: 7:00 AM – 11:00 PM"
+    },
+    {
+      "id": "log_1790642614472",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Robson Square & 800 Robson Plaza\" • Open Hours: Open 24/7"
+    },
+    {
+      "id": "log_1790642614498",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Queen Elizabeth Park & Quarry Gardens\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+    },
+    {
+      "id": "log_1790642614522",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!\" • Date: 2027-01-22 at 19:00 ($17.31 CAD)"
+    },
+    {
+      "id": "log_1790642614544",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Raagaverse + Strings\" • Date: 2026-10-15 at 19:30 ($34.50 CAD)"
+    },
+    {
+      "id": "log_1790642614566",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Tim Burton’s Funeral – A Naturally Freaky Cabaret\" • Date: 2026-10-24 at 20:00 ($24.00 CAD)"
+    },
+    {
+      "id": "log_1790642614585",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Witches Harvest Market\" • Date: 2026-10-25 at 11:00 ($5.00 CAD)"
+    },
+    {
+      "id": "log_1790642614601",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Miesha & The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($15.00 CAD)"
+    },
+    {
+      "id": "log_1790642614619",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"UBC Football vs. U of C\" • Date: 2026-10-16 at 18:00 ($17.50 CAD)"
+    },
+    {
+      "id": "log_1790642614641",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"UBC Men's Basketball vs. TWU\" • Date: 2026-10-29 at 19:30 ($17.50 CAD)"
+    },
+    {
+      "id": "log_1790642614663",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Alistair Ogden Live at The Rio Theatre\" • Date: 2026-12-04 at 19:30 ($27.96 CAD)"
+    },
+    {
+      "id": "log_1790642614679",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642614696",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Opera: Tosca\" • Date: 2026-10-24 at 19:30 ($25.00 CAD)"
+    },
+    {
+      "id": "log_1790642614715",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Ballet BC: Bodies & Voices\" • Date: 2026-11-05 at 19:30 ($19.00 CAD)"
+    },
+    {
+      "id": "log_1790642614749",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)\" • Date: 2026-10-01 at 17:30 ($22.00 CAD)"
+    },
+    {
+      "id": "log_1790642614772",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Ethan Regan - Young Regan Tour\" • Date: 2026-10-03 at 19:30 ($29.50 CAD)"
+    },
+    {
+      "id": "log_1790642614796",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Schalk Bezuidenhout: Hey Hey Divorcè\" • Date: 2026-09-29 at 19:00 ($43.00 CAD)"
+    },
+    {
+      "id": "log_1790642614819",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"JOON with Lauryn Kovacs\" • Date: 2026-10-02 at 19:00 ($40.23 CAD)"
+    },
+    {
+      "id": "log_1790642614845",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery Admission by Donation Day\" • Date: 2026-10-02 at 10:00 ($0.00 CAD)"
+    },
+    {
+      "id": "log_1790642614883",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"What Else? (Live Comedy & Trivia Show)\" • Date: 2026-10-03 at 19:00 ($19.50 CAD)"
+    },
+    {
+      "id": "log_1790642614915",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"LØLØ: God Forbid a Girl Goes on Tour\" • Date: 2026-10-03 at 18:00 ($45.00 CAD)"
+    },
+    {
+      "id": "log_1790642614941",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Babes In Canyon w/ Anna Smyrk & Shelby Natasha\" • Date: 2026-10-08 at 19:00 ($28.50 CAD)"
+    },
+    {
+      "id": "log_1790642614982",
+      "timestamp": "17:43:34",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"ACTORS with Sacred Skin & MØAA\" • Date: 2026-10-09 at 19:00 ($35.00 CAD)"
+    },
+    {
+      "id": "log_1790642615016",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dälek\" • Date: 2026-10-09 at 20:00 ($31.50 CAD)"
+    },
+    {
+      "id": "log_1790642615042",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"00s vs 10s & Ultimate 90s Weekend Dance Parties\" • Date: 2026-10-10 at 22:30 ($18.00 CAD)"
+    },
+    {
+      "id": "log_1790642615062",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"SALIN (Live Soul & World Jazz)\" • Date: 2026-10-10 at 19:30 ($35.67 CAD)"
+    },
+    {
+      "id": "log_1790642615081",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Militarie Gun with Softcult, Shady Nasty & Dazy\" • Date: 2026-10-10 at 18:00 ($25.50 CAD)"
+    },
+    {
+      "id": "log_1790642615109",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"The Sunday Service (Live Improv Comedy)\" • Date: 2026-10-11 at 19:00 ($17.50 CAD)"
+    },
+    {
+      "id": "log_1790642615132",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Stand-Up Showcase at Little Mountain Gallery\" • Date: 2026-10-15 at 19:30 ($15.00 CAD)"
+    },
+    {
+      "id": "log_1790642615152",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"The Rio Theatre Burlesque & Variety Show\" • Date: 2026-10-17 at 21:00 ($30.00 CAD)"
+    },
+    {
+      "id": "log_1790642615177",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"UBC Apple Festival (35th Annual)\" • Date: 2026-10-18 at 11:00 ($12.00 CAD)"
+    },
+    {
+      "id": "log_1790642615197",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Dummy with Golomb & worrywart\" • Date: 2026-10-22 at 20:00 ($22.50 CAD)"
+    },
+    {
+      "id": "log_1790642615216",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Olive Klug with Frail Talk\" • Date: 2026-10-25 at 19:30 ($32.83 CAD)"
+    },
+    {
+      "id": "log_1790642615241",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"City Pop City (Chen Baker & Technodelic)\" • Date: 2026-11-21 at 19:30 ($35.50 CAD)"
+    },
+    {
+      "id": "log_1790642615269",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Ruby Haunt with VHS Ghost\" • Date: 2026-12-11 at 20:00 ($32.06 CAD)"
+    },
+    {
+      "id": "log_1790642615295",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Live Jazz, Soul & R&B Nightly at Guilt & Co.\" • Date: 2026-09-28 at 19:00 ($8.00 CAD)"
+    },
+    {
+      "id": "log_1790642615321",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Saturday Night at The Orpheum\" • Date: 2026-10-03 at 14:00 ($31.50 CAD)"
+    },
+    {
+      "id": "log_1790642615354",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Sunday Concert at The Orpheum\" • Date: 2026-10-04 at 14:00 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1790642615386",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery appoints Eva Respini, Sirish Rao as permanent co-CEOs\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615414",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"‘Nurse The Dead’ Is Coming To Vancouver For A Special Filipino Community Screening\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615446",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"October Events in Vancouver 2026\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615470",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Polygon Award in First Nations Art Award 2026\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615488",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Art Gallery Celebrates 95 Years\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615504",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"New Single Our Year from Tegan and Sara\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615520",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Indigenous Business Awards 2026\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615535",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"October is Langley Burger Month\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615553",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Mrs. Doubtfire in Vancouver\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
+    },
+    {
+      "id": "log_1790642615569",
+      "timestamp": "17:43:35",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Whistler Outdoor Festival\" • Date: 2026-09-28 at 19:00 ($18.50 CAD)"
     }
   ]
 }

@@ -4701,9 +4701,57 @@ function initLiveAIActivityFeed() {
         setTimeout(() => {
           if (runQcBtn) {
             runQcBtn.disabled = false;
-            runQcBtn.innerHTML = '<span>⚡ Run QC AI</span>';
+            runQcBtn.innerHTML = '<span>⚡ Run QC Audit</span>';
           }
         }, 3000);
+      }
+    });
+  }
+
+  const crawlBtn = document.getElementById('btn-antigravity-crawl');
+  if (crawlBtn) {
+    crawlBtn.addEventListener('click', async () => {
+      if (!confirm('Launch Antigravity Autonomous Event Scout?\n\nThis will:\n1. Crawl registered discovery sources, editorial calendars, and RSS feeds.\n2. Discover new concerts, screenings, comedy, and free drop-in outings.\n3. Match against known venues under $50 CAD.\n4. Stream discovered events live into this console.')) {
+        return;
+      }
+      
+      try {
+        crawlBtn.disabled = true;
+        crawlBtn.innerHTML = '<span>⏳ Crawling...</span>';
+        
+        // Auto-open terminal
+        if (terminalContainer && terminalContainer.style.display === 'none') {
+          terminalContainer.style.display = 'block';
+          if (toggleText) toggleText.textContent = 'Hide Live Stream';
+          if (toggleIcon) toggleIcon.textContent = '✖';
+          localStorage.setItem('curator_ai_terminal_open', 'true');
+        }
+
+        const res = await fetch('/api/curator/crawl-events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Curator-Token': state.token || ''
+          },
+          body: JSON.stringify({})
+        });
+
+        if (res.ok) {
+          showToast('🌐 Antigravity Event Scout active! Streaming discoveries live.', 'success');
+          fetchLiveAIActivity();
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast(`Could not start scout: ${err.error || 'Server error'}`, 'warning');
+        }
+      } catch (err) {
+        showToast(`Failed to trigger scout: ${err.message}`, 'danger');
+      } finally {
+        setTimeout(() => {
+          if (crawlBtn) {
+            crawlBtn.disabled = false;
+            crawlBtn.innerHTML = '<span>🌐 Crawl &amp; Scout Events</span>';
+          }
+        }, 4000);
       }
     });
   }

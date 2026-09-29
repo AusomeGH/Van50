@@ -2941,5 +2941,378 @@
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "AI Pass 2 (2026-09-28): Maintained official VSO ticketing link and added accessible matinee, student, and film-orchestra tags."
+  },
+  {
+    "event_id": "van50-vancouver-art-gallery-appoints-eva-respini-si",
+    "event_name": "Vancouver Art Gallery appoints Eva Respini, Sirish Rao as permanent co-CEOs",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Art Gallery",
+    "full_address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Respini and Rao will continue a shared leadership model as the gallery advances plans for its new home",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.vancouverisawesome.com/hospitality-marketing-tourism/vancouver-art-gallery-appoints-eva-respini-sirish-rao-as-permanent-co-ceos-12833026",
+    "details_url": "https://www.vancouverisawesome.com/hospitality-marketing-tourism/vancouver-art-gallery-appoints-eva-respini-sirish-rao-as-permanent-co-ceos-12833026",
+    "ticket_url": "https://www.vancouverisawesome.com/hospitality-marketing-tourism/vancouver-art-gallery-appoints-eva-respini-sirish-rao-as-permanent-co-ceos-12833026",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Vancouver Is Awesome"
+  },
+  {
+    "event_id": "van50-nurse-the-dead-is-coming-to-vancouver-for-a-s",
+    "event_name": "‘Nurse The Dead’ Is Coming To Vancouver For A Special Filipino Community Screening",
+    "category": "Film",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "Vancouver’s Filipino community is getting another major cultural event this month. The Filipino Legacy Society (FLS) is hosting a special Vancouver screening of Nurse the Dead on September 29 at [&#8230;] The post &#8216;Nurse The Dead&#821...",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://604now.com/nurse-the-dead-vancouver-community-screening/",
+    "details_url": "https://604now.com/nurse-the-dead-vancouver-community-screening/",
+    "ticket_url": "https://604now.com/nurse-the-dead-vancouver-community-screening/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "film",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from 604 Now"
+  },
+  {
+    "event_id": "van50-october-events-in-vancouver-2026",
+    "event_name": "October Events in Vancouver 2026",
+    "category": "Live Music",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "Best events in Vancouver this month - October edition! Enjoy harvest celebrations, Halloween haunts, live music, and more around Metro Vancouver and the Fraser Valley. The post October Events in Vancouver 2026 appeared first on Vancouver Bl...",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/october-events-in-vancouver-2026/",
+    "details_url": "https://miss604.com/2026/09/october-events-in-vancouver-2026/",
+    "ticket_url": "https://miss604.com/2026/09/october-events-in-vancouver-2026/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "music",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "live-music"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-polygon-award-in-first-nations-art-award-2026",
+    "event_name": "Polygon Award in First Nations Art Award 2026",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "The BC Achievement Foundation has announced the recipients of the 2026 Polygon Award in First Nations Art, tickets for the awards ceremony on November 24th in Vancouver are now available. The post Polygon Award in First Nations Art Award 20...",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/polygon-award-in-first-nations-art-award-2026/",
+    "details_url": "https://miss604.com/2026/09/polygon-award-in-first-nations-art-award-2026/",
+    "ticket_url": "https://miss604.com/2026/09/polygon-award-in-first-nations-art-award-2026/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-vancouver-art-gallery-celebrates-95-years",
+    "event_name": "Vancouver Art Gallery Celebrates 95 Years",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Art Gallery",
+    "full_address": "750 Hornby St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "The Vancouver Art Gallery is celebrating its 95th anniversary this October, marking nearly a century as an integral part of Vancouver's cultural life. To mark the occasion, the Gallery will open its doors by donation on Friday, October 2nd....",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/vancouver-art-gallery-celebrates-95-years/",
+    "details_url": "https://miss604.com/2026/09/vancouver-art-gallery-celebrates-95-years/",
+    "ticket_url": "https://miss604.com/2026/09/vancouver-art-gallery-celebrates-95-years/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-new-single-our-year-from-tegan-and-sara",
+    "event_name": "New Single Our Year from Tegan and Sara",
+    "category": "Live Music",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "Tegan and Sara release “Our Year,” their first new single since the 2022 release of their acclaimed tenth studio album, Crybaby. The West Coast collaboration features Lights and is produced by Felix Cartal, melding three distinct artists wi...",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/new-single-our-year-from-tegan-and-sara/",
+    "details_url": "https://miss604.com/2026/09/new-single-our-year-from-tegan-and-sara/",
+    "ticket_url": "https://miss604.com/2026/09/new-single-our-year-from-tegan-and-sara/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "music",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "live-music"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-indigenous-business-awards-2026",
+    "event_name": "Indigenous Business Awards 2026",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "BC Achievement Foundation has announced the 2026 recipients of the Indigenous Business Awards. Get tickets to the gala November 4th in Vancouver. The post Indigenous Business Awards 2026 appeared first on Vancouver Blog Miss604 .",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/indigenous-business-awards-2026/",
+    "details_url": "https://miss604.com/2026/09/indigenous-business-awards-2026/",
+    "ticket_url": "https://miss604.com/2026/09/indigenous-business-awards-2026/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-october-is-langley-burger-month",
+    "event_name": "October is Langley Burger Month",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "Langley Burger Month (October 1-31) showcases 19 independent eateries, each serving up their signature take on the delicious handheld classic. The post October is Langley Burger Month appeared first on Vancouver Blog Miss604 .",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/october-is-langley-burger-month/",
+    "details_url": "https://miss604.com/2026/09/october-is-langley-burger-month/",
+    "ticket_url": "https://miss604.com/2026/09/october-is-langley-burger-month/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-mrs-doubtfire-in-vancouver",
+    "event_name": "Mrs. Doubtfire in Vancouver",
+    "category": "Art & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Queen Elizabeth Theatre",
+    "full_address": "Queen Elizabeth Theatre, Vancouver, BC",
+    "neighborhood": "Downtown / West End",
+    "description": "Tickets are now on sale for the Broadway Across Canada production of Mrs. Doubtfire on stage in Vancouver January 19 to 24, 2027 at the Queen Elizabeth Theatre. The post Mrs. Doubtfire in Vancouver appeared first on Vancouver Blog Miss604 .",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+    "details_url": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+    "ticket_url": "https://miss604.com/2026/09/mrs-doubtfire-in-vancouver/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "art-culture",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
+  },
+  {
+    "event_id": "van50-whistler-outdoor-festival",
+    "event_name": "Whistler Outdoor Festival",
+    "category": "Outdoor",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Vancouver Cultural Venue",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown / Mount Pleasant",
+    "description": "There's a new seasonal event happening up the Sea to Sky as the inaugural Whistler Outdoor Festival features outdoor activities, arts and culture, great dining deals and a full calendar of events throughout Thanksgiving weekend. The post Wh...",
+    "pricing_all_in_cad": {
+      "regular": 18.5,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-28",
+      "start_time": "19:00",
+      "end_time": "22:00",
+      "cost": 18.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://miss604.com/2026/09/whistler-outdoor-festival/",
+    "details_url": "https://miss604.com/2026/09/whistler-outdoor-festival/",
+    "ticket_url": "https://miss604.com/2026/09/whistler-outdoor-festival/",
+    "ticket_provider": "Direct",
+    "tags": [
+      "outdoors",
+      "vancouver-events",
+      "under-50-cad",
+      "antigravity-scouted",
+      "outdoor"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-Verified",
+    "curator_notes": "Scouted organically by Antigravity AI from Miss604"
   }
 ]
