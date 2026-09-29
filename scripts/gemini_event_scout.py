@@ -58,6 +58,21 @@ def load_env():
 
 load_env()
 
+try:
+    from activity_logger import (
+        log_confirmed, log_new_event, log_new_venue, log_new_source,
+        log_quarantined, log_archived, log_info, set_ai_status
+    )
+except ImportError:
+    def log_confirmed(title, detail="", step=None, progress=None): print(f'[CONFIRMED] "{title}" • {detail}' if detail else f'[CONFIRMED] "{title}"', flush=True)
+    def log_new_event(title, venue, detail="", step=None, progress=None): print(f'[NEW EVENT ADDED] "{title}" at {venue} ({detail})' if detail else f'[NEW EVENT ADDED] "{title}" at {venue}', flush=True)
+    def log_new_venue(venue_name, neighborhood="", step=None, progress=None): print(f'[NEW VENUE ADDED] "{venue_name}" ({neighborhood})' if neighborhood else f'[NEW VENUE ADDED] "{venue_name}"', flush=True)
+    def log_new_source(source_name, domain="", step=None, progress=None): print(f'[NEW SOURCE ADDED] "{source_name}" ({domain})' if domain else f'[NEW SOURCE ADDED] "{source_name}"', flush=True)
+    def log_quarantined(title, reason, step=None, progress=None): print(f'[QUARANTINED] "{title}" • Reason: {reason}', flush=True)
+    def log_archived(title, reason, step=None, progress=None): print(f'[ARCHIVED] "{title}" • Reason: {reason}', flush=True)
+    def log_info(msg, step=None, progress=None): print(f'[INFO] {msg}', flush=True)
+    def set_ai_status(status, task=None, step=None, progress=None): pass
+
 
 def get_gemini_api_key() -> str:
     key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -436,6 +451,7 @@ Return strict JSON:
 
                         if dec == "PERMANENTLY_CLOSED":
                             print(f"[AUDIT: ARCHIVE] Location '{title}' permanently closed: {reason}. Moving to archive.", flush=True)
+                            log_archived(title, f"Location permanently closed: {reason}")
                             archived_events.append({
                                 "event_id": eid,
                                 "event_name": title,
@@ -454,6 +470,7 @@ Return strict JSON:
 
                         elif dec in ("TEMPORARILY_CLOSED", "CANNOT_FIGURE_OUT"):
                             print(f'[QUARANTINED] "{title}" • Reason: {reason}', flush=True)
+                            log_quarantined(title, f"AI Public Access Audit: {reason}")
                             if eid not in quarantine_ids:
                                 quarantined.append({
                                     "id": eid,
@@ -482,14 +499,14 @@ Return strict JSON:
                                 ev["details_url"] = dec_data["updated_url"]
                                 ev["ticket_url"] = dec_data["updated_url"]
                             ev["curator_notes"] = f"AI Updated ({today_str}): {reason}"
-                            print(f'[CONFIRMED] "{title}" • Open Hours: {ev.get("operating_hours", "Open Daily")} (Updated)', flush=True)
+                            log_confirmed(title, f"Open Hours: {ev.get('operating_hours', 'Open Daily')} (Updated)")
                             results["updated"] += 1
 
                         else:
                             if dec_data.get("operating_hours"):
                                 ev["operating_hours"] = dec_data["operating_hours"]
                             ev["curator_notes"] = f"AI-Verified ({today_str}): Confirmed open public access ({ev.get('operating_hours', 'Daily')})."
-                            print(f'[CONFIRMED] "{title}" • Open Hours: {ev.get("operating_hours", "Open Daily")}', flush=True)
+                            log_confirmed(title, f"Open Hours: {ev.get('operating_hours', 'Open Daily')}")
                             results["verified"] += 1
 
                 time.sleep(1.5)
@@ -539,6 +556,7 @@ Return strict JSON:
 
                     if dec == "CONCLUDED":
                         print(f"  ✓ Concluded: {reason}", flush=True)
+                        log_archived(title, f"Event concluded: {reason}")
                         archived_events.append({
                             "event_id": eid,
                             "event_name": title,
@@ -557,6 +575,7 @@ Return strict JSON:
 
                     elif dec == "CANNOT_FIGURE_OUT":
                         print(f'[QUARANTINED] "{title}" • Reason: {reason}', flush=True)
+                        log_quarantined(title, f"AI Audit: Cannot figure out details: {reason}")
                         if eid not in quarantine_ids:
                             quarantined.append({
                                 "id": eid,
@@ -596,7 +615,7 @@ Return strict JSON:
                         d_str = (ev.get("show_1") or {}).get("date") or last_date or "Upcoming"
                         t_str = (ev.get("show_1") or {}).get("start_time") or ""
                         sched = f"{d_str} at {t_str}" if t_str else d_str
-                        print(f'[CONFIRMED] "{title}" • Date: {sched} (Updated)', flush=True)
+                        log_confirmed(title, f"Date: {sched} (Updated)")
                         results["updated"] += 1
 
                     else:
@@ -604,7 +623,7 @@ Return strict JSON:
                         d_str = (ev.get("show_1") or {}).get("date") or last_date or "Upcoming"
                         t_str = (ev.get("show_1") or {}).get("start_time") or ""
                         sched = f"{d_str} at {t_str}" if t_str else d_str
-                        print(f'[CONFIRMED] "{title}" • Date: {sched}', flush=True)
+                        log_confirmed(title, f"Date: {sched}")
                         results["verified"] += 1
 
             time.sleep(1.5)
@@ -997,6 +1016,7 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
                 })
                 queue_ids.add(eid)
                 print(f'[QUARANTINED] "{ne.get("event_name")}" • Reason: {q_reason}', flush=True)
+                log_quarantined(ne.get("event_name", "Event"), q_reason)
             continue
 
         if eid not in existing_ids and eid not in existing_archive_ids:
@@ -1006,8 +1026,10 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             if is_free_public:
                 op = ne.get("operating_hours") or "Open Daily"
                 print(f'[NEW EVENT ADDED] "{ne.get("event_name")}" at {ne.get("venue_name")} (Free Public Access - {op})', flush=True)
+                log_new_event(ne.get("event_name", "Event"), ne.get("venue_name", "Vancouver"), f"Free Public Access - {op}")
             else:
                 print(f'[NEW EVENT ADDED] "{ne.get("event_name")}" at {ne.get("venue_name")} (${reg_price:.2f} CAD)', flush=True)
+                log_new_event(ne.get("event_name", "Event"), ne.get("venue_name", "Vancouver"), f"${reg_price:.2f} CAD")
 
     # Save Events Active & Archive (Pure JSON)
     with open(EVENTS_JSON, "w", encoding="utf-8") as f:
@@ -1039,6 +1061,7 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
             venue_names.add(vname.lower())
             nh = nv.get("neighborhood") or nv.get("full_address") or "Vancouver"
             print(f'[NEW VENUE ADDED] "{vname}" ({nh})', flush=True)
+            log_new_venue(vname, nh)
 
     with open(VENUES_JSON, "w", encoding="utf-8") as f:
         json.dump(venues, f, indent=2, ensure_ascii=False)
@@ -1105,6 +1128,7 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
                 existing_names.add(s_name.lower())
                 sources_added += 1
                 print(f'[NEW SOURCE ADDED] "{s_name}" ({domain})', flush=True)
+                log_new_source(s_name, domain)
                 
         if sources_added > 0:
             disc_catalog["sources"] = existing_sources

@@ -92,6 +92,73 @@
   <!-- Main Workspace -->
   <main class="curator-container" style="flex: 1;">
     
+    <!-- Real-Time AI Live Operations Stream & Transparency Console -->
+    <section class="ai-live-console-section" id="ai-live-console-section" aria-label="AI Live Operations Console">
+      <div class="ai-live-header">
+        <div class="ai-live-title-group">
+          <div class="ai-pulse-wrapper">
+            <span class="ai-pulse-indicator" id="ai-live-pulse" title="Engine Status">🟢</span>
+          </div>
+          <div class="ai-live-meta">
+            <div class="ai-live-title-line">
+              <span class="ai-console-brand">⚡ AI Live Operations Stream</span>
+              <span class="ai-status-badge badge-idle" id="ai-status-badge">AI Idle</span>
+              <span class="ai-live-timestamp" id="ai-live-timestamp">Updated just now</span>
+            </div>
+            <div class="ai-live-task-line" id="ai-live-task-desc">System Ready • Awaiting next scheduled or curator run</div>
+            <div class="ai-progress-track" id="ai-progress-track">
+              <div class="ai-progress-fill" id="ai-progress-bar" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-live-stats-strip">
+          <div class="ai-stat-chip chip-confirmed" title="Events confirmed active under $50 CAD">
+            <span>✅ Confirmed:</span> <strong id="ai-stat-confirmed">20</strong>
+          </div>
+          <div class="ai-stat-chip chip-added" title="New events &amp; Free Public Access spots added">
+            <span>✨ Added:</span> <strong id="ai-stat-added">33</strong>
+          </div>
+          <div class="ai-stat-chip chip-quarantined" title="Events flagged and routed to Quarantine">
+            <span>⚠️ Quarantined:</span> <strong id="ai-stat-quarantined">3</strong>
+          </div>
+          <div class="ai-stat-chip chip-sources" title="Discovered editorial &amp; event sources registered">
+            <span>🌐 Sources:</span> <strong id="ai-stat-sources">10</strong>
+          </div>
+        </div>
+
+        <div class="ai-live-controls">
+          <button type="button" class="btn-curator btn-curator-sm" id="btn-toggle-ai-terminal" title="Toggle Live Console Stream">
+            <span id="ai-terminal-toggle-icon">📜</span> <span id="ai-terminal-toggle-text">Show Live Stream</span>
+          </button>
+          <button type="button" class="btn-curator btn-curator-sm btn-curator-primary" id="btn-run-qc-now" title="Trigger Quality Control AI Pass with real-time streaming">
+            <span>⚡ Run QC AI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Expandable Live Terminal Log Feed -->
+      <div class="ai-live-terminal-container" id="ai-live-terminal" style="display: none;">
+        <div class="ai-terminal-toolbar">
+          <div class="terminal-dots">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+          </div>
+          <span class="terminal-title">live_ai_stream.log — Real-Time Scout &amp; QC Event Bus</span>
+          <div class="terminal-tools">
+            <label class="terminal-toggle-label">
+              <input type="checkbox" id="ai-autoscroll-chk" checked> Auto-scroll
+            </label>
+            <button type="button" class="btn-terminal-clear" id="btn-clear-ai-terminal" title="Clear displayed logs">Clear</button>
+          </div>
+        </div>
+        <div class="ai-terminal-body" id="ai-terminal-logs">
+          <!-- Real-time 1-line stream logs render here -->
+        </div>
+      </div>
+    </section>
+
     <!-- Controls Section -->
     <section class="curator-controls-section">
       <div class="curator-filters-row">

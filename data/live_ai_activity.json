@@ -1,0 +1,77 @@
+{
+  "status": "idle",
+  "current_task": "Quality Control AI Pass",
+  "current_step": "Catalog verification complete. 76 active verified, 3 quarantined, 1 archived.",
+  "progress_percent": 100,
+  "last_updated": "2026-09-28T17:05:00",
+  "stats": {
+    "confirmed": 20,
+    "new_events": 33,
+    "new_venues": 10,
+    "new_sources": 10,
+    "quarantined": 3,
+    "archived": 1
+  },
+  "recent_logs": [
+    {
+      "id": "log_1",
+      "timestamp": "16:58:12",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Stanley Park Seawall & Brockton Point\" • Open Hours: 24/7 Daily"
+    },
+    {
+      "id": "log_2",
+      "timestamp": "16:58:24",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Queen Elizabeth Park & Quarry Gardens\" • Open Hours: 06:00 – 22:00 Daily"
+    },
+    {
+      "id": "log_3",
+      "timestamp": "16:58:39",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Stir Vancouver Arts & Culture Hub\" (createastir.ca)"
+    },
+    {
+      "id": "log_4",
+      "timestamp": "16:58:55",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Contemporary Art Gallery\" (Yaletown)"
+    },
+    {
+      "id": "log_5",
+      "timestamp": "16:59:10",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Contemporary Art Gallery Free Public Admission\" at Contemporary Art Gallery ($0.00 CAD | Free Public Access - 12:00 – 18:00 Tue–Sun)"
+    },
+    {
+      "id": "log_6",
+      "timestamp": "16:59:30",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"Harvest Days at VanDusen Botanical Garden\" • Reason: AI Public Access Audit: Harvest Days at VanDusen Botanical Garden requires paid admission and does not offer 100% free walk-in public access."
+    },
+    {
+      "id": "log_7",
+      "timestamp": "17:00:02",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"Nightly Live Music & GroundUp Sets at Guilt & Company\" • Reason: AI Public Access Audit: Mandatory per-set artist cover fee ($7–$15); not free walk-in."
+    },
+    {
+      "id": "log_8",
+      "timestamp": "17:00:25",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"Frankie's Jazz Club: Weekly Roots & Late-Night Sets\" • Reason: AI Public Access Audit: Commercial ticketed venue ($20–$35+) with mandatory late-night cover."
+    },
+    {
+      "id": "log_9",
+      "timestamp": "17:00:50",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Vancouver Etsy Co Fall Pop-Up Market\" • Reason: Event was a single-day market on Sept 26, 2026, and has concluded."
+    },
+    {
+      "id": "log_10",
+      "timestamp": "17:01:15",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Public Library Central Branch Rooftop Garden\" • Open Hours: 10:00 – 20:30 Mon–Thu, 10:00 – 18:00 Fri–Sat, 11:00 – 18:00 Sun"
+    }
+  ]
+}

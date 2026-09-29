@@ -914,6 +914,24 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "timestamp": datetime.now().isoformat()
             })
 
+        # API: Live AI Activity Stream (Public/Curator real-time monitoring)
+        if path == "/api/curator/live-activity":
+            activity_path = os.path.join(DATA_DIR, "live_ai_activity.json")
+            if os.path.exists(activity_path):
+                try:
+                    with open(activity_path, "r", encoding="utf-8") as f:
+                        return self._send_json(200, json.load(f))
+                except Exception as e:
+                    return self._send_json(500, {"error": str(e)})
+            return self._send_json(200, {
+                "status": "idle",
+                "current_task": "System Ready",
+                "current_step": "Awaiting curator command or scheduled trigger",
+                "progress_percent": 100,
+                "stats": {},
+                "recent_logs": []
+            })
+
         # API: Automation status
         if path == "/api/automation/status":
             return self._send_json(200, get_automation_status())
@@ -1295,6 +1313,24 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         # All mutating endpoints strictly require authentication
         if not self._check_authenticated():
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
+
+        # API: Trigger Quality Control AI Pass in background
+        if path == "/api/curator/run-qc":
+            def _worker():
+                import subprocess
+                scripts_dir = os.path.join(BASE_DIR, "scripts")
+                qc_script = os.path.join(scripts_dir, "run_qc_ai.py")
+                cmd = [sys.executable, qc_script]
+                try:
+                    subprocess.Popen(cmd, cwd=BASE_DIR)
+                except Exception as ex:
+                    print(f"[ERROR] Failed to launch QC AI: {ex}")
+
+            threading.Thread(target=_worker, daemon=True).start()
+            return self._send_json(200, {
+                "success": True,
+                "message": "Quality Control AI Pass launched in background."
+            })
 
         # Sliding window rate limit on mutating endpoints
         if path in {

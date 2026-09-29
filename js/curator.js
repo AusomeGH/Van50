@@ -51,6 +51,7 @@ function initApp() {
   checkAuthAndInitialize();
   fetchAutomationStatus();
   setInterval(fetchAutomationStatus, 30000);
+  initLiveAIActivityFeed();
 }
 
 if (document.readyState === 'loading') {
@@ -4617,4 +4618,210 @@ function renderMasterCatalogList() {
 
 window.fetchMasterCatalog = fetchMasterCatalog;
 window.renderMasterCatalogList = renderMasterCatalogList;
+
+// ==============================================================================
+// 12. AI LIVE OPERATIONS STREAM & REAL-TIME ACTIVITY HUD
+// ==============================================================================
+
+let _liveActivityPollTimer = null;
+
+function initLiveAIActivityFeed() {
+  const terminalContainer = document.getElementById('ai-live-terminal');
+  const toggleBtn = document.getElementById('btn-toggle-ai-terminal');
+  const toggleIcon = document.getElementById('ai-terminal-toggle-icon');
+  const toggleText = document.getElementById('ai-terminal-toggle-text');
+  const clearBtn = document.getElementById('btn-clear-ai-terminal');
+  const runQcBtn = document.getElementById('btn-run-qc-now');
+
+  // Check persisted drawer state
+  const isTerminalOpen = localStorage.getItem('curator_ai_terminal_open') === 'true';
+  if (isTerminalOpen && terminalContainer) {
+    terminalContainer.style.display = 'block';
+    if (toggleText) toggleText.textContent = 'Hide Live Stream';
+    if (toggleIcon) toggleIcon.textContent = '✖';
+  }
+
+  if (toggleBtn && terminalContainer) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = terminalContainer.style.display === 'none' || !terminalContainer.style.display;
+      terminalContainer.style.display = isHidden ? 'block' : 'none';
+      if (toggleText) toggleText.textContent = isHidden ? 'Hide Live Stream' : 'Show Live Stream';
+      if (toggleIcon) toggleIcon.textContent = isHidden ? '✖' : '📜';
+      localStorage.setItem('curator_ai_terminal_open', isHidden ? 'true' : 'false');
+      if (isHidden) {
+        scrollAiTerminalToBottom();
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      const logsBody = document.getElementById('ai-terminal-logs');
+      if (logsBody) logsBody.innerHTML = '<div style="color: #64748b; font-style: italic; padding: 4px;">Logs cleared for current session.</div>';
+    });
+  }
+
+  if (runQcBtn) {
+    runQcBtn.addEventListener('click', async () => {
+      if (!confirm('Run the autonomous Quality Control AI now?\n\nThis will:\n1. Verify active events against live venues & pricing.\n2. Audit Free Public Access spots for closures.\n3. Refine direct box-office links & high-intent search tags.\n4. Stream updates directly into this console.')) {
+        return;
+      }
+      
+      try {
+        runQcBtn.disabled = true;
+        runQcBtn.innerHTML = '<span>⏳ Starting...</span>';
+        
+        // Auto-open terminal
+        if (terminalContainer && terminalContainer.style.display === 'none') {
+          terminalContainer.style.display = 'block';
+          if (toggleText) toggleText.textContent = 'Hide Live Stream';
+          if (toggleIcon) toggleIcon.textContent = '✖';
+          localStorage.setItem('curator_ai_terminal_open', 'true');
+        }
+
+        const res = await fetch('/api/curator/run-qc', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Curator-Token': state.token || ''
+          },
+          body: JSON.stringify({})
+        });
+
+        if (res.ok) {
+          showToast('⚡ Quality Control AI Pass launched! Streaming live below.', 'success');
+          fetchLiveAIActivity();
+        } else {
+          const err = await res.json().catch(() => ({}));
+          showToast(`Could not start QC: ${err.error || 'Server error'}`, 'warning');
+        }
+      } catch (err) {
+        showToast(`Failed to trigger QC: ${err.message}`, 'danger');
+      } finally {
+        setTimeout(() => {
+          if (runQcBtn) {
+            runQcBtn.disabled = false;
+            runQcBtn.innerHTML = '<span>⚡ Run QC AI</span>';
+          }
+        }, 3000);
+      }
+    });
+  }
+
+  // Initial fetch and start continuous monitor
+  fetchLiveAIActivity();
+}
+
+async function fetchLiveAIActivity() {
+  clearTimeout(_liveActivityPollTimer);
+  let nextDelay = 4000;
+
+  try {
+    const res = await fetch(`/api/curator/live-activity?_t=${Date.now()}`, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      renderLiveActivityHUD(data);
+      if (data.status === 'running') {
+        nextDelay = 1500; // Poll faster while AI is actively working
+      }
+    }
+  } catch (e) {
+    // quiet network retry
+  }
+
+  _liveActivityPollTimer = setTimeout(fetchLiveAIActivity, nextDelay);
+}
+
+function renderLiveActivityHUD(data) {
+  if (!data) return;
+
+  const pulseEl = document.getElementById('ai-live-pulse');
+  const badgeEl = document.getElementById('ai-status-badge');
+  const taskDescEl = document.getElementById('ai-live-task-desc');
+  const progressFillEl = document.getElementById('ai-progress-bar');
+  const timestampEl = document.getElementById('ai-live-timestamp');
+
+  const statConfirmed = document.getElementById('ai-stat-confirmed');
+  const statAdded = document.getElementById('ai-stat-added');
+  const statQuarantined = document.getElementById('ai-stat-quarantined');
+  const statSources = document.getElementById('ai-stat-sources');
+
+  const isRunning = data.status === 'running';
+
+  if (pulseEl) {
+    pulseEl.textContent = isRunning ? '🟢' : '⚪';
+    pulseEl.className = isRunning ? 'ai-pulse-indicator active' : 'ai-pulse-indicator';
+  }
+
+  if (badgeEl) {
+    badgeEl.textContent = isRunning ? 'AI Active' : 'AI Idle';
+    badgeEl.className = isRunning ? 'ai-status-badge badge-active' : 'ai-status-badge badge-idle';
+  }
+
+  if (taskDescEl) {
+    const task = data.current_task || 'AI Engine';
+    const step = data.current_step ? ` — ${data.current_step}` : '';
+    taskDescEl.textContent = `${task}${step}`;
+  }
+
+  if (progressFillEl) {
+    const pct = Math.max(0, Math.min(100, data.progress_percent ?? (isRunning ? 50 : 100)));
+    progressFillEl.style.width = `${pct}%`;
+  }
+
+  if (timestampEl && data.last_updated) {
+    try {
+      const dt = new Date(data.last_updated);
+      timestampEl.textContent = `Updated ${dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
+    } catch (_) {
+      timestampEl.textContent = 'Updated just now';
+    }
+  }
+
+  if (data.stats) {
+    if (statConfirmed) statConfirmed.textContent = data.stats.confirmed ?? 0;
+    if (statAdded) statAdded.textContent = (data.stats.new_events ?? 0);
+    if (statQuarantined) statQuarantined.textContent = data.stats.quarantined ?? 0;
+    if (statSources) statSources.textContent = data.stats.new_sources ?? 0;
+  }
+
+  // Render logs in terminal
+  renderTerminalLogs(data.recent_logs || []);
+}
+
+function renderTerminalLogs(logs) {
+  const logsContainer = document.getElementById('ai-terminal-logs');
+  if (!logsContainer) return;
+
+  if (!logs || logs.length === 0) {
+    if (logsContainer.children.length === 0) {
+      logsContainer.innerHTML = '<div style="color: #64748b; font-style: italic; padding: 4px;">Awaiting live AI operations stream...</div>';
+    }
+    return;
+  }
+
+  const html = logs.map(item => {
+    const type = (item.type || 'INFO').toLowerCase();
+    const ts = item.timestamp || '';
+    const msg = escapeHtml(item.message || '');
+    return `
+      <div class="terminal-line">
+        <span class="term-ts">[${escapeHtml(ts)}]</span>
+        <span class="term-badge ${escapeHtml(type)}">${escapeHtml(item.type || 'INFO')}</span>
+        <span class="term-text">${msg}</span>
+      </div>
+    `;
+  }).join('');
+
+  logsContainer.innerHTML = html;
+  scrollAiTerminalToBottom();
+}
+
+function scrollAiTerminalToBottom() {
+  const autoscrollChk = document.getElementById('ai-autoscroll-chk');
+  const logsContainer = document.getElementById('ai-terminal-logs');
+  if (logsContainer && (!autoscrollChk || autoscrollChk.checked)) {
+    logsContainer.scrollTop = logsContainer.scrollHeight;
+  }
+}
 
