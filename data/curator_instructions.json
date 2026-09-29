@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-28T19:55:21.934363+00:00",
-    "pendingCount": 1,
+    "updatedAt": "2026-09-28T17:36:00-07:00",
+    "pendingCount": 0,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements."
   },
   "instructions": [
@@ -8443,7 +8443,7 @@
     {
       "id": "inst_1790625321930",
       "createdAt": "2026-09-28T19:55:21.931397+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "public-disco-warehouse-party",
       "eventTitle": "Event Candidate",
       "venueName": "Vancouver Venue",
@@ -8455,7 +8455,11 @@
       "screenshotCount": 0,
       "actionTaken": "queue_only",
       "curatorNote": "Verified rate: Free ($0)",
-      "targetScraperOrEngine": "Vancouver Venue"
+      "targetScraperOrEngine": "Vancouver Venue",
+      "aiLearned": true,
+      "aiLearnedSummary": "Verified that Public Disco Warehouse Party concluded and is safely confirmed in archive.",
+      "applied": true,
+      "appliedAt": "2026-09-28T17:36:00-07:00"
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

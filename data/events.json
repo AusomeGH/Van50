@@ -1,5 +1,297 @@
 [
   {
+    "event_id": "van50-pendulum-gallery",
+    "event_name": "Pendulum Gallery",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Pendulum Gallery (HSBC Building Atrium)",
+    "full_address": "885 W Georgia St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "A soaring public atrium gallery beneath a 30-metre kinetic pendulum, presenting rotating exhibitions of regional contemporary art, photography, and community cultural showcases.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM",
+    "days_open": "Mon-Sat",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://dailyhive.com/vancouver/events",
+    "details_url": "https://www.pendulumgallery.bc.ca",
+    "ticket_url": "https://www.pendulumgallery.bc.ca",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "art-gallery",
+      "contemporary-art",
+      "civic-space",
+      "downtown",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Free public admission. Closed Sundays. Thursday and Friday feature extended evening hours until 9:00 PM."
+  },
+  {
+    "event_id": "contemporary-art-gallery-cag-admission",
+    "event_name": "Contemporary Art Gallery (CAG)",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Contemporary Art Gallery",
+    "full_address": "555 Nelson St, Vancouver, BC",
+    "neighborhood": "Yaletown",
+    "description": "An independent non-profit public gallery presenting ambitious contemporary art from Canadian and international artists. Hosts free year-round rotating exhibitions, talks, and printed publications.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Wednesday – Sunday 12:00 PM – 6:00 PM (Closed Monday & Tuesday)",
+    "days_open": "Wed-Sun",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.createastir.ca",
+    "details_url": "https://www.contemporaryartgallery.ca",
+    "ticket_url": "https://www.contemporaryartgallery.ca",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "drop-in",
+      "public-access",
+      "art-gallery",
+      "contemporary-art",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Free general admission; voluntary donations welcomed."
+  },
+  {
+    "event_id": "dr-sun-yat-sen-classical-chinese-public-park",
+    "event_name": "Dr. Sun Yat-Sen Classical Chinese Public Park",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Dr. Sun Yat-Sen Public Park",
+    "full_address": "578 Carrall St, Vancouver, BC",
+    "neighborhood": "Chinatown",
+    "description": "A tranquil public courtyard mirroring classical Ming Dynasty garden architecture, complete with jade-green turtle ponds, imported limestone scholar rocks, and covered corridors.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Tuesday – Sunday 10:00 AM – 4:30 PM",
+    "days_open": "Tue-Sun",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/events",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "drop-in",
+      "public-access",
+      "chinatown",
+      "cultural-heritage",
+      "garden",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Public park section is 100% free; adjacent private garden requires separate admission fee."
+  },
+  {
+    "event_id": "vpl-central-rooftop-garden",
+    "event_name": "Vancouver Public Library (Central Branch) & Rooftop Garden",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Vancouver Public Library (Central Branch)",
+    "full_address": "350 W Georgia St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Ascend to the 8th and 9th floors of the iconic Colosseum-style library to enjoy the Phillips, Hager and North Garden. Offers tranquil open-air seating and panoramic views of downtown Vancouver.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Monday – Thursday 9:30 AM – 8:30 PM; Friday – Saturday 9:30 AM – 5:00 PM; Sunday 11:00 AM – 5:00 PM",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/events",
+    "details_url": "https://www.vpl.ca",
+    "ticket_url": "https://www.vpl.ca",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "drop-in",
+      "public-access",
+      "rooftop-garden",
+      "library",
+      "skyline-views",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Free public access via central elevators to levels 8 and 9 during standard branch hours."
+  },
+  {
+    "event_id": "stanley-park-seawall-rose-garden",
+    "event_name": "Stanley Park Seawall & Rose Garden",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Stanley Park",
+    "full_address": "Stanley Park Dr, Vancouver, BC",
+    "neighborhood": "West End",
+    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, accompanied by historical monuments, coastal beaches, and the heritage Stanley Park Rose Garden.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Daily 6:00 AM – 10:00 PM",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/events",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "drop-in",
+      "public-access",
+      "seawall",
+      "stanley-park",
+      "walking-trail",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "100% free perimeter access for walking, jogging, and rollerblading/cycling."
+  },
+  {
+    "event_id": "van50-vancouver-art-gallery-free-access",
+    "event_name": "Vancouver Art Gallery: Free First Friday Nights & Youth Access",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Vancouver Art Gallery",
+    "full_address": "750 Hornby St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Vancouver's premier visual arts institution offering historic and contemporary exhibitions. Admission is always free for visitors 18 and under, and free for all on Free First Friday Nights.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)",
+    "days_open": "Wed-Mon",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.vanartgallery.bc.ca",
+    "details_url": "https://www.vanartgallery.bc.ca",
+    "ticket_url": "https://www.vanartgallery.bc.ca/visit",
+    "ticket_provider": "Direct",
+    "tags": [
+      "free-admission",
+      "art-museum",
+      "culture",
+      "first-fridays",
+      "youth-free",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Free First Friday Nights run 4:00 PM – 8:00 PM on the first Friday of each month (online RSVP required). Visitors 18 & under enter free daily."
+  },
+  {
+    "event_id": "van50-sun-yat-sen-public-park",
+    "event_name": "Dr. Sun Yat-Sen Public Park Courtyard",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Dr. Sun Yat-Sen Public Park",
+    "full_address": "578 Carrall St, Vancouver, BC",
+    "neighborhood": "Chinatown",
+    "description": "Public courtyard section of the historic Classical Chinese Garden featuring peaceful limestone rock formations, tranquil koi ponds, and traditional Ming-dynasty architectural corridors.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Daily 10:00 AM – 4:00 PM",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
+    "ticket_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "garden",
+      "chinatown",
+      "heritage",
+      "culture",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "The public park courtyard section is managed by City of Vancouver Parks and is 100% free to enter. The adjoining Classical Chinese Garden museum requires separate ticketed admission."
+  },
+  {
+    "event_id": "van50-the-shipyards-lonsdale-quay",
+    "event_name": "The Shipyards & Lonsdale Quay Waterfront Promenade",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "The Shipyards District",
+    "full_address": "125 Victory Ship Way, North Vancouver, BC",
+    "neighborhood": "North Shore",
+    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://theshipyardsdistrict.ca",
+    "details_url": "https://theshipyardsdistrict.ca",
+    "ticket_url": "https://theshipyardsdistrict.ca",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "waterfront",
+      "views",
+      "boardwalk",
+      "public-market",
+      "north-shore",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Boardwalk open 24/7; Quay market halls operate daily 9:00 AM – 7:00 PM. Directly accessible from Waterfront Station via the SeaBus transit hub."
+  },
+  {
     "event_id": "van50-granville-island-public-market",
     "event_name": "Granville Island Public Market & Boardwalks",
     "category": "Free Public Access",
@@ -28,7 +320,8 @@
       "drop-in",
       "public-market",
       "waterfront",
-      "false-creek"
+      "false-creek",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -63,7 +356,8 @@
       "seawall",
       "walking-trail",
       "coastal",
-      "totem-poles"
+      "totem-poles",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -98,7 +392,8 @@
       "art-gallery",
       "culture",
       "emily-carr",
-      "first-friday"
+      "first-friday",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -132,7 +427,8 @@
       "free-admission",
       "harbor-walk",
       "burrard-inlet",
-      "waterfront-views"
+      "waterfront-views",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -167,7 +463,8 @@
       "by-donation",
       "photography",
       "visual-art",
-      "shipyards"
+      "shipyards",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -202,7 +499,8 @@
       "chinese-garden",
       "chinatown",
       "heritage",
-      "peaceful-spot"
+      "peaceful-spot",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -242,7 +540,8 @@
       "film-screening",
       "truth-and-reconciliation",
       "community",
-      "outdoor"
+      "outdoor",
+      "film"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -380,7 +679,8 @@
       "bakery",
       "pastries",
       "self-guided",
-      "free-participation"
+      "free-participation",
+      "food-drink"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -450,46 +750,12 @@
       "walking",
       "cycling",
       "nature",
-      "public-access"
+      "public-access",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Daily 6:00 AM – 10:00 PM)."
-  },
-  {
-    "event_id": "van50-pendulum-gallery",
-    "event_name": "Pendulum Gallery",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Pendulum Gallery (HSBC Building Atrium)",
-    "full_address": "885 W Georgia St, Vancouver, BC",
-    "neighborhood": "Downtown",
-    "description": "A soaring public atrium gallery beneath a 30-metre kinetic pendulum, presenting rotating exhibitions of regional contemporary art, photography, and community cultural showcases.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM",
-    "days_open": "Mon-Sat",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://www.pendulumgallery.bc.ca",
-    "ticket_url": "https://www.pendulumgallery.bc.ca",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "art-gallery",
-      "contemporary-art",
-      "civic-space",
-      "downtown"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Free public admission. Closed Sundays. Thursday and Friday feature extended evening hours until 9:00 PM."
   },
   {
     "event_id": "van50-robson-square-plaza",
@@ -520,7 +786,8 @@
       "civic-plaza",
       "architecture",
       "drop-in",
-      "downtown"
+      "downtown",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -554,7 +821,8 @@
       "free-admission",
       "art-gallery",
       "drop-in",
-      "downtown-vancouver"
+      "downtown-vancouver",
+      "art-culture"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -593,7 +861,8 @@
       "silent-film",
       "wurlitzer-organ",
       "historic-theatre",
-      "live-music"
+      "live-music",
+      "film"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -632,7 +901,8 @@
       "free-admission",
       "first-friday",
       "art-museum",
-      "downtown-vancouver"
+      "downtown-vancouver",
+      "art-culture"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -666,7 +936,8 @@
       "contemporary-art",
       "free-admission",
       "visual-arts",
-      "yaletown"
+      "yaletown",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -701,7 +972,8 @@
       "chinese-garden",
       "tranquil",
       "heritage",
-      "free-admission"
+      "free-admission",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -737,7 +1009,8 @@
       "public-access",
       "skyline-views",
       "rooftop-garden",
-      "civic-space"
+      "civic-space",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -772,7 +1045,8 @@
       "drop-in",
       "art-gallery",
       "contemporary-art",
-      "culture"
+      "culture",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -808,7 +1082,8 @@
       "public-access",
       "live-music",
       "waterfront",
-      "patio"
+      "patio",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1119,7 +1394,8 @@
       "drop-in",
       "public-access",
       "public-market",
-      "buskers"
+      "buskers",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1154,7 +1430,8 @@
       "drop-in",
       "public-access",
       "waterfront",
-      "scenic-viewpoint"
+      "scenic-viewpoint",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1189,260 +1466,12 @@
       "drop-in",
       "public-access",
       "civic-plaza",
-      "downtown"
+      "downtown",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
     "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Open 24/7)."
-  },
-  {
-    "event_id": "contemporary-art-gallery-cag-admission",
-    "event_name": "Contemporary Art Gallery (CAG)",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Contemporary Art Gallery",
-    "full_address": "555 Nelson St, Vancouver, BC",
-    "neighborhood": "Yaletown",
-    "description": "An independent non-profit public gallery presenting ambitious contemporary art from Canadian and international artists. Hosts free year-round rotating exhibitions, talks, and printed publications.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Wednesday – Sunday 12:00 PM – 6:00 PM (Closed Monday & Tuesday)",
-    "days_open": "Wed-Sun",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.createastir.ca",
-    "details_url": "https://www.contemporaryartgallery.ca",
-    "ticket_url": "https://www.contemporaryartgallery.ca",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "art-gallery",
-      "contemporary-art"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Free general admission; voluntary donations welcomed."
-  },
-  {
-    "event_id": "dr-sun-yat-sen-classical-chinese-public-park",
-    "event_name": "Dr. Sun Yat-Sen Classical Chinese Public Park",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Dr. Sun Yat-Sen Public Park",
-    "full_address": "578 Carrall St, Vancouver, BC",
-    "neighborhood": "Chinatown",
-    "description": "A tranquil public courtyard mirroring classical Ming Dynasty garden architecture, complete with jade-green turtle ponds, imported limestone scholar rocks, and covered corridors.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Tuesday – Sunday 10:00 AM – 4:30 PM",
-    "days_open": "Tue-Sun",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/events",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "chinatown",
-      "cultural-heritage",
-      "garden"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Public park section is 100% free; adjacent private garden requires separate admission fee."
-  },
-  {
-    "event_id": "vpl-central-rooftop-garden",
-    "event_name": "Vancouver Public Library (Central Branch) & Rooftop Garden",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Vancouver Public Library (Central Branch)",
-    "full_address": "350 W Georgia St, Vancouver, BC",
-    "neighborhood": "Downtown",
-    "description": "Ascend to the 8th and 9th floors of the iconic Colosseum-style library to enjoy the Phillips, Hager and North Garden. Offers tranquil open-air seating and panoramic views of downtown Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Monday – Thursday 9:30 AM – 8:30 PM; Friday – Saturday 9:30 AM – 5:00 PM; Sunday 11:00 AM – 5:00 PM",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/events",
-    "details_url": "https://www.vpl.ca",
-    "ticket_url": "https://www.vpl.ca",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "rooftop-garden",
-      "library",
-      "skyline-views"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Free public access via central elevators to levels 8 and 9 during standard branch hours."
-  },
-  {
-    "event_id": "stanley-park-seawall-rose-garden",
-    "event_name": "Stanley Park Seawall & Rose Garden",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Stanley Park",
-    "full_address": "Stanley Park Dr, Vancouver, BC",
-    "neighborhood": "West End",
-    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, accompanied by historical monuments, coastal beaches, and the heritage Stanley Park Rose Garden.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Daily 6:00 AM – 10:00 PM",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/events",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "seawall",
-      "stanley-park",
-      "walking-trail"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "100% free perimeter access for walking, jogging, and rollerblading/cycling."
-  },
-  {
-    "event_id": "van50-vancouver-art-gallery-free-access",
-    "event_name": "Vancouver Art Gallery: Free First Friday Nights & Youth Access",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Vancouver Art Gallery",
-    "full_address": "750 Hornby St, Vancouver, BC",
-    "neighborhood": "Downtown",
-    "description": "Vancouver's premier visual arts institution offering historic and contemporary exhibitions. Admission is always free for visitors 18 and under, and free for all on Free First Friday Nights.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)",
-    "days_open": "Wed-Mon",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.vanartgallery.bc.ca",
-    "details_url": "https://www.vanartgallery.bc.ca",
-    "ticket_url": "https://www.vanartgallery.bc.ca/visit",
-    "ticket_provider": "Direct",
-    "tags": [
-      "free-admission",
-      "art-museum",
-      "culture",
-      "first-fridays",
-      "youth-free"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Free First Friday Nights run 4:00 PM – 8:00 PM on the first Friday of each month (online RSVP required). Visitors 18 & under enter free daily."
-  },
-  {
-    "event_id": "van50-sun-yat-sen-public-park",
-    "event_name": "Dr. Sun Yat-Sen Public Park Courtyard",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Dr. Sun Yat-Sen Public Park",
-    "full_address": "578 Carrall St, Vancouver, BC",
-    "neighborhood": "Chinatown",
-    "description": "Public courtyard section of the historic Classical Chinese Garden featuring peaceful limestone rock formations, tranquil koi ponds, and traditional Ming-dynasty architectural corridors.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Daily 10:00 AM – 4:00 PM",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/dr-sun-yat-sen-classical-chinese-garden.aspx",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "garden",
-      "chinatown",
-      "heritage",
-      "culture"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "The public park courtyard section is managed by City of Vancouver Parks and is 100% free to enter. The adjoining Classical Chinese Garden museum requires separate ticketed admission."
-  },
-  {
-    "event_id": "van50-the-shipyards-lonsdale-quay",
-    "event_name": "The Shipyards & Lonsdale Quay Waterfront Promenade",
-    "category": "Free Public Access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "The Shipyards District",
-    "full_address": "125 Victory Ship Way, North Vancouver, BC",
-    "neighborhood": "North Shore",
-    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": 0.0,
-      "student": 0.0,
-      "member": 0.0
-    },
-    "operating_hours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://theshipyardsdistrict.ca",
-    "details_url": "https://theshipyardsdistrict.ca",
-    "ticket_url": "https://theshipyardsdistrict.ca",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "waterfront",
-      "views",
-      "boardwalk",
-      "public-market",
-      "north-shore"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Boardwalk open 24/7; Quay market halls operate daily 9:00 AM – 7:00 PM. Directly accessible from Waterfront Station via the SeaBus transit hub."
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -1473,7 +1502,8 @@
       "viewpoint",
       "botanical-garden",
       "park",
-      "skyline-views"
+      "skyline-views",
+      "free-public-access"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1591,7 +1621,8 @@
       "burlesque",
       "halloween",
       "circus",
-      "the-waldorf"
+      "the-waldorf",
+      "theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1635,7 +1666,8 @@
       "artisan-market",
       "crafts",
       "halloween",
-      "commercial-drive"
+      "commercial-drive",
+      "community"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1716,8 +1748,7 @@
       "college-football",
       "student-friendly",
       "weekend-outing",
-      "point-grey",
-      "ubc"
+      "activities"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1758,8 +1789,7 @@
       "student-friendly",
       "college-hoops",
       "rainy-day",
-      "point-grey",
-      "ubc"
+      "activities"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1800,7 +1830,7 @@
       "date-night",
       "19-plus",
       "craft-beer",
-      "canadian-comedy"
+      "shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1841,8 +1871,7 @@
       "downtown-vancouver",
       "cultural-outing",
       "rainy-day",
-      "solo-friendly",
-      "all-ages"
+      "arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1883,7 +1912,7 @@
       "performing-arts",
       "date-night",
       "orchestral",
-      "fine-arts"
+      "shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1924,7 +1953,7 @@
       "performing-arts",
       "choreography",
       "date-night",
-      "arts-culture"
+      "shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1965,7 +1994,7 @@
       "date-night",
       "solo-friendly",
       "gastown",
-      "downtown"
+      "cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2005,7 +2034,8 @@
       "rickshaw-theatre",
       "east-van",
       "19-plus",
-      "weekend-outing"
+      "weekend-outing",
+      "music"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2045,7 +2075,8 @@
       "east-van",
       "date-night",
       "craft-beer",
-      "19-plus"
+      "19-plus",
+      "comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2125,7 +2156,8 @@
       "all-ages",
       "family-friendly",
       "rainy-day",
-      "downtown"
+      "downtown",
+      "art-culture"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2165,7 +2197,8 @@
       "date-night",
       "weekend-outing",
       "cheap-tickets",
-      "little-mountain-gallery"
+      "little-mountain-gallery",
+      "comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2285,8 +2318,7 @@
       "east-van",
       "downtown-eastside",
       "19-plus",
-      "craft-beer",
-      "weekend-outing"
+      "craft-beer"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2372,7 +2404,7 @@
       "main-street",
       "19-plus",
       "cocktails",
-      "weekend-outing"
+      "live-music"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2412,8 +2444,7 @@
       "mount-pleasant",
       "main-street",
       "19-plus",
-      "date-night",
-      "cocktails"
+      "date-night"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2493,7 +2524,8 @@
       "mount-pleasant",
       "main-street",
       "19-plus",
-      "craft-beer"
+      "craft-beer",
+      "comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2533,7 +2565,8 @@
       "solo-friendly",
       "student-friendly",
       "19-plus",
-      "thursday-night"
+      "thursday-night",
+      "comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2574,7 +2607,7 @@
       "late-night",
       "commercial-drive",
       "east-van",
-      "19-plus"
+      "theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2619,7 +2652,8 @@
       "outdoor-event",
       "point-grey",
       "ubc-campus",
-      "fall-activities"
+      "fall-activities",
+      "community"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2819,7 +2853,8 @@
       "date-night",
       "late-night",
       "intimate-lounge",
-      "underground"
+      "underground",
+      "music"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2859,7 +2894,8 @@
       "orpheum",
       "downtown",
       "student-friendly",
-      "weekend-outing"
+      "weekend-outing",
+      "music"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2899,7 +2935,8 @@
       "orpheum",
       "downtown",
       "student-friendly",
-      "all-ages"
+      "all-ages",
+      "music"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",

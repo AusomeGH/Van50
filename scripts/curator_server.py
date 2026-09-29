@@ -1319,17 +1319,17 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             def _worker():
                 import subprocess
                 scripts_dir = os.path.join(BASE_DIR, "scripts")
-                qc_script = os.path.join(scripts_dir, "run_qc_ai.py")
+                qc_script = os.path.join(scripts_dir, "antigravity_qc_engine.py")
                 cmd = [sys.executable, qc_script]
                 try:
                     subprocess.Popen(cmd, cwd=BASE_DIR)
                 except Exception as ex:
-                    print(f"[ERROR] Failed to launch QC AI: {ex}")
+                    print(f"[ERROR] Failed to launch Antigravity QC Engine: {ex}")
 
             threading.Thread(target=_worker, daemon=True).start()
             return self._send_json(200, {
                 "success": True,
-                "message": "Quality Control AI Pass launched in background."
+                "message": "Antigravity Autonomous QC Pass launched in background."
             })
 
         # Sliding window rate limit on mutating endpoints
