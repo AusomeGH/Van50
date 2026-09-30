@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-29T19:18:26-07:00",
-    "pendingCount": 23,
+    "updatedAt": "2026-09-29",
+    "pendingCount": 21,
     "description": "Events quarantined by Antigravity AI due to failing one or more of the 13 Discrete Live Dimensions or Live-Checkout Cart verification."
   },
   "quarantinedEvents": [
@@ -510,7 +510,7 @@
       "lineup": "Evergrey with HammerFall & Elvenking",
       "restrictions": "19+",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {
@@ -549,7 +549,7 @@
       "lineup": "Alistair Ogden Live at The Rio Theatre",
       "restrictions": "19+",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {
@@ -588,13 +588,13 @@
       "lineup": "Vancouver Art Gallery: Free First Friday Nights",
       "restrictions": "All Ages",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {
       "id": "van50-schalk-bezuidenhout-rio-20260929",
-      "title": "Schalk Bezuidenhout: Hey Hey Divorc\u00e8",
-      "artist": "Schalk Bezuidenhout: Hey Hey Divorc\u00e8",
+      "title": "Schalk Bezuidenhout: Hey Hey Divorcè",
+      "artist": "Schalk Bezuidenhout: Hey Hey Divorcè",
       "venue": "The Rio Theatre",
       "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
       "neighborhood": "Commercial Drive",
@@ -604,9 +604,9 @@
       "categoryLabel": "Comedy",
       "startIso": "2026-09-29T19:00:00",
       "websiteUrl": "https://riotheatre.ca/event/schalk-bezuidenhout-hey-hey-divorce/",
-      "quarantineReason": "AI Quality Control Audit: Schalk Bezuidenhout: Hey Hey Divorc\u00e8 @ Rio Theatre: Show is SOLD OUT as of 2026-09-29.",
+      "quarantineReason": "AI Quality Control Audit: Schalk Bezuidenhout: Hey Hey Divorcè @ Rio Theatre: Show is SOLD OUT as of 2026-09-29.",
       "flaggedAt": "2026-09-29",
-      "event_name": "Schalk Bezuidenhout: Hey Hey Divorc\u00e8",
+      "event_name": "Schalk Bezuidenhout: Hey Hey Divorcè",
       "date": "2026-09-29",
       "time": "19:00",
       "schedule": "2026-09-29 at 19:00",
@@ -624,16 +624,16 @@
       "details_url": "https://riotheatre.ca/calendar/",
       "ticket_provider": "Direct Box Office",
       "description": "Acclaimed South African comedian Schalk Bezuidenhout brings his candid, sharp stand-up special to the Rio Theatre.",
-      "lineup": "Schalk Bezuidenhout: Hey Hey Divorc\u00e8",
+      "lineup": "Schalk Bezuidenhout: Hey Hey Divorcè",
       "restrictions": "19+",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {
       "id": "van50-dalek-wise-hall-20261009",
-      "title": "D\u00e4lek",
-      "artist": "D\u00e4lek",
+      "title": "Dälek",
+      "artist": "Dälek",
       "venue": "The WISE Hall",
       "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
       "neighborhood": "Commercial Drive",
@@ -643,9 +643,9 @@
       "categoryLabel": "Live Music",
       "startIso": "2026-10-09T20:00:00",
       "websiteUrl": "https://modo-live.com/",
-      "quarantineReason": "AI Quality Control Audit: D\u00e4lek @ The WISE Hall: Event is SOLD OUT.",
+      "quarantineReason": "AI Quality Control Audit: Dälek @ The WISE Hall: Event is SOLD OUT.",
       "flaggedAt": "2026-09-29",
-      "event_name": "D\u00e4lek",
+      "event_name": "Dälek",
       "date": "2026-10-09",
       "time": "20:00",
       "schedule": "2026-10-09 at 20:00",
@@ -662,11 +662,11 @@
       "ticket_url": "https://modo-live.com/",
       "details_url": "https://modo-live.com/",
       "ticket_provider": "Showpass",
-      "description": "Groundbreaking experimental hip-hop and ambient noise pioneers D\u00e4lek live in East Vancouver.",
-      "lineup": "D\u00e4lek",
+      "description": "Groundbreaking experimental hip-hop and ambient noise pioneers Dälek live in East Vancouver.",
+      "lineup": "Dälek",
       "restrictions": "19+",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {
@@ -705,7 +705,7 @@
       "lineup": "UBC Apple Festival (35th Annual)",
       "restrictions": "All Ages",
       "unconfirmedDetails": [
-        "\u274c D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
+        "❌ D8/D13 (Capacity): Event is completely SOLD OUT (capacity exhausted). Tickets cannot be purchased."
       ]
     },
     {

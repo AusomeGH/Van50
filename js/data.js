@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-29T19:18:33-07:00
+// AUTO-GENERATED from central data/events.json on 2026-09-29T19:21:00-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -3386,47 +3386,6 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false
-  },
-  {
-    "id": "test-reinforce-1790734706",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "address": "Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 20.0,
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "daysOfWeek": [
-      "daily"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "category": "music",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "subTags": [
-      "music",
-      "curator-verified"
-    ],
-    "dateSchedule": "2026-09-25 at 19:00",
-    "startIso": "2026-09-25T19:00:00-07:00",
-    "websiteUrl": "https://frankiesjazzclub.com/events",
-    "venueUrl": "https://frankiesjazzclub.com/events",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
   }
 ];
 const MANUAL_REVIEW_QUEUE = [
@@ -4248,70 +4207,6 @@ const MANUAL_REVIEW_QUEUE = [
     "unconfirmedDetails": [
       "No online checkout cart: In-person walk-up ticket kiosk only."
     ]
-  },
-  {
-    "id": "test-multi-parent-event-little-mountain-gallery-early-",
-    "title": "Little Mountain Gallery - Early Improv Showcase",
-    "artist": "Little Mountain Gallery - Early Improv Showcase",
-    "venue": "Little Mountain Gallery",
-    "address": "Little Mountain Gallery, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 12.0,
-    "priceLabel": "$12.00 CAD",
-    "category": "shows",
-    "categoryLabel": "🏷️ Shows",
-    "dateSchedule": "Friday Oct 2 • 7:00 PM",
-    "websiteUrl": "",
-    "feeBreakdown": "Split rate: $12.00 CAD",
-    "reviewStatus": "pending_antigravity_review",
-    "isSplitChild": true,
-    "parentEventId": "test-multi-parent-event",
-    "quarantineReason": "Decomposed into discrete event #1 from 'Multi-Part Comedy Showcase' via curator multi-event guidance.",
-    "curatorAnnotation": {
-      "instructionId": "inst_1790734713063",
-      "note": "Split this into early improv and late standup.",
-      "proposedAction": "review",
-      "userSuppliedPrice": 12.0,
-      "screenshotPaths": [],
-      "aiLearnedSummary": "Learned Little Mountain Gallery provides free public admission ($0 CAD) for Multi-Part Comedy Showcase. Verified event outing meets all Van50 quality criteria with verified direct ticketing.",
-      "isSplitChild": true,
-      "parentEventId": "test-multi-parent-event",
-      "subEventIndex": 1,
-      "annotatedAt": "2026-09-30T02:18:33.149733+00:00"
-    },
-    "flaggedAt": "2026-09-30"
-  },
-  {
-    "id": "test-multi-parent-event-little-mountain-gallery-late-n",
-    "title": "Little Mountain Gallery - Late Night Standup Jam",
-    "artist": "Little Mountain Gallery - Late Night Standup Jam",
-    "venue": "Little Mountain Gallery",
-    "address": "Little Mountain Gallery, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "price": 15.0,
-    "priceLabel": "$15.00 CAD",
-    "category": "shows",
-    "categoryLabel": "🏷️ Shows",
-    "dateSchedule": "Friday Oct 2 • 9:30 PM",
-    "websiteUrl": "",
-    "feeBreakdown": "Split rate: $15.00 CAD",
-    "reviewStatus": "pending_antigravity_review",
-    "isSplitChild": true,
-    "parentEventId": "test-multi-parent-event",
-    "quarantineReason": "Decomposed into discrete event #2 from 'Multi-Part Comedy Showcase' via curator multi-event guidance.",
-    "curatorAnnotation": {
-      "instructionId": "inst_1790734713063",
-      "note": "Split this into early improv and late standup.",
-      "proposedAction": "review",
-      "userSuppliedPrice": 15.0,
-      "screenshotPaths": [],
-      "aiLearnedSummary": "Learned Little Mountain Gallery provides free public admission ($0 CAD) for Multi-Part Comedy Showcase. Verified event outing meets all Van50 quality criteria with verified direct ticketing.",
-      "isSplitChild": true,
-      "parentEventId": "test-multi-parent-event",
-      "subEventIndex": 2,
-      "annotatedAt": "2026-09-30T02:18:33.149842+00:00"
-    },
-    "flaggedAt": "2026-09-30"
   }
 ];
 

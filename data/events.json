@@ -2893,39 +2893,5 @@
     "approval_status": "Antigravity-13D-Validated",
     "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed advance box office checkout pricing on rickshawtheatre.com ($30.00 CAD base, ~$36.50 CAD all-in). All 13 dimensions satisfied.",
     "price": 36.5
-  },
-  {
-    "event_id": "test-reinforce-1790734706",
-    "event_name": "Continuous Learning Jazz Showcase",
-    "category": "music",
-    "venue_name": "Frankie's Jazz Club",
-    "full_address": "",
-    "neighborhood": "",
-    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-25",
-      "start_time": "19:00",
-      "end_time": "16:30",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://frankiesjazzclub.com/events",
-    "details_url": "https://frankiesjazzclub.com/events",
-    "ticket_url": "https://frankiesjazzclub.com/events",
-    "ticket_provider": "Direct",
-    "tags": [
-      "music",
-      "curator-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Curator verified as-is"
   }
 ]
