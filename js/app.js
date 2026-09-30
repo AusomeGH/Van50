@@ -1931,8 +1931,9 @@ function calculateNextTwoDates(ev) {
 
   // 3. Seasonal, Nomadic & Annual Festivals
   if (ev.frequency === 'seasonal' || ev.frequency === 'limited-run' || ev.frequency === 'annual' || ev.isRoving) {
-    if (ev.startIso) {
-      const start = new Date(ev.startIso);
+    const sRaw = ev.startIso || ev.startDate || ev.start_date;
+    if (sRaw) {
+      const start = new Date(sRaw.length === 10 ? sRaw + 'T00:00:00' : sRaw);
       if (!isNaN(start.getTime())) {
         const startDay = new Date(start.getFullYear(), start.getMonth(), start.getDate());
         if (startDay.getTime() === today.getTime()) {
@@ -1947,10 +1948,12 @@ function calculateNextTwoDates(ev) {
           }
         } else if (startDay > today) {
           const fmt = start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+          const endRaw = ev.endIso || ev.endDate || ev.end_date;
+          const endFmt = endRaw ? new Date(endRaw.length === 10 ? endRaw + 'T00:00:00' : endRaw).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : null;
           return {
             type: 'seasonal',
-            label: ev.frequency === 'limited-run' ? 'Confirmed Date' : 'Confirmed Festival Date',
-            dates: fmt
+            label: ev.frequency === 'limited-run' ? 'Confirmed Run' : 'Confirmed Festival Date',
+            dates: endFmt ? `${fmt} – ${endFmt}` : fmt
           };
         }
       }
