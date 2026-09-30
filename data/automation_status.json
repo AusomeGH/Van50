@@ -1,5 +1,5 @@
 {
-  "status": "idle",
+  "status": "running",
   "automationEnabled": true,
   "lastRunAt": "2026-09-28T11:08:48.640246",
   "nextRunAt": "2026-09-29T04:00:00",
@@ -88,10 +88,10 @@
     ]
   },
   "testKey": "automation_unit_test",
-  "testTimestamp": "2026-09-28T09:17:28.462104",
-  "updatedAt": "2026-09-28T10:22:30.959427",
-  "currentStep": null,
-  "startedAt": "2026-09-28T11:07:58.635136",
+  "testTimestamp": "2026-09-29T19:18:41.811482",
+  "updatedAt": "2026-09-29T19:18:42.089706",
+  "currentStep": "gemini_ai_scout",
+  "startedAt": "2026-09-29T19:18:41.980720",
   "durationSeconds": 50.01,
   "backupFile": "events_2026-09-28_110758.json",
   "lastLogFile": "data/automation_logs/daily_sync_2026-09-28.log",

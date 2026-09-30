@@ -1,0 +1,409 @@
+{
+  "timestamp": "2026-09-29T18:00:50.989995",
+  "totalAudited": 59,
+  "passed": 47,
+  "failed": 12,
+  "auditLog": [
+    {
+      "id": "van50-pendulum-gallery",
+      "name": "Pendulum Gallery",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "stanley-park-seawall-rose-garden",
+      "name": "Stanley Park Seawall & Rose Garden",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_public_space_policy"
+    },
+    {
+      "id": "van50-vancouver-art-gallery-free-access",
+      "name": "Vancouver Art Gallery: Free First Friday Nights & Youth Access",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 25.0,
+      "method": "scraped_page_policy"
+    },
+    {
+      "id": "van50-sun-yat-sen-public-park",
+      "name": "Dr. Sun Yat-Sen Public Park Courtyard",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_public_space_policy"
+    },
+    {
+      "id": "van50-the-shipyards-lonsdale-quay",
+      "name": "The Shipyards & Lonsdale Quay Waterfront Promenade",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-granville-island-public-market",
+      "name": "Granville Island Public Market & Boardwalks",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-stanley-park-seawall",
+      "name": "Stanley Park Seawall & Scenic Viewpoints",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_public_space_policy"
+    },
+    {
+      "id": "van50-canada-place-promenade",
+      "name": "Canada Place Promenade & The Canadian Trail",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-polygon-gallery-lonsdale",
+      "name": "The Polygon Gallery Admission by Donation",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-theatresports-improv-centre",
+      "name": "Theatresports\u2122",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 10.0,
+      "method": "audienceview_scraped"
+    },
+    {
+      "id": "van50-heist-arts-club",
+      "name": "HEIST by Arun Lakra",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 45.68,
+      "method": "tessitura_published_rate"
+    },
+    {
+      "id": "van50-metro-vancouver-croissant-crawl",
+      "name": "Metro Vancouver Croissant Crawl",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-stanley-park-seawall-brockton-point",
+      "name": "Stanley Park Seawall & Brockton Point",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_public_space_policy"
+    },
+    {
+      "id": "van50-robson-square-plaza",
+      "name": "Robson Square & \u0161x\u02b7\u019b\u0313\u0259n\u0259q Xwtl'e7\u00e9nk Square",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-splash-pendulum-gallery-2026",
+      "name": "Splash Annual Art Exhibition at Pendulum Gallery",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-silent-movie-mondays-orpheum",
+      "name": "Silent Movie Mondays at The Orpheum",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://vancouvercivictheatres.com"
+    },
+    {
+      "id": "van50-first-friday-vancouver-art-gallery",
+      "name": "First Friday Free Evenings at Vancouver Art Gallery",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "scraped_page_policy"
+    },
+    {
+      "id": "van50-vpl-central-rooftop-garden",
+      "name": "Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-cag-contemporary-art-gallery",
+      "name": "Contemporary Art Gallery (CAG) Public Exhibitions",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-plaza-of-nations-batch-patio",
+      "name": "Plaza of Nations Waterfront Esplanade & Batch Patio",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-st-andrews-jazz-vespers",
+      "name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://standrewswesley.com/jazz-vespers/"
+    },
+    {
+      "id": "van50-lanalous-saturday-afternoon-sessions",
+      "name": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "annex-raagaverse-strings",
+      "name": "Raagaverse + Strings",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 21.02,
+      "method": "api_endpoint"
+    },
+    {
+      "id": "van50-queen-elizabeth-park-gardens",
+      "name": "Queen Elizabeth Park & Quarry Gardens",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_public_space_policy"
+    },
+    {
+      "id": "van50-phyllis-hull-one-woman-show-20270122",
+      "name": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://do604.com/events/2027/1/22/phyllis-hull-s-one-woman-show-hullo-it-s-me-you-re-looking-for-tickets"
+    },
+    {
+      "id": "van50-miesha-and-the-spanks-fox-20261105",
+      "name": "Miesha & The Spanks with Francis Baptiste",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 17.87,
+      "method": "api_endpoint"
+    },
+    {
+      "id": "ubc-fball-uofc",
+      "name": "UBC Football vs. U of C",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 17.5,
+      "method": "venue_published_policy"
+    },
+    {
+      "id": "ubc-mbball-twu",
+      "name": "UBC Men's Basketball vs. TWU",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 17.5,
+      "method": "venue_published_policy"
+    },
+    {
+      "id": "queen-elizabeth-theatre-ballet-bc-bodies-voices",
+      "name": "Ballet BC: Bodies & Voices",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/"
+    },
+    {
+      "id": "viff-the-debut",
+      "name": "VIFF: \"All the Lovers in the Night\" (Special Presentation \u2022 Mieko Kawakami Adaptation)",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 26.0,
+      "method": "scraped_policy_page"
+    },
+    {
+      "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
+      "name": "Ethan Regan - Young Regan Tour",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 39.42,
+      "method": "curator_learned_fee_formula"
+    },
+    {
+      "id": "van50-joon-the-pearl-20261002",
+      "name": "JOON with Lauryn Kovacs",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "schema_jsonld"
+    },
+    {
+      "id": "van50-vag-donation-day-20261002",
+      "name": "Vancouver Art Gallery Admission by Donation Day",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "scraped_page_policy"
+    },
+    {
+      "id": "van50-babes-in-canyon-fox-20261008",
+      "name": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 35.99,
+      "method": "curator_learned_fee_formula"
+    },
+    {
+      "id": "van50-salin-fox-cabaret-20261010",
+      "name": "SALIN (Live Soul & World Jazz)",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 44.57,
+      "method": "schema_jsonld"
+    },
+    {
+      "id": "van50-rio-burlesque-variety-20261017",
+      "name": "The Rio Theatre Burlesque & Variety Show",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 16.0,
+      "method": "venue_published_policy"
+    },
+    {
+      "id": "van50-dummy-wise-hall-20261022",
+      "name": "Dummy with Golomb & worrywart",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 39.35,
+      "method": "schema_jsonld"
+    },
+    {
+      "id": "van50-olive-klug-wise-hall-20261025",
+      "name": "Olive Klug with Frail Talk",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://www.oliveklug.com/shows"
+    },
+    {
+      "id": "van50-ruby-haunt-fox-20261211",
+      "name": "Ruby Haunt with VHS Ghost",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 40.03,
+      "method": "curator_learned_fee_formula"
+    },
+    {
+      "id": "vso-saturday-orpheum",
+      "name": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 25.2,
+      "method": "vso_published_rush_policy"
+    },
+    {
+      "id": "vso-sunday-orpheum",
+      "name": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 25.2,
+      "method": "vso_published_rush_policy"
+    },
+    {
+      "id": "van50-harvest-days-vandusen",
+      "name": "Harvest Days at VanDusen Botanical Garden",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 7.8,
+      "method": "api_endpoint"
+    },
+    {
+      "id": "van50-orpheum-silent-movie-mondays",
+      "name": "Silent Movie Mondays",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/"
+    },
+    {
+      "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
+      "name": "Vancouver Opera: Tosca",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/"
+    },
+    {
+      "id": "van50-lolo-the-pearl-20261003",
+      "name": "L\u00d8L\u00d8: God Forbid a Girl Goes on Tour",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://thepearlvancouver.com/events/"
+    },
+    {
+      "id": "van50-deadly-dinner-party",
+      "name": "Deadly Dinner Party",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 33.5,
+      "method": "venue_published_policy"
+    },
+    {
+      "id": "van50-what-else-lmg-20261003",
+      "name": "What Else? (Live Comedy & Trivia Show)",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 23.03,
+      "method": "curator_learned_fee_formula"
+    },
+    {
+      "id": "van50-stand-up-showcase-lmg-20261015",
+      "name": "Stand-Up Showcase at Little Mountain Gallery",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 18.14,
+      "method": "curator_learned_fee_formula"
+    },
+    {
+      "id": "test-reinforce-1790729044",
+      "name": "Continuous Learning Jazz Showcase",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Turntable Tickets portal unreachable"
+    },
+    {
+      "id": "van50-burnaby-central-railway-mini-train",
+      "name": "Burnaby Central Railway Miniature Train Rides",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://bcsme.org"
+    },
+    {
+      "id": "van50-tim-burton-cabaret-waldorf-20261024",
+      "name": "Tim Burton\u2019s Funeral \u2013 A Naturally Freaky Cabaret",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 22.63,
+      "method": "schema_jsonld"
+    },
+    {
+      "id": "van50-scout-fox-sunday-service-20261004",
+      "name": "The Sunday Service: Live Improv Comedy",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://foxcabaret.com"
+    },
+    {
+      "id": "van50-scout-rickshaw-jonny-bones-20261001",
+      "name": "Jonny Bones Memorial Movie Marathon",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 0.0,
+      "method": "civic_free_public_access"
+    },
+    {
+      "id": "van50-scout-rickshaw-ethan-regan-20261003",
+      "name": "Ethan Regan: Young Regan Tour with harf",
+      "status": "CHECKOUT_FAILED",
+      "reason": "Could not dynamically verify live checkout pricing on host page: https://rickshawtheatre.com"
+    },
+    {
+      "id": "van50-scout-cinematheque-past-future-20261015",
+      "name": "Past Future Continuous (Vancouver Premiere)",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 15.0,
+      "method": "venue_published_policy"
+    },
+    {
+      "id": "van50-scout-york-comedy-on-the-drive-20261024",
+      "name": "Comedy on the Drive",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 26.25,
+      "method": "spektrix_published_policy"
+    },
+    {
+      "id": "van50-scout-york-stripocalypse-20261016",
+      "name": "Stripocalypse: Rise of the Auntie Heroes",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 26.25,
+      "method": "spektrix_published_policy"
+    },
+    {
+      "id": "van50-scout-orpheum-vso-kids-20261004",
+      "name": "VSO Kids: Lights, Camera, Orchestra!",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 25.2,
+      "method": "vso_published_rush_policy"
+    },
+    {
+      "id": "van50-scout-rio-viff-beloved-20261001",
+      "name": "VIFF 2026: The Beloved (El Ser querido)",
+      "status": "VERIFIED_LIVE_CART",
+      "price": 49.0,
+      "method": "scraped_policy_page"
+    }
+  ]
+}

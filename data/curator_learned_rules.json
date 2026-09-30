@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-28T09:44:10-07:00",
+    "updatedAt": "2026-09-29T19:18:34-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -466,18 +466,16 @@
       "source": "Curator Studio Instruction inst_1790184281729"
     },
     "Frankie's Jazz Club": {
-      "doorPrice": null,
-      "priceRange": null,
+      "venueName": "Frankie's Jazz Club",
+      "doorPrice": 10.0,
       "pricingType": "standard",
-      "minimumSpend": null,
       "priceCeiling": 50.0,
-      "scheduleDays": [],
-      "genres": [],
-      "calendarUrl": "https://frankiesjazzclub.com",
-      "summary": "Calendar: https://frankiesjazzclub.com",
-      "curatorGuidance": "Screenshot proves ticket price is $20 at door not $60.",
-      "learnedAt": "2026-09-23T17:24:41.864344+00:00",
-      "source": "Curator Studio Instruction inst_1790184281811"
+      "calendarUrl": "https://frankiesjazzclub.turntabletickets.com/",
+      "ticketingProvider": "Direct / Venue Link",
+      "summary": "Detected curator guidance to process and split this schedule into 2 distinct events: Early Jazz Roots Showcase on Thursdays ($20.00 CAD); Late-Night Jam Session on Thursdays ($10.00 CAD). Each event was verified within the <= $50 CAD limit and queued as separate event cards for review.",
+      "curatorGuidance": "https://frankiesjazzclub.turntabletickets.com/\nhttps://frankiesjazzclub.turntabletickets.com/tables\nhttps://www.frankiesjazzclub.ca/after-dark/\nThere are multiple events occurring at Frankie's each needs their own card.  You can find them from the website I've included.  Each of these has their own price that needs to be verrified.",
+      "extractedTiers": [],
+      "learnedAt": "2026-09-29T21:10:42.526731+00:00"
     },
     "Fox Cabaret": {
       "doorPrice": null,
@@ -1745,8 +1743,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
       "curatorGuidance": "Instruction to be updated by test suite",
-      "learnedAt": "2026-09-23T17:22:56.725172+00:00",
-      "source": "Curator Studio Instruction inst_1790184176713"
+      "learnedAt": "2026-09-30T02:18:34.130967+00:00",
+      "source": "Curator Studio Instruction inst_1790734714056"
     },
     "Pending Venue Candidate 1789950841": {
       "doorPrice": null,
@@ -1923,6 +1921,114 @@
       "curatorGuidance": "",
       "learnedAt": "2026-09-28T16:44:10.035688+00:00",
       "source": "Curator Studio Instruction"
+    },
+    "VanDusen Botanical Garden": {
+      "venueName": "VanDusen Botanical Garden",
+      "doorPrice": 14.86,
+      "pricingType": "standard",
+      "priceCeiling": 50.0,
+      "calendarUrl": "https://vandusengarden.org",
+      "ticketingProvider": "Showpass",
+      "summary": "Learned VanDusen Botanical Garden Harvest Days at VanDusen admission: Adult rate is $14.86 CAD all-in ($13.27 + $1.59 Showpass fee), with reduced tiers for seniors, youth, and children. Operating schedule verified for Weekends From September 26 To October 18 (10:30 am-4:30 pm), strictly abiding within the $50 CAD threshold.",
+      "curatorGuidance": "https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/ \n\nMultiple tiers of pricing included in screen shot.   Open Several weekends according to screenshot.",
+      "extractedTiers": [
+        {
+          "name": "Adult (19-64 years)",
+          "total": 14.86,
+          "base": 13.27,
+          "fee": 1.59,
+          "isFree": false
+        },
+        {
+          "name": "Senior (65+ years)",
+          "total": 11.88,
+          "base": 10.61,
+          "fee": 1.27,
+          "isFree": false
+        },
+        {
+          "name": "Youth (13-18 years)",
+          "total": 10.39,
+          "base": 9.28,
+          "fee": 1.11,
+          "isFree": false
+        },
+        {
+          "name": "Child (5-12 years)",
+          "total": 7.43,
+          "base": 6.63,
+          "fee": 0.8,
+          "isFree": false
+        },
+        {
+          "name": "Preschooler (4 and under)",
+          "total": 0.0,
+          "base": null,
+          "fee": null,
+          "isFree": true
+        }
+      ],
+      "learnedAt": "2026-09-29T16:51:58.797403+00:00"
+    },
+    "Guilt & Company": {
+      "venueName": "Guilt & Company",
+      "doorPrice": 12.0,
+      "pricingType": "standard",
+      "priceCeiling": 50.0,
+      "calendarUrl": "https://www.guiltandcompany.com/",
+      "ticketingProvider": "Direct / Venue Link",
+      "summary": "Detected curator guidance to process and split this schedule into 8 distinct events: Call Before You Dig on 9pm-12am ($12.00 CAD); Damasco Soul System The JD Rich Band on 9pm-12am ($12.00 CAD); Vvmat ffe Funk!? LittleFox on 9pm-12am ($12.00 CAD); Danid The Ragtime on 9pm-12am ($12.00 CAD); Savannah Underneath the Harlem Moon on 9pm-12am ($12.00 CAD); Flora Falls on 6pm-8pm ($8.00 CAD); The Alvin Brendan on 9pm-12am ($12.00 CAD); The Tim Claridge Band Dogwood and the on 9pm-12am ($12.00 CAD). Each event was verified within the <= $50 CAD limit and queued as separate event cards for review.",
+      "curatorGuidance": "https://www.guiltandcompany.com/\n\n[Instruction: This proposed event actually contains multiple unique events. Please scan the screenshots, comments, and schedule details to decompose into discrete cards with unique names.]",
+      "extractedTiers": [
+        {
+          "name": "Early Show (Before 8 PM)",
+          "total": 8.0,
+          "base": 8.0,
+          "fee": null,
+          "isFree": false
+        },
+        {
+          "name": "Late Show (Sun–Thu)",
+          "total": 12.0,
+          "base": 12.0,
+          "fee": null,
+          "isFree": false
+        },
+        {
+          "name": "Early Show",
+          "total": 9.0,
+          "base": 9.0,
+          "fee": null,
+          "isFree": false
+        },
+        {
+          "name": "Early Show",
+          "total": 2.0,
+          "base": 2.0,
+          "fee": null,
+          "isFree": false
+        },
+        {
+          "name": "Early Show",
+          "total": 8.0,
+          "base": 8.0,
+          "fee": null,
+          "isFree": false
+        }
+      ],
+      "learnedAt": "2026-09-29T20:58:13.961423+00:00"
+    },
+    "Rickshaw Theatre": {
+      "venueName": "Rickshaw Theatre",
+      "doorPrice": 25.0,
+      "pricingType": "standard",
+      "priceCeiling": 50.0,
+      "calendarUrl": "https://rickshawtheatre.com/test-event",
+      "ticketingProvider": "Direct",
+      "summary": "Learned verified admission for Dual Action Test Event at Rickshaw Theatre is $25.00 CAD all-in via Direct. Verified event outing meets all Van50 quality criteria with verified direct ticketing.",
+      "curatorGuidance": "Fix scraper to target General Admission tier.",
+      "extractedTiers": [],
+      "learnedAt": "2026-09-29T20:58:14.383983+00:00"
     }
   },
   "notes": {

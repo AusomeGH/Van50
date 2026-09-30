@@ -49,6 +49,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
 from daily_automation import get_automation_status, update_automation_status, run_full_daily_pipeline
 from screenshot_verifier import verify_screenshot_against_event
+from ai_feedback_synthesizer import synthesize_proof_and_comments, process_all_feedback_items
 
 PORT = 8080
 
@@ -1316,39 +1317,67 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         # API: Trigger Quality Control AI Pass in background
         if path == "/api/curator/run-qc":
-            def _worker():
-                import subprocess
-                scripts_dir = os.path.join(BASE_DIR, "scripts")
-                qc_script = os.path.join(scripts_dir, "antigravity_qc_engine.py")
-                cmd = [sys.executable, qc_script]
-                try:
-                    subprocess.Popen(cmd, cwd=BASE_DIR)
-                except Exception as ex:
-                    print(f"[ERROR] Failed to launch Antigravity QC Engine: {ex}")
+            try:
+                from activity_logger import set_ai_status, log_info
+                from antigravity_qc_engine import run_antigravity_qc_pass
 
-            threading.Thread(target=_worker, daemon=True).start()
-            return self._send_json(200, {
-                "success": True,
-                "message": "Antigravity Autonomous QC Pass launched in background."
-            })
+                set_ai_status("running", "Automated QC Audit", "Initializing catalog verification & hygiene audit...", 5)
+                log_info("Curator initiated automated QC Audit pass.", step="Starting QC Audit", progress=5)
 
-        # API: Trigger Antigravity Autonomous Event Scout (Crawl discovery feeds & venues)
+                def _qc_thread():
+                    try:
+                        run_antigravity_qc_pass()
+                    except Exception as ex:
+                        print(f"[ERROR] Failed in Automated QC Engine thread: {ex}")
+                        set_ai_status("error", "Automated QC Audit", f"Error during QC Audit: {ex}", 100)
+
+                threading.Thread(target=_qc_thread, daemon=True).start()
+                return self._send_json(200, {
+                    "success": True,
+                    "message": "Automated QC Pass launched in background."
+                })
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to start QC audit: {e}"})
+
+        # API: Trigger Discovery Feed Crawler (Crawl discovery feeds & venues)
         if path == "/api/curator/crawl-events":
-            def _scout_worker():
-                import subprocess
-                scripts_dir = os.path.join(BASE_DIR, "scripts")
-                scout_script = os.path.join(scripts_dir, "antigravity_event_scout.py")
-                cmd = [sys.executable, scout_script]
-                try:
-                    subprocess.Popen(cmd, cwd=BASE_DIR)
-                except Exception as ex:
-                    print(f"[ERROR] Failed to launch Antigravity Event Scout: {ex}")
+            try:
+                from activity_logger import set_ai_status, log_info
+                from antigravity_event_scout import run_autonomous_event_scout
 
-            threading.Thread(target=_scout_worker, daemon=True).start()
-            return self._send_json(200, {
-                "success": True,
-                "message": "Antigravity Event Scout launched in background."
-            })
+                set_ai_status("running", "Discovery Feed Crawler", "Scanning discovery feeds and venue calendars...", 5)
+                log_info("Curator launched discovery feed crawler.", step="Starting Crawler", progress=5)
+
+                def _scout_worker():
+                    try:
+                        run_autonomous_event_scout()
+                    except Exception as ex:
+                        print(f"[ERROR] Failed in Discovery Feed Crawler: {ex}")
+                        set_ai_status("error", "Discovery Feed Crawler", f"Error during crawl: {ex}", 100)
+
+                threading.Thread(target=_scout_worker, daemon=True).start()
+                return self._send_json(200, {
+                    "success": True,
+                    "message": "Discovery Feed Crawler launched in background."
+                })
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to start event scout: {e}"})
+
+        # API: Process All Items with Feedback & Proof (Synthesize comments/screenshots & apply rules)
+        if path == "/api/curator/process-feedback-queue":
+            try:
+                auto_approve = payload.get("autoApproveValid", True)
+                res = process_all_feedback_items(auto_apply_rules=True, auto_approve_valid=auto_approve)
+                sync_js_data_file()
+                return self._send_json(200, res)
+            except Exception as ex:
+                try:
+                    from activity_logger import set_ai_status, log_activity
+                    set_ai_status("error", task="AI Feedback & Multi-Proof Synthesizer", step=f"Error: {ex}", progress=100)
+                    log_activity("ERROR", f"Failed to process feedback queue: {ex}")
+                except Exception:
+                    pass
+                return self._send_json(500, {"error": f"Failed to process feedback queue: {ex}"})
 
         # Sliding window rate limit on mutating endpoints
         if path in {
@@ -1414,62 +1443,56 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             event_data["isSoldOut"] = bool(event_data.get("isSoldOut", False))
             event_data = ensure_event_catalog_fields(event_data)
 
-            # 1. Add/update in data/events.json
-            with open(EVENTS_PATH, "r", encoding="utf-8") as f:
-                db = json.load(f)
-            events_list = db.get("events", [])
-            # Deduplicate by ID
-            events_list = [e for e in events_list if e["id"] != ev_id]
-            events_list.append(event_data)
-            db["events"] = events_list
-            db.setdefault("metadata", {})["totalEvents"] = len(events_list)
-            db["metadata"]["updatedAt"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-07:00")
-            with open(EVENTS_PATH, "w", encoding="utf-8") as f:
-                json.dump(db, f, indent=2, ensure_ascii=False)
+            # 1. Add/update in data/events.json (Master active list)
+            active_list = []
+            if os.path.exists(EVENTS_PATH):
+                try:
+                    with open(EVENTS_PATH, "r", encoding="utf-8") as af:
+                        raw_data = json.load(af)
+                        active_list = raw_data if isinstance(raw_data, list) else raw_data.get("events", [])
+                except Exception as ex:
+                    print(f"[WARN] Failed to read events.json: {ex}")
 
-            # 1b. Add/update in data/events_active.json
-            try:
-                active_list = []
-                if os.path.exists(EVENTS_ACTIVE_PATH):
-                    with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as af:
-                        active_list = json.load(af)
-                active_list = [x for x in active_list if (x.get("event_id") or x.get("id")) != ev_id]
-                active_item = {
-                    "event_id": ev_id,
-                    "event_name": event_data.get("title", ""),
-                    "category": event_data.get("category", "General"),
-                    "venue_name": event_data.get("venue", ""),
-                    "full_address": event_data.get("address", ""),
-                    "neighborhood": event_data.get("neighborhood", ""),
-                    "description": event_data.get("description", ""),
-                    "pricing_all_in_cad": {
-                        "regular": price,
-                        "senior": None,
-                        "student": None,
-                        "member": None
-                    },
-                    "show_1": {
-                        "date": (event_data.get("startIso") or "")[:10],
-                        "start_time": (event_data.get("startIso") or "")[11:16],
-                        "end_time": (event_data.get("endIso") or "")[11:16],
-                        "cost": price
-                    },
-                    "show_2": None,
-                    "show_3": None,
-                    "discovery_url": source_url,
-                    "details_url": source_url,
-                    "ticket_url": event_data.get("websiteUrl") or source_url,
-                    "ticket_provider": event_data.get("ticketProvider", "Direct"),
-                    "tags": event_data.get("subTags", []),
-                    "festival_affiliation": "None",
-                    "approval_status": "Curator-Approved",
-                    "curator_notes": curator_note
-                }
-                active_list.append(active_item)
-                with open(EVENTS_ACTIVE_PATH, "w", encoding="utf-8") as af:
-                    json.dump(active_list, af, indent=2, ensure_ascii=False)
-            except Exception as ex:
-                print(f"[WARN] Failed to write events_active.json: {ex}")
+            active_list = [x for x in active_list if (x.get("event_id") or x.get("id")) != ev_id]
+
+            show_date = (event_data.get("startIso") or "")[:10]
+            if not show_date and event_data.get("dateSchedule"):
+                show_date = event_data.get("dateSchedule")
+
+            active_item = {
+                "event_id": ev_id,
+                "event_name": event_data.get("title", ""),
+                "category": event_data.get("category", "General"),
+                "venue_name": event_data.get("venue", ""),
+                "full_address": event_data.get("address", ""),
+                "neighborhood": event_data.get("neighborhood", ""),
+                "description": event_data.get("description", ""),
+                "pricing_all_in_cad": {
+                    "regular": price,
+                    "senior": None,
+                    "student": None,
+                    "member": None
+                },
+                "show_1": {
+                    "date": show_date or "Upcoming",
+                    "start_time": (event_data.get("startIso") or "")[11:16] or "10:30",
+                    "end_time": (event_data.get("endIso") or "")[11:16] or "16:30",
+                    "cost": price
+                },
+                "show_2": None,
+                "show_3": None,
+                "discovery_url": source_url,
+                "details_url": source_url,
+                "ticket_url": event_data.get("websiteUrl") or source_url,
+                "ticket_provider": event_data.get("ticketProvider", event_data.get("provider", "Direct")),
+                "tags": event_data.get("subTags", [category.lower(), "curator-verified"]),
+                "festival_affiliation": "None",
+                "approval_status": "Curator-Approved",
+                "curator_notes": curator_note
+            }
+            active_list.append(active_item)
+            with open(EVENTS_PATH, "w", encoding="utf-8") as af:
+                json.dump(active_list, af, indent=2, ensure_ascii=False)
 
 
             # 2. Remove from data/manual_review_queue.json
@@ -2008,19 +2031,47 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception as e:
                     logger.warning(f"Screenshot verification error in interpret: {e}")
 
-            # 4. Synthesize Card Fields with Priority: Curator Instruction > Screenshot OCR > Card Existing
-            final_title = text_signals["detectedTitle"] or (ocr_result and ocr_result.get("title", {}).get("extractedTitle")) or card_data.get("title") or "Event Title"
-            final_venue = text_signals["detectedVenue"] or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("venue")) or card_data.get("venue") or "Vancouver Venue"
-            final_address = card_data.get("address") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("address")) or "Vancouver, BC"
-            final_neighborhood = card_data.get("neighborhood") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("neighborhood")) or "Vancouver"
-            final_category = text_signals["detectedCategory"] or (ocr_result and ocr_result.get("dimensions", {}).get("category", {}).get("extracted")) or card_data.get("category") or "shows"
-            final_date = text_signals["detectedDate"] or (ocr_result and ocr_result.get("dimensions", {}).get("date", {}).get("extracted")) or card_data.get("dateSchedule") or card_data.get("frequencyLabel") or "Upcoming"
+            # Multi-screenshot support: gather all screenshot paths and base64 images
+            screenshot_paths = list(payload.get("screenshotPaths") or [])
+            if screenshot_path and screenshot_path not in screenshot_paths:
+                screenshot_paths.insert(0, screenshot_path)
+
+            if not screenshot_paths and card_data:
+                annot = card_data.get("curatorAnnotation") or {}
+                if annot.get("screenshotPaths"):
+                    screenshot_paths.extend(annot.get("screenshotPaths"))
+                elif annot.get("screenshotPath"):
+                    screenshot_paths.append(annot.get("screenshotPath"))
+
+            screenshots_base64 = list(payload.get("screenshotsBase64") or [])
+            if screenshot_base64 and screenshot_base64 not in screenshots_base64:
+                screenshots_base64.insert(0, screenshot_base64)
+
+            # Run Multi-Proof & Comment Synthesis Engine
+            synth_instruction = instruction_text
+            if payload.get("forceMultiSplit") and not re.search(r'split|multiple|decompose', synth_instruction, re.I):
+                synth_instruction = f"{synth_instruction}\nSplit into multiple unique events." if synth_instruction else "Split into multiple unique events."
+
+            synth_res = synthesize_proof_and_comments(
+                card_data=card_data,
+                instruction_text=synth_instruction,
+                screenshot_paths=screenshot_paths,
+                screenshots_base64=screenshots_base64
+            )
+
+            # 4. Synthesize Card Fields with Priority: Curator Instruction > Multi-Proof OCR > Card Existing
+            final_title = text_signals["detectedTitle"] or synth_res.get("cardPreview", {}).get("title") or (ocr_result and ocr_result.get("title", {}).get("extractedTitle")) or card_data.get("title") or "Event Title"
+            final_venue = text_signals["detectedVenue"] or synth_res.get("cardPreview", {}).get("venue") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("venue")) or card_data.get("venue") or "Vancouver Venue"
+            final_address = synth_res.get("cardPreview", {}).get("address") or card_data.get("address") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("address")) or "Vancouver, BC"
+            final_neighborhood = synth_res.get("cardPreview", {}).get("neighborhood") or card_data.get("neighborhood") or (ocr_result and ocr_result.get("dimensions", {}).get("location", {}).get("details", {}).get("neighborhood")) or "Vancouver"
+            final_category = text_signals["detectedCategory"] or synth_res.get("cardPreview", {}).get("category") or (ocr_result and ocr_result.get("dimensions", {}).get("category", {}).get("extracted")) or card_data.get("category") or "shows"
+            final_date = text_signals["detectedDate"] or synth_res.get("extractedSchedule") or (ocr_result and ocr_result.get("dimensions", {}).get("date", {}).get("extracted")) or card_data.get("dateSchedule") or card_data.get("frequencyLabel") or "Upcoming"
             
             # Price priority
-            final_price = None
+            final_price = synth_res.get("standardPrice")
             if text_signals["detectedPrice"] is not None:
                 final_price = text_signals["detectedPrice"]
-            elif ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("extracted") is not None:
+            elif final_price is None and ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("extracted") is not None:
                 try:
                     final_price = float(ocr_result["dimensions"]["price"]["extracted"])
                 except Exception:
@@ -2033,11 +2084,11 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     final_price = 0.0
 
             # URL priority
-            final_url = (parsed_links[0]["url"] if parsed_links else None) or card_data.get("websiteUrl") or card_data.get("url") or "#"
-            final_provider = (parsed_links[0]["provider"] if parsed_links else None) or (ocr_result and ocr_result.get("dimensions", {}).get("link", {}).get("extracted")) or card_data.get("provider") or "Direct"
+            final_url = synth_res.get("primaryLink") or (parsed_links[0]["url"] if parsed_links else None) or card_data.get("websiteUrl") or card_data.get("url") or "#"
+            final_provider = synth_res.get("primaryProvider") or (parsed_links[0]["provider"] if parsed_links else None) or (ocr_result and ocr_result.get("dimensions", {}).get("link", {}).get("extracted")) or card_data.get("provider") or "Direct"
 
             # 5. Determine Validity
-            is_valid = True
+            is_valid = synth_res.get("isValid", True)
             dismiss_reasons = []
 
             if text_signals["isDismissalIntent"]:
@@ -2071,7 +2122,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             }
 
             price_label = "Free ($0)" if final_price == 0.0 else f"${final_price:.2f} all-in"
-            fee_breakdown = (ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("details", {}).get("breakdown")) or f"Verified rate: {price_label}"
+            fee_breakdown = synth_res.get("cardPreview", {}).get("feeBreakdown") or (ocr_result and ocr_result.get("dimensions", {}).get("price", {}).get("details", {}).get("breakdown")) or f"Verified rate: {price_label}"
 
             card_preview = {
                 "id": card_data.get("id", "preview-card"),
@@ -2093,8 +2144,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             signal_chips = {
                 "notes": ("Dismissal intent" if text_signals["isDismissalIntent"] else (f"${final_price:.2f} CAD" if text_signals["detectedPrice"] is not None else "Analyzing")) if instruction_text else "None",
-                "links": f"{parsed_links[0]['provider']} ({parsed_links[0]['domain']})" if parsed_links else "None",
-                "proof": ("✓ 7 Dimensions Extracted" if ocr_result else "Attached") if bool(source_img) else "None"
+                "links": f"{final_provider} ({parsed_links[0]['domain']})" if parsed_links else "None",
+                "proof": (f"✓ {synth_res.get('screenshotCount', 1)} Screenshots Extracted" if synth_res.get("screenshotCount", 0) > 0 else ("✓ 7 Dimensions Extracted" if ocr_result else "Attached")) if (bool(source_img) or bool(screenshot_paths)) else "None"
             }
 
             return self._send_json(200, {
@@ -2106,7 +2157,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "cardPreview": card_preview,
                 "parsedLinks": parsed_links,
                 "textSignals": text_signals,
-                "hasScreenshot": bool(source_img),
+                "hasScreenshot": bool(source_img) or bool(screenshot_paths),
                 "ocrResult": ocr_result,
                 "extractedTitle": final_title,
                 "extractedPrice": final_price,
@@ -2114,7 +2165,13 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "extractedDate": final_date,
                 "extractedVenue": final_venue,
                 "auditNote": fee_breakdown,
-                "signalChips": signal_chips
+                "signalChips": signal_chips,
+                "aiLearnedSummary": synth_res.get("aiLearnedSummary", ""),
+                "extractedTiers": synth_res.get("extractedTiers", []),
+                "extractedSchedule": synth_res.get("extractedSchedule"),
+                "isMultiEventSplit": synth_res.get("isMultiEventSplit", False),
+                "subEvents": synth_res.get("subEvents", []),
+                "subEventsCount": synth_res.get("subEventsCount", 0)
             })
 
         # 5. API: Instruct AI Assistant (Plain English & Screenshot Queue)
@@ -2148,6 +2205,18 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "curatorNote": payload.get("curatorNote", ""),
                 "targetScraperOrEngine": payload.get("venueName") or "UniversalVenueCrawler"
             }
+
+            # Run Multi-Proof & Comment Synthesis Engine immediately
+            synth_info = synthesize_proof_and_comments(
+                card_data={"id": event_id, "title": payload.get("eventTitle", ""), "venue": payload.get("venueName", "")},
+                instruction_text=instruction_text,
+                screenshot_paths=screenshot_rel_paths
+            )
+            instruction_record["aiLearnedSummary"] = synth_info.get("aiLearnedSummary")
+            instruction_record["extractedTiers"] = synth_info.get("extractedTiers")
+            instruction_record["isMultiEventSplit"] = synth_info.get("isMultiEventSplit", False)
+            instruction_record["subEvents"] = synth_info.get("subEvents", [])
+            instruction_record["subEventsCount"] = synth_info.get("subEventsCount", 0)
 
             # Save to curator_instructions.json
             os.makedirs(DATA_DIR, exist_ok=True)
@@ -2291,36 +2360,49 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         sync_js_data_file()
                         approval_msg = f" Venue '{venue_name}' approved and enrolled into Universal Venue Crawler."
                 else:
-                    # GATED PROTOCOL: Never release or evict quarantined events without Antigravity review!
+                    # GATED PROTOCOL: Action proposed by curator is held in quarantine awaiting Antigravity review
                     user_supplied_price = payload.get("approvedPrice")
+                    if user_supplied_price is None and synth_info.get("standardPrice") is not None:
+                        user_supplied_price = synth_info.get("standardPrice")
+                    try:
+                        approved_price = float(user_supplied_price or 0.0)
+                    except (ValueError, TypeError):
+                        approved_price = 0.0
+
+                    if approved_price > 50.0:
+                        return self._send_json(400, {"error": f"Price ${approved_price:.2f} strictly exceeds <= $50.00 CAD budget limit."})
+
+                    matched_ev = None
+                    if os.path.exists(MANUAL_QUEUE_PATH):
+                        try:
+                            with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                                q_data = json.load(f)
+                            matched_ev = next((q for q in q_data.get("quarantinedEvents", []) if q.get("id") == event_id), None)
+                        except Exception:
+                            pass
+
+                    final_title = sanitize_text(str(payload.get("approvedTitle") or (matched_ev and matched_ev.get("title")) or payload.get("eventTitle") or event_id))
+
                     if os.path.exists(MANUAL_QUEUE_PATH):
                         try:
                             with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                                 q_data = json.load(f)
                             q_list = q_data.get("quarantinedEvents", [])
-                            matched_ev = None
                             for q in q_list:
                                 if q.get("id") == event_id:
-                                    matched_ev = q
                                     q["reviewStatus"] = "pending_antigravity_review"
-                                    if user_supplied_price is not None:
-                                        try:
-                                            q["attemptedPrice"] = float(user_supplied_price)
-                                        except (ValueError, TypeError):
-                                            pass
+                                    q["attemptedPrice"] = approved_price
                                     if payload.get("approvedTitle"):
                                         q["title"] = sanitize_text(str(payload.get("approvedTitle")))
                                     if payload.get("approvedCategory"):
                                         q["category"] = sanitize_text(str(payload.get("approvedCategory")))
                                     if payload.get("approvedDate"):
                                         q["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
-                                    if payload.get("approvedVenue"):
-                                        q["venue"] = sanitize_text(str(payload.get("approvedVenue")))
                                     q["curatorAnnotation"] = {
                                         "instructionId": inst_id,
                                         "note": instruction_text,
-                                        "proposedAction": action,
-                                        "userSuppliedPrice": float(user_supplied_price) if user_supplied_price is not None else None,
+                                        "proposedAction": "approve",
+                                        "userSuppliedPrice": approved_price,
                                         "screenshotPaths": screenshot_rel_paths,
                                         "annotatedAt": datetime.now(timezone.utc).isoformat()
                                     }
@@ -2331,8 +2413,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         except Exception as e:
                             print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
 
-                    ev_title_display = matched_ev.get("title") if matched_ev else event_id
-                    approval_msg = f" Notes & proof saved for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
+                    approval_msg = f" Event '{final_title}' queued for Antigravity review. Event held in quarantine awaiting final release."
 
             elif action in ("queue_and_dismiss", "queue_and_reject"):
                 if str(event_id).startswith("discovered-") or payload.get("itemType") == "venue":
@@ -2388,40 +2469,121 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
                                 q_data = json.load(f)
                             q_list = q_data.get("quarantinedEvents", [])
-                            for q in q_list:
-                                if q.get("id") == event_id:
-                                    matched_ev = q
-                                    q["reviewStatus"] = "pending_antigravity_review"
-                                    if user_supplied_price is not None:
-                                        try:
-                                            q["attemptedPrice"] = float(user_supplied_price)
-                                        except (ValueError, TypeError):
-                                            pass
-                                    if payload.get("approvedTitle"):
-                                        q["title"] = sanitize_text(str(payload.get("approvedTitle")))
-                                    if payload.get("approvedCategory"):
-                                        q["category"] = sanitize_text(str(payload.get("approvedCategory")))
-                                    if payload.get("approvedDate"):
-                                        q["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
-                                    if payload.get("approvedVenue"):
-                                        q["venue"] = sanitize_text(str(payload.get("approvedVenue")))
-                                    q["curatorAnnotation"] = {
-                                        "instructionId": inst_id,
-                                        "note": instruction_text,
-                                        "proposedAction": "review",
-                                        "userSuppliedPrice": float(user_supplied_price) if user_supplied_price is not None else None,
-                                        "screenshotPaths": screenshot_rel_paths,
-                                        "annotatedAt": datetime.now(timezone.utc).isoformat()
+                            matched_ev = next((q for q in q_list if q.get("id") == event_id), None)
+                            sub_event_list = payload.get("subEvents") or synth_info.get("subEvents") or []
+                            is_split_intent = synth_info.get("isMultiEventSplit") or payload.get("isMultiEventSplit") or bool(payload.get("subEvents"))
+                            if matched_ev and is_split_intent and sub_event_list:
+                                # Multi-event split! Decompose parent event into distinct child events in quarantine
+                                sub_items = []
+                                parent_id = matched_ev.get("id", event_id)
+                                parent_venue = matched_ev.get("venue") or payload.get("venueName") or "Vancouver Venue"
+                                parent_addr = matched_ev.get("address") or f"{parent_venue}, Vancouver, BC"
+                                parent_neigh = matched_ev.get("neighborhood") or "Downtown"
+                                parent_url = matched_ev.get("websiteUrl") or payload.get("sourceUrl") or ""
+
+                                for s_idx, sub in enumerate(sub_event_list):
+                                    sub_title = sub.get("title") or f"{matched_ev.get('title', 'Event')} (Part {s_idx + 1})"
+                                    sub_price = float(sub.get("price") if sub.get("price") is not None else (matched_ev.get("price") or 0.0))
+                                    sub_price_label = sub.get("priceLabel") or ("Free ($0)" if sub_price == 0.0 else f"${sub_price:.2f} CAD")
+                                    sub_cat = sub.get("category") or matched_ev.get("category") or "shows"
+                                    sub_sched = sub.get("dateSchedule") or matched_ev.get("dateSchedule") or "Upcoming"
+                                    sub_fee = sub.get("feeBreakdown") or f"Split rate: {sub_price_label}"
+                                    sub_slug = re.sub(r'[^a-z0-9]+', '-', sub_title.lower()).strip('-')
+                                    sub_id = sub.get("id") or f"{parent_id}-{sub_slug[:30]}" or f"{parent_id}-split-{s_idx + 1}"
+
+                                    sub_record = {
+                                        "id": sub_id,
+                                        "title": sanitize_text(sub_title),
+                                        "artist": sanitize_text(sub_title),
+                                        "venue": sanitize_text(sub.get("venue") or parent_venue),
+                                        "address": sanitize_text(parent_addr),
+                                        "neighborhood": sanitize_text(parent_neigh),
+                                        "price": sub_price,
+                                        "priceLabel": sub_price_label,
+                                        "category": sub_cat,
+                                        "categoryLabel": f"🏷️ {sub_cat.title()}",
+                                        "dateSchedule": sanitize_text(sub_sched),
+                                        "websiteUrl": parent_url,
+                                        "feeBreakdown": sub_fee,
+                                        "reviewStatus": "pending_antigravity_review",
+                                        "isSplitChild": True,
+                                        "parentEventId": parent_id,
+                                        "quarantineReason": f"Decomposed into discrete event #{s_idx + 1} from '{matched_ev.get('title', parent_id)}' via curator multi-event guidance.",
+                                        "curatorAnnotation": {
+                                            "instructionId": inst_id,
+                                            "note": instruction_text,
+                                            "proposedAction": "review",
+                                            "userSuppliedPrice": sub_price,
+                                            "screenshotPaths": screenshot_rel_paths,
+                                            "aiLearnedSummary": synth_info.get("aiLearnedSummary"),
+                                            "isSplitChild": True,
+                                            "parentEventId": parent_id,
+                                            "subEventIndex": s_idx + 1,
+                                            "annotatedAt": datetime.now(timezone.utc).isoformat()
+                                        },
+                                        "flaggedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d")
                                     }
-                            q_data["quarantinedEvents"] = q_list
-                            with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
-                                json.dump(q_data, f, indent=2, ensure_ascii=False)
-                            sync_js_data_file()
+                                    sub_items.append(sub_record)
+
+                                # Enforce unique titles across all child events
+                                seen_t = {}
+                                for s_rec in sub_items:
+                                    t_clean = s_rec["title"]
+                                    t_low = t_clean.lower()
+                                    if t_low in seen_t:
+                                        seen_t[t_low] += 1
+                                        if s_rec.get("dateSchedule") and s_rec["dateSchedule"] != "Upcoming":
+                                            s_rec["title"] = f"{t_clean} ({s_rec['dateSchedule']})"
+                                        else:
+                                            s_rec["title"] = f"{t_clean} - Part {seen_t[t_low]}"
+                                        s_rec["artist"] = s_rec["title"]
+                                    else:
+                                        seen_t[t_low] = 1
+
+                                # Replace parent item in q_list with the decomposed discrete events
+                                q_list = [q for q in q_list if q.get("id") != event_id]
+                                q_list.extend(sub_items)
+                                q_data["quarantinedEvents"] = q_list
+                                q_data.setdefault("metadata", {})["pendingCount"] = len(q_list)
+                                with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                                    json.dump(q_data, f, indent=2, ensure_ascii=False)
+                                sync_js_data_file()
+                                approval_msg = f" Multi-event schedule decomposed into {len(sub_items)} discrete events in quarantine awaiting Antigravity review."
+                            elif matched_ev:
+                                for q in q_list:
+                                    if q.get("id") == event_id:
+                                        q["reviewStatus"] = "pending_antigravity_review"
+                                        if user_supplied_price is not None:
+                                            try:
+                                                q["attemptedPrice"] = float(user_supplied_price)
+                                            except (ValueError, TypeError):
+                                                pass
+                                        if payload.get("approvedTitle"):
+                                            q["title"] = sanitize_text(str(payload.get("approvedTitle")))
+                                        if payload.get("approvedCategory"):
+                                            q["category"] = sanitize_text(str(payload.get("approvedCategory")))
+                                        if payload.get("approvedDate"):
+                                            q["dateSchedule"] = sanitize_text(str(payload.get("approvedDate")))
+                                        if payload.get("approvedVenue"):
+                                            q["venue"] = sanitize_text(str(payload.get("approvedVenue")))
+                                        q["curatorAnnotation"] = {
+                                            "instructionId": inst_id,
+                                            "note": instruction_text,
+                                            "proposedAction": "review",
+                                            "userSuppliedPrice": float(user_supplied_price) if user_supplied_price is not None else (synth_info.get("standardPrice") if synth_info.get("standardPrice") is not None else None),
+                                            "screenshotPaths": screenshot_rel_paths,
+                                            "aiLearnedSummary": synth_info.get("aiLearnedSummary"),
+                                            "extractedTiers": synth_info.get("extractedTiers"),
+                                            "annotatedAt": datetime.now(timezone.utc).isoformat()
+                                        }
+                                q_data["quarantinedEvents"] = q_list
+                                with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                                    json.dump(q_data, f, indent=2, ensure_ascii=False)
+                                sync_js_data_file()
+                                ev_title_display = matched_ev.get("title") if matched_ev else event_id
+                                approval_msg = f" Notes & proof saved for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
                         except Exception as e:
                             print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
-
-                    ev_title_display = matched_ev.get("title") if matched_ev else event_id
-                    approval_msg = f" Notes & proof saved for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
 
             return self._send_json(200, {
                 "success": True,
@@ -2432,7 +2594,11 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "screenshotPaths": screenshot_rel_paths,
                 "pendingInstructions": pending_count,
                 "distilledRules": distilled_rules,
-                "aiLearnedSummary": distilled_rules.get("summary", "") if distilled_rules else None
+                "aiLearnedSummary": (distilled_rules.get("summary", "") if distilled_rules else None) or synth_info.get("aiLearnedSummary"),
+                "extractedTiers": synth_info.get("extractedTiers"),
+                "isMultiEventSplit": synth_info.get("isMultiEventSplit", False),
+                "subEvents": synth_info.get("subEvents", []),
+                "subEventsCount": synth_info.get("subEventsCount", 0)
             })
 
         # 6. API: Safe rollback

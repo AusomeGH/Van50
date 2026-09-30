@@ -22,7 +22,7 @@ from pricing_search_engine import EventPricingSearchEngine, load_curator_learned
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
-VENUE_DIR_PATH = os.path.join(DATA_DIR, 'venue_directory.json')
+VENUE_DIR_PATH = os.path.join(DATA_DIR, 'venues.json') if os.path.exists(os.path.join(DATA_DIR, 'venues.json')) else os.path.join(DATA_DIR, 'venue_directory.json')
 
 # Supported ticketing platforms for outbound button detection
 TICKETING_DOMAINS = [
@@ -57,7 +57,13 @@ class UniversalVenueCrawler:
         try:
             with open(VENUE_DIR_PATH, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                venues = data.get('venues', {})
+                if isinstance(data, list):
+                    venues = {v.get('venue_name') or v.get('name'): v for v in data if (v.get('venue_name') or v.get('name'))}
+                    for v in venues.values():
+                        if 'calendar_url' in v and 'calendarUrl' not in v:
+                            v['calendarUrl'] = v['calendar_url']
+                else:
+                    venues = data.get('venues', {})
 
             # Overlay learned deep links from curator rules
             rules_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "curator_learned_rules.json")

@@ -31,7 +31,7 @@ from pricing_search_engine import EventPricingSearchEngine, load_curator_learned
 class TestCuratorVenueLearning(unittest.TestCase):
 
     def setUp(self):
-        self.venues_path = os.path.join(DATA_DIR, "venue_directory.json")
+        self.venues_path = os.path.join(DATA_DIR, "venues.json")
         self.rules_path = os.path.join(DATA_DIR, "curator_learned_rules.json")
         self.assertTrue(os.path.exists(self.venues_path))
         self.assertTrue(os.path.exists(self.rules_path))

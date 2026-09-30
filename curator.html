@@ -48,8 +48,8 @@
           <span>🧠 Learned Rules:</span>
           <span class="stat-val" id="stat-rules-count">0</span>
         </div>
-        <div class="stat-pill clickable-pill" id="stat-instructions-pill" style="cursor: pointer;" title="Click to inspect, edit, or delete AI Scraper Instructions">
-          <span>🤖 AI Instructions:</span>
+        <div class="stat-pill clickable-pill" id="stat-instructions-pill" style="cursor: pointer;" title="Click to inspect, edit, or delete Curator Feedback Guidelines and Scraper Rules">
+          <span>📋 Feedback Rules:</span>
           <span class="stat-val" id="stat-instructions-count">0</span>
         </div>
         <div class="stat-pill" title="Candidate venues discovered via festivals & discovery feeds" id="stat-discovered-venues-pill" style="cursor: pointer;">
@@ -92,75 +92,7 @@
   <!-- Main Workspace -->
   <main class="curator-container" style="flex: 1;">
     
-    <!-- Real-Time AI Live Operations Stream & Transparency Console -->
-    <section class="ai-live-console-section" id="ai-live-console-section" aria-label="AI Live Operations Console">
-      <div class="ai-live-header">
-        <div class="ai-live-title-group">
-          <div class="ai-pulse-wrapper">
-            <span class="ai-pulse-indicator" id="ai-live-pulse" title="Engine Status">🟢</span>
-          </div>
-          <div class="ai-live-meta">
-            <div class="ai-live-title-line">
-              <span class="ai-console-brand">⚡ Antigravity AI Operations Stream</span>
-              <span class="ai-status-badge badge-idle" id="ai-status-badge">Antigravity Ready</span>
-              <span class="ai-live-timestamp" id="ai-live-timestamp">Updated just now</span>
-            </div>
-            <div class="ai-live-task-line" id="ai-live-task-desc">Antigravity AI Engine (Google AI Ultra) • Real-time catalog &amp; hygiene auditing</div>
-            <div class="ai-progress-track" id="ai-progress-track">
-              <div class="ai-progress-fill" id="ai-progress-bar" style="width: 100%;"></div>
-            </div>
-          </div>
-        </div>
 
-        <div class="ai-live-stats-strip">
-          <div class="ai-stat-chip chip-confirmed" title="Events confirmed active under $50 CAD">
-            <span>✅ Confirmed:</span> <strong id="ai-stat-confirmed">20</strong>
-          </div>
-          <div class="ai-stat-chip chip-added" title="New events &amp; Free Public Access spots added">
-            <span>✨ Added:</span> <strong id="ai-stat-added">33</strong>
-          </div>
-          <div class="ai-stat-chip chip-quarantined" title="Events flagged and routed to Quarantine">
-            <span>⚠️ Quarantined:</span> <strong id="ai-stat-quarantined">3</strong>
-          </div>
-          <div class="ai-stat-chip chip-sources" title="Discovered editorial &amp; event sources registered">
-            <span>🌐 Sources:</span> <strong id="ai-stat-sources">10</strong>
-          </div>
-        </div>
-
-        <div class="ai-live-controls">
-          <button type="button" class="btn-curator btn-curator-sm" id="btn-toggle-ai-terminal" title="Toggle Live Console Stream">
-            <span id="ai-terminal-toggle-icon">📜</span> <span id="ai-terminal-toggle-text">Show Live Stream</span>
-          </button>
-          <button type="button" class="btn-curator btn-curator-sm btn-curator-primary" id="btn-run-qc-now" title="Trigger Quality Control pass via Antigravity">
-            <span>⚡ Run QC Audit</span>
-          </button>
-          <button type="button" class="btn-curator btn-curator-sm btn-curator-accent" id="btn-antigravity-crawl" style="background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; border: 1px solid rgba(56, 189, 248, 0.6); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);" title="Trigger Antigravity Autonomous Event Scout to crawl discovery feeds, venues, and free drop-ins">
-            <span>🌐 Crawl &amp; Scout Events</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Expandable Live Terminal Log Feed -->
-      <div class="ai-live-terminal-container" id="ai-live-terminal" style="display: none;">
-        <div class="ai-terminal-toolbar">
-          <div class="terminal-dots">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-          </div>
-          <span class="terminal-title">live_ai_stream.log — Real-Time Scout &amp; QC Event Bus</span>
-          <div class="terminal-tools">
-            <label class="terminal-toggle-label">
-              <input type="checkbox" id="ai-autoscroll-chk" checked> Auto-scroll
-            </label>
-            <button type="button" class="btn-terminal-clear" id="btn-clear-ai-terminal" title="Clear displayed logs">Clear</button>
-          </div>
-        </div>
-        <div class="ai-terminal-body" id="ai-terminal-logs">
-          <!-- Real-time 1-line stream logs render here -->
-        </div>
-      </div>
-    </section>
 
     <!-- Controls Section -->
     <section class="curator-controls-section">
@@ -168,10 +100,11 @@
         <!-- Filter Pills -->
         <div class="curator-pills-group" id="filter-pills-group">
           <button type="button" class="curator-filter-pill active" data-filter="all">All Quarantined (<span id="pill-count-all">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="feedback" style="border: 1px solid rgba(192, 132, 252, 0.5); color: #d8b4fe;" title="Items with curator feedback notes or uploaded screenshots">📝 Has Feedback (<span id="pill-count-feedback">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="newsletter">📧 Newsletters (<span id="pill-count-newsletter">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unhandled">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="handled">🤖 AI Queued (<span id="pill-count-handled">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="handled">📋 Rule Queued (<span id="pill-count-handled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Drift (<span id="pill-count-drift">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unverified">Unverified Cart (<span id="pill-count-unverified">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="brokenlink">Missing / 404 Link (<span id="pill-count-brokenlink">0</span>)</button>
@@ -209,7 +142,7 @@
       <!-- Status Summary -->
       <div class="curator-status-bar">
         <div id="curator-results-text">Showing <strong>0</strong> quarantined items</div>
-        <div style="font-size: 0.8rem; opacity: 0.8;">💡 Quarantined items are annotated here and reviewed by Antigravity prior to live release.</div>
+        <div style="font-size: 0.8rem; opacity: 0.8;">💡 Quarantined items are annotated here and reviewed prior to live release.</div>
       </div>
     </section>
 
@@ -252,15 +185,15 @@
       <button type="button" class="curator-modal-close-btn" id="btn-close-ai-modal" aria-label="Close modal">✕</button>
 
       <div class="curator-modal-header" style="margin-bottom: 12px; padding-right: 28px;">
-        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">🤖</div>
-        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Instruct AI Assistant</h2>
-        <p class="curator-modal-desc" style="font-size: 0.82rem;">Type instructions, drop links, or paste screenshots (<kbd style="background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 3px;">Ctrl + V</kbd>). AI analyzes all inputs and renders a real-time card preview or dismissal explanation.</p>
+        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">📝</div>
+        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Curator Guidance &amp; Card Update</h2>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Type instructions, drop links, or paste screenshots (<kbd style="background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 3px;">Ctrl + V</kbd>). The local parser extracts details using Windows OCR and regular expressions to generate a real-time preview.</p>
       </div>
 
       <!-- Mode Selector Tabs (Hidden for streamlined unified view, kept for DOM compatibility) -->
       <div style="display: none; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;" id="ai-modal-mode-tabs">
         <button type="button" id="tab-mode-screenshot" class="curator-filter-pill active" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">📸 1. Verify via Screenshot</button>
-        <button type="button" id="tab-mode-instruct" class="curator-filter-pill" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">🤖 2. Crawler Instructions / Notes</button>
+        <button type="button" id="tab-mode-instruct" class="curator-filter-pill" style="font-size: 0.8rem; padding: 5px 12px; cursor: pointer;">📝 2. Crawler Instructions / Notes</button>
       </div>
 
       <form id="ai-instruction-form" onsubmit="return false;">
@@ -277,13 +210,31 @@
             <a href="#" target="_blank" id="ai-inst-summary-link" style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source Page ↗</a>
           </div>
 
+          <!-- Flagged for Quarantine / Issues Diagnostic Box -->
+          <div id="ai-inst-quarantine-box" class="ai-modal-quarantine-banner" style="display: none;">
+            <div class="ai-modal-quarantine-header">
+              <span class="ai-modal-quarantine-icon">⚠️</span>
+              <span class="ai-modal-quarantine-title">Why This Event Was Quarantined</span>
+            </div>
+            <div id="ai-inst-quarantine-reason-text" class="ai-modal-quarantine-reason"></div>
+            <ul id="ai-inst-quarantine-issues-list" class="ai-modal-quarantine-issues"></ul>
+          </div>
+
           <!-- Plain English Instructions Block -->
           <div id="ai-instruction-text-block">
-            <label class="curator-label" for="ai-instruction-text" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>Plain English Instructions &amp; Links for AI <span id="ai-instruction-required-star" style="color: #f43f5e; display: none;">*</span></span>
-              <span id="ai-instruction-hint" style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">Drop links or explain what to fix / dismiss</span>
-            </label>
-            <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 85px; margin-top: 4px; font-family: inherit; font-size: 0.88rem; line-height: 1.45;" placeholder="e.g.: 'The price is $15 door rate, title is East Van Comedy Showcase, happening Saturday at 8pm. Ticket link: https://...' or 'This venue is private bookings only, please dismiss.'"></textarea>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+              <label class="curator-label" for="ai-instruction-text" style="font-size: 0.8rem; margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>Curator Guidance, Notes &amp; Links <span id="ai-instruction-required-star" style="color: #f43f5e; display: none;">*</span></span>
+                <span id="ai-modal-draft-status" style="display: none; font-size: 0.72rem; padding: 2px 7px; border-radius: 4px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                  💾 Draft Saved <button type="button" id="btn-clear-modal-draft" style="background:none; border:none; color:#f87171; cursor:pointer; font-size:0.72rem; padding:0 3px;" title="Discard draft and reset to card defaults">✕ Clear</button>
+                </span>
+              </label>
+              <!-- Dedicated Multi-Event Split Button (Requirement 2) -->
+              <button type="button" id="btn-detect-multiple-events" class="btn-curator" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: #fff; font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(192, 132, 252, 0.45); box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35); cursor: pointer;" title="Parse multi-show schedule into discrete cards using local schedule splitter">
+                <span>🔀 Split Into Multiple Events (Schedule Parser)</span>
+              </button>
+            </div>
+            <textarea id="ai-instruction-text" class="curator-input" style="width: 100%; height: 85px; font-family: inherit; font-size: 0.88rem; line-height: 1.45;" placeholder="e.g.: 'The price is $15 door rate, happening Saturday at 8pm.' OR click '🔀 Detect &amp; Split Multiple Events' to decompose a multi-show schedule into discrete cards."></textarea>
           </div>
 
           <!-- Screenshot Drop / Paste Zone (Paste Ctrl+V, No Auto-File Picker) -->
@@ -299,7 +250,7 @@
                   Paste screenshot with <kbd style="background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #38bdf8;">Ctrl + V</kbd>, or drop image here
                 </div>
                 <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">
-                  Auto-reads tickets, schedule, door rates &amp; lineup. <span id="ai-screenshot-browse-link" style="color: #38bdf8; text-decoration: underline; cursor: pointer;">or browse files</span>
+                  Reads tickets, schedule, door rates &amp; lineup via Windows OCR. <span id="ai-screenshot-browse-link" style="color: #38bdf8; text-decoration: underline; cursor: pointer;">or browse files</span>
                 </div>
               </div>
               <input type="file" id="ai-screenshot-file-input" accept="image/*" multiple style="display: none;">
@@ -314,14 +265,29 @@
             </div>
           </div>
 
+          <!-- AI Learned Synthesis Summary Box (Requirement 3: brief couple sentences just under screenshot area) -->
+          <div id="ai-modal-learned-box" style="display: none; background: rgba(147, 51, 234, 0.15); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 10px; padding: 12px 16px; margin: 4px 0 10px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #d8b4fe; font-size: 0.86rem;">
+                <span>📋</span>
+                <span>Extracted Details &amp; Learned Rule (OCR / Heuristics):</span>
+              </div>
+              <span id="ai-modal-learned-badge" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; background: rgba(168, 85, 247, 0.25); color: #e9d5ff; font-weight: 600;">Multi-Proof Verified</span>
+            </div>
+            <div id="ai-modal-learned-text" style="color: #f8fafc; font-size: 0.83rem; line-height: 1.45;">
+              <!-- Populated dynamically -->
+            </div>
+            <div id="ai-modal-learned-tiers" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;"></div>
+          </div>
+
           <!-- Real-Time AI Interpretation & Live Card Preview Container -->
           <div id="ai-interpretation-preview-container" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 14px; margin-top: 2px; transition: all 0.25s ease;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="font-size: 1.2rem;">✨</span>
                 <div>
-                  <div style="font-weight: 700; font-size: 0.88rem; color: #e2e8f0;">AI Live Interpretation &amp; Preview</div>
-                  <div style="font-size: 0.72rem; color: #94a3b8;">Synthesizes instructions, dropped links &amp; screenshots into an event state.</div>
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #e2e8f0;">Live Card Preview (OCR &amp; Regex Parser)</div>
+                  <div style="font-size: 0.72rem; color: #94a3b8;">Extracts text from screenshots (Windows OCR) and parses written instructions into card fields.</div>
                 </div>
               </div>
               <div id="ai-interpretation-status-pill" class="dim-pill pill-confirmed" style="font-size: 0.75rem; padding: 3px 10px;">
@@ -339,7 +305,7 @@
             <!-- Loading Spinner for AI Interpretation -->
             <div id="ai-interpretation-loading" style="display: none; padding: 14px; text-align: center; color: #94a3b8; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: 8px;">
               <span style="display: inline-block; font-size: 1.2rem; animation: spin 1s linear infinite; margin-right: 6px;">⚡</span>
-              <span>AI Assistant reading instructions, inspecting links, and extracting card preview...</span>
+              <span>Parsing instructions, extracting text via Windows OCR, and generating preview...</span>
             </div>
 
             <!-- State A: Valid Event Card Live Preview -->
@@ -349,8 +315,8 @@
               </div>
               <div id="ai-live-card-preview" class="ai-live-card-preview-box"></div>
               <div style="margin-top: 12px; display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
-                <button type="button" class="btn-curator btn-curator-purple" id="btn-queue-interpreted-card" style="font-size: 0.9rem; padding: 10px 18px; font-weight: 700; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); display: inline-flex; align-items: center; gap: 6px;" title="Queue card for Antigravity to review and approve in chat">
-                  🟡 Queue Card for Antigravity Review
+                <button type="button" class="btn-curator btn-curator-purple" id="btn-queue-interpreted-card" style="font-size: 0.9rem; padding: 10px 18px; font-weight: 700; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); display: inline-flex; align-items: center; gap: 6px;" title="Save extracted details and hold card in queue">
+                  💾 Save Guidance &amp; Update Card
                 </button>
               </div>
             </div>
@@ -367,13 +333,13 @@
                     Explaining why...
                   </div>
                   <div style="font-size: 0.74rem; color: #94a3b8; margin-top: 8px; border-top: 1px dashed rgba(239, 68, 68, 0.3); padding-top: 6px;">
-                    🧠 AI scrapers will record this rule and permanently skip this format/venue on future crawls.
+                    🧠 Crawler rules engine will record this pattern and skip this format/venue on future crawls.
                   </div>
                 </div>
               </div>
               <div style="margin-top: 12px; display: flex; gap: 10px; justify-content: flex-end;">
                 <button type="button" class="btn-curator btn-curator-danger" id="btn-confirm-interpreted-dismiss" style="font-size: 0.88rem; padding: 9px 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-                  🛑 Confirm Dismissal &amp; Teach AI
+                  🛑 Confirm Dismissal &amp; Save Crawler Rule
                 </button>
               </div>
             </div>
@@ -652,11 +618,11 @@
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-ai-inst">Cancel</button>
-          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Send notes &amp; screenshots to Antigravity and hold in quarantine for review">
-            🟡 Queue for Antigravity Review
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Save notes and screenshot proof to card and keep in review queue">
+            💾 Save Feedback &amp; Keep in Queue
           </button>
-          <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Propose dismissal for Antigravity to verify and archive">
-            🛑 Propose Dismissal for Antigravity
+          <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Dismiss event and archive card">
+            🛑 Dismiss &amp; Archive Event
           </button>
         </div>
       </form>
@@ -671,7 +637,7 @@
       <div class="curator-modal-header" style="margin-bottom: 16px; padding-right: 28px;">
         <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">🏛️</div>
         <h2 class="curator-modal-title" style="font-size: 1.25rem;">Add to Venues Directory</h2>
-        <p class="curator-modal-desc" style="font-size: 0.82rem;">Enroll this discovered venue into <code>venues.json</code>. The Gemini AI Scout will automatically begin monitoring its calendar year-round.</p>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Enroll this discovered venue into <code>venues.json</code>. The automated discovery crawler will begin monitoring its calendar on scheduled runs.</p>
       </div>
 
       <form id="add-venue-form">
@@ -730,7 +696,7 @@
           <!-- Plain English Instructions for AI (Optional) -->
           <div>
             <label class="curator-label" for="venue-instruction-text" style="font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>🤖 Plain English Instructions for AI Crawler <span style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">(Optional)</span></span>
+              <span>📝 Notes &amp; Rules for Venue Crawler <span style="font-size: 0.72rem; color: #94a3b8; font-weight: normal;">(Optional)</span></span>
             </label>
             <textarea id="venue-instruction-text" class="curator-input" style="width: 100%; height: 75px; margin-top: 4px; font-family: inherit; font-size: 0.85rem; line-height: 1.4;" placeholder="e.g.: 'Scrape /events/calendar subpage only. Live sets are Thursdays to Saturdays, $15 cash cover at door. Ignore private bookings.'"></textarea>
           </div>
@@ -761,13 +727,13 @@
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-venue-modal">Cancel</button>
-          <button type="button" class="btn-curator btn-curator-purple" id="btn-venue-inst-only" title="Send screenshot/notes to AI and leave candidate in review queue">
-            🤖 Instruct AI Only
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-venue-inst-only" title="Save notes to venue and leave candidate in review queue">
+            📝 Save Venue Notes Only
           </button>
-          <button type="button" class="btn-curator btn-curator-danger" id="btn-venue-inst-dismiss" title="Dismiss this candidate venue and train AI scrapers why">
+          <button type="button" class="btn-curator btn-curator-danger" id="btn-venue-inst-dismiss" title="Dismiss this candidate venue and record pattern">
             🛑 Dismiss Candidate
           </button>
-          <button type="submit" class="btn-curator btn-curator-primary" id="btn-confirm-add-venue" title="Enroll this venue into venues.json for regular AI scouting">
+          <button type="submit" class="btn-curator btn-curator-primary" id="btn-confirm-add-venue" title="Enroll this venue into venues.json for regular crawler runs">
             ➕ Add to Venues Directory
           </button>
         </div>
@@ -954,11 +920,11 @@
 
       <div class="curator-modal-header" style="text-align: left; margin-bottom: 14px; padding-right: 36px;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <div class="curator-modal-icon" style="font-size: 2rem; margin: 0;">🤖</div>
+          <div class="curator-modal-icon" style="font-size: 2rem; margin: 0;">📋</div>
           <div>
-            <h2 class="curator-modal-title" style="font-size: 1.3rem; margin: 0;">AI Scraper Instructions Log</h2>
+            <h2 class="curator-modal-title" style="font-size: 1.3rem; margin: 0;">Curator Feedback &amp; Scraper Rules Log</h2>
             <p class="curator-modal-desc" style="font-size: 0.82rem; margin-top: 2px;">
-              Review, edit, or dismiss plain-English instructions and screenshot proof submitted to train crawlers and distill venue rules.
+              Review, edit, or dismiss feedback guidelines and screenshot proof submitted to guide crawlers and distill venue rules.
             </p>
           </div>
         </div>
@@ -982,7 +948,7 @@
       <!-- Edit Instruction Inline Panel (Hidden by default) -->
       <div id="instruction-edit-panel" class="rule-edit-panel" style="display: none;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <strong id="inst-edit-panel-title" style="color: #c084fc; font-size: 0.95rem;">✏️ Edit AI Instruction</strong>
+          <strong id="inst-edit-panel-title" style="color: #c084fc; font-size: 0.95rem;">✏️ Edit Curator Guidance</strong>
           <button type="button" id="btn-cancel-inst-edit" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer;">✕</button>
         </div>
         <form id="instruction-edit-form">
@@ -1018,7 +984,7 @@
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
-        <span id="instructions-status-footer" style="font-size: 0.8rem; color: #94a3b8;">AI Instructions loaded</span>
+        <span id="instructions-status-footer" style="font-size: 0.8rem; color: #94a3b8;">Curator guidance rules loaded</span>
         <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-instructions-bottom">Close</button>
       </div>
     </div>

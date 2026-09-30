@@ -180,7 +180,8 @@ class TestCuratorInstructionsAPI(unittest.TestCase):
         # Verify event was NOT leaked into events.json
         with open(EVENTS_PATH, "r", encoding="utf-8") as f:
             events_db = json.load(f)
-        leaked_ev = next((e for e in events_db.get("events", []) if e["id"] == test_ev_id), None)
+        events_list = events_db if isinstance(events_db, list) else events_db.get("events", [])
+        leaked_ev = next((e for e in events_list if (e.get("id") or e.get("event_id")) == test_ev_id), None)
         self.assertIsNone(leaked_ev)
 
         # Cleanup test event from queue

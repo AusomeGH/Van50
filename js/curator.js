@@ -42,8 +42,80 @@ const state = {
     ticketing_sources: [],
     discovery_sources: [],
     events_archive: []
-  }
+  },
+  instructionDrafts: loadSavedInstructionDrafts(),
+  currentSplitEvents: []
 };
+
+function loadSavedInstructionDrafts() {
+  try {
+    const raw = sessionStorage.getItem('van50_curator_instruction_drafts');
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function persistInstructionDrafts() {
+  try {
+    sessionStorage.setItem('van50_curator_instruction_drafts', JSON.stringify(state.instructionDrafts || {}));
+  } catch (e) {
+    console.warn('Failed to persist drafts to sessionStorage:', e);
+  }
+}
+
+function saveInstructionDraft(eventId) {
+  if (!eventId) return;
+  const textField = document.getElementById('ai-instruction-text');
+  const instructionText = textField ? textField.value : '';
+  const titleField = document.getElementById('ai-approve-title');
+  const priceField = document.getElementById('ai-approve-price');
+  const catField = document.getElementById('ai-approve-category');
+  const dateField = document.getElementById('ai-approve-date');
+  const venueField = document.getElementById('ai-approve-venue');
+  const noteField = document.getElementById('ai-approve-note');
+
+  const screenshots = (state.currentScreenshots && state.currentScreenshots.length > 0)
+    ? [...state.currentScreenshots]
+    : (state.currentScreenshotBase64 ? [state.currentScreenshotBase64] : []);
+
+  const hasContent = (instructionText && instructionText.trim().length > 0) ||
+    screenshots.length > 0 ||
+    (state.currentSplitEvents && state.currentSplitEvents.length > 0);
+
+  if (hasContent) {
+    state.instructionDrafts[eventId] = {
+      instructionText: instructionText,
+      screenshots: screenshots,
+      approvedTitle: titleField ? titleField.value : '',
+      approvedPrice: priceField ? priceField.value : '',
+      approvedCategory: catField ? catField.value : 'shows',
+      approvedDate: dateField ? dateField.value : '',
+      approvedVenue: venueField ? venueField.value : '',
+      curatorNote: noteField ? noteField.value : '',
+      subEvents: state.currentSplitEvents ? [...state.currentSplitEvents] : [],
+      updatedAt: Date.now()
+    };
+    persistInstructionDrafts();
+    updateModalDraftBadge(true);
+  }
+}
+
+function clearInstructionDraft(eventId) {
+  if (!eventId) return;
+  if (state.instructionDrafts && state.instructionDrafts[eventId]) {
+    delete state.instructionDrafts[eventId];
+    persistInstructionDrafts();
+  }
+  updateModalDraftBadge(false);
+}
+
+function updateModalDraftBadge(hasDraft) {
+  const badge = document.getElementById('ai-modal-draft-status');
+  if (badge) {
+    badge.style.display = hasDraft ? 'inline-flex' : 'none';
+  }
+}
 
 function initApp() {
   initCuratorAccessibility();
@@ -51,7 +123,6 @@ function initApp() {
   checkAuthAndInitialize();
   fetchAutomationStatus();
   setInterval(fetchAutomationStatus, 30000);
-  initLiveAIActivityFeed();
 }
 
 if (document.readyState === 'loading') {
@@ -280,6 +351,11 @@ function isDrift(item) {
 
 function updateFilterCounts() {
   const all = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
+  const feedback = all.filter(e => {
+    const annot = e.curatorAnnotation || {};
+    const inst = e.queuedInstruction || {};
+    return Boolean(annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) || inst.instructionText || inst.screenshotPath || (inst.screenshotPaths && inst.screenshotPaths.length > 0));
+  }).length;
   const unhandled = all.filter(e => !e.dealtWith).length;
   const handled = all.filter(e => Boolean(e.dealtWith)).length;
   const drift = all.filter(e => isDrift(e)).length;
@@ -294,6 +370,7 @@ function updateFilterCounts() {
     if (el) el.textContent = count;
   };
   setT('pill-count-all', all.length);
+  setT('pill-count-feedback', feedback);
   setT('pill-count-newsletter', newsletter);
   setT('pill-count-discovered-venues', discVenues);
   setT('pill-count-unhandled', unhandled);
@@ -347,7 +424,13 @@ function applyFiltersAndRender() {
   let list = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
 
   // 1. Tab Filter
-  if (state.activeFilter === 'unhandled') {
+  if (state.activeFilter === 'feedback' || state.activeFilter === 'has_feedback') {
+    list = list.filter(e => {
+      const annot = e.curatorAnnotation || {};
+      const inst = e.queuedInstruction || {};
+      return Boolean(annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) || inst.instructionText || inst.screenshotPath || (inst.screenshotPaths && inst.screenshotPaths.length > 0));
+    });
+  } else if (state.activeFilter === 'unhandled') {
     list = list.filter(e => !e.dealtWith);
   } else if (state.activeFilter === 'handled') {
     list = list.filter(e => Boolean(e.dealtWith));
@@ -444,17 +527,17 @@ function simplifyQuarantineReason(reason, attemptedPrice = null) {
   if (r.includes('strictly exceeds') || r.includes('exceeds $50') || r.includes('over-budget')) {
     return attemptedPrice ? `🚨 Over $50 limit ($${attemptedPrice.toFixed(2)} CAD detected)` : '🚨 Exceeds $50 budget limit';
   }
-  if (r.includes('schedule') || r.includes('generic catalog index') || r.includes('without specific event slug')) {
+  if (r.startsWith('decomposed into discrete event')) {
+    return reason;
+  }
+  if (r.includes('schedule') && (r.includes('generic catalog index') || r.includes('without specific event slug'))) {
     return '🔗 Venue calendar link (no direct show URL)';
   }
   if (r.includes('bare root homepage') || r.includes('bare root')) {
     return '🔗 Venue homepage (needs direct show link or as-is approval)';
   }
-  if (r.includes('generic link') || r.includes('catalog index')) {
-    return '🔗 General venue listing (not direct show page)';
-  }
   if (r.includes('drift') || r.includes('price drift')) {
-    return '⚠️ Price drift detected (source page differs from saved price)';
+    return `⚠️ Price drift detected: ${reason}`;
   }
   if (r.includes('paypal')) {
     return '💳 Direct PayPal checkout link (needs verification)';
@@ -462,12 +545,12 @@ function simplifyQuarantineReason(reason, attemptedPrice = null) {
   if (r.includes('ticketweb') || r.includes('showpass') || r.includes('eventbrite') || r.includes('checkout pricing') || r.includes('cart')) {
     return '💳 Cart / checkout total unverified by automated scraper';
   }
-  if (r.includes('unverified') || r.includes('could not dynamically verify') || r.includes('not confirmed')) {
+  if (r.includes('could not dynamically verify') || r.includes('live door/ticket price')) {
     return '🔍 Live door/ticket price needs human confirmation';
   }
 
   const cleaned = reason.replace(/https?:\/\/[^\s]+/g, '').replace(/Autonomous Hunter [^.]+\./i, '').trim();
-  return cleaned.length > 70 ? cleaned.slice(0, 67) + '...' : cleaned;
+  return cleaned || 'Needs curator review';
 }
 
 function renderCardScreenshotThumbnails(inst) {
@@ -486,6 +569,43 @@ function renderCardScreenshotThumbnails(inst) {
           </a>
         `).join('')}
       </div>
+    </div>
+  `;
+}
+
+function renderCardAiLearnedSummary(ev, inst = null) {
+  if (!ev) return '';
+  const annot = ev.curatorAnnotation || {};
+  const effectiveInst = inst || ev.queuedInstruction || {};
+  const learnedText = annot.aiLearnedSummary || effectiveInst.aiLearnedSummary || '';
+  if (!learnedText) return '';
+  
+  const tiers = annot.extractedTiers || effectiveInst.extractedTiers || [];
+  let tiersHtml = '';
+  if (tiers && tiers.length > 0) {
+    tiersHtml = `
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;">
+        ${tiers.map(t => `
+          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff;">
+            ${escapeHtml(t.name)}: <strong>${t.total === 0 ? 'FREE' : '$' + Number(t.total).toFixed(2)}</strong>
+          </span>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="curator-ai-learned-box" style="margin: 8px 0; padding: 12px 14px; background: rgba(147, 51, 234, 0.14); border: 1.5px solid rgba(192, 132, 252, 0.45); border-radius: 8px; font-size: 0.83rem; line-height: 1.45;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+        <span style="font-weight: 700; color: #d8b4fe; display: flex; align-items: center; gap: 6px;">
+          <span>🧠</span> AI Synthesis &amp; What It Learned:
+        </span>
+        <span style="font-size: 0.7rem; color: #e9d5ff; background: rgba(168, 85, 247, 0.25); padding: 2px 7px; border-radius: 4px; font-weight: 600;">Multi-Proof Verified</span>
+      </div>
+      <div style="color: #f8fafc;">
+        ${escapeHtml(learnedText)}
+      </div>
+      ${tiersHtml}
     </div>
   `;
 }
@@ -563,6 +683,55 @@ function isCuratorDateUnconfirmed(ev) {
   return evaluateCuratorDateStatus(ev).isUnconfirmed;
 }
 
+function formatTicketTiersHtml(ev) {
+  if (!ev) return '';
+  const tiers = [];
+  const annot = ev.curatorAnnotation || {};
+  const extracted = annot.extractedTiers || ev.extractedTiers || ev.ticketTiers || [];
+
+  if (Array.isArray(extracted) && extracted.length > 0) {
+    extracted.forEach(t => {
+      const tot = parseFloat(t.total ?? t.price ?? 0);
+      const feeText = t.fee ? ` (+$${Number(t.fee).toFixed(2)} fee)` : '';
+      const tName = t.name || 'Tier';
+      tiers.push({
+        name: tName,
+        priceStr: tot === 0 ? 'FREE ($0)' : `$${tot.toFixed(2)} CAD${feeText}`,
+        isFree: tot === 0,
+        isPrimary: Boolean(t.isPrimary || /adult|general|standard|early\s*show/i.test(tName))
+      });
+    });
+  } else if (ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
+    const p = ev.pricing_all_in_cad;
+    if (p.regular != null) tiers.push({ name: 'Regular / Adult', priceStr: `$${Number(p.regular).toFixed(2)} CAD`, isPrimary: true });
+    if (p.senior != null) tiers.push({ name: 'Senior (65+)', priceStr: `$${Number(p.senior).toFixed(2)} CAD` });
+    if (p.student != null) tiers.push({ name: 'Student / Youth', priceStr: `$${Number(p.student).toFixed(2)} CAD` });
+    if (p.member != null) tiers.push({ name: 'Member', priceStr: `$${Number(p.member).toFixed(2)} CAD` });
+  } else if (String(ev.venue || '').toLowerCase().includes('guilt')) {
+    const isEarly = String(ev.title || ev.dateSchedule || '').toLowerCase().includes('early') || String(ev.dateSchedule || '').includes('6pm');
+    tiers.push({ name: 'Early Show (Before 8 PM)', priceStr: '$8.00 CAD cover', isPrimary: isEarly });
+    tiers.push({ name: 'Late Show (Sun–Thu)', priceStr: '$12.00 CAD cover', isPrimary: !isEarly });
+    tiers.push({ name: 'Late Show (Fri–Sat)', priceStr: '$15.00 CAD cover' });
+  }
+
+  if (tiers.length === 0) return '';
+
+  return `
+    <div style="margin-top: 6px;">
+      <span style="font-size: 0.76rem; color: #c084fc; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+        <span>🎟️</span> Ticket Types &amp; Costs:
+      </span>
+      <div class="curator-ticket-tier-row">
+        ${tiers.map(t => `
+          <span class="curator-ticket-tier-chip ${t.isFree ? 'tier-free' : (t.isPrimary ? 'tier-primary' : 'tier-alt')}">
+            <span>${escapeHtml(t.name)}:</span> <strong>${escapeHtml(t.priceStr)}</strong>
+          </span>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
 function generateCuratorDiagnostics(ev) {
   const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
   const isBudgetExceeded = attemptedPrice > 50.0;
@@ -590,7 +759,13 @@ function generateCuratorDiagnostics(ev) {
   }
   
   const verifiedPrice = (ev.basePrice != null && ev.basePrice > 0) ? `$${Number(ev.basePrice).toFixed(2)} CAD base` : (attemptedPrice > 0 ? `$${attemptedPrice.toFixed(2)} CAD detected` : 'Free / By-Donation');
-  confirmedItems.push(`<span>💰 <strong>Base Price:</strong> ${verifiedPrice} (${escapeHtml(ev.provider || 'Direct')})</span>`);
+  const tiersBreakdownHtml = formatTicketTiersHtml(ev);
+  confirmedItems.push(`
+    <div style="width: 100%;">
+      <span>💰 <strong>Base Price:</strong> ${verifiedPrice} (${escapeHtml(ev.provider || 'Direct')})</span>
+      ${tiersBreakdownHtml}
+    </div>
+  `);
   
   if (ev.categoryLabel || ev.category) {
     confirmedItems.push(`<span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category)}</span>`);
@@ -707,7 +882,7 @@ function renderCards(items) {
             <span class="curator-badge-pill curator-badge-category" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);">
               🏷️ ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}
             </span>
-            ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">🤖 AI Queued</span>` : ''}
+            ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">📋 Rule Queued</span>` : ''}
             <span class="curator-badge-pill ${hasDrift ? 'curator-badge-drift' : ''}" style="${isAutoDenied ? 'background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.5);' : hasDrift ? '' : isBudgetExceeded ? 'background: rgba(239, 68, 68, 0.15); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);' : 'background: rgba(245, 158, 11, 0.15); color: #fcd34d; border-color: rgba(245, 158, 11, 0.4);'}">
               ${isAutoDenied ? '🛡️ Auto-Denied > $50' : hasDrift ? '⚠️ Page Drift' : isBudgetExceeded ? '🚨 Over $50 Cap' : '⚠️ Unverified'}
             </span>
@@ -768,30 +943,45 @@ function renderCards(items) {
           </div>
         ` : ''}
 
-        <!-- Prominent Instruction Banner (Displays User Instructions on Cards) -->
-        ${(isHandled && ev.queuedInstruction) ? `
+        <!-- Prominent Instruction Banner (Displays User Instructions & Proof on Cards) -->
+        ${(() => {
+          const annot = ev.curatorAnnotation || {};
+          const inst = ev.queuedInstruction || (annot.note || (annot.screenshotPaths && annot.screenshotPaths.length > 0) ? {
+            instructionText: annot.note || '',
+            screenshotPaths: annot.screenshotPaths || [],
+            approvedPrice: annot.userSuppliedPrice,
+            createdAt: annot.annotatedAt,
+            aiLearnedSummary: annot.aiLearnedSummary,
+            extractedTiers: annot.extractedTiers
+          } : null);
+          if (!inst) return '';
+          return `
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
               <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
-                <span>🤖</span> Your AI Scraper Instruction:
+                <span>📝</span> Your Guidance &amp; Proof:
               </strong>
               <span class="curator-handled-tag" style="background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #fde68a; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
-                🟡 Awaiting Antigravity Review
+                🟡 Awaiting Review
               </span>
             </div>
-            <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; margin-bottom: 8px;">
-              “${escapeHtml(ev.queuedInstruction.instructionText || '')}”
-            </div>
-            ${renderCardScreenshotThumbnails(ev.queuedInstruction)}
+            ${inst.instructionText ? `
+              <div class="curator-handled-text" style="color: #ffffff; font-size: 0.95rem; font-weight: 500; line-height: 1.45; background: rgba(0, 0, 0, 0.3); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #f59e0b; margin-bottom: 8px;">
+                “${escapeHtml(inst.instructionText)}”
+              </div>
+            ` : ''}
+            ${renderCardScreenshotThumbnails(inst)}
+            ${renderCardAiLearnedSummary(ev, inst)}
             <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-              <span>🕒 Queued ${ev.queuedInstruction.createdAt ? new Date(ev.queuedInstruction.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
-              ${ev.queuedInstruction.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(ev.queuedInstruction.approvedPrice).toFixed(2)} CAD</span>` : ''}
+              <span>🕒 Queued ${inst.createdAt ? new Date(inst.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
+              ${inst.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(inst.approvedPrice).toFixed(2)} CAD</span>` : ''}
               <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
                 <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit Notes / Proof</button>
               </div>
             </div>
           </div>
-        ` : ''}
+          `;
+        })()}
 
         <!-- Flag Reason Alert / Drift Alert (Shortened & Simple) -->
         ${hasDrift ? `
@@ -892,15 +1082,14 @@ function renderCards(items) {
                 🛡️ Auto-Denied by $50 Budget Policy • Excluded from Master Catalog &amp; Review Queue
               </span>
             ` : ''}
-            <!-- Main queue card streamlined: strictly 2 action buttons (Instruct AI & Dismiss) -->
-            <!-- Test suite compatibility signatures preserved: "✅ Approve As-Is" and "📸 Verify Screenshot" -->
+            <!-- Main queue card streamlined: strictly 2 action buttons (Add Guidance & Dismiss) -->
             <button 
               type="button" 
               class="btn-curator btn-curator-ai-approve" 
               onclick="openAIInstructionModal('${ev.id}', 'instruct')"
-              title="Instruct AI with notes, links, and pasted screenshots to interpret and generate card preview"
+              title="Provide notes, links, and pasted screenshots to parse card details with OCR & regex rules"
             >
-              🤖 Instruct AI
+              📝 Add Guidance / Notes
             </button>
 
             <button 
@@ -980,12 +1169,13 @@ window.approveQuarantinedEvent = async function(eventId) {
   const original = state.quarantinedEvents.find(e => e.id === eventId);
   if (!original) return;
 
+  const synth = original.curatorAnnotation?.synthesizedCard || {};
   const priceInput = document.getElementById(`edit-price-${eventId}`);
   const labelInput = document.getElementById(`edit-label-${eventId}`);
   const categorySelect = document.getElementById(`edit-category-${eventId}`);
   const feeInput = document.getElementById(`edit-fee-${eventId}`);
 
-  const price = parseFloat(priceInput ? priceInput.value : original.attemptedPrice || 0.0);
+  const price = parseFloat(priceInput ? priceInput.value : (synth.price !== undefined && synth.price !== null ? synth.price : (original.attemptedPrice || original.price || 0.0)));
   if (isNaN(price) || price > 50.0) {
     showToast('Price must be a valid amount under or equal to $50.00 CAD.', 'error');
     return;
@@ -995,13 +1185,19 @@ window.approveQuarantinedEvent = async function(eventId) {
 
   const payloadEvent = {
     ...original,
+    title: synth.title || original.title,
+    venue: synth.venue || original.venue,
+    address: synth.address || original.address,
+    neighborhood: synth.neighborhood || original.neighborhood,
     price: price,
-    priceLabel: labelInput ? labelInput.value.trim() : original.attemptedPriceLabel || `$${price.toFixed(2)} all-in`,
+    priceLabel: labelInput ? labelInput.value.trim() : (synth.priceLabel || original.attemptedPriceLabel || `$${price.toFixed(2)} all-in`),
     pricingType: price === 0 ? 'free' : 'fixed',
     isFree: price === 0,
-    category: categorySelect ? categorySelect.value : original.category || 'shows',
-    dateSchedule: dateInput && dateInput.value.trim() ? dateInput.value.trim() : (original.dateSchedule || original.frequencyLabel || 'Upcoming'),
-    feeBreakdown: feeInput ? feeInput.value.trim() : `Curator approved: $${price.toFixed(2)} CAD`,
+    category: categorySelect ? categorySelect.value : (synth.category || original.category || 'shows'),
+    dateSchedule: dateInput && dateInput.value.trim() ? dateInput.value.trim() : (synth.dateSchedule || original.dateSchedule || original.frequencyLabel || 'Upcoming'),
+    feeBreakdown: feeInput ? feeInput.value.trim() : (synth.feeBreakdown || `Curator approved: $${price.toFixed(2)} CAD`),
+    websiteUrl: synth.websiteUrl || original.websiteUrl || original.url || '',
+    ticketProvider: synth.provider || original.provider || (synth.websiteUrl && synth.websiteUrl.includes('showpass') ? 'Showpass' : 'Direct'),
     isDaily: original.isDaily || false,
     frequency: original.frequency || 'one-time',
     startIso: original.startIso || new Date().toISOString(),
@@ -1021,7 +1217,7 @@ window.approveQuarantinedEvent = async function(eventId) {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(`🟡 '${original.title}' saved for Antigravity review. Event held in quarantine.`, 'info');
+      showToast(`🟡 Guidance saved for '${original.title}'. Event held in queue.`, 'info');
       original.reviewStatus = 'pending_antigravity_review';
       original.dealtWith = true;
       updateFilterCounts();
@@ -1055,7 +1251,7 @@ window.rejectQuarantinedEvent = async function(eventId) {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      showToast(`🛑 Dismissal proposed for '${original.title}'. Awaiting Antigravity review.`, 'info');
+      showToast(`🛑 '${original.title}' dismissed and archived.`, 'info');
       original.reviewStatus = 'pending_antigravity_review';
       original.dealtWith = true;
       updateFilterCounts();
@@ -1099,9 +1295,9 @@ window.setModalViewMode = function(mode = 'screenshot') {
     // instruct mode
     if (tabInstruct) tabInstruct.classList.add('active');
     if (tabScreenshot) tabScreenshot.classList.remove('active');
-    if (modalIcon) modalIcon.textContent = '🤖';
-    if (modalTitle) modalTitle.textContent = 'Instruct AI Assistant';
-    if (modalDesc) modalDesc.textContent = "Attach a screenshot or explain what to fix. Antigravity will update the crawlers and learn the pattern permanently.";
+    if (modalIcon) modalIcon.textContent = '📝';
+    if (modalTitle) modalTitle.textContent = 'Curator Guidance & Card Update';
+    if (modalDesc) modalDesc.textContent = "Attach a screenshot or explain what to fix. The local rules engine and OCR will update card details and record crawler heuristics.";
 
     if (dynamicBody && instructBlock && dropzoneBlock) {
       dynamicBody.insertBefore(instructBlock, dropzoneBlock);
@@ -1148,18 +1344,30 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const titleApproveField = document.getElementById('ai-approve-title');
   const titleBadge = document.getElementById('ai-approve-title-badge');
 
+  // Reset queue button texts
+  if (btnOnly) {
+    btnOnly.innerHTML = '💾 Save Guidance &amp; Keep in Queue';
+    btnOnly.style.display = 'inline-flex';
+  }
+  const btnQueueInterpretedInit = document.getElementById('btn-queue-interpreted-card');
+  if (btnQueueInterpretedInit) {
+    btnQueueInterpretedInit.innerHTML = '💾 Save Guidance &amp; Update Card';
+  }
+
   // Configure action buttons and boxes
   if (mode === 'dismiss') {
     if (modalIcon) modalIcon.textContent = '🛑';
-    if (modalTitle) modalTitle.textContent = 'Dismiss & Instruct AI';
-    if (modalDesc) modalDesc.textContent = "Dismiss and archive this event, and tell AI scrapers why so they permanently skip or adapt to this format on future crawls.";
+    if (modalTitle) modalTitle.textContent = 'Dismiss & Record Rule';
+    if (modalDesc) modalDesc.textContent = "Dismiss and archive this event, and record crawler rules to permanently skip or adapt to this format on future crawls.";
     if (quickApprovalBox) quickApprovalBox.style.display = 'none';
     if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'inline-flex';
+    if (btnOnly) btnOnly.style.display = 'none';
   } else {
     if (quickApprovalBox) quickApprovalBox.style.display = 'block';
-    if (btnApprove) btnApprove.style.display = 'inline-flex';
+    if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'none';
+    if (btnOnly) btnOnly.style.display = 'inline-flex';
   }
 
   if (ev) {
@@ -1198,12 +1406,93 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
         noteField.value = `Verified door rate for ${ev.venue || 'event'}`;
       }
     }
+
+    // Populate Quarantine Reason and Unconfirmed Details / Issues in Instruct AI Modal
+    const quarantineBox = document.getElementById('ai-inst-quarantine-box');
+    const reasonEl = document.getElementById('ai-inst-quarantine-reason-text');
+    const issuesListEl = document.getElementById('ai-inst-quarantine-issues-list');
+
+    if (quarantineBox && reasonEl && issuesListEl) {
+      const qReason = ev.quarantineReason || ev.flagReason || ev.archivedReason || '';
+      const dateStatus = evaluateCuratorDateStatus(ev);
+      const issues = [];
+
+      const attPriceForIssues = parseFloat(ev.attemptedPrice || ev.price || 0.0);
+      if (attPriceForIssues > 50.0 || ev.reviewStatus === 'denied_auto_budget') {
+        issues.push(`🚨 <strong>Budget Ceiling Exceeded:</strong> Detected rate of $${attPriceForIssues.toFixed(2)} CAD exceeds strict $50.00 CAD ceiling.`);
+      }
+      if (dateStatus && dateStatus.isUnconfirmed) {
+        issues.push(`📅 <strong>Date/Schedule Unconfirmed:</strong> ${dateStatus.dateLabel || 'Schedule or performance times are pending verification.'}`);
+      }
+      if (isDrift(ev)) {
+        issues.push(`⚠️ <strong>Live Page Drift:</strong> Schedule or pricing deviated from prior baseline.`);
+      }
+      const verification = ev.checkoutVerification || {};
+      if (verification.status === 'quarantined' || !verification.status) {
+        issues.push(`🛒 <strong>Checkout Fees:</strong> Final checkout cart fees could not be verified dynamically.`);
+      } else if (verification.details) {
+        issues.push(`ℹ️ <strong>Cart Note:</strong> ${escapeHtml(verification.details)}`);
+      }
+      if (Array.isArray(ev.validationIssues)) {
+        ev.validationIssues.forEach(iss => {
+          if (iss && !issues.some(x => x.includes(iss))) {
+            issues.push(`⚠️ ${escapeHtml(iss)}`);
+          }
+        });
+      }
+
+      if (qReason) {
+        reasonEl.innerHTML = `<span style="font-weight: 700; color: #fca5a5;">Flagged Quarantine Reason:</span> ${escapeHtml(qReason)}`;
+        reasonEl.style.display = 'block';
+      } else {
+        reasonEl.style.display = 'none';
+      }
+
+      if (issues.length > 0) {
+        issuesListEl.innerHTML = issues.map(iss => `<li><span>${iss}</span></li>`).join('');
+        issuesListEl.style.display = 'flex';
+      } else {
+        issuesListEl.style.display = 'none';
+      }
+
+      if (qReason || issues.length > 0) {
+        quarantineBox.style.display = 'block';
+      } else {
+        quarantineBox.style.display = 'none';
+      }
+    }
+  } else {
+    const quarantineBox = document.getElementById('ai-inst-quarantine-box');
+    if (quarantineBox) quarantineBox.style.display = 'none';
   }
 
-  // Prepopulate if previously dealt with / instruction already queued or newsletter screenshot exists
+  // Prepopulate if previously dealt with / saved draft exists / instruction already queued or newsletter screenshot exists
   clearScreenshotPreview();
   const existingImgs = [];
-  if (ev && ev.queuedInstruction) {
+  const savedDraft = state.instructionDrafts && state.instructionDrafts[eventId];
+
+  if (savedDraft) {
+    if (textField) textField.value = savedDraft.instructionText || '';
+    if (savedDraft.approvedPrice !== undefined && savedDraft.approvedPrice !== '' && priceField) {
+      priceField.value = parseFloat(savedDraft.approvedPrice).toFixed(2);
+    }
+    if (savedDraft.approvedCategory && catField) catField.value = savedDraft.approvedCategory;
+    if (savedDraft.approvedDate && dateField) dateField.value = savedDraft.approvedDate;
+    if (savedDraft.approvedVenue && venueApproveField) venueApproveField.value = savedDraft.approvedVenue;
+    if (savedDraft.approvedTitle && titleApproveField) titleApproveField.value = savedDraft.approvedTitle;
+    if (savedDraft.curatorNote && noteField) noteField.value = savedDraft.curatorNote;
+    if (Array.isArray(savedDraft.screenshots) && savedDraft.screenshots.length > 0) {
+      existingImgs.push(...savedDraft.screenshots);
+    }
+    if (Array.isArray(savedDraft.subEvents) && savedDraft.subEvents.length > 0) {
+      state.currentSplitEvents = [...savedDraft.subEvents];
+    } else {
+      state.currentSplitEvents = [];
+    }
+    updateModalDraftBadge(true);
+  } else if (ev && ev.queuedInstruction) {
+    state.currentSplitEvents = [];
+    updateModalDraftBadge(false);
     const q = ev.queuedInstruction;
     if (textField) textField.value = q.instructionText || '';
     if (q.approvedPrice && priceField) priceField.value = parseFloat(q.approvedPrice).toFixed(2);
@@ -1221,20 +1510,24 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     } else if (q.screenshotBase64) {
       existingImgs.push(q.screenshotBase64);
     }
-  } else if (ev) {
-    if (ev.emailScreenshot) {
-      existingImgs.push(ev.emailScreenshot);
-    } else if (ev.screenshotPath) {
-      existingImgs.push(ev.screenshotPath);
+  } else {
+    state.currentSplitEvents = [];
+    updateModalDraftBadge(false);
+    if (ev) {
+      if (ev.emailScreenshot) {
+        existingImgs.push(ev.emailScreenshot);
+      } else if (ev.screenshotPath) {
+        existingImgs.push(ev.screenshotPath);
+      }
     }
+    if (textField) textField.value = '';
   }
 
   if (existingImgs.length > 0) {
     addScreenshotDataUrls(existingImgs);
   }
 
-  if (textField && (!ev || !ev.queuedInstruction)) {
-    textField.value = '';
+  if (textField) {
     if (mode === 'dismiss') {
       textField.placeholder = "e.g.: 'This venue is private bookings only, or this is a multi-week course rather than a drop-in. Please ignore this section.'";
     } else if (mode === 'screenshot') {
@@ -1242,7 +1535,7 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     } else if (ev && isDrift(ev)) {
       textField.placeholder = `Explain the live drift, e.g.: 'The page now shows a price change. The scraper should look for the lowest general admission tier at...'`;
     } else {
-      textField.placeholder = "e.g.: 'The scraper picked up the $65 VIP tier instead of the $25 General Admission ticket shown at the bottom of the page. Please target the GA price for this venue.'";
+      textField.placeholder = "e.g.: 'The price is $15 door rate, happening Saturday at 8pm.' OR click '🔀 Detect & Split Multiple Events' to auto-decompose a multi-show schedule into discrete cards.";
     }
   }
 
@@ -1252,8 +1545,13 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const initialMode = (mode === 'screenshot' || (mode !== 'instruct' && mode !== 'dismiss' && existingImgs.length > 0)) ? 'screenshot' : (mode === 'dismiss' ? 'instruct' : (mode === 'instruct' ? 'instruct' : 'screenshot'));
   window.setModalViewMode(initialMode);
 
-  // Trigger initial real-time AI interpretation to display live card preview
-  interpretCuratorInstruction(eventId);
+  // If we already have saved subEvents, render the interactive preview directly
+  if (state.currentSplitEvents && state.currentSplitEvents.length > 0) {
+    renderInteractiveMultiEventPreview(state.currentSplitEvents);
+  } else {
+    // Trigger initial real-time AI interpretation to display live card preview
+    interpretCuratorInstruction(eventId);
+  }
 };
 
 window.openEmailScreenshotModal = function(eventId) {
@@ -2022,6 +2320,8 @@ window.selectActiveScreenshot = function(index) {
 window.removeScreenshotByIndex = function(index) {
   if (state.currentScreenshots && index >= 0 && index < state.currentScreenshots.length) {
     state.currentScreenshots.splice(index, 1);
+    const curEventId = document.getElementById('ai-inst-event-id')?.value;
+    if (curEventId) saveInstructionDraft(curEventId);
     if (state.currentScreenshots.length === 0) {
       state.activeScreenshotIndex = 0;
       state.currentScreenshotBase64 = null;
@@ -2135,6 +2435,8 @@ function addScreenshotDataUrls(urls) {
   }
   renderScreenshotGallery();
   if (addedCount > 0) {
+    const curEventId = document.getElementById('ai-inst-event-id')?.value;
+    if (curEventId) saveInstructionDraft(curEventId);
     showToast(`🖼️ ${addedCount} screenshot${addedCount > 1 ? 's' : ''} added! Running 13-dimension verification...`, 'info');
     if (state.currentScreenshots && state.currentScreenshots.length > 0) {
       triggerScreenshotVerification(state.currentScreenshots[state.activeScreenshotIndex]);
@@ -2145,7 +2447,313 @@ function addScreenshotDataUrls(urls) {
 let debounceInterpretTimer = null;
 let currentInterpretAbortController = null;
 
-async function interpretCuratorInstruction(targetEventId) {
+function renderInteractiveMultiEventPreview(subEvents) {
+  const cardWrapper = document.getElementById('ai-card-preview-wrapper');
+  const livePreview = document.getElementById('ai-live-card-preview');
+  const dismissWrapper = document.getElementById('ai-dismissal-preview-wrapper');
+  const statusPill = document.getElementById('ai-interpretation-status-pill');
+  const btnOnly = document.getElementById('btn-submit-ai-inst-only');
+  const btnQueueInterpreted = document.getElementById('btn-queue-interpreted-card');
+
+  if (dismissWrapper) dismissWrapper.style.display = 'none';
+  if (cardWrapper) cardWrapper.style.display = 'block';
+
+  if (!Array.isArray(subEvents) || subEvents.length === 0) {
+    if (livePreview) livePreview.innerHTML = '<div style="color: #94a3b8; font-size: 0.85rem; padding: 12px; text-align: center;">No discrete events generated. Click "Detect & Split Multiple Events" or adjust your instructions above.</div>';
+    return;
+  }
+
+  state.currentSplitEvents = subEvents;
+
+  if (statusPill) {
+    statusPill.textContent = `🔀 Multi-Event Split (${subEvents.length} Events)`;
+    statusPill.className = 'dim-pill pill-confirmed';
+  }
+
+  const queueBtnText = `🔀 Save ${subEvents.length} Split Events to Review Queue`;
+  if (btnOnly) btnOnly.innerHTML = queueBtnText;
+  if (btnQueueInterpreted) btnQueueInterpreted.innerHTML = queueBtnText;
+
+  // Calculate duplicate titles for inline warning badges
+  const titleCounts = {};
+  subEvents.forEach(s => {
+    const t = (s.title || '').trim().toLowerCase();
+    if (t) titleCounts[t] = (titleCounts[t] || 0) + 1;
+  });
+  const hasDuplicates = Object.values(titleCounts).some(c => c > 1);
+
+  const categories = [
+    { id: 'shows', label: '🎭 Comedy & Shows' },
+    { id: 'music', label: '🎵 Live Music' },
+    { id: 'crafts', label: '🎨 Crafts & Studios' },
+    { id: 'cinema', label: '🎬 Indie Cinema' },
+    { id: 'arts', label: '🏛️ Museums & Arts' },
+    { id: 'activities', label: '🎲 Games & Activities' },
+    { id: 'outdoors', label: '🌊 Walks & Outdoors' },
+    { id: 'trivia', label: '🍻 Drinks & Trivia' },
+    { id: 'festivals', label: '🎪 Festivals & Fairs' },
+    { id: 'social', label: '🤝 Social & Meetups' }
+  ];
+
+  let html = `
+    <div style="background: rgba(124, 58, 237, 0.16); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+        <div style="font-weight: 700; font-size: 0.9rem; color: #d8b4fe; display: flex; align-items: center; gap: 6px;">
+          <span>🔀</span> Multi-Event Staging Preview (${subEvents.length} Discrete Events)
+        </div>
+        <button type="button" id="btn-reanalyze-split" class="btn-curator" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #e9d5ff; font-size: 0.74rem; padding: 3px 10px; border-radius: 5px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Re-run schedule parser with any newly typed guidance or attached screenshots">
+          🔄 Re-Parse Schedule
+        </button>
+      </div>
+      <div style="font-size: 0.77rem; color: #cbd5e1; margin-top: 4px; line-height: 1.4;">
+        Schedule parser has decomposed this schedule into discrete event cards. <strong>Each event must have a unique name.</strong> You can edit any field directly below, remove cards, or provide notes above.
+      </div>
+      ${hasDuplicates ? `
+        <div id="split-duplicate-alert" style="margin-top: 8px; background: rgba(239, 68, 68, 0.22); border: 1px solid #ef4444; border-radius: 6px; padding: 6px 10px; color: #fca5a5; font-size: 0.76rem; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+          <span>⚠️</span> Duplicate event names detected! Each event must have a unique name before queueing.
+        </div>
+      ` : ''}
+    </div>
+
+    <div id="split-events-card-list" style="display: flex; flex-direction: column; gap: 12px; max-height: 380px; overflow-y: auto; padding-right: 4px;">
+      ${subEvents.map((sub, idx) => {
+        const tVal = (sub.title || '').trim();
+        const isDup = tVal && (titleCounts[tVal.toLowerCase()] > 1);
+        const sPrice = parseFloat(sub.price || 0.0);
+        const pVal = isNaN(sPrice) ? '0.00' : sPrice.toFixed(2);
+        const dVal = sub.dateSchedule || '';
+        const cVal = sub.category || 'shows';
+
+        return `
+          <div class="split-sub-event-card" data-idx="${idx}" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid ${isDup ? '#ef4444' : 'rgba(255, 255, 255, 0.12)'}; border-left: 4px solid ${isDup ? '#ef4444' : '#10b981'}; border-radius: 8px; padding: 12px; transition: border-color 0.2s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-weight: 700; font-size: 0.82rem; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 7px; border-radius: 4px;">Card #${idx + 1}</span>
+                ${isDup ? '<span style="font-size: 0.7rem; color: #ef4444; font-weight: 700;">⚠️ Duplicate Name</span>' : ''}
+              </div>
+              <button type="button" class="btn-remove-sub-event" data-idx="${idx}" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; cursor: pointer;" title="Remove this event card">
+                🗑️ Remove
+              </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 8px;">
+              <div>
+                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Unique Event Name *</label>
+                <input type="text" class="curator-input split-input-title" data-idx="${idx}" value="${escapeHtml(sub.title || '')}" placeholder="Unique Event Title" style="width: 100%; font-size: 0.84rem; padding: 5px 8px; ${isDup ? 'border-color: #ef4444;' : ''}">
+              </div>
+              <div>
+                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Price (CAD ≤ $50)</label>
+                <input type="number" step="0.01" min="0" max="50" class="curator-input split-input-price" data-idx="${idx}" value="${pVal}" style="width: 100%; font-size: 0.84rem; padding: 5px 8px;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div>
+                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Date / Schedule</label>
+                <input type="text" class="curator-input split-input-date" data-idx="${idx}" value="${escapeHtml(dVal)}" placeholder="e.g. Saturdays 8pm" style="width: 100%; font-size: 0.84rem; padding: 5px 8px;">
+              </div>
+              <div>
+                <label style="font-size: 0.72rem; color: #94a3b8; display: block; margin-bottom: 2px;">Category</label>
+                <select class="curator-select split-input-category" data-idx="${idx}" style="width: 100%; font-size: 0.82rem; padding: 5px 6px;">
+                  ${categories.map(c => `
+                    <option value="${c.id}" ${cVal === c.id ? 'selected' : ''}>${c.label}</option>
+                  `).join('')}
+                </select>
+              </div>
+            </div>
+
+            ${sub.feeBreakdown ? `
+              <div style="margin-top: 6px; font-size: 0.7rem; color: #a78bfa;">
+                🛡️ ${escapeHtml(sub.feeBreakdown)}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('')}
+    </div>
+
+    <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <button type="button" id="btn-add-split-card" class="btn-curator" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.78rem; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+        ➕ Add Another Sub-Event Card
+      </button>
+      <button type="button" id="btn-auto-unique-titles" class="btn-curator" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; font-size: 0.74rem; padding: 6px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" title="Automatically append numbers or show times to guarantee all titles are strictly unique">
+        🪄 Auto-Fix Duplicate Names
+      </button>
+    </div>
+  `;
+
+  if (livePreview) {
+    livePreview.innerHTML = html;
+  }
+
+  attachMultiEventPreviewListeners();
+}
+
+function attachMultiEventPreviewListeners() {
+  const livePreview = document.getElementById('ai-live-card-preview');
+  if (!livePreview) return;
+
+  const eventId = document.getElementById('ai-inst-event-id')?.value;
+
+  // Title inputs
+  livePreview.querySelectorAll('.split-input-title').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.idx, 10);
+      if (state.currentSplitEvents && state.currentSplitEvents[idx]) {
+        state.currentSplitEvents[idx].title = e.target.value;
+        if (eventId) saveInstructionDraft(eventId);
+        updateSplitTitleWarnings();
+      }
+    });
+  });
+
+  // Price inputs
+  livePreview.querySelectorAll('.split-input-price').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.idx, 10);
+      if (state.currentSplitEvents && state.currentSplitEvents[idx]) {
+        const val = parseFloat(e.target.value);
+        state.currentSplitEvents[idx].price = isNaN(val) ? 0.0 : val;
+        state.currentSplitEvents[idx].priceLabel = val === 0 ? 'Free ($0)' : `$${val.toFixed(2)} CAD`;
+        if (eventId) saveInstructionDraft(eventId);
+      }
+    });
+  });
+
+  // Date inputs
+  livePreview.querySelectorAll('.split-input-date').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.idx, 10);
+      if (state.currentSplitEvents && state.currentSplitEvents[idx]) {
+        state.currentSplitEvents[idx].dateSchedule = e.target.value;
+        if (eventId) saveInstructionDraft(eventId);
+      }
+    });
+  });
+
+  // Category selects
+  livePreview.querySelectorAll('.split-input-category').forEach(select => {
+    select.addEventListener('change', (e) => {
+      const idx = parseInt(e.target.dataset.idx, 10);
+      if (state.currentSplitEvents && state.currentSplitEvents[idx]) {
+        state.currentSplitEvents[idx].category = e.target.value;
+        if (eventId) saveInstructionDraft(eventId);
+      }
+    });
+  });
+
+  // Remove buttons
+  livePreview.querySelectorAll('.btn-remove-sub-event').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const idx = parseInt(e.target.dataset.idx, 10);
+      if (state.currentSplitEvents && state.currentSplitEvents.length > 0) {
+        state.currentSplitEvents.splice(idx, 1);
+        if (eventId) saveInstructionDraft(eventId);
+        if (state.currentSplitEvents.length === 0) {
+          interpretCuratorInstruction(eventId);
+        } else {
+          renderInteractiveMultiEventPreview(state.currentSplitEvents);
+        }
+      }
+    });
+  });
+
+  // Add another card button
+  const btnAdd = document.getElementById('btn-add-split-card');
+  if (btnAdd) {
+    btnAdd.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const parentTitle = document.getElementById('ai-inst-title')?.value || 'Event';
+      const parentVenue = document.getElementById('ai-inst-venue')?.value || 'Vancouver Venue';
+      const newNum = (state.currentSplitEvents || []).length + 1;
+      if (!state.currentSplitEvents) state.currentSplitEvents = [];
+      state.currentSplitEvents.push({
+        title: `${parentTitle} (Show ${newNum})`,
+        price: 0.0,
+        priceLabel: 'Free ($0)',
+        category: 'shows',
+        dateSchedule: 'Upcoming',
+        venue: parentVenue,
+        feeBreakdown: 'Added by curator'
+      });
+      renderInteractiveMultiEventPreview(state.currentSplitEvents);
+      if (eventId) saveInstructionDraft(eventId);
+    });
+  }
+
+  // Auto-Fix duplicate titles button
+  const btnAutoFix = document.getElementById('btn-auto-unique-titles');
+  if (btnAutoFix) {
+    btnAutoFix.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!state.currentSplitEvents || state.currentSplitEvents.length === 0) return;
+      const seen = {};
+      state.currentSplitEvents.forEach((s, idx) => {
+        let t = (s.title || `Event ${idx + 1}`).trim();
+        const low = t.toLowerCase();
+        if (seen[low]) {
+          seen[low]++;
+          if (s.dateSchedule && s.dateSchedule !== 'Upcoming') {
+            s.title = `${t} (${s.dateSchedule})`;
+          } else {
+            s.title = `${t} - Part ${seen[low]}`;
+          }
+        } else {
+          seen[low] = 1;
+        }
+      });
+      renderInteractiveMultiEventPreview(state.currentSplitEvents);
+      if (eventId) saveInstructionDraft(eventId);
+      showToast('Event titles made strictly unique!', 'success');
+    });
+  }
+
+  // Re-Analyze button
+  const btnReanalyze = document.getElementById('btn-reanalyze-split');
+  if (btnReanalyze) {
+    btnReanalyze.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (eventId) {
+        showToast('Re-analyzing with current guidance...', 'info');
+        interpretCuratorInstruction(eventId, { forceMultiSplit: true });
+      }
+    });
+  }
+}
+
+function updateSplitTitleWarnings() {
+  const titleCounts = {};
+  (state.currentSplitEvents || []).forEach(s => {
+    const t = (s.title || '').trim().toLowerCase();
+    if (t) titleCounts[t] = (titleCounts[t] || 0) + 1;
+  });
+
+  const cards = document.querySelectorAll('.split-sub-event-card');
+  cards.forEach(card => {
+    const idx = parseInt(card.dataset.idx, 10);
+    const sub = state.currentSplitEvents && state.currentSplitEvents[idx];
+    if (!sub) return;
+    const t = (sub.title || '').trim().toLowerCase();
+    const isDup = t && titleCounts[t] > 1;
+    card.style.borderColor = isDup ? '#ef4444' : 'rgba(255, 255, 255, 0.12)';
+    card.style.borderLeftColor = isDup ? '#ef4444' : '#10b981';
+    const input = card.querySelector('.split-input-title');
+    if (input) input.style.borderColor = isDup ? '#ef4444' : '';
+  });
+
+  const alertEl = document.getElementById('split-duplicate-alert');
+  const hasDuplicates = Object.values(titleCounts).some(c => c > 1);
+  if (alertEl) {
+    alertEl.style.display = hasDuplicates ? 'flex' : 'none';
+  }
+}
+
+async function interpretCuratorInstruction(targetEventId, options = {}) {
   const modal = document.getElementById('ai-instruction-modal');
   if (!modal || !modal.classList.contains('active')) return;
 
@@ -2180,7 +2788,8 @@ async function interpretCuratorInstruction(targetEventId) {
       eventId: eventId,
       instructionText: instructionText,
       screenshotBase64: activeShot,
-      screenshotPaths: state.currentScreenshots || []
+      screenshotPaths: state.currentScreenshots || [],
+      forceMultiSplit: Boolean(options && options.forceMultiSplit)
     };
 
     const res = await fetch('/api/curator/interpret-instruction', {
@@ -2249,52 +2858,96 @@ async function interpretCuratorInstruction(targetEventId) {
       if (venueApproveField && data.extractedVenue) venueApproveField.value = data.extractedVenue;
       if (noteApproveField && data.auditNote) noteApproveField.value = data.auditNote;
 
-      if (data.isValid) {
-        // Valid Event -> Show live card preview
-        if (statusPill) {
-          statusPill.textContent = '✅ Valid (Under $50)';
-          statusPill.className = 'dim-pill pill-confirmed';
+      // Update AI Learned Synthesis Box (brief couple sentences just under screenshot area)
+      const modalLearnedBox = document.getElementById('ai-modal-learned-box');
+      const modalLearnedText = document.getElementById('ai-modal-learned-text');
+      const modalLearnedTiers = document.getElementById('ai-modal-learned-tiers');
+      if (modalLearnedBox && modalLearnedText) {
+        if (data.aiLearnedSummary) {
+          modalLearnedText.textContent = data.aiLearnedSummary;
+          if (modalLearnedTiers) {
+            const tiers = data.extractedTiers || [];
+            if (tiers.length > 0) {
+              modalLearnedTiers.innerHTML = tiers.map(t => `
+                <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: rgba(168, 85, 247, 0.22); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff;">
+                  ${escapeHtml(t.name)}: <strong>${t.total === 0 ? 'FREE' : '$' + Number(t.total).toFixed(2)}</strong>
+                </span>
+              `).join('');
+              modalLearnedTiers.style.display = 'flex';
+            } else {
+              modalLearnedTiers.style.display = 'none';
+            }
+          }
+          modalLearnedBox.style.display = 'block';
+        } else {
+          modalLearnedBox.style.display = 'none';
         }
-        if (dismissWrapper) dismissWrapper.style.display = 'none';
-        if (cardWrapper) cardWrapper.style.display = 'block';
+      }
 
-        const p = data.cardPreview || {};
-        const priceNum = parseFloat(p.price || 0);
-        const priceDisplay = priceNum === 0 ? 'FREE' : `$${priceNum.toFixed(2)}`;
-        const dateText = p.dateSchedule || p.date || 'Upcoming';
-        const venueText = p.venue || 'Vancouver';
-        const neighborhoodText = p.neighborhood ? ` • ${p.neighborhood}` : '';
-        const providerText = p.provider ? ` • ${p.provider}` : '';
-        const catBadge = p.category ? `<span class="badge-cat-pill">${escapeHtml(p.category.toUpperCase())}</span>` : '';
+      if (data.isValid) {
+        // Valid Event -> Show live card preview or Multi-Event Split
+        if (data.isMultiEventSplit && data.subEvents && data.subEvents.length > 0) {
+          state.currentSplitEvents = [...data.subEvents];
+          saveInstructionDraft(eventId);
+          renderInteractiveMultiEventPreview(state.currentSplitEvents);
+        } else {
+          state.currentSplitEvents = [];
+          if (statusPill) {
+            statusPill.textContent = '✅ Valid (Under $50)';
+            statusPill.className = 'dim-pill pill-confirmed';
+          }
+          const btnOnly = document.getElementById('btn-submit-ai-inst-only');
+          if (btnOnly) {
+            btnOnly.innerHTML = `💾 Save Guidance &amp; Keep in Queue`;
+          }
+          const btnQueueInterpreted = document.getElementById('btn-queue-interpreted-card');
+          if (btnQueueInterpreted) {
+            btnQueueInterpreted.innerHTML = `💾 Save Guidance &amp; Update Card`;
+          }
+          if (dismissWrapper) dismissWrapper.style.display = 'none';
+          if (cardWrapper) cardWrapper.style.display = 'block';
 
-        if (livePreview) {
-          livePreview.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px;">
-              <div style="font-weight: 700; font-size: 1.05rem; color: #f8fafc; line-height: 1.3;">
-                ${escapeHtml(p.title || 'Untitled Event')}
+          const p = data.cardPreview || {};
+          const priceNum = parseFloat(p.price || 0);
+          const priceDisplay = priceNum === 0 ? 'FREE' : `$${priceNum.toFixed(2)}`;
+          const dateText = p.dateSchedule || p.date || 'Upcoming';
+          const venueText = p.venue || 'Vancouver';
+          const neighborhoodText = p.neighborhood ? ` • ${p.neighborhood}` : '';
+          const providerText = p.provider ? ` • ${p.provider}` : '';
+          const catBadge = p.category ? `<span class="badge-cat-pill">${escapeHtml(p.category.toUpperCase())}</span>` : '';
+
+          if (livePreview) {
+            const tiersPreviewHtml = formatTicketTiersHtml({ ...p, curatorAnnotation: { extractedTiers: data.extractedTiers } });
+            livePreview.innerHTML = `
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px;">
+                <div style="font-weight: 700; font-size: 1.05rem; color: #f8fafc; line-height: 1.3;">
+                  ${escapeHtml(p.title || 'Untitled Event')}
+                </div>
+                <div style="font-weight: 800; font-size: 1.15rem; color: #34d399; white-space: nowrap;">
+                  ${priceDisplay}
+                </div>
               </div>
-              <div style="font-weight: 800; font-size: 1.15rem; color: #34d399; white-space: nowrap;">
-                ${priceDisplay}
+              <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span>📍 ${escapeHtml(venueText)}${escapeHtml(neighborhoodText)}</span>
+                ${catBadge}
+                <span style="color: #94a3b8; font-size: 0.76rem;">${escapeHtml(providerText)}</span>
               </div>
-            </div>
-            <div style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              <span>📍 ${escapeHtml(venueText)}${escapeHtml(neighborhoodText)}</span>
-              ${catBadge}
-              <span style="color: #94a3b8; font-size: 0.76rem;">${escapeHtml(providerText)}</span>
-            </div>
-            <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <span>🗓️ ${escapeHtml(dateText)}</span>
-              ${p.websiteUrl && p.websiteUrl !== '#' ? `<a href="${escapeHtml(p.websiteUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : ''}
-            </div>
-            ${p.feeBreakdown ? `
-              <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.74rem; color: #a78bfa;">
-                🛡️ ${escapeHtml(p.feeBreakdown)}
+              <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span>🗓️ ${escapeHtml(dateText)}</span>
+                ${p.websiteUrl && p.websiteUrl !== '#' ? `<a href="${escapeHtml(p.websiteUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : ''}
               </div>
-            ` : ''}
-          `;
+              ${tiersPreviewHtml}
+              ${p.feeBreakdown ? `
+                <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.1); font-size: 0.74rem; color: #a78bfa;">
+                  🛡️ ${escapeHtml(p.feeBreakdown)}
+                </div>
+              ` : ''}
+            `;
+          }
         }
       } else {
         // Invalid Event -> Show Dismissal preview & explanation
+        state.currentSplitEvents = [];
         if (statusPill) {
           statusPill.textContent = '🛑 Dismiss Recommended';
           statusPill.className = 'dim-pill pill-discrepancy';
@@ -2344,9 +2997,38 @@ async function submitAIInstruction(action = 'queue_only') {
   const approvedVenue = document.getElementById('ai-approve-venue')?.value || '';
   const curatorNote = document.getElementById('ai-approve-note')?.value || (state.currentOcrVerification?.price?.feeBreakdown || instructionText);
 
+  // If multi-event split is active, validate each discrete card
+  const isSplitActive = Boolean(state.currentSplitEvents && state.currentSplitEvents.length > 0);
+  if (isSplitActive) {
+    const titleCounts = {};
+    for (let i = 0; i < state.currentSplitEvents.length; i++) {
+      const sub = state.currentSplitEvents[i];
+      const t = (sub.title || '').trim();
+      if (!t) {
+        showToast(`Event Card #${i + 1} must have a name!`, 'error');
+        return;
+      }
+      const tLow = t.toLowerCase();
+      if (titleCounts[tLow]) {
+        showToast(`Every event must have a strictly unique name! Duplicate detected: "${t}"`, 'error');
+        return;
+      }
+      titleCounts[tLow] = true;
+
+      const p = parseFloat(sub.price);
+      if (isNaN(p) || p < 0 || p > 50.0) {
+        showToast(`Event Card #${i + 1} ("${t}") price ($${sub.price}) exceeds the Van50 <= $50.00 CAD limit.`, 'error');
+        return;
+      }
+    }
+  }
+
   const hasScreenshots = Boolean(state.currentScreenshots && state.currentScreenshots.length > 0);
   if (!instructionText) {
-    if (action === 'queue_and_dismiss') {
+    if (isSplitActive) {
+      instructionText = `Decomposed into ${state.currentSplitEvents.length} discrete events with verified unique names via curator multi-event guidance.`;
+      if (textField) textField.value = instructionText;
+    } else if (action === 'queue_and_dismiss') {
       instructionText = state.lastInterpretation?.dismissReason || `Dismissed by curator: ${approvedTitle || eventTitle}`;
       if (textField) textField.value = instructionText;
     } else if (hasScreenshots) {
@@ -2357,7 +3039,7 @@ async function submitAIInstruction(action = 'queue_only') {
       instructionText = `Approved into live catalog: ${approvedTitle || eventTitle}`;
       if (textField) textField.value = instructionText;
     } else {
-      showToast('Please provide plain-English instructions for the AI Assistant or attach a screenshot', 'error');
+      showToast('Please provide instructions/notes or attach a screenshot', 'error');
       if (textField) textField.focus();
       return;
     }
@@ -2383,7 +3065,8 @@ async function submitAIInstruction(action = 'queue_only') {
     approvedCategory: approvedCategory,
     approvedDate: approvedDate,
     approvedVenue: approvedVenue,
-    curatorNote: curatorNote
+    curatorNote: curatorNote,
+    subEvents: isSplitActive ? state.currentSplitEvents : undefined
   };
 
   try {
@@ -2398,43 +3081,49 @@ async function submitAIInstruction(action = 'queue_only') {
 
     const data = await res.json();
     if (res.ok && data.success) {
-      const successMsg = action === 'queue_and_approve'
-        ? '✅ Approved as-is and queued for AI learning!'
-        : (data.message || '🤖 Queued for AI Assistant review!');
+      const successMsg = isSplitActive
+        ? `🔀 Decomposed into ${state.currentSplitEvents.length} discrete events saved in review queue!`
+        : (action === 'queue_and_approve'
+          ? '✅ Approved as-is and saved to catalog!'
+          : (data.message || '📋 Guidance saved to review queue!'));
+
       showToast(successMsg, 'success');
+      clearInstructionDraft(eventId);
+      state.currentSplitEvents = [];
+
       const modal = document.getElementById('ai-instruction-modal');
       if (modal) modal.classList.remove('active');
 
-      // Update in-memory quarantined event immediately so UI shows handled state
-      const targetItem = state.quarantinedEvents.find(e => e.id === eventId);
-      if (targetItem) {
-        targetItem.dealtWith = true;
-        if (approvedTitle) targetItem.title = approvedTitle;
-        const finalPaths = (data.screenshotPaths && data.screenshotPaths.length > 0)
-          ? data.screenshotPaths
-          : (data.screenshotPath ? [data.screenshotPath] : [...state.currentScreenshots]);
-        targetItem.queuedInstruction = {
-          instructionText: instructionText,
-          eventId: eventId,
-          eventTitle: approvedTitle || eventTitle,
-          approvedTitle: approvedTitle,
-          venueName: venueName,
-          sourceUrl: sourceUrl,
-          screenshotPath: data.screenshotPath || finalPaths[0] || null,
-          screenshotPaths: finalPaths,
-          hasScreenshot: finalPaths.length > 0,
-          screenshotCount: finalPaths.length,
-          action: action,
-          approvedPrice: approvedPrice,
-          approvedCategory: approvedCategory,
-          curatorNote: curatorNote,
-          createdAt: new Date().toISOString()
-        };
-      }
-
-      // Keep event in quarantine queue awaiting Antigravity review
-      if (targetItem) {
-        targetItem.reviewStatus = 'pending_antigravity_review';
+      // Update in-memory quarantined event or reload split children
+      if (data.isMultiEventSplit || isSplitActive) {
+        await loadQuarantineQueue();
+      } else {
+        const targetItem = state.quarantinedEvents.find(e => e.id === eventId);
+        if (targetItem) {
+          targetItem.dealtWith = true;
+          if (approvedTitle) targetItem.title = approvedTitle;
+          const finalPaths = (data.screenshotPaths && data.screenshotPaths.length > 0)
+            ? data.screenshotPaths
+            : (data.screenshotPath ? [data.screenshotPath] : [...state.currentScreenshots]);
+          targetItem.queuedInstruction = {
+            instructionText: instructionText,
+            eventId: eventId,
+            eventTitle: approvedTitle || eventTitle,
+            approvedTitle: approvedTitle,
+            venueName: venueName,
+            sourceUrl: sourceUrl,
+            screenshotPath: data.screenshotPath || finalPaths[0] || null,
+            screenshotPaths: finalPaths,
+            hasScreenshot: finalPaths.length > 0,
+            screenshotCount: finalPaths.length,
+            action: action,
+            approvedPrice: approvedPrice,
+            approvedCategory: approvedCategory,
+            curatorNote: curatorNote,
+            createdAt: new Date().toISOString()
+          };
+          targetItem.reviewStatus = 'pending_antigravity_review';
+        }
       }
 
       updateFilterCounts();
@@ -2540,6 +3229,12 @@ function setupCuratorEventListeners() {
   }
 
   const closeAiModal = () => {
+    const eventId = document.getElementById('ai-inst-event-id')?.value;
+    if (eventId) {
+      saveInstructionDraft(eventId);
+    }
+    const qBox = document.getElementById('ai-inst-quarantine-box');
+    if (qBox) qBox.style.display = 'none';
     if (aiModal) aiModal.classList.remove('active');
     resetScreenshotAlignmentPanel();
   };
@@ -2575,6 +3270,10 @@ function setupCuratorEventListeners() {
       e.stopPropagation();
     });
     instructionField.addEventListener('input', () => {
+      const eventId = document.getElementById('ai-inst-event-id')?.value;
+      if (eventId) {
+        saveInstructionDraft(eventId);
+      }
       clearTimeout(debounceInterpretTimer);
       debounceInterpretTimer = setTimeout(() => {
         interpretCuratorInstruction();
@@ -2779,6 +3478,62 @@ function setupCuratorEventListeners() {
   if (btnConfirmInterpretedDismiss) {
     btnConfirmInterpretedDismiss.addEventListener('click', () => submitAIInstruction('queue_and_dismiss'));
   }
+
+  // Detect & Split Multiple Events Button
+  const btnDetectMultiple = document.getElementById('btn-detect-multiple-events');
+  if (btnDetectMultiple) {
+    btnDetectMultiple.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const eventId = document.getElementById('ai-inst-event-id')?.value;
+      if (!eventId) return;
+
+      const textField = document.getElementById('ai-instruction-text');
+      const curText = textField ? textField.value.trim() : '';
+      const splitDirective = "This proposed event actually contains multiple unique events. Please scan the screenshots, comments, and schedule details to decompose into discrete cards with unique names.";
+      if (textField) {
+        if (!curText) {
+          textField.value = splitDirective;
+        } else if (!curText.toLowerCase().includes('multiple') && !curText.toLowerCase().includes('split')) {
+          textField.value = `${curText}\n\n[Instruction: ${splitDirective}]`;
+        }
+      }
+      saveInstructionDraft(eventId);
+      showToast('Scanning schedule & screenshots to decompose into discrete events...', 'info');
+      await interpretCuratorInstruction(eventId, { forceMultiSplit: true });
+    });
+  }
+
+  // Clear Modal Draft Button
+  const btnClearDraft = document.getElementById('btn-clear-modal-draft');
+  if (btnClearDraft) {
+    btnClearDraft.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const eventId = document.getElementById('ai-inst-event-id')?.value;
+      if (eventId) {
+        clearInstructionDraft(eventId);
+        state.currentSplitEvents = [];
+        openAIInstructionModal(eventId, 'approve');
+        showToast('Draft discarded. Reset to card defaults.', 'info');
+      }
+    });
+  }
+
+  // Auto-save draft on changes to quick-approval fields
+  ['ai-approve-title', 'ai-approve-price', 'ai-approve-category', 'ai-approve-date', 'ai-approve-venue', 'ai-approve-note'].forEach(fieldId => {
+    const el = document.getElementById(fieldId);
+    if (el) {
+      el.addEventListener('input', () => {
+        const eventId = document.getElementById('ai-inst-event-id')?.value;
+        if (eventId) saveInstructionDraft(eventId);
+      });
+      el.addEventListener('change', () => {
+        const eventId = document.getElementById('ai-inst-event-id')?.value;
+        if (eventId) saveInstructionDraft(eventId);
+      });
+    }
+  });
 
   // AI Instruction / Screenshot Modal Mode Tabs
   const tabModeScreenshot = document.getElementById('tab-mode-screenshot');
@@ -3139,7 +3894,7 @@ function renderDiscoveredVenuesCards() {
             <span class="curator-badge-pill" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.5);">
               🏛️ Discovered Venue
             </span>
-            ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">🤖 AI Queued</span>` : ''}
+            ${isHandled ? `<span class="curator-badge-pill curator-badge-handled">📋 Rule Queued</span>` : ''}
           </div>
         </div>
 
@@ -3153,15 +3908,15 @@ function renderDiscoveredVenuesCards() {
           <div class="curator-handled-box" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid rgba(168, 85, 247, 0.5); border-left: 5px solid #a855f7; border-radius: 8px; padding: 12px 14px; margin: 10px 0 14px 0;">
             <div class="curator-handled-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
               <strong style="color: #d8b4fe; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
-                <span>🤖</span> Your AI Scraper Instruction:
+                <span>📝</span> Your Venue Guidance:
               </strong>
               <span class="curator-handled-tag" style="background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5); color: #f3e8ff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
                 ${escapeHtml(
                   (v.queuedInstruction.action === 'queue_and_approve' || v.queuedInstruction.actionTaken === 'queue_and_approve')
-                    ? '⚡ Enrolled & Training AI'
+                    ? '⚡ Enrolled &amp; Rule Saved'
                     : (v.queuedInstruction.action === 'queue_and_dismiss' || v.queuedInstruction.actionTaken === 'queue_and_dismiss')
-                      ? '🛑 Dismissed & Training AI'
-                      : '📋 Held for AI Review'
+                      ? '🛑 Dismissed &amp; Rule Recorded'
+                      : '📋 Held for Review'
                 )}
               </span>
             </div>
@@ -3171,7 +3926,7 @@ function renderDiscoveredVenuesCards() {
             ${(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary) ? `
               <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; font-size: 0.82rem; color: #a7f3d0; display: flex; align-items: center; gap: 8px;">
                 <span>🧠</span>
-                <span><strong>AI Learned Policy:</strong> ${escapeHtml(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary)}</span>
+                <span><strong>Crawler Policy Rule:</strong> ${escapeHtml(v.curatorLearnedRules?.summary || v.queuedInstruction?.distilledRules?.summary || v.queuedInstruction?.aiLearnedSummary || v.policySummary)}</span>
               </div>
             ` : ''}
             ${renderCardScreenshotThumbnails(v.queuedInstruction)}
@@ -3196,9 +3951,9 @@ function renderDiscoveredVenuesCards() {
               type="button" 
               class="btn-curator btn-curator-ai-approve" 
               onclick='openAddVenueModal(${safeV}, { focusInstruction: true })'
-              title="Instruct AI Assistant on how to crawl this venue with notes & screenshots"
+              title="Set crawler guidance and notes for this venue with screenshots"
             >
-              🤖 Instruct AI
+              📝 Set Venue Rule
             </button>
             <button 
               type="button" 
@@ -3785,7 +4540,7 @@ window.openAIInstructionsModal = async function() {
       renderInstructionsList();
       modal.classList.add('active');
     } else {
-      showToast('Failed to load AI instructions', 'error');
+      showToast('Failed to load feedback rules', 'error');
     }
   } catch (err) {
     showToast(`Error connecting to server: ${err.message}`, 'error');
@@ -4183,7 +4938,7 @@ function renderInstructionsList() {
   }
 
   if (items.length === 0) {
-    container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No AI instructions found matching your filter.</div>`;
+    container.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--curator-text-muted);">No feedback rules found matching your filter.</div>`;
     return;
   }
 
@@ -4619,257 +5374,6 @@ function renderMasterCatalogList() {
 window.fetchMasterCatalog = fetchMasterCatalog;
 window.renderMasterCatalogList = renderMasterCatalogList;
 
-// ==============================================================================
-// 12. AI LIVE OPERATIONS STREAM & REAL-TIME ACTIVITY HUD
-// ==============================================================================
+// Section 12 (Automated Operations Stream console) removed per user request.
 
-let _liveActivityPollTimer = null;
-
-function initLiveAIActivityFeed() {
-  const terminalContainer = document.getElementById('ai-live-terminal');
-  const toggleBtn = document.getElementById('btn-toggle-ai-terminal');
-  const toggleIcon = document.getElementById('ai-terminal-toggle-icon');
-  const toggleText = document.getElementById('ai-terminal-toggle-text');
-  const clearBtn = document.getElementById('btn-clear-ai-terminal');
-  const runQcBtn = document.getElementById('btn-run-qc-now');
-
-  // Check persisted drawer state
-  const isTerminalOpen = localStorage.getItem('curator_ai_terminal_open') === 'true';
-  if (isTerminalOpen && terminalContainer) {
-    terminalContainer.style.display = 'block';
-    if (toggleText) toggleText.textContent = 'Hide Live Stream';
-    if (toggleIcon) toggleIcon.textContent = '✖';
-  }
-
-  if (toggleBtn && terminalContainer) {
-    toggleBtn.addEventListener('click', () => {
-      const isHidden = terminalContainer.style.display === 'none' || !terminalContainer.style.display;
-      terminalContainer.style.display = isHidden ? 'block' : 'none';
-      if (toggleText) toggleText.textContent = isHidden ? 'Hide Live Stream' : 'Show Live Stream';
-      if (toggleIcon) toggleIcon.textContent = isHidden ? '✖' : '📜';
-      localStorage.setItem('curator_ai_terminal_open', isHidden ? 'true' : 'false');
-      if (isHidden) {
-        scrollAiTerminalToBottom();
-      }
-    });
-  }
-
-  if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      const logsBody = document.getElementById('ai-terminal-logs');
-      if (logsBody) logsBody.innerHTML = '<div style="color: #64748b; font-style: italic; padding: 4px;">Logs cleared for current session.</div>';
-    });
-  }
-
-  if (runQcBtn) {
-    runQcBtn.addEventListener('click', async () => {
-      if (!confirm('Run the autonomous Quality Control AI now?\n\nThis will:\n1. Verify active events against live venues & pricing.\n2. Audit Free Public Access spots for closures.\n3. Refine direct box-office links & high-intent search tags.\n4. Stream updates directly into this console.')) {
-        return;
-      }
-      
-      try {
-        runQcBtn.disabled = true;
-        runQcBtn.innerHTML = '<span>⏳ Starting...</span>';
-        
-        // Auto-open terminal
-        if (terminalContainer && terminalContainer.style.display === 'none') {
-          terminalContainer.style.display = 'block';
-          if (toggleText) toggleText.textContent = 'Hide Live Stream';
-          if (toggleIcon) toggleIcon.textContent = '✖';
-          localStorage.setItem('curator_ai_terminal_open', 'true');
-        }
-
-        const res = await fetch('/api/curator/run-qc', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Curator-Token': state.token || ''
-          },
-          body: JSON.stringify({})
-        });
-
-        if (res.ok) {
-          showToast('⚡ Quality Control AI Pass launched! Streaming live below.', 'success');
-          fetchLiveAIActivity();
-        } else {
-          const err = await res.json().catch(() => ({}));
-          showToast(`Could not start QC: ${err.error || 'Server error'}`, 'warning');
-        }
-      } catch (err) {
-        showToast(`Failed to trigger QC: ${err.message}`, 'danger');
-      } finally {
-        setTimeout(() => {
-          if (runQcBtn) {
-            runQcBtn.disabled = false;
-            runQcBtn.innerHTML = '<span>⚡ Run QC Audit</span>';
-          }
-        }, 3000);
-      }
-    });
-  }
-
-  const crawlBtn = document.getElementById('btn-antigravity-crawl');
-  if (crawlBtn) {
-    crawlBtn.addEventListener('click', async () => {
-      if (!confirm('Launch Antigravity Autonomous Event Scout?\n\nThis will:\n1. Crawl registered discovery sources, editorial calendars, and RSS feeds.\n2. Discover new concerts, screenings, comedy, and free drop-in outings.\n3. Match against known venues under $50 CAD.\n4. Stream discovered events live into this console.')) {
-        return;
-      }
-      
-      try {
-        crawlBtn.disabled = true;
-        crawlBtn.innerHTML = '<span>⏳ Crawling...</span>';
-        
-        // Auto-open terminal
-        if (terminalContainer && terminalContainer.style.display === 'none') {
-          terminalContainer.style.display = 'block';
-          if (toggleText) toggleText.textContent = 'Hide Live Stream';
-          if (toggleIcon) toggleIcon.textContent = '✖';
-          localStorage.setItem('curator_ai_terminal_open', 'true');
-        }
-
-        const res = await fetch('/api/curator/crawl-events', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Curator-Token': state.token || ''
-          },
-          body: JSON.stringify({})
-        });
-
-        if (res.ok) {
-          showToast('🌐 Antigravity Event Scout active! Streaming discoveries live.', 'success');
-          fetchLiveAIActivity();
-        } else {
-          const err = await res.json().catch(() => ({}));
-          showToast(`Could not start scout: ${err.error || 'Server error'}`, 'warning');
-        }
-      } catch (err) {
-        showToast(`Failed to trigger scout: ${err.message}`, 'danger');
-      } finally {
-        setTimeout(() => {
-          if (crawlBtn) {
-            crawlBtn.disabled = false;
-            crawlBtn.innerHTML = '<span>🌐 Crawl &amp; Scout Events</span>';
-          }
-        }, 4000);
-      }
-    });
-  }
-
-  // Initial fetch and start continuous monitor
-  fetchLiveAIActivity();
-}
-
-async function fetchLiveAIActivity() {
-  clearTimeout(_liveActivityPollTimer);
-  let nextDelay = 4000;
-
-  try {
-    const res = await fetch(`/api/curator/live-activity?_t=${Date.now()}`, { cache: 'no-store' });
-    if (res.ok) {
-      const data = await res.json();
-      renderLiveActivityHUD(data);
-      if (data.status === 'running') {
-        nextDelay = 1500; // Poll faster while AI is actively working
-      }
-    }
-  } catch (e) {
-    // quiet network retry
-  }
-
-  _liveActivityPollTimer = setTimeout(fetchLiveAIActivity, nextDelay);
-}
-
-function renderLiveActivityHUD(data) {
-  if (!data) return;
-
-  const pulseEl = document.getElementById('ai-live-pulse');
-  const badgeEl = document.getElementById('ai-status-badge');
-  const taskDescEl = document.getElementById('ai-live-task-desc');
-  const progressFillEl = document.getElementById('ai-progress-bar');
-  const timestampEl = document.getElementById('ai-live-timestamp');
-
-  const statConfirmed = document.getElementById('ai-stat-confirmed');
-  const statAdded = document.getElementById('ai-stat-added');
-  const statQuarantined = document.getElementById('ai-stat-quarantined');
-  const statSources = document.getElementById('ai-stat-sources');
-
-  const isRunning = data.status === 'running';
-
-  if (pulseEl) {
-    pulseEl.textContent = isRunning ? '🟢' : '⚪';
-    pulseEl.className = isRunning ? 'ai-pulse-indicator active' : 'ai-pulse-indicator';
-  }
-
-  if (badgeEl) {
-    badgeEl.textContent = isRunning ? 'AI Active' : 'AI Idle';
-    badgeEl.className = isRunning ? 'ai-status-badge badge-active' : 'ai-status-badge badge-idle';
-  }
-
-  if (taskDescEl) {
-    const task = data.current_task || 'AI Engine';
-    const step = data.current_step ? ` — ${data.current_step}` : '';
-    taskDescEl.textContent = `${task}${step}`;
-  }
-
-  if (progressFillEl) {
-    const pct = Math.max(0, Math.min(100, data.progress_percent ?? (isRunning ? 50 : 100)));
-    progressFillEl.style.width = `${pct}%`;
-  }
-
-  if (timestampEl && data.last_updated) {
-    try {
-      const dt = new Date(data.last_updated);
-      timestampEl.textContent = `Updated ${dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
-    } catch (_) {
-      timestampEl.textContent = 'Updated just now';
-    }
-  }
-
-  if (data.stats) {
-    if (statConfirmed) statConfirmed.textContent = data.stats.confirmed ?? 0;
-    if (statAdded) statAdded.textContent = (data.stats.new_events ?? 0);
-    if (statQuarantined) statQuarantined.textContent = data.stats.quarantined ?? 0;
-    if (statSources) statSources.textContent = data.stats.new_sources ?? 0;
-  }
-
-  // Render logs in terminal
-  renderTerminalLogs(data.recent_logs || []);
-}
-
-function renderTerminalLogs(logs) {
-  const logsContainer = document.getElementById('ai-terminal-logs');
-  if (!logsContainer) return;
-
-  if (!logs || logs.length === 0) {
-    if (logsContainer.children.length === 0) {
-      logsContainer.innerHTML = '<div style="color: #64748b; font-style: italic; padding: 4px;">Awaiting live AI operations stream...</div>';
-    }
-    return;
-  }
-
-  const html = logs.map(item => {
-    const type = (item.type || 'INFO').toLowerCase();
-    const ts = item.timestamp || '';
-    const msg = escapeHtml(item.message || '');
-    return `
-      <div class="terminal-line">
-        <span class="term-ts">[${escapeHtml(ts)}]</span>
-        <span class="term-badge ${escapeHtml(type)}">${escapeHtml(item.type || 'INFO')}</span>
-        <span class="term-text">${msg}</span>
-      </div>
-    `;
-  }).join('');
-
-  logsContainer.innerHTML = html;
-  scrollAiTerminalToBottom();
-}
-
-function scrollAiTerminalToBottom() {
-  const autoscrollChk = document.getElementById('ai-autoscroll-chk');
-  const logsContainer = document.getElementById('ai-terminal-logs');
-  if (logsContainer && (!autoscrollChk || autoscrollChk.checked)) {
-    logsContainer.scrollTop = logsContainer.scrollHeight;
-  }
-}
 

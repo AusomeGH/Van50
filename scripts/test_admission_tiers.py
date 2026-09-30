@@ -20,7 +20,7 @@ def test_tiers_completeness():
     # 1. Load data/events.json
     with open(EVENTS_PATH, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    events = data['events']
+    events = data if isinstance(data, list) else data.get('events', [])
     print(f"[TEST 1] Loaded {len(events)} events from data/events.json")
 
     multi_tier_events = [e for e in events if len(e.get('tiers', [])) > 1]
