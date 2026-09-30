@@ -44,7 +44,7 @@ class TestDiscoveredVenuesPipeline(unittest.TestCase):
             print(f"[WARN] Failed authenticating against curator_server: {e}")
 
     def setUp(self):
-        self.venues_path = os.path.join(DATA_DIR, "venue_directory.json")
+        self.venues_path = os.path.join(DATA_DIR, "venues.json") if os.path.exists(os.path.join(DATA_DIR, "venues.json")) else os.path.join(DATA_DIR, "venue_directory.json")
         self.disc_path = os.path.join(DATA_DIR, "discovered_venues.json")
         self.instructions_path = os.path.join(DATA_DIR, "curator_instructions.json")
         
@@ -113,10 +113,14 @@ class TestDiscoveredVenuesPipeline(unittest.TestCase):
         full_shot_path = os.path.join(BASE_DIR, saved_shot)
         self.assertTrue(os.path.exists(full_shot_path))
 
-        # Verify venue was enrolled into venue_directory.json
+        # Verify venue was enrolled into venues directory
         with open(self.venues_path, "r", encoding="utf-8") as vf:
             v_dir = json.load(vf)
-        self.assertIn(test_venue_name, v_dir.get("venues", {}))
+        if isinstance(v_dir, list):
+            v_names = [v.get("venue_name") or v.get("name") for v in v_dir]
+            self.assertIn(test_venue_name, v_names)
+        else:
+            self.assertIn(test_venue_name, v_dir.get("venues", {}))
 
         # Verify instruction was recorded in curator_instructions.json
         with open(self.instructions_path, "r", encoding="utf-8") as inf:
@@ -127,8 +131,12 @@ class TestDiscoveredVenuesPipeline(unittest.TestCase):
         self.assertEqual(matched_inst["actionTaken"], "queue_and_approve")
 
         # Cleanup test venue and screenshot
-        del v_dir["venues"][test_venue_name]
-        v_dir["metadata"]["totalVenues"] = len(v_dir["venues"])
+        if isinstance(v_dir, list):
+            v_dir = [v for v in v_dir if (v.get("venue_name") or v.get("name")) != test_venue_name]
+        else:
+            if test_venue_name in v_dir.get("venues", {}):
+                del v_dir["venues"][test_venue_name]
+                v_dir.setdefault("metadata", {})["totalVenues"] = len(v_dir["venues"])
         with open(self.venues_path, "w", encoding="utf-8") as vf:
             json.dump(v_dir, vf, indent=2, ensure_ascii=False)
         try:
@@ -174,7 +182,8 @@ class TestDiscoveredVenuesPipeline(unittest.TestCase):
         # Verify venue was NOT added to venue_directory.json
         with open(self.venues_path, "r", encoding="utf-8") as vf:
             v_dir = json.load(vf)
-        self.assertNotIn(test_venue_name, v_dir.get("venues", {}))
+        v_names = [v.get("venue_name") for v in v_dir] if isinstance(v_dir, list) else list(v_dir.get("venues", {}).keys())
+        self.assertNotIn(test_venue_name, v_names)
 
         # Cleanup saved screenshot
         if data.get("screenshotPaths"):

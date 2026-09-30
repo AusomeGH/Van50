@@ -3588,5 +3588,43 @@
     "approval_status": "Curator-Approved",
     "curator_notes": "Curator verified as-is",
     "archived_at": "2026-09-29"
+  },
+  {
+    "event_id": "van50-robson-square-plaza",
+    "event_name": "Robson Square & šxʷƛ̓ənəq Xwtl'e7énk Square",
+    "category": "Free Public Access",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Robson Square & šxʷƛ̓ənəq Xwtl'e7énk Square",
+    "full_address": "800 Robson St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Arthur Erickson-designed civic gathering plaza linking the Vancouver Art Gallery and Provincial Law Courts. Frequently hosts drop-in street dancers, acoustic sets, and community pop-ups.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)",
+    "days_open": "Daily",
+    "show_1": null,
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://dailyhive.com/vancouver/events",
+    "details_url": "https://www.robsonsquare.gov.bc.ca",
+    "ticket_url": "https://www.robsonsquare.gov.bc.ca",
+    "ticket_provider": "Free Public Access",
+    "tags": [
+      "free-admission",
+      "civic-plaza",
+      "architecture",
+      "drop-in",
+      "downtown",
+      "free-public-access"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)).",
+    "price": 0.0,
+    "archive_reason": "Archived per Curator Rule: Unscheduled street busking does not qualify as an active Van50 activity. Reserved for verified programmed activations (Winter Ice Rink / Summer Dance Series)."
   }
 ]

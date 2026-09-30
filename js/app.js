@@ -1030,6 +1030,11 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Private Event)' };
   }
 
+  // Open public space (parks, seawall, beaches, outdoor spaces) never show Closed
+  if (ev.access_model === 'open_public_space' || ev.accessModel === 'open_public_space') {
+    return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7 (Recommended Visiting Times)' };
+  }
+
   const ds = ev.dateSchedule || '';
   const nowHours = now.getHours();
   const nowMins = now.getMinutes();
@@ -1878,27 +1883,8 @@ function calculateNextTwoDates(ev) {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
 
-  // 1. Daily Invariants (Stanley Park Seawall, Lynn Canyon, Public Markets, etc.)
-  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
-    const closing = getEventClosingTimeToday(ev, now);
-    const startOffset = closing.hasEnded ? 1 : 0;
-    const d1 = new Date(today);
-    d1.setDate(d1.getDate() + startOffset);
-    const d2 = new Date(today);
-    d2.setDate(d2.getDate() + startOffset + 1);
-    const fmt1 = d1.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    const fmt2 = d2.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    const pfx1 = startOffset === 0 ? 'Today' : 'Tomorrow';
-    const pfx2 = startOffset === 0 ? 'Tomorrow' : d2.toLocaleDateString('en-US', { weekday: 'short' });
-    return {
-      type: 'daily',
-      label: closing.hasEnded ? 'Open Daily (Closed for today)' : 'Open Daily',
-      dates: `${pfx1} (${fmt1}) • ${pfx2} (${fmt2})`
-    };
-  }
-
-  // 2. Strict Evidence-Grounded Confirmed Dates
-  if (Array.isArray(ev.confirmedDates)) {
+  // 1. Strict Evidence-Grounded Confirmed Dates First
+  if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
     if (ev.confirmedDates.length > 0) {
       const validFuture = [];
       for (const dStr of ev.confirmedDates) {
@@ -2056,6 +2042,25 @@ function calculateNextTwoDates(ev) {
     }
   }
 
+  // 7. Daily Perennial Drop-In Invariants (Parks, Seawall, permanent galleries)
+  if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
+    const closing = getEventClosingTimeToday(ev, now);
+    const startOffset = closing.hasEnded ? 1 : 0;
+    const d1 = new Date(today);
+    d1.setDate(d1.getDate() + startOffset);
+    const d2 = new Date(today);
+    d2.setDate(d2.getDate() + startOffset + 1);
+    const fmt1 = d1.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const fmt2 = d2.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const pfx1 = startOffset === 0 ? 'Today' : 'Tomorrow';
+    const pfx2 = startOffset === 0 ? 'Tomorrow' : d2.toLocaleDateString('en-US', { weekday: 'short' });
+    return {
+      type: 'daily',
+      label: closing.hasEnded ? 'Open Daily (Closed for today)' : 'Open Daily',
+      dates: `${pfx1} (${fmt1}) • ${pfx2} (${fmt2})`
+    };
+  }
+
   return null;
 }
 
@@ -2093,17 +2098,7 @@ function getEventTimeBucket(ev, now = new Date()) {
 
   const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
 
-  // 1. Daily Invariants: open every day -> "today" (if venue open hours are still active today)
-  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
-    const status = getEventClosingTimeToday(ev, now);
-    if (status.hasEnded) {
-      // Open hours for today are over -> Move to Tomorrow!
-      return { bucket: 'tomorrow', date: tomorrow, closedToday: true, closingTimeStr: status.closingTimeStr };
-    }
-    return { bucket: 'today', date: today };
-  }
-
-  // 2. Confirmed dates array
+  // 1. Confirmed dates array First
   if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
     const futureDates = [];
     for (const dStr of ev.confirmedDates) {
@@ -2127,13 +2122,18 @@ function getEventTimeBucket(ev, now = new Date()) {
     }
   }
 
-  // 3. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
-  if (ev.startIso && ev.endIso) {
-    const startDt = new Date(ev.startIso);
-    const endDt = new Date(ev.endIso);
+  // 2. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
+  const startRaw = ev.startIso || ev.startDate || ev.start_date;
+  const endRaw = ev.endIso || ev.endDate || ev.end_date;
+  if (startRaw && endRaw) {
+    const startDt = new Date(startRaw.length === 10 ? startRaw + 'T00:00:00' : startRaw);
+    const endDt = new Date(endRaw.length === 10 ? endRaw + 'T23:59:59' : endRaw);
     if (!isNaN(startDt.getTime()) && !isNaN(endDt.getTime())) {
       const startDay = new Date(startDt.getFullYear(), startDt.getMonth(), startDt.getDate());
       const endDay = new Date(endDt.getFullYear(), endDt.getMonth(), endDt.getDate());
+      if (today < startDay) {
+        return categorizeDateBucket(startDay, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+      }
       if (today >= startDay && today <= endDay) {
         const targetDays = (Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0)
           ? ev.daysOfWeek.map(d => DAY_MAP[String(d).toLowerCase()]).filter(d => d !== undefined)
@@ -2157,9 +2157,10 @@ function getEventTimeBucket(ev, now = new Date()) {
     }
   }
 
-  // 4. startIso
-  if (ev.startIso) {
-    const d = new Date(ev.startIso);
+  // 3. startIso / single date
+  const singleDateRaw = ev.startIso || ev.startDate || ev.start_date;
+  if (singleDateRaw) {
+    const d = new Date(singleDateRaw.length === 10 ? singleDateRaw + 'T00:00:00' : singleDateRaw);
     if (!isNaN(d.getTime())) {
       const startDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
       const dKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -2202,6 +2203,15 @@ function getEventTimeBucket(ev, now = new Date()) {
         }
       }
     }
+  }
+
+  // 5. Daily Perennial Drop-Ins (Parks, Seawall, permanent galleries with no future scheduled dates)
+  if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
+    const status = getEventClosingTimeToday(ev, now);
+    if (status.hasEnded) {
+      return { bucket: 'tomorrow', date: tomorrow, closedToday: true, closingTimeStr: status.closingTimeStr };
+    }
+    return { bucket: 'today', date: today };
   }
 
   return { bucket: 'upcoming', date: null };
@@ -2455,28 +2465,7 @@ function formatCardTopDate(ev) {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  // 1. Daily Invariants
-  if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
-    const status = getEventClosingTimeToday(ev, now);
-    if (status.hasEnded) {
-      const tomorrowWeekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
-      const tomorrowMonthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      return {
-        badgeText: `🌅 Tomorrow (${tomorrowWeekday}, ${tomorrowMonthDay})`,
-        isTomorrow: true,
-        closedToday: true,
-        icon: '🌅'
-      };
-    }
-    const todayStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    return {
-      badgeText: `⚡ Today (${todayStr})`,
-      isToday: true,
-      icon: '⚡'
-    };
-  }
-
-  // 2. Confirmed dates
+  // 1. Confirmed dates array First
   if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
     const valid = ev.confirmedDates
       .map(dStr => {
@@ -2512,13 +2501,28 @@ function formatCardTopDate(ev) {
     }
   }
 
-  // 3. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
-  if (ev.startIso && ev.endIso) {
+  // 2. Multi-day date ranges (active festival runs, seasonal programs, exhibitions)
+  const startRaw = ev.startIso || ev.startDate || ev.start_date;
+  const endRaw = ev.endIso || ev.endDate || ev.end_date;
+  if (startRaw && endRaw) {
     try {
-      const startDt = new Date(ev.startIso);
-      const endDt = new Date(ev.endIso);
+      const startDt = new Date(startRaw.length === 10 ? startRaw + 'T00:00:00' : startRaw);
+      const endDt = new Date(endRaw.length === 10 ? endRaw + 'T23:59:59' : endRaw);
       const startZero = new Date(startDt.getFullYear(), startDt.getMonth(), startDt.getDate());
       const endZero = new Date(endDt.getFullYear(), endDt.getMonth(), endDt.getDate());
+
+      // If festival starts in the future, it is upcoming on startZero
+      if (today < startZero) {
+        const isTomorrow = startZero.getTime() === tomorrow.getTime();
+        const monthDay = startZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const weekday = startZero.toLocaleDateString('en-US', { weekday: 'short' });
+        if (isTomorrow) {
+          return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+        } else {
+          return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+        }
+      }
+
       if (today >= startZero && today <= endZero) {
         const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
         const curDay = today.getDay();
@@ -2546,10 +2550,11 @@ function formatCardTopDate(ev) {
     } catch (e) {}
   }
 
-  // 4. startIso
-  if (ev.startIso) {
+  // 3. startIso / single date
+  const singleDateRaw = ev.startIso || ev.startDate || ev.start_date;
+  if (singleDateRaw) {
     try {
-      const d = new Date(ev.startIso);
+      const d = new Date(singleDateRaw.length === 10 ? singleDateRaw + 'T00:00:00' : singleDateRaw);
       const dZero = new Date(d.getFullYear(), d.getMonth(), d.getDate());
       const dKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       const isDateCancelled = Array.isArray(ev.cancelledDates) && ev.cancelledDates.includes(dKey);
@@ -2576,8 +2581,8 @@ function formatCardTopDate(ev) {
     } catch (e) {}
   }
 
-  // 4. daysOfWeek
-  if (Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0) {
+  // 4. daysOfWeek recurring
+  if (Array.isArray(ev.daysOfWeek) && ev.daysOfWeek.length > 0 && !ev.daysOfWeek.includes('daily')) {
     const DAY_MAP = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
     const curDay = today.getDay();
     let minDaysAhead = 999;
@@ -2615,6 +2620,27 @@ function formatCardTopDate(ev) {
         return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
       }
     }
+  }
+
+  // 5. Daily Perennial Drop-In fallback (strictly for drop-ins with no future specific start date)
+  if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
+    const status = getEventClosingTimeToday(ev, now);
+    if (status.hasEnded) {
+      const tomorrowWeekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
+      const tomorrowMonthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return {
+        badgeText: `🌅 Tomorrow (${tomorrowWeekday}, ${tomorrowMonthDay})`,
+        isTomorrow: true,
+        closedToday: true,
+        icon: '🌅'
+      };
+    }
+    const todayStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return {
+      badgeText: `⚡ Today (${todayStr})`,
+      isToday: true,
+      icon: '⚡'
+    };
   }
 
   return {
@@ -2664,6 +2690,9 @@ function getTierMeta(name, price) {
   if (n.includes('student') || n.includes('under 30') || n.includes('under-30') || n.includes('under 35') || n.includes('ubc')) {
     className = 'tier-student';
     icon = '🎓';
+  } else if (n.includes('member') || n.includes('patron')) {
+    className = 'tier-member';
+    icon = '💳';
   } else if (n.includes('senior') || n.includes('concession') || n.includes('65+') || n.includes('alumni') || n.includes('staff')) {
     className = 'tier-senior';
     icon = '👵';
@@ -2682,19 +2711,46 @@ function getTierMeta(name, price) {
   } else if (n.includes('door') || n.includes('rush')) {
     className = 'tier-door';
     icon = '🚪';
+  } else if (n.includes('free') || n.includes('courtyard') || n.includes('public')) {
+    className = 'tier-free-access';
+    icon = '🆓';
   }
 
   return { className, icon };
 }
 
 function renderAdmissionTiersHtml(ev) {
-  if (!Array.isArray(ev.tiers) || ev.tiers.length <= 1) {
+  let tiers = Array.isArray(ev.tiers) ? ev.tiers : [];
+  if (tiers.length === 0) {
+    const syn = [];
+    if (ev.tier_custom_name_1 !== undefined && ev.tier_custom_price_1 !== undefined) {
+      syn.push({ name: ev.tier_custom_name_1, price: ev.tier_custom_price_1, label: ev.tier_custom_price_1 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_1).toFixed(2)} CAD` });
+    }
+    if (ev.price_adult !== undefined && ev.price_adult !== null) {
+      syn.push({ name: 'Adult', price: ev.price_adult, label: ev.price_adult === 0 ? 'Free ($0)' : `$${Number(ev.price_adult).toFixed(2)} CAD` });
+    }
+    if (ev.price_student !== undefined && ev.price_student !== null) {
+      syn.push({ name: 'Student', price: ev.price_student, label: ev.price_student === 0 ? 'Free ($0)' : `$${Number(ev.price_student).toFixed(2)} CAD` });
+    }
+    if (ev.price_member !== undefined && ev.price_member !== null) {
+      syn.push({ name: 'Member', price: ev.price_member, label: ev.price_member === 0 ? 'Free ($0)' : `$${Number(ev.price_member).toFixed(2)} CAD` });
+    }
+    if (ev.tier_custom_name_2 !== undefined && ev.tier_custom_price_2 !== undefined) {
+      syn.push({ name: ev.tier_custom_name_2, price: ev.tier_custom_price_2, label: ev.tier_custom_price_2 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_2).toFixed(2)} CAD` });
+    }
+    if (ev.tier_custom_name_3 !== undefined && ev.tier_custom_price_3 !== undefined) {
+      syn.push({ name: ev.tier_custom_name_3, price: ev.tier_custom_price_3, label: ev.tier_custom_price_3 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_3).toFixed(2)} CAD` });
+    }
+    tiers = syn;
+  }
+
+  if (tiers.length === 0) {
     return '';
   }
 
-  const pillsHtml = ev.tiers.map(t => {
+  const pillsHtml = tiers.map(t => {
     const meta = getTierMeta(t.name, t.price);
-    const valText = t.label || (t.price === 0 ? 'Free' : `$${Number(t.price).toFixed(2)}`);
+    const valText = t.label || (t.price === 0 ? 'Free ($0)' : `$${Number(t.price).toFixed(2)} CAD`);
     const isFreeVal = t.price === 0 || valText.toLowerCase().includes('free');
     return `
       <span class="price-tier-tag ${meta.className}" title="${t.name}: ${valText}">
@@ -2709,7 +2765,7 @@ function renderAdmissionTiersHtml(ev) {
     <div class="card-admission-rates">
       <div class="admission-rates-header">
         <span class="rates-header-icon" aria-hidden="true">🏷️</span>
-        <span>Admission Rates (${ev.tiers.length} Tiers)</span>
+        <span>Admission Rates (${tiers.length} Tiers)</span>
       </div>
       <div class="price-tiers-tags">
         ${pillsHtml}
@@ -2892,11 +2948,119 @@ function renderSingleEventCardHtml(ev) {
     }
 
 
+    // Pricing Model badge & spend guidelines
+    let pricingModelHtml = '';
+    if (ev.pricing_model) {
+      const MODEL_LABELS = {
+        'free_access': { label: 'Free Public Access', icon: '🆓', class: 'model-free' },
+        'pay_per_item': { label: 'Pay Per Item', icon: '🛒', class: 'model-item' },
+        'flat_ticket': { label: 'Fixed Ticket', icon: '🎟️', class: 'model-flat' },
+        'donation': { label: 'By Donation / PWYC', icon: '💛', class: 'model-donation' },
+        'ticket_plus_pay_per_item': { label: 'Ticket + Pay Per Item', icon: '🎟️', class: 'model-combo' }
+      };
+      const pm = MODEL_LABELS[ev.pricing_model] || { label: ev.pricing_model, icon: '🏷️', class: 'model-free' };
+      const spendText = ev.typical_item_spend ? `Typical: ${ev.typical_item_spend}` : '';
+      const sampleText = ev.sample_cost_label ? `(${ev.sample_cost_label})` : '';
+      const guideline = [spendText, sampleText].filter(Boolean).join(' ');
+      pricingModelHtml = `
+        <div class="card-pricing-model-row">
+          <span class="pricing-model-pill ${pm.class}">
+            <span class="pm-icon">${pm.icon}</span>
+            <strong>${pm.label}</strong>
+          </span>
+          ${guideline ? `<span class="pricing-spend-guideline">${guideline}</span>` : ''}
+        </div>
+      `;
+    }
+
+    // Access Model badge
+    let accessModelHtml = '';
+    if (ev.access_model === 'open_public_space') {
+      accessModelHtml = `<span class="policy-pill access-public" title="Free Perimeter Access • Recommended Visiting Times">🌲 Open Public Space</span>`;
+    } else if (ev.access_model === 'fenced_facility') {
+      accessModelHtml = `<span class="policy-pill access-facility" title="Facility / Museum Access">🏛️ Facility Access</span>`;
+    }
+
+    // Structured Weekly Hours (Each day on its own line)
+    let weeklyHoursHtml = '';
+    const wh = ev.weekly_hours || ev.weeklyHours;
+    if (wh && typeof wh === 'object') {
+      const dayOrder = [
+        { k: 'mon', label: 'Mon' },
+        { k: 'tue', label: 'Tue' },
+        { k: 'wed', label: 'Wed' },
+        { k: 'thu', label: 'Thu' },
+        { k: 'fri', label: 'Fri' },
+        { k: 'sat', label: 'Sat' },
+        { k: 'sun', label: 'Sun' }
+      ];
+      const curDayNum = new Date().getDay();
+      const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
+      const rows = dayOrder.map(d => {
+        const hoursStr = wh[d.k] || 'Hours not listed';
+        const isToday = (d.k === curKey);
+        return `
+          <div class="weekly-hour-day-row ${isToday ? 'current-day' : ''}">
+            <span class="day-col">${d.label}${isToday ? ' (Today)' : ''}:</span>
+            <span class="hours-col">${hoursStr}</span>
+          </div>
+        `;
+      }).join('');
+
+      weeklyHoursHtml = `
+        <div class="card-weekly-hours-block">
+          <div class="weekly-hours-header">
+            <span class="wh-icon" aria-hidden="true">🕒</span>
+            <span>Weekly Schedule</span>
+          </div>
+          <div class="weekly-hours-table">
+            ${rows}
+          </div>
+        </div>
+      `;
+    }
+
+    // Waypoints for consolidated hub attractions (e.g. Stanley Park)
+    let waypointsHtml = '';
+    if (Array.isArray(ev.waypoints) && ev.waypoints.length > 0) {
+      waypointsHtml = `
+        <div class="card-waypoints-box">
+          <div class="waypoints-box-header">
+            <span class="wp-icon">📍</span>
+            <span>Featured Waypoints & Landmarks (${ev.waypoints.length})</span>
+          </div>
+          <div class="waypoints-box-list">
+            ${ev.waypoints.map(wp => `
+              <div class="waypoint-row">
+                <strong class="waypoint-name">• ${wp.name}</strong>
+                <span class="waypoint-desc">${wp.desc}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Local area spending benchmarks
+    let benchmarkHtml = '';
+    if (ev.coffee_benchmark || ev.meal_benchmark) {
+      const coffee = ev.coffee_benchmark ? `<span>☕ Coffee: <strong>${ev.coffee_benchmark}</strong></span>` : '';
+      const meal = ev.meal_benchmark ? `<span>🍽️ Meal: <strong>${ev.meal_benchmark}</strong></span>` : '';
+      const items = [coffee, meal].filter(Boolean).join('<span class="benchmark-sep">•</span>');
+      benchmarkHtml = `
+        <div class="card-benchmarks-row" title="Local area spending benchmarks">
+          <span class="benchmark-label">Area Cost:</span>
+          ${items}
+        </div>
+      `;
+    }
+
     // Pricing sub-details: Rich Admission Rates (Student, Adult, Senior, etc.) & pre-tax notices
     const admissionRatesHtml = renderAdmissionTiersHtml(ev);
     const hasPreTax = Boolean(preTaxNoteHtml);
-    const subdetailsHtml = (admissionRatesHtml || hasPreTax) ? `
+    const subdetailsHtml = (pricingModelHtml || admissionRatesHtml || hasPreTax) ? `
       <div class="card-price-subdetails">
+        ${pricingModelHtml}
         ${admissionRatesHtml}
         ${preTaxNoteHtml}
       </div>
@@ -2973,9 +3137,10 @@ function renderSingleEventCardHtml(ev) {
           </div>
         ` : ''}
 
-        <!-- Age & Admission Policy Badges (QC Verified) -->
-        ${(ev.agePolicy || ev.admissionPolicy) ? `
+        <!-- Age, Admission & Access Policy Badges (QC Verified) -->
+        ${(ev.agePolicy || ev.admissionPolicy || accessModelHtml) ? `
           <div class="card-policy-row">
+            ${accessModelHtml}
             ${ev.agePolicy ? `<span class="policy-pill age-policy" title="${ev.agePolicy}">${ev.agePolicy}</span>` : ''}
             ${ev.admissionPolicy ? `<span class="policy-pill admission-policy" title="${ev.admissionPolicy}">${ev.admissionPolicy}</span>` : ''}
           </div>
@@ -3009,11 +3174,17 @@ function renderSingleEventCardHtml(ev) {
           ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
         </div>
 
+        ${waypointsHtml}
+
+        ${weeklyHoursHtml}
+
         ${buzzwordsHtml}
 
         ${filmReviewsHtml}
 
         <p class="card-desc">${ev.description || ('Live music and performance at ' + ev.venue)}</p>
+
+        ${benchmarkHtml}
 
         ${contentAdvisoryHtml}
 

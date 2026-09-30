@@ -2126,8 +2126,8 @@ class PlatformAndPolicyExtractor:
                     }
                 }
 
-            # Check if page has explicit adult pricing - if so, do not treat as free
-            if re.search(r'\b(?:adults?|general\s+admission)\b[^\$]{0,40}\$(\d+(?:\.\d{2})?)', clean_text, re.IGNORECASE) or re.search(r'\$(\d+(?:\.\d{2})?)\s*(?:adults?|general\s+admission)', clean_text, re.IGNORECASE):
+            # Check if page has explicit adult pricing - if so, do not treat as free unless declared as a free program
+            if not is_declared_free_event and (re.search(r'\b(?:adults?|general\s+admission)\b[^\$]{0,40}\$(\d+(?:\.\d{2})?)', clean_text, re.IGNORECASE) or re.search(r'\$(\d+(?:\.\d{2})?)\s*(?:adults?|general\s+admission)', clean_text, re.IGNORECASE)):
                 return None
 
             for m_free in re.finditer(
@@ -2139,7 +2139,9 @@ class PlatformAndPolicyExtractor:
                 start_idx = max(0, m_free.start() - 60)
                 end_idx = min(len(clean_text), m_free.end() + 60)
                 surrounding = clean_text[start_idx:end_idx].lower()
-                if any(k in surrounding for k in ['student', 'children', 'child', 'under 12', 'under 5', 'youth under', 'member', 'valid id', 'with id', 'student card']):
+                if any(k in surrounding for k in ['student', 'children', 'child', 'under 12', 'under 5', 'youth under', 'valid id', 'with id', 'student card']):
+                    continue
+                if re.search(r'\b(?:members?\s+(?:only|discount|exclusive|pricing|rate)|for\s+members)\b', surrounding) and not any(cm in surrounding for cm in ['community member', 'members of the public', 'all community members', 'family member']):
                     continue
 
                 return {
@@ -2519,17 +2521,25 @@ def auto_deny_and_archive_event(item: dict, reason: str = None) -> dict:
         try:
             with open(events_path, "r", encoding="utf-8") as f:
                 ev_data = json.load(f)
-            ev_list = ev_data.get("events", [])
-            initial_ev_len = len(ev_list)
-            ev_list = [x for x in ev_list if x.get("id") != ev_id]
-            if len(ev_list) != initial_ev_len:
-                ev_data["events"] = ev_list
-                if "metadata" in ev_data:
-                    ev_data["metadata"]["totalEvents"] = len(ev_list)
-                    ev_data["metadata"]["updatedAt"] = now_iso
-                with open(events_path, "w", encoding="utf-8") as f:
-                    json.dump(ev_data, f, indent=2, ensure_ascii=False)
-                print(f"[AUTO-DENY PURGED] Evicted {ev_id} from events.json")
+            if isinstance(ev_data, list):
+                initial_ev_len = len(ev_data)
+                ev_data = [x for x in ev_data if x.get("id") != ev_id]
+                if len(ev_data) != initial_ev_len:
+                    with open(events_path, "w", encoding="utf-8") as f:
+                        json.dump(ev_data, f, indent=2, ensure_ascii=False)
+                    print(f"[AUTO-DENY PURGED] Evicted {ev_id} from events.json")
+            elif isinstance(ev_data, dict):
+                ev_list = ev_data.get("events", [])
+                initial_ev_len = len(ev_list)
+                ev_list = [x for x in ev_list if x.get("id") != ev_id]
+                if len(ev_list) != initial_ev_len:
+                    ev_data["events"] = ev_list
+                    if "metadata" in ev_data:
+                        ev_data["metadata"]["totalEvents"] = len(ev_list)
+                        ev_data["metadata"]["updatedAt"] = now_iso
+                    with open(events_path, "w", encoding="utf-8") as f:
+                        json.dump(ev_data, f, indent=2, ensure_ascii=False)
+                    print(f"[AUTO-DENY PURGED] Evicted {ev_id} from events.json")
         except Exception as e:
             print(f"[WARN] Failed to purge from events.json: {e}")
 
@@ -2934,7 +2944,8 @@ class EventPricingSearchEngine:
             try:
                 with open(events_json_path, "r", encoding="utf-8") as f:
                     m_db = json.load(f)
-                existing_ev = next((e for e in m_db.get("events", []) if e.get("id") == ev_id), None)
+                ev_items = m_db if isinstance(m_db, list) else m_db.get("events", [])
+                existing_ev = next((e for e in ev_items if e.get("id") == ev_id), None)
                 if existing_ev and existing_ev.get("checkoutVerification", {}).get("method") == "manual_curator_review":
                     # Check for live page drift before confirming verification
                     drift_res = cls.check_curator_drift(existing_ev, item)

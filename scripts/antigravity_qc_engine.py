@@ -435,8 +435,32 @@ def run_antigravity_qc_pass(today_str: str = None) -> dict:
         )
 
         # -------------------------------------------------------------
-        # Check 0: Duplicate Event Card Detection & Deduplication Pass
+        # Check 0: Duplicate Event Card Detection & Hub Consolidation
         # -------------------------------------------------------------
+        # Check 0A: Unscheduled street busking exclusion (Scout Rule 9)
+        if "robson square" in venue.lower() and ("busk" in title.lower() or "street" in title.lower() or "random" in title.lower()):
+            log_archived(title, "Unscheduled street busking excluded (Prohibited by Scout Rule 9)", progress=pct)
+            archive.append(ev)
+            stats["archived"] += 1
+            continue
+
+        # Check 0B: Overlapping Hub Attraction Consolidation (Scout Rule 8)
+        if "stanley park" in venue.lower() or "stanley park" in title.lower():
+            if eid in ["stanley-park-seawall-scenic-viewpoints", "stanley-park-seawall-brockton-point"]:
+                log_info(f"[QC CONSOLIDATE] Merging '{title}' into Stanley Park Waterfront & Heritage Loop hub card.", progress=pct)
+                stats["duplicates_removed"] += 1
+                continue
+        if "pendulum" in venue.lower() or "pendulum" in title.lower():
+            if "splash" in title.lower() and eid != "van50-pendulum-gallery":
+                log_info(f"[QC CONSOLIDATE] Merging Splash exhibition card into Pendulum Gallery master card.", progress=pct)
+                stats["duplicates_removed"] += 1
+                continue
+        if "vancouver art gallery" in venue.lower() or "vancouver art gallery" in title.lower():
+            if eid in ["van50-vancouver-art-gallery-first-friday", "van50-vancouver-art-gallery-donation-day"]:
+                log_info(f"[QC CONSOLIDATE] Merging VAG access program into Vancouver Art Gallery master card.", progress=pct)
+                stats["duplicates_removed"] += 1
+                continue
+
         norm_title = re.sub(r"[^a-z0-9]+", "", title.lower())
         norm_venue = re.sub(r"[^a-z0-9]+", "", venue.lower())
         s1_date = (ev.get("show_1") or {}).get("date") or "recurring"

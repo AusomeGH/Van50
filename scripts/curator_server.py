@@ -375,35 +375,57 @@ def apply_distilled_venue_rules(distilled: dict, instruction_id: str = None) -> 
     except Exception as e:
         print(f"[WARN] Failed writing curator_learned_rules.json: {e}")
 
-    # 2. Update data/venue_directory.json
+    # 2. Update data/venues.json
     if os.path.exists(VENUE_DIR_PATH):
         try:
             with open(VENUE_DIR_PATH, "r", encoding="utf-8") as vf:
                 v_dir_data = json.load(vf)
-            venues_map = v_dir_data.setdefault("venues", {})
-            if venue_name in venues_map:
-                v_obj = venues_map[venue_name]
-                v_obj["curatorInstructions"] = distilled.get("curatorGuidance", "")
-                v_obj["curatorNote"] = distilled.get("curatorGuidance", "")
-                v_obj["curatorLearnedRules"] = distilled
-                v_obj["policySummary"] = distilled.get("summary", "")
-                if distilled.get("doorPrice") is not None:
-                    v_obj["doorCover"] = distilled.get("doorPrice")
-                if distilled.get("priceRange"):
-                    v_obj["priceRange"] = distilled.get("priceRange")
-                if distilled.get("scheduleDays"):
-                    v_obj["operatingDays"] = distilled.get("scheduleDays")
-                if distilled.get("genres"):
-                    existing_tags = list(v_obj.get("subTags") or [])
-                    v_obj["subTags"] = sorted(list(set(existing_tags + distilled.get("genres", []))))
-                if distilled.get("calendarUrl"):
-                    v_obj["calendarUrl"] = distilled["calendarUrl"]
-                    v_obj["boxOfficeUrl"] = distilled["calendarUrl"]
-                v_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
-                with open(VENUE_DIR_PATH, "w", encoding="utf-8") as vf:
-                    json.dump(v_dir_data, vf, indent=2, ensure_ascii=False)
+            if isinstance(v_dir_data, list):
+                for v_obj in v_dir_data:
+                    v_name = v_obj.get("venue_name") or v_obj.get("name") or ""
+                    if v_name.lower() == venue_name.lower():
+                        v_obj["curatorInstructions"] = distilled.get("curatorGuidance", "")
+                        v_obj["curatorNote"] = distilled.get("curatorGuidance", "")
+                        v_obj["curatorLearnedRules"] = distilled
+                        v_obj["policySummary"] = distilled.get("summary", "")
+                        if distilled.get("doorPrice") is not None:
+                            v_obj["doorCover"] = distilled.get("doorPrice")
+                        if distilled.get("priceRange"):
+                            v_obj["priceRange"] = distilled.get("priceRange")
+                        if distilled.get("scheduleDays"):
+                            v_obj["operatingDays"] = distilled.get("scheduleDays")
+                        if distilled.get("genres"):
+                            existing_tags = list(v_obj.get("subTags") or [])
+                            v_obj["subTags"] = sorted(list(set(existing_tags + distilled.get("genres", []))))
+                        if distilled.get("calendarUrl"):
+                            v_obj["calendarUrl"] = distilled["calendarUrl"]
+                            v_obj["calendar_url"] = distilled["calendarUrl"]
+                            v_obj["boxOfficeUrl"] = distilled["calendarUrl"]
+            elif isinstance(v_dir_data, dict):
+                venues_map = v_dir_data.setdefault("venues", {})
+                if venue_name in venues_map:
+                    v_obj = venues_map[venue_name]
+                    v_obj["curatorInstructions"] = distilled.get("curatorGuidance", "")
+                    v_obj["curatorNote"] = distilled.get("curatorGuidance", "")
+                    v_obj["curatorLearnedRules"] = distilled
+                    v_obj["policySummary"] = distilled.get("summary", "")
+                    if distilled.get("doorPrice") is not None:
+                        v_obj["doorCover"] = distilled.get("doorPrice")
+                    if distilled.get("priceRange"):
+                        v_obj["priceRange"] = distilled.get("priceRange")
+                    if distilled.get("scheduleDays"):
+                        v_obj["operatingDays"] = distilled.get("scheduleDays")
+                    if distilled.get("genres"):
+                        existing_tags = list(v_obj.get("subTags") or [])
+                        v_obj["subTags"] = sorted(list(set(existing_tags + distilled.get("genres", []))))
+                    if distilled.get("calendarUrl"):
+                        v_obj["calendarUrl"] = distilled["calendarUrl"]
+                        v_obj["boxOfficeUrl"] = distilled["calendarUrl"]
+                    v_dir_data.setdefault("metadata", {})["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            with open(VENUE_DIR_PATH, "w", encoding="utf-8") as vf:
+                json.dump(v_dir_data, vf, indent=2, ensure_ascii=False)
         except Exception as e:
-            print(f"[WARN] Failed updating venue_directory.json with learned rules: {e}")
+            print(f"[WARN] Failed updating venue directory with learned rules: {e}")
 
     # 3. Update data/curator_instructions.json
     if instruction_id and os.path.exists(INSTRUCTIONS_PATH):
@@ -474,79 +496,171 @@ def sync_js_data_file():
                 with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as af:
                     act_list = json.load(af)
                 for item in (act_list if isinstance(act_list, list) else []):
-                    price = item.get("pricing_all_in_cad", {}).get("regular", 0.0) if isinstance(item.get("pricing_all_in_cad"), dict) else item.get("price", 0.0)
-                    show1 = item.get("show_1") or {}
-                    dates = [s.get("date") for s in [item.get("show_1"), item.get("show_2"), item.get("show_3")] if s and s.get("date")]
+                    # Start with a clean shallow copy of item to retain all enhanced dimensions
+                    ev = dict(item)
                     
+                    # Standardize IDs & Titles
+                    ev["id"] = item.get("event_id") or item.get("id")
+                    ev["title"] = item.get("event_name") or item.get("title", "Event")
+                    ev["venue"] = item.get("venue_name") or item.get("venue", "Vancouver Venue")
+                    ev["address"] = item.get("full_address") or item.get("address", "Vancouver, BC")
+                    ev["description"] = item.get("description", "")
+                    
+                    # Category normalization
                     cat_raw = str(item.get("category", "shows")).lower()
                     is_free_public = (
                         "public access" in cat_raw or
                         cat_raw in ["free public access", "free-public-access", "public access"] or
-                        item.get("lifecycle_type") == "perennial_drop_in"
+                        item.get("lifecycle_type") == "perennial_drop_in" or
+                        item.get("access_model") == "open_public_space"
                     )
-
+                    
+                    if is_free_public and not item.get("categoryLabel"):
+                        ev["category"] = "free-public-access"
+                        ev["categoryLabel"] = "Free Public Access"
+                        ev["categoryIcon"] = "🏛️"
+                    else:
+                        ev["category"] = item.get("category", "shows")
+                        ev["categoryLabel"] = item.get("categoryLabel") or item.get("category", "Shows & Arts")
+                        if not ev.get("categoryIcon"):
+                            ev["categoryIcon"] = "🌊" if item.get("category") == "outdoors" else ("🎵" if item.get("category") == "music" else "🎭")
+                    
+                    # Pricing & Tiers
+                    price_val = item.get("price", 0.0)
+                    if price_val == 0.0 and isinstance(item.get("pricing_all_in_cad"), dict):
+                        price_val = item.get("pricing_all_in_cad", {}).get("regular", 0.0)
+                    price_num = float(price_val or 0.0)
+                    ev["price"] = price_num
+                    ev["priceLabel"] = "Free ($0)" if price_num == 0 else f"${price_num:.2f} CAD"
+                    ev["pricingType"] = "free" if price_num == 0 else "paid"
+                    ev["isFree"] = (price_num == 0)
+                    
+                    # Synthesize admission tiers array if not present or single-item
+                    tiers = item.get("tiers")
+                    if not isinstance(tiers, list) or len(tiers) <= 1:
+                        synthesized_tiers = []
+                        # 1. Custom Tier 1 (e.g. Free Courtyard, Youth, etc.)
+                        t1_name = item.get("tier_custom_name_1")
+                        t1_price = item.get("tier_custom_price_1")
+                        if t1_name is not None and t1_price is not None:
+                            p_float = float(t1_price)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": t1_name, "price": p_float, "label": lbl})
+                        
+                        # 2. Adult Tier
+                        p_adult = item.get("price_adult")
+                        if p_adult is not None:
+                            p_float = float(p_adult)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": "Adult", "price": p_float, "label": lbl})
+                        elif price_num > 0 and not any(t.get("name") == "Adult" for t in synthesized_tiers):
+                            synthesized_tiers.append({"name": "General Admission", "price": price_num, "label": f"${price_num:.2f} CAD"})
+                        
+                        # 3. Student Tier
+                        p_student = item.get("price_student")
+                        if p_student is not None:
+                            p_float = float(p_student)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": "Student", "price": p_float, "label": lbl})
+                            
+                        # 4. Member Tier
+                        p_member = item.get("price_member")
+                        if p_member is not None:
+                            p_float = float(p_member)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": "Member", "price": p_float, "label": lbl})
+                            
+                        # 5. Custom Tier 2
+                        t2_name = item.get("tier_custom_name_2")
+                        t2_price = item.get("tier_custom_price_2")
+                        if t2_name is not None and t2_price is not None:
+                            p_float = float(t2_price)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": t2_name, "price": p_float, "label": lbl})
+                            
+                        # 6. Custom Tier 3
+                        t3_name = item.get("tier_custom_name_3")
+                        t3_price = item.get("tier_custom_price_3")
+                        if t3_name is not None and t3_price is not None:
+                            p_float = float(t3_price)
+                            lbl = "Free ($0)" if p_float == 0 else f"${p_float:.2f} CAD"
+                            synthesized_tiers.append({"name": t3_name, "price": p_float, "label": lbl})
+                        
+                        if len(synthesized_tiers) > 0:
+                            ev["tiers"] = synthesized_tiers
+                    
+                    # Dates & Schedule
+                    show1 = item.get("show_1") or {}
+                    dates = [s.get("date") for s in [item.get("show_1"), item.get("show_2"), item.get("show_3")] if s and s.get("date")]
+                    
+                    # Frequency & Date Schedule
                     if is_free_public:
-                        cat_id = "free-public-access"
-                        cat_label = "Free Public Access"
-                        cat_icon = "🏛️"
-                        price_num = 0.0
-                        price_lbl = "Free ($0)"
-                        p_type = "free"
-                        is_free_bool = True
-                        freq = "daily"
-                        freq_lbl = "Open Daily Drop-In"
+                        ev["frequency"] = item.get("frequency") or "daily"
+                        ev["frequencyLabel"] = item.get("frequencyLabel") or "Open Daily Drop-In"
                         op_hours = item.get("operating_hours") or item.get("open_hours") or ""
                         if op_hours:
-                            date_sched = f"Open Daily: {op_hours}"
+                            ev["dateSchedule"] = f"Open Daily: {op_hours}"
                         elif show1.get("start_time") and show1.get("end_time"):
-                            date_sched = f"Open: {show1.get('start_time')} – {show1.get('end_time')}"
+                            ev["dateSchedule"] = f"Open: {show1.get('start_time')} – {show1.get('end_time')}"
                         else:
-                            date_sched = "Open Daily to the Public"
-                        start_iso_val = None
+                            ev["dateSchedule"] = item.get("dateSchedule") or "Open Daily to the Public"
+                        ev["startIso"] = item.get("startIso") or None
+                        if not ev.get("daysOfWeek"):
+                            ev["daysOfWeek"] = ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+                        if not ev.get("timeSlots"):
+                            ev["timeSlots"] = ["early-morning", "afternoon", "early-evening"]
                     else:
-                        cat_id = item.get("category", "shows")
-                        cat_label = item.get("category", "Shows & Arts")
-                        cat_icon = "🌊" if item.get("category") == "outdoors" else ("🎵" if item.get("category") == "music" else "🎭")
-                        price_num = float(price or 0.0)
-                        price_lbl = "Free ($0)" if price_num == 0 else f"${price_num:.2f} CAD"
-                        p_type = "free" if price_num == 0 else "paid"
-                        is_free_bool = price_num == 0
-                        freq = "limited-run" if len(dates) > 1 else "one-off"
-                        freq_lbl = "Verified Multiple Showings" if len(dates) > 1 else "Single Showing"
-                        date_sched = f"{show1.get('date', 'Upcoming')} at {show1.get('start_time', '19:00')}" if show1.get("date") else "Upcoming"
-                        start_iso_val = f"{show1.get('date')}T{show1.get('start_time', '19:00')}:00-07:00" if show1.get("date") else None
-
-                    events.append({
-                        "id": item.get("event_id") or item.get("id"),
-                        "title": item.get("event_name") or item.get("title", "Event"),
-                        "venue": item.get("venue_name") or item.get("venue", "Vancouver Venue"),
-                        "address": item.get("full_address") or item.get("address", "Vancouver, BC"),
-                        "neighborhood": item.get("neighborhood", "Downtown, Gastown & Yaletown"),
-                        "price": price_num,
-                        "priceLabel": price_lbl,
-                        "pricingType": p_type,
-                        "isFree": is_free_bool,
-                        "frequency": freq,
-                        "frequencyLabel": freq_lbl,
-                        "daysOfWeek": ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"] if is_free_public else ["daily"],
-                        "timeSlots": ["early-morning", "afternoon", "early-evening"] if is_free_public else ["early-evening", "late-evening"],
-                        "category": cat_id,
-                        "categoryLabel": cat_label,
-                        "categoryIcon": cat_icon,
-                        "subTags": item.get("tags") or [],
-                        "dateSchedule": date_sched,
-                        "startIso": start_iso_val,
-                        "websiteUrl": item.get("ticket_url") or item.get("details_url") or item.get("discovery_url") or "#",
-                        "venueUrl": item.get("details_url") or "#",
-                        "ticketProvider": item.get("ticket_provider", "Direct" if not is_free_public else "Free Public Access"),
-                        "coordinates": [49.2827, -123.1207],
-                        "transitInfo": "Transit accessible via TransLink",
-                        "description": item.get("description", ""),
-                        "operatingHours": item.get("operating_hours") or None,
-                        "lifecycleType": item.get("lifecycle_type") or ("perennial_drop_in" if is_free_public else "time_bound_event"),
-                        "isSoldOut": False
-                    })
-            except Exception:
+                        ev["frequency"] = item.get("frequency") or ("limited-run" if len(dates) > 1 else "one-off")
+                        ev["frequencyLabel"] = item.get("frequencyLabel") or ("Verified Multiple Showings" if len(dates) > 1 else "Single Showing")
+                        if item.get("dateSchedule"):
+                            ev["dateSchedule"] = item["dateSchedule"]
+                        elif show1.get("date"):
+                            ev["dateSchedule"] = f"{show1.get('date')} at {show1.get('start_time', '19:00')}"
+                        else:
+                            ev["dateSchedule"] = "Upcoming"
+                        if item.get("startIso"):
+                            ev["startIso"] = item["startIso"]
+                        elif show1.get("date"):
+                            ev["startIso"] = f"{show1.get('date')}T{show1.get('start_time', '19:00')}:00-07:00"
+                        else:
+                            ev["startIso"] = None
+                            
+                        # Set accurate daysOfWeek for date-bound events
+                        if not ev.get("daysOfWeek") or ev.get("daysOfWeek") == ["daily"]:
+                            if dates:
+                                DAY_ABBRS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+                                dows = set()
+                                for d_str in dates:
+                                    try:
+                                        p = [int(x) for x in d_str.split('-')]
+                                        dt_val = datetime(p[0], p[1], p[2])
+                                        dows.add(DAY_ABBRS[dt_val.weekday()])
+                                    except Exception:
+                                        pass
+                                ev["daysOfWeek"] = list(dows) if dows else ["daily"]
+                            else:
+                                ev["daysOfWeek"] = ["daily"]
+                        if not ev.get("timeSlots"):
+                            ev["timeSlots"] = ["early-evening", "late-evening"]
+                            
+                    # URLs & Provider
+                    ev["websiteUrl"] = item.get("ticket_url") or item.get("details_url") or item.get("discovery_url") or "#"
+                    ev["venueUrl"] = item.get("details_url") or "#"
+                    ev["ticketProvider"] = item.get("ticket_provider", "Direct" if not is_free_public else "Free Public Access")
+                    
+                    # Coordinates
+                    if not ev.get("coordinates") or ev["coordinates"] == [49.2827, -123.1207]:
+                        ev["coordinates"] = item.get("coordinates") or [49.2827, -123.1207]
+                    
+                    ev["transitInfo"] = item.get("transitInfo") or "Transit accessible via TransLink"
+                    ev["operatingHours"] = item.get("operating_hours") or None
+                    ev["lifecycleType"] = item.get("lifecycle_type") or ("perennial_drop_in" if is_free_public else "time_bound_event")
+                    ev["isSoldOut"] = item.get("isSoldOut", False)
+                    ev["subTags"] = item.get("tags") or item.get("subTags") or []
+                    
+                    events.append(ev)
+            except Exception as e:
+                print(f"[ERROR] Parsing EVENTS_ACTIVE_PATH: {e}")
                 pass
 
         if not events and os.path.exists(EVENTS_PATH):
@@ -887,7 +1001,10 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 try:
                     with open(VENUE_DIR_PATH, "r", encoding="utf-8") as f:
                         vd = json.load(f)
-                        known_venues = list(vd.get("venues", {}).keys())
+                        if isinstance(vd, list):
+                            known_venues = [v.get("venue_name") or v.get("name") for v in vd if isinstance(v, dict) and (v.get("venue_name") or v.get("name"))]
+                        elif isinstance(vd, dict):
+                            known_venues = list(vd.get("venues", {}).keys())
                 except Exception:
                     pass
 
@@ -2282,25 +2399,30 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                         v_neigh = sanitize_text(str(payload.get("neighborhood") or "Downtown / West End").strip())
                         v_cat = sanitize_text(str(payload.get("approvedCategory") or payload.get("category") or "shows").strip())
                         v_url = sanitize_text(str((distilled_rules.get("calendarUrl") if distilled_rules else None) or payload.get("sourceUrl") or "").strip())
-                        v_dir_data = {"metadata": {}, "venues": {}}
+                        v_dir_data = []
                         if os.path.exists(VENUE_DIR_PATH):
                             try:
                                 with open(VENUE_DIR_PATH, "r", encoding="utf-8") as vf:
                                     v_dir_data = json.load(vf)
                             except Exception:
                                 pass
-                        v_map = v_dir_data.setdefault("venues", {})
                         new_v = {
                             "venueId": vid,
                             "name": venue_name,
+                            "venue_name": venue_name,
                             "aliases": [venue_name],
                             "address": v_addr,
+                            "full_address": v_addr,
                             "neighborhood": v_neigh,
                             "coordinates": payload.get("coordinates") or [49.2827, -123.1207],
                             "transitInfo": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
+                            "transit_info": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
                             "category": v_cat,
+                            "description": instruction_text or (distilled_rules.get("summary", "") if distilled_rules else f"Verified venue in {v_neigh}."),
                             "venueUrl": v_url,
+                            "website_url": v_url,
                             "calendarUrl": v_url,
+                            "calendar_url": v_url,
                             "boxOfficeUrl": v_url,
                             "ticketingProvider": "Universal Ticketing",
                             "adapter": "UniversalVenueCrawler",
@@ -2314,9 +2436,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                             "policySummary": distilled_rules.get("summary", "") if distilled_rules else "",
                             "managedEvents": []
                         }
-                        v_map[venue_name] = new_v
-                        v_dir_data.setdefault("metadata", {})["totalVenues"] = len(v_map)
-                        v_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        if isinstance(v_dir_data, list):
+                            idx = next((i for i, v in enumerate(v_dir_data) if (v.get("venue_name") or v.get("name") or "").lower() == venue_name.lower()), None)
+                            if idx is not None:
+                                v_dir_data[idx].update(new_v)
+                            else:
+                                v_dir_data.append(new_v)
+                        elif isinstance(v_dir_data, dict):
+                            v_map = v_dir_data.setdefault("venues", {})
+                            v_map[venue_name] = new_v
+                            v_dir_data.setdefault("metadata", {})["totalVenues"] = len(v_map)
+                            v_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        else:
+                            v_dir_data = [new_v]
                         with open(VENUE_DIR_PATH, "w", encoding="utf-8") as vf:
                             json.dump(v_dir_data, vf, indent=2, ensure_ascii=False)
 
@@ -2333,27 +2465,28 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                                     json.dump(disc_data, df, indent=2, ensure_ascii=False)
                             except Exception:
                                 pass
-                        if os.path.exists(VENUES_MASTER_PATH):
+                        if VENUES_MASTER_PATH != VENUE_DIR_PATH and os.path.exists(VENUES_MASTER_PATH):
                             try:
                                 with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as vmf:
                                     vm_list = json.load(vmf)
-                                existing = next((v for v in vm_list if (v.get("venue_name") or "").lower() == venue_name.lower()), None)
-                                if existing:
-                                    existing["website_url"] = v_url or existing.get("website_url", "")
-                                    existing["calendar_url"] = v_url or existing.get("calendar_url", "")
-                                    existing["full_address"] = v_addr or existing.get("full_address", "")
-                                    existing["neighborhood"] = v_neigh or existing.get("neighborhood", "")
-                                else:
-                                    vm_list.append({
-                                        "venue_name": venue_name,
-                                        "website_url": v_url,
-                                        "calendar_url": v_url,
-                                        "full_address": v_addr,
-                                        "neighborhood": v_neigh,
-                                        "description": instruction_text or f"Discovered venue: {venue_name}"
-                                    })
-                                with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
-                                    json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
+                                if isinstance(vm_list, list):
+                                    existing = next((v for v in vm_list if (v.get("venue_name") or "").lower() == venue_name.lower()), None)
+                                    if existing:
+                                        existing["website_url"] = v_url or existing.get("website_url", "")
+                                        existing["calendar_url"] = v_url or existing.get("calendar_url", "")
+                                        existing["full_address"] = v_addr or existing.get("full_address", "")
+                                        existing["neighborhood"] = v_neigh or existing.get("neighborhood", "")
+                                    else:
+                                        vm_list.append({
+                                            "venue_name": venue_name,
+                                            "website_url": v_url,
+                                            "calendar_url": v_url,
+                                            "full_address": v_addr,
+                                            "neighborhood": v_neigh,
+                                            "description": instruction_text or f"Discovered venue: {venue_name}"
+                                        })
+                                    with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
+                                        json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
                             except Exception as ex:
                                 print(f"[WARN] Failed to update venues_master.json: {ex}")
 
@@ -2872,7 +3005,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             create_venue_backup_snapshot()
             apply_distilled_venue_rules(distilled_rules, inst_id)
 
-            venue_dir_data = {"metadata": {}, "venues": {}}
+            venue_dir_data = []
             if os.path.exists(VENUE_DIR_PATH):
                 try:
                     with open(VENUE_DIR_PATH, "r", encoding="utf-8") as f:
@@ -2880,19 +3013,23 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception as e:
                     return self._send_json(500, {"error": f"Failed reading venue directory: {e}"})
 
-            venues_map = venue_dir_data.setdefault("venues", {})
-
             new_venue = {
                 "venueId": venue_id,
                 "name": name,
+                "venue_name": name,
                 "aliases": [name],
                 "address": address,
+                "full_address": address,
                 "neighborhood": neighborhood,
                 "coordinates": payload.get("coordinates") or [49.2827, -123.1207],
                 "transitInfo": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
+                "transit_info": sanitize_text(str(payload.get("transitInfo") or "Check TransLink for nearest transit route")),
                 "category": category,
+                "description": distilled_rules.get("summary", "") or f"Verified venue in {neighborhood}.",
                 "venueUrl": venue_url,
+                "website_url": venue_url,
                 "calendarUrl": calendar_url,
+                "calendar_url": calendar_url,
                 "boxOfficeUrl": calendar_url,
                 "ticketingProvider": ticketing_provider,
                 "adapter": adapter,
@@ -2907,9 +3044,22 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "managedEvents": []
             }
 
-            venues_map[name] = new_venue
-            venue_dir_data.setdefault("metadata", {})["totalVenues"] = len(venues_map)
-            venue_dir_data["metadata"]["updatedAt"] = datetime.now(timezone.utc).isoformat()
+            if isinstance(venue_dir_data, list):
+                idx = next((i for i, v in enumerate(venue_dir_data) if (v.get("venue_name") or v.get("name") or "").lower() == name.lower()), None)
+                if idx is not None:
+                    venue_dir_data[idx].update(new_venue)
+                else:
+                    venue_dir_data.append(new_venue)
+                total_venues_count = len(venue_dir_data)
+            elif isinstance(venue_dir_data, dict):
+                venues_map = venue_dir_data.setdefault("venues", {})
+                venues_map[name] = new_venue
+                venue_dir_data.setdefault("metadata", {})["totalVenues"] = len(venues_map)
+                venue_dir_data.setdefault("metadata", {})["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                total_venues_count = len(venues_map)
+            else:
+                venue_dir_data = [new_venue]
+                total_venues_count = 1
 
             try:
                 with open(VENUE_DIR_PATH, "w", encoding="utf-8") as f:
@@ -2917,25 +3067,26 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 return self._send_json(500, {"error": f"Failed saving venue directory: {e}"})
 
-            # Also update venues_master.json
-            try:
-                vm_list = []
-                if os.path.exists(VENUES_MASTER_PATH):
+            # Also update venues_master.json if separate from VENUE_DIR_PATH
+            if VENUES_MASTER_PATH != VENUE_DIR_PATH and os.path.exists(VENUES_MASTER_PATH):
+                try:
+                    vm_list = []
                     with open(VENUES_MASTER_PATH, "r", encoding="utf-8") as vmf:
                         vm_list = json.load(vmf)
-                vm_list = [v for v in vm_list if (v.get("venue_name") or "").lower() != name.lower()]
-                vm_list.append({
-                    "venue_name": name,
-                    "website_url": venue_url,
-                    "calendar_url": calendar_url,
-                    "full_address": address,
-                    "neighborhood": neighborhood,
-                    "description": distilled_rules.get("summary", "") or f"Verified venue in {neighborhood}."
-                })
-                with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
-                    json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
-            except Exception as e:
-                print(f"[WARN] Failed updating venues_master.json: {e}")
+                    if isinstance(vm_list, list):
+                        vm_list = [v for v in vm_list if (v.get("venue_name") or "").lower() != name.lower()]
+                        vm_list.append({
+                            "venue_name": name,
+                            "website_url": venue_url,
+                            "calendar_url": calendar_url,
+                            "full_address": address,
+                            "neighborhood": neighborhood,
+                            "description": distilled_rules.get("summary", "") or f"Verified venue in {neighborhood}."
+                        })
+                        with open(VENUES_MASTER_PATH, "w", encoding="utf-8") as vmf:
+                            json.dump(vm_list, vmf, indent=2, ensure_ascii=False)
+                except Exception as e:
+                    print(f"[WARN] Failed updating venues_master.json: {e}")
 
 
             # Mark in discovered_venues.json as approved if exists
@@ -2962,7 +3113,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "action": action,
                 "message": f"Venue '{name}' successfully added to permanent directory and registered with {adapter}.",
                 "venue": new_venue,
-                "totalVenues": len(venues_map),
+                "totalVenues": total_venues_count,
                 "instructionId": inst_id,
                 "screenshotPaths": screenshot_rel_paths,
                 "distilledRules": distilled_rules,

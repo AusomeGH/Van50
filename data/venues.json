@@ -1185,5 +1185,61 @@
     "full_address": "823 Seymour St / 181 Roundhouse Mews, Vancouver, BC",
     "neighborhood": "Downtown / Yaletown",
     "description": "Civic arts and cultural spaces hosting community chamber music, choral concerts, jazz residencies, and experimental acoustic sets ranging from free to $30 CAD."
+  },
+  {
+    "venueId": "test-qa-cellar-1790801024",
+    "name": "Test QA Cellar 1790801024",
+    "venue_name": "Test QA Cellar 1790801024",
+    "aliases": [
+      "Test QA Cellar 1790801024"
+    ],
+    "address": "123 Test St, Vancouver, BC",
+    "full_address": "123 Test St, Vancouver, BC",
+    "neighborhood": "Gastown / Chinatown",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Check TransLink for nearest transit route",
+    "transit_info": "Check TransLink for nearest transit route",
+    "category": "music",
+    "description": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+    "venueUrl": "https://testcellar.example.com/events",
+    "website_url": "https://testcellar.example.com/events",
+    "calendarUrl": "https://testcellar.example.com/events",
+    "calendar_url": "https://testcellar.example.com/events",
+    "boxOfficeUrl": "https://testcellar.example.com/events",
+    "ticketingProvider": "Universal Ticketing",
+    "adapter": "UniversalVenueCrawler",
+    "doorCover": 15.0,
+    "priceRange": null,
+    "operatingDays": [],
+    "subTags": [
+      "jazz"
+    ],
+    "curatorInstructions": "Scrape live jazz sets only. Cover is $15 at door.",
+    "curatorNote": "Scrape live jazz sets only. Cover is $15 at door.",
+    "curatorLearnedRules": {
+      "venueName": "Test QA Cellar 1790801024",
+      "category": "music",
+      "neighborhood": "Gastown / Chinatown",
+      "calendarUrl": "https://testcellar.example.com/events",
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "isFree": false,
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "blacklistPatterns": [],
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "distilledAt": "2026-09-30T20:43:44.390271+00:00"
+    },
+    "policySummary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+    "managedEvents": []
   }
 ]
