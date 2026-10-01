@@ -80,7 +80,7 @@ const state = {
 
 // Global reference for roulette & map
 window.currentFilteredEvents = [];
-let ALL_EVENTS = typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS : [];
+let ALL_EVENTS = typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS.map(normalizeActiveEvent) : [];
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function normalizeActiveEvent(item) {
   if (!item) return item;
-  if (item.id && item.title && item.price !== undefined && item.venue !== undefined) return item;
 
   const price = (item.pricing_all_in_cad && item.pricing_all_in_cad.regular !== undefined && item.pricing_all_in_cad.regular !== null)
     ? Number(item.pricing_all_in_cad.regular)
@@ -117,21 +116,30 @@ function normalizeActiveEvent(item) {
   const show2 = item.show_2 || {};
   const show3 = item.show_3 || {};
 
-  const confirmedDates = [show1.date, show2.date, show3.date].filter(Boolean);
+  const showings = Array.isArray(item.showings) ? item.showings : [];
+  const confirmedDates = showings.length > 0
+    ? showings.map(s => s.date).filter(Boolean)
+    : [show1.date, show2.date, show3.date].filter(Boolean);
 
   const catRaw = (item.category || "shows").toLowerCase();
   const isFreePublic = catRaw.includes("public access") || catRaw.includes("free public") || catRaw === "free-public-access" || item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in";
 
   let dateSchedule = "Upcoming";
   const opHours = item.operating_hours || item.open_hours || item.hours || item.operatingHours || "";
+  const wh = item.weekly_hours || item.weeklyHours || null;
+
   if (isFreePublic) {
-    if (opHours) {
-      dateSchedule = `Open Daily: ${opHours}`;
+    if (wh) {
+      dateSchedule = "Visiting Hours (See 7-Day Schedule Below)";
+    } else if (opHours) {
+      dateSchedule = `Visiting Hours: ${opHours}`;
     } else if (show1.start_time && show1.end_time) {
       dateSchedule = `Open: ${show1.start_time} – ${show1.end_time}`;
     } else {
       dateSchedule = "Open Daily to the Public";
     }
+  } else if (showings.length > 1) {
+    dateSchedule = `${showings.length} Screenings across Vancouver`;
   } else if (show1.date) {
     dateSchedule = show1.date;
     if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
@@ -143,14 +151,50 @@ function normalizeActiveEvent(item) {
   const cat = isFreePublic
     ? "free-public-access"
     : (catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows")))));
-  const hasFestivalAffiliation = item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "";
-  const isFest = Boolean(hasFestivalAffiliation || catRaw.includes("festival") || (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival"))));
+
+  const evTitle = item.event_name || item.title || "Event";
+  const hasFestivalAffiliation = Boolean(item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "");
+  const isFest = Boolean(
+    hasFestivalAffiliation ||
+    catRaw.includes("festival") ||
+    evTitle.toLowerCase().includes("viff") ||
+    evTitle.toLowerCase().includes("festival") ||
+    (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival") || String(t).toLowerCase().includes("viff")))
+  );
+
+  const categories = [cat];
+  if (isFest && !categories.includes('festivals')) {
+    categories.push('festivals');
+  }
+
+  // Calculate actual day-of-week codes (mon, tue, wed, etc.) - NEVER default to ['daily'] for timed events
+  const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  let daysOfWeek = [];
+  if (isFreePublic) {
+    daysOfWeek = ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  } else {
+    const daySet = new Set();
+    confirmedDates.forEach(dStr => {
+      const d = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+      if (!isNaN(d.getTime())) daySet.add(DAY_CODES[d.getDay()]);
+    });
+    if (item.days_open && typeof item.days_open === 'string') {
+      item.days_open.split(/[,-]/).forEach(p => {
+        const clean = p.trim().toLowerCase().slice(0, 3);
+        if (DAY_CODES.includes(clean)) daySet.add(clean);
+      });
+    }
+    daysOfWeek = Array.from(daySet);
+    if (daysOfWeek.length === 0) {
+      daysOfWeek = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    }
+  }
 
   const finalPrice = isFreePublic ? 0.0 : price;
 
   return {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
-    title: item.event_name || item.title || "Event",
+    title: evTitle,
     artist: item.artist || null,
     venue: item.venue_name || item.venue || "Vancouver Venue",
     address: item.full_address || item.address || "Vancouver, BC",
@@ -161,19 +205,21 @@ function normalizeActiveEvent(item) {
     isFree: finalPrice === 0,
     frequency: isFreePublic ? "daily" : (confirmedDates.length > 1 ? "limited-run" : "one-off"),
     frequencyLabel: isFreePublic ? "Open Daily Drop-In" : (confirmedDates.length > 1 ? "Verified Multiple Showings" : "Single Showing"),
-    daysOfWeek: isFreePublic ? ["daily", "mon", "tue", "wed", "thu", "fri", "sat", "sun"] : ["daily"],
+    daysOfWeek: daysOfWeek,
     timeSlots: isFreePublic ? ["early-morning", "afternoon", "early-evening"] : ["early-evening", "late-evening"],
     category: cat,
+    categories: categories,
     categoryLabel: isFreePublic ? "Free Public Access" : (item.category || "Shows & Arts"),
-    categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : "🎭")),
+    categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : (cat === "cinema" ? "🎬" : "🎭"))),
     subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
     dateSchedule: dateSchedule,
-    startIso: (!isFreePublic && show1.date) ? `${show1.date}T${show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
+    startIso: (!isFreePublic && (showings[0]?.date || show1.date)) ? `${showings[0]?.date || show1.date}T${showings[0]?.start_time || show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
     endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
     confirmedDates: confirmedDates,
+    showings: showings,
     isSoldOut: false,
     isFestival: isFest,
-    festivalAffiliation: hasFestivalAffiliation ? item.festival_affiliation : null,
+    festivalAffiliation: (hasFestivalAffiliation ? item.festival_affiliation : (isFest ? (item.festival_affiliation || "VIFF") : null)),
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     venueUrl: item.details_url || item.websiteUrl || "#",
     ticketProvider: item.ticket_provider || item.ticketProvider || (isFreePublic ? "Free Public Access" : "Direct"),
@@ -182,6 +228,8 @@ function normalizeActiveEvent(item) {
     transitInfo: "Transit accessible via TransLink SkyTrain / bus service",
     description: item.description || "",
     operatingHours: opHours || null,
+    weekly_hours: wh,
+    weeklyHours: wh,
     lifecycleType: item.lifecycle_type || item.lifecycleType || (isFreePublic ? "perennial_drop_in" : "time_bound_event"),
     checkoutVerification: {
       status: "verified_live",
@@ -194,7 +242,21 @@ function normalizeActiveEvent(item) {
       show_3: item.show_3
     },
     approvalStatus: item.approval_status || "Auto-Approved",
-    curatorNotes: item.curator_notes || ""
+    curatorNotes: item.curator_notes || "",
+    featured_exhibition: item.featured_exhibition || null,
+    pricing_model: item.pricing_model || null,
+    access_model: item.access_model || null,
+    coffee_benchmark: item.coffee_benchmark || null,
+    meal_benchmark: item.meal_benchmark || null,
+    price_adult: item.price_adult || null,
+    price_student: item.price_student || null,
+    price_member: item.price_member || null,
+    tier_custom_name_1: item.tier_custom_name_1 || null,
+    tier_custom_price_1: item.tier_custom_price_1 || null,
+    tier_custom_name_2: item.tier_custom_name_2 || null,
+    tier_custom_price_2: item.tier_custom_price_2 || null,
+    tier_custom_name_3: item.tier_custom_name_3 || null,
+    tier_custom_price_3: item.tier_custom_price_3 || null
   };
 }
 
@@ -327,6 +389,18 @@ function setupEventListeners() {
       searchInput.value = _qParam;
       state.searchQuery = _qParam.trim();
       updateClearBtnVisibility();
+    }
+
+    const _catParam = _urlParams.get('category') || _urlParams.get('cat');
+    if (_catParam) {
+      state.category = _catParam.trim();
+    }
+
+    const _hideDailyParam = _urlParams.get('hideDaily') || _urlParams.get('showsOnly');
+    if (_hideDailyParam === '1' || _hideDailyParam === 'true') {
+      state.hideDaily = true;
+      const hideDailyToggle = document.getElementById('hide-daily-toggle');
+      if (hideDailyToggle) hideDailyToggle.checked = true;
     }
 
     searchInput.addEventListener('input', (e) => {
@@ -694,9 +768,12 @@ function renderFestivalSpotlight() {
   const todayStr = `${year}-${month}-${day}`;
 
   const activeFestivalEvents = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e && !isEventInPast(e, now) && (
-    (e.id && e.id.startsWith('fest-')) ||
+    (e.id && (e.id.startsWith('fest-') || e.id.startsWith('viff-') || e.id.includes('viff'))) ||
     e.isFestival ||
-    (e.subTags && e.subTags.includes('festival')) ||
+    Boolean(e.festivalAffiliation) ||
+    Boolean(e.festival_affiliation) ||
+    (e.subTags && e.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('viff'))) ||
+    (e.title && (e.title.toLowerCase().includes('festival') || e.title.toLowerCase().includes('viff') || e.title.toLowerCase().includes('fringe'))) ||
     (Array.isArray(e.categories) && e.categories.includes('festivals'))
   ));
 
@@ -1316,7 +1393,16 @@ function applyFiltersAndRender() {
           (ev.title && ev.title.toLowerCase().includes('market'))
         )) ||
         (state.category === 'shows' && (evCats.includes('stage') || evCats.includes('comedy') || evCats.includes('shows'))) ||
-        (state.category === 'festivals' && (evCats.includes('festivals') || evCats.includes('festival') || ev.isFestival || (ev.id && ev.id.startsWith('fest-')) || (ev.title && ev.title.toLowerCase().includes('fringe')))) ||
+        (state.category === 'festivals' && (
+          evCats.includes('festivals') ||
+          evCats.includes('festival') ||
+          Boolean(ev.isFestival) ||
+          Boolean(ev.festivalAffiliation) ||
+          Boolean(ev.festival_affiliation) ||
+          (ev.id && (ev.id.startsWith('fest-') || ev.id.startsWith('viff-') || ev.id.includes('viff'))) ||
+          (ev.title && (ev.title.toLowerCase().includes('festival') || ev.title.toLowerCase().includes('fringe') || ev.title.toLowerCase().includes('viff'))) ||
+          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('viff')))
+        )) ||
         (state.category === 'social' && (evCats.includes('crafts') || evCats.includes('arts') || evCats.includes('trivia') || evCats.includes('activities') || evCats.includes('social')));
       if (!match) return false;
     }
@@ -1373,11 +1459,14 @@ function applyFiltersAndRender() {
 
     // 7. Shows & Special Events Only Toggle (Hides everyday drop-in spots and open-hours venues)
     if (state.hideDaily) {
-      if (ev.isDaily || ev.frequency === 'daily' || (ev.daysOfWeek && ev.daysOfWeek.includes('daily'))) {
-        // Only preserve daily events that are actual scheduled live performances (e.g. Guilt & Co nightly live sets)
-        if (ev.id !== 'guilt-and-co-live-jazz') {
-          return false;
-        }
+      if (
+        ev.lifecycleType === 'perennial_drop_in' ||
+        ev.lifecycle_type === 'perennial_drop_in' ||
+        ev.category === 'free-public-access' ||
+        (ev.categoryLabel && ev.categoryLabel.toLowerCase().includes('public access')) ||
+        (ev.frequency === 'daily' && !ev.showings?.length && !ev.startIso && ev.id !== 'guilt-and-co-live-jazz')
+      ) {
+        return false;
       }
     }
 
@@ -2984,18 +3073,18 @@ function renderSingleEventCardHtml(ev) {
       accessModelHtml = `<span class="policy-pill access-facility" title="Facility / Museum Access">🏛️ Facility Access</span>`;
     }
 
-    // Structured Weekly Hours (Each day on its own line)
+    // Structured Weekly Hours (Each day on its own line, starting with Monday)
     let weeklyHoursHtml = '';
     const wh = ev.weekly_hours || ev.weeklyHours;
     if (wh && typeof wh === 'object') {
       const dayOrder = [
-        { k: 'mon', label: 'Mon' },
-        { k: 'tue', label: 'Tue' },
-        { k: 'wed', label: 'Wed' },
-        { k: 'thu', label: 'Thu' },
-        { k: 'fri', label: 'Fri' },
-        { k: 'sat', label: 'Sat' },
-        { k: 'sun', label: 'Sun' }
+        { k: 'mon', label: 'Monday' },
+        { k: 'tue', label: 'Tuesday' },
+        { k: 'wed', label: 'Wednesday' },
+        { k: 'thu', label: 'Thursday' },
+        { k: 'fri', label: 'Friday' },
+        { k: 'sat', label: 'Saturday' },
+        { k: 'sun', label: 'Sunday' }
       ];
       const curDayNum = new Date().getDay();
       const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
@@ -3014,9 +3103,55 @@ function renderSingleEventCardHtml(ev) {
         <div class="card-weekly-hours-block">
           <div class="weekly-hours-header">
             <span class="wh-icon" aria-hidden="true">🕒</span>
-            <span>Weekly Schedule</span>
+            <span>Weekly Operating Hours</span>
           </div>
           <div class="weekly-hours-table">
+            ${rows}
+          </div>
+        </div>
+      `;
+    }
+
+    // Multi-Location Screenings Block (Specific venue, time, address, and direct booking per screening)
+    let showingsHtml = '';
+    if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+      const rows = ev.showings.map(s => {
+        const dStr = s.date || '';
+        const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+        const dateLabel = !isNaN(dObj.getTime())
+          ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+          : dStr;
+        const timeLabel = s.start_time || '';
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((s.venue_name || '') + ' ' + (s.full_address || 'Vancouver BC'))}`;
+        const bookUrl = s.ticket_url || ev.websiteUrl;
+        return `
+          <div class="showing-row">
+            <div class="showing-time-col">
+              <span class="showing-date">${dateLabel}</span>
+              <span class="showing-time">${timeLabel}</span>
+            </div>
+            <div class="showing-venue-col">
+              <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="showing-venue-link" title="Open ${s.venue_name} in Google Maps">
+                <strong>${s.venue_name}</strong>
+              </a>
+              <span class="showing-address">${s.full_address || s.neighborhood || ''}</span>
+            </div>
+            <div class="showing-action-col">
+              <a href="${bookUrl}" target="_blank" rel="noopener noreferrer" class="btn-showing-book" title="Direct ticket link for this screening">
+                Book ↗
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      showingsHtml = `
+        <div class="card-showings-block">
+          <div class="showings-block-header">
+            <span class="showings-icon">🎬</span>
+            <span>Festival Screenings &amp; Locations (${ev.showings.length})</span>
+          </div>
+          <div class="showings-table">
             ${rows}
           </div>
         </div>
@@ -3176,6 +3311,8 @@ function renderSingleEventCardHtml(ev) {
           <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
           ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
         </div>
+
+        ${showingsHtml}
 
         ${waypointsHtml}
 

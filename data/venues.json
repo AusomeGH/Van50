@@ -1241,5 +1241,125 @@
     },
     "policySummary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
     "managedEvents": []
+  },
+  {
+    "venue_name": "The Pipe Shop & Shipbuilders' Square",
+    "website_url": "https://theshipyardsdistrict.ca",
+    "calendar_url": "https://theshipyardsdistrict.ca/events",
+    "full_address": "115–125 Victory Ship Way, North Vancouver, BC",
+    "neighborhood": "North Shore",
+    "description": "Historic restored industrial building and public plaza hosting festivals and markets on the waterfront."
+  },
+  {
+    "venue_name": "The American",
+    "website_url": "https://theamerican.ca",
+    "calendar_url": "https://theamerican.ca/events-calendar",
+    "full_address": "926 Main St, Vancouver, BC",
+    "neighborhood": "Mount Pleasant",
+    "description": "Neighborhood sports bar with arcade games, craft beers, and weekly pub trivia."
+  },
+  {
+    "venue_name": "BREWHALL",
+    "website_url": "https://brewhall.com",
+    "calendar_url": "https://brewhall.com/events/",
+    "full_address": "97 E 2nd Ave, Vancouver, BC",
+    "neighborhood": "Mount Pleasant",
+    "description": "Large craft brewery hall and community hub in Olympic Village hosting weekly trivia nights."
+  },
+  {
+    "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
+    "website_url": "https://vancouverchinesegarden.com",
+    "calendar_url": "https://vancouverchinesegarden.com/visit/",
+    "full_address": "578 Carrall Street, Vancouver, BC",
+    "neighborhood": "Chinatown",
+    "description": "Historic Chinese garden and cultural museum hosting traditional tea ceremonies, classical acoustic performances, and cultural workshops."
+  },
+  {
+    "venue_name": "SFU Goldcorp Centre for the Arts",
+    "website_url": "https://www.sfu.ca/sfu-community/events.html",
+    "calendar_url": "https://www.sfu.ca/sfu-community/events.html",
+    "full_address": "149 W Hastings Street, Vancouver, BC",
+    "neighborhood": "Gastown",
+    "description": "University cultural facility housing the Djavad Mowafaghian World Art Centre and Cinema, hosting independent theatre, community film screenings, and talks."
+  },
+  {
+    "venue_name": "Gorg-O-Mish",
+    "website_url": "https://admitone.com/organizers/gorg-o-mish-afterhours",
+    "calendar_url": "https://ra.co/events",
+    "full_address": "695 Smithe Street, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Long-running Vancouver underground after-hours electronic dance club hosting resident selectors and festival afterparties."
+  },
+  {
+    "venue_name": "Vancouver Maritime Museum",
+    "website_url": "https://vanmaritime.com",
+    "calendar_url": "https://vanmaritime.com",
+    "full_address": "1905 Ogden Avenue, Vancouver, BC",
+    "neighborhood": "Kitsilano",
+    "description": "Maritime heritage museum located at Vanier Park exploring Pacific coast and Arctic maritime history, featuring the historic St. Roch."
+  },
+  {
+    "venue_name": "2nd Floor Gastown at Water St. Café",
+    "website_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "calendar_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "full_address": "300 Water St, Vancouver, BC",
+    "neighborhood": "Gastown",
+    "description": "Intimate second-floor listening lounge offering nightly jazz and blues showcases with modest live music cover surcharges."
+  },
+  {
+    "venue_name": "The Sylvia Hotel Lounge",
+    "website_url": "https://sylviahotel.com/",
+    "calendar_url": "https://sylviahotel.com/live-music/",
+    "full_address": "1154 Gilford St, Vancouver, BC",
+    "neighborhood": "West End",
+    "description": "Historic beachfront hotel lounge hosting weekly acoustic, jazz, and blues sessions with no cover charge."
+  },
+  {
+    "venue_name": "Tyrant Studios",
+    "website_url": "https://tyrantstudios.com/",
+    "calendar_url": "https://tyrantstudios.com/events",
+    "full_address": "1019 Seymour St, Vancouver, BC",
+    "neighborhood": "Downtown",
+    "description": "Intimate lounge and performance venue above the Penthouse hosting weekly jazz residencies and stand-up comedy."
+  },
+  {
+    "venue_name": "Centennial Theatre",
+    "website_url": "https://www.nvrc.ca/centennial-theatre",
+    "calendar_url": "https://www.nvrc.ca/centennial-theatre/whats-on",
+    "full_address": "2300 Lonsdale Ave, North Vancouver, BC",
+    "neighborhood": "North Shore",
+    "description": "North Shore civic performing arts theatre hosting tribute concerts, community musicals, and cultural dance."
+  },
+  {
+    "venue_name": "GRETA Bar YVR",
+    "website_url": "https://gretabar.com/locations/vancouver",
+    "calendar_url": "https://gretabar.com/locations/vancouver",
+    "full_address": "50 W Cordova St, Vancouver, BC",
+    "neighborhood": "Gastown",
+    "description": "Sprawling two-level arcade bar, eatery, and community nightlife hub in Gastown."
+  },
+  {
+    "venue_name": "The Main",
+    "website_url": "https://themainonmain.com",
+    "calendar_url": "https://themainonmain.com/events",
+    "full_address": "4210 Main Street, Vancouver, BC V5V 3P9",
+    "neighborhood": "Mount Pleasant",
+    "description": "Main Street restaurant and intimate backroom venue hosting frequent live comedy showcases and performances."
+  },
+  {
+    "venue_name": "Commodore Ballroom",
+    "website_url": "https://www.commodoreballroom.com",
+    "calendar_url": "https://www.commodoreballroom.com/events",
+    "full_address": "868 Granville Street, Vancouver, BC V6Z 1K3",
+    "neighborhood": "Downtown",
+    "description": "Legendary music hall operating since 1930 with a world-renowned sprung dance floor."
+  },
+  {
+    "venue_name": "The Rec Room Granville",
+    "website_url": "https://www.therecroom.com",
+    "calendar_url": "https://www.therecroom.com/vancouver-granville/events",
+    "full_address": "855 Granville St, Vancouver, BC V6Z 1K7",
+    "neighborhood": "Downtown",
+    "description": "Multi-floor entertainment complex combining video games, arcade classics, dining, and live events."
   }
 ]

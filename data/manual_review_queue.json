@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-09-30T13:48:26-07:00",
-    "pendingCount": 21,
+    "updatedAt": "2026-10-01T11:44:36-07:00",
+    "pendingCount": 27,
     "description": "Events quarantined by Antigravity AI due to failing one or more of the 13 Discrete Live Dimensions or Live-Checkout Cart verification."
   },
   "quarantinedEvents": [
@@ -824,8 +824,104 @@
       "unconfirmedDetails": [
         "No online checkout cart: In-person walk-up ticket kiosk only."
       ]
+    },
+    {
+      "id": "van50-vancouver-art-gallery-free-access",
+      "title": "Vancouver Art Gallery (General Admission & Access Programs)",
+      "artist": "Vancouver Art Gallery (General Admission & Access Programs)",
+      "venue": "Vancouver Art Gallery",
+      "address": "750 Hornby St, Vancouver, BC",
+      "neighborhood": "Downtown",
+      "price": 0.0,
+      "priceLabel": "Free ($0)",
+      "category": "free-public-access",
+      "categoryLabel": "Free Public Access",
+      "startIso": null,
+      "websiteUrl": "https://www.vanartgallery.bc.ca/visit",
+      "quarantineReason": "AI Public Access Audit: The Vancouver Art Gallery is open, but general walk-in public access is restricted: general adult admission requires a paid ticket, with free access limited to youth 18 and under, Indigenous Peoples, caregivers, and BMO First Friday Nights (first Friday of each month, 4:00 PM – 8:00 PM). It lacks unrestricted 100% free walk-in access, flagging for curator review.",
+      "flaggedAt": "2026-10-01"
+    },
+    {
+      "id": "vso-saturday-orpheum",
+      "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+      "artist": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+      "venue": "The Orpheum Theatre",
+      "address": "601 Smithe St, Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 25.2,
+      "priceLabel": "$25.20 CAD",
+      "category": "music",
+      "categoryLabel": "music",
+      "startIso": "2026-10-03T14:00:00",
+      "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+      "quarantineReason": "AI Audit: Cannot figure out details: The event ticket pricing exceeds the $50 CAD threshold (standard tickets start around $60–$80+ CAD), and the event title and start time are mislabeled.",
+      "flaggedAt": "2026-10-01"
+    },
+    {
+      "id": "van50-public-disco-festival-10th-anniversary",
+      "title": "Public Disco Festival (10th Anniversary Landmark Festival)",
+      "artist": "Public Disco Festival (10th Anniversary Landmark Festival)",
+      "venue": "The Shipyards Waterfront & The Pipe Shop",
+      "address": "125 Victory Ship Way, North Vancouver, BC",
+      "neighborhood": "North Shore",
+      "price": 49.35,
+      "priceLabel": "$49.35",
+      "category": "live music",
+      "categoryLabel": "Live Music",
+      "startIso": "2026-10-03T14:00:00",
+      "websiteUrl": "https://admitone.com",
+      "quarantineReason": "19+ licensed event. Presale tickets start at $45.00–$47.00 CAD base. Quarantined because base ticket is >= $43.00 CAD and ticketing fees could push all-in cost near or over the $50 cap.",
+      "flaggedAt": "2026-10-01"
+    },
+    {
+      "id": "van50-sun-yat-sen-echoes-chinese-heritage",
+      "title": "Echoes of Chinese Heritage",
+      "artist": "Echoes of Chinese Heritage",
+      "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
+      "address": "578 Carrall Street, Vancouver, BC",
+      "neighborhood": "Chinatown",
+      "price": 46.0,
+      "priceLabel": "$46.00",
+      "category": "art & culture",
+      "categoryLabel": "Art & Culture",
+      "startIso": "2026-10-04T13:30:00",
+      "websiteUrl": "https://www.eventbrite.ca/d/canada--vancouver/dr.-sun-yat-sen-classical-chinese-garden/",
+      "quarantineReason": "Adult base ticket is $46 CAD; ticketing fees unverified, triggering quarantine under the $43+ threshold constraint.",
+      "flaggedAt": "2026-10-01"
+    },
+    {
+      "id": "van50-the-way-out-theatre-20261022",
+      "title": "The Way Out",
+      "artist": "The Way Out",
+      "venue": "North Vancouver TBA Theatre",
+      "address": "North Vancouver, BC",
+      "neighborhood": "North Shore",
+      "price": 34.5,
+      "priceLabel": "$34.50",
+      "category": "theatre",
+      "categoryLabel": "Theatre",
+      "startIso": "2026-10-22T19:30:00",
+      "websiteUrl": "https://www.showpass.com/discover/?location=Vancouver",
+      "quarantineReason": "Quarantined due to top tier reaching $50.00 CAD base (which exceeds $50.00 all-in with platform fees and GST). Min tier is $30 CAD base ($34.50 all-in).",
+      "flaggedAt": "2026-10-01"
+    },
+    {
+      "id": "van50-lolo-the-pearl",
+      "title": "LØLØ: God Forbid a Girl Goes on Tour",
+      "artist": "LØLØ: God Forbid a Girl Goes on Tour",
+      "venue": "The Pearl",
+      "address": "881 Granville Street, Vancouver, BC V6Z 1K7",
+      "neighborhood": "Downtown",
+      "price": 45.0,
+      "priceLabel": "$45.00",
+      "category": "live music",
+      "categoryLabel": "Live Music",
+      "startIso": "2026-10-03T18:00:00",
+      "websiteUrl": "https://www.ticketmaster.ca/lolo-tickets/artist/2642571",
+      "quarantineReason": "Pricing ranges between $35.00 and $45.00 CAD all-in; quarantined due to higher price band nearing the $50 cap.",
+      "flaggedAt": "2026-10-01"
     }
   ],
-  "pendingCount": 21,
+  "pendingCount": 23,
   "lastTriagedAt": "2026-09-29T17:35:00.000000"
 }

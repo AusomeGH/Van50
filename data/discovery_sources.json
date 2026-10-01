@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.3.0",
-    "updatedAt": "2026-09-28",
-    "totalSources": 40,
+    "updatedAt": "2026-10-01",
+    "totalSources": 49,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -734,6 +734,168 @@
       "type": "community_guide",
       "typeLabel": "Discovered Community & Culture Source",
       "focus": "Research-backed regional portal indexing free public spaces, community dialogs, and public forum activations across Greater Vancouver.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-farmers-markets-eatlocal",
+      "name": "Vancouver Farmers Markets (EatLocal)",
+      "domain": "eatlocal.org",
+      "eventsUrl": "https://eatlocal.org/markets/",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Weekly neighborhood non-profit farmers markets across Metro Vancouver.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "shop-west-4th-kitsilano-4th-avenue-bia",
+      "name": "Shop West 4th (Kitsilano 4th Avenue BIA)",
+      "domain": "shopwest4th.com",
+      "eventsUrl": "https://shopwest4th.com",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Kitsilano neighborhood business association events, street campaigns, and community festivals.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "iq-2000-trivia",
+      "name": "IQ 2000 Trivia",
+      "domain": "instagram.com",
+      "eventsUrl": "https://www.instagram.com/iq2000trivia",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Weekly free pub trivia nights and themed quiz championships across Vancouver venues.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "runvan-community-hub",
+      "name": "RUNVAN Community Hub",
+      "domain": "runvan.org",
+      "eventsUrl": "https://runvan.org/races/",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Vancouver marathon, running events, free shakeout runs, and race cheer festivals.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "heart-of-the-city-festival-guide",
+      "name": "Heart of the City Festival Guide",
+      "domain": "heartofthecityfestival.com",
+      "eventsUrl": "https://www.heartofthecityfestival.com/",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Downtown Eastside independent theatre, film screenings, spoken word, and community celebrations",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "kitsilano-showboat-society-calendar",
+      "name": "Kitsilano Showboat Society Calendar",
+      "domain": "kitsilanoshowboat.com",
+      "eventsUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Seasonal summer outdoor stage performances, concert bands, multicultural dancers, and civic concerts at Kitsilano Beach",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "car-free-days-of-summer-hub",
+      "name": "Car Free Days of Summer Hub",
+      "domain": "carfreevancouver.org",
+      "eventsUrl": "https://www.carfreevancouver.org",
+      "rssUrl": null,
+      "type": "community_guide",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Metro Vancouver car-free street festivals and community activation calendars",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "scene-in-the-dark",
+      "name": "Scene in the Dark",
+      "domain": "sceneinthedark.com",
+      "eventsUrl": "https://sceneinthedark.com/",
+      "rssUrl": null,
+      "type": "editorial_aggregator",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "Searchable live music directory covering clubs, bars, and halls across Vancouver.",
+      "bestForCategories": [
+        "Free Public Access",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-recreation-activity-portal",
+      "name": "Vancouver Recreation Activity Portal",
+      "domain": "vanrec.ca",
+      "eventsUrl": "https://vanrec.ca/",
+      "rssUrl": null,
+      "type": "civic_tourism_directory",
+      "typeLabel": "Discovered Community & Culture Source",
+      "focus": "City of Vancouver recreation schedules including free walks, stewardship days, and drop-in centre sessions.",
       "bestForCategories": [
         "Free Public Access",
         "activities"

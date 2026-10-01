@@ -69,5 +69,23 @@
     "start_date": "2026-10-03",
     "end_date": "2026-10-03",
     "description": "Open-air electronic and dance music festival transforming urban public spaces in Metro Vancouver with multiple stages, sound installations, and local art."
+  },
+  {
+    "festival_name": "Vancouver Writers Fest",
+    "website_url": "https://writersfest.bc.ca/",
+    "schedule_url": "https://writersfest.bc.ca/festival",
+    "location": "Granville Island, Vancouver, BC",
+    "start_date": "2026-10-19",
+    "end_date": "2026-10-25",
+    "description": "Premier annual literary festival bringing together acclaimed Canadian and international authors, poets, and thinkers on Granville Island."
+  },
+  {
+    "festival_name": "Culture Days BC",
+    "website_url": "https://culturedays.ca/en/bc",
+    "schedule_url": "https://culturedays.ca/en/events",
+    "location": "Multiple Venues across Metro Vancouver",
+    "start_date": "2026-09-20",
+    "end_date": "2026-10-15",
+    "description": "Nationwide celebration of arts and culture offering hundreds of free participatory workshops, studio tours, and outdoor performances."
   }
 ]

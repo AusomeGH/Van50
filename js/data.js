@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-09-30T13:50:48-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-01T11:44:27-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -187,13 +187,13 @@ const VANCOUVER_EVENTS = [
     "access_model": "open_public_space",
     "pricing_model": "free_access",
     "weekly_hours": {
-      "mon": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "tue": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "wed": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "thu": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "fri": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "sat": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)",
-      "sun": "Open 24/7 (Recommended: 6:00 AM – 10:00 PM)"
+      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
     },
     "coffee_benchmark": "$5.50 – $8.00 CAD (Pavilion Cafe / Concessions)",
     "meal_benchmark": "$14.00 – $22.00 CAD (Park Concessions / Teahouse)",
@@ -325,7 +325,7 @@ const VANCOUVER_EVENTS = [
       "tue": "Closed",
       "wed": "10:00 AM – 5:00 PM",
       "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 8:00 PM (Free 4–8 PM 1st Friday)",
+      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
       "sat": "10:00 AM – 5:00 PM",
       "sun": "10:00 AM – 5:00 PM"
     },
@@ -597,13 +597,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "tue": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "wed": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "thu": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "fri": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "sat": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
-      "sun": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)"
+      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -713,13 +713,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "tue": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "wed": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "thu": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "fri": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "sat": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
-      "sun": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7"
+      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -825,13 +825,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Daily: 7:00 AM – 11:00 PM",
-      "tue": "Daily: 7:00 AM – 11:00 PM",
-      "wed": "Daily: 7:00 AM – 11:00 PM",
-      "thu": "Daily: 7:00 AM – 11:00 PM",
-      "fri": "Daily: 7:00 AM – 11:00 PM",
-      "sat": "Daily: 7:00 AM – 11:00 PM",
-      "sun": "Daily: 7:00 AM – 11:00 PM"
+      "mon": "7:00 AM – 11:00 PM",
+      "tue": "7:00 AM – 11:00 PM",
+      "wed": "7:00 AM – 11:00 PM",
+      "thu": "7:00 AM – 11:00 PM",
+      "fri": "7:00 AM – 11:00 PM",
+      "sat": "7:00 AM – 11:00 PM",
+      "sun": "7:00 AM – 11:00 PM"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -937,13 +937,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "tue": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "wed": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "thu": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "fri": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "sat": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
-      "sun": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed"
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "10:00 AM – 5:00 PM",
+      "thu": "10:00 AM – 9:00 PM",
+      "fri": "10:00 AM – 5:00 PM",
+      "sat": "10:00 AM – 5:00 PM",
+      "sun": "10:00 AM – 5:00 PM"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -1029,7 +1029,7 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
     "details_url": "https://theimprovcentre.ca/shows/",
-    "ticket_url": "https://theimprovcentre.ca/shows/",
+    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates",
     "ticket_provider": "Direct",
     "tags": [
       "comedy",
@@ -1083,7 +1083,7 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates",
     "venueUrl": "https://theimprovcentre.ca/shows/",
     "ticketProvider": "Direct",
     "coordinates": [
@@ -1348,13 +1348,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "tue": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "wed": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "thu": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "fri": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "sat": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
-      "sun": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM"
+      "mon": "9:30 AM – 8:30 PM",
+      "tue": "9:30 AM – 8:30 PM",
+      "wed": "9:30 AM – 8:30 PM",
+      "thu": "9:30 AM – 8:30 PM",
+      "fri": "9:30 AM – 6:00 PM",
+      "sat": "10:00 AM – 6:00 PM",
+      "sun": "11:00 AM – 6:00 PM"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -1462,13 +1462,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "tue": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "wed": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "thu": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "fri": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "sat": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
-      "sun": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed"
+      "mon": "Closed",
+      "tue": "12:00 PM – 6:00 PM",
+      "wed": "12:00 PM – 6:00 PM",
+      "thu": "12:00 PM – 6:00 PM",
+      "fri": "12:00 PM – 6:00 PM",
+      "sat": "12:00 PM – 6:00 PM",
+      "sun": "12:00 PM – 6:00 PM"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -1524,121 +1524,6 @@ const VANCOUVER_EVENTS = [
       "art-gallery",
       "contemporary-art",
       "culture",
-      "free-public-access"
-    ]
-  },
-  {
-    "event_id": "van50-plaza-of-nations-batch-patio",
-    "event_name": "Plaza of Nations Waterfront Esplanade & Batch Patio",
-    "category": "free-public-access",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Plaza of Nations",
-    "full_address": "770 Pacific Blvd, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Scenic pedestrian promenade along the False Creek seawall with sightlines of Science World and BC Place, featuring open-air firepits and live acoustic sets at Batch patio.",
-    "pricing_all_in_cad": {
-      "regular": 0.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://batchvancouver.com/",
-    "details_url": "https://batchvancouver.com/",
-    "ticket_url": "https://batchvancouver.com/",
-    "ticket_provider": "Free Public Access",
-    "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "live-music",
-      "waterfront",
-      "patio",
-      "free-public-access"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed).",
-    "price": 0.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "free_access",
-    "price_adult": 0.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": {
-      "mon": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "tue": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "wed": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "thu": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "fri": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "sat": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-      "sun": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed"
-    },
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-plaza-of-nations-batch-patio",
-    "title": "Plaza of Nations Waterfront Esplanade & Batch Patio",
-    "venue": "Plaza of Nations",
-    "address": "770 Pacific Blvd, Vancouver, BC",
-    "categoryLabel": "Free Public Access",
-    "categoryIcon": "🏛️",
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "frequency": "daily",
-    "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-    "startIso": null,
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "websiteUrl": "https://batchvancouver.com/",
-    "venueUrl": "https://batchvancouver.com/",
-    "ticketProvider": "Free Public Access",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": "Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed",
-    "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "live-music",
-      "waterfront",
-      "patio",
       "free-public-access"
     ]
   },
@@ -1888,13 +1773,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "Daily 6:00 AM – 10:00 PM",
-      "tue": "Daily 6:00 AM – 10:00 PM",
-      "wed": "Daily 6:00 AM – 10:00 PM",
-      "thu": "Daily 6:00 AM – 10:00 PM",
-      "fri": "Daily 6:00 AM – 10:00 PM",
-      "sat": "Daily 6:00 AM – 10:00 PM",
-      "sun": "Daily 6:00 AM – 10:00 PM"
+      "mon": "6:00 AM – 10:00 PM",
+      "tue": "6:00 AM – 10:00 PM",
+      "wed": "6:00 AM – 10:00 PM",
+      "thu": "6:00 AM – 10:00 PM",
+      "fri": "6:00 AM – 10:00 PM",
+      "sat": "6:00 AM – 10:00 PM",
+      "sun": "6:00 AM – 10:00 PM"
     },
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
@@ -2267,9 +2152,9 @@ const VANCOUVER_EVENTS = [
     "event_id": "viff-the-debut",
     "event_name": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
     "category": "cinema",
-    "venue_name": "SFU Goldcorp Centre for the Arts",
-    "full_address": "149 W Hastings St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
+    "venue_name": "VIFF Multi-Venue (Granville Island, Chinatown, Kitsilano)",
+    "full_address": "Multiple Venues across Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
     "description": "Based on Mieko Kawakami&#039;s acclaimed novel, All the Lovers in the Night is a tender, luminous portrait of loneliness, intimacy, and the courage to be seen.",
     "pricing_all_in_cad": {
       "regular": 26.0,
@@ -2280,14 +2165,24 @@ const VANCOUVER_EVENTS = [
     "show_1": {
       "date": "2026-10-01",
       "start_time": "17:30",
-      "end_time": "",
-      "cost": 22.0
+      "end_time": "19:30",
+      "cost": 26.0
     },
-    "show_2": null,
-    "show_3": null,
+    "show_2": {
+      "date": "2026-10-02",
+      "start_time": "15:00",
+      "end_time": "17:00",
+      "cost": 26.0
+    },
+    "show_3": {
+      "date": "2026-10-05",
+      "start_time": "12:00",
+      "end_time": "14:00",
+      "cost": 26.0
+    },
     "discovery_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "details_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
-    "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
+    "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book",
     "ticket_provider": "Direct Box Office",
     "tags": [
       "viff",
@@ -2300,7 +2195,7 @@ const VANCOUVER_EVENTS = [
       "gastown",
       "cinema"
     ],
-    "festival_affiliation": "None",
+    "festival_affiliation": "VIFF",
     "approval_status": "Auto-Approved",
     "curator_notes": "AI Pass 2 (2026-09-28): Preserved the direct VIFF box office link and enriched search terms with literary adaptation, foreign cinema, and date-night intents.",
     "price": 26.0,
@@ -2318,10 +2213,48 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
+    "showings": [
+      {
+        "date": "2026-10-01",
+        "start_time": "17:30",
+        "end_time": "19:30",
+        "venue_name": "Lindsay Family Stage at Granville Island",
+        "full_address": "1585 Johnston St, Vancouver, BC",
+        "neighborhood": "Granville Island & False Creek",
+        "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book"
+      },
+      {
+        "date": "2026-10-02",
+        "start_time": "15:00",
+        "end_time": "17:00",
+        "venue_name": "International Village 9",
+        "full_address": "88 W Pender St, Vancouver, BC",
+        "neighborhood": "Downtown, Gastown & Yaletown",
+        "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book"
+      },
+      {
+        "date": "2026-10-05",
+        "start_time": "12:00",
+        "end_time": "14:00",
+        "venue_name": "Fifth Avenue Cinema",
+        "full_address": "2110 Burrard St, Vancouver, BC",
+        "neighborhood": "Kitsilano, Point Grey & UBC",
+        "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book"
+      },
+      {
+        "date": "2026-10-11",
+        "start_time": "20:45",
+        "end_time": "22:45",
+        "venue_name": "International Village 10",
+        "full_address": "88 W Pender St, Vancouver, BC",
+        "neighborhood": "Downtown, Gastown & Yaletown",
+        "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book"
+      }
+    ],
     "id": "viff-the-debut",
     "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
-    "venue": "SFU Goldcorp Centre for the Arts",
-    "address": "149 W Hastings St, Vancouver",
+    "venue": "VIFF Multi-Venue (Granville Island, Chinatown, Kitsilano)",
+    "address": "Multiple Venues across Vancouver, BC",
     "categoryLabel": "cinema",
     "categoryIcon": "🎭",
     "priceLabel": "$26.00 CAD",
@@ -2334,18 +2267,20 @@ const VANCOUVER_EVENTS = [
         "label": "$26.00 CAD"
       }
     ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
     "dateSchedule": "2026-10-01 at 17:30",
     "startIso": "2026-10-01T17:30:00-07:00",
     "daysOfWeek": [
+      "fri",
+      "mon",
       "thu"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
+    "websiteUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book",
     "venueUrl": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
     "ticketProvider": "Direct Box Office",
     "coordinates": [
@@ -4205,8 +4140,8 @@ const VANCOUVER_EVENTS = [
     "event_name": "VIFF 2026: The Beloved (El Ser querido)",
     "category": "Indie Cinema",
     "lifecycle_type": "time_bound_event",
-    "venue_name": "The Rio Theatre",
-    "full_address": "1660 E Broadway, Vancouver, BC V5N 1W1",
+    "venue_name": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
+    "full_address": "Multiple Venues across Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
     "description": "VIFF 2026 official selection screening of The Beloved (El Ser querido) hosted at The Rio Theatre.",
     "pricing_all_in_cad": {
@@ -4217,13 +4152,13 @@ const VANCOUVER_EVENTS = [
     },
     "show_1": {
       "date": "2026-10-01",
-      "start_time": "18:30",
-      "end_time": "20:30",
+      "start_time": "18:00",
+      "end_time": "20:00",
       "cost": 22.0
     },
-    "discovery_url": "https://viff.org",
-    "details_url": "https://riotheatre.ca",
-    "ticket_url": "https://viff.org",
+    "discovery_url": "https://viff.org/whats-on/viff26-the-beloved/",
+    "details_url": "https://viff.org/whats-on/viff26-the-beloved/",
+    "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book",
     "ticket_provider": "VIFF Box Office",
     "tags": [
       "cinema",
@@ -4253,10 +4188,51 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
+    "showings": [
+      {
+        "date": "2026-10-01",
+        "start_time": "18:00",
+        "end_time": "20:00",
+        "venue_name": "The Rio Theatre",
+        "full_address": "1660 E Broadway, Vancouver, BC",
+        "neighborhood": "Commercial Drive & East Vancouver",
+        "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book"
+      },
+      {
+        "date": "2026-10-05",
+        "start_time": "18:00",
+        "end_time": "20:00",
+        "venue_name": "The Park Theatre",
+        "full_address": "3440 Cambie St, Vancouver, BC",
+        "neighborhood": "Mount Pleasant & South Vancouver",
+        "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book"
+      },
+      {
+        "date": "2026-10-10",
+        "start_time": "21:30",
+        "end_time": "23:30",
+        "venue_name": "Vancouver Playhouse",
+        "full_address": "600 Hamilton St, Vancouver, BC",
+        "neighborhood": "Downtown, Gastown & Yaletown",
+        "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book"
+      }
+    ],
+    "show_2": {
+      "date": "2026-10-05",
+      "start_time": "18:00",
+      "end_time": "20:00",
+      "cost": 22.0
+    },
+    "show_3": {
+      "date": "2026-10-10",
+      "start_time": "21:30",
+      "end_time": "23:30",
+      "cost": 22.0
+    },
     "id": "van50-scout-rio-viff-beloved-20261001",
     "title": "VIFF 2026: The Beloved (El Ser querido)",
-    "venue": "The Rio Theatre",
-    "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
+    "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
+    "address": "Multiple Venues across Vancouver, BC",
     "categoryLabel": "Indie Cinema",
     "categoryIcon": "🎭",
     "priceLabel": "$49.00 CAD",
@@ -4269,19 +4245,21 @@ const VANCOUVER_EVENTS = [
         "label": "$49.00 CAD"
       }
     ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-01 at 18:30",
-    "startIso": "2026-10-01T18:30:00-07:00",
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "dateSchedule": "2026-10-01 at 18:00",
+    "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
+      "mon",
+      "sat",
       "thu"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://viff.org",
-    "venueUrl": "https://riotheatre.ca",
+    "websiteUrl": "https://viff.org/whats-on/viff26-the-beloved/#book",
+    "venueUrl": "https://viff.org/whats-on/viff26-the-beloved/",
     "ticketProvider": "VIFF Box Office",
     "coordinates": [
       49.2827,
@@ -6970,6 +6948,160 @@ const VANCOUVER_EVENTS = [
       "music",
       "curator-verified"
     ]
+  },
+  {
+    "event_id": "test-reinforce-1790878633",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-25",
+      "start_time": "19:00",
+      "end_time": "16:30",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "details_url": "https://frankiesjazzclub.com/events",
+    "ticket_url": "https://frankiesjazzclub.com/events",
+    "ticket_provider": "Direct",
+    "tags": [
+      "music",
+      "curator-verified"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Curator verified as-is",
+    "id": "test-reinforce-1790878633",
+    "title": "Continuous Learning Jazz Showcase",
+    "venue": "Frankie's Jazz Club",
+    "address": "Vancouver, BC",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "dateSchedule": "2026-09-25 at 19:00",
+    "startIso": "2026-09-25T19:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://frankiesjazzclub.com/events",
+    "venueUrl": "https://frankiesjazzclub.com/events",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "music",
+      "curator-verified"
+    ]
+  },
+  {
+    "event_id": "test-reinforce-1790880260",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-25",
+      "start_time": "19:00",
+      "end_time": "16:30",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "details_url": "https://frankiesjazzclub.com/events",
+    "ticket_url": "https://frankiesjazzclub.com/events",
+    "ticket_provider": "Direct",
+    "tags": [
+      "music",
+      "curator-verified"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Curator verified as-is",
+    "id": "test-reinforce-1790880260",
+    "title": "Continuous Learning Jazz Showcase",
+    "venue": "Frankie's Jazz Club",
+    "address": "Vancouver, BC",
+    "categoryLabel": "music",
+    "categoryIcon": "🎵",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "dateSchedule": "2026-09-25 at 19:00",
+    "startIso": "2026-09-25T19:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://frankiesjazzclub.com/events",
+    "venueUrl": "https://frankiesjazzclub.com/events",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "music",
+      "curator-verified"
+    ]
   }
 ];
 const MANUAL_REVIEW_QUEUE = [
@@ -7791,6 +7923,102 @@ const MANUAL_REVIEW_QUEUE = [
     "unconfirmedDetails": [
       "No online checkout cart: In-person walk-up ticket kiosk only."
     ]
+  },
+  {
+    "id": "van50-vancouver-art-gallery-free-access",
+    "title": "Vancouver Art Gallery (General Admission & Access Programs)",
+    "artist": "Vancouver Art Gallery (General Admission & Access Programs)",
+    "venue": "Vancouver Art Gallery",
+    "address": "750 Hornby St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 0.0,
+    "priceLabel": "Free ($0)",
+    "category": "free-public-access",
+    "categoryLabel": "Free Public Access",
+    "startIso": null,
+    "websiteUrl": "https://www.vanartgallery.bc.ca/visit",
+    "quarantineReason": "AI Public Access Audit: The Vancouver Art Gallery is open, but general walk-in public access is restricted: general adult admission requires a paid ticket, with free access limited to youth 18 and under, Indigenous Peoples, caregivers, and BMO First Friday Nights (first Friday of each month, 4:00 PM – 8:00 PM). It lacks unrestricted 100% free walk-in access, flagging for curator review.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "vso-saturday-orpheum",
+    "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+    "artist": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
+    "venue": "The Orpheum Theatre",
+    "address": "601 Smithe St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 25.2,
+    "priceLabel": "$25.20 CAD",
+    "category": "music",
+    "categoryLabel": "music",
+    "startIso": "2026-10-03T14:00:00",
+    "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
+    "quarantineReason": "AI Audit: Cannot figure out details: The event ticket pricing exceeds the $50 CAD threshold (standard tickets start around $60–$80+ CAD), and the event title and start time are mislabeled.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-public-disco-festival-10th-anniversary",
+    "title": "Public Disco Festival (10th Anniversary Landmark Festival)",
+    "artist": "Public Disco Festival (10th Anniversary Landmark Festival)",
+    "venue": "The Shipyards Waterfront & The Pipe Shop",
+    "address": "125 Victory Ship Way, North Vancouver, BC",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "price": 49.35,
+    "priceLabel": "$49.35",
+    "category": "live music",
+    "categoryLabel": "Live Music",
+    "startIso": "2026-10-03T14:00:00",
+    "websiteUrl": "https://admitone.com",
+    "quarantineReason": "19+ licensed event. Presale tickets start at $45.00–$47.00 CAD base. Quarantined because base ticket is >= $43.00 CAD and ticketing fees could push all-in cost near or over the $50 cap.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-sun-yat-sen-echoes-chinese-heritage",
+    "title": "Echoes of Chinese Heritage",
+    "artist": "Echoes of Chinese Heritage",
+    "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
+    "address": "578 Carrall Street, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 46.0,
+    "priceLabel": "$46.00",
+    "category": "art & culture",
+    "categoryLabel": "Art & Culture",
+    "startIso": "2026-10-04T13:30:00",
+    "websiteUrl": "https://www.eventbrite.ca/d/canada--vancouver/dr.-sun-yat-sen-classical-chinese-garden/",
+    "quarantineReason": "Adult base ticket is $46 CAD; ticketing fees unverified, triggering quarantine under the $43+ threshold constraint.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-the-way-out-theatre-20261022",
+    "title": "The Way Out",
+    "artist": "The Way Out",
+    "venue": "North Vancouver TBA Theatre",
+    "address": "North Vancouver, BC",
+    "neighborhood": "North Shore, Burnaby & Metro",
+    "price": 34.5,
+    "priceLabel": "$34.50",
+    "category": "theatre",
+    "categoryLabel": "Theatre",
+    "startIso": "2026-10-22T19:30:00",
+    "websiteUrl": "https://www.showpass.com/discover/?location=Vancouver",
+    "quarantineReason": "Quarantined due to top tier reaching $50.00 CAD base (which exceeds $50.00 all-in with platform fees and GST). Min tier is $30 CAD base ($34.50 all-in).",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-lolo-the-pearl",
+    "title": "LØLØ: God Forbid a Girl Goes on Tour",
+    "artist": "LØLØ: God Forbid a Girl Goes on Tour",
+    "venue": "The Pearl",
+    "address": "881 Granville Street, Vancouver, BC V6Z 1K7",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 45.0,
+    "priceLabel": "$45.00",
+    "category": "live music",
+    "categoryLabel": "Live Music",
+    "startIso": "2026-10-03T18:00:00",
+    "websiteUrl": "https://www.ticketmaster.ca/lolo-tickets/artist/2642571",
+    "quarantineReason": "Pricing ranges between $35.00 and $45.00 CAD all-in; quarantined due to higher price band nearing the $50 cap.",
+    "flaggedAt": "2026-10-01"
   }
 ];
 
@@ -8658,6 +8886,168 @@ const DISCOVERY_SOURCES = [
     "type": "community_guide",
     "typeLabel": "Discovered Community & Culture Source",
     "focus": "Research-backed regional portal indexing free public spaces, community dialogs, and public forum activations across Greater Vancouver.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "vancouver-farmers-markets-eatlocal",
+    "name": "Vancouver Farmers Markets (EatLocal)",
+    "domain": "eatlocal.org",
+    "eventsUrl": "https://eatlocal.org/markets/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Weekly neighborhood non-profit farmers markets across Metro Vancouver.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "shop-west-4th-kitsilano-4th-avenue-bia",
+    "name": "Shop West 4th (Kitsilano 4th Avenue BIA)",
+    "domain": "shopwest4th.com",
+    "eventsUrl": "https://shopwest4th.com",
+    "rssUrl": null,
+    "type": "community_guide",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Kitsilano neighborhood business association events, street campaigns, and community festivals.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "iq-2000-trivia",
+    "name": "IQ 2000 Trivia",
+    "domain": "instagram.com",
+    "eventsUrl": "https://www.instagram.com/iq2000trivia",
+    "rssUrl": null,
+    "type": "editorial_aggregator",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Weekly free pub trivia nights and themed quiz championships across Vancouver venues.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "runvan-community-hub",
+    "name": "RUNVAN Community Hub",
+    "domain": "runvan.org",
+    "eventsUrl": "https://runvan.org/races/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Vancouver marathon, running events, free shakeout runs, and race cheer festivals.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "heart-of-the-city-festival-guide",
+    "name": "Heart of the City Festival Guide",
+    "domain": "heartofthecityfestival.com",
+    "eventsUrl": "https://www.heartofthecityfestival.com/",
+    "rssUrl": null,
+    "type": "community_guide",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Downtown Eastside independent theatre, film screenings, spoken word, and community celebrations",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "kitsilano-showboat-society-calendar",
+    "name": "Kitsilano Showboat Society Calendar",
+    "domain": "kitsilanoshowboat.com",
+    "eventsUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "rssUrl": null,
+    "type": "community_guide",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Seasonal summer outdoor stage performances, concert bands, multicultural dancers, and civic concerts at Kitsilano Beach",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "car-free-days-of-summer-hub",
+    "name": "Car Free Days of Summer Hub",
+    "domain": "carfreevancouver.org",
+    "eventsUrl": "https://www.carfreevancouver.org",
+    "rssUrl": null,
+    "type": "community_guide",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Metro Vancouver car-free street festivals and community activation calendars",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "scene-in-the-dark",
+    "name": "Scene in the Dark",
+    "domain": "sceneinthedark.com",
+    "eventsUrl": "https://sceneinthedark.com/",
+    "rssUrl": null,
+    "type": "editorial_aggregator",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "Searchable live music directory covering clubs, bars, and halls across Vancouver.",
+    "bestForCategories": [
+      "Free Public Access",
+      "activities"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "vancouver-recreation-activity-portal",
+    "name": "Vancouver Recreation Activity Portal",
+    "domain": "vanrec.ca",
+    "eventsUrl": "https://vanrec.ca/",
+    "rssUrl": null,
+    "type": "civic_tourism_directory",
+    "typeLabel": "Discovered Community & Culture Source",
+    "focus": "City of Vancouver recreation schedules including free walks, stewardship days, and drop-in centre sessions.",
     "bestForCategories": [
       "Free Public Access",
       "activities"

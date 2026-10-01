@@ -598,8 +598,11 @@ def sync_js_data_file():
                         ev["frequency"] = item.get("frequency") or "daily"
                         ev["frequencyLabel"] = item.get("frequencyLabel") or "Open Daily Drop-In"
                         op_hours = item.get("operating_hours") or item.get("open_hours") or ""
-                        if op_hours:
-                            ev["dateSchedule"] = f"Open Daily: {op_hours}"
+                        wh = item.get("weekly_hours")
+                        if wh:
+                            ev["dateSchedule"] = "Visiting Hours (See 7-Day Schedule Below)"
+                        elif op_hours:
+                            ev["dateSchedule"] = f"Visiting Hours: {op_hours}"
                         elif show1.get("start_time") and show1.get("end_time"):
                             ev["dateSchedule"] = f"Open: {show1.get('start_time')} – {show1.get('end_time')}"
                         else:
@@ -610,14 +613,21 @@ def sync_js_data_file():
                         if not ev.get("timeSlots"):
                             ev["timeSlots"] = ["early-morning", "afternoon", "early-evening"]
                     else:
+                        showings_list = item.get("showings") or []
+                        if showings_list:
+                            ev["showings"] = showings_list
+                            dates = [s.get("date") for s in showings_list if s.get("date")]
+                            ev["dateSchedule"] = f"{len(showings_list)} Screenings across Vancouver"
+
                         ev["frequency"] = item.get("frequency") or ("limited-run" if len(dates) > 1 else "one-off")
                         ev["frequencyLabel"] = item.get("frequencyLabel") or ("Verified Multiple Showings" if len(dates) > 1 else "Single Showing")
-                        if item.get("dateSchedule"):
-                            ev["dateSchedule"] = item["dateSchedule"]
-                        elif show1.get("date"):
-                            ev["dateSchedule"] = f"{show1.get('date')} at {show1.get('start_time', '19:00')}"
-                        else:
-                            ev["dateSchedule"] = "Upcoming"
+                        if not showings_list:
+                            if item.get("dateSchedule"):
+                                ev["dateSchedule"] = item["dateSchedule"]
+                            elif show1.get("date"):
+                                ev["dateSchedule"] = f"{show1.get('date')} at {show1.get('start_time', '19:00')}"
+                            else:
+                                ev["dateSchedule"] = "Upcoming"
                         if item.get("startIso"):
                             ev["startIso"] = item["startIso"]
                         elif show1.get("date"):
@@ -625,7 +635,7 @@ def sync_js_data_file():
                         else:
                             ev["startIso"] = None
                             
-                        # Set accurate daysOfWeek for date-bound events
+                        # Set accurate daysOfWeek for date-bound events (never default to ['daily'])
                         if not ev.get("daysOfWeek") or ev.get("daysOfWeek") == ["daily"]:
                             if dates:
                                 DAY_ABBRS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
@@ -637,9 +647,9 @@ def sync_js_data_file():
                                         dows.add(DAY_ABBRS[dt_val.weekday()])
                                     except Exception:
                                         pass
-                                ev["daysOfWeek"] = list(dows) if dows else ["daily"]
+                                ev["daysOfWeek"] = list(dows) if dows else ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
                             else:
-                                ev["daysOfWeek"] = ["daily"]
+                                ev["daysOfWeek"] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
                         if not ev.get("timeSlots"):
                             ev["timeSlots"] = ["early-evening", "late-evening"]
                             
@@ -654,6 +664,8 @@ def sync_js_data_file():
                     
                     ev["transitInfo"] = item.get("transitInfo") or "Transit accessible via TransLink"
                     ev["operatingHours"] = item.get("operating_hours") or None
+                    ev["weekly_hours"] = item.get("weekly_hours") or None
+                    ev["weeklyHours"] = item.get("weekly_hours") or None
                     ev["lifecycleType"] = item.get("lifecycle_type") or ("perennial_drop_in" if is_free_public else "time_bound_event")
                     ev["isSoldOut"] = item.get("isSoldOut", False)
                     ev["subTags"] = item.get("tags") or item.get("subTags") or []

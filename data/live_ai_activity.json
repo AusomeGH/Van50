@@ -3,615 +3,615 @@
   "current_task": "Automated Python QC Engine",
   "current_step": "Quarantine 13D Audit complete: 6 graduated to live, 22 retained with deficiency breakdowns.",
   "progress_percent": 100,
-  "last_updated": "2026-09-29T17:28:31.256144",
+  "last_updated": "2026-10-01T04:32:13.515183",
   "stats": {
-    "confirmed": 861,
-    "new_events": 45,
-    "new_venues": 10,
-    "new_sources": 10,
-    "quarantined": 32,
-    "archived": 2
+    "confirmed": 921,
+    "new_events": 133,
+    "new_venues": 25,
+    "new_sources": 19,
+    "quarantined": 38,
+    "archived": 3
   },
   "recent_logs": [
     {
-      "id": "log_1790720315221",
-      "timestamp": "15:18:35",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Olive Klug with Frail Talk' confirmed listed on venue calendar (https://www.oliveklug.com/shows)"
+      "id": "log_1790854332408",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Arts & Health HUB on Social Prescribing\" at Ballet BC Studios ($0.00 CAD)"
     },
     {
-      "id": "log_1790720315269",
-      "timestamp": "15:18:35",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Olive Klug with Frail Talk\" • Date: 2026-10-25 at 19:30 ($32.83 CAD)"
+      "id": "log_1790854332420",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Justine A. Chambers: One hundred more (Exhibition & Virtual Panel)\" at Or Gallery ($0.00 CAD)"
     },
     {
-      "id": "log_1790720315304",
-      "timestamp": "15:18:35",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ruby Haunt with VHS Ghost\" • Date: 2026-12-11 at 20:00 ($32.06 CAD)"
+      "id": "log_1790854332430",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Make and Take Collage! & First Saturday Open Studios\" at Eastside Atelier ($0.00 CAD)"
     },
     {
-      "id": "log_1790720317068",
-      "timestamp": "15:18:37",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Vancouver Symphony Orchestra: Saturday Night at The Orpheum' confirmed matching page content (https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/)"
+      "id": "log_1790854332444",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Meet, Make & Explore: EWMA Open Studio\" at EWMA Studio ($0.00 CAD)"
     },
     {
-      "id": "log_1790720317114",
-      "timestamp": "15:18:37",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Saturday Night at The Orpheum\" • Date: 2026-10-03 at 14:00 ($31.50 CAD)"
+      "id": "log_1790854332456",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Pay What You Can Sunday at Vancouver Maritime Museum\" at Vancouver Maritime Museum ($0.00 CAD)"
     },
     {
-      "id": "log_1790720319394",
-      "timestamp": "15:18:39",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Vancouver Symphony Orchestra: Sunday Concert at The Orpheum' confirmed matching page content (https://www.vancouversymphony.ca/event/lights-camera-orchestra/)"
+      "id": "log_1790854332472",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"č̓əl̕təl̕ístəχʷ tə x̌pey̓əɬp Honouring Cedar\" at Scotiabank Dance Centre ($0.00 CAD)"
     },
     {
-      "id": "log_1790720319445",
-      "timestamp": "15:18:39",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Sunday Concert at The Orpheum\" • Date: 2026-10-04 at 14:00 ($20.00 CAD)"
+      "id": "log_1790854332481",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"1984:AGAIN (Theatre Terrific)\" at SFU Djavad Mowafaghian World Art Centre ($0.00 CAD)"
     },
     {
-      "id": "log_1790720321094",
-      "timestamp": "15:18:41",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Harvest Days at VanDusen Botanical Garden' confirmed matching page content (https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/)"
+      "id": "log_1790854332492",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Life at OPS Screening\" at SFU Djavad Mowafaghian Cinema ($0.00 CAD)"
     },
     {
-      "id": "log_1790720321181",
-      "timestamp": "15:18:41",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Harvest Days at VanDusen Botanical Garden\" • Date: Weekends From September 26 To October 18 (10:30 am-4:30 pm) at 10:30 ($14.86 CAD)"
+      "id": "log_1790854332504",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"ABC's of Ha Ha Ha Comedy Showcase!\" at LanaLou's Restaurant ($0.00 CAD)"
     },
     {
-      "id": "log_1790720321290",
-      "timestamp": "15:18:41",
-      "type": "ARCHIVED",
-      "message": "[ARCHIVED] \"Continuous Learning Jazz Showcase\" • Reason: Show schedule ended on 2026-09-25"
+      "id": "log_1790854332518",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Dispatches (by Jenny Simpson)\" at SFU Djavad Mowafaghian World Art Centre ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785252",
-      "timestamp": "17:06:25",
-      "type": "INFO",
-      "message": "Safety snapshot preserved: events_antigravity_2026-09-29_170625.json"
+      "id": "log_1790854332530",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Spirit Voices Folk Opera\" at Ukrainian Hall ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785337",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Pendulum Gallery\" • Open Hours: Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM"
+      "id": "log_1790854332543",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"LIVE IN HELL (by Marita Michaelis)\" at KW Production Studio ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785419",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG)\" • Open Hours: Wednesday – Sunday 12:00 PM – 6:00 PM (Closed Monday & Tuesday)"
+      "id": "log_1790854332556",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"I Hope This Finds You: The Art of the Letter\" at Vancouver Public Library – nə́c̓aʔmat ct Strathcona Branch ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785506",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Public Park\" • Open Hours: Tuesday – Sunday 10:00 AM – 4:30 PM"
+      "id": "log_1790854332571",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Public Disco Festival Industry Exchange: Parties Build Cities\" at The Polygon Gallery ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785566",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Public Library (Central Branch) & Rooftop Garden\" • Open Hours: Monday – Thursday 9:30 AM – 8:30 PM; Friday – Saturday 9:30 AM – 5:00 PM; Sunday 11:00 AM – 5:00 PM"
+      "id": "log_1790854332581",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Official Public Disco Afterparty: DJ Hannah, Nancy Dru & Indulgent\" at Gorg-O-Mish ($35.00 CAD)"
     },
     {
-      "id": "log_1790726785598",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Rose Garden\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+      "id": "log_1790854332596",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Weekly Resident Trivia Night at Granville Island Brewing\" at Granville Island Brewing Taproom ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785636",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights & Youth Access\" • Open Hours: Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)"
+      "id": "log_1790854332608",
+      "timestamp": "04:32:12",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"Echoes of Chinese Heritage\" • Reason: Adult base ticket is $46 CAD; ticketing fees unverified, triggering quarantine under the $43+ threshold constraint."
     },
     {
-      "id": "log_1790726785666",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Park Courtyard\" • Open Hours: Daily 10:00 AM – 4:00 PM"
+      "id": "log_1790854332620",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Gongs in the Garden: A Sunday Slowdown\" at Dr. Sun Yat-Sen Classical Chinese Garden ($38.74 CAD)"
     },
     {
-      "id": "log_1790726785701",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Shipyards & Lonsdale Quay Waterfront Promenade\" • Open Hours: Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)"
+      "id": "log_1790854332635",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Double Ninth Festival (Chongyang Festival 重陽節)\" at Dr. Sun Yat-Sen Classical Chinese Garden ($16.96 CAD)"
     },
     {
-      "id": "log_1790726785737",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Granville Island Public Market & Boardwalks\" • Open Hours: Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7"
+      "id": "log_1790854332645",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Traditional Chinese Tea Tastings\" at Dr. Sun Yat-Sen Classical Chinese Garden (Free Public Access - Sat-Sun 10:30 AM, 11:45 AM, 1:00 PM)"
     },
     {
-      "id": "log_1790726785800",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Scenic Viewpoints\" • Open Hours: Daily: 6:00 AM – 10:00 PM"
+      "id": "log_1790854332662",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"LMG 10th Anniversary Comedy Special\" at Little Mountain Gallery (Salazar Stage) ($20.00 CAD)"
     },
     {
-      "id": "log_1790726785845",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery – Free First Friday Nights\" • Open Hours: First Friday of each month: 4:00 PM – 8:00 PM"
+      "id": "log_1790854332679",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery: Free First Friday Night\" at Vancouver Art Gallery ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785872",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Canada Place Promenade & The Canadian Trail\" • Open Hours: Daily: 7:00 AM – 11:00 PM"
+      "id": "log_1790854332695",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Bill Reid Gallery First Friday Free Drop-in\" at Bill Reid Gallery of Northwest Coast Art ($0.00 CAD)"
     },
     {
-      "id": "log_1790726785906",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Polygon Gallery Admission by Donation\" • Open Hours: Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed"
+      "id": "log_1790854332707",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Dark & Dirty Show\" at Little Mountain Gallery (Salazar Stage) ($25.00 CAD)"
     },
     {
-      "id": "log_1790726785939",
-      "timestamp": "17:06:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Classical Chinese Garden (Public Park Section)\" • Open Hours: Tuesday through Sunday, 9:30 AM – 4:00 PM (Closed Mondays)"
+      "id": "log_1790854332718",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Musical Wave Indie Showcase & DJ Night\" at The Portside Pub ($20.00 CAD)"
     },
     {
-      "id": "log_1790726792836",
-      "timestamp": "17:06:32",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Theatresports™' confirmed listed on venue calendar (https://theimprovcentre.ca/shows/)"
+      "id": "log_1790854332729",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"LMG Presents: Headliner Stand-Up Series\" at Little Mountain Gallery (Salazar Stage) ($25.00 CAD)"
     },
     {
-      "id": "log_1790726792864",
-      "timestamp": "17:06:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Theatresports™\" • Date: Upcoming ($33.50 CAD)"
+      "id": "log_1790854332742",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"20/20/20 Stand-Up Comedy Showcase\" at Little Mountain Gallery (Salazar Stage) ($22.00 CAD)"
     },
     {
-      "id": "log_1790726796333",
-      "timestamp": "17:06:36",
-      "type": "INFO",
-      "message": "Calendar Verified: 'HEIST by Arun Lakra' confirmed listed on venue calendar (https://artsclub.com/shows/2026-2027/heist)"
+      "id": "log_1790854332752",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Comedy Bingo!\" at Little Mountain Gallery (Raccoon Room) ($18.99 CAD)"
     },
     {
-      "id": "log_1790726796388",
-      "timestamp": "17:06:36",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"HEIST by Arun Lakra\" • Date: Upcoming ($39.00 CAD)"
+      "id": "log_1790854332763",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Icons Of The Night: Y2K Edit\" at The Portside Pub ($17.87 CAD)"
     },
     {
-      "id": "log_1790726801484",
-      "timestamp": "17:06:41",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Metro Vancouver Croissant Crawl\" • Date: Upcoming ($0.00 CAD)"
+      "id": "log_1790854332774",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Angels & Demons: Halloween Party\" at The Portside Pub ($28.41 CAD)"
     },
     {
-      "id": "log_1790726801510",
-      "timestamp": "17:06:41",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stanley Park Seawall & Brockton Point\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+      "id": "log_1790854332785",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Cherelle Jardine: Album Release Celebration\" at Chill x Studio ($25.00 CAD)"
     },
     {
-      "id": "log_1790726801533",
-      "timestamp": "17:06:41",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Robson Square & šxʷƛ̓ənəq Xwtl'e7énk Square\" • Open Hours: Open 24/7 (Sunken Arena: Daily 9:00 AM – 9:00 PM)"
+      "id": "log_1790854332797",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Ashwyn Singh: The Imperfect Ally Tour\" at Chill x Studio ($35.00 CAD)"
     },
     {
-      "id": "log_1790726801565",
-      "timestamp": "17:06:41",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Splash Annual Art Exhibition at Pendulum Gallery\" • Open Hours: Monday – Wednesday: 9:00 AM – 6:00 PM, Thursday – Friday: 9:00 AM – 9:00 PM, Saturday: 9:00 AM – 5:00 PM, Sunday & Statutory Holidays: Closed"
+      "id": "log_1790854332809",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Ben Albert: Live in Vancouver\" at Chill x Studio ($21.57 CAD)"
     },
     {
-      "id": "log_1790726802491",
-      "timestamp": "17:06:42",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Silent Movie Mondays at The Orpheum\" • Date: 2026-10-26 at 19:30 ($21.00 CAD)"
+      "id": "log_1790854332821",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Polygon Gallery & Shipyards Waterfront\" at The Polygon Gallery (Free Public Access - Wed–Sun 10:00 AM – 5:00 PM (Thursdays open until 8:00 PM; closed Mon–Tue))"
     },
     {
-      "id": "log_1790726803674",
-      "timestamp": "17:06:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"First Friday Free Evenings at Vancouver Art Gallery\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
+      "id": "log_1790854332833",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Pendulum Gallery at HSBC Atrium\" at Pendulum Gallery (Free Public Access - Mon–Wed 9:00 AM – 5:00 PM; Thu–Fri 9:00 AM – 6:00 PM; Sat 9:00 AM – 5:00 PM (Closed Sundays))"
     },
     {
-      "id": "log_1790726803716",
-      "timestamp": "17:06:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dr. Sun Yat-Sen Public Courtyard & Park\" • Open Hours: Wednesday – Sunday: 10:00 AM – 4:00 PM (Closed Mondays & Tuesdays)"
+      "id": "log_1790854332845",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Contemporary Art Gallery (CAG)\" at Contemporary Art Gallery (Free Public Access - Wed–Sun 12:00 PM – 6:00 PM (Closed Mon & Tue))"
     },
     {
-      "id": "log_1790726803756",
-      "timestamp": "17:06:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries\" • Open Hours: Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM"
+      "id": "log_1790854332857",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Granville Island Public Market & Courtyard\" at Granville Island Public Market (Free Public Access - Daily 9:00 AM – 6:00 PM)"
     },
     {
-      "id": "log_1790726803793",
-      "timestamp": "17:06:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Contemporary Art Gallery (CAG) Public Exhibitions\" • Open Hours: Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed"
+      "id": "log_1790854332868",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Queen Elizabeth Park & Sunken Quarry Gardens\" at Queen Elizabeth Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
     },
     {
-      "id": "log_1790726803825",
-      "timestamp": "17:06:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Plaza of Nations Waterfront Esplanade & Batch Patio\" • Open Hours: Esplanade: Open 24 hours daily; Batch Patio: Tue–Thu 3:00 PM – 10:00 PM, Fri 3:00 PM – 11:00 PM, Sat 12:00 PM – 11:00 PM, Sun 12:00 PM – 10:00 PM, Mon Closed"
+      "id": "log_1790854332881",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"VPL Central Library Rooftop Garden\" at Vancouver Public Library (Central Branch) (Free Public Access - Mon–Thu 9:30 AM – 8:30 PM; Fri–Sat 10:00 AM – 5:00 PM; Sun 11:00 AM – 5:00 PM)"
     },
     {
-      "id": "log_1790726804521",
-      "timestamp": "17:06:44",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Sunday Jazz Vespers at St. Andrew's-Wesley' confirmed matching page content (https://standrewswesley.com/jazz-vespers/)"
+      "id": "log_1790854332893",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
     },
     {
-      "id": "log_1790726804544",
-      "timestamp": "17:06:44",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Sunday Jazz Vespers at St. Andrew's-Wesley\" • Date: 2026-10-04 at 16:00 ($10.00 CAD)"
+      "id": "log_1790854332903",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Lynn Canyon Suspension Bridge & Ecological Trails\" at Lynn Canyon Park (Free Public Access - Daily 7:00 AM – Dusk)"
     },
     {
-      "id": "log_1790726805283",
-      "timestamp": "17:06:45",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Saturday Afternoon Roots & Blues Sessions with Mike VanEyes\" • Date: 2026-10-03 at 16:00 ($0.00 CAD)"
+      "id": "log_1790854332916",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Canada Place Promenade & The Canadian Trail\" at Canada Place (Free Public Access - Daily 24 Hours)"
     },
     {
-      "id": "log_1790726808336",
-      "timestamp": "17:06:48",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'Evergrey with HammerFall & Elvenking' verified sold out on destination page."
+      "id": "log_1790854332925",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"OFF CAMPUS NIGHT @ GRETA YVR\" at GRETA Bar YVR ($0.00 CAD)"
     },
     {
-      "id": "log_1790726808367",
-      "timestamp": "17:06:48",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Evergrey with HammerFall & Elvenking\" • Date: 2026-10-07 at 18:30 ($35.00 CAD)"
+      "id": "log_1790854332936",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Five Alarm Funk's Sweat Fest\" at Vancouver TBA Venue ($40.25 CAD)"
     },
     {
-      "id": "log_1790726810921",
-      "timestamp": "17:06:50",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Miesha and The Spanks with Francis Baptiste' confirmed matching page content (https://www.showpass.com/miesha-and-the-spanks-2026/)"
+      "id": "log_1790854332947",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"THE DARK & DIRTY SHOW\" at Vancouver TBA Venue ($34.00 CAD)"
     },
     {
-      "id": "log_1790726810985",
-      "timestamp": "17:06:50",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Miesha and The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($28.25 CAD)"
+      "id": "log_1790854332958",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"UBC JSA Navratri 2026\" at UBC Campus / Vancouver ($34.50 CAD)"
     },
     {
-      "id": "log_1790726812151",
-      "timestamp": "17:06:52",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Raagaverse + Strings' confirmed matching page content (https://www.showpass.com/raagaverse-strings/)"
+      "id": "log_1790854332968",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"A History of Motown\" at Centennial Theatre ($40.25 CAD)"
     },
     {
-      "id": "log_1790726812217",
-      "timestamp": "17:06:52",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Raagaverse + Strings\" • Date: 2026-10-15 at 19:30 ($21.02 CAD)"
+      "id": "log_1790854332979",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Vancouver Writers Fest: Cory Doctorow on Life After AI\" at Granville Island Venues ($32.50 CAD)"
     },
     {
-      "id": "log_1790726812260",
-      "timestamp": "17:06:52",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Granville Island Public Market\" • Open Hours: Daily 9:00 AM – 6:00 PM"
+      "id": "log_1790854332989",
+      "timestamp": "04:32:12",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"The Way Out\" • Reason: Quarantined due to top tier reaching $50.00 CAD base (which exceeds $50.00 all-in with platform fees and GST). Min tier is $30 CAD base ($34.50 all-in)."
     },
     {
-      "id": "log_1790726812306",
-      "timestamp": "17:06:52",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Robson Square & 800 Robson Plaza\" • Open Hours: Open 24/7"
+      "id": "log_1790854332999",
+      "timestamp": "04:32:12",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"An Evening with the Scots: Douglas Stuart & Damian Barr\" at Granville Island Venues ($32.50 CAD)"
     },
     {
-      "id": "log_1790726812343",
-      "timestamp": "17:06:52",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Queen Elizabeth Park & Quarry Gardens\" • Open Hours: Daily 6:00 AM – 10:00 PM"
+      "id": "log_1790854333009",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Polygon Gallery\" at The Polygon Gallery (Free Public Access - Wednesday – Sunday, 10:00 AM – 5:00 PM (Thursdays open late until 8:00 PM; Closed Monday & Tuesday))"
     },
     {
-      "id": "log_1790726813952",
-      "timestamp": "17:06:53",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!' confirmed listed on venue calendar (https://do604.com/events/2027/1/22/phyllis-hull-s-one-woman-show-hullo-it-s-me-you-re-looking-for-tickets)"
+      "id": "log_1790854333018",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Morris and Helen Belkin Art Gallery\" at Morris and Helen Belkin Art Gallery (Free Public Access - Tuesday – Friday, 10:00 AM – 5:00 PM; Saturday – Sunday, 12:00 PM – 5:00 PM (Closed Mondays))"
     },
     {
-      "id": "log_1790726814923",
-      "timestamp": "17:06:54",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Miesha & The Spanks with Francis Baptiste' confirmed matching page content (https://www.showpass.com/miesha-and-the-spanks-2026/)"
+      "id": "log_1790854333028",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Queen Elizabeth Park & Sunken Quarry Gardens\" at Queen Elizabeth Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
     },
     {
-      "id": "log_1790726814965",
-      "timestamp": "17:06:54",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Miesha & The Spanks with Francis Baptiste\" • Date: 2026-11-05 at 19:00 ($15.00 CAD)"
+      "id": "log_1790854333040",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Seawall open 24/7; Park grounds open 6:00 AM – 10:00 PM daily)"
     },
     {
-      "id": "log_1790726818269",
-      "timestamp": "17:06:58",
-      "type": "INFO",
-      "message": "Event Page Verified: 'UBC Football vs. U of C' confirmed matching page content (https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx)"
+      "id": "log_1790854333051",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Pendulum Gallery\" at Pendulum Gallery (Free Public Access - Monday – Wednesday: 9:00 AM – 6:00 PM; Thursday – Friday: 9:00 AM – 9:00 PM; Saturday: 9:00 AM – 5:00 PM (Closed Sundays))"
     },
     {
-      "id": "log_1790726818305",
-      "timestamp": "17:06:58",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Football vs. U of C\" • Date: 2026-10-16 at 18:00 ($17.50 CAD)"
+      "id": "log_1790854333061",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Dr. Sun Yat-Sen Public Courtyard & Park\" at Dr. Sun Yat-Sen Public Park (Free Public Access - Daily 10:00 AM – 4:30 PM)"
     },
     {
-      "id": "log_1790726819030",
-      "timestamp": "17:06:59",
-      "type": "INFO",
-      "message": "Event Page Verified: 'UBC Men's Basketball vs. TWU' confirmed matching page content (https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx)"
+      "id": "log_1790854333072",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Shipyards Commons & Waterfront Boardwalk\" at The Shipyards (Free Public Access - Daily 6:00 AM – 11:00 PM)"
     },
     {
-      "id": "log_1790726819070",
-      "timestamp": "17:06:59",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Men's Basketball vs. TWU\" • Date: 2026-10-29 at 19:30 ($17.50 CAD)"
+      "id": "log_1790854333081",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Bloedel Conservatory Admission\" at Bloedel Conservatory (Free Public Access - Daily from 10:00 AM)"
     },
     {
-      "id": "log_1790726819894",
-      "timestamp": "17:06:59",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'Alistair Ogden Live at The Rio Theatre' verified sold out on destination page."
+      "id": "log_1790854333091",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"VanDusen Botanical Garden – October Access\" at VanDusen Botanical Garden (Free Public Access - Daily in October from 9:00 AM)"
     },
     {
-      "id": "log_1790726819927",
-      "timestamp": "17:06:59",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Alistair Ogden Live at The Rio Theatre' confirmed matching page content (https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344)"
+      "id": "log_1790854333100",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery – Free First Friday Night\" at Vancouver Art Gallery ($0.00 CAD)"
     },
     {
-      "id": "log_1790726819976",
-      "timestamp": "17:06:59",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Alistair Ogden Live at The Rio Theatre\" • Date: 2026-12-04 at 19:30 ($27.96 CAD)"
+      "id": "log_1790854333110",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
     },
     {
-      "id": "log_1790726827652",
-      "timestamp": "17:07:07",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'Vancouver Art Gallery: Free First Friday Nights' verified sold out on destination page."
+      "id": "log_1790854333119",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Kevin Banner LIVE — Vancouver Comedy Show\" at The Main ($21.57 CAD)"
     },
     {
-      "id": "log_1790726827681",
-      "timestamp": "17:07:07",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Vancouver Art Gallery: Free First Friday Nights' confirmed matching page content (https://www.vanartgallery.bc.ca/free)"
+      "id": "log_1790854333129",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Zoe Twist with House Of Glass\" at The Fox Cabaret ($22.63 CAD)"
     },
     {
-      "id": "log_1790726827717",
-      "timestamp": "17:07:07",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery: Free First Friday Nights\" • Date: 2026-10-02 at 16:00 ($0.00 CAD)"
+      "id": "log_1790854333139",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Stand Up Comedy: Jokes Please!\" at The Cambrian Hall ($18.37 CAD)"
     },
     {
-      "id": "log_1790726830285",
-      "timestamp": "17:07:10",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Ballet BC: Bodies & Voices' confirmed listed on venue calendar (https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/)"
+      "id": "log_1790854333148",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Savage Comedy at The Main\" at The Main (Backroom) ($22.62 CAD)"
     },
     {
-      "id": "log_1790726830345",
-      "timestamp": "17:07:10",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ballet BC: Bodies & Voices\" • Date: 2026-11-05 at 19:30 ($19.00 CAD)"
+      "id": "log_1790854333158",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Chest Fever: 50th Anniversary of The Last Waltz\" at Rickshaw Theatre ($46.50 CAD)"
     },
     {
-      "id": "log_1790726832344",
-      "timestamp": "17:07:12",
-      "type": "INFO",
-      "message": "Calendar Verified: 'VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)' confirmed listed on venue calendar (https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/)"
+      "id": "log_1790854333168",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Five Alarm Funk's Sweat Fest\" at Hollywood Theatre ($41.00 CAD)"
     },
     {
-      "id": "log_1790726832374",
-      "timestamp": "17:07:12",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)\" • Date: 2026-10-01 at 17:30 ($22.00 CAD)"
+      "id": "log_1790854333177",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"The Dark & Dirty Show\" at Little Mountain Gallery (Salazar Stage) ($29.25 CAD)"
     },
     {
-      "id": "log_1790726832423",
-      "timestamp": "17:07:12",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ethan Regan - Young Regan Tour\" • Date: 2026-10-03 at 19:30 ($29.50 CAD)"
+      "id": "log_1790854333187",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Centennial Theatre Presents: A History of Motown\" at Centennial Theatre ($41.00 CAD)"
     },
     {
-      "id": "log_1790726833100",
-      "timestamp": "17:07:13",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'Schalk Bezuidenhout: Hey Hey Divorcè' verified sold out on destination page."
+      "id": "log_1790854333197",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Back to the Jungle (Old School / Reggae / Jungle Party)\" at KW Studios ($28.74 CAD)"
     },
     {
-      "id": "log_1790726833139",
-      "timestamp": "17:07:13",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Schalk Bezuidenhout: Hey Hey Divorcè' confirmed matching page content (https://riotheatre.ca/event/schalk-bezuidenhout-hey-hey-divorce/)"
+      "id": "log_1790854333208",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Violet Grohl with Suzy Clue\" at Hollywood Theatre ($35.75 CAD)"
     },
     {
-      "id": "log_1790726833174",
-      "timestamp": "17:07:13",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Schalk Bezuidenhout: Hey Hey Divorcè\" • Date: 2026-09-29 at 19:00 ($43.00 CAD)"
+      "id": "log_1790854333218",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Starjunk 95 with boy 2000\" at Commodore Ballroom ($39.25 CAD)"
     },
     {
-      "id": "log_1790726833218",
-      "timestamp": "17:07:13",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"JOON with Lauryn Kovacs\" • Date: 2026-10-02 at 19:00 ($40.23 CAD)"
+      "id": "log_1790854333227",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Meltt with Old Man Canyon\" at Commodore Ballroom ($40.75 CAD)"
     },
     {
-      "id": "log_1790726839518",
-      "timestamp": "17:07:19",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Vancouver Art Gallery Admission by Donation Day' confirmed listed on venue calendar (https://www.vanartgallery.bc.ca/events/admission-by-donation-day-oct-2/)"
+      "id": "log_1790854333238",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Failure with quannnic\" at Rickshaw Theatre ($46.50 CAD)"
     },
     {
-      "id": "log_1790726839587",
-      "timestamp": "17:07:19",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Art Gallery Admission by Donation Day\" • Date: 2026-10-02 at 10:00 ($0.00 CAD)"
+      "id": "log_1790854333250",
+      "timestamp": "04:32:13",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"LØLØ: God Forbid a Girl Goes on Tour\" • Reason: Pricing ranges between $35.00 and $45.00 CAD all-in; quarantined due to higher price band nearing the $50 cap."
     },
     {
-      "id": "log_1790726839651",
-      "timestamp": "17:07:19",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Babes In Canyon w/ Anna Smyrk & Shelby Natasha\" • Date: 2026-10-08 at 19:00 ($28.50 CAD)"
+      "id": "log_1790854333261",
+      "timestamp": "04:32:13",
+      "type": "NEW_EVENT",
+      "message": "[NEW EVENT ADDED] \"Halloween 2026 – The Monsters' Ball\" at The Rec Room Granville ($27.83 CAD)"
     },
     {
-      "id": "log_1790726841605",
-      "timestamp": "17:07:21",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'Dälek' verified sold out on destination page."
+      "id": "log_1790854333286",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"The Pipe Shop & Shipbuilders' Square\" (North Shore)"
     },
     {
-      "id": "log_1790726841635",
-      "timestamp": "17:07:21",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dälek\" • Date: 2026-10-09 at 20:00 ($31.50 CAD)"
+      "id": "log_1790854333296",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"The American\" (Mount Pleasant)"
     },
     {
-      "id": "log_1790726841665",
-      "timestamp": "17:07:21",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"SALIN (Live Soul & World Jazz)\" • Date: 2026-10-10 at 19:30 ($35.67 CAD)"
+      "id": "log_1790854333304",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"BREWHALL\" (Mount Pleasant)"
     },
     {
-      "id": "log_1790726842313",
-      "timestamp": "17:07:22",
-      "type": "INFO",
-      "message": "Event Page Verified: 'The Rio Theatre Burlesque & Variety Show' confirmed matching page content (https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/)"
+      "id": "log_1790854333314",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Dr. Sun Yat-Sen Classical Chinese Garden\" (Chinatown)"
     },
     {
-      "id": "log_1790726842345",
-      "timestamp": "17:07:22",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"The Rio Theatre Burlesque & Variety Show\" • Date: 2026-10-17 at 21:00 ($30.00 CAD)"
+      "id": "log_1790854333327",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"SFU Goldcorp Centre for the Arts\" (Gastown)"
     },
     {
-      "id": "log_1790726844118",
-      "timestamp": "17:07:24",
-      "type": "INFO",
-      "message": "Sold-Out Stamped: 'UBC Apple Festival (35th Annual)' verified sold out on destination page."
+      "id": "log_1790854333336",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Gorg-O-Mish\" (Downtown)"
     },
     {
-      "id": "log_1790726844150",
-      "timestamp": "17:07:24",
-      "type": "INFO",
-      "message": "Calendar Verified: 'UBC Apple Festival (35th Annual)' confirmed listed on venue calendar (https://botanicalgarden.ubc.ca/news-events/events/apple-festival/)"
+      "id": "log_1790854333351",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Vancouver Maritime Museum\" (Kitsilano)"
     },
     {
-      "id": "log_1790726844177",
-      "timestamp": "17:07:24",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"UBC Apple Festival (35th Annual)\" • Date: 2026-10-17 at 11:00 ($12.00 CAD)"
+      "id": "log_1790854333361",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"2nd Floor Gastown at Water St. Café\" (Gastown)"
     },
     {
-      "id": "log_1790726844221",
-      "timestamp": "17:07:24",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Dummy with Golomb & worrywart\" • Date: 2026-10-22 at 20:00 ($22.50 CAD)"
+      "id": "log_1790854333371",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"The Sylvia Hotel Lounge\" (West End)"
     },
     {
-      "id": "log_1790726845779",
-      "timestamp": "17:07:25",
-      "type": "INFO",
-      "message": "Calendar Verified: 'Olive Klug with Frail Talk' confirmed listed on venue calendar (https://www.oliveklug.com/shows)"
+      "id": "log_1790854333379",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Tyrant Studios\" (Downtown)"
     },
     {
-      "id": "log_1790726845833",
-      "timestamp": "17:07:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Olive Klug with Frail Talk\" • Date: 2026-10-25 at 19:30 ($32.83 CAD)"
+      "id": "log_1790854333390",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Centennial Theatre\" (North Shore)"
     },
     {
-      "id": "log_1790726845902",
-      "timestamp": "17:07:25",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Ruby Haunt with VHS Ghost\" • Date: 2026-12-11 at 20:00 ($32.06 CAD)"
+      "id": "log_1790854333399",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"GRETA Bar YVR\" (Gastown)"
     },
     {
-      "id": "log_1790726848132",
-      "timestamp": "17:07:28",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Vancouver Symphony Orchestra: Saturday Night at The Orpheum' confirmed matching page content (https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/)"
+      "id": "log_1790854333408",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"The Main\" (Mount Pleasant)"
     },
     {
-      "id": "log_1790726848157",
-      "timestamp": "17:07:28",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Saturday Night at The Orpheum\" • Date: 2026-10-03 at 14:00 ($31.50 CAD)"
+      "id": "log_1790854333417",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"Commodore Ballroom\" (Downtown)"
     },
     {
-      "id": "log_1790726851003",
-      "timestamp": "17:07:31",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Vancouver Symphony Orchestra: Sunday Concert at The Orpheum' confirmed matching page content (https://www.vancouversymphony.ca/event/lights-camera-orchestra/)"
+      "id": "log_1790854333427",
+      "timestamp": "04:32:13",
+      "type": "NEW_VENUE",
+      "message": "[NEW VENUE ADDED] \"The Rec Room Granville\" (Downtown)"
     },
     {
-      "id": "log_1790726851030",
-      "timestamp": "17:07:31",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Symphony Orchestra: Sunday Concert at The Orpheum\" • Date: 2026-10-04 at 14:00 ($20.00 CAD)"
+      "id": "log_1790854333439",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Vancouver Farmers Markets (EatLocal)\" (eatlocal.org)"
     },
     {
-      "id": "log_1790726852390",
-      "timestamp": "17:07:32",
-      "type": "INFO",
-      "message": "Event Page Verified: 'Harvest Days at VanDusen Botanical Garden' confirmed matching page content (https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/)"
+      "id": "log_1790854333448",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Shop West 4th (Kitsilano 4th Avenue BIA)\" (shopwest4th.com)"
     },
     {
-      "id": "log_1790726852423",
-      "timestamp": "17:07:32",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Harvest Days at VanDusen Botanical Garden\" • Date: Weekends From September 26 To October 18 (10:30 am-4:30 pm) at 10:30 ($14.86 CAD)"
+      "id": "log_1790854333459",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"IQ 2000 Trivia\" (instagram.com)"
     },
     {
-      "id": "log_1790728059900",
-      "timestamp": "17:27:39",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Silent Movie Mondays\" • All 13 Dimensions Satisfied ($26.78 CAD)"
+      "id": "log_1790854333468",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"RUNVAN Community Hub\" (runvan.org)"
     },
     {
-      "id": "log_1790728063170",
-      "timestamp": "17:27:43",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Vancouver Opera: Tosca\" • All 13 Dimensions Satisfied ($25.00 CAD)"
+      "id": "log_1790854333478",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Heart of the City Festival Guide\" (heartofthecityfestival.com)"
     },
     {
-      "id": "log_1790728067830",
-      "timestamp": "17:27:47",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"LØLØ: God Forbid a Girl Goes on Tour\" • All 13 Dimensions Satisfied ($45.00 CAD)"
+      "id": "log_1790854333487",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Kitsilano Showboat Society Calendar\" (kitsilanoshowboat.com)"
     },
     {
-      "id": "log_1790728095249",
-      "timestamp": "17:28:15",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Deadly Dinner Party\" • All 13 Dimensions Satisfied ($38.18 CAD)"
+      "id": "log_1790854333496",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Car Free Days of Summer Hub\" (carfreevancouver.org)"
     },
     {
-      "id": "log_1790728095399",
-      "timestamp": "17:28:15",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"What Else? (Live Comedy & Trivia Show)\" • All 13 Dimensions Satisfied ($19.50 CAD)"
+      "id": "log_1790854333506",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Scene in the Dark\" (sceneinthedark.com)"
     },
     {
-      "id": "log_1790728099067",
-      "timestamp": "17:28:19",
-      "type": "CONFIRMED",
-      "message": "[CONFIRMED] \"Stand-Up Showcase at Little Mountain Gallery\" • All 13 Dimensions Satisfied ($15.00 CAD)"
+      "id": "log_1790854333514",
+      "timestamp": "04:32:13",
+      "type": "NEW_SOURCE",
+      "message": "[NEW SOURCE ADDED] \"Vancouver Recreation Activity Portal\" (vanrec.ca)"
     }
   ]
 }

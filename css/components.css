@@ -3306,6 +3306,125 @@ body.van50-accessible .card-ticket-link {
   color: #e2e8f0;
 }
 
+/* 1.5 Multi-Location / Multi-Screening Showings Block */
+.card-showings-block {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 0.78rem;
+}
+
+.showings-block-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #38bdf8;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.showings-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.showing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.showing-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.showing-time-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 90px;
+}
+
+.showing-date {
+  font-weight: 700;
+  color: #f8fafc;
+  font-size: 0.76rem;
+}
+
+.showing-time {
+  color: #94a3b8;
+  font-size: 0.70rem;
+}
+
+.showing-venue-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.showing-venue-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.showing-venue-link:hover {
+  text-decoration: underline;
+  color: #7dd3fc;
+}
+
+.showing-address {
+  color: #64748b;
+  font-size: 0.68rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.showing-action-col {
+  margin-left: auto;
+}
+
+.btn-showing-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  border-radius: 4px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-showing-book:hover {
+  background: #10b981;
+  color: #022c22;
+  border-color: #10b981;
+}
+
 /* 2. Pricing Models & Spend Guidelines */
 .card-pricing-model-row {
   display: flex;
