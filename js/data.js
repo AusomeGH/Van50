@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-01T11:44:27-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-01T12:38:07-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -91,7 +91,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -117,6 +117,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Mon–Wed 9:00 AM – 6:00 PM, Thu–Fri 9:00 AM – 9:00 PM, Sat 9:00 AM – 5:00 PM",
+    "weeklyHours": {
+      "mon": "9:00 AM – 6:00 PM",
+      "tue": "9:00 AM – 6:00 PM",
+      "wed": "9:00 AM – 6:00 PM",
+      "thu": "9:00 AM – 9:00 PM",
+      "fri": "9:00 AM – 9:00 PM",
+      "sat": "9:00 AM – 5:00 PM",
+      "sun": "Closed"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -234,7 +243,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Daily 6:00 AM – 10:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -260,6 +269,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 6:00 AM – 10:00 PM",
+    "weeklyHours": {
+      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -373,7 +391,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -399,6 +417,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Wed–Mon 10:00 AM – 5:00 PM (open until 8:00 PM on Free First Fridays; Closed Tuesdays)",
+    "weeklyHours": {
+      "mon": "10:00 AM – 5:00 PM",
+      "tue": "Closed",
+      "wed": "10:00 AM – 5:00 PM",
+      "thu": "10:00 AM – 5:00 PM",
+      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
+      "sat": "10:00 AM – 5:00 PM",
+      "sun": "10:00 AM – 5:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -511,7 +538,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Daily 10:00 AM – 4:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -537,6 +564,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 10:00 AM – 4:00 PM",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "10:00 AM – 4:00 PM",
+      "wed": "10:00 AM – 4:00 PM",
+      "thu": "10:00 AM – 4:00 PM",
+      "fri": "10:00 AM – 4:00 PM",
+      "sat": "10:00 AM – 4:00 PM",
+      "sun": "10:00 AM – 4:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -625,7 +661,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -651,6 +687,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
+    "weeklyHours": {
+      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -741,7 +786,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -767,6 +812,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
+    "weeklyHours": {
+      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -853,7 +907,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Daily: 7:00 AM – 11:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -879,6 +933,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily: 7:00 AM – 11:00 PM",
+    "weeklyHours": {
+      "mon": "7:00 AM – 11:00 PM",
+      "tue": "7:00 AM – 11:00 PM",
+      "wed": "7:00 AM – 11:00 PM",
+      "thu": "7:00 AM – 11:00 PM",
+      "fri": "7:00 AM – 11:00 PM",
+      "sat": "7:00 AM – 11:00 PM",
+      "sun": "7:00 AM – 11:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -965,7 +1028,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -991,6 +1054,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Wed, Fri–Sun 10:00 AM – 5:00 PM; Thu 10:00 AM – 9:00 PM; Mon–Tue Closed",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "10:00 AM – 5:00 PM",
+      "thu": "10:00 AM – 9:00 PM",
+      "fri": "10:00 AM – 5:00 PM",
+      "sat": "10:00 AM – 5:00 PM",
+      "sun": "10:00 AM – 5:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -1000,106 +1072,6 @@ const VANCOUVER_EVENTS = [
       "visual-art",
       "shipyards",
       "free-public-access"
-    ]
-  },
-  {
-    "event_id": "van50-theatresports-improv-centre",
-    "event_name": "Theatresports™",
-    "category": "Comedy",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Improv Centre",
-    "full_address": "1502 Duranleau St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
-    "description": "Vancouver's premier competitive unscripted comedy tournament where teams of quick-witted comedians duel for audience laughter and votes. High-energy, completely spontaneous theatre on Granville Island.",
-    "pricing_all_in_cad": {
-      "regular": 33.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-02",
-      "start_time": "21:00",
-      "end_time": "22:30",
-      "cost": 33.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://theimprovcentre.ca/shows/",
-    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates",
-    "ticket_provider": "Direct",
-    "tags": [
-      "comedy",
-      "improv",
-      "granville-island",
-      "date-night",
-      "performing-arts"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI QC Verified (2026-09-29): Theatresports™ confirmed active weekly on Fridays and Saturdays at 9:00 PM. Set next upcoming date to 2026-10-02 with verified $33.50 CAD live ticket pricing.",
-    "price": 33.5,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 33.5,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-theatresports-improv-centre",
-    "title": "Theatresports™",
-    "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver, BC",
-    "categoryLabel": "Comedy",
-    "categoryIcon": "🎭",
-    "priceLabel": "$33.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 33.5,
-        "label": "$33.50 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-02 at 21:00",
-    "startIso": "2026-10-02T21:00:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&ref=bookNow&scroll=timeAndDates",
-    "venueUrl": "https://theimprovcentre.ca/shows/",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "granville-island",
-      "date-night",
-      "performing-arts"
     ]
   },
   {
@@ -1191,6 +1163,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -1288,6 +1261,8 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weekly_hours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -1376,7 +1351,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -1402,6 +1377,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Mon–Thu 9:30 AM – 8:30 PM, Fri 9:30 AM – 6:00 PM, Sat 10:00 AM – 6:00 PM, Sun 11:00 AM – 6:00 PM",
+    "weeklyHours": {
+      "mon": "9:30 AM – 8:30 PM",
+      "tue": "9:30 AM – 8:30 PM",
+      "wed": "9:30 AM – 8:30 PM",
+      "thu": "9:30 AM – 8:30 PM",
+      "fri": "9:30 AM – 6:00 PM",
+      "sat": "10:00 AM – 6:00 PM",
+      "sun": "11:00 AM – 6:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -1490,7 +1474,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -1516,6 +1500,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Tuesday – Sunday: 12:00 PM – 6:00 PM; Monday: Closed",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "12:00 PM – 6:00 PM",
+      "wed": "12:00 PM – 6:00 PM",
+      "thu": "12:00 PM – 6:00 PM",
+      "fri": "12:00 PM – 6:00 PM",
+      "sat": "12:00 PM – 6:00 PM",
+      "sun": "12:00 PM – 6:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -1617,6 +1610,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -1716,6 +1710,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -1801,7 +1796,7 @@ const VANCOUVER_EVENTS = [
     ],
     "frequency": "daily",
     "frequencyLabel": "Open Daily Drop-In",
-    "dateSchedule": "Open Daily: Daily 6:00 AM – 10:00 PM",
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "startIso": null,
     "daysOfWeek": [
       "daily",
@@ -1827,6 +1822,15 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 6:00 AM – 10:00 PM",
+    "weeklyHours": {
+      "mon": "6:00 AM – 10:00 PM",
+      "tue": "6:00 AM – 10:00 PM",
+      "wed": "6:00 AM – 10:00 PM",
+      "thu": "6:00 AM – 10:00 PM",
+      "fri": "6:00 AM – 10:00 PM",
+      "sat": "6:00 AM – 10:00 PM",
+      "sun": "6:00 AM – 10:00 PM"
+    },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
     "subTags": [
@@ -1928,6 +1932,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2029,6 +2034,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2134,6 +2140,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2267,14 +2274,15 @@ const VANCOUVER_EVENTS = [
         "label": "$26.00 CAD"
       }
     ],
+    "dateSchedule": "4 Screenings across Vancouver",
     "frequency": "limited-run",
     "frequencyLabel": "Verified Multiple Showings",
-    "dateSchedule": "2026-10-01 at 17:30",
     "startIso": "2026-10-01T17:30:00-07:00",
     "daysOfWeek": [
       "fri",
-      "mon",
-      "thu"
+      "thu",
+      "sun",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -2289,6 +2297,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2394,6 +2403,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2498,6 +2508,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2601,6 +2612,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2704,6 +2716,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2808,6 +2821,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -2912,6 +2926,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3015,6 +3030,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3119,6 +3135,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3224,6 +3241,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3328,299 +3346,12 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
       "outdoors",
       "curator-verified"
-    ]
-  },
-  {
-    "event_id": "van50-deadly-dinner-party",
-    "event_name": "Deadly Dinner Party",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Improv Centre",
-    "full_address": "1502 Duranleau St, Vancouver",
-    "neighborhood": "Granville Island & False Creek",
-    "description": "Live comedy & shows featuring Deadly Dinner Party at The Improv Centre in Granville Island & False Creek.",
-    "pricing_all_in_cad": {
-      "regular": 33.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-29",
-      "start_time": "19:00",
-      "end_time": "22:00",
-      "cost": 38.18
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
-    "details_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
-    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
-    "ticket_provider": "Direct Box Office",
-    "tags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified across all 13 dimensions by Antigravity on 2026-09-29.",
-    "price": 33.5,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 33.5,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-deadly-dinner-party",
-    "title": "Deadly Dinner Party",
-    "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$33.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 33.5,
-        "label": "$33.50 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-09-29 at 19:00",
-    "startIso": "2026-09-29T19:00:00-07:00",
-    "daysOfWeek": [
-      "tue"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
-    "venueUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
-    "ticketProvider": "Direct Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ]
-  },
-  {
-    "event_id": "van50-what-else-lmg-20261003",
-    "event_name": "What Else? (Live Comedy & Trivia Show)",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Little Mountain Gallery",
-    "full_address": "110 Water St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live comedy & shows featuring What Else? (Live Comedy & Trivia Show) at Little Mountain Gallery in Downtown, Gastown & Yaletown.",
-    "pricing_all_in_cad": {
-      "regular": 23.03,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "19:00",
-      "end_time": "22:00",
-      "cost": 19.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "details_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified across all 13 dimensions by Antigravity on 2026-09-29.",
-    "price": 23.03,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 23.03,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-what-else-lmg-20261003",
-    "title": "What Else? (Live Comedy & Trivia Show)",
-    "venue": "Little Mountain Gallery",
-    "address": "110 Water St, Vancouver",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$23.03 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 23.03,
-        "label": "$23.03 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-03 at 19:00",
-    "startIso": "2026-10-03T19:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "venueUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticketProvider": "Showpass",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ]
-  },
-  {
-    "event_id": "van50-stand-up-showcase-lmg-20261015",
-    "event_name": "Stand-Up Showcase at Little Mountain Gallery",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Little Mountain Gallery",
-    "full_address": "110 Water St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live comedy & shows featuring Stand-Up Showcase at Little Mountain Gallery at Little Mountain Gallery in Downtown, Gastown & Yaletown.",
-    "pricing_all_in_cad": {
-      "regular": 18.14,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-10-15",
-      "start_time": "19:00",
-      "end_time": "22:00",
-      "cost": 15.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "details_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified across all 13 dimensions by Antigravity on 2026-09-29.",
-    "price": 18.14,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 18.14,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-stand-up-showcase-lmg-20261015",
-    "title": "Stand-Up Showcase at Little Mountain Gallery",
-    "venue": "Little Mountain Gallery",
-    "address": "110 Water St, Vancouver",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$18.14 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 18.14,
-        "label": "$18.14 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-15 at 19:00",
-    "startIso": "2026-10-15T19:00:00-07:00",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "venueUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticketProvider": "Showpass",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
     ]
   },
   {
@@ -3633,7 +3364,7 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "Pay What You Can memorial movie marathon celebrating the life and artistic spirit of Jon Aaron (Jonny Bones). Screenings at 7 PM & 9 PM.",
     "pricing_all_in_cad": {
-      "regular": 0.0,
+      "regular": 25.0,
       "senior": null,
       "student": null,
       "member": null
@@ -3656,12 +3387,13 @@ const VANCOUVER_EVENTS = [
       "pay-what-you-can",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
     "curator_notes": "Verified across all 13 dimensions by Antigravity on 2026-09-29.",
-    "price": 0.0,
+    "price": 25.0,
     "access_model": "fenced_facility",
     "pricing_model": "free_access",
     "price_adult": 0.0,
@@ -3676,15 +3408,16 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
+    "is_sold_out": true,
     "id": "van50-scout-rickshaw-jonny-bones-20261001",
     "title": "Jonny Bones Memorial Movie Marathon",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
     "categoryLabel": "Indie Cinema",
     "categoryIcon": "🎭",
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
     "tiers": [
       {
         "name": "Adult",
@@ -3712,6 +3445,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3722,7 +3456,8 @@ const VANCOUVER_EVENTS = [
       "pay-what-you-can",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ]
   },
   {
@@ -3758,7 +3493,8 @@ const VANCOUVER_EVENTS = [
       "indie-film",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -3814,6 +3550,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3824,7 +3561,8 @@ const VANCOUVER_EVENTS = [
       "indie-film",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ]
   },
   {
@@ -3860,7 +3598,8 @@ const VANCOUVER_EVENTS = [
       "the-cultch",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "comedy-shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -3916,6 +3655,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -3926,7 +3666,8 @@ const VANCOUVER_EVENTS = [
       "the-cultch",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "comedy-shows"
     ]
   },
   {
@@ -3963,7 +3704,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "comedy-shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4019,6 +3760,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4030,7 +3772,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "comedy-shows"
     ]
   },
   {
@@ -4122,6 +3864,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4168,7 +3911,8 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ],
     "festival_affiliation": "VIFF",
     "approval_status": "Antigravity-13D-Validated",
@@ -4245,14 +3989,14 @@ const VANCOUVER_EVENTS = [
         "label": "$49.00 CAD"
       }
     ],
+    "dateSchedule": "3 Screenings across Vancouver",
     "frequency": "limited-run",
     "frequencyLabel": "Verified Multiple Showings",
-    "dateSchedule": "2026-10-01 at 18:00",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
-      "mon",
       "sat",
-      "thu"
+      "thu",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -4267,6 +4011,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4277,7 +4022,8 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "indie-cinema"
     ]
   },
   {
@@ -4314,7 +4060,7 @@ const VANCOUVER_EVENTS = [
       "the-waldorf",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "comedy-shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4370,6 +4116,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4381,7 +4128,7 @@ const VANCOUVER_EVENTS = [
       "the-waldorf",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "comedy-shows"
     ]
   },
   {
@@ -4421,8 +4168,7 @@ const VANCOUVER_EVENTS = [
       "downtown",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4478,6 +4224,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4488,8 +4235,7 @@ const VANCOUVER_EVENTS = [
       "downtown",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ]
   },
   {
@@ -4529,8 +4275,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4586,6 +4331,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4596,8 +4342,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ]
   },
   {
@@ -4638,8 +4383,7 @@ const VANCOUVER_EVENTS = [
       "downtown",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4695,6 +4439,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4706,8 +4451,7 @@ const VANCOUVER_EVENTS = [
       "downtown",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ]
   },
   {
@@ -4748,7 +4492,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "theatre-performing-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4804,6 +4548,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -4815,117 +4560,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-raagaverse-strings-annex-20261015",
-    "event_name": "Raagaverse + Strings",
-    "category": "Live Music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Annex",
-    "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Indo-Jazz fusion band Raagaverse, led by vocalist Shruti Ramani, performs with an expanded string quartet featuring works from their debut album Jaya and brand-new compositions.",
-    "pricing_all_in_cad": {
-      "regular": 33.68,
-      "senior": null,
-      "student": 21.02,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-15",
-      "start_time": "19:30",
-      "end_time": "21:30",
-      "cost": 21.02
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/raagaverse-strings/",
-    "details_url": "https://theannexvancouver.com/",
-    "ticket_url": "https://www.showpass.com/raagaverse-strings/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "live-music",
-      "indo-jazz",
-      "fusion",
-      "strings",
-      "the-annex",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Live-checkout cart verified via Showpass public API ($21.02 CAD concession, $33.68 CAD regular all-in). 100% compliant with 13 Discrete Live Dimensions.",
-    "price": 21.02,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 21.02,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-raagaverse-strings-annex-20261015",
-    "title": "Raagaverse + Strings",
-    "venue": "The Annex",
-    "address": "823 Seymour St, Vancouver, BC V6B 3L4",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎭",
-    "priceLabel": "$21.02 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 21.02,
-        "label": "$21.02 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-15 at 19:30",
-    "startIso": "2026-10-15T19:30:00-07:00",
-    "daysOfWeek": [
-      "thu"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/raagaverse-strings/",
-    "venueUrl": "https://theannexvancouver.com/",
-    "ticketProvider": "Showpass",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "indo-jazz",
-      "fusion",
-      "strings",
-      "the-annex",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "theatre-performing-arts"
     ]
   },
   {
@@ -4965,8 +4600,7 @@ const VANCOUVER_EVENTS = [
       "east-van",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4986,6 +4620,7 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$15.00 – $24.00 CAD",
+    "is_sold_out": true,
     "id": "van50-actors-rickshaw-20261009",
     "title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
     "venue": "Rickshaw Theatre",
@@ -5022,6 +4657,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -5032,8 +4668,7 @@ const VANCOUVER_EVENTS = [
       "east-van",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ]
   },
   {
@@ -5073,8 +4708,7 @@ const VANCOUVER_EVENTS = [
       "east-van",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5130,6 +4764,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -5140,548 +4775,7 @@ const VANCOUVER_EVENTS = [
       "east-van",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-city-pop-city-rickshaw-20261121",
-    "event_name": "City Pop City: Chen Baker & Technodelic",
-    "category": "Live Music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Rickshaw Theatre",
-    "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Infidels Jazz presents a 10-piece outfit led by Chen Baker performing iconic Japanese city pop hits, with a special opening set by Technodelic playing Yellow Magic Orchestra.",
-    "pricing_all_in_cad": {
-      "regular": 36.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-11-21",
-      "start_time": "19:30",
-      "end_time": "23:30",
-      "cost": 36.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com/event/city-pop-city/",
-    "details_url": "https://rickshawtheatre.com/event/city-pop-city/",
-    "ticket_url": "https://rickshawtheatre.com/event/city-pop-city/",
-    "ticket_provider": "Rickshaw Box Office / Eventbrite",
-    "tags": [
-      "live-music",
-      "city-pop",
-      "jazz",
-      "japanese-pop",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Verified live box office ticketing endpoint on rickshawtheatre.com ($30.00 CAD base, ~$36.50 CAD all-in).",
-    "price": 36.5,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 36.5,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-city-pop-city-rickshaw-20261121",
-    "title": "City Pop City: Chen Baker & Technodelic",
-    "venue": "Rickshaw Theatre",
-    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎭",
-    "priceLabel": "$36.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.5,
-        "label": "$36.50 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-11-21 at 19:30",
-    "startIso": "2026-11-21T19:30:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://rickshawtheatre.com/event/city-pop-city/",
-    "venueUrl": "https://rickshawtheatre.com/event/city-pop-city/",
-    "ticketProvider": "Rickshaw Box Office / Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "city-pop",
-      "jazz",
-      "japanese-pop",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-fox-sunday-service-20261004",
-    "event_name": "The Sunday Service: Live Improv Comedy",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Fox Cabaret",
-    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Weekly high-energy, fast-paced long-form improv comedy with Canadian Comedy Award winners The Sunday Service.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-04",
-      "start_time": "20:00",
-      "end_time": "22:00",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://foxcabaret.com/calendar",
-    "details_url": "https://thesundayservice.ca",
-    "ticket_url": "https://foxcabaret.com/calendar",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
-    "tags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Healed generic homepage link to Fox Cabaret calendar and confirmed $20.00 CAD live checkout/door admission.",
-    "price": 20.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 20.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-fox-sunday-service-20261004",
-    "title": "The Sunday Service: Live Improv Comedy",
-    "venue": "The Fox Cabaret",
-    "address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-04 at 20:00",
-    "startIso": "2026-10-04T20:00:00-07:00",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://foxcabaret.com/calendar",
-    "venueUrl": "https://thesundayservice.ca",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-the-sunday-service-fox-20261011",
-    "event_name": "The Sunday Service: Live Improv Comedy",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Fox Cabaret",
-    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Weekly high-energy, fast-paced long-form improv comedy with Canadian Comedy Award winners The Sunday Service.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-11",
-      "start_time": "20:00",
-      "end_time": "22:00",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://foxcabaret.com/calendar",
-    "details_url": "https://thesundayservice.ca",
-    "ticket_url": "https://foxcabaret.com/calendar",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
-    "tags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed Oct 11 weekly performance with verified $20.00 CAD live admission at Fox Cabaret.",
-    "price": 20.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 20.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-the-sunday-service-fox-20261011",
-    "title": "The Sunday Service: Live Improv Comedy",
-    "venue": "The Fox Cabaret",
-    "address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-11 at 20:00",
-    "startIso": "2026-10-11T20:00:00-07:00",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://foxcabaret.com/calendar",
-    "venueUrl": "https://thesundayservice.ca",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-90s-00s-dance-party-fox-20261009",
-    "event_name": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Fox Cabaret",
-    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "High-energy late-night weekend dance party celebrating the best pop, hip-hop, and indie sleaze tracks of the 2000s and 2010s at The Fox Cabaret.",
-    "pricing_all_in_cad": {
-      "regular": 15.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-09",
-      "start_time": "22:30",
-      "end_time": "02:00",
-      "cost": 15.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://foxcabaret.com/calendar",
-    "details_url": "https://foxcabaret.com/calendar",
-    "ticket_url": "https://foxcabaret.com/calendar",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
-    "tags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Healed 404 URL with verified Fox Cabaret calendar & Eventbrite ticket endpoint ($15.00 CAD all-in).",
-    "price": 15.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 15.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-90s-00s-dance-party-fox-20261009",
-    "title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
-    "venue": "The Fox Cabaret",
-    "address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$15.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-09 at 22:30",
-    "startIso": "2026-10-09T22:30:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://foxcabaret.com/calendar",
-    "venueUrl": "https://foxcabaret.com/calendar",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-phyllis-hull-one-woman-show-20270122",
-    "event_name": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Show Cellar",
-    "full_address": "1755 Davie St, Vancouver, BC V6G 1W5",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Vancouver drag powerhouse and comedy producer Phyllis Hull presents her hilarious one-woman comedy and variety show at The Show Cellar in the West End.",
-    "pricing_all_in_cad": {
-      "regular": 15.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2027-01-22",
-      "start_time": "20:00",
-      "end_time": "22:00",
-      "cost": 15.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.eventbrite.ca",
-    "details_url": "https://theshowcellar.com",
-    "ticket_url": "https://www.eventbrite.ca",
-    "ticket_provider": "Eventbrite",
-    "tags": [
-      "comedy",
-      "drag-show",
-      "variety-show",
-      "west-end",
-      "the-show-cellar",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed direct Eventbrite ticketing endpoint with live admission starting at $15.00 CAD all-in.",
-    "price": 15.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 15.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-phyllis-hull-one-woman-show-20270122",
-    "title": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
-    "venue": "The Show Cellar",
-    "address": "1755 Davie St, Vancouver, BC V6G 1W5",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$15.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2027-01-22 at 20:00",
-    "startIso": "2027-01-22T20:00:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.eventbrite.ca",
-    "venueUrl": "https://theshowcellar.com",
-    "ticketProvider": "Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "drag-show",
-      "variety-show",
-      "west-end",
-      "the-show-cellar",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "antigravity-13d-validated"
     ]
   },
   {
@@ -5777,6 +4871,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -5828,8 +4923,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "comedy-shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5885,6 +4979,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -5896,8 +4991,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "comedy-shows"
     ]
   },
   {
@@ -5938,8 +5032,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5995,6 +5088,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -6006,8 +5100,7 @@ const VANCOUVER_EVENTS = [
       "commercial-drive",
       "19-plus",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ]
   },
   {
@@ -6048,7 +5141,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6104,6 +5197,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -6115,7 +5209,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ]
   },
   {
@@ -6156,7 +5250,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6212,6 +5306,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -6223,221 +5318,7 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
-    "event_name": "20/20/20 Vancouver Stand-Up Comedy Showcase",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Little Mountain Gallery",
-    "full_address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Fast-paced standup comedy showcase where 20 of Vancouver's top touring and local comedians deliver their sharpest material at Little Mountain Gallery.",
-    "pricing_all_in_cad": {
-      "regular": 18.99,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-17",
-      "start_time": "20:00",
-      "end_time": "22:00",
-      "cost": 18.99
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "details_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "comedy",
-      "stand-up",
-      "mount-pleasant",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Live-checkout cart verified via Showpass ($18.99 – $29.25 CAD all-in). All 13 dimensions satisfied.",
-    "price": 18.99,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 18.99,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-lmg-20-20-20-comedy-20261017",
-    "title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
-    "venue": "Little Mountain Gallery",
-    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$18.99 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 18.99,
-        "label": "$18.99 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-17 at 20:00",
-    "startIso": "2026-10-17T20:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "venueUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticketProvider": "Showpass",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "stand-up",
-      "mount-pleasant",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-lmg-the-setup-20261024",
-    "event_name": "The Setup at Little Mountain Gallery",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Little Mountain Gallery",
-    "full_address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Monthly underground comedy showcase featuring sharp standup, absurd characters, and special surprise guests in Mount Pleasant.",
-    "pricing_all_in_cad": {
-      "regular": 17.96,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-24",
-      "start_time": "20:30",
-      "end_time": "22:30",
-      "cost": 17.96
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "details_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_url": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "comedy",
-      "stand-up",
-      "sketch",
-      "mount-pleasant",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Live-checkout cart verified via Showpass ($17.96 – $24.12 CAD all-in). All 13 dimensions satisfied.",
-    "price": 17.96,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 17.96,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-lmg-the-setup-20261024",
-    "title": "The Setup at Little Mountain Gallery",
-    "venue": "Little Mountain Gallery",
-    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$17.96 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 17.96,
-        "label": "$17.96 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-24 at 20:30",
-    "startIso": "2026-10-24T20:30:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "venueUrl": "https://www.showpass.com/o/little-mountain-gallery/",
-    "ticketProvider": "Showpass",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "stand-up",
-      "sketch",
-      "mount-pleasant",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "indie-cinema"
     ]
   },
   {
@@ -6477,7 +5358,8 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "live-cart-verified",
+      "comedy-shows"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6533,6 +5415,7 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": null,
+    "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false,
     "subTags": [
@@ -6543,564 +5426,8 @@ const VANCOUVER_EVENTS = [
       "all-ages",
       "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-fox-cheap-thrills-20261002",
-    "event_name": "Cheap Thrills Dance Party",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Fox Cabaret",
-    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Budget-friendly weekend kickoff dance party spinning indie pop, classic disco, and retro dance anthems late night on Main Street.",
-    "pricing_all_in_cad": {
-      "regular": 8.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-02",
-      "start_time": "22:30",
-      "end_time": "02:00",
-      "cost": 8.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://foxcabaret.com/calendar",
-    "details_url": "https://foxcabaret.com/calendar",
-    "ticket_url": "https://foxcabaret.com/calendar",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
-    "tags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed direct Fox Cabaret advance online checkout rate of $8.00 CAD ($10 at door). All 13 dimensions satisfied.",
-    "price": 8.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 8.0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-fox-cheap-thrills-20261002",
-    "title": "Cheap Thrills Dance Party",
-    "venue": "The Fox Cabaret",
-    "address": "2321 Main St, Vancouver, BC V5T 3C9",
-    "categoryLabel": "Comedy & Shows",
-    "categoryIcon": "🎭",
-    "priceLabel": "$8.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-02 at 22:30",
-    "startIso": "2026-10-02T22:30:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://foxcabaret.com/calendar",
-    "venueUrl": "https://foxcabaret.com/calendar",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
-    "event_name": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
-    "category": "Live Music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Rickshaw Theatre",
-    "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Vancouver soul icon Dawn Pemberton leads an 8-piece power ensemble celebrating the neo-soul grooves and catalog of D'Angelo at the Rickshaw Theatre.",
-    "pricing_all_in_cad": {
-      "regular": 36.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-18",
-      "start_time": "19:30",
-      "end_time": "23:00",
-      "cost": 36.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com/events/",
-    "details_url": "https://rickshawtheatre.com/events/",
-    "ticket_url": "https://rickshawtheatre.com/events/",
-    "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
-    "tags": [
-      "live-music",
-      "soul",
-      "neo-soul",
-      "dangelo",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed advance box office checkout pricing on rickshawtheatre.com ($30.00 CAD base, ~$36.50 CAD all-in). All 13 dimensions satisfied.",
-    "price": 36.5,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 36.5,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
-    "title": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
-    "venue": "Rickshaw Theatre",
-    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎭",
-    "priceLabel": "$36.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.5,
-        "label": "$36.50 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-18 at 19:30",
-    "startIso": "2026-10-18T19:30:00-07:00",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://rickshawtheatre.com/events/",
-    "venueUrl": "https://rickshawtheatre.com/events/",
-    "ticketProvider": "Rickshaw Box Office / Infidels Jazz",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "soul",
-      "neo-soul",
-      "dangelo",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
-    "event_name": "Amy Winehouse Tribute with Krystle Dos Santos",
-    "category": "Live Music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Rickshaw Theatre",
-    "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Two-time Western Canadian Music Award winner Krystle Dos Santos channels the raw emotion and timeless soul of Amy Winehouse with an all-star rhythm section.",
-    "pricing_all_in_cad": {
-      "regular": 36.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-17",
-      "start_time": "19:30",
-      "end_time": "23:00",
-      "cost": 36.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com/events/",
-    "details_url": "https://rickshawtheatre.com/events/",
-    "ticket_url": "https://rickshawtheatre.com/events/",
-    "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
-    "tags": [
-      "live-music",
-      "soul",
-      "rnb",
-      "amy-winehouse",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed advance box office checkout pricing on rickshawtheatre.com ($30.00 CAD base, ~$36.50 CAD all-in). All 13 dimensions satisfied.",
-    "price": 36.5,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 36.5,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $24.00 CAD",
-    "id": "van50-scout-rickshaw-amy-winehouse-20261017",
-    "title": "Amy Winehouse Tribute with Krystle Dos Santos",
-    "venue": "Rickshaw Theatre",
-    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "categoryLabel": "Live Music",
-    "categoryIcon": "🎭",
-    "priceLabel": "$36.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.5,
-        "label": "$36.50 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-10-17 at 19:30",
-    "startIso": "2026-10-17T19:30:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://rickshawtheatre.com/events/",
-    "venueUrl": "https://rickshawtheatre.com/events/",
-    "ticketProvider": "Rickshaw Box Office / Infidels Jazz",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "soul",
-      "rnb",
-      "amy-winehouse",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
-  },
-  {
-    "event_id": "test-reinforce-1790799104",
-    "event_name": "Continuous Learning Jazz Showcase",
-    "category": "music",
-    "venue_name": "Frankie's Jazz Club",
-    "full_address": "",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-25",
-      "start_time": "19:00",
-      "end_time": "16:30",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://frankiesjazzclub.com/events",
-    "details_url": "https://frankiesjazzclub.com/events",
-    "ticket_url": "https://frankiesjazzclub.com/events",
-    "ticket_provider": "Direct",
-    "tags": [
-      "music",
-      "curator-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Curator verified as-is",
-    "id": "test-reinforce-1790799104",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "address": "Vancouver, BC",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "price": 20.0,
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-09-25 at 19:00",
-    "startIso": "2026-09-25T19:00:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://frankiesjazzclub.com/events",
-    "venueUrl": "https://frankiesjazzclub.com/events",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "music",
-      "curator-verified"
-    ]
-  },
-  {
-    "event_id": "test-reinforce-1790878633",
-    "event_name": "Continuous Learning Jazz Showcase",
-    "category": "music",
-    "venue_name": "Frankie's Jazz Club",
-    "full_address": "",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-25",
-      "start_time": "19:00",
-      "end_time": "16:30",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://frankiesjazzclub.com/events",
-    "details_url": "https://frankiesjazzclub.com/events",
-    "ticket_url": "https://frankiesjazzclub.com/events",
-    "ticket_provider": "Direct",
-    "tags": [
-      "music",
-      "curator-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Curator verified as-is",
-    "id": "test-reinforce-1790878633",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "address": "Vancouver, BC",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "price": 20.0,
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-09-25 at 19:00",
-    "startIso": "2026-09-25T19:00:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://frankiesjazzclub.com/events",
-    "venueUrl": "https://frankiesjazzclub.com/events",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "music",
-      "curator-verified"
-    ]
-  },
-  {
-    "event_id": "test-reinforce-1790880260",
-    "event_name": "Continuous Learning Jazz Showcase",
-    "category": "music",
-    "venue_name": "Frankie's Jazz Club",
-    "full_address": "",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
-    "pricing_all_in_cad": {
-      "regular": 20.0,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-25",
-      "start_time": "19:00",
-      "end_time": "16:30",
-      "cost": 20.0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://frankiesjazzclub.com/events",
-    "details_url": "https://frankiesjazzclub.com/events",
-    "ticket_url": "https://frankiesjazzclub.com/events",
-    "ticket_provider": "Direct",
-    "tags": [
-      "music",
-      "curator-verified"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Curator verified as-is",
-    "id": "test-reinforce-1790880260",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "address": "Vancouver, BC",
-    "categoryLabel": "music",
-    "categoryIcon": "🎵",
-    "price": 20.0,
-    "priceLabel": "$20.00 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
-    "frequency": "one-off",
-    "frequencyLabel": "Single Showing",
-    "dateSchedule": "2026-09-25 at 19:00",
-    "startIso": "2026-09-25T19:00:00-07:00",
-    "daysOfWeek": [
-      "fri"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://frankiesjazzclub.com/events",
-    "venueUrl": "https://frankiesjazzclub.com/events",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "music",
-      "curator-verified"
+      "live-cart-verified",
+      "comedy-shows"
     ]
   }
 ];
@@ -8018,6 +6345,230 @@ const MANUAL_REVIEW_QUEUE = [
     "startIso": "2026-10-03T18:00:00",
     "websiteUrl": "https://www.ticketmaster.ca/lolo-tickets/artist/2642571",
     "quarantineReason": "Pricing ranges between $35.00 and $45.00 CAD all-in; quarantined due to higher price band nearing the $50 cap.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-theatresports-improv-centre",
+    "title": "Theatresports™",
+    "artist": "Theatresports™",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "price": 33.5,
+    "priceLabel": "$33.50 CAD",
+    "category": "comedy",
+    "categoryLabel": "Comedy",
+    "startIso": "2026-10-02T19:00:00",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&scroll=timeAndDates",
+    "quarantineReason": "Antigravity Audit: Link Mismatch: Page at https://purchase.theimprovcentre.ca/EventAvailability?EventId=618&scroll=timeAndDates ('') does not contain details for 'Theatresports™'.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-deadly-dinner-party",
+    "title": "Deadly Dinner Party",
+    "artist": "Deadly Dinner Party",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "price": 33.5,
+    "priceLabel": "$33.50 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-02T19:00:00",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "quarantineReason": "Antigravity Audit: Link Mismatch: Page at https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801 ('') does not contain details for 'Deadly Dinner Party'.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-what-else-lmg-20261003",
+    "title": "What Else? (Live Comedy & Trivia Show)",
+    "artist": "What Else? (Live Comedy & Trivia Show)",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 23.03,
+    "priceLabel": "$23.03 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-03T19:00:00",
+    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
+    "quarantineReason": "Antigravity Audit: Calendar Drift: Destination venue calendar (https://www.showpass.com/o/little-mountain-gallery/) does not list or mention 'What Else? (Live Comedy & Trivia Show)' or artist ''.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-stand-up-showcase-lmg-20261015",
+    "title": "Stand-Up Showcase at Little Mountain Gallery",
+    "artist": "Stand-Up Showcase at Little Mountain Gallery",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 18.14,
+    "priceLabel": "$18.14 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-15T19:00:00",
+    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
+    "quarantineReason": "Antigravity Audit: Calendar Drift: Destination venue calendar (https://www.showpass.com/o/little-mountain-gallery/) does not list or mention 'Stand-Up Showcase at Little Mountain Gallery' or artist ''.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-city-pop-city-rickshaw-20261121",
+    "title": "City Pop City: Chen Baker & Technodelic",
+    "artist": "City Pop City: Chen Baker & Technodelic",
+    "venue": "Rickshaw Theatre",
+    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 36.5,
+    "priceLabel": "$36.50 CAD",
+    "category": "live music",
+    "categoryLabel": "Live Music",
+    "startIso": "2026-11-21T19:00:00",
+    "websiteUrl": "https://rickshawtheatre.com/event/city-pop-city/",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://rickshawtheatre.com/event/city-pop-city/",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-fox-sunday-service-20261004",
+    "title": "The Sunday Service: Live Improv Comedy",
+    "artist": "The Sunday Service: Live Improv Comedy",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-04T19:00:00",
+    "websiteUrl": "https://foxcabaret.com/calendar",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://foxcabaret.com/calendar",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-the-sunday-service-fox-20261011",
+    "title": "The Sunday Service: Live Improv Comedy",
+    "artist": "The Sunday Service: Live Improv Comedy",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-11T19:00:00",
+    "websiteUrl": "https://foxcabaret.com/calendar",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://foxcabaret.com/calendar",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-90s-00s-dance-party-fox-20261009",
+    "title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+    "artist": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 15.0,
+    "priceLabel": "$15.00 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-09T19:00:00",
+    "websiteUrl": "https://foxcabaret.com/calendar",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://foxcabaret.com/calendar",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-phyllis-hull-one-woman-show-20270122",
+    "title": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+    "artist": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+    "venue": "The Show Cellar",
+    "address": "1755 Davie St, Vancouver, BC V6G 1W5",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 15.0,
+    "priceLabel": "$15.00 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2027-01-22T19:00:00",
+    "websiteUrl": "https://www.eventbrite.ca",
+    "quarantineReason": "Antigravity Audit: Generic Link: Destination URL is a bare venue homepage (https://www.eventbrite.ca) without specific event details for 'Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!'.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-lmg-20-20-20-comedy-20261017",
+    "title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+    "artist": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+    "venue": "Little Mountain Gallery",
+    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 18.99,
+    "priceLabel": "$18.99 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-17T19:00:00",
+    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
+    "quarantineReason": "Antigravity Audit: Calendar Drift: Destination venue calendar (https://www.showpass.com/o/little-mountain-gallery/) does not list or mention '20/20/20 Vancouver Stand-Up Comedy Showcase' or artist ''.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-lmg-the-setup-20261024",
+    "title": "The Setup at Little Mountain Gallery",
+    "artist": "The Setup at Little Mountain Gallery",
+    "venue": "Little Mountain Gallery",
+    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 17.96,
+    "priceLabel": "$17.96 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-24T19:00:00",
+    "websiteUrl": "https://www.showpass.com/o/little-mountain-gallery/",
+    "quarantineReason": "Antigravity Audit: Calendar Drift: Destination venue calendar (https://www.showpass.com/o/little-mountain-gallery/) does not list or mention 'The Setup at Little Mountain Gallery' or artist ''.",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-fox-cheap-thrills-20261002",
+    "title": "Cheap Thrills Dance Party",
+    "artist": "Cheap Thrills Dance Party",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "price": 8.0,
+    "priceLabel": "$8.00 CAD",
+    "category": "comedy & shows",
+    "categoryLabel": "Comedy & Shows",
+    "startIso": "2026-10-02T19:00:00",
+    "websiteUrl": "https://foxcabaret.com/calendar",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://foxcabaret.com/calendar",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
+    "title": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+    "artist": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+    "venue": "Rickshaw Theatre",
+    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 36.5,
+    "priceLabel": "$36.50 CAD",
+    "category": "live music",
+    "categoryLabel": "Live Music",
+    "startIso": "2026-10-18T19:00:00",
+    "websiteUrl": "https://rickshawtheatre.com/events/",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://rickshawtheatre.com/events/",
+    "flaggedAt": "2026-10-01"
+  },
+  {
+    "id": "van50-scout-rickshaw-amy-winehouse-20261017",
+    "title": "Amy Winehouse Tribute with Krystle Dos Santos",
+    "artist": "Amy Winehouse Tribute with Krystle Dos Santos",
+    "venue": "Rickshaw Theatre",
+    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "price": 36.5,
+    "priceLabel": "$36.50 CAD",
+    "category": "live music",
+    "categoryLabel": "Live Music",
+    "startIso": "2026-10-17T19:00:00",
+    "websiteUrl": "https://rickshawtheatre.com/events/",
+    "quarantineReason": "Antigravity Audit: Dead link detected (HTTP 404): https://rickshawtheatre.com/events/",
     "flaggedAt": "2026-10-01"
   }
 ];
