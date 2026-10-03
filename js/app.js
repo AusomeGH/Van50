@@ -286,7 +286,11 @@ function normalizeActiveEvent(item) {
     const isFilm = (catRaw.includes("cinema") || catRaw.includes("film") || isFest);
     dateSchedule = isFilm ? `${showings.length} Screenings across Vancouver` : `${showings.length} Dates Scheduled`;
   } else if (show1.date) {
-    dateSchedule = show1.date;
+    const dObj = new Date(show1.date.length === 10 ? show1.date + 'T12:00:00' : show1.date);
+    const dateLabel = !isNaN(dObj.getTime())
+      ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+      : show1.date;
+    dateSchedule = dateLabel;
     if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
     if (confirmedDates.length > 1) {
       dateSchedule += ` (+${confirmedDates.length - 1} showings)`;
@@ -3105,8 +3109,8 @@ window.toggleShowings = function(eventId, event) {
       btn.classList.add('expanded');
       btn.setAttribute('aria-expanded', 'true');
       const textSpan = btn.querySelector('.toggle-text');
-      const chevSpan = btn.querySelector('.showings-chevron');
-      if (textSpan) textSpan.textContent = 'Hide Other Dates';
+      const chevSpan = btn.querySelector('.wh-chevron') || btn.querySelector('.showings-chevron');
+      if (textSpan) textSpan.textContent = 'Hide Dates';
       if (chevSpan) chevSpan.textContent = '▴';
     }
   } else {
@@ -3115,7 +3119,7 @@ window.toggleShowings = function(eventId, event) {
       btn.classList.remove('expanded');
       btn.setAttribute('aria-expanded', 'false');
       const textSpan = btn.querySelector('.toggle-text');
-      const chevSpan = btn.querySelector('.showings-chevron');
+      const chevSpan = btn.querySelector('.wh-chevron') || btn.querySelector('.showings-chevron');
       const totalCount = btn.getAttribute('data-count') || '';
       if (textSpan) textSpan.textContent = totalCount ? `All Dates (${totalCount})` : 'All Dates & Times';
       if (chevSpan) chevSpan.textContent = '▾';
@@ -3929,10 +3933,11 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       const curDayNum = targetDate.getDay();
       const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
       const activeDayLabel = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][curDayNum];
-      const activeHours = wh[curKey] || 'Check schedule';
+      const cleanHoursStr = (str) => (str || '').replace(/\s*\([^)]*\)/g, '').trim();
+      const activeHours = cleanHoursStr(wh[curKey] || 'Check schedule');
 
       const rows = dayOrder.map(d => {
-        const hoursStr = wh[d.k] || 'Hours not listed';
+        const hoursStr = cleanHoursStr(wh[d.k] || 'Hours not listed');
         const isCurrentDay = (d.k === curKey);
         return `
           <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
@@ -4018,28 +4023,26 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
       showingsHtml = `
         <div class="card-showings-block" id="showings-block-${ev.id}">
-          <div class="showings-block-header">
-            <span>${sectionTitle}</span>
-            <span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">Multiple Showings</span>
-          </div>
           <div class="showings-table">
             ${primaryRowHtml}
             ${remainingShowings.length > 0 ? `
               <div class="showings-collapsible" id="showings-more-${ev.id}" style="display: none;">
                 ${remainingRowsHtml}
               </div>
-              <button 
-                type="button" 
-                class="btn-toggle-showings" 
-                id="btn-toggle-showings-${ev.id}" 
-                onclick="toggleShowings('${ev.id}', event)" 
-                aria-expanded="false" 
-                data-count="${ev.showings.length}"
-                aria-label="Toggle all showings for ${ev.title}"
-              >
-                <span class="toggle-text">All Dates (${ev.showings.length})</span>
-                <span class="showings-chevron">▾</span>
-              </button>
+              <div class="showings-toggle-row">
+                <button 
+                  type="button" 
+                  class="btn-toggle-showings btn-toggle-hours" 
+                  id="btn-toggle-showings-${ev.id}" 
+                  onclick="toggleShowings('${ev.id}', event)" 
+                  aria-expanded="false" 
+                  data-count="${ev.showings.length}"
+                  aria-label="Toggle all showings for ${ev.title}"
+                >
+                  <span class="toggle-text">All Dates (${ev.showings.length})</span>
+                  <span class="wh-chevron">▾</span>
+                </button>
+              </div>
             ` : ''}
           </div>
         </div>

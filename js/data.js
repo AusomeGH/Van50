@@ -166,7 +166,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Stanley Park",
     "full_address": "Stanley Park Dr, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, featuring historic monuments, seaside viewpoints, and botanical heritage.",
+    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, featuring historic monuments, seaside viewpoints, and botanical heritage. Outer seawall and perimeter pathways remain accessible 24/7.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -217,13 +217,13 @@ const VANCOUVER_EVENTS = [
     "access_model": "open_public_space",
     "pricing_model": "free_access",
     "weekly_hours": {
-      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
+      "mon": "6:00 AM – 10:00 PM",
+      "tue": "6:00 AM – 10:00 PM",
+      "wed": "6:00 AM – 10:00 PM",
+      "thu": "6:00 AM – 10:00 PM",
+      "fri": "6:00 AM – 10:00 PM",
+      "sat": "6:00 AM – 10:00 PM",
+      "sun": "6:00 AM – 10:00 PM"
     },
     "coffee_benchmark": "$4.50 – $6.00 concession coffee",
     "meal_benchmark": "$14.00 – $22.00 CAD (Park cafes)",
@@ -312,13 +312,13 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 6:00 AM – 10:00 PM",
     "weeklyHours": {
-      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
-      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
+      "mon": "6:00 AM – 10:00 PM",
+      "tue": "6:00 AM – 10:00 PM",
+      "wed": "6:00 AM – 10:00 PM",
+      "thu": "6:00 AM – 10:00 PM",
+      "fri": "6:00 AM – 10:00 PM",
+      "sat": "6:00 AM – 10:00 PM",
+      "sun": "6:00 AM – 10:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
@@ -340,7 +340,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Vancouver Art Gallery",
     "full_address": "750 Hornby St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Western Canada's premier visual arts institution, housing over 12,000 works including extensive Emily Carr collections, Indigenous masterworks, and international contemporary exhibitions.",
+    "description": "Western Canada's premier visual arts institution, housing over 12,000 works including extensive Emily Carr collections, Indigenous masterworks, and international contemporary exhibitions. Features free admission on the first Friday of each month from 4:00 PM to 8:00 PM.",
     "pricing_all_in_cad": {
       "regular": 25,
       "senior": 0,
@@ -385,7 +385,7 @@ const VANCOUVER_EVENTS = [
       "tue": "Closed",
       "wed": "10:00 AM – 5:00 PM",
       "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
+      "fri": "10:00 AM – 8:00 PM",
       "sat": "10:00 AM – 5:00 PM",
       "sun": "10:00 AM – 5:00 PM"
     },
@@ -482,7 +482,7 @@ const VANCOUVER_EVENTS = [
       "tue": "Closed",
       "wed": "10:00 AM – 5:00 PM",
       "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
+      "fri": "10:00 AM – 8:00 PM",
       "sat": "10:00 AM – 5:00 PM",
       "sun": "10:00 AM – 5:00 PM"
     },
@@ -669,7 +669,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "The Shipyards District",
     "full_address": "125 Victory Ship Way, North Vancouver, BC",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations.",
+    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations. Pedestrian waterfront boardwalks remain accessible 24/7.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -710,13 +710,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
+      "mon": "9:00 AM – 7:00 PM",
+      "tue": "9:00 AM – 7:00 PM",
+      "wed": "9:00 AM – 7:00 PM",
+      "thu": "9:00 AM – 7:00 PM",
+      "fri": "9:00 AM – 7:00 PM",
+      "sat": "9:00 AM – 7:00 PM",
+      "sun": "9:00 AM – 7:00 PM"
     },
     "coffee_benchmark": "$4.50 – $6.00 Shipyards cafes",
     "meal_benchmark": "$14.00 – $22.00 CAD (Shipyards waterfront dining)",
@@ -782,13 +782,13 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
     "weeklyHours": {
-      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
-      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
+      "mon": "9:00 AM – 7:00 PM",
+      "tue": "9:00 AM – 7:00 PM",
+      "wed": "9:00 AM – 7:00 PM",
+      "thu": "9:00 AM – 7:00 PM",
+      "fri": "9:00 AM – 7:00 PM",
+      "sat": "9:00 AM – 7:00 PM",
+      "sun": "9:00 AM – 7:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
@@ -810,7 +810,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Granville Island Public Market",
     "full_address": "1669 Johnston St, Vancouver, BC",
     "neighborhood": "Granville Island & False Creek",
-    "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views.",
+    "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views. Waterfront boardwalks and courtyard public areas remain accessible 24/7.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -852,13 +852,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
+      "mon": "9:00 AM – 6:00 PM",
+      "tue": "9:00 AM – 6:00 PM",
+      "wed": "9:00 AM – 6:00 PM",
+      "thu": "9:00 AM – 6:00 PM",
+      "fri": "9:00 AM – 6:00 PM",
+      "sat": "9:00 AM – 6:00 PM",
+      "sun": "9:00 AM – 6:00 PM"
     },
     "coffee_benchmark": "$4.50 – $6.00 market roasters",
     "meal_benchmark": "$12.00 – $18.00 CAD (food hall stalls)",
@@ -924,13 +924,13 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
     "weeklyHours": {
-      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
-      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
+      "mon": "9:00 AM – 6:00 PM",
+      "tue": "9:00 AM – 6:00 PM",
+      "wed": "9:00 AM – 6:00 PM",
+      "thu": "9:00 AM – 6:00 PM",
+      "fri": "9:00 AM – 6:00 PM",
+      "sat": "9:00 AM – 6:00 PM",
+      "sun": "9:00 AM – 6:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false,
