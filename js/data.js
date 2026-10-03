@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-03T08:57:55-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-03T10:16:56-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -90,9 +90,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "General Public Admission",
@@ -266,10 +263,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Public Access Path",
@@ -426,9 +419,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "social"
-    ],
     "tiers": [
       {
         "name": "Youth (18 & Under)",
@@ -594,10 +584,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Public Park Courtyard",
@@ -762,11 +748,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access",
-      "markets"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -909,11 +890,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access",
-      "markets"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1052,10 +1028,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1194,9 +1166,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1339,9 +1308,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1486,9 +1452,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1631,10 +1594,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "free-public-access",
-      "markets"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1753,10 +1712,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1894,9 +1849,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1953,7 +1905,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-lanalous-saturday-afternoon-sessions",
     "event_name": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "LanaLou's Rock 'n' Roll Eatery",
     "full_address": "362 Powell St, Vancouver, BC",
@@ -2038,10 +1990,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -2165,10 +2114,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "outdoors",
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2225,7 +2170,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
     "event_name": "Miesha & The Spanks with Francis Baptiste",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC",
@@ -2310,11 +2255,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -2440,9 +2381,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2572,9 +2510,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2618,7 +2553,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-joon-the-pearl-20261002",
     "event_name": "JOON with Lauryn Kovacs",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The Pearl",
     "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -2704,10 +2639,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -2750,7 +2682,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
     "event_name": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -2835,11 +2767,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -2882,7 +2810,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
     "event_name": "SALIN (Live Soul & World Jazz)",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -2966,11 +2894,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -3100,9 +3024,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3146,7 +3067,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-dummy-wise-hall-20261022",
     "event_name": "Dummy with Golomb & worrywart",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
     "neighborhood": "Commercial Drive & East Vancouver",
@@ -3231,10 +3152,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -3278,7 +3196,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
     "event_name": "Ruby Haunt with VHS Ghost",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -3363,11 +3281,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -3410,7 +3324,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "vso-saturday-orpheum",
     "event_name": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "category": "music",
+    "category": "Music",
     "venue_name": "The Orpheum Theatre",
     "full_address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -3495,11 +3409,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -3640,10 +3550,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors",
-      "markets"
-    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -3878,9 +3784,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Tables & Bench (Adult)",
@@ -4022,9 +3925,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4145,9 +4045,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4271,10 +4168,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4401,9 +4294,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4531,9 +4421,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4577,7 +4464,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-scout-orpheum-vso-kids-20261004",
     "event_name": "VSO Kids: Lights, Camera, Orchestra!",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Orpheum",
     "full_address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -4663,10 +4550,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -4820,12 +4704,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social",
-      "shows",
-      "festivals"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4836,8 +4714,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
-      "sat",
       "mon",
+      "sat",
       "thu"
     ],
     "timeSlots": [
@@ -4954,9 +4832,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5000,7 +4875,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-lolo-the-pearl-20261003",
     "event_name": "LØLØ: God Forbid a Girl Goes on Tour",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Pearl",
     "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
@@ -5090,10 +4965,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -5137,7 +5009,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
     "event_name": "Olive Klug with Frail Talk",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -5227,10 +5099,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -5367,11 +5236,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social",
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5505,10 +5369,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "music",
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5552,7 +5412,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
     "event_name": "Raagaverse + Strings",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Annex",
     "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
@@ -5644,10 +5504,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -5692,7 +5549,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-actors-rickshaw-20261009",
     "event_name": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5781,11 +5638,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -5830,7 +5683,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
     "event_name": "Militarie Gun: 20 Songs for $20 Tour",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5920,11 +5773,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -6056,9 +5905,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6190,9 +6036,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6236,7 +6079,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
     "event_name": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6324,10 +6167,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -6460,9 +6300,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6506,7 +6343,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-scout-rickshaw-ethan-regan-20261003",
     "event_name": "Ethan Regan: Young Regan Tour with harf",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -6595,11 +6432,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -6732,9 +6565,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6870,10 +6700,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7009,10 +6835,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7145,9 +6967,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7280,9 +7099,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7414,9 +7230,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7458,7 +7271,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-scout-fox-cheap-thrills-20261002",
     "event_name": "Cheap Thrills Dance Party",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -7546,10 +7359,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -7594,7 +7404,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
     "event_name": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7684,11 +7494,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -7734,7 +7540,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
     "event_name": "Amy Winehouse Tribute with Krystle Dos Santos",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7824,11 +7630,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Adult",
@@ -7964,11 +7766,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social",
-      "shows"
-    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8131,9 +7928,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Previews / Youth (Under 30)",
@@ -8165,8 +7959,8 @@ const VANCOUVER_EVENTS = [
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
       "sat",
-      "fri",
-      "thu"
+      "thu",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -8312,11 +8106,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Social & arts",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social",
-      "festivals"
-    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8484,10 +8273,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social"
-    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8518,8 +8303,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "fri"
+      "fri",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -8638,9 +8423,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
-    "categories": [
-      "markets"
-    ],
     "tiers": [
       {
         "name": "Donated Entry",
@@ -8768,9 +8550,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8824,8 +8603,8 @@ const VANCOUVER_EVENTS = [
     "id": "van50-city-pop-city-rickshaw-20261121",
     "event_name": "City Pop City Ft. Chen Baker & Technodelic",
     "title": "City Pop City Ft. Chen Baker & Technodelic",
-    "category": "music",
-    "categoryLabel": "Music",
+    "category": "Music",
+    "categoryLabel": "Live Music",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -8902,11 +8681,7 @@ const VANCOUVER_EVENTS = [
     "priceLabel": "$36.21 CAD",
     "pricingType": "paid",
     "isFree": false,
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "General Admission",
@@ -9056,9 +8831,6 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
-    "categories": [
-      "free-public-access"
-    ],
     "tiers": [
       {
         "name": "General Public Free Admission",
@@ -9130,7 +8902,7 @@ const VANCOUVER_EVENTS = [
     "event_name": "Dälek (with Infidelity & DarkGable)",
     "title": "Dälek (with Infidelity & DarkGable)",
     "artist": "Dälek, Infidelity, DarkGable",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "one_time",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -9218,10 +8990,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Advance Admission",
@@ -9275,7 +9044,7 @@ const VANCOUVER_EVENTS = [
     "event_name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "artist": "Pastor Ben MacRae & Guest Jazz Ensembles",
-    "category": "music",
+    "category": "Music",
     "lifecycle_type": "recurring",
     "venue_name": "St. Andrew's-Wesley United Church",
     "full_address": "1022 Nelson St, Vancouver, BC",
@@ -9385,10 +9154,7 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
+    "categoryIcon": "🎭",
     "tiers": [
       {
         "name": "Suggested Donation",
@@ -9586,11 +9352,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors",
-      "markets",
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Single Train Ride (Ages 3+)",
@@ -9742,9 +9503,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9905,9 +9663,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -10068,9 +9823,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -10234,9 +9986,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult 18-Holes",
@@ -10408,10 +10157,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors",
-      "social"
-    ],
     "tiers": [
       {
         "name": "Adult (19-64)",
@@ -10580,9 +10325,6 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Board Game Library Access (with food/drink)",
@@ -10755,11 +10497,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
-    "categories": [
-      "cinema",
-      "social",
-      "festivals"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -10770,8 +10507,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-05T12:00:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "mon"
+      "mon",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -10921,11 +10658,6 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
-    "categories": [
-      "outdoors",
-      "markets",
-      "festivals"
-    ],
     "tiers": [
       {
         "name": "General Admission (Ages 8–64)",
@@ -11049,9 +10781,85 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Music",
     "categoryIcon": "🎵",
-    "categories": [
-      "music"
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
     ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "dateSchedule": "2026-09-25 at 19:00",
+    "startIso": "2026-09-25T19:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://frankiesjazzclub.com/events",
+    "venueUrl": "https://frankiesjazzclub.com/events",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": null,
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "music",
+      "curator-verified"
+    ]
+  },
+  {
+    "event_id": "test-reinforce-1791047810",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
+    },
+    "show_1": {
+      "date": "2026-09-25",
+      "start_time": "19:00",
+      "end_time": "16:30",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "details_url": "https://frankiesjazzclub.com/events",
+    "ticket_url": "https://frankiesjazzclub.com/events",
+    "ticket_provider": "Direct",
+    "tags": [
+      "music",
+      "curator-verified"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Curator verified as-is",
+    "id": "test-reinforce-1791047810",
+    "title": "Continuous Learning Jazz Showcase",
+    "venue": "Frankie's Jazz Club",
+    "address": "Vancouver, BC",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
     "tiers": [
       {
         "name": "General Admission",
@@ -11209,6 +11017,39 @@ const MANUAL_REVIEW_QUEUE = [
       "annotatedAt": "2026-10-03T15:51:42.893770+00:00"
     },
     "neighborhood": "Downtown, Gastown & Yaletown"
+  },
+  {
+    "id": "test-reinforce-1791047810",
+    "title": "Continuous Learning Jazz Showcase",
+    "venue": "Frankie's Jazz Club",
+    "price": 20.0,
+    "priceLabel": "$20.00 door",
+    "category": "music",
+    "coordinates": [
+      49.281,
+      -123.111
+    ],
+    "url": "https://frankiesjazzclub.com/events",
+    "neighborhood": "Downtown, Gastown & Yaletown"
+  },
+  {
+    "id": "test-qa-event-1791047811",
+    "title": "Dual Action Test Event",
+    "venue": "Rickshaw Theatre",
+    "price": 25.0,
+    "category": "shows",
+    "websiteUrl": "https://rickshawtheatre.com/test-event",
+    "reviewStatus": "pending_antigravity_review",
+    "attemptedPrice": 25.0,
+    "curatorAnnotation": {
+      "instructionId": "inst_1791047811362",
+      "note": "Fix scraper to target General Admission tier.",
+      "proposedAction": "approve",
+      "userSuppliedPrice": 25.0,
+      "screenshotPaths": [],
+      "annotatedAt": "2026-10-03T17:16:51.436973+00:00"
+    },
+    "neighborhood": "Downtown, Gastown & Yaletown"
   }
 ];
 
@@ -11259,7 +11100,7 @@ const FREQUENCIES = [
 const CATEGORIES = [
   { id: "all", label: "All", icon: "✨" },
   { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-  { id: "music", label: "Music", icon: "🎵" },
+  { id: "music", label: "Live Music", icon: "🎵" },
   { id: "shows", label: "Comedy & Stage", icon: "🎭" },
   { id: "festivals", label: "Festivals", icon: "🎪" },
   { id: "markets", label: "Markets", icon: "🧺" },
@@ -11389,7 +11230,8 @@ const VENUE_URLS = {
   "The Main": "https://themainonmain.com",
   "Commodore Ballroom": "https://www.commodoreballroom.com",
   "The Rec Room Granville": "https://www.therecroom.com",
-  "Firehall Arts Centre": "https://www.firehallartscentre.ca"
+  "Firehall Arts Centre": "https://www.firehallartscentre.ca",
+  "Test QA Cellar 1791047816": "https://testcellar.example.com/events"
 };
 
 // Curated Discovery Sources Directory

@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T08:51:42-07:00",
-    "pendingCount": 5,
+    "updatedAt": "2026-10-03T10:16:50-07:00",
+    "pendingCount": 7,
     "description": "Events quarantined by Antigravity Quarantine AI due to failing one or more of the 20 Discrete Live Dimensions or Live-Checkout Cart verification.",
     "lastTriagedAt": "2026-10-02T14:28:00-07:00",
     "lastResolutionSummary": "Quarantine AI healed and graduated van50-ubc-apple-festival-20261017 to active catalog ($15.00 CAD, tickets live on UBC Tickets, not sold out); verified rickshaw-evergrey-metal-showcase remains 100% sold out on Eventbrite and promoted ticket_url to Tier 1."
@@ -124,6 +124,37 @@
         "userSuppliedPrice": 25.0,
         "screenshotPaths": [],
         "annotatedAt": "2026-10-03T15:51:42.893770+00:00"
+      }
+    },
+    {
+      "id": "test-reinforce-1791047810",
+      "title": "Continuous Learning Jazz Showcase",
+      "venue": "Frankie's Jazz Club",
+      "price": 20.0,
+      "priceLabel": "$20.00 door",
+      "category": "music",
+      "coordinates": [
+        49.281,
+        -123.111
+      ],
+      "url": "https://frankiesjazzclub.com/events"
+    },
+    {
+      "id": "test-qa-event-1791047811",
+      "title": "Dual Action Test Event",
+      "venue": "Rickshaw Theatre",
+      "price": 25.0,
+      "category": "shows",
+      "websiteUrl": "https://rickshawtheatre.com/test-event",
+      "reviewStatus": "pending_antigravity_review",
+      "attemptedPrice": 25.0,
+      "curatorAnnotation": {
+        "instructionId": "inst_1791047811362",
+        "note": "Fix scraper to target General Admission tier.",
+        "proposedAction": "approve",
+        "userSuppliedPrice": 25.0,
+        "screenshotPaths": [],
+        "annotatedAt": "2026-10-03T17:16:51.436973+00:00"
       }
     }
   ],

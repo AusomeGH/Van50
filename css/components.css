@@ -621,7 +621,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 20px 18px;
+  padding: 16px 16px;
   display: flex;
   flex-direction: column;
   transition: all var(--transition-normal);
@@ -636,15 +636,24 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Card Header Meta & Badges */
+/* Card Header Meta & Badges (Unified Single-Row Header) */
 .card-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  min-height: 28px;
   width: 100%;
+}
+
+.header-badges-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .card-top-left-group {
@@ -653,32 +662,35 @@
   flex-shrink: 0;
 }
 
+/* Standardized Pill Token: 24px height, 6px radius, Title Case, crisp 0.74rem */
 .card-category-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
   white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.15s ease;
   text-decoration: none;
   font-family: inherit;
-  line-height: 1.2;
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 
 .card-category-badge:hover {
   transform: translateY(-1px);
-  filter: brightness(1.2);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .card-category-badge .category-badge-icon {
@@ -686,68 +698,74 @@
 }
 
 .card-category-badge .category-badge-text {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
   white-space: nowrap;
 }
 
-/* Category Specific Color Themes */
+/* Category Specific Tone-on-Tone Color Themes */
 .card-category-badge.category-music {
-  background: rgba(168, 85, 247, 0.18);
-  border-color: rgba(168, 85, 247, 0.45);
+  background: rgba(168, 85, 247, 0.14);
+  border-color: rgba(168, 85, 247, 0.35);
   color: #d8b4fe;
 }
 .card-category-badge.category-shows {
-  background: rgba(245, 158, 11, 0.18);
-  border-color: rgba(245, 158, 11, 0.45);
-  color: #fde047;
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
 }
 .card-category-badge.category-cinema {
-  background: rgba(244, 63, 94, 0.18);
-  border-color: rgba(244, 63, 94, 0.45);
+  background: rgba(244, 63, 94, 0.14);
+  border-color: rgba(244, 63, 94, 0.35);
   color: #fda4af;
 }
 .card-category-badge.category-crafts {
-  background: rgba(236, 72, 153, 0.18);
-  border-color: rgba(236, 72, 153, 0.45);
+  background: rgba(236, 72, 153, 0.14);
+  border-color: rgba(236, 72, 153, 0.35);
   color: #f472b6;
 }
 .card-category-badge.category-outdoors {
-  background: rgba(16, 185, 129, 0.18);
-  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.35);
   color: #6ee7b7;
 }
 .card-category-badge.category-activities {
-  background: rgba(14, 165, 233, 0.18);
-  border-color: rgba(14, 165, 233, 0.45);
+  background: rgba(14, 165, 233, 0.14);
+  border-color: rgba(14, 165, 233, 0.35);
   color: #7dd3fc;
 }
 .card-category-badge.category-arts {
-  background: rgba(129, 140, 248, 0.18);
-  border-color: rgba(129, 140, 248, 0.45);
+  background: rgba(129, 140, 248, 0.14);
+  border-color: rgba(129, 140, 248, 0.35);
   color: #a5b4fc;
 }
 .card-category-badge.category-trivia {
-  background: rgba(234, 179, 8, 0.18);
-  border-color: rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.14);
+  border-color: rgba(234, 179, 8, 0.35);
   color: #fef08a;
 }
 .card-category-badge.category-social {
-  background: rgba(217, 70, 239, 0.18);
-  border-color: rgba(217, 70, 239, 0.45);
+  background: rgba(217, 70, 239, 0.14);
+  border-color: rgba(217, 70, 239, 0.35);
   color: #f0abfc;
 }
 .card-category-badge.category-festivals {
-  background: rgba(236, 72, 153, 0.2);
-  border-color: rgba(236, 72, 153, 0.55);
+  background: rgba(236, 72, 153, 0.16);
+  border-color: rgba(236, 72, 153, 0.4);
   color: #f472b6;
 }
 .card-category-badge.category-markets,
 .card-category-badge.category-market {
-  background: rgba(245, 158, 11, 0.2);
-  border-color: rgba(245, 158, 11, 0.55);
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
   color: #fde047;
+}
+.card-category-badge.category-free-public-access {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.28);
+  color: #cbd5e1;
 }
 
 .card-top-date-wrap {
@@ -755,42 +773,49 @@
   align-items: center;
 }
 
+/* Standardized Date Pill: 24px height, 6px radius, Title Case */
 .card-date-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.80rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.02em;
+  gap: 4px;
+  height: 24px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 0 8px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
   white-space: nowrap;
-  line-height: 1.2;
+  line-height: 1;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
 }
 
 .card-date-badge.badge-today {
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  padding: 4px 11px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(251, 191, 36, 0.15));
-  border: 1.5px solid rgba(245, 158, 11, 0.65);
-  color: #fef08a;
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+  padding: 0 8px;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  box-shadow: none;
 }
 
 .card-date-badge.badge-tomorrow {
-  font-size: 0.80rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  background: linear-gradient(135deg, rgba(244, 63, 94, 0.22), rgba(251, 113, 133, 0.1));
-  border-color: rgba(244, 63, 94, 0.5);
-  color: #ffe4e6;
-  box-shadow: 0 0 10px rgba(244, 63, 94, 0.15);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: capitalize;
+  padding: 0 8px;
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: #fda4af;
+  box-shadow: none;
 }
 
 .card-top-right-group {
@@ -887,12 +912,12 @@
 /* Card Content */
 .card-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.10rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.35;
-  margin-bottom: 8px;
-  min-height: 3.1rem;
+  margin-bottom: 6px;
+  min-height: auto;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -950,12 +975,20 @@
 
 .card-venue-row {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.84rem;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.card-venue-primary-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-size: 0.84rem;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
 }
 
 .venue-location-btn,
@@ -972,6 +1005,8 @@
   border-radius: var(--radius-sm);
   background: rgba(56, 189, 248, 0.08);
   border: 1px solid rgba(56, 189, 248, 0.22);
+  min-width: 0;
+  flex: 1 1 auto;
   max-width: 100%;
 }
 
@@ -1020,6 +1055,9 @@
   color: #f1f5f9;
   font-weight: 600;
   font-size: 0.84rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .venue-website-link,
@@ -1038,6 +1076,7 @@
   gap: 4px;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  flex: 0 0 auto;
   margin-left: auto;
 }
 
@@ -1069,6 +1108,7 @@
   gap: 5px;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  width: fit-content;
 }
 
 .btn-venue-filter:hover {
@@ -2584,16 +2624,25 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.74rem;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
+  line-height: 1;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  box-sizing: border-box;
 }
 
 .policy-pill.age-policy {
-  background: rgba(245, 158, 11, 0.12);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(244, 63, 94, 0.12);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  font-weight: 700;
 }
 
 .policy-pill.admission-policy {
@@ -2936,25 +2985,28 @@
 .pwa-install-banner {
   position: fixed;
   bottom: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
+  left: 12px;
+  right: 12px;
+  width: auto;
   max-width: 440px;
-  background: rgba(15, 23, 42, 0.95);
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: 18px;
-  padding: 12px 16px;
+  border-radius: 16px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   z-index: 9999;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.15);
   transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .pwa-install-banner.pwa-banner-visible {
@@ -2972,14 +3024,16 @@
 .pwa-banner-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .pwa-banner-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
@@ -2988,29 +3042,33 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .pwa-banner-text strong {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: #fff;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
 
 .pwa-banner-text span {
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   color: #94a3b8;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
 
 .pwa-banner-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-shrink: 0;
 }
 
@@ -3018,13 +3076,15 @@
   background: linear-gradient(135deg, #10b981, #059669);
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  font-size: 0.82rem;
+  padding: 7px 14px;
+  font-size: 0.80rem;
   font-weight: 700;
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
   transition: transform 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-pwa-banner:active {
@@ -3035,15 +3095,40 @@
   background: none;
   border: none;
   color: #64748b;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 6px;
   border-radius: 50%;
   transition: color 0.15s ease;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .btn-pwa-close:hover {
   color: #fff;
+}
+
+@media (max-width: 400px) {
+  .pwa-install-banner {
+    left: 8px;
+    right: 8px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  .pwa-banner-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .pwa-banner-text strong {
+    font-size: 0.80rem;
+  }
+  .pwa-banner-text span {
+    display: none;
+  }
+  .btn-pwa-banner {
+    padding: 6px 12px;
+    font-size: 0.76rem;
+  }
 }
 
 /* Standalone Native App Safe Area & Tweaks */
@@ -3823,18 +3908,18 @@ body.van50-accessible .card-ticket-link {
   color: #d8b4fe;
 }
 
-/* 6. Expandable Weekly Operating Hours */
+/* 6. Expandable Weekly Operating Hours ("Un-Boxed" Lightweight Row) */
 .card-weekly-hours-block {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  margin: 8px 0;
+  border-radius: 8px;
+  margin: 6px 0 8px 0;
   overflow: hidden;
   transition: border-color var(--transition-fast);
 }
 
 .card-weekly-hours-block:hover {
-  border-color: rgba(6, 182, 212, 0.3);
+  border-color: rgba(6, 182, 212, 0.25);
 }
 
 .weekly-hours-summary-row {
@@ -3842,15 +3927,15 @@ body.van50-accessible .card-ticket-link {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   cursor: pointer;
   user-select: none;
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
   transition: background var(--transition-fast);
 }
 
 .weekly-hours-summary-row:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .wh-summary-left {
@@ -3871,40 +3956,40 @@ body.van50-accessible .card-ticket-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.82rem;
+  font-size: 0.80rem;
   line-height: 1.3;
 }
 
 .wh-active-day-box .wh-active-day-name {
-  color: #34d399; /* Green highlight requested by user */
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  color: #94a3b8;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .wh-active-day-box .wh-active-hours-val {
-  color: #a7f3d0; /* Soft bright green */
-  font-weight: 600;
+  color: #34d399;
+  font-weight: 700;
 }
 
 .btn-toggle-hours {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  color: #34d399;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
   font-size: 0.72rem;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: var(--radius-full);
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
 .btn-toggle-hours:hover {
-  background: rgba(16, 185, 129, 0.22);
-  border-color: #34d399;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
@@ -3959,25 +4044,25 @@ body.van50-accessible .card-ticket-link {
   animation: hours-expand-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 7. Outing Spend Estimator Pill (Option A) */
+/* 7. Outing Spend Estimator ("Un-Boxed" Subtle Metadata Row) */
 .card-spend-estimator-pill {
   display: flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.22);
-  border-radius: 6px;
-  padding: 6px 10px;
-  margin: 6px 0 8px 0;
-  font-size: 0.74rem;
-  color: #e2e8f0;
+  justify-content: space-between;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 3px 2px;
+  margin: 4px 0 8px 0;
+  font-size: 0.75rem;
+  color: #94a3b8;
   line-height: 1.35;
   transition: all var(--transition-fast);
 }
 
 .card-spend-estimator-pill:hover {
-  background: rgba(6, 182, 212, 0.14);
-  border-color: rgba(6, 182, 212, 0.4);
+  background: transparent;
 }
 
 .card-spend-estimator-pill .spend-pill-icon {
@@ -3987,7 +4072,7 @@ body.van50-accessible .card-ticket-link {
 
 .card-spend-estimator-pill .spend-pill-label strong {
   color: #38bdf8;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .food-service-note {
@@ -3998,16 +4083,17 @@ body.van50-accessible .card-ticket-link {
 /* 8. Crowdsourced Price Feedback System & Trigger Button */
 .btn-suggest-price {
   background: transparent;
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  color: #38bdf8;
-  border-radius: 4px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 2px 7px;
+  border: none;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 2px 4px;
   cursor: pointer;
   margin-left: auto;
   white-space: nowrap;
-  transition: all var(--transition-fast);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -4015,20 +4101,19 @@ body.van50-accessible .card-ticket-link {
 }
 
 .btn-suggest-price:hover {
-  background: rgba(56, 189, 248, 0.16);
-  border-color: rgba(56, 189, 248, 0.55);
-  color: #f0f9ff;
-  transform: translateY(-1px);
+  color: #38bdf8;
+  background: transparent;
+  transform: none;
 }
 
 .card-spend-estimator-pill.card-spend-uncalibrated {
-  background: rgba(148, 163, 184, 0.06);
-  border-color: rgba(148, 163, 184, 0.18);
-  color: #94a3b8;
+  background: transparent;
+  border: none;
+  color: #64748b;
 }
 
 .card-spend-estimator-pill.card-spend-uncalibrated .spend-pill-label strong {
-  color: #cbd5e1;
+  color: #94a3b8;
 }
 
 .price-modal-input {
@@ -4114,7 +4199,7 @@ body.van50-accessible .card-ticket-link {
 .card-action-cluster {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   flex-shrink: 0;
 }
 
@@ -4122,22 +4207,23 @@ body.van50-accessible .card-ticket-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-sm);
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.05);
-  color: var(--text-secondary);
+  color: #94a3b8;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.15s ease;
   padding: 0;
   line-height: 1;
   flex-shrink: 0;
 }
 
 .btn-card-action:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 /* Accessibility Button on Card */
@@ -4224,15 +4310,9 @@ body.van50-accessible .card-ticket-link {
   background: rgba(16, 185, 129, 0.2) !important;
 }
 
-/* Line 2: Categories Row */
+/* Line 2: Categories Row (Deprecated - merged into unified card-top-bar) */
 .card-line-2.card-categories-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 2px;
-  margin-bottom: 8px;
-  min-height: 24px;
+  display: none !important;
 }
 
 /* Accessible Venues Only Toggle */

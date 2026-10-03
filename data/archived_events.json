@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T08:51:42-07:00",
+    "updatedAt": "2026-10-03T10:16:50-07:00",
     "archivedCount": 17,
     "description": "Events permanently dismissed or archived by Antigravity Quarantine AI due to exceeding the $50 CAD budget cap, expired dates, corrupted fixtures, or phantom listings."
   },
@@ -833,11 +833,11 @@
       "semanticProvider": "",
       "websiteUrl": "",
       "category": "",
-      "flaggedAt": "2026-10-03T08:51:42-07:00",
+      "flaggedAt": "2026-10-03T10:16:50-07:00",
       "flagReason": "Test over $50 cap",
       "reviewStatus": "denied_auto_budget",
       "archivedReason": "Test over $50 cap",
-      "archivedAt": "2026-10-03T08:51:42-07:00",
+      "archivedAt": "2026-10-03T10:16:50-07:00",
       "notes": "Auto-Denied by budget filter: verified price exceeds $50.00 CAD cap."
     }
   ]

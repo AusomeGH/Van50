@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van50 Card Design Optimization — Interactive Preview</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Van50 Core Styles -->
+  <link rel="stylesheet" href="css/style.css?v=7.1.0">
+  <link rel="stylesheet" href="css/components.css?v=7.3.6">
+
+  <style>
+    body {
+      background-color: #060911;
+      color: #f8fafc;
+      font-family: var(--font-body);
+      padding: 0 0 60px 0;
+      margin: 0;
+    }
+
+    .preview-header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 18px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .preview-header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .preview-title-box h1 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .preview-title-box p {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin: 4px 0 0 0;
+    }
+
+    .preview-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .preview-mode-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-mode-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .preview-mode-btn.active {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #34d399;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .preview-toggle-annotations {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #d8b4fe;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-toggle-annotations.active {
+      background: rgba(168, 85, 247, 0.3);
+      border-color: #c084fc;
+      color: #fff;
+    }
+
+    .preview-container {
+      max-width: 1280px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Comparison Columns */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .column-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .column-title .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-before {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .badge-after {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    /* Mobile Frame Preview Mode */
+    .mobile-frame-wrap {
+      display: none;
+      justify-content: center;
+      margin: 30px auto;
+    }
+
+    .mobile-frame {
+      width: 390px;
+      background: #080c14;
+      border: 10px solid #1e293b;
+      border-radius: 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(16, 185, 129, 0.1);
+      padding: 20px 14px;
+      position: relative;
+    }
+
+    .mobile-notch {
+      width: 140px;
+      height: 18px;
+      background: #1e293b;
+      border-radius: 0 0 14px 14px;
+      margin: -20px auto 16px auto;
+    }
+
+    /* ==========================================================================
+       PROPOSED REDESIGN SYSTEM (CSS Tokens & Rules)
+       ========================================================================== */
+
+    /* 1. Unified Single-Row Header */
+    .proposed-card .card-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      min-height: 28px;
+    }
+
+    .proposed-card .header-badges-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* Unified Pill Token: 22px height, 6px radius, Title Case, crisp 0.74rem */
+    .proposed-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      text-transform: capitalize;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    /* Date Badge: Refined Amber Glass */
+    .proposed-pill.pill-date-today {
+      background: rgba(245, 158, 11, 0.16);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    .proposed-pill.pill-date-upcoming {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* Category Badges: Harmonious Tone-on-Tone */
+    .proposed-pill.pill-cat-outdoors {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+    .proposed-pill.pill-cat-public {
+      background: rgba(148, 163, 184, 0.12);
+      border-color: rgba(148, 163, 184, 0.28);
+      color: #cbd5e1;
+    }
+    .proposed-pill.pill-cat-music {
+      background: rgba(168, 85, 247, 0.14);
+      border-color: rgba(168, 85, 247, 0.35);
+      color: #d8b4fe;
+    }
+    .proposed-pill.pill-cat-shows {
+      background: rgba(245, 158, 11, 0.14);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fcd34d;
+    }
+
+    /* 2. Compact Action Cluster: 26x26 Micro-Buttons */
+    .proposed-card .card-action-cluster {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .proposed-card .btn-card-action {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .proposed-card .btn-card-action:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* 3. Title & Venue Streamlining */
+    .proposed-card .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .proposed-card .card-venue-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+    }
+
+    .proposed-card .venue-location-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #cbd5e1;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .proposed-card .venue-location-link:hover {
+      color: #38bdf8;
+    }
+
+    .proposed-card .venue-site-chip {
+      color: #a855f7;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .proposed-card .venue-site-chip:hover {
+      background: rgba(168, 85, 247, 0.2);
+      color: #d8b4fe;
+    }
+
+    /* 4. "Un-Boxed" Lightweight Schedule Row */
+    .proposed-card .inline-schedule-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.80rem;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 6px 10px;
+      margin-bottom: 10px;
+    }
+
+    .proposed-card .schedule-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    .proposed-card .schedule-left strong {
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    .proposed-card .btn-ghost-trigger {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+    }
+
+    .proposed-card .btn-ghost-trigger:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* 5. "Un-Boxed" Lightweight Spend Row */
+    .proposed-card .inline-spend-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: #94a3b8;
+      padding: 4px 2px;
+      margin-bottom: 12px;
+    }
+
+    .proposed-card .spend-text strong {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .proposed-card .btn-suggest-link {
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: color 0.15s ease;
+    }
+
+    .proposed-card .btn-suggest-link:hover {
+      color: #38bdf8;
+    }
+
+    /* 6. Footer Layout: Crisp Pricing + Harmonious Tiers Trigger + Solid CTA */
+    .proposed-card .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      margin-top: auto;
+    }
+
+    .proposed-card .price-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proposed-card .price-val {
+      font-family: var(--font-heading);
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #10b981;
+      letter-spacing: -0.01em;
+    }
+
+    .proposed-card .price-val.free {
+      color: #34d399;
+    }
+
+    .proposed-card .pill-tiers {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      font-size: 0.70rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      text-transform: capitalize;
+    }
+
+    .proposed-card .pill-tiers:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    .proposed-card .btn-primary-cta {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .proposed-card .btn-primary-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+      filter: brightness(1.08);
+    }
+
+    /* Callout Badges */
+    .callout-badge {
+      display: none;
+      position: absolute;
+      background: #7c3aed;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+
+    .show-annotations .callout-badge {
+      display: block;
+    }
+
+    .card-wrapper {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .card-height-stat {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .card-height-stat strong {
+      color: #10b981;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar Controls -->
+  <header class="preview-header">
+    <div class="preview-header-inner">
+      <div class="preview-title-box">
+        <h1><span>📐</span> Card Design Optimization Preview</h1>
+        <p>Interactive preview of 3 diverse real-world Vancouver cards comparing Current vs Proposed Uniform Layout</p>
+      </div>
+
+      <div class="preview-controls">
+        <button class="preview-mode-btn active" id="btn-side-by-side" onclick="setMode('side-by-side')">
+          <span>⚖️</span> Side-by-Side View
+        </button>
+        <button class="preview-mode-btn" id="btn-mobile-view" onclick="setMode('mobile-view')">
+          <span>📱</span> Mobile Frame (390px)
+        </button>
+        <button class="preview-mode-btn" id="btn-proposed-only" onclick="setMode('proposed-only')">
+          <span>🌟</span> Proposed Redesign Only
+        </button>
+        <button class="preview-toggle-annotations" id="btn-toggle-notes" onclick="toggleAnnotations()">
+          <span>💡</span> Toggle Design Annotations
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="preview-container">
+
+    <!-- Mode 1: Side by Side Comparison Grid -->
+    <div id="side-by-side-grid" class="comparison-grid">
+      
+      <!-- Left Column: CURRENT LAYOUT -->
+      <div class="comparison-column">
+        <div class="column-title">
+          <span>Current Layout (Baseline)</span>
+          <span class="badge badge-before">Stacked Rows • Mixed Pills</span>
+        </div>
+
+        <!-- CURRENT CARD 1: Dr. Sun Yat-Sen -->
+        <div class="card-wrapper">
+          <article class="event-card">
+            <!-- Line 1: Date + Action Cluster -->
+            <div class="card-top-bar card-line-1">
+              <div class="card-top-left-group">
+                <span class="card-date-badge badge-today">
+                  <span>TODAY (SAT, OCT 3)</span>
+                </span>
+              </div>
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action btn-card-access accessible" title="Fully Wheelchair Accessible">
+                  <span class="access-btn-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#10b981" stroke-width="2" fill="rgba(16, 185, 129, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#10b981"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#10b981" stroke-width="1.8" stroke-linecap="round"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#10b981" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </span>
+                </button>
+                <button type="button" class="btn-card-action btn-card-share" title="Share event">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </button>
+                <button type="button" class="btn-card-action btn-save-card" title="Save outing">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Line 2: Categories Row -->
+            <div class="card-categories-row card-line-2">
+              <button class="card-category-badge category-outdoors"><span class="category-badge-text">OUTDOORS</span></button>
+              <button class="card-category-badge category-social" style="color: #cbd5e1; border-color: rgba(255,255,255,0.2);"><span class="category-badge-text">FREE PUBLIC ACCESS</span></button>
+            </div>
+
+            <h2 class="card-title"><a href="#" class="card-title-link">Dr. Sun Yat-Sen Public Courtyard & Chinese Garden</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-btn card-maps-link">
+                <span class="venue-pin-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                <span class="venue-name">Dr. Sun Yat-Sen Public Park</span>
+                <span class="venue-neighborhood-chip">• Chinatown</span>
+              </a>
+              <a href="#" class="venue-website-link"><span class="website-label">Venue Site ↗</span></a>
+            </div>
+
+            <!-- Boxed Weekly Hours -->
+            <div class="card-weekly-hours-block">
+              <div class="weekly-hours-summary-row">
+                <div class="wh-summary-left">
+                  <div class="wh-active-day-box">
+                    <span class="wh-active-day-name">Saturday:</span>
+                    <span class="wh-active-hours-val">10:00 AM – 4:00 PM</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-toggle-hours"><span class="toggle-text">Full Week</span> <span>▾</span></button>
+              </div>
+            </div>
+
+            <p class="card-desc">Authentic Ming Dynasty-style garden courtyard featuring limestone scholar rocks, jade-green reflecting pond, and classical Chinese architecture in historical Chinatown.</p>
+
+            <!-- Boxed Spend Estimator -->
+            <div class="card-spend-estimator-pill">
+              <span class="spend-pill-label"><strong>In-Venue Drink Spend:</strong> $0.00 – $6.00 CAD (free public entry; optional tea room)</span>
+              <button type="button" class="btn-suggest-price">Suggest price ✎</button>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price-main free">Free ($0)</span>
+              </div>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; border-radius: 20px; font-size: 0.84rem;">Get Tickets / Details ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Current Height: <strong>585px</strong> (Heavy visual boxes)</div>
+        </div>
+
+        <!-- CURRENT CARD 2: Cheap Thrills Dance Party -->
+        <div class="card-wrapper">
+          <article class="event-card">
+            <div class="card-top-bar card-line-1">
+              <div class="card-top-left-group">
+                <span class="card-date-badge" style="background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.5); color: #ffe4e6;">
+                  <span>FRI, OCT 9 (22:30)</span>
+                </span>
+              </div>
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action btn-card-access partial" title="Partially Accessible">
+                  <span class="access-btn-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#f59e0b"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8"/></svg>
+                  </span>
+                </button>
+                <button type="button" class="btn-card-action btn-card-share"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button type="button" class="btn-card-action btn-save-card"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+
+            <div class="card-categories-row card-line-2">
+              <button class="card-category-badge category-music"><span class="category-badge-text">MUSIC</span></button>
+            </div>
+
+            <h2 class="card-title"><a href="#" class="card-title-link">Cheap Thrills Dance Party</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-btn card-maps-link">
+                <span class="venue-pin-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                <span class="venue-name">The Fox Cabaret</span>
+                <span class="venue-neighborhood-chip">• Mount Pleasant</span>
+              </a>
+              <a href="#" class="venue-website-link"><span class="website-label">Venue Site ↗</span></a>
+            </div>
+
+            <div class="card-schedule-row">
+              <span>Friday, Oct 9 at 22:30</span>
+              <span class="card-meta-pill one-off" style="margin-left: auto;">ONE-OFF</span>
+            </div>
+
+            <p class="card-desc">Budget-friendly weekend kickoff dance party spinning indie pop, classic disco, and retro dance anthems late night on Main Street.</p>
+
+            <div class="card-spend-estimator-pill">
+              <span class="spend-pill-label"><strong>In-Venue Drink Spend:</strong> $14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)</span>
+              <button type="button" class="btn-suggest-price">Suggest price ✎</button>
+            </div>
+
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price-main">$8.00 CAD</span>
+              </div>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; border-radius: 20px; font-size: 0.84rem;">Get Tickets / Details ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Current Height: <strong>555px</strong> (Separate category line + stacked meta)</div>
+        </div>
+
+        <!-- CURRENT CARD 3: Little Mountain Gallery -->
+        <div class="card-wrapper">
+          <article class="event-card">
+            <div class="card-top-bar card-line-1">
+              <div class="card-top-left-group">
+                <span class="card-date-badge badge-today">
+                  <span>SAT, OCT 10 (19:00)</span>
+                </span>
+              </div>
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action btn-card-access partial" title="Salazar Stage Accessible, Raccoon Room Stairs">
+                  <span class="access-btn-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#f59e0b"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8"/></svg>
+                  </span>
+                </button>
+                <button type="button" class="btn-card-action btn-card-share"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button type="button" class="btn-card-action btn-save-card"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+
+            <div class="card-categories-row card-line-2">
+              <button class="card-category-badge category-shows"><span class="category-badge-text">COMEDY & STAGE</span></button>
+            </div>
+
+            <h2 class="card-title"><a href="#" class="card-title-link">The Setup at Little Mountain Gallery</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-btn card-maps-link">
+                <span class="venue-pin-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                <span class="venue-name">Little Mountain Gallery</span>
+                <span class="venue-neighborhood-chip">• Gastown</span>
+              </a>
+              <a href="#" class="venue-website-link"><span class="website-label">Venue Site ↗</span></a>
+            </div>
+
+            <div class="card-policy-row" style="margin-bottom: 8px;">
+              <span class="policy-pill age-policy">19+ (LICENSED)</span>
+            </div>
+
+            <p class="card-desc">Vancouver's premier non-profit comedy community venue hosting high-energy stand-up and improv comedy showcases.</p>
+
+            <div class="card-spend-estimator-pill">
+              <span class="spend-pill-label"><strong>In-Venue Drink Spend:</strong> $6.50 – $8.50 local craft beer & cider</span>
+              <button type="button" class="btn-suggest-price">Suggest price ✎</button>
+            </div>
+
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price-main">$15.00 CAD</span>
+                <span class="price-tiers-toggle-hint" style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.70rem; border: 1px solid rgba(255,255,255,0.15);">TIERS ▾</span>
+              </div>
+              <a href="#" class="btn btn-primary" style="padding: 8px 16px; border-radius: 20px; font-size: 0.84rem;">Get Tickets / Details ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Current Height: <strong>560px</strong></div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: PROPOSED OPTIMIZED LAYOUT -->
+      <div class="comparison-column">
+        <div class="column-title">
+          <span>Proposed Optimized Layout</span>
+          <span class="badge badge-after">Unified Single Header • Compact Pill Tokens</span>
+        </div>
+
+        <!-- PROPOSED CARD 1: Dr. Sun Yat-Sen -->
+        <div class="card-wrapper">
+          <div class="callout-badge" style="top: 8px; left: 8px;">Opt 1: Unified Inline Header (Saves 35px)</div>
+          <div class="callout-badge" style="top: 155px; right: 10px;">Opt 3: Un-Boxed Schedule</div>
+          <div class="callout-badge" style="bottom: 50px; left: 8px;">Opt 3: Streamlined Spend Meta</div>
+          <article class="event-card proposed-card">
+            <!-- OPTIMIZATION 1: Unified Single Header Row (Date + Categories on Left, Action Cluster on Right) -->
+            <div class="card-top-bar">
+              <div class="header-badges-left">
+                <!-- Date Pill: Title Case, 24px height, sleek radius -->
+                <span class="proposed-pill pill-date-today" title="Happening Today">
+                  <span>Today, Oct 3</span>
+                </span>
+                <!-- Category Pills: Standardized 24px pill token in Title Case -->
+                <button type="button" class="proposed-pill pill-cat-outdoors">
+                  <span>Outdoors</span>
+                </button>
+                <button type="button" class="proposed-pill pill-cat-public">
+                  <span>Free Public Access</span>
+                </button>
+              </div>
+
+              <!-- Action Cluster: Compact 26px squircle micro-buttons -->
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action" style="color: #10b981; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.1);" title="Fully Wheelchair Accessible">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#10b981" stroke-width="2" fill="rgba(16, 185, 129, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#10b981"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#10b981" stroke-width="1.8" stroke-linecap="round"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#10b981" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </button>
+                <button type="button" class="btn-card-action" title="Share event">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </button>
+                <button type="button" class="btn-card-action" title="Save outing">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Title & Venue -->
+            <h2 class="card-title"><a href="#" class="card-title-link">Dr. Sun Yat-Sen Public Courtyard & Chinese Garden</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Dr. Sun Yat-Sen Public Park</span>
+              </a>
+              <a href="#" class="venue-site-chip">Venue Site ↗</a>
+            </div>
+
+            <!-- OPTIMIZATION 3: "Un-Boxed" Schedule Row (Clean inline display) -->
+            <div class="inline-schedule-row">
+              <div class="schedule-left">
+                <span>🕒 Saturday:</span>
+                <strong>10:00 AM – 4:00 PM</strong>
+              </div>
+              <button type="button" class="btn-ghost-trigger">Full Week ▾</button>
+            </div>
+
+            <p class="card-desc" style="margin-bottom: 8px;">Authentic Ming Dynasty-style garden courtyard featuring limestone scholar rocks, jade-green reflecting pond, and classical Chinese architecture in historical Chinatown.</p>
+
+            <!-- OPTIMIZATION 3: "Un-Boxed" Spend Estimator (Subtle metadata, no nested box) -->
+            <div class="inline-spend-row">
+              <div class="spend-text">
+                💳 Drink/Item: <strong>$0 – $6 CAD</strong> (free entry; optional tea)
+              </div>
+              <span class="btn-suggest-link">Suggest ✎</span>
+            </div>
+
+            <!-- OPTIMIZATION 4: Harmonized Footer -->
+            <div class="card-footer">
+              <div class="price-group">
+                <span class="price-val free">Free ($0)</span>
+              </div>
+              <a href="#" class="btn-primary-cta">Get Tickets / Details ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Optimized Height: <strong>445px</strong> (Saved <strong>140px / 24%</strong> vertical space!)</div>
+        </div>
+
+        <!-- PROPOSED CARD 2: Cheap Thrills Dance Party -->
+        <div class="card-wrapper">
+          <div class="callout-badge" style="top: 8px; left: 8px;">Opt 2: Music Category in Title Case</div>
+          <article class="event-card proposed-card">
+            <div class="card-top-bar">
+              <div class="header-badges-left">
+                <span class="proposed-pill pill-date-upcoming" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.35); color: #fda4af;">
+                  <span>Fri, Oct 9 • 10:30 PM</span>
+                </span>
+                <!-- Unified Music Pill -->
+                <button type="button" class="proposed-pill pill-cat-music">
+                  <span>Music</span>
+                </button>
+                <span class="proposed-pill" style="background: rgba(244, 63, 94, 0.08); border-color: rgba(244, 63, 94, 0.2); color: #f43f5e; font-size: 0.70rem;">
+                  One-Off
+                </span>
+              </div>
+
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action" style="color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.1);" title="Partially Accessible">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#f59e0b"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8"/></svg>
+                </button>
+                <button type="button" class="btn-card-action" title="Share event"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button type="button" class="btn-card-action" title="Save outing"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+
+            <h2 class="card-title"><a href="#" class="card-title-link">Cheap Thrills Dance Party</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>The Fox Cabaret</span>
+              </a>
+              <a href="#" class="venue-site-chip">Venue Site ↗</a>
+            </div>
+
+            <p class="card-desc" style="margin-bottom: 8px;">Budget-friendly weekend kickoff dance party spinning indie pop, classic disco, and retro dance anthems late night on Main Street.</p>
+
+            <div class="inline-spend-row">
+              <div class="spend-text">
+                🍸 Bar Cocktails: <strong>$14 – $15 CAD</strong> (Moscow Mule, Margarita)
+              </div>
+              <span class="btn-suggest-link">Suggest ✎</span>
+            </div>
+
+            <div class="card-footer">
+              <div class="price-group">
+                <span class="price-val">$8.00 CAD</span>
+              </div>
+              <a href="#" class="btn-primary-cta">Get Tickets / Details ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Optimized Height: <strong>410px</strong> (Saved <strong>145px / 26%</strong> vertical space!)</div>
+        </div>
+
+        <!-- PROPOSED CARD 3: Little Mountain Gallery -->
+        <div class="card-wrapper">
+          <div class="callout-badge" style="bottom: 12px; left: 8px;">Opt 4: Clean Inline Tiers Trigger</div>
+          <article class="event-card proposed-card">
+            <div class="card-top-bar">
+              <div class="header-badges-left">
+                <span class="proposed-pill pill-date-today">
+                  <span>Sat, Oct 10 • 7:00 PM</span>
+                </span>
+                <button type="button" class="proposed-pill pill-cat-shows">
+                  <span>Comedy & Stage</span>
+                </button>
+                <span class="proposed-pill" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #94a3b8; font-size: 0.70rem;">
+                  19+ Licensed
+                </span>
+              </div>
+
+              <div class="card-action-cluster">
+                <button type="button" class="btn-card-action" style="color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.1);" title="Salazar Stage Accessible, Raccoon Room Stairs">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#f59e0b"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8"/></svg>
+                </button>
+                <button type="button" class="btn-card-action" title="Share event"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button type="button" class="btn-card-action" title="Save outing"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+
+            <h2 class="card-title"><a href="#" class="card-title-link">The Setup at Little Mountain Gallery</a></h2>
+
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Little Mountain Gallery</span>
+              </a>
+              <a href="#" class="venue-site-chip">Venue Site ↗</a>
+            </div>
+
+            <p class="card-desc" style="margin-bottom: 8px;">Vancouver's premier non-profit comedy community venue hosting high-energy stand-up and improv comedy showcases.</p>
+
+            <div class="inline-spend-row">
+              <div class="spend-text">
+                🍺 Bar Drinks: <strong>$6.50 – $8.50 CAD</strong> (craft tallboys & cider)
+              </div>
+              <span class="btn-suggest-link">Suggest ✎</span>
+            </div>
+
+            <div class="card-footer">
+              <div class="price-group">
+                <span class="price-val">$15.00 CAD</span>
+                <!-- Unified Tiers Trigger -->
+                <button type="button" class="pill-tiers" title="2 Admission Tiers available">Tiers ▾</button>
+              </div>
+              <a href="#" class="btn-primary-cta">Get Tickets (Showpass) ↗</a>
+            </div>
+          </article>
+          <div class="card-height-stat">Optimized Height: <strong>415px</strong> (Saved <strong>145px / 26%</strong> vertical space!)</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mode 2: Mobile Viewport Frame -->
+    <div id="mobile-frame-view" class="mobile-frame-wrap">
+      <div class="mobile-frame">
+        <div class="mobile-notch"></div>
+        <div style="font-size: 0.72rem; color: #10b981; font-weight: 700; text-align: center; margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase;">
+          Interactive Mobile Viewport (390px)
+        </div>
+
+        <!-- Render Proposed Cards in Mobile Frame -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- Mobile Card 1 -->
+          <article class="event-card proposed-card">
+            <div class="card-top-bar">
+              <div class="header-badges-left">
+                <span class="proposed-pill pill-date-today">Today, Oct 3</span>
+                <span class="proposed-pill pill-cat-outdoors">Outdoors</span>
+                <span class="proposed-pill pill-cat-public">Free Public</span>
+              </div>
+              <div class="card-action-cluster">
+                <button class="btn-card-action" style="color: #10b981; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.1);"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#10b981" stroke-width="2" fill="rgba(16, 185, 129, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#10b981"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#10b981" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#10b981" stroke-width="1.8"/></svg></button>
+                <button class="btn-card-action"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button class="btn-card-action"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+            <h2 class="card-title"><a href="#" class="card-title-link">Dr. Sun Yat-Sen Public Courtyard & Chinese Garden</a></h2>
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Dr. Sun Yat-Sen Park • Chinatown</span>
+              </a>
+              <a href="#" class="venue-site-chip">Venue Site ↗</a>
+            </div>
+            <div class="inline-schedule-row">
+              <div class="schedule-left"><span>🕒 Saturday:</span> <strong>10:00 AM – 4:00 PM</strong></div>
+              <button class="btn-ghost-trigger">Full Week ▾</button>
+            </div>
+            <p class="card-desc">Authentic Ming Dynasty-style garden courtyard featuring limestone scholar rocks, jade-green reflecting pond, and classical architecture.</p>
+            <div class="inline-spend-row">
+              <div class="spend-text">💳 Drink/Item: <strong>$0 – $6 CAD</strong> (free entry; optional tea)</div>
+              <span class="btn-suggest-link">Suggest ✎</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-val free">Free ($0)</span>
+              <a href="#" class="btn-primary-cta">Get Tickets ↗</a>
+            </div>
+          </article>
+
+          <!-- Mobile Card 2 -->
+          <article class="event-card proposed-card">
+            <div class="card-top-bar">
+              <div class="header-badges-left">
+                <span class="proposed-pill pill-date-upcoming" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.35); color: #fda4af;">Fri, Oct 9 • 10:30 PM</span>
+                <span class="proposed-pill pill-cat-music">Music</span>
+              </div>
+              <div class="card-action-cluster">
+                <button class="btn-card-action" style="color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.1);"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/><circle cx="10" cy="6" r="1.5" fill="#f59e0b"/><path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8"/><path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8"/></svg></button>
+                <button class="btn-card-action"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+                <button class="btn-card-action"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+              </div>
+            </div>
+            <h2 class="card-title"><a href="#" class="card-title-link">Cheap Thrills Dance Party</a></h2>
+            <div class="card-venue-row">
+              <a href="#" class="venue-location-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>The Fox Cabaret • Mount Pleasant</span>
+              </a>
+              <a href="#" class="venue-site-chip">Venue Site ↗</a>
+            </div>
+            <p class="card-desc">Budget-friendly weekend kickoff dance party spinning indie pop, classic disco, and retro dance anthems late night on Main Street.</p>
+            <div class="inline-spend-row">
+              <div class="spend-text">🍸 Bar Cocktails: <strong>$14 – $15 CAD</strong> (signature cocktails)</div>
+              <span class="btn-suggest-link">Suggest ✎</span>
+            </div>
+            <div class="card-footer">
+              <span class="price-val">$8.00 CAD</span>
+              <a href="#" class="btn-primary-cta">Get Tickets ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function setMode(mode) {
+      document.querySelectorAll('.preview-mode-btn').forEach(b => b.classList.remove('active'));
+      const sideGrid = document.getElementById('side-by-side-grid');
+      const mobileWrap = document.getElementById('mobile-frame-view');
+
+      if (mode === 'side-by-side') {
+        document.getElementById('btn-side-by-side').classList.add('active');
+        sideGrid.style.display = 'grid';
+        sideGrid.style.gridTemplateColumns = '1fr 1fr';
+        sideGrid.children[0].style.display = 'block'; // Show baseline
+        sideGrid.children[1].style.display = 'block'; // Show proposed
+        mobileWrap.style.display = 'none';
+      } else if (mode === 'mobile-view') {
+        document.getElementById('btn-mobile-view').classList.add('active');
+        sideGrid.style.display = 'none';
+        mobileWrap.style.display = 'flex';
+      } else if (mode === 'proposed-only') {
+        document.getElementById('btn-proposed-only').classList.add('active');
+        sideGrid.style.display = 'grid';
+        sideGrid.style.gridTemplateColumns = '1fr';
+        sideGrid.children[0].style.display = 'none'; // Hide baseline
+        sideGrid.children[1].style.display = 'block'; // Show proposed
+        mobileWrap.style.display = 'none';
+      }
+    }
+
+    function toggleAnnotations() {
+      const btn = document.getElementById('btn-toggle-notes');
+      document.body.classList.toggle('show-annotations');
+      btn.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

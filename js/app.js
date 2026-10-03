@@ -3354,13 +3354,11 @@ function formatCardTopDate(ev, bucketKey) {
 
   if (bucketKey === 'tomorrow') {
     const monthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const weekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
-    return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: tomorrow, dateStr: toIsoDateStr(tomorrow) };
+    return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: tomorrow, dateStr: toIsoDateStr(tomorrow) };
   }
   if (bucketKey === 'today') {
     const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
-    return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today, dateStr: toIsoDateStr(today) };
+    return { badgeText: `Today, ${monthDay}`, isToday: true, icon: '', dateObj: today, dateStr: toIsoDateStr(today) };
   }
 
   // 1. Confirmed dates array First
@@ -3390,9 +3388,9 @@ function formatCardTopDate(ev, bucketKey) {
       const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
 
       if (isToday) {
-        return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
+        return { badgeText: `Today, ${monthDay}`, isToday: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       } else if (isTomorrow) {
-        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
+        return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       } else {
         return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       }
@@ -3415,7 +3413,7 @@ function formatCardTopDate(ev, bucketKey) {
         const monthDay = startZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         const weekday = startZero.toLocaleDateString('en-US', { weekday: 'short' });
         if (isTomorrow) {
-          return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: startZero };
+          return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: startZero };
         } else {
           return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: startZero };
         }
@@ -3431,8 +3429,7 @@ function formatCardTopDate(ev, bucketKey) {
           const status = getEventClosingTimeToday(ev, now);
           if (!status.hasEnded) {
             const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today };
+            return { badgeText: `Today, ${monthDay}`, isToday: true, icon: '', dateObj: today };
           }
         }
         if (tomorrow <= endZero) {
@@ -3440,8 +3437,7 @@ function formatCardTopDate(ev, bucketKey) {
           const matchesTomorrow = !hasDaysOfWeek || ev.daysOfWeek.some(dow => DAY_MAP[dow.toLowerCase()] === tomDay);
           if (matchesTomorrow) {
             const monthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const weekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: tomorrow };
+            return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: tomorrow };
           }
         }
       }
@@ -3461,8 +3457,7 @@ function formatCardTopDate(ev, bucketKey) {
           const status = getEventClosingTimeToday(ev, now);
           if (!status.hasEnded) {
             const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today };
+            return { badgeText: `Today, ${monthDay}`, isToday: true, icon: '', dateObj: today };
           }
         } else if (dZero > today) {
           const isTomorrow = dZero.getTime() === tomorrow.getTime();
@@ -3470,7 +3465,7 @@ function formatCardTopDate(ev, bucketKey) {
           const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
 
           if (isTomorrow) {
-            return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: dZero };
+            return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: dZero };
           } else {
             return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: dZero };
           }
@@ -3511,9 +3506,9 @@ function formatCardTopDate(ev, bucketKey) {
       const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
 
       if (isToday) {
-        return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: nextDate };
+        return { badgeText: `Today, ${monthDay}`, isToday: true, icon: '', dateObj: nextDate };
       } else if (isTomorrow) {
-        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: nextDate };
+        return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, icon: '', dateObj: nextDate };
       } else {
         return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: nextDate };
       }
@@ -3524,10 +3519,9 @@ function formatCardTopDate(ev, bucketKey) {
   if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
     const status = getEventClosingTimeToday(ev, now);
     if (!status.hasEnded) {
-      const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
       const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       return {
-        badgeText: `Today (${weekday}, ${monthDay})`,
+        badgeText: `Today, ${monthDay}`,
         isToday: true,
         icon: '',
         dateObj: today
@@ -3550,7 +3544,7 @@ function formatCardTopDate(ev, bucketKey) {
       const monthDay = cand.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       const weekday = cand.toLocaleDateString('en-US', { weekday: 'short' });
       if (isTomorrow) {
-        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, closedToday: true, icon: '', dateObj: cand };
+        return { badgeText: `Tomorrow, ${monthDay}`, isTomorrow: true, closedToday: true, icon: '', dateObj: cand };
       } else {
         return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, closedToday: true, icon: '', dateObj: cand };
       }
@@ -4150,13 +4144,36 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
-        <!-- Line 1: Date on Left, Action Cluster (Accessibility, Share, Save) on Right -->
-        <div class="card-top-bar card-line-1">
-          <!-- Top Left: Next Event Date Badge -->
-          <div class="card-top-left-group">
+        <!-- Unified Single Header: Date & Category Badges on Left, Action Cluster on Right -->
+        <div class="card-top-bar">
+          <div class="header-badges-left">
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
               <span>${topDate.badgeText}</span>
             </span>
+            ${(() => {
+              const catsToShow = (Array.isArray(ev.categories) && ev.categories.length > 0)
+                ? (ev.categories.includes('cinema') && ev.categories.includes('social')
+                    ? ['cinema', 'social']
+                    : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
+                        ? ['outdoors', 'free-public-access']
+                        : [ev.categories[0]]))
+                : [ev.category || 'misc'];
+              return catsToShow.map(catId => {
+                const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
+                const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
+                return `
+                  <button 
+                    type="button" 
+                    class="card-category-badge category-${catId}" 
+                    onclick="filterByCategory('${catId}')" 
+                    title="Click to filter by ${label}"
+                    aria-label="Category: ${label}"
+                  >
+                    <span class="category-badge-text">${label}</span>
+                  </button>
+                `;
+              }).join('');
+            })()}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
@@ -4181,7 +4198,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               title="Share event details & link"
               aria-label="Share ${escapedTitle}"
             >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
             </button>
 
             <!-- Save Outing Button -->
@@ -4193,38 +4210,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
             >
               ${isSaved 
-                ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
-                : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'}
+                ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' 
+                : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'}
             </button>
           </div>
-        </div>
-
-        <!-- Line 2: Category Badges (Full width, clean left alignment) -->
-        <div class="card-categories-row card-line-2">
-          ${(() => {
-            const catsToShow = (Array.isArray(ev.categories) && ev.categories.length > 0)
-              ? (ev.categories.includes('cinema') && ev.categories.includes('social')
-                  ? ['cinema', 'social']
-                  : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
-                      ? ['outdoors', 'free-public-access']
-                      : [ev.categories[0]]))
-              : [ev.category || 'misc'];
-            return catsToShow.map(catId => {
-              const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
-              const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
-              return `
-                <button 
-                  type="button" 
-                  class="card-category-badge category-${catId}" 
-                  onclick="filterByCategory('${catId}')" 
-                  title="Click to filter by ${label}"
-                  aria-label="Category: ${label}"
-                >
-                  <span class="category-badge-text">${label}</span>
-                </button>
-              `;
-            }).join('');
-          })()}
         </div>
 
         <!-- Event Details: Clickable Title Link (Always shortened to FRINGE: for Fringe shows) -->
@@ -4263,16 +4252,17 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         
         <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
-            <span class="venue-pin-icon" aria-label="Map location"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ef4444" aria-hidden="true" style="color: #ef4444; flex-shrink: 0; vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.55));"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
-            <span class="venue-name">${ev.venue}</span>
-            <span class="venue-neighborhood-chip">• ${ev.neighborhood || 'Vancouver'}</span>
-          </a>
-          ${venueUrl ? `
-            <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
-              <span class="website-label">Venue Site ↗</span>
+          <div class="card-venue-primary-row">
+            <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
+              <span class="venue-pin-icon" aria-label="Map location"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ef4444" aria-hidden="true" style="color: #ef4444; flex-shrink: 0; vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.55));"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+              <span class="venue-name">${ev.venue}</span>
             </a>
-          ` : ''}
+            ${venueUrl ? `
+              <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
+                <span class="website-label">Venue Site ↗</span>
+              </a>
+            ` : ''}
+          </div>
           ${venueOtherEventsBtnHtml}
         </div>
 
