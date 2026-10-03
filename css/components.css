@@ -828,10 +828,7 @@
 }
 
 .venue-neighborhood-chip {
-  color: var(--accent-secondary);
-  font-size: 0.82rem;
-  font-weight: 500;
-  margin-left: 2px;
+  display: none !important;
 }
 
 .card-meta-pill {
@@ -989,6 +986,7 @@
   gap: 8px;
   width: 100%;
   min-width: 0;
+  flex-wrap: nowrap !important;
 }
 
 .venue-location-btn,
@@ -1007,7 +1005,9 @@
   border: 1px solid rgba(56, 189, 248, 0.22);
   min-width: 0;
   flex: 1 1 auto;
-  max-width: 100%;
+  max-width: calc(100% - 95px);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .venue-location-btn:hover,
@@ -1058,6 +1058,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .venue-website-link,
