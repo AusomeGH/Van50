@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-02T17:06:43-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-03T07:59:16-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -90,6 +90,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "General Public Admission",
@@ -263,6 +266,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Public Access Path",
@@ -419,6 +426,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
     "tiers": [
       {
         "name": "Youth (18 & Under)",
@@ -584,6 +594,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Public Park Courtyard",
@@ -748,6 +762,11 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -890,6 +909,11 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1028,6 +1052,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1166,6 +1194,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1308,6 +1339,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1452,6 +1486,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1462,8 +1499,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
       "fri",
+      "sat",
       "sun"
     ],
     "timeSlots": [
@@ -1594,6 +1631,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1712,6 +1753,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1849,6 +1894,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1990,6 +2038,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2112,6 +2163,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2253,6 +2308,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2377,6 +2435,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2506,6 +2567,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2635,6 +2699,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2761,6 +2828,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2886,6 +2956,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3014,6 +3087,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3142,6 +3218,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3269,6 +3348,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3396,6 +3478,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3536,6 +3621,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -3770,6 +3859,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Tables & Bench (Adult)",
@@ -3800,8 +3892,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "fri"
+      "fri",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3845,9 +3937,9 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
+    "discovery_url": "https://www.showpass.com/what-else/",
     "details_url": "https://littlemountaingallery.ca/",
-    "ticket_url": "https://littlemountaingallery.ca/events/",
+    "ticket_url": "https://www.showpass.com/what-else/",
     "ticket_provider": "Showpass",
     "tags": [
       "shows",
@@ -3902,7 +3994,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.50 chips, candy & sodas",
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
-    "websiteUrl": "https://littlemountaingallery.ca/events/",
+    "websiteUrl": "https://www.showpass.com/what-else/",
     "id": "van50-what-else-lmg-20261003",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver",
@@ -3911,6 +4003,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3965,9 +4060,9 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
+    "discovery_url": "https://www.showpass.com/stand-up-showcase-94/",
     "details_url": "https://littlemountaingallery.ca/",
-    "ticket_url": "https://littlemountaingallery.ca/events/",
+    "ticket_url": "https://www.showpass.com/stand-up-showcase-94/",
     "ticket_provider": "Showpass",
     "tags": [
       "shows",
@@ -4022,7 +4117,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.50 chips, candy & sodas",
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
-    "websiteUrl": "https://littlemountaingallery.ca/events/",
+    "websiteUrl": "https://www.showpass.com/stand-up-showcase-94/",
     "id": "van50-stand-up-showcase-lmg-20261015",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver",
@@ -4031,6 +4126,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4154,6 +4252,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4280,6 +4382,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4407,6 +4512,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4536,6 +4644,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4688,6 +4799,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4698,9 +4814,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
-      "mon",
+      "thu",
       "sat",
-      "thu"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -4816,6 +4932,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4949,6 +5068,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5081,6 +5203,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5216,6 +5341,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5349,6 +5478,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5484,6 +5617,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5616,6 +5752,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5749,6 +5888,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5879,6 +6021,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6010,6 +6155,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6140,6 +6288,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Nightlife & social",
     "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6270,6 +6421,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6402,6 +6556,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6533,6 +6690,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6668,6 +6828,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6803,6 +6967,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6849,8 +7017,8 @@ const VANCOUVER_EVENTS = [
     "category": "Comedy & Shows",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Little Mountain Gallery",
-    "full_address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "neighborhood": "Mount Pleasant & South Vancouver",
+    "full_address": "110 Water St, Vancouver, BC V6B 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "Fast-paced standup comedy showcase where 20 of Vancouver's top touring and local comedians deliver their sharpest material at Little Mountain Gallery.",
     "pricing_all_in_cad": {
       "regular": 18.99
@@ -6865,9 +7033,9 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
+    "discovery_url": "https://www.showpass.com/202020-15/",
     "details_url": "https://littlemountaingallery.ca/",
-    "ticket_url": "https://littlemountaingallery.ca/events/",
+    "ticket_url": "https://www.showpass.com/202020-15/",
     "ticket_provider": "Showpass",
     "tags": [
       "comedy",
@@ -6926,15 +7094,18 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.50 chips, candy & sodas",
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
-    "websiteUrl": "https://littlemountaingallery.ca/events/",
+    "websiteUrl": "https://www.showpass.com/202020-15/",
     "id": "van50-scout-lmg-20-20-20-comedy-20261017",
     "venue": "Little Mountain Gallery",
-    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
+    "address": "110 Water St, Vancouver, BC V6B 1B2",
     "priceLabel": "$18.99 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6979,9 +7150,9 @@ const VANCOUVER_EVENTS = [
     "category": "Comedy & Shows",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Little Mountain Gallery",
-    "full_address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "Monthly underground comedy showcase featuring sharp standup, absurd characters, and special surprise guests in Mount Pleasant.",
+    "full_address": "110 Water St, Vancouver, BC V6B 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Monthly speakeasy comedy showcase in the Raccoon Room featuring sharp standup, absurd characters, and special surprise guests in Gastown.",
     "pricing_all_in_cad": {
       "regular": 17.96
     },
@@ -6989,21 +7160,21 @@ const VANCOUVER_EVENTS = [
     "days_open": null,
     "show_1": {
       "date": "2026-10-24",
-      "start_time": "20:30",
-      "end_time": "22:30",
+      "start_time": "21:30",
+      "end_time": "23:00",
       "cost": 17.96
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.showpass.com/o/little-mountain-gallery/",
+    "discovery_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
     "details_url": "https://littlemountaingallery.ca/",
-    "ticket_url": "https://littlemountaingallery.ca/events/",
+    "ticket_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
     "ticket_provider": "Showpass",
     "tags": [
       "comedy",
       "stand-up",
       "sketch",
-      "mount-pleasant",
+      "gastown",
       "little-mountain-gallery",
       "19-plus",
       "under-50-cad",
@@ -7012,7 +7183,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Direct Showpass ticketing page verified for The Setup at Little Mountain Gallery on Oct 24 ($17.96 CAD all-in).",
+    "curator_notes": "AI QC Verified: Direct Showpass ticketing page verified for The Setup at Little Mountain Gallery on Oct 24 ($17.96 CAD all-in).",
     "price": 17.96,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -7027,12 +7198,12 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_3": null,
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Main & King Ed eateries)",
+    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Gastown & Water St eateries)",
     "title": "The Setup at Little Mountain Gallery",
     "date": "2026-10-24",
-    "time": "20:30",
-    "start_time": "20:30",
-    "end_time": "22:30",
+    "time": "21:30",
+    "start_time": "21:30",
+    "end_time": "23:00",
     "dateSchedule": "1 Screenings across Vancouver",
     "frequency": "One-Time",
     "typical_item_spend": "$9.00 – $15.00 CAD (1 craft can + snack)",
@@ -7043,9 +7214,10 @@ const VANCOUVER_EVENTS = [
     "showings": [
       {
         "date": "2026-10-24",
-        "start_time": "20:30",
-        "end_time": "22:30",
-        "cost": 17.96
+        "start_time": "21:30",
+        "end_time": "23:00",
+        "cost": 17.96,
+        "ticket_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/"
       }
     ],
     "tier_custom_name_4": null,
@@ -7057,15 +7229,18 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.50 chips, candy & sodas",
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
-    "websiteUrl": "https://littlemountaingallery.ca/events/",
+    "websiteUrl": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
     "id": "van50-scout-lmg-the-setup-20261024",
     "venue": "Little Mountain Gallery",
-    "address": "110 E 5th Ave, Vancouver, BC V5T 1G8",
+    "address": "110 Water St, Vancouver, BC V6B 1B2",
     "priceLabel": "$17.96 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7074,7 +7249,7 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-24T20:30:00-07:00",
+    "startIso": "2026-10-24T21:30:00-07:00",
     "daysOfWeek": [
       "sat"
     ],
@@ -7097,7 +7272,7 @@ const VANCOUVER_EVENTS = [
       "comedy",
       "stand-up",
       "sketch",
-      "mount-pleasant",
+      "gastown",
       "little-mountain-gallery",
       "19-plus",
       "under-50-cad",
@@ -7197,6 +7372,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7325,6 +7503,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Nightlife & social",
     "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7457,6 +7638,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7591,6 +7775,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7725,6 +7912,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -7887,6 +8078,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Previews / Youth (Under 30)",
@@ -7917,9 +8111,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
+      "fri",
       "thu",
-      "fri"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8065,6 +8259,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Social & arts",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8232,6 +8431,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8382,6 +8585,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Donated Entry",
@@ -8509,6 +8715,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8640,6 +8849,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8788,6 +9000,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "General Public Free Admission",
@@ -8947,6 +9162,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Advance Admission",
@@ -9109,6 +9327,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Live music",
     "categoryIcon": "🎭",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Suggested Donation",
@@ -9305,6 +9526,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Single Train Ride (Ages 3+)",
@@ -9456,6 +9681,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9616,6 +9844,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9776,6 +10007,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9939,6 +10173,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes",
@@ -10110,6 +10347,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult (19-64)",
@@ -10278,6 +10519,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Board Game Library Access (with food/drink)",
@@ -10450,6 +10694,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -10611,6 +10860,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "General Admission (Ages 8–64)",

@@ -343,18 +343,18 @@ window.VENUE_ACCESSIBILITY = {
 
   // 22. Little Mountain Gallery
   "little mountain gallery": {
-    status: "accessible",
-    label: "Wheelchair Accessible",
-    badgeIcon: "♿",
-    summary: "Brand-new Gastown comedy venue (opened 2023): built to modern universal accessibility codes with step-free street entrance, ramped stage access, and accessible washroom.",
-    entrance: "Level street entrance on Water St with wide automatic door operator.",
-    seating: "Movable cabaret theatre seating with flexible wheelchair positions in all rows.",
-    washroom: "All-gender accessible single-stall washroom with grab bars and wide door.",
-    elevator: "Ground floor venue — 100% step-free throughout.",
-    parking: "Gastown parkades on Water and Cordova St.",
-    transit: "Waterfront SkyTrain / SeaBus Station is 2 blocks away (elevator accessible).",
-    googleReviewsNote: "Google Maps reviews confirm: 'Brand new venue is fully wheelchair accessible, super clean, with all-gender accessible washroom.'",
-    query: "Little Mountain Gallery Vancouver"
+    status: "partial",
+    label: "Main Floor Accessible / 2nd Floor Stairs",
+    badgeIcon: "♿⚠️",
+    summary: "Gastown comedy venue (110 Water St): Main floor Salazar Stage has powered street lift, automatic doors, and accessible washroom. Second-floor Raccoon Room (where The Setup performs) is up 2 flights of stairs.",
+    entrance: "Street entrance on Water St has power-assisted doors; a powered lift provides step-free access from street level into the main floor theatre space.",
+    seating: "Main floor theatre has movable cabaret seating with dedicated wheelchair locations. Second-floor Raccoon Room has tiered seating accessible only via stairs.",
+    washroom: "Main floor features six private washrooms, including one fully accessible universal washroom with power-assisted door and grab bars.",
+    elevator: "Powered lift connects street entrance to main performance space. Second floor is not served by elevator and requires two flights of stairs.",
+    parking: "Nearby multi-level parkades on Cordova St and Water St with designated accessible stalls.",
+    transit: "Waterfront SkyTrain & SeaBus Station is 2 blocks west (fully elevator accessible).",
+    googleReviewsNote: "Google Maps reviews note: 'Main floor is beautifully accessible with powered lift and modern wide washroom. If attending a show in the Raccoon Room upstairs, note that it is stairs-only.'",
+    query: "Little Mountain Gallery 110 Water St Vancouver"
   },
 
   // 23. The Show Cellar
