@@ -3099,12 +3099,12 @@ window.toggleShowings = function(eventId, event) {
     event.preventDefault();
     event.stopPropagation();
   }
-  const el = document.getElementById(`showings-more-${eventId}`);
+  const el = document.getElementById(`showings-table-${eventId}`) || document.getElementById(`showings-more-${eventId}`);
   const btn = document.getElementById(`btn-toggle-showings-${eventId}`);
   if (!el) return;
   const isHidden = (el.style.display === 'none' || el.style.display === '');
   if (isHidden) {
-    el.style.display = 'block';
+    el.style.display = 'flex';
     if (btn) {
       btn.classList.add('expanded');
       btn.setAttribute('aria-expanded', 'true');
@@ -4015,35 +4015,40 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
       const todayIdx = ev.showings.findIndex(s => s && s.date === curTodayStr);
       const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
-      const primaryShowing = ev.showings[primaryIdx];
-      const remainingShowings = ev.showings.filter((_, idx) => idx !== primaryIdx);
+      const primaryShowing = ev.showings[primaryIdx] || {};
 
-      const primaryRowHtml = renderShowingRow(primaryShowing);
-      const remainingRowsHtml = remainingShowings.map(renderShowingRow).join('');
+      const dStr = primaryShowing.date || '';
+      const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+      const primaryDateLabel = !isNaN(dObj.getTime())
+        ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+        : dStr;
+      const primaryTimeLabel = primaryShowing.start_time ? ` at ${primaryShowing.start_time}` : '';
+
+      const allRowsHtml = ev.showings.map(renderShowingRow).join('');
 
       showingsHtml = `
         <div class="card-showings-block" id="showings-block-${ev.id}">
-          <div class="showings-table">
-            ${primaryRowHtml}
-            ${remainingShowings.length > 0 ? `
-              <div class="showings-collapsible" id="showings-more-${ev.id}" style="display: none;">
-                ${remainingRowsHtml}
+          <div class="showings-summary-row" onclick="toggleShowings('${ev.id}', event)" title="Click to view/hide all ${ev.showings.length} scheduled dates">
+            <div class="wh-summary-left">
+              <div class="wh-active-day-box">
+                <span class="wh-active-day-name">Next:</span>
+                <span class="wh-active-hours-val">${primaryDateLabel}${primaryTimeLabel}</span>
               </div>
-              <div class="showings-toggle-row">
-                <button 
-                  type="button" 
-                  class="btn-toggle-showings btn-toggle-hours" 
-                  id="btn-toggle-showings-${ev.id}" 
-                  onclick="toggleShowings('${ev.id}', event)" 
-                  aria-expanded="false" 
-                  data-count="${ev.showings.length}"
-                  aria-label="Toggle all showings for ${ev.title}"
-                >
-                  <span class="toggle-text">All Dates (${ev.showings.length})</span>
-                  <span class="wh-chevron">▾</span>
-                </button>
-              </div>
-            ` : ''}
+            </div>
+            <button 
+              type="button" 
+              class="btn-toggle-showings btn-toggle-hours" 
+              id="btn-toggle-showings-${ev.id}" 
+              aria-expanded="false" 
+              data-count="${ev.showings.length}"
+              aria-label="Toggle all ${ev.showings.length} showings for ${ev.title}"
+            >
+              <span class="toggle-text">All Dates (${ev.showings.length})</span>
+              <span class="wh-chevron">▾</span>
+            </button>
+          </div>
+          <div class="showings-table collapsible-showings" id="showings-table-${ev.id}" style="display: none;">
+            ${allRowsHtml}
           </div>
         </div>
       `;
