@@ -4174,6 +4174,11 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                 `;
               }).join('');
             })()}
+            ${(weeklyHoursHtml || ev.isFreePublic || (ev.frequencyLabel && ev.frequencyLabel.toLowerCase().includes('drop-in'))) ? `
+              <span class="card-category-badge badge-dropin" title="Daily Drop-In (No booking or reservation required)">
+                <span class="category-badge-text">Daily Drop-In</span>
+              </span>
+            ` : ''}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
@@ -4266,11 +4271,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           ${venueOtherEventsBtnHtml}
         </div>
 
-        <!-- Schedule Row -->
-        <div class="card-schedule-row">
-          <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
-          ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
-        </div>
+        <!-- Schedule Row: Rendered strictly when NO weekly hours block is present -->
+        ${!weeklyHoursHtml ? `
+          <div class="card-schedule-row">
+            <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
+            ${(ev.frequencyLabel && !ev.isFreePublic) ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
+          </div>
+        ` : ''}
 
         ${showingsHtml}
 
