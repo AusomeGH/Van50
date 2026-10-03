@@ -639,11 +639,13 @@
 /* Card Header Meta & Badges (Unified Single-Row Header) */
 .card-top-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   margin-bottom: 8px;
+  height: 28px;
   min-height: 28px;
+  max-height: 28px;
   width: 100%;
 }
 
@@ -651,9 +653,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex: 1 1 auto;
   min-width: 0;
+  overflow: hidden;
 }
 
 .card-top-left-group {
@@ -685,6 +688,7 @@
   font-family: inherit;
   box-sizing: border-box;
   flex-shrink: 0;
+  max-width: 160px;
 }
 
 .card-category-badge:hover {
@@ -703,6 +707,8 @@
   letter-spacing: 0.01em;
   text-transform: capitalize;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Category Specific Tone-on-Tone Color Themes */
@@ -920,6 +926,7 @@
   color: #fff;
   line-height: 1.35;
   margin-bottom: 6px;
+  height: 2.97rem;
   min-height: 2.97rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -3296,8 +3303,9 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-shrink: 0;
+  max-width: 100%;
 }
 
 .btn-festival-display {
@@ -3364,17 +3372,34 @@
   box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .festival-spotlight-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    padding: 16px !important;
+  }
+  .festival-spotlight-left {
+    width: 100% !important;
   }
   .festival-spotlight-right {
-    width: 100%;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
   }
+  .btn-festival-display,
   .btn-festival-toggle {
-    width: 100%;
-    justify-content: center;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    text-align: center !important;
+    padding: 10px 14px !important;
+    box-sizing: border-box !important;
   }
 }
 
@@ -4166,8 +4191,8 @@ body.van50-accessible .card-ticket-link {
   align-items: center;
   gap: 5px;
   flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 1px;
+  align-self: center;
+  margin-top: 0;
 }
 
 .btn-card-action {

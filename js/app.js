@@ -4160,37 +4160,28 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               <span>${topDate.badgeText}</span>
             </span>
             ${(() => {
-              const hasDropInBadge = Boolean(weeklyHoursHtml || ev.isFreePublic || (ev.frequencyLabel && ev.frequencyLabel.toLowerCase().includes('drop-in')));
-              const catsToShow = (Array.isArray(ev.categories) && ev.categories.length > 0)
-                ? (ev.categories.includes('cinema') && ev.categories.includes('social')
-                    ? ['cinema', 'social']
-                    : (hasDropInBadge && ev.categories.includes('outdoors')
-                        ? ['outdoors']
-                        : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
-                            ? ['outdoors']
-                            : [ev.categories[0]])))
-                : [ev.category || 'misc'];
-              return catsToShow.map(catId => {
-                const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
-                const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
-                return `
-                  <button 
-                    type="button" 
-                    class="card-category-badge category-${catId}" 
-                    onclick="filterByCategory('${catId}')" 
-                    title="Click to filter by ${label}"
-                    aria-label="Category: ${label}"
-                  >
-                    <span class="category-badge-text">${label}</span>
-                  </button>
-                `;
-              }).join('');
+              const primaryCat = (Array.isArray(ev.categories) && ev.categories.length > 0)
+                ? (ev.categories.includes('outdoors') && (ev.lifecycleType === 'perennial_drop_in' || ev.accessModel === 'open_public_space')
+                    ? 'outdoors'
+                    : (ev.categories.includes('free-public-access') && ev.category === 'free-public-access'
+                        ? 'free-public-access'
+                        : ev.categories[0]))
+                : (ev.category || 'misc');
+              const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === primaryCat) : null;
+              const label = catDef ? catDef.label : (primaryCat === ev.category ? (ev.categoryLabel || primaryCat) : primaryCat);
+              return `
+                <button 
+                  type="button" 
+                  class="card-category-badge category-${primaryCat}" 
+                  onclick="filterByCategory('${primaryCat}')" 
+                  title="Click to filter by ${label}"
+                  aria-label="Category: ${label}"
+                >
+                  <span class="category-badge-icon" aria-hidden="true" style="display:none;"></span>
+                  <span class="category-badge-text">${label}</span>
+                </button>
+              `;
             })()}
-            ${(weeklyHoursHtml || ev.isFreePublic || (ev.frequencyLabel && ev.frequencyLabel.toLowerCase().includes('drop-in'))) ? `
-              <span class="card-category-badge badge-dropin" title="Daily Drop-In (No booking or reservation required)">
-                <span class="category-badge-text">Daily Drop-In</span>
-              </span>
-            ` : ''}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
