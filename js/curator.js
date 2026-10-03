@@ -2689,7 +2689,7 @@ function renderInteractiveMultiEventPreview(subEvents) {
 
   const categories = [
     { id: 'shows', label: '🎭 Comedy & Shows' },
-    { id: 'music', label: '🎵 Live Music' },
+    { id: 'music', label: '🎵 Music' },
     { id: 'crafts', label: '🎨 Crafts & Studios' },
     { id: 'cinema', label: '🎬 Indie Cinema' },
     { id: 'arts', label: '🏛️ Museums & Arts' },

@@ -3565,7 +3565,8 @@ const FREQUENCIES = [
 // Curated Category Taxonomy (Multi-Category Support)
 const CATEGORIES = [
   {{ id: "all", label: "All", icon: "✨" }},
-  {{ id: "music", label: "Live Music", icon: "🎵" }},
+  {{ id: "free-public-access", label: "Free Public Access", icon: "🏛️" }},
+  {{ id: "music", label: "Music", icon: "🎵" }},
   {{ id: "shows", label: "Comedy & Stage", icon: "🎭" }},
   {{ id: "festivals", label: "Festivals", icon: "🎪" }},
   {{ id: "markets", label: "Markets", icon: "🧺" }},

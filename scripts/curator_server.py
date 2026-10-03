@@ -682,9 +682,14 @@ def sync_js_data_file():
                         ev["categoryIcon"] = "🏛️"
                     else:
                         ev["category"] = item.get("category", "shows")
-                        ev["categoryLabel"] = item.get("categoryLabel") or item.get("category", "Shows & Arts").capitalize()
-                        if not ev.get("categoryIcon"):
-                            ev["categoryIcon"] = "🏌️" if "golf" in str(item.get("tags", [])) or "pitch" in str(item.get("tags", [])) else ("🌊" if item.get("category") in ["outdoors", "activities"] else ("🎵" if item.get("category") == "music" else "🎭"))
+                        if str(ev["category"]).lower() in ["live music", "music"]:
+                            ev["category"] = "music"
+                            ev["categoryLabel"] = "Music"
+                            ev["categoryIcon"] = "🎵"
+                        else:
+                            ev["categoryLabel"] = item.get("categoryLabel") or item.get("category", "Shows & Arts").capitalize()
+                            if not ev.get("categoryIcon"):
+                                ev["categoryIcon"] = "🏌️" if "golf" in str(item.get("tags", [])) or "pitch" in str(item.get("tags", [])) else ("🌊" if item.get("category") in ["outdoors", "activities"] else ("🎵" if item.get("category") == "music" else "🎭"))
 
                     # Multi-category taxonomy detection for js/data.js
                     cats_list = []
@@ -724,12 +729,28 @@ def sync_js_data_file():
                         if "outdoors" not in cats_list: cats_list.append("outdoors")
                     if is_free_public:
                         if "free-public-access" not in cats_list: cats_list.append("free-public-access")
-                    if "music" in cat_raw or any(x in item_tags_str for x in ["music", "concert", "band", "jazz", "orchestra"]):
+                    
+                    # Music category detection: Live bands, DJs, dance parties, orchestral, jazz, electronic
+                    is_music_event = (
+                        "music" in cat_raw or
+                        any(x in item_tags_str for x in ["music", "concert", "band", "jazz", "orchestra", "dj", "dance-party", "electronic", "techno", "house", "disco", "vinyl", "nightlife"]) or
+                        any(x in title_str for x in ["dj", "dance party", "dance night", "techno", "disco", "funk", "concert", "symphony", "orchestra", "band"])
+                    )
+                    if is_music_event:
                         if "music" not in cats_list: cats_list.append("music")
+                    
                     if "market" in cat_raw or any(x in context_str for x in ["market", "bazaar", "croissant crawl"]):
                         if "markets" not in cats_list: cats_list.append("markets")
-                    if "comedy" in cat_raw or "show" in cat_raw or "theatre" in cat_raw or "stage" in cat_raw:
+                    
+                    # Comedy & Stage detection: Exclude pure DJ/dance parties at cabaret venues
+                    is_shows_event = (
+                        "comedy" in cat_raw or "theatre" in cat_raw or "stage" in cat_raw or
+                        any(x in context_str for x in ["comedy", "improv", "stand-up", "burlesque", "theatre", "opera"]) or
+                        ("cabaret" in context_str and not any(x in (item_tags_str + " " + title_str) for x in ["dance party", "dance-party", "dj", "dance night", "disco"]))
+                    ) and not any(x in (title_str + " " + item_tags_str) for x in ["dance party", "dance-party", "dance night"])
+                    if is_shows_event:
                         if "shows" not in cats_list: cats_list.append("shows")
+                    
                     if "art" in cat_raw or "social" in cat_raw or "culture" in cat_raw:
                         if "social" not in cats_list: cats_list.append("social")
                     if "viff" in context_str or "festival" in context_str:
@@ -992,7 +1013,7 @@ const FREQUENCIES = [
 const CATEGORIES = [
   {{ id: "all", label: "All", icon: "✨" }},
   {{ id: "free-public-access", label: "Free Public Access", icon: "🏛️" }},
-  {{ id: "music", label: "Live Music", icon: "🎵" }},
+  {{ id: "music", label: "Music", icon: "🎵" }},
   {{ id: "shows", label: "Comedy & Stage", icon: "🎭" }},
   {{ id: "festivals", label: "Festivals", icon: "🎪" }},
   {{ id: "markets", label: "Markets", icon: "🧺" }},
@@ -2638,7 +2659,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             category_labels = {
                 "shows": "🎭 Comedy & Shows",
-                "music": "🎵 Live Music",
+                "music": "🎵 Music",
                 "cinema": "🎬 Indie Cinema",
                 "crafts": "🎨 Crafts & Studios",
                 "arts": "🏛️ Museums & Arts",

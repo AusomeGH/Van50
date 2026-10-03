@@ -34,7 +34,7 @@ window.TIME_SLOTS = window.TIME_SLOTS || [
 window.CATEGORIES = window.CATEGORIES || [
   { id: "all", label: "All", icon: "✨" },
   { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-  { id: "music", label: "Live Music", icon: "🎵" },
+  { id: "music", label: "Music", icon: "🎵" },
   { id: "shows", label: "Comedy & Stage", icon: "🎭" },
   { id: "festivals", label: "Festivals", icon: "🎪" },
   { id: "markets", label: "Markets", icon: "🧺" },
@@ -326,8 +326,8 @@ function normalizeActiveEvent(item) {
 
   const isMusic = (
     catRaw.includes("music") ||
-    /music|concert|band|jazz|orchestra|metal|punk|symphony/.test(tagsStr) ||
-    /jazz|blues|orchestra|concert|metal|punk|symphony|cabaret|strings|vso/.test(titleLower)
+    /music|concert|band|jazz|orchestra|metal|punk|symphony|dj|dance-party|dance|disco|techno|house-music|house|electronic|vinyl|nightlife|club-night|hip-hop|r&b|funk/.test(tagsStr) ||
+    /jazz|blues|orchestra|concert|metal|punk|symphony|strings|vso|dj|dance party|dance night|techno|disco|funk|synth-pop|electronic|house music|groove|indie rock|post-punk/.test(titleLower)
   );
 
   const isShows = (
@@ -335,8 +335,9 @@ function normalizeActiveEvent(item) {
     catRaw.includes("comedy") ||
     catRaw.includes("theatre") ||
     catRaw.includes("stage") ||
-    /comedy|improv|stand-up|burlesque|cabaret|theatre|opera|showcase/.test(combinedContext)
-  );
+    /comedy|improv|stand-up|burlesque|theatre|opera|stage play/.test(combinedContext) ||
+    (/cabaret|showcase/.test(combinedContext) && !/dance-party|dance party|dj|dance night|disco/.test(tagsStr + " " + titleLower))
+  ) && !/dance party|dance-party|dance night/.test(titleLower + " " + tagsStr);
 
   const isMarkets = (
     catRaw.includes("market") ||
@@ -1343,7 +1344,7 @@ if (typeof CATEGORIES === 'undefined') {
   window.CATEGORIES = [
     { id: "all", label: "All", icon: "✨" },
     { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-    { id: "music", label: "Live Music", icon: "🎵" },
+    { id: "music", label: "Music", icon: "🎵" },
     { id: "shows", label: "Comedy & Stage", icon: "🎭" },
     { id: "festivals", label: "Festivals", icon: "🎪" },
     { id: "markets", label: "Markets", icon: "🧺" },
@@ -1984,7 +1985,16 @@ function applyFiltersAndRender() {
           (ev.id && ev.id.includes('market')) ||
           (ev.title && ev.title.toLowerCase().includes('market'))
         )) ||
-        (state.category === 'shows' && (evCats.includes('stage') || evCats.includes('comedy') || evCats.includes('shows'))) ||
+        (state.category === 'music' && (
+          evCats.includes('music') ||
+          evCats.includes('live-music') ||
+          (ev.subTags && ev.subTags.some(t => /music|dj|dance-party|dance|concert|band|jazz|techno|electronic|house|disco|nightlife/i.test(t))) ||
+          /dj|dance party|dance night|techno|house music|disco|electronic|concert|band/i.test(ev.title || '')
+        )) ||
+        (state.category === 'shows' && (
+          (evCats.includes('stage') || evCats.includes('comedy') || evCats.includes('shows')) &&
+          !/dance party|dance-party|dance night/i.test(ev.title + ' ' + (ev.subTags || []).join(' '))
+        )) ||
         (state.category === 'festivals' && (
           evCats.includes('festivals') ||
           evCats.includes('festival') ||

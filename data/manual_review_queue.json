@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-02T14:28:00-07:00",
-    "pendingCount": 1,
+    "updatedAt": "2026-10-03T08:51:42-07:00",
+    "pendingCount": 5,
     "description": "Events quarantined by Antigravity Quarantine AI due to failing one or more of the 20 Discrete Live Dimensions or Live-Checkout Cart verification.",
     "lastTriagedAt": "2026-10-02T14:28:00-07:00",
     "lastResolutionSummary": "Quarantine AI healed and graduated van50-ubc-apple-festival-20261017 to active catalog ($15.00 CAD, tickets live on UBC Tickets, not sold out); verified rickshaw-evergrey-metal-showcase remains 100% sold out on Eventbrite and promoted ticket_url to Tier 1."
@@ -53,8 +53,8 @@
       "access_model": "fenced_facility",
       "pricing_model": "flat_ticket",
       "weekly_hours": null,
-      "coffee_benchmark": "$4.00 – $6.00 CAD (Hastings / Chinatown cafes)",
-      "meal_benchmark": "$12.00 – $18.00 CAD (nearby Hastings/Chinatown eateries)",
+      "coffee_benchmark": "$4.00 \u2013 $6.00 CAD (Hastings / Chinatown cafes)",
+      "meal_benchmark": "$12.00 \u2013 $18.00 CAD (nearby Hastings/Chinatown eateries)",
       "price_adult": 35,
       "price_student": null,
       "price_member": null,
@@ -74,7 +74,7 @@
       "end_time": "23:00",
       "dateSchedule": "Wednesday, October 7, 2026 at 6:30 PM",
       "frequency": "One-Time",
-      "typical_item_spend": "$18.00 – $28.00 CAD (2 beers/drinks)",
+      "typical_item_spend": "$18.00 \u2013 $28.00 CAD (2 beers/drinks)",
       "lineup": "HammerFall, Evergrey, Greyhawk",
       "restrictions": "19+ (Two pieces of government ID required)",
       "is_sold_out": true,
@@ -88,12 +88,43 @@
         }
       ],
       "food_service_type": "bar_only",
-      "drink_benchmark": "$8.50 pint • $14.50 cocktail",
+      "drink_benchmark": "$8.50 pint \u2022 $14.50 cocktail",
       "concession_benchmark": "$3.00 chips & bar snacks",
       "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
       "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
       "quarantine_reason": "Sold out: official inventory exhausted.",
       "last_investigated_at": "2026-10-02T14:28:00-07:00"
+    },
+    {
+      "id": "test-reinforce-1791042702",
+      "title": "Continuous Learning Jazz Showcase",
+      "venue": "Frankie's Jazz Club",
+      "price": 20.0,
+      "priceLabel": "$20.00 door",
+      "category": "music",
+      "coordinates": [
+        49.281,
+        -123.111
+      ],
+      "url": "https://frankiesjazzclub.com/events"
+    },
+    {
+      "id": "test-qa-event-1791042702",
+      "title": "Dual Action Test Event",
+      "venue": "Rickshaw Theatre",
+      "price": 25.0,
+      "category": "shows",
+      "websiteUrl": "https://rickshawtheatre.com/test-event",
+      "reviewStatus": "pending_antigravity_review",
+      "attemptedPrice": 25.0,
+      "curatorAnnotation": {
+        "instructionId": "inst_1791042702840",
+        "note": "Fix scraper to target General Admission tier.",
+        "proposedAction": "approve",
+        "userSuppliedPrice": 25.0,
+        "screenshotPaths": [],
+        "annotatedAt": "2026-10-03T15:51:42.893770+00:00"
+      }
     }
   ],
   "pendingCount": 1,
