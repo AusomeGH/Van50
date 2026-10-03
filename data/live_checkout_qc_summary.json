@@ -1,409 +1,618 @@
 {
-  "timestamp": "2026-09-29T18:00:50.989995",
-  "totalAudited": 59,
-  "passed": 47,
-  "failed": 12,
+  "timestamp": "2026-10-02T13:45:13.970416",
+  "totalAudited": 76,
+  "passed": 73,
+  "failed": 3,
+  "quarantined_items": [
+    "viff-the-debut",
+    "rickshaw-evergrey-metal-showcase",
+    "van50-ubc-apple-festival-20261017"
+  ],
   "auditLog": [
     {
       "id": "van50-pendulum-gallery",
-      "name": "Pendulum Gallery",
-      "status": "VERIFIED_LIVE_CART",
+      "name": "Pendulum Gallery (Kinetic Art & Exhibitions)",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "stanley-park-seawall-rose-garden",
-      "name": "Stanley Park Seawall & Rose Garden",
-      "status": "VERIFIED_LIVE_CART",
+      "name": "Stanley Park Waterfront & Heritage Loop",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_public_space_policy"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-vancouver-art-gallery-free-access",
-      "name": "Vancouver Art Gallery: Free First Friday Nights & Youth Access",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 25.0,
-      "method": "scraped_page_policy"
+      "name": "Vancouver Art Gallery (General Admission & Access Programs)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 29.0,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-sun-yat-sen-public-park",
-      "name": "Dr. Sun Yat-Sen Public Park Courtyard",
-      "status": "VERIFIED_LIVE_CART",
+      "name": "Dr. Sun Yat-Sen Public Courtyard & Chinese Garden",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_public_space_policy"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-the-shipyards-lonsdale-quay",
       "name": "The Shipyards & Lonsdale Quay Waterfront Promenade",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-granville-island-public-market",
       "name": "Granville Island Public Market & Boardwalks",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-stanley-park-seawall",
-      "name": "Stanley Park Seawall & Scenic Viewpoints",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_public_space_policy"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-canada-place-promenade",
       "name": "Canada Place Promenade & The Canadian Trail",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-polygon-gallery-lonsdale",
       "name": "The Polygon Gallery Admission by Donation",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-theatresports-improv-centre",
-      "name": "Theatresports\u2122",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 10.0,
-      "method": "audienceview_scraped"
+      "name": "Theatresports™",
+      "status": "VERIFIED_QC_PASS",
+      "price": 33.5,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-heist-arts-club",
       "name": "HEIST by Arun Lakra",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 45.68,
-      "method": "tessitura_published_rate"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-metro-vancouver-croissant-crawl",
       "name": "Metro Vancouver Croissant Crawl",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-stanley-park-seawall-brockton-point",
-      "name": "Stanley Park Seawall & Brockton Point",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_public_space_policy"
-    },
-    {
-      "id": "van50-robson-square-plaza",
-      "name": "Robson Square & \u0161x\u02b7\u019b\u0313\u0259n\u0259q Xwtl'e7\u00e9nk Square",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-splash-pendulum-gallery-2026",
-      "name": "Splash Annual Art Exhibition at Pendulum Gallery",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-silent-movie-mondays-orpheum",
-      "name": "Silent Movie Mondays at The Orpheum",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://vancouvercivictheatres.com"
-    },
-    {
-      "id": "van50-first-friday-vancouver-art-gallery",
-      "name": "First Friday Free Evenings at Vancouver Art Gallery",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "scraped_page_policy"
+      "category": "Community & Markets",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-vpl-central-rooftop-garden",
       "name": "Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-cag-contemporary-art-gallery",
       "name": "Contemporary Art Gallery (CAG) Public Exhibitions",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-plaza-of-nations-batch-patio",
-      "name": "Plaza of Nations Waterfront Esplanade & Batch Patio",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-st-andrews-jazz-vespers",
-      "name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://standrewswesley.com/jazz-vespers/"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-lanalous-saturday-afternoon-sessions",
       "name": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "annex-raagaverse-strings",
-      "name": "Raagaverse + Strings",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 21.02,
-      "method": "api_endpoint"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-queen-elizabeth-park-gardens",
       "name": "Queen Elizabeth Park & Quarry Gardens",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "civic_public_space_policy"
-    },
-    {
-      "id": "van50-phyllis-hull-one-woman-show-20270122",
-      "name": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://do604.com/events/2027/1/22/phyllis-hull-s-one-woman-show-hullo-it-s-me-you-re-looking-for-tickets"
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-miesha-and-the-spanks-fox-20261105",
       "name": "Miesha & The Spanks with Francis Baptiste",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 17.87,
-      "method": "api_endpoint"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "ubc-fball-uofc",
       "name": "UBC Football vs. U of C",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 17.5,
-      "method": "venue_published_policy"
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "ubc-mbball-twu",
       "name": "UBC Men's Basketball vs. TWU",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 17.5,
-      "method": "venue_published_policy"
-    },
-    {
-      "id": "queen-elizabeth-theatre-ballet-bc-bodies-voices",
-      "name": "Ballet BC: Bodies & Voices",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/ballet-bc-bodies-voices-nov-5-7-2026/"
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "viff-the-debut",
-      "name": "VIFF: \"All the Lovers in the Night\" (Special Presentation \u2022 Mieko Kawakami Adaptation)",
-      "status": "VERIFIED_LIVE_CART",
+      "name": "VIFF: All the Lovers in the Night",
+      "status": "QUARANTINED_DATE_EXPIRED",
       "price": 26.0,
-      "method": "scraped_policy_page"
-    },
-    {
-      "id": "rickshaw-theatre-ethan-regan-young-regan-tour",
-      "name": "Ethan Regan - Young Regan Tour",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 39.42,
-      "method": "curator_learned_fee_formula"
+      "reason": "Event date 2026-10-01 has passed"
     },
     {
       "id": "van50-joon-the-pearl-20261002",
       "name": "JOON with Lauryn Kovacs",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 0.0,
-      "method": "schema_jsonld"
-    },
-    {
-      "id": "van50-vag-donation-day-20261002",
-      "name": "Vancouver Art Gallery Admission by Donation Day",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "scraped_page_policy"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-babes-in-canyon-fox-20261008",
       "name": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 35.99,
-      "method": "curator_learned_fee_formula"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-salin-fox-cabaret-20261010",
       "name": "SALIN (Live Soul & World Jazz)",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 44.57,
-      "method": "schema_jsonld"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-rio-burlesque-variety-20261017",
       "name": "The Rio Theatre Burlesque & Variety Show",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 16.0,
-      "method": "venue_published_policy"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-dummy-wise-hall-20261022",
       "name": "Dummy with Golomb & worrywart",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 39.35,
-      "method": "schema_jsonld"
-    },
-    {
-      "id": "van50-olive-klug-wise-hall-20261025",
-      "name": "Olive Klug with Frail Talk",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://www.oliveklug.com/shows"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-ruby-haunt-fox-20261211",
       "name": "Ruby Haunt with VHS Ghost",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 40.03,
-      "method": "curator_learned_fee_formula"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "vso-saturday-orpheum",
       "name": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 25.2,
-      "method": "vso_published_rush_policy"
-    },
-    {
-      "id": "vso-sunday-orpheum",
-      "name": "Vancouver Symphony Orchestra: Sunday Concert at The Orpheum",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 25.2,
-      "method": "vso_published_rush_policy"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-harvest-days-vandusen",
       "name": "Harvest Days at VanDusen Botanical Garden",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 7.8,
-      "method": "api_endpoint"
-    },
-    {
-      "id": "van50-orpheum-silent-movie-mondays",
-      "name": "Silent Movie Mondays",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/"
-    },
-    {
-      "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
-      "name": "Vancouver Opera: Tosca",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/"
-    },
-    {
-      "id": "van50-lolo-the-pearl-20261003",
-      "name": "L\u00d8L\u00d8: God Forbid a Girl Goes on Tour",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://thepearlvancouver.com/events/"
+      "status": "VERIFIED_QC_PASS",
+      "price": 14.86,
+      "category": "Community & Markets",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-deadly-dinner-party",
       "name": "Deadly Dinner Party",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 33.5,
-      "method": "venue_published_policy"
+      "status": "VERIFIED_QC_PASS",
+      "price": 32.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-what-else-lmg-20261003",
       "name": "What Else? (Live Comedy & Trivia Show)",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 23.03,
-      "method": "curator_learned_fee_formula"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-stand-up-showcase-lmg-20261015",
       "name": "Stand-Up Showcase at Little Mountain Gallery",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 18.14,
-      "method": "curator_learned_fee_formula"
-    },
-    {
-      "id": "test-reinforce-1790729044",
-      "name": "Continuous Learning Jazz Showcase",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Turntable Tickets portal unreachable"
-    },
-    {
-      "id": "van50-burnaby-central-railway-mini-train",
-      "name": "Burnaby Central Railway Miniature Train Rides",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://bcsme.org"
-    },
-    {
-      "id": "van50-tim-burton-cabaret-waldorf-20261024",
-      "name": "Tim Burton\u2019s Funeral \u2013 A Naturally Freaky Cabaret",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 22.63,
-      "method": "schema_jsonld"
-    },
-    {
-      "id": "van50-scout-fox-sunday-service-20261004",
-      "name": "The Sunday Service: Live Improv Comedy",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://foxcabaret.com"
-    },
-    {
-      "id": "van50-scout-rickshaw-jonny-bones-20261001",
-      "name": "Jonny Bones Memorial Movie Marathon",
-      "status": "VERIFIED_LIVE_CART",
-      "price": 0.0,
-      "method": "civic_free_public_access"
-    },
-    {
-      "id": "van50-scout-rickshaw-ethan-regan-20261003",
-      "name": "Ethan Regan: Young Regan Tour with harf",
-      "status": "CHECKOUT_FAILED",
-      "reason": "Could not dynamically verify live checkout pricing on host page: https://rickshawtheatre.com"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-scout-cinematheque-past-future-20261015",
       "name": "Past Future Continuous (Vancouver Premiere)",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 15.0,
-      "method": "venue_published_policy"
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-scout-york-comedy-on-the-drive-20261024",
       "name": "Comedy on the Drive",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 26.25,
-      "method": "spektrix_published_policy"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-scout-york-stripocalypse-20261016",
       "name": "Stripocalypse: Rise of the Auntie Heroes",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 26.25,
-      "method": "spektrix_published_policy"
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-scout-orpheum-vso-kids-20261004",
       "name": "VSO Kids: Lights, Camera, Orchestra!",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 25.2,
-      "method": "vso_published_rush_policy"
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
     },
     {
       "id": "van50-scout-rio-viff-beloved-20261001",
       "name": "VIFF 2026: The Beloved (El Ser querido)",
-      "status": "VERIFIED_LIVE_CART",
+      "status": "VERIFIED_QC_PASS",
       "price": 49.0,
-      "method": "scraped_policy_page"
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-tim-burton-cabaret-waldorf-20261024",
+      "name": "Tim Burton's Funeral – A Naturally Freaky Cabaret",
+      "status": "VERIFIED_QC_PASS",
+      "price": 22.63,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-lolo-the-pearl-20261003",
+      "name": "LØLØ: God Forbid a Girl Goes on Tour",
+      "status": "VERIFIED_QC_PASS",
+      "price": 39.75,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-olive-klug-wise-hall-20261025",
+      "name": "Olive Klug with Frail Talk",
+      "status": "VERIFIED_QC_PASS",
+      "price": 32.06,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-orpheum-silent-movie-mondays",
+      "name": "Silent Movie Mondays: Dr. Jekyll and Mr. Hyde",
+      "status": "VERIFIED_QC_PASS",
+      "price": 26.78,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
+      "name": "Vancouver Opera: Tosca (Opening Night)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 25.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-raagaverse-strings-annex-20261015",
+      "name": "Raagaverse + Strings",
+      "status": "VERIFIED_QC_PASS",
+      "price": 21.02,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-actors-rickshaw-20261009",
+      "name": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+      "status": "VERIFIED_QC_PASS",
+      "price": 20.0,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-militarie-gun-rickshaw-20261010",
+      "name": "Militarie Gun: 20 Songs for $20 Tour",
+      "status": "VERIFIED_QC_PASS",
+      "price": 36.64,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-fox-sunday-service-20261004",
+      "name": "The Sunday Service: Live Improv Comedy",
+      "status": "VERIFIED_QC_PASS",
+      "price": 20.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-the-sunday-service-fox-20261011",
+      "name": "The Sunday Service: Live Improv Comedy",
+      "status": "VERIFIED_QC_PASS",
+      "price": 20.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-90s-00s-dance-party-fox-20261009",
+      "name": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+      "status": "VERIFIED_QC_PASS",
+      "price": 15.0,
+      "category": "Nightlife & Social",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-phyllis-hull-one-woman-show-20270122",
+      "name": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+      "status": "VERIFIED_QC_PASS",
+      "price": 15.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-rickshaw-ethan-regan-20261003",
+      "name": "Ethan Regan: Young Regan Tour with harf",
+      "status": "VERIFIED_QC_PASS",
+      "price": 42.75,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-cultch-palestine-comedy-20261009",
+      "name": "Palestine Comedy Club Showcase",
+      "status": "VERIFIED_QC_PASS",
+      "price": 20.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-cinematheque-kwaidan-20261012",
+      "name": "Forbidden Rooms: Kwaidan (1964)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 14.0,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-cinematheque-hello-destroyer-20261027",
+      "name": "Hello Destroyer (Free Public Screening)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 0.0,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-lmg-20-20-20-comedy-20261017",
+      "name": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+      "status": "VERIFIED_QC_PASS",
+      "price": 18.99,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-lmg-the-setup-20261024",
+      "name": "The Setup at Little Mountain Gallery",
+      "status": "VERIFIED_QC_PASS",
+      "price": 17.96,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-improv-centre-blockbuster-20261008",
+      "name": "Blockbuster: Horrors & Hilarity Live Improv",
+      "status": "VERIFIED_QC_PASS",
+      "price": 20.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-fox-cheap-thrills-20261002",
+      "name": "Cheap Thrills Dance Party",
+      "status": "VERIFIED_QC_PASS",
+      "price": 8.0,
+      "category": "Nightlife & Social",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
+      "name": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+      "status": "VERIFIED_QC_PASS",
+      "price": 36.5,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-rickshaw-amy-winehouse-20261017",
+      "name": "Amy Winehouse Tribute with Krystle Dos Santos",
+      "status": "VERIFIED_QC_PASS",
+      "price": 36.5,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-the-way-out-theatre-20261022",
+      "name": "The Way Out – Matchstick Productions Ski Film Premiere",
+      "status": "VERIFIED_QC_PASS",
+      "price": 34.5,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-firehall-red-demon-20261008",
+      "name": "Red Demon (Firehall Arts Centre & rice & beans theatre)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 32.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-cinematheque-small-file-20261017",
+      "name": "Small File Media Festival: Curated Screenings",
+      "status": "VERIFIED_QC_PASS",
+      "price": 15.0,
+      "category": "Social & Arts",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-scout-cinematheque-pulse-20261016",
+      "name": "Forbidden Rooms: Pulse (Kairo)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 15.0,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-witches-harvest-market-20261024",
+      "name": "Nightshade Market: Witches Harvest (Samhain Artisan Market)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 6.66,
+      "category": "Community & Markets",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "eb-alistair-ogden-rio",
+      "name": "Alistair Ogden Live at The Rio Theatre",
+      "status": "VERIFIED_QC_PASS",
+      "price": 35.0,
+      "category": "Comedy & Shows",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-city-pop-city-rickshaw-20261121",
+      "name": "City Pop City Ft. Chen Baker & Technodelic",
+      "status": "VERIFIED_QC_PASS",
+      "price": 36.21,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "vag-first-friday",
+      "name": "Vancouver Art Gallery: Free First Friday Nights",
+      "status": "VERIFIED_QC_PASS",
+      "price": 0.0,
+      "category": "Free Public Access",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-dalek-wise-hall-20261009",
+      "name": "Dälek (with Infidelity & DarkGable)",
+      "status": "VERIFIED_QC_PASS",
+      "price": 31.5,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-st-andrews-jazz-vespers",
+      "name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
+      "status": "VERIFIED_QC_PASS",
+      "price": 10.0,
+      "category": "Live Music",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-burnaby-central-railway-mini-train",
+      "name": "Burnaby Central Railway Miniature Train Rides",
+      "status": "VERIFIED_QC_PASS",
+      "price": 5.0,
+      "category": "Community & Markets",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "stanley-pitch-putt",
+      "name": "Stanley Park Pitch & Putt: 18-Hole Round",
+      "status": "VERIFIED_QC_PASS",
+      "price": 19.11,
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "qe-park-pitch-putt",
+      "name": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
+      "status": "VERIFIED_QC_PASS",
+      "price": 18.27,
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "rupert-park-pitch-putt",
+      "name": "Rupert Park Pitch & Putt: 18-Hole Round",
+      "status": "VERIFIED_QC_PASS",
+      "price": 18.27,
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "central-park-pitch-putt",
+      "name": "Central Park Pitch & Putt: 18-Hole Round",
+      "status": "VERIFIED_QC_PASS",
+      "price": 16.28,
+      "category": "Sports & Fitness",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "bloedel-conservatory-admission",
+      "name": "Bloedel Conservatory: Tropical Aviary & Botanical Garden",
+      "status": "VERIFIED_QC_PASS",
+      "price": 9.98,
+      "category": "Arts & Culture",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "van50-pizzeria-ludica-board-games",
+      "name": "Pizzeria Ludica: 1,000+ Board Game Library & Artisan Pizza",
+      "status": "VERIFIED_QC_PASS",
+      "price": 0.0,
+      "category": "Food & Drink",
+      "method": "live_20_dimension_qc_audit"
+    },
+    {
+      "id": "rickshaw-evergrey-metal-showcase",
+      "name": "HammerFall & Evergrey (Freedom World Crusade Tour)",
+      "status": "QUARANTINED_SOLD_OUT",
+      "price": 35.0,
+      "reason": "Sold out: official Rickshaw box office inventory exhausted"
+    },
+    {
+      "id": "van50-ubc-apple-festival-20261017",
+      "name": "UBC Apple Festival (35th Annual)",
+      "status": "QUARANTINED_SOLD_OUT",
+      "price": 15.0,
+      "reason": "Sold out: Saturday admission tickets sold out"
     }
   ]
 }

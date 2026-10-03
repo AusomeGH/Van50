@@ -6,7 +6,50 @@
     "location": "Waterfront Theatre, The Nest (Granville Island), Performance Works, Carousel Theatre, Arts Factory, The Revue Stage",
     "start_date": "2026-09-10",
     "end_date": "2026-09-20",
-    "description": "shows"
+    "description": "shows",
+    "category": "Comedy & Shows",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Fringe Festival",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-09-10",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 0.0
+      },
+      {
+        "date": "2026-09-20",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 0.0
+      }
+    ]
   },
   {
     "festival_name": "Vancouver International Film Festival (VIFF)",
@@ -15,7 +58,50 @@
     "location": "VIFF Centre, The Cinematheque, Rio Theatre, SFU Goldcorp Centre for the Arts",
     "start_date": "2026-09-24",
     "end_date": "2026-10-04",
-    "description": "cinema"
+    "description": "cinema",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver International Film Festival (VIFF)",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-09-24",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-10-04",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Khatsahlano Street Party",
@@ -24,7 +110,50 @@
     "location": "West 4th Avenue (Burrard to MacDonald)",
     "start_date": "2026-07-11",
     "end_date": "2026-07-11",
-    "description": "music"
+    "description": "music",
+    "category": "Arts & Culture",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Khatsahlano Street Party",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-07-11",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 0.0
+      },
+      {
+        "date": "2026-07-11",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 0.0
+      }
+    ]
   },
   {
     "festival_name": "Vancouver Folk Music Festival",
@@ -33,7 +162,50 @@
     "location": "Jericho Beach Park",
     "start_date": "2026-07-17",
     "end_date": "2026-07-19",
-    "description": "music"
+    "description": "music",
+    "category": "Live Music",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Folk Music Festival",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-07-17",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-07-19",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Car Free Days Vancouver",
@@ -42,7 +214,50 @@
     "location": "Commercial Drive, Main Street, Denman Street (West End)",
     "start_date": "2026-09-06",
     "end_date": "2026-09-20",
-    "description": "outdoors"
+    "description": "outdoors",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Car Free Days Vancouver",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-09-06",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-09-20",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "BC Culture Days",
@@ -51,7 +266,50 @@
     "location": "Multiple Venues across Metro Vancouver",
     "start_date": "2026-09-20",
     "end_date": "2026-10-15",
-    "description": "Province-wide arts and culture festival providing free access to interactive workshops, open artist studios, and live pop-up music."
+    "description": "Province-wide arts and culture festival providing free access to interactive workshops, open artist studios, and live pop-up music.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for BC Culture Days",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-09-20",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-10-15",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Downtown Eastside Heart of the City Festival",
@@ -60,7 +318,50 @@
     "location": "Over 30 Venues across Vancouver's Downtown Eastside",
     "start_date": "2026-10-30",
     "end_date": "2026-11-07",
-    "description": "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theater pieces celebrating DTES culture."
+    "description": "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theater pieces celebrating DTES culture.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Downtown Eastside Heart of the City Festival",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-30",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-11-07",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Public Disco Festival",
@@ -68,7 +369,50 @@
     "schedule_url": "https://admitone.com/events/north-vancouver/community/party/public-disco-festival/JLKBC4?referral=laylo",
     "start_date": "2026-10-03",
     "end_date": "2026-10-03",
-    "description": "Open-air electronic and dance music festival transforming urban public spaces in Metro Vancouver with multiple stages, sound installations, and local art."
+    "description": "Open-air electronic and dance music festival transforming urban public spaces in Metro Vancouver with multiple stages, sound installations, and local art.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Public Disco Festival",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-03",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-10-03",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Vancouver Writers Fest",
@@ -77,7 +421,50 @@
     "location": "Granville Island, Vancouver, BC",
     "start_date": "2026-10-19",
     "end_date": "2026-10-25",
-    "description": "Premier annual literary festival bringing together acclaimed Canadian and international authors, poets, and thinkers on Granville Island."
+    "description": "Premier annual literary festival bringing together acclaimed Canadian and international authors, poets, and thinkers on Granville Island.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Vancouver Writers Fest",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-19",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-10-25",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
   },
   {
     "festival_name": "Culture Days BC",
@@ -86,6 +473,93 @@
     "location": "Multiple Venues across Metro Vancouver",
     "start_date": "2026-09-20",
     "end_date": "2026-10-15",
-    "description": "Nationwide celebration of arts and culture offering hundreds of free participatory workshops, studio tours, and outdoor performances."
+    "description": "Nationwide celebration of arts and culture offering hundreds of free participatory workshops, studio tours, and outdoor performances.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 18.0,
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "lineup": "Curated multidisciplinary ensemble and festival lineup for Culture Days BC",
+    "restrictions": "All Ages / Family Friendly (Licensed 19+ beverage areas require ID)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Main Stage / Welcome Pavilion",
+        "type": "hub",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      },
+      {
+        "name": "Information & Box Office Kiosk",
+        "type": "info",
+        "coordinates": [
+          49.2827,
+          -123.1207
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-09-20",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      },
+      {
+        "date": "2026-10-15",
+        "start_time": "12:00",
+        "end_time": "22:00",
+        "cost": 18.0
+      }
+    ]
+  },
+  {
+    "festival_name": "Small File Media Festival (7th Annual)",
+    "website_url": "https://smallfile.ca",
+    "schedule_url": "https://thecinematheque.ca",
+    "location": "The Cinematheque (1131 Howe St, Vancouver, BC)",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-18",
+    "description": "Pioneering eco-media and experimental film festival celebrating movies compressed to tiny file sizes (1.44 MB/min), featuring 85 films across six curated programs.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 15.0,
+    "coordinates": [
+      49.2787,
+      -123.1264
+    ],
+    "lineup": "85 international filmmakers, SFU School for the Contemporary Arts, The Cinematheque",
+    "restrictions": "All Ages / PG",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "The Cinematheque Main Auditorium",
+        "type": "theatre",
+        "coordinates": [
+          49.2787,
+          -123.1264
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-17",
+        "start_time": "14:00",
+        "end_time": "22:00",
+        "cost": 15.0
+      },
+      {
+        "date": "2026-10-18",
+        "start_time": "14:00",
+        "end_time": "22:00",
+        "cost": 15.0
+      }
+    ]
   }
 ]

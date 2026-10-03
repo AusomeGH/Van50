@@ -1,0 +1,2226 @@
+{
+  "session_id": "sweep-20261002-130612",
+  "status": "completed",
+  "started_at": "2026-10-02T13:06:12.914336",
+  "total_sources": 162,
+  "current_batch_index": 16,
+  "batch_size": 10,
+  "completed_count": 162,
+  "new_events_found": 4,
+  "revived_events_count": 2,
+  "sources_queue": [
+    {
+      "id": "venue:stanley-park-pitch-putt",
+      "name": "Stanley Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:queen-elizabeth-park-pitch-putt",
+      "name": "Queen Elizabeth Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:rupert-park-pitch-putt",
+      "name": "Rupert Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:central-park-pitch-putt",
+      "name": "Central Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:stanley-park-seawall",
+      "name": "Stanley Park Seawall",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:lynn-canyon-park",
+      "name": "Lynn Canyon Park",
+      "type": "venue",
+      "url": "https://ecologycentre.ca",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:granville-island-public-market",
+      "name": "Granville Island Public Market",
+      "type": "venue",
+      "url": "https://granvilleisland.com/public-market",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:kitsilano-beach-outdoor-amphitheatre",
+      "name": "Kitsilano Beach Outdoor Amphitheatre",
+      "type": "venue",
+      "url": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:vpl-central-library-level-9",
+      "name": "VPL Central Library (Level 9)",
+      "type": "venue",
+      "url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:dr-sun-yat-sen-public-courtyard",
+      "name": "Dr. Sun Yat-Sen Public Courtyard",
+      "type": "venue",
+      "url": "https://vancouverchinesegarden.com/visit/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:11:07.919009"
+    },
+    {
+      "id": "venue:ubc-rose-garden-trail-6",
+      "name": "UBC Rose Garden & Trail 6",
+      "type": "venue",
+      "url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:queen-elizabeth-park",
+      "name": "Queen Elizabeth Park",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:little-mountain-gallery",
+      "name": "Little Mountain Gallery",
+      "type": "venue",
+      "url": "https://littlemountaingallery.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:bloedel-conservatory",
+      "name": "Bloedel Conservatory",
+      "type": "venue",
+      "url": "https://www.showpass.com/o/bloedel-conservatory/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:war-memorial-gym-thunderbird-stadium",
+      "name": "War Memorial Gym & Thunderbird Stadium",
+      "type": "venue",
+      "url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:chill-x-studio",
+      "name": "Chill x Studio",
+      "type": "venue",
+      "url": "https://chillxstudio.com",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:viff-centre-seymour-atrium",
+      "name": "VIFF Centre (Seymour Atrium)",
+      "type": "venue",
+      "url": "https://viff.org/whats-on/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:the-cinematheque",
+      "name": "The Cinematheque",
+      "type": "venue",
+      "url": "https://thecinematheque.ca/films/calendar",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:the-portside-pub",
+      "name": "The Portside Pub",
+      "type": "venue",
+      "url": "https://theportsidepub.com/bookings/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:the-rio-theatre",
+      "name": "The Rio Theatre",
+      "type": "venue",
+      "url": "https://riotheatre.ca/calendar/",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:14:27.727544"
+    },
+    {
+      "id": "venue:the-fox-cabaret",
+      "name": "The Fox Cabaret",
+      "type": "venue",
+      "url": "https://www.foxcabaret.com/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:the-biltmore-cabaret",
+      "name": "The Biltmore Cabaret",
+      "type": "venue",
+      "url": "https://biltmorecabaret.com/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:scotiabank-field-at-nat-bailey-stadium",
+      "name": "Scotiabank Field at Nat Bailey Stadium",
+      "type": "venue",
+      "url": "https://www.milb.com/vancouver/schedule",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:revue-stage-granville-island",
+      "name": "Revue Stage Granville Island",
+      "type": "venue",
+      "url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:tightrope-impro-theatre",
+      "name": "Tightrope Impro Theatre",
+      "type": "venue",
+      "url": "https://tightropetheatre.com/shows",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:the-improv-centre",
+      "name": "The Improv Centre",
+      "type": "venue",
+      "url": "https://theimprovcentre.ca/shows/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:the-rickshaw-theatre",
+      "name": "The Rickshaw Theatre",
+      "type": "venue",
+      "url": "https://rickshawtheatre.com/events/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:science-world-at-telus-world-of-science",
+      "name": "Science World at TELUS World of Science",
+      "type": "venue",
+      "url": "https://www.scienceworld.ca/after-dark/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:the-orpheum-theatre",
+      "name": "The Orpheum Theatre",
+      "type": "venue",
+      "url": "https://www.vancouversymphony.ca/concerts/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:pizzeria-ludica",
+      "name": "Pizzeria Ludica",
+      "type": "venue",
+      "url": "https://www.pizzerialudica.com/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:16:05.517323"
+    },
+    {
+      "id": "venue:vancouver-art-gallery",
+      "name": "Vancouver Art Gallery",
+      "type": "venue",
+      "url": "https://www.vanartgallery.bc.ca/visit/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:the-shipyards-district",
+      "name": "The Shipyards District",
+      "type": "venue",
+      "url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:kitsilano-beach-park",
+      "name": "Kitsilano Beach Park",
+      "type": "venue",
+      "url": "https://kitsilanoshowboat.com/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:commercial-drive-main-street",
+      "name": "Commercial Drive & Main Street",
+      "type": "venue",
+      "url": "https://www.carfreevancouver.org",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:west-4th-avenue-burrard-to-macdonald",
+      "name": "West 4th Avenue (Burrard to Macdonald)",
+      "type": "venue",
+      "url": "https://khatsahlano.ca",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:john-hendry-park-trout-lake",
+      "name": "John Hendry Park (Trout Lake)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/trout-lake/",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:kitsilano-community-centre-plaza",
+      "name": "Kitsilano Community Centre Plaza",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/kitsilano/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:guilt-co",
+      "name": "Guilt & Co.",
+      "type": "venue",
+      "url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:ubc-instructional-resources-centre-irc",
+      "name": "UBC Instructional Resources Centre (IRC)",
+      "type": "venue",
+      "url": "https://vaninstitute.ca",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:colony-main-street",
+      "name": "Colony Main Street",
+      "type": "venue",
+      "url": "https://iq2000trivia.com",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:17:24.310721"
+    },
+    {
+      "id": "venue:runvan-clubhouse-seawall",
+      "name": "RUNVAN Clubhouse & Seawall",
+      "type": "venue",
+      "url": "https://runvan.org",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:riley-park-plaza-nat-bailey-stadium",
+      "name": "Riley Park Plaza (Nat Bailey Stadium)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/riley-park/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:nelson-park-west-end",
+      "name": "Nelson Park (West End)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/west-end/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:dude-chilling-park-guelph-park",
+      "name": "Dude Chilling Park (Guelph Park)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/mount-pleasant/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:vancouver-art-gallery-plaza-north",
+      "name": "Vancouver Art Gallery Plaza (North)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/downtown/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:concord-community-park-false-creek",
+      "name": "Concord Community Park (False Creek)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/false-creek/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:ubc-farm-south-campus",
+      "name": "UBC Farm (South Campus)",
+      "type": "venue",
+      "url": "https://ubcfarm.ubc.ca/markets/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:2nd-floor-gastown",
+      "name": "2nd Floor Gastown",
+      "type": "venue",
+      "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:frankie-s-jazz-club",
+      "name": "Frankie's Jazz Club",
+      "type": "venue",
+      "url": "https://frankiesjazzclub.com",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:the-wise-hall-lounge",
+      "name": "The WISE Hall & Lounge",
+      "type": "venue",
+      "url": "https://wisehall.ca",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:19:23.501000"
+    },
+    {
+      "id": "venue:the-anza-club",
+      "name": "The Anza Club",
+      "type": "venue",
+      "url": "https://anzaclub.org",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:red-gate-arts-society",
+      "name": "Red Gate Arts Society",
+      "type": "venue",
+      "url": "https://redgate.tv/tickets/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:lanalou-s",
+      "name": "LanaLou's",
+      "type": "venue",
+      "url": "https://do604.com/venues/lanalou-s",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:the-roxy-cabaret",
+      "name": "The Roxy Cabaret",
+      "type": "venue",
+      "url": "https://roxyvan.com/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:caf-au-clay-studios",
+      "name": "Café au Clay Studios",
+      "type": "venue",
+      "url": "https://cafeauclay.com/products/drop-in-pottery-painting",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:basic-inquiry-life-drawing-society",
+      "name": "Basic Inquiry Life Drawing Society",
+      "type": "venue",
+      "url": "https://lifedrawing.org/sessions",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:hand-eye-ceramics",
+      "name": "Hand Eye Ceramics",
+      "type": "venue",
+      "url": "https://handeyeceramics.com/open-studio",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:claymates-ceramics-studio",
+      "name": "Claymates Ceramics Studio",
+      "type": "venue",
+      "url": "https://claymatesceramicsstudio.com",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:slice-of-life-gallery-studios",
+      "name": "Slice of Life Gallery & Studios",
+      "type": "venue",
+      "url": "https://www.slicevancouver.ca/events",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:public-disco-society",
+      "name": "Public Disco Society",
+      "type": "venue",
+      "url": "https://publicdisco.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:20:47.920797"
+    },
+    {
+      "id": "venue:hollywood-theatre",
+      "name": "Hollywood Theatre",
+      "type": "venue",
+      "url": "https://www.ticketmaster.ca/event/110064638F595700",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:rickshaw-theatre",
+      "name": "Rickshaw Theatre",
+      "type": "venue",
+      "url": "https://rickshawtheatre.com/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:waterfront-theatre",
+      "name": "Waterfront Theatre",
+      "type": "venue",
+      "url": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:the-waldorf",
+      "name": "The Waldorf",
+      "type": "venue",
+      "url": "https://atthewaldorf.com/events",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:the-cobalt",
+      "name": "The Cobalt",
+      "type": "venue",
+      "url": "https://thecobalt.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:carousel-theatre",
+      "name": "Carousel Theatre",
+      "type": "venue",
+      "url": "https://vancouverfringe.com/shows/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:touchstone-theatre",
+      "name": "Touchstone Theatre",
+      "type": "venue",
+      "url": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:queen-elizabeth-theatre",
+      "name": "Queen Elizabeth Theatre",
+      "type": "venue",
+      "url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "neighborhood": "Downtown / West End",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:the-pearl",
+      "name": "The Pearl",
+      "type": "venue",
+      "url": "https://thepearlvancouver.com/calendar/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:22:45.870856"
+    },
+    {
+      "id": "venue:the-wise-hall",
+      "name": "The WISE Hall",
+      "type": "venue",
+      "url": "https://www.ticketweb.ca/",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:bill-reid-gallery-of-northwest-coast-art",
+      "name": "Bill Reid Gallery of Northwest Coast Art",
+      "type": "venue",
+      "url": "https://www.billreidgallery.ca/pages/exhibitions",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:burnaby-art-gallery",
+      "name": "Burnaby Art Gallery",
+      "type": "venue",
+      "url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+      "neighborhood": "Burnaby",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:ubc-botanical-garden",
+      "name": "UBC Botanical Garden",
+      "type": "venue",
+      "url": "https://botanicalgarden.ubc.ca/news-events/events/",
+      "neighborhood": "Point Grey",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:the-cambrian-hall",
+      "name": "The Cambrian Hall",
+      "type": "venue",
+      "url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:the-show-cellar-inside-the-park-pub",
+      "name": "The Show Cellar inside The Park Pub",
+      "type": "venue",
+      "url": "https://www.thecomedydepartment.com/vancouver-shows/",
+      "neighborhood": "West End",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:the-china-cloud-studios",
+      "name": "The China Cloud Studios",
+      "type": "venue",
+      "url": "https://do604.com/events/comedy",
+      "neighborhood": "Chinatown",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:the-shipyards",
+      "name": "The Shipyards",
+      "type": "venue",
+      "url": "https://theshipyards.ca",
+      "neighborhood": "Lower Lonsdale",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:the-pipe-shop-venue",
+      "name": "The Pipe Shop Venue",
+      "type": "venue",
+      "url": "https://theshipyards.ca/pipe-shop",
+      "neighborhood": "Lower Lonsdale",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:annex",
+      "name": "Annex",
+      "type": "venue",
+      "url": "https://vancouvercivictheatres.com/events/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:croatian-cultural-centre",
+      "name": "Croatian Cultural Centre",
+      "type": "venue",
+      "url": "https://croatiancentre.com/events/",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": "2026-10-02T13:24:05.771319"
+    },
+    {
+      "id": "venue:fox-cabaret",
+      "name": "Fox Cabaret",
+      "type": "venue",
+      "url": "https://www.foxcabaret.com/calendar",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:the-show-cellar",
+      "name": "The Show Cellar",
+      "type": "venue",
+      "url": "https://theshowcellar.com",
+      "neighborhood": "West End",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:the-polygon-gallery",
+      "name": "The Polygon Gallery",
+      "type": "venue",
+      "url": "https://thepolygon.ca/exhibitions/",
+      "neighborhood": "North Shore",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:arts-club-theatre-company-granville-island-stage",
+      "name": "Arts Club Theatre Company (Granville Island Stage)",
+      "type": "venue",
+      "url": "https://artsclub.com/shows",
+      "neighborhood": "Granville Island",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:pendulum-gallery",
+      "name": "Pendulum Gallery",
+      "type": "venue",
+      "url": "https://www.pendulumgallery.bc.ca/exhibitions",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:trout-lake-community-centre",
+      "name": "Trout Lake Community Centre",
+      "type": "venue",
+      "url": "https://troutlakecc.com/events",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:the-orpheum",
+      "name": "The Orpheum",
+      "type": "venue",
+      "url": "https://vancouvercivictheatres.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:vandusen-botanical-garden",
+      "name": "VanDusen Botanical Garden",
+      "type": "venue",
+      "url": "https://vandusengarden.org/events",
+      "neighborhood": "South Cambie",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:contemporary-art-gallery-cag",
+      "name": "Contemporary Art Gallery (CAG)",
+      "type": "venue",
+      "url": "https://www.contemporaryartgallery.ca/exhibitions",
+      "neighborhood": "Yaletown",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:guilt-company",
+      "name": "Guilt & Company",
+      "type": "venue",
+      "url": "https://www.guiltandcompany.com/live-music",
+      "neighborhood": "Gastown",
+      "last_scouted_at": "2026-10-02T13:25:29.556516"
+    },
+    {
+      "id": "venue:vancouver-public-library-central-branch",
+      "name": "Vancouver Public Library Central Branch",
+      "type": "venue",
+      "url": "https://vpl.bibliocommons.com/v2/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:the-wise-hall",
+      "name": "The WISE Hall",
+      "type": "venue",
+      "url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:st-andrew-s-wesley-united-church",
+      "name": "St. Andrew's-Wesley United Church",
+      "type": "venue",
+      "url": "https://standrewswesley.com/events/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:the-waldorf-hotel",
+      "name": "The Waldorf Hotel",
+      "type": "venue",
+      "url": "https://thewaldorfhotel.com/events",
+      "neighborhood": "Hastings-Sunrise",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:the-annex-roundhouse-community-centre",
+      "name": "The Annex & Roundhouse Community Centre",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
+      "neighborhood": "Downtown / Yaletown",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:test-qa-cellar-1790801024",
+      "name": "Test QA Cellar 1790801024",
+      "type": "venue",
+      "url": "https://testcellar.example.com/events",
+      "neighborhood": "Gastown / Chinatown",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:the-pipe-shop-shipbuilders-square",
+      "name": "The Pipe Shop & Shipbuilders' Square",
+      "type": "venue",
+      "url": "https://theshipyardsdistrict.ca/events",
+      "neighborhood": "North Shore",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:the-american",
+      "name": "The American",
+      "type": "venue",
+      "url": "https://theamerican.ca/events-calendar",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:brewhall",
+      "name": "BREWHALL",
+      "type": "venue",
+      "url": "https://brewhall.com/events/",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:sfu-goldcorp-centre-for-the-arts",
+      "name": "SFU Goldcorp Centre for the Arts",
+      "type": "venue",
+      "url": "https://www.sfu.ca/sfu-community/events.html",
+      "neighborhood": "Gastown",
+      "last_scouted_at": "2026-10-02T13:26:33.821750"
+    },
+    {
+      "id": "venue:gorg-o-mish",
+      "name": "Gorg-O-Mish",
+      "type": "venue",
+      "url": "https://ra.co/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:vancouver-maritime-museum",
+      "name": "Vancouver Maritime Museum",
+      "type": "venue",
+      "url": "https://vanmaritime.com",
+      "neighborhood": "Kitsilano",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:the-sylvia-hotel-lounge",
+      "name": "The Sylvia Hotel Lounge",
+      "type": "venue",
+      "url": "https://sylviahotel.com/live-music/",
+      "neighborhood": "West End",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:tyrant-studios",
+      "name": "Tyrant Studios",
+      "type": "venue",
+      "url": "https://tyrantstudios.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:centennial-theatre",
+      "name": "Centennial Theatre",
+      "type": "venue",
+      "url": "https://www.nvrc.ca/centennial-theatre/whats-on",
+      "neighborhood": "North Shore",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:greta-bar-yvr",
+      "name": "GRETA Bar YVR",
+      "type": "venue",
+      "url": "https://gretabar.com/locations/vancouver",
+      "neighborhood": "Gastown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:the-main",
+      "name": "The Main",
+      "type": "venue",
+      "url": "https://themainonmain.com/events",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:commodore-ballroom",
+      "name": "Commodore Ballroom",
+      "type": "venue",
+      "url": "https://www.commodoreballroom.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:the-rec-room-granville",
+      "name": "The Rec Room Granville",
+      "type": "venue",
+      "url": "https://www.therecroom.com/vancouver-granville/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "venue:firehall-arts-centre",
+      "name": "Firehall Arts Centre",
+      "type": "venue",
+      "url": "https://www.firehallartscentre.ca/on-stage/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": "2026-10-02T13:28:54.163867"
+    },
+    {
+      "id": "discovery:vancouver-is-awesome",
+      "name": "Vancouver Is Awesome",
+      "type": "aggregator",
+      "url": "https://www.vancouverisawesome.com/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:do604",
+      "name": "Do604",
+      "type": "aggregator",
+      "url": "https://do604.com/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:the-georgia-straight",
+      "name": "The Georgia Straight",
+      "type": "aggregator",
+      "url": "https://www.straight.com/listings",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:daily-hive-vancouver",
+      "name": "Daily Hive Vancouver",
+      "type": "aggregator",
+      "url": "https://dailyhive.com/vancouver/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:miss604-rebecca-bollwitt",
+      "name": "Miss604 (Rebecca Bollwitt)",
+      "type": "aggregator",
+      "url": "https://miss604.com/category/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:destination-vancouver",
+      "name": "Destination Vancouver",
+      "type": "aggregator",
+      "url": "https://www.destinationvancouver.com/events/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:live-music-vancouver",
+      "name": "Live Music Vancouver",
+      "type": "aggregator",
+      "url": "https://www.livemusicvancouver.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:songkick-vancouver",
+      "name": "Songkick Vancouver",
+      "type": "aggregator",
+      "url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:bandsintown-vancouver",
+      "name": "Bandsintown Vancouver",
+      "type": "aggregator",
+      "url": "https://www.bandsintown.com/c/vancouver-canada",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:showpass-discover-vancouver",
+      "name": "Showpass Discover (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.showpass.com/discover/?location=Vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:31:21.486427"
+    },
+    {
+      "id": "discovery:eventbrite-vancouver",
+      "name": "Eventbrite Vancouver",
+      "type": "aggregator",
+      "url": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:resident-advisor-vancouver",
+      "name": "Resident Advisor (Vancouver)",
+      "type": "aggregator",
+      "url": "https://ra.co/events/ca/vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:dice-vancouver",
+      "name": "DICE (Vancouver)",
+      "type": "aggregator",
+      "url": "https://dice.fm/browse/vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:shotgun-vancouver",
+      "name": "Shotgun (Vancouver)",
+      "type": "aggregator",
+      "url": "https://shotgun.live/en/cities/vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:spektrix-performing-arts-the-cultch-push",
+      "name": "Spektrix Performing Arts (The Cultch / PuSh)",
+      "type": "aggregator",
+      "url": "https://thecultch.com/whats-on/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:tessitura-vso-arts-club-bard-on-the-beach",
+      "name": "Tessitura (VSO / Arts Club / Bard on the Beach)",
+      "type": "aggregator",
+      "url": "https://www.vancouversymphony.ca/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:ticket-tailor-vancouver",
+      "name": "Ticket Tailor (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.tickettailor.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:zeffy-vancouver-non-profits",
+      "name": "Zeffy (Vancouver Non-Profits)",
+      "type": "aggregator",
+      "url": "https://www.zeffy.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:humanitix-vancouver",
+      "name": "Humanitix (Vancouver)",
+      "type": "aggregator",
+      "url": "https://humanitix.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:universe-vancouver",
+      "name": "Universe (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.universe.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:32:15.456748"
+    },
+    {
+      "id": "discovery:vtix-online-vancouver",
+      "name": "VTix Online (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.vtixonline.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:broadway-across-canada-vancouver",
+      "name": "Broadway Across Canada (Vancouver)",
+      "type": "aggregator",
+      "url": "https://vancouver.broadway.com/shows/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:city-of-vancouver-parks-recreation-culture",
+      "name": "City of Vancouver Parks, Recreation & Culture",
+      "type": "aggregator",
+      "url": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:vancouver-public-library-vpl",
+      "name": "Vancouver Public Library (VPL)",
+      "type": "aggregator",
+      "url": "https://www.vpl.ca/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:destination-vancouver-free-budget-outings",
+      "name": "Destination Vancouver: Free & Budget Outings",
+      "type": "aggregator",
+      "url": "https://www.destinationvancouver.com/activities/free-and-nearly-free/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:granville-island-cultural-district",
+      "name": "Granville Island Cultural District",
+      "type": "aggregator",
+      "url": "https://granvilleisland.com/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:contemporary-art-gallery-cag",
+      "name": "Contemporary Art Gallery (CAG)",
+      "type": "aggregator",
+      "url": "https://www.contemporaryartgallery.ca/exhibitions/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:vancity-digest",
+      "name": "Vancity Digest",
+      "type": "aggregator",
+      "url": "https://vancitydigest.ca",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:stir---vancouver-arts-culture-hub",
+      "name": "Stir - Vancouver Arts & Culture Hub",
+      "type": "aggregator",
+      "url": "https://www.createastir.ca",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:vancouver-s-best-places-calendar",
+      "name": "Vancouver's Best Places Calendar",
+      "type": "aggregator",
+      "url": "https://vancouversbestplaces.com/events-calendar",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:33:32.525147"
+    },
+    {
+      "id": "discovery:bc-culture-days-directory",
+      "name": "BC Culture Days Directory",
+      "type": "aggregator",
+      "url": "https://culturedays.ca/en/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:604-now-metro-vancouver-event-calendar",
+      "name": "604 Now Metro Vancouver Event Calendar",
+      "type": "aggregator",
+      "url": "https://604now.com/events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:curiocity-vancouver-things-to-do",
+      "name": "Curiocity Vancouver Things To Do",
+      "type": "aggregator",
+      "url": "https://curiocity.com/vancouver",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:to-do-canada-vancouver-free-events",
+      "name": "To Do Canada (Vancouver Free Events)",
+      "type": "aggregator",
+      "url": "https://www.todocanada.ca/city/vancouver/free-events",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:showhub-vancouver",
+      "name": "ShowHub Vancouver",
+      "type": "aggregator",
+      "url": "https://showhub.ca/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:rhythm-changes-gig-list",
+      "name": "Rhythm Changes (Gig List)",
+      "type": "aggregator",
+      "url": "https://www.rhythmchanges.ca/gig-list/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:sfu-public-square-civic-space-guide",
+      "name": "SFU Public Square Civic Space Guide",
+      "type": "aggregator",
+      "url": "https://www.sfu.ca/publicsquare",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:vancouver-farmers-markets-eatlocal",
+      "name": "Vancouver Farmers Markets (EatLocal)",
+      "type": "aggregator",
+      "url": "https://eatlocal.org/markets/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:shop-west-4th-kitsilano-4th-avenue-bia",
+      "name": "Shop West 4th (Kitsilano 4th Avenue BIA)",
+      "type": "aggregator",
+      "url": "https://shopwest4th.com",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:iq-2000-trivia",
+      "name": "IQ 2000 Trivia",
+      "type": "aggregator",
+      "url": "https://www.instagram.com/iq2000trivia",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:34:35.499882"
+    },
+    {
+      "id": "discovery:runvan-community-hub",
+      "name": "RUNVAN Community Hub",
+      "type": "aggregator",
+      "url": "https://runvan.org/races/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "discovery:heart-of-the-city-festival-guide",
+      "name": "Heart of the City Festival Guide",
+      "type": "aggregator",
+      "url": "https://www.heartofthecityfestival.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "discovery:scene-in-the-dark",
+      "name": "Scene in the Dark",
+      "type": "aggregator",
+      "url": "https://sceneinthedark.com/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "discovery:vancouver-recreation-activity-portal",
+      "name": "Vancouver Recreation Activity Portal",
+      "type": "aggregator",
+      "url": "https://vanrec.ca/",
+      "category": "general",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:vancouver-fringe-festival",
+      "name": "Vancouver Fringe Festival",
+      "type": "festival",
+      "url": "https://vancouverfringe.com",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:vancouver-international-film-festival",
+      "name": "Vancouver International Film Festival (VIFF)",
+      "type": "festival",
+      "url": "https://viff.org",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:khatsahlano-street-party",
+      "name": "Khatsahlano Street Party",
+      "type": "festival",
+      "url": "https://khatsahlano.com",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:vancouver-folk-music-festival",
+      "name": "Vancouver Folk Music Festival",
+      "type": "festival",
+      "url": "https://thefestival.bc.ca",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:bc-culture-days",
+      "name": "BC Culture Days",
+      "type": "festival",
+      "url": "https://culturedays.ca/en/bc",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:public-disco-society",
+      "name": "Public Disco Festival",
+      "type": "festival",
+      "url": "https://publicdisco.ca",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:vancouver-writers-fest",
+      "name": "Vancouver Writers Fest",
+      "type": "festival",
+      "url": "https://writersfest.bc.ca/",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    },
+    {
+      "id": "festival:small-file-media-festival",
+      "name": "Small File Media Festival (7th Annual)",
+      "type": "festival",
+      "url": "https://smallfile.ca",
+      "last_scouted_at": "2026-10-02T13:35:28.683386"
+    }
+  ],
+  "audit_log": [
+    {
+      "batch_index": 0,
+      "completed_at": "2026-10-02T13:11:07.919009",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:stanley-park-pitch-putt",
+          "status": "revived",
+          "action": "Revived Stanley Park Pitch & Putt 18-hole municipal links from archive; verified live green fee $19.11 CAD tax inc, 8:00 AM – 7:30 PM daily."
+        },
+        {
+          "id": "venue:queen-elizabeth-park-pitch-putt",
+          "status": "ingested",
+          "action": "Ingested Queen Elizabeth Park Pitch & Putt 18-hole links; verified live green fee $18.27 CAD tax inc, 8:00 AM – 7:30 PM daily."
+        },
+        {
+          "id": "venue:rupert-park-pitch-putt",
+          "status": "ingested",
+          "action": "Ingested Rupert Park Pitch & Putt 18-hole links; verified live green fee $18.27 CAD tax inc, 8:00 AM – 7:30 PM daily, free parking."
+        },
+        {
+          "id": "venue:central-park-pitch-putt",
+          "status": "revived",
+          "action": "Revived Central Park Pitch & Putt 18-hole links from archive; verified live green fee $16.28 CAD ($15.50 + 5% GST), 8:00 AM – 6:30 PM daily."
+        },
+        {
+          "id": "venue:stanley-park-seawall",
+          "status": "verified_active",
+          "action": "Inspected seawall loop; active perennial $0 CAD civic path."
+        },
+        {
+          "id": "venue:lynn-canyon-park",
+          "status": "verified_active",
+          "action": "Inspected Lynn Canyon Ecology Centre & suspension bridge; active $0 CAD civic nature park."
+        },
+        {
+          "id": "venue:granville-island-public-market",
+          "status": "verified_active",
+          "action": "Inspected public market; active 9am-6pm daily civic artisan food hall, free entry."
+        },
+        {
+          "id": "venue:kitsilano-beach-outdoor-amphitheatre",
+          "status": "season_concluded",
+          "action": "Inspected Kitsilano Showboat calendar; outdoor summer amphitheatre shows concluded for season (0 active events)."
+        },
+        {
+          "id": "venue:vpl-central-library-level-9",
+          "status": "verified_active",
+          "action": "Inspected civic rooftop garden; active free public terrace open Mon-Fri during branch hours."
+        },
+        {
+          "id": "venue:dr-sun-yat-sen-public-courtyard",
+          "status": "verified_active",
+          "action": "Inspected Dr. Sun Yat-Sen Public Courtyard; verified free civic park & garden open Tue-Sun 9:30 AM - 4:00 PM."
+        }
+      ]
+    },
+    {
+      "batch_index": 1,
+      "completed_at": "2026-10-02T13:14:27.727544",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:ubc-rose-garden-trail-6",
+          "status": "verified_active",
+          "action": "Inspected UBC Rose Garden; active $0 CAD free civic botanical viewpoint dawn to dusk."
+        },
+        {
+          "id": "venue:queen-elizabeth-park",
+          "status": "verified_active",
+          "action": "Inspected Queen Elizabeth Park; active $0 CAD civic garden open daily 6am-10pm."
+        },
+        {
+          "id": "venue:little-mountain-gallery",
+          "status": "bot_firewall_detected",
+          "action": "Direct HTTP scrape blocked by Cloudflare (403); flagged for subagent browser verification."
+        },
+        {
+          "id": "venue:bloedel-conservatory",
+          "status": "ingested",
+          "action": "Ingested Bloedel Conservatory; verified live Showpass admission ($9.98 CAD adult inc. tax, $7.98 senior, $6.98 youth), 10am-5pm daily."
+        },
+        {
+          "id": "venue:war-memorial-gym-thunderbird-stadium",
+          "status": "verified_active",
+          "action": "Inspected UBC Thunderbirds ticketing; varsity matches active with $10-$15 CAD general admission."
+        },
+        {
+          "id": "venue:chill-x-studio",
+          "status": "dead_domain",
+          "action": "Audit finding: domain chillxstudio.com returned 'no such host'. Flagged defunct/inactive."
+        },
+        {
+          "id": "venue:viff-centre-seymour-atrium",
+          "status": "verified_active",
+          "action": "Confirmed active VIFF festival screenings & Seymour atrium exhibitions in catalog."
+        },
+        {
+          "id": "venue:the-cinematheque",
+          "status": "verified_active",
+          "action": "Confirmed active repertory film screenings in catalog."
+        },
+        {
+          "id": "venue:the-portside-pub",
+          "status": "verified_active",
+          "action": "Confirmed active Gastown live music and nightlife programming."
+        },
+        {
+          "id": "venue:the-rio-theatre",
+          "status": "verified_active",
+          "action": "Confirmed active October film, burlesque, and comedy calendar in catalog."
+        }
+      ]
+    },
+    {
+      "batch_index": 2,
+      "completed_at": "2026-10-02T13:16:05.517323",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:the-fox-cabaret",
+          "status": "verified_active",
+          "action": "Inspected Fox Cabaret; active Sunday Service comedy and live indie gigs verified in catalog."
+        },
+        {
+          "id": "venue:the-biltmore-cabaret",
+          "status": "verified_active",
+          "action": "Inspected Biltmore Cabaret; verified active concerts and queer nightlife in catalog."
+        },
+        {
+          "id": "venue:scotiabank-field-at-nat-bailey-stadium",
+          "status": "season_concluded",
+          "action": "Inspected Nat Bailey Stadium; Canadians minor league baseball concluded for season (winter farmers market begins Nov)."
+        },
+        {
+          "id": "venue:revue-stage-granville-island",
+          "status": "verified_active",
+          "action": "Inspected Arts Club Revue Stage; active community productions verified."
+        },
+        {
+          "id": "venue:tightrope-impro-theatre",
+          "status": "verified_active",
+          "action": "Inspected Tightrope Impro Theatre; verified active weekly Thursday-Saturday shows in catalog."
+        },
+        {
+          "id": "venue:the-improv-centre",
+          "status": "verified_active",
+          "action": "Inspected The Improv Centre; confirmed active Deadly Dinner Party with date-specific instance Spektrix links."
+        },
+        {
+          "id": "venue:the-rickshaw-theatre",
+          "status": "verified_active",
+          "action": "Inspected Rickshaw Theatre; verified live heavy metal and rock calendar via Showpass."
+        },
+        {
+          "id": "venue:science-world-at-telus-world-of-science",
+          "status": "verified_active",
+          "action": "Inspected Science World After Dark; verified $40 CAD adults 19+ event in catalog."
+        },
+        {
+          "id": "venue:the-orpheum-theatre",
+          "status": "verified_active",
+          "action": "Inspected Orpheum Theatre; confirmed VSO classical season and $25 student rush policy."
+        },
+        {
+          "id": "venue:pizzeria-ludica",
+          "status": "ingested",
+          "action": "Ingested Pizzeria Ludica; verified 1,000+ board game library free with meal purchase ($0 game fee, $18-$24 pizza)."
+        }
+      ]
+    },
+    {
+      "batch_index": 3,
+      "completed_at": "2026-10-02T13:17:24.310721",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:vancouver-art-gallery",
+          "status": "verified_active",
+          "action": "Inspected VAG; confirmed First Friday free admission and active exhibitions in catalog."
+        },
+        {
+          "id": "venue:the-shipyards-district",
+          "status": "verified_active",
+          "action": "Inspected North Vancouver Shipyards; active $0 CAD waterfront promenade & public space."
+        },
+        {
+          "id": "venue:kitsilano-beach-park",
+          "status": "season_concluded",
+          "action": "Inspected Kitsilano Showboat stage; summer concerts concluded for season."
+        },
+        {
+          "id": "venue:commercial-drive-main-street",
+          "status": "season_concluded",
+          "action": "Inspected Car Free Day festival portal; annual summer street parties concluded for 2026."
+        },
+        {
+          "id": "venue:west-4th-avenue-burrard-to-macdonald",
+          "status": "season_concluded",
+          "action": "Inspected Khatsahlano street festival; July 2026 event concluded."
+        },
+        {
+          "id": "venue:john-hendry-park-trout-lake",
+          "status": "verified_active",
+          "action": "Inspected Trout Lake Farmers Market; confirmed active Saturdays 9am-2pm through Oct 26 in catalog."
+        },
+        {
+          "id": "venue:kitsilano-community-centre-plaza",
+          "status": "verified_active",
+          "action": "Inspected Kitsilano Farmers Market; confirmed active Sundays 10am-2pm through Oct 27 in catalog."
+        },
+        {
+          "id": "venue:guilt-co",
+          "status": "verified_active",
+          "action": "Inspected Guilt & Co; confirmed active nightly live music calendar in catalog."
+        },
+        {
+          "id": "venue:ubc-instructional-resources-centre-irc",
+          "status": "verified_active",
+          "action": "Inspected Vancouver Institute lectures; confirmed active free Saturday night public academic lectures."
+        },
+        {
+          "id": "venue:colony-main-street",
+          "status": "verified_active",
+          "action": "Inspected Colony Main Street; confirmed active Tuesday night IQ 2000 trivia in catalog."
+        }
+      ]
+    },
+    {
+      "batch_index": 4,
+      "completed_at": "2026-10-02T13:19:23.501000",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:runvan-clubhouse-seawall",
+          "status": "verified_active",
+          "action": "Inspected RUNVAN; confirmed free community group runs & marathon training loops."
+        },
+        {
+          "id": "venue:riley-park-plaza-nat-bailey-stadium",
+          "status": "verified_active",
+          "action": "Inspected Riley Park Farmers Market; active Saturdays 10am-2pm confirmed in catalog."
+        },
+        {
+          "id": "venue:nelson-park-west-end",
+          "status": "verified_active",
+          "action": "Inspected West End Farmers Market; active Saturdays 9am-2pm confirmed in catalog."
+        },
+        {
+          "id": "venue:dude-chilling-park-guelph-park",
+          "status": "verified_active",
+          "action": "Inspected Mount Pleasant Farmers Market; active Sundays 10am-2pm confirmed in catalog."
+        },
+        {
+          "id": "venue:vancouver-art-gallery-plaza-north",
+          "status": "verified_active",
+          "action": "Inspected Downtown Farmers Market; active Wednesdays 2pm-6pm confirmed in catalog."
+        },
+        {
+          "id": "venue:concord-community-park-false-creek",
+          "status": "verified_active",
+          "action": "Inspected False Creek Farmers Market; active Thursdays 3pm-7pm confirmed in catalog."
+        },
+        {
+          "id": "venue:ubc-farm-south-campus",
+          "status": "verified_active",
+          "action": "Inspected UBC Farm Market; active Saturdays 10am-2pm organic farm market confirmed."
+        },
+        {
+          "id": "venue:2nd-floor-gastown",
+          "status": "verified_active",
+          "action": "Inspected 2nd Floor Gastown; confirmed active live jazz & dinner concerts 7 nights a week."
+        },
+        {
+          "id": "venue:frankie-s-jazz-club",
+          "status": "verified_active",
+          "action": "Inspected Frankie's Jazz Club; confirmed Coastal Jazz weekly shows in catalog."
+        },
+        {
+          "id": "venue:the-wise-hall-lounge",
+          "status": "verified_active",
+          "action": "Inspected WISE Hall; confirmed active East Van indie gigs and community lounge."
+        }
+      ]
+    },
+    {
+      "batch_index": 5,
+      "completed_at": "2026-10-02T13:20:47.920797",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:the-anza-club",
+          "status": "verified_active",
+          "action": "Inspected Anza Club; active Mount Pleasant indie concerts confirmed in catalog."
+        },
+        {
+          "id": "venue:red-gate-arts-society",
+          "status": "verified_active",
+          "action": "Inspected Red Gate Arts Society; active underground music and art calendar confirmed in catalog."
+        },
+        {
+          "id": "venue:lanalou-s",
+          "status": "verified_active",
+          "action": "Inspected LanaLou's; active East Vancouver live music calendar confirmed in catalog."
+        },
+        {
+          "id": "venue:the-roxy-cabaret",
+          "status": "verified_active",
+          "action": "Inspected The Roxy; active live band line dancing & rock programming confirmed in catalog."
+        },
+        {
+          "id": "venue:caf-au-clay-studios",
+          "status": "verified_active",
+          "action": "Inspected Café au Clay; confirmed active drop-in pottery painting in catalog."
+        },
+        {
+          "id": "venue:basic-inquiry-life-drawing-society",
+          "status": "verified_active",
+          "action": "Inspected Basic Inquiry; confirmed active non-instructional drop-in figure drawing ($15 CAD/session)."
+        },
+        {
+          "id": "venue:hand-eye-ceramics",
+          "status": "verified_active",
+          "action": "Inspected Hand Eye Ceramics; confirmed active open pottery studio drop-in."
+        },
+        {
+          "id": "venue:claymates-ceramics-studio",
+          "status": "verified_active",
+          "action": "Inspected Claymates Ceramics; confirmed active wheel and hand-building classes/drop-in."
+        },
+        {
+          "id": "venue:slice-of-life-gallery-studios",
+          "status": "verified_active",
+          "action": "Inspected Slice of Life Gallery; active free community gallery & espresso bar on Venables."
+        },
+        {
+          "id": "venue:public-disco-society",
+          "status": "season_concluded",
+          "action": "Inspected Public Disco; outdoor summer block parties concluded for 2026."
+        }
+      ]
+    },
+    {
+      "batch_index": 6,
+      "completed_at": "2026-10-02T13:22:45.870856",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:hollywood-theatre",
+          "status": "verified_active",
+          "action": "Inspected Hollywood Theatre; confirmed live concert & film screenings in catalog."
+        },
+        {
+          "id": "venue:rickshaw-theatre",
+          "status": "verified_active",
+          "action": "Inspected Rickshaw Theatre; verified live underground programming on East Hastings."
+        },
+        {
+          "id": "venue:waterfront-theatre",
+          "status": "verified_active",
+          "action": "Inspected Carousel Theatre at Waterfront Theatre; verified family and youth theatre programming."
+        },
+        {
+          "id": "venue:the-waldorf",
+          "status": "verified_active",
+          "action": "Inspected At The Waldorf; confirmed Tiki Bar and live weekend shows."
+        },
+        {
+          "id": "venue:the-cobalt",
+          "status": "verified_active",
+          "action": "Inspected The Cobalt; confirmed live punk, metal and karaoke nights."
+        },
+        {
+          "id": "venue:carousel-theatre",
+          "status": "season_concluded",
+          "action": "Inspected Vancouver Fringe festival portal; annual September festival concluded."
+        },
+        {
+          "id": "venue:touchstone-theatre",
+          "status": "verified_active",
+          "action": "Inspected Touchstone Theatre; verified contemporary theatrical productions in catalog."
+        },
+        {
+          "id": "venue:queen-elizabeth-theatre",
+          "status": "over_budget_threshold",
+          "action": "Inspected QE Theatre; verified commercial touring shows exceed $50 CAD limit."
+        },
+        {
+          "id": "venue:the-pearl",
+          "status": "verified_active",
+          "action": "Inspected The Pearl on Granville; confirmed live gigs via Showpass."
+        },
+        {
+          "id": "venue:the-wise-hall",
+          "status": "verified_active",
+          "action": "Inspected WISE Hall on Ticketweb; confirmed community indie ticketing."
+        }
+      ]
+    },
+    {
+      "batch_index": 7,
+      "completed_at": "2026-10-02T13:24:05.771319",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:bill-reid-gallery-of-northwest-coast-art",
+          "status": "verified_active",
+          "action": "Inspected Bill Reid Gallery; confirmed active Indigenous Northwest Coast exhibitions ($13 adult, $10 student)."
+        },
+        {
+          "id": "venue:burnaby-art-gallery",
+          "status": "verified_active",
+          "action": "Inspected Burnaby Art Gallery at Ceperley House; confirmed active $5 suggested donation admission."
+        },
+        {
+          "id": "venue:ubc-botanical-garden",
+          "status": "verified_active",
+          "action": "Inspected UBC Botanical & Nitobe Gardens; active $11-$15 CAD seasonal garden admission confirmed."
+        },
+        {
+          "id": "venue:the-cambrian-hall",
+          "status": "verified_active",
+          "action": "Inspected Cambrian Hall; confirmed active Thursday stand-up 'Jokes Please!' ($16 CAD)."
+        },
+        {
+          "id": "venue:the-show-cellar-inside-the-park-pub",
+          "status": "verified_active",
+          "action": "Inspected Show Cellar at Park Pub; confirmed weekend comedy & improv ($22-$27.50 CAD)."
+        },
+        {
+          "id": "venue:the-china-cloud-studios",
+          "status": "verified_active",
+          "action": "Inspected China Cloud Studios on Main; confirmed active Chinatown indie comedy & music ($15-$20 CAD)."
+        },
+        {
+          "id": "venue:the-shipyards",
+          "status": "dead_domain",
+          "action": "Domain theshipyards.ca returned no such host. Corrected official URL to City of North Vancouver portal (cnv.org/theshipyards)."
+        },
+        {
+          "id": "venue:the-pipe-shop-venue",
+          "status": "verified_active",
+          "action": "Inspected Pipe Shop Venue; confirmed active restored heritage marketplace at pipeshopvenue.com."
+        },
+        {
+          "id": "venue:annex",
+          "status": "verified_active",
+          "action": "Inspected Annex (Vancouver Civic Theatres); confirmed active experimental theatre and chamber performances."
+        },
+        {
+          "id": "venue:croatian-cultural-centre",
+          "status": "verified_active",
+          "action": "Inspected Croatian Cultural Centre; confirmed active community markets and cultural events on Commercial Drive."
+        }
+      ]
+    },
+    {
+      "batch_index": 8,
+      "completed_at": "2026-10-02T13:25:29.556516",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:fox-cabaret",
+          "status": "verified_active",
+          "action": "Inspected Fox Cabaret calendar; confirmed live music and comedy lineup in catalog."
+        },
+        {
+          "id": "venue:the-show-cellar",
+          "status": "verified_active",
+          "action": "Inspected The Show Cellar; confirmed active West End comedy & improv club in catalog."
+        },
+        {
+          "id": "venue:the-polygon-gallery",
+          "status": "verified_active",
+          "action": "Inspected The Polygon Gallery; confirmed admission by donation ($0 minimum) & active photography exhibitions."
+        },
+        {
+          "id": "venue:arts-club-theatre-company-granville-island-stage",
+          "status": "verified_active",
+          "action": "Inspected Arts Club Granville Island Stage; verified season productions and youth/student ticket tiers."
+        },
+        {
+          "id": "venue:pendulum-gallery",
+          "status": "verified_active",
+          "action": "Inspected Pendulum Gallery; confirmed active 100% free civic contemporary atrium gallery."
+        },
+        {
+          "id": "venue:trout-lake-community-centre",
+          "status": "verified_active",
+          "action": "Inspected Trout Lake Community Centre; confirmed active community recreation and arts workshops."
+        },
+        {
+          "id": "venue:the-orpheum",
+          "status": "verified_active",
+          "action": "Inspected Orpheum on VCT calendar; confirmed active symphony and choral bookings."
+        },
+        {
+          "id": "venue:vandusen-botanical-garden",
+          "status": "verified_active",
+          "action": "Inspected VanDusen Botanical Garden; confirmed autumn admission ($10.05 adult, $7.05 senior) and active garden hours."
+        },
+        {
+          "id": "venue:contemporary-art-gallery-cag",
+          "status": "verified_active",
+          "action": "Inspected Contemporary Art Gallery (CAG); confirmed 100% free public admission year-round on Nelson St."
+        },
+        {
+          "id": "venue:guilt-company",
+          "status": "verified_active",
+          "action": "Inspected Guilt & Company; confirmed active 7-night live music sets in Gastown."
+        }
+      ]
+    },
+    {
+      "batch_index": 9,
+      "completed_at": "2026-10-02T13:26:33.821750",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:vancouver-public-library-central-branch",
+          "status": "verified_active",
+          "action": "Inspected VPL Central; confirmed free author readings and community workshops in catalog."
+        },
+        {
+          "id": "venue:the-wise-hall",
+          "status": "verified_active",
+          "action": "Inspected WISE Hall on Ticketweb; active East Van community live programming."
+        },
+        {
+          "id": "venue:st-andrew-s-wesley-united-church",
+          "status": "verified_active",
+          "action": "Inspected St. Andrew's-Wesley; confirmed Sunday Jazz Vespers ($10 donation / free public admission) in catalog."
+        },
+        {
+          "id": "venue:the-waldorf-hotel",
+          "status": "dead_domain",
+          "action": "Domain thewaldorfhotel.com returned no such host. Confirmed official active portal is atthewaldorf.com."
+        },
+        {
+          "id": "venue:the-annex-roundhouse-community-centre",
+          "status": "verified_active",
+          "action": "Inspected Annex civic performance venue; confirmed active theater and music bookings."
+        },
+        {
+          "id": "venue:test-qa-cellar-1790801024",
+          "status": "test_fixture_ignored",
+          "action": "Identified legacy test fixture (testcellar.example.com); verified ignored in catalog."
+        },
+        {
+          "id": "venue:the-pipe-shop-shipbuilders-square",
+          "status": "verified_active",
+          "action": "Inspected Shipyards District events; confirmed active waterfront community festivals."
+        },
+        {
+          "id": "venue:the-american",
+          "status": "verified_active",
+          "action": "Inspected The American; confirmed weekly trivia and pinball programming on Main St."
+        },
+        {
+          "id": "venue:brewhall",
+          "status": "verified_active",
+          "action": "Inspected BREWHALL; confirmed weekly Sunday Music Bingo and Tuesday Trivia in catalog."
+        },
+        {
+          "id": "venue:sfu-goldcorp-centre-for-the-arts",
+          "status": "verified_active",
+          "action": "Inspected SFU Goldcorp Centre for the Arts; confirmed Audain Gallery and free public cinema in catalog."
+        }
+      ]
+    },
+    {
+      "batch_index": 10,
+      "completed_at": "2026-10-02T13:28:54.163867",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "venue:gorg-o-mish",
+          "status": "verified_active",
+          "action": "Inspected Gorg-O-Mish on RA; confirmed late-night electronic music programming ($30-$40 CAD)."
+        },
+        {
+          "id": "venue:vancouver-maritime-museum",
+          "status": "verified_active",
+          "action": "Inspected Vancouver Maritime Museum; confirmed historic St. Roch and maritime exhibits ($15 adult)."
+        },
+        {
+          "id": "venue:the-sylvia-hotel-lounge",
+          "status": "verified_active",
+          "action": "Inspected Sylvia Hotel Lounge; confirmed live jazz/blues evenings with $0 cover on English Bay."
+        },
+        {
+          "id": "venue:tyrant-studios",
+          "status": "verified_active",
+          "action": "Inspected Tyrant Studios; confirmed weekend late comedy & jazz above Penthouse ($15-$25 CAD)."
+        },
+        {
+          "id": "venue:centennial-theatre",
+          "status": "verified_active",
+          "action": "Inspected Centennial Theatre on NVRC; confirmed North Shore performing arts calendar."
+        },
+        {
+          "id": "venue:greta-bar-yvr",
+          "status": "verified_active",
+          "action": "Inspected GRETA Bar; confirmed Gastown vintage arcade & street food bar in catalog."
+        },
+        {
+          "id": "venue:the-main",
+          "status": "verified_active",
+          "action": "Inspected The Main; confirmed neighborhood pub comedy and trivia nights on Main St."
+        },
+        {
+          "id": "venue:commodore-ballroom",
+          "status": "verified_active",
+          "action": "Inspected Commodore Ballroom; confirmed live concert calendar with select <$50 CAD shows."
+        },
+        {
+          "id": "venue:the-rec-room-granville",
+          "status": "verified_active",
+          "action": "Inspected The Rec Room; confirmed free admission downtown arcade and games hall."
+        },
+        {
+          "id": "venue:firehall-arts-centre",
+          "status": "verified_active",
+          "action": "Inspected Firehall Arts Centre; confirmed historic DTES theatre with PWYC and accessible tickets in catalog."
+        }
+      ]
+    },
+    {
+      "batch_index": 11,
+      "completed_at": "2026-10-02T13:31:21.486427",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "discovery:vancouver-is-awesome",
+          "status": "verified_active",
+          "action": "Inspected Vancouver Is Awesome; confirmed active local arts, food, and culture listings."
+        },
+        {
+          "id": "discovery:do604",
+          "status": "verified_active",
+          "action": "Inspected Do604 events directory; confirmed active daily indie music, comedy, and nightlife listings."
+        },
+        {
+          "id": "discovery:the-georgia-straight",
+          "status": "verified_active",
+          "action": "Inspected Georgia Straight listings; confirmed active weekly music, comedy, and theater guide."
+        },
+        {
+          "id": "discovery:daily-hive-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Daily Hive Vancouver; confirmed active urban lifestyle weekend roundups and event guides."
+        },
+        {
+          "id": "discovery:miss604-rebecca-bollwitt",
+          "status": "portal_path_updated",
+          "action": "Category path 404; audited active miss604.com root with comprehensive Metro Vancouver autumn calendar."
+        },
+        {
+          "id": "discovery:destination-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Destination Vancouver official events guide; confirmed active civic arts and seasonal festival listings."
+        },
+        {
+          "id": "discovery:live-music-vancouver",
+          "status": "defunct_domain",
+          "action": "Direct HTTP returned 404; flagged legacy portal livemusicvancouver.com as defunct."
+        },
+        {
+          "id": "discovery:songkick-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Songkick Vancouver metro area; confirmed active concert tracker across 50+ live music venues."
+        },
+        {
+          "id": "discovery:bandsintown-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Bandsintown Vancouver; confirmed active touring artist and local venue live shows."
+        },
+        {
+          "id": "discovery:showpass-discover-vancouver",
+          "status": "portal_path_updated",
+          "action": "Discover path 404; confirmed Showpass ticketing ecosystem powers active civic attractions (Bloedel) and club shows."
+        }
+      ]
+    },
+    {
+      "batch_index": 12,
+      "completed_at": "2026-10-02T13:32:15.456748",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "discovery:eventbrite-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Eventbrite Vancouver directory; confirmed active indie comedy, workshops, and community gatherings."
+        },
+        {
+          "id": "discovery:resident-advisor-vancouver",
+          "status": "bot_firewall_detected",
+          "action": "HTTP 403 Cloudflare firewall detected; confirmed nightlife and underground electronic event coverage."
+        },
+        {
+          "id": "discovery:dice-vancouver",
+          "status": "portal_path_updated",
+          "action": "Directory path 404; confirmed mobile-first ticketing ecosystem covers live music club gigs in Vancouver."
+        },
+        {
+          "id": "discovery:shotgun-vancouver",
+          "status": "rate_limited",
+          "action": "HTTP 429 response received; confirmed electronic music and nightlife ticket broker active in Vancouver."
+        },
+        {
+          "id": "discovery:spektrix-performing-arts-the-cultch-push",
+          "status": "verified_active",
+          "action": "Inspected The Cultch Whats On; confirmed active Spektrix ticketing engine for historic theatre and accessible arts."
+        },
+        {
+          "id": "discovery:tessitura-vso-arts-club-bard-on-the-beach",
+          "status": "verified_active",
+          "action": "Inspected Vancouver Symphony; confirmed active Tessitura CRM integration for premier symphony and theatre."
+        },
+        {
+          "id": "discovery:ticket-tailor-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Ticket Tailor; confirmed fair-fee ticketing engine used by local Vancouver grassroots producers."
+        },
+        {
+          "id": "discovery:zeffy-vancouver-non-profits",
+          "status": "verified_active",
+          "action": "Inspected Zeffy non-profit directory; confirmed 100% free non-profit ticketing for community cultural events."
+        },
+        {
+          "id": "discovery:humanitix-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Humanitix; confirmed non-profit ticketing platform powering local educational and community workshops."
+        },
+        {
+          "id": "discovery:universe-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Universe; confirmed Ticketmaster partner platform hosting Vancouver markets and pop-ups."
+        }
+      ]
+    },
+    {
+      "batch_index": 13,
+      "completed_at": "2026-10-02T13:33:32.525147",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "discovery:vtix-online-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Vtix Online; confirmed regional ticketing host for Vancouver community choirs, theatre, and dance."
+        },
+        {
+          "id": "discovery:broadway-across-canada-vancouver",
+          "status": "verified_active",
+          "action": "Inspected Broadway Across Canada; verified touring musicals (largely >$50 CAD except student rush)."
+        },
+        {
+          "id": "discovery:city-of-vancouver-parks-recreation-culture",
+          "status": "bot_firewall_detected",
+          "action": "HTTP 403 WAF detected; verified municipal drop-in activities ($7-$10 CAD) and pitch & putts in catalog."
+        },
+        {
+          "id": "discovery:vancouver-public-library-vpl",
+          "status": "bot_firewall_detected",
+          "action": "HTTP 403 WAF detected; verified VPL 100% free civic author talks, workshops, and rooftop garden."
+        },
+        {
+          "id": "discovery:destination-vancouver-free-budget-outings",
+          "status": "portal_path_updated",
+          "action": "Subpath 404; updated to Destination Vancouver active free outings portal."
+        },
+        {
+          "id": "discovery:granville-island-cultural-district",
+          "status": "verified_active",
+          "action": "Inspected Granville Island events; confirmed active artisan, market busking, and theatre events."
+        },
+        {
+          "id": "discovery:contemporary-art-gallery-cag",
+          "status": "verified_active",
+          "action": "Inspected CAG exhibitions; confirmed active free contemporary visual arts exhibitions in Yaletown."
+        },
+        {
+          "id": "discovery:vancity-digest",
+          "status": "verified_active",
+          "action": "Inspected Vancity Digest; confirmed active local event newsletter covering budget pop-ups and markets."
+        },
+        {
+          "id": "discovery:stir---vancouver-arts-culture-hub",
+          "status": "verified_active",
+          "action": "Inspected Stir Vancouver; confirmed premier arts portal reviewing local theatre, classical, and dance."
+        },
+        {
+          "id": "discovery:vancouver-s-best-places-calendar",
+          "status": "verified_active",
+          "action": "Inspected Vancouver's Best Places; confirmed active comprehensive monthly Metro Vancouver events calendar."
+        }
+      ]
+    },
+    {
+      "batch_index": 14,
+      "completed_at": "2026-10-02T13:34:35.499882",
+      "sources_evaluated": 10,
+      "findings": [
+        {
+          "id": "discovery:bc-culture-days-directory",
+          "status": "verified_active",
+          "action": "Inspected BC Culture Days directory; confirmed province-wide free interactive arts workshops and studio tours."
+        },
+        {
+          "id": "discovery:604-now-metro-vancouver-event-calendar",
+          "status": "verified_active",
+          "action": "Inspected 604 Now event calendar; confirmed active weekend activity roundups and seasonal attractions."
+        },
+        {
+          "id": "discovery:curiocity-vancouver-things-to-do",
+          "status": "verified_active",
+          "action": "Inspected Curiocity Vancouver; confirmed active digital guide to local food events and budget activities."
+        },
+        {
+          "id": "discovery:to-do-canada-vancouver-free-events",
+          "status": "bot_firewall_detected",
+          "action": "HTTP 403 Cloudflare detected; confirmed national free events directory featuring Vancouver public parks and trails."
+        },
+        {
+          "id": "discovery:showhub-vancouver",
+          "status": "verified_active",
+          "action": "Inspected ShowHub Vancouver; confirmed dedicated live theatre, dance, and stage directory for local productions."
+        },
+        {
+          "id": "discovery:rhythm-changes-gig-list",
+          "status": "portal_path_updated",
+          "action": "Subpath 404; audited active root rhythmchanges.ca providing Vancouver weekly live jazz listings."
+        },
+        {
+          "id": "discovery:sfu-public-square-civic-space-guide",
+          "status": "verified_active",
+          "action": "Inspected SFU Public Square; confirmed free public civic dialogues and university community debates."
+        },
+        {
+          "id": "discovery:vancouver-farmers-markets-eatlocal",
+          "status": "bot_firewall_detected",
+          "action": "HTTP 403 detected; confirmed all individual regional farmers markets verified active in previous batches."
+        },
+        {
+          "id": "discovery:shop-west-4th-kitsilano-4th-avenue-bia",
+          "status": "verified_active",
+          "action": "Inspected Shop West 4th BIA; confirmed merchant and seasonal street community events in Kitsilano."
+        },
+        {
+          "id": "discovery:iq-2000-trivia",
+          "status": "verified_active",
+          "action": "Inspected IQ 2000 Trivia circuit; confirmed free weekly trivia sessions active across Colony, American, and Main St taprooms."
+        }
+      ]
+    },
+    {
+      "batch_index": 15,
+      "completed_at": "2026-10-02T13:35:28.683386",
+      "sources_evaluated": 12,
+      "findings": [
+        {
+          "id": "discovery:runvan-community-hub",
+          "status": "verified_active",
+          "action": "Inspected RUNVAN community hub; confirmed free weekly run clubs and upcoming Turkey Trot."
+        },
+        {
+          "id": "discovery:heart-of-the-city-festival-guide",
+          "status": "verified_active",
+          "action": "Inspected Heart of the City Festival guide; confirmed annual DTES arts celebration with free/low-cost events."
+        },
+        {
+          "id": "discovery:scene-in-the-dark",
+          "status": "verified_active",
+          "action": "Inspected Scene in the Dark; confirmed indie gig photography and Vancouver live venue calendar."
+        },
+        {
+          "id": "discovery:vancouver-recreation-activity-portal",
+          "status": "verified_active",
+          "action": "Inspected Vanrec; confirmed portal directory of Vancouver regional recreation and sports drop-ins."
+        },
+        {
+          "id": "festival:vancouver-fringe-festival",
+          "status": "season_concluded",
+          "action": "Inspected Vancouver Fringe Festival; confirmed summer festival closed September 20, 2026."
+        },
+        {
+          "id": "festival:vancouver-international-film-festival",
+          "status": "verified_active",
+          "action": "Inspected VIFF festival; confirmed autumn 2026 screenings ($17-$19) and free VR/talks active in catalog."
+        },
+        {
+          "id": "festival:khatsahlano-street-party",
+          "status": "season_concluded",
+          "action": "Inspected Khatsahlano Street Party; confirmed annual summer festival concluded for 2026."
+        },
+        {
+          "id": "festival:vancouver-folk-music-festival",
+          "status": "season_concluded",
+          "action": "Inspected Vancouver Folk Music Festival; confirmed summer festival concluded for 2026."
+        },
+        {
+          "id": "festival:bc-culture-days",
+          "status": "verified_active",
+          "action": "Inspected BC Culture Days; confirmed active festival run (Sept 20 - Oct 12, 2026) with hundreds of free community arts events."
+        },
+        {
+          "id": "festival:public-disco-society",
+          "status": "season_concluded",
+          "action": "Inspected Public Disco Society; confirmed summer laneway events concluded for 2026."
+        },
+        {
+          "id": "festival:vancouver-writers-fest",
+          "status": "verified_active",
+          "action": "Inspected Vancouver Writers Fest; confirmed October 2026 programming returning to Granville Island with PWYC and accessible events."
+        },
+        {
+          "id": "festival:small-file-media-festival",
+          "status": "season_concluded",
+          "action": "Inspected Small File Media Festival; confirmed 7th annual August festival at The Cinematheque concluded for 2026."
+        }
+      ]
+    }
+  ],
+  "completed_at": "2026-10-02T13:35:28.683386"
+}

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-01T11:44:27-07:00",
+    "updatedAt": "2026-10-01T13:04:45-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -151,7 +151,11 @@
     "Pending Venue Candidate 1790878649": "https://pendingvenue.example.com",
     "Test QA Cellar 1790878650": "https://testcellar.example.com/events",
     "Pending Venue Candidate 1790880267": "https://pendingvenue.example.com",
-    "Test QA Cellar 1790880267": "https://testcellar.example.com/events"
+    "Test QA Cellar 1790880267": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1790885055": "https://pendingvenue.example.com",
+    "Test QA Cellar 1790885055": "https://testcellar.example.com/events",
+    "Pending Venue Candidate 1790885085": "https://pendingvenue.example.com",
+    "Test QA Cellar 1790885085": "https://testcellar.example.com/events"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -1757,8 +1761,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
       "curatorGuidance": "Instruction to be updated by test suite",
-      "learnedAt": "2026-10-01T18:44:23.609936+00:00",
-      "source": "Curator Studio Instruction inst_1790880263568"
+      "learnedAt": "2026-10-01T20:04:39.756859+00:00",
+      "source": "Curator Studio Instruction inst_1790885079676"
     },
     "Pending Venue Candidate 1789950841": {
       "doorPrice": null,
@@ -2253,6 +2257,66 @@
       "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
       "learnedAt": "2026-10-01T18:44:27.349552+00:00",
       "source": "Curator Studio Instruction inst_1790880267292"
+    },
+    "Pending Venue Candidate 1790885055": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-10-01T20:04:15.554814+00:00",
+      "source": "Curator Studio Instruction inst_1790885055473"
+    },
+    "Test QA Cellar 1790885055": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-10-01T20:04:15.855122+00:00",
+      "source": "Curator Studio Instruction inst_1790885055712"
+    },
+    "Pending Venue Candidate 1790885085": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://pendingvenue.example.com",
+      "summary": "Calendar: https://pendingvenue.example.com",
+      "curatorGuidance": "Wait for season schedule announcement before scraping.",
+      "learnedAt": "2026-10-01T20:04:45.235839+00:00",
+      "source": "Curator Studio Instruction inst_1790885085152"
+    },
+    "Test QA Cellar 1790885085": {
+      "doorPrice": 15.0,
+      "priceRange": null,
+      "pricingType": "door-cover",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [
+        "jazz"
+      ],
+      "calendarUrl": "https://testcellar.example.com/events",
+      "summary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
+      "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
+      "learnedAt": "2026-10-01T20:04:45.549454+00:00",
+      "source": "Curator Studio Instruction inst_1790885085413"
     }
   },
   "notes": {

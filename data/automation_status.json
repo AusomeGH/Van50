@@ -1,7 +1,7 @@
 {
-  "status": "running",
+  "status": "idle",
   "automationEnabled": true,
-  "lastRunAt": "2026-09-28T11:08:48.640246",
+  "lastRunAt": "2026-10-02T04:00:08.271825",
   "nextRunAt": "2026-09-29T04:00:00",
   "totalEvents": 32,
   "quarantinedCount": 4,
@@ -88,9 +88,9 @@
     ]
   },
   "testKey": "automation_unit_test",
-  "testTimestamp": "2026-10-01T11:44:26.814652",
-  "updatedAt": "2026-10-01T11:44:26.858065",
-  "currentStep": "compiling_metrics",
+  "testTimestamp": "2026-10-01T13:16:53.461842",
+  "updatedAt": "2026-10-02T17:06:43.898499",
+  "currentStep": null,
   "startedAt": "2026-10-01T04:00:03.590693",
   "durationSeconds": 50.01,
   "backupFile": "events_2026-09-28_110758.json",

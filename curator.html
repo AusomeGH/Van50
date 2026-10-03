@@ -6,7 +6,7 @@
   <title>Van50 Curator Studio — Master Control & Quarantine Triage</title>
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="referrer" content="no-referrer">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -115,10 +115,11 @@
         <div class="curator-search-sort-row">
           <div class="curator-search-box">
             <span class="curator-search-icon">🔍</span>
-            <input type="text" id="curator-search-input" class="curator-search-input" placeholder="Search event title, venue, provider...">
+            <input type="text" id="curator-search-input" class="curator-search-input" placeholder="Search event title, venue, provider..." autocomplete="off">
+            <button type="button" class="btn-clear-curator-search" id="btn-clear-curator-search" title="Clear search text" aria-label="Clear search" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 0.95rem; cursor: pointer; padding: 2px 6px;">✕</button>
           </div>
 
-          <select id="curator-platform-select" class="curator-select">
+          <select id="curator-platform-select" class="curator-select" autocomplete="off">
             <option value="all">All Ticketing Platforms</option>
             <option value="Eventbrite">Eventbrite</option>
             <option value="TicketWeb">TicketWeb</option>
@@ -129,13 +130,18 @@
             <option value="Turntable Tickets">Turntable Tickets</option>
           </select>
 
-          <select id="curator-sort-select" class="curator-select">
+          <select id="curator-sort-select" class="curator-select" autocomplete="off">
             <option value="date-desc">Flagged: Newest First</option>
             <option value="date-asc">Flagged: Oldest First</option>
             <option value="price-asc">Attempted Price: Low to High</option>
             <option value="price-desc">Attempted Price: High to Low</option>
             <option value="venue-asc">Venue: A to Z</option>
           </select>
+
+          <button type="button" class="btn-curator btn-curator-ghost" id="btn-clear-settings" title="Clear current settings, reset all filters, and reload the page from scratch" style="border: 1px solid rgba(255, 255, 255, 0.16); color: #cbd5e1; font-size: 0.82rem; padding: 8px 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer; border-radius: 8px;">
+            <span>✕</span>
+            <span>Clear Settings</span>
+          </button>
         </div>
       </div>
 
@@ -207,7 +213,7 @@
           <div id="ai-inst-event-summary" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; line-height: 1.35;">
             <div style="font-weight: 600; color: #f8fafc;" id="ai-inst-summary-title">Event Title</div>
             <div style="color: #94a3b8; margin-top: 2px;" id="ai-inst-summary-venue">Venue • Platform</div>
-            <a href="#" target="_blank" id="ai-inst-summary-link" style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source Page ↗</a>
+            <a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" id="ai-inst-summary-link" style="color: #38bdf8; word-break: break-all; text-decoration: underline; font-size: 0.78rem; display: inline-block; margin-top: 3px;">Source Page ↗</a>
           </div>
 
           <!-- Flagged for Quarantine / Issues Diagnostic Box -->
@@ -262,6 +268,13 @@
                 </div>
                 <div id="ai-screenshot-gallery-grid" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"></div>
               </div>
+            </div>
+
+            <!-- Primary Save Guidance & Keep in Queue Button (Directly Below Screenshots) -->
+            <div id="ai-screenshot-actions-bar" style="margin-top: 10px; margin-bottom: 12px;">
+              <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" style="width: 100%; justify-content: center; font-size: 0.95rem; padding: 12px 20px; font-weight: 700; background: linear-gradient(135deg, rgba(147, 51, 234, 0.35) 0%, rgba(124, 58, 237, 0.45) 100%); border: 1.5px solid rgba(192, 132, 252, 0.6); color: #f3e8ff; box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 8px; transition: all 0.2s ease;" title="Save guidance, notes and screenshot proof to card and keep in review queue">
+                💾 Save Guidance &amp; Keep in Queue
+              </button>
             </div>
           </div>
 
@@ -618,8 +631,8 @@
 
         <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
           <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-ai-inst">Cancel</button>
-          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only" title="Save notes and screenshot proof to card and keep in review queue">
-            💾 Save Feedback &amp; Keep in Queue
+          <button type="button" class="btn-curator btn-curator-purple" id="btn-submit-ai-inst-only-bottom" title="Save notes and screenshot proof to card and keep in review queue">
+            💾 Save Guidance &amp; Keep in Queue
           </button>
           <button type="button" class="btn-curator btn-curator-danger" id="btn-submit-ai-inst-and-dismiss" title="Dismiss event and archive card">
             🛑 Dismiss &amp; Archive Event
@@ -722,6 +735,13 @@
                 <div id="venue-screenshot-gallery-grid" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;"></div>
               </div>
             </div>
+
+            <!-- Primary Save Guidance & Keep in Queue Button (Directly Below Venue Screenshots) -->
+            <div id="venue-screenshot-actions-bar" style="margin-top: 10px; margin-bottom: 4px;">
+              <button type="button" class="btn-curator btn-curator-purple" id="btn-venue-inst-only-top" style="width: 100%; justify-content: center; font-size: 0.92rem; padding: 11px 18px; font-weight: 700; background: linear-gradient(135deg, rgba(147, 51, 234, 0.35) 0%, rgba(124, 58, 237, 0.45) 100%); border: 1.5px solid rgba(192, 132, 252, 0.6); color: #f3e8ff; box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 8px; transition: all 0.2s ease;" title="Save venue guidance and screenshot proof and keep candidate in review queue">
+                💾 Save Guidance &amp; Keep in Queue
+              </button>
+            </div>
           </div>
         </div>
 
@@ -761,8 +781,8 @@
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap; gap: 8px;">
         <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
-          <a id="email-modal-shot-link" href="#" target="_blank" style="color: #38bdf8; font-size: 0.82rem; text-decoration: underline; font-weight: 600;">🖼️ Open Full Image in New Tab ↗</a>
-          <a id="email-modal-raw-link" href="#" target="_blank" style="color: #c084fc; font-size: 0.82rem; text-decoration: underline; font-weight: 600;">📄 View Raw HTML Email ↗</a>
+          <a id="email-modal-shot-link" href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; font-size: 0.82rem; text-decoration: underline; font-weight: 600;">🖼️ Open Full Image in New Tab ↗</a>
+          <a id="email-modal-raw-link" href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #c084fc; font-size: 0.82rem; text-decoration: underline; font-weight: 600;">📄 View Raw HTML Email ↗</a>
         </div>
         <button type="button" class="btn-curator btn-curator-ghost" id="btn-cancel-email-modal">Close</button>
       </div>
@@ -1015,7 +1035,9 @@
           <button type="button" class="curator-filter-pill" data-master-tab="ticketing_sources">🎫 Ticketing (<span id="master-count-ticketing">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-master-tab="discovery_sources">🌐 Discovery (<span id="master-count-discovery">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-master-tab="events_archive">📦 Archive (<span id="master-count-archive">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-master-tab="crowdsourced_prices">🍺 Patron Prices (<span id="master-count-prices">0</span>)</button>
         </div>
+
       </div>
 
       <!-- Catalog Items List Container -->

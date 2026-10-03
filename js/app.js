@@ -1,4 +1,4 @@
-// Van50 — Application State Management, Multi-Filter Engine & UI Orchestration
+// Van50 -- Application State Management, Multi-Filter Engine & UI Orchestration
 // Strictly displays events under $50.00 CAD total out-of-pocket per person.
 
 // 0. CORE TAXONOMY & CLUSTER CONSTANTS (Authoritative Defaults)
@@ -65,6 +65,7 @@ const state = {
   hideDaily: false,
   hideFestivalEvents: false,
   accessibleMode: false,
+  accessibleOnly: false,
   category: 'all',
   frequency: 'all',
   dayOfWeek: 'all',
@@ -80,7 +81,9 @@ const state = {
 
 // Global reference for roulette & map
 window.currentFilteredEvents = [];
-let ALL_EVENTS = typeof VANCOUVER_EVENTS !== 'undefined' ? VANCOUVER_EVENTS.map(normalizeActiveEvent) : [];
+let ALL_EVENTS = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS)) 
+  ? (window.VAN50_EVENTS || window.VANCOUVER_EVENTS).map(normalizeActiveEvent) 
+  : (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS.map(normalizeActiveEvent) : []);
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,6 +108,134 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 60000);
 });
 
+function resolveEventTiers(ev) {
+  if (!ev) return [];
+  const now = new Date();
+  let rawList = [];
+
+  if (Array.isArray(ev.ticket_tiers) && ev.ticket_tiers.length > 0) {
+    rawList = ev.ticket_tiers;
+  } else if (Array.isArray(ev.tiers) && ev.tiers.length > 0) {
+    rawList = ev.tiers;
+  } else {
+    const syn = [];
+    if (ev.tier_custom_name_1 && ev.tier_custom_name_1 !== 'null' && ev.tier_custom_price_1 != null && String(ev.tier_custom_price_1).toLowerCase() !== 'null') {
+      syn.push({ name: ev.tier_custom_name_1, price: ev.tier_custom_price_1, status: ev.tier_custom_status_1 || null });
+    }
+    if (ev.price_adult != null && String(ev.price_adult).toLowerCase() !== 'null') {
+      syn.push({ name: 'Adult', price: ev.price_adult });
+    }
+    if (ev.price_student != null && String(ev.price_student).toLowerCase() !== 'null') {
+      syn.push({ name: 'Student', price: ev.price_student });
+    }
+    if (ev.price_member != null && String(ev.price_member).toLowerCase() !== 'null') {
+      syn.push({ name: 'Member', price: ev.price_member });
+    }
+    if (ev.tier_custom_name_2 && ev.tier_custom_name_2 !== 'null' && ev.tier_custom_price_2 != null && String(ev.tier_custom_price_2).toLowerCase() !== 'null') {
+      syn.push({ name: ev.tier_custom_name_2, price: ev.tier_custom_price_2, status: ev.tier_custom_status_2 || null });
+    }
+    if (ev.tier_custom_name_3 && ev.tier_custom_name_3 !== 'null' && ev.tier_custom_price_3 != null && String(ev.tier_custom_price_3).toLowerCase() !== 'null') {
+      syn.push({ name: ev.tier_custom_name_3, price: ev.tier_custom_price_3, status: ev.tier_custom_status_3 || null });
+    }
+    if (ev.tier_custom_name_4 && ev.tier_custom_name_4 !== 'null' && ev.tier_custom_price_4 != null && String(ev.tier_custom_price_4).toLowerCase() !== 'null') {
+      syn.push({ name: ev.tier_custom_name_4, price: ev.tier_custom_price_4, status: ev.tier_custom_status_4 || null });
+    }
+    if (ev.tier_custom_name_5 && ev.tier_custom_name_5 !== 'null' && ev.tier_custom_price_5 != null && String(ev.tier_custom_price_5).toLowerCase() !== 'null') {
+      syn.push({ name: ev.tier_custom_name_5, price: ev.tier_custom_price_5, status: ev.tier_custom_status_5 || null });
+    }
+    if (syn.length === 0 && ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
+      const p = ev.pricing_all_in_cad;
+      if (p.regular != null && String(p.regular).toLowerCase() !== 'null') syn.push({ name: 'Adult', price: Number(p.regular) });
+      if (p.senior != null && String(p.senior).toLowerCase() !== 'null') syn.push({ name: 'Senior (65+)', price: Number(p.senior) });
+      if (p.student != null && String(p.student).toLowerCase() !== 'null') syn.push({ name: 'Student', price: Number(p.student) });
+      if (p.member != null && String(p.member).toLowerCase() !== 'null') syn.push({ name: 'Member', price: Number(p.member) });
+    }
+    rawList = syn;
+  }
+
+  // Filter out any invalid or null tiers
+  rawList = (rawList || []).filter(t => {
+    if (!t) return false;
+    const nameStr = String(t.name || '').trim().toLowerCase();
+    if (!nameStr || nameStr === 'null' || nameStr === 'undefined') return false;
+    if (t.price === null || t.price === undefined || String(t.price).toLowerCase() === 'null') return false;
+    return !isNaN(Number(t.price));
+  });
+
+  if (rawList.length === 0) return [];
+
+  return rawList.map(t => {
+    const rawPrice = t.price !== undefined ? t.price : (t.total !== undefined ? t.total : 0);
+    const pNum = Number(rawPrice) || 0;
+    const nameStr = String(t.name || 'Admission').trim();
+    let status = t.status ? String(t.status).toLowerCase().trim() : null;
+
+    const lowerName = nameStr.toLowerCase();
+    if (!status) {
+      if (ev.is_sold_out || ev.isSoldOut || /sold\s*out|full|capacity/i.test(lowerName)) {
+        status = 'sold_out';
+      } else if (/presale\s*ended|early\s*bird\s*ended|ended|past|expired/i.test(lowerName)) {
+        status = 'expired';
+      } else if (/door\s*only|at\s*door|cash\s*at\s*door/i.test(lowerName)) {
+        status = 'door_only';
+      } else {
+        status = 'available';
+      }
+    }
+
+    if (t.available_until) {
+      try {
+        const untilDate = new Date(t.available_until);
+        if (!isNaN(untilDate.getTime()) && untilDate < now && status === 'available') {
+          status = 'expired';
+        }
+      } catch (_) {}
+    }
+
+    const isAvailable = (status === 'available');
+    const isDoor = (status === 'door_only' || /door/i.test(lowerName));
+    const isSoldOut = (status === 'sold_out');
+    const isExpired = (status === 'expired');
+
+    const cleanName = nameStr.replace(/\s*\((sold out|ended|door only|presale ended)\)/i, '').trim();
+    const label = pNum === 0 ? 'Free ($0)' : `$${pNum.toFixed(2)} CAD`;
+
+    return {
+      name: cleanName || nameStr,
+      rawName: nameStr,
+      price: pNum,
+      label,
+      status,
+      isAvailable,
+      isDoor,
+      isSoldOut,
+      isExpired
+    };
+  });
+}
+
+function sanitizeMojibake(str) {
+  if (typeof str !== 'string') return str;
+  return str
+    .replace(/â€“/g, '–')
+    .replace(/â€”/g, '—')
+    .replace(/â€™/g, "'")
+    .replace(/â€˜/g, "'")
+    .replace(/â€œ/g, '"')
+    .replace(/â€\x9d/g, '"')
+    .replace(/â€ /g, '"')
+    .replace(/â€¦/g, '…')
+    .replace(/â„¢/g, '™')
+    .replace(/â€¢/g, '•')
+    .replace(/Ã˜/g, 'Ø')
+    .replace(/Ã¸/g, 'ø')
+    .replace(/Ã¤/g, 'ä')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã¨/g, 'è')
+    .replace(/Ã¼/g, 'ü')
+    .replace(/Ã±/g, 'ñ');
+}
+
 function normalizeActiveEvent(item) {
   if (!item) return item;
 
@@ -116,7 +247,10 @@ function normalizeActiveEvent(item) {
   const show2 = item.show_2 || {};
   const show3 = item.show_3 || {};
 
-  const showings = Array.isArray(item.showings) ? item.showings : [];
+  let showings = Array.isArray(item.showings) ? item.showings : [];
+  if (showings.length === 0) {
+    showings = [show1, show2, show3].filter(s => s && s.date);
+  }
   const confirmedDates = showings.length > 0
     ? showings.map(s => s.date).filter(Boolean)
     : [show1.date, show2.date, show3.date].filter(Boolean);
@@ -124,8 +258,18 @@ function normalizeActiveEvent(item) {
   const catRaw = (item.category || "shows").toLowerCase();
   const isFreePublic = catRaw.includes("public access") || catRaw.includes("free public") || catRaw === "free-public-access" || item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in";
 
+  const evTitle = sanitizeMojibake(item.event_name || item.title || "Event");
+  const hasFestivalAffiliation = Boolean(item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "");
+  const isFest = Boolean(
+    hasFestivalAffiliation ||
+    catRaw.includes("festival") ||
+    evTitle.toLowerCase().includes("viff") ||
+    evTitle.toLowerCase().includes("festival") ||
+    (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival") || String(t).toLowerCase().includes("viff")))
+  );
+
   let dateSchedule = "Upcoming";
-  const opHours = item.operating_hours || item.open_hours || item.hours || item.operatingHours || "";
+  const opHours = sanitizeMojibake(item.operating_hours || item.open_hours || item.hours || item.operatingHours || "");
   const wh = item.weekly_hours || item.weeklyHours || null;
 
   if (isFreePublic) {
@@ -139,7 +283,8 @@ function normalizeActiveEvent(item) {
       dateSchedule = "Open Daily to the Public";
     }
   } else if (showings.length > 1) {
-    dateSchedule = `${showings.length} Screenings across Vancouver`;
+    const isFilm = (catRaw.includes("cinema") || catRaw.includes("film") || isFest);
+    dateSchedule = isFilm ? `${showings.length} Screenings across Vancouver` : `${showings.length} Dates Scheduled`;
   } else if (show1.date) {
     dateSchedule = show1.date;
     if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
@@ -148,24 +293,90 @@ function normalizeActiveEvent(item) {
     }
   }
 
-  const cat = isFreePublic
-    ? "free-public-access"
-    : (catRaw.includes("music") ? "music" : (catRaw.includes("outdoor") ? "outdoors" : (catRaw.includes("cinema") || catRaw.includes("film") ? "cinema" : (catRaw.includes("art") ? "social" : (catRaw.includes("market") ? "markets" : "shows")))));
+  // Multi-Category Taxonomy Resolution
+  const tagsStr = (Array.isArray(item.tags) ? item.tags.join(" ") : String(item.tags || "")).toLowerCase();
+  const titleLower = evTitle.toLowerCase();
+  const venueLower = (item.venue_name || item.venue || "").toLowerCase();
+  const descLower = (item.description || "").toLowerCase();
+  const combinedContext = `${catRaw} ${tagsStr} ${titleLower} ${venueLower} ${descLower}`;
 
-  const evTitle = item.event_name || item.title || "Event";
-  const hasFestivalAffiliation = Boolean(item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "");
-  const isFest = Boolean(
-    hasFestivalAffiliation ||
-    catRaw.includes("festival") ||
-    evTitle.toLowerCase().includes("viff") ||
-    evTitle.toLowerCase().includes("festival") ||
-    (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival") || String(t).toLowerCase().includes("viff")))
+  const tagsArray = tagsStr.split(/\s+/).filter(Boolean);
+  const isIndoorShow = tagsArray.some(t => ['comedy', 'improv', 'stand-up', 'theatre', 'opera', 'burlesque', 'music', 'live-music', 'concert'].includes(t)) && !/(pitch & putt|football|basketball)/i.test(titleLower);
+
+  const isCinema = (
+    catRaw.includes("cinema") ||
+    tagsArray.some(t => ['cinema', 'film', 'movie', 'screening', 'film-screening'].includes(t)) ||
+    venueLower.includes("cinematheque") ||
+    venueLower.includes("fifth avenue cinema") ||
+    /\b(screening|35mm|kwaidan|pulse|hello destroyer|past future|all the lovers in the night|silent movie|ski film)\b/i.test(titleLower) ||
+    (titleLower.includes("viff") && !titleLower.includes("volunteer"))
+  ) && !(tagsArray.includes("orchestral") && titleLower.includes("symphony") && !titleLower.includes("silent movie"))
+    && !tagsArray.some(t => ['comedy', 'stand-up', 'burlesque', 'improv'].includes(t));
+
+  const isOutdoors = !isIndoorShow && (
+    catRaw.includes("outdoor") ||
+    catRaw.includes("outdoors") ||
+    catRaw.includes("sport") ||
+    catRaw.includes("fitness") ||
+    item.access_model === "open_public_space" ||
+    tagsArray.some(t => ['outdoor', 'outdoors', 'sport', 'fitness', 'walk', 'nature', 'park', 'beach', 'seawall', 'trail', 'golf', 'pitch-putt', 'garden'].includes(t)) ||
+    /\b(seawall|waterfront promenade|boardwalk|quarry gardens|pitch & putt|bloedel conservatory|vandusen|harvest days|apple festival|miniature train|thunderbird stadium|war memorial gym)\b/i.test(combinedContext) ||
+    (/\b(stanley park|queen elizabeth park|dr\. sun yat-sen|canada place|the shipyards|granville island public market)\b/i.test(combinedContext) && !venueLower.includes("park theatre"))
+  ) && !titleLower.includes("babes in canyon") && !titleLower.includes("croissant crawl");
+
+  const isMusic = (
+    catRaw.includes("music") ||
+    /music|concert|band|jazz|orchestra|metal|punk|symphony/.test(tagsStr) ||
+    /jazz|blues|orchestra|concert|metal|punk|symphony|cabaret|strings|vso/.test(titleLower)
   );
 
-  const categories = [cat];
-  if (isFest && !categories.includes('festivals')) {
-    categories.push('festivals');
+  const isShows = (
+    catRaw.includes("show") ||
+    catRaw.includes("comedy") ||
+    catRaw.includes("theatre") ||
+    catRaw.includes("stage") ||
+    /comedy|improv|stand-up|burlesque|cabaret|theatre|opera|showcase/.test(combinedContext)
+  );
+
+  const isMarkets = (
+    catRaw.includes("market") ||
+    /market|bazaar|croissant crawl/.test(combinedContext)
+  );
+
+  const isSocialArts = (
+    catRaw.includes("art") ||
+    catRaw.includes("social") ||
+    catRaw.includes("culture") ||
+    /art|social|culture|craft|trivia|board-game|gallery/.test(combinedContext) ||
+    // Films shown in cultural, art-house, or archival series (e.g. Kwaidan, Pulse, VIFF, Cinematheque) belong to both Cinema and Social & Arts
+    isCinema
+  );
+
+  // Build ev.categories array (multi-category assignment)
+  const categories = [];
+  if (isCinema && !categories.includes("cinema")) categories.push("cinema");
+  if (isOutdoors && !categories.includes("outdoors")) categories.push("outdoors");
+  if (isFreePublic && !categories.includes("free-public-access")) categories.push("free-public-access");
+  if (isMusic && !categories.includes("music")) categories.push("music");
+  if (isShows && !categories.includes("shows")) categories.push("shows");
+  if (isMarkets && !categories.includes("markets")) categories.push("markets");
+  if (isSocialArts && !categories.includes("social")) categories.push("social");
+  if (isFest && !categories.includes("festivals")) categories.push("festivals");
+
+  if (categories.length === 0) {
+    categories.push(isFreePublic ? "free-public-access" : "shows");
   }
+
+  // Determine primary category for badge display
+  let cat = categories[0];
+  if (isCinema) cat = "cinema";
+  else if (isOutdoors && (catRaw.includes("sport") || item.access_model === "open_public_space")) cat = "outdoors";
+  else if (isFreePublic) cat = "free-public-access";
+  else if (isMusic) cat = "music";
+  else if (isMarkets) cat = "markets";
+  else if (isOutdoors) cat = "outdoors";
+  else if (isShows) cat = "shows";
+  else if (isSocialArts) cat = "social";
 
   // Calculate actual day-of-week codes (mon, tue, wed, etc.) - NEVER default to ['daily'] for timed events
   const DAY_CODES = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -192,7 +403,7 @@ function normalizeActiveEvent(item) {
 
   const finalPrice = isFreePublic ? 0.0 : price;
 
-  return {
+  const res = {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
     title: evTitle,
     artist: item.artist || null,
@@ -217,7 +428,8 @@ function normalizeActiveEvent(item) {
     endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
     confirmedDates: confirmedDates,
     showings: showings,
-    isSoldOut: false,
+    isSoldOut: Boolean(item.is_sold_out || item.isSoldOut),
+    is_sold_out: Boolean(item.is_sold_out || item.isSoldOut),
     isFestival: isFest,
     festivalAffiliation: (hasFestivalAffiliation ? item.festival_affiliation : (isFest ? (item.festival_affiliation || "VIFF") : null)),
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
@@ -246,18 +458,53 @@ function normalizeActiveEvent(item) {
     featured_exhibition: item.featured_exhibition || null,
     pricing_model: item.pricing_model || null,
     access_model: item.access_model || null,
-    coffee_benchmark: item.coffee_benchmark || null,
-    meal_benchmark: item.meal_benchmark || null,
-    price_adult: item.price_adult || null,
-    price_student: item.price_student || null,
-    price_member: item.price_member || null,
+    food_service_type: item.food_service_type || null,
+    food_service_note: sanitizeMojibake(item.food_service_note || null),
+    drink_benchmark: sanitizeMojibake(item.drink_benchmark || null),
+    concession_benchmark: sanitizeMojibake(item.concession_benchmark || null),
+    typical_item_spend: sanitizeMojibake(item.typical_item_spend || null),
+    sample_cost_label: sanitizeMojibake(item.sample_cost_label || null),
+    coffee_benchmark: sanitizeMojibake(item.coffee_benchmark || null),
+    meal_benchmark: sanitizeMojibake(item.meal_benchmark || null),
+    price_adult: item.price_adult !== undefined ? item.price_adult : null,
+    price_student: item.price_student !== undefined ? item.price_student : null,
+    price_member: item.price_member !== undefined ? item.price_member : null,
     tier_custom_name_1: item.tier_custom_name_1 || null,
-    tier_custom_price_1: item.tier_custom_price_1 || null,
+    tier_custom_price_1: item.tier_custom_price_1 !== undefined && item.tier_custom_price_1 !== null ? Number(item.tier_custom_price_1) : null,
     tier_custom_name_2: item.tier_custom_name_2 || null,
-    tier_custom_price_2: item.tier_custom_price_2 || null,
+    tier_custom_price_2: item.tier_custom_price_2 !== undefined && item.tier_custom_price_2 !== null ? Number(item.tier_custom_price_2) : null,
     tier_custom_name_3: item.tier_custom_name_3 || null,
-    tier_custom_price_3: item.tier_custom_price_3 || null
+    tier_custom_price_3: item.tier_custom_price_3 !== undefined && item.tier_custom_price_3 !== null ? Number(item.tier_custom_price_3) : null,
+    tier_custom_name_4: item.tier_custom_name_4 || null,
+    tier_custom_price_4: item.tier_custom_price_4 !== undefined && item.tier_custom_price_4 !== null ? Number(item.tier_custom_price_4) : null,
+    tier_custom_name_5: item.tier_custom_name_5 || null,
+    tier_custom_price_5: item.tier_custom_price_5 !== undefined && item.tier_custom_price_5 !== null ? Number(item.tier_custom_price_5) : null,
+    ticket_tiers: Array.isArray(item.ticket_tiers) ? item.ticket_tiers : null
   };
+
+  const tiers = resolveEventTiers(res);
+  res.tiers = tiers;
+
+  // Recalculate dynamic effective price if active available tiers exist
+  if (!isFreePublic && tiers.length > 0) {
+    const activeTiers = tiers.filter(t => t.isAvailable && t.price <= 50);
+    if (activeTiers.length > 0 && !item.is_sold_out && !item.isSoldOut) {
+      const minAvailable = Math.min(...activeTiers.map(t => t.price));
+      res.price = minAvailable;
+      res.priceLabel = minAvailable === 0 ? "Free ($0)" : `$${minAvailable.toFixed(2)} CAD`;
+      res.isSoldOut = false;
+      res.is_sold_out = false;
+    } else {
+      const allDone = tiers.every(t => t.isSoldOut || t.isExpired);
+      if (allDone || item.is_sold_out || item.isSoldOut) {
+        res.isSoldOut = true;
+        res.is_sold_out = true;
+        res.priceLabel = (tiers.some(t => t.isSoldOut) || item.is_sold_out || item.isSoldOut) ? "Sold Out" : "Presale Ended";
+      }
+    }
+  }
+
+  return res;
 }
 
 // Asynchronously load central reference data feed (data/events.json)
@@ -269,7 +516,9 @@ async function loadCentralReference() {
   try {
     const res = await fetch(`data/events.json?v=7.0.0&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
-      const data = await res.json();
+      const text = await res.text();
+      const cleanText = text.replace(/^\uFEFF/, '');
+      const data = JSON.parse(cleanText);
       const rawList = Array.isArray(data) ? data : (data.events || []);
       if (rawList.length > 0) {
         loadedEvents = rawList.map(normalizeActiveEvent);
@@ -279,12 +528,23 @@ async function loadCentralReference() {
       }
     }
   } catch (err) {
-    console.log('Using offline embedded reference sheet.');
+    console.warn('Failed to parse data/events.json:', err);
+  }
+
+  // Robust fallback to offline embedded data.js (window.VAN50_EVENTS)
+  if (!loadedEvents || loadedEvents.length === 0) {
+    const fallbackList = (typeof window !== 'undefined' && (window.VAN50_EVENTS || window.VANCOUVER_EVENTS)) 
+      || (typeof VAN50_EVENTS !== 'undefined' ? VAN50_EVENTS : null);
+    if (Array.isArray(fallbackList) && fallbackList.length > 0) {
+      loadedEvents = fallbackList.map(normalizeActiveEvent);
+      console.log(`Using offline reference sheet (${loadedEvents.length} events).`);
+    }
   }
 
   if (loadedEvents && loadedEvents.length > 0) {
     ALL_EVENTS = loadedEvents;
     window.VANCOUVER_EVENTS = loadedEvents;
+    window.VAN50_EVENTS = loadedEvents;
     if (updatedAt) {
       state.updatedAt = updatedAt;
       showSyncTimestamp(updatedAt, loadedEvents.length);
@@ -401,6 +661,13 @@ function setupEventListeners() {
       state.hideDaily = true;
       const hideDailyToggle = document.getElementById('hide-daily-toggle');
       if (hideDailyToggle) hideDailyToggle.checked = true;
+    }
+
+    if (_urlParams.has('expandTiers') || _urlParams.get('expandTiers') === '1') {
+      setTimeout(() => {
+        const p = document.querySelector('.price-box-interactive');
+        if (p) p.click();
+      }, 600);
     }
 
     searchInput.addEventListener('input', (e) => {
@@ -539,6 +806,15 @@ function setupEventListeners() {
   if (hideDailyToggle) {
     hideDailyToggle.addEventListener('change', (e) => {
       state.hideDaily = e.target.checked;
+      applyFiltersAndRender();
+    });
+  }
+
+  // Wheelchair Accessible Only Toggle
+  const chkAccessibleOnly = document.getElementById('chk-accessible-only');
+  if (chkAccessibleOnly) {
+    chkAccessibleOnly.addEventListener('change', (e) => {
+      state.accessibleOnly = Boolean(e.target.checked);
       applyFiltersAndRender();
     });
   }
@@ -704,7 +980,174 @@ function setupEventListeners() {
       if (e.target === reviewQueueModal) reviewQueueModal.classList.remove('active');
     });
   }
+
+  // Price Feedback Modal Handlers (Crowdsourced Pricing Transparency)
+  const priceModal = document.getElementById('price-feedback-modal');
+  const closePriceModalBtn = document.getElementById('close-price-feedback-btn');
+  const cancelPriceModalBtn = document.getElementById('btn-cancel-price-feedback');
+  const priceFeedbackForm = document.getElementById('price-feedback-form');
+
+  window.openPriceFeedbackModal = function(venueName) {
+    if (!priceModal) return;
+    const vName = (venueName || 'Selected Venue').trim();
+    const venueInput = document.getElementById('price-feedback-venue-input');
+    const venueDisplay = document.getElementById('price-feedback-venue-name');
+    const pintInput = document.getElementById('price-feedback-pint');
+    const cocktailInput = document.getElementById('price-feedback-cocktail');
+    const allInCheck = document.getElementById('price-feedback-all-in');
+    const noteInput = document.getElementById('price-feedback-note');
+    const hpInput = document.getElementById('price-feedback-hp');
+    const statusBox = document.getElementById('price-feedback-status');
+    const submitBtn = document.getElementById('btn-submit-price-feedback');
+
+    if (venueInput) venueInput.value = vName;
+    if (venueDisplay) venueDisplay.textContent = vName;
+    if (pintInput) pintInput.value = '';
+    if (cocktailInput) cocktailInput.value = '';
+    if (allInCheck) allInCheck.checked = false;
+    if (noteInput) noteInput.value = '';
+    if (hpInput) hpInput.value = '';
+    if (statusBox) {
+      statusBox.style.display = 'none';
+      statusBox.textContent = '';
+      statusBox.className = '';
+    }
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Price Update';
+    }
+
+    priceModal.classList.add('active');
+    setTimeout(() => {
+      if (pintInput) pintInput.focus();
+    }, 100);
+  };
+
+  window.closePriceFeedbackModal = function() {
+    if (priceModal) priceModal.classList.remove('active');
+  };
+
+  if (closePriceModalBtn) {
+    closePriceModalBtn.addEventListener('click', window.closePriceFeedbackModal);
+  }
+  if (cancelPriceModalBtn) {
+    cancelPriceModalBtn.addEventListener('click', window.closePriceFeedbackModal);
+  }
+  if (priceModal) {
+    priceModal.addEventListener('click', (e) => {
+      if (e.target === priceModal) window.closePriceFeedbackModal();
+    });
+  }
+
+  // Global delegation for click on .btn-suggest-price
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-suggest-price');
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const vName = btn.getAttribute('data-suggest-venue') || '';
+      window.openPriceFeedbackModal(vName);
+    }
+  });
+
+  if (priceFeedbackForm) {
+    priceFeedbackForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const venueInput = document.getElementById('price-feedback-venue-input');
+      const pintInput = document.getElementById('price-feedback-pint');
+      const cocktailInput = document.getElementById('price-feedback-cocktail');
+      const allInCheck = document.getElementById('price-feedback-all-in');
+      const noteInput = document.getElementById('price-feedback-note');
+      const hpInput = document.getElementById('price-feedback-hp');
+      const statusBox = document.getElementById('price-feedback-status');
+      const submitBtn = document.getElementById('btn-submit-price-feedback');
+
+      if (hpInput && hpInput.value.trim() !== '') {
+        window.closePriceFeedbackModal();
+        return;
+      }
+
+      const venueName = (venueInput ? venueInput.value : '').trim();
+      const pintVal = pintInput && pintInput.value.trim() !== '' ? parseFloat(pintInput.value.trim()) : null;
+      const cocktailVal = cocktailInput && cocktailInput.value.trim() !== '' ? parseFloat(cocktailInput.value.trim()) : null;
+      const isAllIn = allInCheck ? allInCheck.checked : false;
+      const note = noteInput ? noteInput.value.trim() : '';
+
+      if (pintVal === null && cocktailVal === null) {
+        if (statusBox) {
+          statusBox.style.display = 'block';
+          statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
+          statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+          statusBox.style.color = '#fca5a5';
+          statusBox.textContent = 'Please enter at least one price (cheapest pint or cheapest cocktail/highball).';
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+      }
+
+      try {
+        const res = await fetch('/api/suggest-price', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            venue_name: venueName,
+            cheapest_pint_input: pintVal,
+            cheapest_cocktail_input: cocktailVal,
+            is_all_in: isAllIn,
+            note: note,
+            honeypot: hpInput ? hpInput.value : ''
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          if (statusBox) {
+            statusBox.style.display = 'block';
+            statusBox.style.background = 'rgba(16, 185, 129, 0.15)';
+            statusBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+            statusBox.style.color = '#6ee7b7';
+            statusBox.textContent = '✓ Thank you! Your price update has been received and will help calibrate Vancouver outing spend estimates.';
+          }
+          if (submitBtn) {
+            submitBtn.textContent = '✓ Submitted';
+          }
+          setTimeout(() => {
+            window.closePriceFeedbackModal();
+          }, 1800);
+        } else {
+          if (statusBox) {
+            statusBox.style.display = 'block';
+            statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
+            statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+            statusBox.style.color = '#fca5a5';
+            statusBox.textContent = data.error || 'Failed to submit price update. Please try again.';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Price Update';
+          }
+        }
+      } catch (err) {
+        if (statusBox) {
+          statusBox.style.display = 'block';
+          statusBox.style.background = 'rgba(239, 68, 68, 0.15)';
+          statusBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+          statusBox.style.color = '#fca5a5';
+          statusBox.textContent = 'Network connection error. Please try again.';
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Price Update';
+        }
+      }
+    });
+  }
 }
+
 
 function updateSliderVisuals() {
   const readout = document.getElementById('spend-readout');
@@ -821,10 +1264,10 @@ function renderFestivalSpotlight() {
           ${festBlurb}
         </p>
         <div class="festival-links-row">
-          <a href="${programLink}" target="_blank" rel="noopener noreferrer" class="festival-link-primary" title="Browse full festival program on official site">
+          <a href="${programLink}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-primary" title="Browse full festival program on official site">
             ${programLabel}
           </a>
-          <a href="${secondaryLink}" target="_blank" rel="noopener noreferrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="${secondaryLabel}">
+          <a href="${secondaryLink}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="${secondaryLabel}">
             ${secondaryLabel}
           </a>
           <span class="festival-stats-chip">${countLabel}</span>
@@ -841,7 +1284,7 @@ function renderFestivalSpotlight() {
           title="${state.category === 'festivals' ? 'Showing festival events. Click to show all outings' : 'Filter outings to display only festival events'}"
         >
           <span class="toggle-icon">${state.category === 'festivals' ? '✓' : '🎪'}</span>
-          <span class="toggle-label">${state.category === 'festivals' ? 'Showing Festival Events (Show All)' : `Display Festival Events (${festCount || 3})`}</span>
+          <span class="toggle-label">${state.category === 'festivals' ? `Showing Festival Events (${festCount || 3})` : `Display Festival Events (${festCount || 3})`}</span>
         </button>
         ` : ''}
 
@@ -1107,22 +1550,103 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Private Event)' };
   }
 
-  // Open public space (parks, seawall, beaches, outdoor spaces) never show Closed
+  // Open public space (parks, seawall, beaches, outdoor spaces) never show Closed unless dusk applies
   if (ev.access_model === 'open_public_space' || ev.accessModel === 'open_public_space') {
     return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7 (Recommended Visiting Times)' };
   }
 
   const ds = ev.dateSchedule || '';
+  const op = ev.operating_hours || ev.operatingHours || '';
   const nowHours = now.getHours();
   const nowMins = now.getMinutes();
   const currentMinutes = nowHours * 60 + nowMins;
 
-  // 1. 24/7 venues never close
-  if (ds.includes('24/7') || ds.toLowerCase().includes('open 24')) {
+  const dayKeys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  const curKey = dayKeys[now.getDay()];
+
+  // 1. Check weekly_hours / weeklyHours for today's explicit schedule
+  const wh = ev.weekly_hours || ev.weeklyHours || (typeof ev.weekly_schedule === 'object' ? ev.weekly_schedule : null);
+  if (wh && typeof wh === 'object') {
+    const todayEntry = wh[curKey];
+    if (!todayEntry || /closed/i.test(String(todayEntry).trim())) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
+    }
+    const entryStr = String(todayEntry).trim();
+    // Parse closing time from todayEntry (e.g. "10:00 AM – 4:00 PM", "9:00 AM – 9:00 PM")
+    const timeMatch = entryStr.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
+    if (timeMatch) {
+      const rawTime = timeMatch[1].trim();
+      const m = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+      if (m) {
+        let h = parseInt(m[1], 10);
+        const min = m[2] ? parseInt(m[2], 10) : 0;
+        const ampm = m[3].toUpperCase();
+        if (ampm === 'PM' && h < 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        if (h < 5) h += 24;
+        const closingMinutes = h * 60 + min;
+        return {
+          hasEnded: currentMinutes >= closingMinutes,
+          closingMinutes,
+          closingTimeStr: rawTime
+        };
+      }
+    }
+  }
+
+  // 2. 24/7 venues never close
+  if (ds.includes('24/7') || ds.toLowerCase().includes('open 24') || op.includes('24/7') || op.toLowerCase().includes('open 24')) {
     return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7' };
   }
 
-  // 2. Parse closing time range from dateSchedule (e.g. "10:00 AM - 6:00 PM", "6:00 AM - 10:00 PM")
+  // 3. Operating hours text & days_open check for today's closure
+  const daysOpen = ev.days_open || ev.daysOpen || '';
+  if (daysOpen) {
+    const dLower = daysOpen.toLowerCase();
+    const curDay = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+    if (dLower === 'mon-sat' && curDay === 0) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Sundays)' };
+    }
+    if (dLower === 'wed-mon' && curDay === 2) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Tuesdays)' };
+    }
+    if (dLower === 'tue-sun' && curDay === 1) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Mondays)' };
+    }
+    if ((dLower.includes('sat-sun') || dLower.includes('saturday-sunday') || dLower.includes('saturdays, sundays')) && curDay !== 0 && curDay !== 6) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today (Weekend Only)' };
+    }
+  }
+
+  if (op) {
+    const curDayShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
+    const closedDayRegex = new RegExp(`(?:closed\\s+on\\s+${curDayShort}|closed\\s+${curDayShort}|${curDayShort}[a-z]*:\\s*closed|${curDayShort}[–-]\\w+\\s*closed)`, 'i');
+    if (closedDayRegex.test(op)) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
+    }
+    // Also parse range from operating_hours if not already parsed from weekly_hours
+    const opRangeMatch = op.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
+    if (opRangeMatch) {
+      const rawTime = opRangeMatch[1].trim();
+      const m = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+      if (m) {
+        let h = parseInt(m[1], 10);
+        const min = m[2] ? parseInt(m[2], 10) : 0;
+        const ampm = m[3].toUpperCase();
+        if (ampm === 'PM' && h < 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        if (h < 5) h += 24;
+        const closingMinutes = h * 60 + min;
+        return {
+          hasEnded: currentMinutes >= closingMinutes,
+          closingMinutes,
+          closingTimeStr: rawTime
+        };
+      }
+    }
+  }
+
+  // 4. Parse closing time range from dateSchedule (e.g. "10:00 AM - 6:00 PM", "6:00 AM - 10:00 PM")
   const rangeMatch = ds.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
   if (rangeMatch) {
     const rawTime = rangeMatch[1].trim();
@@ -1133,7 +1657,6 @@ function getEventClosingTimeToday(ev, now = new Date()) {
       const ampm = timeMatch[3].toUpperCase();
       if (ampm === 'PM' && h < 12) h += 12;
       if (ampm === 'AM' && h === 12) h = 0;
-      // If closing time is late night / past midnight (e.g. 1 AM - 4 AM)
       if (h < 5 && (ds.toLowerCase().includes('night') || ds.toLowerCase().includes('cabaret') || ds.toLowerCase().includes('pm'))) {
         h += 24;
       }
@@ -1146,8 +1669,8 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
-  // 3. Daylight hours (parks, outdoor attractions) - dusk cutoff around 7:45 PM
-  if (ds.toLowerCase().includes('daylight hours')) {
+  // 5. Daylight hours (parks, outdoor attractions) - dusk cutoff around 7:45 PM
+  if (ds.toLowerCase().includes('daylight hours') || op.toLowerCase().includes('daylight hours')) {
     const duskMinutes = 19 * 60 + 45;
     return {
       hasEnded: currentMinutes >= duskMinutes,
@@ -1156,7 +1679,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     };
   }
 
-  // 4. Explicit endIso (if not end of year series placeholder)
+  // 6. Explicit endIso (if not end of year series placeholder)
   if (ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
     try {
       const endDt = new Date(ev.endIso);
@@ -1179,7 +1702,48 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     } catch (e) {}
   }
 
-  // 5. Start time in dateSchedule or startIso + 2.5 hours runtime
+  // 7. Check showings for today (if specific showings exist)
+  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+    const todayShowings = ev.showings.filter(s => s && s.date === todayStr);
+    if (todayShowings.length > 0) {
+      let latestShowingEndMinutes = 0;
+      let latestShowingStr = '';
+      for (const s of todayShowings) {
+        const endRaw = s.end_time || s.endTime;
+        const startRaw = s.start_time || s.startTime;
+        if (endRaw) {
+          const parts = String(endRaw).split(':');
+          let sh = parseInt(parts[0], 10);
+          const sm = parts[1] ? parseInt(parts[1], 10) : 0;
+          if (sh < 5) sh += 24;
+          const totalM = sh * 60 + sm;
+          if (totalM > latestShowingEndMinutes) {
+            latestShowingEndMinutes = totalM;
+            latestShowingStr = endRaw;
+          }
+        } else if (startRaw) {
+          const parts = String(startRaw).split(':');
+          let sh = parseInt(parts[0], 10);
+          const sm = parts[1] ? parseInt(parts[1], 10) : 0;
+          if (sh < 5) sh += 24;
+          const totalM = sh * 60 + sm + 150; // + 2.5 hours runtime
+          if (totalM > latestShowingEndMinutes) {
+            latestShowingEndMinutes = totalM;
+            latestShowingStr = `${startRaw} (+2.5h run)`;
+          }
+        }
+      }
+      if (latestShowingEndMinutes > 0) {
+        return {
+          hasEnded: currentMinutes >= latestShowingEndMinutes,
+          closingMinutes: latestShowingEndMinutes,
+          closingTimeStr: latestShowingStr
+        };
+      }
+    }
+  }
+
+  // 8. Start time in dateSchedule or startIso + 2.5 hours runtime
   const startMatch = ds.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
   if (startMatch) {
     let sh = parseInt(startMatch[1], 10);
@@ -1214,7 +1778,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     } catch (e) {}
   }
 
-  // 6. TimeSlot fallback
+  // 9. TimeSlot fallback
   const slots = ev.timeSlots || [];
   if (slots.length > 0) {
     if (slots.length === 1 && slots[0] === 'early-morning') {
@@ -1345,12 +1909,22 @@ function applyFiltersAndRender() {
     const p = parseFloat(ev.price || 0.0);
     if (p > 50.00) return false;
 
-    // Venue Isolation Filter (Requirement 7)
-    if (state.selectedVenue && ev.venue !== state.selectedVenue) return false;
+    // Venue Isolation Filter (Requirement 3: When clicking events at a venue, show all events at the venue)
+    if (state.selectedVenue) {
+      return ev.venue === state.selectedVenue;
+    }
 
     // Festival Toggle Guard (Hide Festival Events toggle)
     if (state.hideFestivalEvents) {
       if ((ev.id && ev.id.startsWith('fest-')) || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')) || (ev.title && ev.title.toLowerCase().includes('fringe'))) {
+        return false;
+      }
+    }
+
+    // Wheelchair Accessible Venues Filter
+    if (state.accessibleOnly) {
+      const access = typeof window.getVenueAccessibility === 'function' ? window.getVenueAccessibility(ev.venue) : null;
+      if (!access || access.status === 'inaccessible') {
         return false;
       }
     }
@@ -1378,6 +1952,24 @@ function applyFiltersAndRender() {
         ? ev.categories
         : [ev.category];
       const match = evCats.includes(state.category) ||
+        (state.category === 'outdoors' && (
+          evCats.includes('outdoors') ||
+          evCats.includes('outdoor') ||
+          evCats.includes('sports') ||
+          evCats.includes('fitness') ||
+          ev.access_model === 'open_public_space' ||
+          (ev.categoryLabel && /outdoor|sport|fitness|park|walk|trail|golf|pitch/i.test(ev.categoryLabel)) ||
+          (ev.subTags && ev.subTags.some(t => /outdoor|sport|fitness|walk|park|beach|seawall|garden|nature|golf|pitch/i.test(t))) ||
+          /park|seawall|promenade|garden|beach|trail|canyon|quarry|pitch|putt|football|stadium|boardwalk|waterfront|harvest days|apple festival|miniature train/i.test(ev.venue || '') ||
+          /park|seawall|promenade|garden|beach|trail|canyon|quarry|pitch|putt|football|stadium|boardwalk|walk|loop|train/i.test(ev.title || '')
+        )) ||
+        (state.category === 'cinema' && (
+          evCats.includes('cinema') ||
+          evCats.includes('film') ||
+          evCats.includes('movie') ||
+          (ev.subTags && ev.subTags.some(t => /cinema|film|movie|screening/i.test(t))) ||
+          (/cinematheque|theatre|cinema|viff/i.test(ev.venue || '') && /film|screening|movie|viff|kwaidan|pulse|destroyer|ser querido|lovers in the night|jekyll|matchstick/i.test(ev.title || ''))
+        )) ||
         (state.category === 'free-public-access' && (
           evCats.includes('free-public-access') ||
           evCats.includes('free public access') ||
@@ -1403,12 +1995,26 @@ function applyFiltersAndRender() {
           (ev.title && (ev.title.toLowerCase().includes('festival') || ev.title.toLowerCase().includes('fringe') || ev.title.toLowerCase().includes('viff'))) ||
           (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('viff')))
         )) ||
-        (state.category === 'social' && (evCats.includes('crafts') || evCats.includes('arts') || evCats.includes('trivia') || evCats.includes('activities') || evCats.includes('social')));
+        (state.category === 'social' && (
+          evCats.includes('crafts') || 
+          evCats.includes('arts') || 
+          evCats.includes('trivia') || 
+          evCats.includes('activities') || 
+          evCats.includes('social') ||
+          evCats.includes('cinema') // Artistic & cultural cinema screenings are also in Social & Arts
+        ));
       if (!match) return false;
     }
 
     // 3. Day of the Week Filter (Requirement 1)
     if (state.dayOfWeek !== 'all') {
+      // Check if weekly_hours explicitly marks this day as Closed
+      const wh = ev.weekly_hours || ev.weeklyHours;
+      if (wh && typeof wh === 'object' && wh[state.dayOfWeek]) {
+        if (/closed/i.test(String(wh[state.dayOfWeek]))) {
+          return false;
+        }
+      }
       if (state.dayOfWeek === 'daily') {
         if (!ev.isDaily && ev.frequency !== 'daily' && (!ev.daysOfWeek || !ev.daysOfWeek.includes('daily')) && ev.category !== 'free-public-access') {
           return false;
@@ -1735,7 +2341,14 @@ function matchesGoogleSearch(ev, parsed) {
     extraAliases += ' movie film screening matinee midnight cult art house';
   }
 
-  const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${extraAliases}`;
+  const customTiersNorm = [
+    ev.tier_custom_name_1, ev.tier_custom_name_2, ev.tier_custom_name_3, ev.tier_custom_name_4, ev.tier_custom_name_5
+  ].filter(Boolean).map(normalizeSearchText).join(' ');
+  const tiersListNorm = Array.isArray(ev.tiers) ? ev.tiers.map(t => normalizeSearchText(t.name)).join(' ') : '';
+  const access = typeof window.getVenueAccessibility === 'function' ? window.getVenueAccessibility(ev.venue) : null;
+  const accessNorm = access ? normalizeSearchText(`${access.status} ${access.label} ${access.summary} ${access.entrance} ${access.seating} ${access.washroom} wheelchair accessibility disability accessible elevator step free`) : '';
+
+  const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${customTiersNorm} ${tiersListNorm} ${extraAliases} ${accessNorm}`;
   const docTokens = allContent.split(' ').filter(tok => tok.length > 0);
   const docStems = docTokens.map(stemWord);
 
@@ -1873,14 +2486,46 @@ function matchesSmartSearch(ev, query) {
   return matchesGoogleSearch(ev, parsed)[0];
 }
 
-// 1-Click Venue Isolation Action (Requirement 7)
+// 1-Click Venue Isolation Action (Requirement: Unselect all other filters so all events at venue are shown)
 function filterByVenue(venueName) {
   if (state.selectedVenue === venueName) {
     state.selectedVenue = null;
   } else {
     state.selectedVenue = venueName;
-    state.category = 'all'; // Switch to 'all' so user sees complete multi-program lineup
+    // Unselect all other filters so all events at the venue are shown despite any active filters
+    state.category = 'all';
+    state.minBudget = 0;
+    state.maxBudget = 50;
+    state.hideDaily = false;
+    state.frequency = 'all';
+    state.dayOfWeek = 'all';
+    state.timeSlot = 'all';
+    state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS || []);
+    state.selectedTag = null;
+    state.searchQuery = '';
+    state.pricingType = 'all';
+    if (state.activeFestivalId) state.activeFestivalId = null;
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.value = '';
+    const btnClearSearch = document.getElementById('btn-clear-search');
+    if (btnClearSearch) btnClearSearch.style.display = 'none';
+    const minSlider = document.getElementById('min-spend-slider');
+    const maxSlider = document.getElementById('max-spend-slider');
+    if (minSlider) minSlider.value = 0;
+    if (maxSlider) maxSlider.value = 50;
+    const chkSched = document.getElementById('chk-scheduled-only') || document.getElementById('hide-daily-toggle');
+    if (chkSched) chkSched.checked = false;
+    state.accessibleOnly = false;
+    const chkAccess = document.getElementById('chk-accessible-only');
+    if (chkAccess) chkAccess.checked = false;
+
     renderCategoryPills();
+    renderDayPills();
+    renderTimePills();
+    renderNeighborhoodPills();
+    renderFrequencyPills();
+    updateSliderVisuals();
   }
   applyFiltersAndRender();
   const banner = document.getElementById('active-venue-banner');
@@ -1930,17 +2575,33 @@ function resetAllFilters() {
 }
 
 function formatStandardPrice(ev) {
-  // 1. If explicit priceLabel exists on the event, prioritize it (normalize erroneous "$0.00 door")
+  // 1. If explicitly sold out
+  if (ev.isSoldOut || ev.is_sold_out) {
+    if (ev.priceLabel && (ev.priceLabel.toLowerCase().includes('sold out') || ev.priceLabel.toLowerCase().includes('ended'))) {
+      return ev.priceLabel;
+    }
+  }
+
+  // 2. If explicit priceLabel exists on the event, prioritize it (normalize erroneous "$0.00 door")
   if (ev.priceLabel) {
-    if (ev.priceLabel === '$0.00 door' || (ev.price === 0 && ev.priceLabel.includes('$0.00'))) {
+    if (ev.priceLabel === '$0.00 door' || (ev.price === 0 && ev.priceLabel.includes('$0.00') && !ev.isFree)) {
       return 'Free ($0)';
     }
-    return ev.priceLabel;
+    if (ev.priceLabel.toLowerCase().includes('sold out') || ev.priceLabel.toLowerCase().includes('ended')) {
+      return ev.priceLabel;
+    }
+    if (!ev.tiers || ev.tiers.length <= 1) {
+      return ev.priceLabel;
+    }
   }
-  // 2. Multi-tier events always evaluate and display tier range first
-  if (ev.tiers && ev.tiers.length > 1) {
-    const minP = Math.min(...ev.tiers.map(t => t.price));
-    const maxP = Math.max(...ev.tiers.map(t => t.price));
+
+  const tiers = Array.isArray(ev.tiers) ? ev.tiers : resolveEventTiers(ev);
+  const activeTiers = tiers.filter(t => t.isAvailable && t.price <= 50);
+
+  // 3. Multi-tier events always evaluate and display active tier range
+  if (activeTiers.length > 1) {
+    const minP = Math.min(...activeTiers.map(t => t.price));
+    const maxP = Math.max(...activeTiers.map(t => t.price));
     if (minP === maxP) {
       return minP === 0 ? 'Free ($0)' : `$${minP.toFixed(2)} all-in`;
     }
@@ -1948,9 +2609,25 @@ function formatStandardPrice(ev) {
       return `Free – $${maxP.toFixed(2)} all-in`;
     }
     return `$${minP.toFixed(2)} – $${maxP.toFixed(2)} all-in`;
+  } else if (activeTiers.length === 1) {
+    const p = activeTiers[0].price;
+    return p === 0 ? 'Free ($0)' : `$${p.toFixed(2)} all-in`;
   }
-  // 3. Strict Free Check: only if price is 0 AND no paid tiers exist
-  if ((ev.isFree || ev.price === 0) && (!ev.tiers || !ev.tiers.some(t => t.price > 0))) {
+
+  // 4. If all advance tiers are unavailable, check door or sold out
+  if (tiers.length > 0 && activeTiers.length === 0) {
+    const doorTier = tiers.find(t => t.isDoor);
+    if (doorTier) {
+      return `$${doorTier.price.toFixed(2)} door`;
+    }
+    const hasSoldOut = tiers.some(t => t.isSoldOut);
+    if (hasSoldOut) return 'Sold Out';
+    const hasExpired = tiers.some(t => t.isExpired);
+    if (hasExpired) return 'Presale Ended';
+  }
+
+  // 5. Strict Free Check: only if price is 0 AND no paid tiers exist
+  if ((ev.isFree || ev.price === 0) && (!tiers || !tiers.some(t => t.price > 0 && t.isAvailable))) {
     return 'Free ($0)';
   }
   if (ev.pricingType === 'door') {
@@ -2300,10 +2977,25 @@ function getEventTimeBucket(ev, now = new Date()) {
   // 5. Daily Perennial Drop-Ins (Parks, Seawall, permanent galleries with no future scheduled dates)
   if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
     const status = getEventClosingTimeToday(ev, now);
-    if (status.hasEnded) {
-      return { bucket: 'tomorrow', date: tomorrow, closedToday: true, closingTimeStr: status.closingTimeStr };
+    if (!status.hasEnded) {
+      return { bucket: 'today', date: today };
     }
-    return { bucket: 'today', date: today };
+    // When closed today or closing time has passed, find the next day the venue is actually open
+    const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const wh = ev.weekly_hours || ev.weeklyHours;
+    for (let offset = 1; offset <= 7; offset++) {
+      const cand = new Date(today);
+      cand.setDate(cand.getDate() + offset);
+      const candKey = DAY_KEYS[cand.getDay()];
+      if (wh && typeof wh === 'object') {
+        const h = wh[candKey];
+        if (!h || /closed/i.test(String(h))) {
+          continue; // Venue is closed on this candidate day
+        }
+      }
+      return categorizeDateBucket(cand, today, tomorrow, thisWeekSunday, nextWeekMonday, nextWeekSunday);
+    }
+    return { bucket: 'upcoming', date: null };
   }
 
   return { bucket: 'upcoming', date: null };
@@ -2356,6 +3048,97 @@ window.smoothScrollToTimeGroup = function(groupId, event) {
   }, 20);
 };
 
+window.toggleWeeklyHours = function(eventId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  const table = document.getElementById(`hours-table-${eventId}`);
+  const btn = document.getElementById(`btn-toggle-hours-${eventId}`);
+  if (!table) return;
+  const isHidden = (table.style.display === 'none' || table.style.display === '');
+  if (isHidden) {
+    table.style.display = 'block';
+    if (btn) {
+      btn.classList.add('expanded');
+      btn.setAttribute('aria-expanded', 'true');
+      const textSpan = btn.querySelector('.toggle-text');
+      const chevSpan = btn.querySelector('.wh-chevron');
+      if (textSpan) textSpan.textContent = 'Hide Week';
+      if (chevSpan) chevSpan.textContent = '▴';
+    }
+  } else {
+    table.style.display = 'none';
+    if (btn) {
+      btn.classList.remove('expanded');
+      btn.setAttribute('aria-expanded', 'false');
+      const textSpan = btn.querySelector('.toggle-text');
+      const chevSpan = btn.querySelector('.wh-chevron');
+      if (textSpan) textSpan.textContent = 'Full Week';
+      if (chevSpan) chevSpan.textContent = '▾';
+    }
+  }
+};
+
+window.toggleShowings = function(eventId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  const el = document.getElementById(`showings-more-${eventId}`);
+  const btn = document.getElementById(`btn-toggle-showings-${eventId}`);
+  if (!el) return;
+  const isHidden = (el.style.display === 'none' || el.style.display === '');
+  if (isHidden) {
+    el.style.display = 'block';
+    if (btn) {
+      btn.classList.add('expanded');
+      btn.setAttribute('aria-expanded', 'true');
+      const textSpan = btn.querySelector('.toggle-text');
+      const chevSpan = btn.querySelector('.showings-chevron');
+      if (textSpan) textSpan.textContent = 'Hide Other Dates';
+      if (chevSpan) chevSpan.textContent = '▴';
+    }
+  } else {
+    el.style.display = 'none';
+    if (btn) {
+      btn.classList.remove('expanded');
+      btn.setAttribute('aria-expanded', 'false');
+      const textSpan = btn.querySelector('.toggle-text');
+      const chevSpan = btn.querySelector('.showings-chevron');
+      const totalCount = btn.getAttribute('data-count') || '';
+      if (textSpan) textSpan.textContent = totalCount ? `All Dates (${totalCount})` : 'All Dates & Times';
+      if (chevSpan) chevSpan.textContent = '▾';
+    }
+  }
+};
+
+window.toggleAdmissionTiers = function(bucketKey, eventId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  const drawer = document.getElementById(`tiers-drawer-${bucketKey}-${eventId}`);
+  const hint = document.getElementById(`tier-hint-${bucketKey}-${eventId}`);
+  if (!drawer) return;
+  const isHidden = (drawer.style.display === 'none' || drawer.style.display === '');
+  if (isHidden) {
+    drawer.style.display = 'block';
+    drawer.setAttribute('aria-hidden', 'false');
+    if (hint) {
+      hint.textContent = 'Hide ▴';
+      hint.classList.add('active');
+    }
+  } else {
+    drawer.style.display = 'none';
+    drawer.setAttribute('aria-hidden', 'true');
+    if (hint) {
+      hint.textContent = 'Tiers ▾';
+      hint.classList.remove('active');
+    }
+  }
+};
+
 function renderEventCards(events) {
   const grid = document.getElementById('events-grid');
   if (!grid) return;
@@ -2399,7 +3182,7 @@ function renderEventCards(events) {
         <div class="empty-icon-wrap" style="margin-bottom: 14px;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5; color: var(--accent-primary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
         <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 8px;">No Outings Found Matching Filters</h3>
         <p style="font-size: 0.9rem; max-width: 440px; margin: 0 auto 18px;">
-          Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Shows & special events only".
+          Try selecting "All Days" or "Any Time", widening your spend slider, clearing active tags, or toggling off "Scheduled Events Only".
         </p>
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
           <button class="btn btn-roulette" onclick="resetAllFilters()">Reset All Filters</button>
@@ -2517,7 +3300,7 @@ function renderEventCards(events) {
   // Render sections
   const sectionsHtml = activeBuckets.map(b => {
     const isCollapsed = Boolean(state.collapsedTimeGroups && state.collapsedTimeGroups.has(b.key));
-    const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev)).join('');
+    const cardsHtml = b.list.map(ev => renderSingleEventCardHtml(ev, b.key)).join('');
     return `
       <section class="events-time-group ${isCollapsed ? 'collapsed' : ''}" id="group-${b.key}">
         <div class="time-group-header" onclick="toggleTimeGroup('${b.key}')" role="button" tabindex="0" aria-expanded="${!isCollapsed}" aria-controls="cards-grid-${b.key}" title="Click to ${isCollapsed ? 'expand' : 'collapse'} ${b.title}">
@@ -2551,11 +3334,24 @@ function renderEventCards(events) {
   grid.innerHTML = venueBannerHtml + navBarHtml + sectionsHtml;
 }
 
-function formatCardTopDate(ev) {
+function formatCardTopDate(ev, bucketKey) {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const toIsoDateStr = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+  if (bucketKey === 'tomorrow') {
+    const monthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const weekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
+    return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: tomorrow, dateStr: toIsoDateStr(tomorrow) };
+  }
+  if (bucketKey === 'today') {
+    const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
+    return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today, dateStr: toIsoDateStr(today) };
+  }
 
   // 1. Confirmed dates array First
   if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.length > 0) {
@@ -2584,11 +3380,11 @@ function formatCardTopDate(ev) {
       const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
 
       if (isToday) {
-        return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+        return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       } else if (isTomorrow) {
-        return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       } else {
-        return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+        return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: nextDate, dateStr: toIsoDateStr(nextDate) };
       }
     }
   }
@@ -2609,9 +3405,9 @@ function formatCardTopDate(ev) {
         const monthDay = startZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         const weekday = startZero.toLocaleDateString('en-US', { weekday: 'short' });
         if (isTomorrow) {
-          return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+          return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: startZero };
         } else {
-          return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+          return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: startZero };
         }
       }
 
@@ -2626,7 +3422,7 @@ function formatCardTopDate(ev) {
           if (!status.hasEnded) {
             const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
             const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+            return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today };
           }
         }
         if (tomorrow <= endZero) {
@@ -2635,7 +3431,7 @@ function formatCardTopDate(ev) {
           if (matchesTomorrow) {
             const monthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
             const weekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+            return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: tomorrow };
           }
         }
       }
@@ -2656,7 +3452,7 @@ function formatCardTopDate(ev) {
           if (!status.hasEnded) {
             const monthDay = dZero.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
             const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
-            return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+            return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: today };
           }
         } else if (dZero > today) {
           const isTomorrow = dZero.getTime() === tomorrow.getTime();
@@ -2664,9 +3460,9 @@ function formatCardTopDate(ev) {
           const weekday = dZero.toLocaleDateString('en-US', { weekday: 'short' });
 
           if (isTomorrow) {
-            return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+            return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: dZero };
           } else {
-            return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+            return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: dZero };
           }
         }
       }
@@ -2705,11 +3501,11 @@ function formatCardTopDate(ev) {
       const weekday = nextDate.toLocaleDateString('en-US', { weekday: 'short' });
 
       if (isToday) {
-        return { badgeText: `⚡ Today (${weekday}, ${monthDay})`, isToday: true, icon: '⚡' };
+        return { badgeText: `Today (${weekday}, ${monthDay})`, isToday: true, icon: '', dateObj: nextDate };
       } else if (isTomorrow) {
-        return { badgeText: `🌅 Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '🌅' };
+        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, icon: '', dateObj: nextDate };
       } else {
-        return { badgeText: `📅 ${weekday}, ${monthDay}`, isFuture: true, icon: '📅' };
+        return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, icon: '', dateObj: nextDate };
       }
     }
   }
@@ -2717,27 +3513,48 @@ function formatCardTopDate(ev) {
   // 5. Daily Perennial Drop-In fallback (strictly for drop-ins with no future specific start date)
   if (ev.lifecycleType === 'perennial_drop_in' || ev.lifecycle_type === 'perennial_drop_in' || ev.access_model === 'open_public_space' || ev.isDaily) {
     const status = getEventClosingTimeToday(ev, now);
-    if (status.hasEnded) {
-      const tomorrowWeekday = tomorrow.toLocaleDateString('en-US', { weekday: 'short' });
-      const tomorrowMonthDay = tomorrow.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    if (!status.hasEnded) {
+      const weekday = today.toLocaleDateString('en-US', { weekday: 'short' });
+      const monthDay = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       return {
-        badgeText: `🌅 Tomorrow (${tomorrowWeekday}, ${tomorrowMonthDay})`,
-        isTomorrow: true,
-        closedToday: true,
-        icon: '🌅'
+        badgeText: `Today (${weekday}, ${monthDay})`,
+        isToday: true,
+        icon: '',
+        dateObj: today
       };
     }
-    const todayStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    // Closed for today -> find next open day
+    const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const wh = ev.weekly_hours || ev.weeklyHours;
+    for (let offset = 1; offset <= 7; offset++) {
+      const cand = new Date(today);
+      cand.setDate(cand.getDate() + offset);
+      const candKey = DAY_KEYS[cand.getDay()];
+      if (wh && typeof wh === 'object') {
+        const h = wh[candKey];
+        if (!h || /closed/i.test(String(h))) {
+          continue;
+        }
+      }
+      const isTomorrow = offset === 1;
+      const monthDay = cand.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const weekday = cand.toLocaleDateString('en-US', { weekday: 'short' });
+      if (isTomorrow) {
+        return { badgeText: `Tomorrow (${weekday}, ${monthDay})`, isTomorrow: true, closedToday: true, icon: '', dateObj: cand };
+      } else {
+        return { badgeText: `${weekday}, ${monthDay}`, isFuture: true, closedToday: true, icon: '', dateObj: cand };
+      }
+    }
     return {
-      badgeText: `⚡ Today (${todayStr})`,
-      isToday: true,
-      icon: '⚡'
+      badgeText: 'Check Schedule',
+      icon: '',
+      dateObj: today
     };
   }
 
   return {
-    badgeText: `📅 ${ev.dateSchedule || ev.frequencyLabel || 'Upcoming'}`,
-    icon: '📅'
+    badgeText: `${ev.dateSchedule || ev.frequencyLabel || 'Upcoming'}`,
+    icon: ''
   };
 }
 
@@ -2777,101 +3594,121 @@ function formatCardDisplayTitle(rawTitle, ev) {
 function getTierMeta(name, price) {
   const n = (name || '').toLowerCase();
   let className = '';
-  let icon = '🎟️';
 
   if (n.includes('student') || n.includes('under 30') || n.includes('under-30') || n.includes('under 35') || n.includes('ubc')) {
     className = 'tier-student';
-    icon = '🎓';
   } else if (n.includes('member') || n.includes('patron')) {
     className = 'tier-member';
-    icon = '💳';
   } else if (n.includes('senior') || n.includes('concession') || n.includes('65+') || n.includes('alumni') || n.includes('staff')) {
     className = 'tier-senior';
-    icon = '👵';
   } else if (n.includes('youth') || n.includes('teen')) {
     className = 'tier-youth';
-    icon = '🧒';
   } else if (n.includes('child') || n.includes('preschool') || n.includes('kid')) {
     className = 'tier-child';
-    icon = '🧸';
   } else if (n.includes('adult') || n.includes('general') || n.includes('standard')) {
     className = 'tier-adult';
-    icon = '🎟️';
   } else if (n.includes('advance') || n.includes('early bird')) {
     className = 'tier-advance';
-    icon = '⚡';
   } else if (n.includes('door') || n.includes('rush')) {
     className = 'tier-door';
-    icon = '🚪';
   } else if (n.includes('free') || n.includes('courtyard') || n.includes('public')) {
     className = 'tier-free-access';
-    icon = '🆓';
   }
 
-  return { className, icon };
+  return { className };
 }
 
-function renderAdmissionTiersHtml(ev) {
-  let tiers = Array.isArray(ev.tiers) ? ev.tiers : [];
-  if (tiers.length === 0) {
-    const syn = [];
-    if (ev.tier_custom_name_1 !== undefined && ev.tier_custom_price_1 !== undefined) {
-      syn.push({ name: ev.tier_custom_name_1, price: ev.tier_custom_price_1, label: ev.tier_custom_price_1 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_1).toFixed(2)} CAD` });
-    }
-    if (ev.price_adult !== undefined && ev.price_adult !== null) {
-      syn.push({ name: 'Adult', price: ev.price_adult, label: ev.price_adult === 0 ? 'Free ($0)' : `$${Number(ev.price_adult).toFixed(2)} CAD` });
-    }
-    if (ev.price_student !== undefined && ev.price_student !== null) {
-      syn.push({ name: 'Student', price: ev.price_student, label: ev.price_student === 0 ? 'Free ($0)' : `$${Number(ev.price_student).toFixed(2)} CAD` });
-    }
-    if (ev.price_member !== undefined && ev.price_member !== null) {
-      syn.push({ name: 'Member', price: ev.price_member, label: ev.price_member === 0 ? 'Free ($0)' : `$${Number(ev.price_member).toFixed(2)} CAD` });
-    }
-    if (ev.tier_custom_name_2 !== undefined && ev.tier_custom_price_2 !== undefined) {
-      syn.push({ name: ev.tier_custom_name_2, price: ev.tier_custom_price_2, label: ev.tier_custom_price_2 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_2).toFixed(2)} CAD` });
-    }
-    if (ev.tier_custom_name_3 !== undefined && ev.tier_custom_price_3 !== undefined) {
-      syn.push({ name: ev.tier_custom_name_3, price: ev.tier_custom_price_3, label: ev.tier_custom_price_3 === 0 ? 'Free ($0)' : `$${Number(ev.tier_custom_price_3).toFixed(2)} CAD` });
-    }
-    tiers = syn;
+function renderAdmissionTiersHtml(ev, bucketKey) {
+  let rawTiers = (Array.isArray(ev.tiers) && ev.tiers.length > 0) ? ev.tiers : resolveEventTiers(ev);
+  if (!Array.isArray(rawTiers)) return { hasTiers: false, html: '' };
+
+  const tiers = rawTiers.filter(t => {
+    if (!t) return false;
+    const nameStr = String(t.name || '').trim().toLowerCase();
+    if (!nameStr || nameStr === 'null' || nameStr === 'undefined') return false;
+    if (t.price === null || t.price === undefined || String(t.price).toLowerCase() === 'null') return false;
+    return !isNaN(Number(t.price));
+  });
+
+  // If there is only one tier or all tiers have the same price, do not render expandable tiers
+  const uniquePrices = new Set(tiers.map(t => Number(t.price)));
+  if (tiers.length <= 1 || uniquePrices.size <= 1) {
+    return { hasTiers: false, html: '' };
   }
 
-  if (tiers.length === 0) {
-    return '';
+  // De-duplicate tiers with identical names and prices
+  const seen = new Set();
+  const dedupedTiers = [];
+  for (const t of tiers) {
+    const key = `${(t.name || '').trim().toLowerCase()}_${Number(t.price)}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      dedupedTiers.push(t);
+    }
   }
 
-  const pillsHtml = tiers.map(t => {
-    const meta = getTierMeta(t.name, t.price);
+  if (dedupedTiers.length <= 1) {
+    return { hasTiers: false, html: '' };
+  }
+
+  const drawerId = `tiers-drawer-${bucketKey}-${ev.id}`;
+  const hintId = `tier-hint-${bucketKey}-${ev.id}`;
+
+  const listItemsHtml = dedupedTiers.map(t => {
     const valText = t.label || (t.price === 0 ? 'Free ($0)' : `$${Number(t.price).toFixed(2)} CAD`);
     const isFreeVal = t.price === 0 || valText.toLowerCase().includes('free');
+
+    let statusClass = '';
+    let statusBadge = '';
+
+    if (t.isSoldOut) {
+      statusClass = 'tier-sold-out';
+      statusBadge = '<span class="tier-status-pill badge-sold-out">Sold Out</span>';
+    } else if (t.isExpired) {
+      statusClass = 'tier-expired';
+      statusBadge = '<span class="tier-status-pill badge-ended">Ended</span>';
+    } else if (t.isDoor && !t.isAvailable) {
+      statusClass = 'tier-door-only';
+      statusBadge = '<span class="tier-status-pill badge-door">Door</span>';
+    }
+
     return `
-      <span class="price-tier-tag ${meta.className}" title="${t.name}: ${valText}">
-        <span class="tier-icon" aria-hidden="true">${meta.icon}</span>
-        <span class="tier-name">${t.name}</span><span class="tier-colon">:</span>
-        <strong class="tier-val ${isFreeVal ? 'tier-free' : ''}">${valText}</strong>
-      </span>
+      <li class="expanded-tier-item ${statusClass}">
+        <span class="tier-name">${t.name}</span>
+        <span class="tier-dots-leader" aria-hidden="true"></span>
+        <span class="tier-val ${isFreeVal ? 'tier-free' : ''}">${valText}</span>
+        ${statusBadge}
+      </li>
     `;
   }).join('');
 
-  return `
-    <div class="card-admission-rates">
-      <div class="admission-rates-header">
-        <span class="rates-header-icon" aria-hidden="true">🏷️</span>
-        <span>Admission Rates (${tiers.length} Tiers)</span>
+  const html = `
+    <div class="card-expanded-tiers" id="${drawerId}" style="display: none;" aria-hidden="true">
+      <div class="expanded-tiers-header">
+        <span>Admission Rates (${dedupedTiers.length} Tiers)</span>
+        <button type="button" class="btn-close-tiers" onclick="toggleAdmissionTiers('${bucketKey}', '${ev.id}', event)" title="Close tiers breakdown" aria-label="Close tiers breakdown">✕</button>
       </div>
-      <div class="price-tiers-tags">
-        ${pillsHtml}
-      </div>
+      <ul class="expanded-tiers-list">
+        ${listItemsHtml}
+      </ul>
     </div>
   `;
+
+  return {
+    hasTiers: true,
+    html: html,
+    drawerId: drawerId,
+    hintId: hintId,
+    count: dedupedTiers.length
+  };
 }
 
-function renderSingleEventCardHtml(ev) {
+function renderSingleEventCardHtml(ev, bucketKey) {
     const isSaved = state.savedEvents.has(ev.id);
     const freqClass = (ev.frequency || 'one-off').toLowerCase();
     const isSoldOut = Boolean(ev.isSoldOut);
     const standardPrice = formatStandardPrice(ev);
-    const topDate = formatCardTopDate(ev);
+    const topDate = formatCardTopDate(ev, bucketKey);
     
     // Hyperlinks & Direct Pinpoint Navigation Target (Google Maps coordinates)
     let venueUrl = ev.venueUrl;
@@ -2881,10 +3718,19 @@ function renderSingleEventCardHtml(ev) {
     if (!venueUrl) {
       venueUrl = (typeof VENUE_URLS !== 'undefined' ? VENUE_URLS[ev.venue] : null) || ('https://www.google.com/search?q=' + encodeURIComponent((ev.venue || '') + ' Vancouver'));
     }
-    const hasCoords = ev.coordinates && Array.isArray(ev.coordinates) && ev.coordinates.length >= 2;
-    const gmapsUrl = hasCoords 
-      ? `https://www.google.com/maps?q=${ev.coordinates[0]},${ev.coordinates[1]}+(${encodeURIComponent(ev.venue || 'Vancouver')})`
-      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((ev.venue || '') + ', ' + (ev.address || 'Vancouver BC'))}`;
+    const venueNameClean = (ev.venue || '').trim();
+    const addressClean = (ev.address || '').trim();
+    let placeQuery = venueNameClean;
+    if (addressClean) {
+      if (!addressClean.toLowerCase().includes(venueNameClean.toLowerCase())) {
+        placeQuery = `${venueNameClean}, ${addressClean}`;
+      } else {
+        placeQuery = addressClean;
+      }
+    } else {
+      placeQuery = `${venueNameClean}, Vancouver, BC`;
+    }
+    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeQuery)}`;
 
     // Venue Event Count & Filter Button (Requirement 7)
     const venueTotalCount = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e.venue === ev.venue).length;
@@ -2896,7 +3742,7 @@ function renderSingleEventCardHtml(ev) {
         onclick="filterByVenue('${(ev.venue || '').replace(/'/g, "\\'")}')" 
         title="${isThisVenueSelected ? 'Clear filter for ' + ev.venue : 'Show all ' + venueTotalCount + ' events at ' + ev.venue}"
       >
-        🏛️ ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + venueTotalCount + ' events here'}
+        ${isThisVenueSelected ? 'Viewing this venue ✕' : 'See all ' + venueTotalCount + ' events here'}
       </button>
     ` : '';
     
@@ -2926,34 +3772,8 @@ function renderSingleEventCardHtml(ev) {
       }
     }
 
-    // Sub-tags chips with active state & click-to-deselect (capped to top 3 for clean display)
+    // Sub-tags chips (Hidden per user specification)
     let subtagsHtml = '';
-    if (ev.subTags && ev.subTags.length > 0) {
-      const displayedTags = ev.subTags.slice(0, 3);
-      const remainingCount = ev.subTags.length - 3;
-      subtagsHtml = `
-        <div class="card-subtags-row">
-          ${displayedTags.map(tag => {
-            const norm = tag.toLowerCase().replace(/^#/, '');
-            const isActive = state.selectedTag === norm;
-            return `
-              <button 
-                type="button" 
-                class="subtag-chip ${isActive ? 'active' : ''}" 
-                onclick="filterBySubTag('${norm}')" 
-                title="${isActive ? 'Click to deselect #' + norm : 'Filter outings by #' + norm}"
-                aria-pressed="${isActive}"
-              >
-                #${norm}${isActive ? ' <span class="chip-deselect" aria-hidden="true">✕</span>' : ''}
-              </button>
-            `;
-          }).join('')}
-          ${remainingCount > 0 ? `
-            <span class="subtag-chip" style="opacity: 0.6; cursor: default;" title="${ev.subTags.slice(3).join(', ')}">+${remainingCount}</span>
-          ` : ''}
-        </div>
-      `;
-    }
 
     // Film Buzzwords, Topic Tags & Critical Reviews
     const buzzwordsHtml = (ev.buzzwords && Array.isArray(ev.buzzwords) && ev.buzzwords.length > 0) ? `
@@ -2986,12 +3806,25 @@ function renderSingleEventCardHtml(ev) {
 
     // CTA button with Sold-Out handling (links to ticketing portal waitlist if sold out)
     const escapedTitle = (ev.title || '').replace(/"/g, '&quot;');
+    // Resolve date-specific instance ticket URL (tied directly to specific event occurrence date)
+    const targetDateStr = (topDate && topDate.dateStr) || (ev._computedNextDate ? `${ev._computedNextDate.getFullYear()}-${String(ev._computedNextDate.getMonth() + 1).padStart(2, '0')}-${String(ev._computedNextDate.getDate()).padStart(2, '0')}` : null);
+    let matchedShowing = null;
+    if (targetDateStr && Array.isArray(ev.showings)) {
+      matchedShowing = ev.showings.find(s => s && s.date === targetDateStr && s.ticket_url);
+    }
+    if (!matchedShowing && targetDateStr && ev.repeatShowings) {
+      matchedShowing = [ev.repeatShowings.show_1, ev.repeatShowings.show_2, ev.repeatShowings.show_3]
+        .find(s => s && s.date === targetDateStr && s.ticket_url);
+    }
+    const primaryTicketUrl = (matchedShowing && matchedShowing.ticket_url) ? matchedShowing.ticket_url : ev.websiteUrl;
+
     const escapedVenue = (ev.venue || '').replace(/"/g, '&quot;');
     const ctaButtonHtml = isSoldOut ? `
       <a 
-        href="${ev.websiteUrl}" 
+        href="${primaryTicketUrl}" 
         target="_blank" 
         rel="noopener noreferrer" 
+        referrerpolicy="no-referrer"
         class="btn-ticket-cta sold-out"
         data-event-id="${ev.id}"
         data-event-title="${escapedTitle}"
@@ -3005,9 +3838,10 @@ function renderSingleEventCardHtml(ev) {
       </a>
     ` : `
       <a 
-        href="${ev.websiteUrl}" 
+        href="${primaryTicketUrl}" 
         target="_blank" 
         rel="noopener noreferrer" 
+        referrerpolicy="no-referrer"
         class="btn-ticket-cta"
         data-event-id="${ev.id}"
         data-event-title="${escapedTitle}"
@@ -3040,38 +3874,28 @@ function renderSingleEventCardHtml(ev) {
     }
 
 
-    // Pricing Model badge & spend guidelines
+    // Pricing Model badge (shown cleanly without emojis or duplicate spend text)
     let pricingModelHtml = '';
-    if (ev.pricing_model) {
+    if (ev.pricing_model && ev.pricing_model !== 'free_access' && ev.pricing_model !== 'flat_ticket') {
       const MODEL_LABELS = {
-        'free_access': { label: 'Free Public Access', icon: '🆓', class: 'model-free' },
-        'pay_per_item': { label: 'Pay Per Item', icon: '🛒', class: 'model-item' },
-        'flat_ticket': { label: 'Fixed Ticket', icon: '🎟️', class: 'model-flat' },
-        'donation': { label: 'By Donation / PWYC', icon: '💛', class: 'model-donation' },
-        'ticket_plus_pay_per_item': { label: 'Ticket + Pay Per Item', icon: '🎟️', class: 'model-combo' }
+        'pay_per_item': { label: 'Pay Per Item', class: 'model-item' },
+        'donation': { label: 'By Donation / PWYC', class: 'model-donation' },
+        'ticket_plus_pay_per_item': { label: 'Ticket + Pay Per Item', class: 'model-combo' }
       };
-      const pm = MODEL_LABELS[ev.pricing_model] || { label: ev.pricing_model, icon: '🏷️', class: 'model-free' };
-      const spendText = ev.typical_item_spend ? `Typical: ${ev.typical_item_spend}` : '';
-      const sampleText = ev.sample_cost_label ? `(${ev.sample_cost_label})` : '';
-      const guideline = [spendText, sampleText].filter(Boolean).join(' ');
-      pricingModelHtml = `
-        <div class="card-pricing-model-row">
-          <span class="pricing-model-pill ${pm.class}">
-            <span class="pm-icon">${pm.icon}</span>
-            <strong>${pm.label}</strong>
-          </span>
-          ${guideline ? `<span class="pricing-spend-guideline">${guideline}</span>` : ''}
-        </div>
-      `;
+      const pm = MODEL_LABELS[ev.pricing_model];
+      if (pm) {
+        pricingModelHtml = `
+          <div class="card-pricing-model-row">
+            <span class="pricing-model-pill ${pm.class}">
+              <strong>${pm.label}</strong>
+            </span>
+          </div>
+        `;
+      }
     }
 
-    // Access Model badge
+    // Access Model badge (Removed per user request; "Free Public Access" is already displayed in the top-right category badge)
     let accessModelHtml = '';
-    if (ev.access_model === 'open_public_space') {
-      accessModelHtml = `<span class="policy-pill access-public" title="Free Perimeter Access • Recommended Visiting Times">🌲 Open Public Space</span>`;
-    } else if (ev.access_model === 'fenced_facility') {
-      accessModelHtml = `<span class="policy-pill access-facility" title="Facility / Museum Access">🏛️ Facility Access</span>`;
-    }
 
     // Structured Weekly Hours (Each day on its own line, starting with Monday)
     let weeklyHoursHtml = '';
@@ -3086,73 +3910,132 @@ function renderSingleEventCardHtml(ev) {
         { k: 'sat', label: 'Saturday' },
         { k: 'sun', label: 'Sunday' }
       ];
-      const curDayNum = new Date().getDay();
+
+      // Contextual Day Resolution: Never display "Today (Thursday)" on tomorrow's/future cards
+      const nowD = new Date();
+      let targetDate = nowD;
+      if (bucketKey === 'tomorrow' || (topDate && topDate.isTomorrow)) {
+        targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate() + 1);
+      } else if (bucketKey === 'today' || (topDate && topDate.isToday)) {
+        targetDate = new Date(nowD.getFullYear(), nowD.getMonth(), nowD.getDate());
+      } else if (topDate && topDate.dateObj) {
+        targetDate = topDate.dateObj;
+      }
+
+      const curDayNum = targetDate.getDay();
       const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
+      const activeDayLabel = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][curDayNum];
+      const activeHours = wh[curKey] || 'Check schedule';
+
       const rows = dayOrder.map(d => {
         const hoursStr = wh[d.k] || 'Hours not listed';
-        const isToday = (d.k === curKey);
+        const isCurrentDay = (d.k === curKey);
         return `
-          <div class="weekly-hour-day-row ${isToday ? 'current-day' : ''}">
-            <span class="day-col">${d.label}${isToday ? ' (Today)' : ''}:</span>
+          <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
+            <span class="day-col">${d.label}:</span>
             <span class="hours-col">${hoursStr}</span>
           </div>
         `;
       }).join('');
 
       weeklyHoursHtml = `
-        <div class="card-weekly-hours-block">
-          <div class="weekly-hours-header">
-            <span class="wh-icon" aria-hidden="true">🕒</span>
-            <span>Weekly Operating Hours</span>
+        <div class="card-weekly-hours-block" id="hours-block-${ev.id}">
+          <div class="weekly-hours-summary-row" onclick="toggleWeeklyHours('${ev.id}', event)" title="Click to view/hide 7-day schedule">
+            <div class="wh-summary-left">
+              <div class="wh-active-day-box">
+                <span class="wh-active-day-name">${activeDayLabel}:</span>
+                <span class="wh-active-hours-val">${activeHours}</span>
+              </div>
+            </div>
+            <button type="button" class="btn-toggle-hours" id="btn-toggle-hours-${ev.id}" aria-expanded="false" aria-label="Toggle weekly schedule">
+              <span class="toggle-text">Full Week</span>
+              <span class="wh-chevron">▾</span>
+            </button>
           </div>
-          <div class="weekly-hours-table">
+          <div class="weekly-hours-table collapsible-hours" id="hours-table-${ev.id}" style="display: none;">
             ${rows}
           </div>
         </div>
       `;
     }
 
-    // Multi-Location Screenings Block (Specific venue, time, address, and direct booking per screening)
+    // Multi-Location Screenings / Upcoming Showings Block
     let showingsHtml = '';
-    if (Array.isArray(ev.showings) && ev.showings.length > 0) {
-      const rows = ev.showings.map(s => {
+    if (Array.isArray(ev.showings) && ev.showings.length > 1) {
+      const isFilmFestival = (ev.category === 'cinema' || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')));
+      const sectionTitle = isFilmFestival 
+        ? `Festival Screenings &amp; Locations (${ev.showings.length})`
+        : `Upcoming Dates &amp; Times (${ev.showings.length})`;
+
+      const nowD = new Date();
+      const curTodayStr = `${nowD.getFullYear()}-${String(nowD.getMonth() + 1).padStart(2, '0')}-${String(nowD.getDate()).padStart(2, '0')}`;
+
+      const renderShowingRow = (s) => {
         const dStr = s.date || '';
         const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
         const dateLabel = !isNaN(dObj.getTime())
           ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
           : dStr;
+        const isShowingToday = (dStr === curTodayStr);
         const timeLabel = s.start_time || '';
-        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((s.venue_name || '') + ' ' + (s.full_address || 'Vancouver BC'))}`;
+        const venueLabel = s.venue_name || s.venue || ev.venue || ev.venue_name || 'Vancouver Venue';
+        const addrLabel = s.full_address || s.neighborhood || ev.address || ev.neighborhood || '';
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
         const bookUrl = s.ticket_url || ev.websiteUrl;
+        const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
         return `
-          <div class="showing-row">
+          <div class="showing-row ${isShowingToday ? 'showing-today' : ''}">
             <div class="showing-time-col">
               <span class="showing-date">${dateLabel}</span>
               <span class="showing-time">${timeLabel}</span>
             </div>
             <div class="showing-venue-col">
-              <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="showing-venue-link" title="Open ${s.venue_name} in Google Maps">
-                <strong>${s.venue_name}</strong>
+              <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="showing-venue-link" title="Open ${venueLabel} in Google Maps">
+                <strong>${venueLabel}</strong>
               </a>
-              <span class="showing-address">${s.full_address || s.neighborhood || ''}</span>
+              <span class="showing-address">${addrLabel}</span>
             </div>
             <div class="showing-action-col">
-              <a href="${bookUrl}" target="_blank" rel="noopener noreferrer" class="btn-showing-book" title="Direct ticket link for this screening">
-                Book ↗
+              <a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
+                ${costText ? `${costText} ↗` : 'Book ↗'}
               </a>
             </div>
           </div>
         `;
-      }).join('');
+      };
+
+      const todayIdx = ev.showings.findIndex(s => s && s.date === curTodayStr);
+      const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
+      const primaryShowing = ev.showings[primaryIdx];
+      const remainingShowings = ev.showings.filter((_, idx) => idx !== primaryIdx);
+
+      const primaryRowHtml = renderShowingRow(primaryShowing);
+      const remainingRowsHtml = remainingShowings.map(renderShowingRow).join('');
 
       showingsHtml = `
-        <div class="card-showings-block">
+        <div class="card-showings-block" id="showings-block-${ev.id}">
           <div class="showings-block-header">
-            <span class="showings-icon">🎬</span>
-            <span>Festival Screenings &amp; Locations (${ev.showings.length})</span>
+            <span>${sectionTitle}</span>
           </div>
           <div class="showings-table">
-            ${rows}
+            ${primaryRowHtml}
+            ${remainingShowings.length > 0 ? `
+              <div class="showings-collapsible" id="showings-more-${ev.id}" style="display: none;">
+                ${remainingRowsHtml}
+              </div>
+              <button 
+                type="button" 
+                class="btn-toggle-showings" 
+                id="btn-toggle-showings-${ev.id}" 
+                onclick="toggleShowings('${ev.id}', event)" 
+                aria-expanded="false" 
+                data-count="${ev.showings.length}"
+                aria-label="Toggle all showings for ${ev.title}"
+              >
+                <span class="toggle-text">All Dates (${ev.showings.length})</span>
+                <span class="showings-chevron">▾</span>
+              </button>
+            ` : ''}
           </div>
         </div>
       `;
@@ -3164,7 +4047,6 @@ function renderSingleEventCardHtml(ev) {
       waypointsHtml = `
         <div class="card-waypoints-box">
           <div class="waypoints-box-header">
-            <span class="wp-icon">📍</span>
             <span>Featured Waypoints & Landmarks (${ev.waypoints.length})</span>
           </div>
           <div class="waypoints-box-list">
@@ -3179,71 +4061,123 @@ function renderSingleEventCardHtml(ev) {
       `;
     }
 
-    // Local area spending benchmarks
+    // Venue-Accurate Spending Benchmarks & On-Site Food/Beverage Reality
     let benchmarkHtml = '';
-    if (ev.coffee_benchmark || ev.meal_benchmark) {
-      const coffee = ev.coffee_benchmark ? `<span>☕ Coffee: <strong>${ev.coffee_benchmark}</strong></span>` : '';
-      const meal = ev.meal_benchmark ? `<span>🍽️ Meal: <strong>${ev.meal_benchmark}</strong></span>` : '';
-      const items = [coffee, meal].filter(Boolean).join('<span class="benchmark-sep">•</span>');
+    const benchItems = [];
+    if (ev.drink_benchmark) {
+      benchItems.push(`<span>Bar: <strong>${ev.drink_benchmark}</strong></span>`);
+    }
+    if (ev.concession_benchmark) {
+      benchItems.push(`<span>Concessions: <strong>${ev.concession_benchmark}</strong></span>`);
+    }
+    if (ev.coffee_benchmark) {
+      benchItems.push(`<span>Coffee: <strong>${ev.coffee_benchmark}</strong></span>`);
+    }
+    if (ev.food_service_note) {
+      benchItems.push(`<span class="food-service-note"><em>${ev.food_service_note}</em></span>`);
+    } else if (ev.meal_benchmark) {
+      benchItems.push(`<span>Meal: <strong>${ev.meal_benchmark}</strong></span>`);
+    }
+
+    if (benchItems.length > 0) {
       benchmarkHtml = `
-        <div class="card-benchmarks-row" title="Local area spending benchmarks">
-          <span class="benchmark-label">Area Cost:</span>
-          ${items}
+        <div class="card-benchmarks-row" title="Venue food & drink pricing benchmarks">
+          <span class="benchmark-label">On-Site &amp; Area Cost:</span>
+          ${benchItems.join('<span class="benchmark-sep">•</span>')}
         </div>
       `;
     }
 
-    // Pricing sub-details: Rich Admission Rates (Student, Adult, Senior, etc.) & pre-tax notices
-    const admissionRatesHtml = renderAdmissionTiersHtml(ev);
+    // Option A: Outing Spend Estimator Pill (Direct Out-of-Pocket Transparency)
+    let spendEstimatorHtml = '';
+    const venueNameStr = ev.venue_name || ev.venue || ev.location || '';
+    const escapedVenueAttr = venueNameStr.replace(/"/g, '&quot;');
+    const suggestBtnHtml = `<button type="button" class="btn-suggest-price" data-suggest-venue="${escapedVenueAttr}" title="Suggest updated drink or item prices for ${escapedVenueAttr}">Suggest price ✎</button>`;
+
+    if (ev.typical_item_spend) {
+      let spendTag = 'Expected Outing Spend';
+      if (ev.pricing_model === 'pay_per_item' || (ev.id && (ev.id.includes('croissant') || ev.id.includes('market')))) {
+        spendTag = 'Typical Item Spend';
+      } else if (ev.drink_benchmark) {
+        spendTag = 'In-Venue Drink Spend';
+      } else if (ev.concession_benchmark) {
+        spendTag = 'Concession Spend';
+      } else if (ev.isFree) {
+        spendTag = 'Typical Out-of-Pocket';
+      }
+
+      spendEstimatorHtml = `
+        <div class="card-spend-estimator-pill" title="Estimated out-of-pocket cost for purchases at this outing">
+          <span class="spend-pill-label"><strong>${spendTag}:</strong> ${ev.typical_item_spend}</span>
+          ${suggestBtnHtml}
+        </div>
+      `;
+    } else {
+      spendEstimatorHtml = `
+        <div class="card-spend-estimator-pill card-spend-uncalibrated" title="Help calibrate drinks and purchases at this venue">
+          <span class="spend-pill-label"><strong>Drink / Item Spend:</strong> Uncalibrated</span>
+          ${suggestBtnHtml}
+        </div>
+      `;
+    }
+
+
+    // Pricing sub-details: Pre-tax notices and pricing models (Admission tiers expand from bottom-left cost range)
+    const tiersInfo = renderAdmissionTiersHtml(ev, bucketKey);
     const hasPreTax = Boolean(preTaxNoteHtml);
-    const subdetailsHtml = (pricingModelHtml || admissionRatesHtml || hasPreTax) ? `
+    const subdetailsHtml = (pricingModelHtml || hasPreTax) ? `
       <div class="card-price-subdetails">
         ${pricingModelHtml}
-        ${admissionRatesHtml}
         ${preTaxNoteHtml}
       </div>
     ` : '';
+
+    const accessInfo = typeof window.getVenueAccessibility === 'function' 
+      ? window.getVenueAccessibility(ev.venue) 
+      : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
 
     return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
-        <!-- Top Bar: Date strictly on Left, Category & Save strictly on Right -->
-        <div class="card-top-bar">
+        <!-- Line 1: Date on Left, Action Cluster (Accessibility, Share, Save) on Right -->
+        <div class="card-top-bar card-line-1">
           <!-- Top Left: Next Event Date Badge -->
           <div class="card-top-left-group">
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.85; margin-right: 2px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               <span>${topDate.badgeText}</span>
             </span>
           </div>
 
-          <!-- Top Right: Category Badge(s) & Save Button -->
-          <div class="card-top-right-group">
-            ${(() => {
-              const catsToDisplay = (Array.isArray(ev.categories) && ev.categories.length > 0)
-                ? ev.categories.slice(0, 2)
-                : [ev.category || 'misc'];
-              return catsToDisplay.map(catId => {
-                const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
-                const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
-                const icon = catDef ? catDef.icon : (catId === ev.category ? (ev.categoryIcon || '') : '');
-                return `
-                  <button 
-                    type="button" 
-                    class="card-category-badge category-${catId}" 
-                    onclick="filterByCategory('${catId}')" 
-                    title="Click to filter by ${label}"
-                    aria-label="Category: ${label}"
-                  >
-                    <span class="category-badge-icon">${icon}</span>
-                    <span class="category-badge-text">${label}</span>
-                  </button>
-                `;
-              }).join('');
-            })()}
+          <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
+          <div class="card-action-cluster">
+            <!-- Accessibility Details Button -->
             <button 
-              class="btn-save-card ${isSaved ? 'saved' : ''}" 
+              type="button" 
+              class="btn-card-action btn-card-access ${accessInfo.status}" 
+              onclick="openAccessibilityModal('${ev.id}')"
+              title="${accessInfo.label} (${ev.venue}) • Click for Google Maps accessibility details"
+              aria-label="Accessibility information for ${ev.venue}: ${accessInfo.label}"
+            >
+              <span class="access-btn-icon">${accessInfo.badgeIcon}</span>
+            </button>
+
+            <!-- Share Event Button -->
+            <button 
+              type="button" 
+              class="btn-card-action btn-card-share" 
+              id="btn-share-${ev.id}"
+              onclick="shareEvent('${ev.id}')" 
+              title="Share event details & link"
+              aria-label="Share ${escapedTitle}"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </button>
+
+            <!-- Save Outing Button -->
+            <button 
+              type="button"
+              class="btn-card-action btn-save-card ${isSaved ? 'saved' : ''}" 
               onclick="toggleSaveEvent('${ev.id}')" 
               aria-label="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
               title="${isSaved ? 'Remove from Saved' : 'Save Outing'}"
@@ -3255,9 +4189,37 @@ function renderSingleEventCardHtml(ev) {
           </div>
         </div>
 
+        <!-- Line 2: Category Badges (Full width, clean left alignment) -->
+        <div class="card-categories-row card-line-2">
+          ${(() => {
+            const catsToShow = (Array.isArray(ev.categories) && ev.categories.length > 0)
+              ? (ev.categories.includes('cinema') && ev.categories.includes('social')
+                  ? ['cinema', 'social']
+                  : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
+                      ? ['outdoors', 'free-public-access']
+                      : [ev.categories[0]]))
+              : [ev.category || 'misc'];
+            return catsToShow.map(catId => {
+              const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
+              const label = catDef ? catDef.label : (catId === ev.category ? (ev.categoryLabel || catId) : catId);
+              return `
+                <button 
+                  type="button" 
+                  class="card-category-badge category-${catId}" 
+                  onclick="filterByCategory('${catId}')" 
+                  title="Click to filter by ${label}"
+                  aria-label="Category: ${label}"
+                >
+                  <span class="category-badge-text">${label}</span>
+                </button>
+              `;
+            }).join('');
+          })()}
+        </div>
+
         <!-- Event Details: Clickable Title Link (Always shortened to FRINGE: for Fringe shows) -->
         <h2 class="card-title">
-          <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link" title="Get tickets & details for ${ev.title}">
+          <a href="${ev.websiteUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="card-title-link" title="Get tickets & details for ${ev.title}">
             ${formatCardDisplayTitle(ev.title, ev)}
           </a>
         </h2>
@@ -3291,14 +4253,13 @@ function renderSingleEventCardHtml(ev) {
         
         <!-- Venue Row: Direct Pinpoint Google Maps Directions + Official Venue Website + Venue Isolation Filter -->
         <div class="card-venue-row">
-          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps for directions">
-            <span class="venue-pin-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="opacity: 0.85;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+          <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-location-btn venue-location-link card-maps-link" title="Open ${ev.venue} (${ev.address || 'Vancouver'}) in Google Maps">
+            <span class="venue-pin-icon" aria-label="Map location"><svg width="32" height="32" viewBox="0 0 24 24" fill="#ef4444" aria-hidden="true" style="color: #ef4444; flex-shrink: 0; vertical-align: middle; margin-right: 4px; filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.55));"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
             <span class="venue-name">${ev.venue}</span>
             <span class="venue-neighborhood-chip">• ${ev.neighborhood || 'Vancouver'}</span>
-            <span class="venue-directions-hint">(Directions)</span>
           </a>
           ${venueUrl ? `
-            <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
+            <a href="${venueUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="venue-website-link venue-link" title="Visit official website of ${ev.venue}">
               <span class="website-label">Venue Site ↗</span>
             </a>
           ` : ''}
@@ -3307,7 +4268,6 @@ function renderSingleEventCardHtml(ev) {
 
         <!-- Schedule Row -->
         <div class="card-schedule-row">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.8; margin-right: 4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
           ${ev.frequencyLabel ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
         </div>
@@ -3324,8 +4284,6 @@ function renderSingleEventCardHtml(ev) {
 
         <p class="card-desc">${ev.description || ('Live music and performance at ' + ev.venue)}</p>
 
-        ${benchmarkHtml}
-
         ${contentAdvisoryHtml}
 
         ${subtagsHtml}
@@ -3333,10 +4291,14 @@ function renderSingleEventCardHtml(ev) {
         <!-- Card Pricing Section: Sub-details directly above green cost, footer locked at bottom -->
         <div class="card-pricing-block">
           ${subdetailsHtml}
+          ${spendEstimatorHtml}
+          ${tiersInfo.html || ''}
           <div class="card-footer">
-            <div class="price-box">
+            <div class="price-box ${tiersInfo.hasTiers ? 'price-box-interactive' : ''}" 
+                 ${tiersInfo.hasTiers ? `onclick="toggleAdmissionTiers('${bucketKey}', '${ev.id}', event)" role="button" tabindex="0" aria-expanded="false" title="Click to view all ${tiersInfo.count} admission tiers"` : ''}>
               <div class="price-breakdown-row">
                 <span class="price-main ${ev.isFree ? 'free' : ''}">${standardPrice}</span>
+                ${tiersInfo.hasTiers ? `<span class="price-tiers-toggle-hint" id="${tiersInfo.hintId}">Tiers ▾</span>` : ''}
               </div>
             </div>
 
@@ -3378,6 +4340,10 @@ function resetAllFilters() {
 
   const hideDailyToggle = document.getElementById('hide-daily-toggle');
   if (hideDailyToggle) hideDailyToggle.checked = false;
+
+  state.accessibleOnly = false;
+  const chkAccess = document.getElementById('chk-accessible-only');
+  if (chkAccess) chkAccess.checked = false;
 
   renderCategoryPills();
   renderDayPills();
@@ -3486,18 +4452,18 @@ function copyItineraryToClipboard() {
   }
 
   let totalCost = 0;
-  let text = `🌲 Van50 — My Saved Vancouver Outings (Under $50 CAD)\n\n`;
+  let text = `Van50 — My Saved Vancouver Outings (Under $50 CAD)\n\n`;
   savedList.forEach((ev, i) => {
     totalCost += ev.price;
     text += `${i + 1}. ${ev.title}\n`;
-    text += `   📍 Venue: ${ev.venue} (${ev.neighborhood})\n`;
-    text += `   📅 When: ${ev.dateSchedule}\n`;
-    text += `   💰 Cost: ${formatStandardPrice(ev)}\n`;
-    text += `   🎟️ Direct Tickets / Details: ${ev.websiteUrl}\n\n`;
+    text += `   Venue: ${ev.venue} (${ev.neighborhood})\n`;
+    text += `   When: ${ev.dateSchedule}\n`;
+    text += `   Cost: ${formatStandardPrice(ev)}\n`;
+    text += `   Direct Tickets / Details: ${ev.websiteUrl}\n\n`;
   });
   text += `--------------------------------------------------\n`;
   text += `TOTAL ESTIMATED OUT-OF-POCKET: $${totalCost.toFixed(2)} CAD\n`;
-  text += `Generated with Van50 (https://van50.ca)\n`;
+  text += `Generated with Van50 (https://ausomegh.github.io/Van50/)\n`;
 
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('copy-plan-btn');
@@ -3570,6 +4536,7 @@ function renderReviewQueueModal() {
           href="${q.websiteUrl}" 
           target="_blank" 
           rel="noopener noreferrer" 
+          referrerpolicy="no-referrer" 
           class="btn btn-roulette" 
           style="padding: 4px 12px; font-size: 0.76rem; border-radius: var(--radius-sm);"
         >

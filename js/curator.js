@@ -4,7 +4,10 @@
 const _urlParams = new URLSearchParams(window.location.search);
 const _tokenParam = _urlParams.get('token');
 if (_tokenParam) {
-  try { sessionStorage.setItem('van50_curator_token', _tokenParam); } catch (e) {}
+  try {
+    sessionStorage.setItem('van50_curator_token', _tokenParam);
+    localStorage.setItem('van50_curator_token', _tokenParam);
+  } catch (e) {}
 }
 
 const state = {
@@ -46,6 +49,67 @@ const state = {
   instructionDrafts: loadSavedInstructionDrafts(),
   currentSplitEvents: []
 };
+
+// ==============================================================================
+// 0. URL RESOLUTION & CANONICAL LINK HELPERS
+// ==============================================================================
+
+function getEventExternalUrl(ev) {
+  if (!ev) return '';
+  const candidates = [
+    ev.ticket_url,
+    ev.websiteUrl,
+    ev.details_url,
+    ev.discovery_url,
+    ev.website_url,
+    ev.url,
+    (ev.show_1 && ev.show_1.ticket_url) ? ev.show_1.ticket_url : null,
+    (ev.showings && ev.showings[0] && ev.showings[0].ticket_url) ? ev.showings[0].ticket_url : null
+  ];
+  for (const raw of candidates) {
+    if (typeof raw === 'string') {
+      const trimmed = raw.trim();
+      if (
+        trimmed && 
+        trimmed !== '#' && 
+        trimmed !== 'undefined' && 
+        trimmed !== 'null' && 
+        trimmed !== 'Direct' && 
+        !trimmed.startsWith('javascript:')
+      ) {
+        return trimmed;
+      }
+    }
+  }
+  return '';
+}
+
+function getVenueExternalUrl(v) {
+  if (!v) return '';
+  const candidates = [
+    v.calendarUrl,
+    v.calendar_url,
+    v.websiteUrl,
+    v.website_url,
+    v.url,
+    v.discovery_url
+  ];
+  for (const raw of candidates) {
+    if (typeof raw === 'string') {
+      const trimmed = raw.trim();
+      if (
+        trimmed && 
+        trimmed !== '#' && 
+        trimmed !== 'undefined' && 
+        trimmed !== 'null' && 
+        !trimmed.startsWith('javascript:')
+      ) {
+        return trimmed;
+      }
+    }
+  }
+  return '';
+}
 
 function loadSavedInstructionDrafts() {
   try {
@@ -118,6 +182,16 @@ function updateModalDraftBadge(hasDraft) {
 }
 
 function initApp() {
+  // Ensure default UI inputs are reset on load from scratch
+  const searchInput = document.getElementById('curator-search-input');
+  if (searchInput) searchInput.value = '';
+  const clearSearchBtn = document.getElementById('btn-clear-curator-search');
+  if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+  const platformSelect = document.getElementById('curator-platform-select');
+  if (platformSelect) platformSelect.value = 'all';
+  const sortSelect = document.getElementById('curator-sort-select');
+  if (sortSelect) sortSelect.value = 'date-desc';
+
   initCuratorAccessibility();
   setupCuratorEventListeners();
   checkAuthAndInitialize();
@@ -135,9 +209,13 @@ if (document.readyState === 'loading') {
 // 1. AUTHENTICATION & SESSION MANAGEMENT
 // ==============================================================================
 
-async function checkAuthAndInitialize() {
+async function checkAuthAndInitialize(retryCount = 0) {
   const loginModal = document.getElementById('login-modal-overlay');
   
+  if (!state.token) {
+    state.token = sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token');
+  }
+
   if (!state.token) {
     if (loginModal) loginModal.classList.add('active');
     return;
@@ -151,6 +229,9 @@ async function checkAuthAndInitialize() {
     if (res.ok) {
       const data = await res.json();
       if (data.authenticated) {
+        // Keep both storage engines synchronized with the valid token
+        try { sessionStorage.setItem('van50_curator_token', state.token); } catch (_) {}
+        try { localStorage.setItem('van50_curator_token', state.token); } catch (_) {}
         if (loginModal) loginModal.classList.remove('active');
         if (data.knownVenues) {
           state.knownVenues = new Set(data.knownVenues.map(v => v.toLowerCase()));
@@ -159,13 +240,26 @@ async function checkAuthAndInitialize() {
         loadQuarantineQueue();
         return;
       }
+    } else if (res.status === 401 || res.status === 403) {
+      // Explicitly rejected by server
+      sessionStorage.removeItem('van50_curator_token');
+      localStorage.removeItem('van50_curator_token');
+      state.token = null;
+      if (loginModal) loginModal.classList.add('active');
+      return;
     }
   } catch (err) {
-    console.warn('Could not verify curator status:', err);
+    console.warn(`Could not verify curator status (attempt ${retryCount + 1}):`, err);
+    // If server is restarting or network hiccup, retry twice before forcing re-login
+    if (retryCount < 2) {
+      setTimeout(() => checkAuthAndInitialize(retryCount + 1), 600);
+      return;
+    }
   }
 
-  // If token is invalid or expired
+  // If token is invalid or expired after retries
   sessionStorage.removeItem('van50_curator_token');
+  localStorage.removeItem('van50_curator_token');
   state.token = null;
   if (loginModal) loginModal.classList.add('active');
 }
@@ -191,7 +285,8 @@ async function handleLoginSubmit(e) {
 
     if (res.ok && data.success && data.token) {
       state.token = data.token;
-      sessionStorage.setItem('van50_curator_token', data.token);
+      try { sessionStorage.setItem('van50_curator_token', data.token); } catch (_) {}
+      try { localStorage.setItem('van50_curator_token', data.token); } catch (_) {}
       passwordField.value = '';
       if (errorBanner) errorBanner.classList.remove('active');
       if (loginModal) loginModal.classList.remove('active');
@@ -212,7 +307,7 @@ async function handleLoginSubmit(e) {
 }
 
 async function handleLogout() {
-  const currentToken = state.token || sessionStorage.getItem('van50_curator_token');
+  const currentToken = state.token || sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token');
   if (currentToken) {
     try {
       await fetch('/api/curator/logout', {
@@ -227,6 +322,7 @@ async function handleLogout() {
     }
   }
   sessionStorage.removeItem('van50_curator_token');
+  localStorage.removeItem('van50_curator_token');
   state.token = null;
   state.quarantinedEvents = [];
   const loginModal = document.getElementById('login-modal-overlay');
@@ -250,7 +346,21 @@ async function loadQuarantineQueue() {
     });
     if (res.ok) {
       const data = await res.json();
-      state.quarantinedEvents = data.quarantinedEvents || [];
+      state.quarantinedEvents = (data.quarantinedEvents || []).map(ev => {
+        const resolvedUrl = getEventExternalUrl(ev);
+        const resolvedId = ev.id || ev.event_id || '';
+        return {
+          ...ev,
+          id: resolvedId,
+          event_id: resolvedId,
+          title: ev.title || ev.event_name || 'Untitled Event',
+          venue: ev.venue || ev.venue_name || 'Unknown Venue',
+          address: ev.address || ev.full_address || '',
+          websiteUrl: resolvedUrl,
+          ticket_url: ev.ticket_url || resolvedUrl,
+          details_url: ev.details_url || resolvedUrl
+        };
+      });
     } else if (res.status === 401 || res.status === 403) {
       handleLogout();
       return;
@@ -263,7 +373,21 @@ async function loadQuarantineQueue() {
       });
       if (archRes.ok) {
         const archData = await archRes.json();
-        state.archivedEvents = archData.archivedEvents || [];
+        state.archivedEvents = (archData.archivedEvents || []).map(ev => {
+          const resolvedUrl = getEventExternalUrl(ev);
+          const resolvedId = ev.id || ev.event_id || '';
+          return {
+            ...ev,
+            id: resolvedId,
+            event_id: resolvedId,
+            title: ev.title || ev.event_name || 'Archived Event',
+            venue: ev.venue || ev.venue_name || '',
+            address: ev.address || ev.full_address || '',
+            websiteUrl: resolvedUrl,
+            ticket_url: ev.ticket_url || resolvedUrl,
+            details_url: ev.details_url || resolvedUrl
+          };
+        });
       }
     } catch (e) {
       console.warn('Could not fetch archived events:', e);
@@ -694,24 +818,54 @@ function formatTicketTiersHtml(ev) {
       const tot = parseFloat(t.total ?? t.price ?? 0);
       const feeText = t.fee ? ` (+$${Number(t.fee).toFixed(2)} fee)` : '';
       const tName = t.name || 'Tier';
+      const isSold = /sold\s*out/i.test(tName) || t.status === 'sold_out';
+      const isEnded = /ended|expired|past/i.test(tName) || t.status === 'expired';
+      const isDoor = /door/i.test(tName) || t.status === 'door_only';
       tiers.push({
         name: tName,
         priceStr: tot === 0 ? 'FREE ($0)' : `$${tot.toFixed(2)} CAD${feeText}`,
         isFree: tot === 0,
-        isPrimary: Boolean(t.isPrimary || /adult|general|standard|early\s*show/i.test(tName))
+        isPrimary: Boolean(t.isPrimary || /adult|general|standard|early\s*show/i.test(tName)),
+        isSoldOut: isSold,
+        isExpired: isEnded,
+        isDoor: isDoor
       });
     });
-  } else if (ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
-    const p = ev.pricing_all_in_cad;
-    if (p.regular != null) tiers.push({ name: 'Regular / Adult', priceStr: `$${Number(p.regular).toFixed(2)} CAD`, isPrimary: true });
-    if (p.senior != null) tiers.push({ name: 'Senior (65+)', priceStr: `$${Number(p.senior).toFixed(2)} CAD` });
-    if (p.student != null) tiers.push({ name: 'Student / Youth', priceStr: `$${Number(p.student).toFixed(2)} CAD` });
-    if (p.member != null) tiers.push({ name: 'Member', priceStr: `$${Number(p.member).toFixed(2)} CAD` });
-  } else if (String(ev.venue || '').toLowerCase().includes('guilt')) {
-    const isEarly = String(ev.title || ev.dateSchedule || '').toLowerCase().includes('early') || String(ev.dateSchedule || '').includes('6pm');
-    tiers.push({ name: 'Early Show (Before 8 PM)', priceStr: '$8.00 CAD cover', isPrimary: isEarly });
-    tiers.push({ name: 'Late Show (Sun–Thu)', priceStr: '$12.00 CAD cover', isPrimary: !isEarly });
-    tiers.push({ name: 'Late Show (Fri–Sat)', priceStr: '$15.00 CAD cover' });
+  } else {
+    // 1. Check custom tiers 1..5
+    for (let i = 1; i <= 5; i++) {
+      const cName = ev[`tier_custom_name_${i}`];
+      const cPrice = ev[`tier_custom_price_${i}`];
+      if (cName != null && cPrice != null) {
+        const pNum = Number(cPrice) || 0;
+        const isSold = /sold\s*out/i.test(cName) || ev[`tier_custom_status_${i}`] === 'sold_out';
+        const isEnded = /ended|expired|past/i.test(cName) || ev[`tier_custom_status_${i}`] === 'expired';
+        const isDoor = /door/i.test(cName) || ev[`tier_custom_status_${i}`] === 'door_only';
+        tiers.push({
+          name: cName,
+          priceStr: pNum === 0 ? 'FREE ($0)' : `$${pNum.toFixed(2)} CAD`,
+          isFree: pNum === 0,
+          isPrimary: i === 1,
+          isSoldOut: isSold,
+          isExpired: isEnded,
+          isDoor: isDoor
+        });
+      }
+    }
+
+    // 2. Demographic tiers if custom tiers didn't already supply them
+    if (tiers.length === 0 && ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
+      const p = ev.pricing_all_in_cad;
+      if (p.regular != null) tiers.push({ name: 'Regular / Adult', priceStr: `$${Number(p.regular).toFixed(2)} CAD`, isPrimary: true });
+      if (p.senior != null) tiers.push({ name: 'Senior (65+)', priceStr: `$${Number(p.senior).toFixed(2)} CAD` });
+      if (p.student != null) tiers.push({ name: 'Student / Youth', priceStr: `$${Number(p.student).toFixed(2)} CAD` });
+      if (p.member != null) tiers.push({ name: 'Member', priceStr: `$${Number(p.member).toFixed(2)} CAD` });
+    } else if (tiers.length === 0 && String(ev.venue || '').toLowerCase().includes('guilt')) {
+      const isEarly = String(ev.title || ev.dateSchedule || '').toLowerCase().includes('early') || String(ev.dateSchedule || '').includes('6pm');
+      tiers.push({ name: 'Early Show (Before 8 PM)', priceStr: '$8.00 CAD cover', isPrimary: isEarly });
+      tiers.push({ name: 'Late Show (Sun–Thu)', priceStr: '$12.00 CAD cover', isPrimary: !isEarly });
+      tiers.push({ name: 'Late Show (Fri–Sat)', priceStr: '$15.00 CAD cover' });
+    }
   }
 
   if (tiers.length === 0) return '';
@@ -719,14 +873,28 @@ function formatTicketTiersHtml(ev) {
   return `
     <div style="margin-top: 6px;">
       <span style="font-size: 0.76rem; color: #c084fc; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
-        <span>🎟️</span> Ticket Types &amp; Costs:
+        <span>🎟️</span> Ticket Types &amp; Costs (${tiers.length} Tiers):
       </span>
       <div class="curator-ticket-tier-row">
-        ${tiers.map(t => `
-          <span class="curator-ticket-tier-chip ${t.isFree ? 'tier-free' : (t.isPrimary ? 'tier-primary' : 'tier-alt')}">
-            <span>${escapeHtml(t.name)}:</span> <strong>${escapeHtml(t.priceStr)}</strong>
-          </span>
-        `).join('')}
+        ${tiers.map(t => {
+          let extraClass = '';
+          let badge = '';
+          if (t.isSoldOut) {
+            extraClass = ' tier-sold-out';
+            badge = ' <span class="tier-status-pill badge-sold-out">Sold Out</span>';
+          } else if (t.isExpired) {
+            extraClass = ' tier-expired';
+            badge = ' <span class="tier-status-pill badge-ended">Ended</span>';
+          } else if (t.isDoor) {
+            extraClass = ' tier-door';
+            badge = ' <span class="tier-status-pill badge-door">Door</span>';
+          }
+          return `
+            <span class="curator-ticket-tier-chip ${t.isFree ? 'tier-free' : (t.isPrimary ? 'tier-primary' : 'tier-alt')}${extraClass}">
+              <span>${escapeHtml(t.name)}:</span> <strong>${escapeHtml(t.priceStr)}</strong>${badge}
+            </span>
+          `;
+        }).join('')}
       </div>
     </div>
   `;
@@ -771,8 +939,10 @@ function generateCuratorDiagnostics(ev) {
     confirmedItems.push(`<span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category)}</span>`);
   }
   
-  if (ev.websiteUrl) {
-    confirmedItems.push(`<span>🔗 <strong>Event Link:</strong> <a href="${escapeHtml(ev.websiteUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Open Host Page ↗</a></span>`);
+  const targetUrl = getEventExternalUrl(ev);
+  if (targetUrl) {
+    const domainText = targetUrl.replace(/^https?:\/\//i, '').split('/')[0];
+    confirmedItems.push(`<span>🔗 <strong>Event Link:</strong> <a href="${escapeHtml(targetUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Host Page (${escapeHtml(domainText)}) ↗</a></span>`);
   }
 
   const issuesItems = [];
@@ -858,6 +1028,7 @@ function renderCards(items) {
     const diagnosticsHtml = generateCuratorDiagnostics(ev);
     const vName = (ev.venue || '').trim();
     const isDiscoveredVenue = Boolean(vName && state.knownVenues && state.knownVenues.size > 0 && !state.knownVenues.has(vName.toLowerCase()));
+    const targetUrl = getEventExternalUrl(ev);
 
     return `
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}" data-event-id="${ev.id}">
@@ -1115,15 +1286,28 @@ function renderCards(items) {
           </div>
 
           <div>
-            <a 
-              href="${escapeHtml(ev.websiteUrl)}" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="btn-curator btn-curator-ghost"
-              title="Inspect live venue page in new tab"
-            >
-              🔗 Inspect Source Page ↗
-            </a>
+            ${targetUrl ? `
+              <a 
+                href="${escapeHtml(targetUrl)}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                referrerpolicy="no-referrer"
+                class="btn-curator btn-curator-ghost"
+                title="Inspect live venue page (${escapeHtml(targetUrl)}) in new tab"
+              >
+                🔗 Inspect Source Page ↗
+              </a>
+            ` : `
+              <button 
+                type="button" 
+                class="btn-curator btn-curator-ghost" 
+                disabled 
+                style="opacity: 0.5; cursor: not-allowed;" 
+                title="No external ticket or source URL provided for this event"
+              >
+                🔗 No External Link
+              </button>
+            `}
           </div>
         </div>
       </div>
@@ -1327,6 +1511,7 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
   const btnApprove = document.getElementById('btn-submit-ai-inst-and-approve');
   const btnDismiss = document.getElementById('btn-submit-ai-inst-and-dismiss');
   const btnOnly = document.getElementById('btn-submit-ai-inst-only');
+  const btnOnlyBottom = document.getElementById('btn-submit-ai-inst-only-bottom');
 
   const idField = document.getElementById('ai-inst-event-id');
   const venueField = document.getElementById('ai-inst-venue');
@@ -1349,6 +1534,10 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     btnOnly.innerHTML = '💾 Save Guidance &amp; Keep in Queue';
     btnOnly.style.display = 'inline-flex';
   }
+  if (btnOnlyBottom) {
+    btnOnlyBottom.innerHTML = '💾 Save Guidance &amp; Keep in Queue';
+    btnOnlyBottom.style.display = 'inline-flex';
+  }
   const btnQueueInterpretedInit = document.getElementById('btn-queue-interpreted-card');
   if (btnQueueInterpretedInit) {
     btnQueueInterpretedInit.innerHTML = '💾 Save Guidance &amp; Update Card';
@@ -1363,11 +1552,13 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'inline-flex';
     if (btnOnly) btnOnly.style.display = 'none';
+    if (btnOnlyBottom) btnOnlyBottom.style.display = 'none';
   } else {
     if (quickApprovalBox) quickApprovalBox.style.display = 'block';
     if (btnApprove) btnApprove.style.display = 'none';
     if (btnDismiss) btnDismiss.style.display = 'none';
     if (btnOnly) btnOnly.style.display = 'inline-flex';
+    if (btnOnlyBottom) btnOnlyBottom.style.display = 'inline-flex';
   }
 
   if (ev) {
@@ -1376,14 +1567,26 @@ window.openAIInstructionModal = function(eventId, mode = 'approve') {
     if (titleField) titleField.value = ev.title || '';
     if (titleApproveField) titleApproveField.value = ev.title || '';
     if (titleBadge) titleBadge.style.display = 'none';
-    const website = ev.websiteUrl || ev.url || '';
+    const website = getEventExternalUrl(ev);
     if (urlField) urlField.value = website;
 
     if (summaryTitle) summaryTitle.textContent = ev.title || 'Untitled Event';
     if (summaryVenue) summaryVenue.textContent = `${ev.venue || 'Unknown Venue'} • ${ev.neighborhood || 'Vancouver'} • Provider: ${ev.provider || 'Direct'}`;
     if (summaryLink) {
-      summaryLink.href = website || '#';
-      summaryLink.textContent = website ? `Source: ${website} ↗` : 'No direct URL';
+      if (website) {
+        summaryLink.href = website;
+        summaryLink.textContent = `Source: ${website} ↗`;
+        summaryLink.style.display = 'inline-block';
+        summaryLink.style.pointerEvents = 'auto';
+        summaryLink.style.opacity = '1';
+        summaryLink.setAttribute('rel', 'noopener noreferrer');
+        summaryLink.setAttribute('referrerpolicy', 'no-referrer');
+      } else {
+        summaryLink.removeAttribute('href');
+        summaryLink.textContent = 'No direct URL';
+        summaryLink.style.pointerEvents = 'none';
+        summaryLink.style.opacity = '0.5';
+      }
     }
 
     // Pre-fill from card quick-edit inputs if available
@@ -2453,6 +2656,7 @@ function renderInteractiveMultiEventPreview(subEvents) {
   const dismissWrapper = document.getElementById('ai-dismissal-preview-wrapper');
   const statusPill = document.getElementById('ai-interpretation-status-pill');
   const btnOnly = document.getElementById('btn-submit-ai-inst-only');
+  const btnOnlyBottom = document.getElementById('btn-submit-ai-inst-only-bottom');
   const btnQueueInterpreted = document.getElementById('btn-queue-interpreted-card');
 
   if (dismissWrapper) dismissWrapper.style.display = 'none';
@@ -2472,6 +2676,7 @@ function renderInteractiveMultiEventPreview(subEvents) {
 
   const queueBtnText = `🔀 Save ${subEvents.length} Split Events to Review Queue`;
   if (btnOnly) btnOnly.innerHTML = queueBtnText;
+  if (btnOnlyBottom) btnOnlyBottom.innerHTML = queueBtnText;
   if (btnQueueInterpreted) btnQueueInterpreted.innerHTML = queueBtnText;
 
   // Calculate duplicate titles for inline warning badges
@@ -2897,8 +3102,12 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
             statusPill.className = 'dim-pill pill-confirmed';
           }
           const btnOnly = document.getElementById('btn-submit-ai-inst-only');
+          const btnOnlyBottom = document.getElementById('btn-submit-ai-inst-only-bottom');
           if (btnOnly) {
             btnOnly.innerHTML = `💾 Save Guidance &amp; Keep in Queue`;
+          }
+          if (btnOnlyBottom) {
+            btnOnlyBottom.innerHTML = `💾 Save Guidance &amp; Keep in Queue`;
           }
           const btnQueueInterpreted = document.getElementById('btn-queue-interpreted-card');
           if (btnQueueInterpreted) {
@@ -2934,7 +3143,10 @@ async function interpretCuratorInstruction(targetEventId, options = {}) {
               </div>
               <div style="font-size: 0.82rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <span>🗓️ ${escapeHtml(dateText)}</span>
-                ${p.websiteUrl && p.websiteUrl !== '#' ? `<a href="${escapeHtml(p.websiteUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : ''}
+                ${(() => {
+                  const pUrl = getEventExternalUrl(p);
+                  return pUrl ? `<a href="${escapeHtml(pUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-size: 0.76rem;">Inspect Link ↗</a>` : '';
+                })()}
               </div>
               ${tiersPreviewHtml}
               ${p.feeBreakdown ? `
@@ -3205,12 +3417,34 @@ function setupCuratorEventListeners() {
     });
   }
 
-  // Search Input
+  // Search Input & Inline Clear Button
   const searchInput = document.getElementById('curator-search-input');
+  const clearSearchBtn = document.getElementById('btn-clear-curator-search');
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       state.searchQuery = searchInput.value.trim();
+      if (clearSearchBtn) {
+        clearSearchBtn.style.display = searchInput.value.length > 0 ? 'inline-block' : 'none';
+      }
       applyFiltersAndRender();
+    });
+  }
+
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      state.searchQuery = '';
+      clearSearchBtn.style.display = 'none';
+      if (searchInput) searchInput.focus();
+      applyFiltersAndRender();
+    });
+  }
+
+  // Clear Settings Button
+  const btnClearSettings = document.getElementById('btn-clear-settings');
+  if (btnClearSettings) {
+    btnClearSettings.addEventListener('click', () => {
+      clearCuratorSettingsAndReload({ restartServer: true });
     });
   }
 
@@ -3452,6 +3686,11 @@ function setupCuratorEventListeners() {
   const btnSubmitOnly = document.getElementById('btn-submit-ai-inst-only');
   if (btnSubmitOnly) {
     btnSubmitOnly.addEventListener('click', () => submitAIInstruction('queue_only'));
+  }
+
+  const btnSubmitOnlyBottom = document.getElementById('btn-submit-ai-inst-only-bottom');
+  if (btnSubmitOnlyBottom) {
+    btnSubmitOnlyBottom.addEventListener('click', () => submitAIInstruction('queue_only'));
   }
 
   const btnSubmitAndApprove = document.getElementById('btn-submit-ai-inst-and-approve');
@@ -3723,6 +3962,14 @@ function setupCuratorEventListeners() {
     });
   }
 
+  const btnVenueInstOnlyTop = document.getElementById('btn-venue-inst-only-top');
+  if (btnVenueInstOnlyTop) {
+    btnVenueInstOnlyTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleAddVenueSubmit(e, 'queue_only');
+    });
+  }
+
   if (btnVenueInstDismiss) {
     btnVenueInstDismiss.addEventListener('click', (e) => {
       e.preventDefault();
@@ -3900,7 +4147,10 @@ function renderDiscoveredVenuesCards() {
 
         <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85rem; color: var(--curator-text-muted);">
           <div><strong>Context / Sample Event:</strong> ${escapeHtml(v.sampleEvent || 'Detected via festival program')}</div>
-          ${v.calendarUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(v.calendarUrl)}" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : ''}
+          ${(() => {
+            const vUrl = getVenueExternalUrl(v);
+            return vUrl ? `<div style="margin-top: 4px;"><a href="${escapeHtml(vUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Open Discovered Webpage / Calendar ↗</a></div>` : '';
+          })()}
         </div>
 
         <!-- Prominent Instruction Banner (Displays User Instructions on Discovered Venue Cards) -->
@@ -3965,15 +4215,31 @@ function renderDiscoveredVenuesCards() {
             </button>
           </div>
           <div>
-            <a 
-              href="${escapeHtml(v.calendarUrl || v.websiteUrl || '#')}" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="btn-curator btn-curator-ghost"
-              title="Inspect venue website in new tab"
-            >
-              🔗 Inspect Venue Page ↗
-            </a>
+            ${(() => {
+              const vUrl = getVenueExternalUrl(v);
+              return vUrl ? `
+                <a 
+                  href="${escapeHtml(vUrl)}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  referrerpolicy="no-referrer"
+                  class="btn-curator btn-curator-ghost"
+                  title="Inspect venue website (${escapeHtml(vUrl)}) in new tab"
+                >
+                  🔗 Inspect Venue Page ↗
+                </a>
+              ` : `
+                <button 
+                  type="button" 
+                  class="btn-curator btn-curator-ghost" 
+                  disabled 
+                  style="opacity: 0.5; cursor: not-allowed;" 
+                  title="No website or calendar link detected for this venue"
+                >
+                  🔗 No Venue Link
+                </button>
+              `;
+            })()}
           </div>
         </div>
       </div>
@@ -4355,33 +4621,102 @@ async function handleTriggerSync() {
   }
 }
 
-async function handleRestartAllAndClear() {
-  showToast('⚡ Initiating full master reset & cache purge...', 'info');
+async function clearCuratorSettingsAndReload(options = { restartServer: true }) {
+  showToast('⚡ Clearing current settings & reloading from scratch...', 'info');
 
-  const btn = document.getElementById('btn-restart-system');
-  const icon = document.getElementById('btn-restart-icon');
-  const text = document.getElementById('btn-restart-text');
+  const btnRestart = document.getElementById('btn-restart-system');
+  const iconRestart = document.getElementById('btn-restart-icon');
+  const textRestart = document.getElementById('btn-restart-text');
+  const btnClearSettings = document.getElementById('btn-clear-settings');
 
-  if (btn) {
-    btn.disabled = true;
-    btn.style.opacity = '0.7';
+  if (btnRestart) {
+    btnRestart.disabled = true;
+    btnRestart.style.opacity = '0.7';
   }
-  if (icon) icon.className = 'sync-spinning';
-  if (text) text.textContent = 'Restarting & Clearing...';
+  if (btnClearSettings) {
+    btnClearSettings.disabled = true;
+    btnClearSettings.style.opacity = '0.7';
+  }
+  if (iconRestart) iconRestart.className = 'sync-spinning';
+  if (textRestart) textRestart.textContent = 'Clearing & Reloading...';
 
   try {
-    // 1. Tell server daemon to unlock automation, clear lock files, and resync catalog
-    const headers = { 'Content-Type': 'application/json' };
-    if (state.token) {
-      headers['Curator-Token'] = state.token;
-    }
-    const res = await fetch('/api/curator/system/restart-and-clear', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify({})
+    // 1. Reset all in-memory filters, queries, drafts, and temporary states to default
+    state.activeFilter = 'all';
+    state.platformFilter = 'all';
+    state.searchQuery = '';
+    state.sortBy = 'date-desc';
+    state.currentScreenshots = [];
+    state.currentScreenshotBase64 = null;
+    state.currentVenueScreenshots = [];
+    state.currentSplitEvents = [];
+    state.instructionDrafts = {};
+    state.rulesSearchQuery = '';
+    state.activeRuleTab = 'venue_policy_rules';
+    state.masterSearchQuery = '';
+    state.masterTab = 'events_active';
+    state.instructionsSearchQuery = '';
+    state.activeInstFilter = 'all';
+
+    // 2. Reset DOM controls immediately so browser never captures old values
+    const searchInput = document.getElementById('curator-search-input');
+    if (searchInput) searchInput.value = '';
+
+    const clearSearchBtn = document.getElementById('btn-clear-curator-search');
+    if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+
+    const platformSelect = document.getElementById('curator-platform-select');
+    if (platformSelect) platformSelect.value = 'all';
+
+    const sortSelect = document.getElementById('curator-sort-select');
+    if (sortSelect) sortSelect.value = 'date-desc';
+
+    document.querySelectorAll('.curator-filter-pill').forEach(p => {
+      if (p.dataset.filter === 'all') {
+        p.classList.add('active');
+      } else if (p.dataset.filter) {
+        p.classList.remove('active');
+      }
     });
-    
-    // 2. Client-side: Purge all CacheStorage caches
+
+    const rSearch = document.getElementById('rules-search-input');
+    if (rSearch) rSearch.value = '';
+
+    const mSearch = document.getElementById('master-search-input');
+    if (mSearch) mSearch.value = '';
+
+    const instText = document.getElementById('ai-instruction-text');
+    if (instText) instText.value = '';
+
+    // Close all open modals
+    document.querySelectorAll('.curator-modal-overlay').forEach(m => m.classList.remove('active'));
+
+    // Reset accessibility mode
+    try {
+      localStorage.removeItem('van50_accessible_mode');
+      document.documentElement.classList.remove('van50-accessible');
+      document.body.classList.remove('van50-accessible');
+    } catch (_) {}
+
+    // 3. Preserve session token
+    const curToken = state.token || sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token');
+
+    // 4. If restarting server, notify backend
+    if (options.restartServer) {
+      const headers = { 'Content-Type': 'application/json' };
+      if (curToken) headers['Curator-Token'] = curToken;
+      try {
+        await fetch('/api/curator/system/restart-and-clear', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({})
+        });
+      } catch (netErr) {
+        console.warn('[RESTART WARN] Server reset request notice:', netErr);
+      }
+    }
+
+    // 5. Purge CacheStorage
     if ('caches' in window) {
       try {
         const cacheKeys = await caches.keys();
@@ -4392,7 +4727,7 @@ async function handleRestartAllAndClear() {
       }
     }
 
-    // 3. Client-side: Unregister all Service Workers
+    // 6. Unregister Service Workers
     if ('serviceWorker' in navigator) {
       try {
         const registrations = await navigator.serviceWorker.getRegistrations();
@@ -4403,34 +4738,33 @@ async function handleRestartAllAndClear() {
       }
     }
 
-    // 4. Client-side: Clear sessionStorage
-    try {
-      sessionStorage.clear();
-    } catch (_) {}
+    // 7. Clear all storage, firmly preserving auth token
+    try { sessionStorage.clear(); } catch (_) {}
+    try { localStorage.clear(); } catch (_) {}
+    if (curToken) {
+      try { sessionStorage.setItem('van50_curator_token', curToken); } catch (_) {}
+      try { localStorage.setItem('van50_curator_token', curToken); } catch (_) {}
+      state.token = curToken;
+    }
 
-    // 5. Client-side: Reset transient filter localStorage (preserving curator auth session)
-    try {
-      const curToken = state.token || localStorage.getItem('van50_curator_token');
-      const remember = localStorage.getItem('van50_curator_remember');
-      localStorage.clear();
-      if (curToken) localStorage.setItem('van50_curator_token', curToken);
-      if (remember) localStorage.setItem('van50_curator_remember', remember);
-    } catch (_) {}
+    showToast('Settings cleared! Reloading from scratch...', 'success');
 
-    showToast('All systems restarted, caches purged, and catalog reloaded!', 'success');
-
-    // 6. Reload page cleanly with cache-buster
+    // 8. Reload page cleanly from scratch with timestamp cache-buster using replace()
     setTimeout(() => {
-      window.location.href = window.location.pathname + '?_t=' + Date.now();
-    }, 800);
+      window.location.replace(window.location.pathname + '?_t=' + Date.now());
+    }, 600);
 
   } catch (err) {
     console.error('[CURATOR RESET ERROR]', err);
-    showToast('Reset completed locally; refreshing...', 'info');
+    showToast('Settings reset completed; reloading...', 'info');
     setTimeout(() => {
-      window.location.href = window.location.pathname + '?_t=' + Date.now();
-    }, 800);
+      window.location.replace(window.location.pathname + '?_t=' + Date.now());
+    }, 600);
   }
+}
+
+async function handleRestartAllAndClear() {
+  return clearCuratorSettingsAndReload({ restartServer: true });
 }
 
 async function handleFetchNewsletters() {
@@ -5159,7 +5493,7 @@ window.openMasterCatalogsModal = async function() {
 };
 
 async function fetchAllMasterCatalogCounts() {
-  const tabs = ['events_active', 'venues_master', 'festivals_master', 'ticketing_sources', 'discovery_sources', 'events_archive'];
+  const tabs = ['events_active', 'venues_master', 'festivals_master', 'ticketing_sources', 'discovery_sources', 'events_archive', 'crowdsourced_prices'];
   for (const t of tabs) {
     fetchMasterCatalog(t, false);
   }
@@ -5174,7 +5508,8 @@ async function fetchMasterCatalog(tabName, renderIfActive = true) {
     festivals_master: '/api/curator/festivals/master',
     ticketing_sources: '/api/curator/ticketing_sources',
     discovery_sources: '/api/curator/discovery_sources',
-    events_archive: '/api/curator/archived'
+    events_archive: '/api/curator/archived',
+    crowdsourced_prices: '/api/curator/price-feedback'
   };
 
   const url = urlMap[tabName];
@@ -5194,6 +5529,10 @@ async function fetchMasterCatalog(tabName, renderIfActive = true) {
       else if (tabName === 'ticketing_sources') list = data.ticketingSources || [];
       else if (tabName === 'discovery_sources') list = data.discoverySources || (Array.isArray(data) ? data : []);
       else if (tabName === 'events_archive') list = data.archivedEvents || [];
+      else if (tabName === 'crowdsourced_prices') {
+        list = data.stats?.venues || [];
+        state.crowdsourcedStats = data.stats;
+      }
 
       state.masterCatalogsData[tabName] = list;
 
@@ -5203,10 +5542,12 @@ async function fetchMasterCatalog(tabName, renderIfActive = true) {
         festivals_master: 'master-count-festivals',
         ticketing_sources: 'master-count-ticketing',
         discovery_sources: 'master-count-discovery',
-        events_archive: 'master-count-archive'
+        events_archive: 'master-count-archive',
+        crowdsourced_prices: 'master-count-prices'
       };
       const badgeEl = document.getElementById(badgeIdMap[tabName]);
       if (badgeEl) badgeEl.textContent = list.length;
+
 
       if (tabName === 'events_active') {
         const elM = document.getElementById('stat-master-count');
@@ -5280,7 +5621,7 @@ function renderMasterCatalogList() {
             <div>📅 Show 1: ${show1.date || 'Upcoming'} ${show1.start_time ? `at ${show1.start_time}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
             <div style="display: flex; gap: 8px;">
               ${tags}
-              ${ev.ticket_url ? `<a href="${escapeHtml(ev.ticket_url)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
+              ${ev.ticket_url ? `<a href="${escapeHtml(ev.ticket_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
             </div>
           </div>
         </div>
@@ -5301,8 +5642,8 @@ function renderMasterCatalogList() {
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(addr)}</div>
           ${vm.description ? `<div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
-            ${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
-            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(vm.website_url)}" target="_blank" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
+            ${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
+            ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(vm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
           </div>
         </div>
       `;
@@ -5318,8 +5659,8 @@ function renderMasterCatalogList() {
           </div>
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || 'Vancouver, BC')} • Genre: <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'General')}</strong></div>
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
-            ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
-            ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
+            ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
+            ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
           </div>
         </div>
       `;
@@ -5333,7 +5674,7 @@ function renderMasterCatalogList() {
             <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">💡 ${escapeHtml(ts.notes || 'Ticketing source')}</div>
           </div>
           <div>
-            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(ts.website_url)}" target="_blank" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
+            ${ts.website_url && ts.website_url !== 'Direct' ? `<a href="${escapeHtml(ts.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-curator btn-curator-ghost" style="padding: 4px 10px; font-size: 0.76rem;">Visit ↗</a>` : '<span style="color: #4ade80; font-size: 0.8rem;">Door / Cash</span>'}
           </div>
         </div>
       `;
@@ -5349,7 +5690,7 @@ function renderMasterCatalogList() {
           <div style="font-size: 0.82rem; color: #cbd5e1;">🎯 ${escapeHtml(ds.focus || '')}</div>
           <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 2px;">Policy: ${escapeHtml(ds.resolutionPolicy || 'Extract outbound canonical ticket portal')}</div>
           <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
-            ${ds.eventsUrl ? `<a href="${escapeHtml(ds.eventsUrl)}" target="_blank" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
+            ${ds.eventsUrl ? `<a href="${escapeHtml(ds.eventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Calendar Feed ↗</a>` : ''}
           </div>
         </div>
       `;
@@ -5368,11 +5709,126 @@ function renderMasterCatalogList() {
         </div>
       `;
     }).join('');
+  } else if (currentTab === 'crowdsourced_prices') {
+    const stats = state.crowdsourcedStats || {};
+    const totalReports = stats.total_reports || 0;
+    const validReports = stats.valid_reports || 0;
+    const outliers = stats.outliers_excluded || 0;
+
+    const statsHeader = `
+      <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; font-size: 0.82rem;">
+        <div>
+          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Total Submissions</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">${totalReports}</div>
+        </div>
+        <div>
+          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Valid Range</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #34d399;">${validReports}</div>
+        </div>
+        <div>
+          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Outliers Excluded</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #f59e0b;" title="Values outside Pint $3-$25 or Cocktail $6-$40 excluded">${outliers}</div>
+        </div>
+        <div>
+          <div style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Venues Reported</div>
+          <div style="font-size: 1.2rem; font-weight: 700; color: #38bdf8;">${list.length}</div>
+        </div>
+      </div>
+    `;
+
+    if (list.length === 0) {
+      container.innerHTML = statsHeader + `
+        <div style="text-align: center; padding: 32px 20px; color: #94a3b8;">
+          <div style="font-size: 1.8rem; margin-bottom: 6px;">🍺</div>
+          <div style="font-size: 0.95rem; font-weight: 600; color: #cbd5e1;">No crowdsourced price reports recorded yet</div>
+          <div style="font-size: 0.8rem; margin-top: 4px;">Patron submissions via cards or the "Suggest price update" modal will appear here.</div>
+        </div>
+      `;
+      return;
+    }
+
+    const itemsHtml = list.map(v => {
+      const isConsensus = v.consensus_reached;
+      const consensusBadge = isConsensus
+        ? `<span style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700;">✓ Consensus (N ≥ 3)</span>`
+        : `<span style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 600;">Collecting (N=${v.sample_size})</span>`;
+
+      const pintInfo = v.median_pint_menu !== null
+        ? `<strong>$${v.median_pint_menu.toFixed(2)}</strong> menu ($${(v.median_pint_tax_in || v.median_pint_menu * 1.15).toFixed(2)} tax-in)`
+        : '<span style="color: #64748b;">Not reported</span>';
+
+      const cocktailInfo = v.median_cocktail_menu !== null
+        ? `<strong>$${v.median_cocktail_menu.toFixed(2)}</strong> menu ($${(v.median_cocktail_tax_in || v.median_cocktail_menu * 1.15).toFixed(2)} tax-in)`
+        : '<span style="color: #64748b;">Not reported</span>';
+
+      const notesHtml = (v.recent_notes && v.recent_notes.length > 0)
+        ? `<div style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: 4px;">Recent notes: "${escapeHtml(v.recent_notes.join('", "'))}"</div>`
+        : '';
+
+      const escapedVname = escapeHtml(v.venue_name);
+      const approveBtn = `
+        <button type="button" class="btn-curator btn-curator-primary" style="padding: 5px 12px; font-size: 0.78rem;" 
+                onclick="window.approvePriceConsensus('${escapedVname.replace(/'/g, "\\'")}', ${v.median_pint_menu ?? 'null'}, ${v.median_cocktail_menu ?? 'null'})">
+          ⚡ Approve &amp; Calibrate
+        </button>
+      `;
+
+      return `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid ${isConsensus ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255,255,255,0.08)'}; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #f8fafc; font-size: 0.95rem;">🏛️ ${escapedVname}</strong>
+              ${consensusBadge}
+            </div>
+            ${approveBtn}
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem; color: #cbd5e1; background: rgba(0,0,0,0.2); padding: 8px 10px; border-radius: 6px;">
+            <div>🍺 Cheapest Pint (Median): ${pintInfo}</div>
+            <div>🍸 Cheapest Cocktail (Median): ${cocktailInfo}</div>
+          </div>
+          ${notesHtml}
+        </div>
+      `;
+    }).join('');
+
+    container.innerHTML = statsHeader + itemsHtml;
   }
 }
 
+window.approvePriceConsensus = async function(venueName, pintPrice, cocktailPrice) {
+  if (!confirm(`Apply consensus pricing calibration for "${venueName}"?\nPint: ${pintPrice ? '$' + pintPrice.toFixed(2) : 'N/A'}, Cocktail: ${cocktailPrice ? '$' + cocktailPrice.toFixed(2) : 'N/A'}`)) {
+    return;
+  }
+  try {
+    const res = await fetch('/api/curator/price-feedback/approve', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({
+        venue_name: venueName,
+        pint_price: pintPrice,
+        cocktail_price: cocktailPrice
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`✓ Updated drink calibration for ${venueName}!`, 'success');
+      fetchMasterCatalog('crowdsourced_prices');
+      fetchMasterCatalog('venues_master');
+      fetchMasterCatalog('events_active');
+    } else {
+      showToast(data.error || 'Failed to approve consensus', 'error');
+    }
+  } catch (err) {
+    showToast('Failed to contact server: ' + err.message, 'error');
+  }
+};
+
 window.fetchMasterCatalog = fetchMasterCatalog;
 window.renderMasterCatalogList = renderMasterCatalogList;
+
 
 // Section 12 (Automated Operations Stream console) removed per user request.
 

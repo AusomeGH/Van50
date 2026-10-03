@@ -10,7 +10,20 @@
       49.2988,
       -123.1384
     ],
-    "transit_info": "#19 bus to Stanley Park or 5 min walk from Denman St"
+    "transit_info": "#19 bus to Stanley Park or 5 min walk from Denman St",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Lynn Canyon Park",
@@ -23,7 +36,20 @@
       49.3438,
       -123.0189
     ],
-    "transit_info": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate"
+    "transit_info": "SeaBus to Lonsdale Quay + #228 Lynn Valley bus directly to park gate",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Granville Island Public Market",
@@ -36,7 +62,20 @@
       49.2718,
       -123.1342
     ],
-    "transit_info": "#50 False Creek bus or False Creek Aquabus ferry docks"
+    "transit_info": "#50 False Creek bus or False Creek Aquabus ferry docks",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
@@ -49,7 +88,20 @@
       49.2742,
       -123.1558
     ],
-    "transit_info": "#2 Burrard or #4 / #7 bus from Downtown Vancouver"
+    "transit_info": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "VPL Central Library (Level 9)",
@@ -62,7 +114,20 @@
       49.2801,
       -123.1154
     ],
-    "transit_info": "3 min walk from Vancouver City Centre SkyTrain"
+    "transit_info": "3 min walk from Vancouver City Centre SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Dr. Sun Yat-Sen Public Courtyard",
@@ -75,7 +140,20 @@
       49.2798,
       -123.104
     ],
-    "transit_info": "5 min walk from Stadium-Chinatown SkyTrain"
+    "transit_info": "5 min walk from Stadium-Chinatown SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "UBC Rose Garden & Trail 6",
@@ -88,7 +166,20 @@
       49.2694,
       -123.2562
     ],
-    "transit_info": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange"
+    "transit_info": "R4 RapidBus or #99 B-Line directly to UBC Bus Exchange",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Queen Elizabeth Park",
@@ -101,7 +192,20 @@
       49.2417,
       -123.1126
     ],
-    "transit_info": "10 min walk from King Edward Canada Line station"
+    "transit_info": "10 min walk from King Edward Canada Line station",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Little Mountain Gallery",
@@ -114,7 +218,20 @@
       49.2838,
       -123.1072
     ],
-    "transit_info": "4 min walk from Waterfront SkyTrain station"
+    "transit_info": "4 min walk from Waterfront SkyTrain station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Bloedel Conservatory",
@@ -127,7 +244,20 @@
       49.2423,
       -123.1144
     ],
-    "transit_info": "12 min walk from King Edward Canada Line station"
+    "transit_info": "12 min walk from King Edward Canada Line station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "War Memorial Gym & Thunderbird Stadium",
@@ -140,7 +270,20 @@
       49.2662,
       -123.2483
     ],
-    "transit_info": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop"
+    "transit_info": "R4 41st Ave RapidBus or #99 B-Line to UBC Loop",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Chill x Studio",
@@ -153,7 +296,20 @@
       49.2748,
       -123.1265
     ],
-    "transit_info": "3 min walk from Yaletown-Roundhouse Canada Line"
+    "transit_info": "3 min walk from Yaletown-Roundhouse Canada Line",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "VIFF Centre (Seymour Atrium)",
@@ -166,7 +322,20 @@
       49.2774,
       -123.1251
     ],
-    "transit_info": "4 min walk from Yaletown-Roundhouse Canada Line"
+    "transit_info": "4 min walk from Yaletown-Roundhouse Canada Line",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Cinematheque",
@@ -179,7 +348,20 @@
       49.2795,
       -123.1274
     ],
-    "transit_info": "5 min walk from Vancouver City Centre SkyTrain"
+    "transit_info": "5 min walk from Vancouver City Centre SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Portside Pub",
@@ -192,7 +374,20 @@
       49.2842,
       -123.1042
     ],
-    "transit_info": "4 min walk from Waterfront SkyTrain Station"
+    "transit_info": "4 min walk from Waterfront SkyTrain Station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Rio Theatre",
@@ -205,7 +400,20 @@
       49.2627,
       -123.0699
     ],
-    "transit_info": "Steps from Commercial-Broadway SkyTrain Interchange"
+    "transit_info": "Steps from Commercial-Broadway SkyTrain Interchange",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Fox Cabaret",
@@ -218,7 +426,20 @@
       49.2638,
       -123.1012
     ],
-    "transit_info": "Main & 7th Ave bus stop • 10 min walk from SkyTrain"
+    "transit_info": "Main & 7th Ave bus stop • 10 min walk from SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Biltmore Cabaret",
@@ -231,7 +452,20 @@
       49.2602,
       -123.0975
     ],
-    "transit_info": "Main & 12th Ave bus corridor"
+    "transit_info": "Main & 12th Ave bus corridor",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Scotiabank Field at Nat Bailey Stadium",
@@ -244,7 +478,20 @@
       49.2428,
       -123.1098
     ],
-    "transit_info": "#3 Main Bus or 12 min walk from King Edward Canada Line"
+    "transit_info": "#3 Main Bus or 12 min walk from King Edward Canada Line",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Revue Stage Granville Island",
@@ -257,7 +504,20 @@
       49.2711,
       -123.1332
     ],
-    "transit_info": "#50 False Creek bus or Aquabus ferry dock"
+    "transit_info": "#50 False Creek bus or Aquabus ferry dock",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Tightrope Impro Theatre",
@@ -270,7 +530,20 @@
       49.2748,
       -123.0768
     ],
-    "transit_info": "Commercial & Hastings bus corridor"
+    "transit_info": "Commercial & Hastings bus corridor",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Improv Centre",
@@ -283,7 +556,20 @@
       49.2706,
       -123.1363
     ],
-    "transit_info": "#50 False Creek Bus or Aquabus ferry dock"
+    "transit_info": "#50 False Creek Bus or Aquabus ferry dock",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Rickshaw Theatre",
@@ -296,7 +582,20 @@
       49.2813,
       -123.0984
     ],
-    "transit_info": "5 min walk from Main & Hastings bus hub"
+    "transit_info": "5 min walk from Main & Hastings bus hub",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Science World at TELUS World of Science",
@@ -309,7 +608,20 @@
       49.2734,
       -123.1038
     ],
-    "transit_info": "1 min walk from Main Street-Science World SkyTrain"
+    "transit_info": "1 min walk from Main Street-Science World SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Orpheum Theatre",
@@ -322,7 +634,20 @@
       49.2804,
       -123.1206
     ],
-    "transit_info": "Steps from Vancouver City Centre SkyTrain station"
+    "transit_info": "Steps from Vancouver City Centre SkyTrain station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Pizzeria Ludica",
@@ -335,7 +660,20 @@
       49.2801,
       -123.1074
     ],
-    "transit_info": "3 min walk from Stadium-Chinatown SkyTrain"
+    "transit_info": "3 min walk from Stadium-Chinatown SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Stanley Park Pitch & Putt",
@@ -348,7 +686,20 @@
       49.2908,
       -123.1448
     ],
-    "transit_info": "#19 bus to Stanley Park or 10 min walk from Denman St"
+    "transit_info": "#19 bus to Stanley Park or 10 min walk from Denman St",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Vancouver Art Gallery",
@@ -361,7 +712,20 @@
       49.283,
       -123.1205
     ],
-    "transit_info": "1 min walk from City Centre / Granville SkyTrain"
+    "transit_info": "1 min walk from City Centre / Granville SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Shipyards District",
@@ -374,7 +738,20 @@
       49.3113,
       -123.0818
     ],
-    "transit_info": "5 min walk from Lonsdale Quay SeaBus terminal"
+    "transit_info": "5 min walk from Lonsdale Quay SeaBus terminal",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Kitsilano Beach Park",
@@ -387,7 +764,20 @@
       49.2724,
       -123.1534
     ],
-    "transit_info": "#2 Burrard or #4 bus"
+    "transit_info": "#2 Burrard or #4 bus",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Commercial Drive & Main Street",
@@ -400,7 +790,20 @@
       49.2685,
       -123.0694
     ],
-    "transit_info": "Commercial-Broadway SkyTrain or Main St-Science World SkyTrain"
+    "transit_info": "Commercial-Broadway SkyTrain or Main St-Science World SkyTrain",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "West 4th Avenue (Burrard to Macdonald)",
@@ -413,7 +816,20 @@
       49.2681,
       -123.1582
     ],
-    "transit_info": "#4 or #7 bus directly along West 4th Avenue"
+    "transit_info": "#4 or #7 bus directly along West 4th Avenue",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "John Hendry Park (Trout Lake)",
@@ -426,7 +842,20 @@
       49.2558,
       -123.0642
     ],
-    "transit_info": "10 min walk from Commercial-Broadway SkyTrain Station"
+    "transit_info": "10 min walk from Commercial-Broadway SkyTrain Station",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Kitsilano Community Centre Plaza",
@@ -439,7 +868,20 @@
       49.2618,
       -123.1617
     ],
-    "transit_info": "#99 B-Line or #9 to Broadway & Larch St"
+    "transit_info": "#99 B-Line or #9 to Broadway & Larch St",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Guilt & Co.",
@@ -452,7 +894,20 @@
       49.2835,
       -123.1039
     ],
-    "transit_info": "5 min walk from Waterfront Station (SkyTrain & SeaBus)"
+    "transit_info": "5 min walk from Waterfront Station (SkyTrain & SeaBus)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "UBC Instructional Resources Centre (IRC)",
@@ -465,7 +920,20 @@
       49.2647,
       -123.2492
     ],
-    "transit_info": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop"
+    "transit_info": "#99 B-Line or #4 / #14 trolley bus to UBC Bus Loop",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Colony Main Street",
@@ -478,7 +946,20 @@
       49.2586,
       -123.1009
     ],
-    "transit_info": "#3 Main St bus to 13th Avenue"
+    "transit_info": "#3 Main St bus to 13th Avenue",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "RUNVAN Clubhouse & Seawall",
@@ -491,7 +972,20 @@
       49.2882,
       -123.1278
     ],
-    "transit_info": "Burrard SkyTrain Station (7 min walk)"
+    "transit_info": "Burrard SkyTrain Station (7 min walk)",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
@@ -504,7 +998,20 @@
       49.2435,
       -123.1066
     ],
-    "transit_info": "#3 Main St bus or King Edward Canada Line station (12 min walk)"
+    "transit_info": "#3 Main St bus or King Edward Canada Line station (12 min walk)",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Nelson Park (West End)",
@@ -517,7 +1024,20 @@
       49.2818,
       -123.1302
     ],
-    "transit_info": "Burrard SkyTrain station or #5 / #6 Robson/Davie bus"
+    "transit_info": "Burrard SkyTrain station or #5 / #6 Robson/Davie bus",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Dude Chilling Park (Guelph Park)",
@@ -530,7 +1050,20 @@
       49.2638,
       -123.0954
     ],
-    "transit_info": "#8 Fraser bus or #9 / #99 Broadway to Fraser St"
+    "transit_info": "#8 Fraser bus or #9 / #99 Broadway to Fraser St",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Vancouver Art Gallery Plaza (North)",
@@ -543,7 +1076,20 @@
       49.2831,
       -123.1205
     ],
-    "transit_info": "Vancouver City Centre or Granville SkyTrain Station (2 min walk)"
+    "transit_info": "Vancouver City Centre or Granville SkyTrain Station (2 min walk)",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Concord Community Park (False Creek)",
@@ -556,7 +1102,20 @@
       49.2743,
       -123.1118
     ],
-    "transit_info": "Stadium-Chinatown SkyTrain Station (6 min walk along seawall)"
+    "transit_info": "Stadium-Chinatown SkyTrain Station (6 min walk along seawall)",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "UBC Farm (South Campus)",
@@ -569,7 +1128,20 @@
       49.2526,
       -123.2384
     ],
-    "transit_info": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus"
+    "transit_info": "#68 UBC community shuttle or #41 / #49 bus to UBC South Campus",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "2nd Floor Gastown",
@@ -582,7 +1154,20 @@
       49.2842,
       -123.1102
     ],
-    "transit_info": "Waterfront Station (3 min walk)"
+    "transit_info": "Waterfront Station (3 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Frankie's Jazz Club",
@@ -595,7 +1180,20 @@
       49.2778,
       -123.1147
     ],
-    "transit_info": "Stadium-Chinatown SkyTrain Station (2 min walk)"
+    "transit_info": "Stadium-Chinatown SkyTrain Station (2 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The WISE Hall & Lounge",
@@ -608,7 +1206,20 @@
       49.2774,
       -123.0673
     ],
-    "transit_info": "#20 Victoria or #14 Hastings bus to Commercial & Adanac"
+    "transit_info": "#20 Victoria or #14 Hastings bus to Commercial & Adanac",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Anza Club",
@@ -621,7 +1232,20 @@
       49.2638,
       -123.1068
     ],
-    "transit_info": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)"
+    "transit_info": "#99 B-Line or #9 to Broadway & Ontario (2 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Red Gate Arts Society",
@@ -634,12 +1258,25 @@
       49.2811,
       -123.0805
     ],
-    "transit_info": "#14 or #16 Hastings bus directly to Clark Dr"
+    "transit_info": "#14 or #16 Hastings bus directly to Clark Dr",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "LanaLou's",
-    "website_url": "https://lanalous.com",
-    "calendar_url": "https://lanalous.com",
+    "website_url": "https://do604.com/venues/lanalou-s",
+    "calendar_url": "https://do604.com/venues/lanalou-s",
     "full_address": "362 Powell St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "music",
@@ -647,7 +1284,20 @@
       49.2831,
       -123.0954
     ],
-    "transit_info": "#4 or #7 Powell bus to Dunlevy Ave"
+    "transit_info": "#4 or #7 Powell bus to Dunlevy Ave",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Roxy Cabaret",
@@ -660,7 +1310,20 @@
       49.2804,
       -123.1215
     ],
-    "transit_info": "Granville SkyTrain Station (4 min walk)"
+    "transit_info": "Granville SkyTrain Station (4 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Café au Clay Studios",
@@ -673,7 +1336,20 @@
       49.2698,
       -123.1415
     ],
-    "transit_info": "#84 or #50 bus to 4th Ave & Fir St (3 min walk)"
+    "transit_info": "#84 or #50 bus to 4th Ave & Fir St (3 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Basic Inquiry Life Drawing Society",
@@ -686,7 +1362,20 @@
       49.2778,
       -123.0998
     ],
-    "transit_info": "Main Street-Science World SkyTrain Station (4 min walk)"
+    "transit_info": "Main Street-Science World SkyTrain Station (4 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Hand Eye Ceramics",
@@ -699,7 +1388,20 @@
       49.2655,
       -123.0776
     ],
-    "transit_info": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station"
+    "transit_info": "#22 Knight bus or 8 min walk from VCC-Clark SkyTrain Station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Claymates Ceramics Studio",
@@ -712,7 +1414,20 @@
       49.2813,
       -123.0782
     ],
-    "transit_info": "#14, #16, or #20 Hastings bus to Clark Dr"
+    "transit_info": "#14, #16, or #20 Hastings bus to Clark Dr",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Slice of Life Gallery & Studios",
@@ -725,7 +1440,20 @@
       49.2764,
       -123.0715
     ],
-    "transit_info": "#20 Commercial bus to Venables St (2 min walk)"
+    "transit_info": "#20 Commercial bus to Venables St (2 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Public Disco Society",
@@ -738,7 +1466,20 @@
       49.2847,
       -123.1192
     ],
-    "transit_info": "Burrard SkyTrain Station (adjacent to Bentall Plaza)"
+    "transit_info": "Burrard SkyTrain Station (adjacent to Bentall Plaza)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Bentall Centre Dunsmuir Plaza",
@@ -751,7 +1492,20 @@
       49.2847,
       -123.1192
     ],
-    "transit_info": "Burrard SkyTrain Station (direct plaza level access)"
+    "transit_info": "Burrard SkyTrain Station (direct plaza level access)",
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Birdhouse",
@@ -764,7 +1518,20 @@
       49.2678,
       -123.1065
     ],
-    "transit_info": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)"
+    "transit_info": "Olympic Village or Main Street-Science World SkyTrain (6 min walk)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Shipyards Waterfront",
@@ -777,7 +1544,20 @@
       49.3117,
       -123.0805
     ],
-    "transit_info": "SeaBus to Lonsdale Quay + 3 min walk east along waterfront"
+    "transit_info": "SeaBus to Lonsdale Quay + 3 min walk east along waterfront",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Hollywood Theatre",
@@ -790,7 +1570,20 @@
       49.2642,
       -123.1754
     ],
-    "transit_info": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St"
+    "transit_info": "#99 B-Line or #9 / #14 bus along W Broadway to Trutch St",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Rickshaw Theatre",
@@ -803,7 +1596,25 @@
       49.2811,
       -123.0984
     ],
-    "transit_info": "#14, #16, or #20 bus along E Hastings St to Main St"
+    "transit_info": "#14, #16, or #20 bus along E Hastings St to Main St",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "drink_benchmark": "$8.50 pint • $14.50 cocktail",
+    "cheapest_pint_calibrated": 8.5,
+    "cheapest_cocktail_calibrated": 14.5,
+    "spend_calibration_source": "patron_crowdsourced_consensus",
+    "spend_calibrated_at": "2026-10-02T17:05:38.160156+00:00"
   },
   {
     "venue_name": "Waterfront Theatre",
@@ -816,7 +1627,20 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Waldorf",
@@ -829,7 +1653,20 @@
       49.2813,
       -123.0734
     ],
-    "transit_info": "#14, #16, #20 bus or #R5 RapidBus on Hastings St (10 min from Downtown)"
+    "transit_info": "#14, #16, #20 bus or #R5 RapidBus on Hastings St (10 min from Downtown)",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Cobalt",
@@ -842,7 +1679,20 @@
       49.2764,
       -123.0999
     ],
-    "transit_info": "5 min walk from Main Street-Science World SkyTrain Station or #3 / #8 / #19 / #22 bus"
+    "transit_info": "5 min walk from Main Street-Science World SkyTrain Station or #3 / #8 / #19 / #22 bus",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Carousel Theatre",
@@ -855,7 +1705,20 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Commercial Drive",
@@ -868,7 +1731,20 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Main Street",
@@ -881,7 +1757,20 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Touchstone Theatre",
@@ -894,12 +1783,25 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Queen Elizabeth Park Pitch & Putt",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
-    "calendar_url": "",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
     "full_address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC",
     "neighborhood": "Mount Pleasant & South Vancouver",
     "description": "outdoors",
@@ -907,12 +1809,25 @@
       49.2395,
       -123.114
     ],
-    "transit_info": "SkyTrain Canada Line to King Edward Station or #15 Cambie bus"
+    "transit_info": "SkyTrain Canada Line to King Edward Station or #15 Cambie bus",
+    "access_model": "sports_facility",
+    "weekly_hours": {
+      "monday": "08:00 - 19:30",
+      "tuesday": "08:00 - 19:30",
+      "wednesday": "08:00 - 19:30",
+      "thursday": "08:00 - 19:30",
+      "friday": "08:00 - 19:30",
+      "saturday": "08:00 - 19:30",
+      "sunday": "08:00 - 19:30"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$12.00 – $22.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Rupert Park Pitch & Putt",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
-    "calendar_url": "",
+    "website_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
+    "calendar_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
     "full_address": "3402 Charles St, Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
     "description": "outdoors",
@@ -920,20 +1835,46 @@
       49.274,
       -123.0335
     ],
-    "transit_info": "#9 or #99 B-Line to Boundary / Broadway or #16 Renfrew bus"
+    "transit_info": "#9 or #99 B-Line to Boundary / Broadway or #16 Renfrew bus",
+    "access_model": "sports_facility",
+    "weekly_hours": {
+      "monday": "08:00 - 19:30",
+      "tuesday": "08:00 - 19:30",
+      "wednesday": "08:00 - 19:30",
+      "thursday": "08:00 - 19:30",
+      "friday": "08:00 - 19:30",
+      "saturday": "08:00 - 19:30",
+      "sunday": "08:00 - 19:30"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Central Park Pitch & Putt",
-    "website_url": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
-    "calendar_url": "",
-    "full_address": "Kingsway & Boundary Rd, Central Park, Vancouver/Burnaby, BC",
+    "website_url": "https://www.golfburnaby.ca/golf/central-park",
+    "calendar_url": "https://www.golfburnaby.ca/golf/central-park",
+    "full_address": "3883 Imperial Street, Central Park, Burnaby, BC V5J 1A3",
     "neighborhood": "North Shore, Burnaby & Metro",
     "description": "outdoors",
     "coordinates": [
-      49.228,
-      -123.0205
+      49.2272,
+      -123.0189
     ],
-    "transit_info": "SkyTrain Expo Line to Patterson Station (3 min walk)"
+    "transit_info": "SkyTrain Expo Line to Patterson Station (3 min walk)",
+    "access_model": "sports_facility",
+    "weekly_hours": {
+      "monday": "08:00 - 18:30",
+      "tuesday": "08:00 - 15:30",
+      "wednesday": "08:00 - 18:30",
+      "thursday": "08:00 - 18:30",
+      "friday": "08:00 - 18:30",
+      "saturday": "08:00 - 18:30",
+      "sunday": "08:00 - 18:30"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Queen Elizabeth Theatre",
@@ -946,7 +1887,20 @@
       49.2827,
       -123.1207
     ],
-    "transit_info": "Check TransLink for nearest transit route"
+    "transit_info": "Check TransLink for nearest transit route",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Pearl",
@@ -954,7 +1908,24 @@
     "calendar_url": "https://thepearlvancouver.com/calendar/",
     "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
     "neighborhood": "Downtown",
-    "description": "Revitalized Granville entertainment strip live concert hall and nightclub featuring indie, electronic, and touring acts."
+    "description": "Revitalized Granville entertainment strip live concert hall and nightclub featuring indie, electronic, and touring acts.",
+    "coordinates": [
+      49.2798,
+      -123.1232
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The WISE Hall",
@@ -962,7 +1933,24 @@
     "calendar_url": "https://www.ticketweb.ca/",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
     "neighborhood": "Commercial Drive",
-    "description": "Community-operated social hall and performance room hosting eclectic indie, punk, folk, and community gatherings."
+    "description": "Community-operated social hall and performance room hosting eclectic indie, punk, folk, and community gatherings.",
+    "coordinates": [
+      49.2731,
+      -123.0694
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Bill Reid Gallery of Northwest Coast Art",
@@ -970,7 +1958,24 @@
     "calendar_url": "https://www.billreidgallery.ca/pages/exhibitions",
     "full_address": "639 Hornby St, Vancouver, BC V6C 2G3",
     "neighborhood": "Downtown",
-    "description": "Public gallery dedicated to celebrating contemporary Indigenous Northwest Coast art and honoring master Haida artist Bill Reid."
+    "description": "Public gallery dedicated to celebrating contemporary Indigenous Northwest Coast art and honoring master Haida artist Bill Reid.",
+    "coordinates": [
+      49.2847,
+      -123.1187
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Burnaby Art Gallery",
@@ -978,7 +1983,24 @@
     "calendar_url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
     "full_address": "6344 Deer Lake Ave, Burnaby, BC V5G 2J3",
     "neighborhood": "Burnaby",
-    "description": "Dedicated contemporary works on paper art gallery set inside the historic Ceperley House in Deer Lake Park."
+    "description": "Dedicated contemporary works on paper art gallery set inside the historic Ceperley House in Deer Lake Park.",
+    "coordinates": [
+      49.2372,
+      -122.9642
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "UBC Botanical Garden",
@@ -986,7 +2008,24 @@
     "calendar_url": "https://botanicalgarden.ubc.ca/news-events/events/",
     "full_address": "6804 SW Marine Dr, Vancouver, BC V6T 1Z4",
     "neighborhood": "Point Grey",
-    "description": "University botanical research garden showcasing global plant diversity and hosting signature annual harvest festivals."
+    "description": "University botanical research garden showcasing global plant diversity and hosting signature annual harvest festivals.",
+    "coordinates": [
+      49.2541,
+      -123.2504
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Cambrian Hall",
@@ -994,7 +2033,24 @@
     "calendar_url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
     "full_address": "215 E 17th Ave, Vancouver, BC V5V 1A6",
     "neighborhood": "Mount Pleasant",
-    "description": "Community hall host to weekly Friday night stand-up comedy staple Jokes Please!."
+    "description": "Community hall host to weekly Friday night stand-up comedy staple Jokes Please!.",
+    "coordinates": [
+      49.2655,
+      -123.1014
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Show Cellar inside The Park Pub",
@@ -1002,7 +2058,24 @@
     "calendar_url": "https://www.thecomedydepartment.com/vancouver-shows/",
     "full_address": "1755 Davie St, Vancouver, BC V6G 1W5",
     "neighborhood": "West End",
-    "description": "Intimate subterranean comedy club hosting weekly Saturday improv and stand-up showcases by The Comedy Department."
+    "description": "Intimate subterranean comedy club hosting weekly Saturday improv and stand-up showcases by The Comedy Department.",
+    "coordinates": [
+      49.2905,
+      -123.1408
+    ],
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The China Cloud Studios",
@@ -1010,21 +2083,72 @@
     "calendar_url": "https://do604.com/events/comedy",
     "full_address": "524 Main St, Vancouver, BC V6A 2T9",
     "neighborhood": "Chinatown",
-    "description": "Second-floor Chinatown speakeasy-style room hosting independent jazz, comedy, and underground performing arts."
+    "description": "Second-floor Chinatown speakeasy-style room hosting independent jazz, comedy, and underground performing arts.",
+    "coordinates": [
+      49.2796,
+      -123.0991
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Shipyards",
     "website_url": "https://theshipyards.ca",
     "full_address": "125 Victory Ship Way, North Vancouver, BC V7L 0B2",
     "neighborhood": "Lower Lonsdale",
-    "description": "Historic waterfront public space in North Vancouver hosting outdoor plazas, heritage buildings, community events, and cultural festivals."
+    "description": "Historic waterfront public space in North Vancouver hosting outdoor plazas, heritage buildings, community events, and cultural festivals.",
+    "coordinates": [
+      49.3119,
+      -123.0805
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Pipe Shop Venue",
     "website_url": "https://theshipyards.ca/pipe-shop",
     "full_address": "115 Victory Ship Way, North Vancouver, BC V7L 0B2",
     "neighborhood": "Lower Lonsdale",
-    "description": "Restored century-old wooden shipbuilding hall at The Shipyards featuring open-concept space and exposed wooden beam architecture."
+    "description": "Restored century-old wooden shipbuilding hall at The Shipyards featuring open-concept space and exposed wooden beam architecture.",
+    "coordinates": [
+      49.3119,
+      -123.0805
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Annex",
@@ -1032,7 +2156,24 @@
     "calendar_url": "https://vancouvercivictheatres.com/events/",
     "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
     "neighborhood": "Downtown",
-    "description": "Vancouver Civic Theatres' intimate black-box and contemporary chamber performance venue."
+    "description": "Vancouver Civic Theatres' intimate black-box and contemporary chamber performance venue.",
+    "coordinates": [
+      49.2809,
+      -123.1209
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Croatian Cultural Centre",
@@ -1040,7 +2181,24 @@
     "calendar_url": "https://croatiancentre.com/events/",
     "full_address": "3250 Commercial Dr, Vancouver, BC V5N 4E4",
     "neighborhood": "Commercial Drive",
-    "description": "Versatile community banquet and exhibition facility hosting cultural markets, trade shows, and community events."
+    "description": "Versatile community banquet and exhibition facility hosting cultural markets, trade shows, and community events.",
+    "coordinates": [
+      49.2569,
+      -123.0658
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Fox Cabaret",
@@ -1048,7 +2206,24 @@
     "calendar_url": "https://www.foxcabaret.com/calendar",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant",
-    "description": "Former adult cinema converted into a stylish indie concert venue, dance club, and comedy lounge."
+    "description": "Former adult cinema converted into a stylish indie concert venue, dance club, and comedy lounge.",
+    "coordinates": [
+      49.2638,
+      -123.1011
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Show Cellar",
@@ -1056,7 +2231,24 @@
     "calendar_url": "https://theshowcellar.com",
     "full_address": "1755 Davie St, Vancouver, BC V6G 1W5",
     "neighborhood": "West End",
-    "description": "Intimate subterranean comedy and cabaret space in the West End."
+    "description": "Intimate subterranean comedy and cabaret space in the West End.",
+    "coordinates": [
+      49.2905,
+      -123.1408
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Polygon Gallery",
@@ -1064,7 +2256,24 @@
     "calendar_url": "https://thepolygon.ca/exhibitions/",
     "full_address": "101 Carrie Cates Ct, North Vancouver, BC V7M 3J4",
     "neighborhood": "North Shore",
-    "description": "Award-winning waterfront visual arts and photography institution at Lower Lonsdale's Shipyards."
+    "description": "Award-winning waterfront visual arts and photography institution at Lower Lonsdale's Shipyards.",
+    "coordinates": [
+      49.3117,
+      -123.0818
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Arts Club Theatre Company (Granville Island Stage)",
@@ -1072,7 +2281,24 @@
     "calendar_url": "https://artsclub.com/shows",
     "full_address": "1585 Johnston St, Vancouver, BC",
     "neighborhood": "Granville Island",
-    "description": "Flagship 440-seat professional live theatre venue operated by Western Canada's largest theatre company."
+    "description": "Flagship 440-seat professional live theatre venue operated by Western Canada's largest theatre company.",
+    "coordinates": [
+      49.2708,
+      -123.1345
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Pendulum Gallery",
@@ -1080,7 +2306,24 @@
     "calendar_url": "https://www.pendulumgallery.bc.ca/exhibitions",
     "full_address": "885 W Georgia St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Public exhibition space in the HSBC Building atrium hosting curated contemporary visual arts and photography."
+    "description": "Public exhibition space in the HSBC Building atrium hosting curated contemporary visual arts and photography.",
+    "coordinates": [
+      49.2838,
+      -123.1189
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Trout Lake Community Centre",
@@ -1088,7 +2331,24 @@
     "calendar_url": "https://troutlakecc.com/events",
     "full_address": "3360 Victoria Dr, Vancouver, BC",
     "neighborhood": "Commercial Drive",
-    "description": "Civic recreation centre offering parkland access, community rooms, and outdoor athletic fields for public cultural events."
+    "description": "Civic recreation centre offering parkland access, community rooms, and outdoor athletic fields for public cultural events.",
+    "coordinates": [
+      49.2558,
+      -123.0645
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Orpheum",
@@ -1096,7 +2356,24 @@
     "calendar_url": "https://vancouvercivictheatres.com/events",
     "full_address": "601 Smithe St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Historic 1927 concert hall and theatre home to the Vancouver Symphony Orchestra and the Mighty Wurlitzer organ."
+    "description": "Historic 1927 concert hall and theatre home to the Vancouver Symphony Orchestra and the Mighty Wurlitzer organ.",
+    "coordinates": [
+      49.2808,
+      -123.1205
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "VanDusen Botanical Garden",
@@ -1104,7 +2381,24 @@
     "calendar_url": "https://vandusengarden.org/events",
     "full_address": "5251 Oak St, Vancouver, BC",
     "neighborhood": "South Cambie",
-    "description": "55-acre botanical garden showcasing more than 7,500 plant species, hedge maze, and seasonal displays."
+    "description": "55-acre botanical garden showcasing more than 7,500 plant species, hedge maze, and seasonal displays.",
+    "coordinates": [
+      49.2396,
+      -123.1311
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Contemporary Art Gallery (CAG)",
@@ -1112,15 +2406,49 @@
     "calendar_url": "https://www.contemporaryartgallery.ca/exhibitions",
     "full_address": "555 Nelson St, Vancouver, BC",
     "neighborhood": "Yaletown",
-    "description": "Non-profit, free-entry public art institution focused exclusively on modern and contemporary visual work."
+    "description": "Non-profit, free-entry public art institution focused exclusively on modern and contemporary visual work.",
+    "coordinates": [
+      49.2764,
+      -123.1219
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "LanaLou's Rock 'n' Roll Eatery",
-    "website_url": "https://lanalous.com/",
-    "calendar_url": "https://lanalous.com/events/",
+    "website_url": "https://do604.com/venues/lanalou-s",
+    "calendar_url": "https://do604.com/venues/lanalou-s",
     "full_address": "362 Powell St, Vancouver, BC",
     "neighborhood": "Strathcona",
-    "description": "Independent, artist-friendly live music venue, diner, and rehearsal hub in Strathcona."
+    "description": "Independent, artist-friendly live music venue, diner, and rehearsal hub in Strathcona.",
+    "coordinates": [
+      49.2825,
+      -123.0889
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Guilt & Company",
@@ -1128,15 +2456,62 @@
     "calendar_url": "https://www.guiltandcompany.com/live-music",
     "full_address": "1 Alexander St, Vancouver, BC",
     "neighborhood": "Gastown",
-    "description": "Subterranean Gastown lounge presenting two live sets nightly across jazz, soul, and world music."
+    "description": "Subterranean Gastown lounge presenting two live sets nightly across jazz, soul, and world music.",
+    "coordinates": [
+      49.2834,
+      -123.1042
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Vancouver Public Library Central Branch",
-    "website_url": "https://www.vpl.ca/",
+    "website_url": "https://www.vpl.ca/central",
     "calendar_url": "https://vpl.bibliocommons.com/v2/events",
     "full_address": "350 W Georgia St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Colosseum-inspired central library with free public rooftop garden, exhibition levels, and reading spaces."
+    "description": "Colosseum-inspired central library with free public rooftop garden, exhibition levels, and reading spaces.",
+    "coordinates": [
+      49.2801,
+      -123.1154
+    ],
+    "access_model": "open_public_space"
+  },
+  {
+    "venue_name": "The WISE Hall",
+    "website_url": "https://www.wisehall.ca/",
+    "calendar_url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "full_address": "1882 Adanac St, Vancouver, BC V5L 2E5",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": "Historic non-profit community hall and lounge hosting live music, dance nights, and indie performances.",
+    "coordinates": [
+      49.2774,
+      -123.0673
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "Closed",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 00:00",
+      "friday": "17:00 - 01:00",
+      "saturday": "17:00 - 01:00",
+      "sunday": "17:00 - 23:00"
+    },
+    "coffee_benchmark": "$3.00 – $4.50 CAD",
+    "meal_benchmark": "$12.00 – $18.00 CAD (Commercial Drive eateries)",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "St. Andrew's-Wesley United Church",
@@ -1144,7 +2519,24 @@
     "calendar_url": "https://standrewswesley.com/events/",
     "full_address": "1022 Nelson St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Historic gothic stone church hosting weekly Sunday Jazz Vespers and community cultural programming."
+    "description": "Historic gothic stone church hosting weekly Sunday Jazz Vespers and community cultural programming.",
+    "coordinates": [
+      49.2818,
+      -123.1281
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Annex",
@@ -1152,7 +2544,24 @@
     "calendar_url": "https://vancouvercivictheatres.com/events",
     "full_address": "823 Seymour St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Flexible, modern 285-seat performance venue operated by Vancouver Civic Theatres."
+    "description": "Flexible, modern 285-seat performance venue operated by Vancouver Civic Theatres.",
+    "coordinates": [
+      49.2809,
+      -123.1209
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Waldorf Hotel",
@@ -1160,7 +2569,24 @@
     "calendar_url": "https://thewaldorfhotel.com/events",
     "full_address": "1489 E Hastings St, Vancouver, BC",
     "neighborhood": "Hastings-Sunrise",
-    "description": "Historic East Vancouver cultural hub featuring tiki decor, live music rooms, and alternative cabaret performances."
+    "description": "Historic East Vancouver cultural hub featuring tiki decor, live music rooms, and alternative cabaret performances.",
+    "coordinates": [
+      49.2814,
+      -123.0729
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Orpheum Theatre",
@@ -1168,7 +2594,24 @@
     "calendar_url": "https://vancouvercivictheatres.com/events",
     "full_address": "601 Smithe St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Opulent 1927 heritage concert hall home to the Vancouver Symphony Orchestra and the Wurlitzer pipe organ."
+    "description": "Opulent 1927 heritage concert hall home to the Vancouver Symphony Orchestra and the Wurlitzer pipe organ.",
+    "coordinates": [
+      49.2808,
+      -123.1205
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Guilt & Co",
@@ -1176,7 +2619,24 @@
     "calendar_url": "https://www.guiltandcompany.com/live-music",
     "full_address": "1 Alexander St, Vancouver, BC",
     "neighborhood": "Gastown",
-    "description": "Intimate subterranean music lounge offering live jazz, funk, soul, and folk performances seven nights a week with pay-what-you-can or modest $5–$15 suggested cover."
+    "description": "Intimate subterranean music lounge offering live jazz, funk, soul, and folk performances seven nights a week with pay-what-you-can or modest $5–$15 suggested cover.",
+    "coordinates": [
+      49.2834,
+      -123.1042
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Annex & Roundhouse Community Centre",
@@ -1184,7 +2644,24 @@
     "calendar_url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
     "full_address": "823 Seymour St / 181 Roundhouse Mews, Vancouver, BC",
     "neighborhood": "Downtown / Yaletown",
-    "description": "Civic arts and cultural spaces hosting community chamber music, choral concerts, jazz residencies, and experimental acoustic sets ranging from free to $30 CAD."
+    "description": "Civic arts and cultural spaces hosting community chamber music, choral concerts, jazz residencies, and experimental acoustic sets ranging from free to $30 CAD.",
+    "coordinates": [
+      49.2809,
+      -123.1209
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venueId": "test-qa-cellar-1790801024",
@@ -1240,7 +2717,20 @@
       "distilledAt": "2026-09-30T20:43:44.390271+00:00"
     },
     "policySummary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
-    "managedEvents": []
+    "managedEvents": [],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Pipe Shop & Shipbuilders' Square",
@@ -1248,7 +2738,24 @@
     "calendar_url": "https://theshipyardsdistrict.ca/events",
     "full_address": "115–125 Victory Ship Way, North Vancouver, BC",
     "neighborhood": "North Shore",
-    "description": "Historic restored industrial building and public plaza hosting festivals and markets on the waterfront."
+    "description": "Historic restored industrial building and public plaza hosting festivals and markets on the waterfront.",
+    "coordinates": [
+      49.3119,
+      -123.0805
+    ],
+    "access_model": "open_public_space",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The American",
@@ -1256,7 +2763,24 @@
     "calendar_url": "https://theamerican.ca/events-calendar",
     "full_address": "926 Main St, Vancouver, BC",
     "neighborhood": "Mount Pleasant",
-    "description": "Neighborhood sports bar with arcade games, craft beers, and weekly pub trivia."
+    "description": "Neighborhood sports bar with arcade games, craft beers, and weekly pub trivia.",
+    "coordinates": [
+      49.2776,
+      -123.0998
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "BREWHALL",
@@ -1264,7 +2788,24 @@
     "calendar_url": "https://brewhall.com/events/",
     "full_address": "97 E 2nd Ave, Vancouver, BC",
     "neighborhood": "Mount Pleasant",
-    "description": "Large craft brewery hall and community hub in Olympic Village hosting weekly trivia nights."
+    "description": "Large craft brewery hall and community hub in Olympic Village hosting weekly trivia nights.",
+    "coordinates": [
+      49.2694,
+      -123.1054
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
@@ -1272,7 +2813,24 @@
     "calendar_url": "https://vancouverchinesegarden.com/visit/",
     "full_address": "578 Carrall Street, Vancouver, BC",
     "neighborhood": "Chinatown",
-    "description": "Historic Chinese garden and cultural museum hosting traditional tea ceremonies, classical acoustic performances, and cultural workshops."
+    "description": "Historic Chinese garden and cultural museum hosting traditional tea ceremonies, classical acoustic performances, and cultural workshops.",
+    "coordinates": [
+      49.2799,
+      -123.1027
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "SFU Goldcorp Centre for the Arts",
@@ -1280,7 +2838,24 @@
     "calendar_url": "https://www.sfu.ca/sfu-community/events.html",
     "full_address": "149 W Hastings Street, Vancouver, BC",
     "neighborhood": "Gastown",
-    "description": "University cultural facility housing the Djavad Mowafaghian World Art Centre and Cinema, hosting independent theatre, community film screenings, and talks."
+    "description": "University cultural facility housing the Djavad Mowafaghian World Art Centre and Cinema, hosting independent theatre, community film screenings, and talks.",
+    "coordinates": [
+      49.2827,
+      -123.1082
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Gorg-O-Mish",
@@ -1288,7 +2863,24 @@
     "calendar_url": "https://ra.co/events",
     "full_address": "695 Smithe Street, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Long-running Vancouver underground after-hours electronic dance club hosting resident selectors and festival afterparties."
+    "description": "Long-running Vancouver underground after-hours electronic dance club hosting resident selectors and festival afterparties.",
+    "coordinates": [
+      49.2762,
+      -123.1265
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Vancouver Maritime Museum",
@@ -1296,7 +2888,24 @@
     "calendar_url": "https://vanmaritime.com",
     "full_address": "1905 Ogden Avenue, Vancouver, BC",
     "neighborhood": "Kitsilano",
-    "description": "Maritime heritage museum located at Vanier Park exploring Pacific coast and Arctic maritime history, featuring the historic St. Roch."
+    "description": "Maritime heritage museum located at Vanier Park exploring Pacific coast and Arctic maritime history, featuring the historic St. Roch.",
+    "coordinates": [
+      49.2778,
+      -123.1472
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "2nd Floor Gastown at Water St. Café",
@@ -1304,7 +2913,24 @@
     "calendar_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
     "full_address": "300 Water St, Vancouver, BC",
     "neighborhood": "Gastown",
-    "description": "Intimate second-floor listening lounge offering nightly jazz and blues showcases with modest live music cover surcharges."
+    "description": "Intimate second-floor listening lounge offering nightly jazz and blues showcases with modest live music cover surcharges.",
+    "coordinates": [
+      49.2842,
+      -123.1055
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "The Sylvia Hotel Lounge",
@@ -1312,7 +2938,24 @@
     "calendar_url": "https://sylviahotel.com/live-music/",
     "full_address": "1154 Gilford St, Vancouver, BC",
     "neighborhood": "West End",
-    "description": "Historic beachfront hotel lounge hosting weekly acoustic, jazz, and blues sessions with no cover charge."
+    "description": "Historic beachfront hotel lounge hosting weekly acoustic, jazz, and blues sessions with no cover charge.",
+    "coordinates": [
+      49.2889,
+      -123.1432
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "Tyrant Studios",
@@ -1320,7 +2963,24 @@
     "calendar_url": "https://tyrantstudios.com/events",
     "full_address": "1019 Seymour St, Vancouver, BC",
     "neighborhood": "Downtown",
-    "description": "Intimate lounge and performance venue above the Penthouse hosting weekly jazz residencies and stand-up comedy."
+    "description": "Intimate lounge and performance venue above the Penthouse hosting weekly jazz residencies and stand-up comedy.",
+    "coordinates": [
+      49.2789,
+      -123.1245
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Centennial Theatre",
@@ -1328,7 +2988,24 @@
     "calendar_url": "https://www.nvrc.ca/centennial-theatre/whats-on",
     "full_address": "2300 Lonsdale Ave, North Vancouver, BC",
     "neighborhood": "North Shore",
-    "description": "North Shore civic performing arts theatre hosting tribute concerts, community musicals, and cultural dance."
+    "description": "North Shore civic performing arts theatre hosting tribute concerts, community musicals, and cultural dance.",
+    "coordinates": [
+      49.3242,
+      -123.0684
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "GRETA Bar YVR",
@@ -1336,7 +3013,24 @@
     "calendar_url": "https://gretabar.com/locations/vancouver",
     "full_address": "50 W Cordova St, Vancouver, BC",
     "neighborhood": "Gastown",
-    "description": "Sprawling two-level arcade bar, eatery, and community nightlife hub in Gastown."
+    "description": "Sprawling two-level arcade bar, eatery, and community nightlife hub in Gastown.",
+    "coordinates": [
+      49.2831,
+      -123.1165
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Main",
@@ -1344,7 +3038,24 @@
     "calendar_url": "https://themainonmain.com/events",
     "full_address": "4210 Main Street, Vancouver, BC V5V 3P9",
     "neighborhood": "Mount Pleasant",
-    "description": "Main Street restaurant and intimate backroom venue hosting frequent live comedy showcases and performances."
+    "description": "Main Street restaurant and intimate backroom venue hosting frequent live comedy showcases and performances.",
+    "coordinates": [
+      49.2472,
+      -123.1012
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
   },
   {
     "venue_name": "Commodore Ballroom",
@@ -1352,7 +3063,24 @@
     "calendar_url": "https://www.commodoreballroom.com/events",
     "full_address": "868 Granville Street, Vancouver, BC V6Z 1K3",
     "neighborhood": "Downtown",
-    "description": "Legendary music hall operating since 1930 with a world-renowned sprung dance floor."
+    "description": "Legendary music hall operating since 1930 with a world-renowned sprung dance floor.",
+    "coordinates": [
+      49.2811,
+      -123.1208
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "19+ (Two pieces of government ID required)"
   },
   {
     "venue_name": "The Rec Room Granville",
@@ -1360,6 +3088,49 @@
     "calendar_url": "https://www.therecroom.com/vancouver-granville/events",
     "full_address": "855 Granville St, Vancouver, BC V6Z 1K7",
     "neighborhood": "Downtown",
-    "description": "Multi-floor entertainment complex combining video games, arcade classics, dining, and live events."
+    "description": "Multi-floor entertainment complex combining video games, arcade classics, dining, and live events.",
+    "coordinates": [
+      49.2801,
+      -123.1225
+    ],
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "restrictions": "All Ages Welcome (Family Friendly)"
+  },
+  {
+    "venue_name": "Firehall Arts Centre",
+    "website_url": "https://www.firehallartscentre.ca",
+    "calendar_url": "https://www.firehallartscentre.ca/on-stage/",
+    "full_address": "280 E Cordova St, Vancouver, BC V6A 1L3",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Historic 1906 brick firehall transformed into an intimate performing arts theatre presenting provocative contemporary theatre, dance, and cultural productions.",
+    "coordinates": [
+      49.2821,
+      -123.0979
+    ],
+    "transit_info": "#20 Victoria or #4 Powell bus, 10 min walk east from Waterfront SkyTrain station",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "12:00 - 16:30",
+      "tuesday": "12:00 - 16:30",
+      "wednesday": "12:00 - 16:30",
+      "thursday": "12:00 - 16:30",
+      "friday": "12:00 - 16:30",
+      "saturday": "Open 1 hour prior to showtime",
+      "sunday": "Open 1 hour prior to showtime"
+    },
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$14.00 – $22.00 CAD (Gastown / Chinatown corridor)",
+    "restrictions": "All Ages / Show-specific guidance"
   }
 ]

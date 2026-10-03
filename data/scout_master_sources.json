@@ -1,0 +1,1293 @@
+{
+  "total_sources": 162,
+  "sources": [
+    {
+      "id": "venue:stanley-park-seawall",
+      "name": "Stanley Park Seawall",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:lynn-canyon-park",
+      "name": "Lynn Canyon Park",
+      "type": "venue",
+      "url": "https://ecologycentre.ca",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:granville-island-public-market",
+      "name": "Granville Island Public Market",
+      "type": "venue",
+      "url": "https://granvilleisland.com/public-market",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:kitsilano-beach-outdoor-amphitheatre",
+      "name": "Kitsilano Beach Outdoor Amphitheatre",
+      "type": "venue",
+      "url": "https://kitsilanoshowboat.com/homepage/calendar/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vpl-central-library-level-9",
+      "name": "VPL Central Library (Level 9)",
+      "type": "venue",
+      "url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:dr-sun-yat-sen-public-courtyard",
+      "name": "Dr. Sun Yat-Sen Public Courtyard",
+      "type": "venue",
+      "url": "https://vancouverchinesegarden.com/visit/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:ubc-rose-garden-trail-6",
+      "name": "UBC Rose Garden & Trail 6",
+      "type": "venue",
+      "url": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:queen-elizabeth-park",
+      "name": "Queen Elizabeth Park",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:little-mountain-gallery",
+      "name": "Little Mountain Gallery",
+      "type": "venue",
+      "url": "https://littlemountaingallery.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:bloedel-conservatory",
+      "name": "Bloedel Conservatory",
+      "type": "venue",
+      "url": "https://www.showpass.com/o/bloedel-conservatory/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:war-memorial-gym-thunderbird-stadium",
+      "name": "War Memorial Gym & Thunderbird Stadium",
+      "type": "venue",
+      "url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:chill-x-studio",
+      "name": "Chill x Studio",
+      "type": "venue",
+      "url": "https://chillxstudio.com",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:viff-centre-seymour-atrium",
+      "name": "VIFF Centre (Seymour Atrium)",
+      "type": "venue",
+      "url": "https://viff.org/whats-on/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-cinematheque",
+      "name": "The Cinematheque",
+      "type": "venue",
+      "url": "https://thecinematheque.ca/films/calendar",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-portside-pub",
+      "name": "The Portside Pub",
+      "type": "venue",
+      "url": "https://theportsidepub.com/bookings/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-rio-theatre",
+      "name": "The Rio Theatre",
+      "type": "venue",
+      "url": "https://riotheatre.ca/calendar/",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-fox-cabaret",
+      "name": "The Fox Cabaret",
+      "type": "venue",
+      "url": "https://www.foxcabaret.com/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-biltmore-cabaret",
+      "name": "The Biltmore Cabaret",
+      "type": "venue",
+      "url": "https://biltmorecabaret.com/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:scotiabank-field-at-nat-bailey-stadium",
+      "name": "Scotiabank Field at Nat Bailey Stadium",
+      "type": "venue",
+      "url": "https://www.milb.com/vancouver/schedule",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:revue-stage-granville-island",
+      "name": "Revue Stage Granville Island",
+      "type": "venue",
+      "url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:tightrope-impro-theatre",
+      "name": "Tightrope Impro Theatre",
+      "type": "venue",
+      "url": "https://tightropetheatre.com/shows",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-improv-centre",
+      "name": "The Improv Centre",
+      "type": "venue",
+      "url": "https://theimprovcentre.ca/shows/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-rickshaw-theatre",
+      "name": "The Rickshaw Theatre",
+      "type": "venue",
+      "url": "https://rickshawtheatre.com/events/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:science-world-at-telus-world-of-science",
+      "name": "Science World at TELUS World of Science",
+      "type": "venue",
+      "url": "https://www.scienceworld.ca/after-dark/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-orpheum-theatre",
+      "name": "The Orpheum Theatre",
+      "type": "venue",
+      "url": "https://www.vancouversymphony.ca/concerts/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:pizzeria-ludica",
+      "name": "Pizzeria Ludica",
+      "type": "venue",
+      "url": "https://www.pizzerialudica.com/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:stanley-park-pitch-putt",
+      "name": "Stanley Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vancouver-art-gallery",
+      "name": "Vancouver Art Gallery",
+      "type": "venue",
+      "url": "https://www.vanartgallery.bc.ca/visit/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-shipyards-district",
+      "name": "The Shipyards District",
+      "type": "venue",
+      "url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:kitsilano-beach-park",
+      "name": "Kitsilano Beach Park",
+      "type": "venue",
+      "url": "https://kitsilanoshowboat.com/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:commercial-drive-main-street",
+      "name": "Commercial Drive & Main Street",
+      "type": "venue",
+      "url": "https://www.carfreevancouver.org",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:west-4th-avenue-burrard-to-macdonald",
+      "name": "West 4th Avenue (Burrard to Macdonald)",
+      "type": "venue",
+      "url": "https://khatsahlano.ca",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:john-hendry-park-trout-lake",
+      "name": "John Hendry Park (Trout Lake)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/trout-lake/",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:kitsilano-community-centre-plaza",
+      "name": "Kitsilano Community Centre Plaza",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/kitsilano/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:guilt-co",
+      "name": "Guilt & Co.",
+      "type": "venue",
+      "url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:ubc-instructional-resources-centre-irc",
+      "name": "UBC Instructional Resources Centre (IRC)",
+      "type": "venue",
+      "url": "https://vaninstitute.ca",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:colony-main-street",
+      "name": "Colony Main Street",
+      "type": "venue",
+      "url": "https://iq2000trivia.com",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:runvan-clubhouse-seawall",
+      "name": "RUNVAN Clubhouse & Seawall",
+      "type": "venue",
+      "url": "https://runvan.org",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:riley-park-plaza-nat-bailey-stadium",
+      "name": "Riley Park Plaza (Nat Bailey Stadium)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/riley-park/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:nelson-park-west-end",
+      "name": "Nelson Park (West End)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/west-end/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:dude-chilling-park-guelph-park",
+      "name": "Dude Chilling Park (Guelph Park)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/mount-pleasant/",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vancouver-art-gallery-plaza-north",
+      "name": "Vancouver Art Gallery Plaza (North)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/downtown/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:concord-community-park-false-creek",
+      "name": "Concord Community Park (False Creek)",
+      "type": "venue",
+      "url": "https://eatlocal.org/markets/false-creek/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:ubc-farm-south-campus",
+      "name": "UBC Farm (South Campus)",
+      "type": "venue",
+      "url": "https://ubcfarm.ubc.ca/markets/",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:2nd-floor-gastown",
+      "name": "2nd Floor Gastown",
+      "type": "venue",
+      "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:frankie-s-jazz-club",
+      "name": "Frankie's Jazz Club",
+      "type": "venue",
+      "url": "https://frankiesjazzclub.com",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-wise-hall-lounge",
+      "name": "The WISE Hall & Lounge",
+      "type": "venue",
+      "url": "https://wisehall.ca",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-anza-club",
+      "name": "The Anza Club",
+      "type": "venue",
+      "url": "https://anzaclub.org",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:red-gate-arts-society",
+      "name": "Red Gate Arts Society",
+      "type": "venue",
+      "url": "https://redgate.tv/tickets/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:lanalou-s",
+      "name": "LanaLou's",
+      "type": "venue",
+      "url": "https://do604.com/venues/lanalou-s",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-roxy-cabaret",
+      "name": "The Roxy Cabaret",
+      "type": "venue",
+      "url": "https://roxyvan.com/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:caf-au-clay-studios",
+      "name": "Café au Clay Studios",
+      "type": "venue",
+      "url": "https://cafeauclay.com/products/drop-in-pottery-painting",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:basic-inquiry-life-drawing-society",
+      "name": "Basic Inquiry Life Drawing Society",
+      "type": "venue",
+      "url": "https://lifedrawing.org/sessions",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:hand-eye-ceramics",
+      "name": "Hand Eye Ceramics",
+      "type": "venue",
+      "url": "https://handeyeceramics.com/open-studio",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:claymates-ceramics-studio",
+      "name": "Claymates Ceramics Studio",
+      "type": "venue",
+      "url": "https://claymatesceramicsstudio.com",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:slice-of-life-gallery-studios",
+      "name": "Slice of Life Gallery & Studios",
+      "type": "venue",
+      "url": "https://www.slicevancouver.ca/events",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:public-disco-society",
+      "name": "Public Disco Society",
+      "type": "venue",
+      "url": "https://publicdisco.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:hollywood-theatre",
+      "name": "Hollywood Theatre",
+      "type": "venue",
+      "url": "https://www.ticketmaster.ca/event/110064638F595700",
+      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:rickshaw-theatre",
+      "name": "Rickshaw Theatre",
+      "type": "venue",
+      "url": "https://rickshawtheatre.com/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:waterfront-theatre",
+      "name": "Waterfront Theatre",
+      "type": "venue",
+      "url": "https://www.carouseltheatre.ca/waterfront-theatre/",
+      "neighborhood": "Granville Island & False Creek",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-waldorf",
+      "name": "The Waldorf",
+      "type": "venue",
+      "url": "https://atthewaldorf.com/events",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-cobalt",
+      "name": "The Cobalt",
+      "type": "venue",
+      "url": "https://thecobalt.ca/events",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:carousel-theatre",
+      "name": "Carousel Theatre",
+      "type": "venue",
+      "url": "https://vancouverfringe.com/shows/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:touchstone-theatre",
+      "name": "Touchstone Theatre",
+      "type": "venue",
+      "url": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:queen-elizabeth-park-pitch-putt",
+      "name": "Queen Elizabeth Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+      "neighborhood": "Mount Pleasant & South Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:rupert-park-pitch-putt",
+      "name": "Rupert Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:central-park-pitch-putt",
+      "name": "Central Park Pitch & Putt",
+      "type": "venue",
+      "url": "https://www.burnaby.ca/recreation-and-arts/programs-and-activities/golf/pitch-and-putt",
+      "neighborhood": "North Shore, Burnaby & Metro",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:queen-elizabeth-theatre",
+      "name": "Queen Elizabeth Theatre",
+      "type": "venue",
+      "url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "neighborhood": "Downtown / West End",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-pearl",
+      "name": "The Pearl",
+      "type": "venue",
+      "url": "https://thepearlvancouver.com/calendar/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-wise-hall",
+      "name": "The WISE Hall",
+      "type": "venue",
+      "url": "https://www.ticketweb.ca/",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:bill-reid-gallery-of-northwest-coast-art",
+      "name": "Bill Reid Gallery of Northwest Coast Art",
+      "type": "venue",
+      "url": "https://www.billreidgallery.ca/pages/exhibitions",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:burnaby-art-gallery",
+      "name": "Burnaby Art Gallery",
+      "type": "venue",
+      "url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+      "neighborhood": "Burnaby",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:ubc-botanical-garden",
+      "name": "UBC Botanical Garden",
+      "type": "venue",
+      "url": "https://botanicalgarden.ubc.ca/news-events/events/",
+      "neighborhood": "Point Grey",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-cambrian-hall",
+      "name": "The Cambrian Hall",
+      "type": "venue",
+      "url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-show-cellar-inside-the-park-pub",
+      "name": "The Show Cellar inside The Park Pub",
+      "type": "venue",
+      "url": "https://www.thecomedydepartment.com/vancouver-shows/",
+      "neighborhood": "West End",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-china-cloud-studios",
+      "name": "The China Cloud Studios",
+      "type": "venue",
+      "url": "https://do604.com/events/comedy",
+      "neighborhood": "Chinatown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-shipyards",
+      "name": "The Shipyards",
+      "type": "venue",
+      "url": "https://theshipyards.ca",
+      "neighborhood": "Lower Lonsdale",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-pipe-shop-venue",
+      "name": "The Pipe Shop Venue",
+      "type": "venue",
+      "url": "https://theshipyards.ca/pipe-shop",
+      "neighborhood": "Lower Lonsdale",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:annex",
+      "name": "Annex",
+      "type": "venue",
+      "url": "https://vancouvercivictheatres.com/events/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:croatian-cultural-centre",
+      "name": "Croatian Cultural Centre",
+      "type": "venue",
+      "url": "https://croatiancentre.com/events/",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:fox-cabaret",
+      "name": "Fox Cabaret",
+      "type": "venue",
+      "url": "https://www.foxcabaret.com/calendar",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-show-cellar",
+      "name": "The Show Cellar",
+      "type": "venue",
+      "url": "https://theshowcellar.com",
+      "neighborhood": "West End",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-polygon-gallery",
+      "name": "The Polygon Gallery",
+      "type": "venue",
+      "url": "https://thepolygon.ca/exhibitions/",
+      "neighborhood": "North Shore",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:arts-club-theatre-company-granville-island-stage",
+      "name": "Arts Club Theatre Company (Granville Island Stage)",
+      "type": "venue",
+      "url": "https://artsclub.com/shows",
+      "neighborhood": "Granville Island",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:pendulum-gallery",
+      "name": "Pendulum Gallery",
+      "type": "venue",
+      "url": "https://www.pendulumgallery.bc.ca/exhibitions",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:trout-lake-community-centre",
+      "name": "Trout Lake Community Centre",
+      "type": "venue",
+      "url": "https://troutlakecc.com/events",
+      "neighborhood": "Commercial Drive",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-orpheum",
+      "name": "The Orpheum",
+      "type": "venue",
+      "url": "https://vancouvercivictheatres.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vandusen-botanical-garden",
+      "name": "VanDusen Botanical Garden",
+      "type": "venue",
+      "url": "https://vandusengarden.org/events",
+      "neighborhood": "South Cambie",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:contemporary-art-gallery-cag",
+      "name": "Contemporary Art Gallery (CAG)",
+      "type": "venue",
+      "url": "https://www.contemporaryartgallery.ca/exhibitions",
+      "neighborhood": "Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:guilt-company",
+      "name": "Guilt & Company",
+      "type": "venue",
+      "url": "https://www.guiltandcompany.com/live-music",
+      "neighborhood": "Gastown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vancouver-public-library-central-branch",
+      "name": "Vancouver Public Library Central Branch",
+      "type": "venue",
+      "url": "https://vpl.bibliocommons.com/v2/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-wise-hall",
+      "name": "The WISE Hall",
+      "type": "venue",
+      "url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+      "neighborhood": "Commercial Drive & East Vancouver",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:st-andrew-s-wesley-united-church",
+      "name": "St. Andrew's-Wesley United Church",
+      "type": "venue",
+      "url": "https://standrewswesley.com/events/",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-waldorf-hotel",
+      "name": "The Waldorf Hotel",
+      "type": "venue",
+      "url": "https://thewaldorfhotel.com/events",
+      "neighborhood": "Hastings-Sunrise",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-annex-roundhouse-community-centre",
+      "name": "The Annex & Roundhouse Community Centre",
+      "type": "venue",
+      "url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
+      "neighborhood": "Downtown / Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:test-qa-cellar-1790801024",
+      "name": "Test QA Cellar 1790801024",
+      "type": "venue",
+      "url": "https://testcellar.example.com/events",
+      "neighborhood": "Gastown / Chinatown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-pipe-shop-shipbuilders-square",
+      "name": "The Pipe Shop & Shipbuilders' Square",
+      "type": "venue",
+      "url": "https://theshipyardsdistrict.ca/events",
+      "neighborhood": "North Shore",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-american",
+      "name": "The American",
+      "type": "venue",
+      "url": "https://theamerican.ca/events-calendar",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:brewhall",
+      "name": "BREWHALL",
+      "type": "venue",
+      "url": "https://brewhall.com/events/",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:sfu-goldcorp-centre-for-the-arts",
+      "name": "SFU Goldcorp Centre for the Arts",
+      "type": "venue",
+      "url": "https://www.sfu.ca/sfu-community/events.html",
+      "neighborhood": "Gastown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:gorg-o-mish",
+      "name": "Gorg-O-Mish",
+      "type": "venue",
+      "url": "https://ra.co/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:vancouver-maritime-museum",
+      "name": "Vancouver Maritime Museum",
+      "type": "venue",
+      "url": "https://vanmaritime.com",
+      "neighborhood": "Kitsilano",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-sylvia-hotel-lounge",
+      "name": "The Sylvia Hotel Lounge",
+      "type": "venue",
+      "url": "https://sylviahotel.com/live-music/",
+      "neighborhood": "West End",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:tyrant-studios",
+      "name": "Tyrant Studios",
+      "type": "venue",
+      "url": "https://tyrantstudios.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:centennial-theatre",
+      "name": "Centennial Theatre",
+      "type": "venue",
+      "url": "https://www.nvrc.ca/centennial-theatre/whats-on",
+      "neighborhood": "North Shore",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:greta-bar-yvr",
+      "name": "GRETA Bar YVR",
+      "type": "venue",
+      "url": "https://gretabar.com/locations/vancouver",
+      "neighborhood": "Gastown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-main",
+      "name": "The Main",
+      "type": "venue",
+      "url": "https://themainonmain.com/events",
+      "neighborhood": "Mount Pleasant",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:commodore-ballroom",
+      "name": "Commodore Ballroom",
+      "type": "venue",
+      "url": "https://www.commodoreballroom.com/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:the-rec-room-granville",
+      "name": "The Rec Room Granville",
+      "type": "venue",
+      "url": "https://www.therecroom.com/vancouver-granville/events",
+      "neighborhood": "Downtown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "venue:firehall-arts-centre",
+      "name": "Firehall Arts Centre",
+      "type": "venue",
+      "url": "https://www.firehallartscentre.ca/on-stage/",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-is-awesome",
+      "name": "Vancouver Is Awesome",
+      "type": "aggregator",
+      "url": "https://www.vancouverisawesome.com/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:do604",
+      "name": "Do604",
+      "type": "aggregator",
+      "url": "https://do604.com/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:the-georgia-straight",
+      "name": "The Georgia Straight",
+      "type": "aggregator",
+      "url": "https://www.straight.com/listings",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:daily-hive-vancouver",
+      "name": "Daily Hive Vancouver",
+      "type": "aggregator",
+      "url": "https://dailyhive.com/vancouver/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:miss604-rebecca-bollwitt",
+      "name": "Miss604 (Rebecca Bollwitt)",
+      "type": "aggregator",
+      "url": "https://miss604.com/category/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:destination-vancouver",
+      "name": "Destination Vancouver",
+      "type": "aggregator",
+      "url": "https://www.destinationvancouver.com/events/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:live-music-vancouver",
+      "name": "Live Music Vancouver",
+      "type": "aggregator",
+      "url": "https://www.livemusicvancouver.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:songkick-vancouver",
+      "name": "Songkick Vancouver",
+      "type": "aggregator",
+      "url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:bandsintown-vancouver",
+      "name": "Bandsintown Vancouver",
+      "type": "aggregator",
+      "url": "https://www.bandsintown.com/c/vancouver-canada",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:showpass-discover-vancouver",
+      "name": "Showpass Discover (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.showpass.com/discover/?location=Vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:eventbrite-vancouver",
+      "name": "Eventbrite Vancouver",
+      "type": "aggregator",
+      "url": "https://www.eventbrite.ca/d/canada--vancouver/events/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:resident-advisor-vancouver",
+      "name": "Resident Advisor (Vancouver)",
+      "type": "aggregator",
+      "url": "https://ra.co/events/ca/vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:dice-vancouver",
+      "name": "DICE (Vancouver)",
+      "type": "aggregator",
+      "url": "https://dice.fm/browse/vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:shotgun-vancouver",
+      "name": "Shotgun (Vancouver)",
+      "type": "aggregator",
+      "url": "https://shotgun.live/en/cities/vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:spektrix-performing-arts-the-cultch-push",
+      "name": "Spektrix Performing Arts (The Cultch / PuSh)",
+      "type": "aggregator",
+      "url": "https://thecultch.com/whats-on/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:tessitura-vso-arts-club-bard-on-the-beach",
+      "name": "Tessitura (VSO / Arts Club / Bard on the Beach)",
+      "type": "aggregator",
+      "url": "https://www.vancouversymphony.ca/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:ticket-tailor-vancouver",
+      "name": "Ticket Tailor (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.tickettailor.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:zeffy-vancouver-non-profits",
+      "name": "Zeffy (Vancouver Non-Profits)",
+      "type": "aggregator",
+      "url": "https://www.zeffy.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:humanitix-vancouver",
+      "name": "Humanitix (Vancouver)",
+      "type": "aggregator",
+      "url": "https://humanitix.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:universe-vancouver",
+      "name": "Universe (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.universe.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vtix-online-vancouver",
+      "name": "VTix Online (Vancouver)",
+      "type": "aggregator",
+      "url": "https://www.vtixonline.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:broadway-across-canada-vancouver",
+      "name": "Broadway Across Canada (Vancouver)",
+      "type": "aggregator",
+      "url": "https://vancouver.broadway.com/shows/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:city-of-vancouver-parks-recreation-culture",
+      "name": "City of Vancouver Parks, Recreation & Culture",
+      "type": "aggregator",
+      "url": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-public-library-vpl",
+      "name": "Vancouver Public Library (VPL)",
+      "type": "aggregator",
+      "url": "https://www.vpl.ca/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:destination-vancouver-free-budget-outings",
+      "name": "Destination Vancouver: Free & Budget Outings",
+      "type": "aggregator",
+      "url": "https://www.destinationvancouver.com/activities/free-and-nearly-free/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:granville-island-cultural-district",
+      "name": "Granville Island Cultural District",
+      "type": "aggregator",
+      "url": "https://granvilleisland.com/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:contemporary-art-gallery-cag",
+      "name": "Contemporary Art Gallery (CAG)",
+      "type": "aggregator",
+      "url": "https://www.contemporaryartgallery.ca/exhibitions/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancity-digest",
+      "name": "Vancity Digest",
+      "type": "aggregator",
+      "url": "https://vancitydigest.ca",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:stir---vancouver-arts-culture-hub",
+      "name": "Stir - Vancouver Arts & Culture Hub",
+      "type": "aggregator",
+      "url": "https://www.createastir.ca",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-s-best-places-calendar",
+      "name": "Vancouver's Best Places Calendar",
+      "type": "aggregator",
+      "url": "https://vancouversbestplaces.com/events-calendar",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:bc-culture-days-directory",
+      "name": "BC Culture Days Directory",
+      "type": "aggregator",
+      "url": "https://culturedays.ca/en/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:604-now-metro-vancouver-event-calendar",
+      "name": "604 Now Metro Vancouver Event Calendar",
+      "type": "aggregator",
+      "url": "https://604now.com/events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:curiocity-vancouver-things-to-do",
+      "name": "Curiocity Vancouver Things To Do",
+      "type": "aggregator",
+      "url": "https://curiocity.com/vancouver",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:to-do-canada-vancouver-free-events",
+      "name": "To Do Canada (Vancouver Free Events)",
+      "type": "aggregator",
+      "url": "https://www.todocanada.ca/city/vancouver/free-events",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:showhub-vancouver",
+      "name": "ShowHub Vancouver",
+      "type": "aggregator",
+      "url": "https://showhub.ca/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:rhythm-changes-gig-list",
+      "name": "Rhythm Changes (Gig List)",
+      "type": "aggregator",
+      "url": "https://www.rhythmchanges.ca/gig-list/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:sfu-public-square-civic-space-guide",
+      "name": "SFU Public Square Civic Space Guide",
+      "type": "aggregator",
+      "url": "https://www.sfu.ca/publicsquare",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-farmers-markets-eatlocal",
+      "name": "Vancouver Farmers Markets (EatLocal)",
+      "type": "aggregator",
+      "url": "https://eatlocal.org/markets/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:shop-west-4th-kitsilano-4th-avenue-bia",
+      "name": "Shop West 4th (Kitsilano 4th Avenue BIA)",
+      "type": "aggregator",
+      "url": "https://shopwest4th.com",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:iq-2000-trivia",
+      "name": "IQ 2000 Trivia",
+      "type": "aggregator",
+      "url": "https://www.instagram.com/iq2000trivia",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:runvan-community-hub",
+      "name": "RUNVAN Community Hub",
+      "type": "aggregator",
+      "url": "https://runvan.org/races/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:heart-of-the-city-festival-guide",
+      "name": "Heart of the City Festival Guide",
+      "type": "aggregator",
+      "url": "https://www.heartofthecityfestival.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:scene-in-the-dark",
+      "name": "Scene in the Dark",
+      "type": "aggregator",
+      "url": "https://sceneinthedark.com/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "discovery:vancouver-recreation-activity-portal",
+      "name": "Vancouver Recreation Activity Portal",
+      "type": "aggregator",
+      "url": "https://vanrec.ca/",
+      "category": "general",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:vancouver-fringe-festival",
+      "name": "Vancouver Fringe Festival",
+      "type": "festival",
+      "url": "https://vancouverfringe.com",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:vancouver-international-film-festival",
+      "name": "Vancouver International Film Festival (VIFF)",
+      "type": "festival",
+      "url": "https://viff.org",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:khatsahlano-street-party",
+      "name": "Khatsahlano Street Party",
+      "type": "festival",
+      "url": "https://khatsahlano.com",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:vancouver-folk-music-festival",
+      "name": "Vancouver Folk Music Festival",
+      "type": "festival",
+      "url": "https://thefestival.bc.ca",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:bc-culture-days",
+      "name": "BC Culture Days",
+      "type": "festival",
+      "url": "https://culturedays.ca/en/bc",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:public-disco-society",
+      "name": "Public Disco Festival",
+      "type": "festival",
+      "url": "https://publicdisco.ca",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:vancouver-writers-fest",
+      "name": "Vancouver Writers Fest",
+      "type": "festival",
+      "url": "https://writersfest.bc.ca/",
+      "last_scouted_at": null
+    },
+    {
+      "id": "festival:small-file-media-festival",
+      "name": "Small File Media Festival (7th Annual)",
+      "type": "festival",
+      "url": "https://smallfile.ca",
+      "last_scouted_at": null
+    }
+  ]
+}

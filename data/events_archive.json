@@ -2781,43 +2781,6 @@
     "archived_at": "2026-09-28"
   },
   {
-    "event_id": "stanley-pitch-putt",
-    "event_name": "Stanley Park Pitch & Putt: 18-Hole Round",
-    "category": "activities",
-    "venue_name": "Stanley Park Pitch & Putt",
-    "full_address": "2099 Beach Ave, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay.",
-    "pricing_all_in_cad": {
-      "regular": 17.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-08",
-      "start_time": "08:00",
-      "end_time": "",
-      "cost": 17.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "ticket_provider": "City of Vancouver Park",
-    "tags": [
-      "pitch-and-putt",
-      "golf",
-      "stanley-park",
-      "english-bay"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "",
-    "archived_at": "2026-09-28"
-  },
-  {
     "event_id": "roxy-country-sunday",
     "event_name": "The Roxy Presents: Live Band Line Dancing",
     "category": "music",
@@ -3154,44 +3117,6 @@
       "club-night",
       "dj-set",
       "ra-vancouver"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "",
-    "archived_at": "2026-09-28"
-  },
-  {
-    "event_id": "central-park-pitch-putt",
-    "event_name": "Central Park Pitch & Putt: 18-Hole Round",
-    "category": "outdoors",
-    "venue_name": "Central Park Pitch & Putt",
-    "full_address": "Kingsway & Boundary Rd, Central Park, Vancouver",
-    "neighborhood": "North Shore, Burnaby & Metro",
-    "description": "An 18-hole par-3 pitch and putt course carved into the towering fir and cedar forests of Central Park directly beside Patterson SkyTrain station.",
-    "pricing_all_in_cad": {
-      "regular": 17.5,
-      "senior": null,
-      "student": null,
-      "member": null
-    },
-    "show_1": {
-      "date": "2026-09-08",
-      "start_time": "08:00",
-      "end_time": "",
-      "cost": 17.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.golfburnaby.ca/golf/central-park",
-    "details_url": "https://www.golfburnaby.ca/golf/central-park",
-    "ticket_url": "https://www.golfburnaby.ca/golf/central-park",
-    "ticket_provider": "Burnaby Parks & Recreation",
-    "tags": [
-      "pitch-and-putt",
-      "golf",
-      "central-park",
-      "patterson-skytrain",
-      "outdoors"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -3728,5 +3653,88 @@
     "archive_status": "disqualified",
     "archive_reason": "Commercial food & beverage restaurant patio without dedicated ticketed cultural programming or distinct arts event staging",
     "archived_at": "2026-10-01T08:36:00-07:00"
+  },
+  {
+    "event_id": "van50-scout-rickshaw-jonny-bones-20261001",
+    "event_name": "Jonny Bones Memorial Movie Marathon",
+    "category": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Pay What You Can memorial movie marathon celebrating the life and artistic spirit of Jon Aaron (Jonny Bones). Screenings at 7 PM & 9 PM.",
+    "pricing_all_in_cad": {
+      "regular": 0
+    },
+    "show_1": {
+      "date": "2026-10-01",
+      "start_time": "19:00",
+      "end_time": "23:00",
+      "cost": 0
+    },
+    "discovery_url": "https://rickshawtheatre.com",
+    "details_url": "https://rickshawtheatre.com/show_listings/jonny-bones-memorial-movie-marathon-memorial/",
+    "ticket_url": "https://jonny-bones-memorial-movie-night.eventbrite.ca",
+    "ticket_provider": "Eventbrite / Rickshaw Box Office",
+    "tags": [
+      "cinema",
+      "movie-marathon",
+      "rickshaw-theatre",
+      "memorial",
+      "pay-what-you-can",
+      "19-plus",
+      "under-50-cad",
+      "antigravity-13d-validated"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Antigravity-13D-Validated",
+    "curator_notes": "AI QC Verified (2026-10-01): Live Eventbrite tickets verified in stock for Thursday Oct 1 ($0.00 RSVP / Donation).",
+    "price": 0,
+    "access_model": "fenced_facility",
+    "pricing_model": "free_access",
+    "price_adult": 0,
+    "price_student": null,
+    "price_member": null,
+    "tier_custom_name_1": null,
+    "tier_custom_price_1": null,
+    "tier_custom_name_2": null,
+    "tier_custom_price_2": null,
+    "tier_custom_name_3": null,
+    "tier_custom_price_3": null,
+    "weekly_hours": null,
+    "coffee_benchmark": "$5.00 – $7.50 CAD",
+    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Hastings/Chinatown eateries)",
+    "is_sold_out": false,
+    "title": "Jonny Bones Memorial Movie Marathon",
+    "date": "2026-10-01",
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "23:00",
+    "dateSchedule": "2026-10-01 at 19:00",
+    "frequency": "One-Time",
+    "typical_item_spend": "$18.00 – $28.00 CAD (2 beers/drinks)",
+    "lineup": "Featured artists and performers for Jonny Bones Memorial Movie Marathon",
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-01",
+        "start_time": "19:00",
+        "end_time": "23:00",
+        "cost": 0
+      }
+    ],
+    "tier_custom_name_4": null,
+    "tier_custom_price_4": null,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "food_service_type": "bar_only",
+    "drink_benchmark": "$7.50 – $8.00 PBR/domestic • $9.00 – $10.00 craft tallboys & draught • $9.00 – $11.00 highballs",
+    "concession_benchmark": "$3.00 chips & bar snacks",
+    "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
+    "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
+    "quarantine_reason": "One-time memorial screening passed on 2026-10-01",
+    "archived_at": "2026-10-02T13:53:18.417683",
+    "archive_reason": "One-time memorial screening concluded on 2026-10-01."
   }
 ]

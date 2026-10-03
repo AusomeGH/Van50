@@ -1,0 +1,54 @@
+[
+  {
+    "report_id": "cpr_1790960685_8b1bc5",
+    "venue_name": "The Rickshaw Theatre",
+    "cheapest_pint_menu": 8.5,
+    "cheapest_pint_tax_in": 9.77,
+    "cheapest_cocktail_menu": 14.0,
+    "cheapest_cocktail_tax_in": 16.1,
+    "is_all_in": false,
+    "is_outlier": false,
+    "status": "valid_recorded",
+    "note": "Draft beer chalkboard near stage",
+    "submitted_at": "2026-10-02T17:04:45.144189+00:00"
+  },
+  {
+    "report_id": "cpr_1790960687_800eaa",
+    "venue_name": "The Rickshaw Theatre",
+    "cheapest_pint_menu": 9.0,
+    "cheapest_pint_tax_in": 9.0,
+    "cheapest_cocktail_menu": 15.0,
+    "cheapest_cocktail_tax_in": 15.0,
+    "is_all_in": true,
+    "is_outlier": false,
+    "status": "valid_recorded",
+    "note": "Cash counter flat rate",
+    "submitted_at": "2026-10-02T17:04:47.170902+00:00"
+  },
+  {
+    "report_id": "cpr_1790960689_d5fe56",
+    "venue_name": "The Rickshaw Theatre",
+    "cheapest_pint_menu": 95.0,
+    "cheapest_pint_tax_in": 109.25,
+    "cheapest_cocktail_menu": 150.0,
+    "cheapest_cocktail_tax_in": 172.5,
+    "is_all_in": false,
+    "is_outlier": false,
+    "status": "valid_recorded",
+    "note": "Joke entry",
+    "submitted_at": "2026-10-02T17:04:49.202664+00:00"
+  },
+  {
+    "report_id": "cpr_1790960708_14b7a3",
+    "venue_name": "The Rickshaw Theatre",
+    "cheapest_pint_menu": 8.5,
+    "cheapest_pint_tax_in": 9.77,
+    "cheapest_cocktail_menu": 14.5,
+    "cheapest_cocktail_tax_in": 16.67,
+    "is_all_in": false,
+    "is_outlier": false,
+    "status": "valid_recorded",
+    "note": "Lager on tap",
+    "submitted_at": "2026-10-02T17:05:08.597974+00:00"
+  }
+]

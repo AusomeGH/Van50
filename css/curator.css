@@ -421,6 +421,21 @@ body {
   pointer-events: none;
 }
 
+.btn-clear-curator-search {
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-clear-curator-search:hover {
+  color: #fff !important;
+  transform: translateY(-50%) scale(1.15);
+}
+
+#btn-clear-settings:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  color: #fca5a5 !important;
+}
+
 .curator-select {
   background: var(--curator-card);
   border: 1px solid var(--curator-border);
