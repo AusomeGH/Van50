@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-03T10:16:56-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-03T13:54:47-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -28,12 +28,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.pendulumgallery.bc.ca",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "art-exhibit",
       "art-gallery",
-      "contemporary-art",
+      "budget-friendly",
       "civic-space",
+      "contemporary-art",
+      "creative",
+      "culture",
       "downtown",
-      "free-public-access"
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -82,6 +92,24 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "no_onsite_food",
     "food_service_note": "Civic atrium gallery; no on-site food (Pacific Centre concourse cafes nearby)",
     "sample_cost_label": "Free public access ($0)",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "art-gallery",
+      "budget-friendly",
+      "civic-space",
+      "contemporary-art",
+      "creative",
+      "culture",
+      "downtown",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "van50-pendulum-gallery",
     "venue": "Pendulum Gallery (HSBC Building Atrium)",
     "address": "885 W Georgia St, Vancouver, BC",
@@ -90,6 +118,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "General Public Admission",
@@ -148,15 +179,7 @@ const VANCOUVER_EVENTS = [
       "sun": "Closed"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "art-gallery",
-      "contemporary-art",
-      "civic-space",
-      "downtown",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "stanley-park-seawall-rose-garden",
@@ -166,7 +189,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Stanley Park",
     "full_address": "Stanley Park Dr, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, featuring historic monuments, seaside viewpoints, and botanical heritage. Outer seawall and perimeter pathways remain accessible 24/7.",
+    "description": "The world's longest uninterrupted waterfront path winds around Stanley Park's majestic coastal forest, featuring historic monuments, seaside viewpoints, and botanical heritage.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -183,13 +206,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "budget-friendly",
       "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
       "public-access",
+      "scenic-views",
       "seawall",
+      "solo-friendly",
       "stanley-park",
       "walking-trail",
-      "free-public-access"
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -217,13 +249,13 @@ const VANCOUVER_EVENTS = [
     "access_model": "open_public_space",
     "pricing_model": "free_access",
     "weekly_hours": {
-      "mon": "6:00 AM – 10:00 PM",
-      "tue": "6:00 AM – 10:00 PM",
-      "wed": "6:00 AM – 10:00 PM",
-      "thu": "6:00 AM – 10:00 PM",
-      "fri": "6:00 AM – 10:00 PM",
-      "sat": "6:00 AM – 10:00 PM",
-      "sun": "6:00 AM – 10:00 PM"
+      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
     },
     "coffee_benchmark": "$4.50 – $6.00 concession coffee",
     "meal_benchmark": "$14.00 – $22.00 CAD (Park cafes)",
@@ -255,6 +287,24 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.50 – $6.00 concession snacks & coffee",
     "food_service_note": "Seawall concession kiosks & Pavilion Cafe on-site",
     "sample_cost_label": "Free park access ($0)",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
+      "public-access",
+      "scenic-views",
+      "seawall",
+      "solo-friendly",
+      "stanley-park",
+      "walking-trail",
+      "zero-dollars"
+    ],
     "id": "stanley-park-seawall-rose-garden",
     "venue": "Stanley Park",
     "address": "Stanley Park Dr, Vancouver, BC",
@@ -263,6 +313,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Public Access Path",
@@ -312,25 +366,16 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 6:00 AM – 10:00 PM",
     "weeklyHours": {
-      "mon": "6:00 AM – 10:00 PM",
-      "tue": "6:00 AM – 10:00 PM",
-      "wed": "6:00 AM – 10:00 PM",
-      "thu": "6:00 AM – 10:00 PM",
-      "fri": "6:00 AM – 10:00 PM",
-      "sat": "6:00 AM – 10:00 PM",
-      "sun": "6:00 AM – 10:00 PM"
+      "mon": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "tue": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "wed": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "thu": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "fri": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sat": "6:00 AM – 10:00 PM (Perimeter 24/7)",
+      "sun": "6:00 AM – 10:00 PM (Perimeter 24/7)"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "seawall",
-      "stanley-park",
-      "walking-trail",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-access",
@@ -340,7 +385,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Vancouver Art Gallery",
     "full_address": "750 Hornby St, Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Western Canada's premier visual arts institution, housing over 12,000 works including extensive Emily Carr collections, Indigenous masterworks, and international contemporary exhibitions. Features free admission on the first Friday of each month from 4:00 PM to 8:00 PM.",
+    "description": "Western Canada's premier visual arts institution, housing over 12,000 works including extensive Emily Carr collections, Indigenous masterworks, and international contemporary exhibitions.",
     "pricing_all_in_cad": {
       "regular": 25,
       "senior": 0,
@@ -357,12 +402,19 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vanartgallery.bc.ca/visit",
     "ticket_provider": "Direct",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "art-exhibit",
       "art-museum",
+      "creative",
       "culture",
+      "downtown",
       "first-fridays",
-      "youth-free",
-      "free-public-access"
+      "free-admission",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "youth-free"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -385,7 +437,7 @@ const VANCOUVER_EVENTS = [
       "tue": "Closed",
       "wed": "10:00 AM – 5:00 PM",
       "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 8:00 PM",
+      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
       "sat": "10:00 AM – 5:00 PM",
       "sun": "10:00 AM – 5:00 PM"
     },
@@ -411,6 +463,21 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$9.00 – $13.00 wine & cocktails at 1931 Bistro",
     "food_service_note": "1931 Gallery Bistro on-site (coffee, wine & seasonal dishes)",
     "sample_cost_label": "Free admission ($0) on First Friday",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "art-museum",
+      "creative",
+      "culture",
+      "downtown",
+      "first-fridays",
+      "free-admission",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "youth-free"
+    ],
     "id": "van50-vancouver-art-gallery-free-access",
     "venue": "Vancouver Art Gallery",
     "address": "750 Hornby St, Vancouver, BC",
@@ -419,6 +486,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
     "tiers": [
       {
         "name": "Youth (18 & Under)",
@@ -482,20 +552,12 @@ const VANCOUVER_EVENTS = [
       "tue": "Closed",
       "wed": "10:00 AM – 5:00 PM",
       "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 8:00 PM",
+      "fri": "10:00 AM – 8:00 PM (Free 4:00 PM – 8:00 PM 1st Friday)",
       "sat": "10:00 AM – 5:00 PM",
       "sun": "10:00 AM – 5:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "art-museum",
-      "culture",
-      "first-fridays",
-      "youth-free",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-sun-yat-sen-public-park",
@@ -522,12 +584,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouverchinesegarden.com/",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "garden",
+      "acoustic",
+      "all-ages",
+      "budget-friendly",
       "chinatown",
-      "heritage",
+      "classical-music",
       "culture",
-      "free-public-access"
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "garden",
+      "heritage",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "nature-walk",
+      "outdoors",
+      "scenic-views",
+      "solo-friendly",
+      "symphony",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -576,6 +653,29 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Public park courtyard; no food sales (Chinatown bakeries & tea nearby)",
     "sample_cost_label": "Free courtyard access ($0)",
     "websiteUrl": "https://vancouverchinesegarden.com/",
+    "subTags": [
+      "acoustic",
+      "all-ages",
+      "budget-friendly",
+      "chinatown",
+      "classical-music",
+      "culture",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "garden",
+      "heritage",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "nature-walk",
+      "outdoors",
+      "scenic-views",
+      "solo-friendly",
+      "symphony",
+      "zero-dollars"
+    ],
     "id": "van50-sun-yat-sen-public-park",
     "venue": "Dr. Sun Yat-Sen Public Park",
     "address": "578 Carrall St, Vancouver, BC",
@@ -584,6 +684,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access",
+      "music"
+    ],
     "tiers": [
       {
         "name": "Public Park Courtyard",
@@ -651,15 +755,7 @@ const VANCOUVER_EVENTS = [
       "sun": "10:00 AM – 4:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "garden",
-      "chinatown",
-      "heritage",
-      "culture",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-the-shipyards-lonsdale-quay",
@@ -669,7 +765,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "The Shipyards District",
     "full_address": "125 Victory Ship Way, North Vancouver, BC",
     "neighborhood": "North Shore, Burnaby & Metro",
-    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations. Pedestrian waterfront boardwalks remain accessible 24/7.",
+    "description": "Historic maritime pier and pedestrian precinct offering wide boardwalk views of Burrard Inlet and the Vancouver skyline, public market stalls, and rotating seasonal open-air activations.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -686,13 +782,18 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://theshipyardsdistrict.ca",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "waterfront",
-      "views",
+      "all-ages",
       "boardwalk",
-      "public-market",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "free-public-access",
       "north-shore",
-      "free-public-access"
+      "public-market",
+      "solo-friendly",
+      "views",
+      "waterfront",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -710,13 +811,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "9:00 AM – 7:00 PM",
-      "tue": "9:00 AM – 7:00 PM",
-      "wed": "9:00 AM – 7:00 PM",
-      "thu": "9:00 AM – 7:00 PM",
-      "fri": "9:00 AM – 7:00 PM",
-      "sat": "9:00 AM – 7:00 PM",
-      "sun": "9:00 AM – 7:00 PM"
+      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
     },
     "coffee_benchmark": "$4.50 – $6.00 Shipyards cafes",
     "meal_benchmark": "$14.00 – $22.00 CAD (Shipyards waterfront dining)",
@@ -740,6 +841,20 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "food_vendors",
     "food_service_note": "Public waterfront plaza surrounded by local eateries & breweries",
     "sample_cost_label": "Free public plaza ($0)",
+    "subTags": [
+      "all-ages",
+      "boardwalk",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "north-shore",
+      "public-market",
+      "solo-friendly",
+      "views",
+      "waterfront",
+      "zero-dollars"
+    ],
     "id": "van50-the-shipyards-lonsdale-quay",
     "venue": "The Shipyards District",
     "address": "125 Victory Ship Way, North Vancouver, BC",
@@ -748,6 +863,11 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -782,25 +902,16 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily 9:00 AM – 7:00 PM (Shipyards Boardwalk accessible 24/7)",
     "weeklyHours": {
-      "mon": "9:00 AM – 7:00 PM",
-      "tue": "9:00 AM – 7:00 PM",
-      "wed": "9:00 AM – 7:00 PM",
-      "thu": "9:00 AM – 7:00 PM",
-      "fri": "9:00 AM – 7:00 PM",
-      "sat": "9:00 AM – 7:00 PM",
-      "sun": "9:00 AM – 7:00 PM"
+      "mon": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "tue": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "wed": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "thu": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "fri": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sat": "9:00 AM – 7:00 PM (Boardwalk 24/7)",
+      "sun": "9:00 AM – 7:00 PM (Boardwalk 24/7)"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "waterfront",
-      "views",
-      "boardwalk",
-      "public-market",
-      "north-shore",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-granville-island-public-market",
@@ -810,7 +921,7 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Granville Island Public Market",
     "full_address": "1669 Johnston St, Vancouver, BC",
     "neighborhood": "Granville Island & False Creek",
-    "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views. Waterfront boardwalks and courtyard public areas remain accessible 24/7.",
+    "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views.",
     "pricing_all_in_cad": {
       "regular": 0,
       "senior": 0,
@@ -827,12 +938,18 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://granvilleisland.com",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "budget-friendly",
       "drop-in",
-      "public-market",
-      "waterfront",
       "false-creek",
-      "free-public-access"
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "granville-island",
+      "public-market",
+      "solo-friendly",
+      "waterfront",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -852,13 +969,13 @@ const VANCOUVER_EVENTS = [
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": {
-      "mon": "9:00 AM – 6:00 PM",
-      "tue": "9:00 AM – 6:00 PM",
-      "wed": "9:00 AM – 6:00 PM",
-      "thu": "9:00 AM – 6:00 PM",
-      "fri": "9:00 AM – 6:00 PM",
-      "sat": "9:00 AM – 6:00 PM",
-      "sun": "9:00 AM – 6:00 PM"
+      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
     },
     "coffee_benchmark": "$4.50 – $6.00 market roasters",
     "meal_benchmark": "$12.00 – $18.00 CAD (food hall stalls)",
@@ -882,6 +999,20 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$6.00 – $8.00 craft beer & artisan juices",
     "concession_benchmark": "$4.00 – $9.00 artisan pastries & snacks",
     "food_service_note": "50+ artisan food stalls, bakeries, seafood & market stalls",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "drop-in",
+      "false-creek",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "granville-island",
+      "public-market",
+      "solo-friendly",
+      "waterfront",
+      "zero-dollars"
+    ],
     "id": "van50-granville-island-public-market",
     "venue": "Granville Island Public Market",
     "address": "1669 Johnston St, Vancouver, BC",
@@ -890,6 +1021,11 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -924,24 +1060,16 @@ const VANCOUVER_EVENTS = [
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7",
     "weeklyHours": {
-      "mon": "9:00 AM – 6:00 PM",
-      "tue": "9:00 AM – 6:00 PM",
-      "wed": "9:00 AM – 6:00 PM",
-      "thu": "9:00 AM – 6:00 PM",
-      "fri": "9:00 AM – 6:00 PM",
-      "sat": "9:00 AM – 6:00 PM",
-      "sun": "9:00 AM – 6:00 PM"
+      "mon": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "tue": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "wed": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "thu": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "fri": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sat": "9:00 AM – 6:00 PM (Boardwalks 24/7)",
+      "sun": "9:00 AM – 6:00 PM (Boardwalks 24/7)"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "drop-in",
-      "public-market",
-      "waterfront",
-      "false-creek",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -968,11 +1096,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.canadaplace.ca",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "harbor-walk",
+      "all-ages",
+      "budget-friendly",
       "burrard-inlet",
+      "downtown",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "harbor-walk",
+      "nature-walk",
+      "outdoors",
+      "scenic-views",
+      "solo-friendly",
+      "vancouver-core",
       "waterfront-views",
-      "free-public-access"
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1020,6 +1159,24 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "no_onsite_food",
     "food_service_note": "Harbourfront promenade; waterfront dining & cafes adjacent",
     "sample_cost_label": "Free public promenade ($0)",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "burrard-inlet",
+      "downtown",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "harbor-walk",
+      "nature-walk",
+      "outdoors",
+      "scenic-views",
+      "solo-friendly",
+      "vancouver-core",
+      "waterfront-views",
+      "zero-dollars"
+    ],
     "id": "van50-canada-place-promenade",
     "venue": "Canada Place",
     "address": "999 Canada Place, Vancouver, BC",
@@ -1028,6 +1185,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1071,14 +1232,7 @@ const VANCOUVER_EVENTS = [
       "sun": "7:00 AM – 11:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "harbor-walk",
-      "burrard-inlet",
-      "waterfront-views",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -1105,12 +1259,21 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thepolygon.ca",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "art-exhibit",
+      "budget-friendly",
       "by-donation",
+      "creative",
+      "culture",
+      "free-admission",
+      "free-event",
+      "free-public-access",
       "photography",
-      "visual-art",
       "shipyards",
-      "free-public-access"
+      "solo-friendly",
+      "visual-art",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1158,6 +1321,23 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "cafe_bistro",
     "food_service_note": "Nemesis Coffee & gallery bookstore inside; Shipyards dining adjacent",
     "sample_cost_label": "By donation (Suggested $5 – $10)",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "budget-friendly",
+      "by-donation",
+      "creative",
+      "culture",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "photography",
+      "shipyards",
+      "solo-friendly",
+      "visual-art",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "van50-polygon-gallery-lonsdale",
     "venue": "The Polygon Gallery",
     "address": "101 Carrie Cates Ct, North Vancouver, BC",
@@ -1166,6 +1346,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1209,15 +1392,7 @@ const VANCOUVER_EVENTS = [
       "sun": "10:00 AM – 5:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "by-donation",
-      "photography",
-      "visual-art",
-      "shipyards",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-theatresports-improv-centre",
@@ -1246,11 +1421,19 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://theimprovcentre.ca/shows/",
     "ticket_provider": "Direct",
     "tags": [
+      "all-ages",
       "comedy",
-      "improv",
-      "granville-island",
       "date-night",
-      "performing-arts"
+      "false-creek",
+      "granville-island",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1300,6 +1483,21 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Neil Macrae Bar & Lounge (Granville Island craft beer & bar snacks)",
     "sample_cost_label": "$7.50 – $9.00 local craft beer",
     "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "subTags": [
+      "all-ages",
+      "comedy",
+      "date-night",
+      "false-creek",
+      "granville-island",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy"
+    ],
     "id": "van50-theatresports-improv-centre",
     "venue": "The Improv Centre",
     "address": "1502 Duranleau St, Vancouver, BC",
@@ -1308,6 +1506,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1334,14 +1535,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "granville-island",
-      "date-night",
-      "performing-arts"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-heist-arts-club",
@@ -1380,10 +1574,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://artsclub.com/shows/2026-2027/heist",
     "ticket_provider": "Direct",
     "tags": [
-      "theatre",
+      "all-ages",
       "arts-club",
       "drama",
-      "granville-island"
+      "false-creek",
+      "granville-island",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1444,6 +1648,22 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 snacks & cookies",
     "food_service_note": "Lobby concession bar (beverages & light snacks)",
     "sample_cost_label": "$8.50 – $10.50 wine by the glass",
+    "subTags": [
+      "all-ages",
+      "arts-club",
+      "drama",
+      "false-creek",
+      "granville-island",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre"
+    ],
     "id": "van50-heist-arts-club",
     "venue": "Arts Club Theatre Company (Granville Island Stage)",
     "address": "1585 Johnston St, Vancouver, BC",
@@ -1452,6 +1672,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1462,9 +1685,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
       "fri",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -1481,13 +1704,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "theatre",
-      "arts-club",
-      "drama",
-      "granville-island"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-metro-vancouver-croissant-crawl",
@@ -1519,12 +1736,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vancouvercroissantcrawl.com",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "food-crawl",
+      "all-ages",
       "bakery",
+      "budget-friendly",
+      "downtown",
+      "food-crawl",
+      "food-drink",
+      "free-admission",
+      "free-event",
+      "free-participation",
       "pastries",
       "self-guided",
-      "free-participation",
-      "food-drink"
+      "solo-friendly",
+      "vancouver-core",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1586,6 +1811,22 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_5": null,
     "food_service_type": "food_vendors",
     "food_service_note": "Self-guided bakery crawl ($6.00 – $9.50 per specialty croissant)",
+    "subTags": [
+      "all-ages",
+      "bakery",
+      "budget-friendly",
+      "downtown",
+      "food-crawl",
+      "food-drink",
+      "free-admission",
+      "free-event",
+      "free-participation",
+      "pastries",
+      "self-guided",
+      "solo-friendly",
+      "vancouver-core",
+      "zero-dollars"
+    ],
     "id": "van50-metro-vancouver-croissant-crawl",
     "venue": "Participating Bakeries Across Metro Vancouver",
     "address": "Multiple Venues, Vancouver, BC",
@@ -1594,6 +1835,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access",
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1618,15 +1863,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "food-crawl",
-      "bakery",
-      "pastries",
-      "self-guided",
-      "free-participation",
-      "food-drink"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -1650,13 +1887,28 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vpl.ca/central",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "skyline-views",
-      "rooftop-garden",
+      "all-ages",
+      "art-exhibit",
+      "budget-friendly",
       "civic-space",
-      "free-public-access"
+      "creative",
+      "culture",
+      "downtown",
+      "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
+      "public-access",
+      "rooftop-garden",
+      "scenic-views",
+      "skyline-views",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1704,6 +1956,30 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "cafe_bistro",
     "food_service_note": "Atrium promenade cafes (coffee, sandwiches & pastries)",
     "sample_cost_label": "Free public access ($0)",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "budget-friendly",
+      "civic-space",
+      "creative",
+      "culture",
+      "downtown",
+      "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
+      "public-access",
+      "rooftop-garden",
+      "scenic-views",
+      "skyline-views",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "van50-vpl-central-rooftop-garden",
     "venue": "Vancouver Public Library Central Branch",
     "address": "350 W Georgia St, Vancouver, BC",
@@ -1712,6 +1988,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1755,16 +2035,7 @@ const VANCOUVER_EVENTS = [
       "sun": "11:00 AM – 6:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "drop-in",
-      "public-access",
-      "skyline-views",
-      "rooftop-garden",
-      "civic-space",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -1788,12 +2059,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.contemporaryartgallery.ca/visit/",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "drop-in",
+      "all-ages",
+      "art-exhibit",
       "art-gallery",
+      "budget-friendly",
       "contemporary-art",
+      "creative",
       "culture",
-      "free-public-access"
+      "downtown",
+      "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1841,6 +2122,24 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "no_onsite_food",
     "food_service_note": "Free public gallery; no on-site food (Yaletown cafes nearby)",
     "sample_cost_label": "Free admission ($0)",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "art-gallery",
+      "budget-friendly",
+      "contemporary-art",
+      "creative",
+      "culture",
+      "downtown",
+      "drop-in",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "solo-friendly",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "van50-cag-contemporary-art-gallery",
     "venue": "Contemporary Art Gallery (CAG)",
     "address": "555 Nelson St, Vancouver, BC",
@@ -1849,6 +2148,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1892,20 +2194,12 @@ const VANCOUVER_EVENTS = [
       "sun": "12:00 PM – 6:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "drop-in",
-      "art-gallery",
-      "contemporary-art",
-      "culture",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-lanalous-saturday-afternoon-sessions",
     "event_name": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "LanaLou's Rock 'n' Roll Eatery",
     "full_address": "362 Powell St, Vancouver, BC",
@@ -1929,12 +2223,19 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://do604.com/venues/lanalou-s",
     "ticket_provider": "Direct",
     "tags": [
-      "live-music",
+      "all-ages",
       "blues",
-      "roots",
-      "strathcona",
+      "budget-friendly",
       "free-admission",
-      "music"
+      "free-event",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "roots",
+      "solo-friendly",
+      "strathcona",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -1983,6 +2284,21 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Full rock 'n' roll diner menu & licensed bar on-site",
     "sample_cost_label": "$12.00 – $16.00 diner burgers & bowls",
     "websiteUrl": "https://do604.com/venues/lanalou-s",
+    "subTags": [
+      "all-ages",
+      "blues",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "roots",
+      "solo-friendly",
+      "strathcona",
+      "zero-dollars"
+    ],
     "id": "van50-lanalous-saturday-afternoon-sessions",
     "venue": "LanaLou's Rock 'n' Roll Eatery",
     "address": "362 Powell St, Vancouver, BC",
@@ -1990,7 +2306,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2017,15 +2336,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "blues",
-      "roots",
-      "strathcona",
-      "free-admission",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -2052,12 +2363,21 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
     "ticket_provider": "Free Public Access",
     "tags": [
-      "free-admission",
-      "viewpoint",
+      "all-ages",
       "botanical-garden",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
       "park",
+      "scenic-views",
       "skyline-views",
-      "free-public-access"
+      "solo-friendly",
+      "viewpoint",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2106,6 +2426,23 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.50 – $5.50 snacks",
     "food_service_note": "Park plaza cafe & Seasons in the Park on-site",
     "sample_cost_label": "Free park access ($0)",
+    "subTags": [
+      "all-ages",
+      "botanical-garden",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "fresh-air",
+      "nature-walk",
+      "outdoors",
+      "park",
+      "scenic-views",
+      "skyline-views",
+      "solo-friendly",
+      "viewpoint",
+      "zero-dollars"
+    ],
     "id": "van50-queen-elizabeth-park-gardens",
     "venue": "Queen Elizabeth Park",
     "address": "4600 Cambie St, Vancouver, BC",
@@ -2114,6 +2451,10 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2157,20 +2498,12 @@ const VANCOUVER_EVENTS = [
       "sun": "6:00 AM – 10:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "viewpoint",
-      "botanical-garden",
-      "park",
-      "skyline-views",
-      "free-public-access"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
     "event_name": "Miesha & The Spanks with Francis Baptiste",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC",
@@ -2194,12 +2527,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
     "ticket_provider": "Showpass",
     "tags": [
-      "punk",
-      "garage-rock",
-      "live-music",
-      "mount-pleasant",
       "19-plus",
-      "music"
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "garage-rock",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "punk",
+      "solo-friendly",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2248,6 +2589,22 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
     "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "garage-rock",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "punk",
+      "solo-friendly",
+      "under-25-cad"
+    ],
     "id": "van50-miesha-and-the-spanks-fox-20261105",
     "venue": "Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC",
@@ -2255,7 +2612,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2282,15 +2643,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "punk",
-      "garage-rock",
-      "live-music",
-      "mount-pleasant",
-      "19-plus",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "ubc-fball-uofc",
@@ -2316,15 +2669,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "ticket_provider": "Direct Box Office",
     "tags": [
-      "varsity-sports",
+      "activities",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "college-football",
       "football",
-      "ubc-thunderbirds",
+      "kitsilano",
+      "solo-friendly",
+      "student-friendly",
       "thunderbird-stadium",
       "u-sports",
-      "college-football",
-      "student-friendly",
+      "ubc-thunderbirds",
+      "under-25-cad",
+      "varsity-sports",
       "weekend-outing",
-      "activities"
+      "west-side"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2373,6 +2733,24 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 hot dogs, pretzels & sodas",
     "food_service_note": "Stadium concession stand (hot dogs, pretzels, beer & sodas)",
     "sample_cost_label": "$4.00 – $6.00 stadium hot dogs/pretzels",
+    "subTags": [
+      "activities",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "college-football",
+      "football",
+      "kitsilano",
+      "solo-friendly",
+      "student-friendly",
+      "thunderbird-stadium",
+      "u-sports",
+      "ubc-thunderbirds",
+      "under-25-cad",
+      "varsity-sports",
+      "weekend-outing",
+      "west-side"
+    ],
     "id": "ubc-fball-uofc",
     "venue": "Thunderbird Stadium",
     "address": "6288 Stadium Rd, Vancouver",
@@ -2381,6 +2759,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2408,18 +2789,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "varsity-sports",
-      "football",
-      "ubc-thunderbirds",
-      "thunderbird-stadium",
-      "u-sports",
-      "college-football",
-      "student-friendly",
-      "weekend-outing",
-      "activities"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "ubc-mbball-twu",
@@ -2445,15 +2815,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
     "ticket_provider": "Direct Box Office",
     "tags": [
-      "varsity-sports",
+      "activities",
+      "all-ages",
       "basketball",
-      "ubc-thunderbirds",
-      "war-memorial-gym",
-      "u-sports",
-      "student-friendly",
+      "budget-friendly",
+      "cheap-night-out",
       "college-hoops",
+      "kitsilano",
       "rainy-day",
-      "activities"
+      "solo-friendly",
+      "student-friendly",
+      "u-sports",
+      "ubc-thunderbirds",
+      "under-25-cad",
+      "varsity-sports",
+      "war-memorial-gym",
+      "west-side"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2502,6 +2879,24 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 snacks & popcorn",
     "food_service_note": "Gym concession kiosk (snacks, beverages & popcorn)",
     "sample_cost_label": "$4.00 – $6.00 concession snacks",
+    "subTags": [
+      "activities",
+      "all-ages",
+      "basketball",
+      "budget-friendly",
+      "cheap-night-out",
+      "college-hoops",
+      "kitsilano",
+      "rainy-day",
+      "solo-friendly",
+      "student-friendly",
+      "u-sports",
+      "ubc-thunderbirds",
+      "under-25-cad",
+      "varsity-sports",
+      "war-memorial-gym",
+      "west-side"
+    ],
     "id": "ubc-mbball-twu",
     "venue": "War Memorial Gym",
     "address": "6081 University Blvd, Vancouver",
@@ -2510,6 +2905,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Sports & fitness",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2537,23 +2935,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "varsity-sports",
-      "basketball",
-      "ubc-thunderbirds",
-      "war-memorial-gym",
-      "u-sports",
-      "student-friendly",
-      "college-hoops",
-      "rainy-day",
-      "activities"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-joon-the-pearl-20261002",
     "event_name": "JOON with Lauryn Kovacs",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The Pearl",
     "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -2574,15 +2961,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thepearlvancouver.com/events/",
     "ticket_provider": "TicketWeb",
     "tags": [
-      "indie-pop",
-      "electronic-music",
-      "synth-pop",
-      "granville-strip",
-      "downtown",
-      "live-music",
-      "nightlife",
       "19-plus",
-      "music"
+      "all-ages",
+      "budget-friendly",
+      "dance-floor",
+      "djs",
+      "downtown",
+      "electronic",
+      "electronic-music",
+      "free-admission",
+      "free-event",
+      "granville-strip",
+      "indie-pop",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "nightlife",
+      "solo-friendly",
+      "synth-pop",
+      "vancouver-core",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2632,6 +3031,29 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Two full bars (no kitchen; Granville St dining nearby)",
     "sample_cost_label": "$9.00 craft tallboy / $14.00 cocktail",
     "websiteUrl": "https://thepearlvancouver.com/events/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "budget-friendly",
+      "dance-floor",
+      "djs",
+      "downtown",
+      "electronic",
+      "electronic-music",
+      "free-admission",
+      "free-event",
+      "granville-strip",
+      "indie-pop",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "nightlife",
+      "solo-friendly",
+      "synth-pop",
+      "vancouver-core",
+      "zero-dollars"
+    ],
     "id": "van50-joon-the-pearl-20261002",
     "venue": "The Pearl",
     "address": "881 Granville St, Vancouver, BC V6Z 1K7",
@@ -2639,7 +3061,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2666,23 +3091,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "indie-pop",
-      "electronic-music",
-      "synth-pop",
-      "granville-strip",
-      "downtown",
-      "live-music",
-      "nightlife",
-      "19-plus",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
     "event_name": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -2703,15 +3117,19 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
     "ticket_provider": "Ticketweb",
     "tags": [
-      "indie-folk",
-      "singer-songwriter",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
       "19-plus",
+      "all-ages",
       "date-night",
+      "indie-folk",
+      "indie-rock",
       "intimate-concert",
-      "music"
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "singer-songwriter",
+      "solo-friendly"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2760,6 +3178,21 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
     "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "date-night",
+      "indie-folk",
+      "indie-rock",
+      "intimate-concert",
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "singer-songwriter",
+      "solo-friendly"
+    ],
     "id": "van50-babes-in-canyon-fox-20261008",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -2767,7 +3200,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2794,23 +3231,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "indie-folk",
-      "singer-songwriter",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
-      "19-plus",
-      "date-night",
-      "intimate-concert",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
     "event_name": "SALIN (Live Soul & World Jazz)",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -2831,15 +3257,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
     "ticket_provider": "Ticketweb",
     "tags": [
-      "world-jazz",
-      "neo-soul",
-      "funk",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
       "19-plus",
+      "all-ages",
+      "cocktails",
       "date-night",
-      "music"
+      "funk",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "neo-soul",
+      "solo-friendly",
+      "world-jazz"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -2887,6 +3318,22 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "cocktails",
+      "date-night",
+      "funk",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "neo-soul",
+      "solo-friendly",
+      "world-jazz"
+    ],
     "id": "van50-salin-fox-cabaret-20261010",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -2894,7 +3341,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -2922,18 +3373,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "world-jazz",
-      "neo-soul",
-      "funk",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
-      "19-plus",
-      "date-night",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -2959,15 +3399,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
     "ticket_provider": "Direct Box Office",
     "tags": [
+      "all-ages",
+      "budget-friendly",
       "burlesque",
       "cabaret",
-      "drag-show",
-      "variety-show",
-      "date-night",
-      "late-night",
+      "cheap-night-out",
       "commercial-drive",
+      "date-night",
+      "drag-show",
       "east-van",
-      "theatre"
+      "improv",
+      "late-night",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre",
+      "under-25-cad",
+      "variety-show"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -3016,6 +3468,29 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$6.00 – $9.00 real melted butter popcorn & candy",
     "food_service_note": "Fully licensed concession bar (famous real-butter popcorn, craft beer & wine)",
     "sample_cost_label": "$6.00 – $9.00 popcorn with real butter",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "burlesque",
+      "cabaret",
+      "cheap-night-out",
+      "commercial-drive",
+      "date-night",
+      "drag-show",
+      "east-van",
+      "improv",
+      "late-night",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre",
+      "under-25-cad",
+      "variety-show"
+    ],
     "id": "van50-rio-burlesque-variety-20261017",
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
@@ -3024,6 +3499,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3051,23 +3529,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "burlesque",
-      "cabaret",
-      "drag-show",
-      "variety-show",
-      "date-night",
-      "late-night",
-      "commercial-drive",
-      "east-van",
-      "theatre"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
     "event_name": "Dummy with Golomb & worrywart",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
     "neighborhood": "Commercial Drive & East Vancouver",
@@ -3088,15 +3555,18 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603",
     "ticket_provider": "TicketWeb",
     "tags": [
-      "noise-pop",
-      "indie-rock",
-      "post-punk",
-      "live-music",
-      "commercial-drive",
-      "east-van",
       "19-plus",
+      "all-ages",
+      "commercial-drive",
       "craft-beer",
-      "music"
+      "east-van",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "noise-pop",
+      "post-punk",
+      "solo-friendly"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -3145,6 +3615,20 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.00 chips",
     "food_service_note": "Non-profit community lounge bar (no kitchen; Commercial Dr dining nearby)",
     "sample_cost_label": "$6.50 – $8.00 Powell / Strange Fellows pints",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "commercial-drive",
+      "craft-beer",
+      "east-van",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "music",
+      "noise-pop",
+      "post-punk",
+      "solo-friendly"
+    ],
     "id": "van50-dummy-wise-hall-20261022",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -3152,7 +3636,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3180,23 +3667,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "noise-pop",
-      "indie-rock",
-      "post-punk",
-      "live-music",
-      "commercial-drive",
-      "east-van",
-      "19-plus",
-      "craft-beer",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
     "event_name": "Ruby Haunt with VHS Ghost",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -3217,15 +3693,23 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
     "ticket_provider": "TicketWeb",
     "tags": [
-      "dream-pop",
-      "indie-pop",
-      "shoegaze",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
       "19-plus",
+      "all-ages",
+      "autumn",
       "date-night",
-      "music"
+      "dream-pop",
+      "halloween",
+      "haunted",
+      "indie-pop",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "shoegaze",
+      "solo-friendly",
+      "spooky"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -3274,6 +3758,25 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
     "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "autumn",
+      "date-night",
+      "dream-pop",
+      "halloween",
+      "haunted",
+      "indie-pop",
+      "indie-rock",
+      "live-band",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "shoegaze",
+      "solo-friendly",
+      "spooky"
+    ],
     "id": "van50-ruby-haunt-fox-20261211",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -3281,7 +3784,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3308,23 +3815,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "dream-pop",
-      "indie-pop",
-      "shoegaze",
-      "live-music",
-      "mount-pleasant",
-      "main-street",
-      "19-plus",
-      "date-night",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "vso-saturday-orpheum",
     "event_name": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "category": "Music",
+    "category": "music",
     "venue_name": "The Orpheum Theatre",
     "full_address": "601 Smithe St, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -3345,15 +3841,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
     "ticket_provider": "Direct Box Office",
     "tags": [
-      "orchestral",
-      "film-score",
-      "symphony",
+      "acoustic",
+      "all-ages",
       "classical-music",
-      "orpheum",
+      "date-night",
       "downtown",
+      "film-score",
+      "live-music",
+      "music",
+      "orchestral",
+      "orpheum",
       "student-friendly",
-      "weekend-outing",
-      "music"
+      "symphony",
+      "vancouver-core",
+      "weekend-outing"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -3402,6 +3903,22 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
     "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
     "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
+    "subTags": [
+      "acoustic",
+      "all-ages",
+      "classical-music",
+      "date-night",
+      "downtown",
+      "film-score",
+      "live-music",
+      "music",
+      "orchestral",
+      "orpheum",
+      "student-friendly",
+      "symphony",
+      "vancouver-core",
+      "weekend-outing"
+    ],
     "id": "vso-saturday-orpheum",
     "venue": "The Orpheum Theatre",
     "address": "601 Smithe St, Vancouver",
@@ -3409,7 +3926,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3437,18 +3958,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "orchestral",
-      "film-score",
-      "symphony",
-      "classical-music",
-      "orpheum",
-      "downtown",
-      "student-friendly",
-      "weekend-outing",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-harvest-days-vandusen",
@@ -3483,8 +3993,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/",
     "ticket_provider": "Showpass",
     "tags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "curator-verified",
+      "family-friendly",
+      "fresh-air",
+      "live-theatre",
+      "nature-walk",
       "outdoors",
-      "curator-verified"
+      "performing-arts",
+      "scenic-views",
+      "solo-friendly",
+      "stage-play",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
@@ -3542,6 +4064,22 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/",
     "lifecycle_type": "time_bound_event",
     "days_open": "Saturday-Sunday",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "curator-verified",
+      "family-friendly",
+      "fresh-air",
+      "live-theatre",
+      "nature-walk",
+      "outdoors",
+      "performing-arts",
+      "scenic-views",
+      "solo-friendly",
+      "stage-play",
+      "under-25-cad"
+    ],
     "id": "van50-harvest-days-vandusen",
     "venue": "VanDusen Botanical Garden",
     "address": "5251 Oak St, Vancouver, BC",
@@ -3550,6 +4088,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -3585,8 +4128,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T10:30:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3602,11 +4145,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "outdoors",
-      "curator-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-deadly-dinner-party",
@@ -3731,10 +4270,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
     "ticket_provider": "Direct Box Office",
     "tags": [
+      "all-ages",
+      "antigravity-validated",
+      "autumn",
+      "craft-beer",
+      "date-night",
+      "false-creek",
+      "food-and-drink",
+      "granville-island",
+      "halloween",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "local-eats",
+      "performing-arts",
       "shows",
-      "vancouver-events",
+      "spooky",
+      "stage-play",
+      "standup-comedy",
       "under-50-cad",
-      "antigravity-validated"
+      "vancouver-events"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -3776,6 +4332,29 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Neil Macrae Bar & Lounge (Granville Island craft beer & bar snacks)",
     "sample_cost_label": "$7.50 – $9.00 local craft beer",
     "websiteUrl": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
+    "subTags": [
+      "all-ages",
+      "antigravity-validated",
+      "autumn",
+      "craft-beer",
+      "date-night",
+      "false-creek",
+      "food-and-drink",
+      "granville-island",
+      "halloween",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "local-eats",
+      "performing-arts",
+      "shows",
+      "spooky",
+      "stage-play",
+      "standup-comedy",
+      "under-50-cad",
+      "vancouver-events"
+    ],
     "id": "van50-deadly-dinner-party",
     "venue": "The Improv Centre",
     "address": "1502 Duranleau St, Vancouver",
@@ -3784,6 +4363,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Tables & Bench (Adult)",
@@ -3814,8 +4396,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "fri"
+      "fri",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3831,13 +4413,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-what-else-lmg-20261003",
@@ -3864,10 +4440,25 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/what-else/",
     "ticket_provider": "Showpass",
     "tags": [
+      "all-ages",
+      "antigravity-validated",
+      "art-exhibit",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
       "shows",
-      "vancouver-events",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
       "under-50-cad",
-      "antigravity-validated"
+      "vancouver-core",
+      "vancouver-events",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -3917,6 +4508,27 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
     "websiteUrl": "https://www.showpass.com/what-else/",
+    "subTags": [
+      "all-ages",
+      "antigravity-validated",
+      "art-exhibit",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "under-50-cad",
+      "vancouver-core",
+      "vancouver-events",
+      "visual-arts"
+    ],
     "id": "van50-what-else-lmg-20261003",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver",
@@ -3925,6 +4537,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -3951,13 +4566,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -3984,10 +4593,28 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/stand-up-showcase-94/",
     "ticket_provider": "Showpass",
     "tags": [
+      "all-ages",
+      "antigravity-validated",
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
       "shows",
-      "vancouver-events",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "under-25-cad",
       "under-50-cad",
-      "antigravity-validated"
+      "vancouver-core",
+      "vancouver-events",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4037,6 +4664,30 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
     "websiteUrl": "https://www.showpass.com/stand-up-showcase-94/",
+    "subTags": [
+      "all-ages",
+      "antigravity-validated",
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "vancouver-events",
+      "visual-arts"
+    ],
     "id": "van50-stand-up-showcase-lmg-20261015",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver",
@@ -4045,6 +4696,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4071,13 +4725,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "vancouver-events",
-      "under-50-cad",
-      "antigravity-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cinematheque-past-future-20261015",
@@ -4104,14 +4752,25 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecinematheque.ca/films/2026/past-future-continuous",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
-      "cinema",
-      "film-screening",
-      "the-cinematheque",
-      "downtown",
-      "indie-film",
       "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "indie-film",
+      "solo-friendly",
+      "the-cinematheque",
+      "under-25-cad",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4160,6 +4819,27 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 fresh popcorn",
     "food_service_note": "Classic cinema concession (popcorn, craft cans & sodas)",
     "sample_cost_label": "$5.00 – $7.00 popcorn",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "indie-film",
+      "solo-friendly",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-cinematheque-past-future-20261015",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -4168,6 +4848,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4195,17 +4879,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "film-screening",
-      "the-cinematheque",
-      "downtown",
-      "indie-film",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-york-comedy-on-the-drive-20261024",
@@ -4230,14 +4904,23 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecultch.com/event/comedy-on-the-drive/",
     "ticket_provider": "The Cultch Box Office",
     "tags": [
-      "shows",
-      "standup-comedy",
-      "york-theatre",
-      "commercial-drive",
-      "the-cultch",
       "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "commercial-drive",
+      "east-van",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-cultch",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "york-theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4286,6 +4969,25 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $5.00 cookies & snacks",
     "food_service_note": "Lobby concession bar (craft beer, wine & local baking)",
     "sample_cost_label": "$8.00 – $9.50 local beer & wine",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "commercial-drive",
+      "east-van",
+      "improv",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-cultch",
+      "under-50-cad",
+      "york-theatre"
+    ],
     "id": "van50-scout-york-comedy-on-the-drive-20261024",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -4294,6 +4996,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4321,17 +5026,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "standup-comedy",
-      "york-theatre",
-      "commercial-drive",
-      "the-cultch",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-york-stripocalypse-20261016",
@@ -4356,15 +5051,26 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecultch.com/event/stripocalypse-rise-of-the-auntie-heroes/",
     "ticket_provider": "The Cultch Box Office",
     "tags": [
-      "shows",
-      "cabaret",
-      "burlesque",
-      "indigenous-arts",
-      "york-theatre",
-      "commercial-drive",
       "19-plus",
+      "antigravity-13d-validated",
+      "burlesque",
+      "cabaret",
+      "commercial-drive",
+      "date-night",
+      "east-van",
+      "improv",
+      "indigenous-arts",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "nightlife",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "york-theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4413,6 +5119,28 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $5.00 cookies & snacks",
     "food_service_note": "Lobby concession bar (craft beer, wine & local baking)",
     "sample_cost_label": "$8.00 – $9.50 local beer & wine",
+    "subTags": [
+      "19-plus",
+      "antigravity-13d-validated",
+      "burlesque",
+      "cabaret",
+      "commercial-drive",
+      "date-night",
+      "east-van",
+      "improv",
+      "indigenous-arts",
+      "laughs",
+      "live-comedy",
+      "live-theatre",
+      "nightlife",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "under-50-cad",
+      "york-theatre"
+    ],
     "id": "van50-scout-york-stripocalypse-20261016",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -4421,6 +5149,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4448,23 +5180,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "cabaret",
-      "burlesque",
-      "indigenous-arts",
-      "york-theatre",
-      "commercial-drive",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-orpheum-vso-kids-20261004",
     "event_name": "VSO Kids: Lights, Camera, Orchestra!",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Orpheum",
     "full_address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -4486,15 +5207,25 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
     "ticket_provider": "VSO Box Office",
     "tags": [
-      "live-music",
-      "orchestra",
-      "vso",
-      "the-orpheum",
-      "family-friendly",
+      "acoustic",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "music"
+      "big-screen",
+      "classical-music",
+      "cult-cinema",
+      "downtown",
+      "family-friendly",
+      "film-screening",
+      "indie-film",
+      "live-music",
+      "music",
+      "orchestra",
+      "solo-friendly",
+      "symphony",
+      "the-orpheum",
+      "under-50-cad",
+      "vancouver-core",
+      "vso"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4543,6 +5274,27 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
     "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
     "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
+    "subTags": [
+      "acoustic",
+      "all-ages",
+      "antigravity-13d-validated",
+      "big-screen",
+      "classical-music",
+      "cult-cinema",
+      "downtown",
+      "family-friendly",
+      "film-screening",
+      "indie-film",
+      "live-music",
+      "music",
+      "orchestra",
+      "solo-friendly",
+      "symphony",
+      "the-orpheum",
+      "under-50-cad",
+      "vancouver-core",
+      "vso"
+    ],
     "id": "van50-scout-orpheum-vso-kids-20261004",
     "venue": "The Orpheum",
     "address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -4550,7 +5302,12 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "cinema",
+      "social",
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4578,18 +5335,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "orchestra",
-      "vso",
-      "the-orpheum",
-      "family-friendly",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-rio-viff-beloved-20261001",
@@ -4616,14 +5362,28 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book",
     "ticket_provider": "VIFF Box Office",
     "tags": [
-      "cinema",
-      "viff-2026",
-      "the-rio-theatre",
-      "film-festival",
-      "commercial-drive",
       "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "big-screen",
+      "cinema",
+      "commercial-drive",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "east-van",
+      "film-festival",
+      "film-screening",
+      "indie-film",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "the-rio-theatre",
       "under-50-cad",
-      "antigravity-13d-validated"
+      "viff-2026",
+      "visual-arts"
     ],
     "festival_affiliation": "VIFF",
     "approval_status": "Antigravity-13D-Validated",
@@ -4696,6 +5456,30 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.50 – $7.50 fresh popcorn",
     "food_service_note": "Licensed cinema concessions across festival venues",
     "sample_cost_label": "$5.50 – $7.50 popcorn",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "big-screen",
+      "cinema",
+      "commercial-drive",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "east-van",
+      "film-festival",
+      "film-screening",
+      "indie-film",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "the-rio-theatre",
+      "under-50-cad",
+      "viff-2026",
+      "visual-arts"
+    ],
     "id": "van50-scout-rio-viff-beloved-20261001",
     "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
     "address": "Multiple Venues across Vancouver, BC",
@@ -4704,6 +5488,12 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "shows",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4715,8 +5505,8 @@ const VANCOUVER_EVENTS = [
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
       "mon",
-      "sat",
-      "thu"
+      "thu",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -4733,17 +5523,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "viff-2026",
-      "the-rio-theatre",
-      "film-festival",
-      "commercial-drive",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
@@ -4768,15 +5548,33 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.eventbrite.ca/e/tim-burtons-funeral-a-naturally-freaky-cabaret-tickets-1997329967700",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "shows",
-      "cabaret",
-      "burlesque",
-      "halloween",
-      "east-van",
-      "the-waldorf",
       "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated"
+      "antigravity-13d-validated",
+      "big-screen",
+      "burlesque",
+      "cabaret",
+      "commercial-drive",
+      "cult-cinema",
+      "date-night",
+      "east-van",
+      "film-screening",
+      "halloween",
+      "improv",
+      "indie-film",
+      "indie-rock",
+      "laughs",
+      "live-band",
+      "live-comedy",
+      "live-music",
+      "live-theatre",
+      "nightlife",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-waldorf",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4824,6 +5622,35 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$7.50 – $9.00 pints • $11.00 – $14.00 tiki cocktails",
     "food_service_note": "Tiki bar & music lounge (drinks & bar snacks)",
     "sample_cost_label": "$11.00 – $14.00 signature cocktails",
+    "subTags": [
+      "19-plus",
+      "antigravity-13d-validated",
+      "big-screen",
+      "burlesque",
+      "cabaret",
+      "commercial-drive",
+      "cult-cinema",
+      "date-night",
+      "east-van",
+      "film-screening",
+      "halloween",
+      "improv",
+      "indie-film",
+      "indie-rock",
+      "laughs",
+      "live-band",
+      "live-comedy",
+      "live-music",
+      "live-theatre",
+      "nightlife",
+      "performing-arts",
+      "shows",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-waldorf",
+      "under-50-cad"
+    ],
     "id": "van50-tim-burton-cabaret-waldorf-20261024",
     "venue": "The Waldorf Hotel",
     "address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
@@ -4832,6 +5659,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4859,23 +5690,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "shows",
-      "cabaret",
-      "burlesque",
-      "halloween",
-      "east-van",
-      "the-waldorf",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-lolo-the-pearl-20261003",
     "event_name": "LØLØ: God Forbid a Girl Goes on Tour",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Pearl",
     "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
@@ -4899,16 +5719,19 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
     "ticket_provider": "The Pearl / TicketWeb",
     "tags": [
-      "live-music",
-      "alt-pop",
-      "the-pearl",
-      "granville-entertainment-district",
-      "downtown",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
+      "alt-pop",
       "antigravity-13d-validated",
+      "downtown",
+      "granville-entertainment-district",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "music",
+      "solo-friendly",
+      "the-pearl",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -4958,6 +5781,21 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Two full bars (no kitchen; Granville St dining nearby)",
     "sample_cost_label": "$9.00 craft tallboy / $14.00 cocktail",
     "websiteUrl": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "alt-pop",
+      "antigravity-13d-validated",
+      "downtown",
+      "granville-entertainment-district",
+      "live-cart-verified",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "the-pearl",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-lolo-the-pearl-20261003",
     "venue": "The Pearl",
     "address": "881 Granville St, Vancouver, BC V6Z 1K7",
@@ -4965,7 +5803,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -4992,24 +5833,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "alt-pop",
-      "the-pearl",
-      "granville-entertainment-district",
-      "downtown",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
     "event_name": "Olive Klug with Frail Talk",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -5033,16 +5862,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
     "ticket_provider": "TicketWeb / MODO-Live",
     "tags": [
-      "live-music",
-      "indie-folk",
-      "the-wise-hall",
-      "east-van",
-      "commercial-drive",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
+      "commercial-drive",
+      "east-van",
+      "indie-folk",
+      "indie-rock",
+      "live-band",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "music",
+      "solo-friendly",
+      "the-wise-hall",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5092,6 +5925,22 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Non-profit community lounge bar (no kitchen; Commercial Dr dining nearby)",
     "sample_cost_label": "$6.50 – $8.00 Powell / Strange Fellows pints",
     "websiteUrl": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "commercial-drive",
+      "east-van",
+      "indie-folk",
+      "indie-rock",
+      "live-band",
+      "live-cart-verified",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "the-wise-hall",
+      "under-50-cad"
+    ],
     "id": "van50-olive-klug-wise-hall-20261025",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -5099,7 +5948,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5126,19 +5978,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "indie-folk",
-      "the-wise-hall",
-      "east-van",
-      "commercial-drive",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-orpheum-silent-movie-mondays",
@@ -5169,16 +6009,33 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouvercivictheatres.com/events/",
     "ticket_provider": "Ticketmaster / Vancouver Civic Theatres",
     "tags": [
-      "cinema",
-      "silent-movie",
-      "organ",
-      "wurlitzer",
-      "the-orpheum",
-      "downtown",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "autumn",
+      "big-screen",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "halloween",
+      "horror",
+      "indie-film",
+      "live-cart-verified",
+      "live-theatre",
+      "organ",
+      "performing-arts",
+      "silent-movie",
+      "solo-friendly",
+      "spooky",
+      "stage-play",
+      "the-orpheum",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts",
+      "wurlitzer"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5228,6 +6085,35 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
     "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
     "websiteUrl": "https://vancouvercivictheatres.com/events/",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "autumn",
+      "big-screen",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "halloween",
+      "horror",
+      "indie-film",
+      "live-cart-verified",
+      "live-theatre",
+      "organ",
+      "performing-arts",
+      "silent-movie",
+      "solo-friendly",
+      "spooky",
+      "stage-play",
+      "the-orpheum",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts",
+      "wurlitzer"
+    ],
     "id": "van50-orpheum-silent-movie-mondays",
     "venue": "The Orpheum",
     "address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -5236,6 +6122,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5262,19 +6153,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "silent-movie",
-      "organ",
-      "wurlitzer",
-      "the-orpheum",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -5304,15 +6183,23 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vancouveropera.ca/whats-on/tosca/",
     "ticket_provider": "Vancouver Opera Box Office",
     "tags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "classical-music",
+      "date-night",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
       "opera",
       "performing-arts",
-      "classical-music",
       "queen-elizabeth-theatre",
-      "downtown",
-      "all-ages",
+      "stage-play",
+      "standup-comedy",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5361,6 +6248,25 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
     "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
     "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "classical-music",
+      "date-night",
+      "downtown",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "opera",
+      "performing-arts",
+      "queen-elizabeth-theatre",
+      "stage-play",
+      "standup-comedy",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
     "venue": "Queen Elizabeth Theatre",
     "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
@@ -5369,6 +6275,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5396,23 +6306,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "opera",
-      "performing-arts",
-      "classical-music",
-      "queen-elizabeth-theatre",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
     "event_name": "Raagaverse + Strings",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Annex",
     "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
@@ -5437,17 +6336,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouvercivictheatres.com/events/",
     "ticket_provider": "Showpass",
     "tags": [
-      "live-music",
-      "indo-jazz",
+      "all-ages",
+      "antigravity-13d-validated",
+      "cocktails",
+      "downtown",
       "fusion",
+      "indo-jazz",
+      "listening-room",
+      "live-cart-verified",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
       "strings",
       "the-annex",
-      "downtown",
-      "all-ages",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5497,6 +6401,24 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Lobby concession bar (beer, wine & snacks)",
     "sample_cost_label": "$8.00 – $10.00 beer & wine",
     "websiteUrl": "https://vancouvercivictheatres.com/events/",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "cocktails",
+      "downtown",
+      "fusion",
+      "indo-jazz",
+      "listening-room",
+      "live-cart-verified",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "strings",
+      "the-annex",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-raagaverse-strings-annex-20261015",
     "venue": "The Annex",
     "address": "823 Seymour St, Vancouver, BC V6B 3L4",
@@ -5504,7 +6426,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5531,25 +6456,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "indo-jazz",
-      "fusion",
-      "strings",
-      "the-annex",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
     "event_name": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5573,16 +6485,29 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://rickshawtheatre.com/show_listings/actors/",
     "ticket_provider": "Rickshaw Box Office / Eventbrite",
     "tags": [
-      "live-music",
-      "post-punk",
-      "darkwave",
-      "rickshaw-theatre",
-      "east-van",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "darkwave",
+      "djs",
+      "downtown",
+      "east-van",
+      "electronic",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
+      "post-punk",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5631,6 +6556,31 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.00 chips & bar snacks",
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "darkwave",
+      "djs",
+      "downtown",
+      "east-van",
+      "electronic",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
+      "post-punk",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-actors-rickshaw-20261009",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5638,7 +6588,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5666,24 +6620,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "post-punk",
-      "darkwave",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
     "event_name": "Militarie Gun: 20 Songs for $20 Tour",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5707,16 +6649,23 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
     "ticket_provider": "TicketWeb",
     "tags": [
-      "live-music",
+      "19-plus",
+      "all-ages",
       "alternative-rock",
+      "antigravity-13d-validated",
+      "downtown",
+      "east-van",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
       "post-hardcore",
       "rickshaw-theatre",
-      "east-van",
-      "19-plus",
+      "solo-friendly",
+      "stage-play",
       "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5766,6 +6715,25 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
     "websiteUrl": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "alternative-rock",
+      "antigravity-13d-validated",
+      "downtown",
+      "east-van",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
+      "post-hardcore",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-militarie-gun-rickshaw-20261010",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5773,7 +6741,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5800,19 +6772,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "alternative-rock",
-      "post-hardcore",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-fox-sunday-service-20261004",
@@ -5841,15 +6801,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/sundayservice",
     "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
     "tags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
       "comedy",
       "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "main-street",
       "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
       "sunday-service",
       "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -5897,6 +6869,29 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "main-street",
+      "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "sunday-service",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "id": "van50-scout-fox-sunday-service-20261004",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -5905,6 +6900,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -5932,18 +6930,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -5972,15 +6959,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/sundayservice",
     "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
     "tags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
       "comedy",
       "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "main-street",
       "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
       "sunday-service",
       "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6028,6 +7027,29 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "main-street",
+      "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "sunday-service",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "id": "van50-the-sunday-service-fox-20261011",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6036,6 +7058,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6063,23 +7088,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "mount-pleasant",
-      "sunday-service",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
     "event_name": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6103,16 +7117,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/00svs10s-3k3nt-px938-734st-9enmm-t2bk8-37ebr",
     "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
     "tags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
       "19-plus",
-      "under-50-cad",
       "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "dance-party",
+      "date-night",
+      "dj",
+      "djs",
+      "electronic",
+      "indie-rock",
+      "live-band",
       "live-cart-verified",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
       "music",
-      "dj"
+      "nightlife",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6160,6 +7185,29 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
+    "subTags": [
+      "19-plus",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "dance-party",
+      "date-night",
+      "dj",
+      "djs",
+      "electronic",
+      "indie-rock",
+      "live-band",
+      "live-cart-verified",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "nightlife",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "id": "van50-90s-00s-dance-party-fox-20261009",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6167,7 +7215,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6195,19 +7246,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music",
-      "dj"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
@@ -6236,15 +7275,29 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.eventbrite.ca/e/phyllis-hulls-one-woman-show-hullo-its-me-youre-looking-for-tickets-1999722215979",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "comedy",
-      "drag-show",
-      "variety-show",
-      "west-end",
-      "the-show-cellar",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "downtown",
+      "drag-show",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-show-cellar",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "variety-show",
+      "west-end"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6292,6 +7345,31 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$7.50 – $9.00 craft beer • $8.50 – $10.00 mixed drinks",
     "food_service_note": "Intimate basement lounge bar (no kitchen; Gastown dining nearby)",
     "sample_cost_label": "$7.50 craft beer / $8.50 highballs",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "downtown",
+      "drag-show",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "the-show-cellar",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "variety-show",
+      "west-end"
+    ],
     "id": "van50-phyllis-hull-one-woman-show-20270122",
     "venue": "The Show Cellar",
     "address": "1755 Davie St, Vancouver, BC V6G 1W5",
@@ -6300,6 +7378,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6327,23 +7408,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "drag-show",
-      "variety-show",
-      "west-end",
-      "the-show-cellar",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-rickshaw-ethan-regan-20261003",
     "event_name": "Ethan Regan: Young Regan Tour with harf",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -6367,15 +7437,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://rickshawtheatre.com/show_listings/ethan-regan/",
     "ticket_provider": "Rickshaw Theatre Box Office",
     "tags": [
-      "live-music",
-      "indie-folk",
-      "rickshaw-theatre",
-      "east-van",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
+      "downtown",
+      "east-van",
+      "indie-folk",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6425,6 +7502,24 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
     "websiteUrl": "https://rickshawtheatre.com/show_listings/ethan-regan/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "downtown",
+      "east-van",
+      "indie-folk",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-scout-rickshaw-ethan-regan-20261003",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -6432,7 +7527,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6459,18 +7558,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "indie-folk",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cultch-palestine-comedy-20261009",
@@ -6499,16 +7587,32 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecultch.com/event/palestine-comedy-club/",
     "ticket_provider": "The Cultch Box Office",
     "tags": [
-      "comedy",
-      "stand-up",
-      "documentary",
-      "the-cultch",
-      "york-theatre",
-      "commercial-drive",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "commercial-drive",
+      "cult-cinema",
+      "documentary",
+      "east-van",
+      "film-screening",
+      "improv",
+      "indie-film",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "the-cultch",
+      "under-25-cad",
+      "under-50-cad",
+      "york-theatre"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6557,6 +7661,34 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $5.00 cookies & snacks",
     "food_service_note": "Lobby concession bar (craft beer, wine & local baking)",
     "sample_cost_label": "$8.00 – $9.50 local beer & wine",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "commercial-drive",
+      "cult-cinema",
+      "documentary",
+      "east-van",
+      "film-screening",
+      "improv",
+      "indie-film",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "the-cultch",
+      "under-25-cad",
+      "under-50-cad",
+      "york-theatre"
+    ],
     "id": "van50-scout-cultch-palestine-comedy-20261009",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -6565,6 +7697,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6592,19 +7727,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "stand-up",
-      "documentary",
-      "the-cultch",
-      "york-theatre",
-      "commercial-drive",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cinematheque-kwaidan-20261012",
@@ -6635,15 +7758,27 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecinematheque.ca/films/2026/kwaidan",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
-      "cinema",
-      "japanese-cinema",
-      "horror",
-      "the-cinematheque",
-      "downtown",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "culture",
+      "downtown",
+      "halloween",
+      "horror",
+      "japanese-cinema",
+      "live-cart-verified",
+      "solo-friendly",
+      "spooky",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6692,6 +7827,29 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 fresh popcorn",
     "food_service_note": "Classic cinema concession (popcorn, craft cans & sodas)",
     "sample_cost_label": "$5.00 – $7.00 popcorn",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "culture",
+      "downtown",
+      "halloween",
+      "horror",
+      "japanese-cinema",
+      "live-cart-verified",
+      "solo-friendly",
+      "spooky",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-cinematheque-kwaidan-20261012",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -6700,6 +7858,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6727,18 +7889,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "japanese-cinema",
-      "horror",
-      "the-cinematheque",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cinematheque-hello-destroyer-20261027",
@@ -6770,15 +7921,31 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecinematheque.ca/films/2026/hello-destroyer",
     "ticket_provider": "The Cinematheque Free Access",
     "tags": [
-      "cinema",
-      "canadian-film",
-      "free-admission",
-      "the-cinematheque",
-      "downtown",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "canadian-film",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "free-admission",
+      "free-event",
+      "indie-film",
+      "live-cart-verified",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "the-cinematheque",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6827,6 +7994,33 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 fresh popcorn",
     "food_service_note": "Classic cinema concession (popcorn, craft cans & sodas)",
     "sample_cost_label": "$5.00 – $7.00 popcorn",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "canadian-film",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "free-admission",
+      "free-event",
+      "indie-film",
+      "live-cart-verified",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "the-cinematheque",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "van50-scout-cinematheque-hello-destroyer-20261027",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -6835,6 +8029,11 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6862,18 +8061,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "canadian-film",
-      "free-admission",
-      "the-cinematheque",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
@@ -6902,14 +8090,32 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/202020-15/",
     "ticket_provider": "Showpass",
     "tags": [
-      "comedy",
-      "stand-up",
-      "mount-pleasant",
-      "little-mountain-gallery",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "little-mountain-gallery",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -6959,6 +8165,34 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
     "websiteUrl": "https://www.showpass.com/202020-15/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "creative",
+      "culture",
+      "downtown",
+      "improv",
+      "laughs",
+      "little-mountain-gallery",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "mount-pleasant",
+      "performing-arts",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-lmg-20-20-20-comedy-20261017",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver, BC V6B 1B2",
@@ -6967,6 +8201,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -6993,17 +8230,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "stand-up",
-      "mount-pleasant",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-lmg-the-setup-20261024",
@@ -7032,15 +8259,33 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
     "ticket_provider": "Showpass",
     "tags": [
-      "comedy",
-      "stand-up",
-      "sketch",
-      "gastown",
-      "little-mountain-gallery",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "creative",
+      "culture",
+      "downtown",
+      "gastown",
+      "improv",
+      "laughs",
+      "little-mountain-gallery",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "sketch",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -7091,6 +8336,35 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
     "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
     "websiteUrl": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "art-exhibit",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "creative",
+      "culture",
+      "downtown",
+      "gastown",
+      "improv",
+      "laughs",
+      "little-mountain-gallery",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "sketch",
+      "solo-friendly",
+      "stage-play",
+      "stand-up",
+      "standup-comedy",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-lmg-the-setup-20261024",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver, BC V6B 1B2",
@@ -7099,6 +8373,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7125,18 +8402,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "stand-up",
-      "sketch",
-      "gastown",
-      "little-mountain-gallery",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -7165,14 +8431,29 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://theimprovcentre.ca/shows/",
     "ticket_provider": "The Improv Centre Box Office",
     "tags": [
-      "comedy",
-      "improv",
-      "granville-island",
-      "the-improv-centre",
       "all-ages",
-      "under-50-cad",
       "antigravity-13d-validated",
-      "live-cart-verified"
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "false-creek",
+      "granville-island",
+      "halloween",
+      "horror",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "spooky",
+      "stage-play",
+      "standup-comedy",
+      "the-improv-centre",
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -7222,6 +8503,31 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Neil Macrae Bar & Lounge (Granville Island craft beer & bar snacks)",
     "sample_cost_label": "$7.50 – $9.00 local craft beer",
     "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "subTags": [
+      "all-ages",
+      "antigravity-13d-validated",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "comedy",
+      "false-creek",
+      "granville-island",
+      "halloween",
+      "horror",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "solo-friendly",
+      "spooky",
+      "stage-play",
+      "standup-comedy",
+      "the-improv-centre",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "id": "van50-scout-improv-centre-blockbuster-20261008",
     "venue": "The Improv Centre",
     "address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
@@ -7230,6 +8536,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7256,22 +8565,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy",
-      "improv",
-      "granville-island",
-      "the-improv-centre",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-fox-cheap-thrills-20261002",
     "event_name": "Cheap Thrills Dance Party",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -7295,16 +8594,28 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/cheapthrillsjan-hpkhs",
     "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
     "tags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "dance-party",
+      "date-night",
+      "dj",
+      "djs",
+      "electronic",
+      "indie-rock",
+      "live-band",
       "live-cart-verified",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
       "music",
-      "dj"
+      "nightlife",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -7352,6 +8663,30 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "budget-friendly",
+      "cheap-night-out",
+      "dance-floor",
+      "dance-party",
+      "date-night",
+      "dj",
+      "djs",
+      "electronic",
+      "indie-rock",
+      "live-band",
+      "live-cart-verified",
+      "live-music",
+      "main-street",
+      "mount-pleasant",
+      "music",
+      "nightlife",
+      "the-fox-cabaret",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "id": "van50-scout-fox-cheap-thrills-20261002",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -7359,7 +8694,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7387,24 +8725,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "dance-party",
-      "nightlife",
-      "mount-pleasant",
-      "the-fox-cabaret",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music",
-      "dj"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
     "event_name": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7428,17 +8754,24 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://rickshawtheatre.com/show_listings/the-music-of-dangelo/",
     "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
     "tags": [
-      "live-music",
-      "soul",
-      "neo-soul",
-      "dangelo",
-      "rickshaw-theatre",
-      "east-van",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-13d-validated",
+      "dangelo",
+      "downtown",
+      "east-van",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "live-theatre",
+      "music",
+      "neo-soul",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "soul",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -7487,6 +8820,26 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.00 chips & bar snacks",
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-13d-validated",
+      "dangelo",
+      "downtown",
+      "east-van",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "neo-soul",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "soul",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7494,7 +8847,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7522,25 +8879,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "soul",
-      "neo-soul",
-      "dangelo",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
     "event_name": "Amy Winehouse Tribute with Krystle Dos Santos",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7564,17 +8908,24 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://rickshawtheatre.com/show_listings/amy-winehouse-tribute/",
     "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
     "tags": [
-      "live-music",
-      "soul",
-      "rnb",
-      "amy-winehouse",
-      "rickshaw-theatre",
-      "east-van",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
+      "amy-winehouse",
       "antigravity-13d-validated",
+      "craft-beer",
+      "downtown",
+      "east-van",
+      "food-and-drink",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "local-eats",
+      "music",
+      "rickshaw-theatre",
+      "rnb",
+      "solo-friendly",
+      "soul",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
@@ -7623,6 +8974,26 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.00 chips & bar snacks",
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "amy-winehouse",
+      "antigravity-13d-validated",
+      "craft-beer",
+      "downtown",
+      "east-van",
+      "food-and-drink",
+      "live-cart-verified",
+      "live-music",
+      "local-eats",
+      "music",
+      "rickshaw-theatre",
+      "rnb",
+      "solo-friendly",
+      "soul",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-scout-rickshaw-amy-winehouse-20261017",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7630,7 +9001,11 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -7658,20 +9033,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "soul",
-      "rnb",
-      "amy-winehouse",
-      "rickshaw-theatre",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-13d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-the-way-out-theatre-20261022",
@@ -7700,15 +9062,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://matchstickpro.com/the-way-out/",
     "ticket_provider": "Showpass Box Office",
     "tags": [
-      "film-premiere",
-      "ski-film",
-      "matchstick-productions",
-      "centennial-theatre",
-      "north-shore",
       "all-ages",
-      "under-50-cad",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "centennial-theatre",
+      "creative",
+      "culture",
+      "film-premiere",
+      "live-cart-verified",
+      "matchstick-productions",
+      "north-shore",
+      "ski-film",
+      "solo-friendly",
+      "under-50-cad",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-20D-Validated",
@@ -7758,6 +9125,22 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Lobby concession (beverages & cookies)",
     "sample_cost_label": "$7.50 – $9.00 beer & wine",
     "websiteUrl": "https://matchstickpro.com/the-way-out/",
+    "subTags": [
+      "all-ages",
+      "antigravity-20d-validated",
+      "art-exhibit",
+      "centennial-theatre",
+      "creative",
+      "culture",
+      "film-premiere",
+      "live-cart-verified",
+      "matchstick-productions",
+      "north-shore",
+      "ski-film",
+      "solo-friendly",
+      "under-50-cad",
+      "visual-arts"
+    ],
     "id": "van50-the-way-out-theatre-20261022",
     "venue": "Centennial Theatre",
     "address": "2300 Lonsdale Ave, North Vancouver, BC V7M 3L1",
@@ -7766,6 +9149,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -7797,18 +9185,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "film-premiere",
-      "ski-film",
-      "matchstick-productions",
-      "centennial-theatre",
-      "north-shore",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-firehall-red-demon-20261008",
@@ -7850,15 +9227,25 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://firehallartscentre.ca/event/red-demon/",
     "ticket_provider": "Firehall Box Office",
     "tags": [
-      "theatre",
-      "comedy",
-      "firehall-arts-centre",
-      "rice-and-beans",
-      "gastown",
       "all-ages",
-      "under-50-cad",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "comedy",
+      "downtown",
+      "firehall-arts-centre",
+      "gastown",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "rice-and-beans",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-20D-Validated",
@@ -7920,6 +9307,27 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Courtyard lobby concession (wine, craft beer & baked treats)",
     "sample_cost_label": "$7.50 – $9.00 BC wine & beer",
     "websiteUrl": "https://firehallartscentre.ca/event/red-demon/",
+    "subTags": [
+      "all-ages",
+      "antigravity-20d-validated",
+      "comedy",
+      "downtown",
+      "firehall-arts-centre",
+      "gastown",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "rice-and-beans",
+      "solo-friendly",
+      "stage-play",
+      "standup-comedy",
+      "theatre",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "id": "van50-scout-firehall-red-demon-20261008",
     "venue": "Firehall Arts Centre",
     "address": "280 E Cordova St, Vancouver, BC V6A 1L3",
@@ -7928,6 +9336,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Previews / Youth (Under 30)",
@@ -7958,9 +9369,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
+      "fri",
       "thu",
-      "fri"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -7976,18 +9387,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "theatre",
-      "comedy",
-      "firehall-arts-centre",
-      "rice-and-beans",
-      "gastown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cinematheque-small-file-20261017",
@@ -8029,15 +9429,28 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecinematheque.ca/series/small-file-media-festival-2026",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
-      "film-festival",
-      "small-file",
-      "experimental-cinema",
-      "the-cinematheque",
-      "downtown",
       "all-ages",
-      "under-50-cad",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "experimental-cinema",
+      "film-festival",
+      "film-screening",
+      "indie-film",
+      "live-cart-verified",
+      "small-file",
+      "solo-friendly",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "Small File Media Festival (7th Annual)",
     "approval_status": "Antigravity-20D-Validated",
@@ -8098,6 +9511,30 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 fresh popcorn",
     "food_service_note": "Classic cinema concession (popcorn, craft cans & sodas)",
     "sample_cost_label": "$5.00 – $7.00 popcorn",
+    "subTags": [
+      "all-ages",
+      "antigravity-20d-validated",
+      "art-exhibit",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "experimental-cinema",
+      "film-festival",
+      "film-screening",
+      "indie-film",
+      "live-cart-verified",
+      "small-file",
+      "solo-friendly",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-cinematheque-small-file-20261017",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -8106,6 +9543,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Social & arts",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8136,8 +9578,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T14:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8154,18 +9596,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "film-festival",
-      "small-file",
-      "experimental-cinema",
-      "the-cinematheque",
-      "downtown",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-scout-cinematheque-pulse-20261016",
@@ -8202,15 +9633,33 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://thecinematheque.ca/films/2026/pulse",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
-      "cinema",
-      "j-horror",
-      "halloween-on-howe",
-      "the-cinematheque",
-      "downtown",
       "18-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "art-exhibit",
+      "autumn",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "halloween",
+      "halloween-on-howe",
+      "horror",
+      "indie-film",
+      "j-horror",
+      "live-cart-verified",
+      "solo-friendly",
+      "spooky",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
     ],
     "festival_affiliation": "Forbidden Rooms: Halloween on Howe",
     "approval_status": "Antigravity-20D-Validated",
@@ -8265,6 +9714,35 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 fresh popcorn",
     "food_service_note": "Classic cinema concession (popcorn, craft cans & sodas)",
     "sample_cost_label": "$5.00 – $7.00 popcorn",
+    "subTags": [
+      "18-plus",
+      "all-ages",
+      "antigravity-20d-validated",
+      "art-exhibit",
+      "autumn",
+      "big-screen",
+      "budget-friendly",
+      "cheap-night-out",
+      "cinema",
+      "creative",
+      "cult-cinema",
+      "culture",
+      "downtown",
+      "film-screening",
+      "halloween",
+      "halloween-on-howe",
+      "horror",
+      "indie-film",
+      "j-horror",
+      "live-cart-verified",
+      "solo-friendly",
+      "spooky",
+      "the-cinematheque",
+      "under-25-cad",
+      "under-50-cad",
+      "vancouver-core",
+      "visual-arts"
+    ],
     "id": "van50-scout-cinematheque-pulse-20261016",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -8273,6 +9751,10 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Senior (65+)",
@@ -8321,18 +9803,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "cinema",
-      "j-horror",
-      "halloween-on-howe",
-      "the-cinematheque",
-      "downtown",
-      "18-plus",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-witches-harvest-market-20261024",
@@ -8354,15 +9825,23 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://ravensveil.com/",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "community-and-markets",
-      "artisan-market",
-      "samhain",
-      "croatian-cultural-centre",
-      "commercial-drive",
       "all-ages",
-      "under-50-cad",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "artisan-market",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "commercial-drive",
+      "community-and-markets",
+      "croatian-cultural-centre",
+      "date-night",
+      "east-van",
+      "halloween",
+      "live-cart-verified",
+      "samhain",
+      "spooky",
+      "under-25-cad",
+      "under-50-cad"
     ],
     "festival_affiliation": "Nightshade Artisan Collective",
     "approval_status": "Antigravity-20D-Validated",
@@ -8417,12 +9896,34 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $10.00 artisan baked treats",
     "food_service_note": "Artisan market vendors & food pop-ups on-site",
     "sample_cost_label": "$5.00 – $12.00 market treats & crafts",
+    "subTags": [
+      "all-ages",
+      "antigravity-20d-validated",
+      "artisan-market",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "commercial-drive",
+      "community-and-markets",
+      "croatian-cultural-centre",
+      "date-night",
+      "east-van",
+      "halloween",
+      "live-cart-verified",
+      "samhain",
+      "spooky",
+      "under-25-cad",
+      "under-50-cad"
+    ],
     "venue": "Croatian Cultural Centre",
     "address": "3250 Commercial Dr, Vancouver, BC V5N 4E4",
     "priceLabel": "$6.66 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "markets"
+    ],
     "tiers": [
       {
         "name": "Donated Entry",
@@ -8437,8 +9938,8 @@ const VANCOUVER_EVENTS = [
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8454,18 +9955,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "community-and-markets",
-      "artisan-market",
-      "samhain",
-      "croatian-cultural-centre",
-      "commercial-drive",
-      "all-ages",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "eb-alistair-ogden-rio",
@@ -8487,15 +9977,24 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "comedy-and-shows",
-      "stand-up-comedy",
-      "the-rio-theatre",
-      "commercial-drive",
-      "east-van",
       "19-plus",
-      "under-50-cad",
+      "all-ages",
       "antigravity-20d-validated",
-      "live-cart-verified"
+      "comedy-and-shows",
+      "commercial-drive",
+      "date-night",
+      "east-van",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "stage-play",
+      "stand-up-comedy",
+      "standup-comedy",
+      "the-rio-theatre",
+      "under-50-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-20D-Validated",
@@ -8544,12 +10043,35 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$6.00 – $9.00 real melted butter popcorn & candy",
     "food_service_note": "Fully licensed concession bar (famous real-butter popcorn, craft beer & wine)",
     "sample_cost_label": "$6.00 – $9.00 popcorn with real butter",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "antigravity-20d-validated",
+      "comedy-and-shows",
+      "commercial-drive",
+      "date-night",
+      "east-van",
+      "improv",
+      "laughs",
+      "live-cart-verified",
+      "live-comedy",
+      "live-theatre",
+      "performing-arts",
+      "stage-play",
+      "stand-up-comedy",
+      "standup-comedy",
+      "the-rio-theatre",
+      "under-50-cad"
+    ],
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
     "priceLabel": "$35.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8585,26 +10107,15 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "comedy-and-shows",
-      "stand-up-comedy",
-      "the-rio-theatre",
-      "commercial-drive",
-      "east-van",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-city-pop-city-rickshaw-20261121",
     "id": "van50-city-pop-city-rickshaw-20261121",
     "event_name": "City Pop City Ft. Chen Baker & Technodelic",
     "title": "City Pop City Ft. Chen Baker & Technodelic",
-    "category": "Music",
-    "categoryLabel": "Live Music",
+    "category": "music",
+    "categoryLabel": "Music",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -8618,16 +10129,24 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://www.eventbrite.ca/e/city-pop-city-ft-chen-baker-technodelic-tickets-1999628932967",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "live-music",
-      "city-pop",
-      "japanese-funk",
-      "rickshaw-theatre",
-      "downtown-eastside",
       "19-plus",
-      "under-50-cad",
       "antigravity-20d-validated",
+      "city-pop",
+      "date-night",
+      "downtown",
+      "downtown-eastside",
+      "japanese-funk",
       "live-cart-verified",
-      "music"
+      "live-music",
+      "live-theatre",
+      "music",
+      "nightlife",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "Infidels Jazz Presents",
     "approval_status": "Antigravity-20D-Validated",
@@ -8676,12 +10195,36 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.00 chips & bar snacks",
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
+    "subTags": [
+      "19-plus",
+      "antigravity-20d-validated",
+      "city-pop",
+      "date-night",
+      "downtown",
+      "downtown-eastside",
+      "japanese-funk",
+      "live-cart-verified",
+      "live-music",
+      "live-theatre",
+      "music",
+      "nightlife",
+      "performing-arts",
+      "rickshaw-theatre",
+      "solo-friendly",
+      "stage-play",
+      "under-50-cad",
+      "vancouver-core"
+    ],
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
     "priceLabel": "$36.21 CAD",
     "pricingType": "paid",
     "isFree": false,
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -8712,19 +10255,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "city-pop",
-      "japanese-funk",
-      "rickshaw-theatre",
-      "downtown-eastside",
-      "19-plus",
-      "under-50-cad",
-      "antigravity-20d-validated",
-      "live-cart-verified",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "vag-first-friday",
@@ -8763,13 +10294,23 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.vanartgallery.bc.ca/free",
     "ticket_provider": "Free Admission (BMO Sponsored)",
     "tags": [
-      "free-admission",
+      "all-ages",
+      "art-exhibit",
       "art-gallery",
-      "contemporary-art",
       "bmo",
-      "first-friday",
+      "budget-friendly",
+      "contemporary-art",
+      "creative",
+      "culture",
+      "date-night",
       "downtown",
-      "family-friendly"
+      "family-friendly",
+      "first-friday",
+      "free-admission",
+      "free-event",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
@@ -8823,6 +10364,25 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$9.00 – $13.00 wine & cocktails at 1931 Bistro",
     "food_service_note": "1931 Gallery Bistro on-site (coffee, wine & seasonal dishes)",
     "sample_cost_label": "Free admission ($0) on First Friday",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "art-gallery",
+      "bmo",
+      "budget-friendly",
+      "contemporary-art",
+      "creative",
+      "culture",
+      "date-night",
+      "downtown",
+      "family-friendly",
+      "first-friday",
+      "free-admission",
+      "free-event",
+      "vancouver-core",
+      "visual-arts",
+      "zero-dollars"
+    ],
     "id": "vag-first-friday",
     "venue": "Vancouver Art Gallery",
     "address": "750 Hornby St, Vancouver, BC",
@@ -8831,6 +10391,9 @@ const VANCOUVER_EVENTS = [
     "isFree": true,
     "categoryLabel": "Free Public Access",
     "categoryIcon": "🏛️",
+    "categories": [
+      "free-public-access"
+    ],
     "tiers": [
       {
         "name": "General Public Free Admission",
@@ -8886,23 +10449,14 @@ const VANCOUVER_EVENTS = [
     "operatingHours": "First Friday of each month: 4:00 PM – 8:00 PM",
     "weeklyHours": null,
     "lifecycleType": "recurring",
-    "isSoldOut": false,
-    "subTags": [
-      "free-admission",
-      "art-gallery",
-      "contemporary-art",
-      "bmo",
-      "first-friday",
-      "downtown",
-      "family-friendly"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
     "event_name": "Dälek (with Infidelity & DarkGable)",
     "title": "Dälek (with Infidelity & DarkGable)",
     "artist": "Dälek, Infidelity, DarkGable",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "one_time",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -8926,14 +10480,17 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
     "ticket_provider": "Modo Live / Showpass",
     "tags": [
-      "live-music",
-      "hip-hop",
-      "experimental",
-      "noise",
-      "wise-hall",
-      "commercial-drive",
       "19-plus",
-      "music"
+      "all-ages",
+      "commercial-drive",
+      "east-van",
+      "experimental",
+      "hip-hop",
+      "live-music",
+      "music",
+      "noise",
+      "solo-friendly",
+      "wise-hall"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
@@ -8983,6 +10540,19 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Non-profit community lounge bar (no kitchen; Commercial Dr dining nearby)",
     "sample_cost_label": "$6.50 – $8.00 Powell / Strange Fellows pints",
     "websiteUrl": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "subTags": [
+      "19-plus",
+      "all-ages",
+      "commercial-drive",
+      "east-van",
+      "experimental",
+      "hip-hop",
+      "live-music",
+      "music",
+      "noise",
+      "solo-friendly",
+      "wise-hall"
+    ],
     "id": "van50-dalek-wise-hall-20261009",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -8990,7 +10560,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Advance Admission",
@@ -9027,24 +10600,14 @@ const VANCOUVER_EVENTS = [
     "operatingHours": "Doors 8:00 PM, Show 9:00 PM",
     "weeklyHours": null,
     "lifecycleType": "one_time",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "hip-hop",
-      "experimental",
-      "noise",
-      "wise-hall",
-      "commercial-drive",
-      "19-plus",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
     "event_name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "artist": "Pastor Ben MacRae & Guest Jazz Ensembles",
-    "category": "Music",
+    "category": "music",
     "lifecycle_type": "recurring",
     "venue_name": "St. Andrew's-Wesley United Church",
     "full_address": "1022 Nelson St, Vancouver, BC",
@@ -9081,14 +10644,25 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://standrewswesley.com/events/",
     "ticket_provider": "In-Person Sanctuary Donation",
     "tags": [
-      "live-music",
-      "jazz",
-      "vespers",
-      "church-acoustic",
-      "downtown",
-      "donation-pwyc",
       "all-ages",
-      "music"
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "church-acoustic",
+      "cocktails",
+      "donation-pwyc",
+      "downtown",
+      "halloween",
+      "jazz",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "spooky",
+      "under-25-cad",
+      "vancouver-core",
+      "vespers"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
@@ -9147,6 +10721,27 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "no_onsite_food",
     "food_service_note": "Historic sanctuary; no on-site food or bar (Burrard dining nearby)",
     "sample_cost_label": "$10 suggested donation ($0 minimum)",
+    "subTags": [
+      "all-ages",
+      "autumn",
+      "budget-friendly",
+      "cheap-night-out",
+      "church-acoustic",
+      "cocktails",
+      "donation-pwyc",
+      "downtown",
+      "halloween",
+      "jazz",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "spooky",
+      "under-25-cad",
+      "vancouver-core",
+      "vespers"
+    ],
     "id": "van50-st-andrews-jazz-vespers",
     "venue": "St. Andrew's-Wesley United Church",
     "address": "1022 Nelson St, Vancouver, BC",
@@ -9154,7 +10749,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryLabel": "Music",
-    "categoryIcon": "🎭",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "Suggested Donation",
@@ -9202,17 +10800,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": "Sundays 4:00 PM – 5:00 PM",
     "weeklyHours": null,
     "lifecycleType": "recurring",
-    "isSoldOut": false,
-    "subTags": [
-      "live-music",
-      "jazz",
-      "vespers",
-      "church-acoustic",
-      "downtown",
-      "donation-pwyc",
-      "all-ages",
-      "music"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -9256,13 +10844,20 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.bcsme.org/schedule/",
     "ticket_provider": "On-Site Box Office",
     "tags": [
-      "mini-train",
-      "confederation-park",
+      "all-ages",
+      "budget-friendly",
       "burnaby",
-      "trains",
+      "cheap-night-out",
+      "confederation-park",
       "family-friendly",
+      "fresh-air",
+      "mini-train",
+      "nature-walk",
       "outdoors",
-      "all-ages"
+      "scenic-views",
+      "solo-friendly",
+      "trains",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
@@ -9344,6 +10939,22 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $4.50 ice cream, popsicles & hot dogs",
     "food_service_note": "Park concession kiosk (hot dogs, ice cream & drinks)",
     "sample_cost_label": "$5.00 train ride / $3.50 ice cream",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "burnaby",
+      "cheap-night-out",
+      "confederation-park",
+      "family-friendly",
+      "fresh-air",
+      "mini-train",
+      "nature-walk",
+      "outdoors",
+      "scenic-views",
+      "solo-friendly",
+      "trains",
+      "under-25-cad"
+    ],
     "id": "van50-burnaby-central-railway-mini-train",
     "venue": "Confederation Park",
     "address": "120 North Willingdon Ave, Burnaby, BC",
@@ -9352,6 +10963,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets",
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Single Train Ride (Ages 3+)",
@@ -9387,9 +11003,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T11:00:00-07:00",
     "daysOfWeek": [
-      "sat",
       "mon",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -9406,16 +11022,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": "Saturdays, Sundays & Thanksgiving Monday: 11:00 AM – 5:00 PM (Ticket sales close 4:30 PM)",
     "weeklyHours": null,
     "lifecycleType": "recurring",
-    "isSoldOut": false,
-    "subTags": [
-      "mini-train",
-      "confederation-park",
-      "burnaby",
-      "trains",
-      "family-friendly",
-      "outdoors",
-      "all-ages"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "stanley-pitch-putt",
@@ -9443,12 +11050,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
-      "pitch-and-putt",
-      "golf",
-      "stanley-park",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "downtown",
       "english-bay",
+      "fresh-air",
+      "golf",
+      "nature-walk",
       "outdoors",
-      "sports"
+      "pitch-and-putt",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "stanley-park",
+      "under-25-cad",
+      "vancouver-core"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -9496,6 +11113,24 @@ const VANCOUVER_EVENTS = [
       49.2908,
       -123.1448
     ],
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "downtown",
+      "english-bay",
+      "fresh-air",
+      "golf",
+      "nature-walk",
+      "outdoors",
+      "pitch-and-putt",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "stanley-park",
+      "under-25-cad",
+      "vancouver-core"
+    ],
     "id": "stanley-pitch-putt",
     "venue": "Stanley Park Pitch & Putt",
     "address": "2099 Beach Ave, Vancouver, BC V6G 1Z4",
@@ -9503,6 +11138,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9567,15 +11205,7 @@ const VANCOUVER_EVENTS = [
       "sun": "8:00 AM – 7:30 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "stanley-park",
-      "english-bay",
-      "outdoors",
-      "sports"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "qe-park-pitch-putt",
@@ -9603,12 +11233,21 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
-      "pitch-and-putt",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "fresh-air",
       "golf",
-      "queen-elizabeth-park",
+      "main-street",
       "mount-pleasant",
+      "nature-walk",
       "outdoors",
-      "sports"
+      "pitch-and-putt",
+      "queen-elizabeth-park",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -9656,6 +11295,23 @@ const VANCOUVER_EVENTS = [
       49.2395,
       -123.114
     ],
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "fresh-air",
+      "golf",
+      "main-street",
+      "mount-pleasant",
+      "nature-walk",
+      "outdoors",
+      "pitch-and-putt",
+      "queen-elizabeth-park",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
+    ],
     "id": "qe-park-pitch-putt",
     "venue": "Queen Elizabeth Park Pitch & Putt",
     "address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC V5Y 2M9",
@@ -9663,6 +11319,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9727,15 +11386,7 @@ const VANCOUVER_EVENTS = [
       "sun": "8:00 AM – 7:30 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "queen-elizabeth-park",
-      "mount-pleasant",
-      "outdoors",
-      "sports"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "rupert-park-pitch-putt",
@@ -9763,12 +11414,21 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
-      "pitch-and-putt",
-      "golf",
-      "rupert-park",
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "commercial-drive",
       "east-van",
+      "fresh-air",
+      "golf",
+      "nature-walk",
       "outdoors",
-      "sports"
+      "pitch-and-putt",
+      "rupert-park",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -9816,6 +11476,23 @@ const VANCOUVER_EVENTS = [
       49.274,
       -123.0335
     ],
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "commercial-drive",
+      "east-van",
+      "fresh-air",
+      "golf",
+      "nature-walk",
+      "outdoors",
+      "pitch-and-putt",
+      "rupert-park",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
+    ],
     "id": "rupert-park-pitch-putt",
     "venue": "Rupert Park Pitch & Putt",
     "address": "3402 Charles St, Vancouver, BC V5K 2Y7",
@@ -9823,6 +11500,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes (19-64)",
@@ -9887,15 +11567,7 @@ const VANCOUVER_EVENTS = [
       "sun": "8:00 AM – 7:30 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "rupert-park",
-      "east-van",
-      "outdoors",
-      "sports"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "central-park-pitch-putt",
@@ -9923,13 +11595,21 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.golfburnaby.ca/golf/central-park",
     "ticket_provider": "Golf Burnaby",
     "tags": [
-      "pitch-and-putt",
-      "golf",
-      "central-park",
+      "all-ages",
+      "budget-friendly",
       "burnaby",
-      "patterson-skytrain",
+      "central-park",
+      "cheap-night-out",
+      "fresh-air",
+      "golf",
+      "nature-walk",
       "outdoors",
-      "sports"
+      "patterson-skytrain",
+      "pitch-and-putt",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -9979,6 +11659,23 @@ const VANCOUVER_EVENTS = [
       49.2272,
       -123.0189
     ],
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "burnaby",
+      "central-park",
+      "cheap-night-out",
+      "fresh-air",
+      "golf",
+      "nature-walk",
+      "outdoors",
+      "patterson-skytrain",
+      "pitch-and-putt",
+      "scenic-views",
+      "solo-friendly",
+      "sports",
+      "under-25-cad"
+    ],
     "id": "central-park-pitch-putt",
     "venue": "Central Park Pitch & Putt",
     "address": "3883 Imperial Street, Central Park, Burnaby, BC V5J 1A3",
@@ -9986,6 +11683,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🏌️",
+    "categories": [
+      "outdoors"
+    ],
     "tiers": [
       {
         "name": "Adult 18-Holes",
@@ -10055,16 +11755,7 @@ const VANCOUVER_EVENTS = [
       "sun": "8:00 AM – 6:30 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "pitch-and-putt",
-      "golf",
-      "central-park",
-      "burnaby",
-      "patterson-skytrain",
-      "outdoors",
-      "sports"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "bloedel-conservatory-admission",
@@ -10092,13 +11783,26 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.showpass.com/o/bloedel-conservatory/",
     "ticket_provider": "Showpass",
     "tags": [
-      "bloedel-conservatory",
-      "queen-elizabeth-park",
+      "all-ages",
+      "art-exhibit",
       "birds",
+      "bloedel-conservatory",
       "botanical-garden",
-      "tropical",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "culture",
+      "fresh-air",
+      "main-street",
+      "mount-pleasant",
+      "nature-walk",
       "outdoors",
-      "all-ages"
+      "queen-elizabeth-park",
+      "scenic-views",
+      "solo-friendly",
+      "tropical",
+      "under-25-cad",
+      "visual-arts"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -10150,6 +11854,28 @@ const VANCOUVER_EVENTS = [
       49.2423,
       -123.1147
     ],
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "birds",
+      "bloedel-conservatory",
+      "botanical-garden",
+      "budget-friendly",
+      "cheap-night-out",
+      "creative",
+      "culture",
+      "fresh-air",
+      "main-street",
+      "mount-pleasant",
+      "nature-walk",
+      "outdoors",
+      "queen-elizabeth-park",
+      "scenic-views",
+      "solo-friendly",
+      "tropical",
+      "under-25-cad",
+      "visual-arts"
+    ],
     "id": "bloedel-conservatory-admission",
     "venue": "Bloedel Conservatory",
     "address": "4600 Cambie St, Queen Elizabeth Park, Vancouver, BC V5Y 2M9",
@@ -10157,6 +11883,10 @@ const VANCOUVER_EVENTS = [
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "social"
+    ],
     "tiers": [
       {
         "name": "Adult (19-64)",
@@ -10231,16 +11961,7 @@ const VANCOUVER_EVENTS = [
       "sun": "10:00 AM – 5:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "bloedel-conservatory",
-      "queen-elizabeth-park",
-      "birds",
-      "botanical-garden",
-      "tropical",
-      "outdoors",
-      "all-ages"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-pizzeria-ludica-board-games",
@@ -10268,13 +11989,26 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://www.pizzerialudica.com/",
     "ticket_provider": "Direct / Free Drop-In",
     "tags": [
+      "all-ages",
       "board-games",
-      "pizza",
+      "budget-friendly",
       "chinatown",
-      "tabletop",
+      "craft-beer",
+      "downtown",
+      "food-and-drink",
+      "free-admission",
+      "free-event",
       "gaming",
+      "live-theatre",
+      "local-eats",
+      "performing-arts",
+      "pizza",
       "social",
-      "all-ages"
+      "solo-friendly",
+      "stage-play",
+      "tabletop",
+      "vancouver-core",
+      "zero-dollars"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
@@ -10318,6 +12052,28 @@ const VANCOUVER_EVENTS = [
       49.2798,
       -123.1095
     ],
+    "subTags": [
+      "all-ages",
+      "board-games",
+      "budget-friendly",
+      "chinatown",
+      "craft-beer",
+      "downtown",
+      "food-and-drink",
+      "free-admission",
+      "free-event",
+      "gaming",
+      "live-theatre",
+      "local-eats",
+      "performing-arts",
+      "pizza",
+      "social",
+      "solo-friendly",
+      "stage-play",
+      "tabletop",
+      "vancouver-core",
+      "zero-dollars"
+    ],
     "id": "van50-pizzeria-ludica-board-games",
     "venue": "Pizzeria Ludica",
     "address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
@@ -10325,6 +12081,9 @@ const VANCOUVER_EVENTS = [
     "pricingType": "free",
     "isFree": true,
     "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "tiers": [
       {
         "name": "Board Game Library Access (with food/drink)",
@@ -10379,16 +12138,7 @@ const VANCOUVER_EVENTS = [
       "sun": "11:30 AM – 10:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false,
-    "subTags": [
-      "board-games",
-      "pizza",
-      "chinatown",
-      "tabletop",
-      "gaming",
-      "social",
-      "all-ages"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "viff-the-debut",
@@ -10424,15 +12174,22 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book",
     "ticket_provider": "Direct Box Office",
     "tags": [
-      "viff",
-      "foreign-cinema",
-      "japanese-film",
-      "mieko-kawakami",
-      "film-festival",
+      "all-ages",
+      "art-exhibit",
+      "cinema",
+      "creative",
+      "culture",
       "date-night",
-      "solo-friendly",
+      "film-festival",
+      "foreign-cinema",
       "gastown",
-      "cinema"
+      "japanese-film",
+      "kitsilano",
+      "mieko-kawakami",
+      "solo-friendly",
+      "viff",
+      "visual-arts",
+      "west-side"
     ],
     "festival_affiliation": "VIFF",
     "approval_status": "Auto-Approved",
@@ -10489,6 +12246,24 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.50 – $7.50 fresh popcorn",
     "food_service_note": "Licensed cinema concessions across festival venues",
     "sample_cost_label": "$5.50 – $7.50 popcorn",
+    "subTags": [
+      "all-ages",
+      "art-exhibit",
+      "cinema",
+      "creative",
+      "culture",
+      "date-night",
+      "film-festival",
+      "foreign-cinema",
+      "gastown",
+      "japanese-film",
+      "kitsilano",
+      "mieko-kawakami",
+      "solo-friendly",
+      "viff",
+      "visual-arts",
+      "west-side"
+    ],
     "id": "viff-the-debut",
     "venue": "Fifth Avenue Cinema (VIFF)",
     "address": "2110 Burrard Street, Vancouver, BC V6J 1P2",
@@ -10497,6 +12272,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Arts & culture",
     "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "Adult",
@@ -10525,18 +12305,7 @@ const VANCOUVER_EVENTS = [
     "operatingHours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "viff",
-      "foreign-cinema",
-      "japanese-film",
-      "mieko-kawakami",
-      "film-festival",
-      "date-night",
-      "solo-friendly",
-      "gastown",
-      "cinema"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -10575,15 +12344,26 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://tickets.ubc.ca/Online/default.asp?BOparam::WScontent::loadArticle::article_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork::WScontent::loadArticle=Load",
     "ticket_provider": "UBC Tickets",
     "tags": [
+      "all-ages",
+      "apples",
+      "autumn",
+      "botanical-garden",
+      "budget-friendly",
+      "cheap-night-out",
+      "family-friendly",
       "festival",
       "food",
-      "apples",
-      "botanical-garden",
-      "ubc",
+      "fresh-air",
+      "kitsilano",
+      "markets",
+      "nature-walk",
+      "outdoors",
       "point-grey",
-      "family-friendly",
-      "autumn",
-      "markets"
+      "scenic-views",
+      "solo-friendly",
+      "ubc",
+      "under-25-cad",
+      "west-side"
     ],
     "festival_affiliation": "UBC Apple Festival",
     "approval_status": "Curator-Approved",
@@ -10650,6 +12430,28 @@ const VANCOUVER_EVENTS = [
       49.2539,
       -123.2505
     ],
+    "subTags": [
+      "all-ages",
+      "apples",
+      "autumn",
+      "botanical-garden",
+      "budget-friendly",
+      "cheap-night-out",
+      "family-friendly",
+      "festival",
+      "food",
+      "fresh-air",
+      "kitsilano",
+      "markets",
+      "nature-walk",
+      "outdoors",
+      "point-grey",
+      "scenic-views",
+      "solo-friendly",
+      "ubc",
+      "under-25-cad",
+      "west-side"
+    ],
     "id": "van50-ubc-apple-festival-20261017",
     "venue": "UBC Botanical Garden",
     "address": "6804 SW Marine Dr, Vancouver, BC V6T 1Z4",
@@ -10658,6 +12460,11 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Community & markets",
     "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "markets",
+      "festivals"
+    ],
     "tiers": [
       {
         "name": "General Admission (Ages 8–64)",
@@ -10703,8 +12510,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T11:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -10725,18 +12532,7 @@ const VANCOUVER_EVENTS = [
       "sun": "10:00 AM – 4:30 PM"
     },
     "lifecycleType": "one_time",
-    "isSoldOut": false,
-    "subTags": [
-      "festival",
-      "food",
-      "apples",
-      "botanical-garden",
-      "ubc",
-      "point-grey",
-      "family-friendly",
-      "autumn",
-      "markets"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "test-reinforce-1791042702",
@@ -10765,12 +12561,34 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://frankiesjazzclub.com/events",
     "ticket_provider": "Direct",
     "tags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
+      "live-music",
       "music",
-      "curator-verified"
+      "solo-friendly",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
     "curator_notes": "Curator verified as-is",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "under-25-cad"
+    ],
     "id": "test-reinforce-1791042702",
     "title": "Continuous Learning Jazz Showcase",
     "venue": "Frankie's Jazz Club",
@@ -10781,6 +12599,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Music",
     "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -10811,11 +12632,7 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "music",
-      "curator-verified"
-    ]
+    "isSoldOut": false
   },
   {
     "event_id": "test-reinforce-1791047810",
@@ -10844,12 +12661,34 @@ const VANCOUVER_EVENTS = [
     "ticket_url": "https://frankiesjazzclub.com/events",
     "ticket_provider": "Direct",
     "tags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
+      "live-music",
       "music",
-      "curator-verified"
+      "solo-friendly",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
     "curator_notes": "Curator verified as-is",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "under-25-cad"
+    ],
     "id": "test-reinforce-1791047810",
     "title": "Continuous Learning Jazz Showcase",
     "venue": "Frankie's Jazz Club",
@@ -10860,6 +12699,9 @@ const VANCOUVER_EVENTS = [
     "isFree": false,
     "categoryLabel": "Music",
     "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
     "tiers": [
       {
         "name": "General Admission",
@@ -10890,101 +12732,110 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
-    "isSoldOut": false,
-    "subTags": [
-      "music",
-      "curator-verified"
-    ]
-  }
-];
-const MANUAL_REVIEW_QUEUE = [
+    "isSoldOut": false
+  },
   {
-    "event_id": "rickshaw-evergrey-metal-showcase",
-    "event_name": "HammerFall & Evergrey (Freedom World Crusade Tour)",
-    "title": "HammerFall & Evergrey (Freedom World Crusade Tour)",
-    "artist": "HammerFall, Evergrey, Greyhawk",
-    "category": "Live Music",
-    "lifecycle_type": "one_time",
-    "venue_name": "Rickshaw Theatre",
-    "full_address": "254 E Hastings St, Vancouver, BC",
+    "event_id": "test-reinforce-1791050589",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Swedish power metal icons HammerFall headline the Rickshaw Theatre on their Freedom World Crusade tour, joined by melodic progressive metal masters Evergrey and Seattle heavy metal outfit Greyhawk. (Note: Event has reached full ticket capacity / Sold Out).",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
     "pricing_all_in_cad": {
-      "regular": 35
+      "regular": 20.0,
+      "senior": null,
+      "student": null,
+      "member": null
     },
-    "operating_hours": "Doors 6:30 PM, Show 7:30 PM",
-    "days_open": "Wednesday",
     "show_1": {
-      "date": "2026-10-07",
-      "start_time": "18:30",
-      "end_time": "23:00",
-      "cost": 35
+      "date": "2026-09-25",
+      "start_time": "19:00",
+      "end_time": "16:30",
+      "cost": 20.0
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://orangetickets.ca",
-    "details_url": "https://rickshawtheatre.com/show_listings/hammerfall/",
-    "ticket_url": "https://www.eventbrite.ca/e/hammerfall-with-evergrey-and-greyhawk-tickets-1977527993462",
-    "ticket_provider": "Eventbrite",
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "details_url": "https://frankiesjazzclub.com/events",
+    "ticket_url": "https://frankiesjazzclub.com/events",
+    "ticket_provider": "Direct",
     "tags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
       "live-music",
-      "metal",
-      "heavy-metal",
-      "power-metal",
-      "rickshaw",
-      "19-plus",
-      "concert"
+      "music",
+      "solo-friendly",
+      "under-25-cad"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Verified by Quarantine AI (2026-10-02): Live inventory on Eventbrite confirmed 100% Sold Out (Tier 1 link promoted). Kept in holding queue with SOLD OUT status.",
-    "price": 35,
-    "featured_exhibition": null,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "weekly_hours": null,
-    "coffee_benchmark": "$4.00 – $6.00 CAD (Hastings / Chinatown cafes)",
-    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Hastings/Chinatown eateries)",
-    "price_adult": 35,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": "Advance General Admission (Sold Out)",
-    "tier_custom_price_1": 35,
-    "tier_custom_name_2": "Door Admission (Sold Out)",
-    "tier_custom_price_2": 40,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "date": "2026-10-07",
-    "time": "18:30",
-    "start_time": "18:30",
-    "end_time": "23:00",
-    "dateSchedule": "Wednesday, October 7, 2026 at 6:30 PM",
-    "frequency": "One-Time",
-    "typical_item_spend": "$18.00 – $28.00 CAD (2 beers/drinks)",
-    "lineup": "HammerFall, Evergrey, Greyhawk",
-    "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": true,
-    "waypoints": [],
-    "showings": [
+    "curator_notes": "Curator verified as-is",
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "cheap-night-out",
+      "cocktails",
+      "curator-verified",
+      "listening-room",
+      "live-jazz",
+      "live-music",
+      "music",
+      "solo-friendly",
+      "under-25-cad"
+    ],
+    "id": "test-reinforce-1791050589",
+    "title": "Continuous Learning Jazz Showcase",
+    "venue": "Frankie's Jazz Club",
+    "address": "Vancouver, BC",
+    "price": 20.0,
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
       {
-        "date": "2026-10-07",
-        "start_time": "18:30",
-        "end_time": "23:00",
-        "cost": 35
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
       }
     ],
-    "food_service_type": "bar_only",
-    "drink_benchmark": "$8.50 pint • $14.50 cocktail",
-    "concession_benchmark": "$3.00 chips & bar snacks",
-    "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
-    "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
-    "quarantine_reason": "Sold out: official inventory exhausted.",
-    "last_investigated_at": "2026-10-02T14:28:00-07:00"
-  },
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "dateSchedule": "2026-09-25 at 19:00",
+    "startIso": "2026-09-25T19:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://frankiesjazzclub.com/events",
+    "venueUrl": "https://frankiesjazzclub.com/events",
+    "ticketProvider": "Direct",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": null,
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  }
+];
+const MANUAL_REVIEW_QUEUE = [
   {
     "id": "test-reinforce-1791042702",
     "title": "Continuous Learning Jazz Showcase",
@@ -11050,6 +12901,311 @@ const MANUAL_REVIEW_QUEUE = [
       "annotatedAt": "2026-10-03T17:16:51.436973+00:00"
     },
     "neighborhood": "Downtown, Gastown & Yaletown"
+  },
+  {
+    "id": "bloedel-conservatory-dome",
+    "title": "Bloedel Conservatory: Tropical Rainforest Dome",
+    "venue": "Bloedel Conservatory",
+    "address": "4600 Cambie St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 7.9,
+    "attemptedPriceLabel": "$7.90 door",
+    "provider": "Showpass",
+    "semanticProvider": "Showpass Verified",
+    "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
+    "category": "arts",
+    "flaggedAt": "2026-10-03T13:52:55-07:00",
+    "flagReason": "Could not dynamically verify official adult admission rate from City of Vancouver Park Board schedule",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "biltmore-cabaret-indie-music",
+    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
+    "venue": "The Biltmore Cabaret",
+    "address": "2755 Prince Edward St, Vancouver",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 11.0,
+    "attemptedPriceLabel": "$11.00 door",
+    "provider": "AdmitOne",
+    "semanticProvider": "AdmitOne Verified",
+    "websiteUrl": "https://biltmorecabaret.com/event",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:04-07:00",
+    "flagReason": "Could not parse live ticket prices from AdmitOne page (https://biltmorecabaret.com/event)",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "rickshaw-indie-rock",
+    "title": "Indie Rock, Punk & Live Showcases at Rickshaw Theatre",
+    "venue": "The Rickshaw Theatre",
+    "address": "254 E Hastings St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 35.0,
+    "attemptedPriceLabel": "$35.00 door",
+    "provider": "Eventbrite",
+    "semanticProvider": "Eventbrite Verified",
+    "websiteUrl": "https://rickshawtheatre.com/events/",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:09-07:00",
+    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://rickshawtheatre.com/events/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "ludica-boardgames",
+    "title": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "venue": "Pizzeria Ludica",
+    "address": "189 Keefer Pl, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 20.0,
+    "attemptedPriceLabel": "$20.00 door",
+    "provider": "Independent Box Office",
+    "semanticProvider": "Walk-in / Table Reservation",
+    "websiteUrl": "https://www.pizzerialudica.com/",
+    "category": "activities",
+    "flaggedAt": "2026-10-03T13:53:11-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.pizzerialudica.com/",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
+  },
+  {
+    "id": "guilt-and-co-thursday-groove",
+    "title": "Guilt & Co: Thursday Night Live Soul & Groove",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 8.0,
+    "attemptedPriceLabel": "$8.00 door",
+    "provider": "Door Cover at Entrance",
+    "semanticProvider": "Door Cover at Entrance",
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:17-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "guilt-and-co-friday-jazz",
+    "title": "Guilt & Co: Friday Night Prime Jazz & Funk Showcase",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 8.0,
+    "attemptedPriceLabel": "$8.00 door",
+    "provider": "Door Cover at Entrance",
+    "semanticProvider": "Door Cover at Entrance",
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:17-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "guilt-and-co-saturday-showcase",
+    "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 8.0,
+    "attemptedPriceLabel": "$8.00 door",
+    "provider": "Door Cover at Entrance",
+    "semanticProvider": "Door Cover at Entrance",
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:17-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "guilt-and-co-sunday-sessions",
+    "title": "Guilt & Co: Sunday Evening Live Acoustic & Soul Sessions",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "attemptedPrice": 8.0,
+    "attemptedPriceLabel": "$8.00 door",
+    "provider": "Door Cover at Entrance",
+    "semanticProvider": "Door Cover at Entrance",
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:17-07:00",
+    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
+    "reviewStatus": "pending_manual_review",
+    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
+  },
+  {
+    "id": "queen-elizabeth-theatre-broadway-across-canada-juliet",
+    "title": "Broadway Across Canada: & Juliet",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-10-04-2026/event/110064A6C333D5F1",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:47-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-10-04-2026/event/110064A6C333D5F1",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-sting-30",
+    "title": "Sting 3.0",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/sting-tickets/artist/723578",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:49-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sting-tickets/artist/723578",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-khan-saab",
+    "title": "Khan Saab",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:49-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-undertale-the-determination-symphony",
+    "title": "Undertale: The Determination Symphony",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A7DFAC",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:50-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A7DFAC",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-sunanda-sharma-victory-tour",
+    "title": "Sunanda Sharma Victory Tour",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:51-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-vancouver-opera-tosca",
+    "title": "Vancouver Opera: Tosca",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:51-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-beck-ride-lonesome-tour",
+    "title": "Beck: Ride Lonesome Tour",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/event/11006489918258F5",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:51-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/11006489918258F5",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-boynextdoor",
+    "title": "BOYNEXTDOOR",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:53-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-raffi",
+    "title": "Raffi",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/raffi-tickets/artist/753662",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:55-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/raffi-tickets/artist/753662",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-broadway-across-canada-disneys-beauty-th",
+    "title": "Broadway Across Canada: Disney's Beauty & The Beast",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:56-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-chelsea-handler-the-high-and-mighty-tour",
+    "title": "Chelsea Handler: The High and Mighty Tour",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://www.ticketmaster.ca/event/11006523C1C6A157",
+    "category": "music",
+    "flaggedAt": "2026-10-03T13:53:56-07:00",
+    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/11006523C1C6A157",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-canadas-royal-winnipeg-ballet-nutcracker",
+    "title": "Canada's Royal Winnipeg Ballet: Nutcracker",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://vancouvercivictheatres.com/events/royal-winnipeg-ballet-nutcracker-dec-9-13-2026/",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:56-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/royal-winnipeg-ballet-nutcracker-dec-9-13-2026/",
+    "reviewStatus": "pending_manual_review"
+  },
+  {
+    "id": "queen-elizabeth-theatre-goh-ballets-the-nutcracker",
+    "title": "Goh Ballet's The Nutcracker",
+    "venue": "Queen Elizabeth Theatre",
+    "address": "Vancouver, BC",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "attemptedPrice": 20.0,
+    "websiteUrl": "https://vancouvercivictheatres.com/events/goh-ballet-the-nutcracker-dec-17-20-2026/",
+    "category": "shows",
+    "flaggedAt": "2026-10-03T13:53:56-07:00",
+    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/goh-ballet-the-nutcracker-dec-17-20-2026/",
+    "reviewStatus": "pending_manual_review"
   }
 ];
 
@@ -11100,7 +13256,7 @@ const FREQUENCIES = [
 const CATEGORIES = [
   { id: "all", label: "All", icon: "✨" },
   { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-  { id: "music", label: "Live Music", icon: "🎵" },
+  { id: "music", label: "Music", icon: "🎵" },
   { id: "shows", label: "Comedy & Stage", icon: "🎭" },
   { id: "festivals", label: "Festivals", icon: "🎪" },
   { id: "markets", label: "Markets", icon: "🧺" },
@@ -11230,8 +13386,7 @@ const VENUE_URLS = {
   "The Main": "https://themainonmain.com",
   "Commodore Ballroom": "https://www.commodoreballroom.com",
   "The Rec Room Granville": "https://www.therecroom.com",
-  "Firehall Arts Centre": "https://www.firehallartscentre.ca",
-  "Test QA Cellar 1791047816": "https://testcellar.example.com/events"
+  "Firehall Arts Centre": "https://www.firehallartscentre.ca"
 };
 
 // Curated Discovery Sources Directory

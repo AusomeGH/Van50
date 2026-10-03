@@ -34,6 +34,7 @@ FESTIVALS_JSON = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_JSON = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_JSON = os.path.join(DATA_DIR, "discovery_sources.json")
 ORGANIZERS_JSON = os.path.join(DATA_DIR, "organizers_directory.json")
+HOLIDAYS_JSON = os.path.join(DATA_DIR, "approved_holidays.json")
 
 
 
@@ -175,6 +176,16 @@ CRITICAL CONSTRAINTS:
    - If an event claims to 'repeat weekly' but specific future dates are not confirmed, leave show_2 and show_3 completely null.
 7. DISCOVERED SOURCES & CHANNELS:
    - Extract any newly identified Vancouver event discovery websites, cultural blogs, municipal calendars, or aggregator feeds into "discovered_sources".
+8. HOLIDAYS & SPECIAL OCCASIONS:
+   - If an event is tied to a holiday (e.g. Halloween, Thanksgiving, Christmas / Winter Holidays, New Year's, Lunar New Year, Valentine's Day, St. Patrick's Day, Easter, Canada Day, Pride, Diwali), include the canonical lowercase holiday name in the "tags" array (e.g. "halloween", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride", "diwali").
+   - If an event is tied to a holiday NOT in the standard list above (e.g. "oktoberfest", "day-of-the-dead", "hanukkah", "solstice", "mardi-gras", "burns-night"), set "holiday_detected": "<holiday-slug>" and add it to "tags". This routes it to the Curator studio for approval.
+9. ROBUST SAMPLE OF KEYWORDS & SEARCH TAGS:
+   - Always generate a rich sample of 8 to 16 diverse, behind-the-scenes keywords in "tags" to empower deep user searching:
+     * Specific genre/style (e.g. "indie-rock", "standup-comedy", "improv", "documentary", "35mm", "clay-pottery", "live-jazz", "synthpop")
+     * Vibes & mood (e.g. "cozy", "high-energy", "chill", "rooftop", "intimate", "candlelit", "late-night")
+     * Audience & occasion (e.g. "date-night", "solo-friendly", "group-hang", "family-friendly", "dog-friendly", "budget-friendly", "after-work")
+     * Activities & attributes (e.g. "craft-beer", "board-games", "trivia", "costume-party", "dance-floor", "local-vendors", "patio", "scenic-views")
+     * Area / neighborhood keywords (e.g. "gastown", "mount-pleasant", "commercial-drive", "kitsilano", "granville-island", "east-van")
 
 RAW DISCOVERED CONTENT:
 {raw_content}
@@ -211,7 +222,8 @@ Output MUST be a single, valid JSON object with the following schema:
       "details_url": "Official event or location info URL",
       "ticket_url": "Direct ticket or visiting info URL",
       "ticket_provider": "Free Public Access | Eventbrite | Showpass | Direct | etc",
-      "tags": ["free-admission", "drop-in", "public-access", "date-night"],
+      "tags": ["free-admission", "live-music", "indie-rock", "halloween", "costume-party", "date-night", "east-van", "cozy", "craft-beer"],
+      "holiday_detected": null,
       "festival_affiliation": "None or Festival Name",
       "approval_status": "Auto-Approved | Quarantined",
       "curator_notes": "Note about verified access hours, fees, or 19+ age restriction"
@@ -974,6 +986,18 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     queue_events = queue_data.get("quarantinedEvents", [])
     queue_ids = {q.get("id") or q.get("event_id") for q in queue_events}
 
+    # Load holiday registry
+    approved_holidays_data = {"approvedHolidays": [], "pendingHolidays": []}
+    if os.path.exists(HOLIDAYS_JSON):
+        try:
+            with open(HOLIDAYS_JSON, "r", encoding="utf-8") as hf:
+                approved_holidays_data = json.load(hf)
+        except Exception:
+            pass
+    approved_holiday_ids = {h.get("id") for h in approved_holidays_data.get("approvedHolidays", []) if h.get("id")}
+    pending_holiday_ids = {h.get("id") for h in approved_holidays_data.get("pendingHolidays", []) if h.get("id")}
+    pending_holidays_updated = False
+
     for ne in new_events:
         eid = ne.get("event_id") or re.sub(r"[^a-z0-9]+", "-", ne.get("event_name", "event").lower()).strip("-")
         ne["event_id"] = eid
@@ -993,6 +1017,31 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
         if reg_price > 50.0:
             print(f"[FILTER] Excluded {ne.get('event_name')} - All-in price ${reg_price} exceeds $50.00 CAD")
             continue
+
+        # Check holiday detection
+        detected_holiday = ne.get("holiday_detected")
+        if detected_holiday and isinstance(detected_holiday, str):
+            h_slug = re.sub(r"[^a-z0-9]+", "-", detected_holiday.strip().lower()).strip("-")
+            if h_slug:
+                if h_slug not in approved_holiday_ids:
+                    # New unapproved holiday candidate! Route to Curator Studio
+                    if h_slug not in pending_holiday_ids:
+                        h_label = " ".join(word.capitalize() for word in h_slug.split("-"))
+                        approved_holidays_data.setdefault("pendingHolidays", []).append({
+                            "id": h_slug,
+                            "label": h_label,
+                            "icon": "🎉",
+                            "detectedInEvent": eid,
+                            "eventTitle": ne.get("event_name", "Event"),
+                            "detectedAt": today_str,
+                            "status": "pending"
+                        })
+                        pending_holiday_ids.add(h_slug)
+                        pending_holidays_updated = True
+                        print(f"[HOLIDAY DISCOVERED] New holiday candidate detected: '{h_slug}' in '{ne.get('event_name')}'. Queued for Curator approval.", flush=True)
+
+                    ne["approval_status"] = "Quarantined"
+                    ne["curator_notes"] = f"Pending Holiday Approval: '{h_slug}'. Holiday category awaiting Curator review."
 
         if ne.get("approval_status") == "Quarantined":
             quarantined_count += 1
@@ -1044,6 +1093,16 @@ def sync_master_catalogs(structured_data: Dict[str, Any]):
     queue_data["metadata"]["updatedAt"] = today_str
     with open(QUEUE_PATH, "w", encoding="utf-8") as qf:
         json.dump(queue_data, qf, indent=2, ensure_ascii=False)
+
+    # Save Pending Holidays if updated
+    if pending_holidays_updated:
+        approved_holidays_data.setdefault("metadata", {})["updatedAt"] = today_str
+        try:
+            with open(HOLIDAYS_JSON, "w", encoding="utf-8") as hf:
+                json.dump(approved_holidays_data, hf, indent=2, ensure_ascii=False)
+            print(f"[HOLIDAYS] Saved {len(approved_holidays_data.get('pendingHolidays', []))} pending holiday(s) to {HOLIDAYS_JSON}", flush=True)
+        except Exception as e:
+            print(f"[ERROR] Failed to save {HOLIDAYS_JSON}: {e}", flush=True)
 
     # 4. Update Venues (JSON)
     venues = []

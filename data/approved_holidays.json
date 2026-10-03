@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-10-03",
+    "description": "Van50 Registry of Approved Holidays and Pending AI Discoveries"
+  },
+  "approvedHolidays": [
+    {
+      "id": "halloween",
+      "label": "Halloween",
+      "icon": "🎃",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "thanksgiving",
+      "label": "Thanksgiving",
+      "icon": "🦃",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "christmas",
+      "label": "Christmas & Winter Holidays",
+      "icon": "🎄",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "new-years",
+      "label": "New Year's Eve / Day",
+      "icon": "🎉",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "lunar-new-year",
+      "label": "Lunar New Year",
+      "icon": "🧧",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "valentines-day",
+      "label": "Valentine's Day",
+      "icon": "💘",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "st-patricks-day",
+      "label": "St. Patrick's Day",
+      "icon": "☘️",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "easter",
+      "label": "Easter & Spring",
+      "icon": "🐣",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "canada-day",
+      "label": "Canada Day",
+      "icon": "🍁",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "pride",
+      "label": "Pride Festival",
+      "icon": "🌈",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "diwali",
+      "label": "Diwali Festival of Lights",
+      "icon": "🪔",
+      "approvedAt": "2026-10-03"
+    }
+  ],
+  "pendingHolidays": []
+}

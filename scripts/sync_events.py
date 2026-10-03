@@ -3264,7 +3264,8 @@ def run_sync() -> bool:
             "category": cat,
             "categoryLabel": item.get('categoryLabel', 'Shows & Music'),
             "categoryIcon": item.get('categoryIcon', '🎟️'),
-            "subTags": item.get('subTags', []),
+            "subTags": item.get('subTags') or item.get('tags') or [],
+            "tags": item.get('tags') or item.get('subTags') or [],
             "dateSchedule": item['dateSchedule'],
             "startIso": item.get('startIso'),
             "endIso": item.get('endIso'),
@@ -3384,7 +3385,8 @@ def run_sync() -> bool:
         try:
             with open(JSON_PATH, 'r', encoding='utf-8') as f:
                 old_db = json.load(f)
-            for old_ev in old_db.get('events', []):
+            old_events_list = old_db if isinstance(old_db, list) else old_db.get('events', [])
+            for old_ev in old_events_list:
                 if old_ev.get('checkoutVerification', {}).get('method') == 'manual_curator_review':
                     # If already in verified_events or quarantined in this sync run, do not re-add
                     if any(e.get('id') == old_ev.get('id') for e in verified_events):

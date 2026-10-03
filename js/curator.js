@@ -26,6 +26,8 @@ const state = {
     discoveredVenues: 0
   },
   discoveredVenues: [],
+  pendingHolidays: [],
+  approvedHolidays: [],
   knownVenues: new Set(),
   currentScreenshotBase64: null,
   currentScreenshots: [],
@@ -442,6 +444,21 @@ async function loadQuarantineQueue() {
       console.warn('Could not fetch discovered venues:', e);
     }
 
+    // Fetch Holidays Registry
+    try {
+      const holRes = await fetch(`/api/curator/holidays?_t=${t}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
+      });
+      if (holRes.ok) {
+        const holData = await holRes.json();
+        state.pendingHolidays = holData.pendingHolidays || [];
+        state.approvedHolidays = holData.approvedHolidays || [];
+      }
+    } catch (e) {
+      console.warn('Could not fetch holiday registry:', e);
+    }
+
     updateFilterCounts();
     applyFiltersAndRender();
   } catch (err) {
@@ -497,6 +514,7 @@ function updateFilterCounts() {
   setT('pill-count-feedback', feedback);
   setT('pill-count-newsletter', newsletter);
   setT('pill-count-discovered-venues', discVenues);
+  setT('pill-count-holidays', (state.pendingHolidays || []).length);
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
   setT('pill-count-drift', drift);
@@ -541,6 +559,12 @@ function applyFiltersAndRender() {
   // Discovered Venues Tab
   if (state.activeFilter === 'discovered_venues') {
     renderDiscoveredVenuesCards();
+    return;
+  }
+
+  // New Holidays Tab
+  if (state.activeFilter === 'holidays') {
+    renderHolidayCards();
     return;
   }
 
@@ -4317,6 +4341,178 @@ window.openAddVenueModalFromEvent = function(eventId) {
     websiteUrl: ev.websiteUrl || '',
     discoveredVia: `Event: ${ev.title}`
   });
+};
+
+// ==============================================================================
+// 7B. NEW HOLIDAYS PIPELINE & CURATOR APPROVAL LOGIC
+// ==============================================================================
+
+function renderHolidayCards() {
+  const container = document.getElementById('curator-cards-list');
+  const countDisplay = document.getElementById('curator-results-text');
+  if (!container) return;
+
+  const pending = state.pendingHolidays || [];
+  const approved = state.approvedHolidays || [];
+
+  if (countDisplay) {
+    countDisplay.innerHTML = `Showing <strong>${pending.length}</strong> candidate holiday(s) discovered by AI awaiting curator approval`;
+  }
+
+  let html = '';
+
+  if (pending.length === 0) {
+    html += `
+      <div style="text-align: center; padding: 48px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px; margin-bottom: 24px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">🎉</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+          No Pending Holidays Awaiting Review
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          All holidays discovered by the AI scouts are verified and registered in the system.
+        </p>
+      </div>
+    `;
+  } else {
+    html += pending.map(h => {
+      const defaultLabel = h.label || h.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const defaultIcon = h.icon || '🎉';
+      return `
+        <div class="curator-card" id="card-holiday-${escapeHtml(h.id)}" style="border-left: 4px solid #f97316; margin-bottom: 16px;">
+          <div class="curator-card-top">
+            <div>
+              <h3 class="curator-card-title" style="color: #fdba74; display: flex; align-items: center; gap: 8px;">
+                <span>${escapeHtml(defaultIcon)}</span>
+                <span>${escapeHtml(defaultLabel)}</span>
+                <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(#${escapeHtml(h.id)})</span>
+              </h3>
+              <div class="curator-card-meta">
+                <span>🔍 <strong>Detected In:</strong> ${escapeHtml(h.eventTitle || h.detectedInEvent || 'AI Event Scout')}</span>
+                <span>📅 <strong>Detected Date:</strong> ${escapeHtml(h.detectedAt || 'Today')}</span>
+                <span>🏷️ <strong>Status:</strong> <span style="color: #fed7aa; font-weight: 600;">Pending Curator Sign-off</span></span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: flex-start;">
+              <span class="curator-badge-pill" style="background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4);">
+                🎉 New Holiday Discovery
+              </span>
+            </div>
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 14px; margin: 12px 0;">
+            <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px; font-weight: 600;">
+              Curator Taxonomy Settings:
+            </div>
+            <div style="display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: center;">
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Icon / Emoji</label>
+                <input type="text" id="holiday-icon-${escapeHtml(h.id)}" value="${escapeHtml(defaultIcon)}" style="width: 100%; text-align: center; font-size: 1.25rem; padding: 6px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 4px;">Display Label</label>
+                <input type="text" id="holiday-label-${escapeHtml(h.id)}" value="${escapeHtml(defaultLabel)}" style="width: 100%; font-size: 0.95rem; padding: 7px 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff;">
+              </div>
+            </div>
+          </div>
+
+          <div class="curator-card-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px;">
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="rejectHoliday('${escapeHtml(h.id)}')" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171;">
+              ✕ Reject / Dismiss
+            </button>
+            <button type="button" class="btn-curator btn-curator-primary" onclick="approveHoliday('${escapeHtml(h.id)}')" style="background: #ea580c; border-color: #f97316;">
+              ✓ Approve &amp; Register Holiday
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Also append approved holidays overview section
+  html += `
+    <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: #e2e8f0; margin: 0; display: flex; align-items: center; gap: 8px;">
+          <span>✅</span> Approved Holidays Registry (${approved.length})
+        </h4>
+        <span style="font-size: 0.78rem; color: #94a3b8;">When AI scouts detect these tags, events are auto-approved</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;">
+        ${approved.map(ah => `
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.4rem;">${escapeHtml(ah.icon || '🎉')}</span>
+            <div style="overflow: hidden;">
+              <div style="color: #fff; font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(ah.label || ah.id)}</div>
+              <div style="color: #94a3b8; font-size: 0.75rem; font-family: monospace;">tag: "${escapeHtml(ah.id)}"</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+window.approveHoliday = async function(holidayId) {
+  if (!state.token || !holidayId) return;
+  const labelInput = document.getElementById(`holiday-label-${holidayId}`);
+  const iconInput = document.getElementById(`holiday-icon-${holidayId}`);
+  const label = labelInput ? labelInput.value.trim() : '';
+  const icon = iconInput ? iconInput.value.trim() : '🎉';
+
+  try {
+    const res = await fetch('/api/curator/approve-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ holidayId, label, icon })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`Holiday '${data.holiday?.label || holidayId}' approved!`, 'success');
+      state.pendingHolidays = (state.pendingHolidays || []).filter(h => h.id !== holidayId);
+      if (data.holiday) {
+        state.approvedHolidays = state.approvedHolidays || [];
+        state.approvedHolidays.push(data.holiday);
+      }
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to approve holiday', 'error');
+    }
+  } catch (err) {
+    showToast('Network error approving holiday', 'error');
+  }
+};
+
+window.rejectHoliday = async function(holidayId) {
+  if (!state.token || !holidayId) return;
+  if (!confirm(`Are you sure you want to dismiss the holiday '${holidayId}'?`)) return;
+
+  try {
+    const res = await fetch('/api/curator/reject-holiday', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ holidayId })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(`Holiday '${holidayId}' dismissed.`, 'info');
+      state.pendingHolidays = (state.pendingHolidays || []).filter(h => h.id !== holidayId);
+      updateFilterCounts();
+      applyFiltersAndRender();
+    } else {
+      showToast(data.error || 'Failed to reject holiday', 'error');
+    }
+  } catch (err) {
+    showToast('Network error rejecting holiday', 'error');
+  }
 };
 
 window.dismissDiscoveredVenue = async function(discId) {

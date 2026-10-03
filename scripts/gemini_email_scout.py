@@ -38,6 +38,7 @@ ARCHIVE_PATH = os.path.join(DATA_DIR, "events_archive.json")
 QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 VENUES_PATH = os.path.join(DATA_DIR, "venues.json")
 FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
+HOLIDAYS_PATH = os.path.join(DATA_DIR, "approved_holidays.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from gemini_event_scout import get_gemini_api_key, call_gemini_direct_json
@@ -255,6 +256,8 @@ TASK & CONSTRAINTS:
      - Verified explicit dates (YYYY-MM-DD). If recurring or weekly, only populate show_1 (and show_2/show_3 if explicit calendar dates exist). NEVER guess future repeat dates. Leave null if unverified.
      - Assign category (music, shows, cinema, comedy, social, outdoors, sports, arts).
      - Match the best ticketing URL or event URL from the extracted links.
+     - HOLIDAYS & SPECIAL OCCASIONS: If the event is tied to a holiday (e.g. Halloween, Thanksgiving, Christmas / Winter Holidays, New Year's, Lunar New Year, Valentine's Day, St. Patrick's Day, Easter, Canada Day, Pride, Diwali), include the canonical lowercase holiday name in the "tags" array (e.g. "halloween", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride", "diwali"). If tied to a new holiday not in this list (e.g. "oktoberfest", "day-of-the-dead", "hanukkah", "mardi-gras"), set "holiday_detected": "<holiday-slug>" and add it to "tags".
+     - ROBUST SEARCH TAGS & KEYWORDS: Always generate 8 to 16 diverse, behind-the-scenes keywords in "tags" to empower deep user searching: genres, mood/vibes (cozy, late-night), occasion (date-night, family-friendly), activities (craft-beer, trivia, costume-party), and neighborhood.
 
 Return a strict JSON response with this schema:
 {{
@@ -288,6 +291,8 @@ Return a strict JSON response with this schema:
       "details_url": "URL",
       "ticket_url": "Direct ticket purchase link from email",
       "ticket_provider": "AdmitONE | Eventbrite | Showpass | Direct | Free",
+      "tags": ["live-music", "indie-rock", "halloween", "costume-party", "date-night", "east-van", "craft-beer"],
+      "holiday_detected": null,
       "approval_status": "Auto-Approved | Quarantined",
       "curator_notes": "Note explaining pricing, 19+ age restriction, or email origin"
     }}
@@ -386,6 +391,17 @@ def run_gemini_email_scout(
             with open(FESTIVALS_PATH, "r", encoding="utf-8") as f:
                 festivals_data = json.load(f)
 
+        approved_holidays_data = {"approvedHolidays": [], "pendingHolidays": []}
+        if os.path.exists(HOLIDAYS_PATH):
+            try:
+                with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                    approved_holidays_data = json.load(hf)
+            except Exception:
+                pass
+        approved_holiday_ids = {h.get("id") for h in approved_holidays_data.get("approvedHolidays", []) if h.get("id")}
+        pending_holiday_ids = {h.get("id") for h in approved_holidays_data.get("pendingHolidays", []) if h.get("id")}
+        pending_holidays_updated = False
+
         known_ids = {e.get("event_id") or e.get("id") for e in existing_events}
         known_ids |= {e.get("event_id") or e.get("id") for e in existing_archive}
         known_ids |= {e.get("event_id") or e.get("id") for e in quarantined}
@@ -456,6 +472,29 @@ def run_gemini_email_scout(
                         ev["discovery_url"] = ev.get("discovery_url") or f"mailto:{sender}"
                         ev["curator_notes"] = f"Ingested from email: {subj} ({datetime.now().strftime('%Y-%m-%d')})"
 
+                        # Holiday gatekeeper check
+                        detected_h = ev.get("holiday_detected")
+                        if detected_h and isinstance(detected_h, str):
+                            h_slug = re.sub(r"[^a-z0-9]+", "-", detected_h.strip().lower()).strip("-")
+                            if h_slug:
+                                if h_slug not in approved_holiday_ids:
+                                    if h_slug not in pending_holiday_ids:
+                                        h_label = " ".join(word.capitalize() for word in h_slug.split("-"))
+                                        approved_holidays_data.setdefault("pendingHolidays", []).append({
+                                            "id": h_slug,
+                                            "label": h_label,
+                                            "icon": "🎉",
+                                            "detectedInEvent": eid,
+                                            "eventTitle": name,
+                                            "detectedAt": datetime.now().strftime("%Y-%m-%d"),
+                                            "status": "pending"
+                                        })
+                                        pending_holiday_ids.add(h_slug)
+                                        pending_holidays_updated = True
+                                        print(f"[HOLIDAY DISCOVERED] New holiday candidate detected from email: '{h_slug}' in '{name}'. Queued for Curator approval.", flush=True)
+                                    status = "Quarantined"
+                                    ev["curator_notes"] = f"Pending Holiday Approval: '{h_slug}'. Holiday category awaiting Curator review."
+
                         if status == "Auto-Approved" and ev.get("show_1", {}).get("date") and ev.get("ticket_url"):
                             price_val = float(ev.get("pricing_all_in_cad", {}).get("regular", 0.0) or 0.0)
                             print(f'[NEW EVENT ADDED] "{name}" at {ev.get("venue_name")} (${price_val:.2f} CAD)', flush=True)
@@ -517,6 +556,12 @@ def run_gemini_email_scout(
                 queue_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
                 with open(QUEUE_PATH, "w", encoding="utf-8") as f:
                     json.dump(queue_data, f, indent=2, ensure_ascii=False)
+
+            if pending_holidays_updated:
+                approved_holidays_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+                with open(HOLIDAYS_PATH, "w", encoding="utf-8") as f:
+                    json.dump(approved_holidays_data, f, indent=2, ensure_ascii=False)
+                print(f"[HOLIDAYS] Saved {len(approved_holidays_data.get('pendingHolidays', []))} pending holiday(s) to {HOLIDAYS_PATH}", flush=True)
 
             if venues_data:
                 with open(VENUES_PATH, "w", encoding="utf-8") as f:

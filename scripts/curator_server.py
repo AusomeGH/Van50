@@ -45,6 +45,7 @@ FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_PATH = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, "discovery_sources.json")
 CROWDSOURCED_PRICES_PATH = os.path.join(DATA_DIR, "crowdsourced_price_reports.json")
+HOLIDAYS_PATH = os.path.join(DATA_DIR, "approved_holidays.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
@@ -1233,6 +1234,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            h_count = 0
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                        h_count = len(h_data.get("pendingHolidays", []))
+                except Exception:
+                    pass
+
             inst_count = 0
             if os.path.exists(INSTRUCTIONS_PATH):
                 try:
@@ -1293,6 +1303,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "archivedCount": a_count,
                 "instructionsPendingCount": inst_count,
                 "discoveredVenuesCount": v_count,
+                "pendingHolidaysCount": h_count,
                 "knownVenues": known_venues,
                 "linkAudit": link_audit_data,
                 "timestamp": datetime.now().isoformat()
@@ -1621,6 +1632,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 return self._send_json(401, {"error": "Authentication required", "authenticated": False})
             stats = compute_crowdsourced_venue_stats()
             return self._send_json(200, {"success": True, "stats": stats})
+
+        # 14. API: Get Holiday Registry (approved_holidays.json)
+        if path == "/api/curator/holidays":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+            return self._send_json(200, h_data)
 
 
 
@@ -3557,6 +3581,108 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception as e:
                     return self._send_json(500, {"error": f"Failed dismissing discovered venue: {e}"})
             return self._send_json(404, {"error": "Discovered venues registry not found"})
+
+        # API: Approve pending holiday
+        if path == "/api/curator/approve-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            
+            holiday_id = (payload.get("holidayId") or payload.get("id") or "").strip().lower()
+            if not holiday_id:
+                return self._send_json(400, {"error": "Missing holidayId"})
+
+            label = (payload.get("label") or " ".join(w.capitalize() for w in holiday_id.split("-"))).strip()
+            icon = (payload.get("icon") or "🎉").strip()
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            # Remove from pending
+            pending_list = h_data.get("pendingHolidays", [])
+            pending_match = next((h for h in pending_list if h.get("id") == holiday_id), None)
+            h_data["pendingHolidays"] = [h for h in pending_list if h.get("id") != holiday_id]
+
+            # Upsert into approved
+            approved_list = h_data.get("approvedHolidays", [])
+            existing_app = next((h for h in approved_list if h.get("id") == holiday_id), None)
+            if existing_app:
+                existing_app["label"] = label
+                existing_app["icon"] = icon
+                existing_app["approvedAt"] = datetime.now().strftime("%Y-%m-%d")
+                holiday_entry = existing_app
+            else:
+                holiday_entry = {
+                    "id": holiday_id,
+                    "label": label,
+                    "icon": icon,
+                    "approvedAt": datetime.now().strftime("%Y-%m-%d")
+                }
+                approved_list.append(holiday_entry)
+            h_data["approvedHolidays"] = approved_list
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            # Check if any events in manual_review_queue were quarantined for this holiday
+            unflagged_count = 0
+            if os.path.exists(MANUAL_QUEUE_PATH):
+                try:
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as qf:
+                        q_data = json.load(qf)
+                    for item in q_data.get("quarantinedEvents", []):
+                        reason = str(item.get("quarantineReason", "") or item.get("flagReason", ""))
+                        if f"Pending Holiday Approval: '{holiday_id}'" in reason or holiday_id in reason.lower():
+                            item["quarantineReason"] = f"Holiday '{holiday_id}' approved by Curator. Ready for release."
+                            item["dealtWith"] = True
+                            unflagged_count += 1
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as qf:
+                        json.dump(q_data, qf, indent=2, ensure_ascii=False)
+                except Exception:
+                    pass
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Holiday '{label}' approved successfully.",
+                "holiday": holiday_entry,
+                "unflaggedEventsCount": unflagged_count,
+                "remainingPending": len(h_data.get("pendingHolidays", []))
+            })
+
+        # API: Reject / Dismiss pending holiday
+        if path == "/api/curator/reject-holiday":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            
+            holiday_id = (payload.get("holidayId") or payload.get("id") or "").strip().lower()
+            if not holiday_id:
+                return self._send_json(400, {"error": "Missing holidayId"})
+
+            h_data = {"metadata": {}, "approvedHolidays": [], "pendingHolidays": []}
+            if os.path.exists(HOLIDAYS_PATH):
+                try:
+                    with open(HOLIDAYS_PATH, "r", encoding="utf-8") as hf:
+                        h_data = json.load(hf)
+                except Exception:
+                    pass
+
+            pending_list = h_data.get("pendingHolidays", [])
+            h_data["pendingHolidays"] = [h for h in pending_list if h.get("id") != holiday_id]
+            h_data.setdefault("metadata", {})["updatedAt"] = datetime.now().strftime("%Y-%m-%d")
+
+            with open(HOLIDAYS_PATH, "w", encoding="utf-8") as hf:
+                json.dump(h_data, hf, indent=2, ensure_ascii=False)
+
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Holiday '{holiday_id}' dismissed from pending list.",
+                "remainingPending": len(h_data.get("pendingHolidays", []))
+            })
 
         return self._send_json(404, {"error": "Endpoint not found"})
 

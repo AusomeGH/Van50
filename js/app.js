@@ -2314,7 +2314,8 @@ function matchesGoogleSearch(ev, parsed) {
   const catLabelNorm = normalizeSearchText(ev.categoryLabel || '');
   const addrNorm = normalizeSearchText(ev.address || '');
   const neighNorm = normalizeSearchText(ev.neighborhood || '');
-  const tagsNorm = normalizeSearchText(Array.isArray(ev.subTags) ? ev.subTags.join(' ') : '');
+  const allRawTags = (Array.isArray(ev.subTags) ? ev.subTags : []).concat(Array.isArray(ev.tags) ? ev.tags : []);
+  const tagsNorm = normalizeSearchText([...new Set(allRawTags)].join(' '));
   const venueAliasesNorm = normalizeSearchText(Array.isArray(ev.venueAliases) ? ev.venueAliases.join(' ') : '');
   const performersNorm = normalizeSearchText(Array.isArray(ev.performers) ? ev.performers.join(' ') : (ev.performers || ''));
   const daysList = Array.isArray(ev.daysOfWeek) ? ev.daysOfWeek.map(d => String(d).toLowerCase()) : [];
