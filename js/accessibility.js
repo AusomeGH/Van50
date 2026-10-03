@@ -726,6 +726,36 @@ window.VENUE_ACCESSIBILITY = {
   }
 };
 
+// Render SVG Accessibility Icons (Green circle for Full, Yellow circle for Partial, Red circle + Cross-out for Inaccessible)
+window.renderAccessBadgeSvg = function(status, size = 18) {
+  if (status === 'partial') {
+    return `<svg class="access-svg access-svg-partial" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Partially Wheelchair Accessible">
+      <!-- Yellow Warning Circle Ring around Wheelchair -->
+      <circle cx="12" cy="12" r="10.5" stroke="#f59e0b" stroke-width="2.2" fill="rgba(245, 158, 11, 0.15)"/>
+      <circle cx="10" cy="6" r="1.5" fill="#f59e0b"/>
+      <path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`;
+  }
+  if (status === 'inaccessible') {
+    return `<svg class="access-svg access-svg-inaccessible" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Not Wheelchair Accessible (Stairs Only)">
+      <!-- Red Circle with Universal Prohibition Cross-Out Slash over Wheelchair -->
+      <circle cx="12" cy="12" r="10.5" stroke="#ef4444" stroke-width="2.2" fill="rgba(239, 68, 68, 0.15)"/>
+      <circle cx="10" cy="6" r="1.5" fill="#ef4444" opacity="0.8"/>
+      <path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+      <path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+      <line x1="4.5" y1="4.5" x2="19.5" y2="19.5" stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>`;
+  }
+  // Fully accessible: Green circular emblem with wheelchair
+  return `<svg class="access-svg access-svg-full" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" aria-hidden="true" title="Fully Wheelchair Accessible">
+    <circle cx="12" cy="12" r="10.5" stroke="#10b981" stroke-width="2" fill="rgba(16, 185, 129, 0.15)"/>
+    <circle cx="10" cy="6" r="1.5" fill="#10b981"/>
+    <path d="M10 8.5v4.5h3.5l1.8 3.5h2.2" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.5 13a3.5 3.5 0 1 1-3.5-3.5" stroke="#10b981" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>`;
+};
+
 // Access lookup utility with alias support and fuzzy matching
 window.getVenueAccessibility = function(venueName) {
   if (!venueName) return null;
@@ -733,28 +763,40 @@ window.getVenueAccessibility = function(venueName) {
   const acc = window.VENUE_ACCESSIBILITY;
   if (!acc) return null;
 
+  let profile = null;
+
   if (acc[key]) {
     const item = acc[key];
-    if (item.alias && acc[item.alias]) return acc[item.alias];
-    return item;
+    profile = item.alias && acc[item.alias] ? acc[item.alias] : item;
   }
 
   // Exact substring check
-  for (const [k, v] of Object.entries(acc)) {
-    if (key.includes(k) || k.includes(key)) {
-      if (v.alias && acc[v.alias]) return acc[v.alias];
-      return v;
+  if (!profile) {
+    for (const [k, v] of Object.entries(acc)) {
+      if (key.includes(k) || k.includes(key)) {
+        profile = v.alias && acc[v.alias] ? acc[v.alias] : v;
+        break;
+      }
     }
   }
 
   // Clean name without 'the ' prefix
-  const cleanKey = key.replace(/^the\s+/, '');
-  for (const [k, v] of Object.entries(acc)) {
-    const kClean = k.replace(/^the\s+/, '');
-    if (cleanKey.includes(kClean) || kClean.includes(cleanKey)) {
-      if (v.alias && acc[v.alias]) return acc[v.alias];
-      return v;
+  if (!profile) {
+    const cleanKey = key.replace(/^the\s+/, '');
+    for (const [k, v] of Object.entries(acc)) {
+      const kClean = k.replace(/^the\s+/, '');
+      if (cleanKey.includes(kClean) || kClean.includes(cleanKey)) {
+        profile = v.alias && acc[v.alias] ? acc[v.alias] : v;
+        break;
+      }
     }
+  }
+
+  if (profile) {
+    return {
+      ...profile,
+      badgeSvg: window.renderAccessBadgeSvg(profile.status)
+    };
   }
 
   // Default fallback for any unrecognized venue
@@ -762,6 +804,7 @@ window.getVenueAccessibility = function(venueName) {
     status: 'accessible',
     label: 'Wheelchair Accessible',
     badgeIcon: '♿',
+    badgeSvg: window.renderAccessBadgeSvg('accessible'),
     summary: 'Ground-floor street level entrance; check Google Maps for specific room details.',
     entrance: 'Street-level entrance with flat threshold.',
     seating: 'Movable seating accommodating wheelchairs.',
@@ -888,7 +931,7 @@ window.openAccessibilityModal = function(eventId) {
         <div class="access-modal-header">
           <div class="access-header-info">
             <span class="access-status-badge status-${statusClass}">
-              ${access.badgeIcon} ${access.label}
+              ${window.renderAccessBadgeSvg ? window.renderAccessBadgeSvg(statusClass, 16) : access.badgeIcon} <span>${access.label}</span>
             </span>
             <h3 id="access-modal-title">${ev.venue}</h3>
             <p class="access-header-address">📍 ${ev.address || 'Vancouver, BC'} • ${ev.neighborhood || 'Vancouver'}</p>

@@ -4159,7 +4159,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               title="${accessInfo.label} (${ev.venue}) • Click for Google Maps accessibility details"
               aria-label="Accessibility information for ${ev.venue}: ${accessInfo.label}"
             >
-              <span class="access-btn-icon">${accessInfo.badgeIcon}</span>
+              <span class="access-btn-icon">${accessInfo.badgeSvg || (window.renderAccessBadgeSvg ? window.renderAccessBadgeSvg(accessInfo.status, 20) : accessInfo.badgeIcon)}</span>
             </button>
 
             <!-- Share Event Button -->
