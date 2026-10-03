@@ -4020,6 +4020,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         <div class="card-showings-block" id="showings-block-${ev.id}">
           <div class="showings-block-header">
             <span>${sectionTitle}</span>
+            <span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">Multiple Showings</span>
           </div>
           <div class="showings-table">
             ${primaryRowHtml}
@@ -4151,12 +4152,15 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               <span>${topDate.badgeText}</span>
             </span>
             ${(() => {
+              const hasDropInBadge = Boolean(weeklyHoursHtml || ev.isFreePublic || (ev.frequencyLabel && ev.frequencyLabel.toLowerCase().includes('drop-in')));
               const catsToShow = (Array.isArray(ev.categories) && ev.categories.length > 0)
                 ? (ev.categories.includes('cinema') && ev.categories.includes('social')
                     ? ['cinema', 'social']
-                    : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
-                        ? ['outdoors', 'free-public-access']
-                        : [ev.categories[0]]))
+                    : (hasDropInBadge && ev.categories.includes('outdoors')
+                        ? ['outdoors']
+                        : (ev.categories.includes('outdoors') && ev.categories.includes('free-public-access')
+                            ? ['outdoors']
+                            : [ev.categories[0]])))
                 : [ev.category || 'misc'];
               return catsToShow.map(catId => {
                 const catDef = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
@@ -4271,8 +4275,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           ${venueOtherEventsBtnHtml}
         </div>
 
-        <!-- Schedule Row: Rendered strictly when NO weekly hours block is present -->
-        ${!weeklyHoursHtml ? `
+        <!-- Schedule Row: Rendered strictly when NO weekly hours block and NO multi-showings block is present -->
+        ${(!weeklyHoursHtml && !showingsHtml) ? `
           <div class="card-schedule-row">
             <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
             ${(ev.frequencyLabel && !ev.isFreePublic) ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}

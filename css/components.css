@@ -639,10 +639,10 @@
 /* Card Header Meta & Badges (Unified Single-Row Header) */
 .card-top-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   min-height: 28px;
   width: 100%;
 }
@@ -920,7 +920,7 @@
   color: #fff;
   line-height: 1.35;
   margin-bottom: 6px;
-  min-height: auto;
+  min-height: 2.97rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1621,7 +1621,9 @@
   justify-content: space-between;
   gap: 8px;
   min-height: 40px;
-  flex-wrap: wrap; /* Prevents overflow clipping on multi-tier price ranges */
+  width: 100%;
+  flex-wrap: nowrap !important;
+  margin-top: auto;
 }
 
 .price-box {
@@ -3667,23 +3669,25 @@ body.van50-accessible .card-ticket-link {
 
 /* 1.5 Multi-Location / Multi-Screening Showings Block */
 .card-showings-block {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 8px;
-  padding: 10px 12px;
-  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin: 6px 0 8px 0;
   font-size: 0.78rem;
 }
 
 .showings-block-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 6px;
   font-weight: 700;
   color: #38bdf8;
   font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   margin-bottom: 8px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -4211,6 +4215,8 @@ body.van50-accessible .card-ticket-link {
   align-items: center;
   gap: 5px;
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 1px;
 }
 
 .btn-card-action {
