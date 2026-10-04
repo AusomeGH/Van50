@@ -35,11 +35,28 @@
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 300,
-      "averageDurationFormatted": "4–6 minutes",
-      "totalRuns": 0,
-      "lastRun": null,
-      "history": []
+      "averageDurationSeconds": 97,
+      "averageDurationFormatted": "1–2 minutes",
+      "totalRuns": 1,
+      "lastRun": {
+        "timestamp": "2026-10-04T10:46:00",
+        "durationSeconds": 97,
+        "durationFormatted": "1m 37s",
+        "itemsAudited": 80,
+        "itemsArchived": 5,
+        "itemsCalibrated": 8,
+        "notes": "Full 100% audit of 80 active cards across all 20 dimensions. Archived 5 concluded shows from Oct 3, calibrated D13 spend on 8 newly scouted cards."
+      },
+      "history": [
+        {
+          "timestamp": "2026-10-04T10:46:00",
+          "durationSeconds": 97,
+          "durationFormatted": "1m 37s",
+          "itemsAudited": 80,
+          "itemsArchived": 5,
+          "itemsCalibrated": 8
+        }
+      ]
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",

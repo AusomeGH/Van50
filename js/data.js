@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-04T10:37:59-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-04T10:45:59-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1542,9 +1542,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:30:00-07:00",
     "daysOfWeek": [
-      "sun",
       "fri",
-      "sat"
+      "sat",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -2051,148 +2051,6 @@ const VANCOUVER_EVENTS = [
       "sun": "12:00 PM – 6:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-lanalous-saturday-afternoon-sessions",
-    "event_name": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-    "category": "music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "LanaLou's Rock 'n' Roll Eatery",
-    "full_address": "362 Powell St, Vancouver, BC",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Community live music institution hosting Saturday matinee boogie-woogie piano and roots sessions followed by grassroots evening indie bills.",
-    "pricing_all_in_cad": {
-      "regular": 0
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "16:00",
-      "end_time": "19:00",
-      "cost": 0
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.livemusicinvancouver.com/upcoming-shows",
-    "details_url": "https://do604.com/venues/lanalou-s",
-    "ticket_url": "https://do604.com/venues/lanalou-s",
-    "ticket_provider": "Direct",
-    "tags": [
-      "all-ages",
-      "blues",
-      "budget-friendly",
-      "free-admission",
-      "free-event",
-      "indie-rock",
-      "live-band",
-      "live-music",
-      "music",
-      "roots",
-      "solo-friendly",
-      "strathcona",
-      "zero-dollars"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed active under $50 CAD.",
-    "price": 0.0,
-    "access_model": "fenced_facility",
-    "pricing_model": "free_access",
-    "price_adult": 0,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$12.00 – $18.00 CAD on-site menu",
-    "title": "Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-    "date": "2026-10-03",
-    "time": "16:00",
-    "start_time": "16:00",
-    "end_time": "19:00",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$14.00 – $24.00 CAD (diner burger/bowl + beer)",
-    "lineup": "Featured artists and performers for Saturday Afternoon Roots & Blues Sessions with Mike VanEyes",
-    "restrictions": "All Ages / General Admission",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-03",
-        "start_time": "16:00",
-        "end_time": "19:00",
-        "cost": 0
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "diner_restaurant",
-    "drink_benchmark": "$7.00 – $8.50 craft beer • $8.00 highballs",
-    "food_service_note": "Full rock 'n' roll diner menu & licensed bar on-site",
-    "sample_cost_label": "$12.00 – $16.00 diner burgers & bowls",
-    "websiteUrl": "https://do604.com/venues/lanalou-s",
-    "subTags": [
-      "all-ages",
-      "blues",
-      "budget-friendly",
-      "free-admission",
-      "free-event",
-      "indie-rock",
-      "live-band",
-      "live-music",
-      "music",
-      "roots",
-      "solo-friendly",
-      "strathcona",
-      "zero-dollars"
-    ],
-    "id": "van50-lanalous-saturday-afternoon-sessions",
-    "venue": "LanaLou's Rock 'n' Roll Eatery",
-    "address": "362 Powell St, Vancouver, BC",
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-03T16:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "venueUrl": "https://do604.com/venues/lanalou-s",
-    "ticketProvider": "Direct",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
     "isSoldOut": false
   },
   {
@@ -3519,149 +3377,6 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   },
   {
-    "event_id": "vso-saturday-orpheum",
-    "event_name": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "category": "music",
-    "venue_name": "The Orpheum Theatre",
-    "full_address": "601 Smithe St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "35 and under or a full-time student? Get $20 tickets to regular series VSO concerts with the All Access Pass program",
-    "pricing_all_in_cad": {
-      "regular": 25.2
-    },
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "14:00",
-      "end_time": "",
-      "cost": 31.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.vancouversymphony.ca/all-access-pass/",
-    "details_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticket_url": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticket_provider": "Direct Box Office",
-    "tags": [
-      "acoustic",
-      "all-ages",
-      "classical-music",
-      "date-night",
-      "downtown",
-      "film-score",
-      "live-music",
-      "music",
-      "orchestral",
-      "orpheum",
-      "student-friendly",
-      "symphony",
-      "vancouver-core",
-      "weekend-outing"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI Pass 2 (2026-09-28): Retained the direct VSO production page and enriched with student-pass, downtown, and cinematic orchestral tags.",
-    "price": 25.2,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 25.2,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $25.00 CAD (Downtown dining nearby)",
-    "title": "Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "date": "2026-10-03",
-    "time": "14:00",
-    "start_time": "14:00",
-    "end_time": "21:30",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$9.00 – $18.00 CAD (1 beverage)",
-    "lineup": "Featured artists and performers for Vancouver Symphony Orchestra: Saturday Night at The Orpheum",
-    "restrictions": "All Ages / General Admission",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-03",
-        "start_time": "14:00",
-        "end_time": "",
-        "cost": 31.5
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "concession",
-    "drink_benchmark": "$9.00 – $11.00 craft beer • $10.00 – $13.00 wine & spirits",
-    "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
-    "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
-    "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
-    "subTags": [
-      "acoustic",
-      "all-ages",
-      "classical-music",
-      "date-night",
-      "downtown",
-      "film-score",
-      "live-music",
-      "music",
-      "orchestral",
-      "orpheum",
-      "student-friendly",
-      "symphony",
-      "vancouver-core",
-      "weekend-outing"
-    ],
-    "id": "vso-saturday-orpheum",
-    "venue": "The Orpheum Theatre",
-    "address": "601 Smithe St, Vancouver",
-    "priceLabel": "$25.20 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 25.2,
-        "label": "$25.20 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-03T14:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "venueUrl": "https://www.vancouversymphony.ca/event/harry-potter-and-the-prisoner-of-azkaban-in-concert/",
-    "ticketProvider": "Direct Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
     "event_id": "van50-harvest-days-vandusen",
     "event_name": "Harvest Days at VanDusen Botanical Garden",
     "category": "Community & Markets",
@@ -3829,8 +3544,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T10:30:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "sat"
+      "sat",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -4106,159 +3821,6 @@ const VANCOUVER_EVENTS = [
     ],
     "venueUrl": "https://theimprovcentre.ca/shows/",
     "ticketProvider": "Direct Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-what-else-lmg-20261003",
-    "event_name": "What Else? (Live Comedy & Trivia Show)",
-    "category": "Comedy & Shows",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Little Mountain Gallery",
-    "full_address": "110 Water St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Live comedy & shows featuring What Else? (Live Comedy & Trivia Show) at Little Mountain Gallery in Downtown, Gastown & Yaletown.",
-    "pricing_all_in_cad": {
-      "regular": 23.03
-    },
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "19:00",
-      "end_time": "22:00",
-      "cost": 19.5
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.showpass.com/what-else/",
-    "details_url": "https://littlemountaingallery.ca/",
-    "ticket_url": "https://www.showpass.com/what-else/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "all-ages",
-      "antigravity-validated",
-      "art-exhibit",
-      "creative",
-      "culture",
-      "downtown",
-      "improv",
-      "laughs",
-      "live-comedy",
-      "live-theatre",
-      "performing-arts",
-      "shows",
-      "solo-friendly",
-      "stage-play",
-      "standup-comedy",
-      "under-50-cad",
-      "vancouver-core",
-      "vancouver-events",
-      "visual-arts"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Direct Showpass ticketing page verified for What Else? comedy & trivia ($23.03 CAD all-in).",
-    "price": 23.03,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 23.03,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Main & King Ed eateries)",
-    "title": "What Else? (Live Comedy & Trivia Show)",
-    "date": "2026-10-03",
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "22:00",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$9.00 – $15.00 CAD (1 craft can + snack)",
-    "lineup": "Featured artists and performers for What Else? (Live Comedy & Trivia Show)",
-    "restrictions": "All Ages / General Admission",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-03",
-        "start_time": "19:00",
-        "end_time": "22:00",
-        "cost": 19.5
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "concession",
-    "drink_benchmark": "$6.50 – $8.00 canned local craft beer & cider • $7.50 highballs",
-    "concession_benchmark": "$2.50 – $3.50 chips, candy & sodas",
-    "food_service_note": "Community comedy concession bar (local craft cans & snacks; no kitchen)",
-    "sample_cost_label": "$6.50 – $8.00 33 Acres / Brassneck cans",
-    "websiteUrl": "https://www.showpass.com/what-else/",
-    "subTags": [
-      "all-ages",
-      "antigravity-validated",
-      "art-exhibit",
-      "creative",
-      "culture",
-      "downtown",
-      "improv",
-      "laughs",
-      "live-comedy",
-      "live-theatre",
-      "performing-arts",
-      "shows",
-      "solo-friendly",
-      "stage-play",
-      "standup-comedy",
-      "under-50-cad",
-      "vancouver-core",
-      "vancouver-events",
-      "visual-arts"
-    ],
-    "id": "van50-what-else-lmg-20261003",
-    "venue": "Little Mountain Gallery",
-    "address": "110 Water St, Vancouver",
-    "priceLabel": "$23.03 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryLabel": "Comedy & shows",
-    "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 23.03,
-        "label": "$23.03 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-03T19:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "venueUrl": "https://littlemountaingallery.ca/",
-    "ticketProvider": "Showpass",
     "coordinates": [
       49.2827,
       -123.1207
@@ -5205,9 +4767,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
-      "mon",
+      "sat",
       "thu",
-      "sat"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -5383,149 +4945,6 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://www.eventbrite.ca/e/tim-burtons-funeral-a-naturally-freaky-cabaret-tickets-1997329967700",
     "venueUrl": "https://www.eventbrite.ca/e/tim-burtons-funeral-a-naturally-freaky-cabaret-tickets-1997329967700",
     "ticketProvider": "Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-lolo-the-pearl-20261003",
-    "event_name": "LØLØ: God Forbid a Girl Goes on Tour",
-    "category": "music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Pearl",
-    "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Alt-pop powerhouse LØLØ brings the 'God Forbid a Girl Goes on Tour' to The Pearl on Granville Street with special guest Con The Artist.",
-    "pricing_all_in_cad": {
-      "regular": 39.75
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "18:00",
-      "end_time": "22:30",
-      "cost": 39.75
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://thepearlvancouver.com/events/",
-    "details_url": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
-    "ticket_url": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
-    "ticket_provider": "The Pearl / TicketWeb",
-    "tags": [
-      "19-plus",
-      "all-ages",
-      "alt-pop",
-      "antigravity-13d-validated",
-      "downtown",
-      "granville-entertainment-district",
-      "live-cart-verified",
-      "live-music",
-      "music",
-      "solo-friendly",
-      "the-pearl",
-      "under-50-cad",
-      "vancouver-core"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Verified direct Ticketmaster checkout cart link with starting live admission price of $39.75 CAD all-in (under $50 cap).",
-    "price": 39.75,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 39.75,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Granville entertainment strip)",
-    "title": "LØLØ: God Forbid a Girl Goes on Tour",
-    "date": "2026-10-03",
-    "time": "18:00",
-    "start_time": "18:00",
-    "end_time": "22:30",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$20.00 – $32.00 CAD (1–2 drinks)",
-    "lineup": "Featured artists and performers for LØLØ: God Forbid a Girl Goes on Tour",
-    "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-03",
-        "start_time": "18:00",
-        "end_time": "22:30",
-        "cost": 39.75
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "bar_only",
-    "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 cocktails",
-    "concession_benchmark": "$3.50 bar snacks",
-    "food_service_note": "Two full bars (no kitchen; Granville St dining nearby)",
-    "sample_cost_label": "$9.00 craft tallboy / $14.00 cocktail",
-    "websiteUrl": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
-    "subTags": [
-      "19-plus",
-      "all-ages",
-      "alt-pop",
-      "antigravity-13d-validated",
-      "downtown",
-      "granville-entertainment-district",
-      "live-cart-verified",
-      "live-music",
-      "music",
-      "solo-friendly",
-      "the-pearl",
-      "under-50-cad",
-      "vancouver-core"
-    ],
-    "id": "van50-lolo-the-pearl-20261003",
-    "venue": "The Pearl",
-    "address": "881 Granville St, Vancouver, BC V6Z 1K7",
-    "priceLabel": "$39.75 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 39.75,
-        "label": "$39.75 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-03T18:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "venueUrl": "https://thepearlvancouver.com/tm-event/lolo-god-forbid-a-girl-goes-on-tour/",
-    "ticketProvider": "The Pearl / TicketWeb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -7101,156 +6520,6 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://www.eventbrite.ca/e/phyllis-hulls-one-woman-show-hullo-its-me-youre-looking-for-tickets-1999722215979",
     "venueUrl": "https://theshowcellar.com",
     "ticketProvider": "Eventbrite",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-scout-rickshaw-ethan-regan-20261003",
-    "event_name": "Ethan Regan: Young Regan Tour with harf",
-    "category": "music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "Rickshaw Theatre",
-    "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Singer-songwriter Ethan Regan performs live at the Rickshaw Theatre on the Young Regan Tour with support from harf.",
-    "pricing_all_in_cad": {
-      "regular": 42.75
-    },
-    "operating_hours": null,
-    "days_open": null,
-    "show_1": {
-      "date": "2026-10-03",
-      "start_time": "19:00",
-      "end_time": "23:00",
-      "cost": 42.75
-    },
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com/",
-    "details_url": "https://rickshawtheatre.com/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/ethan-regan/",
-    "ticket_provider": "Rickshaw Theatre Box Office",
-    "tags": [
-      "19-plus",
-      "all-ages",
-      "antigravity-13d-validated",
-      "downtown",
-      "east-van",
-      "indie-folk",
-      "live-cart-verified",
-      "live-music",
-      "live-theatre",
-      "music",
-      "performing-arts",
-      "rickshaw-theatre",
-      "solo-friendly",
-      "stage-play",
-      "under-50-cad",
-      "vancouver-core"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Direct Rickshaw Theatre listing and Ticketmaster checkout verified ($42.75 CAD all-in).",
-    "price": 42.75,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 42.75,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$12.00 – $18.00 CAD (nearby Hastings/Chinatown eateries)",
-    "title": "Ethan Regan: Young Regan Tour with harf",
-    "date": "2026-10-03",
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "23:00",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$18.00 – $28.00 CAD (2 beers/drinks)",
-    "lineup": "Featured artists and performers for Ethan Regan: Young Regan Tour with harf",
-    "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-03",
-        "start_time": "19:00",
-        "end_time": "23:00",
-        "cost": 42.75
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "bar_only",
-    "drink_benchmark": "$8.50 pint • $14.50 cocktail",
-    "concession_benchmark": "$3.00 chips & bar snacks",
-    "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
-    "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/ethan-regan/",
-    "subTags": [
-      "19-plus",
-      "all-ages",
-      "antigravity-13d-validated",
-      "downtown",
-      "east-van",
-      "indie-folk",
-      "live-cart-verified",
-      "live-music",
-      "live-theatre",
-      "music",
-      "performing-arts",
-      "rickshaw-theatre",
-      "solo-friendly",
-      "stage-play",
-      "under-50-cad",
-      "vancouver-core"
-    ],
-    "id": "van50-scout-rickshaw-ethan-regan-20261003",
-    "venue": "Rickshaw Theatre",
-    "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
-    "priceLabel": "$42.75 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryLabel": "Music",
-    "categoryIcon": "🎵",
-    "categories": [
-      "music",
-      "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 42.75,
-        "label": "$42.75 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-03T19:00:00-07:00",
-    "daysOfWeek": [
-      "sat"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "venueUrl": "https://rickshawtheatre.com/",
-    "ticketProvider": "Rickshaw Theatre Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -8911,8 +8180,8 @@ const VANCOUVER_EVENTS = [
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
       "sat",
-      "thu",
-      "fri"
+      "fri",
+      "thu"
     ],
     "timeSlots": [
       "early-evening",
@@ -9119,8 +8388,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T14:00:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "sat"
+      "sat",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -9326,8 +8595,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "fri"
+      "fri",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -9479,8 +8748,8 @@ const VANCOUVER_EVENTS = [
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "daysOfWeek": [
-      "sun",
-      "sat"
+      "sat",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -10544,9 +9813,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T11:00:00-07:00",
     "daysOfWeek": [
-      "mon",
+      "sat",
       "sun",
-      "sat"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -11828,8 +11097,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-05T12:00:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "sun"
+      "sun",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -12051,8 +11320,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T11:00:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "sat"
+      "sat",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -12215,6 +11484,8 @@ const VANCOUVER_EVENTS = [
       "budget-friendly",
       "vancouver-parks"
     ],
+    "typical_drink_spend": "$4.50 – $6.50 CAD (Truffles Cafe coffee & hot cider)",
+    "typical_item_spend": "$4.50 – $8.00 CAD (Truffles Cafe & garden snacks)",
     "id": "van50-vandusen-harvest-days-20261010",
     "venue": "VanDusen Botanical Garden",
     "address": "5251 Oak St, Vancouver, BC V6M 4H1",
@@ -12255,9 +11526,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-10T10:30:00-07:00",
     "daysOfWeek": [
-      "mon",
+      "sat",
       "sun",
-      "sat"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -12373,6 +11644,8 @@ const VANCOUVER_EVENTS = [
       "nightlife",
       "holiday-event"
     ],
+    "typical_drink_spend": "$8.50 – $14.00 CAD (Rio Theatre craft beer / cocktail)",
+    "typical_item_spend": "$7.00 – $9.00 CAD (Rio Theatre organic buttered popcorn)",
     "id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
@@ -12507,6 +11780,8 @@ const VANCOUVER_EVENTS = [
       "peaceful",
       "all-ages"
     ],
+    "typical_drink_spend": "$4.50 CAD (Courtyard loose leaf tea & bottled water)",
+    "typical_item_spend": "$4.50 – $7.00 CAD (Garden shop refreshments)",
     "id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
     "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
     "address": "578 Carrall St, Vancouver, BC V6A 5M3",
@@ -12634,6 +11909,8 @@ const VANCOUVER_EVENTS = [
       "local-bands",
       "vancouver-music-scene"
     ],
+    "typical_drink_spend": "$7.75 – $9.00 CAD (Rickshaw draft beer & cider)",
+    "typical_item_spend": "$7.75 – $15.00 CAD (1-2 drinks)",
     "id": "van50-rickshaw-concrete-vehicles-20261008",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -12768,6 +12045,8 @@ const VANCOUVER_EVENTS = [
       "community-cultural",
       "holiday-celebration"
     ],
+    "typical_drink_spend": "$4.00 – $6.00 CAD (Hot chai & bottled beverages)",
+    "typical_item_spend": "$5.00 – $8.00 CAD (Samosas & festival snacks)",
     "id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
     "venue": "Roundhouse Community Arts & Recreation Centre",
     "address": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
@@ -12899,6 +12178,8 @@ const VANCOUVER_EVENTS = [
       "18-plus",
       "holiday-event"
     ],
+    "typical_drink_spend": "$6.50 – $8.00 CAD (Local craft beer & cider)",
+    "typical_item_spend": "$5.00 – $7.00 CAD (Organic popcorn & candy)",
     "id": "van50-cinematheque-vampyr-live-score-20261031",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -13030,6 +12311,8 @@ const VANCOUVER_EVENTS = [
       "19-plus",
       "holiday-event"
     ],
+    "typical_drink_spend": "$8.00 – $14.00 CAD (Fox Cabaret draft pint & mixed cocktails)",
+    "typical_item_spend": "$8.00 – $16.00 CAD (Bar beverages)",
     "id": "van50-fox-bootylicious-halloween-20261030",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -13158,6 +12441,8 @@ const VANCOUVER_EVENTS = [
       "budget-friendly",
       "all-ages"
     ],
+    "typical_drink_spend": "$4.50 – $6.00 CAD (MOA Cafe specialty coffee)",
+    "typical_item_spend": "$5.00 – $9.00 CAD (Artisanal pastries & cafe snacks)",
     "id": "van50-moa-haida-eyes-curator-tour-20261008",
     "venue": "Museum of Anthropology (MOA) at UBC",
     "address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
