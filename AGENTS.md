@@ -18,3 +18,10 @@
    - Tag events with approved holidays from `data/approved_holidays.json`.
    - If an unapproved holiday is discovered, route it to `pendingHolidays` in `data/approved_holidays.json` and stage the card in `data/manual_review_queue.json` for Curator approval.
    - Include robust keywords/tags for user searching.
+
+4. **AI Workflow Runtime Tracking & Estimation Protocol**:
+   - Whenever asked to run **Scout AI**, **QC AI**, or **Quarantine AI**:
+     1. **Pre-Run Estimate**: Read `data/ai_runtime_benchmarks.json` and provide an upfront runtime estimate to the user before commencing work (e.g., *"Starting Scout AI. Based on previous runs, this typically takes ~3–5 minutes."*).
+     2. **Measure Duration**: Record start timestamp and completion timestamp to calculate exact elapsed duration.
+     3. **Persist Benchmark**: Update `data/ai_runtime_benchmarks.json` with the measured duration, timestamp, items processed, and updated rolling average.
+     4. **Post-Run Reporting**: Report the elapsed duration in the final summary (e.g., *"Completed in 4m 10s. Recorded duration to benchmark registry for future estimates."*).

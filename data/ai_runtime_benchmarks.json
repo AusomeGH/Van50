@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updatedAt": "2026-10-04",
+    "description": "Historical execution runtimes and estimates for Antigravity AI Scout, QC, and Quarantine workflows"
+  },
+  "workflows": {
+    "scout_ai": {
+      "label": "Scout AI Discovery",
+      "averageDurationSeconds": 240,
+      "averageDurationFormatted": "3–5 minutes",
+      "totalRuns": 1,
+      "lastRun": {
+        "timestamp": "2026-10-03T20:00:00",
+        "durationSeconds": 260,
+        "durationFormatted": "4m 20s",
+        "itemsProcessed": 6,
+        "notes": "Discovery sweep across Rio Theatre, VanDusen, Sun Yat-Sen, Rickshaw, Roundhouse, Latincouver"
+      },
+      "history": [
+        {
+          "timestamp": "2026-10-03T20:00:00",
+          "durationSeconds": 260,
+          "durationFormatted": "4m 20s",
+          "itemsProcessed": 6
+        }
+      ]
+    },
+    "qc_ai": {
+      "label": "QC AI Full Catalog Audit",
+      "averageDurationSeconds": 300,
+      "averageDurationFormatted": "4–6 minutes",
+      "totalRuns": 0,
+      "lastRun": null,
+      "history": []
+    },
+    "quarantine_ai": {
+      "label": "Quarantine AI Healer & Resolution",
+      "averageDurationSeconds": 180,
+      "averageDurationFormatted": "2–4 minutes",
+      "totalRuns": 0,
+      "lastRun": null,
+      "history": []
+    }
+  }
+}
