@@ -7,10 +7,8 @@
    - Never run or create scripts that attempt to call Gemini API endpoints or read `GEMINI_API_KEY`.
 
 2. **Antigravity AI is the Intelligence Engine**:
-   - Whenever the user requests **"Run AI Scout"**, **"Run QC AI"**, or **"Run Quarantine AI"**, Antigravity AI MUST execute the task directly using its own cognitive reasoning and built-in tools:
-     - `search_web` to discover live listings, festival announcements, and venue calendars.
-     - `read_url_content` and `browser_subagent` to read rendered page text, inspect ticketing checkout carts, and verify $\le \$50$ CAD pricing.
-     - Direct catalog updates to `data/events.json`, `data/manual_review_queue.json`, `data/approved_holidays.json`, `data/venues.json`, `data/festivals.json`, and synchronization of `js/data.js`.
+   - Whenever the user requests **"Run AI Scout"**, **"Run QC AI"**, or **"Run Quarantine AI"**, Antigravity AI MUST execute the task directly using its own cognitive reasoning and built-in tools.
+   - **Ambiguity & Non-Antigravity AI Prompting Mandate**: If the user ever issues an instruction that mentions an external AI, script, model, or third-party LLM (or if there is any ambiguity about whether an external tool vs. Antigravity AI is intended), the agent **MUST stop and prompt the user for clarification** before taking action. Never assume or execute an external AI surrogate without explicit confirmation.
    - Never attempt to delegate AI scouting, auditing, or healing to a standalone Python script.
 
 3. **Holiday Taxonomy & Discovery Mandate**:
