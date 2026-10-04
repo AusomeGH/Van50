@@ -105,7 +105,8 @@
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "stanley-park-seawall-rose-garden",
@@ -230,7 +231,8 @@
       "stanley-park",
       "walking-trail",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-access",
@@ -332,7 +334,8 @@
       "vancouver-core",
       "visual-arts",
       "youth-free"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-sun-yat-sen-public-park",
@@ -450,7 +453,8 @@
       "solo-friendly",
       "symphony",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-the-shipyards-lonsdale-quay",
@@ -549,7 +553,8 @@
       "views",
       "waterfront",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-granville-island-public-market",
@@ -650,7 +655,8 @@
       "solo-friendly",
       "waterfront",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -757,7 +763,8 @@
       "vancouver-core",
       "waterfront-views",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -862,7 +869,8 @@
       "visual-art",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-heist-arts-club",
@@ -990,7 +998,8 @@
       "stage-play",
       "standup-comedy",
       "theatre"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-metro-vancouver-croissant-crawl",
@@ -1112,7 +1121,8 @@
       "solo-friendly",
       "vancouver-core",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Community & Markets"
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -1228,7 +1238,8 @@
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -1332,7 +1343,8 @@
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -1438,12 +1450,13 @@
       "solo-friendly",
       "viewpoint",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
     "event_name": "Miesha & The Spanks with Francis Baptiste",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC",
@@ -1544,7 +1557,8 @@
       "punk",
       "solo-friendly",
       "under-25-cad"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "ubc-fball-uofc",
@@ -1651,7 +1665,8 @@
       "varsity-sports",
       "weekend-outing",
       "west-side"
-    ]
+    ],
+    "categoryLabel": "Sports & Fitness"
   },
   {
     "event_id": "ubc-mbball-twu",
@@ -1758,12 +1773,13 @@
       "varsity-sports",
       "war-memorial-gym",
       "west-side"
-    ]
+    ],
+    "categoryLabel": "Sports & Fitness"
   },
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
     "event_name": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
-    "category": "Music",
+    "category": "Live Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant",
@@ -1859,12 +1875,13 @@
       "music",
       "singer-songwriter",
       "solo-friendly"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
     "event_name": "SALIN (Live Soul & World Jazz)",
-    "category": "Music",
+    "category": "Live Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant",
@@ -1961,7 +1978,8 @@
       "neo-soul",
       "solo-friendly",
       "world-jazz"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -2078,12 +2096,13 @@
       "theatre",
       "under-25-cad",
       "variety-show"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
     "event_name": "Dummy with Golomb & worrywart",
-    "category": "Music",
+    "category": "Live Music",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
     "neighborhood": "Commercial Drive",
@@ -2177,12 +2196,13 @@
       "noise-pop",
       "post-punk",
       "solo-friendly"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
     "event_name": "Ruby Haunt with VHS Ghost",
-    "category": "Music",
+    "category": "Live Music",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant",
@@ -2286,7 +2306,8 @@
       "shoegaze",
       "solo-friendly",
       "spooky"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-harvest-days-vandusen",
@@ -2437,7 +2458,8 @@
       "solo-friendly",
       "stage-play",
       "under-25-cad"
-    ]
+    ],
+    "categoryLabel": "Community & Markets"
   },
   {
     "event_id": "van50-deadly-dinner-party",
@@ -2646,7 +2668,8 @@
       "standup-comedy",
       "under-50-cad",
       "vancouver-events"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -2767,7 +2790,8 @@
       "vancouver-core",
       "vancouver-events",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-cinematheque-past-future-20261015",
@@ -2881,7 +2905,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-scout-york-comedy-on-the-drive-20261024",
@@ -2989,7 +3014,8 @@
       "the-cultch",
       "under-50-cad",
       "york-theatre"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-york-stripocalypse-20261016",
@@ -3103,12 +3129,13 @@
       "standup-comedy",
       "under-50-cad",
       "york-theatre"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-orpheum-vso-kids-20261004",
     "event_name": "VSO Kids: Lights, Camera, Orchestra!",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Orpheum",
     "full_address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -3217,7 +3244,8 @@
       "under-50-cad",
       "vancouver-core",
       "vso"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-scout-rio-viff-beloved-20261001",
@@ -3361,7 +3389,8 @@
       "under-50-cad",
       "viff-2026",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
@@ -3488,12 +3517,13 @@
       "standup-comedy",
       "the-waldorf",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
     "event_name": "Olive Klug with Frail Talk",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -3595,7 +3625,8 @@
       "solo-friendly",
       "the-wise-hall",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-orpheum-silent-movie-mondays",
@@ -3730,7 +3761,8 @@
       "vancouver-core",
       "visual-arts",
       "wurlitzer"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -3845,7 +3877,7 @@
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
     "event_name": "Raagaverse + Strings",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Annex",
     "full_address": "823 Seymour St, Vancouver, BC V6B 3L4",
@@ -3952,12 +3984,13 @@
       "the-annex",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
     "event_name": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -4076,12 +4109,13 @@
       "under-25-cad",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
     "event_name": "Militarie Gun: 20 Songs for $20 Tour",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -4189,7 +4223,8 @@
       "stage-play",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-scout-fox-sunday-service-20261004",
@@ -4308,7 +4343,8 @@
       "the-fox-cabaret",
       "under-25-cad",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -4427,12 +4463,13 @@
       "the-fox-cabaret",
       "under-25-cad",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
     "event_name": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
-    "category": "Music",
+    "category": "Nightlife & Social",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -4546,7 +4583,8 @@
       "the-fox-cabaret",
       "under-25-cad",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Nightlife & Social"
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
@@ -4669,7 +4707,8 @@
       "vancouver-core",
       "variety-show",
       "west-end"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-cultch-palestine-comedy-20261009",
@@ -4799,7 +4838,8 @@
       "under-25-cad",
       "under-50-cad",
       "york-theatre"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-cinematheque-kwaidan-20261012",
@@ -4921,7 +4961,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-scout-cinematheque-hello-destroyer-20261027",
@@ -5052,7 +5093,8 @@
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
@@ -5183,7 +5225,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-lmg-the-setup-20261024",
@@ -5317,7 +5360,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -5442,12 +5486,13 @@
       "the-improv-centre",
       "under-25-cad",
       "under-50-cad"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
     "event_name": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5556,12 +5601,13 @@
       "stage-play",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
     "event_name": "Amy Winehouse Tribute with Krystle Dos Santos",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5670,7 +5716,8 @@
       "soul",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-the-way-out-theatre-20261022",
@@ -5777,7 +5824,8 @@
       "solo-friendly",
       "under-50-cad",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-scout-firehall-red-demon-20261008",
@@ -5919,12 +5967,13 @@
       "theatre",
       "under-50-cad",
       "vancouver-core"
-    ]
+    ],
+    "categoryLabel": "Comedy & Shows"
   },
   {
     "event_id": "van50-scout-cinematheque-small-file-20261017",
     "event_name": "Small File Media Festival: Curated Screenings",
-    "category": "Social & Arts",
+    "category": "Arts & Culture",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Cinematheque",
     "full_address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -6066,7 +6115,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-scout-cinematheque-pulse-20261016",
@@ -6212,7 +6262,8 @@
       "under-50-cad",
       "vancouver-core",
       "visual-arts"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-witches-harvest-market-20261024",
@@ -6437,7 +6488,7 @@
     "id": "van50-city-pop-city-rickshaw-20261121",
     "event_name": "City Pop City Ft. Chen Baker & Technodelic",
     "title": "City Pop City Ft. Chen Baker & Technodelic",
-    "category": "Music",
+    "category": "Live Music",
     "categoryLabel": "Live Music",
     "venue_name": "Rickshaw Theatre",
     "full_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -6664,14 +6715,15 @@
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
-    ]
+    ],
+    "categoryLabel": "Free Public Access"
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
     "event_name": "Dälek (with Infidelity & DarkGable)",
     "title": "Dälek (with Infidelity & DarkGable)",
     "artist": "Dälek, Infidelity, DarkGable",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "one_time",
     "venue_name": "The WISE Hall",
     "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -6767,14 +6819,15 @@
       "noise",
       "solo-friendly",
       "wise-hall"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
     "event_name": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
     "artist": "Pastor Ben MacRae & Guest Jazz Ensembles",
-    "category": "Music",
+    "category": "Live Music",
     "lifecycle_type": "recurring",
     "venue_name": "St. Andrew's-Wesley United Church",
     "full_address": "1022 Nelson St, Vancouver, BC",
@@ -6908,7 +6961,8 @@
       "under-25-cad",
       "vancouver-core",
       "vespers"
-    ]
+    ],
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -7062,7 +7116,8 @@
       "solo-friendly",
       "trains",
       "under-25-cad"
-    ]
+    ],
+    "categoryLabel": "Community & Markets"
   },
   {
     "event_id": "stanley-pitch-putt",
@@ -7615,7 +7670,8 @@
       "viff",
       "visual-arts",
       "west-side"
-    ]
+    ],
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -7761,7 +7817,8 @@
       "ubc",
       "under-25-cad",
       "west-side"
-    ]
+    ],
+    "categoryLabel": "Community & Markets"
   },
   {
     "event_id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
@@ -8527,7 +8584,8 @@
     "showings": [],
     "food_service_type": "no_onsite_food",
     "food_service_note": "No outside food allowed inside dome. Seasons in the Park restaurant next door.",
-    "sample_cost_label": "$8.93 CAD all-in (Showpass)"
+    "sample_cost_label": "$8.93 CAD all-in (Showpass)",
+    "categoryLabel": "Arts & Culture"
   },
   {
     "event_id": "van50-ludica-boardgame-night",
@@ -8609,7 +8667,8 @@
     "showings": [],
     "food_service_type": "full_restaurant_service",
     "food_service_note": "Full Italian wood-fired pizza menu, appetizers, craft beer on tap",
-    "sample_cost_label": "Free admission with meal order ($0 cover)"
+    "sample_cost_label": "Free admission with meal order ($0 cover)",
+    "categoryLabel": "Nightlife & Social"
   },
   {
     "event_id": "van50-guilt-and-co-thursday-groove",
@@ -8685,7 +8744,8 @@
     "showings": [],
     "food_service_type": "bar_snacks_and_drinks",
     "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
-    "sample_cost_label": "$8.00 CAD early door cover"
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-guilt-and-co-friday-jazz",
@@ -8761,7 +8821,8 @@
     "showings": [],
     "food_service_type": "bar_snacks_and_drinks",
     "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
-    "sample_cost_label": "$8.00 CAD early door cover"
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-guilt-and-co-saturday-showcase",
@@ -8837,7 +8898,8 @@
     "showings": [],
     "food_service_type": "bar_snacks_and_drinks",
     "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
-    "sample_cost_label": "$8.00 CAD early door cover"
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "categoryLabel": "Live Music"
   },
   {
     "event_id": "van50-guilt-and-co-sunday-sessions",
@@ -8913,6 +8975,7 @@
     "showings": [],
     "food_service_type": "bar_snacks_and_drinks",
     "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
-    "sample_cost_label": "$8.00 CAD early door cover"
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "categoryLabel": "Live Music"
   }
 ]

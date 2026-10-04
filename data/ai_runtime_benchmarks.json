@@ -35,19 +35,16 @@
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 145,
-      "averageDurationFormatted": "2–3 minutes",
-      "totalRuns": 2,
+      "averageDurationSeconds": 131,
+      "averageDurationFormatted": "2 minutes",
+      "totalRuns": 3,
       "lastRun": {
-        "timestamp": "2026-10-04T12:27:25",
-        "durationSeconds": 193,
-        "durationFormatted": "3m 13s",
-        "itemsAudited": 81,
-        "itemsDeduplicated": 3,
-        "itemsRolledForward": 5,
-        "itemsHealed": 7,
-        "taxonomyFixed": 1,
-        "notes": "100% audit of 81 cards across 20 dimensions. Deduplicated 3 cards (Bloedel, Ludica, VanDusen), rolled 5 multi-run event dates forward to active dates, healed 7 October/Halloween cards with discrete dates and deep links, corrected Vancouver Opera taxonomy to Arts & Culture."
+        "timestamp": "2026-10-04T12:32:55",
+        "durationSeconds": 103,
+        "durationFormatted": "1m 43s",
+        "itemsAudited": 78,
+        "itemsCalibrated": 17,
+        "notes": "100% 20D audit of all 78 active cards. Calibrated 17 cards to canonical D7 taxonomy (Music -> Live Music, Nightlife & Social, Arts & Culture). 0 remaining anomalies."
       },
       "history": [
         {
@@ -66,6 +63,13 @@
           "itemsDeduplicated": 3,
           "itemsRolledForward": 5,
           "itemsHealed": 7
+        },
+        {
+          "timestamp": "2026-10-04T12:32:55",
+          "durationSeconds": 103,
+          "durationFormatted": "1m 43s",
+          "itemsAudited": 78,
+          "itemsCalibrated": 17
         }
       ]
     },
