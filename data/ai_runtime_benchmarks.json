@@ -60,11 +60,30 @@
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",
-      "averageDurationSeconds": 180,
-      "averageDurationFormatted": "2–4 minutes",
-      "totalRuns": 0,
-      "lastRun": null,
-      "history": []
+      "averageDurationSeconds": 262,
+      "averageDurationFormatted": "3–5 minutes",
+      "totalRuns": 1,
+      "lastRun": {
+        "timestamp": "2026-10-04T10:55:50",
+        "durationSeconds": 262,
+        "durationFormatted": "4m 22s",
+        "itemsProcessed": 26,
+        "itemsArchived": 15,
+        "itemsGraduated": 6,
+        "itemsPurged": 4,
+        "itemsRetained": 1,
+        "notes": "Full 100% resolution of 26 quarantined items across 20 dimensions. Archived 13 overbudget Queen Elizabeth Theatre touring shows and 2 generic placeholders; purged 4 test artifacts; graduated 6 cultural gems (Bloedel Conservatory, Pizzeria Ludica, 4 Guilt & Co sessions); retained 1 item (Catrinas Procession) pending Curator holiday approval."
+      },
+      "history": [
+        {
+          "timestamp": "2026-10-04T10:55:50",
+          "durationSeconds": 262,
+          "durationFormatted": "4m 22s",
+          "itemsProcessed": 26,
+          "itemsArchived": 15,
+          "itemsGraduated": 6
+        }
+      ]
     }
   }
 }

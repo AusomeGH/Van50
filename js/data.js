@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-04T10:45:59-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-04T10:55:47-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -4768,8 +4768,8 @@ const VANCOUVER_EVENTS = [
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
       "sat",
-      "thu",
-      "mon"
+      "mon",
+      "thu"
     ],
     "timeSlots": [
       "early-evening",
@@ -8179,8 +8179,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
       "fri",
+      "sat",
       "thu"
     ],
     "timeSlots": [
@@ -9813,9 +9813,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T11:00:00-07:00",
     "daysOfWeek": [
+      "mon",
       "sat",
-      "sun",
-      "mon"
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -11097,8 +11097,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-05T12:00:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "mon"
+      "mon",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -11526,9 +11526,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-10T10:30:00-07:00",
     "daysOfWeek": [
+      "mon",
       "sat",
-      "sun",
-      "mon"
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -12502,380 +12502,916 @@ const VANCOUVER_EVENTS = [
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
     "isSoldOut": false
+  },
+  {
+    "event_id": "van50-bloedel-conservatory-dome",
+    "event_name": "Bloedel Conservatory: Tropical Rainforest Dome",
+    "category": "Arts & Culture",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Bloedel Conservatory",
+    "full_address": "4600 Cambie St (Queen Elizabeth Park), Vancouver, BC V5Y 2M9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": "Bloedel Conservatory is a domed tropical rainforest oasis located in Queen Elizabeth Park atop Vancouver's highest point. Encounter over 100 free-flying exotic birds, koi fish ponds, and more than 500 species of tropical plants and flowers flourishing under the triodetic geodesic dome.",
+    "pricing_all_in_cad": {
+      "regular": 8.93,
+      "senior": 7.98,
+      "student": 6.98,
+      "member": 0
+    },
+    "price": 8.93,
+    "price_adult": 8.93,
+    "price_student": 6.98,
+    "price_member": 0,
+    "tier_custom_name_1": "Adult Online Advance (Showpass)",
+    "tier_custom_price_1": 8.93,
+    "tier_custom_name_2": "Senior (65+)",
+    "tier_custom_price_2": 7.98,
+    "tier_custom_name_3": "Youth (13–18)",
+    "tier_custom_price_3": 6.98,
+    "tier_custom_name_4": "Child (5–12)",
+    "tier_custom_price_4": 4.99,
+    "tier_custom_name_5": "Preschooler (4 & under)",
+    "tier_custom_price_5": 0,
+    "discovery_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "details_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "ticket_url": "https://www.showpass.com/o/bloedel-conservatory/",
+    "ticket_provider": "Showpass",
+    "tags": [
+      "bloedel-conservatory",
+      "queen-elizabeth-park",
+      "tropical-dome",
+      "exotic-birds",
+      "botanical-garden",
+      "family-friendly",
+      "all-ages",
+      "civic-attraction",
+      "rainy-day",
+      "nature",
+      "under-10-dollars"
+    ],
+    "subTags": [
+      "bloedel-conservatory",
+      "queen-elizabeth-park",
+      "tropical-dome",
+      "exotic-birds",
+      "botanical-garden",
+      "family-friendly",
+      "all-ages",
+      "civic-attraction",
+      "rainy-day",
+      "nature",
+      "under-10-dollars"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Verified City of Vancouver Park Board rate on Showpass ($8.50 online + 5% GST = $8.93 CAD). Open daily 10am–5pm.",
+    "title": "Bloedel Conservatory: Tropical Rainforest Dome",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Daily 10:00 AM – 5:00 PM (Last entry 4:45 PM)",
+    "days_open": "Daily",
+    "weekly_hours": {
+      "mon": "10:00 AM – 5:00 PM",
+      "tue": "10:00 AM – 5:00 PM",
+      "wed": "10:00 AM – 5:00 PM",
+      "thu": "10:00 AM – 5:00 PM",
+      "fri": "10:00 AM – 5:00 PM",
+      "sat": "10:00 AM – 5:00 PM",
+      "sun": "10:00 AM – 5:00 PM"
+    },
+    "date": null,
+    "time": null,
+    "start_time": null,
+    "end_time": null,
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
+    "frequency": "Perennial Drop-In",
+    "typical_item_spend": "$4.00 – $6.00 CAD (gift shop / beverages)",
+    "lineup": "Over 100 free-flying tropical birds (macaws, parrots, finches), tropical plant collections",
+    "restrictions": "All Ages Welcome (Family Friendly). Children under 13 must be accompanied by an adult. Fully wheelchair accessible.",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "no_onsite_food",
+    "food_service_note": "No outside food allowed inside dome. Seasons in the Park restaurant next door.",
+    "sample_cost_label": "$8.93 CAD all-in (Showpass)",
+    "id": "van50-bloedel-conservatory-dome",
+    "venue": "Bloedel Conservatory",
+    "address": "4600 Cambie St (Queen Elizabeth Park), Vancouver, BC V5Y 2M9",
+    "priceLabel": "$8.93 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Arts & culture",
+    "categoryIcon": "🎭",
+    "categories": [
+      "outdoors",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "Adult Online Advance (Showpass)",
+        "price": 8.93,
+        "label": "$8.93 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 8.93,
+        "label": "$8.93 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 6.98,
+        "label": "$6.98 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 7.98,
+        "label": "$7.98 CAD"
+      },
+      {
+        "name": "Youth (13–18)",
+        "price": 6.98,
+        "label": "$6.98 CAD"
+      },
+      {
+        "name": "Child (5–12)",
+        "price": 4.99,
+        "label": "$4.99 CAD"
+      },
+      {
+        "name": "Preschooler (4 & under)",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "frequencyLabel": "Open Daily Drop-In",
+    "startIso": null,
+    "daysOfWeek": [
+      "daily",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon",
+      "early-evening"
+    ],
+    "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
+    "venueUrl": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "ticketProvider": "Showpass",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Daily 10:00 AM – 5:00 PM (Last entry 4:45 PM)",
+    "weeklyHours": {
+      "mon": "10:00 AM – 5:00 PM",
+      "tue": "10:00 AM – 5:00 PM",
+      "wed": "10:00 AM – 5:00 PM",
+      "thu": "10:00 AM – 5:00 PM",
+      "fri": "10:00 AM – 5:00 PM",
+      "sat": "10:00 AM – 5:00 PM",
+      "sun": "10:00 AM – 5:00 PM"
+    },
+    "lifecycleType": "perennial_drop_in",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-ludica-boardgame-night",
+    "event_name": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "perennial_drop_in",
+    "venue_name": "Pizzeria Ludica",
+    "full_address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Vancouver's premier board game pizzeria featuring an extensive library of over 1,200 tabletop games, served alongside authentic Italian thin-crust wood-fired pizzas, appetizers, and craft brews. Board games are free to play for all dining guests.",
+    "pricing_all_in_cad": {
+      "regular": 0,
+      "senior": 0,
+      "student": 0,
+      "member": 0
+    },
+    "price": 0.0,
+    "price_adult": 0,
+    "price_student": 0,
+    "price_member": 0,
+    "tier_custom_name_1": "Game Library Admission (Free with Meal Order)",
+    "tier_custom_price_1": 0,
+    "discovery_url": "https://www.ludica.ca",
+    "details_url": "https://www.ludica.ca",
+    "ticket_url": "https://www.ludica.ca",
+    "ticket_provider": "Walk-in / Table Reservation",
+    "tags": [
+      "board-games",
+      "pizzeria-ludica",
+      "chinatown",
+      "tabletop",
+      "casual-dining",
+      "craft-beer",
+      "social",
+      "gamers",
+      "all-ages",
+      "food-and-drink"
+    ],
+    "subTags": [
+      "board-games",
+      "pizzeria-ludica",
+      "chinatown",
+      "tabletop",
+      "casual-dining",
+      "craft-beer",
+      "social",
+      "gamers",
+      "all-ages",
+      "food-and-drink"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Zero cover charge. Games are free for dining patrons with minimum small meal purchase (~$18–$25 CAD).",
+    "title": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "access_model": "fenced_facility",
+    "pricing_model": "pay_per_item",
+    "operating_hours": "Mon–Thu 5:00 PM – 10:00 PM, Fri–Sat 4:00 PM – 11:00 PM, Sun 4:00 PM – 10:00 PM",
+    "days_open": "Daily",
+    "weekly_hours": {
+      "mon": "5:00 PM – 10:00 PM",
+      "tue": "5:00 PM – 10:00 PM",
+      "wed": "5:00 PM – 10:00 PM",
+      "thu": "5:00 PM – 10:00 PM",
+      "fri": "4:00 PM – 11:00 PM",
+      "sat": "4:00 PM – 11:00 PM",
+      "sun": "4:00 PM – 10:00 PM"
+    },
+    "date": null,
+    "time": null,
+    "start_time": null,
+    "end_time": null,
+    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
+    "frequency": "Perennial Drop-In",
+    "typical_item_spend": "$18.00 – $26.00 CAD (wood-fired pizza + drink)",
+    "lineup": "Over 1,200 curated tabletop games, game sommeliers on staff",
+    "restrictions": "All Ages Welcome (Family Friendly). Minors permitted. 2-hour table seating during peak hours.",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "full_restaurant_service",
+    "food_service_note": "Full Italian wood-fired pizza menu, appetizers, craft beer on tap",
+    "sample_cost_label": "Free admission with meal order ($0 cover)",
+    "id": "van50-ludica-boardgame-night",
+    "venue": "Pizzeria Ludica",
+    "address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "Game Library Admission (Free with Meal Order)",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Student",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Member",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "frequencyLabel": "Open Daily Drop-In",
+    "startIso": null,
+    "daysOfWeek": [
+      "daily",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon",
+      "early-evening"
+    ],
+    "websiteUrl": "https://www.ludica.ca",
+    "venueUrl": "https://www.ludica.ca",
+    "ticketProvider": "Walk-in / Table Reservation",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Mon–Thu 5:00 PM – 10:00 PM, Fri–Sat 4:00 PM – 11:00 PM, Sun 4:00 PM – 10:00 PM",
+    "weeklyHours": {
+      "mon": "5:00 PM – 10:00 PM",
+      "tue": "5:00 PM – 10:00 PM",
+      "wed": "5:00 PM – 10:00 PM",
+      "thu": "5:00 PM – 10:00 PM",
+      "fri": "4:00 PM – 11:00 PM",
+      "sat": "4:00 PM – 11:00 PM",
+      "sun": "4:00 PM – 10:00 PM"
+    },
+    "lifecycleType": "perennial_drop_in",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-guilt-and-co-thursday-groove",
+    "event_name": "Guilt & Co: Thursday Live Soul, Funk & Groove",
+    "category": "music",
+    "lifecycle_type": "weekly_recurring",
+    "venue_name": "Guilt & Co.",
+    "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Descend into Gastown's historic subterranean brick lounge for an intimate night of live soul, funk, and R&B grooves performed by top Pacific Northwest musicians.",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "price": 8.0,
+    "price_adult": 8.0,
+    "price_student": 8.0,
+    "price_member": 8.0,
+    "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
+    "tier_custom_price_1": 8.0,
+    "tier_custom_name_2": "Late Show Cover (8:00 PM & Later)",
+    "tier_custom_price_2": 12.0,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Door Cover at Entrance",
+    "tags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "soul",
+      "funk",
+      "groove",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "subTags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "soul",
+      "funk",
+      "groove",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Walk-in door cover ($8 before 8pm, $12 after 8pm Sun–Thu). 19+ only.",
+    "title": "Guilt & Co: Thursday Live Soul, Funk & Groove",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Thursday 7:00 PM – 1:00 AM",
+    "days_open": "Thu",
+    "weekly_hours": {
+      "thu": "7:00 PM – 1:00 AM"
+    },
+    "date": null,
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "01:00",
+    "dateSchedule": "Every Thursday: Early Show 7:00 PM, Late Show 9:30 PM",
+    "frequency": "Weekly",
+    "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
+    "lineup": "Resident soul, jazz, and funk ensembles",
+    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "bar_snacks_and_drinks",
+    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "id": "van50-guilt-and-co-thursday-groove",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Late Show Cover (8:00 PM & Later)",
+        "price": 12.0,
+        "label": "$12.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": null,
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Door Cover at Entrance",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Thursday 7:00 PM – 1:00 AM",
+    "weeklyHours": {
+      "thu": "7:00 PM – 1:00 AM"
+    },
+    "lifecycleType": "weekly_recurring",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-guilt-and-co-friday-jazz",
+    "event_name": "Guilt & Co: Friday Prime Jazz & Funk Showcase",
+    "category": "music",
+    "lifecycle_type": "weekly_recurring",
+    "venue_name": "Guilt & Co.",
+    "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Gastown's flagship underground jazz club ignites Friday night with two distinct live showcases spanning contemporary jazz, hard-bop, and electrifying funk.",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "price": 8.0,
+    "price_adult": 8.0,
+    "price_student": 8.0,
+    "price_member": 8.0,
+    "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
+    "tier_custom_price_1": 8.0,
+    "tier_custom_name_2": "Prime Night Cover (8:00 PM & Later)",
+    "tier_custom_price_2": 15.0,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Door Cover at Entrance",
+    "tags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "jazz",
+      "funk",
+      "cocktail-lounge",
+      "19-plus",
+      "weekend",
+      "under-20-dollars"
+    ],
+    "subTags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "jazz",
+      "funk",
+      "cocktail-lounge",
+      "19-plus",
+      "weekend",
+      "under-20-dollars"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Walk-in door cover ($8 before 8pm, $15 after 8pm Fri/Sat). 19+ only.",
+    "title": "Guilt & Co: Friday Prime Jazz & Funk Showcase",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Friday 7:00 PM – 2:00 AM",
+    "days_open": "Fri",
+    "weekly_hours": {
+      "fri": "7:00 PM – 2:00 AM"
+    },
+    "date": null,
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "02:00",
+    "dateSchedule": "Every Friday: Early Show 7:00 PM, Late Show 10:00 PM",
+    "frequency": "Weekly",
+    "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
+    "lineup": "Vancouver premier jazz quartets and funk collectives",
+    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "bar_snacks_and_drinks",
+    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "id": "van50-guilt-and-co-friday-jazz",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Prime Night Cover (8:00 PM & Later)",
+        "price": 15.0,
+        "label": "$15.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": null,
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Door Cover at Entrance",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Friday 7:00 PM – 2:00 AM",
+    "weeklyHours": {
+      "fri": "7:00 PM – 2:00 AM"
+    },
+    "lifecycleType": "weekly_recurring",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-guilt-and-co-saturday-showcase",
+    "event_name": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+    "category": "music",
+    "lifecycle_type": "weekly_recurring",
+    "venue_name": "Guilt & Co.",
+    "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Saturday night underground party in Gastown featuring soulful vocals, brass-heavy rhythm sections, and classic R&B anthems in an unforgettable candlelit speakeasy setting.",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "price": 8.0,
+    "price_adult": 8.0,
+    "price_student": 8.0,
+    "price_member": 8.0,
+    "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
+    "tier_custom_price_1": 8.0,
+    "tier_custom_name_2": "Saturday Night Cover (8:00 PM & Later)",
+    "tier_custom_price_2": 15.0,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Door Cover at Entrance",
+    "tags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "r-and-b",
+      "soul",
+      "saturday-night",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "subTags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "r-and-b",
+      "soul",
+      "saturday-night",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Walk-in door cover ($8 before 8pm, $15 after 8pm Fri/Sat). 19+ only.",
+    "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Saturday 7:00 PM – 2:00 AM",
+    "days_open": "Sat",
+    "weekly_hours": {
+      "sat": "7:00 PM – 2:00 AM"
+    },
+    "date": null,
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "02:00",
+    "dateSchedule": "Every Saturday: Early Show 7:00 PM, Late Show 10:00 PM",
+    "frequency": "Weekly",
+    "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
+    "lineup": "Vancouver leading live R&B and soul vocalists and touring bands",
+    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "bar_snacks_and_drinks",
+    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "id": "van50-guilt-and-co-saturday-showcase",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Saturday Night Cover (8:00 PM & Later)",
+        "price": 15.0,
+        "label": "$15.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": null,
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Door Cover at Entrance",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Saturday 7:00 PM – 2:00 AM",
+    "weeklyHours": {
+      "sat": "7:00 PM – 2:00 AM"
+    },
+    "lifecycleType": "weekly_recurring",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-guilt-and-co-sunday-sessions",
+    "event_name": "Guilt & Co: Sunday Acoustic & Soul Sessions",
+    "category": "music",
+    "lifecycle_type": "weekly_recurring",
+    "venue_name": "Guilt & Co.",
+    "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Wind down the weekend in Gastown with soulful acoustic sets, singer-songwriters, and stripped-down groove sessions in an intimate cellar ambiance.",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "price": 8.0,
+    "price_adult": 8.0,
+    "price_student": 8.0,
+    "price_member": 8.0,
+    "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
+    "tier_custom_price_1": 8.0,
+    "tier_custom_name_2": "Late Show Cover (8:00 PM & Later)",
+    "tier_custom_price_2": 12.0,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Door Cover at Entrance",
+    "tags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "acoustic",
+      "soul",
+      "sunday-sessions",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "subTags": [
+      "guilt-and-co",
+      "gastown",
+      "live-music",
+      "acoustic",
+      "soul",
+      "sunday-sessions",
+      "cocktail-lounge",
+      "19-plus",
+      "under-20-dollars"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Curator-Approved",
+    "curator_notes": "Walk-in door cover ($8 before 8pm, $12 after 8pm Sun–Thu). 19+ only.",
+    "title": "Guilt & Co: Sunday Acoustic & Soul Sessions",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Sunday 7:00 PM – 1:00 AM",
+    "days_open": "Sun",
+    "weekly_hours": {
+      "sun": "7:00 PM – 1:00 AM"
+    },
+    "date": null,
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "01:00",
+    "dateSchedule": "Every Sunday: Early Show 7:00 PM, Late Show 9:30 PM",
+    "frequency": "Weekly",
+    "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
+    "lineup": "Acoustic roots, neo-soul, and blues songwriters",
+    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [],
+    "food_service_type": "bar_snacks_and_drinks",
+    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "sample_cost_label": "$8.00 CAD early door cover",
+    "id": "van50-guilt-and-co-sunday-sessions",
+    "venue": "Guilt & Co.",
+    "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      },
+      {
+        "name": "Late Show Cover (8:00 PM & Later)",
+        "price": 12.0,
+        "label": "$12.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": null,
+    "daysOfWeek": [
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Door Cover at Entrance",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Sunday 7:00 PM – 1:00 AM",
+    "weeklyHours": {
+      "sun": "7:00 PM – 1:00 AM"
+    },
+    "lifecycleType": "weekly_recurring",
+    "isSoldOut": false
   }
 ];
 const MANUAL_REVIEW_QUEUE = [
-  {
-    "id": "test-reinforce-1791042702",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "price": 20.0,
-    "priceLabel": "$20.00 door",
-    "category": "music",
-    "coordinates": [
-      49.281,
-      -123.111
-    ],
-    "url": "https://frankiesjazzclub.com/events",
-    "neighborhood": "Downtown, Gastown & Yaletown"
-  },
-  {
-    "id": "test-qa-event-1791042702",
-    "title": "Dual Action Test Event",
-    "venue": "Rickshaw Theatre",
-    "price": 25.0,
-    "category": "shows",
-    "websiteUrl": "https://rickshawtheatre.com/test-event",
-    "reviewStatus": "pending_antigravity_review",
-    "attemptedPrice": 25.0,
-    "curatorAnnotation": {
-      "instructionId": "inst_1791042702840",
-      "note": "Fix scraper to target General Admission tier.",
-      "proposedAction": "approve",
-      "userSuppliedPrice": 25.0,
-      "screenshotPaths": [],
-      "annotatedAt": "2026-10-03T15:51:42.893770+00:00"
-    },
-    "neighborhood": "Downtown, Gastown & Yaletown"
-  },
-  {
-    "id": "test-reinforce-1791047810",
-    "title": "Continuous Learning Jazz Showcase",
-    "venue": "Frankie's Jazz Club",
-    "price": 20.0,
-    "priceLabel": "$20.00 door",
-    "category": "music",
-    "coordinates": [
-      49.281,
-      -123.111
-    ],
-    "url": "https://frankiesjazzclub.com/events",
-    "neighborhood": "Downtown, Gastown & Yaletown"
-  },
-  {
-    "id": "test-qa-event-1791047811",
-    "title": "Dual Action Test Event",
-    "venue": "Rickshaw Theatre",
-    "price": 25.0,
-    "category": "shows",
-    "websiteUrl": "https://rickshawtheatre.com/test-event",
-    "reviewStatus": "pending_antigravity_review",
-    "attemptedPrice": 25.0,
-    "curatorAnnotation": {
-      "instructionId": "inst_1791047811362",
-      "note": "Fix scraper to target General Admission tier.",
-      "proposedAction": "approve",
-      "userSuppliedPrice": 25.0,
-      "screenshotPaths": [],
-      "annotatedAt": "2026-10-03T17:16:51.436973+00:00"
-    },
-    "neighborhood": "Downtown, Gastown & Yaletown"
-  },
-  {
-    "id": "bloedel-conservatory-dome",
-    "title": "Bloedel Conservatory: Tropical Rainforest Dome",
-    "venue": "Bloedel Conservatory",
-    "address": "4600 Cambie St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 7.9,
-    "attemptedPriceLabel": "$7.90 door",
-    "provider": "Showpass",
-    "semanticProvider": "Showpass Verified",
-    "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
-    "category": "arts",
-    "flaggedAt": "2026-10-03T13:52:55-07:00",
-    "flagReason": "Could not dynamically verify official adult admission rate from City of Vancouver Park Board schedule",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "biltmore-cabaret-indie-music",
-    "title": "Live Indie Music & Guilty Pleasures at The Biltmore",
-    "venue": "The Biltmore Cabaret",
-    "address": "2755 Prince Edward St, Vancouver",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 11.0,
-    "attemptedPriceLabel": "$11.00 door",
-    "provider": "AdmitOne",
-    "semanticProvider": "AdmitOne Verified",
-    "websiteUrl": "https://biltmorecabaret.com/event",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:04-07:00",
-    "flagReason": "Could not parse live ticket prices from AdmitOne page (https://biltmorecabaret.com/event)",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "rickshaw-indie-rock",
-    "title": "Indie Rock, Punk & Live Showcases at Rickshaw Theatre",
-    "venue": "The Rickshaw Theatre",
-    "address": "254 E Hastings St, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 35.0,
-    "attemptedPriceLabel": "$35.00 door",
-    "provider": "Eventbrite",
-    "semanticProvider": "Eventbrite Verified",
-    "websiteUrl": "https://rickshawtheatre.com/events/",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:09-07:00",
-    "flagReason": "Unverified Eventbrite listing: could not parse checkout price from https://rickshawtheatre.com/events/",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "ludica-boardgames",
-    "title": "Pizzeria Ludica: 1,200+ Board Game Night",
-    "venue": "Pizzeria Ludica",
-    "address": "189 Keefer Pl, Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 20.0,
-    "attemptedPriceLabel": "$20.00 door",
-    "provider": "Independent Box Office",
-    "semanticProvider": "Walk-in / Table Reservation",
-    "websiteUrl": "https://www.pizzerialudica.com/",
-    "category": "activities",
-    "flaggedAt": "2026-10-03T13:53:11-07:00",
-    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://www.pizzerialudica.com/",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Live check-out payload was not confirmed. User manual review required before publishing in app."
-  },
-  {
-    "id": "guilt-and-co-thursday-groove",
-    "title": "Guilt & Co: Thursday Night Live Soul & Groove",
-    "venue": "Guilt & Co.",
-    "address": "1 Alexander St (Below Ground), Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 8.0,
-    "attemptedPriceLabel": "$8.00 door",
-    "provider": "Door Cover at Entrance",
-    "semanticProvider": "Door Cover at Entrance",
-    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:17-07:00",
-    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
-  },
-  {
-    "id": "guilt-and-co-friday-jazz",
-    "title": "Guilt & Co: Friday Night Prime Jazz & Funk Showcase",
-    "venue": "Guilt & Co.",
-    "address": "1 Alexander St (Below Ground), Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 8.0,
-    "attemptedPriceLabel": "$8.00 door",
-    "provider": "Door Cover at Entrance",
-    "semanticProvider": "Door Cover at Entrance",
-    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:17-07:00",
-    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
-  },
-  {
-    "id": "guilt-and-co-saturday-showcase",
-    "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
-    "venue": "Guilt & Co.",
-    "address": "1 Alexander St (Below Ground), Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 8.0,
-    "attemptedPriceLabel": "$8.00 door",
-    "provider": "Door Cover at Entrance",
-    "semanticProvider": "Door Cover at Entrance",
-    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:17-07:00",
-    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
-  },
-  {
-    "id": "guilt-and-co-sunday-sessions",
-    "title": "Guilt & Co: Sunday Evening Live Acoustic & Soul Sessions",
-    "venue": "Guilt & Co.",
-    "address": "1 Alexander St (Below Ground), Vancouver",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "attemptedPrice": 8.0,
-    "attemptedPriceLabel": "$8.00 door",
-    "provider": "Door Cover at Entrance",
-    "semanticProvider": "Door Cover at Entrance",
-    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:17-07:00",
-    "flagReason": "Generic Link: Bare root homepage without event path: https://www.guiltandcompany.com/#ajsection-upcoming. Autonomous Hunter could not locate a specific event checkout page.",
-    "reviewStatus": "pending_manual_review",
-    "notes": "Generic URL detected. Curator review required to verify or assign specific event link."
-  },
-  {
-    "id": "queen-elizabeth-theatre-broadway-across-canada-juliet",
-    "title": "Broadway Across Canada: & Juliet",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-10-04-2026/event/110064A6C333D5F1",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:47-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/juliet-touring-vancouver-british-columbia-10-04-2026/event/110064A6C333D5F1",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-sting-30",
-    "title": "Sting 3.0",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/sting-tickets/artist/723578",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:49-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sting-tickets/artist/723578",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-khan-saab",
-    "title": "Khan Saab",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:49-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/khan-saab-live-in-concert-vancouver-british-columbia-10-09-2026/event/110065181F03BF18",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-undertale-the-determination-symphony",
-    "title": "Undertale: The Determination Symphony",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A7DFAC",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:50-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/undertale-the-determination-symphony-vancouver-british-columbia-10-10-2026/event/1100646BC7A7DFAC",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-sunanda-sharma-victory-tour",
-    "title": "Sunanda Sharma Victory Tour",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:51-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/sunanda-sharma-victory-tour-live-in-vancouver-british-columbia-10-12-2026/event/11006518EEC21E2F",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-vancouver-opera-tosca",
-    "title": "Vancouver Opera: Tosca",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:51-07:00",
-    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/vancouver-opera-tosca-oct-24-nov-1-2026/",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-beck-ride-lonesome-tour",
-    "title": "Beck: Ride Lonesome Tour",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/event/11006489918258F5",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:51-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/11006489918258F5",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-boynextdoor",
-    "title": "BOYNEXTDOOR",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:53-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/boynextdoor-tour-knock-on-vol2-in-vancouver-british-columbia-11-13-2026/event/110064CFC97ECBF3",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-raffi",
-    "title": "Raffi",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/raffi-tickets/artist/753662",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:55-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/raffi-tickets/artist/753662",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-broadway-across-canada-disneys-beauty-th",
-    "title": "Broadway Across Canada: Disney's Beauty & The Beast",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:56-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/disneys-beauty-and-the-beast-touring-tickets/artist/803726?venueId=139293",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-chelsea-handler-the-high-and-mighty-tour",
-    "title": "Chelsea Handler: The High and Mighty Tour",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://www.ticketmaster.ca/event/11006523C1C6A157",
-    "category": "music",
-    "flaggedAt": "2026-10-03T13:53:56-07:00",
-    "flagReason": "Unverified Ticketmaster listing: could not extract checkout pricing from https://www.ticketmaster.ca/event/11006523C1C6A157",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-canadas-royal-winnipeg-ballet-nutcracker",
-    "title": "Canada's Royal Winnipeg Ballet: Nutcracker",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://vancouvercivictheatres.com/events/royal-winnipeg-ballet-nutcracker-dec-9-13-2026/",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:56-07:00",
-    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/royal-winnipeg-ballet-nutcracker-dec-9-13-2026/",
-    "reviewStatus": "pending_manual_review"
-  },
-  {
-    "id": "queen-elizabeth-theatre-goh-ballets-the-nutcracker",
-    "title": "Goh Ballet's The Nutcracker",
-    "venue": "Queen Elizabeth Theatre",
-    "address": "Vancouver, BC",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "attemptedPrice": 20.0,
-    "websiteUrl": "https://vancouvercivictheatres.com/events/goh-ballet-the-nutcracker-dec-17-20-2026/",
-    "category": "shows",
-    "flaggedAt": "2026-10-03T13:53:56-07:00",
-    "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/goh-ballet-the-nutcracker-dec-17-20-2026/",
-    "reviewStatus": "pending_manual_review"
-  },
   {
     "id": "van50-latincouver-catrinas-procession-gastown-20261102",
     "title": "Catrinas Procession: Día de los Muertos",
