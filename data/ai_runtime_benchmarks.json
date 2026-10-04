@@ -7,15 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 240,
-      "averageDurationFormatted": "3–5 minutes",
-      "totalRuns": 1,
+      "averageDurationSeconds": 188,
+      "averageDurationFormatted": "2–4 minutes",
+      "totalRuns": 2,
       "lastRun": {
-        "timestamp": "2026-10-03T20:00:00",
-        "durationSeconds": 260,
-        "durationFormatted": "4m 20s",
-        "itemsProcessed": 6,
-        "notes": "Discovery sweep across Rio Theatre, VanDusen, Sun Yat-Sen, Rickshaw, Roundhouse, Latincouver"
+        "timestamp": "2026-10-04T10:29:12",
+        "durationSeconds": 117,
+        "durationFormatted": "1m 57s",
+        "itemsProcessed": 5,
+        "venuesRegistered": 2,
+        "notes": "Discovery sweep across The Cultch (York Theatre), The Cinematheque, Firehall Arts Centre, Fox Cabaret, MOA UBC"
       },
       "history": [
         {
@@ -23,6 +24,12 @@
           "durationSeconds": 260,
           "durationFormatted": "4m 20s",
           "itemsProcessed": 6
+        },
+        {
+          "timestamp": "2026-10-04T10:29:12",
+          "durationSeconds": 117,
+          "durationFormatted": "1m 57s",
+          "itemsProcessed": 5
         }
       ]
     },

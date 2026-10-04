@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-03T19:58:24-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-04T10:29:12-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1542,9 +1542,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
+      "sun",
       "fri",
-      "sun"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3829,8 +3829,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T10:30:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -4097,8 +4097,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "fri"
+      "fri",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -5205,9 +5205,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
+      "mon",
       "thu",
-      "sat",
-      "mon"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8910,9 +8910,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
+      "fri",
       "thu",
-      "fri"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -9119,8 +9119,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T14:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -9326,8 +9326,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "fri",
-      "sun"
+      "sun",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -9479,8 +9479,8 @@ const VANCOUVER_EVENTS = [
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -10544,9 +10544,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T11:00:00-07:00",
     "daysOfWeek": [
+      "sun",
       "sat",
-      "mon",
-      "sun"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -11828,8 +11828,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-05T12:00:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "sun"
+      "sun",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -12051,8 +12051,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T11:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -12255,9 +12255,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-10T10:30:00-07:00",
     "daysOfWeek": [
+      "sun",
       "sat",
-      "mon",
-      "sun"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -12805,6 +12805,704 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "2:00 PM – 5:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-cultch-comedy-on-the-drive-20261024",
+    "event_name": "Comedy on the Drive",
+    "title": "Comedy on the Drive",
+    "category": "shows",
+    "categoryLabel": "Comedy & Shows",
+    "venue_name": "York Theatre (The Cultch)",
+    "full_address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "description": "The Cultch presents Comedy on the Drive at the historic York Theatre, showcasing a hilarious, high-energy lineup of Vancouver's top touring standup comedians and local improv favorites.",
+    "pricing_all_in_cad": {
+      "regular": 29.5,
+      "senior": 29.5,
+      "student": 29.5,
+      "member": 25.0
+    },
+    "operating_hours": "Box Office 6:00 PM, Show 7:00 PM",
+    "days_open": "Sat",
+    "show_1": {
+      "date": "2026-10-24",
+      "start_time": "19:00",
+      "end_time": "21:00",
+      "cost": 29.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://thecultch.com",
+    "details_url": "https://thecultch.com",
+    "ticket_url": "https://thecultch.com",
+    "ticket_provider": "The Cultch Box Office",
+    "tags": [
+      "comedy",
+      "stand-up",
+      "york-theatre",
+      "the-cultch",
+      "commercial-drive",
+      "east-van",
+      "live-comedy",
+      "nightlife",
+      "19-plus",
+      "indie-theatre",
+      "local-talent",
+      "budget-friendly"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Verified Cultch ticketing. Advance tier $25.00 + service fee = $29.50 CAD all-in.",
+    "price": 29.5,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price_adult": 29.5,
+    "price_member": 25.0,
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time Show",
+    "lineup": "Curated Vancouver touring standup comedians & guests",
+    "restrictions": "19+ (Licensed venue)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-24",
+        "start_time": "19:00",
+        "end_time": "21:00",
+        "cost": 29.5
+      }
+    ],
+    "holidays": [],
+    "subTags": [
+      "comedy",
+      "stand-up",
+      "york-theatre",
+      "the-cultch",
+      "commercial-drive",
+      "east-van",
+      "live-comedy",
+      "nightlife",
+      "19-plus",
+      "indie-theatre",
+      "local-talent",
+      "budget-friendly"
+    ],
+    "id": "van50-cultch-comedy-on-the-drive-20261024",
+    "venue": "York Theatre (The Cultch)",
+    "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
+    "priceLabel": "$29.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 29.5,
+        "label": "$29.50 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 25.0,
+        "label": "$25.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-24T19:00:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://thecultch.com",
+    "venueUrl": "https://thecultch.com",
+    "ticketProvider": "The Cultch Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Box Office 6:00 PM, Show 7:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-cinematheque-vampyr-live-score-20261031",
+    "event_name": "Vampyr × Applied Silence [Live Score]",
+    "title": "Vampyr × Applied Silence [Live Score]",
+    "category": "cinema",
+    "categoryLabel": "Indie Cinema",
+    "venue_name": "The Cinematheque",
+    "full_address": "1131 Howe St, Vancouver, BC V6Z 1R1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Part of Forbidden Rooms: Halloween on Howe. Carl Theodor Dreyer's hallucinatory 1932 vampire masterwork screened on Halloween night accompanied by a live acoustic-electronic original score by ambient duo Applied Silence.",
+    "pricing_all_in_cad": {
+      "regular": 30.0,
+      "senior": 30.0,
+      "student": 30.0,
+      "member": 25.0
+    },
+    "operating_hours": "Doors 7:30 PM, Screening 8:00 PM",
+    "days_open": "Sat",
+    "show_1": {
+      "date": "2026-10-31",
+      "start_time": "20:00",
+      "end_time": "21:45",
+      "cost": 30.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://thecinematheque.ca",
+    "details_url": "https://thecinematheque.ca",
+    "ticket_url": "https://thecinematheque.ca",
+    "ticket_provider": "The Cinematheque Box Office",
+    "tags": [
+      "halloween",
+      "cinematheque",
+      "vampyr",
+      "applied-silence",
+      "live-score",
+      "silent-film",
+      "horror",
+      "classic-cinema",
+      "downtown",
+      "howe-street",
+      "indie-cinema",
+      "special-event",
+      "18-plus",
+      "holiday-event"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Live score Halloween special. Verified $30.00 CAD admission (Indigenous admission $0).",
+    "price": 30.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price_adult": 30.0,
+    "tier_custom_name_1": "Indigenous Peoples",
+    "tier_custom_price_1": 0.0,
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time Show",
+    "lineup": "Carl Theodor Dreyer Film / Applied Silence (Live Score)",
+    "restrictions": "18+ (The Cinematheque membership included)",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-31",
+        "start_time": "20:00",
+        "end_time": "21:45",
+        "cost": 30.0
+      }
+    ],
+    "holiday_detected": "halloween",
+    "holidays": [
+      "halloween"
+    ],
+    "subTags": [
+      "halloween",
+      "cinematheque",
+      "vampyr",
+      "applied-silence",
+      "live-score",
+      "silent-film",
+      "horror",
+      "classic-cinema",
+      "downtown",
+      "howe-street",
+      "indie-cinema",
+      "special-event",
+      "18-plus",
+      "holiday-event"
+    ],
+    "id": "van50-cinematheque-vampyr-live-score-20261031",
+    "venue": "The Cinematheque",
+    "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
+    "priceLabel": "$30.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "Indigenous Peoples",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Adult",
+        "price": 30.0,
+        "label": "$30.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-31T20:00:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://thecinematheque.ca",
+    "venueUrl": "https://thecinematheque.ca",
+    "ticketProvider": "The Cinematheque Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Doors 7:30 PM, Screening 8:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-firehall-red-demon-20261014",
+    "event_name": "Red Demon (vAct & Firehall Arts Centre)",
+    "title": "Red Demon (vAct & Firehall Arts Centre)",
+    "category": "shows",
+    "categoryLabel": "Comedy & Shows",
+    "venue_name": "Firehall Arts Centre",
+    "full_address": "280 E Cordova St, Vancouver, BC V6A 1L3",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "Firehall Arts Centre presents Hideki Noda's internationally acclaimed fable Red Demon in association with Vancouver Asian Canadian Theatre (vAct), directed by Donna Spencer in the historic fire station theatre.",
+    "pricing_all_in_cad": {
+      "regular": 32.0,
+      "senior": 30.0,
+      "student": 30.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening 7:30 PM, Weekend Matinee 3:00 PM",
+    "days_open": "Tue-Sun",
+    "show_1": {
+      "date": "2026-10-14",
+      "start_time": "19:30",
+      "end_time": "21:30",
+      "cost": 32.0
+    },
+    "show_2": {
+      "date": "2026-10-15",
+      "start_time": "19:30",
+      "end_time": "21:30",
+      "cost": 32.0
+    },
+    "show_3": {
+      "date": "2026-10-17",
+      "start_time": "15:00",
+      "end_time": "17:00",
+      "cost": 32.0
+    },
+    "discovery_url": "https://firehallartscentre.ca",
+    "details_url": "https://firehallartscentre.ca",
+    "ticket_url": "https://firehallartscentre.ca",
+    "ticket_provider": "Firehall Arts Centre Box Office",
+    "tags": [
+      "theatre",
+      "stage-play",
+      "firehall-arts-centre",
+      "vact",
+      "downtown-eastside",
+      "strathcona",
+      "asian-canadian-theatre",
+      "live-performance",
+      "culture",
+      "twenty-tuesdays",
+      "budget-friendly",
+      "arts"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Live ticket verified. Side tier $32.00 CAD, centre $39.00, students/seniors $30.00, Twenty Tuesdays $20.00.",
+    "price": 32.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price_adult": 32.0,
+    "price_student": 30.0,
+    "price_member": 30.0,
+    "tier_custom_name_1": "Twenty Tuesdays",
+    "tier_custom_price_1": 20.0,
+    "dateSchedule": "3 Screenings across Vancouver",
+    "frequency": "Multi-Date Theatrical Run",
+    "lineup": "vAct & Firehall Professional Ensemble Cast, Dir. Donna Spencer",
+    "restrictions": "All Ages / General Admission",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-14",
+        "start_time": "19:30",
+        "end_time": "21:30",
+        "cost": 32.0
+      },
+      {
+        "date": "2026-10-15",
+        "start_time": "19:30",
+        "end_time": "21:30",
+        "cost": 32.0
+      },
+      {
+        "date": "2026-10-17",
+        "start_time": "15:00",
+        "end_time": "17:00",
+        "cost": 32.0
+      }
+    ],
+    "holidays": [],
+    "subTags": [
+      "theatre",
+      "stage-play",
+      "firehall-arts-centre",
+      "vact",
+      "downtown-eastside",
+      "strathcona",
+      "asian-canadian-theatre",
+      "live-performance",
+      "culture",
+      "twenty-tuesdays",
+      "budget-friendly",
+      "arts"
+    ],
+    "id": "van50-firehall-red-demon-20261014",
+    "venue": "Firehall Arts Centre",
+    "address": "280 E Cordova St, Vancouver, BC V6A 1L3",
+    "priceLabel": "$32.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "Twenty Tuesdays",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      },
+      {
+        "name": "Adult",
+        "price": 32.0,
+        "label": "$32.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 30.0,
+        "label": "$30.00 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 30.0,
+        "label": "$30.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-14T19:30:00-07:00",
+    "daysOfWeek": [
+      "wed",
+      "sat",
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://firehallartscentre.ca",
+    "venueUrl": "https://firehallartscentre.ca",
+    "ticketProvider": "Firehall Arts Centre Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening 7:30 PM, Weekend Matinee 3:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-fox-bootylicious-halloween-20261030",
+    "event_name": "Halloween Friday at The Fox: BOO-tylicious",
+    "title": "Halloween Friday at The Fox: BOO-tylicious",
+    "category": "music",
+    "categoryLabel": "Music",
+    "venue_name": "The Fox Cabaret",
+    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": "Celebrate Halloween Friday at Mount Pleasant's Fox Cabaret with BOO-tylicious: a spooky, high-energy throwback dance party spinning 90s and 2000s party anthems with costume contests and drink specials.",
+    "pricing_all_in_cad": {
+      "regular": 24.5,
+      "senior": 24.5,
+      "student": 24.5,
+      "member": 20.0
+    },
+    "operating_hours": "Doors 10:30 PM – 2:00 AM",
+    "days_open": "Fri",
+    "show_1": {
+      "date": "2026-10-30",
+      "start_time": "22:30",
+      "end_time": "02:00",
+      "cost": 24.5
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://foxcabaret.com",
+    "details_url": "https://foxcabaret.com",
+    "ticket_url": "https://www.eventbrite.ca",
+    "ticket_provider": "Eventbrite / Fox Box Office",
+    "tags": [
+      "halloween",
+      "fox-cabaret",
+      "dance-party",
+      "throwback",
+      "90s-music",
+      "2000s-music",
+      "mount-pleasant",
+      "main-street",
+      "nightlife",
+      "dj",
+      "costume-contest",
+      "19-plus",
+      "holiday-event"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Verified online tier $20.00 + Eventbrite fees = $24.50 CAD all-in. Door $30.00 cash.",
+    "price": 24.5,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price_adult": 24.5,
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time Party",
+    "lineup": "Resident Fox Cabaret Throwback DJs",
+    "restrictions": "19+ with two pieces of valid government photo ID",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-30",
+        "start_time": "22:30",
+        "end_time": "02:00",
+        "cost": 24.5
+      }
+    ],
+    "holiday_detected": "halloween",
+    "holidays": [
+      "halloween"
+    ],
+    "subTags": [
+      "halloween",
+      "fox-cabaret",
+      "dance-party",
+      "throwback",
+      "90s-music",
+      "2000s-music",
+      "mount-pleasant",
+      "main-street",
+      "nightlife",
+      "dj",
+      "costume-contest",
+      "19-plus",
+      "holiday-event"
+    ],
+    "id": "van50-fox-bootylicious-halloween-20261030",
+    "venue": "The Fox Cabaret",
+    "address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "priceLabel": "$24.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 24.5,
+        "label": "$24.50 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-30T22:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca",
+    "venueUrl": "https://foxcabaret.com",
+    "ticketProvider": "Eventbrite / Fox Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Doors 10:30 PM – 2:00 AM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-moa-haida-eyes-curator-tour-20261008",
+    "event_name": "I Use My Haida Eyes: History Robes & Curator Tour",
+    "title": "I Use My Haida Eyes: History Robes & Curator Tour",
+    "category": "culture",
+    "categoryLabel": "Arts & Culture",
+    "venue_name": "Museum of Anthropology (MOA) at UBC",
+    "full_address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "description": "Final days of master Haida weaver Jut-ke-Nay Hazel Wilson's monumental ceremonial history robes exhibition at MOA, featuring an exclusive evening curator tour led by Jordan Wilson and Raymond Boisjoly.",
+    "pricing_all_in_cad": {
+      "regular": 13.0,
+      "senior": 11.5,
+      "student": 11.5,
+      "member": 0.0
+    },
+    "operating_hours": "Thursday 10:00 AM – 9:00 PM (Curator Tour 7:00 PM)",
+    "days_open": "Thu",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "19:00",
+      "end_time": "21:00",
+      "cost": 13.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://moa.ubc.ca",
+    "details_url": "https://moa.ubc.ca",
+    "ticket_url": "https://moa.ubc.ca",
+    "ticket_provider": "MOA Box Office",
+    "tags": [
+      "moa",
+      "museum-of-anthropology",
+      "ubc",
+      "indigenous-art",
+      "haida-culture",
+      "curator-tour",
+      "textiles",
+      "ceremonial-robes",
+      "arts-and-culture",
+      "point-grey",
+      "half-price-thursdays",
+      "budget-friendly",
+      "all-ages"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Thursday evening half-price admission after 5:00 PM: $13.00 CAD adults. Indigenous peoples free ($0).",
+    "price": 13.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price_adult": 13.0,
+    "price_student": 11.5,
+    "price_member": 0.0,
+    "tier_custom_name_1": "Indigenous Peoples",
+    "tier_custom_price_1": 0.0,
+    "tier_custom_name_2": "Regular Daytime Admission",
+    "tier_custom_price_2": 26.0,
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "Feature Exhibition Tour",
+    "lineup": "Jut-ke-Nay Hazel Wilson Exhibition; Curators Jordan Wilson & Raymond Boisjoly",
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-10-08",
+        "start_time": "19:00",
+        "end_time": "21:00",
+        "cost": 13.0
+      }
+    ],
+    "holidays": [],
+    "subTags": [
+      "moa",
+      "museum-of-anthropology",
+      "ubc",
+      "indigenous-art",
+      "haida-culture",
+      "curator-tour",
+      "textiles",
+      "ceremonial-robes",
+      "arts-and-culture",
+      "point-grey",
+      "half-price-thursdays",
+      "budget-friendly",
+      "all-ages"
+    ],
+    "id": "van50-moa-haida-eyes-curator-tour-20261008",
+    "venue": "Museum of Anthropology (MOA) at UBC",
+    "address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
+    "priceLabel": "$13.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "Indigenous Peoples",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Adult",
+        "price": 13.0,
+        "label": "$13.00 CAD"
+      },
+      {
+        "name": "Student",
+        "price": 11.5,
+        "label": "$11.50 CAD"
+      },
+      {
+        "name": "Member",
+        "price": 0.0,
+        "label": "Free ($0)"
+      },
+      {
+        "name": "Regular Daytime Admission",
+        "price": 26.0,
+        "label": "$26.00 CAD"
+      }
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T19:00:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://moa.ubc.ca",
+    "venueUrl": "https://moa.ubc.ca",
+    "ticketProvider": "MOA Box Office",
+    "coordinates": [
+      49.2827,
+      -123.1207
+    ],
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Thursday 10:00 AM – 9:00 PM (Curator Tour 7:00 PM)",
     "weekly_hours": null,
     "weeklyHours": null,
     "lifecycleType": "time_bound_event",
@@ -13406,7 +14104,9 @@ const VENUE_URLS = {
   "The Main": "https://themainonmain.com",
   "Commodore Ballroom": "https://www.commodoreballroom.com",
   "The Rec Room Granville": "https://www.therecroom.com",
-  "Firehall Arts Centre": "https://www.firehallartscentre.ca"
+  "Firehall Arts Centre": "https://www.firehallartscentre.ca",
+  "York Theatre (The Cultch)": "https://thecultch.com/venues/york-theatre/",
+  "Museum of Anthropology (MOA) at UBC": "https://moa.ubc.ca"
 };
 
 // Curated Discovery Sources Directory

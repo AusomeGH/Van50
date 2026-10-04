@@ -3132,5 +3132,33 @@
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$14.00 – $22.00 CAD (Gastown / Chinatown corridor)",
     "restrictions": "All Ages / Show-specific guidance"
+  },
+  {
+    "venue_name": "York Theatre (The Cultch)",
+    "full_address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "category": "Theatre & Comedy",
+    "website_url": "https://thecultch.com/venues/york-theatre/",
+    "coordinates": [
+      49.2783,
+      -123.0694
+    ],
+    "access_model": "fenced_facility",
+    "typical_drink_spend": "$7.50 craft beer / $9.00 wine",
+    "notes": "Historic 370-seat East Vancouver proscenium theatre operated by The Cultch."
+  },
+  {
+    "venue_name": "Museum of Anthropology (MOA) at UBC",
+    "full_address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
+    "neighborhood": "Point Grey & UBC",
+    "category": "Museums & Galleries",
+    "website_url": "https://moa.ubc.ca",
+    "coordinates": [
+      49.2694,
+      -123.2592
+    ],
+    "access_model": "fenced_facility",
+    "typical_drink_spend": "$4.50 coffee at MOA Cafe",
+    "notes": "World-renowned Arthur Erickson-designed museum overlooking the Strait of Georgia."
   }
 ]
