@@ -561,5 +561,63 @@
         "cost": 15.0
       }
     ]
+  },
+  {
+    "festival_name": "Diwali Fest (Festival of Lights)",
+    "website_url": "https://www.diwalifest.ca",
+    "schedule_url": "https://www.diwalifest.ca",
+    "location": "Roundhouse Community Centre, Evergreen Cultural Centre, Surrey City Hall",
+    "start_date": "2026-11-05",
+    "end_date": "2026-11-15",
+    "description": "Annual multicultural celebration of Diwali presenting South Asian music, dance, theatre, and visual arts across Metro Vancouver.",
+    "category": "Arts & Culture",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0.0,
+    "coordinates": [
+      49.2734,
+      -123.1215
+    ],
+    "lineup": "Curated South Asian musicians, dance troupes, and visual artists",
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-11-07",
+        "start_time": "14:00",
+        "end_time": "17:00",
+        "cost": 0.0
+      }
+    ]
+  },
+  {
+    "festival_name": "Día de los Muertos Festival (Day of the Dead)",
+    "website_url": "https://latincouver.ca",
+    "schedule_url": "https://latincouver.ca",
+    "location": "Granville Island & Gastown Historic District, Vancouver",
+    "start_date": "2026-10-31",
+    "end_date": "2026-11-02",
+    "description": "Latincouver's annual cultural celebration honouring loved ones with traditional Mexican markets, Catrinas twilight procession, music, and art.",
+    "category": "Arts & Culture",
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "price": 0.0,
+    "coordinates": [
+      49.2838,
+      -123.1065
+    ],
+    "lineup": "Latincouver traditional Catrinas, folkloric dancers, Mexican artisans",
+    "restrictions": "All Ages / Family Friendly",
+    "is_sold_out": false,
+    "waypoints": [],
+    "showings": [
+      {
+        "date": "2026-11-02",
+        "start_time": "17:00",
+        "end_time": "18:00",
+        "cost": 0.0
+      }
+    ]
   }
 ]

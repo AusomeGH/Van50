@@ -3736,5 +3736,83 @@
     "quarantine_reason": "One-time memorial screening passed on 2026-10-01",
     "archived_at": "2026-10-02T13:53:18.417683",
     "archive_reason": "One-time memorial screening concluded on 2026-10-01."
+  },
+  {
+    "event_id": "van50-theatresports-improv-centre",
+    "event_name": "Theatresports™",
+    "category": "Comedy & Shows",
+    "venue_name": "The Improv Centre",
+    "full_address": "1502 Duranleau St, Vancouver, BC",
+    "neighborhood": "Granville Island",
+    "description": "Vancouver's premier competitive unscripted comedy tournament where teams of quick-witted comedians duel for audience laughter and votes. High-energy, completely spontaneous theatre on Granville Island.",
+    "attempted_price_cad": 33.5,
+    "discovery_url": "https://theimprovcentre.ca/shows/",
+    "archive_reason": "AI Audit: Event date 2026-10-02 has concluded",
+    "archived_at": "2026-10-03"
+  },
+  {
+    "event_id": "van50-joon-the-pearl-20261002",
+    "event_name": "JOON with Lauryn Kovacs",
+    "category": "Music",
+    "venue_name": "The Pearl",
+    "full_address": "881 Granville St, Vancouver, BC V6Z 1K7",
+    "neighborhood": "Downtown",
+    "description": "Indie pop and electronic beats take over Granville Street with dynamic sets from JOON and Lauryn Kovacs.",
+    "attempted_price_cad": 0,
+    "discovery_url": "https://thepearlvancouver.com/events/",
+    "archive_reason": "AI Audit: Event date 2026-10-02 has concluded",
+    "archived_at": "2026-10-03"
+  },
+  {
+    "event_id": "van50-scout-fox-cheap-thrills-20261002",
+    "event_name": "Cheap Thrills Dance Party",
+    "category": "Music",
+    "venue_name": "The Fox Cabaret",
+    "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "description": "Budget-friendly weekend kickoff dance party spinning indie pop, classic disco, and retro dance anthems late night on Main Street.",
+    "attempted_price_cad": 8,
+    "discovery_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/cheapthrillsjan-hpkhs",
+    "archive_reason": "AI Audit: Event date 2026-10-02 has concluded",
+    "archived_at": "2026-10-03"
+  },
+  {
+    "event_id": "test-reinforce-1791042702",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "attempted_price_cad": 20.0,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "archive_reason": "AI Audit: Event date 2026-09-25 has concluded",
+    "archived_at": "2026-10-03"
+  },
+  {
+    "event_id": "test-reinforce-1791047810",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "attempted_price_cad": 20.0,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "archive_reason": "AI Audit: Event date 2026-09-25 has concluded",
+    "archived_at": "2026-10-03"
+  },
+  {
+    "event_id": "test-reinforce-1791050589",
+    "event_name": "Continuous Learning Jazz Showcase",
+    "category": "music",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "",
+    "neighborhood": "",
+    "description": "Live music performance and cultural presentation hosted at Frankie's Jazz Club. Curated and verified under $50 CAD in Vancouver.",
+    "attempted_price_cad": 20.0,
+    "discovery_url": "https://frankiesjazzclub.com/events",
+    "archive_reason": "AI Audit: Event date 2026-09-25 has concluded",
+    "archived_at": "2026-10-03"
   }
 ]

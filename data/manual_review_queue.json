@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T13:53:56-07:00",
-    "pendingCount": 25,
+    "updatedAt": "2026-10-03",
+    "pendingCount": 26,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
   "quarantinedEvents": [
@@ -372,6 +372,50 @@
       "flaggedAt": "2026-10-03T13:53:56-07:00",
       "flagReason": "Could not dynamically verify live checkout pricing on host page: https://vancouvercivictheatres.com/events/goh-ballet-the-nutcracker-dec-17-20-2026/",
       "reviewStatus": "pending_manual_review"
+    },
+    {
+      "id": "van50-latincouver-catrinas-procession-gastown-20261102",
+      "title": "Catrinas Procession: Día de los Muertos",
+      "artist": "Latincouver Catrinas Ensemble",
+      "venue": "Gastown Historic District",
+      "address": "Maple Tree Square to Water St, Vancouver, BC",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "cluster": "Downtown, Gastown & Yaletown",
+      "category": "culture",
+      "categoryLabel": "Arts & Culture",
+      "date": "2026-11-02",
+      "time": "17:00",
+      "price": 0.0,
+      "priceLabel": "Free ($0.00)",
+      "websiteUrl": "https://latincouver.ca",
+      "ticket_url": "https://latincouver.ca",
+      "ticket_provider": "Free Public Access (Latincouver)",
+      "description": "Latincouver leads an evocative twilight procession of Catrinas in traditional Mexican calavera face paint and ornate costumes through historic Gastown to honour Día de los Muertos.",
+      "lineup": "Latincouver Catrinas ensemble, Mexican folkloric dancers, traditional musicians",
+      "restrictions": "All Ages / Free Outdoor Public Gathering",
+      "quarantineReason": "Pending Holiday Approval: 'dia-de-los-muertos'. New holiday detected by Scout AI awaiting Curator Studio review.",
+      "flaggedAt": "2026-10-03",
+      "unconfirmedDetails": [
+        "Holiday approval pending in Curator Studio."
+      ],
+      "holiday_detected": "dia-de-los-muertos",
+      "tags": [
+        "dia-de-los-muertos",
+        "day-of-the-dead",
+        "catrinas",
+        "latincouver",
+        "gastown",
+        "mexican-culture",
+        "calaveras",
+        "procession",
+        "free-public-access",
+        "autumn",
+        "remembrance",
+        "all-ages",
+        "family-friendly",
+        "street-festival",
+        "vancouver-heritage"
+      ]
     }
   ],
   "pendingCount": 25
