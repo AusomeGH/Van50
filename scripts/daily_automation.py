@@ -28,12 +28,9 @@ EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
 QUEUE_PATH = os.path.join(DATA_DIR, "manual_review_queue.json")
 STATUS_PATH = os.path.join(DATA_DIR, "automation_status.json")
 
-sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
-from gemini_event_scout import get_gemini_api_key, run_full_gemini_scouting_pipeline, run_gemini_scouting_cycle, sync_master_catalogs
-from gemini_email_scout import run_gemini_email_scout
-from refine_event_links_and_tags import run_event_refinement_pass
 from curator_learning_engine import CuratorLearningEngine
 from audit_all_links import run_link_health_audit
+from curator_server import sync_js_data_file
 
 
 def load_dotenv():
@@ -168,69 +165,15 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     # Step 1: Safety Backup
     backup_file = create_safety_backup(log_file_path)
 
-    # Step 2: Run 6-File Gemini AI Autonomous Event Pipeline
-    update_automation_status({"currentStep": "gemini_ai_scout"})
-    log_message("[PIPELINE STEP 1/2] Invoking Gemini AI 6-File Autonomous Pipeline...", log_file_path)
+    # Step 2: Autonomous AI Intelligence Notice
+    update_automation_status({"currentStep": "ai_governance_notice"})
+    log_message("[AI GOVERNANCE] Discovery Scouting, Quality Control (QC), and Quarantine Healing are conducted directly by Antigravity AI.", log_file_path)
     
-    scout_ok = False
+    # Process pending curator feedback rules & auto-triage
     try:
-        api_key = get_gemini_api_key()
-        if api_key:
-            log_message("[GEMINI PIPELINE] API key detected. Running 6-file autonomous audit and discovery...", log_file_path)
-            pipeline_result = run_full_gemini_scouting_pipeline(api_key, audit_events=True)
-            scout_ok = True
-            scouted_count = len(pipeline_result.get("structured_data", {}).get("events_active", []))
-            audit_res = pipeline_result.get("audit_results", {})
-            log_message(
-                f"[GEMINI PIPELINE SUCCESS] Scouted {scouted_count} events under $50 CAD. "
-                f"Audit: {audit_res.get('verified', 0)} verified, {audit_res.get('updated', 0)} updated, "
-                f"{audit_res.get('archived', 0)} archived, {audit_res.get('quarantined', 0)} quarantined.",
-                log_file_path
-            )
-            # Follow-up auto-triage check to ensure freshly crawled items respect curator guidance
-            CuratorLearningEngine.process_pending_feedback()
-        else:
-            log_message("[GEMINI SCOUT WARN] No GEMINI_API_KEY set; skipping live scouting cycle.", log_file_path)
+        CuratorLearningEngine.process_pending_feedback()
     except Exception as e:
-        log_message(f"[GEMINI SCOUT ERROR] Scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
-
-    # Step 2.5: Autonomous Email & Newsletter Scout (van50.submit@gmail.com)
-    update_automation_status({"currentStep": "gemini_email_scout"})
-    log_message("[PIPELINE STEP 2.5/3] Invoking Gemini AI Email & Newsletter Scout (van50.submit@gmail.com)...", log_file_path)
-    email_stats = {"emails_checked": 0, "events_found": 0, "added_to_active": 0, "staged_for_review": 0, "skipped": 0}
-    try:
-        api_key = get_gemini_api_key()
-        if api_key:
-            email_stats = run_gemini_email_scout(api_key=api_key, unread_only=False, limit=25, mark_as_read=False, dry_run=dry_run)
-            log_message(
-                f"[EMAIL SCOUT SUCCESS] Checked: {email_stats.get('emails_checked', 0)} emails | "
-                f"Events Discovered: {email_stats.get('events_found', 0)} | "
-                f"Active Added: {email_stats.get('added_to_active', 0)} | "
-                f"Staged for Review: {email_stats.get('staged_for_review', 0)} | "
-                f"Skipped (non-event / >$50): {email_stats.get('skipped', 0)}",
-                log_file_path
-            )
-        else:
-            log_message("[EMAIL SCOUT WARN] No GEMINI_API_KEY set; skipping email scout.", log_file_path)
-    except Exception as e:
-        log_message(f"[EMAIL SCOUT ERROR] Email scout encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
-
-    # Step 2.6: Pass 2 AI Refinement & Search Tag Enrichment
-    update_automation_status({"currentStep": "gemini_pass_2_refine"})
-    log_message("[PIPELINE STEP 2.6/3] Running Gemini AI Pass 2 (Direct Ticketing Link Refinement & High-Intent Search Tag Enrichment)...", log_file_path)
-    refine_stats = {"refined_count": 0, "tags_generated": 0}
-    try:
-        if api_key:
-            refine_stats = run_event_refinement_pass(api_key=api_key, batch_size=6, dry_run=dry_run)
-            log_message(
-                f"[PASS 2 SUCCESS] Refined: {refine_stats.get('refined_count', 0)} events | "
-                f"Generated {refine_stats.get('tags_generated', 0)} high-intent search tags.",
-                log_file_path
-            )
-        else:
-            log_message("[PASS 2 WARN] No GEMINI_API_KEY set; skipping Pass 2 refinement.", log_file_path)
-    except Exception as e:
-        log_message(f"[PASS 2 ERROR] Refinement pass encountered exception: {e}\n{traceback.format_exc()}", log_file_path)
+        log_message(f"[CURATOR TRIAGE ERROR] {e}\n{traceback.format_exc()}", log_file_path)
 
     # Step 2.8: Autonomous Link & Soft-404 Health Audit
     update_automation_status({"currentStep": "link_health_audit"})
