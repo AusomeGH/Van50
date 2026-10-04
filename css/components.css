@@ -986,7 +986,7 @@
 .card-venue-row {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   gap: 8px;
   font-size: 0.84rem;
@@ -999,10 +999,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
   gap: 4px;
   flex: 0 0 auto;
   min-width: 0;
+}
+
+.card-venue-actions-col:has(> :only-child) {
+  justify-content: center;
 }
 
 .venue-location-btn,
@@ -1021,6 +1025,7 @@
   border: 1px solid rgba(56, 189, 248, 0.22);
   min-width: 0;
   flex: 1 1 auto;
+  align-self: stretch;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -1087,6 +1092,7 @@
   font-size: 0.74rem;
   font-weight: 600;
   padding: 3px 8px;
+  line-height: 1.25;
   border-radius: var(--radius-sm);
   background: rgba(168, 85, 247, 0.1);
   border: 1px solid rgba(168, 85, 247, 0.25);
@@ -1098,6 +1104,7 @@
   letter-spacing: 0.01em;
   white-space: nowrap;
   flex: 0 0 auto;
+  box-sizing: border-box;
 }
 
 .venue-website-link:hover,
@@ -1119,6 +1126,7 @@
   color: #e9d5ff;
   border: 1px solid rgba(192, 132, 252, 0.45);
   padding: 3px 8px;
+  line-height: 1.25;
   border-radius: var(--radius-sm);
   font-size: 0.74rem;
   font-weight: 700;
@@ -1130,6 +1138,7 @@
   transition: all var(--transition-fast);
   white-space: nowrap;
   flex: 0 0 auto;
+  box-sizing: border-box;
 }
 
 .btn-venue-filter:hover {
