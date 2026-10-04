@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-04T10:55:47-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-04T12:27:12-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -1465,10 +1465,10 @@ const VANCOUVER_EVENTS = [
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$14.00 – $22.00 CAD (Granville Island eateries)",
     "title": "HEIST by Arun Lakra",
-    "date": "2026-10-02",
-    "time": "19:30",
-    "start_time": "19:30",
-    "end_time": "21:30",
+    "date": "2026-10-04",
+    "time": "14:00",
+    "start_time": "14:00",
+    "end_time": "16:00",
     "dateSchedule": "3 Screenings across Vancouver",
     "frequency": "One-Time",
     "typical_item_spend": "$8.50 – $15.00 CAD (drink & snack)",
@@ -1542,9 +1542,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-02T19:30:00-07:00",
     "daysOfWeek": [
+      "sun",
       "fri",
-      "sat",
-      "sun"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3443,11 +3443,11 @@ const VANCOUVER_EVENTS = [
     "coffee_benchmark": "$4.50 – $6.00 Garden Cafe",
     "meal_benchmark": "$16.00 – $25.00 CAD (Shaughnessy Restaurant)",
     "title": "Harvest Days at VanDusen Botanical Garden",
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "time": "10:30",
     "start_time": "10:30",
     "end_time": "16:30",
-    "dateSchedule": "2 Screenings across Vancouver",
+    "dateSchedule": "7 Screenings across Vancouver",
     "frequency": "One-Time",
     "typical_item_spend": "$6.00 – $18.00 CAD (Garden admission + cafe)",
     "lineup": "Featured artists and performers for Harvest Days at VanDusen Botanical Garden",
@@ -3466,6 +3466,36 @@ const VANCOUVER_EVENTS = [
         "start_time": "10:30",
         "end_time": "16:30",
         "cost": 14.86
+      },
+      {
+        "date": "2026-10-10",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 13.27
+      },
+      {
+        "date": "2026-10-11",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 13.27
+      },
+      {
+        "date": "2026-10-12",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 13.27
+      },
+      {
+        "date": "2026-10-17",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 13.27
+      },
+      {
+        "date": "2026-10-18",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 13.27
       }
     ],
     "tier_custom_name_4": null,
@@ -3544,8 +3574,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T10:30:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "mon",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -3727,7 +3758,7 @@ const VANCOUVER_EVENTS = [
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$14.00 – $22.00 CAD (nearby Granville Island eateries)",
     "title": "Deadly Dinner Party",
-    "date": "2026-10-02",
+    "date": "2026-10-09",
     "time": "19:00",
     "start_time": "19:00",
     "end_time": "20:30",
@@ -4767,9 +4798,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-01T18:00:00-07:00",
     "daysOfWeek": [
-      "sat",
+      "thu",
       "mon",
-      "thu"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -5278,7 +5309,7 @@ const VANCOUVER_EVENTS = [
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
     "event_name": "Vancouver Opera: Tosca (Opening Night)",
-    "category": "Comedy & Shows",
+    "category": "Arts & Culture",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Queen Elizabeth Theatre",
     "full_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
@@ -5308,16 +5339,14 @@ const VANCOUVER_EVENTS = [
       "classical-music",
       "date-night",
       "downtown",
-      "improv",
-      "laughs",
       "live-cart-verified",
-      "live-comedy",
       "live-theatre",
       "opera",
       "performing-arts",
+      "puccini",
       "queen-elizabeth-theatre",
       "stage-play",
-      "standup-comedy",
+      "theatre",
       "under-50-cad",
       "vancouver-core"
     ],
@@ -5374,30 +5403,29 @@ const VANCOUVER_EVENTS = [
       "classical-music",
       "date-night",
       "downtown",
-      "improv",
-      "laughs",
       "live-cart-verified",
-      "live-comedy",
       "live-theatre",
       "opera",
       "performing-arts",
+      "puccini",
       "queen-elizabeth-theatre",
       "stage-play",
-      "standup-comedy",
+      "theatre",
       "under-50-cad",
       "vancouver-core"
     ],
+    "categoryLabel": "Arts & Culture",
     "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
     "venue": "Queen Elizabeth Theatre",
     "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
     "priceLabel": "$25.00 CAD",
     "pricingType": "paid",
     "isFree": false,
-    "categoryLabel": "Comedy & shows",
     "categoryIcon": "🎭",
     "categories": [
       "music",
-      "shows"
+      "shows",
+      "social"
     ],
     "tiers": [
       {
@@ -8179,9 +8207,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
+      "thu",
       "fri",
-      "sat",
-      "thu"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8388,8 +8416,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T14:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8595,8 +8623,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "fri",
-      "sun"
+      "sun",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -8748,8 +8776,8 @@ const VANCOUVER_EVENTS = [
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -9145,7 +9173,7 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
     "tier_custom_price_5": null,
-    "date": "2026-10-02",
+    "date": "2026-11-06",
     "time": "16:00",
     "start_time": "16:00",
     "end_time": "20:00",
@@ -9692,7 +9720,7 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
     "tier_custom_price_5": null,
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "time": "11:00",
     "start_time": "11:00",
     "end_time": "17:00",
@@ -9813,9 +9841,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-03T11:00:00-07:00",
     "daysOfWeek": [
+      "sun",
       "mon",
-      "sat",
-      "sun"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -10568,389 +10596,6 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   },
   {
-    "event_id": "bloedel-conservatory-admission",
-    "event_name": "Bloedel Conservatory: Tropical Aviary & Botanical Garden",
-    "category": "Arts & Culture",
-    "categoryLabel": "Activities & Outdoors",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Bloedel Conservatory",
-    "full_address": "4600 Cambie St, Queen Elizabeth Park, Vancouver, BC V5Y 2M9",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "A soaring geodesic domed tropical paradise atop Queen Elizabeth Park featuring over 100 free-flying exotic birds, koi ponds, and 500 tropical plant species in a temperature-controlled biome.",
-    "pricing_all_in_cad": {
-      "regular": 9.98,
-      "senior": 7.98,
-      "student": 6.98,
-      "member": 0
-    },
-    "operating_hours": "Daily: 10:00 AM – 5:00 PM (Last admission 4:30 PM)",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
-    "ticket_url": "https://www.showpass.com/o/bloedel-conservatory/",
-    "ticket_provider": "Showpass",
-    "tags": [
-      "all-ages",
-      "art-exhibit",
-      "birds",
-      "bloedel-conservatory",
-      "botanical-garden",
-      "budget-friendly",
-      "cheap-night-out",
-      "creative",
-      "culture",
-      "fresh-air",
-      "main-street",
-      "mount-pleasant",
-      "nature-walk",
-      "outdoors",
-      "queen-elizabeth-park",
-      "scenic-views",
-      "solo-friendly",
-      "tropical",
-      "under-25-cad",
-      "visual-arts"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Live verified admission on Showpass: Adult $9.98 CAD ($9.50 + 5% GST), Senior $7.98 CAD, Youth $6.98 CAD. Children under 5 free.",
-    "price": 9.98,
-    "title": "Bloedel Conservatory: Tropical Aviary & Botanical Garden",
-    "access_model": "fenced_facility",
-    "pricing_model": "paid_drop_in",
-    "weekly_hours": {
-      "mon": "10:00 AM – 5:00 PM",
-      "tue": "10:00 AM – 5:00 PM",
-      "wed": "10:00 AM – 5:00 PM",
-      "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 5:00 PM",
-      "sat": "10:00 AM – 5:00 PM",
-      "sun": "10:00 AM – 5:00 PM"
-    },
-    "coffee_benchmark": "$3.50 – $5.50 CAD",
-    "meal_benchmark": "$12.00 – $22.00 CAD",
-    "price_adult": 9.98,
-    "price_student": 6.98,
-    "price_member": 0,
-    "tier_custom_name_1": "Adult (19-64)",
-    "tier_custom_price_1": 9.98,
-    "tier_custom_name_2": "Senior (65+)",
-    "tier_custom_price_2": 7.98,
-    "tier_custom_name_3": "Youth (13-18)",
-    "tier_custom_price_3": 6.98,
-    "tier_custom_name_4": "Child (5-12)",
-    "tier_custom_price_4": 4.99,
-    "tier_custom_name_5": "Preschooler (<=4) / Members",
-    "tier_custom_price_5": 0,
-    "date": null,
-    "time": null,
-    "start_time": null,
-    "end_time": null,
-    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
-    "frequency": "Perennial Drop-In",
-    "typical_item_spend": "$9.98 CAD general admission ticket",
-    "lineup": "100+ Free-Flying Exotic Tropical Parrots & Finches",
-    "restrictions": "All Ages Welcome (Family Friendly; Wheelchair Accessible)",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [],
-    "food_service_type": "no_onsite_food",
-    "food_service_note": "Seasons in the Park & park concession stands adjacent",
-    "sample_cost_label": "Adult Admission ($9.98 CAD)",
-    "coordinates": [
-      49.2423,
-      -123.1147
-    ],
-    "subTags": [
-      "all-ages",
-      "art-exhibit",
-      "birds",
-      "bloedel-conservatory",
-      "botanical-garden",
-      "budget-friendly",
-      "cheap-night-out",
-      "creative",
-      "culture",
-      "fresh-air",
-      "main-street",
-      "mount-pleasant",
-      "nature-walk",
-      "outdoors",
-      "queen-elizabeth-park",
-      "scenic-views",
-      "solo-friendly",
-      "tropical",
-      "under-25-cad",
-      "visual-arts"
-    ],
-    "id": "bloedel-conservatory-admission",
-    "venue": "Bloedel Conservatory",
-    "address": "4600 Cambie St, Queen Elizabeth Park, Vancouver, BC V5Y 2M9",
-    "priceLabel": "$9.98 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎭",
-    "categories": [
-      "outdoors",
-      "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult (19-64)",
-        "price": 9.98,
-        "label": "$9.98 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 9.98,
-        "label": "$9.98 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 6.98,
-        "label": "$6.98 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Senior (65+)",
-        "price": 7.98,
-        "label": "$7.98 CAD"
-      },
-      {
-        "name": "Youth (13-18)",
-        "price": 6.98,
-        "label": "$6.98 CAD"
-      },
-      {
-        "name": "Child (5-12)",
-        "price": 4.99,
-        "label": "$4.99 CAD"
-      },
-      {
-        "name": "Preschooler (<=4) / Members",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "frequencyLabel": "Open Daily Drop-In",
-    "startIso": null,
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
-    "ticketProvider": "Showpass",
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": "Daily: 10:00 AM – 5:00 PM (Last admission 4:30 PM)",
-    "weeklyHours": {
-      "mon": "10:00 AM – 5:00 PM",
-      "tue": "10:00 AM – 5:00 PM",
-      "wed": "10:00 AM – 5:00 PM",
-      "thu": "10:00 AM – 5:00 PM",
-      "fri": "10:00 AM – 5:00 PM",
-      "sat": "10:00 AM – 5:00 PM",
-      "sun": "10:00 AM – 5:00 PM"
-    },
-    "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-pizzeria-ludica-board-games",
-    "event_name": "Pizzeria Ludica: 1,000+ Board Game Library & Artisan Pizza",
-    "category": "Food & Drink",
-    "categoryLabel": "Activities & Gaming",
-    "lifecycle_type": "perennial_drop_in",
-    "venue_name": "Pizzeria Ludica",
-    "full_address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Chinatown board game cafe and stone-baked pizzeria with an enormous library of over 1,000 tabletop board games. Games are 100% free to play with the purchase of food or drink (average pizza $18–$24 CAD).",
-    "pricing_all_in_cad": {
-      "regular": 0,
-      "senior": 0,
-      "student": 0,
-      "member": 0
-    },
-    "operating_hours": "Mon–Thu 4:30 PM – 10:00 PM, Fri–Sat 11:30 AM – 11:00 PM, Sun 11:30 AM – 10:00 PM",
-    "days_open": "Daily",
-    "show_1": null,
-    "show_2": null,
-    "show_3": null,
-    "discovery_url": "https://www.pizzerialudica.com/",
-    "details_url": "https://www.pizzerialudica.com/",
-    "ticket_url": "https://www.pizzerialudica.com/",
-    "ticket_provider": "Direct / Free Drop-In",
-    "tags": [
-      "all-ages",
-      "board-games",
-      "budget-friendly",
-      "chinatown",
-      "craft-beer",
-      "downtown",
-      "food-and-drink",
-      "free-admission",
-      "free-event",
-      "gaming",
-      "live-theatre",
-      "local-eats",
-      "performing-arts",
-      "pizza",
-      "social",
-      "solo-friendly",
-      "stage-play",
-      "tabletop",
-      "vancouver-core",
-      "zero-dollars"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "100% free table play for over 1,000 board games with purchase of food/drink. Artisan Neapolitan-style pizzas $18–$24 CAD.",
-    "price": 0.0,
-    "title": "Pizzeria Ludica: 1,000+ Board Game Library & Artisan Pizza",
-    "access_model": "fenced_facility",
-    "pricing_model": "free_access",
-    "weekly_hours": {
-      "mon": "4:30 PM – 10:00 PM",
-      "tue": "4:30 PM – 10:00 PM",
-      "wed": "4:30 PM – 10:00 PM",
-      "thu": "4:30 PM – 10:00 PM",
-      "fri": "11:30 AM – 11:00 PM",
-      "sat": "11:30 AM – 11:00 PM",
-      "sun": "11:30 AM – 10:00 PM"
-    },
-    "coffee_benchmark": "$3.50 – $5.00 CAD (Espresso & Italian soda)",
-    "meal_benchmark": "$18.00 – $24.00 CAD (Stone-baked artisan pizza)",
-    "price_adult": 0,
-    "price_student": 0,
-    "price_member": 0,
-    "tier_custom_name_1": "Board Game Library Access (with food/drink)",
-    "tier_custom_price_1": 0,
-    "date": null,
-    "time": null,
-    "start_time": null,
-    "end_time": null,
-    "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
-    "frequency": "Perennial Drop-In",
-    "typical_item_spend": "$18.00 – $24.00 CAD stone-baked pizza ($0 game fee)",
-    "lineup": "1,000+ European & North American Board Games Library",
-    "restrictions": "All Ages Welcome (Family Friendly)",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [],
-    "food_service_type": "full_service_restaurant",
-    "food_service_note": "Stone-baked Italian pizza, gluten-free crusts, local craft beers & wines",
-    "sample_cost_label": "Free Game Play ($0 fee with meal)",
-    "coordinates": [
-      49.2798,
-      -123.1095
-    ],
-    "subTags": [
-      "all-ages",
-      "board-games",
-      "budget-friendly",
-      "chinatown",
-      "craft-beer",
-      "downtown",
-      "food-and-drink",
-      "free-admission",
-      "free-event",
-      "gaming",
-      "live-theatre",
-      "local-eats",
-      "performing-arts",
-      "pizza",
-      "social",
-      "solo-friendly",
-      "stage-play",
-      "tabletop",
-      "vancouver-core",
-      "zero-dollars"
-    ],
-    "id": "van50-pizzeria-ludica-board-games",
-    "venue": "Pizzeria Ludica",
-    "address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
-    "priceLabel": "Free ($0)",
-    "pricingType": "free",
-    "isFree": true,
-    "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Board Game Library Access (with food/drink)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Student",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "frequencyLabel": "Open Daily Drop-In",
-    "startIso": null,
-    "daysOfWeek": [
-      "daily",
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-morning",
-      "afternoon",
-      "early-evening"
-    ],
-    "websiteUrl": "https://www.pizzerialudica.com/",
-    "venueUrl": "https://www.pizzerialudica.com/",
-    "ticketProvider": "Direct / Free Drop-In",
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": "Mon–Thu 4:30 PM – 10:00 PM, Fri–Sat 11:30 AM – 11:00 PM, Sun 11:30 AM – 10:00 PM",
-    "weeklyHours": {
-      "mon": "4:30 PM – 10:00 PM",
-      "tue": "4:30 PM – 10:00 PM",
-      "wed": "4:30 PM – 10:00 PM",
-      "thu": "4:30 PM – 10:00 PM",
-      "fri": "11:30 AM – 11:00 PM",
-      "sat": "11:30 AM – 11:00 PM",
-      "sun": "11:30 AM – 10:00 PM"
-    },
-    "lifecycleType": "perennial_drop_in",
-    "isSoldOut": false
-  },
-  {
     "event_id": "viff-the-debut",
     "event_name": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
     "category": "Arts & Culture",
@@ -11097,8 +10742,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-05T12:00:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "sun"
+      "sun",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -11320,8 +10965,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T11:00:00-07:00",
     "daysOfWeek": [
-      "sat",
-      "sun"
+      "sun",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -11345,214 +10990,10 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   },
   {
-    "event_id": "van50-vandusen-harvest-days-20261010",
-    "event_name": "Harvest Days at VanDusen Botanical Garden",
-    "title": "Harvest Days at VanDusen Botanical Garden",
-    "category": "outdoors",
-    "categoryLabel": "Outdoors & Nature",
-    "venue_name": "VanDusen Botanical Garden",
-    "full_address": "5251 Oak St, Vancouver, BC V6M 4H1",
-    "neighborhood": "Mount Pleasant & South Vancouver",
-    "description": "VanDusen Botanical Garden celebrates the autumn harvest with live bluegrass and family folk music by the hedge maze, lawn games, honey tastings and gardening tips in the Discovery Tent, and eco-friendly biodegradable sculptures by local artist Nickie Lewis.",
-    "pricing_all_in_cad": {
-      "regular": 13.27,
-      "senior": 10.61,
-      "student": 9.28,
-      "member": 0.0
-    },
-    "operating_hours": "10:00 AM – 5:00 PM (Harvest Days activities 10:30 AM – 4:30 PM)",
-    "days_open": "Weekends + Thanksgiving Mon",
-    "show_1": {
-      "date": "2026-10-10",
-      "start_time": "10:30",
-      "end_time": "16:30",
-      "cost": 13.27
-    },
-    "show_2": {
-      "date": "2026-10-11",
-      "start_time": "10:30",
-      "end_time": "16:30",
-      "cost": 13.27
-    },
-    "show_3": {
-      "date": "2026-10-12",
-      "start_time": "10:30",
-      "end_time": "16:30",
-      "cost": 13.27
-    },
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/vandusen-botanical-garden.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/vandusen-botanical-garden.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/vandusen-botanical-garden.aspx",
-    "ticket_provider": "City of Vancouver VanDusen Box Office",
-    "tags": [
-      "thanksgiving",
-      "halloween",
-      "harvest-days",
-      "vandusen",
-      "botanical-garden",
-      "autumn",
-      "fall-colours",
-      "live-music",
-      "bluegrass",
-      "folk-music",
-      "lawn-games",
-      "honey-tasting",
-      "eco-sculptures",
-      "family-friendly",
-      "all-ages",
-      "nature",
-      "pumpkins",
-      "outdoor-outings",
-      "budget-friendly",
-      "vancouver-parks"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Live cart verified. Adult $13.27 CAD, senior $10.61, youth $9.28, child $6.63. Under $50 all-in. Thanksgiving long weekend included.",
-    "price": 13.27,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 13.27,
-    "price_student": 9.28,
-    "price_member": 0.0,
-    "tier_custom_name_1": "Child (5-12)",
-    "tier_custom_price_1": 6.63,
-    "tier_custom_name_2": "Tot (0-4)",
-    "tier_custom_price_2": 0.0,
-    "dateSchedule": "5 Screenings across Vancouver",
-    "frequency": "Multi-Date Seasonal Run",
-    "lineup": "Curated local bluegrass & folk musicians, Nickie Lewis (eco-sculptor)",
-    "restrictions": "All Ages / Family Friendly",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-10",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 13.27
-      },
-      {
-        "date": "2026-10-11",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 13.27
-      },
-      {
-        "date": "2026-10-12",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 13.27
-      },
-      {
-        "date": "2026-10-17",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 13.27
-      },
-      {
-        "date": "2026-10-18",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 13.27
-      }
-    ],
-    "holiday_detected": "thanksgiving",
-    "holidays": [
-      "thanksgiving",
-      "halloween"
-    ],
-    "subTags": [
-      "thanksgiving",
-      "halloween",
-      "harvest-days",
-      "vandusen",
-      "botanical-garden",
-      "autumn",
-      "fall-colours",
-      "live-music",
-      "bluegrass",
-      "folk-music",
-      "lawn-games",
-      "honey-tasting",
-      "eco-sculptures",
-      "family-friendly",
-      "all-ages",
-      "nature",
-      "pumpkins",
-      "outdoor-outings",
-      "budget-friendly",
-      "vancouver-parks"
-    ],
-    "typical_drink_spend": "$4.50 – $6.50 CAD (Truffles Cafe coffee & hot cider)",
-    "typical_item_spend": "$4.50 – $8.00 CAD (Truffles Cafe & garden snacks)",
-    "id": "van50-vandusen-harvest-days-20261010",
-    "venue": "VanDusen Botanical Garden",
-    "address": "5251 Oak St, Vancouver, BC V6M 4H1",
-    "priceLabel": "$13.27 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🌊",
-    "categories": [
-      "music"
-    ],
-    "tiers": [
-      {
-        "name": "Child (5-12)",
-        "price": 6.63,
-        "label": "$6.63 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 13.27,
-        "label": "$13.27 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 9.28,
-        "label": "$9.28 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Tot (0-4)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
-    "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-10T10:30:00-07:00",
-    "daysOfWeek": [
-      "mon",
-      "sat",
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/vandusen-botanical-garden.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/vandusen-botanical-garden.aspx",
-    "ticketProvider": "City of Vancouver VanDusen Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": "10:00 AM – 5:00 PM (Harvest Days activities 10:30 AM – 4:30 PM)",
-    "weekly_hours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
     "event_id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
     "event_name": "Paul Anthony's Talent Time: Halloween Special",
     "title": "Paul Anthony's Talent Time: Halloween Special",
-    "category": "shows",
+    "category": "Comedy & Shows",
     "categoryLabel": "Comedy & Shows",
     "venue_name": "The Rio Theatre",
     "full_address": "1660 E Broadway, Vancouver, BC V5N 1W1",
@@ -11576,8 +11017,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://riotheatre.ca",
     "details_url": "https://riotheatre.ca",
-    "ticket_url": "https://riotheatretickets.ca",
-    "ticket_provider": "The Rio Theatre Box Office",
+    "ticket_url": "https://riotheatre.ca/event/paul-anthonys-talent-time/",
+    "ticket_provider": "Rio Theatre Box Office",
     "tags": [
       "halloween",
       "talent-time",
@@ -11646,6 +11087,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$8.50 – $14.00 CAD (Rio Theatre craft beer / cocktail)",
     "typical_item_spend": "$7.00 – $9.00 CAD (Rio Theatre organic buttered popcorn)",
+    "date": "2026-10-23",
+    "time": "20:00",
+    "start_time": "20:00",
+    "end_time": "22:30",
     "id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
@@ -11678,9 +11123,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://riotheatretickets.ca",
+    "websiteUrl": "https://riotheatre.ca/event/paul-anthonys-talent-time/",
     "venueUrl": "https://riotheatre.ca",
-    "ticketProvider": "The Rio Theatre Box Office",
+    "ticketProvider": "Rio Theatre Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11696,7 +11141,7 @@ const VANCOUVER_EVENTS = [
     "event_id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
     "event_name": "Gongs in the Garden: Autumn Sunday Reset",
     "title": "Gongs in the Garden: Autumn Sunday Reset",
-    "category": "culture",
+    "category": "Arts & Culture",
     "categoryLabel": "Arts & Culture",
     "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
     "full_address": "578 Carrall St, Vancouver, BC V6A 5M3",
@@ -11719,9 +11164,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://vancouverchinesegarden.com/events",
-    "details_url": "https://vancouverchinesegarden.com/events",
-    "ticket_url": "https://www.eventbrite.ca",
-    "ticket_provider": "Eventbrite",
+    "details_url": "https://vancouverchinesegarden.com/events/",
+    "ticket_url": "https://vancouverchinesegarden.com/events/",
+    "ticket_provider": "Dr. Sun Yat-Sen Garden Box Office",
     "tags": [
       "sun-yat-sen",
       "chinatown",
@@ -11782,6 +11227,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$4.50 CAD (Courtyard loose leaf tea & bottled water)",
     "typical_item_spend": "$4.50 – $7.00 CAD (Garden shop refreshments)",
+    "date": "2026-10-18",
+    "time": "10:00",
+    "start_time": "10:00",
+    "end_time": "11:30",
     "id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
     "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
     "address": "578 Carrall St, Vancouver, BC V6A 5M3",
@@ -11809,9 +11258,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.eventbrite.ca",
-    "venueUrl": "https://vancouverchinesegarden.com/events",
-    "ticketProvider": "Eventbrite",
+    "websiteUrl": "https://vancouverchinesegarden.com/events/",
+    "venueUrl": "https://vancouverchinesegarden.com/events/",
+    "ticketProvider": "Dr. Sun Yat-Sen Garden Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11850,9 +11299,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com",
-    "details_url": "https://rickshawtheatre.com",
-    "ticket_url": "https://www.eventbrite.ca",
-    "ticket_provider": "Eventbrite",
+    "details_url": "https://rickshawtheatre.com/show_listings/",
+    "ticket_url": "https://rickshawtheatre.com/show_listings/",
+    "ticket_provider": "Eventbrite / Rickshaw Box Office",
     "tags": [
       "rickshaw-theatre",
       "concrete-vehicles",
@@ -11911,6 +11360,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$7.75 – $9.00 CAD (Rickshaw draft beer & cider)",
     "typical_item_spend": "$7.75 – $15.00 CAD (1-2 drinks)",
+    "date": "2026-10-08",
+    "time": "20:00",
+    "start_time": "20:00",
+    "end_time": "23:45",
     "id": "van50-rickshaw-concrete-vehicles-20261008",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -11938,9 +11391,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.eventbrite.ca",
-    "venueUrl": "https://rickshawtheatre.com",
-    "ticketProvider": "Eventbrite",
+    "websiteUrl": "https://rickshawtheatre.com/show_listings/",
+    "venueUrl": "https://rickshawtheatre.com/show_listings/",
+    "ticketProvider": "Eventbrite / Rickshaw Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11956,7 +11409,7 @@ const VANCOUVER_EVENTS = [
     "event_id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
     "event_name": "Diwali in Vancouver: Mehfil at Roundhouse",
     "title": "Diwali in Vancouver: Mehfil at Roundhouse",
-    "category": "culture",
+    "category": "Arts & Culture",
     "categoryLabel": "Arts & Culture",
     "venue_name": "Roundhouse Community Arts & Recreation Centre",
     "full_address": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
@@ -11979,9 +11432,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.diwalifest.ca",
-    "details_url": "https://www.diwalifest.ca",
-    "ticket_url": "https://www.diwalifest.ca",
-    "ticket_provider": "Diwali Celebration Society / Roundhouse Box Office",
+    "details_url": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
+    "ticket_url": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
+    "ticket_provider": "Free Public Access (Roundhouse)",
     "tags": [
       "diwali",
       "diwali-fest",
@@ -12047,6 +11500,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$4.00 – $6.00 CAD (Hot chai & bottled beverages)",
     "typical_item_spend": "$5.00 – $8.00 CAD (Samosas & festival snacks)",
+    "date": "2026-11-07",
+    "time": "14:00",
+    "start_time": "14:00",
+    "end_time": "17:00",
     "id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
     "venue": "Roundhouse Community Arts & Recreation Centre",
     "address": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
@@ -12075,9 +11532,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.diwalifest.ca",
-    "venueUrl": "https://www.diwalifest.ca",
-    "ticketProvider": "Diwali Celebration Society / Roundhouse Box Office",
+    "websiteUrl": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
+    "venueUrl": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
+    "ticketProvider": "Free Public Access (Roundhouse)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -12093,8 +11550,8 @@ const VANCOUVER_EVENTS = [
     "event_id": "van50-cinematheque-vampyr-live-score-20261031",
     "event_name": "Vampyr × Applied Silence [Live Score]",
     "title": "Vampyr × Applied Silence [Live Score]",
-    "category": "cinema",
-    "categoryLabel": "Indie Cinema",
+    "category": "Arts & Culture",
+    "categoryLabel": "Arts & Culture",
     "venue_name": "The Cinematheque",
     "full_address": "1131 Howe St, Vancouver, BC V6Z 1R1",
     "neighborhood": "Downtown, Gastown & Yaletown",
@@ -12117,7 +11574,7 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://thecinematheque.ca",
     "details_url": "https://thecinematheque.ca",
-    "ticket_url": "https://thecinematheque.ca",
+    "ticket_url": "https://thecinematheque.ca/films/2026/vampyr-applied-silence",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
       "halloween",
@@ -12180,6 +11637,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$6.50 – $8.00 CAD (Local craft beer & cider)",
     "typical_item_spend": "$5.00 – $7.00 CAD (Organic popcorn & candy)",
+    "date": "2026-10-31",
+    "time": "20:00",
+    "start_time": "20:00",
+    "end_time": "21:45",
     "id": "van50-cinematheque-vampyr-live-score-20261031",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -12212,7 +11673,7 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://thecinematheque.ca",
+    "websiteUrl": "https://thecinematheque.ca/films/2026/vampyr-applied-silence",
     "venueUrl": "https://thecinematheque.ca",
     "ticketProvider": "The Cinematheque Box Office",
     "coordinates": [
@@ -12230,8 +11691,8 @@ const VANCOUVER_EVENTS = [
     "event_id": "van50-fox-bootylicious-halloween-20261030",
     "event_name": "Halloween Friday at The Fox: BOO-tylicious",
     "title": "Halloween Friday at The Fox: BOO-tylicious",
-    "category": "music",
-    "categoryLabel": "Music",
+    "category": "Nightlife & Social",
+    "categoryLabel": "Nightlife & Social",
     "venue_name": "The Fox Cabaret",
     "full_address": "2321 Main St, Vancouver, BC V5T 3C9",
     "neighborhood": "Mount Pleasant & South Vancouver",
@@ -12253,9 +11714,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://foxcabaret.com",
-    "details_url": "https://foxcabaret.com",
-    "ticket_url": "https://www.eventbrite.ca",
-    "ticket_provider": "Eventbrite / Fox Box Office",
+    "details_url": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "ticket_provider": "Fox Cabaret Box Office",
     "tags": [
       "halloween",
       "fox-cabaret",
@@ -12313,15 +11774,20 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$8.00 – $14.00 CAD (Fox Cabaret draft pint & mixed cocktails)",
     "typical_item_spend": "$8.00 – $16.00 CAD (Bar beverages)",
+    "date": "2026-10-30",
+    "time": "22:30",
+    "start_time": "22:30",
+    "end_time": "02:00",
     "id": "van50-fox-bootylicious-halloween-20261030",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
     "priceLabel": "$24.50 CAD",
     "pricingType": "paid",
     "isFree": false,
-    "categoryIcon": "🎵",
+    "categoryIcon": "🎭",
     "categories": [
-      "music"
+      "music",
+      "social"
     ],
     "tiers": [
       {
@@ -12339,9 +11805,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.eventbrite.ca",
-    "venueUrl": "https://foxcabaret.com",
-    "ticketProvider": "Eventbrite / Fox Box Office",
+    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "venueUrl": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "ticketProvider": "Fox Cabaret Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -12357,7 +11823,7 @@ const VANCOUVER_EVENTS = [
     "event_id": "van50-moa-haida-eyes-curator-tour-20261008",
     "event_name": "I Use My Haida Eyes: History Robes & Curator Tour",
     "title": "I Use My Haida Eyes: History Robes & Curator Tour",
-    "category": "culture",
+    "category": "Arts & Culture",
     "categoryLabel": "Arts & Culture",
     "venue_name": "Museum of Anthropology (MOA) at UBC",
     "full_address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
@@ -12380,9 +11846,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://moa.ubc.ca",
-    "details_url": "https://moa.ubc.ca",
-    "ticket_url": "https://moa.ubc.ca",
-    "ticket_provider": "MOA Box Office",
+    "details_url": "https://moa.ubc.ca/exhibition/i-use-my-haida-eyes/",
+    "ticket_url": "https://moa.ubc.ca/exhibition/i-use-my-haida-eyes/",
+    "ticket_provider": "Museum of Anthropology Box Office",
     "tags": [
       "moa",
       "museum-of-anthropology",
@@ -12443,6 +11909,10 @@ const VANCOUVER_EVENTS = [
     ],
     "typical_drink_spend": "$4.50 – $6.00 CAD (MOA Cafe specialty coffee)",
     "typical_item_spend": "$5.00 – $9.00 CAD (Artisanal pastries & cafe snacks)",
+    "date": "2026-10-08",
+    "time": "19:00",
+    "start_time": "19:00",
+    "end_time": "21:00",
     "id": "van50-moa-haida-eyes-curator-tour-20261008",
     "venue": "Museum of Anthropology (MOA) at UBC",
     "address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
@@ -12489,9 +11959,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://moa.ubc.ca",
-    "venueUrl": "https://moa.ubc.ca",
-    "ticketProvider": "MOA Box Office",
+    "websiteUrl": "https://moa.ubc.ca/exhibition/i-use-my-haida-eyes/",
+    "venueUrl": "https://moa.ubc.ca/exhibition/i-use-my-haida-eyes/",
+    "ticketProvider": "Museum of Anthropology Box Office",
     "coordinates": [
       49.2827,
       -123.1207

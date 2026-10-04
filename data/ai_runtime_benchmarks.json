@@ -35,17 +35,19 @@
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 97,
-      "averageDurationFormatted": "1–2 minutes",
-      "totalRuns": 1,
+      "averageDurationSeconds": 145,
+      "averageDurationFormatted": "2–3 minutes",
+      "totalRuns": 2,
       "lastRun": {
-        "timestamp": "2026-10-04T10:46:00",
-        "durationSeconds": 97,
-        "durationFormatted": "1m 37s",
-        "itemsAudited": 80,
-        "itemsArchived": 5,
-        "itemsCalibrated": 8,
-        "notes": "Full 100% audit of 80 active cards across all 20 dimensions. Archived 5 concluded shows from Oct 3, calibrated D13 spend on 8 newly scouted cards."
+        "timestamp": "2026-10-04T12:27:25",
+        "durationSeconds": 193,
+        "durationFormatted": "3m 13s",
+        "itemsAudited": 81,
+        "itemsDeduplicated": 3,
+        "itemsRolledForward": 5,
+        "itemsHealed": 7,
+        "taxonomyFixed": 1,
+        "notes": "100% audit of 81 cards across 20 dimensions. Deduplicated 3 cards (Bloedel, Ludica, VanDusen), rolled 5 multi-run event dates forward to active dates, healed 7 October/Halloween cards with discrete dates and deep links, corrected Vancouver Opera taxonomy to Arts & Culture."
       },
       "history": [
         {
@@ -55,6 +57,15 @@
           "itemsAudited": 80,
           "itemsArchived": 5,
           "itemsCalibrated": 8
+        },
+        {
+          "timestamp": "2026-10-04T12:27:25",
+          "durationSeconds": 193,
+          "durationFormatted": "3m 13s",
+          "itemsAudited": 81,
+          "itemsDeduplicated": 3,
+          "itemsRolledForward": 5,
+          "itemsHealed": 7
         }
       ]
     },
