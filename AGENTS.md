@@ -8,8 +8,11 @@
 
 2. **Antigravity AI is the Intelligence Engine**:
    - Whenever the user requests **"Run AI Scout"**, **"Run QC AI"**, or **"Run Quarantine AI"**, Antigravity AI MUST execute the task directly using its own cognitive reasoning and built-in tools.
-   - **Ambiguity & Non-Antigravity AI Prompting Mandate**: If the user ever issues an instruction that mentions an external AI, script, model, or third-party LLM (or if there is any ambiguity about whether an external tool vs. Antigravity AI is intended), the agent **MUST stop and prompt the user for clarification** before taking action. Never assume or execute an external AI surrogate without explicit confirmation.
-   - Never attempt to delegate AI scouting, auditing, or healing to a standalone Python script.
+   - **Ambiguity & Non-Antigravity AI Prompting Mandate**: If the user ever issues an instruction that mentions an external AI, model, or third-party LLM, the agent **MUST stop and prompt the user for clarification** before taking action.
+   - **Scripts vs. Antigravity AI Confirmation Mandate**: Whenever a task could be handled by running an automated script OR by having Antigravity AI perform the task directly (e.g., scouting, auditing, link checking, data cleaning, catalog updates), or whenever the user asks to "run a script" for evaluation/curation, the agent **MUST pause and provide a confirmation prompt** using `ask_question`:
+     - Option 1: *(Recommended)* Have Antigravity AI perform the evaluation/action directly using reasoning and built-in tools.
+     - Option 2: Run the automated script programmatically via shell.
+   - The agent must never silently choose a script when direct AI execution was intended.
 
 3. **Holiday Taxonomy & Discovery Mandate**:
    - Tag events with approved holidays from `data/approved_holidays.json`.
