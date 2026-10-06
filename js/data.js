@@ -184,7 +184,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "visual_arts_galleries"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -687,7 +687,7 @@ const VANCOUVER_EVENTS = [
             "sports_fitness_recreation",
             "tours_walks_heritage"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -1167,7 +1167,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "visual_arts_galleries"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -1666,7 +1666,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -2125,7 +2125,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "markets_popups_bazaars"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -2584,7 +2584,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "markets_popups_bazaars"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -3049,7 +3049,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -3514,7 +3514,7 @@ const VANCOUVER_EVENTS = [
             "visual_arts_galleries",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -3984,7 +3984,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -4488,7 +4488,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "markets_popups_bazaars"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -4977,7 +4977,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "visual_arts_galleries"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -5441,7 +5441,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "visual_arts_galleries"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -5905,7 +5905,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "nature_parks_gardens"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -6370,7 +6370,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -6834,7 +6834,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -7297,7 +7297,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -7758,7 +7758,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -8220,7 +8220,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -8701,7 +8701,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -9161,7 +9161,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -9630,7 +9630,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -10160,7 +10160,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -10756,7 +10756,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -11261,7 +11261,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -11732,7 +11732,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "films_screenings"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -12198,7 +12198,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -12671,7 +12671,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -13166,7 +13166,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -13677,7 +13677,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -14144,7 +14144,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -14641,7 +14641,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -15126,7 +15126,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -15595,7 +15595,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -16079,7 +16079,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -16552,7 +16552,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17022,7 +17022,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17510,7 +17510,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17990,7 +17990,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -18473,7 +18473,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -18962,7 +18962,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -19441,7 +19441,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "films_screenings"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -19932,7 +19932,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -20423,7 +20423,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -20916,7 +20916,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -21400,7 +21400,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -21875,7 +21875,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -22353,7 +22353,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -22826,7 +22826,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -23349,7 +23349,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -23879,7 +23879,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "literary_spoken_word_poetry"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -24406,7 +24406,7 @@ const VANCOUVER_EVENTS = [
             "festivals_celebrations",
             "films_screenings"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -24887,7 +24887,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -25367,7 +25367,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -25842,7 +25842,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -26346,7 +26346,7 @@ const VANCOUVER_EVENTS = [
             "visual_arts_galleries",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -26826,7 +26826,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -27338,7 +27338,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -27876,7 +27876,7 @@ const VANCOUVER_EVENTS = [
             "sports_fitness_recreation",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -28374,7 +28374,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -28853,7 +28853,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -29332,7 +29332,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -29818,7 +29818,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "sports_fitness_recreation"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -30298,7 +30298,7 @@ const VANCOUVER_EVENTS = [
             "festivals_celebrations",
             "films_screenings"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -30839,7 +30839,7 @@ const VANCOUVER_EVENTS = [
             "markets_popups_bazaars",
             "nature_parks_gardens"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -31315,7 +31315,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -31772,7 +31772,7 @@ const VANCOUVER_EVENTS = [
             "nature_parks_gardens",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -32222,7 +32222,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -32687,7 +32687,7 @@ const VANCOUVER_EVENTS = [
             "sports_fitness_recreation",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -33152,7 +33152,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -33603,7 +33603,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -34072,7 +34072,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "family_youth_activities"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -34540,7 +34540,7 @@ const VANCOUVER_EVENTS = [
             "family_youth_activities",
             "nature_parks_gardens"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35003,7 +35003,7 @@ const VANCOUVER_EVENTS = [
             "trivia_games_boardgames",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35486,7 +35486,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35965,7 +35965,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -36443,7 +36443,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -36919,7 +36919,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -37323,7 +37323,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -37729,7 +37729,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -38136,7 +38136,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -38541,7 +38541,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -38947,7 +38947,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -39352,7 +39352,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -39754,7 +39754,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40157,7 +40157,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40563,7 +40563,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40970,7 +40970,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -41377,7 +41377,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -41784,7 +41784,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -42191,7 +42191,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -42596,7 +42596,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -43002,7 +43002,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -43409,7 +43409,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -43814,7 +43814,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "dance_parties_club_nights"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -44219,7 +44219,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "dance_parties_club_nights"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -44623,7 +44623,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "dance_parties_club_nights"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -45027,7 +45027,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "dance_parties_club_nights"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -45433,7 +45433,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -45840,7 +45840,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -46247,7 +46247,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -46654,7 +46654,7 @@ const VANCOUVER_EVENTS = [
             "dance_parties_club_nights",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47057,7 +47057,7 @@ const VANCOUVER_EVENTS = [
           "backend_categories": [
             "comedy_standup_improv"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47460,7 +47460,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47865,7 +47865,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -48269,7 +48269,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -48673,7 +48673,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49077,7 +49077,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49481,7 +49481,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49885,7 +49885,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -50291,7 +50291,7 @@ const VANCOUVER_EVENTS = [
             "food_drink_tastings",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -50696,7 +50696,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51100,7 +51100,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51504,7 +51504,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51908,7 +51908,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -52312,7 +52312,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -52716,7 +52716,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -53120,7 +53120,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -53524,7 +53524,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -53928,7 +53928,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -54332,7 +54332,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -54736,7 +54736,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55140,7 +55140,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55544,7 +55544,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55948,7 +55948,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -56352,7 +56352,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -56778,7 +56778,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -57259,7 +57259,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -57737,7 +57737,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -58222,7 +58222,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -58662,7 +58662,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -59133,7 +59133,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -59568,7 +59568,7 @@ const VANCOUVER_EVENTS = [
             "festivals_celebrations",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -60036,7 +60036,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -60472,7 +60472,7 @@ const VANCOUVER_EVENTS = [
             "free_public_access",
             "markets_popups_bazaars"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -60915,7 +60915,7 @@ const VANCOUVER_EVENTS = [
             "festivals_celebrations",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -61348,7 +61348,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -61783,7 +61783,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -62225,7 +62225,7 @@ const VANCOUVER_EVENTS = [
             "theatre_performing_arts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -62658,7 +62658,7 @@ const VANCOUVER_EVENTS = [
             "festivals_celebrations",
             "literary_spoken_word_poetry"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -63131,7 +63131,7 @@ const VANCOUVER_EVENTS = [
             "live_music_concerts",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -63600,7 +63600,7 @@ const VANCOUVER_EVENTS = [
             "community_civic_social",
             "live_music_concerts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -64083,7 +64083,7 @@ const VANCOUVER_EVENTS = [
             "literary_spoken_word_poetry",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -64559,7 +64559,7 @@ const VANCOUVER_EVENTS = [
             "comedy_standup_improv",
             "workshops_classes_crafts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -65030,7 +65030,7 @@ const VANCOUVER_EVENTS = [
             "films_screenings",
             "theatre_performing_arts"
           ],
-          "confirmed_at": "2026-10-06T09:32:36.818795-07:00"
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -65333,6 +65333,356 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts"
     ],
     "category_count": 3
+  },
+  {
+    "event_id": "van50-the-roxy-cabaret-wednesday-october-7th",
+    "event_name": "Best in Vancouver 2026: Matty Miller & the Barge Boys, The Okes, Westwood Theory",
+    "title": "Best in Vancouver 2026: Matty Miller & the Barge Boys, The Okes, Westwood Theory",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "The Roxy Cabaret",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2804,
+      -123.1215
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live local music showcase at The Roxy Cabaret featuring Matty Miller & the Barge Boys, The Okes, and Westwood Theory in the Best in Vancouver 2026 tournament series.",
+    "pricing_all_in_cad": {
+      "regular": 10.0,
+      "senior": 10.0,
+      "student": 10.0,
+      "member": 10.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-07",
+      "start_time": "19:30",
+      "end_time": "23:30",
+      "cost": 10.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.roxyvan.com",
+    "details_url": "https://roxyvan.com/events",
+    "ticket_url": "https://www.vtix.com/best-in-vancouver-2026-show-3/5946",
+    "ticket_provider": "Vtix Online",
+    "tags": [
+      "live-music",
+      "indie-rock",
+      "concert",
+      "local-bands",
+      "granville-entertainment-district",
+      "budget-friendly"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $8.00 CAD.",
+    "price": 10.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 7, 2026",
+    "start_date": "2026-10-07",
+    "start_time": "19:30",
+    "lineup": "WEDNESDAY, OCTOBER 7TH",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-06T09:38:41.532447",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4,
+    "environment_type": "indoor",
+    "booking_protocol": "first_come_first_served",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-06T09:38:41.542273-07:00",
+      "auditor": "QC_AI",
+      "dimensions_score": "50/50",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "value": "WEDNESDAY, OCTOBER 7TH",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D2_date": {
+          "status": "verified",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D3_time": {
+          "status": "verified",
+          "value": "19:30",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "has_weekly_hours": false,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "value": "Evening live performances",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "value": "one-off",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D7_category": {
+          "status": "verified",
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:40:16.337195-07:00"
+        },
+        "D8_location": {
+          "status": "verified",
+          "venue": "The Roxy Cabaret",
+          "address": "Vancouver, BC",
+          "coordinates": [
+            49.2804,
+            -123.1215
+          ],
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "value": "fenced_facility",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "value": "flat_ticket",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D11_tier_adult": {
+          "status": "not_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D12_tier_student": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D13_tier_senior": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D14_tier_member": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D15_tier_non_member": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D16_tier_family": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D17_tier_other_1_name": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D18_tier_other_1_cost": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D19_tier_other_2_name": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D20_tier_other_2_cost": {
+          "status": "none_available",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D21_tier_count_verified": {
+          "status": "verified",
+          "value": 1,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D22_price_base": {
+          "status": "verified",
+          "value": 8.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D23_price_tax": {
+          "status": "verified",
+          "value": 0.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D24_price_fees": {
+          "status": "verified",
+          "value": 0.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D25_price_all_in": {
+          "status": "verified",
+          "value": 8.0,
+          "budget_ceiling": 50.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D26_other_cost_label": {
+          "status": "not_applicable",
+          "value": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D27_other_cost_price": {
+          "status": "not_applicable",
+          "value": 0.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D28_spend_benchmarks": {
+          "status": "verified",
+          "coffee": null,
+          "drink": null,
+          "meal": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D29_operational_status": {
+          "status": "verified",
+          "value": "scheduled",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D30_active_showings": {
+          "status": "verified",
+          "count": 0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D31_archived_showings": {
+          "status": "verified",
+          "count": 0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D32_link_tier1_checkout": {
+          "status": "not_applicable",
+          "url": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D33_link_tier2_event_page": {
+          "status": "not_applicable",
+          "url": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D34_link_tier3_calendar": {
+          "status": "not_applicable",
+          "url": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D35_link_tier4_civic_destination": {
+          "status": "not_applicable",
+          "url": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D36_link_tier5_venue_home": {
+          "status": "calibrated",
+          "url": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D37_best_available_link": {
+          "status": "verified",
+          "url": null,
+          "tier": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D38_ticket_provider": {
+          "status": "verified",
+          "value": "The Roxy Cabaret Box Office",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D39_description": {
+          "status": "verified",
+          "length": 47,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D40_lineup": {
+          "status": "verified",
+          "performers": [],
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D41_restrictions": {
+          "status": "verified",
+          "value": "All Ages Welcome",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D42_booking_protocol": {
+          "status": "verified",
+          "value": "first_come_first_served",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D43_environment_type": {
+          "status": "verified",
+          "value": "indoor",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D44_data_provenance": {
+          "status": "verified",
+          "source": "verified_scout",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D45_curator_lock": {
+          "status": "verified",
+          "is_locked": false,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D46_ai_curator_appeal": {
+          "status": "verified",
+          "active_appeal": null,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D47_geo_jurisdiction": {
+          "status": "verified",
+          "city_id": "yvr",
+          "metro_name": "Metro Vancouver",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D48_currency_standard": {
+          "status": "verified",
+          "currency": "CAD",
+          "ceiling": 50.0,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D49_iana_timezone": {
+          "status": "verified",
+          "iana_timezone": "America/Vancouver",
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        },
+        "D50_civic_provider_rules": {
+          "status": "verified",
+          "provider": "Destination Vancouver",
+          "blocks_cloudflared_aspx": true,
+          "confirmed_at": "2026-10-06T09:38:41.542273-07:00"
+        }
+      },
+      "audit_notes": "All 50 discrete dimensions audited and confirmed on 2026-10-06."
+    },
+    "date": "2026-10-07",
+    "time": "19:30"
   }
 ];
 

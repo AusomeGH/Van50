@@ -254,10 +254,19 @@ class UniversalVenueCrawler:
                 continue
 
             full_url = urljoin(calendar_url, href)
-            domain = urlparse(full_url).netloc.lower()
+            parsed_url = urlparse(full_url)
+            domain = parsed_url.netloc.lower()
+            parsed_path = parsed_url.path.lower()
+
+            # Filter out generic Eventbrite navigation, login, and directory endpoints
+            if 'eventbrite' in domain:
+                if not re.search(r'/e/(?:[a-z0-9\-]+-)?\d+', parsed_path):
+                    continue
+                if any(seg in parsed_path for seg in ['/l/', '/d/', '/signin', '/organizer/', '/apps/', '/help/', '/sitemap/', '/ttd/', '/product-updates']):
+                    continue
 
             is_ticket_domain = any(td in domain for td in TICKETING_DOMAINS)
-            is_internal_event = not is_ticket_domain and bool(re.search(r'/(?:events|event|shows|show|show_listings)/[a-z0-9\-]+', urlparse(full_url).path.lower()))
+            is_internal_event = not is_ticket_domain and bool(re.search(r'/(?:events|event|shows|show|show_listings)/[a-z0-9\-]+', parsed_path))
 
             if not (is_ticket_domain or is_internal_event):
                 continue
@@ -295,8 +304,17 @@ class UniversalVenueCrawler:
             if not raw_title or len(raw_title) < 3:
                 continue
 
-            # Skip generic button labels
+            # Skip generic button labels and navigation boilerplate
             if raw_title.lower() in ['get tickets', 'buy tickets', 'sold out', 'view details', 'more info', 'tickets', 'rsvp', 'learn more', 'ics', 'google calendar', 'view event →', 'view event', '(map)', 'map']:
+                continue
+
+            if any(term in raw_title.lower() for term in [
+                'eventbrite', 'find my tickets', 'sign in', 'find events', 'solutions', 'create events',
+                'contact sales', 'get started', 'help center', 'sell tickets', 'pricing', 'event marketing',
+                'app marketplace', 'registration software', 'community guidelines', 'faqs', 'sitemap',
+                'canada events', 'british columbia events', 'things to do in', 'vancouver performances',
+                'use eventbrite', 'browse shows', 'browse local events', 'login', 'about us'
+            ]):
                 continue
 
             # Check for direct outbound ticket button or Sold Out badge in scope

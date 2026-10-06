@@ -154,7 +154,7 @@ def standardize_candidate_to_20_dimensions(cand: dict, target_name: str, target_
     desc = cand.get('description') or f"Live scheduled programming at {venue_name}."
     tags = cand.get('tags') or cand.get('subTags') or ["live-music", "budget-friendly", "vancouver-events"]
 
-    return {
+    res = {
         "event_id": cid,
         "event_name": title,
         "title": title,
@@ -200,6 +200,20 @@ def standardize_candidate_to_20_dimensions(cand: dict, target_name: str, target_
         "is_sold_out": False,
         "last_scouted_at": datetime.now().isoformat()
     }
+
+    # Attach D7 multi-category and 50 dimensions
+    try:
+        from enrich_d7_categories import map_categories_for_event
+        from upgrade_to_50_dimensions import build_50_dimensions_audit
+        p_cat, all_cats = map_categories_for_event(res)
+        res['primary_category'] = p_cat
+        res['categories'] = all_cats
+        res['category_count'] = len(all_cats)
+        res['dimension_audit'] = build_50_dimensions_audit(res)
+    except Exception:
+        pass
+
+    return res
 
 def scout_single_target(target_name: str, target_meta: dict, target_type: str = "venue", target_idx: int = 1) -> dict:
     """
@@ -389,7 +403,9 @@ def main():
     print(f"\nStarting Scout AI Run across {len(targets)} targets (Batch Size = 1 Target, Natural Yield Protocol)...")
     run_start = time.time()
     results = []
-    for idx, (t_name, t_meta, t_type) in enumerate(targets, 1):
+    ledger = load_json(LEDGER_PATH, [])
+    start_idx = max([entry.get("target_index", 0) for entry in ledger], default=0) + 1
+    for idx, (t_name, t_meta, t_type) in enumerate(targets, start_idx):
         res = scout_single_target(t_name, t_meta, target_type=t_type, target_idx=idx)
         results.append(res)
 

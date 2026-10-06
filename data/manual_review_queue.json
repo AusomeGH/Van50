@@ -21,9 +21,31 @@
       "status": "pending_manual_subscription",
       "detected_at": "2026-10-06T02:02:31.527435+00:00",
       "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_the-roxy-cabaret",
+      "venue_name": "The Roxy Cabaret",
+      "website_url": "https://www.roxyvan.com",
+      "signup_url": "https://www.roxyvan.com",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-06T16:38:41.473376+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_the-cambrian-hall",
+      "venue_name": "The Cambrian Hall",
+      "website_url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+      "signup_url": "https://www.eventbrite.ca/signin/signup?referrer=%2Fmytickets",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-06T16:38:43.504870+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
     }
   ],
-  "pendingNewsletterCount": 1,
+  "pendingNewsletterCount": 3,
   "aiCuratorAppeals": [],
   "pendingAppealsCount": 0
 }

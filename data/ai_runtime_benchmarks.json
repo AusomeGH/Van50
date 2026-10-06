@@ -7,16 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 57.5,
-      "averageDurationFormatted": "57s",
-      "totalRuns": 7,
+      "averageDurationSeconds": 51.8,
+      "averageDurationFormatted": "51s",
+      "totalRuns": 8,
       "lastRun": {
-        "timestamp": "2026-10-05T17:43:35.819566",
-        "durationSeconds": 8.7,
-        "durationFormatted": "8.7s",
+        "timestamp": "2026-10-06T09:38:48.362169",
+        "durationSeconds": 11.8,
+        "durationFormatted": "11s",
         "itemsProcessed": 6,
-        "newEventsIngested": 5,
-        "notes": "Scouted Targets 32-37 with Batch Size = 1. Natural Yield: Ingested 5 new verified events."
+        "newEventsIngested": 1,
+        "notes": "Scouted 6 targets with 1-at-a-time isolation. Ingested 1 new verified event ($10.00 CAD) from The Roxy Cabaret."
       },
       "history": [
         {
@@ -65,6 +65,13 @@
           "durationFormatted": "8.7s",
           "itemsProcessed": 6,
           "newEventsIngested": 5
+        },
+        {
+          "timestamp": "2026-10-06T09:38:48.362128",
+          "durationSeconds": 11.8,
+          "durationFormatted": "11s",
+          "itemsProcessed": 6,
+          "newEventsIngested": 32
         }
       ]
     },

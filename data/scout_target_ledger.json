@@ -404,5 +404,71 @@
     "new_events_ingested": 0,
     "status_notes": "Audited 18 aggregator listings (Indie concerts funneled to canonical venue box offices; 0 unindexed eligible candidates directly from aggregator feed).",
     "duration_seconds": 1.1
+  },
+  {
+    "target_index": 38,
+    "timestamp": "2026-10-06T09:38:39.480245",
+    "target_name": "The Anza Club",
+    "target_type": "venue",
+    "url": "https://anzaclub.org",
+    "candidates_inspected": 0,
+    "new_events_ingested": 0,
+    "status_notes": "0 candidates found (Dark week / No upcoming dates posted)",
+    "duration_seconds": 2.87
+  },
+  {
+    "target_index": 39,
+    "timestamp": "2026-10-06T09:38:41.747919",
+    "target_name": "The Roxy Cabaret",
+    "target_type": "venue",
+    "url": "https://roxyvan.com/events",
+    "candidates_inspected": 1,
+    "new_events_ingested": 1,
+    "status_notes": "Ingested: Best in Vancouver 2026: Matty Miller & the Barge Boys, The Okes, Westwood Theory for Oct 7 (.00 via Vtix Online)",
+    "duration_seconds": 2.26
+  },
+  {
+    "target_index": 40,
+    "timestamp": "2026-10-06T09:38:43.770242",
+    "target_name": "The Cambrian Hall",
+    "target_type": "venue",
+    "url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+    "candidates_inspected": 4,
+    "new_events_ingested": 0,
+    "status_notes": "Audited Jokes Please! Eventbrite portal (0 active candidate tickets under  in static payload)",
+    "duration_seconds": 2.0
+  },
+  {
+    "target_index": 41,
+    "timestamp": "2026-10-06T09:38:45.394086",
+    "target_name": "The Show Cellar inside The Park Pub",
+    "target_type": "venue",
+    "url": "https://www.thecomedydepartment.com/vancouver-shows/",
+    "candidates_inspected": 6,
+    "new_events_ingested": 0,
+    "status_notes": "Audited Comedy Department calendar (Existing Thursday-Saturday shows already indexed)",
+    "duration_seconds": 1.6
+  },
+  {
+    "target_index": 42,
+    "timestamp": "2026-10-06T09:38:47.116375",
+    "target_name": "Kitsilano Beach Outdoor Amphitheatre",
+    "target_type": "venue",
+    "url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "candidates_inspected": 0,
+    "new_events_ingested": 0,
+    "status_notes": "Audited Kitsilano Showboat Amphitheatre (Seasonal off-season: summer series concluded in September)",
+    "duration_seconds": 1.7
+  },
+  {
+    "target_index": 43,
+    "timestamp": "2026-10-06T09:38:48.344396",
+    "target_name": "Revue Stage Granville Island",
+    "target_type": "venue",
+    "url": "https://www.eventbrite.ca/e/puff-the-magic-improv-show-sept-26-2026-tickets-1990456461859",
+    "candidates_inspected": 2,
+    "new_events_ingested": 0,
+    "status_notes": "Audited Revue Stage Eventbrite page (Puff The Magic Improv show concluded on Sept 26; 0 active)",
+    "duration_seconds": 1.21
   }
 ]
