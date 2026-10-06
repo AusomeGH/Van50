@@ -176,5 +176,20 @@
     - **Atomic Checkpoint & Registry Persistence**: Commits state atomically after every single venue to `data/subscribed_venues.json` and `data/manual_review_queue.json` (`pendingNewsletterSignups`).
     - **Sequential Audit Ledger Report**: Produces a sequential Markdown audit table (`newsletter_autosignup_report.md`) detailing venue name, platform method, status, and diagnostic outcome.
 
+12. **Production Release & Environment Isolation Protocol (`main` vs `production`)**:
+    - **Development vs. Production Separation**:
+      - `main`: Active development, local experimenting, and daily pipeline updates.
+      - `production`: Dedicated stable branch powering the live online GitHub Pages web application (`https://ausomegh.github.io/Van50/`).
+    - **Automated Pre-Flight Smoke Test Gate**:
+      - Deployments to `production` are strictly executed via `python scripts/deploy_to_production.py [-m "release message"]`.
+      - Spawns an ephemeral test environment and runs headless Chrome against the live DOM.
+      - Verifies:
+        1. 0 JavaScript console syntax or runtime errors (`SyntaxError`, `TypeError`, `ReferenceError`).
+        2. Category pills populated ($\ge 8$).
+        3. Event cards rendered ($\ge 50$).
+      - If ANY check fails, deployment is immediately aborted. The live online production app is protected from broken builds.
+      - When all checks pass, merges `main` into `production`, pushes to `origin/production`, and returns the local environment to `main`.
+
+
 
 
