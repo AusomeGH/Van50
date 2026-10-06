@@ -309,6 +309,27 @@ def scout_single_target(target_name: str, target_meta: dict, target_type: str = 
     ledger.append(ledger_entry)
     save_json(LEDGER_PATH, ledger)
 
+    # Stamp last_scouted_at directly on venue or source entity
+    now_iso = ledger_entry["timestamp"]
+    if target_type == "venue":
+        venues = load_json(VENUES_PATH, [])
+        if isinstance(venues, list):
+            for v in venues:
+                if (v.get('venue_name') or v.get('name', '')).strip().lower() == target_name.strip().lower():
+                    v['last_scouted_at'] = now_iso
+                    v['last_scout_yield'] = new_count
+                    save_json(VENUES_PATH, venues)
+                    break
+    elif target_type in ["discovery_source", "community_guide"]:
+        disc_data = load_json(SOURCES_PATH, {})
+        sources = disc_data.get('sources', []) if isinstance(disc_data, dict) else []
+        for s in sources:
+            if (s.get('name') or s.get('id', '')).strip().lower() == target_name.strip().lower():
+                s['last_scouted_at'] = now_iso
+                s['last_scout_yield'] = new_count
+                save_json(SOURCES_PATH, disc_data)
+                break
+
     return ledger_entry
 
 def print_audit_table(results: list):
@@ -318,6 +339,11 @@ def print_audit_table(results: list):
     print("=" * 80)
     print("| Target # | Target Name | Type | Inspected | Natural Yield (≤ $50) | Audit Status & Notes |")
     print("|:---:|:---|:---:|:---:|:---:|:---|")
+    table_lines = [
+        f"# Van50 Complete {len(results)}-Target Autonomous Scout Discovery Audit Ledger\n",
+        "| Target # | Target Name | Type | Inspected | Natural Yield (≤ $50) | Audit Status & Notes |",
+        "|:---:|:---|:---:|:---:|:---:|:---|"
+    ]
     for r in results:
         t_num = r.get("target_index", 1)
         name = r.get("target_name", "")
@@ -325,8 +351,20 @@ def print_audit_table(results: list):
         inspected = r.get("candidates_inspected", 0)
         yield_count = r.get("new_events_ingested", 0)
         notes = r.get("status_notes", "")
-        print(f"| {t_num} | **{name}** | {ttype} | {inspected} | **{yield_count}** | {notes} |")
+        row = f"| {t_num} | **{name}** | {ttype} | {inspected} | **{yield_count}** | {notes} |"
+        print(row)
+        table_lines.append(row)
     print("=" * 80 + "\n")
+
+    artifact_dir = os.environ.get("ANTIGRAVITY_ARTIFACT_DIR") or r"C:\Users\Micro\.gemini\antigravity-ide\brain\ea985afa-fa8b-4998-9925-d2104e4cd461"
+    os.makedirs(artifact_dir, exist_ok=True)
+    artifact_path = os.path.join(artifact_dir, "full_scout_catalog_audit.md")
+    try:
+        with open(artifact_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(table_lines) + "\n")
+        print(f"✅ Saved full scout audit ledger to artifact: {artifact_path}")
+    except Exception as ex:
+        print(f"Warning: could not write scout artifact: {ex}")
 
 def record_benchmark(total_targets: int, total_new: int, total_duration: float):
     """Updates data/ai_runtime_benchmarks.json with the completed run."""
@@ -363,61 +401,96 @@ def record_benchmark(total_targets: int, total_new: int, total_duration: float):
     benchmarks["workflows"]["scout_ai"] = wf
     save_json(BENCHMARKS_PATH, benchmarks)
 
+def get_master_ordered_targets() -> list:
+    """
+    Returns the complete, deterministic ordered master target list of 100% of registered targets:
+    1. All registered venues from venues.json (in declared order)
+    2. All registered discovery sources & BIAs from discovery_sources.json
+    Deduplicated by canonical lowercase name.
+    """
+    venues = load_json(VENUES_PATH, [])
+    if isinstance(venues, dict):
+        venues = list(venues.values())
+
+    disc_data = load_json(SOURCES_PATH, {})
+    sources = disc_data.get('sources', []) if isinstance(disc_data, dict) else []
+
+    master = []
+    seen = set()
+
+    # 1. Registered Venues
+    for v in venues:
+        name = (v.get('venue_name') or v.get('name') or '').strip()
+        norm = name.lower()
+        if name and norm not in seen:
+            seen.add(norm)
+            master.append((name, v, "venue"))
+
+    # 2. Discovery Sources & BIAs
+    for s in sources:
+        name = (s.get('name') or s.get('id') or '').strip()
+        norm = name.lower()
+        s_type = s.get('type') or "discovery_source"
+        if name and norm not in seen:
+            seen.add(norm)
+            master.append((name, s, s_type))
+
+    return master
+
 def main():
     parser = argparse.ArgumentParser(description="Single-Target Scout Runner (Batch Size = 1)")
-    parser.add_argument("--targets", help="Comma-separated list of target names or IDs to scout sequentially")
-    parser.add_argument("--count", type=int, help="Scout first N registered targets sequentially")
-    parser.add_argument("--list-targets", action="store_true", help="List available registered targets")
+    parser.add_argument("--targets", help="Optional: comma-separated list of specific target names or IDs to scout")
+    parser.add_argument("--count", type=int, help="Optional: limit run to first N targets")
+    parser.add_argument("--list-targets", action="store_true", help="List all registered targets in order")
     args = parser.parse_args()
 
-    targets_dict = load_all_target_directory()
+    master_targets = get_master_ordered_targets()
 
     if args.list_targets:
-        print(f"Available registered targets ({len(targets_dict)}):")
-        for i, (k, (name, meta, ttype)) in enumerate(list(targets_dict.items())[30:75], 31):
-            print(f" {i:2d}. [{ttype.upper()}] {name}")
+        print(f"Master Registered Target Directory ({len(master_targets)} total targets):")
+        for i, (name, meta, ttype) in enumerate(master_targets, 1):
+            url = meta.get('calendar_url') or meta.get('calendarUrl') or meta.get('eventsUrl') or meta.get('website_url') or ''
+            print(f" {i:3d}. [{ttype.upper()}] {name} ({url[:45]}...)")
         return
 
-    targets = []
     if args.targets:
         target_keys = [t.strip().lower() for t in args.targets.split(",") if t.strip()]
+        targets = []
         for key in target_keys:
-            if key in targets_dict:
-                targets.append(targets_dict[key])
+            match = next((t for t in master_targets if key == t[0].lower() or key in t[0].lower()), None)
+            if match:
+                targets.append(match)
             else:
-                # Substring match attempt
-                match = next((v for k, v in targets_dict.items() if key in k), None)
-                if match:
-                    targets.append(match)
-                else:
-                    print(f"Warning: Target '{key}' not found in registry, skipping.")
+                print(f"Warning: Target '{key}' not found in registry, skipping.")
     elif args.count:
-        candidates = list(targets_dict.values())
-        targets = candidates[:args.count]
+        targets = master_targets[:args.count]
     else:
-        print("Usage: python scripts/single_target_scout_runner.py --targets '<Target 1>,<Target 2>,...'")
-        print("       python scripts/single_target_scout_runner.py --count <N>")
-        print("       python scripts/single_target_scout_runner.py --list-targets")
-        return
+        # MANDATORY DEFAULT PROTOCOL:
+        # Always start at Target #1, and in batches of 1, go through the ENTIRE list of all targets.
+        # Zero partial runs. Zero skipped targets.
+        targets = master_targets
 
-    print(f"\nStarting Scout AI Run across {len(targets)} targets (Batch Size = 1 Target, Natural Yield Protocol)...")
+    print(f"\n================================================================================")
+    print(f"      STARTING SCOUT AI RUN: {len(targets)} TARGETS (BATCH SIZE = 1 TARGET)      ")
+    print(f"================================================================================")
+    print(f"Starting at Target #1: '{targets[0][0]}' through Target #{len(targets)}: '{targets[-1][0]}'")
+    print(f"Executing 1-at-a-time isolated evaluation with atomic checkpoints & Natural Yield.\n")
+
     run_start = time.time()
     results = []
-    ledger = load_json(LEDGER_PATH, [])
-    start_idx = max([entry.get("target_index", 0) for entry in ledger], default=0) + 1
-    for idx, (t_name, t_meta, t_type) in enumerate(targets, start_idx):
+    for idx, (t_name, t_meta, t_type) in enumerate(targets, 1):
         res = scout_single_target(t_name, t_meta, target_type=t_type, target_idx=idx)
         results.append(res)
 
     total_duration = time.time() - run_start
     total_new = sum(r.get("new_events_ingested", 0) for r in results)
 
-    # Render full audit table
+    # Render full audit table from 1 to N
     print_audit_table(results)
 
     # Record benchmark
     record_benchmark(len(targets), total_new, total_duration)
-    print(f"Scout run completed in {total_duration:.1f}s. Benchmarks updated.")
+    print(f"Scout run completed across all {len(targets)} targets in {total_duration:.1f}s. Benchmarks updated.")
 
 if __name__ == '__main__':
     main()

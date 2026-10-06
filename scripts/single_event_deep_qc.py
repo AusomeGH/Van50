@@ -579,13 +579,6 @@ def save_and_render_audit_ledger(reports):
     except Exception as ex:
         print(f"Warning: could not write artifact: {ex}")
     return table_md
-    try:
-        with open(artifact_path, "w", encoding="utf-8") as f:
-            f.write(table_md)
-        print(f"✅ Saved full audit ledger to artifact: {artifact_path}")
-    except Exception as ex:
-        print(f"Warning: could not write artifact: {ex}")
-    return table_md
 
 def run_deep_qc(start_idx=0, count=None):
     start_time = datetime.now()
@@ -593,12 +586,19 @@ def run_deep_qc(start_idx=0, count=None):
         events = json.load(f)
 
     total = len(events)
+    # MANDATORY FULL-SWEEP DEFAULT:
+    # Always start at Event #1 (index 0) and sweep 100% of all active events in batches of 1.
+    # Zero partial completions.
     if count is None:
-        count = total - start_idx
+        start_idx = 0
+        count = total
     end_idx = min(start_idx + count, total)
-    print(f"\n=======================================================")
-    print(f"🚀 RUNNING SINGLE-EVENT DEEP QC PIPELINE (Events {start_idx+1} to {end_idx} of {total})")
-    print(f"=======================================================\n")
+
+    print(f"\n================================================================================")
+    print(f"      STARTING QC AI RUN: {end_idx - start_idx} EVENTS (BATCH SIZE = 1 EVENT)      ")
+    print(f"================================================================================")
+    print(f"Starting at Event #{start_idx + 1} through Event #{end_idx} of {total} (Full Catalog Sweep)")
+    print(f"Executing 1-at-a-time isolated evaluation across all 50 dimensions with atomic checkpoints.\n")
 
     reports = []
     upgraded_count = 0

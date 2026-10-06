@@ -3,19 +3,19 @@
  * Fast, offline-first caching for Vancouver Events & Outings (<= $50 CAD)
  */
 
-const CACHE_NAME = 'van50-cache-v7.4.6';
+const CACHE_NAME = 'van50-cache-v7.4.8';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './css/style.css?v=7.1.0',
-  './css/components.css?v=7.4.6',
-  './js/app.js?v=7.4.6',
+  './css/components.css?v=7.4.8',
+  './js/app.js?v=7.4.8',
   './js/map.js?v=7.2.0',
-  './js/data.js?v=7.4.6',
+  './js/data.js?v=7.4.8',
   './js/roulette.js?v=7.2.0',
-  './js/pwa-install.js?v=7.4.4',
+  './js/pwa-install.js?v=7.4.8',
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './icons/icon.svg',
@@ -25,6 +25,7 @@ const PRECACHE_ASSETS = [
   './icons/icon-maskable-512.png',
   './icons/apple-touch-icon.png'
 ];
+
 
 // Install Event: Pre-cache core application shell
 self.addEventListener('install', (event) => {

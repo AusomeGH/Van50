@@ -6,8 +6,8 @@
    - All `gemini_*.py` scripts are permanently removed and forbidden.
    - Never run or create scripts that attempt to call Gemini API endpoints or read `GEMINI_API_KEY`.
 
-2. **Antigravity AI QC & Ingestion Engine (Mandatory Single-Event Execution)**:
-   - **Mandatory Single-Event (1-at-a-Time) Execution**: Whenever QC AI is requested, it MUST process events sequentially **one event at a time** (Batch Size = 1) across 100% of all events in `data/events.json`. Each event must be evaluated in an isolated execution scope to prevent context window bloat, attention dilution, or "batch fade".
+2. **Antigravity AI QC & Ingestion Engine (Mandatory 100% Full-Sweep Starting at Event #1)**:
+   - **Mandatory 100% Full-Sweep Starting at Event #1**: Whenever QC AI is requested, it MUST start at Event #1 and evaluate 100% of all events in `data/events.json` sequentially **one event at a time** (Batch Size = 1 Event) through to the very last event in the catalog. Partially executed runs, stopping after a few events, or spot-checking are strictly prohibited. Every QC AI invocation sweeps the complete active catalog from beginning to end.
    - **Single-Event Deep QC Runner**: Use `scripts/single_event_deep_qc.py` to isolate each card's evaluation, execute deterministic multi-hop link deepening to Tier 1 checkout carts (e.g. Ticketure, Eventbrite, Square, Showpass), verify out-of-pocket pricing $\le \$50$ CAD, and persist progress atomically after each event.
    - Scripts are strictly authorized for hosting the local server (`curator_server.py 8080`), isolating single-event evaluation harnesses (`scripts/single_event_deep_qc.py`), and reading/writing final JSON files to disk.
 
@@ -32,11 +32,11 @@
    - **Last-Resort Fallback Only**: `scripts/calendar_widget_engine.py` (`CalendarWidgetEngine`) is invoked **strictly when Strategies 1–3 find 0 events AND a third-party calendar widget format** (Tockify, Google Calendar embed, Eventbrite embed, Time.ly, DICE.fm, Bandsintown) is explicitly detected in the DOM.
    - This prevents unnecessary external API calls on websites with standard HTML schedules while ensuring zero events are missed when venues embed their calendars via JavaScript widgets.
 
-6. **Scout AI Single-Target (Batch Size = 1 Target) & Natural Yield Protocol**:
-   - **Mandatory Single-Target Execution**: Whenever Scout AI is executed, it MUST process discovery targets sequentially **one discrete target at a time** (Batch Size = 1 Target, e.g. 1 Venue from `venues.json`, 1 BIA portal from `discovery_sources.json`, or 1 neighborhood ticketing query).
+6. **Scout AI Single-Target (Batch Size = 1 Target) & Mandatory Full-Sweep Protocol**:
+   - **Mandatory 100% Full-Sweep Starting at Target #1**: Every time Scout AI is invoked, it MUST start at Target #1 and evaluate 100% of all registered targets (Target 1 through Target N, across both `venues.json` and `discovery_sources.json`) sequentially **one discrete target at a time** (Batch Size = 1 Target). Partially executed runs, stopping after a few targets, or skipping targets are strictly prohibited.
    - **The Natural Yield Mandate (Zero Quotas)**: NEVER assign arbitrary event quotas ("find 5 events"). Each target must be evaluated to natural exhaustion: ingest whatever genuinely qualifies under $50 CAD (whether 0, 1, 4, or 8 events). Reporting 0 events for a dark/duplicate/overbudget venue is an honest and valuable audit result; forcing filler to meet an arbitrary quota is strictly forbidden.
-   - **Atomic Checkpoint & Ledger**: Progress, newly discovered venues, and verified events are committed atomically after each target to `data/scout_target_ledger.json` using `scripts/single_target_scout_runner.py`.
-   - **Sequential Audit Ledger Table**: When reporting Scout AI results to the user, present a sequential, un-skipped Markdown Audit Table (`Target #`, `Target Name`, `Type`, `Inspected`, `Natural Yield (≤ $50)`, `Audit Status & Notes`). No numbers may be skipped.
+   - **Atomic Checkpoint & Ledger**: Progress, newly discovered venues, and verified events are committed atomically after each target to `data/events.json`, `data/scout_target_ledger.json`, and stamped directly on the venue/source using `scripts/single_target_scout_runner.py`.
+   - **Sequential Audit Ledger Table**: When reporting Scout AI results to the user, present a sequential, un-skipped Markdown Audit Table (`Target #`, `Target Name`, `Type`, `Inspected`, `Natural Yield (≤ $50)`, `Audit Status & Notes`). Target numbering MUST start at #1 and proceed continuously without gaps to the end of the registry.
 
 7. **Universal Multi-Entity Quarantine AI Protocol (Events, Venues, Festivals, Sources, Holidays, Instructions)**:
    - **Comprehensive Entity Evaluation Mandate**: Whenever Quarantine AI is executed, or the AI is asked to "go through Quarantine", it MUST evaluate **all quarantined and pending entities across all 6 quarantine streams**:
@@ -168,5 +168,13 @@
       - **D50**: `civic_provider_rules` (`Destination Vancouver / Civic Official Guide`, `blocks_cloudflared_aspx: true`).
     - **Zero Caching Wiggle Room Mandate**:
       - AIs are strictly forbidden from skipping link checks, using synthetic hash caches, or assuming past states. Every scheduled audit must actively inspect target URLs and live DOM payloads.
+
+11. **Autonomous Newsletter Auto-Subscription Protocol (Batch Size = 1 Venue & Mandatory Full-Sweep)**:
+    - **Mandatory 100% Full-Sweep Starting at Venue #1**: Whenever newsletter auto-subscription is invoked, it MUST start at Venue #1 and sweep 100% of all pending signups in `data/manual_review_queue.json` sequentially one venue at a time (Batch Size = 1 Venue) through to the very last venue in the queue. Zero partial runs or early halting.
+    - **Multi-Platform Form Handlers**: Submits payloads across supported formats (OpenDate API, Mailchimp hosted & embedded endpoints, Divi modules, WPForms, WordPress, Keela, Zeffy, etc.) with `Van50.Submit@gmail.com`.
+    - **Automated Double Opt-In Handshake**: Connects to `Van50.Submit@gmail.com` via IMAP, detects confirmation emails, extracts activation URLs, and issues HTTP verification GET requests to complete the subscription handshake.
+    - **Atomic Checkpoint & Registry Persistence**: Commits state atomically after every single venue to `data/subscribed_venues.json` and `data/manual_review_queue.json` (`pendingNewsletterSignups`).
+    - **Sequential Audit Ledger Report**: Produces a sequential Markdown audit table (`newsletter_autosignup_report.md`) detailing venue name, platform method, status, and diagnostic outcome.
+
 
 

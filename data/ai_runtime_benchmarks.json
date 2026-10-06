@@ -7,16 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 51.8,
-      "averageDurationFormatted": "51s",
-      "totalRuns": 8,
+      "averageDurationSeconds": 87.3,
+      "averageDurationFormatted": "1m 27s",
+      "totalRuns": 10,
       "lastRun": {
-        "timestamp": "2026-10-06T09:38:48.362169",
-        "durationSeconds": 11.8,
-        "durationFormatted": "11s",
-        "itemsProcessed": 6,
-        "newEventsIngested": 1,
-        "notes": "Scouted 6 targets with 1-at-a-time isolation. Ingested 1 new verified event ($10.00 CAD) from The Roxy Cabaret."
+        "timestamp": "2026-10-06T10:11:36.811873",
+        "durationSeconds": 449.0,
+        "durationFormatted": "7m 28s",
+        "itemsProcessed": 181,
+        "newEventsIngested": 176,
+        "notes": "Scouted 181 targets with 1-at-a-time isolation. Ingested 176 new events under $50 CAD."
       },
       "history": [
         {
@@ -72,20 +72,34 @@
           "durationFormatted": "11s",
           "itemsProcessed": 6,
           "newEventsIngested": 32
+        },
+        {
+          "timestamp": "2026-10-06T10:00:26.336059",
+          "durationSeconds": 9.5,
+          "durationFormatted": "9s",
+          "itemsProcessed": 2,
+          "newEventsIngested": 0
+        },
+        {
+          "timestamp": "2026-10-06T10:11:36.811817",
+          "durationSeconds": 449.0,
+          "durationFormatted": "7m 28s",
+          "itemsProcessed": 181,
+          "newEventsIngested": 176
         }
       ]
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 91.7,
+      "averageDurationSeconds": 106.3,
       "averageDurationFormatted": "2 minutes",
-      "totalRuns": 9,
+      "totalRuns": 10,
       "lastRun": {
-        "timestamp": "2026-10-06T09:34:05",
-        "durationSeconds": 90.5,
-        "durationFormatted": "1m 30s",
-        "itemsAudited": 144,
-        "notes": "Audited 144 events (Events 1-144) with 1-at-a-time isolation. Upgraded 0 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
+        "timestamp": "2026-10-06T10:51:32",
+        "durationSeconds": 237.6,
+        "durationFormatted": "3m 57s",
+        "itemsAudited": 321,
+        "notes": "Audited 321 events (Events 1-321) with 1-at-a-time isolation. Upgraded 3 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
       },
       "history": [
         {
@@ -147,6 +161,12 @@
           "durationSeconds": 90.5,
           "durationFormatted": "1m 30s",
           "itemsProcessed": 144
+        },
+        {
+          "timestamp": "2026-10-06T10:51:32",
+          "durationSeconds": 237.6,
+          "durationFormatted": "3m 57s",
+          "itemsProcessed": 321
         }
       ]
     },

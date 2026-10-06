@@ -4289,9 +4289,8 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           </div>
         `;
       }
-        </div>
-      `;
     }
+
 
     // Waypoints for consolidated hub attractions (e.g. Stanley Park)
     let waypointsHtml = '';

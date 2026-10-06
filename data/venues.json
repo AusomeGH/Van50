@@ -46,7 +46,9 @@
     },
     "policySummary": "Calendar: https://vancouverfringe.com/shows/",
     "calendarUrl": "https://vancouverfringe.com/shows/",
-    "boxOfficeUrl": "https://vancouverfringe.com/shows/"
+    "boxOfficeUrl": "https://vancouverfringe.com/shows/",
+    "last_scouted_at": "2026-10-06T10:04:13.885050",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Lynn Canyon Park",
@@ -72,7 +74,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:15.365209",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Granville Island Public Market",
@@ -98,7 +102,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:04:18.113388",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
@@ -124,7 +130,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:19.598934",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "VPL Central Library (Level 9)",
@@ -150,7 +158,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:20.399240",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Dr. Sun Yat-Sen Public Courtyard",
@@ -176,7 +186,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:04:22.156076",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "UBC Rose Garden & Trail 6",
@@ -202,7 +214,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:23.259268",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Queen Elizabeth Park",
@@ -228,7 +242,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:30.989801",
+    "last_scout_yield": 3
   },
   {
     "venue_name": "Little Mountain Gallery",
@@ -254,7 +270,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:33.271335",
+    "last_scout_yield": 9
   },
   {
     "venue_name": "Bloedel Conservatory",
@@ -280,7 +298,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:35.943435",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "War Memorial Gym & Thunderbird Stadium",
@@ -306,7 +326,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:38.121851",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "Chill x Studio",
@@ -332,7 +354,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:38.545059",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "VIFF Centre (Seymour Atrium)",
@@ -358,7 +382,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:39.299514",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Cinematheque",
@@ -384,7 +410,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:40.512221",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Portside Pub",
@@ -410,7 +438,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:04:44.157434",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Rio Theatre",
@@ -436,7 +466,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:44.599114",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Fox Cabaret",
@@ -462,7 +494,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:04:46.113078",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Biltmore Cabaret",
@@ -488,7 +522,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:04:47.122206",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Scotiabank Field at Nat Bailey Stadium",
@@ -514,7 +550,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:49.816527",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Revue Stage Granville Island",
@@ -540,7 +578,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:50.357750",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Tightrope Impro Theatre",
@@ -566,7 +606,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:52.963743",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Improv Centre",
@@ -592,7 +634,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:54.216352",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Rickshaw Theatre",
@@ -618,7 +662,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:55.445424",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Science World at TELUS World of Science",
@@ -644,7 +690,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:56.319633",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Orpheum Theatre",
@@ -670,7 +718,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:58.374268",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Pizzeria Ludica",
@@ -696,7 +746,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:04:59.575744",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Stanley Park Pitch & Putt",
@@ -722,7 +774,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:02.204096",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Vancouver Art Gallery",
@@ -748,7 +802,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:08.239903",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "The Shipyards District",
@@ -774,7 +830,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:14.165865",
+    "last_scout_yield": 3
   },
   {
     "venue_name": "Kitsilano Beach Park",
@@ -800,7 +858,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:15.894835",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Commercial Drive & Main Street",
@@ -826,7 +886,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:17.723527",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "West 4th Avenue (Burrard to Macdonald)",
@@ -852,7 +914,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:18.607797",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "John Hendry Park (Trout Lake)",
@@ -878,7 +942,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:20.560151",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Kitsilano Community Centre Plaza",
@@ -904,7 +970,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:22.076169",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Guilt & Co.",
@@ -930,7 +998,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:23.706213",
+    "last_scout_yield": 2
   },
   {
     "venue_name": "UBC Instructional Resources Centre (IRC)",
@@ -956,7 +1026,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:24.495977",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Colony Main Street",
@@ -982,7 +1054,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:34.289043",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "RUNVAN Clubhouse & Seawall",
@@ -1008,7 +1082,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:05:38.281513",
+    "last_scout_yield": 6
   },
   {
     "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
@@ -1034,7 +1110,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:39.983615",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Nelson Park (West End)",
@@ -1060,7 +1138,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:41.752277",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Dude Chilling Park (Guelph Park)",
@@ -1086,7 +1166,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:43.173845",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Vancouver Art Gallery Plaza (North)",
@@ -1112,7 +1194,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:44.501381",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Concord Community Park (False Creek)",
@@ -1138,7 +1222,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:45.932464",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "UBC Farm (South Campus)",
@@ -1164,7 +1250,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:48.749731",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "2nd Floor Gastown",
@@ -1190,7 +1278,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:05:49.583924",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Frankie's Jazz Club",
@@ -1216,7 +1306,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:05:52.969940",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The WISE Hall & Lounge",
@@ -1242,7 +1334,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:05:57.997611",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "The Anza Club",
@@ -1268,7 +1362,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:06:00.825908",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Red Gate Arts Society",
@@ -1294,7 +1390,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:04.256138",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "LanaLou's",
@@ -1320,7 +1418,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:15.358288",
+    "last_scout_yield": 7
   },
   {
     "venue_name": "The Roxy Cabaret",
@@ -1346,7 +1446,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:06:17.336576",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "Café au Clay Studios",
@@ -1372,7 +1474,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:18.481638",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Basic Inquiry Life Drawing Society",
@@ -1398,7 +1502,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:28.857131",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Hand Eye Ceramics",
@@ -1424,7 +1530,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:30.395805",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Claymates Ceramics Studio",
@@ -1450,7 +1558,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:32.599986",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Slice of Life Gallery & Studios",
@@ -1476,7 +1586,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:06:33.761644",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Public Disco Society",
@@ -1502,7 +1614,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:07:11.771883",
+    "last_scout_yield": 6
   },
   {
     "venue_name": "Bentall Centre Dunsmuir Plaza",
@@ -1528,7 +1642,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:13.950319",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Birdhouse",
@@ -1554,7 +1670,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:17.119115",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Shipyards Waterfront",
@@ -1580,7 +1698,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:19.867678",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Hollywood Theatre",
@@ -1606,7 +1726,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:21.044502",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Rickshaw Theatre",
@@ -1637,7 +1759,9 @@
     "cheapest_pint_calibrated": 8.5,
     "cheapest_cocktail_calibrated": 14.5,
     "spend_calibration_source": "patron_crowdsourced_consensus",
-    "spend_calibrated_at": "2026-10-02T17:05:38.160156+00:00"
+    "spend_calibrated_at": "2026-10-02T17:05:38.160156+00:00",
+    "last_scouted_at": "2026-10-06T10:07:23.398636",
+    "last_scout_yield": 8
   },
   {
     "venue_name": "Waterfront Theatre",
@@ -1663,7 +1787,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:24.719955",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Waldorf",
@@ -1689,7 +1815,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:26.501325",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Cobalt",
@@ -1715,7 +1843,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:28.919611",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Carousel Theatre",
@@ -1741,7 +1871,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:38.414186",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Commercial Drive",
@@ -1767,7 +1899,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:39.571845",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Main Street",
@@ -1793,7 +1927,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:40.703932",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Touchstone Theatre",
@@ -1819,7 +1955,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:44.647892",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Queen Elizabeth Park Pitch & Putt",
@@ -1845,7 +1983,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$12.00 – $22.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:46.275447",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Rupert Park Pitch & Putt",
@@ -1871,7 +2011,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:47.898819",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Central Park Pitch & Putt",
@@ -1897,7 +2039,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:07:50.370509",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Queen Elizabeth Theatre",
@@ -1923,7 +2067,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:27.724858",
+    "last_scout_yield": 24
   },
   {
     "venue_name": "The Pearl",
@@ -1948,7 +2094,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:29.026641",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The WISE Hall",
@@ -1973,7 +2121,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:30.498459",
+    "last_scout_yield": 25
   },
   {
     "venue_name": "Bill Reid Gallery of Northwest Coast Art",
@@ -1998,7 +2148,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:31.700037",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Burnaby Art Gallery",
@@ -2023,7 +2175,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:33.500936",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "UBC Botanical Garden",
@@ -2048,7 +2202,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:35.638020",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Cambrian Hall",
@@ -2073,7 +2229,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:08:36.382602",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Show Cellar inside The Park Pub",
@@ -2098,7 +2256,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:08:37.788360",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The China Cloud Studios",
@@ -2123,7 +2283,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:09.732289",
+    "last_scout_yield": 21
   },
   {
     "venue_name": "The Shipyards",
@@ -2147,7 +2309,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:10.133506",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Pipe Shop Venue",
@@ -2171,7 +2335,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:10.434465",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Annex",
@@ -2196,7 +2362,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:11.515030",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Croatian Cultural Centre",
@@ -2221,7 +2389,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:13.986534",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "Fox Cabaret",
@@ -2246,7 +2416,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:09:16.438199",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Show Cellar",
@@ -2271,7 +2443,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:17.647867",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Polygon Gallery",
@@ -2296,7 +2470,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:22.260645",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "Arts Club Theatre Company (Granville Island Stage)",
@@ -2321,7 +2497,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:09:27.364578",
+    "last_scout_yield": 3
   },
   {
     "venue_name": "Pendulum Gallery",
@@ -2346,7 +2524,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:30.762836",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Trout Lake Community Centre",
@@ -2371,7 +2551,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:32.101014",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Orpheum",
@@ -2396,7 +2578,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:33.260916",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "VanDusen Botanical Garden",
@@ -2421,7 +2605,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:34.444749",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Contemporary Art Gallery (CAG)",
@@ -2446,7 +2632,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:36.051585",
+    "last_scout_yield": 1
   },
   {
     "venue_name": "LanaLou's Rock 'n' Roll Eatery",
@@ -2471,7 +2659,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:36.885959",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Guilt & Company",
@@ -2496,7 +2686,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:09:37.664302",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Vancouver Public Library Central Branch",
@@ -2509,7 +2701,9 @@
       49.2801,
       -123.1154
     ],
-    "access_model": "open_public_space"
+    "access_model": "open_public_space",
+    "last_scouted_at": "2026-10-06T10:10:06.371622",
+    "last_scout_yield": 23
   },
   {
     "venue_name": "The WISE Hall",
@@ -2559,7 +2753,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:11.980706",
+    "last_scout_yield": 2
   },
   {
     "venue_name": "The Annex",
@@ -2584,7 +2780,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:12.621704",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Waldorf Hotel",
@@ -2609,7 +2807,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:12.996464",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Orpheum Theatre",
@@ -2634,7 +2834,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:13.610032",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Guilt & Co",
@@ -2659,7 +2861,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:13.993689",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Annex & Roundhouse Community Centre",
@@ -2684,7 +2888,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:15.648296",
+    "last_scout_yield": 0
   },
   {
     "venueId": "test-qa-cellar-1790801024",
@@ -2753,7 +2959,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:16.049390",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Pipe Shop & Shipbuilders' Square",
@@ -2778,7 +2986,9 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:35.566177",
+    "last_scout_yield": 7
   },
   {
     "venue_name": "The American",
@@ -2803,7 +3013,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:37.413756",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "BREWHALL",
@@ -2828,7 +3040,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:38.582264",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
@@ -2853,7 +3067,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:38.992016",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "SFU Goldcorp Centre for the Arts",
@@ -2878,7 +3094,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:42.704910",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Gorg-O-Mish",
@@ -2903,7 +3121,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:43.745121",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Vancouver Maritime Museum",
@@ -2928,7 +3148,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:45.593641",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "2nd Floor Gastown at Water St. Café",
@@ -2953,7 +3175,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:46.461903",
+    "last_scout_yield": 9
   },
   {
     "venue_name": "The Sylvia Hotel Lounge",
@@ -2978,7 +3202,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:10:51.553396",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Tyrant Studios",
@@ -3003,7 +3229,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:10:54.409890",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Centennial Theatre",
@@ -3028,7 +3256,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:11:05.815628",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "GRETA Bar YVR",
@@ -3053,7 +3283,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:11:13.190526",
+    "last_scout_yield": 4
   },
   {
     "venue_name": "The Main",
@@ -3078,7 +3310,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:11:14.561784",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Commodore Ballroom",
@@ -3103,7 +3337,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "19+ (Two pieces of government ID required)"
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "last_scouted_at": "2026-10-06T10:11:16.535284",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "The Rec Room Granville",
@@ -3128,7 +3364,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$16.00 – $26.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "last_scouted_at": "2026-10-06T10:11:17.951272",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Firehall Arts Centre",
@@ -3154,7 +3392,9 @@
     },
     "coffee_benchmark": "$4.50 – $6.50 CAD",
     "meal_benchmark": "$14.00 – $22.00 CAD (Gastown / Chinatown corridor)",
-    "restrictions": "All Ages / Show-specific guidance"
+    "restrictions": "All Ages / Show-specific guidance",
+    "last_scouted_at": "2026-10-06T10:11:19.837540",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "York Theatre (The Cultch)",
@@ -3168,7 +3408,9 @@
     ],
     "access_model": "fenced_facility",
     "typical_drink_spend": "$7.50 craft beer / $9.00 wine",
-    "notes": "Historic 370-seat East Vancouver proscenium theatre operated by The Cultch."
+    "notes": "Historic 370-seat East Vancouver proscenium theatre operated by The Cultch.",
+    "last_scouted_at": "2026-10-06T10:11:20.901461",
+    "last_scout_yield": 0
   },
   {
     "venue_name": "Museum of Anthropology (MOA) at UBC",
@@ -3182,7 +3424,9 @@
     ],
     "access_model": "fenced_facility",
     "typical_drink_spend": "$4.50 coffee at MOA Cafe",
-    "notes": "World-renowned Arthur Erickson-designed museum overlooking the Strait of Georgia."
+    "notes": "World-renowned Arthur Erickson-designed museum overlooking the Strait of Georgia.",
+    "last_scouted_at": "2026-10-06T10:11:23.602837",
+    "last_scout_yield": 2
   },
   {
     "venue_name": "Performance Works",
@@ -3209,6 +3453,8 @@
     "coffee_benchmark": "$4.50 – $6.00 CAD (Granville Island roasters)",
     "meal_benchmark": "$14.00 – $24.00 CAD",
     "restrictions": "All Ages / Licensed events 19+ with 2 pieces of ID",
-    "drink_benchmark": "$8.00 CAD local beer / $9.00 CAD wine"
+    "drink_benchmark": "$8.00 CAD local beer / $9.00 CAD wine",
+    "last_scouted_at": "2026-10-06T10:11:31.799846",
+    "last_scout_yield": 3
   }
 ]

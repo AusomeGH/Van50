@@ -1,6 +1,6 @@
 {
   "target_email": "Van50.Submit@gmail.com",
-  "last_updated": "2026-10-06T15:14:51.614865+00:00",
+  "last_updated": "2026-10-06T18:44:07.586145+00:00",
   "subscriptions": [
     {
       "venue_name": "The Rio Theatre",
@@ -49,6 +49,342 @@
       "website": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
       "status": "Manual Curator Subscription (https://exploretock.us1.list-manage.com/subscribe/post?u=5cbeed94ccde7dc28ed447d5d&id=618db666ae&f_id=002989e5f0)",
       "subscribed_at": "2026-10-06T15:14:51.614857+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "The Roxy Cabaret",
+      "website": "https://www.roxyvan.com",
+      "status": "Manual Curator Subscription (https://www.roxyvan.com)",
+      "subscribed_at": "2026-10-06T17:50:31.444640+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "Stanley Park Seawall",
+      "website": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+      "status": "Manual Curator Subscription (https://www.destinationvancouver.com/things-to-do/listings/stanley-park)",
+      "subscribed_at": "2026-10-06T17:51:12.208513+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "Dr. Sun Yat-Sen Public Courtyard",
+      "website": "https://vancouverchinesegarden.com/visit/",
+      "status": "Manual Curator Subscription (https://vancouverchinesegarden.com/visit/)",
+      "subscribed_at": "2026-10-06T17:51:38.762321+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "Queen Elizabeth Park",
+      "website": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+      "status": "Manual Curator Subscription (https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park)",
+      "subscribed_at": "2026-10-06T17:51:54.969579+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "War Memorial Gym & Thunderbird Stadium",
+      "website": "https://gothunderbirds.ca",
+      "status": "Manual Curator Subscription (https://gothunderbirds.ca/sports/2009/10/21/e-news)",
+      "subscribed_at": "2026-10-06T17:52:54.377785+00:00",
+      "method": "Newsletter Direct Signup Link"
+    },
+    {
+      "venue_name": "VIFF Centre (Seymour Atrium)",
+      "website": "https://viff.org",
+      "status": "Manual Curator Subscription (https://viff.us20.list-manage.com/subscribe?u=3344b76c6b5bdf78e58637067&id=2f28b8d64f)",
+      "subscribed_at": "2026-10-06T18:27:02.704820+00:00",
+      "method": "Mailchimp Subscription Portal"
+    },
+    {
+      "venue_name": "The Fox Cabaret",
+      "website": "https://www.foxcabaret.com",
+      "status": "Manual Curator Subscription (https://www.foxcabaret.com)",
+      "subscribed_at": "2026-10-06T18:27:21.259576+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "The Biltmore Cabaret",
+      "website": "https://biltmorecabaret.com",
+      "status": "Manual Curator Subscription (https://biltmorecabaret.com#)",
+      "subscribed_at": "2026-10-06T18:28:07.316350+00:00",
+      "method": "Newsletter Direct Signup Link"
+    },
+    {
+      "venue_name": "Science World at TELUS World of Science",
+      "website": "https://www.scienceworld.ca",
+      "status": "Manual Curator Subscription (https://www.scienceworld.ca/subscribe/)",
+      "subscribed_at": "2026-10-06T18:28:29.643622+00:00",
+      "method": "Newsletter Direct Signup Link"
+    },
+    {
+      "venue_name": "Vancouver Art Gallery",
+      "website": "https://www.vanartgallery.bc.ca",
+      "status": "Manual Curator Subscription (https://mailchi.mp/55d5350d067c/enews)",
+      "subscribed_at": "2026-10-06T18:29:06.196307+00:00",
+      "method": "Newsletter Direct Signup Link"
+    },
+    {
+      "venue_name": "Hollywood Theatre",
+      "website": "https://hollywoodtheatre.ca/",
+      "status": "Auto-Subscribed (OpenDate Fan API)",
+      "subscribed_at": "2026-10-06T18:42:47.128786+00:00",
+      "method": "OpenDate Fan API"
+    },
+    {
+      "venue_name": "The Cambrian Hall",
+      "website": "https://www.eventbrite.ca/o/jokes-please-16562107853",
+      "status": "Auto-Subscribed (Eventbrite Patron Registration)",
+      "subscribed_at": "2026-10-06T18:42:47.654711+00:00",
+      "method": "Eventbrite Patron Registration"
+    },
+    {
+      "venue_name": "Lynn Canyon Park",
+      "website": "https://ecologycentre.ca",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:42:51.810096+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "Scotiabank Field at Nat Bailey Stadium",
+      "website": "https://www.milb.com/vancouver",
+      "status": "Auto-Subscribed (MiLB Portal)",
+      "subscribed_at": "2026-10-06T18:42:52.344943+00:00",
+      "method": "MiLB Portal"
+    },
+    {
+      "venue_name": "The Shipyards District",
+      "website": "https://theshipyardsdistrict.ca",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:42:55.787890+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "John Hendry Park (Trout Lake)",
+      "website": "https://eatlocal.org/markets/trout-lake/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:56.325366+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Kitsilano Community Centre Plaza",
+      "website": "https://eatlocal.org/markets/kitsilano/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:56.868513+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
+      "website": "https://eatlocal.org/markets/riley-park/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:57.411517+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Nelson Park (West End)",
+      "website": "https://eatlocal.org/markets/west-end/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:57.956686+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Dude Chilling Park (Guelph Park)",
+      "website": "https://eatlocal.org/markets/mount-pleasant/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:58.494332+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Vancouver Art Gallery Plaza (North)",
+      "website": "https://eatlocal.org/markets/downtown/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:59.034082+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "Concord Community Park (False Creek)",
+      "website": "https://eatlocal.org/markets/false-creek/",
+      "status": "Auto-Subscribed (Zeffy Form Portal)",
+      "subscribed_at": "2026-10-06T18:42:59.569768+00:00",
+      "method": "Zeffy Form Portal"
+    },
+    {
+      "venue_name": "LanaLou's",
+      "website": "https://do604.com/venues/lanalou-s",
+      "status": "Auto-Subscribed (Do604 Portal)",
+      "subscribed_at": "2026-10-06T18:43:00.108324+00:00",
+      "method": "Do604 Portal"
+    },
+    {
+      "venue_name": "Café au Clay Studios",
+      "website": "https://cafeauclay.com",
+      "status": "Auto-Subscribed (Embedded HTML Form)",
+      "subscribed_at": "2026-10-06T18:43:01.583590+00:00",
+      "method": "Embedded HTML Form"
+    },
+    {
+      "venue_name": "Claymates Ceramics Studio",
+      "website": "https://claymatesceramicsstudio.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:04.013642+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Shipyards Waterfront",
+      "website": "https://theshipyardsdistrict.ca",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:43:07.216051+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "The Waldorf",
+      "website": "https://atthewaldorf.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:09.151680+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Cobalt",
+      "website": "https://thecobalt.ca",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:11.372972+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Queen Elizabeth Theatre",
+      "website": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:15.160431+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Pearl",
+      "website": "https://thepearlvancouver.com/",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:17.134342+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Bill Reid Gallery of Northwest Coast Art",
+      "website": "https://www.billreidgallery.ca/",
+      "status": "Auto-Subscribed (Keela CRM Portal)",
+      "subscribed_at": "2026-10-06T18:43:17.669231+00:00",
+      "method": "Keela CRM Portal"
+    },
+    {
+      "venue_name": "Burnaby Art Gallery",
+      "website": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:19.611349+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "UBC Botanical Garden",
+      "website": "https://botanicalgarden.ubc.ca/",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:23.116492+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The China Cloud Studios",
+      "website": "https://do604.com/events/comedy",
+      "status": "Auto-Subscribed (Do604 Portal)",
+      "subscribed_at": "2026-10-06T18:43:23.653254+00:00",
+      "method": "Do604 Portal"
+    },
+    {
+      "venue_name": "Fox Cabaret",
+      "website": "https://www.foxcabaret.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:25.171938+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Show Cellar",
+      "website": "https://theshowcellar.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:26.994224+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Trout Lake Community Centre",
+      "website": "https://troutlakecc.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:29.013972+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Contemporary Art Gallery (CAG)",
+      "website": "https://www.contemporaryartgallery.ca",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:43:32.652722+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "LanaLou's Rock 'n' Roll Eatery",
+      "website": "https://do604.com/venues/lanalou-s",
+      "status": "Auto-Subscribed (Do604 Portal)",
+      "subscribed_at": "2026-10-06T18:43:33.190692+00:00",
+      "method": "Do604 Portal"
+    },
+    {
+      "venue_name": "St. Andrew's-Wesley United Church",
+      "website": "https://standrewswesley.com/",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:43:37.324260+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "The Annex & Roundhouse Community Centre",
+      "website": "https://www.roundhouse.ca/",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:40.193933+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Pipe Shop & Shipbuilders' Square",
+      "website": "https://theshipyardsdistrict.ca",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:43:44.181099+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "BREWHALL",
+      "website": "https://brewhall.com",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:43:50.323847+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
+    },
+    {
+      "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
+      "website": "https://vancouverchinesegarden.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:55.053610+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Vancouver Maritime Museum",
+      "website": "https://vanmaritime.com",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:43:56.943506+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "The Sylvia Hotel Lounge",
+      "website": "https://sylviahotel.com/",
+      "status": "Auto-Subscribed (Embedded Newsletter Form)",
+      "subscribed_at": "2026-10-06T18:44:01.544277+00:00",
+      "method": "Embedded Newsletter Form"
+    },
+    {
+      "venue_name": "Firehall Arts Centre",
+      "website": "https://www.firehallartscentre.ca",
+      "status": "Auto-Subscribed (Embedded HTML Form)",
+      "subscribed_at": "2026-10-06T18:44:03.283782+00:00",
+      "method": "Embedded HTML Form"
+    },
+    {
+      "venue_name": "Performance Works",
+      "website": "https://granvilleisland.com/directory/performance-works",
+      "status": "Auto-Subscribed (Mailchimp Hosted Subscription Form)",
+      "subscribed_at": "2026-10-06T18:44:07.586126+00:00",
       "method": "Mailchimp Hosted Subscription Form"
     }
   ]
