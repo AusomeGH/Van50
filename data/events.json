@@ -37958,7 +37958,7 @@
       },
       "audit_notes": "All 50 discrete dimensions audited and confirmed on 2026-10-06."
     },
-    "operational_status": "scheduled",
+    "operational_status": "concluded",
     "links": {
       "tier1_checkout": null,
       "tier2_event_page": null,
@@ -38028,7 +38028,8 @@
       "live_music_concerts",
       "music"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "is_past": true
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-underneath-the-harlem-moon",
