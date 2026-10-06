@@ -1522,6 +1522,20 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
             return self._send_json(200, {"success": True, "newsletterSignups": signups, "count": len(signups)})
 
+        # 2.6 API: Get AI Curator Appeals (requires auth)
+        if path == "/api/curator/appeals":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            appeals = []
+            if os.path.exists(MANUAL_QUEUE_PATH):
+                try:
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                        q_data = json.load(f)
+                        appeals = q_data.get("aiCuratorAppeals", [])
+                except Exception:
+                    pass
+            return self._send_json(200, {"success": True, "appeals": appeals, "count": len(appeals)})
+
         # 3. API: Get learned rules (requires auth)
         if path == "/api/curator/rules":
             if not self._check_authenticated():
@@ -2203,6 +2217,33 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 return self._send_json(200, {"success": True, "message": "Newsletter signup opportunity dismissed."})
             except Exception as e:
                 return self._send_json(500, {"error": f"Failed to dismiss signup: {e}"})
+
+        # API: Resolve AI Curator Appeal
+        if path == "/api/curator/appeals/resolve":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            appeal_id = payload.get("appeal_id") or payload.get("id")
+            action = payload.get("action")  # 'uphold', 'revise', 'accept'
+            guidance = payload.get("guidance", "")
+            if not appeal_id or not action:
+                return self._send_json(400, {"error": "appeal_id and action required"})
+            try:
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as qf:
+                        q_data = json.load(qf)
+                    cur_appeals = q_data.get("aiCuratorAppeals", [])
+                    updated_appeals = [a for a in cur_appeals if a.get("appeal_id") != appeal_id and a.get("id") != appeal_id]
+                    q_data["aiCuratorAppeals"] = updated_appeals
+                    q_data["pendingAppealsCount"] = len(updated_appeals)
+                    q_data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as qf:
+                        json.dump(q_data, qf, indent=2, ensure_ascii=False)
+                return self._send_json(200, {
+                    "success": True,
+                    "message": f"AI appeal '{appeal_id}' resolved with action '{action}'. Guidance recorded: {guidance}"
+                })
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to resolve appeal: {e}"})
 
         # API: Trigger Quality Control AI Pass in background
         if path == "/api/curator/run-qc":

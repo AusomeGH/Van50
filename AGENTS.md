@@ -82,14 +82,43 @@
      - **QC AI**: During single-event audits, verify that no add-on tier defines the event's minimum price floor or causes `effectiveMin` to fall below actual admission.
      - **Quarantine AI**: If a quarantined card has inverted add-on pricing, re-calculate the range using `Floor = Base Admission` and `Ceiling = Base Admission + Add-On` before graduating cards to `data/events.json`.
 
-10. **Dimension-by-Dimension Audit & Timestamp Protocol (Zero Rubber-Stamping)**:
-    - **Granular Scoping Mandate**: When QC AI audits an event, it MUST NOT issue a blanket or superficial pass. It must systematically inspect each of the 20 discrete dimensions (D1 Title through D20 Showings/Waypoints) sequentially.
+10. **Dimension-by-Dimension Audit & Timestamp Protocol (Complete 37-Dimension Architecture)**:
+    - **Granular Scoping Mandate**: When QC AI audits an event, it MUST NOT issue a blanket or superficial pass. It must systematically inspect each of the 37 discrete dimensions (D1 Title through D37 Civic Provider Rules) sequentially.
     - **Dimension Audit Metadata Schema (`dimension_audit`)**:
-      - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score`, and a `dimensions` map.
-      - For each dimension (D1..D20), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`), and a descriptive validation `note` or value.
-    - **Audit Notes & Anomaly Logging**: Any adjustments made during QC (e.g. link upgrades, price adjustments, tier cleaning) must be documented in `actions_taken` and written to `audit_notes`.
-    - **Differential Decay & Freshness**:
-      - *High Velocity (Daily/Weekly)*: D2 (Date), D11 (Price), D12 (Tiers), D14 (Link), D19 (Sold-Out) must be audited frequently.
-      - *Medium Velocity (Monthly)*: D3 (Time), D4 (Weekly Hours), D13 (Benchmarks), D18 (Restrictions).
-      - *Low Velocity (Semi-Annual)*: D1 (Title), D7 (Category), D8 (Location), D9 (Access), D10 (Pricing Model), D16 (Description).
+      - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score` (`37/37`), and a `dimensions` map.
+      - For each dimension (D1..D37), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`, `not_applicable`), and descriptive validation values or notes.
+    - **Link Tier Hierarchy & Best Available Link Standard (D22–D26)**:
+      - Every event maintains dedicated dimensional slots for each tier:
+        - **D22**: Tier 1 Link (`tier1_checkout`) — Direct Ticketing Checkout Cart (Eventbrite, Showpass, Square, Ticketweb, Spektrix, Ticketmaster).
+        - **D23**: Tier 2 Link (`tier2_event_page`) — Dedicated Individual Event Page on venue/promoter domain.
+        - **D24**: Tier 3 Link (`tier3_calendar`) — Venue Master Calendar / Schedule Directory (`/events`, `/calendar`).
+        - **D25**: Tier 4 Link (`tier4_civic_destination`) — Option C Non-Blocking Civic Destination Guide (Destination Vancouver, Stanley Park Van, etc.).
+        - **D26**: Tier 5 Link (`tier5_venue_home`) — Venue Master Homepage.
+      - **Best Available Link Rule**: The app UI automatically links to the highest tier present (`T1 > T2 > T3 > T4 > T5`) via `best_available_link` and `best_link_tier`. Whenever Scout AI or QC AI discovers a superior tier link, it populates that tier slot and dynamically elevates `best_available_link`.
+    - **Granular Pricing Invariants & The $50 Hard Ceiling Anchor (D27–D32)**:
+      - Pricing is tracked across 6 discrete dimensions:
+        - **D27**: `price_base` — Minimum base admission floor.
+        - **D28**: `price_tax` — Estimated or explicit tax component.
+        - **D29**: `price_fees` — Platform / facility / service fees.
+        - **D30**: `price_all_in` — **The Primary Van50 Budget Anchor ($\le \$50.00$ CAD)**. Sum of base + tax + mandatory fees.
+        - **D31**: `other_cost_label` — Name of optional ancillary add-on (e.g. Club Rental, Skate Rental, Tasting Tokens, Coat Check).
+        - **D32**: `other_cost_price` — Numeric price of optional add-on.
+      - **AI Clarity Directive**: The sub-components (`base`, `tax`, `fees`, `other`) provide rich display transparency to consumers, but `price_all_in` is the absolute qualifying gate. The AI must never allow component breakdowns to distract it from verifying that `price_all_in \le \$50.00 CAD`.
+    - **Data Provenance, Curator Lock & Interactive AI Appeal Protocol (D33)**:
+      - `curator_locked`: When true, autonomous scrapers must preserve curator-crafted copy and settings.
+      - **Mandatory AI Appeal Channel**: If an AI (Scout or QC) discovers live empirical truth that conflicts with a Curator Lock or Curator Instruction (e.g. ticket price raised to $58 CAD, event cancelled/postponed, venue permanently closed, or link dead 404), the AI MUST NOT blindly obey or silently fail.
+      - It records an **AI Appeal** into `manual_review_queue.json` under `aiCuratorAppeals`, citing:
+        - Target `event_id` and `instruction_id`
+        - Live empirical evidence (URL, HTTP status, live cart price)
+        - Detailed explanation of why the AI takes issue with the Curator directive
+        - AI recommendation (e.g. "Archive event: live checkout is $58 CAD which breaches the $50 ceiling")
+      - The appeal is staged in Curator Studio for the human Curator to either `Uphold`, `Revise`, or `Accept AI Recommendation`.
+    - **Zero Caching Wiggle Room Mandate**:
+      - AIs are strictly forbidden from skipping link checks, using synthetic hash caches, or assuming past states. Every scheduled audit must actively inspect target URLs and live DOM payloads.
+    - **Multi-City Federation Readiness (City50 Standard, D34–D37)**:
+      - **D34**: `geo_jurisdiction` (`city_id: "yvr"`, `metro_name: "Metro Vancouver"`, `municipality`, `province_state: "BC"`, `country: "CA"`).
+      - **D35**: `currency_standard` (`currency: "CAD"`, `currency_symbol: "$"`, `budget_ceiling: 50.00`).
+      - **D36**: `iana_timezone` (`America/Vancouver`).
+      - **D37**: `civic_provider_rules` (`Destination Vancouver / Civic Official Guide`, `blocks_cloudflared_aspx: true`).
+
 

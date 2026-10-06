@@ -1,6 +1,6 @@
 {
   "target_email": "Van50.Submit@gmail.com",
-  "last_updated": "2026-10-06T02:10:35.438255+00:00",
+  "last_updated": "2026-10-06T15:14:51.614865+00:00",
   "subscriptions": [
     {
       "venue_name": "The Rio Theatre",
@@ -43,6 +43,13 @@
       "status": "Manual Curator Subscription (https://tightropetheatre.com/)",
       "subscribed_at": "2026-10-06T02:10:35.438226+00:00",
       "method": "Embedded Mailchimp / Newsletter Form"
+    },
+    {
+      "venue_name": "2nd Floor Gastown",
+      "website": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+      "status": "Manual Curator Subscription (https://exploretock.us1.list-manage.com/subscribe/post?u=5cbeed94ccde7dc28ed447d5d&id=618db666ae&f_id=002989e5f0)",
+      "subscribed_at": "2026-10-06T15:14:51.614857+00:00",
+      "method": "Mailchimp Hosted Subscription Form"
     }
   ]
 }

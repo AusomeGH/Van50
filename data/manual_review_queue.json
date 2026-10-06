@@ -9,7 +9,7 @@
   "pendingCount": 0,
   "userFeedbackQueue": [],
   "pendingFeedbackCount": 0,
-  "updatedAt": "2026-10-06T02:10:35.449310+00:00",
+  "updatedAt": "2026-10-06T15:14:51.615713+00:00",
   "pendingNewsletterSignups": [
     {
       "id": "nls_hollywood-theatre",
@@ -21,18 +21,9 @@
       "status": "pending_manual_subscription",
       "detected_at": "2026-10-06T02:02:31.527435+00:00",
       "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_2nd-floor-gastown",
-      "venue_name": "2nd Floor Gastown",
-      "website_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
-      "signup_url": "https://exploretock.us1.list-manage.com/subscribe/post?u=5cbeed94ccde7dc28ed447d5d&id=618db666ae&f_id=002989e5f0",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-06T02:02:42.942401+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
     }
   ],
-  "pendingNewsletterCount": 2
+  "pendingNewsletterCount": 1,
+  "aiCuratorAppeals": [],
+  "pendingAppealsCount": 0
 }
