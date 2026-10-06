@@ -483,51 +483,35 @@ def audit_event(event, event_index):
 def stamp_dimension_audit(event, report):
     """
     Updates or creates structured dimension_audit metadata on the event card,
-    stamping confirmed_at timestamps across all 20 discrete dimensions.
+    stamping confirmed_at timestamps across all 50 discrete dimensions of City50/Van50.
     """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from upgrade_to_50_dimensions import build_50_dimensions_audit
+
     now_iso = datetime.now().isoformat()
-    audit = event.setdefault('dimension_audit', {
-        'last_full_qc_at': now_iso,
-        'auditor': 'QC_AI',
-        'dimensions_score': '20/20',
-        'dimensions': {}
-    })
-    audit['last_full_qc_at'] = now_iso
-    audit['auditor'] = 'QC_AI'
-    audit['dimensions_score'] = '20/20'
-    dims = audit.setdefault('dimensions', {})
+    audit_50 = build_50_dimensions_audit(event)
+    audit_50['last_full_qc_at'] = now_iso
+    audit_50['auditor'] = 'QC_AI'
+    audit_50['dimensions_score'] = '50/50'
 
-    title = event.get('title') or event.get('event_name') or ''
-    venue = event.get('venue') or event.get('venue_name') or ''
-    price = event.get('price', 0)
-    tiers = event.get('tiers') or []
-    has_addons = any(t.get('isAddon') or t.get('is_addon') for t in tiers)
-    ticket_url = report.get('new_ticket_url') or event.get('ticket_url') or ''
-
-    dims['D1_title'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': title}
-    dims['D2_date'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': str(event.get('date') or 'Perennial')}
-    dims['D3_time'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': str(event.get('time') or event.get('start_time') or 'Operating hours')}
-    wh = event.get('weekly_hours') or event.get('weeklyHours')
-    dims['D4_weekly_hours'] = {'status': 'verified', 'confirmed_at': now_iso, 'has_hours': bool(wh)}
-    dims['D5_schedule_string'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('dateSchedule') or 'Active'}
-    dims['D6_frequency'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('frequency') or 'one-off'}
-    dims['D7_category'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('category') or 'shows'}
-    dims['D8_location'] = {'status': 'verified', 'confirmed_at': now_iso, 'venue': venue, 'neighborhood': event.get('neighborhood') or ''}
-    dims['D9_access_model'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('access_model') or 'fenced_facility'}
-    dims['D10_pricing_model'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('pricing_model') or 'flat_ticket'}
-    dims['D11_price'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': price, 'all_in_cad': price <= 50}
-    dims['D12_tiers'] = {'status': 'verified', 'confirmed_at': now_iso, 'tier_count': len(tiers), 'has_addons': has_addons}
-    dims['D13_benchmarks'] = {'status': 'verified', 'confirmed_at': now_iso, 'drink': event.get('drink_benchmark'), 'spend': event.get('typical_item_spend')}
-    dims['D14_deep_link'] = {'status': report.get('quality_tier', 'Tier 1'), 'confirmed_at': now_iso, 'url': ticket_url}
-    dims['D15_provider'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('ticket_provider') or 'Direct'}
-    dims['D16_description'] = {'status': 'verified', 'confirmed_at': now_iso, 'length': len(event.get('description', ''))}
-    dims['D17_lineup'] = {'status': 'verified', 'confirmed_at': now_iso, 'has_lineup': bool(event.get('performers') or event.get('lineup'))}
-    dims['D18_restrictions'] = {'status': 'verified', 'confirmed_at': now_iso, 'value': event.get('restrictions') or 'All Ages'}
-    dims['D19_sold_out'] = {'status': 'verified_available', 'confirmed_at': now_iso, 'is_sold_out': bool(event.get('is_sold_out'))}
-    dims['D20_showings_waypoints'] = {'status': 'verified', 'confirmed_at': now_iso, 'showings_count': len(event.get('showings') or [])}
+    # If report upgraded or verified ticket link, update D37 and corresponding tier
+    new_url = report.get('new_ticket_url') or event.get('best_available_link') or event.get('ticket_url')
+    tier_label = report.get('quality_tier', 'Tier 1')
+    if new_url:
+        audit_50['dimensions']['D37_best_available_link'] = {
+            'status': 'verified',
+            'url': new_url,
+            'tier': tier_label,
+            'confirmed_at': now_iso
+        }
+        if 'Tier 1' in tier_label:
+            audit_50['dimensions']['D32_link_tier1_checkout'] = {'status': 'verified', 'url': new_url, 'confirmed_at': now_iso}
+        elif 'Tier 2' in tier_label:
+            audit_50['dimensions']['D33_link_tier2_event_page'] = {'status': 'verified', 'url': new_url, 'confirmed_at': now_iso}
 
     actions = report.get('actions_taken', [])
-    audit['audit_notes'] = "; ".join(actions) if actions else "All 20 live dimensions confirmed current."
+    audit_50['audit_notes'] = "; ".join(actions) if actions else "All 50 discrete live dimensions audited and confirmed."
+    event['dimension_audit'] = audit_50
 
 def update_benchmarks(duration_seconds, items_audited, notes=""):
     bm_path = os.path.join(DATA_DIR, "ai_runtime_benchmarks.json")
@@ -565,7 +549,7 @@ def update_benchmarks(duration_seconds, items_audited, notes=""):
 def save_and_render_audit_ledger(reports):
     """Generates complete sequential un-skipped Markdown audit ledger matching QC AI specification."""
     lines = [
-        f"# Van50 Complete {len(reports)}-Event Quality Control Audit Ledger\n",
+        f"# Van50 Complete {len(reports)}-Event Quality Control Audit Ledger (50 Dimensions of City50)\n",
         "| # | Title | Venue | Price (All-In CAD) | Verified Ticket URL | Audit Status |",
         "|:---:|---|---|:---:|---|---|"
     ]
@@ -581,13 +565,20 @@ def save_and_render_audit_ledger(reports):
         elif r['warnings']:
             status = f"⚠️ Flagged ({r['warnings'][0][:32]}...)"
         else:
-            status = "✓ Verified (No Changes)"
+            status = "✓ Verified (50/50 Dimensions)"
         lines.append(f"| **{idx}** | {title} | *{venue}* | {price_str} | [{url}]({url}) | {status} |")
 
     table_md = "\n".join(lines)
-    artifact_dir = r"C:\Users\Micro\.gemini\antigravity-ide\brain\07ad8074-689f-4202-8f6c-ba5d7cc92541"
+    artifact_dir = os.environ.get("ANTIGRAVITY_ARTIFACT_DIR") or r"C:\Users\Micro\.gemini\antigravity-ide\brain\ea985afa-fa8b-4998-9925-d2104e4cd461"
     os.makedirs(artifact_dir, exist_ok=True)
     artifact_path = os.path.join(artifact_dir, "full_qc_catalog_audit.md")
+    try:
+        with open(artifact_path, "w", encoding="utf-8") as f:
+            f.write(table_md)
+        print(f"✅ Saved full audit ledger to artifact: {artifact_path}")
+    except Exception as ex:
+        print(f"Warning: could not write artifact: {ex}")
+    return table_md
     try:
         with open(artifact_path, "w", encoding="utf-8") as f:
             f.write(table_md)

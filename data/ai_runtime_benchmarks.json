@@ -70,15 +70,15 @@
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 91.9,
+      "averageDurationSeconds": 91.7,
       "averageDurationFormatted": "2 minutes",
-      "totalRuns": 8,
+      "totalRuns": 9,
       "lastRun": {
-        "timestamp": "2026-10-05T12:39:15",
-        "durationSeconds": 86.4,
-        "durationFormatted": "1m 26s",
-        "itemsAudited": 141,
-        "notes": "Audited 141 events (Events 1-141) with 1-at-a-time isolation. Upgraded 2 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
+        "timestamp": "2026-10-06T09:34:05",
+        "durationSeconds": 90.5,
+        "durationFormatted": "1m 30s",
+        "itemsAudited": 144,
+        "notes": "Audited 144 events (Events 1-144) with 1-at-a-time isolation. Upgraded 0 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
       },
       "history": [
         {
@@ -134,6 +134,12 @@
           "durationSeconds": 86.4,
           "durationFormatted": "1m 26s",
           "itemsProcessed": 141
+        },
+        {
+          "timestamp": "2026-10-06T09:34:05",
+          "durationSeconds": 90.5,
+          "durationFormatted": "1m 30s",
+          "itemsProcessed": 144
         }
       ]
     },
