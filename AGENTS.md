@@ -82,69 +82,65 @@
      - **QC AI**: During single-event audits, verify that no add-on tier defines the event's minimum price floor or causes `effectiveMin` to fall below actual admission.
      - **Quarantine AI**: If a quarantined card has inverted add-on pricing, re-calculate the range using `Floor = Base Admission` and `Ceiling = Base Admission + Add-On` before graduating cards to `data/events.json`.
 
-10. **Dimension-by-Dimension Audit & Timestamp Protocol (Complete 37-Dimension Architecture)**:
-    - **Granular Scoping Mandate**: When QC AI audits an event, it MUST NOT issue a blanket or superficial pass. It must systematically inspect each of the 37 discrete dimensions (D1 Title through D37 Civic Provider Rules) sequentially.
+10. **Dimension-by-Dimension Audit & Timestamp Protocol (The 50 Dimensions of Van50 / City50)**:
+    - **Granular Scoping Mandate**: When QC AI audits an event, it MUST NOT issue a blanket or superficial pass. It must systematically inspect each of the 50 discrete dimensions (D1 Title through D50 Civic Provider Rules) sequentially.
     - **Dimension Audit Metadata Schema (`dimension_audit`)**:
-      - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score` (`37/37`), and a `dimensions` map.
-      - For each dimension (D1..D37), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`, `not_applicable`), and descriptive validation values or notes.
-    - **Link Tier Hierarchy & Best Available Link Standard (D22–D26)**:
-      - Every event maintains dedicated dimensional slots for each tier:
-        - **D22**: Tier 1 Link (`tier1_checkout`) — Direct Ticketing Checkout Cart (Eventbrite, Showpass, Square, Ticketweb, Spektrix, Ticketmaster).
-        - **D23**: Tier 2 Link (`tier2_event_page`) — Dedicated Individual Event Page on venue/promoter domain.
-        - **D24**: Tier 3 Link (`tier3_calendar`) — Venue Master Calendar / Schedule Directory (`/events`, `/calendar`).
-        - **D25**: Tier 4 Link (`tier4_civic_destination`) — Option C Non-Blocking Civic Destination Guide (Destination Vancouver, Stanley Park Van, etc.).
-        - **D26**: Tier 5 Link (`tier5_venue_home`) — Venue Master Homepage.
-      - **Best Available Link Rule**: The app UI automatically links to the highest tier present (`T1 > T2 > T3 > T4 > T5`) via `best_available_link` and `best_link_tier`. Whenever Scout AI or QC AI discovers a superior tier link, it populates that tier slot and dynamically elevates `best_available_link`.
-    - **Granular Pricing Invariants & The $50 Hard Ceiling Anchor (D27–D32)**:
-      - Pricing is tracked across 6 discrete dimensions:
-        - **D27**: `price_base` — Minimum base admission floor.
-        - **D28**: `price_tax` — Estimated or explicit tax component.
-        - **D29**: `price_fees` — Platform / facility / service fees.
-        - **D30**: `price_all_in` — **The Primary Van50 Budget Anchor ($\le \$50.00$ CAD)**. Sum of base + tax + mandatory fees.
-        - **D31**: `other_cost_label` — Name of optional ancillary add-on (e.g. Club Rental, Skate Rental, Tasting Tokens, Coat Check).
-        - **D32**: `other_cost_price` — Numeric price of optional add-on.
-      - **AI Clarity Directive**: The sub-components (`base`, `tax`, `fees`, `other`) provide rich display transparency to consumers, but `price_all_in` is the absolute qualifying gate. The AI must never allow component breakdowns to distract it from verifying that `price_all_in \le \$50.00 CAD`.
-    - **Pricing Models & Consumption Hybrid Standard (D10)**:
-      - Events with food, drink, or entertainment hybrids must be classified with accurate operational models:
-        - `cover_plus_consumption`: Flat cover/door charge for entertainment; food and drink purchases are optional inside (e.g. Guilt & Co., jazz lounges, board game cafes). `price_all_in` represents entry cover; drink/food benchmarks are recorded under D13.
-        - `ticket_plus_mandatory_minimum`: Ticket price plus a required minimum beverage or food purchase (e.g. comedy clubs with 2-drink minimums). The AI **MUST** sum the ticket + mandatory minimum into `price_all_in` to verify the $\le \$50$ CAD ceiling.
-        - `admission_plus_tokens`: Gate admission plus optional tasting tokens or food packages (e.g. food & beer festivals, night markets). Gate entry is `price_base`; tasting packages are tagged as add-ons in D31/D32.
-        - Standard models: `flat_ticket`, `free_access`, `tiered_admission`, `pay_what_you_can`, `donation`, `paid_drop_in`.
-    - **Granular Named Pricing Tier Slots & Anti-Laziness Guard (D12)**:
-      - To prevent LLM batch laziness, tiers are not evaluated as a generic list, but as **explicit, named dimensional slots**:
-        - `adult`: General admission / standard adult ticket floor.
-        - `student`: Dedicated student / youth discount tier.
-        - `senior`: Dedicated senior / elder (65+) discount tier.
-        - `member`: Museum, society, or patron member admission.
-        - `non_member`: General public non-member tier.
-        - `family`: Family or group admission bundle.
-        - `other_1_name` / `other_1_cost`: e.g. "Online Advance", "Early Bird", "Rush Seating".
-        - `other_2_name` / `other_2_cost`: e.g. "Door Admission", "Balcony Seating".
-        - `tier_count_verified`: Total count of distinct tiers detected on checkout page.
-      - **Tier-Fee-Addon Interaction Rule**: Tier prices represent base ticket costs. Mandatory ticketing fees and taxes apply on top. Optional rentals/add-ons remain strictly in D31/D32 and must never be conflated with entry tiers. Any active tier displayed must independently satisfy `all_in \le \$50.00 CAD`.
-    - **Showing-Level Lifecycle, Auto-Archiving & Rollover Standard (D21 & D20)**:
-      - Individual showings in `showings: [...]` maintain per-showing statuses: `active`, `sold_out`, `concluded`, `cancelled`.
-      - **Concluded Showings Archival**: Past showings (where date/end-time < Vancouver local time) are automatically excised from `showings` and preserved in `archived_showings`. They are completely hidden from the consumer app UI.
+      - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score` (`50/50`), and a `dimensions` map.
+      - For each dimension (D1..D50), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`, `not_applicable`, `none_available`), and descriptive validation values or notes.
+    - **Unique Sequential Tier Numbers & Anti-Laziness Guard (D11–D21)**:
+      - To prevent LLM batch laziness, each specific price tier occupies its own independent sequential dimension slot:
+        - **D11**: `tier_adult` — General admission / standard adult base ticket floor.
+        - **D12**: `tier_student` — Dedicated student / youth discount tier (`none_available` if none).
+        - **D13**: `tier_senior` — Dedicated senior / elder (65+) discount tier (`none_available` if none).
+        - **D14**: `tier_member` — Museum, gallery, or patron member admission (`none_available` if none).
+        - **D15**: `tier_non_member` — General public non-member tier (`none_available` if none).
+        - **D16**: `tier_family` — Family or group admission bundle (`none_available` if none).
+        - **D17**: `tier_other_1_name` — Ancillary ticket name (e.g. "Online Advance", "Early Bird", "Rush Seating").
+        - **D18**: `tier_other_1_cost` — Ancillary ticket price.
+        - **D19**: `tier_other_2_name` — Secondary ancillary ticket name (e.g. "Door Admission", "Balcony").
+        - **D20**: `tier_other_2_cost` — Secondary ancillary ticket price.
+        - **D21**: `tier_count_verified` — Verified integer count of all distinct ticket types seen on the live checkout page.
+      - **Tier Invariant Rule**: Tier prices represent base ticket costs. Taxes and platform fees apply on top. Optional equipment rentals/tokens remain strictly in D26/D27. Every active tier displayed must independently satisfy `all_in \le \$50.00 CAD`.
+    - **Granular Pricing Invariants & The $50 Hard Ceiling Anchor (D22–D28)**:
+      - **D22**: `price_base` — Minimum base admission floor.
+      - **D23**: `price_tax` — Estimated or explicit tax component.
+      - **D24**: `price_fees` — Platform / facility / service ticketing fees.
+      - **D25**: `price_all_in` — **The Primary Van50 Budget Anchor ($\le \$50.00$ CAD)**. Sum of base + tax + mandatory fees.
+      - **D26**: `other_cost_label` — Optional add-on label (Club Rental, Skate Rental, Tasting Tokens, Coat Check).
+      - **D27**: `other_cost_price` — Numeric price of optional add-on.
+      - **D28**: `spend_benchmarks` — Out-of-pocket concession, bar, and meal price benchmarks for the venue.
+      - **AI Clarity Directive**: Sub-components provide rich display transparency, but `price_all_in` is the absolute qualifying gate. The AI must never allow component breakdowns to distract it from verifying that `price_all_in \le \$50.00 CAD`.
+    - **Showing-Level Lifecycle, Auto-Archiving & Rollover Standard (D29–D31)**:
+      - **D29**: `operational_status` — Event lifecycle state (`scheduled`, `sold_out`, `rescheduled`, `postponed`, `cancelled`).
+      - **D30**: `active_showings` — Array of active and upcoming showings (`date`, `start_time`, `end_time`, `ticket_url`, `status`).
+      - **D31**: `archived_showings` — Past concluded showings, automatically excised from active view and stored historically.
       - **Dynamic Rollover**: The event's headline `date`, `time`, and `best_available_link` automatically advance to the earliest active showing in `showings`.
       - **New Showing Ingestion**: When Scout AI or QC AI audits a venue and identifies newly published upcoming screening/performance dates, it appends them to `showings` with `status: "active"`.
       - **Event-Level Lifecycle**: An event card is marked `concluded` strictly when 100% of showings have concluded; it is marked `sold_out` strictly when 100% of future showings are sold out.
-    - **Data Provenance, Curator Lock & Rich-Evidence AI Appeal Channel (D33)**:
-      - `curator_locked`: When true, autonomous scrapers must preserve curator-crafted copy and manual pricing overrides.
-      - **Mandatory AI Appeal Protocol**: If an AI discovers live empirical truth that conflicts with a Curator Lock or Curator Instruction (e.g. ticket price raised to $58 CAD, event cancelled/postponed, venue closed, link dead 404), the AI MUST NOT silently fail or overwrite the lock.
-      - It records an **AI Appeal** into `manual_review_queue.json` (`aiCuratorAppeals`) containing **explicit empirical evidence**:
-        - `evidence_source_type`: `direct_ticket_link`, `email_newsletter`, `social_post`, `venue_calendar`.
-        - `source_url`: Direct clickable link to the page where the issue was detected.
-        - `image_url` / `screenshot_path`: Visual capture (email graphic, screenshot) proving the change.
-        - `raw_snippet_quote`: Exact verbatim quote or pricing line from the source DOM or email.
-        - `detailed_rationale`: Clear explanation of the conflict between Curator directive and live reality.
-        - `ai_recommendation`: Specific actionable fix (e.g. "Archive event: checkout price $58 exceeds $50 ceiling").
-      - Staged in Curator Studio for one-click curator resolution: `Uphold Lock`, `Revise Guidance`, or `Accept AI Recommendation`.
+    - **Link Tier Hierarchy & Best Available Link Standard (D32–D37)**:
+      - **D32**: Tier 1 Link (`tier1_checkout`) — Direct Ticketing Checkout Cart (Eventbrite, Showpass, Square, Ticketweb, Spektrix, Ticketmaster).
+      - **D33**: Tier 2 Link (`tier2_event_page`) — Dedicated Individual Event Page on venue/promoter domain.
+      - **D34**: Tier 3 Link (`tier3_calendar`) — Venue Master Calendar / Schedule Directory (`/events`, `/calendar`).
+      - **D35**: Tier 4 Link (`tier4_civic_destination`) — Option C Non-Blocking Civic Destination Guide (Destination Vancouver, Stanley Park Van, etc.).
+      - **D36**: Tier 5 Link (`tier5_venue_home`) — Venue Master Homepage.
+      - **D37**: `best_available_link` — Automatically resolves to the highest tier present (`T1 > T2 > T3 > T4 > T5`).
+    - **Editorial, Audience & Weather Resilience (D38–D43)**:
+      - **D38**: `ticket_provider` — Platform or access provider name.
+      - **D39**: `description` — Curated editorial synopsis.
+      - **D40**: `lineup` — Confirmed performers, comics, or speakers.
+      - **D41**: `restrictions` — Age & entry restrictions (e.g. 19+ with 2 pieces of ID, All Ages).
+      - **D42**: `sold_out` — Overall card availability boolean.
+      - **D43**: `environment_type` — Weather & shelter resilience (`indoor`, `covered_patio`, `outdoor_rain_or_shine`, `outdoor_weather_dependent`).
+    - **Governance, Provenance & Rich-Evidence AI Appeal Channel (D44–D46)**:
+      - **D44**: `data_provenance` — Ingestion origin (`verified_scout`, `newsletter_feed`, `curator_studio`).
+      - **D45**: `curator_lock` — Curator Lock state (`true`/`false`). Preserves human editorial copy.
+      - **D46**: `ai_curator_appeal` — Mandatory AI Appeal Channel. When live reality conflicts with a Curator Lock, the AI stages an appeal in `manual_review_queue.json` (`aiCuratorAppeals`) with explicit empirical evidence (`source_type`, direct clickable link, screenshot / email image, verbatim quote snippet, and AI recommendation).
+    - **Multi-City Federation Readiness (City50 Standard, D47–D50)**:
+      - **D47**: `geo_jurisdiction` (`city_id: "yvr"`, `metro_name: "Metro Vancouver"`, `municipality`, `province_state: "BC"`, `country: "CA"`).
+      - **D48**: `currency_standard` (`currency: "CAD"`, `currency_symbol: "$"`, `budget_ceiling: 50.00`).
+      - **D49**: `iana_timezone` (`America/Vancouver`).
+      - **D50**: `civic_provider_rules` (`Destination Vancouver / Civic Official Guide`, `blocks_cloudflared_aspx: true`).
     - **Zero Caching Wiggle Room Mandate**:
       - AIs are strictly forbidden from skipping link checks, using synthetic hash caches, or assuming past states. Every scheduled audit must actively inspect target URLs and live DOM payloads.
-    - **Multi-City Federation Readiness (City50 Standard, D34–D37)**:
-      - **D34**: `geo_jurisdiction` (`city_id: "yvr"`, `metro_name: "Metro Vancouver"`, `municipality`, `province_state: "BC"`, `country: "CA"`).
-      - **D35**: `currency_standard` (`currency: "CAD"`, `currency_symbol: "$"`, `budget_ceiling: 50.00`).
-      - **D36**: `iana_timezone` (`America/Vancouver`).
-      - **D37**: `civic_provider_rules` (`Destination Vancouver / Civic Official Guide`, `blocks_cloudflared_aspx: true`).
 
 
