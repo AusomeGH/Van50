@@ -169,8 +169,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "visual_arts_galleries"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "free_public_access",
+            "visual_arts_galleries"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -461,7 +475,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "visual_arts_galleries"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "stanley-park-seawall-rose-garden",
@@ -647,8 +670,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "nature_parks_gardens",
+            "sports_fitness_recreation",
+            "tours_walks_heritage"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "nature_parks_gardens",
+            "sports_fitness_recreation",
+            "tours_walks_heritage"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -939,7 +978,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "nature_parks_gardens",
+      "sports_fitness_recreation",
+      "tours_walks_heritage"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-access",
@@ -1107,8 +1156,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "social",
+          "categories": [
+            "family_youth_activities",
+            "social",
+            "visual_arts_galleries"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "visual_arts_galleries"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -1399,7 +1458,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "social",
+    "categories": [
+      "family_youth_activities",
+      "social",
+      "visual_arts_galleries"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-sun-yat-sen-public-park",
@@ -1583,8 +1649,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "live_music_concerts",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "live_music_concerts",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -1875,7 +1957,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "advance_rsvp_recommended"
+    "booking_protocol": "advance_rsvp_recommended",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "live_music_concerts",
+      "nature_parks_gardens",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-the-shipyards-lonsdale-quay",
@@ -2020,8 +2112,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -2312,7 +2416,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "markets_popups_bazaars"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-granville-island-public-market",
@@ -2459,8 +2571,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -2751,7 +2875,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "markets_popups_bazaars"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -2904,8 +3036,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -3196,7 +3340,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -3347,8 +3499,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "visual_arts_galleries",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "visual_arts_galleries",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -3639,7 +3805,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "visual_arts_galleries",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-heist-arts-club",
@@ -3794,8 +3969,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -4112,7 +4301,16 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "family_youth_activities",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-metro-vancouver-croissant-crawl",
@@ -4273,8 +4471,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "free-public-access",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -4574,7 +4788,17 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "food_drink_tastings",
+      "free-public-access",
+      "free_public_access",
+      "markets_popups_bazaars"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -4736,8 +4960,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "nature_parks_gardens",
+            "visual_arts_galleries"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "free_public_access",
+            "nature_parks_gardens",
+            "visual_arts_galleries"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -5028,7 +5268,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "nature_parks_gardens",
+      "visual_arts_galleries"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -5178,8 +5428,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "visual_arts_galleries"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "visual_arts_galleries"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -5470,7 +5732,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "visual_arts_galleries"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -5622,8 +5892,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "nature_parks_gardens"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "nature_parks_gardens"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -5914,7 +6196,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "nature_parks_gardens"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
@@ -6067,8 +6357,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -6359,7 +6661,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "ubc-fball-uofc",
@@ -6513,8 +6823,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -6805,7 +7125,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "ubc-mbball-twu",
@@ -6959,8 +7286,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -7251,7 +7588,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
@@ -7399,8 +7743,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "literary_spoken_word_poetry",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "literary_spoken_word_poetry",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -7691,7 +8049,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "literary_spoken_word_poetry",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
@@ -7840,8 +8207,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -8132,7 +8511,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -8301,8 +8688,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "comedy_standup_improv",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -8593,7 +8992,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "comedy_standup_improv",
+      "films_screenings",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
@@ -8739,8 +9146,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "food_drink_tastings",
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "food_drink_tastings",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -9031,7 +9452,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "food_drink_tastings",
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
@@ -9187,8 +9617,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -9479,7 +9921,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-harvest-days-vandusen",
@@ -9689,8 +10139,28 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "live_music_concerts",
+            "markets_popups_bazaars",
+            "music",
+            "nature_parks_gardens",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 8,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "live_music_concerts",
+            "markets_popups_bazaars",
+            "nature_parks_gardens",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -9999,7 +10469,19 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "live_music_concerts",
+      "markets_popups_bazaars",
+      "music",
+      "nature_parks_gardens",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 8
   },
   {
     "event_id": "van50-deadly-dinner-party",
@@ -10257,8 +10739,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "shows",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -10572,7 +11070,17 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "food_drink_tastings",
+      "shows",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -10740,8 +11248,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -11032,7 +11552,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-cinematheque-past-future-20261015",
@@ -11193,8 +11721,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "family_youth_activities",
+            "films_screenings"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "films_screenings"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -11485,7 +12023,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "family_youth_activities",
+      "films_screenings"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-scout-york-comedy-on-the-drive-20261024",
@@ -11640,8 +12185,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -11932,7 +12489,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-york-stripocalypse-20261016",
@@ -12093,8 +12658,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -12385,7 +12962,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-rio-viff-beloved-20261001",
@@ -12564,8 +13149,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "films_screenings",
+            "nature_parks_gardens",
+            "theatre_performing_arts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "films_screenings",
+            "nature_parks_gardens",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -12873,7 +13474,17 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "films_screenings",
+      "nature_parks_gardens",
+      "theatre_performing_arts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
@@ -13047,8 +13658,26 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "festivals",
+            "festivals_celebrations",
+            "films_screenings",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "category_count": 7,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "festivals_celebrations",
+            "films_screenings",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -13339,7 +13968,18 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "festivals",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "festivals",
+      "festivals_celebrations",
+      "films_screenings",
+      "live_music_concerts",
+      "theatre_performing_arts"
+    ],
+    "category_count": 7
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
@@ -13493,8 +14133,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -13785,7 +14435,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-orpheum-silent-movie-mondays",
@@ -13967,8 +14624,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "community_civic_social",
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -14259,7 +14932,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "community_civic_social",
+      "family_youth_activities",
+      "films_screenings",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -14430,8 +15113,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -14722,7 +15417,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
@@ -14881,8 +15584,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -15173,7 +15886,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
@@ -15344,8 +16064,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -15636,7 +16370,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "dance_parties_club_nights",
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
@@ -15796,8 +16539,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -16088,7 +16843,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-fox-sunday-service-20261004",
@@ -16246,8 +17009,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -16548,7 +17323,15 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -16714,8 +17497,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17006,7 +17801,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
@@ -17172,8 +17975,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17464,7 +18281,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
@@ -17634,8 +18460,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -17926,7 +18764,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-cultch-palestine-comedy-20261009",
@@ -18103,8 +18949,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -18395,7 +19253,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-cinematheque-kwaidan-20261012",
@@ -18564,8 +19430,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "family_youth_activities",
+            "films_screenings"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "films_screenings"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -18856,7 +19732,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "family_youth_activities",
+      "films_screenings"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-scout-cinematheque-hello-destroyer-20261027",
@@ -19034,8 +19917,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "films_screenings",
+            "free-public-access",
+            "free_public_access",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "films_screenings",
+            "free_public_access",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -19326,7 +20223,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "films_screenings",
+      "free-public-access",
+      "free_public_access",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
@@ -19504,8 +20410,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -19796,7 +20714,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-lmg-the-setup-20261024",
@@ -19977,8 +20903,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -20269,7 +21207,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -20441,8 +21387,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -20733,7 +21691,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
@@ -20894,8 +21860,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -21186,7 +22166,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "dance_parties_club_nights",
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
@@ -21347,8 +22336,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "food_drink_tastings",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "family_youth_activities",
+            "food_drink_tastings",
+            "live_music_concerts",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -21639,7 +22644,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "food_drink_tastings",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-the-way-out-theatre-20261022",
@@ -21798,8 +22813,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -22090,7 +23117,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "family_youth_activities",
+      "films_screenings",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-firehall-red-demon-20261008",
@@ -22301,8 +23336,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -22593,7 +23640,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-scout-cinematheque-small-file-20261017",
@@ -22809,8 +23864,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "films_screenings",
+            "literary_spoken_word_poetry"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "films_screenings",
+            "literary_spoken_word_poetry"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -23101,7 +24170,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "films_screenings",
+      "literary_spoken_word_poetry"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-scout-cinematheque-pulse-20261016",
@@ -23315,8 +24393,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "films_screenings"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "films_screenings"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -23607,7 +24697,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "films_screenings"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-witches-harvest-market-20261024",
@@ -23770,8 +24868,26 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "markets_popups_bazaars",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 7,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "markets_popups_bazaars",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -24062,7 +25178,18 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "festivals",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "markets_popups_bazaars",
+      "nature_parks_gardens",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 7
   },
   {
     "event_id": "eb-alistair-ogden-rio",
@@ -24225,8 +25352,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -24517,7 +25658,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "films_screenings",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-city-pop-city-rickshaw-20261121",
@@ -24675,8 +25825,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "dance_parties_club_nights",
+            "festivals",
+            "festivals_celebrations",
+            "live_music_concerts",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "festivals_celebrations",
+            "live_music_concerts",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -24967,7 +26133,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "festivals",
+    "categories": [
+      "dance_parties_club_nights",
+      "festivals",
+      "festivals_celebrations",
+      "live_music_concerts",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "vag-first-friday",
@@ -25155,8 +26331,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Free Public Access",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "free-public-access",
+            "free_public_access",
+            "visual_arts_galleries",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "free_public_access",
+            "visual_arts_galleries",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -25456,7 +26646,16 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "free-public-access",
+      "free_public_access",
+      "visual_arts_galleries",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
@@ -25616,8 +26815,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -25908,7 +27117,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
@@ -26111,8 +27327,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -26413,7 +27639,14 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -26624,8 +27857,26 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "markets_popups_bazaars",
+            "nature_parks_gardens",
+            "shows",
+            "sports_fitness_recreation",
+            "theatre_performing_arts"
+          ],
+          "category_count": 7,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "markets_popups_bazaars",
+            "nature_parks_gardens",
+            "sports_fitness_recreation",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -26933,7 +28184,18 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "markets_popups_bazaars",
+      "nature_parks_gardens",
+      "shows",
+      "sports_fitness_recreation",
+      "theatre_performing_arts"
+    ],
+    "category_count": 7
   },
   {
     "event_id": "stanley-pitch-putt",
@@ -27099,8 +28361,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -27394,7 +28668,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "nature_parks_gardens",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "qe-park-pitch-putt",
@@ -27558,8 +28840,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -27853,7 +29147,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "nature_parks_gardens",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "rupert-park-pitch-putt",
@@ -28017,8 +29319,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -28312,7 +29626,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "nature_parks_gardens",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "central-park-pitch-putt",
@@ -28483,8 +29805,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Sports & Fitness",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "outdoors",
+            "sports_fitness_recreation"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "sports_fitness_recreation"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -28778,7 +30112,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "outdoors",
+    "categories": [
+      "family_youth_activities",
+      "nature_parks_gardens",
+      "outdoors",
+      "sports_fitness_recreation"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "viff-the-debut",
@@ -28943,8 +30285,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "films_screenings"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "films_screenings"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -29246,7 +30600,15 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "films_screenings"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -29458,8 +30820,26 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "food_drink_tastings",
+            "markets_popups_bazaars",
+            "nature_parks_gardens"
+          ],
+          "category_count": 7,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "food_drink_tastings",
+            "markets_popups_bazaars",
+            "nature_parks_gardens"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -29753,7 +31133,18 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "food_drink_tastings",
+      "markets_popups_bazaars",
+      "nature_parks_gardens"
+    ],
+    "category_count": 7
   },
   {
     "event_id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
@@ -29907,8 +31298,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "food_drink_tastings",
+            "music",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "food_drink_tastings",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -30199,7 +31606,17 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "food_drink_tastings",
+      "music",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
@@ -30340,8 +31757,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "music",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "live_music_concerts",
+            "nature_parks_gardens",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -30632,7 +32063,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "outdoor_weather_dependent",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "family_youth_activities",
+      "live_music_concerts",
+      "music",
+      "nature_parks_gardens",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-rickshaw-concrete-vehicles-20261008",
@@ -30771,8 +32211,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -31063,7 +32513,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
@@ -31209,8 +32666,28 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free-public-access",
+            "free_public_access",
+            "live_music_concerts",
+            "sports_fitness_recreation",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 8,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free_public_access",
+            "live_music_concerts",
+            "sports_fitness_recreation",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -31501,7 +32978,19 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "festivals_celebrations",
+      "free-public-access",
+      "free_public_access",
+      "live_music_concerts",
+      "sports_fitness_recreation",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 8
   },
   {
     "event_id": "van50-cinematheque-vampyr-live-score-20261031",
@@ -31648,8 +33137,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "dance_parties_club_nights",
+            "films_screenings",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "films_screenings",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -31940,7 +33443,16 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "dance_parties_club_nights",
+      "films_screenings",
+      "live_music_concerts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-fox-bootylicious-halloween-20261030",
@@ -32078,8 +33590,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -32370,7 +33894,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-moa-haida-eyes-curator-tour-20261008",
@@ -32531,8 +34063,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "family_youth_activities",
+            "shows"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "family_youth_activities"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -32823,7 +34363,13 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "family_youth_activities",
+      "shows"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-bloedel-conservatory-dome",
@@ -32981,8 +34527,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "outdoors",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "nature_parks_gardens",
+            "outdoors"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "nature_parks_gardens"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -33273,7 +34831,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "outdoors",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "nature_parks_gardens",
+      "outdoors"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-ludica-boardgame-night",
@@ -33416,8 +34982,28 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "free-public-access",
+            "free_public_access",
+            "trivia_games_boardgames",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 8,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "family_youth_activities",
+            "food_drink_tastings",
+            "free_public_access",
+            "trivia_games_boardgames",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -33708,7 +35294,19 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "family_youth_activities",
+      "food_drink_tastings",
+      "free-public-access",
+      "free_public_access",
+      "trivia_games_boardgames",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 8
   },
   {
     "event_id": "van50-guilt-and-co-thursday",
@@ -33877,8 +35475,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -34172,7 +35780,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-guilt-and-co-friday",
@@ -34341,8 +35956,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -34636,7 +36259,13 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-guilt-and-co-saturday",
@@ -34805,8 +36434,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35100,7 +36737,13 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-guilt-and-co-sunday",
@@ -35267,8 +36910,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35562,7 +37213,13 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-hollywood-alberta-with-ted",
@@ -35653,8 +37310,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -35950,7 +37619,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "community_civic_social",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-funk-yourself-with-sara-ca",
@@ -36041,8 +37718,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -36337,7 +38024,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-underneath-the-harlem-moon",
@@ -36428,8 +38122,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -36724,7 +38430,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-matt-storm-with-cassandra-",
@@ -36815,8 +38529,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -37111,7 +38835,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-brown-paper-",
@@ -37202,8 +38933,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -37498,7 +39241,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-jay-esplana-friends-with-c",
@@ -37589,8 +39340,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -37885,7 +39646,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-retrofitz-with-clave-jazz",
@@ -37976,8 +39744,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -38272,7 +40048,13 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-harrison-ivaz-organ-tr",
@@ -38363,8 +40145,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -38659,7 +40451,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-big-shoulders-with-dani-bl",
@@ -38750,8 +40549,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -39046,7 +40857,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-single-malts-feat-wend",
@@ -39137,8 +40956,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -39433,7 +41264,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-zach-wong-trio-with-gr",
@@ -39524,8 +41363,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -39820,7 +41671,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "community_civic_social",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-adam-robert-",
@@ -39911,8 +41770,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40207,7 +42078,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-jack-garton-with-doc-finge",
@@ -40298,8 +42177,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "community_civic_social",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40594,7 +42485,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "community_civic_social",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-grand-koolios-with-the",
@@ -40685,8 +42584,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -40981,7 +42890,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
@@ -41072,8 +42988,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -41368,7 +43296,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -41459,8 +43395,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -41755,7 +43703,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-ikuko-may-quartet",
@@ -41846,8 +43802,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -42143,7 +44109,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-bob-kozak-trio",
@@ -42234,8 +44207,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -42530,7 +44513,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-joelle-lush-ft-co",
@@ -42621,8 +44611,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -42917,7 +44917,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-monique-angele",
@@ -43008,8 +45015,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -43304,7 +45321,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -43395,8 +45419,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -43691,7 +45727,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -43782,8 +45826,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -44078,7 +46134,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -44169,8 +46233,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -44465,7 +46541,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -44556,8 +46640,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Nightlife & Social",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "community_civic_social",
+            "dance_parties_club_nights",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -44852,7 +46948,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
@@ -44943,8 +47047,16 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows"
+          ],
+          "category_count": 2,
+          "backend_categories": [
+            "comedy_standup_improv"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -45239,7 +47351,13 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows"
+    ],
+    "category_count": 2
   },
   {
     "event_id": "van50-rickshaw-theatre-the-rasmus",
@@ -45330,8 +47448,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -45627,7 +47755,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-concrete-vehicles",
@@ -45718,8 +47853,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -46014,7 +48159,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-actors",
@@ -46105,8 +48257,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -46401,7 +48563,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-dune-rats",
@@ -46492,8 +48661,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -46788,7 +48967,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-militarie-gun",
@@ -46879,8 +49065,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47175,7 +49371,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-fabio-frizzi-performing-the-frizzi2fulci",
@@ -47266,8 +49469,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47562,7 +49775,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-beles-band",
@@ -47653,8 +49873,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -47949,7 +50179,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-amy-winehouse-tribute-starring-krystle-d",
@@ -48040,8 +50277,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "food_drink_tastings",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "food_drink_tastings",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -48336,7 +50585,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "food_drink_tastings",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-rickshaw-theatre-dawn-pemberton-the-brown-sugar",
@@ -48427,8 +50684,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -48723,7 +50990,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-demon-hunter",
@@ -48814,8 +51088,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49110,7 +51394,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-zappa-nite",
@@ -49201,8 +51492,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49497,7 +51798,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-we-are-scientists",
@@ -49588,8 +51896,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -49884,7 +52202,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-sabbat-japan",
@@ -49975,8 +52300,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -50271,7 +52606,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-quadeca",
@@ -50362,8 +52704,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -50658,7 +53010,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-janky-bungag-album-release-show",
@@ -50749,8 +53108,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51045,7 +53414,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-chest-fever-50th-anniversary-of-the-last",
@@ -51136,8 +53512,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51432,7 +53818,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-jon-spencer",
@@ -51523,8 +53916,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -51819,7 +54222,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-exhumed",
@@ -51910,8 +54320,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -52206,7 +54626,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-bad-waitress",
@@ -52297,8 +54724,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -52593,7 +55030,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-ride-for-revenge",
@@ -52684,8 +55128,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -52980,7 +55434,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-blasphamagoatachrist",
@@ -53071,8 +55532,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -53367,7 +55838,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-truck-violence",
@@ -53458,8 +55936,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -53754,7 +56242,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-rickshaw-theatre-blasphemy",
@@ -53845,8 +56340,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -54141,7 +56646,14 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-latincouver-catrinas-procession-gastown-20261102",
@@ -54250,8 +56762,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free-public-access",
+            "free_public_access",
+            "live_music_concerts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free_public_access",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -54546,7 +57072,16 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "family_youth_activities",
+      "festivals_celebrations",
+      "free-public-access",
+      "free_public_access",
+      "live_music_concerts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-tightrope-theatre-the-yes-files-20261009",
@@ -54712,8 +57247,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55008,7 +57553,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-09",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
@@ -55173,8 +57725,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55469,7 +58031,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-09",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-tightrope-theatre-murder-she-improvised-20261113",
@@ -55641,8 +58210,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -55937,7 +58516,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-11-13",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-the-improv-centre-true-story-20261013",
@@ -56058,8 +58644,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "literary_spoken_word_poetry",
+            "nature_parks_gardens",
+            "shows",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "literary_spoken_word_poetry",
+            "nature_parks_gardens",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -56354,7 +58956,17 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "literary_spoken_word_poetry",
+      "nature_parks_gardens",
+      "shows",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
@@ -56505,8 +59117,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "music",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -56801,7 +59427,16 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-09",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "music",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-the-cinematheque-young-frankenstein-20261018",
@@ -56917,8 +59552,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "festivals",
+            "festivals_celebrations",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -57213,7 +59862,16 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "comedy_standup_improv",
+      "family_youth_activities",
+      "festivals",
+      "festivals_celebrations",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-the-cinematheque-harakiri-20261012",
@@ -57364,8 +60022,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "dance_parties_club_nights",
+            "films_screenings",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "films_screenings",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -57660,7 +60330,15 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-12",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "dance_parties_club_nights",
+      "films_screenings",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-commercial-drive-bia-halloween-20261031",
@@ -57776,8 +60454,24 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Community & Markets",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "free-public-access",
+          "categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free-public-access",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "category_count": 6,
+          "backend_categories": [
+            "community_civic_social",
+            "family_youth_activities",
+            "festivals_celebrations",
+            "free_public_access",
+            "markets_popups_bazaars"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -58072,7 +60766,17 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "walk_in_only"
+    "booking_protocol": "walk_in_only",
+    "primary_category": "free-public-access",
+    "categories": [
+      "community_civic_social",
+      "family_youth_activities",
+      "festivals_celebrations",
+      "free-public-access",
+      "free_public_access",
+      "markets_popups_bazaars"
+    ],
+    "category_count": 6
   },
   {
     "event_id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
@@ -58195,8 +60899,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "festivals",
+            "festivals_celebrations",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "dance_parties_club_nights",
+            "festivals_celebrations",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -58491,7 +61209,16 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "comedy_standup_improv",
+      "dance_parties_club_nights",
+      "festivals",
+      "festivals_celebrations",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-biltmore-cabaret-buzz-kull-kontravoid-20261008",
@@ -58607,8 +61334,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "dance_parties_club_nights",
+            "live_music_concerts",
+            "music",
+            "theatre_performing_arts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "dance_parties_club_nights",
+            "live_music_concerts",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -58903,7 +61642,15 @@ const VANCOUVER_EVENTS = [
     "showings": [],
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "dance_parties_club_nights",
+      "live_music_concerts",
+      "music",
+      "theatre_performing_arts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-rio-theatre-critical-hit-show-20261021",
@@ -59024,8 +61771,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -59319,7 +62076,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-the-improv-centre-ha-ha-halloween-20261031",
@@ -59447,8 +62211,20 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 4,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "theatre_performing_arts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -59742,7 +62518,15 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "theatre_performing_arts",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 4
   },
   {
     "event_id": "van50-performance-works-poetry-bash-20261022",
@@ -59862,8 +62646,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "festivals",
+            "festivals_celebrations",
+            "literary_spoken_word_poetry"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "festivals_celebrations",
+            "literary_spoken_word_poetry"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -60157,7 +62951,14 @@ const VANCOUVER_EVENTS = [
     },
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "festivals",
+    "categories": [
+      "festivals",
+      "festivals_celebrations",
+      "literary_spoken_word_poetry"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-frankies-jazz-club-samuel-bonnet-trio-20261008",
@@ -60318,8 +63119,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "live_music_concerts",
+            "music",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "live_music_concerts",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -60614,7 +63425,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-08",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "music",
+    "categories": [
+      "live_music_concerts",
+      "music",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-wise-hall-cheekface-waitress-20261016",
@@ -60770,8 +63588,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Live Music",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "music",
+          "categories": [
+            "community_civic_social",
+            "live_music_concerts",
+            "music"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "community_civic_social",
+            "live_music_concerts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -61066,7 +63894,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-16",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "music",
+    "categories": [
+      "community_civic_social",
+      "live_music_concerts",
+      "music"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
@@ -61232,8 +64067,22 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "festivals",
+          "categories": [
+            "community_civic_social",
+            "festivals",
+            "festivals_celebrations",
+            "literary_spoken_word_poetry",
+            "theatre_performing_arts"
+          ],
+          "category_count": 5,
+          "backend_categories": [
+            "community_civic_social",
+            "festivals_celebrations",
+            "literary_spoken_word_poetry",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -61528,7 +64377,16 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-25",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "festivals",
+    "categories": [
+      "community_civic_social",
+      "festivals",
+      "festivals_celebrations",
+      "literary_spoken_word_poetry",
+      "theatre_performing_arts"
+    ],
+    "category_count": 5
   },
   {
     "event_id": "van50-birdhouse-rocky-horror-drag-shadowcast-20261030",
@@ -61689,8 +64547,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Comedy & Shows",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "shows",
+          "categories": [
+            "comedy_standup_improv",
+            "shows",
+            "workshops_classes_crafts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "comedy_standup_improv",
+            "workshops_classes_crafts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -61985,7 +64853,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-30",
     "archived_showings": [],
     "environment_type": "covered_patio",
-    "booking_protocol": "advance_ticket_required"
+    "booking_protocol": "advance_ticket_required",
+    "primary_category": "shows",
+    "categories": [
+      "comedy_standup_improv",
+      "shows",
+      "workshops_classes_crafts"
+    ],
+    "category_count": 3
   },
   {
     "event_id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
@@ -62143,8 +65018,18 @@ const VANCOUVER_EVENTS = [
         },
         "D7_category": {
           "status": "verified",
-          "value": "Arts & Culture",
-          "confirmed_at": "2026-10-06T09:17:03.374794-07:00"
+          "primary_category": "cinema",
+          "categories": [
+            "cinema",
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "category_count": 3,
+          "backend_categories": [
+            "films_screenings",
+            "theatre_performing_arts"
+          ],
+          "confirmed_at": "2026-10-06T09:29:06.240804-07:00"
         },
         "D8_location": {
           "status": "verified",
@@ -62439,7 +65324,14 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-26",
     "archived_showings": [],
     "environment_type": "indoor",
-    "booking_protocol": "first_come_first_served"
+    "booking_protocol": "first_come_first_served",
+    "primary_category": "cinema",
+    "categories": [
+      "cinema",
+      "films_screenings",
+      "theatre_performing_arts"
+    ],
+    "category_count": 3
   }
 ];
 

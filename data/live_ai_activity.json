@@ -1,24 +1,18 @@
 {
-  "status": "complete",
+  "status": "running",
   "current_task": "Hourly Status Monitor",
-  "current_step": "Idle awaiting next hourly trigger",
-  "progress_percent": 100,
-  "last_updated": "2026-10-05T17:28:16.798140",
+  "current_step": "Evaluating catalog events",
+  "progress_percent": 10,
+  "last_updated": "2026-10-06T09:29:57.370255",
   "stats": {
     "confirmed": 921,
     "new_events": 133,
     "new_venues": 25,
     "new_sources": 19,
     "quarantined": 38,
-    "archived": 13
+    "archived": 14
   },
   "recent_logs": [
-    {
-      "id": "log_1790854332868",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Queen Elizabeth Park & Sunken Quarry Gardens\" at Queen Elizabeth Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
-    },
     {
       "id": "log_1790854332881",
       "timestamp": "04:32:12",
@@ -612,6 +606,12 @@
       "timestamp": "17:27:59",
       "type": "CONFIRMED",
       "message": "Schedule rolled forward to upcoming showing: VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation) (2026-10-11)"
+    },
+    {
+      "id": "log_1791304197369",
+      "timestamp": "09:29:57",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: Guilt & Co. Live: Funk Yourself (with Sara Carbone)"
     }
   ]
 }

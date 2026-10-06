@@ -93,7 +93,16 @@ def build_50_dimensions_audit(ev: dict) -> dict:
     dims['D6_frequency'] = {'status': 'verified', 'value': ev.get('frequency', 'one-off'), 'confirmed_at': CURRENT_TIMESTAMP}
 
     # Group 2: Taxonomy & Space (D7–D10)
-    dims['D7_category'] = {'status': 'verified', 'value': ev.get('category'), 'confirmed_at': CURRENT_TIMESTAMP}
+    primary_cat = ev.get('primary_category') or ev.get('category') or 'shows'
+    all_cats = ev.get('categories') or [primary_cat]
+    dims['D7_category'] = {
+        'status': 'verified',
+        'primary_category': primary_cat,
+        'categories': all_cats,
+        'category_count': len(all_cats),
+        'backend_categories': [c for c in all_cats if c != primary_cat],
+        'confirmed_at': CURRENT_TIMESTAMP
+    }
     dims['D8_location'] = {'status': 'verified', 'venue': venue, 'address': ev.get('full_address') or ev.get('address'), 'coordinates': ev.get('coordinates'), 'confirmed_at': CURRENT_TIMESTAMP}
     dims['D9_access_model'] = {'status': 'verified', 'value': ev.get('access_model', 'fenced_facility'), 'confirmed_at': CURRENT_TIMESTAMP}
     dims['D10_pricing_model'] = {'status': 'verified', 'value': ev.get('pricing_model', 'flat_ticket'), 'confirmed_at': CURRENT_TIMESTAMP}

@@ -1907,6 +1907,112 @@ function isEventInPast(ev, now = new Date()) {
   return false;
 }
 
+/**
+ * Resolves the start time of an event in minutes from midnight for today.
+ */
+function getEventStartTimeToday(ev, now = new Date()) {
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+
+  // 1. Showings for today
+  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+    const todayShowings = ev.showings.filter(s => s && s.date === todayStr);
+    if (todayShowings.length > 0) {
+      for (const s of todayShowings) {
+        const raw = s.start_time || s.startTime;
+        if (raw) {
+          const parts = String(raw).split(':');
+          let h = parseInt(parts[0], 10);
+          const m = parts[1] ? parseInt(parts[1], 10) : 0;
+          if (String(raw).toUpperCase().includes('PM') && h < 12) h += 12;
+          if (String(raw).toUpperCase().includes('AM') && h === 12) h = 0;
+          return h * 60 + m;
+        }
+      }
+    }
+  }
+
+  // 2. Direct start_time or time field
+  const rawTime = ev.start_time || ev.time;
+  if (rawTime) {
+    const match = String(rawTime).match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+    if (match) {
+      let h = parseInt(match[1], 10);
+      const m = match[2] ? parseInt(match[2], 10) : 0;
+      const ampm = (match[3] || '').toUpperCase();
+      if (ampm === 'PM' && h < 12) h += 12;
+      if (ampm === 'AM' && h === 12) h = 0;
+      return h * 60 + m;
+    }
+  }
+
+  // 3. startIso
+  if (ev.startIso) {
+    try {
+      const dt = new Date(ev.startIso);
+      if (!isNaN(dt.getTime())) {
+        return dt.getHours() * 60 + dt.getMinutes();
+      }
+    } catch (e) {}
+  }
+
+  // 4. Time from dateSchedule or operating_hours
+  const ds = ev.dateSchedule || ev.operating_hours || '';
+  const matchDs = ds.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+  if (matchDs) {
+    let h = parseInt(matchDs[1], 10);
+    const m = matchDs[2] ? parseInt(matchDs[2], 10) : 0;
+    const ampm = matchDs[3].toUpperCase();
+    if (ampm === 'PM' && h < 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    return h * 60 + m;
+  }
+
+  return null;
+}
+
+/**
+ * Determines whether an event is actively underway at this exact moment.
+ * Returns true if:
+ * 1. Event is happening today and has not concluded.
+ * 2. Current local time is between its start time and closing time.
+ */
+function isEventHappeningNow(ev, now = new Date()) {
+  if (isEventInPast(ev, now)) return false;
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  // Check if today is an active date for this event
+  const isToday = (
+    ev.date === todayStr ||
+    (Array.isArray(ev.confirmedDates) && ev.confirmedDates.some(d => String(d).slice(0, 10) === todayStr)) ||
+    (Array.isArray(ev.showings) && ev.showings.some(s => s && s.date === todayStr)) ||
+    ev.isDaily || ev.frequency === 'daily' ||
+    ev.category === 'free-public-access' ||
+    ev.lifecycleType === 'perennial_drop_in' ||
+    ev.lifecycle_type === 'perennial_drop_in'
+  );
+
+  if (!isToday) return false;
+
+  const closing = getEventClosingTimeToday(ev, now);
+  if (closing.hasEnded) return false;
+
+  const startMinutes = getEventStartTimeToday(ev, now);
+  if (startMinutes !== null) {
+    return currentMinutes >= startMinutes && currentMinutes < closing.closingMinutes;
+  }
+
+  // Open-access or drop-in venues with daily hours: happening now if within daylight or operating bounds
+  return currentMinutes < closing.closingMinutes && currentMinutes >= 8 * 60; // default after 8 AM
+}
+
 function applyFiltersAndRender() {
   const now = new Date();
   const year = now.getFullYear();
@@ -4281,6 +4387,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const accessInfo = typeof window.getVenueAccessibility === 'function' 
       ? window.getVenueAccessibility(ev.venue) 
       : { status: 'accessible', label: 'Wheelchair Accessible', badgeIcon: '♿', summary: 'Ground-floor street level entrance.' };
+    const isHappeningNow = isEventHappeningNow(ev, new Date());
 
     return `
       <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
@@ -4292,6 +4399,12 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
               <span>${topDate.badgeText}</span>
             </span>
+            ${isHappeningNow ? `
+              <span class="badge-happening-now" title="This outing is actively underway right now!">
+                <span class="live-pulse-dot" aria-hidden="true"></span>
+                <span>Happening Now</span>
+              </span>
+            ` : ''}
             ${(() => {
               const primaryCat = (Array.isArray(ev.categories) && ev.categories.length > 0)
                 ? (ev.categories.includes('outdoors') && (ev.lifecycleType === 'perennial_drop_in' || ev.accessModel === 'open_public_space')

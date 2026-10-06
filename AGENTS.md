@@ -87,6 +87,23 @@
     - **Dimension Audit Metadata Schema (`dimension_audit`)**:
       - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score` (`50/50`), and a `dimensions` map.
       - For each dimension (D1..D50), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`, `not_applicable`, `none_available`), and descriptive validation values or notes.
+    - **Schedule & Identity Standard (D1–D6)**:
+      - **D1**: `title` — Curated title of the outing or event.
+      - **D2**: `date` — Headline active date (`YYYY-MM-DD`). Automatically advances to next showing on rollover.
+      - **D3**: `time` — Headline active start time (`HH:MM` 24h or 12h formatted).
+      - **D4**: `weekly_hours` — Day-by-day structured operating hours map (`mon` through `sun`).
+      - **D5**: `schedule_string` — Human-readable date/time synopsis (e.g. "Thu & Fri 7:00 PM, Sat 2:00 PM").
+      - **D6**: `frequency` — Cadence classification (`one-off`, `limited-run`, `weekly`, `monthly`, `daily`, `perennial_drop_in`).
+    - **Taxonomy, Space & Multi-Category Standard (D7–D10)**:
+      - **D7**: `category` & `categories` — **Multi-Category Architecture**:
+        - **Invariant**: Every event belongs to **at least 1 category ($\ge 1$)**, with **NO UPPER LIMIT** on the maximum number of applicable categories.
+        - **Public Curated Tabs (`primary_category`)**: Users are presented with strictly 8 curated, clutter-free top-level filter tabs: `shows` (Comedy & Stage), `music`, `cinema`, `festivals`, `markets`, `outdoors`, `social` (Social & Arts), and `free-public-access`.
+        - **Backend Semantic Categories (`categories`)**: To power deep search discovery without cluttering public UI buttons, AIs index the event across all applicable granular categories:
+          - `films_screenings`, `theatre_performing_arts`, `comedy_standup_improv`, `live_music_concerts`, `dance_parties_club_nights`, `visual_arts_galleries`, `workshops_classes_crafts`, `trivia_games_boardgames`, `food_drink_tastings`, `markets_popups_bazaars`, `tours_walks_heritage`, `sports_fitness_recreation`, `nature_parks_gardens`, `wellness_movement_yoga`, `literary_spoken_word_poetry`, `community_civic_social`, `festivals_celebrations`, `family_youth_activities`, `free_public_access`.
+        - **Search & Discovery Guarantee**: Keyword queries (e.g. "trivia", "pottery", "crafts", "improv", "walking tour") match instantly against `ev.categories` without exposing dozens of tiny micro-buttons.
+      - **D8**: `location` — Venue name, validated street address, and geographic coordinate pair.
+      - **D9**: `access_model` — Physical boundary type (`fenced_facility`, `open_public_space`, `public_realm`, `registered_ticketed_venue`).
+      - **D10**: `pricing_model` — Economic entry model (`free_access`, `flat_ticket`, `sliding_scale`, `tiered_admission`, `pay_what_you_can`, `donation_entry`).
     - **Unique Sequential Tier Numbers & Anti-Laziness Guard (D11–D21)**:
       - To prevent LLM batch laziness, each specific price tier occupies its own independent sequential dimension slot:
         - **D11**: `tier_adult` — General admission / standard adult base ticket floor.
@@ -101,22 +118,31 @@
         - **D20**: `tier_other_2_cost` — Secondary ancillary ticket price.
         - **D21**: `tier_count_verified` — Verified integer count of all distinct ticket types seen on the live checkout page.
       - **Tier Invariant Rule**: Tier prices represent base ticket costs. Taxes and platform fees apply on top. Optional equipment rentals/tokens remain strictly in D26/D27. Every active tier displayed must independently satisfy `all_in \le \$50.00 CAD`.
-    - **Granular Pricing Invariants & The $50 Hard Ceiling Anchor (D22–D28)**:
-      - **D22**: `price_base` — Minimum base admission floor.
+    - **Granular Pricing Invariants & The Benchmark Adult GA Anchor (D22–D28)**:
+      - **D22**: `price_base` — Minimum base admission floor (Standard Adult GA).
       - **D23**: `price_tax` — Estimated or explicit tax component.
       - **D24**: `price_fees` — Platform / facility / service ticketing fees.
-      - **D25**: `price_all_in` — **The Primary Van50 Budget Anchor ($\le \$50.00$ CAD)**. Sum of base + tax + mandatory fees.
+      - **D25**: `price_all_in` — **The Primary Van50 Budget Anchor ($\le \$50.00$ CAD)**. Sum of base + tax + mandatory fees for Standard Adult Admission.
       - **D26**: `other_cost_label` — Optional add-on label (Club Rental, Skate Rental, Tasting Tokens, Coat Check).
       - **D27**: `other_cost_price` — Numeric price of optional add-on.
       - **D28**: `spend_benchmarks` — Out-of-pocket concession, bar, and meal price benchmarks for the venue.
-      - **AI Clarity Directive (The Benchmark Adult Anchor)**: Group 3 (`D11..D21`) catalogs the **Ticket Menu** (who gets what discount). Group 4 (`D22..D28`) evaluates the **Cart Checkout Invariant for Standard Adult Admission** (`D25 price_all_in = D22 base + D23 tax + D24 fees`). This eliminates AI confusion: `D22` is specifically the Adult GA ticket floor, ensuring that basic entry for a single adult without special memberships satisfies $\le \$50.00$ CAD.
-    - **Showing-Level Lifecycle, Auto-Archiving & Rollover Standard (D29–D31)**:
+      - **AI Clarity & Sibling Tier Adjustment Directive**:
+        - **The Adult Anchor**: Standard Adult GA admission is the universal baseline benchmark (`D11` and `D22–D25`).
+        - **Simultaneous Sibling Tier Audits**: When the AI inspects a ticketing checkout cart, it does NOT discard or freeze discount tiers. It inspects all live tiers in parallel, updating `D12` (Student), `D13` (Senior), `D14` (Member), `D15` (Non-Member), and `D16` (Family) alongside the Adult GA benchmark.
+        - **Zero Confusion Mandate**: Because each tier has its own dedicated numbered dimension slot (D11–D20), the AI never conflates discounts with the adult floor. Sibling tiers adjust dynamically whenever checkout prices or ticketing fees shift.
+    - **Real-Time Lifecycle, Live "Happening Now" Display & Auto-Archiving Standard (D29–D31)**:
       - **D29**: `operational_status` — Event lifecycle state (`scheduled`, `concluded`, `sold_out`, `rescheduled`, `postponed`, `cancelled`).
       - **D30**: `active_showings` — Array of active and upcoming showings (`date`, `start_time`, `end_time`, `ticket_url`, `status`).
       - **D31**: `archived_showings` — Past concluded showings, automatically excised from active view and stored historically.
-      - **Dynamic Rollover**: The event's headline `date`, `time`, and `best_available_link` automatically advance to the earliest active showing in `showings`.
+      - **Real-Time "Happening Now" Detection**:
+        - When current local time is within an event's active window (`startTime <= now < endTime` today), the app renders an animated `"Happening Now"` live badge with a glowing green pulse dot (`.live-pulse-dot`).
+      - **Minute-by-Minute Automatic Removal**:
+        - The frontend runs a continuous 60-second background lifecycle loop (`setInterval(applyFiltersAndRender, 60000)`).
+        - The exact minute an event reaches its closing time (`now >= closingTime`), `getEventClosingTimeToday` signals completion, `isEventInPast` returns `true`, and the card is automatically removed from user display without requiring a page refresh.
+      - **Multi-Showing Dynamic Rollover**:
+        - For multi-showing events, as each individual showing ends, `scripts/hourly_status_monitor.py` archives that showing to `archived_showings` and seamlessly rolls the headline date, time, and ticket link forward to the next scheduled showing.
+        - An event card is marked `concluded` strictly when 100% of showings have concluded; it is marked `sold_out` strictly when 100% of future showings are sold out.
       - **New Showing Ingestion**: When Scout AI or QC AI audits a venue and identifies newly published upcoming screening/performance dates, it appends them to `showings` with `status: "active"`.
-      - **Event-Level Lifecycle**: An event card is marked `concluded` strictly when 100% of showings have concluded; it is marked `sold_out` strictly when 100% of future showings are sold out.
     - **Link Tier Hierarchy & Best Available Link Standard (D32–D37)**:
       - **D32**: Tier 1 Link (`tier1_checkout`) — Direct Ticketing Checkout Cart (Eventbrite, Showpass, Square, Ticketweb, Spektrix, Ticketmaster).
       - **D33**: Tier 2 Link (`tier2_event_page`) — Dedicated Individual Event Page on venue/promoter domain.
