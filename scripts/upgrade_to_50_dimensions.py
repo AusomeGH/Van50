@@ -40,6 +40,21 @@ def save_json(path, data):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def infer_booking_protocol(ev: dict, links: dict) -> str:
+    venue = (ev.get('venue') or '').lower()
+    desc = (ev.get('description') or '').lower()
+    turl = (ev.get('ticket_url') or '').lower()
+    is_free = bool(ev.get('isFree') or ev.get('price', 0) == 0)
+
+    if any(w in venue or w in desc for w in ['table reservation', 'dinner reservation', 'reserve a table']):
+        return 'table_reservation_seated'
+    if links.get('tier1_checkout') or any(tp in turl for tp in ['eventbrite', 'showpass', 'square', 'ticketweb', 'spektrix', 'ticketmaster']):
+        return 'advance_rsvp_recommended' if is_free else 'advance_ticket_required'
+    if is_free:
+        return 'walk_in_only'
+    return 'first_come_first_served'
+
+
 def infer_environment(ev: dict) -> str:
     title = (ev.get('title') or '').lower()
     venue = (ev.get('venue') or '').lower()
@@ -122,8 +137,10 @@ def build_50_dimensions_audit(ev: dict) -> dict:
     dims['D38_ticket_provider'] = {'status': 'verified', 'value': ev.get('ticket_provider'), 'confirmed_at': CURRENT_TIMESTAMP}
     dims['D39_description'] = {'status': 'verified', 'length': len(ev.get('description', '')), 'confirmed_at': CURRENT_TIMESTAMP}
     dims['D40_lineup'] = {'status': 'verified', 'performers': ev.get('performers', []), 'confirmed_at': CURRENT_TIMESTAMP}
+    booking_proto = ev.get('booking_protocol') or infer_booking_protocol(ev, links)
+    ev['booking_protocol'] = booking_proto
     dims['D41_restrictions'] = {'status': 'verified', 'value': ev.get('restrictions', 'All Ages Welcome'), 'confirmed_at': CURRENT_TIMESTAMP}
-    dims['D42_sold_out'] = {'status': 'verified', 'is_sold_out': bool(ev.get('is_sold_out')), 'confirmed_at': CURRENT_TIMESTAMP}
+    dims['D42_booking_protocol'] = {'status': 'verified', 'value': booking_proto, 'confirmed_at': CURRENT_TIMESTAMP}
     dims['D43_environment_type'] = {'status': 'verified', 'value': env_type, 'confirmed_at': CURRENT_TIMESTAMP}
 
     # Group 8: Governance, Provenance & AI Appeal (D44–D46)

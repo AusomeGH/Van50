@@ -109,9 +109,9 @@
       - **D26**: `other_cost_label` — Optional add-on label (Club Rental, Skate Rental, Tasting Tokens, Coat Check).
       - **D27**: `other_cost_price` — Numeric price of optional add-on.
       - **D28**: `spend_benchmarks` — Out-of-pocket concession, bar, and meal price benchmarks for the venue.
-      - **AI Clarity Directive**: Sub-components provide rich display transparency, but `price_all_in` is the absolute qualifying gate. The AI must never allow component breakdowns to distract it from verifying that `price_all_in \le \$50.00 CAD`.
+      - **AI Clarity Directive (The Benchmark Adult Anchor)**: Group 3 (`D11..D21`) catalogs the **Ticket Menu** (who gets what discount). Group 4 (`D22..D28`) evaluates the **Cart Checkout Invariant for Standard Adult Admission** (`D25 price_all_in = D22 base + D23 tax + D24 fees`). This eliminates AI confusion: `D22` is specifically the Adult GA ticket floor, ensuring that basic entry for a single adult without special memberships satisfies $\le \$50.00$ CAD.
     - **Showing-Level Lifecycle, Auto-Archiving & Rollover Standard (D29–D31)**:
-      - **D29**: `operational_status` — Event lifecycle state (`scheduled`, `sold_out`, `rescheduled`, `postponed`, `cancelled`).
+      - **D29**: `operational_status` — Event lifecycle state (`scheduled`, `concluded`, `sold_out`, `rescheduled`, `postponed`, `cancelled`).
       - **D30**: `active_showings` — Array of active and upcoming showings (`date`, `start_time`, `end_time`, `ticket_url`, `status`).
       - **D31**: `archived_showings` — Past concluded showings, automatically excised from active view and stored historically.
       - **Dynamic Rollover**: The event's headline `date`, `time`, and `best_available_link` automatically advance to the earliest active showing in `showings`.
@@ -129,7 +129,7 @@
       - **D39**: `description` — Curated editorial synopsis.
       - **D40**: `lineup` — Confirmed performers, comics, or speakers.
       - **D41**: `restrictions` — Age & entry restrictions (e.g. 19+ with 2 pieces of ID, All Ages).
-      - **D42**: `sold_out` — Overall card availability boolean.
+      - **D42**: `booking_protocol` — Entry & reservation protocol (`walk_in_only`, `advance_ticket_required`, `advance_rsvp_recommended`, `table_reservation_seated`, `first_come_first_served`).
       - **D43**: `environment_type` — Weather & shelter resilience (`indoor`, `covered_patio`, `outdoor_rain_or_shine`, `outdoor_weather_dependent`).
     - **Governance, Provenance & Rich-Evidence AI Appeal Channel (D44–D46)**:
       - **D44**: `data_provenance` — Ingestion origin (`verified_scout`, `newsletter_feed`, `curator_studio`).
