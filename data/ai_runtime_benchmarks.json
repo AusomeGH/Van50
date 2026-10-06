@@ -7,16 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 188,
-      "averageDurationFormatted": "2–4 minutes",
-      "totalRuns": 2,
+      "averageDurationSeconds": 57.5,
+      "averageDurationFormatted": "57s",
+      "totalRuns": 7,
       "lastRun": {
-        "timestamp": "2026-10-04T10:29:12",
-        "durationSeconds": 117,
-        "durationFormatted": "1m 57s",
-        "itemsProcessed": 5,
-        "venuesRegistered": 2,
-        "notes": "Discovery sweep across The Cultch (York Theatre), The Cinematheque, Firehall Arts Centre, Fox Cabaret, MOA UBC"
+        "timestamp": "2026-10-05T17:43:35.819566",
+        "durationSeconds": 8.7,
+        "durationFormatted": "8.7s",
+        "itemsProcessed": 6,
+        "newEventsIngested": 5,
+        "notes": "Scouted Targets 32-37 with Batch Size = 1. Natural Yield: Ingested 5 new verified events."
       },
       "history": [
         {
@@ -30,21 +30,55 @@
           "durationSeconds": 117,
           "durationFormatted": "1m 57s",
           "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-04T20:16:45.310944",
+          "durationSeconds": 0.1,
+          "durationFormatted": "0s",
+          "itemsProcessed": 3,
+          "newEventsIngested": 0
+        },
+        {
+          "timestamp": "2026-10-04T20:17:08.685246",
+          "durationSeconds": 3.6,
+          "durationFormatted": "3s",
+          "itemsProcessed": 3,
+          "newEventsIngested": 16
+        },
+        {
+          "timestamp": "2026-10-04T20:27:26.439521",
+          "durationSeconds": 5.4,
+          "durationFormatted": "5s",
+          "itemsProcessed": 8,
+          "newEventsIngested": 50
+        },
+        {
+          "timestamp": "2026-10-05T08:48:54.600782",
+          "durationSeconds": 7.8,
+          "durationFormatted": "7.8s",
+          "itemsProcessed": 8,
+          "newEventsIngested": 10
+        },
+        {
+          "timestamp": "2026-10-05T17:43:35.819566",
+          "durationSeconds": 8.7,
+          "durationFormatted": "8.7s",
+          "itemsProcessed": 6,
+          "newEventsIngested": 5
         }
       ]
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 131,
+      "averageDurationSeconds": 91.9,
       "averageDurationFormatted": "2 minutes",
-      "totalRuns": 3,
+      "totalRuns": 8,
       "lastRun": {
-        "timestamp": "2026-10-04T12:32:55",
-        "durationSeconds": 103,
-        "durationFormatted": "1m 43s",
-        "itemsAudited": 78,
-        "itemsCalibrated": 17,
-        "notes": "100% 20D audit of all 78 active cards. Calibrated 17 cards to canonical D7 taxonomy (Music -> Live Music, Nightlife & Social, Arts & Culture). 0 remaining anomalies."
+        "timestamp": "2026-10-05T12:39:15",
+        "durationSeconds": 86.4,
+        "durationFormatted": "1m 26s",
+        "itemsAudited": 141,
+        "notes": "Audited 141 events (Events 1-141) with 1-at-a-time isolation. Upgraded 2 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
       },
       "history": [
         {
@@ -70,24 +104,52 @@
           "durationFormatted": "1m 43s",
           "itemsAudited": 78,
           "itemsCalibrated": 17
+        },
+        {
+          "timestamp": "2026-10-04T17:27:32",
+          "durationSeconds": 51.5,
+          "durationFormatted": "51s",
+          "itemsProcessed": 77
+        },
+        {
+          "timestamp": "2026-10-05T07:31:13",
+          "durationSeconds": 80.9,
+          "durationFormatted": "1m 20s",
+          "itemsProcessed": 127
+        },
+        {
+          "timestamp": "2026-10-05T08:16:55",
+          "durationSeconds": 60.7,
+          "durationFormatted": "1m 0s",
+          "itemsProcessed": 128
+        },
+        {
+          "timestamp": "2026-10-05T09:11:43",
+          "durationSeconds": 62.6,
+          "durationFormatted": "1m 2s",
+          "itemsProcessed": 138
+        },
+        {
+          "timestamp": "2026-10-05T12:39:15",
+          "durationSeconds": 86.4,
+          "durationFormatted": "1m 26s",
+          "itemsProcessed": 141
         }
       ]
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",
-      "averageDurationSeconds": 262,
-      "averageDurationFormatted": "3–5 minutes",
-      "totalRuns": 1,
+      "averageDurationSeconds": 69.7,
+      "averageDurationFormatted": "1m 9s",
+      "totalRuns": 4,
       "lastRun": {
-        "timestamp": "2026-10-04T10:55:50",
-        "durationSeconds": 262,
-        "durationFormatted": "4m 22s",
-        "itemsProcessed": 26,
-        "itemsArchived": 15,
-        "itemsGraduated": 6,
-        "itemsPurged": 4,
-        "itemsRetained": 1,
-        "notes": "Full 100% resolution of 26 quarantined items across 20 dimensions. Archived 13 overbudget Queen Elizabeth Theatre touring shows and 2 generic placeholders; purged 4 test artifacts; graduated 6 cultural gems (Bloedel Conservatory, Pizzeria Ludica, 4 Guilt & Co sessions); retained 1 item (Catrinas Procession) pending Curator holiday approval."
+        "timestamp": "2026-10-05T08:08:58",
+        "durationSeconds": 3.6,
+        "durationFormatted": "3s",
+        "itemsProcessed": 1,
+        "itemsGraduated": 1,
+        "itemsArchived": 0,
+        "notes": "Processed 1 quarantined items with 1-at-a-time isolation. Graduated 1, archived 0."
       },
       "history": [
         {
@@ -97,6 +159,30 @@
           "itemsProcessed": 26,
           "itemsArchived": 15,
           "itemsGraduated": 6
+        },
+        {
+          "timestamp": "2026-10-05T07:56:07",
+          "durationSeconds": 5.7,
+          "durationFormatted": "5s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-05T07:59:10",
+          "durationSeconds": 7.4,
+          "durationFormatted": "7s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-05T08:08:58",
+          "durationSeconds": 3.6,
+          "durationFormatted": "3s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
         }
       ]
     }

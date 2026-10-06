@@ -44,8 +44,10 @@ FESTIVALS_MASTER_PATH = os.path.join(DATA_DIR, "festivals.json")
 FESTIVALS_PATH = os.path.join(DATA_DIR, "festivals.json")
 TICKETING_SOURCES_PATH = os.path.join(DATA_DIR, "ticketing_sources.json")
 DISCOVERY_SOURCES_PATH = os.path.join(DATA_DIR, "discovery_sources.json")
+DISCOVERED_SOURCES_PATH = os.path.join(DATA_DIR, "discovered_sources.json")
 CROWDSOURCED_PRICES_PATH = os.path.join(DATA_DIR, "crowdsourced_price_reports.json")
 HOLIDAYS_PATH = os.path.join(DATA_DIR, "approved_holidays.json")
+SUBSCRIBED_VENUES_PATH = os.path.join(DATA_DIR, "subscribed_venues.json")
 
 sys.path.insert(0, os.path.join(BASE_DIR, "scripts"))
 from curator_auth import verify_curator_password, generate_session_token, verify_session_token, revoke_session_token
@@ -242,6 +244,63 @@ def sanitize_text(text: str) -> str:
     # Strip any remaining tags
     cleaned = re.sub(r'<[^>]+>', '', cleaned)
     return cleaned.strip()
+
+
+PUBLIC_FEEDBACK_RATE_LIMITS = {}
+MAX_FEEDBACK_PER_10_MIN = 5
+
+
+def check_feedback_rate_limit(ip: str) -> bool:
+    """Sliding-window rate limiter allowing up to MAX_FEEDBACK_PER_10_MIN per IP."""
+    now = time.time()
+    timestamps = PUBLIC_FEEDBACK_RATE_LIMITS.setdefault(ip, [])
+    timestamps[:] = [t for t in timestamps if now - t < 600]
+    if len(timestamps) >= MAX_FEEDBACK_PER_10_MIN:
+        return False
+    timestamps.append(now)
+    return True
+
+
+def sandbox_user_text(raw_text: str, max_chars: int = 1000) -> str:
+    """
+    Rigorously sanitizes and sandboxes raw untrusted user input:
+    1. Truncates to max length
+    2. Strips ASCII control chars & null bytes
+    3. Strips HTML and script tags
+    4. Escapes special HTML characters (<, >, &, ", ') to safe entities
+    """
+    if not isinstance(raw_text, str):
+        return ""
+    import html
+    # Strip null bytes and non-printable control characters
+    cleaned = "".join(ch for ch in raw_text if ch in "\n\r\t" or (32 <= ord(ch) <= 126) or ord(ch) >= 160)
+    # Strip dangerous HTML/script tags
+    cleaned = re.sub(r'<\s*script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\s*\/\s*script\s*>', '', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'<[^>]+>', '', cleaned)
+    # Multi-pass HTML escape
+    cleaned = html.escape(cleaned, quote=True).strip()
+    return cleaned[:max_chars]
+
+
+def validate_and_sanitize_url(raw_url: str) -> str:
+    """
+    Validates that a URL is strictly http/https and contains no javascript:, data:, or control sequences.
+    """
+    if not raw_url or not isinstance(raw_url, str):
+        return ""
+    raw_url = raw_url.strip()
+    try:
+        p = urlparse(raw_url)
+        if p.scheme.lower() not in ("http", "https"):
+            return ""
+        if not p.netloc:
+            return ""
+        if any(token in raw_url.lower() for token in ["javascript:", "data:", "vbscript:", "<", ">", "\"", "'", ";"]):
+            return ""
+        import html
+        return html.escape(raw_url[:250], quote=True)
+    except Exception:
+        return ""
 
 
 def create_backup_snapshot():
@@ -1261,6 +1320,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     pass
 
+            s_count = 0
+            if os.path.exists(DISCOVERED_SOURCES_PATH):
+                try:
+                    with open(DISCOVERED_SOURCES_PATH, "r", encoding="utf-8") as sf:
+                        s_data = json.load(sf)
+                        s_count = len([x for x in s_data.get("discoveredSources", []) if x.get("status") in ["pending_curator_approval", "pending"]])
+                except Exception:
+                    pass
+
             # 3. Master Venues Names (checks venues_master.json first)
             known_venues = []
             if os.path.exists(VENUES_MASTER_PATH):
@@ -1303,6 +1371,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "archivedCount": a_count,
                 "instructionsPendingCount": inst_count,
                 "discoveredVenuesCount": v_count,
+                "discoveredSourcesCount": s_count,
                 "pendingHolidaysCount": h_count,
                 "knownVenues": known_venues,
                 "linkAudit": link_audit_data,
@@ -1439,6 +1508,20 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             queue_data.setdefault("metadata", {})["pendingCount"] = len(filtered_q)
             return self._send_json(200, queue_data)
 
+        # 2.5 API: Get discovered newsletter signup opportunities (requires auth)
+        if path == "/api/curator/newsletter-signups" or path == "/api/curator/newsletter_signups":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            signups = []
+            if os.path.exists(MANUAL_QUEUE_PATH):
+                try:
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                        q_data = json.load(f)
+                        signups = q_data.get("pendingNewsletterSignups", [])
+                except Exception:
+                    pass
+            return self._send_json(200, {"success": True, "newsletterSignups": signups, "count": len(signups)})
+
         # 3. API: Get learned rules (requires auth)
         if path == "/api/curator/rules":
             if not self._check_authenticated():
@@ -1547,6 +1630,19 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     pass
 
             return self._send_json(200, disc)
+
+        # 6b. API: Get discovered candidate sources list
+        if path == "/api/curator/discovered_sources":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            disc_src = {"metadata": {}, "discoveredSources": []}
+            if os.path.exists(DISCOVERED_SOURCES_PATH):
+                try:
+                    with open(DISCOVERED_SOURCES_PATH, "r", encoding="utf-8") as sf:
+                        disc_src = json.load(sf)
+                except Exception:
+                    pass
+            return self._send_json(200, disc_src)
 
         # 7. API: Get festival registry
         if path == "/api/curator/festivals":
@@ -1831,6 +1927,94 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "data": report_entry
             })
 
+        # 4. Public API: Submit Sandboxed Feedback / Suggestions to Quarantine (Zero auth required)
+        if path == "/api/feedback" or path == "/api/submit-feedback":
+            # Bot honeypot check (hidden fields filled by automated spam bots)
+            if payload.get("honeypot") or payload.get("hp_field") or payload.get("website_url_hp"):
+                return self._send_json(200, {
+                    "success": True,
+                    "message": "Submission received. Staged in Quarantine for Curator review."
+                })
+
+            # IP Rate limiting
+            if not check_feedback_rate_limit(client_ip):
+                return self._send_json(429, {
+                    "error": "Rate limit reached. Please wait a few moments before submitting another suggestion."
+                })
+
+            # Accept single open-ended message box (with optional contact email/phone inside)
+            raw_msg = str(payload.get("message") or payload.get("feedback_message") or payload.get("comment") or payload.get("feedback") or payload.get("notes") or "").strip()
+            explicit_title = str(payload.get("title") or payload.get("name") or "").strip()
+
+            if not raw_msg and not explicit_title:
+                return self._send_json(400, {"error": "Please enter your message or suggestion."})
+
+            # Sandbox and sanitize text (strips scripts, control chars, escapes HTML entities)
+            sanitized_message = sandbox_user_text(raw_msg, 2500)
+            target_event_id = sandbox_user_text(str(payload.get("target_event_id") or ""), 60)
+
+            # Generate a clean summary headline for curator triage
+            if explicit_title:
+                headline = sandbox_user_text(explicit_title, 120)
+            else:
+                first_line = sanitized_message.split("\n")[0].strip()
+                if len(first_line) > 75:
+                    headline = first_line[:72] + "..."
+                elif first_line:
+                    headline = first_line
+                else:
+                    headline = "Community Feedback & Suggestion"
+
+            sub_type = str(payload.get("submission_type") or payload.get("type") or "user_feedback").strip().lower()
+            if sub_type not in {"event_suggestion", "venue_suggestion", "correction", "general_comment", "user_feedback"}:
+                sub_type = "user_feedback"
+
+            sandboxed_record = {
+                "feedback_id": f"fb_{int(time.time())}_{os.urandom(3).hex()}",
+                "entity_type": "user_feedback",
+                "submission_type": sub_type,
+                "target_event_id": target_event_id or None,
+                "sanitized_title": headline,
+                "sanitized_message": sanitized_message,
+                "sanitized_comment": sanitized_message,
+                "submitted_at": datetime.now(timezone.utc).isoformat(),
+                "status": "quarantined",
+                "curator_status": "pending_review",
+                "sandbox_metadata": {
+                    "is_sandboxed": True,
+                    "xss_immune": True,
+                    "html_escaped": True,
+                    "raw_html_stripped": True,
+                    "single_box_form": True
+                }
+            }
+
+            try:
+                queue_data = {"metadata": {}, "quarantinedEvents": [], "userFeedbackQueue": []}
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                        queue_data = json.load(f)
+
+                if "userFeedbackQueue" not in queue_data or not isinstance(queue_data["userFeedbackQueue"], list):
+                    queue_data["userFeedbackQueue"] = []
+
+                queue_data["userFeedbackQueue"].append(sandboxed_record)
+                queue_data["pendingFeedbackCount"] = len(queue_data["userFeedbackQueue"])
+                queue_data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+
+                with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                    json.dump(queue_data, f, indent=2, ensure_ascii=False)
+
+                print(f"[QUARANTINE STAGED] User feedback '{sandboxed_record['feedback_id']}' safely sandboxed in Quarantine.")
+
+                return self._send_json(200, {
+                    "success": True,
+                    "message": "Thank you! Your suggestion has been securely sandboxed and staged in Quarantine for Curator review.",
+                    "feedback_id": sandboxed_record["feedback_id"]
+                })
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to stage feedback in Quarantine: {e}"})
+
         # All mutating endpoints strictly require authentication
         if not self._check_authenticated():
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
@@ -1909,6 +2093,116 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "events_updated": events_updated_count
             })
 
+        # API: Dismiss or Resolve Quarantined User Feedback
+        if path == "/api/curator/feedback/dismiss" or path == "/api/curator/feedback/resolve":
+            fid = payload.get("feedback_id")
+            if not fid:
+                return self._send_json(400, {"error": "feedback_id required"})
+            try:
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                        q_data = json.load(f)
+                    fb_queue = q_data.get("userFeedbackQueue", [])
+                    action = "dismissed" if "dismiss" in path else "resolved"
+                    updated_queue = []
+                    found = False
+                    for item in fb_queue:
+                        if item.get("feedback_id") == fid:
+                            found = True
+                            # If resolved or dismissed, remove from active pending queue
+                        else:
+                            updated_queue.append(item)
+                    q_data["userFeedbackQueue"] = updated_queue
+                    q_data["pendingFeedbackCount"] = len(updated_queue)
+                    q_data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                        json.dump(q_data, f, indent=2, ensure_ascii=False)
+                    return self._send_json(200, {"success": True, "message": f"Feedback {fid} marked as {action}."})
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to update feedback: {e}"})
+
+        # API: Subscribe to newsletter (Record in subscribed_venues.json and remove from queue)
+        if path == "/api/curator/newsletter-signups/subscribe" or path == "/api/curator/newsletter_signups/subscribe":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            nid = payload.get("id")
+            venue_name = payload.get("venue_name")
+            website_url = payload.get("website_url", "")
+            signup_url = payload.get("signup_url", "")
+            method = payload.get("method", "Manual Curator Subscription")
+
+            if not venue_name and not nid:
+                return self._send_json(400, {"error": "id or venue_name required"})
+
+            try:
+                # 1. Update subscribed_venues.json
+                sub_data = {"target_email": "Van50.Submit@gmail.com", "last_updated": datetime.now(timezone.utc).isoformat(), "subscriptions": []}
+                if os.path.exists(SUBSCRIBED_VENUES_PATH):
+                    try:
+                        with open(SUBSCRIBED_VENUES_PATH, "r", encoding="utf-8") as sf:
+                            sub_data = json.load(sf)
+                    except Exception:
+                        pass
+                
+                existing_subs = sub_data.get("subscriptions", [])
+                norm_target = re.sub(r'[^a-z0-9]', '', (venue_name or '').lower())
+                already_in_subs = any(re.sub(r'[^a-z0-9]', '', s.get("venue_name", "").lower()) == norm_target for s in existing_subs)
+                if not already_in_subs and venue_name:
+                    existing_subs.append({
+                        "venue_name": venue_name,
+                        "website": website_url,
+                        "status": f"Manual Curator Subscription ({signup_url})",
+                        "subscribed_at": datetime.now(timezone.utc).isoformat(),
+                        "method": method
+                    })
+                    sub_data["subscriptions"] = existing_subs
+                    sub_data["last_updated"] = datetime.now(timezone.utc).isoformat()
+                    with open(SUBSCRIBED_VENUES_PATH, "w", encoding="utf-8") as sf:
+                        json.dump(sub_data, sf, indent=2, ensure_ascii=False)
+
+                # 2. Remove from pendingNewsletterSignups in manual_review_queue.json
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as qf:
+                        q_data = json.load(qf)
+                    cur_signups = q_data.get("pendingNewsletterSignups", [])
+                    updated_signups = [
+                        s for s in cur_signups
+                        if s.get("id") != nid and (not venue_name or s.get("venue_name") != venue_name)
+                    ]
+                    q_data["pendingNewsletterSignups"] = updated_signups
+                    q_data["pendingNewsletterCount"] = len(updated_signups)
+                    q_data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as qf:
+                        json.dump(q_data, qf, indent=2, ensure_ascii=False)
+
+                return self._send_json(200, {
+                    "success": True,
+                    "message": f"Venue '{venue_name}' recorded in subscribed registry and cleared from pending queue."
+                })
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to record subscription: {e}"})
+
+        # API: Dismiss newsletter signup opportunity
+        if path == "/api/curator/newsletter-signups/dismiss" or path == "/api/curator/newsletter_signups/dismiss":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            nid = payload.get("id")
+            if not nid:
+                return self._send_json(400, {"error": "id required"})
+            try:
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as qf:
+                        q_data = json.load(qf)
+                    cur_signups = q_data.get("pendingNewsletterSignups", [])
+                    updated_signups = [s for s in cur_signups if s.get("id") != nid]
+                    q_data["pendingNewsletterSignups"] = updated_signups
+                    q_data["pendingNewsletterCount"] = len(updated_signups)
+                    q_data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                    with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as qf:
+                        json.dump(q_data, qf, indent=2, ensure_ascii=False)
+                return self._send_json(200, {"success": True, "message": "Newsletter signup opportunity dismissed."})
+            except Exception as e:
+                return self._send_json(500, {"error": f"Failed to dismiss signup: {e}"})
 
         # API: Trigger Quality Control AI Pass in background
         if path == "/api/curator/run-qc":
@@ -2996,6 +3290,14 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                                         "annotatedAt": datetime.now(timezone.utc).isoformat()
                                     }
                             q_data["quarantinedEvents"] = q_list
+                            for dv in q_data.get("discoveredVenues", []):
+                                if dv.get("id") == event_id or (payload.get("venueName") and dv.get("name", "").lower() == str(payload.get("venueName")).lower()):
+                                    dv["queuedInstruction"] = instruction_record
+                                    dv["dealtWith"] = True
+                            for ds in q_data.get("discoveredSources", []):
+                                if ds.get("id") == event_id or (payload.get("venueName") and ds.get("name", "").lower() == str(payload.get("venueName")).lower()):
+                                    ds["queuedInstruction"] = instruction_record
+                                    ds["curatorNotes"] = instruction_text
                             with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
                                 json.dump(q_data, f, indent=2, ensure_ascii=False)
                             sync_js_data_file()
@@ -3208,11 +3510,15 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             if not self._check_authenticated():
                 return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required to fetch newsletters"})
             try:
+                from newsletter_ingestor import run_newsletter_ingestion
+                ingest_res = run_newsletter_ingestion(unread_only=True, limit=20, dry_run=False)
                 sync_js_data_file()
                 return self._send_json(200, {
-                    "success": True,
-                    "totalQueued": 0,
-                    "message": "Newsletter ingestion is handled directly by Scout AI."
+                    "success": ingest_res.get("success", True),
+                    "totalQueued": ingest_res.get("queued", 0),
+                    "emailsChecked": ingest_res.get("emailsChecked", 0),
+                    "candidatesFound": ingest_res.get("candidatesFound", 0),
+                    "message": ingest_res.get("message", "Newsletter scan complete.")
                 })
             except Exception as e:
                 return self._send_json(500, {"success": False, "error": str(e), "message": f"Newsletter sync failed: {e}"})
@@ -3684,44 +3990,144 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "remainingPending": len(h_data.get("pendingHolidays", []))
             })
 
+        # API: Approve candidate source and enroll into discovery_sources.json
+        if path == "/api/curator/discovered_sources/approve":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            source_id = payload.get("id") or payload.get("sourceId")
+            domain = payload.get("domain")
+            if not source_id and not domain:
+                return self._send_json(400, {"error": "Missing source id or domain"})
+
+            promoted_source = None
+            if os.path.exists(DISCOVERED_SOURCES_PATH):
+                try:
+                    with open(DISCOVERED_SOURCES_PATH, "r", encoding="utf-8") as sf:
+                        disc_data = json.load(sf)
+                    for s in disc_data.get("discoveredSources", []):
+                        if (source_id and s.get("id") == source_id) or (domain and s.get("domain") == domain):
+                            s["status"] = "approved"
+                            s["approvedAt"] = datetime.now().isoformat()
+                            promoted_source = s
+                    with open(DISCOVERED_SOURCES_PATH, "w", encoding="utf-8") as sf:
+                        json.dump(disc_data, sf, indent=2, ensure_ascii=False)
+                except Exception as ex:
+                    print(f"[CURATOR WARN] Error updating discovered_sources: {ex}")
+
+            if promoted_source and os.path.exists(DISCOVERY_SOURCES_PATH):
+                try:
+                    with open(DISCOVERY_SOURCES_PATH, "r", encoding="utf-8") as df:
+                        ds_data = json.load(df)
+                    existing_domains = {x.get("domain") for x in ds_data.get("sources", []) if x.get("domain")}
+                    if promoted_source.get("domain") not in existing_domains:
+                        new_src = {
+                            "id": promoted_source.get("id", "").replace("discovered-", ""),
+                            "name": promoted_source.get("name"),
+                            "domain": promoted_source.get("domain"),
+                            "eventsUrl": promoted_source.get("eventsUrl"),
+                            "type": promoted_source.get("type", "cultural_directory"),
+                            "typeLabel": promoted_source.get("typeLabel", "Curated Cultural Feed"),
+                            "focus": promoted_source.get("focus", "Vancouver cultural events"),
+                            "bestForCategories": ["shows", "arts", "music"],
+                            "harvestMethod": "html_calendar",
+                            "targetBudgetTier": promoted_source.get("targetBudgetTier", "<= $50 CAD & free"),
+                            "status": "active"
+                        }
+                        ds_data.setdefault("sources", []).append(new_src)
+                        ds_data.setdefault("metadata", {})["totalSources"] = len(ds_data["sources"])
+                        ds_data["metadata"]["updatedAt"] = datetime.now().isoformat()[:10]
+                        with open(DISCOVERY_SOURCES_PATH, "w", encoding="utf-8") as df:
+                            json.dump(ds_data, df, indent=2, ensure_ascii=False)
+                except Exception as ex:
+                    print(f"[CURATOR WARN] Error adding to discovery_sources: {ex}")
+
+            s_name = promoted_source.get("name") if promoted_source else (source_id or domain)
+            return self._send_json(200, {
+                "success": True,
+                "message": f"Source '{s_name}' approved and enrolled into Scout Radar!"
+            })
+
+        # API: Dismiss candidate source
+        if path == "/api/curator/discovered_sources/dismiss":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            source_id = payload.get("id") or payload.get("sourceId")
+            domain = payload.get("domain")
+            if os.path.exists(DISCOVERED_SOURCES_PATH):
+                try:
+                    with open(DISCOVERED_SOURCES_PATH, "r", encoding="utf-8") as sf:
+                        disc_data = json.load(sf)
+                    for s in disc_data.get("discoveredSources", []):
+                        if (source_id and s.get("id") == source_id) or (domain and s.get("domain") == domain):
+                            s["status"] = "dismissed"
+                            s["dismissedAt"] = datetime.now().isoformat()
+                    with open(DISCOVERED_SOURCES_PATH, "w", encoding="utf-8") as sf:
+                        json.dump(disc_data, sf, indent=2, ensure_ascii=False)
+                except Exception as ex:
+                    pass
+            return self._send_json(200, {"success": True, "message": "Candidate source dismissed."})
+
+        # API: Approve ALL candidate sources at once
+        if path == "/api/curator/discovered_sources/approve_all":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            appr_count = 0
+            if os.path.exists(DISCOVERED_SOURCES_PATH) and os.path.exists(DISCOVERY_SOURCES_PATH):
+                try:
+                    with open(DISCOVERED_SOURCES_PATH, "r", encoding="utf-8") as sf:
+                        disc_data = json.load(sf)
+                    with open(DISCOVERY_SOURCES_PATH, "r", encoding="utf-8") as df:
+                        ds_data = json.load(df)
+                    existing_domains = {x.get("domain") for x in ds_data.get("sources", []) if x.get("domain")}
+                    for s in disc_data.get("discoveredSources", []):
+                        if s.get("status") in ["pending_curator_approval", "pending"]:
+                            s["status"] = "approved"
+                            s["approvedAt"] = datetime.now().isoformat()
+                            appr_count += 1
+                            if s.get("domain") not in existing_domains:
+                                ds_data.setdefault("sources", []).append({
+                                    "id": s.get("id", "").replace("discovered-", ""),
+                                    "name": s.get("name"),
+                                    "domain": s.get("domain"),
+                                    "eventsUrl": s.get("eventsUrl"),
+                                    "type": s.get("type", "cultural_directory"),
+                                    "typeLabel": s.get("typeLabel", "Curated Cultural Feed"),
+                                    "focus": s.get("focus", "Vancouver cultural events"),
+                                    "bestForCategories": ["shows", "arts", "music"],
+                                    "harvestMethod": "html_calendar",
+                                    "targetBudgetTier": s.get("targetBudgetTier", "<= $50 CAD & free"),
+                                    "status": "active"
+                                })
+                                existing_domains.add(s.get("domain"))
+                    with open(DISCOVERED_SOURCES_PATH, "w", encoding="utf-8") as sf:
+                        json.dump(disc_data, sf, indent=2, ensure_ascii=False)
+                    ds_data.setdefault("metadata", {})["totalSources"] = len(ds_data["sources"])
+                    ds_data["metadata"]["updatedAt"] = datetime.now().isoformat()[:10]
+                    with open(DISCOVERY_SOURCES_PATH, "w", encoding="utf-8") as df:
+                        json.dump(ds_data, df, indent=2, ensure_ascii=False)
+                except Exception as ex:
+                    print(f"[CURATOR WARN] Error approving all sources: {ex}")
+            return self._send_json(200, {
+                "success": True,
+                "approvedCount": appr_count,
+                "message": f"Successfully enrolled {appr_count} candidate sources into Scout Radar!"
+            })
+
         return self._send_json(404, {"error": "Endpoint not found"})
 
 
 def _curator_daemon_scheduler_loop(target_time_str: str = "04:00"):
-    """Background scheduler thread running inside curator_server."""
-    while True:
-        try:
-            status = get_automation_status()
-            if status.get("automationEnabled", True):
-                now = datetime.now()
-                current_time_hm = now.strftime("%H:%M")
-                last_run_iso = status.get("lastRunAt")
-                already_ran_today = False
-                if last_run_iso:
-                    try:
-                        last_dt = datetime.fromisoformat(last_run_iso)
-                        if last_dt.date() == now.date() and (now - last_dt).total_seconds() < 3600:
-                            already_ran_today = True
-                    except Exception:
-                        pass
-
-                if current_time_hm == target_time_str and not already_ran_today and status.get("status") != "running":
-                    print(f"[CURATOR SCHEDULER] Triggering scheduled daily discovery at {current_time_hm}...")
-                    run_full_daily_pipeline(run_at_time=target_time_str)
-                    sync_js_data_file()
-        except Exception as e:
-            print(f"[CURATOR SCHEDULER ERROR] {e}")
-        time.sleep(30)
+    """Scheduler disabled per curator direction."""
+    return
 
 
 def run_server(port=PORT):
     socketserver.ThreadingTCPServer.allow_reuse_address = False
-    scheduler_thread = threading.Thread(target=_curator_daemon_scheduler_loop, daemon=True)
-    scheduler_thread.start()
+    # Automated background python scheduler loop disabled
     with socketserver.ThreadingTCPServer(("127.0.0.1", port), CuratorRequestHandler) as httpd:
         print(f"[CURATOR SERVER] Listening on http://127.0.0.1:{port}/")
         print(f"[CURATOR SERVER] Curator Studio: http://127.0.0.1:{port}/curator.html")
-        print(f"[CURATOR SERVER] Daily Automation Scheduler active (Target: 04:00 AM)")
+        print(f"[CURATOR SERVER] Automated scheduler: DISABLED")
         httpd.serve_forever()
 
 

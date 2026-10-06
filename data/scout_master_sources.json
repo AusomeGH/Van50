@@ -5,7 +5,7 @@
       "id": "venue:stanley-park-seawall",
       "name": "Stanley Park Seawall",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+      "url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -61,7 +61,7 @@
       "id": "venue:queen-elizabeth-park",
       "name": "Queen Elizabeth Park",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+      "url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
       "neighborhood": "Mount Pleasant & South Vancouver",
       "last_scouted_at": null
     },
@@ -213,7 +213,7 @@
       "id": "venue:stanley-park-pitch-putt",
       "name": "Stanley Park Pitch & Putt",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+      "url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
       "neighborhood": "Downtown, Gastown & Yaletown",
       "last_scouted_at": null
     },
@@ -757,7 +757,7 @@
       "id": "venue:the-annex-roundhouse-community-centre",
       "name": "The Annex & Roundhouse Community Centre",
       "type": "venue",
-      "url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
+      "url": "https://vancouvercivictheatres.com/venues/annex/",
       "neighborhood": "Downtown / Yaletown",
       "last_scouted_at": null
     },
@@ -1061,7 +1061,7 @@
       "id": "discovery:city-of-vancouver-parks-recreation-culture",
       "name": "City of Vancouver Parks, Recreation & Culture",
       "type": "aggregator",
-      "url": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+      "url": "https://www.destinationvancouver.com/things-to-do/",
       "category": "general",
       "last_scouted_at": null
     },

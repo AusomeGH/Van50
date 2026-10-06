@@ -470,9 +470,29 @@
       "discoveredVia": "Test Fringe Festival",
       "discoverySourceId": "test-fringe-festival",
       "sampleEvent": "Test Fringe Festival Performances & Showcases",
-      "status": "pending",
+      "status": "dismissed",
       "discoveredAt": "2026-09-29T22:16:04.706937+00:00",
-      "curatorNote": ""
+      "curatorNote": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+      "hasInstruction": true,
+      "curatorLearnedRules": {
+        "venueName": "Stanley Park Seawall",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://vancouverfringe.com/shows/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+        "summary": "Calendar: https://vancouverfringe.com/shows/",
+        "distilledAt": "2026-10-05T15:02:52.266500+00:00"
+      },
+      "dismissedReason": "Dismissed per curator guidance: Seawall is already established as an independent civic outing/venue, not a Fringe venue."
     }
   ]
 }

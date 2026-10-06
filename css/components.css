@@ -1306,8 +1306,8 @@
 .price-box-interactive {
   cursor: pointer;
   border-radius: var(--radius-sm, 6px);
-  padding: 2px 6px;
-  margin: -2px -6px;
+  padding: 2px 4px;
+  margin: 0;
   transition: background var(--transition-fast, 0.15s ease);
 }
 
@@ -1322,24 +1322,26 @@
 .price-tiers-toggle-hint {
   display: inline-flex;
   align-items: center;
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: var(--radius-full, 9999px);
-  padding: 2px 5px;
-  margin-left: 4px;
+  padding: 1px 6px;
+  margin-left: 0;
+  line-height: 1.2;
   flex-shrink: 0;
+  white-space: nowrap;
   transition: all var(--transition-fast, 0.15s ease);
 }
 
 .price-box-interactive:hover .price-tiers-toggle-hint {
-  color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.45);
-  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  border-color: rgba(56, 189, 248, 0.65);
+  background: rgba(56, 189, 248, 0.22);
 }
 
 .price-tiers-toggle-hint.active {
@@ -1642,10 +1644,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 8px 10px;
   min-height: 40px;
   width: 100%;
-  flex-wrap: nowrap !important;
+  flex-wrap: wrap;
   margin-top: auto;
 }
 
@@ -1653,17 +1655,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 0;
+  min-width: fit-content;
+  max-width: 100%;
   flex: 1 1 auto;
 }
 
 .price-main {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 800;
   color: var(--accent-primary);
   line-height: 1.2;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .price-main.free {
@@ -1679,8 +1683,9 @@
 .price-breakdown-row {
   display: flex;
   align-items: center;
-  gap: 4px;
-  white-space: nowrap;
+  gap: 6px;
+  flex-wrap: nowrap;
+  max-width: 100%;
 }
 
 .price-info-popover {
@@ -1721,20 +1726,21 @@
   justify-content: center;
   text-align: center;
   width: auto;
-  min-width: 142px;
-  max-width: 164px;
-  height: 38px;
+  min-width: 114px;
+  max-width: 154px;
+  height: 36px;
   flex: 0 0 auto;
   box-sizing: border-box;
   white-space: nowrap;
   font-family: var(--font-heading);
-  font-size: 0.79rem;
+  font-size: 0.76rem;
   font-weight: 700;
   padding: 0 10px;
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
   text-decoration: none;
+  margin-left: auto;
 }
 
 .btn-ticket-cta:hover {
@@ -1745,9 +1751,12 @@
 }
 
 @media (max-width: 480px) {
+  .card-footer {
+    gap: 8px;
+  }
   .btn-ticket-cta {
-    min-width: 134px;
-    font-size: 0.75rem;
+    min-width: 110px;
+    font-size: 0.74rem;
     padding: 0 8px;
   }
 }
@@ -3970,6 +3979,20 @@ body.van50-accessible .card-ticket-link {
 .weekly-hours-summary-row:hover,
 .showings-summary-row:hover {
   background: rgba(255, 255, 255, 0.04);
+}
+
+.weekly-hours-summary-row.static-schedule-row {
+  cursor: default;
+  user-select: text;
+}
+
+.weekly-hours-summary-row.static-schedule-row:hover {
+  background: transparent;
+}
+
+.card-weekly-hours-block.static-hours-block:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  border-left-color: var(--accent-primary);
 }
 
 .wh-summary-left {

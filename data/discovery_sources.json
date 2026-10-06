@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.3.0",
-    "updatedAt": "2026-10-01",
-    "totalSources": 49,
+    "updatedAt": "2026-10-05",
+    "totalSources": 61,
     "region": "Vancouver, BC",
     "description": "Curated directory of primary discovery feeds and event aggregators for Vancouver events under $50 CAD. These sources serve as discovery funnels only; candidate events must resolve to verified canonical ticket providers."
   },
@@ -454,7 +454,7 @@
       "id": "city-of-vancouver-culture",
       "name": "City of Vancouver Parks, Recreation & Culture",
       "domain": "vancouver.ca",
-      "eventsUrl": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+      "eventsUrl": "https://www.destinationvancouver.com/things-to-do/",
       "rssUrl": null,
       "type": "civic_recreation_directory",
       "typeLabel": "Municipal Parks, Recreation & Civic Directory",
@@ -903,6 +903,210 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+      "status": "active"
+    },
+    {
+      "id": "arts-club-theatre",
+      "name": "Arts Club Theatre Company",
+      "domain": "artsclub.com",
+      "eventsUrl": "https://artsclub.com/shows/",
+      "type": "regional_theatre_company",
+      "typeLabel": "Regional Professional Theatre Company",
+      "focus": "Live plays, musicals, and staged comedies across 3 Vancouver stages",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD (rush, preview, and youth ticket programs)",
+      "status": "active"
+    },
+    {
+      "id": "the-improv-centre",
+      "name": "The Improv Centre (Granville Island)",
+      "domain": "theimprovcentre.ca",
+      "eventsUrl": "https://theimprovcentre.ca/shows/",
+      "type": "comedy_theatre",
+      "typeLabel": "Granville Island Improv Institution",
+      "focus": "Granville Island comedy shows 5-6 nights a week ($20-$33.50 all-in)",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD",
+      "status": "active"
+    },
+    {
+      "id": "the-cinematheque",
+      "name": "The Cinematheque (Downtown Independent Cinema)",
+      "domain": "thecinematheque.ca",
+      "eventsUrl": "https://thecinematheque.ca/films",
+      "type": "independent_cinema",
+      "typeLabel": "Non-Profit Film Institute & Cinematheque",
+      "focus": "35mm film retrospectives, international cinema, documentary screenings ($14 CAD)",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD",
+      "status": "active"
+    },
+    {
+      "id": "firehall-arts-centre",
+      "name": "Firehall Arts Centre",
+      "domain": "firehallartscentre.ca",
+      "eventsUrl": "https://firehallartscentre.ca/on-stage/",
+      "type": "community_theatre",
+      "typeLabel": "Historic Community Performing Arts Centre",
+      "focus": "Contemporary Canadian drama, experimental theatre, and cultural dance",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD (with PWYC/Under 30 tiers)",
+      "status": "active"
+    },
+    {
+      "id": "diwali-fest",
+      "name": "Diwali Fest (Diwali Celebration Society)",
+      "domain": "diwalifest.com",
+      "eventsUrl": "https://diwalifest.com",
+      "type": "cultural_festival_hub",
+      "typeLabel": "Annual South Asian Arts & Culture Festival",
+      "focus": "Diwali performances, South Asian classical music, dance, rangoli workshops",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "100% Free / PWYC ($0.00 CAD)",
+      "status": "active"
+    },
+    {
+      "id": "orangetickets",
+      "name": "Orange Tickets Canada",
+      "domain": "orangetickets.ca",
+      "eventsUrl": "https://orangetickets.ca",
+      "type": "ticketing_platform_radar",
+      "typeLabel": "Specialty Live Music Ticketing",
+      "focus": "Metal, punk, underground rock concerts at Rickshaw and live venues",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD",
+      "status": "active"
+    },
+    {
+      "id": "latincouver",
+      "name": "Latincouver (The Latin American Plaza in BC)",
+      "domain": "latincouver.ca",
+      "eventsUrl": "https://latincouver.ca/events/",
+      "type": "cultural_association_radar",
+      "typeLabel": "Cultural Heritage & Community Festival",
+      "focus": "Latin American festivals, Día de los Muertos, music & heritage workshops",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free",
+      "status": "active"
+    },
+    {
+      "id": "tightrope-theatre",
+      "name": "Tightrope Impro Theatre (Ticket Tailor Portal)",
+      "domain": "tightropetheatre.com",
+      "eventsUrl": "https://tightropetheatre.com/shows",
+      "type": "comedy_theatre",
+      "typeLabel": "Independent Improv Comedy Venue",
+      "focus": "Weekly unscripted comedy, narrative improv, and drop-in jams ($26.25 all-in)",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD",
+      "status": "active"
+    },
+    {
+      "id": "commercial-drive-bia",
+      "name": "Commercial Drive Business Society (BIA)",
+      "domain": "thedrive.ca",
+      "eventsUrl": "https://thedrive.ca/events/",
+      "type": "neighbourhood_bia",
+      "typeLabel": "Business Improvement Association",
+      "focus": "Italian Day, Halloween on The Drive, holiday parades, community concerts",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "100% Free ($0.00 CAD)",
+      "status": "active"
+    },
+    {
+      "id": "admitone",
+      "name": "AdmitOne Ticketing (Vancouver Live Music)",
+      "domain": "admitone.com",
+      "eventsUrl": "https://admitone.com/events/vancouver",
+      "type": "ticketing_platform_radar",
+      "typeLabel": "Direct Ticketing Platform",
+      "focus": "Independent live music, touring bands, club shows (The Biltmore, etc.)",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-writers-fest",
+      "name": "Vancouver Writers Fest",
+      "domain": "writersfest.bc.ca",
+      "eventsUrl": "https://writersfest.bc.ca/events",
+      "type": "literary_festival_and_year_round_series",
+      "typeLabel": "Premier Literary Festival & Year-Round Reading Series",
+      "focus": "Author conversations, poetry bases, literary cabarets, and youth writing workshops across Granville Island",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD & free ($28 regular / $12-$15 youth / free community events)",
+      "status": "active"
+    },
+    {
+      "id": "vancouver-poetry-house",
+      "name": "Vancouver Poetry House",
+      "domain": "vancouverpoetryhouse.com",
+      "eventsUrl": "https://vancouverpoetryhouse.com/events/",
+      "type": "spoken_word_collective",
+      "typeLabel": "Spoken Word, Slam Poetry & Community Showcase",
+      "focus": "Weekly Vancouver Poetry Slam, Wordplay youth workshops, and VerseFest community poetry events ($10-$15 CAD)",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "music"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "<= $50 CAD ($10 - $15 CAD door & PWYC)",
       "status": "active"
     }
   ]

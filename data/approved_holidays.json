@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03",
+    "updatedAt": "2026-10-05",
     "description": "Van50 Registry of Approved Holidays and Pending AI Discoveries"
   },
   "approvedHolidays": [
@@ -70,17 +70,13 @@
       "label": "Diwali Festival of Lights",
       "icon": "🪔",
       "approvedAt": "2026-10-03"
-    }
-  ],
-  "pendingHolidays": [
+    },
     {
       "id": "dia-de-los-muertos",
       "label": "Día de los Muertos / Day of the Dead",
       "icon": "💀",
-      "detectedInEvent": "van50-latincouver-catrinas-procession-gastown-20261102",
-      "eventTitle": "Catrinas Procession: Día de los Muertos",
-      "detectedAt": "2026-10-03",
-      "status": "pending"
+      "approvedAt": "2026-10-05"
     }
-  ]
+  ],
+  "pendingHolidays": []
 }

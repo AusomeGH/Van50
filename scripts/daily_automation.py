@@ -162,6 +162,15 @@ def run_full_daily_pipeline(dry_run: bool = False, run_at_time: str = "04:00", s
     except Exception as e:
         log_message(f"[CURATOR LEARNING ERROR] {e}\n{traceback.format_exc()}", log_file_path)
 
+    # Step 0.5: Scan & Ingest Inbound Newsletters from Gmail
+    try:
+        from newsletter_ingestor import run_newsletter_ingestion
+        log_message("[PIPELINE STEP 0.5] Scanning inbound Gmail newsletters for upcoming events...", log_file_path)
+        nl_res = run_newsletter_ingestion(unread_only=True, limit=25, dry_run=dry_run)
+        log_message(f"[NEWSLETTER INGESTOR] {nl_res.get('message', 'Complete')}", log_file_path)
+    except Exception as e:
+        log_message(f"[NEWSLETTER INGESTOR WARN] Could not check newsletters: {e}", log_file_path)
+
     # Step 1: Safety Backup
     backup_file = create_safety_backup(log_file_path)
 

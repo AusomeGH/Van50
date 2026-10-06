@@ -56,9 +56,25 @@
           <span>🏛️ Discovered Venues:</span>
           <span class="stat-val" id="stat-discovered-venues-count">0</span>
         </div>
+        <div class="stat-pill clickable-pill" title="Candidate event sources &amp; ticketing platforms discovered via AI operations" id="stat-discovered-sources-pill" style="cursor: pointer;">
+          <span>📡 Discovered Sources:</span>
+          <span class="stat-val" id="stat-discovered-sources-count">0</span>
+        </div>
+        <div class="stat-pill clickable-pill" title="Community submissions and corrections quarantined for review" id="stat-user-feedback-pill" style="cursor: pointer; border: 1px solid rgba(52, 211, 153, 0.35);">
+          <span>💬 User Submissions:</span>
+          <span class="stat-val" id="stat-user-feedback-count" style="color: #6ee7b7;">0</span>
+        </div>
+        <div class="stat-pill clickable-pill" title="Venues with newsletter signup links discovered by Scout AI that need manual subscription" id="stat-nl-signups-pill" style="cursor: pointer; border: 1px solid rgba(244, 114, 182, 0.35);">
+          <span>📬 Signups:</span>
+          <span class="stat-val" id="stat-nl-signups-count" style="color: #f472b6;">0</span>
+        </div>
         <div class="stat-pill clickable-pill" id="stat-master-pill" style="cursor: pointer;" title="Click to inspect and search Master Catalogs (events, venues, festivals, ticketing, discovery)">
           <span>✅ Master Catalogs:</span>
           <span class="stat-val" id="stat-master-count">0</span>
+        </div>
+        <div class="stat-pill" id="stat-audit-pill" title="Coverage of 20-Dimension verified audit timestamps across active events">
+          <span>🩺 20-Dim QC:</span>
+          <span class="stat-val" id="stat-audit-count" style="color: #10b981; font-weight: 700;">100%</span>
         </div>
       </div>
 
@@ -92,7 +108,8 @@
   <!-- Main Workspace -->
   <main class="curator-container" style="flex: 1;">
     
-
+    <!-- Automatic Candidate Sources Prompt Banner -->
+    <div id="curator-candidate-sources-prompt" class="curator-candidate-prompt-banner" style="display: none; margin-bottom: 20px;"></div>
 
     <!-- Controls Section -->
     <section class="curator-controls-section">
@@ -104,6 +121,9 @@
           <button type="button" class="curator-filter-pill" data-filter="newsletter">📧 Newsletters (<span id="pill-count-newsletter">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="holidays" style="border: 1px solid rgba(251, 146, 60, 0.5); color: #fed7aa;" title="Pending holiday categories discovered by AI awaiting curator approval">🎉 New Holidays (<span id="pill-count-holidays">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="discovered_sources" style="border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc;" title="Candidate event sources and ticketing platforms discovered by AI awaiting curator approval">📡 Discovered Sources (<span id="pill-count-discovered-sources">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="user_feedback" style="border: 1px solid rgba(52, 211, 153, 0.5); color: #6ee7b7;" title="Community suggestions and corrections quarantined for review">💬 User Submissions (<span id="pill-count-user-feedback">0</span>)</button>
+          <button type="button" class="curator-filter-pill" data-filter="newsletter_signups" style="border: 1px solid rgba(244, 114, 182, 0.5); color: #f472b6;" title="Direct links to newsletters found by Scout that need manual subscription">📬 Newsletter Signups (<span id="pill-count-nl-signups">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unhandled">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="handled">📋 Rule Queued (<span id="pill-count-handled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Drift (<span id="pill-count-drift">0</span>)</button>

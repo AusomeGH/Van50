@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T10:16:50-07:00",
-    "archivedCount": 17,
+    "updatedAt": "2026-10-05T17:25:11.835586-07:00",
+    "archivedCount": 20,
     "description": "Events permanently dismissed or archived by Antigravity Quarantine AI due to exceeding the $50 CAD budget cap, expired dates, corrupted fixtures, or phantom listings."
   },
   "archivedEvents": [
@@ -822,23 +822,359 @@
       ]
     },
     {
-      "id": "test-expensive-rave-999",
-      "title": "Expensive Rave",
-      "venue": "",
-      "address": "",
-      "neighborhood": "",
-      "attemptedPrice": 85.0,
-      "attemptedPriceLabel": "$85.00",
-      "provider": "",
-      "semanticProvider": "",
-      "websiteUrl": "",
-      "category": "",
-      "flaggedAt": "2026-10-03T10:16:50-07:00",
-      "flagReason": "Test over $50 cap",
-      "reviewStatus": "denied_auto_budget",
-      "archivedReason": "Test over $50 cap",
-      "archivedAt": "2026-10-03T10:16:50-07:00",
-      "notes": "Auto-Denied by budget filter: verified price exceeds $50.00 CAD cap."
+      "id": "van50-scout-orpheum-vso-kids-20261004",
+      "title": "VSO Kids: Lights, Camera, Orchestra!",
+      "venue": "The Orpheum",
+      "address": "601 Smithe St, Vancouver, BC V6B 3L4",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "price": 25.2,
+      "category": "Live Music",
+      "date": "2026-10-04",
+      "time": "14:00",
+      "archiveReason": "Performance concluded on Sunday, Oct 4, 2026 at 15:30 (Single occurrence expired)."
+    },
+    {
+      "event_id": "van50-rickshaw-theatre-nekrogoblikon",
+      "event_name": "Nekrogoblikon",
+      "title": "Nekrogoblikon",
+      "category": "Comedy & Shows",
+      "lifecycle_type": "one_time",
+      "venue_name": "Rickshaw Theatre",
+      "full_address": "Vancouver, BC",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "coordinates": [
+        49.2811,
+        -123.0984
+      ],
+      "transit_info": "TransLink accessible",
+      "description": "Live scheduled programming at Rickshaw Theatre.",
+      "pricing_all_in_cad": {
+        "regular": 20.0,
+        "senior": 20.0,
+        "student": 20.0,
+        "member": 20.0
+      },
+      "operating_hours": "Evening live performances",
+      "days_open": "Upcoming Scheduled Showcase",
+      "show_1": {
+        "date": "2026-10-06",
+        "start_time": "19:30",
+        "end_time": "22:00",
+        "cost": 20.0
+      },
+      "show_2": null,
+      "show_3": null,
+      "discovery_url": "https://rickshawtheatre.com/",
+      "details_url": "https://www.ticketweb.ca/event/nekrogoblikon-with-special-guests-rickshaw-theatre-tickets/14946993?pl=MODO-LIVE",
+      "ticket_url": "https://www.ticketweb.ca/event/nekrogoblikon-with-special-guests-rickshaw-theatre-tickets/14946993?pl=MODO-LIVE",
+      "ticket_provider": "Ticketweb",
+      "tags": [
+        "rickshaw-theatre",
+        "shows",
+        "live-calendar"
+      ],
+      "festival_affiliation": "None",
+      "approval_status": "Auto-Approved",
+      "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+      "price": 20.0,
+      "access_model": "fenced_facility",
+      "pricing_model": "flat_ticket",
+      "dateSchedule": "Oct 6, 2026",
+      "start_date": "2026-10-06",
+      "start_time": "19:30",
+      "lineup": "Nekrogoblikon",
+      "is_sold_out": false,
+      "last_scouted_at": "2026-10-04T20:27:25.139088",
+      "dimension_audit": {
+        "last_full_qc_at": "2026-10-05T12:38:56.791256",
+        "auditor": "QC_AI",
+        "dimensions_score": "20/20",
+        "dimensions": {
+          "D1_title": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "Nekrogoblikon"
+          },
+          "D2_date": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "Perennial"
+          },
+          "D3_time": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "19:30"
+          },
+          "D4_weekly_hours": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "has_hours": false
+          },
+          "D5_schedule_string": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "Oct 6, 2026"
+          },
+          "D6_frequency": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "one-off"
+          },
+          "D7_category": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "Comedy & Shows"
+          },
+          "D8_location": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "venue": "Rickshaw Theatre",
+            "neighborhood": "Downtown, Gastown & Yaletown"
+          },
+          "D9_access_model": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "fenced_facility"
+          },
+          "D10_pricing_model": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "flat_ticket"
+          },
+          "D11_price": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": 20.0,
+            "all_in_cad": true
+          },
+          "D12_tiers": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "tier_count": 0,
+            "has_addons": false
+          },
+          "D13_benchmarks": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "drink": null,
+            "spend": null
+          },
+          "D14_deep_link": {
+            "status": "Tier 1 (Direct Box Office / Checkout)",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "url": "https://www.ticketweb.ca/event/nekrogoblikon-with-special-guests-rickshaw-theatre-tickets/14946993?pl=MODO-LIVE"
+          },
+          "D15_provider": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "Ticketweb"
+          },
+          "D16_description": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "length": 47
+          },
+          "D17_lineup": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "has_lineup": true
+          },
+          "D18_restrictions": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "value": "All Ages"
+          },
+          "D19_sold_out": {
+            "status": "verified_available",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "is_sold_out": false
+          },
+          "D20_showings_waypoints": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:56.791256",
+            "showings_count": 0
+          }
+        },
+        "audit_notes": "All 20 live dimensions confirmed current."
+      },
+      "id": "van50-rickshaw-theatre-nekrogoblikon",
+      "venue": "Rickshaw Theatre",
+      "archivedAt": "2026-10-05T17:25:11.835586-07:00",
+      "archiveReason": "Over budget ($50.25 CAD all-in): Live TicketWeb checkout pricing strictly exceeds the $50.00 CAD out-of-pocket budget cap. General Admission is $39.50 base + $7.75 platform service fee + $3.00 facility fee/GST = $50.25 CAD all-in ($0.25 over budget). Strictly excluded per Van50 Rule 1 / Core Principle #1 (Non-Negotiable $50.00 CAD Total Budget Cap).",
+      "archive_reason": "Over budget ($50.25 CAD all-in): Live TicketWeb checkout pricing strictly exceeds the $50.00 CAD out-of-pocket budget cap. General Admission is $39.50 base + $7.75 platform service fee + $3.00 facility fee/GST = $50.25 CAD all-in ($0.25 over budget). Strictly excluded per Van50 Rule 1 / Core Principle #1 (Non-Negotiable $50.00 CAD Total Budget Cap).",
+      "flaggedAt": "2026-10-05"
+    },
+    {
+      "event_id": "van50-rickshaw-theatre-chad-vangaalen",
+      "event_name": "Chad VanGaalen",
+      "title": "Chad VanGaalen",
+      "category": "Comedy & Shows",
+      "lifecycle_type": "one_time",
+      "venue_name": "Rickshaw Theatre",
+      "full_address": "Vancouver, BC",
+      "neighborhood": "Downtown, Gastown & Yaletown",
+      "coordinates": [
+        49.2811,
+        -123.0984
+      ],
+      "transit_info": "TransLink accessible",
+      "description": "Live scheduled programming at Rickshaw Theatre.",
+      "pricing_all_in_cad": {
+        "regular": 20.0,
+        "senior": 20.0,
+        "student": 20.0,
+        "member": 20.0
+      },
+      "operating_hours": "Evening live performances",
+      "days_open": "Upcoming Scheduled Showcase",
+      "show_1": {
+        "date": "2026-10-06",
+        "start_time": "19:30",
+        "end_time": "22:00",
+        "cost": 20.0
+      },
+      "show_2": null,
+      "show_3": null,
+      "discovery_url": "https://rickshawtheatre.com/",
+      "details_url": "https://www.eventbrite.ca/e/chad-vangaalen-tickets-1993949843658?aff=oddtdtcreator",
+      "ticket_url": "https://www.eventbrite.ca/e/chad-vangaalen-tickets-1993949843658?aff=oddtdtcreator",
+      "ticket_provider": "Eventbrite",
+      "tags": [
+        "rickshaw-theatre",
+        "shows",
+        "live-calendar"
+      ],
+      "festival_affiliation": "None",
+      "approval_status": "Auto-Approved",
+      "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+      "price": 20.0,
+      "access_model": "fenced_facility",
+      "pricing_model": "flat_ticket",
+      "dateSchedule": "Oct 6, 2026",
+      "start_date": "2026-10-06",
+      "start_time": "19:30",
+      "lineup": "Chad VanGaalen",
+      "is_sold_out": true,
+      "last_scouted_at": "2026-10-04T20:27:25.139111",
+      "dimension_audit": {
+        "last_full_qc_at": "2026-10-05T13:14:49.278784",
+        "auditor": "QC_AI",
+        "dimensions_score": "20/20",
+        "dimensions": {
+          "D1_title": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "Chad VanGaalen"
+          },
+          "D2_date": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "Perennial"
+          },
+          "D3_time": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "19:30"
+          },
+          "D4_weekly_hours": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "has_hours": false
+          },
+          "D5_schedule_string": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "Oct 6, 2026"
+          },
+          "D6_frequency": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "one-off"
+          },
+          "D7_category": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "Comedy & Shows"
+          },
+          "D8_location": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "venue": "Rickshaw Theatre",
+            "neighborhood": "Downtown, Gastown & Yaletown"
+          },
+          "D9_access_model": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "fenced_facility"
+          },
+          "D10_pricing_model": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "flat_ticket"
+          },
+          "D11_price": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": 20.0,
+            "all_in_cad": true
+          },
+          "D12_tiers": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "tier_count": 0,
+            "has_addons": false
+          },
+          "D13_benchmarks": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "drink": null,
+            "spend": null
+          },
+          "D14_deep_link": {
+            "status": "Tier 1 (Direct Box Office / Checkout)",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "url": "https://www.eventbrite.ca/e/chad-vangaalen-tickets-1993949843658?aff=oddtdtcreator"
+          },
+          "D15_provider": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "Eventbrite"
+          },
+          "D16_description": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "length": 47
+          },
+          "D17_lineup": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "has_lineup": true
+          },
+          "D18_restrictions": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "value": "All Ages"
+          },
+          "D19_sold_out": {
+            "status": "verified_sold_out",
+            "confirmed_at": "2026-10-05T13:14:49.278784",
+            "is_sold_out": true,
+            "indicator": "SoldOut"
+          },
+          "D20_showings_waypoints": {
+            "status": "verified",
+            "confirmed_at": "2026-10-05T12:38:57.097166",
+            "showings_count": 0
+          }
+        },
+        "audit_notes": "All 20 live dimensions confirmed current."
+      },
+      "id": "van50-rickshaw-theatre-chad-vangaalen",
+      "venue": "Rickshaw Theatre",
+      "archivedAt": "2026-10-05T17:25:11.835586-07:00",
+      "archiveReason": "Sold out: Verified completely sold out on Eventbrite live checkout (https://www.eventbrite.ca/e/chad-vangaalen-tickets-1993949843658) with zero remaining ticket tiers. Strictly excluded from public discovery catalog per Core Principle #3 (Zero False Advertising / Sold-Out Exclusion Mandate).",
+      "archive_reason": "Sold out: Verified completely sold out on Eventbrite live checkout (https://www.eventbrite.ca/e/chad-vangaalen-tickets-1993949843658) with zero remaining ticket tiers. Strictly excluded from public discovery catalog per Core Principle #3 (Zero False Advertising / Sold-Out Exclusion Mandate).",
+      "flaggedAt": "2026-10-05"
     }
   ]
 }

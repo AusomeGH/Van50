@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T10:16:56-07:00",
+    "updatedAt": "2026-10-05T17:25:11.835586-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -23,6 +23,16 @@
     }
   },
   "venue_calendar_deep_links": {
+    "Stanley Park": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+    "Stanley Park Seawall": "https://vancouverfringe.com/shows/",
+    "Queen Elizabeth Park": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "Bloedel Conservatory": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
+    "Stanley Park Pitch & Putt": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "Queen Elizabeth Park Pitch & Putt": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+    "Rupert Park Pitch & Putt": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "VanDusen Botanical Garden": "https://vandusengarden.org/",
+    "Roundhouse Community Centre": "https://www.roundhouse.ca/",
+    "The Annex": "https://vancouvercivictheatres.com/venues/annex/",
     "The Fox Cabaret": "https://www.foxcabaret.com/",
     "The Biltmore Cabaret": "https://biltmorecabaret.com/",
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
@@ -340,8 +350,10 @@
     "public-disco-granville-street-popup",
     "public-disco-pride-block-party",
     "public-disco-shipyards-stage-takeover",
+    "public-disco-warehouse-party",
     "ra-2507393-ortune-ound-lub",
     "red-gate-dead-soft",
+    "rickshaw-theatre-chad-vangaalen",
     "rickshaw-theatre-covenant-festival-xi-night-one",
     "rickshaw-theatre-elder",
     "rickshaw-theatre-nekrogoblikon",
@@ -369,10 +381,11 @@
     "trout-lake-farmers-market",
     "ubc-farm-farmers-market",
     "unverified-eastside-cinema",
+    "van50-rickshaw-theatre-chad-vangaalen",
+    "van50-rickshaw-theatre-nekrogoblikon",
     "vancouver-institute-lectures",
     "west-end-farmers-market",
-    "wise-hall-roots-revue",
-    "public-disco-warehouse-party"
+    "wise-hall-roots-revue"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {
@@ -2381,6 +2394,20 @@
       "curatorGuidance": "Scrape live jazz sets only. Cover is $15 at door.",
       "learnedAt": "2026-10-03T17:16:56.436726+00:00",
       "source": "Curator Studio Instruction inst_1791047816372"
+    },
+    "Stanley Park Seawall": {
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "calendarUrl": "https://vancouverfringe.com/shows/",
+      "summary": "Calendar: https://vancouverfringe.com/shows/",
+      "curatorGuidance": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+      "learnedAt": "2026-10-05T15:02:52.298062+00:00",
+      "source": "Curator Studio Instruction inst_1791212572269"
     }
   },
   "notes": {

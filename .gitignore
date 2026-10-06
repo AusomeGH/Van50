@@ -20,6 +20,8 @@ scratch_edge/
 
 # Secrets and backups
 .env
+*.bak*
+*.bak
 data/backups/
 data/.curator_secret.json
 data/curator_screenshots/

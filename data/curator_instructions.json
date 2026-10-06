@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-03T17:16:56.462868+00:00",
-    "pendingCount": 170,
+    "updatedAt": "2026-10-05T15:07:48.979675+00:00",
+    "pendingCount": 171,
     "description": "Queued plain-English instructions and screenshots for AI scraper enhancements."
   },
   "instructions": [
@@ -8464,7 +8464,7 @@
     {
       "id": "inst_1790647170509",
       "createdAt": "2026-09-29T01:59:30.565184+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-harvest-days-vandusen",
       "eventTitle": "Harvest Days at VanDusen Botanical Garden",
       "venueName": "VanDusen Botanical Garden",
@@ -8483,12 +8483,14 @@
       "targetScraperOrEngine": "VanDusen Botanical Garden",
       "aiLearnedSummary": "Learned VanDusen Botanical Garden Harvest Days at VanDusen admission: Adult rate is $14.86 CAD all-in ($13.27 + $1.59 Showpass fee), with reduced tiers for seniors, youth, and children. Operating schedule verified for Weekends From September 26 To October 18 (10:30 am-4:30 pm), strictly abiding within the $50 CAD threshold.",
       "aiLearned": true,
-      "synthesizedAt": "2026-09-29T16:51:58.797438+00:00"
+      "synthesizedAt": "2026-09-29T16:51:58.797438+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529785"
     },
     {
       "id": "inst_1790702906650",
       "createdAt": "2026-09-29T17:28:26.651369+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8505,12 +8507,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529839"
     },
     {
       "id": "inst_1790702906693",
       "createdAt": "2026-09-29T17:28:26.695452+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8529,12 +8533,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529852"
     },
     {
       "id": "inst_1790702907251",
       "createdAt": "2026-09-29T17:28:27.251835+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790702907",
       "eventTitle": "",
       "venueName": "",
@@ -8551,12 +8557,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529862"
     },
     {
       "id": "inst_1790702907614",
       "createdAt": "2026-09-29T17:28:27.617800+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -8576,12 +8584,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529870"
     },
     {
       "id": "inst_1790702913956",
       "createdAt": "2026-09-29T17:28:33.957372+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8598,12 +8608,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529877"
     },
     {
       "id": "inst_1790702913997",
       "createdAt": "2026-09-29T17:28:33.999018+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8622,12 +8634,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529887"
     },
     {
       "id": "inst_1790702914587",
       "createdAt": "2026-09-29T17:28:34.588720+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790702914",
       "eventTitle": "",
       "venueName": "",
@@ -8644,12 +8658,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529895"
     },
     {
       "id": "inst_1790702914730",
       "createdAt": "2026-09-29T17:28:34.733478+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -8669,12 +8685,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529901"
     },
     {
       "id": "inst_1790702920767",
       "createdAt": "2026-09-29T17:28:40.768137+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8691,12 +8709,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529908"
     },
     {
       "id": "inst_1790702920808",
       "createdAt": "2026-09-29T17:28:40.810105+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8715,12 +8735,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529915"
     },
     {
       "id": "inst_1790702921400",
       "createdAt": "2026-09-29T17:28:41.400995+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790702921",
       "eventTitle": "",
       "venueName": "",
@@ -8737,12 +8759,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529922"
     },
     {
       "id": "inst_1790702921509",
       "createdAt": "2026-09-29T17:28:41.513666+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -8762,12 +8786,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529929"
     },
     {
       "id": "inst_1790702985792",
       "createdAt": "2026-09-29T17:29:45.793569+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8784,12 +8810,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529936"
     },
     {
       "id": "inst_1790702985845",
       "createdAt": "2026-09-29T17:29:45.846692+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8808,12 +8836,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529943"
     },
     {
       "id": "inst_1790702986568",
       "createdAt": "2026-09-29T17:29:46.571123+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790702986",
       "eventTitle": "",
       "venueName": "",
@@ -8830,12 +8860,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529950"
     },
     {
       "id": "inst_1790702987117",
       "createdAt": "2026-09-29T17:29:47.120599+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -8855,12 +8887,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529957"
     },
     {
       "id": "inst_1790703026674",
       "createdAt": "2026-09-29T17:30:26.675569+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8877,12 +8911,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529963"
     },
     {
       "id": "inst_1790703026717",
       "createdAt": "2026-09-29T17:30:26.718545+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8901,12 +8937,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529970"
     },
     {
       "id": "inst_1790703027422",
       "createdAt": "2026-09-29T17:30:27.422916+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703027",
       "eventTitle": "",
       "venueName": "",
@@ -8925,12 +8963,14 @@
       "subEvents": [],
       "subEventsCount": 0,
       "aiLearned": true,
-      "synthesizedAt": "2026-09-29T20:58:14.162534+00:00"
+      "synthesizedAt": "2026-09-29T20:58:14.162534+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529977"
     },
     {
       "id": "inst_1790703027541",
       "createdAt": "2026-09-29T17:30:27.543769+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -8950,12 +8990,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529983"
     },
     {
       "id": "inst_1790703064730",
       "createdAt": "2026-09-29T17:31:04.731122+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -8972,12 +9014,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529989"
     },
     {
       "id": "inst_1790703064795",
       "createdAt": "2026-09-29T17:31:04.797242+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -8996,12 +9040,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.529996"
     },
     {
       "id": "inst_1790703065403",
       "createdAt": "2026-09-29T17:31:05.404318+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703065",
       "eventTitle": "",
       "venueName": "",
@@ -9020,12 +9066,14 @@
       "subEvents": [],
       "subEventsCount": 0,
       "aiLearned": true,
-      "synthesizedAt": "2026-09-29T20:58:14.384067+00:00"
+      "synthesizedAt": "2026-09-29T20:58:14.384067+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530003"
     },
     {
       "id": "inst_1790703065772",
       "createdAt": "2026-09-29T17:31:05.774372+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9045,12 +9093,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530012"
     },
     {
       "id": "inst_1790703081641",
       "createdAt": "2026-09-29T17:31:21.642439+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9067,12 +9117,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530024"
     },
     {
       "id": "inst_1790703081684",
       "createdAt": "2026-09-29T17:31:21.686024+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9091,12 +9143,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530046"
     },
     {
       "id": "inst_1790703082448",
       "createdAt": "2026-09-29T17:31:22.449337+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703082",
       "eventTitle": "",
       "venueName": "",
@@ -9113,12 +9167,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530070"
     },
     {
       "id": "inst_1790703082583",
       "createdAt": "2026-09-29T17:31:22.586179+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9138,12 +9194,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530090"
     },
     {
       "id": "inst_1790703137064",
       "createdAt": "2026-09-29T17:32:17.064928+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -9160,12 +9218,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530115"
     },
     {
       "id": "inst_1790703144256",
       "createdAt": "2026-09-29T17:32:24.257169+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9182,12 +9242,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530136"
     },
     {
       "id": "inst_1790703144315",
       "createdAt": "2026-09-29T17:32:24.316701+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9206,12 +9268,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530143"
     },
     {
       "id": "inst_1790703144947",
       "createdAt": "2026-09-29T17:32:24.947620+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703144",
       "eventTitle": "",
       "venueName": "",
@@ -9228,12 +9292,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530151"
     },
     {
       "id": "inst_1790703145048",
       "createdAt": "2026-09-29T17:32:25.050300+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9253,12 +9319,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530158"
     },
     {
       "id": "inst_1790703146813",
       "createdAt": "2026-09-29T17:32:26.813704+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -9275,12 +9343,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530165"
     },
     {
       "id": "inst_1790703182527",
       "createdAt": "2026-09-29T17:33:02.528640+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9297,12 +9367,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530543"
     },
     {
       "id": "inst_1790703182589",
       "createdAt": "2026-09-29T17:33:02.590816+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9321,12 +9393,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530576"
     },
     {
       "id": "inst_1790703183162",
       "createdAt": "2026-09-29T17:33:03.163116+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703183",
       "eventTitle": "",
       "venueName": "",
@@ -9343,12 +9417,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530592"
     },
     {
       "id": "inst_1790703183276",
       "createdAt": "2026-09-29T17:33:03.279270+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9368,12 +9444,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530606"
     },
     {
       "id": "inst_1790703187073",
       "createdAt": "2026-09-29T17:33:07.073717+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -9390,12 +9468,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530619"
     },
     {
       "id": "inst_1790703191321",
       "createdAt": "2026-09-29T17:33:11.322003+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9412,12 +9492,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530635"
     },
     {
       "id": "inst_1790703191397",
       "createdAt": "2026-09-29T17:33:11.398844+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9436,12 +9518,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530649"
     },
     {
       "id": "inst_1790703191967",
       "createdAt": "2026-09-29T17:33:11.968292+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703191",
       "eventTitle": "",
       "venueName": "",
@@ -9458,12 +9542,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530663"
     },
     {
       "id": "inst_1790703192067",
       "createdAt": "2026-09-29T17:33:12.070606+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9483,12 +9569,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530675"
     },
     {
       "id": "inst_1790703193359",
       "createdAt": "2026-09-29T17:33:13.360066+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -9505,12 +9593,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530688"
     },
     {
       "id": "inst_1790703244679",
       "createdAt": "2026-09-29T17:34:04.680125+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9527,12 +9617,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530701"
     },
     {
       "id": "inst_1790703244745",
       "createdAt": "2026-09-29T17:34:04.746903+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9551,12 +9643,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530714"
     },
     {
       "id": "inst_1790703245394",
       "createdAt": "2026-09-29T17:34:05.395199+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790703245",
       "eventTitle": "",
       "venueName": "",
@@ -9573,12 +9667,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530728"
     },
     {
       "id": "inst_1790703245497",
       "createdAt": "2026-09-29T17:34:05.499475+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9598,12 +9694,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530741"
     },
     {
       "id": "inst_1790703246889",
       "createdAt": "2026-09-29T17:34:06.890113+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -9620,12 +9718,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530753"
     },
     {
       "id": "inst_1790704580698",
       "createdAt": "2026-09-29T17:56:20.712216+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-guilt-and-co-nightly-sessions",
       "eventTitle": "Nightly Live Music & GroundUp Sets at Guilt & Company",
       "venueName": "Guilt & Company",
@@ -9792,12 +9892,14 @@
       ],
       "subEventsCount": 8,
       "aiLearned": true,
-      "synthesizedAt": "2026-09-29T20:31:39.611773+00:00"
+      "synthesizedAt": "2026-09-29T20:31:39.611773+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530766"
     },
     {
       "id": "inst_1790715680867",
       "createdAt": "2026-09-29T21:01:20.868763+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9814,12 +9916,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530792"
     },
     {
       "id": "inst_1790715681017",
       "createdAt": "2026-09-29T21:01:21.019345+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9838,12 +9942,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530805"
     },
     {
       "id": "inst_1790715682064",
       "createdAt": "2026-09-29T21:01:22.065187+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790715682",
       "eventTitle": "",
       "venueName": "",
@@ -9860,12 +9966,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530819"
     },
     {
       "id": "inst_1790715682867",
       "createdAt": "2026-09-29T21:01:22.870358+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -9885,12 +9993,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530831"
     },
     {
       "id": "inst_1790716226624",
       "createdAt": "2026-09-29T21:10:26.644784+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-frankies-jazz-after-dark",
       "eventTitle": "Frankie's Jazz Club: Weekly Roots & Late-Night Sets",
       "venueName": "Frankie's Jazz Club",
@@ -9947,12 +10057,14 @@
           "artist": "Late-Night Jam Session"
         }
       ],
-      "subEventsCount": 2
+      "subEventsCount": 2,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530845"
     },
     {
       "id": "inst_1790716825589",
       "createdAt": "2026-09-29T21:20:25.590473+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -9969,12 +10081,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530862"
     },
     {
       "id": "inst_1790716825718",
       "createdAt": "2026-09-29T21:20:25.720721+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -9993,12 +10107,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530876"
     },
     {
       "id": "inst_1790716827026",
       "createdAt": "2026-09-29T21:20:27.027688+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790716827",
       "eventTitle": "",
       "venueName": "",
@@ -10015,12 +10131,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530890"
     },
     {
       "id": "inst_1790716828032",
       "createdAt": "2026-09-29T21:20:28.036699+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10040,12 +10158,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530902"
     },
     {
       "id": "inst_1790716894178",
       "createdAt": "2026-09-29T21:21:34.179801+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10062,12 +10182,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530915"
     },
     {
       "id": "inst_1790716930122",
       "createdAt": "2026-09-29T21:22:10.122945+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10084,12 +10206,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530928"
     },
     {
       "id": "inst_1790716955459",
       "createdAt": "2026-09-29T21:22:35.460425+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10106,12 +10230,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530941"
     },
     {
       "id": "inst_1790717802672",
       "createdAt": "2026-09-29T21:36:42.673489+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10128,12 +10254,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530953"
     },
     {
       "id": "inst_1790717802768",
       "createdAt": "2026-09-29T21:36:42.770486+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10152,12 +10280,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530966"
     },
     {
       "id": "inst_1790717804713",
       "createdAt": "2026-09-29T21:36:44.714674+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790717804",
       "eventTitle": "",
       "venueName": "",
@@ -10174,12 +10304,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530979"
     },
     {
       "id": "inst_1790717805571",
       "createdAt": "2026-09-29T21:36:45.575448+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10199,12 +10331,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.530994"
     },
     {
       "id": "inst_1790718617647",
       "createdAt": "2026-09-29T21:50:17.649400+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10221,12 +10355,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531007"
     },
     {
       "id": "inst_1790718617782",
       "createdAt": "2026-09-29T21:50:17.785360+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10245,12 +10381,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531020"
     },
     {
       "id": "inst_1790718619206",
       "createdAt": "2026-09-29T21:50:19.207288+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790718619",
       "eventTitle": "",
       "venueName": "",
@@ -10267,12 +10405,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531143"
     },
     {
       "id": "inst_1790718619449",
       "createdAt": "2026-09-29T21:50:19.454232+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10292,12 +10432,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531172"
     },
     {
       "id": "inst_1790719837168",
       "createdAt": "2026-09-29T22:10:37.170279+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10314,12 +10456,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531189"
     },
     {
       "id": "inst_1790719837302",
       "createdAt": "2026-09-29T22:10:37.305213+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10338,12 +10482,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531206"
     },
     {
       "id": "inst_1790719838836",
       "createdAt": "2026-09-29T22:10:38.838016+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790719838",
       "eventTitle": "",
       "venueName": "",
@@ -10360,12 +10506,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531313"
     },
     {
       "id": "inst_1790719839876",
       "createdAt": "2026-09-29T22:10:39.880433+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10385,12 +10533,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531330"
     },
     {
       "id": "learn_1790720142426",
       "createdAt": "2026-09-29T22:15:42.426382+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790720142",
@@ -10401,12 +10551,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531345"
     },
     {
       "id": "inst_1790720143196",
       "createdAt": "2026-09-29T22:15:43.197993+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10423,12 +10575,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531361"
     },
     {
       "id": "inst_1790720143328",
       "createdAt": "2026-09-29T22:15:43.331560+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10447,12 +10601,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531384"
     },
     {
       "id": "inst_1790720144636",
       "createdAt": "2026-09-29T22:15:44.637693+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790720144",
       "eventTitle": "",
       "venueName": "",
@@ -10469,12 +10625,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531399"
     },
     {
       "id": "inst_1790720144933",
       "createdAt": "2026-09-29T22:15:44.936379+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10494,12 +10652,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531419"
     },
     {
       "id": "inst_1790720148432",
       "createdAt": "2026-09-29T22:15:48.434081+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10516,12 +10676,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531440"
     },
     {
       "id": "inst_1790726735892",
       "createdAt": "2026-09-30T00:05:35.907751+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-tim-burton-cabaret-waldorf-20261024",
       "eventTitle": "Tim Burton’s Funeral – A Naturally Freaky Cabaret",
       "venueName": "The Waldorf",
@@ -10555,12 +10717,14 @@
       ],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531461"
     },
     {
       "id": "learn_1790729044512",
       "createdAt": "2026-09-30T00:44:04.512353+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790729044",
@@ -10571,12 +10735,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531482"
     },
     {
       "id": "inst_1790729045111",
       "createdAt": "2026-09-30T00:44:05.112177+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10593,12 +10759,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531504"
     },
     {
       "id": "inst_1790729045204",
       "createdAt": "2026-09-30T00:44:05.206607+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10617,12 +10785,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531524"
     },
     {
       "id": "inst_1790729046682",
       "createdAt": "2026-09-30T00:44:06.684058+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790729046",
       "eventTitle": "",
       "venueName": "",
@@ -10639,12 +10809,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531546"
     },
     {
       "id": "inst_1790729046983",
       "createdAt": "2026-09-30T00:44:06.988332+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10664,12 +10836,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531569"
     },
     {
       "id": "inst_1790729051007",
       "createdAt": "2026-09-30T00:44:11.009265+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10686,12 +10860,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531579"
     },
     {
       "id": "inst_1790730428921",
       "createdAt": "2026-09-30T01:07:08.929171+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-raagaverse-strings-annex-20261015",
       "eventTitle": "Raagaverse + Strings",
       "venueName": "Annex",
@@ -10710,12 +10886,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531586"
     },
     {
       "id": "learn_1790730818172",
       "createdAt": "2026-09-30T01:13:38.172764+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790730818",
@@ -10726,12 +10904,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531595"
     },
     {
       "id": "inst_1790730818680",
       "createdAt": "2026-09-30T01:13:38.681026+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10748,12 +10928,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531602"
     },
     {
       "id": "inst_1790730818752",
       "createdAt": "2026-09-30T01:13:38.754691+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10772,12 +10954,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531609"
     },
     {
       "id": "inst_1790730819936",
       "createdAt": "2026-09-30T01:13:39.937326+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790730819",
       "eventTitle": "",
       "venueName": "",
@@ -10794,12 +10978,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531617"
     },
     {
       "id": "inst_1790730820223",
       "createdAt": "2026-09-30T01:13:40.225195+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10819,12 +11005,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531625"
     },
     {
       "id": "inst_1790730822869",
       "createdAt": "2026-09-30T01:13:42.870621+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10841,12 +11029,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531632"
     },
     {
       "id": "learn_1790734706832",
       "createdAt": "2026-09-30T02:18:26.832165+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790734706",
@@ -10857,12 +11047,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531639"
     },
     {
       "id": "inst_1790734707356",
       "createdAt": "2026-09-30T02:18:27.357901+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -10879,12 +11071,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531646"
     },
     {
       "id": "inst_1790734707442",
       "createdAt": "2026-09-30T02:18:27.444393+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -10903,12 +11097,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531653"
     },
     {
       "id": "inst_1790734708688",
       "createdAt": "2026-09-30T02:18:28.689894+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790734708",
       "eventTitle": "",
       "venueName": "",
@@ -10925,12 +11121,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531661"
     },
     {
       "id": "inst_1790734709044",
       "createdAt": "2026-09-30T02:18:29.048641+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -10950,12 +11148,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531668"
     },
     {
       "id": "inst_1790734713063",
       "createdAt": "2026-09-30T02:18:33.064406+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -10972,12 +11172,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531675"
     },
     {
       "id": "learn_1790799104938",
       "createdAt": "2026-09-30T20:11:44.938941+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790799104",
@@ -10988,12 +11190,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531696"
     },
     {
       "id": "inst_1790799105263",
       "createdAt": "2026-09-30T20:11:45.264948+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -11010,12 +11214,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531703"
     },
     {
       "id": "inst_1790799105348",
       "createdAt": "2026-09-30T20:11:45.352060+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -11034,12 +11240,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531788"
     },
     {
       "id": "inst_1790799106326",
       "createdAt": "2026-09-30T20:11:46.326913+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790799106",
       "eventTitle": "",
       "venueName": "",
@@ -11056,12 +11264,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531857"
     },
     {
       "id": "inst_1790799106454",
       "createdAt": "2026-09-30T20:11:46.457220+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -11081,12 +11291,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531876"
     },
     {
       "id": "inst_1790799108009",
       "createdAt": "2026-09-30T20:11:48.010152+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -11103,12 +11315,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531895"
     },
     {
       "id": "inst_1790799281640",
       "createdAt": "2026-09-30T20:14:41.640755+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790799281",
       "eventTitle": "Venue: Dummy Private Hall 1790799281",
       "venueName": "Dummy Private Hall 1790799281",
@@ -11140,12 +11354,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790799281.",
         "distilledAt": "2026-09-30T20:14:41.639632+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790799281."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790799281.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531918"
     },
     {
       "id": "inst_1790799281704",
       "createdAt": "2026-09-30T20:14:41.708348+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790799281",
       "eventTitle": "Venue: Pending Venue Candidate 1790799281",
       "venueName": "Pending Venue Candidate 1790799281",
@@ -11180,7 +11396,9 @@
         "distilledAt": "2026-09-30T20:14:41.704516+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-30T20:14:41.765241+00:00"
+      "learnedAt": "2026-09-30T20:14:41.765241+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531933"
     },
     {
       "id": "inst_1790799281802",
@@ -11227,7 +11445,7 @@
     {
       "id": "inst_1790800085231",
       "createdAt": "2026-09-30T20:28:05.232102+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790800085",
       "eventTitle": "Venue: Dummy Private Hall 1790800085",
       "venueName": "Dummy Private Hall 1790800085",
@@ -11259,12 +11477,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790800085.",
         "distilledAt": "2026-09-30T20:28:05.231489+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790800085."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790800085.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531946"
     },
     {
       "id": "inst_1790800085302",
       "createdAt": "2026-09-30T20:28:05.303754+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790800085",
       "eventTitle": "Venue: Pending Venue Candidate 1790800085",
       "venueName": "Pending Venue Candidate 1790800085",
@@ -11299,7 +11519,9 @@
         "distilledAt": "2026-09-30T20:28:05.302488+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-30T20:28:05.367678+00:00"
+      "learnedAt": "2026-09-30T20:28:05.367678+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531961"
     },
     {
       "id": "inst_1790800085403",
@@ -11346,7 +11568,7 @@
     {
       "id": "inst_1790801024175",
       "createdAt": "2026-09-30T20:43:44.175684+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790801024",
       "eventTitle": "Venue: Dummy Private Hall 1790801024",
       "venueName": "Dummy Private Hall 1790801024",
@@ -11378,12 +11600,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801024.",
         "distilledAt": "2026-09-30T20:43:44.171638+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801024."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801024.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.531975"
     },
     {
       "id": "inst_1790801024257",
       "createdAt": "2026-09-30T20:43:44.258480+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790801024",
       "eventTitle": "Venue: Pending Venue Candidate 1790801024",
       "venueName": "Pending Venue Candidate 1790801024",
@@ -11418,7 +11642,9 @@
         "distilledAt": "2026-09-30T20:43:44.257179+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-30T20:43:44.340094+00:00"
+      "learnedAt": "2026-09-30T20:43:44.340094+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532003"
     },
     {
       "id": "inst_1790801024390",
@@ -11465,7 +11691,7 @@
     {
       "id": "inst_1790801056414",
       "createdAt": "2026-09-30T20:44:16.414845+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790801056",
       "eventTitle": "Venue: Dummy Private Hall 1790801056",
       "venueName": "Dummy Private Hall 1790801056",
@@ -11497,12 +11723,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801056.",
         "distilledAt": "2026-09-30T20:44:16.414164+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801056."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801056.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532018"
     },
     {
       "id": "inst_1790801056478",
       "createdAt": "2026-09-30T20:44:16.480700+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790801056",
       "eventTitle": "Venue: Pending Venue Candidate 1790801056",
       "venueName": "Pending Venue Candidate 1790801056",
@@ -11537,7 +11765,9 @@
         "distilledAt": "2026-09-30T20:44:16.478056+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-30T20:44:16.541133+00:00"
+      "learnedAt": "2026-09-30T20:44:16.541133+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532033"
     },
     {
       "id": "inst_1790801056586",
@@ -11584,7 +11814,7 @@
     {
       "id": "inst_1790801448261",
       "createdAt": "2026-09-30T20:50:48.261836+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790801448",
       "eventTitle": "Venue: Dummy Private Hall 1790801448",
       "venueName": "Dummy Private Hall 1790801448",
@@ -11616,12 +11846,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801448.",
         "distilledAt": "2026-09-30T20:50:48.258384+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801448."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790801448.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532047"
     },
     {
       "id": "inst_1790801448318",
       "createdAt": "2026-09-30T20:50:48.319367+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790801448",
       "eventTitle": "Venue: Pending Venue Candidate 1790801448",
       "venueName": "Pending Venue Candidate 1790801448",
@@ -11656,7 +11888,9 @@
         "distilledAt": "2026-09-30T20:50:48.317895+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-09-30T20:50:48.379981+00:00"
+      "learnedAt": "2026-09-30T20:50:48.379981+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532071"
     },
     {
       "id": "inst_1790801448424",
@@ -11703,7 +11937,7 @@
     {
       "id": "learn_1790878634039",
       "createdAt": "2026-10-01T18:17:14.039760+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790878633",
@@ -11714,12 +11948,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532086"
     },
     {
       "id": "inst_1790878634598",
       "createdAt": "2026-10-01T18:17:14.599252+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -11736,12 +11972,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532103"
     },
     {
       "id": "inst_1790878634667",
       "createdAt": "2026-10-01T18:17:14.668882+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -11760,12 +11998,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532145"
     },
     {
       "id": "inst_1790878635416",
       "createdAt": "2026-10-01T18:17:15.416539+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790878635",
       "eventTitle": "",
       "venueName": "",
@@ -11782,12 +12022,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532171"
     },
     {
       "id": "inst_1790878635555",
       "createdAt": "2026-10-01T18:17:15.557708+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -11807,12 +12049,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532213"
     },
     {
       "id": "inst_1790878636955",
       "createdAt": "2026-10-01T18:17:16.955770+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -11829,12 +12073,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532248"
     },
     {
       "id": "inst_1790878649846",
       "createdAt": "2026-10-01T18:17:29.847027+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790878649",
       "eventTitle": "Venue: Dummy Private Hall 1790878649",
       "venueName": "Dummy Private Hall 1790878649",
@@ -11866,12 +12112,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790878649.",
         "distilledAt": "2026-10-01T18:17:29.845458+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790878649."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790878649.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532271"
     },
     {
       "id": "inst_1790878649918",
       "createdAt": "2026-10-01T18:17:29.919718+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790878649",
       "eventTitle": "Venue: Pending Venue Candidate 1790878649",
       "venueName": "Pending Venue Candidate 1790878649",
@@ -11906,7 +12154,9 @@
         "distilledAt": "2026-10-01T18:17:29.918204+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-01T18:17:29.985127+00:00"
+      "learnedAt": "2026-10-01T18:17:29.985127+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532316"
     },
     {
       "id": "inst_1790878650039",
@@ -11953,7 +12203,7 @@
     {
       "id": "learn_1790880260905",
       "createdAt": "2026-10-01T18:44:20.905607+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790880260",
@@ -11964,12 +12214,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532351"
     },
     {
       "id": "inst_1790880261177",
       "createdAt": "2026-10-01T18:44:21.178339+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -11986,12 +12238,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532377"
     },
     {
       "id": "inst_1790880261238",
       "createdAt": "2026-10-01T18:44:21.239514+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -12010,12 +12264,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532412"
     },
     {
       "id": "inst_1790880261781",
       "createdAt": "2026-10-01T18:44:21.782413+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790880261",
       "eventTitle": "",
       "venueName": "",
@@ -12032,12 +12288,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532446"
     },
     {
       "id": "inst_1790880261912",
       "createdAt": "2026-10-01T18:44:21.914132+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -12057,12 +12315,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532467"
     },
     {
       "id": "inst_1790880263208",
       "createdAt": "2026-10-01T18:44:23.209233+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -12079,12 +12339,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532489"
     },
     {
       "id": "inst_1790880267082",
       "createdAt": "2026-10-01T18:44:27.083217+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790880267",
       "eventTitle": "Venue: Dummy Private Hall 1790880267",
       "venueName": "Dummy Private Hall 1790880267",
@@ -12116,12 +12378,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790880267.",
         "distilledAt": "2026-10-01T18:44:27.082391+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790880267."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790880267.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532510"
     },
     {
       "id": "inst_1790880267148",
       "createdAt": "2026-10-01T18:44:27.149788+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790880267",
       "eventTitle": "Venue: Pending Venue Candidate 1790880267",
       "venueName": "Pending Venue Candidate 1790880267",
@@ -12156,7 +12420,9 @@
         "distilledAt": "2026-10-01T18:44:27.148633+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-01T18:44:27.245838+00:00"
+      "learnedAt": "2026-10-01T18:44:27.245838+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532531"
     },
     {
       "id": "inst_1790880267292",
@@ -12203,7 +12469,7 @@
     {
       "id": "learn_1790885043169",
       "createdAt": "2026-10-01T20:04:03.169047+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790885043",
@@ -12214,12 +12480,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532552"
     },
     {
       "id": "inst_1790885043658",
       "createdAt": "2026-10-01T20:04:03.659068+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -12236,12 +12504,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532572"
     },
     {
       "id": "inst_1790885043774",
       "createdAt": "2026-10-01T20:04:03.776878+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -12260,12 +12530,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532835"
     },
     {
       "id": "inst_1790885045008",
       "createdAt": "2026-10-01T20:04:05.009335+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790885044",
       "eventTitle": "",
       "venueName": "",
@@ -12282,12 +12554,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532899"
     },
     {
       "id": "inst_1790885045308",
       "createdAt": "2026-10-01T20:04:05.311358+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -12307,12 +12581,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532927"
     },
     {
       "id": "inst_1790885048136",
       "createdAt": "2026-10-01T20:04:08.136938+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -12329,12 +12605,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532941"
     },
     {
       "id": "inst_1790885055338",
       "createdAt": "2026-10-01T20:04:15.339133+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790885055",
       "eventTitle": "Venue: Dummy Private Hall 1790885055",
       "venueName": "Dummy Private Hall 1790885055",
@@ -12366,12 +12644,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885055.",
         "distilledAt": "2026-10-01T20:04:15.337761+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885055."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885055.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532951"
     },
     {
       "id": "inst_1790885055473",
       "createdAt": "2026-10-01T20:04:15.476416+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790885055",
       "eventTitle": "Venue: Pending Venue Candidate 1790885055",
       "venueName": "Pending Venue Candidate 1790885055",
@@ -12406,7 +12686,9 @@
         "distilledAt": "2026-10-01T20:04:15.472934+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-01T20:04:15.601224+00:00"
+      "learnedAt": "2026-10-01T20:04:15.601224+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532960"
     },
     {
       "id": "inst_1790885055712",
@@ -12453,7 +12735,7 @@
     {
       "id": "learn_1790885073806",
       "createdAt": "2026-10-01T20:04:33.806364+00:00",
-      "status": "pending",
+      "status": "resolved",
       "type": "reinforcement_learning",
       "actionTaken": "approved_as_is",
       "eventId": "test-reinforce-1790885073",
@@ -12464,12 +12746,14 @@
       "instructionText": "Approved As-Is by curator. Verified price ($20.00 CAD) and category 'music'. Reinforce crawler accuracy for Frankie's Jazz Club.",
       "screenshotPath": null,
       "curatorNote": "Curator verified as-is",
-      "targetScraperOrEngine": "Frankie's Jazz Club"
+      "targetScraperOrEngine": "Frankie's Jazz Club",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532969"
     },
     {
       "id": "inst_1790885074277",
       "createdAt": "2026-10-01T20:04:34.278280+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -12486,12 +12770,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532976"
     },
     {
       "id": "inst_1790885074377",
       "createdAt": "2026-10-01T20:04:34.379210+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -12510,12 +12796,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532986"
     },
     {
       "id": "inst_1790885075643",
       "createdAt": "2026-10-01T20:04:35.644414+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1790885075",
       "eventTitle": "",
       "venueName": "",
@@ -12532,12 +12820,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.532996"
     },
     {
       "id": "inst_1790885075896",
       "createdAt": "2026-10-01T20:04:35.899295+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -12557,12 +12847,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533009"
     },
     {
       "id": "inst_1790885079028",
       "createdAt": "2026-10-01T20:04:39.029550+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -12579,12 +12871,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533020"
     },
     {
       "id": "inst_1790885085040",
       "createdAt": "2026-10-01T20:04:45.040818+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1790885085",
       "eventTitle": "Venue: Dummy Private Hall 1790885085",
       "venueName": "Dummy Private Hall 1790885085",
@@ -12616,12 +12910,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885085.",
         "distilledAt": "2026-10-01T20:04:45.039843+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885085."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1790885085.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533058"
     },
     {
       "id": "inst_1790885085152",
       "createdAt": "2026-10-01T20:04:45.154801+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1790885085",
       "eventTitle": "Venue: Pending Venue Candidate 1790885085",
       "venueName": "Pending Venue Candidate 1790885085",
@@ -12656,7 +12952,9 @@
         "distilledAt": "2026-10-01T20:04:45.152152+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-01T20:04:45.286715+00:00"
+      "learnedAt": "2026-10-01T20:04:45.286715+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533092"
     },
     {
       "id": "inst_1790885085413",
@@ -12703,7 +13001,7 @@
     {
       "id": "inst_1790888001187",
       "createdAt": "2026-10-01T20:53:21.215065+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-city-pop-city-rickshaw-20261121",
       "eventTitle": "City Pop City: Chen Baker & Technodelic",
       "venueName": "Rickshaw Theatre",
@@ -12722,12 +13020,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533139"
     },
     {
       "id": "inst_1790888560256",
       "createdAt": "2026-10-01T21:02:40.284696+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-witches-harvest-market-20261024",
       "eventTitle": "Witches Harvest Market",
       "venueName": "Croatian Cultural Centre",
@@ -12747,12 +13047,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533176"
     },
     {
       "id": "inst_1790888779811",
       "createdAt": "2026-10-01T21:06:19.814408+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "rickshaw-evergrey-metal-showcase",
       "eventTitle": "Evergrey with HammerFall & Elvenking",
       "venueName": "Rickshaw Theatre",
@@ -12769,12 +13071,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533209"
     },
     {
       "id": "inst_1790888942035",
       "createdAt": "2026-10-01T21:09:02.050073+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "eb-alistair-ogden-rio",
       "eventTitle": "Alistair Ogden Live at The Rio Theatre",
       "venueName": "The Rio Theatre",
@@ -12793,12 +13097,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533236"
     },
     {
       "id": "inst_1790975646757",
       "createdAt": "2026-10-02T21:14:06.758368+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "rickshaw-evergrey-metal-showcase",
       "eventTitle": "Event Candidate",
       "venueName": "Vancouver Venue",
@@ -12815,12 +13121,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533264"
     },
     {
       "id": "inst_1790975960932",
       "createdAt": "2026-10-02T21:19:20.935303+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "van50-ubc-apple-festival-20261017",
       "eventTitle": "Event Candidate",
       "venueName": "Venue",
@@ -12840,12 +13148,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533286"
     },
     {
       "id": "inst_1791042702689",
       "createdAt": "2026-10-03T15:51:42.690961+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -12862,12 +13172,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533358"
     },
     {
       "id": "inst_1791042702763",
       "createdAt": "2026-10-03T15:51:42.766616+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -12886,12 +13198,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533391"
     },
     {
       "id": "inst_1791042702840",
       "createdAt": "2026-10-03T15:51:42.841761+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1791042702",
       "eventTitle": "",
       "venueName": "",
@@ -12908,12 +13222,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533423"
     },
     {
       "id": "inst_1791042702996",
       "createdAt": "2026-10-03T15:51:43.001499+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -12933,12 +13249,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533444"
     },
     {
       "id": "inst_1791042703504",
       "createdAt": "2026-10-03T15:51:43.504999+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -12955,12 +13273,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533466"
     },
     {
       "id": "inst_1791042708518",
       "createdAt": "2026-10-03T15:51:48.518956+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1791042708",
       "eventTitle": "Venue: Dummy Private Hall 1791042708",
       "venueName": "Dummy Private Hall 1791042708",
@@ -12992,12 +13312,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791042708.",
         "distilledAt": "2026-10-03T15:51:48.518023+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791042708."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791042708.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533499"
     },
     {
       "id": "inst_1791042708601",
       "createdAt": "2026-10-03T15:51:48.603024+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1791042708",
       "eventTitle": "Venue: Pending Venue Candidate 1791042708",
       "venueName": "Pending Venue Candidate 1791042708",
@@ -13032,7 +13354,9 @@
         "distilledAt": "2026-10-03T15:51:48.601188+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-03T15:51:48.693392+00:00"
+      "learnedAt": "2026-10-03T15:51:48.693392+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533519"
     },
     {
       "id": "inst_1791042708755",
@@ -13079,7 +13403,7 @@
     {
       "id": "inst_1791047811145",
       "createdAt": "2026-10-03T17:16:51.145848+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-01",
       "eventTitle": "Live Comedy Jam",
       "venueName": "Little Mountain Gallery",
@@ -13096,12 +13420,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533545"
     },
     {
       "id": "inst_1791047811256",
       "createdAt": "2026-10-03T17:16:51.261135+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-02",
       "eventTitle": "Jazz Trio Night",
       "venueName": "Frankie's Jazz Club",
@@ -13120,12 +13446,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533567"
     },
     {
       "id": "inst_1791047811362",
       "createdAt": "2026-10-03T17:16:51.362911+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-qa-event-1791047811",
       "eventTitle": "",
       "venueName": "",
@@ -13142,12 +13470,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533598"
     },
     {
       "id": "inst_1791047811572",
       "createdAt": "2026-10-03T17:16:51.574526+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-crawl-flag-03",
       "eventTitle": "Multi-Image Proof Event",
       "venueName": "Fox Cabaret",
@@ -13167,12 +13497,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533613"
     },
     {
       "id": "inst_1791047812044",
       "createdAt": "2026-10-03T17:16:52.044890+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "test-multi-parent-event",
       "eventTitle": "Multi-Part Comedy Showcase",
       "venueName": "Little Mountain Gallery",
@@ -13189,12 +13521,14 @@
       "extractedTiers": [],
       "isMultiEventSplit": false,
       "subEvents": [],
-      "subEventsCount": 0
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533657"
     },
     {
       "id": "inst_1791047816190",
       "createdAt": "2026-10-03T17:16:56.191279+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "discovered-dummy-1791047816",
       "eventTitle": "Venue: Dummy Private Hall 1791047816",
       "venueName": "Dummy Private Hall 1791047816",
@@ -13226,12 +13560,14 @@
         "summary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791047816.",
         "distilledAt": "2026-10-03T17:16:56.190277+00:00"
       },
-      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791047816."
+      "aiLearnedSummary": "AI distilled policy rules from curator comments for Dummy Private Hall 1791047816.",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533681"
     },
     {
       "id": "inst_1791047816248",
       "createdAt": "2026-10-03T17:16:56.259153+00:00",
-      "status": "pending",
+      "status": "resolved",
       "eventId": "pending-venue-candidate-1791047816",
       "eventTitle": "Venue: Pending Venue Candidate 1791047816",
       "venueName": "Pending Venue Candidate 1791047816",
@@ -13266,7 +13602,9 @@
         "distilledAt": "2026-10-03T17:16:56.248152+00:00"
       },
       "aiLearnedSummary": "Calendar: https://pendingvenue.example.com",
-      "learnedAt": "2026-10-03T17:16:56.323902+00:00"
+      "learnedAt": "2026-10-03T17:16:56.323902+00:00",
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533697"
     },
     {
       "id": "inst_1791047816372",
@@ -13309,6 +13647,70 @@
       },
       "aiLearnedSummary": "Door Cover $15.00 | Tags: jazz | Calendar: https://testcellar.example.com/events",
       "learnedAt": "2026-10-03T17:16:56.462854+00:00"
+    },
+    {
+      "id": "inst_1791212572269",
+      "createdAt": "2026-10-05T15:02:52.270168+00:00",
+      "status": "resolved",
+      "eventId": "discovered-stanley-park-seawall",
+      "eventTitle": "Venue: Stanley Park Seawall",
+      "venueName": "Stanley Park Seawall",
+      "sourceUrl": "https://vancouverfringe.com/shows/",
+      "instructionText": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
+      "actionTaken": "queue_only",
+      "curatorNote": "",
+      "targetScraperOrEngine": "UniversalVenueCrawler",
+      "aiLearned": true,
+      "distilledRules": {
+        "venueName": "Stanley Park Seawall",
+        "category": "shows",
+        "neighborhood": "Downtown / West End",
+        "calendarUrl": "https://vancouverfringe.com/shows/",
+        "doorPrice": null,
+        "priceRange": null,
+        "pricingType": "standard",
+        "isFree": false,
+        "minimumSpend": null,
+        "priceCeiling": 50.0,
+        "scheduleDays": [],
+        "genres": [],
+        "blacklistPatterns": [],
+        "curatorGuidance": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+        "summary": "Calendar: https://vancouverfringe.com/shows/",
+        "distilledAt": "2026-10-05T15:02:52.266500+00:00"
+      },
+      "aiLearnedSummary": "Calendar: https://vancouverfringe.com/shows/",
+      "learnedAt": "2026-10-05T15:02:52.326477+00:00",
+      "applied": true,
+      "resolutionNotes": "Candidate venue dismissed per curator instruction; existing Stanley Park Seawall outing retained in master catalog."
+    },
+    {
+      "id": "inst_1791212868970",
+      "createdAt": "2026-10-05T15:07:48.971243+00:00",
+      "status": "resolved",
+      "eventId": "van50-latincouver-catrinas-procession-gastown-20261102",
+      "eventTitle": "Catrinas Procession: Día de los Muertos",
+      "venueName": "Gastown Historic District",
+      "sourceUrl": "https://latincouver.ca",
+      "instructionText": "I'm unsure how active this group is in actually hosting events, they may currently be taking a break but pick back up. https://www.latincouver.ca/events/list/",
+      "screenshotPath": null,
+      "screenshotPaths": [],
+      "hasScreenshot": false,
+      "screenshotCount": 0,
+      "actionTaken": "queue_only",
+      "curatorNote": "Verified rate: Free ($0)",
+      "targetScraperOrEngine": "Gastown Historic District",
+      "aiLearnedSummary": "Instruction recorded: I'm unsure how active this group is in actually hosting events, they may currently be taking a break",
+      "extractedTiers": [],
+      "isMultiEventSplit": false,
+      "subEvents": [],
+      "subEventsCount": 0,
+      "applied": true,
+      "resolvedAt": "2026-10-05T17:39:02.533718"
     }
   ],
   "lastLearnedAt": "2026-09-26T11:01:14.885134+00:00"

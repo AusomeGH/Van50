@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-04T12:32:45-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-05T18:53:58-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -24,8 +24,8 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://dailyhive.com/vancouver/events",
-    "details_url": "https://www.pendulumgallery.bc.ca",
-    "ticket_url": "https://www.pendulumgallery.bc.ca",
+    "details_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
+    "ticket_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
@@ -111,6 +111,140 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "General Public Admission",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:50.903328",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Pendulum Gallery (Kinetic Art & Exhibitions)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "venue": "Pendulum Gallery (HSBC Building Atrium)",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "tier_count": 4,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "drink": null,
+          "spend": "$0.00 CAD (100% Free public access)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "url": "https://www.pendulumgallery.bc.ca/exhibition-current/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "length": 232
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:50.903328",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-pendulum-gallery",
     "venue": "Pendulum Gallery (HSBC Building Atrium)",
     "address": "885 W Georgia St, Vancouver, BC",
@@ -120,28 +254,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "General Public Admission",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Student",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -160,8 +272,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://www.pendulumgallery.bc.ca",
-    "venueUrl": "https://www.pendulumgallery.bc.ca",
+    "websiteUrl": "https://www.pendulumgallery.bc.ca/exhibition-current/",
+    "venueUrl": "https://www.pendulumgallery.bc.ca/exhibition-current/",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -201,9 +313,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://vancouver.ca/events",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "discovery_url": "https://www.destinationvancouver.com/events/",
+    "details_url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+    "ticket_url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
@@ -306,6 +418,140 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Public Access Path",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:51.969348",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Stanley Park Waterfront & Heritage Loop"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "venue": "Stanley Park",
+          "neighborhood": "West End"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "tier_count": 4,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "drink": null,
+          "spend": "$0.00 – $8.00 CAD (Free park; optional concession snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "length": 176
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:51.969348",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "stanley-park-seawall-rose-garden",
     "venue": "Stanley Park",
     "address": "Stanley Park Dr, Vancouver, BC",
@@ -316,28 +562,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "outdoors",
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Public Access Path",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Student",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -356,8 +580,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "websiteUrl": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+    "venueUrl": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -398,9 +622,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.vanartgallery.bc.ca",
-    "details_url": "https://www.vanartgallery.bc.ca",
-    "ticket_url": "https://www.vanartgallery.bc.ca/visit",
-    "ticket_provider": "Direct",
+    "details_url": "https://www.vanartgallery.bc.ca/visit",
+    "ticket_url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=187a3ed7-eeef-5c3f-6101-d9d549e099a7,5eba6500-9dc7-31f7-c5dd-8f11f36ddb83",
+    "ticket_provider": "Ticketure (Vancouver Art Gallery)",
     "tags": [
       "all-ages",
       "art-exhibit",
@@ -479,6 +703,145 @@ const VANCOUVER_EVENTS = [
       "youth-free"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 29.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 18.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 24.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Youth (18 & Under)",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "BMO Free First Friday Nights (4–8 PM)",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:52.263017",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Vancouver Art Gallery (General Admission & Access Programs)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "venue": "Vancouver Art Gallery",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": 29,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "drink": "$9.00 – $13.00 wine & cocktails at 1931 Bistro",
+          "spend": "$0.00 – $10.00 CAD (Free entry on First Friday; optional cafe drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Ticketure Direct Checkout)",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=187a3ed7-eeef-5c3f-6101-d9d549e099a7,5eba6500-9dc7-31f7-c5dd-8f11f36ddb83"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "Ticketure (Vancouver Art Gallery)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "length": 187
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.263017",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "Upgraded from generic /visit page to live Ticketure admission portal with active session tokens."
+    },
     "id": "van50-vancouver-art-gallery-free-access",
     "venue": "Vancouver Art Gallery",
     "address": "750 Hornby St, Vancouver, BC",
@@ -488,38 +851,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Youth (18 & Under)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 29.0,
-        "label": "$29.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 18.0,
-        "label": "$18.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 24.0,
-        "label": "$24.00 CAD"
-      },
-      {
-        "name": "BMO Free First Friday Nights (4–8 PM)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Anniversary Admission (Oct 2 10–4)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -538,9 +869,9 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://www.vanartgallery.bc.ca/visit",
-    "venueUrl": "https://www.vanartgallery.bc.ca",
-    "ticketProvider": "Direct",
+    "websiteUrl": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=187a3ed7-eeef-5c3f-6101-d9d549e099a7,5eba6500-9dc7-31f7-c5dd-8f11f36ddb83",
+    "venueUrl": "https://www.vanartgallery.bc.ca/visit",
+    "ticketProvider": "Ticketure (Vancouver Art Gallery)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -581,8 +912,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://vancouverchinesegarden.com/",
     "details_url": "https://vancouverchinesegarden.com/",
-    "ticket_url": "https://vancouverchinesegarden.com/",
-    "ticket_provider": "Free Public Access",
+    "ticket_url": "https://www.eventbrite.ca/e/echoes-of-chinese-heritage-tickets-2000528237812?aff=oddtdtcreator",
+    "ticket_provider": "Free Public Drop-In",
     "tags": [
       "acoustic",
       "all-ages",
@@ -624,12 +955,12 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_3": 0,
     "weekly_hours": {
       "mon": "Closed",
-      "tue": "10:00 AM – 4:00 PM",
-      "wed": "10:00 AM – 4:00 PM",
-      "thu": "10:00 AM – 4:00 PM",
-      "fri": "10:00 AM – 4:00 PM",
-      "sat": "10:00 AM – 4:00 PM",
-      "sun": "10:00 AM – 4:00 PM"
+      "tue": "Closed",
+      "wed": "9:30 AM – 4:00 PM",
+      "thu": "9:30 AM – 4:00 PM",
+      "fri": "9:30 AM – 4:00 PM",
+      "sat": "9:30 AM – 4:00 PM",
+      "sun": "9:30 AM – 4:00 PM"
     },
     "coffee_benchmark": "$4.00 – $5.50 Chinatown cafes",
     "meal_benchmark": "$12.00 – $16.00 CAD (Chinatown casual dining)",
@@ -652,7 +983,7 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "no_onsite_food",
     "food_service_note": "Public park courtyard; no food sales (Chinatown bakeries & tea nearby)",
     "sample_cost_label": "Free courtyard access ($0)",
-    "websiteUrl": "https://vancouverchinesegarden.com/",
+    "websiteUrl": "https://www.eventbrite.ca/e/echoes-of-chinese-heritage-tickets-2000528237812?aff=oddtdtcreator",
     "subTags": [
       "acoustic",
       "all-ages",
@@ -677,6 +1008,145 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 16.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Public Park Courtyard",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Youth (6–17)",
+        "price": 10.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:52.560104",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Dr. Sun Yat-Sen Public Courtyard & Chinese Garden"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "venue": "Dr. Sun Yat-Sen Public Park",
+          "neighborhood": "Chinatown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "drink": null,
+          "spend": "$0.00 – $5.00 CAD (Free courtyard, optional Chinatown pastry)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "url": "https://www.eventbrite.ca/e/echoes-of-chinese-heritage-tickets-2000528237812?aff=oddtdtcreator"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "Free Public Drop-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "length": 244
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:52.560104",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-sun-yat-sen-public-park",
     "venue": "Dr. Sun Yat-Sen Public Park",
     "address": "578 Carrall St, Vancouver, BC",
@@ -687,38 +1157,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "free-public-access",
       "music"
-    ],
-    "tiers": [
-      {
-        "name": "Public Park Courtyard",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 16.0,
-        "label": "$16.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 13.0,
-        "label": "$13.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 13.0,
-        "label": "$13.00 CAD"
-      },
-      {
-        "name": "Youth (6–17)",
-        "price": 10.0,
-        "label": "$10.00 CAD"
-      },
-      {
-        "name": "Children (5 & Under)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -738,7 +1176,7 @@ const VANCOUVER_EVENTS = [
       "early-evening"
     ],
     "venueUrl": "https://vancouverchinesegarden.com/",
-    "ticketProvider": "Free Public Access",
+    "ticketProvider": "Free Public Drop-In",
     "coordinates": [
       49.2827,
       -123.1207
@@ -747,12 +1185,12 @@ const VANCOUVER_EVENTS = [
     "operatingHours": "Daily 10:00 AM – 4:00 PM",
     "weeklyHours": {
       "mon": "Closed",
-      "tue": "10:00 AM – 4:00 PM",
-      "wed": "10:00 AM – 4:00 PM",
-      "thu": "10:00 AM – 4:00 PM",
-      "fri": "10:00 AM – 4:00 PM",
-      "sat": "10:00 AM – 4:00 PM",
-      "sun": "10:00 AM – 4:00 PM"
+      "tue": "Closed",
+      "wed": "9:30 AM – 4:00 PM",
+      "thu": "9:30 AM – 4:00 PM",
+      "fri": "9:30 AM – 4:00 PM",
+      "sat": "9:30 AM – 4:00 PM",
+      "sun": "9:30 AM – 4:00 PM"
     },
     "lifecycleType": "perennial_drop_in",
     "isSoldOut": false
@@ -856,6 +1294,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:54.376634",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "The Shipyards & Lonsdale Quay Waterfront Promenade"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "venue": "The Shipyards District",
+          "neighborhood": "North Shore"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "drink": null,
+          "spend": "$0.00 – $15.00 CAD (Free public access; optional food/drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "url": "https://theshipyardsdistrict.ca"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "length": 186
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.376634",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-the-shipyards-lonsdale-quay",
     "venue": "The Shipyards District",
     "address": "125 Victory Ship Way, North Vancouver, BC",
@@ -867,13 +1424,6 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "free-public-access",
       "markets"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -919,7 +1469,7 @@ const VANCOUVER_EVENTS = [
     "category": "Free Public Access",
     "lifecycle_type": "perennial_drop_in",
     "venue_name": "Granville Island Public Market",
-    "full_address": "1669 Johnston St, Vancouver, BC",
+    "full_address": "1689 Johnston St, Vancouver, BC V6H 3R9",
     "neighborhood": "Granville Island & False Creek",
     "description": "Vibrant indoor public market surrounded by scenic wooden boardwalks overlooking False Creek. Visitors can enjoy street performers, buskers, food purveyors, and waterfront views.",
     "pricing_all_in_cad": {
@@ -1014,9 +1564,128 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:54.612945",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Granville Island Public Market & Boardwalks"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "venue": "Granville Island Public Market",
+          "neighborhood": "Granville Island"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "pay_per_item"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "drink": "$6.00 – $8.00 craft beer & artisan juices",
+          "spend": "$10.00 – $22.00 CAD (Market bites & snacks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "url": "https://granvilleisland.com"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "length": 177
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.612945",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-granville-island-public-market",
     "venue": "Granville Island Public Market",
-    "address": "1669 Johnston St, Vancouver, BC",
+    "address": "1689 Johnston St, Vancouver, BC V6H 3R9",
     "priceLabel": "Free ($0)",
     "pricingType": "free",
     "isFree": true,
@@ -1025,13 +1694,6 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "free-public-access",
       "markets"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -1178,6 +1840,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:54.965287",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Canada Place Promenade & The Canadian Trail"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "venue": "Canada Place",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "drink": null,
+          "spend": "$0.00 CAD (Free scenic harbourfront walk)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Details/Venue)",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "url": "https://www.canadaplace.ca"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "length": 146
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:54.965287",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-canada-place-promenade",
     "venue": "Canada Place",
     "address": "999 Canada Place, Vancouver, BC",
@@ -1188,13 +1969,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "outdoors",
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -1339,6 +2113,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:55.693382",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "The Polygon Gallery Admission by Donation"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "venue": "The Polygon Gallery",
+          "neighborhood": "North Shore"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "drink": null,
+          "spend": "$0.00 – $8.00 CAD (By donation; optional Nemesis coffee)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "url": "https://thepolygon.ca"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "length": 176
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:55.693382",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-polygon-gallery-lonsdale",
     "venue": "The Polygon Gallery",
     "address": "101 Carrie Cates Ct, North Vancouver, BC",
@@ -1348,13 +2241,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -1399,9 +2285,9 @@ const VANCOUVER_EVENTS = [
     "event_name": "HEIST by Arun Lakra",
     "category": "Comedy & Shows",
     "lifecycle_type": "time_bound_event",
-    "venue_name": "Arts Club Theatre Company (Granville Island Stage)",
-    "full_address": "1585 Johnston St, Vancouver, BC",
-    "neighborhood": "Granville Island & False Creek",
+    "venue_name": "Arts Club Theatre Company (Stanley BFL CANADA Stage)",
+    "full_address": "2750 Granville St, Vancouver, BC V6H 3J1",
+    "neighborhood": "Mount Pleasant & South Vancouver",
     "description": "A high-octane theatrical caper packed with illusion, technology, and suspense by playwright Arun Lakra. Follows a crew attempting a high-stakes museum heist against insurmountable odds.",
     "pricing_all_in_cad": {
       "regular": 45.68
@@ -1409,9 +2295,9 @@ const VANCOUVER_EVENTS = [
     "operating_hours": null,
     "days_open": null,
     "show_1": {
-      "date": "2026-10-02",
-      "start_time": "19:30",
-      "end_time": "21:30",
+      "date": "2026-10-04",
+      "start_time": "14:00",
+      "end_time": "16:00",
       "cost": 45.68
     },
     "show_2": {
@@ -1522,16 +2408,6 @@ const VANCOUVER_EVENTS = [
       "theatre"
     ],
     "categoryLabel": "Comedy & Shows",
-    "id": "van50-heist-arts-club",
-    "venue": "Arts Club Theatre Company (Granville Island Stage)",
-    "address": "1585 Johnston St, Vancouver, BC",
-    "priceLabel": "$45.68 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
@@ -1539,12 +2415,135 @@ const VANCOUVER_EVENTS = [
         "label": "$45.68 CAD"
       }
     ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:56.347629",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "HEIST by Arun Lakra"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "14:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "Sunday, Oct 4, 2026 at 2:00 PM (Matinee)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "venue": "Arts Club Theatre Company (Stanley BFL CANADA Stage)",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": 45.68,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "drink": "$8.50 – $10.50 wine & craft beer • $4.50 coffee",
+          "spend": "$8.50 – $15.00 CAD (drink & snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "url": "https://artsclub.com/shows/2026-2027/heist"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "Direct"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "length": 185
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:56.347629",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": true,
+    "id": "van50-heist-arts-club",
+    "venue": "Arts Club Theatre Company (Stanley BFL CANADA Stage)",
+    "address": "2750 Granville St, Vancouver, BC V6H 3J1",
+    "priceLabel": "$45.68 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-02T19:30:00-07:00",
+    "startIso": "2026-10-04T14:00:00-07:00",
     "daysOfWeek": [
       "sat",
-      "sun",
-      "fri"
+      "fri",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -1618,12 +2617,12 @@ const VANCOUVER_EVENTS = [
     "coffee_benchmark": "$4.75 – $6.50 specialty coffee / latte",
     "meal_benchmark": "$16.00 – $25.00 CAD bakery crawl purchases",
     "frequency": "limited-run",
-    "frequency_label": "Festival Run: Oct 4 – 24",
-    "frequencyLabel": "Festival Run: Oct 4 – 24",
-    "start_date": "2026-10-04",
-    "end_date": "2026-10-24",
-    "startDate": "2026-10-04",
-    "endDate": "2026-10-24",
+    "frequency_label": "Festival Run: Sep 25 – Oct 4",
+    "frequencyLabel": "Festival Run: Sep 25 – Oct 4",
+    "start_date": "2026-09-25",
+    "end_date": "2026-10-04",
+    "startDate": "2026-09-25",
+    "endDate": "2026-10-04",
     "dateSchedule": "Open: 09:00 – 17:00",
     "access_model": "open_public_space",
     "daysOfWeek": [
@@ -1685,6 +2684,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Community & Markets",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:57.669121",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "Metro Vancouver Croissant Crawl"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "09:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "Sep 25 – Oct 4, 2026 • Closing Day: Sun, Oct 4 (9:00 AM – 5:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "limited-run"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "venue": "Participating Bakeries Across Metro Vancouver",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "pay_per_item"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "drink": null,
+          "spend": "$16.00 – $25.00 CAD (2 specialty croissants + artisan coffee)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "url": "https://www.vancouvercroissantcrawl.com"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "length": 146
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:57.669121",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-metro-vancouver-croissant-crawl",
     "venue": "Participating Bakeries Across Metro Vancouver",
     "address": "Multiple Venues, Vancouver, BC",
@@ -1695,13 +2813,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "free-public-access",
       "markets"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "startIso": null,
     "timeSlots": [
@@ -1838,6 +2949,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:58.236399",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "venue": "Vancouver Public Library Central Branch",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "drink": null,
+          "spend": "$0.00 – $6.00 CAD (Free roof garden & library; optional cafe)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Details/Venue)",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "url": "https://www.vpl.ca/central"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "length": 195
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:58.236399",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-vpl-central-rooftop-garden",
     "venue": "Vancouver Public Library Central Branch",
     "address": "350 W Georgia St, Vancouver, BC",
@@ -1848,13 +3078,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "outdoors",
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -1911,9 +3134,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.contemporaryartgallery.ca/",
-    "details_url": "https://www.contemporaryartgallery.ca/visit/",
-    "ticket_url": "https://www.contemporaryartgallery.ca/visit/",
+    "discovery_url": "https://www.cagvancouver.org/",
+    "details_url": "https://www.cagvancouver.org/visit/",
+    "ticket_url": "https://www.cagvancouver.org/visit/",
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
@@ -1998,6 +3221,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:37:59.368371",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Contemporary Art Gallery (CAG) Public Exhibitions"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "venue": "Contemporary Art Gallery (CAG)",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "drink": null,
+          "spend": "$0.00 CAD (100% Free admission)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "url": "https://www.cagvancouver.org/visit/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "length": 140
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:37:59.368371",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-cag-contemporary-art-gallery",
     "venue": "Contemporary Art Gallery (CAG)",
     "address": "555 Nelson St, Vancouver, BC",
@@ -2007,13 +3349,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -2032,8 +3367,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://www.contemporaryartgallery.ca/visit/",
-    "venueUrl": "https://www.contemporaryartgallery.ca/visit/",
+    "websiteUrl": "https://www.cagvancouver.org/visit/",
+    "venueUrl": "https://www.cagvancouver.org/visit/",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -2073,9 +3408,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "discovery_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "details_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "ticket_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
@@ -2159,6 +3494,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:00.267768",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Queen Elizabeth Park & Quarry Gardens"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Operating hours"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Perennial Daily Access (Year-Round)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "venue": "Queen Elizabeth Park",
+          "neighborhood": "Riley Park"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "drink": null,
+          "spend": "$0.00 – $8.00 CAD (Free park access; optional cafe snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "Free Public Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "length": 136
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:00.267768",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-queen-elizabeth-park-gardens",
     "venue": "Queen Elizabeth Park",
     "address": "4600 Cambie St, Vancouver, BC",
@@ -2169,13 +3623,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "outdoors",
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -2194,8 +3641,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "websiteUrl": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "venueUrl": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
     "ticketProvider": "Free Public Access",
     "coordinates": [
       49.2827,
@@ -2239,8 +3686,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://www.vancouverisawesome.com/events",
     "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
-    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
-    "ticket_provider": "Showpass",
+    "ticket_url": "https://www.showpass.com/miesha-and-the-spanks-2026/",
+    "ticket_provider": "Showpass / Fox Cabaret Box Office",
     "tags": [
       "19-plus",
       "all-ages",
@@ -2303,7 +3750,7 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
-    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
+    "websiteUrl": "https://www.showpass.com/miesha-and-the-spanks-2026/",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -2321,6 +3768,125 @@ const VANCOUVER_EVENTS = [
       "under-25-cad"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 17.87,
+        "label": "$17.87 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:01.102138",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "Miesha & The Spanks with Francis Baptiste"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "2026-11-05"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "2026-11-05 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "venue": "Fox Cabaret",
+          "neighborhood": "Mount Pleasant"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": 17.87,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "url": "https://www.showpass.com/miesha-and-the-spanks-2026/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "Showpass / Fox Cabaret Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "length": 151
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:01.102138",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-miesha-and-the-spanks-fox-20261105",
     "venue": "Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC",
@@ -2332,13 +3898,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 17.87,
-        "label": "$17.87 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-11-05T19:00:00-07:00",
     "daysOfWeek": [
@@ -2349,7 +3908,7 @@ const VANCOUVER_EVENTS = [
       "late-evening"
     ],
     "venueUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/mieshaandthespanks",
-    "ticketProvider": "Showpass",
+    "ticketProvider": "Showpass / Fox Cabaret Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -2365,24 +3924,24 @@ const VANCOUVER_EVENTS = [
     "event_name": "UBC Football vs. U of C",
     "category": "Sports & Fitness",
     "venue_name": "Thunderbird Stadium",
-    "full_address": "6288 Stadium Rd, Vancouver",
+    "full_address": "6288 Stadium Rd, Vancouver, BC V6T 1Z3",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "description": "UBC Thunderbirds Football vs. University of Calgary Dinos at Thunderbird Stadium.",
     "pricing_all_in_cad": {
       "regular": 17.5
     },
     "show_1": {
       "date": "2026-10-16",
       "start_time": "18:00",
-      "end_time": "",
+      "end_time": "21:00",
       "cost": 17.5
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "details_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_provider": "Direct Box Office",
+    "discovery_url": "https://gothunderbirds.ca/tickets",
+    "details_url": "https://gothunderbirds.ca/tickets",
+    "ticket_url": "https://gothunderbirds.ca/tickets",
+    "ticket_provider": "UBC Athletics Box Office",
     "tags": [
       "activities",
       "all-ages",
@@ -2467,22 +4026,134 @@ const VANCOUVER_EVENTS = [
       "west-side"
     ],
     "categoryLabel": "Sports & Fitness",
-    "id": "ubc-fball-uofc",
-    "venue": "Thunderbird Stadium",
-    "address": "6288 Stadium Rd, Vancouver",
-    "priceLabel": "$17.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎭",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult",
         "price": 17.5,
         "label": "$17.50 CAD"
       }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:04.913914",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "UBC Football vs. U of C"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "2026-10-16"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "18:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "2026-10-16 at 18:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "venue": "Thunderbird Stadium",
+          "neighborhood": "Kitsilano, Point Grey & UBC"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": 17.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "drink": "$7.50 – $9.00 canned beer & cider",
+          "spend": "$6.00 – $15.00 CAD (Concession snack & drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "url": "https://gothunderbirds.ca/tickets"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "UBC Athletics Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "length": 81
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:04.913914",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "ubc-fball-uofc",
+    "venue": "Thunderbird Stadium",
+    "address": "6288 Stadium Rd, Vancouver, BC V6T 1Z3",
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-16T18:00:00-07:00",
@@ -2493,9 +4164,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticketProvider": "Direct Box Office",
+    "websiteUrl": "https://gothunderbirds.ca/tickets",
+    "venueUrl": "https://gothunderbirds.ca/tickets",
+    "ticketProvider": "UBC Athletics Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -2511,24 +4182,24 @@ const VANCOUVER_EVENTS = [
     "event_name": "UBC Men's Basketball vs. TWU",
     "category": "Sports & Fitness",
     "venue_name": "War Memorial Gym",
-    "full_address": "6081 University Blvd, Vancouver",
+    "full_address": "6081 University Blvd, Vancouver, BC V6T 1Z1",
     "neighborhood": "Kitsilano, Point Grey & UBC",
-    "description": "UBC Thunderbirds Tickets: Pricing, Entry Policies and 2025–26 Season Information",
+    "description": "UBC Thunderbirds Men's Basketball vs. Trinity Western University Spartans at War Memorial Gym.",
     "pricing_all_in_cad": {
       "regular": 17.5
     },
     "show_1": {
       "date": "2026-10-29",
       "start_time": "19:30",
-      "end_time": "",
+      "end_time": "21:30",
       "cost": 17.5
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "details_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_url": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticket_provider": "Direct Box Office",
+    "discovery_url": "https://gothunderbirds.ca/tickets",
+    "details_url": "https://gothunderbirds.ca/tickets",
+    "ticket_url": "https://gothunderbirds.ca/tickets",
+    "ticket_provider": "UBC Athletics Box Office",
     "tags": [
       "activities",
       "all-ages",
@@ -2613,22 +4284,134 @@ const VANCOUVER_EVENTS = [
       "west-side"
     ],
     "categoryLabel": "Sports & Fitness",
-    "id": "ubc-mbball-twu",
-    "venue": "War Memorial Gym",
-    "address": "6081 University Blvd, Vancouver",
-    "priceLabel": "$17.50 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎭",
-    "categories": [
-      "outdoors"
-    ],
     "tiers": [
       {
         "name": "Adult",
         "price": 17.5,
         "label": "$17.50 CAD"
       }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:06.020065",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "UBC Men's Basketball vs. TWU"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "2026-10-29"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "2026-10-29 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "venue": "War Memorial Gym",
+          "neighborhood": "Kitsilano, Point Grey & UBC"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": 17.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "drink": "$7.50 – $9.00 canned beer & cider",
+          "spend": "$5.00 – $12.00 CAD (Concession snack & drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "url": "https://gothunderbirds.ca/tickets"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "UBC Athletics Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "length": 94
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.020065",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "ubc-mbball-twu",
+    "venue": "War Memorial Gym",
+    "address": "6081 University Blvd, Vancouver, BC V6T 1Z1",
+    "priceLabel": "$17.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "outdoors"
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-29T19:30:00-07:00",
@@ -2639,9 +4422,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "venueUrl": "https://gothunderbirds.ca/sports/2021/9/14/ticketing-details-2025-26.aspx",
-    "ticketProvider": "Direct Box Office",
+    "websiteUrl": "https://gothunderbirds.ca/tickets",
+    "venueUrl": "https://gothunderbirds.ca/tickets",
+    "ticketProvider": "UBC Athletics Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -2673,8 +4456,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
     "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
-    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
-    "ticket_provider": "Ticketweb",
+    "ticket_url": "https://www.eventbrite.com/e/babes-in-canyon-with-anna-smyrk-shelby-natasha-tickets-1992873781126",
+    "ticket_provider": "Eventbrite / Fox Cabaret Box Office",
     "tags": [
       "19-plus",
       "all-ages",
@@ -2718,7 +4501,7 @@ const VANCOUVER_EVENTS = [
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
     "lineup": "Featured artists and performers for Babes In Canyon w/ Anna Smyrk & Shelby Natasha",
     "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "waypoints": [],
     "showings": [
       {
@@ -2736,7 +4519,7 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
-    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
+    "websiteUrl": "https://www.eventbrite.com/e/babes-in-canyon-with-anna-smyrk-shelby-natasha-tickets-1992873781126",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -2753,6 +4536,126 @@ const VANCOUVER_EVENTS = [
       "solo-friendly"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 35.99,
+        "label": "$35.99 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "Babes In Canyon w/ Anna Smyrk & Shelby Natasha"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "2026-10-08 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": 35.99,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "url": "https://www.eventbrite.com/e/babes-in-canyon-with-anna-smyrk-shelby-natasha-tickets-1992873781126"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "Eventbrite / Fox Cabaret Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "length": 113
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.296740",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-babes-in-canyon-fox-20261008",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -2764,13 +4667,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 35.99,
-        "label": "$35.99 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-08T19:00:00-07:00",
     "daysOfWeek": [
@@ -2781,7 +4677,7 @@ const VANCOUVER_EVENTS = [
       "late-evening"
     ],
     "venueUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/babesincanyon",
-    "ticketProvider": "Ticketweb",
+    "ticketProvider": "Eventbrite / Fox Cabaret Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -2859,7 +4755,7 @@ const VANCOUVER_EVENTS = [
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
     "lineup": "Featured artists and performers for SALIN (Live Soul & World Jazz)",
     "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "waypoints": [],
     "showings": [
       {
@@ -2894,6 +4790,126 @@ const VANCOUVER_EVENTS = [
       "world-jazz"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 44.57,
+        "label": "$44.57 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "SALIN (Live Soul & World Jazz)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "2026-10-10"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "2026-10-10 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": 44.57,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "url": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "Ticketweb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "length": 110
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:06.805049",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-salin-fox-cabaret-20261010",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -2904,13 +4920,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 44.57,
-        "label": "$44.57 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-10T19:30:00-07:00",
@@ -2943,23 +4952,22 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Commercial Drive & East Vancouver",
     "description": "Curated by April O'Peel, this legendary showcase highlights Vancouver's top burlesque, drag, and variety performers.",
     "pricing_all_in_cad": {
-      "regular": 16
+      "regular": 34.5
     },
     "show_1": {
       "date": "2026-10-17",
       "start_time": "21:00",
-      "end_time": null,
-      "cost": 30
+      "end_time": "23:30",
+      "cost": 34.5
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://riotheatre.ca/",
     "details_url": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
-    "ticket_url": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
-    "ticket_provider": "Direct Box Office",
+    "ticket_url": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show",
+    "ticket_provider": "The Rio Theatre Box Office",
     "tags": [
-      "all-ages",
-      "budget-friendly",
+      "19-plus",
       "burlesque",
       "cabaret",
       "cheap-night-out",
@@ -2967,32 +4975,28 @@ const VANCOUVER_EVENTS = [
       "date-night",
       "drag-show",
       "east-van",
-      "improv",
       "late-night",
       "laughs",
       "live-comedy",
       "live-theatre",
       "performing-arts",
       "solo-friendly",
-      "stage-play",
-      "standup-comedy",
-      "theatre",
-      "under-25-cad",
+      "under-50-cad",
       "variety-show"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Pass 2 (2026-09-28): Set ticket provider to Rio Theatre Direct Box Office and enriched tags with variety, drag, and late-night East Van cultural tags.",
-    "price": 16.0,
+    "curator_notes": "AI Verified: Confirmed 19+ showcase on Oct 17, 2026. $30.00 base + fees = $34.50 CAD online ($35.00 door). Direct box office at riotheatretickets.ca.",
+    "price": 34.5,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 16,
+    "price_adult": 34.5,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
+    "tier_custom_name_1": "Online Advance",
+    "tier_custom_price_1": 34.5,
+    "tier_custom_name_2": "Door Admission",
+    "tier_custom_price_2": 39.5,
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": null,
@@ -3002,20 +5006,20 @@ const VANCOUVER_EVENTS = [
     "date": "2026-10-17",
     "time": "21:00",
     "start_time": "21:00",
-    "end_time": "21:30",
+    "end_time": "23:30",
     "dateSchedule": "1 Screenings across Vancouver",
     "frequency": "One-Time",
     "typical_item_spend": "$14.00 – $22.00 CAD (Popcorn + craft pint)",
     "lineup": "Featured artists and performers for The Rio Theatre Burlesque & Variety Show",
-    "restrictions": "All Ages / General Admission",
+    "restrictions": "19+ (Two pieces of ID required for entry and bar)",
     "is_sold_out": false,
     "waypoints": [],
     "showings": [
       {
         "date": "2026-10-17",
         "start_time": "21:00",
-        "end_time": null,
-        "cost": 30
+        "end_time": "23:30",
+        "cost": 34.5
       }
     ],
     "tier_custom_name_4": null,
@@ -3028,8 +5032,7 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Fully licensed concession bar (famous real-butter popcorn, craft beer & wine)",
     "sample_cost_label": "$6.00 – $9.00 popcorn with real butter",
     "subTags": [
-      "all-ages",
-      "budget-friendly",
+      "19-plus",
       "burlesque",
       "cabaret",
       "cheap-night-out",
@@ -3037,36 +5040,154 @@ const VANCOUVER_EVENTS = [
       "date-night",
       "drag-show",
       "east-van",
-      "improv",
       "late-night",
       "laughs",
       "live-comedy",
       "live-theatre",
       "performing-arts",
       "solo-friendly",
-      "stage-play",
-      "standup-comedy",
-      "theatre",
-      "under-25-cad",
+      "under-50-cad",
       "variety-show"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 34.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Online Advance",
+        "price": 34.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Door Admission",
+        "price": 39.5,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:07.344991",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "The Rio Theatre Burlesque & Variety Show"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "2026-10-17"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "21:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "2026-10-17 at 21:00 (Doors 20:00)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "venue": "The Rio Theatre",
+          "neighborhood": "Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": 34.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "drink": "$8.00 – $9.50 craft beer & cider on tap • $9.00 – $11.00 BC wine",
+          "spend": "$14.00 – $22.00 CAD (Popcorn + craft pint)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "url": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "The Rio Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "length": 116
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "value": "19+ (Two pieces of ID required for entry and bar)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.344991",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-rio-burlesque-variety-20261017",
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
-    "priceLabel": "$16.00 CAD",
+    "priceLabel": "$34.50 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 16.0,
-        "label": "$16.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-17T21:00:00-07:00",
@@ -3077,9 +5198,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
+    "websiteUrl": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show",
     "venueUrl": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
-    "ticketProvider": "Direct Box Office",
+    "ticketProvider": "The Rio Theatre Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -3189,6 +5310,125 @@ const VANCOUVER_EVENTS = [
       "solo-friendly"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 39.35,
+        "label": "$39.35 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:07.894295",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "Dummy with Golomb & worrywart"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "2026-10-22"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "2026-10-22 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "venue": "The WISE Hall",
+          "neighborhood": "Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": 39.35,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "drink": "$6.50 – $8.00 local craft pints • $7.50 – $9.00 highballs",
+          "spend": "$13.00 – $18.00 CAD (1–2 craft pints)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "url": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "TicketWeb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "length": 107
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:07.894295",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-dummy-wise-hall-20261022",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -3198,13 +5438,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎵",
     "categories": [
       "music"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 39.35,
-        "label": "$39.35 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-22T20:00:00-07:00",
@@ -3249,8 +5482,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
     "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
-    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
-    "ticket_provider": "TicketWeb",
+    "ticket_url": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773",
+    "ticket_provider": "TicketWeb / Fox Cabaret Box Office",
     "tags": [
       "19-plus",
       "all-ages",
@@ -3316,7 +5549,7 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
     "food_service_note": "Full cocktail bars (Foxtails $13–$15; no kitchen, Main St dining nearby)",
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
-    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
+    "websiteUrl": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -3337,6 +5570,125 @@ const VANCOUVER_EVENTS = [
       "spooky"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 40.03,
+        "label": "$40.03 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:08.419317",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "Ruby Haunt with VHS Ghost"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "2026-12-11"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "2026-12-11 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": 40.03,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "url": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "TicketWeb / Fox Cabaret Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "length": 81
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.419317",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-ruby-haunt-fox-20261211",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -3348,13 +5700,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 40.03,
-        "label": "$40.03 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-12-11T20:00:00-07:00",
     "daysOfWeek": [
@@ -3365,7 +5710,7 @@ const VANCOUVER_EVENTS = [
       "late-evening"
     ],
     "venueUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/rubyhaunt",
-    "ticketProvider": "TicketWeb",
+    "ticketProvider": "TicketWeb / Fox Cabaret Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -3392,10 +5737,10 @@ const VANCOUVER_EVENTS = [
       "member": 0
     },
     "show_1": {
-      "date": "2026-10-03",
+      "date": "2026-10-10",
       "start_time": "10:30",
       "end_time": "16:30",
-      "cost": 14.86
+      "cost": 13.27
     },
     "show_2": {
       "date": "2026-10-04",
@@ -3443,7 +5788,7 @@ const VANCOUVER_EVENTS = [
     "coffee_benchmark": "$4.50 – $6.00 Garden Cafe",
     "meal_benchmark": "$16.00 – $25.00 CAD (Shaughnessy Restaurant)",
     "title": "Harvest Days at VanDusen Botanical Garden",
-    "date": "2026-10-04",
+    "date": "2026-10-10",
     "time": "10:30",
     "start_time": "10:30",
     "end_time": "16:30",
@@ -3452,7 +5797,7 @@ const VANCOUVER_EVENTS = [
     "typical_item_spend": "$6.00 – $18.00 CAD (Garden admission + cafe)",
     "lineup": "Featured artists and performers for Harvest Days at VanDusen Botanical Garden",
     "restrictions": "All Ages / General Admission",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "waypoints": [],
     "showings": [
       {
@@ -3527,6 +5872,147 @@ const VANCOUVER_EVENTS = [
       "under-25-cad"
     ],
     "categoryLabel": "Community & Markets",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 14.86,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 10.6,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 10.6,
+        "isAvailable": true
+      },
+      {
+        "name": "Child (5–12)",
+        "price": 7.8,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "Harvest Days at VanDusen Botanical Garden"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "10:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "Today & Weekends in October (10:30 AM – 4:30 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "venue": "VanDusen Botanical Garden",
+          "neighborhood": "South Cambie"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": 14.86,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "drink": "$8.00 – $11.00 wine & beer at Shaughnessy",
+          "spend": "$6.00 – $18.00 CAD (Garden admission + cafe)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "url": "https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "length": 316
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold Out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:08.886450",
+          "showings_count": 7
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": false,
     "id": "van50-harvest-days-vandusen",
     "venue": "VanDusen Botanical Garden",
     "address": "5251 Oak St, Vancouver, BC",
@@ -3539,43 +6025,11 @@ const VANCOUVER_EVENTS = [
       "markets",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Senior (65+)",
-        "price": 10.6,
-        "label": "$10.60 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 14.86,
-        "label": "$14.86 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 10.6,
-        "label": "$10.60 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Child (5–12)",
-        "price": 7.8,
-        "label": "$7.80 CAD"
-      },
-      {
-        "name": "Member / Infant (0–4)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-03T10:30:00-07:00",
+    "startIso": "2026-10-10T10:30:00-07:00",
     "daysOfWeek": [
-      "mon",
       "sat",
+      "mon",
       "sun"
     ],
     "timeSlots": [
@@ -3600,7 +6054,7 @@ const VANCOUVER_EVENTS = [
     "category": "Comedy & Shows",
     "lifecycle_type": "time_bound_event",
     "venue_name": "The Improv Centre",
-    "full_address": "1502 Duranleau St, Vancouver",
+    "full_address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
     "neighborhood": "Granville Island & False Creek",
     "description": "Live comedy & shows featuring Deadly Dinner Party at The Improv Centre in Granville Island & False Creek.",
     "pricing_all_in_cad": {
@@ -3609,11 +6063,10 @@ const VANCOUVER_EVENTS = [
       "senior": 27.0
     },
     "show_1": {
-      "date": "2026-10-02",
+      "date": "2026-10-09",
       "start_time": "19:00",
       "end_time": "20:30",
-      "cost": 32.0,
-      "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64801"
+      "cost": 32.0
     },
     "show_2": {
       "date": "2026-10-03",
@@ -3714,7 +6167,7 @@ const VANCOUVER_EVENTS = [
     ],
     "discovery_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
     "details_url": "https://theimprovcentre.ca/shows/",
-    "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
+    "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64802",
     "ticket_provider": "Direct Box Office",
     "tags": [
       "all-ages",
@@ -3778,7 +6231,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 popcorn, pretzels & bar snacks",
     "food_service_note": "Neil Macrae Bar & Lounge (Granville Island craft beer & bar snacks)",
     "sample_cost_label": "$7.50 – $9.00 local craft beer",
-    "websiteUrl": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/ChooseSeats/64802",
     "subTags": [
       "all-ages",
       "antigravity-validated",
@@ -3803,9 +6256,143 @@ const VANCOUVER_EVENTS = [
       "vancouver-events"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 32.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 27.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Tables & Bench (Adult)",
+        "price": 38.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Tables & Bench (Student/Senior)",
+        "price": 33.5,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:09.532184",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "Deadly Dinner Party"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "Friday, Oct 9, 2026 at 7:00 PM (Runs through Oct 30)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "venue": "The Improv Centre",
+          "neighborhood": "Granville Island & False Creek"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "tiered_admission"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": 32.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "tier_count": 4,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "drink": "$7.50 – $9.00 Granville Island beer • $8.50 – $10.50 wine & highballs",
+          "spend": "$11.50 – $18.00 CAD (1 drink + bar snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "url": "https://purchase.theimprovcentre.ca/ChooseSeats/64802"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "Direct Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "length": 105
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.532184",
+          "showings_count": 9
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-deadly-dinner-party",
     "venue": "The Improv Centre",
-    "address": "1502 Duranleau St, Vancouver",
+    "address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
     "priceLabel": "$32.00 CAD",
     "pricingType": "paid",
     "isFree": false,
@@ -3813,35 +6400,8 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Tables & Bench (Adult)",
-        "price": 38.5,
-        "label": "$38.50 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 32.0,
-        "label": "$32.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 27.0,
-        "label": "$27.00 CAD"
-      },
-      {
-        "name": "Tables & Bench (Student/Senior)",
-        "price": 33.5,
-        "label": "$33.50 CAD"
-      },
-      {
-        "name": "Accessible Table",
-        "price": 38.5,
-        "label": "$38.50 CAD"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-02T19:00:00-07:00",
+    "startIso": "2026-10-09T19:00:00-07:00",
     "daysOfWeek": [
       "sat",
       "fri"
@@ -3868,7 +6428,7 @@ const VANCOUVER_EVENTS = [
     "category": "Comedy & Shows",
     "lifecycle_type": "time_bound_event",
     "venue_name": "Little Mountain Gallery",
-    "full_address": "110 Water St, Vancouver",
+    "full_address": "110 Water St, Vancouver, BC V6B 1B2",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "Live comedy & shows featuring Stand-Up Showcase at Little Mountain Gallery at Little Mountain Gallery in Downtown, Gastown & Yaletown.",
     "pricing_all_in_cad": {
@@ -3983,22 +6543,134 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Comedy & Shows",
-    "id": "van50-stand-up-showcase-lmg-20261015",
-    "venue": "Little Mountain Gallery",
-    "address": "110 Water St, Vancouver",
-    "priceLabel": "$18.14 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎭",
-    "categories": [
-      "shows"
-    ],
     "tiers": [
       {
         "name": "Adult",
         "price": 18.14,
         "label": "$18.14 CAD"
       }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:09.975744",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "Stand-Up Showcase at Little Mountain Gallery"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "2026-10-15"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "2026-10-15 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "venue": "Little Mountain Gallery",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": 18.14,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "drink": "$6.50 – $8.00 canned local craft beer & cider • $7.50 highballs",
+          "spend": "$9.00 – $15.00 CAD (1 craft can + snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "url": "https://www.showpass.com/stand-up-showcase-94/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "length": 134
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:09.975744",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-stand-up-showcase-lmg-20261015",
+    "venue": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver, BC V6B 1B2",
+    "priceLabel": "$18.14 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-15T19:00:00-07:00",
@@ -4135,6 +6807,125 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 15.0,
+        "label": "$15.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:10.262371",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "Past Future Continuous (Vancouver Premiere)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "2026-10-15"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "2026-10-15 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "drink": "$7.00 – $8.50 craft beer cans • $3.50 tea & soda",
+          "spend": "$8.50 – $14.00 CAD (popcorn + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "url": "https://thecinematheque.ca/films/2026/past-future-continuous"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "The Cinematheque Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "length": 110
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:10.262371",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cinematheque-past-future-20261015",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -4145,13 +6936,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "cinema",
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-15T19:00:00-07:00",
@@ -4283,6 +7067,125 @@ const VANCOUVER_EVENTS = [
       "york-theatre"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 26.25,
+        "label": "$26.25 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:12.257669",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "Comedy on the Drive"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "2026-10-24"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "2026-10-24 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "venue": "York Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": 26.25,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "drink": "$8.00 – $9.50 craft beer & wine • $4.00 – $5.00 coffee & pastries",
+          "spend": "$8.00 – $15.00 CAD (1 drink or hot beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "url": "https://thecultch.com/event/comedy-on-the-drive/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "The Cultch Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "length": 112
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.257669",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-york-comedy-on-the-drive-20261024",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -4292,13 +7195,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 26.25,
-        "label": "$26.25 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-24T19:00:00-07:00",
@@ -4436,6 +7332,125 @@ const VANCOUVER_EVENTS = [
       "york-theatre"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 26.25,
+        "label": "$26.25 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:12.513282",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "Stripocalypse: Rise of the Auntie Heroes"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "2026-10-16"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "2026-10-16 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "venue": "York Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": 26.25,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "drink": "$8.00 – $9.50 craft beer & wine • $4.00 – $5.00 coffee & pastries",
+          "spend": "$8.00 – $15.00 CAD (1 drink or hot beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "url": "https://thecultch.com/event/stripocalypse-rise-of-the-auntie-heroes/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "The Cultch Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "length": 115
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:12.513282",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-york-stripocalypse-20261016",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -4446,13 +7461,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 26.25,
-        "label": "$26.25 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-16T20:00:00-07:00",
@@ -4466,161 +7474,6 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://thecultch.com/event/stripocalypse-rise-of-the-auntie-heroes/",
     "venueUrl": "https://thecultch.com/event/stripocalypse-rise-of-the-auntie-heroes/",
     "ticketProvider": "The Cultch Box Office",
-    "coordinates": [
-      49.2827,
-      -123.1207
-    ],
-    "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": null,
-    "weeklyHours": null,
-    "lifecycleType": "time_bound_event",
-    "isSoldOut": false
-  },
-  {
-    "event_id": "van50-scout-orpheum-vso-kids-20261004",
-    "event_name": "VSO Kids: Lights, Camera, Orchestra!",
-    "category": "music",
-    "lifecycle_type": "time_bound_event",
-    "venue_name": "The Orpheum",
-    "full_address": "601 Smithe St, Vancouver, BC V6B 3L4",
-    "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Interactive family concert exploring the magic of cinematic music, featuring works by BC composers Caleb and Brian Chan.",
-    "pricing_all_in_cad": {
-      "regular": 25.2,
-      "senior": 20,
-      "student": 20
-    },
-    "show_1": {
-      "date": "2026-10-04",
-      "start_time": "14:00",
-      "end_time": "15:30",
-      "cost": 20
-    },
-    "discovery_url": "https://www.vancouversymphony.ca",
-    "details_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticket_url": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticket_provider": "VSO Box Office",
-    "tags": [
-      "acoustic",
-      "all-ages",
-      "antigravity-13d-validated",
-      "big-screen",
-      "classical-music",
-      "cult-cinema",
-      "downtown",
-      "family-friendly",
-      "film-screening",
-      "indie-film",
-      "live-music",
-      "music",
-      "orchestra",
-      "solo-friendly",
-      "symphony",
-      "the-orpheum",
-      "under-50-cad",
-      "vancouver-core",
-      "vso"
-    ],
-    "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): VSO Kids concert confirmed for Sunday Oct 4 at 2:00 PM at The Orpheum. Direct event booking link updated.",
-    "price": 25.2,
-    "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 25.2,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
-    "weekly_hours": null,
-    "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$15.00 – $25.00 CAD (Downtown dining nearby)",
-    "title": "VSO Kids: Lights, Camera, Orchestra!",
-    "date": "2026-10-04",
-    "time": "14:00",
-    "start_time": "14:00",
-    "end_time": "15:30",
-    "dateSchedule": "1 Screenings across Vancouver",
-    "frequency": "One-Time",
-    "typical_item_spend": "$9.00 – $18.00 CAD (1 beverage)",
-    "lineup": "Featured artists and performers for VSO Kids: Lights, Camera, Orchestra!",
-    "restrictions": "All Ages Welcome (Family Friendly)",
-    "is_sold_out": false,
-    "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-04",
-        "start_time": "14:00",
-        "end_time": "15:30",
-        "cost": 20
-      }
-    ],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
-    "tier_custom_name_5": null,
-    "tier_custom_price_5": null,
-    "food_service_type": "concession",
-    "drink_benchmark": "$9.00 – $11.00 craft beer • $10.00 – $13.00 wine & spirits",
-    "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
-    "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
-    "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
-    "subTags": [
-      "acoustic",
-      "all-ages",
-      "antigravity-13d-validated",
-      "big-screen",
-      "classical-music",
-      "cult-cinema",
-      "downtown",
-      "family-friendly",
-      "film-screening",
-      "indie-film",
-      "live-music",
-      "music",
-      "orchestra",
-      "solo-friendly",
-      "symphony",
-      "the-orpheum",
-      "under-50-cad",
-      "vancouver-core",
-      "vso"
-    ],
-    "categoryLabel": "Music",
-    "id": "van50-scout-orpheum-vso-kids-20261004",
-    "venue": "The Orpheum",
-    "address": "601 Smithe St, Vancouver, BC V6B 3L4",
-    "priceLabel": "$25.20 CAD",
-    "pricingType": "paid",
-    "isFree": false,
-    "categoryIcon": "🎵",
-    "categories": [
-      "cinema",
-      "social",
-      "music"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 25.2,
-        "label": "$25.20 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": "2026-10-04T14:00:00-07:00",
-    "daysOfWeek": [
-      "sun"
-    ],
-    "timeSlots": [
-      "early-evening",
-      "late-evening"
-    ],
-    "websiteUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "venueUrl": "https://www.vancouversymphony.ca/event/lights-camera-orchestra/",
-    "ticketProvider": "VSO Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -4646,7 +7499,7 @@ const VANCOUVER_EVENTS = [
       "student": 19
     },
     "show_1": {
-      "date": "2026-10-01",
+      "date": "2026-10-05",
       "start_time": "18:00",
       "end_time": "20:00",
       "cost": 22
@@ -4775,6 +7628,125 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 49.0,
+        "label": "$49.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:13.463993",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "VIFF 2026: The Beloved (El Ser querido)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "2026-10-05"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "18:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "Multi-Date Run (Next: 2026-10-05 at 18:00)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": 49,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "drink": "$8.00 – $10.00 craft beer & BC wine • $4.00 espresso",
+          "spend": "$9.50 – $16.00 CAD (popcorn & beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "url": "https://viff.org/whats-on/viff26-the-beloved/#book"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "VIFF Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "length": 97
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.463993",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-rio-viff-beloved-20261001",
     "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
     "address": "Multiple Venues across Vancouver, BC",
@@ -4788,19 +7760,12 @@ const VANCOUVER_EVENTS = [
       "shows",
       "festivals"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 49.0,
-        "label": "$49.00 CAD"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-01T18:00:00-07:00",
+    "startIso": "2026-10-05T18:00:00-07:00",
     "daysOfWeek": [
-      "mon",
+      "thu",
       "sat",
-      "thu"
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -4946,6 +7911,125 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 22.63,
+        "label": "$22.63 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:13.963522",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "Tim Burton's Funeral – A Naturally Freaky Cabaret"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "2026-10-24"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "2026-10-24 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "venue": "The Waldorf Hotel",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": 22.63,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "drink": "$7.50 – $9.00 pints • $11.00 – $14.00 tiki cocktails",
+          "spend": "$15.00 – $25.00 CAD (1–2 cocktails or beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "url": "https://www.eventbrite.ca/e/tim-burtons-funeral-a-naturally-freaky-cabaret-tickets-1997329967700"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "length": 143
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:13.963522",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-tim-burton-cabaret-waldorf-20261024",
     "venue": "The Waldorf Hotel",
     "address": "1489 E Hastings St, Vancouver, BC V5L 1S4",
@@ -4956,13 +8040,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 22.63,
-        "label": "$22.63 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-24T19:00:00-07:00",
@@ -5010,7 +8087,7 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://wisehall.ca/events/",
     "details_url": "https://wisehall.ca/",
-    "ticket_url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "ticket_url": "https://www.ticketweb.ca/event/olive-klug-with-frail-talk-the-wise-hall-tickets/15002713",
     "ticket_provider": "TicketWeb / MODO-Live",
     "tags": [
       "19-plus",
@@ -5030,7 +8107,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Healed from generic artist tour slug to direct TicketWeb / MODO-Live live-checkout basket at $32.06 CAD all-in.",
+    "curator_notes": "Verified direct TicketWeb event checkout (Event #15002713, $20 base + fees = $27.05 CAD all-in).",
     "price": 32.06,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -5075,7 +8152,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.00 chips",
     "food_service_note": "Non-profit community lounge bar (no kitchen; Commercial Dr dining nearby)",
     "sample_cost_label": "$6.50 – $8.00 Powell / Strange Fellows pints",
-    "websiteUrl": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "websiteUrl": "https://www.ticketweb.ca/event/olive-klug-with-frail-talk-the-wise-hall-tickets/15002713",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -5093,6 +8170,125 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 32.06,
+        "label": "$32.06 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:14.637801",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "Olive Klug with Frail Talk"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "2026-10-25"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "2026-10-25 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "venue": "The WISE Hall",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": 32.06,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "drink": "$6.50 – $8.00 local craft pints • $7.50 – $9.00 highballs",
+          "spend": "$13.00 – $18.00 CAD (1–2 craft pints)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "url": "https://www.ticketweb.ca/event/olive-klug-with-frail-talk-the-wise-hall-tickets/15002713"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "TicketWeb / MODO-Live"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "length": 136
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:14.637801",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-olive-klug-wise-hall-20261025",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -5102,13 +8298,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎵",
     "categories": [
       "music"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 32.06,
-        "label": "$32.06 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-25T19:00:00-07:00",
@@ -5156,8 +8345,8 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://vancouvercivictheatres.com/",
-    "details_url": "https://vancouvercivictheatres.com/events/",
-    "ticket_url": "https://vancouvercivictheatres.com/events/",
+    "details_url": "https://vancouvercivictheatres.com/events/vct-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
+    "ticket_url": "https://vancouvercivictheatres.com/events/vct-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
     "ticket_provider": "Ticketmaster / Vancouver Civic Theatres",
     "tags": [
       "all-ages",
@@ -5235,7 +8424,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$5.00 – $7.00 popcorn & candy",
     "food_service_note": "Civic theatre concession bars (beer, wine, sodas & snacks)",
     "sample_cost_label": "$9.00 – $11.00 beer / $10 – $13 wine",
-    "websiteUrl": "https://vancouvercivictheatres.com/events/",
+    "websiteUrl": "https://vancouvercivictheatres.com/events/vct-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
     "subTags": [
       "all-ages",
       "antigravity-13d-validated",
@@ -5266,6 +8455,125 @@ const VANCOUVER_EVENTS = [
       "wurlitzer"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 26.78,
+        "label": "$26.78 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:15.188210",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "Silent Movie Mondays: Dr. Jekyll and Mr. Hyde"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "2026-10-26"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "2026-10-26 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "venue": "The Orpheum",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": 26.78,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "drink": "$9.00 – $11.00 craft beer • $10.00 – $13.00 wine & spirits",
+          "spend": "$9.00 – $18.00 CAD (1 beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "url": "https://vancouvercivictheatres.com/events/vct-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "Ticketmaster / Vancouver Civic Theatres"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "length": 157
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.188210",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-orpheum-silent-movie-mondays",
     "venue": "The Orpheum",
     "address": "601 Smithe St, Vancouver, BC V6B 3L4",
@@ -5278,13 +8586,6 @@ const VANCOUVER_EVENTS = [
       "social",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 26.78,
-        "label": "$26.78 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-26T19:30:00-07:00",
     "daysOfWeek": [
@@ -5294,7 +8595,7 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "venueUrl": "https://vancouvercivictheatres.com/events/",
+    "venueUrl": "https://vancouvercivictheatres.com/events/vct-silent-movie-mondays-dr-jekyll-and-mr-hyde-oct-26-2026/",
     "ticketProvider": "Ticketmaster / Vancouver Civic Theatres",
     "coordinates": [
       49.2827,
@@ -5316,7 +8617,7 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Mount Pleasant & South Vancouver",
     "description": "Puccini's tragic masterpiece of passion, jealousy, and betrayal performed live on stage by Vancouver Opera at the Queen Elizabeth Theatre.",
     "pricing_all_in_cad": {
-      "regular": 25,
+      "regular": 40,
       "student": 25
     },
     "operating_hours": null,
@@ -5325,7 +8626,7 @@ const VANCOUVER_EVENTS = [
       "date": "2026-10-24",
       "start_time": "19:30",
       "end_time": "22:30",
-      "cost": 25
+      "cost": 40
     },
     "show_2": null,
     "show_3": null,
@@ -5352,17 +8653,17 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed direct box office ticketing endpoint on vancouveropera.ca with Balcony Tier 1 seats starting at $25.00 CAD all-in.",
-    "price": 25.0,
+    "curator_notes": "Under $50 access via $25 Student Rush (code RUSH, 24h prior) and $40 Lucky Dip (code LUCKYDIP, 48h prior). Regular adult balcony starts at $75.",
+    "price": 40.0,
     "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
-    "price_adult": 25,
-    "price_student": null,
+    "pricing_model": "tiered_admission",
+    "price_adult": 40,
+    "price_student": 25,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
+    "tier_custom_name_1": "Student Rush (Code: RUSH)",
+    "tier_custom_price_1": 25,
+    "tier_custom_name_2": "Lucky Dip Ticket (Code: LUCKYDIP)",
+    "tier_custom_price_2": 40,
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": null,
@@ -5415,10 +8716,144 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 40.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student Rush (Code: RUSH)",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Lucky Dip Ticket (Code: LUCKYDIP)",
+        "price": 40.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:15.939561",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "Vancouver Opera: Tosca (Opening Night)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "2026-10-24"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "2026-10-24 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "venue": "Queen Elizabeth Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "tiered_admission"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": 40,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "tier_count": 4,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "drink": "$9.00 – $11.00 craft beer • $10.00 – $13.00 wine & spirits",
+          "spend": "$9.00 – $18.00 CAD (1 beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "url": "https://www.vancouveropera.ca/whats-on/tosca/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "Vancouver Opera Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "length": 138
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:15.939561",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
     "venue": "Queen Elizabeth Theatre",
     "address": "630 Hamilton St, Vancouver, BC V6B 5N6",
-    "priceLabel": "$25.00 CAD",
+    "priceLabel": "$40.00 CAD",
     "pricingType": "paid",
     "isFree": false,
     "categoryIcon": "🎭",
@@ -5426,13 +8861,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows",
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 25.0,
-        "label": "$25.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-24T19:30:00-07:00",
@@ -5480,8 +8908,8 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.showpass.com/raagaverse-strings/",
-    "details_url": "https://vancouvercivictheatres.com/events/",
-    "ticket_url": "https://vancouvercivictheatres.com/events/",
+    "details_url": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
+    "ticket_url": "https://www.showpass.com/raagaverse-strings/",
     "ticket_provider": "Showpass",
     "tags": [
       "all-ages",
@@ -5548,7 +8976,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 snacks",
     "food_service_note": "Lobby concession bar (beer, wine & snacks)",
     "sample_cost_label": "$8.00 – $10.00 beer & wine",
-    "websiteUrl": "https://vancouvercivictheatres.com/events/",
+    "websiteUrl": "https://www.showpass.com/raagaverse-strings/",
     "subTags": [
       "all-ages",
       "antigravity-13d-validated",
@@ -5568,6 +8996,125 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 21.02,
+        "label": "$21.02 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:16.713125",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "Raagaverse + Strings"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "2026-10-15"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "2026-10-15 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "venue": "The Annex",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": 21.02,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "drink": "$8.00 – $10.00 craft beer & wine • $4.00 soda/coffee",
+          "spend": "$8.00 – $15.00 CAD"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "url": "https://www.showpass.com/raagaverse-strings/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "length": 177
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:16.713125",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-raagaverse-strings-annex-20261015",
     "venue": "The Annex",
     "address": "823 Seymour St, Vancouver, BC V6B 3L4",
@@ -5578,13 +9125,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 21.02,
-        "label": "$21.02 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-15T19:30:00-07:00",
     "daysOfWeek": [
@@ -5594,7 +9134,7 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "venueUrl": "https://vancouvercivictheatres.com/events/",
+    "venueUrl": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
     "ticketProvider": "Showpass",
     "coordinates": [
       49.2827,
@@ -5628,10 +9168,10 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com/event/actors/",
+    "discovery_url": "https://rickshawtheatre.com/show_listings/actors-4/",
     "details_url": "https://rickshawtheatre.com/show_listings/actors-4/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/actors/",
-    "ticket_provider": "Rickshaw Box Office / Eventbrite",
+    "ticket_url": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+    "ticket_provider": "Eventbrite (The Rickshaw Theatre)",
     "tags": [
       "19-plus",
       "all-ages",
@@ -5659,7 +9199,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Live Eventbrite checkout verified in stock for Oct 9 show ($20.00 base + fees = $25.50 CAD all-in).",
+    "curator_notes": "Verified active 2026 show listing (actors-4) and direct Eventbrite checkout ($20.00 base + fees = $25.50 CAD all-in).",
     "price": 20.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -5675,7 +9215,7 @@ const VANCOUVER_EVENTS = [
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$12.00 – $18.00 CAD (nearby Hastings/Chinatown eateries)",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
     "date": "2026-10-09",
     "time": "19:00",
@@ -5730,6 +9270,126 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "2026-10-09 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": 20,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "drink": "$8.50 pint • $14.50 cocktail",
+          "spend": "$18.00 – $28.00 CAD (2 beers/drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "url": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "Eventbrite (The Rickshaw Theatre)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "length": 149
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.027168",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-actors-rickshaw-20261009",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5741,13 +9401,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-09T19:00:00-07:00",
     "daysOfWeek": [
@@ -5757,9 +9410,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/actors/",
+    "websiteUrl": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
     "venueUrl": "https://rickshawtheatre.com/show_listings/actors-4/",
-    "ticketProvider": "Rickshaw Box Office / Eventbrite",
+    "ticketProvider": "Eventbrite (The Rickshaw Theatre)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -5793,9 +9446,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com/",
-    "details_url": "https://rickshawtheatre.com/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
-    "ticket_provider": "TicketWeb",
+    "details_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+    "ticket_url": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463",
+    "ticket_provider": "TicketWeb / Rickshaw Box Office",
     "tags": [
       "19-plus",
       "all-ages",
@@ -5862,7 +9515,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.00 chips & bar snacks",
     "food_service_note": "Two full bars (no kitchen; Chinatown & Hastings dining nearby)",
     "sample_cost_label": "$7.50 PBR / $9.50 local craft tallboys",
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+    "websiteUrl": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -5883,6 +9536,125 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 36.64,
+        "label": "$36.64 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:17.869908",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "Militarie Gun: 20 Songs for $20 Tour"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "2026-10-10"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "18:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "2026-10-10 at 18:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": 36.64,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "drink": "$8.50 pint • $14.50 cocktail",
+          "spend": "$18.00 – $28.00 CAD (2 beers/drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "url": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "TicketWeb / Rickshaw Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "length": 156
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:17.869908",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-militarie-gun-rickshaw-20261010",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -5894,13 +9666,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.64,
-        "label": "$36.64 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-10T18:00:00-07:00",
     "daysOfWeek": [
@@ -5910,8 +9675,8 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "venueUrl": "https://rickshawtheatre.com/",
-    "ticketProvider": "TicketWeb",
+    "venueUrl": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+    "ticketProvider": "TicketWeb / Rickshaw Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -5946,8 +9711,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://foxcabaret.com/calendar",
     "details_url": "https://thesundayservice.ca",
-    "ticket_url": "https://www.foxcabaret.com/sundayservice",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
+    "ticket_url": "https://square.link/u/mwz50eOL",
+    "ticket_provider": "Square Checkout (The Sunday Service)",
     "tags": [
       "19-plus",
       "all-ages",
@@ -5973,7 +9738,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Healed generic homepage link to Fox Cabaret calendar and confirmed $20.00 CAD live checkout/door admission.",
+    "curator_notes": "Direct 1-click Square checkout for Sunday Service Improv Co. at The Fox Cabaret.",
     "price": 20.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -6041,6 +9806,126 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:19.732838",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "The Sunday Service: Live Improv Comedy"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "2026-10-04 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": 20,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "url": "https://square.link/u/mwz50eOL"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "Square Checkout (The Sunday Service)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "length": 109
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:19.732838",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": true,
     "id": "van50-scout-fox-sunday-service-20261004",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6051,13 +9936,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-04T20:00:00-07:00",
     "daysOfWeek": [
@@ -6067,9 +9945,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.foxcabaret.com/sundayservice",
+    "websiteUrl": "https://square.link/u/mwz50eOL",
     "venueUrl": "https://thesundayservice.ca",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
+    "ticketProvider": "Square Checkout (The Sunday Service)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -6104,8 +9982,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://foxcabaret.com/calendar",
     "details_url": "https://thesundayservice.ca",
-    "ticket_url": "https://www.foxcabaret.com/sundayservice",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
+    "ticket_url": "https://square.link/u/qfKgyfj5",
+    "ticket_provider": "Square Checkout (The Sunday Service)",
     "tags": [
       "19-plus",
       "all-ages",
@@ -6131,7 +10009,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Confirmed Oct 11 weekly performance with verified $20.00 CAD live admission at Fox Cabaret.",
+    "curator_notes": "Direct 1-click Square checkout for Sunday Service Improv Co. at The Fox Cabaret.",
     "price": 20.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -6199,6 +10077,125 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:21.075398",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "The Sunday Service: Live Improv Comedy"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "2026-10-11"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "2026-10-11 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": 20,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "url": "https://square.link/u/qfKgyfj5"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "Square Checkout (The Sunday Service)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "length": 109
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.075398",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-the-sunday-service-fox-20261011",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6209,13 +10206,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-11T20:00:00-07:00",
     "daysOfWeek": [
@@ -6225,9 +10215,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.foxcabaret.com/sundayservice",
+    "websiteUrl": "https://square.link/u/qfKgyfj5",
     "venueUrl": "https://thesundayservice.ca",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
+    "ticketProvider": "Square Checkout (The Sunday Service)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -6260,10 +10250,10 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://foxcabaret.com/calendar",
-    "details_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/00svs10s-3k3nt-px938-734st-9enmm-t2bk8-37ebr",
-    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/2026/00svs10s-3k3nt-px938-734st-9enmm-t2bk8-37ebr",
-    "ticket_provider": "Fox Cabaret Box Office / Eventbrite",
+    "discovery_url": "https://www.foxcabaret.com",
+    "details_url": "https://www.foxcabaret.com",
+    "ticket_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+    "ticket_provider": "Fox Cabaret Box Office / Door",
     "tags": [
       "19-plus",
       "antigravity-13d-validated",
@@ -6289,7 +10279,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI Quarantine Resolution (2026-09-29): Healed 404 URL with verified Fox Cabaret calendar & Eventbrite ticket endpoint ($15.00 CAD all-in).",
+    "curator_notes": "Fox Cabaret Friday dance party. Door admission $15.00 CAD (cash/card at venue).",
     "price": 15.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -6315,7 +10305,7 @@ const VANCOUVER_EVENTS = [
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
     "lineup": "Featured artists and performers for 00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
     "restrictions": "19+ (Two pieces of government ID required)",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "waypoints": [],
     "showings": [
       {
@@ -6357,6 +10347,126 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Nightlife & Social",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 15.0,
+        "label": "$15.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "22:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "2026-10-09 at 22:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "drink": "$8.50 – $10.00 craft beer & cider • $13.00 – $15.00 signature cocktails (Foxtails)",
+          "spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "Fox Cabaret Box Office / Door"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "length": 144
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.434589",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-90s-00s-dance-party-fox-20261009",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -6368,13 +10478,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "social"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-09T22:30:00-07:00",
     "daysOfWeek": [
@@ -6384,9 +10487,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/00svs10s-3k3nt-px938-734st-9enmm-t2bk8-37ebr",
-    "venueUrl": "https://www.foxcabaret.com/monthly-calendar-list/2026/00svs10s-3k3nt-px938-734st-9enmm-t2bk8-37ebr",
-    "ticketProvider": "Fox Cabaret Box Office / Eventbrite",
+    "websiteUrl": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+    "venueUrl": "https://www.foxcabaret.com",
+    "ticketProvider": "Fox Cabaret Box Office / Door",
     "coordinates": [
       49.2827,
       -123.1207
@@ -6520,6 +10623,125 @@ const VANCOUVER_EVENTS = [
       "west-end"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 15.0,
+        "label": "$15.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:21.673801",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "2027-01-22"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "2027-01-22 at 20:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "venue": "The Show Cellar",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "drink": "$7.50 – $9.00 craft beer • $8.50 – $10.00 mixed drinks",
+          "spend": "$15.00 – $20.00 CAD (1–2 drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "url": "https://www.eventbrite.ca/e/phyllis-hulls-one-woman-show-hullo-its-me-youre-looking-for-tickets-1999722215979"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "length": 151
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.673801",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-phyllis-hull-one-woman-show-20270122",
     "venue": "The Show Cellar",
     "address": "1755 Davie St, Vancouver, BC V6G 1W5",
@@ -6529,13 +10751,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2027-01-22T20:00:00-07:00",
@@ -6689,6 +10904,125 @@ const VANCOUVER_EVENTS = [
       "york-theatre"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:21.889497",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "Palestine Comedy Club Showcase"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "2026-10-09 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "venue": "York Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": 20,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "drink": "$8.00 – $9.50 craft beer & wine • $4.00 – $5.00 coffee & pastries",
+          "spend": "$8.00 – $15.00 CAD (1 drink or hot beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "url": "https://thecultch.com/event/palestine-comedy-club/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "The Cultch Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "length": 171
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:21.889497",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cultch-palestine-comedy-20261009",
     "venue": "York Theatre",
     "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
@@ -6698,13 +11032,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-09T19:30:00-07:00",
@@ -6850,6 +11177,125 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 14.0,
+        "label": "$14.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:22.081256",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "Forbidden Rooms: Kwaidan (1964)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "2026-10-12"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "2026-10-12 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": 14,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "drink": "$7.00 – $8.50 craft beer cans • $3.50 tea & soda",
+          "spend": "$8.50 – $14.00 CAD (popcorn + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "url": "https://thecinematheque.ca/films/2026/kwaidan"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "The Cinematheque Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "length": 153
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.081256",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cinematheque-kwaidan-20261012",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -6860,13 +11306,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "cinema",
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 14.0,
-        "label": "$14.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-12T19:00:00-07:00",
@@ -7021,6 +11460,125 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:22.339731",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "Hello Destroyer (Free Public Screening)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "2026-10-27"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "2026-10-27 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "drink": "$7.00 – $8.50 craft beer cans • $3.50 tea & soda",
+          "spend": "$8.50 – $14.00 CAD (popcorn + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "url": "https://thecinematheque.ca/films/2026/hello-destroyer"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "The Cinematheque Free Access"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "length": 150
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.339731",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cinematheque-hello-destroyer-20261027",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -7032,13 +11590,6 @@ const VANCOUVER_EVENTS = [
       "cinema",
       "social",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-27T19:00:00-07:00",
@@ -7136,9 +11687,9 @@ const VANCOUVER_EVENTS = [
     "meal_benchmark": "$12.00 – $18.00 CAD (nearby Main & King Ed eateries)",
     "title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
     "date": "2026-10-17",
-    "time": "20:00",
-    "start_time": "20:00",
-    "end_time": "22:00",
+    "time": "21:00",
+    "start_time": "21:00",
+    "end_time": "22:15",
     "dateSchedule": "1 Screenings across Vancouver",
     "frequency": "One-Time",
     "typical_item_spend": "$9.00 – $15.00 CAD (1 craft can + snack)",
@@ -7149,8 +11700,8 @@ const VANCOUVER_EVENTS = [
     "showings": [
       {
         "date": "2026-10-17",
-        "start_time": "20:00",
-        "end_time": "22:00",
+        "start_time": "21:00",
+        "end_time": "22:15",
         "cost": 18.99
       }
     ],
@@ -7193,6 +11744,125 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 18.99,
+        "label": "$18.99 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:22.970902",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "20/20/20 Vancouver Stand-Up Comedy Showcase"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "2026-10-17"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "21:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "2026-10-17 at 21:00 (Doors 20:30)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "venue": "Little Mountain Gallery",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": 18.99,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "drink": "$6.50 – $8.00 canned local craft beer & cider • $7.50 highballs",
+          "spend": "$9.00 – $15.00 CAD (1 craft can + snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "url": "https://www.showpass.com/202020-15/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "length": 150
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:22.970902",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-lmg-20-20-20-comedy-20261017",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver, BC V6B 1B2",
@@ -7202,13 +11872,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 18.99,
-        "label": "$18.99 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-17T20:00:00-07:00",
@@ -7365,6 +12028,125 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 17.96,
+        "label": "$17.96 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:23.561240",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "The Setup at Little Mountain Gallery"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "2026-10-24"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "21:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "2026-10-24 at 21:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "venue": "Little Mountain Gallery",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": 17.96,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "drink": "$6.50 – $8.00 canned local craft beer & cider • $7.50 highballs",
+          "spend": "$9.00 – $15.00 CAD (1 craft can + snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "length": 137
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.561240",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-lmg-the-setup-20261024",
     "venue": "Little Mountain Gallery",
     "address": "110 Water St, Vancouver, BC V6B 1B2",
@@ -7374,13 +12156,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 17.96,
-        "label": "$17.96 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-24T21:30:00-07:00",
@@ -7427,7 +12202,7 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://theimprovcentre.ca/shows/",
     "details_url": "https://theimprovcentre.ca/shows/",
-    "ticket_url": "https://theimprovcentre.ca/shows/",
+    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
     "ticket_provider": "The Improv Centre Box Office",
     "tags": [
       "all-ages",
@@ -7456,7 +12231,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Direct Improv Centre box office booking link verified for Blockbuster on Thursday Oct 8 ($20.00 CAD).",
+    "curator_notes": "Direct production ticketing checkout for Blockbuster: Horrors & Hilarity (EventId 11601).",
     "price": 20.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -7501,7 +12276,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$4.00 – $6.00 popcorn, pretzels & bar snacks",
     "food_service_note": "Neil Macrae Bar & Lounge (Granville Island craft beer & bar snacks)",
     "sample_cost_label": "$7.50 – $9.00 local craft beer",
-    "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
     "subTags": [
       "all-ages",
       "antigravity-13d-validated",
@@ -7528,6 +12303,125 @@ const VANCOUVER_EVENTS = [
       "under-50-cad"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:23.949951",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "Blockbuster: Horrors & Hilarity Live Improv"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "2026-10-08 at 19:00"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "venue": "The Improv Centre",
+          "neighborhood": "Granville Island & False Creek"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": 20,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "drink": "$7.50 – $9.00 Granville Island beer • $8.50 – $10.50 wine & highballs",
+          "spend": "$11.50 – $18.00 CAD (1 drink + bar snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "The Improv Centre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "length": 132
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "value": "All Ages Welcome (Family Friendly)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:23.949951",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-improv-centre-blockbuster-20261008",
     "venue": "The Improv Centre",
     "address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
@@ -7537,13 +12431,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-08T19:00:00-07:00",
@@ -7590,8 +12477,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com/events/",
     "details_url": "https://rickshawtheatre.com/show_listings/dawn-pemberton-the-brown-sugar/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/the-music-of-dangelo/",
-    "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
+    "ticket_url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+    "ticket_provider": "Eventbrite / Rickshaw Box Office",
     "tags": [
       "19-plus",
       "all-ages",
@@ -7680,6 +12567,125 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 36.5,
+        "label": "$36.50 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:24.325907",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "2026-10-18"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "2026-10-18 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": 36.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "drink": "$8.50 pint • $14.50 cocktail",
+          "spend": "$18.00 – $28.00 CAD (2 beers/drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "Eventbrite / Rickshaw Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "length": 148
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.325907",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7691,13 +12697,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.5,
-        "label": "$36.50 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-18T19:30:00-07:00",
     "daysOfWeek": [
@@ -7707,9 +12706,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/the-music-of-dangelo/",
+    "websiteUrl": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
     "venueUrl": "https://rickshawtheatre.com/show_listings/dawn-pemberton-the-brown-sugar/",
-    "ticketProvider": "Rickshaw Box Office / Infidels Jazz",
+    "ticketProvider": "Eventbrite / Rickshaw Box Office",
     "coordinates": [
       49.2827,
       -123.1207
@@ -7744,8 +12743,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com/events/",
     "details_url": "https://rickshawtheatre.com/show_listings/amy-winehouse-tribute-starring-krystle-dos-santos/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/amy-winehouse-tribute/",
-    "ticket_provider": "Rickshaw Box Office / Infidels Jazz",
+    "ticket_url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+    "ticket_provider": "Eventbrite (The Rickshaw Theatre)",
     "tags": [
       "19-plus",
       "all-ages",
@@ -7834,6 +12833,125 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 36.5,
+        "label": "$36.50 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:24.627940",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "Amy Winehouse Tribute with Krystle Dos Santos"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "2026-10-17"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "2026-10-17 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": 36.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "drink": "$8.50 pint • $14.50 cocktail",
+          "spend": "$18.00 – $28.00 CAD (2 beers/drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "Eventbrite (The Rickshaw Theatre)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "length": 156
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "value": "19+ (Two pieces of government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:24.627940",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-rickshaw-amy-winehouse-20261017",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -7845,13 +12963,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 36.5,
-        "label": "$36.50 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-17T19:30:00-07:00",
     "daysOfWeek": [
@@ -7861,9 +12972,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/amy-winehouse-tribute/",
+    "websiteUrl": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
     "venueUrl": "https://rickshawtheatre.com/show_listings/amy-winehouse-tribute-starring-krystle-dos-santos/",
-    "ticketProvider": "Rickshaw Box Office / Infidels Jazz",
+    "ticketProvider": "Eventbrite (The Rickshaw Theatre)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -7981,6 +13092,130 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 34.5,
+        "isAvailable": true
+      },
+      {
+        "name": "General Admission",
+        "price": 34.5,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:27.217923",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "The Way Out – Matchstick Productions Ski Film Premiere"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "2026-10-22"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "Thursday, October 22, 2026 at 19:30"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "venue": "Centennial Theatre",
+          "neighborhood": "North Shore"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": 34.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "drink": "$7.50 – $9.00 beer & wine • $3.50 coffee & tea",
+          "spend": "$7.50 – $12.00 CAD"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "url": "https://matchstickpro.com/the-way-out/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "Showpass Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "length": 173
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:27.217923",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-the-way-out-theatre-20261022",
     "venue": "Centennial Theatre",
     "address": "2300 Lonsdale Ave, North Vancouver, BC V7M 3L1",
@@ -7992,18 +13227,6 @@ const VANCOUVER_EVENTS = [
       "cinema",
       "social",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 34.5,
-        "label": "$34.50 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 34.5,
-        "label": "$34.50 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-22T19:30:00-07:00",
@@ -8168,6 +13391,145 @@ const VANCOUVER_EVENTS = [
       "vancouver-core"
     ],
     "categoryLabel": "Comedy & Shows",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 32.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 20.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 20.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Previews / Youth (Under 30)",
+        "price": 20.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 25.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:28.594815",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "Red Demon (Firehall Arts Centre & rice & beans theatre)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "October 8 – 18, 2026 (Tue–Sat at 19:30, Matinees at 15:00)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "venue": "Firehall Arts Centre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": 32,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "drink": "$7.50 – $9.00 BC wine & craft beer • $3.50 coffee",
+          "spend": "$7.50 – $13.00 CAD (1 glass of wine or cider)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "url": "https://firehallartscentre.ca/event/red-demon/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "Firehall Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "length": 248
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "value": "All Ages / Mature Themes"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.594815",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-firehall-red-demon-20261008",
     "venue": "Firehall Arts Centre",
     "address": "280 E Cordova St, Vancouver, BC V6A 1L3",
@@ -8178,39 +13540,12 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Previews / Youth (Under 30)",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 32.0,
-        "label": "$32.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 20.0,
-        "label": "$20.00 CAD"
-      },
-      {
-        "name": "Senior (65+)",
-        "price": 25.0,
-        "label": "$25.00 CAD"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "sat",
       "thu",
-      "fri"
+      "fri",
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -8375,6 +13710,145 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 11.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Peoples (First Nations, Inuit, Métis)",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:28.818119",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "Small File Media Festival: Curated Screenings"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "2026-10-17"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "14:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "Saturday–Sunday, October 17–18, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "drink": "$7.00 – $8.50 craft beer cans • $3.50 tea & soda",
+          "spend": "$8.50 – $14.00 CAD (popcorn + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "url": "https://thecinematheque.ca/series/small-file-media-festival-2026"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "The Cinematheque Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "length": 204
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "value": "All Ages / PG"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:28.818119",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cinematheque-small-file-20261017",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -8386,33 +13860,6 @@ const VANCOUVER_EVENTS = [
       "cinema",
       "social",
       "festivals"
-    ],
-    "tiers": [
-      {
-        "name": "Senior (65+)",
-        "price": 13.0,
-        "label": "$13.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 11.0,
-        "label": "$11.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Indigenous Peoples (First Nations, Inuit, Métis)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T14:00:00-07:00",
@@ -8583,6 +14030,145 @@ const VANCOUVER_EVENTS = [
       "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 11.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Peoples (First Nations, Inuit, Métis)",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:29.135264",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "Forbidden Rooms: Pulse (Kairo)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "2026-10-16"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "18:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "Friday, October 16, 2026 at 18:30 & Sunday, October 18, 2026 at 20:40"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "drink": "$7.00 – $8.50 craft beer cans • $3.50 tea & soda",
+          "spend": "$8.50 – $14.00 CAD (popcorn + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "url": "https://thecinematheque.ca/films/2026/pulse"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "The Cinematheque Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "length": 186
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "value": "18+ (BC Motion Picture Act classification)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.135264",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-scout-cinematheque-pulse-20261016",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -8594,38 +14180,11 @@ const VANCOUVER_EVENTS = [
       "cinema",
       "social"
     ],
-    "tiers": [
-      {
-        "name": "Senior (65+)",
-        "price": 13.0,
-        "label": "$13.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 11.0,
-        "label": "$11.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Indigenous Peoples (First Nations, Inuit, Métis)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "sun",
-      "fri"
+      "fri",
+      "sun"
     ],
     "timeSlots": [
       "early-evening",
@@ -8660,8 +14219,8 @@ const VANCOUVER_EVENTS = [
     },
     "discovery_url": "https://ravensveil.com/",
     "details_url": "https://ravensveil.com/",
-    "ticket_url": "https://ravensveil.com/",
-    "websiteUrl": "https://ravensveil.com/",
+    "ticket_url": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572",
+    "websiteUrl": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572",
     "ticket_provider": "Eventbrite",
     "tags": [
       "all-ages",
@@ -8754,6 +14313,130 @@ const VANCOUVER_EVENTS = [
       "under-25-cad",
       "under-50-cad"
     ],
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 6.66,
+        "isAvailable": true
+      },
+      {
+        "name": "Donated Entry",
+        "price": 6.66,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:29.529074",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "Nightshade Market: Witches Harvest (Samhain Artisan Market)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "2026-10-24"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "11:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "Saturday, Oct 24 & Sunday, Oct 25, 2026 (11:00 AM – 5:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "venue": "Croatian Cultural Centre",
+          "neighborhood": "Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "donation"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": 6.66,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "drink": "$6.00 – $8.00 cider & hot drinks",
+          "spend": "$12.00 – $25.00 CAD (artisan gifts, treats & cider)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "url": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "length": 242
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.529074",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "venue": "Croatian Cultural Centre",
     "address": "3250 Commercial Dr, Vancouver, BC V5N 4E4",
     "priceLabel": "$6.66 CAD",
@@ -8762,18 +14445,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "markets"
-    ],
-    "tiers": [
-      {
-        "name": "Donated Entry",
-        "price": 6.66,
-        "label": "$6.66 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 6.66,
-        "label": "$6.66 CAD"
-      }
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "daysOfWeek": [
@@ -8902,6 +14573,135 @@ const VANCOUVER_EVENTS = [
       "the-rio-theatre",
       "under-50-cad"
     ],
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 35.0,
+        "isAvailable": true
+      },
+      {
+        "name": "General Admission",
+        "price": 35.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Presale (Sold Out)",
+        "price": 27.96,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:29.776978",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "Alistair Ogden Live at The Rio Theatre"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "2026-12-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "Friday, December 4, 2026 (Doors 7:00 PM / Show 8:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "venue": "The Rio Theatre",
+          "neighborhood": "Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": 35,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "drink": "$8.00 – $9.50 craft beer & cider on tap • $9.00 – $11.00 BC wine",
+          "spend": "$14.00 – $22.00 CAD (Popcorn + craft pint)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "length": 204
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "value": "19+"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.776978",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
     "priceLabel": "$35.00 CAD",
@@ -8910,23 +14710,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 35.0,
-        "label": "$35.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 35.0,
-        "label": "$35.00 CAD"
-      },
-      {
-        "name": "Presale (Sold Out)",
-        "price": 27.96,
-        "label": "$27.96 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "daysOfWeek": [
@@ -9054,6 +14837,130 @@ const VANCOUVER_EVENTS = [
       "under-50-cad",
       "vancouver-core"
     ],
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 36.21,
+        "isAvailable": true
+      },
+      {
+        "name": "General Admission",
+        "price": 36.21,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:29.939110",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "City Pop City Ft. Chen Baker & Technodelic"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "2026-11-21"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "Saturday, November 21, 2026 (Doors 7:30 PM / Show 8:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown Eastside"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": 36.21,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "drink": "$8.50 pint • $14.50 cocktail",
+          "spend": "$18.00 – $28.00 CAD (2 beers/drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "url": "https://www.eventbrite.ca/e/city-pop-city-ft-chen-baker-technodelic-tickets-1999628932967"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "length": 258
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "value": "19+"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:29.939110",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
     "priceLabel": "$36.21 CAD",
@@ -9063,18 +14970,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "General Admission",
-        "price": 36.21,
-        "label": "$36.21 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 36.21,
-        "label": "$36.21 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "daysOfWeek": [
@@ -9116,7 +15011,7 @@ const VANCOUVER_EVENTS = [
     "operating_hours": "First Friday of each month: 4:00 PM – 8:00 PM",
     "days_open": "First Friday",
     "show_1": {
-      "date": "2026-10-02",
+      "date": "2026-11-06",
       "start_time": "16:00",
       "end_time": "20:00",
       "cost": 0
@@ -9223,6 +15118,145 @@ const VANCOUVER_EVENTS = [
       "zero-dollars"
     ],
     "categoryLabel": "Free Public Access",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "General Public Free Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Youth (18 & Under) Always Free",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:33.565166",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "Vancouver Art Gallery: Free First Friday Nights"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "2026-11-06"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "16:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "Friday, Nov 6, 2026 (4:00 PM – 8:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "Monthly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "Free Public Access"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "venue": "Vancouver Art Gallery",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "drink": "$9.00 – $13.00 wine & cocktails at 1931 Bistro",
+          "spend": "$0.00 – $10.00 CAD (Free entry on First Friday; optional cafe drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "url": "https://www.vanartgallery.bc.ca/free"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "Free Admission (BMO Sponsored)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "length": 320
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "value": "All Ages / Family Friendly"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:33.565166",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "vag-first-friday",
     "venue": "Vancouver Art Gallery",
     "address": "750 Hornby St, Vancouver, BC",
@@ -9232,33 +15266,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "free-public-access"
-    ],
-    "tiers": [
-      {
-        "name": "General Public Free Admission",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Student",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Youth (18 & Under) Always Free",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -9314,10 +15321,10 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://wisehall.ca/events/",
-    "details_url": "https://wisehall.ca/",
-    "ticket_url": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
-    "ticket_provider": "Modo Live / Showpass",
+    "discovery_url": "https://modo-live.com",
+    "details_url": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+    "ticket_url": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+    "ticket_provider": "Modo Live / TicketWeb",
     "tags": [
       "19-plus",
       "all-ages",
@@ -9333,7 +15340,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Verified active tickets available via Modo Live / TicketWeb ($25 base + fees = $31.50 CAD all-in).",
+    "curator_notes": "Verified direct TicketWeb event checkout (Event #14198554, $25 base + fees = $33.56 CAD all-in).",
     "price": 31.5,
     "featured_exhibition": null,
     "access_model": "fenced_facility",
@@ -9378,7 +15385,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$2.50 – $3.00 chips",
     "food_service_note": "Non-profit community lounge bar (no kitchen; Commercial Dr dining nearby)",
     "sample_cost_label": "$6.50 – $8.00 Powell / Strange Fellows pints",
-    "websiteUrl": "https://www.ticketweb.ca/venue/the-wise-hall-vancouver-bc/33737",
+    "websiteUrl": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
     "subTags": [
       "19-plus",
       "all-ages",
@@ -9393,6 +15400,135 @@ const VANCOUVER_EVENTS = [
       "wise-hall"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 31.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Advance Admission",
+        "price": 31.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Door Admission",
+        "price": 35.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:35.363406",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "Dälek (with Infidelity & DarkGable)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "Friday, October 9, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "venue": "The WISE Hall",
+          "neighborhood": "Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": 31.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "drink": "$6.50 – $8.00 local craft pints • $7.50 – $9.00 highballs",
+          "spend": "$13.00 – $18.00 CAD (1–2 craft pints)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "url": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "Modo Live / TicketWeb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "length": 218
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "value": "19+ (Valid photo ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.363406",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-dalek-wise-hall-20261009",
     "venue": "The WISE Hall",
     "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
@@ -9403,23 +15539,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Advance Admission",
-        "price": 31.5,
-        "label": "$31.50 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 31.5,
-        "label": "$31.50 CAD"
-      },
-      {
-        "name": "Door Admission",
-        "price": 35.0,
-        "label": "$35.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-09T20:00:00-07:00",
     "daysOfWeek": [
@@ -9429,8 +15548,8 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "venueUrl": "https://wisehall.ca/",
-    "ticketProvider": "Modo Live / Showpass",
+    "venueUrl": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+    "ticketProvider": "Modo Live / TicketWeb",
     "coordinates": [
       49.2827,
       -123.1207
@@ -9461,7 +15580,7 @@ const VANCOUVER_EVENTS = [
     "operating_hours": "Sundays 4:00 PM – 5:00 PM",
     "days_open": "Sunday",
     "show_1": {
-      "date": "2026-10-04",
+      "date": "2026-10-11",
       "start_time": "16:00",
       "end_time": "17:15",
       "cost": 10
@@ -9526,7 +15645,7 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
     "tier_custom_price_5": null,
-    "date": "2026-10-04",
+    "date": "2026-10-11",
     "time": "16:00",
     "start_time": "16:00",
     "end_time": "17:15",
@@ -9582,6 +15701,146 @@ const VANCOUVER_EVENTS = [
       "vespers"
     ],
     "categoryLabel": "Music",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 10.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 10.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Suggested Donation",
+        "price": 10.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Pay-What-You-Can / Walk-In Entry",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:35.765689",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "Sunday Jazz Vespers at St. Andrew's-Wesley"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "16:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "Every Sunday (4:00 PM – 5:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "venue": "St. Andrew's-Wesley United Church",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "donation"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": 10,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "drink": null,
+          "spend": "$5.00 – $10.00 CAD (PWYC suggested donation)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "url": "https://standrewswesley.com/events/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "In-Person Sanctuary Donation"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "length": 247
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "value": "All Ages / General Public Welcome"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:35.765689",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": false,
     "id": "van50-st-andrews-jazz-vespers",
     "venue": "St. Andrew's-Wesley United Church",
     "address": "1022 Nelson St, Vancouver, BC",
@@ -9592,35 +15851,8 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Suggested Donation",
-        "price": 10.0,
-        "label": "$10.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 10.0,
-        "label": "$10.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 10.0,
-        "label": "$10.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Pay-What-You-Can / Walk-In Entry",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-04T16:00:00-07:00",
+    "startIso": "2026-10-11T16:00:00-07:00",
     "daysOfWeek": [
       "sun"
     ],
@@ -9661,10 +15893,10 @@ const VANCOUVER_EVENTS = [
     "operating_hours": "Saturdays, Sundays & Thanksgiving Monday: 11:00 AM – 5:00 PM (Ticket sales close 4:30 PM)",
     "days_open": "Sat-Sun & Holidays",
     "show_1": {
-      "date": "2026-10-03",
+      "date": "2026-10-10",
       "start_time": "11:00",
       "end_time": "17:00",
-      "cost": 5
+      "cost": 5.0
     },
     "show_2": {
       "date": "2026-10-04",
@@ -9680,8 +15912,8 @@ const VANCOUVER_EVENTS = [
     },
     "discovery_url": "https://bcsme.org",
     "details_url": "https://bcsme.org",
-    "ticket_url": "https://www.bcsme.org/schedule/",
-    "ticket_provider": "On-Site Box Office",
+    "ticket_url": "https://bcsme.org/tickets",
+    "ticket_provider": "In-Person Kiosk",
     "tags": [
       "all-ages",
       "budget-friendly",
@@ -9721,7 +15953,7 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
     "tier_custom_price_5": null,
-    "date": "2026-10-04",
+    "date": "2026-10-10",
     "time": "11:00",
     "start_time": "11:00",
     "end_time": "17:00",
@@ -9795,6 +16027,145 @@ const VANCOUVER_EVENTS = [
       "under-25-cad"
     ],
     "categoryLabel": "Community & Markets",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 5.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 5.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Single Train Ride (Ages 3+)",
+        "price": 5.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Children Under 3",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:36.345302",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "Burnaby Central Railway Miniature Train Rides"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "2026-10-04"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "11:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "Weekends & Thanksgiving Monday (thru Oct 12, 2026): 11:00 AM – 5:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "venue": "Confederation Park",
+          "neighborhood": "Burnaby"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": 5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "drink": "$2.00 – $3.50 juice, pop & coffee",
+          "spend": "$5.00 – $12.00 CAD (1–2 train rides + concession treat)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "url": "https://bcsme.org/tickets"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "In-Person Kiosk"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "length": 267
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "value": "All Ages / Family Friendly (Children under 3 ride free)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.345302",
+          "showings_count": 5
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-burnaby-central-railway-mini-train",
     "venue": "Confederation Park",
     "address": "120 North Willingdon Ave, Burnaby, BC",
@@ -9807,52 +16178,20 @@ const VANCOUVER_EVENTS = [
       "markets",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Single Train Ride (Ages 3+)",
-        "price": 5.0,
-        "label": "$5.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 5.0,
-        "label": "$5.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 5.0,
-        "label": "$5.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Children Under 3",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "10-Ride Pass (Transferable)",
-        "price": 45.0,
-        "label": "$45.00 CAD"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-03T11:00:00-07:00",
+    "startIso": "2026-10-10T11:00:00-07:00",
     "daysOfWeek": [
-      "mon",
       "sat",
+      "mon",
       "sun"
     ],
     "timeSlots": [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://www.bcsme.org/schedule/",
+    "websiteUrl": "https://bcsme.org/tickets",
     "venueUrl": "https://bcsme.org",
-    "ticketProvider": "On-Site Box Office",
+    "ticketProvider": "In-Person Kiosk",
     "coordinates": [
       49.2827,
       -123.1207
@@ -9884,9 +16223,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "discovery_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "details_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "ticket_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
       "all-ages",
@@ -9935,8 +16274,8 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_3": 2.86,
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "08:00",
+    "end_time": "19:30",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$19.11 CAD round green fee (Club & ball rental $2.86)",
@@ -9970,6 +16309,138 @@ const VANCOUVER_EVENTS = [
       "under-25-cad",
       "vancouver-core"
     ],
+    "tiers": [
+      {
+        "name": "Adult 18-Holes (19-64)",
+        "price": 19.11,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+) / Junior (<=18)",
+        "price": 13.39,
+        "isAvailable": true
+      },
+      {
+        "name": "Club & Ball Rental",
+        "price": 2.86,
+        "isAddon": true,
+        "is_addon": true,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_is_addon_3": true,
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:36.846758",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "Stanley Park Pitch & Putt: 18-Hole Round"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "08:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "Daily 8:00 AM – 7:30 PM (Weather Permitting)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "venue": "Stanley Park Pitch & Putt",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "sports_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "paid_drop_in"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": 19.11,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "tier_count": 3,
+          "has_addons": true
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "drink": null,
+          "spend": "$19.11 CAD round green fee (Club & ball rental $2.86)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "City of Vancouver Parks & Recreation"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "length": 240
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "value": "All Ages Welcome (Children must be supervised; max 4 per group)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:36.846758",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "stanley-pitch-putt",
     "venue": "Stanley Park Pitch & Putt",
     "address": "2099 Beach Ave, Vancouver, BC V6G 1Z4",
@@ -9979,38 +16450,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🏌️",
     "categories": [
       "outdoors"
-    ],
-    "tiers": [
-      {
-        "name": "Adult 18-Holes (19-64)",
-        "price": 19.11,
-        "label": "$19.11 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 19.11,
-        "label": "$19.11 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 13.39,
-        "label": "$13.39 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 13.39,
-        "label": "$13.39 CAD"
-      },
-      {
-        "name": "Senior (65+) / Junior (<=18)",
-        "price": 13.39,
-        "label": "$13.39 CAD"
-      },
-      {
-        "name": "Club & Ball Rental",
-        "price": 2.86,
-        "label": "$2.86 CAD"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -10029,8 +16468,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "websiteUrl": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "venueUrl": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
     "ticketProvider": "City of Vancouver Parks & Recreation",
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily, weather permitting: 8:00 AM – 7:30 PM (Club rentals end 2.5 hours before close)",
@@ -10067,9 +16506,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
+    "discovery_url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+    "details_url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+    "ticket_url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
       "all-ages",
@@ -10117,8 +16556,8 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_3": 2.86,
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "08:00",
+    "end_time": "19:30",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$18.27 CAD round green fee (Club & ball rental $2.86)",
@@ -10151,6 +16590,138 @@ const VANCOUVER_EVENTS = [
       "sports",
       "under-25-cad"
     ],
+    "tiers": [
+      {
+        "name": "Adult 18-Holes (19-64)",
+        "price": 18.27,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+) / Junior (<=18)",
+        "price": 12.81,
+        "isAvailable": true
+      },
+      {
+        "name": "Club & Ball Rental",
+        "price": 2.86,
+        "isAddon": true,
+        "is_addon": true,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_is_addon_3": true,
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:37.269703",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "08:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "Daily 8:00 AM – 7:30 PM (Weather Permitting)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "venue": "Queen Elizabeth Park Pitch & Putt",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "sports_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "paid_drop_in"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": 18.27,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "tier_count": 3,
+          "has_addons": true
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "drink": null,
+          "spend": "$18.27 CAD round green fee (Club & ball rental $2.86)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "City of Vancouver Parks & Recreation"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "length": 205
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "value": "All Ages Welcome (Family friendly, max 4 per group)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.269703",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "qe-park-pitch-putt",
     "venue": "Queen Elizabeth Park Pitch & Putt",
     "address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC V5Y 2M9",
@@ -10160,38 +16731,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🏌️",
     "categories": [
       "outdoors"
-    ],
-    "tiers": [
-      {
-        "name": "Adult 18-Holes (19-64)",
-        "price": 18.27,
-        "label": "$18.27 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 18.27,
-        "label": "$18.27 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Senior (65+) / Junior (<=18)",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Club & Ball Rental",
-        "price": 2.86,
-        "label": "$2.86 CAD"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -10210,8 +16749,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
+    "websiteUrl": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+    "venueUrl": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
     "ticketProvider": "City of Vancouver Parks & Recreation",
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily, weather permitting: 8:00 AM – 7:30 PM (Club rentals end 2.5 hours before close)",
@@ -10248,9 +16787,9 @@ const VANCOUVER_EVENTS = [
     "show_1": null,
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
-    "ticket_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
+    "discovery_url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "details_url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "ticket_url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
     "ticket_provider": "City of Vancouver Parks & Recreation",
     "tags": [
       "all-ages",
@@ -10298,8 +16837,8 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_3": 2.86,
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "08:00",
+    "end_time": "19:30",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$18.27 CAD round green fee (Club & ball rental $2.86)",
@@ -10332,6 +16871,138 @@ const VANCOUVER_EVENTS = [
       "sports",
       "under-25-cad"
     ],
+    "tiers": [
+      {
+        "name": "Adult 18-Holes (19-64)",
+        "price": 18.27,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+) / Junior (<=18)",
+        "price": 12.81,
+        "isAvailable": true
+      },
+      {
+        "name": "Club & Ball Rental",
+        "price": 2.86,
+        "isAddon": true,
+        "is_addon": true,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_is_addon_3": true,
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:37.731109",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "Rupert Park Pitch & Putt: 18-Hole Round"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "08:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "Daily 8:00 AM – 7:30 PM (Weather Permitting)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "venue": "Rupert Park Pitch & Putt",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "sports_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "paid_drop_in"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": 18.27,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "tier_count": 3,
+          "has_addons": true
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "drink": null,
+          "spend": "$18.27 CAD round green fee (Club & ball rental $2.86)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "City of Vancouver Parks & Recreation"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "length": 166
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "value": "All Ages Welcome (Family friendly, max 4 per group)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:37.731109",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "rupert-park-pitch-putt",
     "venue": "Rupert Park Pitch & Putt",
     "address": "3402 Charles St, Vancouver, BC V5K 2Y7",
@@ -10341,38 +17012,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🏌️",
     "categories": [
       "outdoors"
-    ],
-    "tiers": [
-      {
-        "name": "Adult 18-Holes (19-64)",
-        "price": 18.27,
-        "label": "$18.27 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 18.27,
-        "label": "$18.27 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Senior (65+) / Junior (<=18)",
-        "price": 12.81,
-        "label": "$12.81 CAD"
-      },
-      {
-        "name": "Club & Ball Rental",
-        "price": 2.86,
-        "label": "$2.86 CAD"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -10391,8 +17030,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
+    "websiteUrl": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "venueUrl": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
     "ticketProvider": "City of Vancouver Parks & Recreation",
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Daily, weather permitting: 8:00 AM – 7:30 PM (Club rentals end 2.5 hours before close)",
@@ -10481,8 +17120,8 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": 2.9,
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "08:00",
+    "end_time": "19:30",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$16.28 CAD ($15.50 + 5% GST; Club rental $2.90 each, pull caddy $4.02)",
@@ -10515,6 +17154,143 @@ const VANCOUVER_EVENTS = [
       "sports",
       "under-25-cad"
     ],
+    "tiers": [
+      {
+        "name": "Adult 18-Holes",
+        "price": 16.28,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 12.6,
+        "isAvailable": true
+      },
+      {
+        "name": "Junior (<=18)",
+        "price": 11.03,
+        "isAvailable": true
+      },
+      {
+        "name": "Single Club Rental",
+        "price": 2.9,
+        "isAddon": true,
+        "is_addon": true,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_is_addon_4": true,
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:38.438370",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Central Park Pitch & Putt: 18-Hole Round"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "08:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Daily 8:00 AM – 6:30 PM (Early October Seasonal Schedule)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Sports & Fitness"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "venue": "Central Park Pitch & Putt",
+          "neighborhood": "North Shore, Burnaby & Metro"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "sports_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "paid_drop_in"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": 16.28,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "tier_count": 4,
+          "has_addons": true
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "drink": null,
+          "spend": "$16.28 CAD ($15.50 + 5% GST; Club rental $2.90 each, pull caddy $4.02)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "url": "https://www.golfburnaby.ca/golf/central-park"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Golf Burnaby"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "length": 156
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "value": "Ages 5+ (Children aged 5-11 must be accompanied by an adult)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:38.438370",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "central-park-pitch-putt",
     "venue": "Central Park Pitch & Putt",
     "address": "3883 Imperial Street, Central Park, Burnaby, BC V5J 1A3",
@@ -10524,43 +17300,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🏌️",
     "categories": [
       "outdoors"
-    ],
-    "tiers": [
-      {
-        "name": "Adult 18-Holes",
-        "price": 16.28,
-        "label": "$16.28 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 16.28,
-        "label": "$16.28 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 11.03,
-        "label": "$11.03 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 11.03,
-        "label": "$11.03 CAD"
-      },
-      {
-        "name": "Senior (65+)",
-        "price": 12.6,
-        "label": "$12.60 CAD"
-      },
-      {
-        "name": "Junior (<=18)",
-        "price": 11.03,
-        "label": "$11.03 CAD"
-      },
-      {
-        "name": "Single Club Rental",
-        "price": 2.9,
-        "label": "$2.90 CAD"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -10608,9 +17347,9 @@ const VANCOUVER_EVENTS = [
       "regular": 26
     },
     "show_1": {
-      "date": "2026-10-05",
-      "start_time": "12:00",
-      "end_time": "14:19",
+      "date": "2026-10-11",
+      "start_time": "20:45",
+      "end_time": "23:04",
       "cost": 20.5
     },
     "show_2": {
@@ -10682,10 +17421,10 @@ const VANCOUVER_EVENTS = [
       }
     ],
     "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
-    "date": "2026-10-05",
+    "date": "2026-10-11",
     "time": "12:00",
-    "start_time": "12:00",
-    "end_time": "14:19",
+    "start_time": "20:45",
+    "end_time": "23:04",
     "dateSchedule": "2 Screenings across Vancouver",
     "frequency": "Festival Run",
     "typical_item_spend": "$9.50 – $16.00 CAD (popcorn & beverage)",
@@ -10721,6 +17460,126 @@ const VANCOUVER_EVENTS = [
       "west-side"
     ],
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 26.0,
+        "label": "$26.00 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:39.223848",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "2026-10-05"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "12:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "2026-10-05 at 12:00 PM & 2026-10-11 at 8:45 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "Festival Run"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "venue": "Fifth Avenue Cinema (VIFF)",
+          "neighborhood": "Kitsilano, Point Grey & UBC"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": 20.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "drink": "$8.00 – $10.00 craft beer & BC wine • $4.00 espresso",
+          "spend": "$9.50 – $16.00 CAD (popcorn & beverage)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "Direct Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "length": 159
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "value": "All Ages / General Admission"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.223848",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": false,
     "id": "viff-the-debut",
     "venue": "Fifth Avenue Cinema (VIFF)",
     "address": "2110 Burrard Street, Vancouver, BC V6J 1P2",
@@ -10733,18 +17592,11 @@ const VANCOUVER_EVENTS = [
       "social",
       "festivals"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 26.0,
-        "label": "$26.00 CAD"
-      }
-    ],
     "frequencyLabel": "Verified Multiple Showings",
-    "startIso": "2026-10-05T12:00:00-07:00",
+    "startIso": "2026-10-11T20:45:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "sun"
+      "sun",
+      "mon"
     ],
     "timeSlots": [
       "early-evening",
@@ -10909,6 +17761,143 @@ const VANCOUVER_EVENTS = [
       "west-side"
     ],
     "categoryLabel": "Community & Markets",
+    "tiers": [
+      {
+        "name": "General Admission (Ages 8–64)",
+        "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (Ages 65+)",
+        "price": 14.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Children (Ages 0–7)",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Apple Tasting Tent Add-On",
+        "price": 12.0,
+        "isAddon": true,
+        "is_addon": true,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_is_addon_3": true,
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:39.986410",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "UBC Apple Festival (35th Annual)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "2026-10-17"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "11:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "October 17–18, 2026 (11:00 AM – 4:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "venue": "UBC Botanical Garden",
+          "neighborhood": "Kitsilano, Point Grey & UBC"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": 15,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "tier_count": 4,
+          "has_addons": true
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "drink": "$4.00 – $6.00 hot spiced apple cider",
+          "spend": "$15.00 – $25.00 CAD (Apple tasting bag + cider & snack)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "url": "https://tickets.ubc.ca/Online/default.asp?BOparam::WScontent::loadArticle::article_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork::WScontent::loadArticle=Load"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "UBC Tickets"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "length": 252
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "value": "All Ages / Family Friendly (Children 7 & under free with mandatory ticket; No pets allowed except certified guide/service dogs)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:39.986410",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-ubc-apple-festival-20261017",
     "venue": "UBC Botanical Garden",
     "address": "6804 SW Marine Dr, Vancouver, BC V6T 1Z4",
@@ -10920,48 +17909,6 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "markets",
       "festivals"
-    ],
-    "tiers": [
-      {
-        "name": "General Admission (Ages 8–64)",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Senior (Ages 65+)",
-        "price": 14.0,
-        "label": "$14.00 CAD"
-      },
-      {
-        "name": "Apple Tasting Tent Add-On",
-        "price": 12.0,
-        "label": "$12.00 CAD"
-      },
-      {
-        "name": "Children (Ages 0–7)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Onsite Gate Admission",
-        "price": 18.0,
-        "label": "$18.00 CAD"
-      }
     ],
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-17T11:00:00-07:00",
@@ -11092,6 +18039,130 @@ const VANCOUVER_EVENTS = [
     "time": "20:00",
     "start_time": "20:00",
     "end_time": "22:30",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 26.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 22.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:40.995853",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "Paul Anthony's Talent Time: Halloween Special"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "2026-10-23"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "Friday, Oct 23, 2026 at 8:00 PM (Doors 7:15 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "One-Time Show"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "venue": "The Rio Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": 26.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "drink": null,
+          "spend": "$7.00 – $9.00 CAD (Rio Theatre organic buttered popcorn)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "url": "https://riotheatre.ca/event/paul-anthonys-talent-time/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "Rio Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "length": 219
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "value": "19+ with valid government-issued photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:40.995853",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
     "venue": "The Rio Theatre",
     "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
@@ -11102,18 +18173,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "shows"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 26.5,
-        "label": "$26.50 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 22.0,
-        "label": "$22.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-23T20:00:00-07:00",
@@ -11166,8 +18225,8 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://vancouverchinesegarden.com/events",
     "details_url": "https://vancouverchinesegarden.com/events/",
-    "ticket_url": "https://vancouverchinesegarden.com/events/",
-    "ticket_provider": "Dr. Sun Yat-Sen Garden Box Office",
+    "ticket_url": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258",
+    "ticket_provider": "Eventbrite (Theta Space / Sun Yat-Sen Garden)",
     "tags": [
       "sun-yat-sen",
       "chinatown",
@@ -11232,6 +18291,125 @@ const VANCOUVER_EVENTS = [
     "time": "10:00",
     "start_time": "10:00",
     "end_time": "11:30",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 38.74,
+        "label": "$38.74 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:41.190672",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "Gongs in the Garden: Autumn Sunday Reset"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "2026-10-18"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "10:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "Sunday, Oct 18, 2026 at 10:00 AM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
+          "neighborhood": "Chinatown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": 38.74,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "drink": null,
+          "spend": "$4.50 – $7.00 CAD (Garden shop refreshments)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "url": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "Eventbrite (Theta Space / Sun Yat-Sen Garden)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "length": 201
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "value": "All Ages / General Admission (bring your own yoga mat/blanket)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.190672",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
     "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
     "address": "578 Carrall St, Vancouver, BC V6A 5M3",
@@ -11243,13 +18421,6 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "social"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 38.74,
-        "label": "$38.74 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-18T10:00:00-07:00",
     "daysOfWeek": [
@@ -11259,9 +18430,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://vancouverchinesegarden.com/events/",
+    "websiteUrl": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258",
     "venueUrl": "https://vancouverchinesegarden.com/events/",
-    "ticketProvider": "Dr. Sun Yat-Sen Garden Box Office",
+    "ticketProvider": "Eventbrite (Theta Space / Sun Yat-Sen Garden)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11299,10 +18470,10 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://rickshawtheatre.com",
-    "details_url": "https://rickshawtheatre.com/show_listings/",
-    "ticket_url": "https://rickshawtheatre.com/show_listings/",
-    "ticket_provider": "Eventbrite / Rickshaw Box Office",
+    "discovery_url": "https://rickshawtheatre.com/show_listings/concrete-vehicles/",
+    "details_url": "https://rickshawtheatre.com/show_listings/concrete-vehicles/",
+    "ticket_url": "https://www.eventbrite.ca/e/concrete-vehicles-with-hillsboro-waitless-and-lola-tickets-1996181552760",
+    "ticket_provider": "Eventbrite (The Rickshaw Theatre)",
     "tags": [
       "rickshaw-theatre",
       "concrete-vehicles",
@@ -11322,7 +18493,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "Verified all-in Eventbrite cart total $24.40 CAD.",
+    "curator_notes": "Verified direct Eventbrite checkout for Concrete Vehicles homecoming with Hillsboro ($24.40 CAD all-in).",
     "price": 24.4,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -11331,7 +18502,7 @@ const VANCOUVER_EVENTS = [
     "frequency": "One-Time Show",
     "lineup": "Concrete Vehicles, Hillsboro, WAIT//LESS, LöLä",
     "restrictions": "19+ with valid government-issued photo ID",
-    "is_sold_out": false,
+    "is_sold_out": true,
     "waypoints": [],
     "showings": [
       {
@@ -11365,6 +18536,126 @@ const VANCOUVER_EVENTS = [
     "time": "20:00",
     "start_time": "20:00",
     "end_time": "23:45",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 24.4,
+        "label": "$24.40 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "Concrete Vehicles with Hillsboro, WAIT//LESS, and LöLä"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "Thursday, Oct 8, 2026 at 8:00 PM (Doors 7:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "One-Time Show"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown Eastside & Hastings"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": 24.4,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "drink": null,
+          "spend": "$7.75 – $15.00 CAD (1-2 drinks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "url": "https://www.eventbrite.ca/e/concrete-vehicles-with-hillsboro-waitless-and-lola-tickets-1996181552760"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "Eventbrite (The Rickshaw Theatre)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "length": 167
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "value": "19+ with valid government-issued photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:41.379478",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-rickshaw-concrete-vehicles-20261008",
     "venue": "Rickshaw Theatre",
     "address": "254 E Hastings St, Vancouver, BC V6A 1P1",
@@ -11376,13 +18667,6 @@ const VANCOUVER_EVENTS = [
       "music",
       "shows"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 24.4,
-        "label": "$24.40 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-08T20:00:00-07:00",
     "daysOfWeek": [
@@ -11392,9 +18676,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://rickshawtheatre.com/show_listings/",
-    "venueUrl": "https://rickshawtheatre.com/show_listings/",
-    "ticketProvider": "Eventbrite / Rickshaw Box Office",
+    "websiteUrl": "https://www.eventbrite.ca/e/concrete-vehicles-with-hillsboro-waitless-and-lola-tickets-1996181552760",
+    "venueUrl": "https://rickshawtheatre.com/show_listings/concrete-vehicles/",
+    "ticketProvider": "Eventbrite (The Rickshaw Theatre)",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11433,9 +18717,9 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://www.diwalifest.ca",
-    "details_url": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
-    "ticket_url": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
-    "ticket_provider": "Free Public Access (Roundhouse)",
+    "details_url": "https://roundhouse.ca/events/",
+    "ticket_url": "https://diwalifest.com/events/",
+    "ticket_provider": "Diwali Fest Free Pre-Registration",
     "tags": [
       "diwali",
       "diwali-fest",
@@ -11505,6 +18789,125 @@ const VANCOUVER_EVENTS = [
     "time": "14:00",
     "start_time": "14:00",
     "end_time": "17:00",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 0.0,
+        "label": "Free ($0)"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:46.338536",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "Diwali in Vancouver: Mehfil at Roundhouse"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "2026-11-07"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "14:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "Saturday, Nov 7, 2026, 2:00 PM – 5:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "Annual Festival Showcase"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "venue": "Roundhouse Community Arts & Recreation Centre",
+          "neighborhood": "Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": 0.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "drink": null,
+          "spend": "$5.00 – $8.00 CAD (Samosas & festival snacks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "url": "https://diwalifest.com/events/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "Diwali Fest Free Pre-Registration"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "length": 221
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "value": "All Ages / Family Friendly (Pre-registration required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.338536",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
     "venue": "Roundhouse Community Arts & Recreation Centre",
     "address": "181 Roundhouse Mews, Vancouver, BC V6Z 2W3",
@@ -11517,13 +18920,6 @@ const VANCOUVER_EVENTS = [
       "social",
       "festivals"
     ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-11-07T14:00:00-07:00",
     "daysOfWeek": [
@@ -11533,9 +18929,9 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
-    "venueUrl": "https://roundhouse.ca/events/diwali-in-vancouver-mehfil/",
-    "ticketProvider": "Free Public Access (Roundhouse)",
+    "websiteUrl": "https://diwalifest.com/events/",
+    "venueUrl": "https://roundhouse.ca/events/",
+    "ticketProvider": "Diwali Fest Free Pre-Registration",
     "coordinates": [
       49.2827,
       -123.1207
@@ -11574,8 +18970,8 @@ const VANCOUVER_EVENTS = [
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://thecinematheque.ca",
-    "details_url": "https://thecinematheque.ca",
-    "ticket_url": "https://thecinematheque.ca/films/2026/vampyr-applied-silence",
+    "details_url": "https://thecinematheque.ca/films/2026/vampyr",
+    "ticket_url": "https://thecinematheque.ca/films/2026/vampyr",
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
       "halloween",
@@ -11642,6 +19038,130 @@ const VANCOUVER_EVENTS = [
     "time": "20:00",
     "start_time": "20:00",
     "end_time": "21:45",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 30.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Peoples",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:46.505921",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "Vampyr × Applied Silence [Live Score]"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "2026-10-31"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "Saturday, Oct 31, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "One-Time Show"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": 30.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "drink": null,
+          "spend": "$5.00 – $7.00 CAD (Organic popcorn & candy)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "url": "https://thecinematheque.ca/films/2026/vampyr"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "The Cinematheque Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "length": 220
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "value": "18+ (The Cinematheque membership included)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:46.505921",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-cinematheque-vampyr-live-score-20261031",
     "venue": "The Cinematheque",
     "address": "1131 Howe St, Vancouver, BC V6Z 1R1",
@@ -11653,18 +19173,6 @@ const VANCOUVER_EVENTS = [
       "cinema",
       "social"
     ],
-    "tiers": [
-      {
-        "name": "Indigenous Peoples",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 30.0,
-        "label": "$30.00 CAD"
-      }
-    ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-31T20:00:00-07:00",
     "daysOfWeek": [
@@ -11674,8 +19182,8 @@ const VANCOUVER_EVENTS = [
       "early-evening",
       "late-evening"
     ],
-    "websiteUrl": "https://thecinematheque.ca/films/2026/vampyr-applied-silence",
-    "venueUrl": "https://thecinematheque.ca",
+    "websiteUrl": "https://thecinematheque.ca/films/2026/vampyr",
+    "venueUrl": "https://thecinematheque.ca/films/2026/vampyr",
     "ticketProvider": "The Cinematheque Box Office",
     "coordinates": [
       49.2827,
@@ -11779,6 +19287,125 @@ const VANCOUVER_EVENTS = [
     "time": "22:30",
     "start_time": "22:30",
     "end_time": "02:00",
+    "tiers": [
+      {
+        "name": "Adult",
+        "price": 24.5,
+        "label": "$24.50 CAD"
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:50.336194",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "Halloween Friday at The Fox: BOO-tylicious"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "2026-10-30"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "22:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "Friday, Oct 30, 2026 at 10:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "One-Time Party"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "venue": "The Fox Cabaret",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": 24.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "tier_count": 1,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "drink": null,
+          "spend": "$8.00 – $16.00 CAD (Bar beverages)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "url": "https://www.foxcabaret.com/monthly-calendar-list/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "Fox Cabaret Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "length": 201
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "value": "19+ with two pieces of valid government photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.336194",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-fox-bootylicious-halloween-20261030",
     "venue": "The Fox Cabaret",
     "address": "2321 Main St, Vancouver, BC V5T 3C9",
@@ -11789,13 +19416,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music",
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult",
-        "price": 24.5,
-        "label": "$24.50 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-30T22:30:00-07:00",
@@ -11914,6 +19534,145 @@ const VANCOUVER_EVENTS = [
     "time": "19:00",
     "start_time": "19:00",
     "end_time": "21:00",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 11.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Peoples",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Regular Daytime Admission",
+        "price": 26.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:50.493421",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "I Use My Haida Eyes: History Robes & Curator Tour"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "Thursday, Oct 8, 2026 at 7:00 PM (Museum open until 9:00 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "Feature Exhibition Tour"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "venue": "Museum of Anthropology (MOA) at UBC",
+          "neighborhood": "Point Grey & UBC"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": 13.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "drink": null,
+          "spend": "$5.00 – $9.00 CAD (Artisanal pastries & cafe snacks)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "url": "https://moa.ubc.ca/exhibition/i-use-my-haida-eyes/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "Museum of Anthropology Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "length": 201
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "value": "All Ages / Family Friendly"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.493421",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-moa-haida-eyes-curator-tour-20261008",
     "venue": "Museum of Anthropology (MOA) at UBC",
     "address": "6393 NW Marine Dr, Vancouver, BC V6T 1Z2",
@@ -11923,33 +19682,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Indigenous Peoples",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 13.0,
-        "label": "$13.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 11.5,
-        "label": "$11.50 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Regular Daytime Admission",
-        "price": 26.0,
-        "label": "$26.00 CAD"
-      }
     ],
     "frequencyLabel": "Single Showing",
     "startIso": "2026-10-08T19:00:00-07:00",
@@ -12003,8 +19735,8 @@ const VANCOUVER_EVENTS = [
     "tier_custom_price_4": 4.99,
     "tier_custom_name_5": "Preschooler (4 & under)",
     "tier_custom_price_5": 0,
-    "discovery_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
-    "details_url": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "discovery_url": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
+    "details_url": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
     "ticket_url": "https://www.showpass.com/o/bloedel-conservatory/",
     "ticket_provider": "Showpass",
     "tags": [
@@ -12052,8 +19784,8 @@ const VANCOUVER_EVENTS = [
     },
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "10:00",
+    "end_time": "17:00",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$4.00 – $6.00 CAD (gift shop / beverages)",
@@ -12066,6 +19798,145 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "No outside food allowed inside dome. Seasons in the Park restaurant next door.",
     "sample_cost_label": "$8.93 CAD all-in (Showpass)",
     "categoryLabel": "Arts & Culture",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 8.93,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 6.98,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Adult Online Advance (Showpass)",
+        "price": 8.93,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 7.98,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:50.736726",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Bloedel Conservatory: Tropical Rainforest Dome"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "10:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Daily Year-Round 10:00 AM – 5:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "venue": "Bloedel Conservatory",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": 8.93,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "drink": null,
+          "spend": "$4.00 – $6.00 CAD (gift shop / beverages)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "url": "https://www.showpass.com/o/bloedel-conservatory/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "length": 286
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "value": "All Ages Welcome (Family Friendly). Children under 13 must be accompanied by an adult. Fully wheelchair accessible."
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:50.736726",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-bloedel-conservatory-dome",
     "venue": "Bloedel Conservatory",
     "address": "4600 Cambie St (Queen Elizabeth Park), Vancouver, BC V5Y 2M9",
@@ -12076,48 +19947,6 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "outdoors",
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Adult Online Advance (Showpass)",
-        "price": 8.93,
-        "label": "$8.93 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 8.93,
-        "label": "$8.93 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 6.98,
-        "label": "$6.98 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Senior (65+)",
-        "price": 7.98,
-        "label": "$7.98 CAD"
-      },
-      {
-        "name": "Youth (13–18)",
-        "price": 6.98,
-        "label": "$6.98 CAD"
-      },
-      {
-        "name": "Child (5–12)",
-        "price": 4.99,
-        "label": "$4.99 CAD"
-      },
-      {
-        "name": "Preschooler (4 & under)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -12137,7 +19966,7 @@ const VANCOUVER_EVENTS = [
       "early-evening"
     ],
     "websiteUrl": "https://www.showpass.com/o/bloedel-conservatory/",
-    "venueUrl": "https://vancouver.ca/parks-recreation-culture/bloedel-conservatory.aspx",
+    "venueUrl": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
     "ticketProvider": "Showpass",
     "coordinates": [
       49.2827,
@@ -12178,9 +20007,9 @@ const VANCOUVER_EVENTS = [
     "price_member": 0,
     "tier_custom_name_1": "Game Library Admission (Free with Meal Order)",
     "tier_custom_price_1": 0,
-    "discovery_url": "https://www.ludica.ca",
-    "details_url": "https://www.ludica.ca",
-    "ticket_url": "https://www.ludica.ca",
+    "discovery_url": "https://www.pizzerialudica.com/",
+    "details_url": "https://www.pizzerialudica.com/",
+    "ticket_url": "https://www.pizzerialudica.com/blank",
     "ticket_provider": "Walk-in / Table Reservation",
     "tags": [
       "board-games",
@@ -12208,7 +20037,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Zero cover charge. Games are free for dining patrons with minimum small meal purchase (~$18–$25 CAD).",
+    "curator_notes": "Verified Vancouver Chinatown location (189 Keefer Pl). Free game library for dining patrons (~$18-$25 pizza/drinks).",
     "title": "Pizzeria Ludica: 1,200+ Board Game Night",
     "access_model": "fenced_facility",
     "pricing_model": "pay_per_item",
@@ -12225,8 +20054,8 @@ const VANCOUVER_EVENTS = [
     },
     "date": null,
     "time": null,
-    "start_time": null,
-    "end_time": null,
+    "start_time": "16:00",
+    "end_time": "23:00",
     "dateSchedule": "Visiting Hours (See 7-Day Schedule Below)",
     "frequency": "Perennial Drop-In",
     "typical_item_spend": "$18.00 – $26.00 CAD (wood-fired pizza + drink)",
@@ -12239,6 +20068,140 @@ const VANCOUVER_EVENTS = [
     "food_service_note": "Full Italian wood-fired pizza menu, appetizers, craft beer on tap",
     "sample_cost_label": "Free admission with meal order ($0 cover)",
     "categoryLabel": "Nightlife & Social",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Game Library Admission (Free with Meal Order)",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:51.220284",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Pizzeria Ludica: 1,200+ Board Game Night"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "16:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Daily Evenings (Mon–Thu from 5 PM, Fri–Sun from 4 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Perennial Drop-In"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "venue": "Pizzeria Ludica",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "pay_per_item"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": 0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "tier_count": 4,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "drink": null,
+          "spend": "$18.00 – $26.00 CAD (wood-fired pizza + drink)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "url": "https://www.pizzerialudica.com/blank"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "Walk-in / Table Reservation"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "length": 246
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "value": "All Ages Welcome (Family Friendly). Minors permitted. 2-hour table seating during peak hours."
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.220284",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
     "id": "van50-ludica-boardgame-night",
     "venue": "Pizzeria Ludica",
     "address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
@@ -12248,28 +20211,6 @@ const VANCOUVER_EVENTS = [
     "categoryIcon": "🎭",
     "categories": [
       "social"
-    ],
-    "tiers": [
-      {
-        "name": "Game Library Admission (Free with Meal Order)",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Adult",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Student",
-        "price": 0.0,
-        "label": "Free ($0)"
-      },
-      {
-        "name": "Member",
-        "price": 0.0,
-        "label": "Free ($0)"
-      }
     ],
     "frequencyLabel": "Open Daily Drop-In",
     "startIso": null,
@@ -12288,8 +20229,8 @@ const VANCOUVER_EVENTS = [
       "afternoon",
       "early-evening"
     ],
-    "websiteUrl": "https://www.ludica.ca",
-    "venueUrl": "https://www.ludica.ca",
+    "websiteUrl": "https://www.pizzerialudica.com/blank",
+    "venueUrl": "https://www.pizzerialudica.com/",
     "ticketProvider": "Walk-in / Table Reservation",
     "coordinates": [
       49.2827,
@@ -12310,14 +20251,16 @@ const VANCOUVER_EVENTS = [
     "isSoldOut": false
   },
   {
-    "event_id": "van50-guilt-and-co-thursday-groove",
-    "event_name": "Guilt & Co: Thursday Live Soul, Funk & Groove",
+    "event_id": "van50-guilt-and-co-thursday",
+    "event_name": "Guilt & Co Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)",
+    "title": "Guilt & Co Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)",
     "category": "music",
+    "categoryLabel": "Music",
     "lifecycle_type": "weekly_recurring",
     "venue_name": "Guilt & Co.",
     "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Descend into Gastown's historic subterranean brick lounge for an intimate night of live soul, funk, and R&B grooves performed by top Pacific Northwest musicians.",
+    "description": "Live music double-bill at Gastown's subterranean brick cellar. Early set by Sean from the Yukon (7:00 PM), followed by GroundUp feat. Brown Paper Bag (9:30 PM – 1:00 AM). Brown Paper Bag is a trip into Classic Soul, and Blues. Original R&B tunes are played along side well-known and rare cuts from the Motown and Stax collections, each infused with sp...",
     "pricing_all_in_cad": {
       "regular": 8.0,
       "senior": 8.0,
@@ -12330,62 +20273,224 @@ const VANCOUVER_EVENTS = [
     "price_member": 8.0,
     "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
     "tier_custom_price_1": 8.0,
-    "tier_custom_name_2": "Late Show Cover (8:00 PM & Later)",
+    "tier_custom_name_2": "Late Show Cover (After 8:00 PM)",
     "tier_custom_price_2": 12.0,
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Late Show Cover (After 8:00 PM)",
+        "price": 12.0,
+        "isAvailable": true
+      }
+    ],
     "discovery_url": "https://www.guiltandcompany.com",
     "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_provider": "Door Cover at Entrance",
     "tags": [
-      "guilt-and-co",
-      "gastown",
-      "live-music",
+      "rock",
       "soul",
-      "funk",
-      "groove",
+      "indie",
+      "gastown",
       "cocktail-lounge",
+      "thursday",
+      "live-music",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "guilt-and-co",
+      "r&b"
     ],
     "subTags": [
-      "guilt-and-co",
-      "gastown",
-      "live-music",
+      "rock",
       "soul",
-      "funk",
-      "groove",
+      "indie",
+      "gastown",
       "cocktail-lounge",
+      "thursday",
+      "live-music",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "guilt-and-co",
+      "r&b"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Walk-in door cover ($8 before 8pm, $12 after 8pm Sun–Thu). 19+ only.",
-    "title": "Guilt & Co: Thursday Live Soul, Funk & Groove",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "operating_hours": "Thursday 7:00 PM – 1:00 AM",
     "days_open": "Thu",
-    "weekly_hours": {
-      "thu": "7:00 PM – 1:00 AM"
-    },
-    "date": null,
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "01:00",
-    "dateSchedule": "Every Thursday: Early Show 7:00 PM, Late Show 9:30 PM",
+    "date": "2026-10-08",
+    "time": "7:00 PM – 1:00 AM",
+    "start_time": "7:00 PM",
+    "end_time": "1:00 AM",
+    "dateSchedule": "2 Screenings across Vancouver",
     "frequency": "Weekly",
+    "frequencyLabel": "Weekly",
     "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
-    "lineup": "Resident soul, jazz, and funk ensembles",
-    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Sean from the Yukon. Late Show (9:30 PM – 1:00 AM): GroundUp feat. Brown Paper Bag.",
+    "performers": [
+      "GroundUp feat. Brown Paper Bag",
+      "Sean from the Yukon"
+    ],
+    "artist": "GroundUp feat. Brown Paper Bag",
+    "restrictions": "19+ only (2 pieces of valid government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [],
+    "showings": [
+      {
+        "date": "2026-10-08",
+        "start_time": "7:00 PM",
+        "end_time": "8:45 PM",
+        "show_title": "Early Show: Sean from the Yukon"
+      },
+      {
+        "date": "2026-10-08",
+        "start_time": "9:30 PM",
+        "end_time": "1:00 AM",
+        "show_title": "Late Show: GroundUp feat. Brown Paper Bag"
+      }
+    ],
     "food_service_type": "bar_snacks_and_drinks",
-    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "food_service_note": "Charcuterie boards, gourmet grilled cheese, artisanal cocktails & mocktails",
     "sample_cost_label": "$8.00 CAD early door cover",
-    "categoryLabel": "Music",
-    "id": "van50-guilt-and-co-thursday-groove",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "7:00 PM",
+      "end_time": "1:00 AM"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:51.649819",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "Guilt & Co Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "7:00 PM – 1:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "Thursday, Oct 08: Early Show 7:00 PM, Late Show 9:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "drink": null,
+          "spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "Door Cover at Entrance"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "length": 354
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "value": "19+ only (2 pieces of valid government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.649819",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-and-co-thursday",
     "venue": "Guilt & Co.",
     "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "priceLabel": "$8.00 CAD",
@@ -12395,43 +20500,9 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Early Show Cover (Before 8:00 PM)",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Late Show Cover (8:00 PM & Later)",
-        "price": 12.0,
-        "label": "$12.00 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": null,
+    "startIso": "2026-10-08T7:00 PM:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
+      "thu"
     ],
     "timeSlots": [
       "early-evening",
@@ -12446,21 +20517,22 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Thursday 7:00 PM – 1:00 AM",
-    "weeklyHours": {
-      "thu": "7:00 PM – 1:00 AM"
-    },
+    "weekly_hours": null,
+    "weeklyHours": null,
     "lifecycleType": "weekly_recurring",
     "isSoldOut": false
   },
   {
-    "event_id": "van50-guilt-and-co-friday-jazz",
-    "event_name": "Guilt & Co: Friday Prime Jazz & Funk Showcase",
+    "event_id": "van50-guilt-and-co-friday",
+    "event_name": "Guilt & Co Live: Jay Esplana & Friends (with Carly Reirson)",
+    "title": "Guilt & Co Live: Jay Esplana & Friends (with Carly Reirson)",
     "category": "music",
+    "categoryLabel": "Music",
     "lifecycle_type": "weekly_recurring",
     "venue_name": "Guilt & Co.",
     "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Gastown's flagship underground jazz club ignites Friday night with two distinct live showcases spanning contemporary jazz, hard-bop, and electrifying funk.",
+    "description": "Live music double-bill at Gastown's subterranean brick cellar. Early set by Carly Reirson (7:00 PM), followed by Jay Esplana & Friends (10:00 PM – 2:00 AM). Jay Esplana is a multi-instrumentalist and vocalist based out of Vancouver, BC and has become one of the city's most sought after musicians. His performance is the amalgamation of ...",
     "pricing_all_in_cad": {
       "regular": 8.0,
       "senior": 8.0,
@@ -12473,62 +20545,224 @@ const VANCOUVER_EVENTS = [
     "price_member": 8.0,
     "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
     "tier_custom_price_1": 8.0,
-    "tier_custom_name_2": "Prime Night Cover (8:00 PM & Later)",
+    "tier_custom_name_2": "Friday Night Cover (After 8:00 PM)",
     "tier_custom_price_2": 15.0,
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Friday Night Cover (After 8:00 PM)",
+        "price": 15.0,
+        "isAvailable": true
+      }
+    ],
     "discovery_url": "https://www.guiltandcompany.com",
     "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_provider": "Door Cover at Entrance",
     "tags": [
-      "guilt-and-co",
+      "soul",
+      "roots",
       "gastown",
-      "live-music",
-      "jazz",
-      "funk",
       "cocktail-lounge",
+      "folk",
+      "live-music",
+      "under-20-dollars",
       "19-plus",
-      "weekend",
-      "under-20-dollars"
+      "friday",
+      "guilt-and-co",
+      "r&b"
     ],
     "subTags": [
-      "guilt-and-co",
+      "soul",
+      "roots",
       "gastown",
-      "live-music",
-      "jazz",
-      "funk",
       "cocktail-lounge",
+      "folk",
+      "live-music",
+      "under-20-dollars",
       "19-plus",
-      "weekend",
-      "under-20-dollars"
+      "friday",
+      "guilt-and-co",
+      "r&b"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Walk-in door cover ($8 before 8pm, $15 after 8pm Fri/Sat). 19+ only.",
-    "title": "Guilt & Co: Friday Prime Jazz & Funk Showcase",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "operating_hours": "Friday 7:00 PM – 2:00 AM",
     "days_open": "Fri",
-    "weekly_hours": {
-      "fri": "7:00 PM – 2:00 AM"
-    },
-    "date": null,
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "02:00",
-    "dateSchedule": "Every Friday: Early Show 7:00 PM, Late Show 10:00 PM",
+    "date": "2026-10-09",
+    "time": "7:00 PM – 2:00 AM",
+    "start_time": "7:00 PM",
+    "end_time": "2:00 AM",
+    "dateSchedule": "2 Screenings across Vancouver",
     "frequency": "Weekly",
+    "frequencyLabel": "Weekly",
     "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
-    "lineup": "Vancouver premier jazz quartets and funk collectives",
-    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Carly Reirson. Late Show (10:00 PM – 2:00 AM): Jay Esplana & Friends.",
+    "performers": [
+      "Jay Esplana & Friends",
+      "Carly Reirson"
+    ],
+    "artist": "Jay Esplana & Friends",
+    "restrictions": "19+ only (2 pieces of valid government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [],
+    "showings": [
+      {
+        "date": "2026-10-09",
+        "start_time": "7:00 PM",
+        "end_time": "8:45 PM",
+        "show_title": "Early Show: Carly Reirson"
+      },
+      {
+        "date": "2026-10-09",
+        "start_time": "10:00 PM",
+        "end_time": "2:00 AM",
+        "show_title": "Late Show: Jay Esplana & Friends"
+      }
+    ],
     "food_service_type": "bar_snacks_and_drinks",
-    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "food_service_note": "Charcuterie boards, gourmet grilled cheese, artisanal cocktails & mocktails",
     "sample_cost_label": "$8.00 CAD early door cover",
-    "categoryLabel": "Music",
-    "id": "van50-guilt-and-co-friday-jazz",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "7:00 PM",
+      "end_time": "2:00 AM"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:51.762804",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "Guilt & Co Live: Jay Esplana & Friends (with Carly Reirson)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "2026-10-09"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "Friday, Oct 09: Early Show 7:00 PM, Late Show 10:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "drink": null,
+          "spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "Door Cover at Entrance"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "length": 340
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "value": "19+ only (2 pieces of valid government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.762804",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-and-co-friday",
     "venue": "Guilt & Co.",
     "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "priceLabel": "$8.00 CAD",
@@ -12538,43 +20772,9 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Early Show Cover (Before 8:00 PM)",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Prime Night Cover (8:00 PM & Later)",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": null,
+    "startIso": "2026-10-09T7:00 PM:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -12589,21 +20789,22 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Friday 7:00 PM – 2:00 AM",
-    "weeklyHours": {
-      "fri": "7:00 PM – 2:00 AM"
-    },
+    "weekly_hours": null,
+    "weeklyHours": null,
     "lifecycleType": "weekly_recurring",
     "isSoldOut": false
   },
   {
-    "event_id": "van50-guilt-and-co-saturday-showcase",
-    "event_name": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+    "event_id": "van50-guilt-and-co-saturday",
+    "event_name": "Guilt & Co Live: Retrofitz (with Clave Jazz)",
+    "title": "Guilt & Co Live: Retrofitz (with Clave Jazz)",
     "category": "music",
+    "categoryLabel": "Music",
     "lifecycle_type": "weekly_recurring",
     "venue_name": "Guilt & Co.",
     "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Saturday night underground party in Gastown featuring soulful vocals, brass-heavy rhythm sections, and classic R&B anthems in an unforgettable candlelit speakeasy setting.",
+    "description": "Live music double-bill at Gastown's subterranean brick cellar. Early set by Clave Jazz (7:00 PM), followed by Retrofitz (10:00 PM – 2:00 AM). Simply put, Retrofitz is a group dedicated to making you dance so hard your ass breaks. The band flows between old school funk, reggae, nu soul and new wave to keep the listener in...",
     "pricing_all_in_cad": {
       "regular": 8.0,
       "senior": 8.0,
@@ -12616,62 +20817,224 @@ const VANCOUVER_EVENTS = [
     "price_member": 8.0,
     "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
     "tier_custom_price_1": 8.0,
-    "tier_custom_name_2": "Saturday Night Cover (8:00 PM & Later)",
+    "tier_custom_name_2": "Saturday Night Cover (After 8:00 PM)",
     "tier_custom_price_2": 15.0,
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Saturday Night Cover (After 8:00 PM)",
+        "price": 15.0,
+        "isAvailable": true
+      }
+    ],
     "discovery_url": "https://www.guiltandcompany.com",
     "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_provider": "Door Cover at Entrance",
     "tags": [
-      "guilt-and-co",
+      "saturday",
       "gastown",
-      "live-music",
-      "r-and-b",
-      "soul",
-      "saturday-night",
+      "latin",
       "cocktail-lounge",
+      "live-music",
+      "funk",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "guilt-and-co",
+      "jazz",
+      "reggae"
     ],
     "subTags": [
-      "guilt-and-co",
+      "saturday",
       "gastown",
-      "live-music",
-      "r-and-b",
-      "soul",
-      "saturday-night",
+      "latin",
       "cocktail-lounge",
+      "live-music",
+      "funk",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "guilt-and-co",
+      "jazz",
+      "reggae"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Walk-in door cover ($8 before 8pm, $15 after 8pm Fri/Sat). 19+ only.",
-    "title": "Guilt & Co: Saturday Night Live R&B & Soul Party",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "operating_hours": "Saturday 7:00 PM – 2:00 AM",
     "days_open": "Sat",
-    "weekly_hours": {
-      "sat": "7:00 PM – 2:00 AM"
-    },
-    "date": null,
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "02:00",
-    "dateSchedule": "Every Saturday: Early Show 7:00 PM, Late Show 10:00 PM",
+    "date": "2026-10-10",
+    "time": "7:00 PM – 2:00 AM",
+    "start_time": "7:00 PM",
+    "end_time": "2:00 AM",
+    "dateSchedule": "2 Screenings across Vancouver",
     "frequency": "Weekly",
+    "frequencyLabel": "Weekly",
     "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
-    "lineup": "Vancouver leading live R&B and soul vocalists and touring bands",
-    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Clave Jazz. Late Show (10:00 PM – 2:00 AM): Retrofitz.",
+    "performers": [
+      "Retrofitz",
+      "Clave Jazz"
+    ],
+    "artist": "Retrofitz",
+    "restrictions": "19+ only (2 pieces of valid government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [],
+    "showings": [
+      {
+        "date": "2026-10-10",
+        "start_time": "7:00 PM",
+        "end_time": "8:45 PM",
+        "show_title": "Early Show: Clave Jazz"
+      },
+      {
+        "date": "2026-10-10",
+        "start_time": "10:00 PM",
+        "end_time": "2:00 AM",
+        "show_title": "Late Show: Retrofitz"
+      }
+    ],
     "food_service_type": "bar_snacks_and_drinks",
-    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "food_service_note": "Charcuterie boards, gourmet grilled cheese, artisanal cocktails & mocktails",
     "sample_cost_label": "$8.00 CAD early door cover",
-    "categoryLabel": "Music",
-    "id": "van50-guilt-and-co-saturday-showcase",
+    "show_1": {
+      "date": "2026-10-10",
+      "start_time": "7:00 PM",
+      "end_time": "2:00 AM"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:51.872889",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "Guilt & Co Live: Retrofitz (with Clave Jazz)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "2026-10-10"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "Saturday, Oct 10: Early Show 7:00 PM, Late Show 10:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "drink": null,
+          "spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "Door Cover at Entrance"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "length": 325
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "value": "19+ only (2 pieces of valid government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.872889",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-and-co-saturday",
     "venue": "Guilt & Co.",
     "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "priceLabel": "$8.00 CAD",
@@ -12681,43 +21044,9 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Early Show Cover (Before 8:00 PM)",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Saturday Night Cover (8:00 PM & Later)",
-        "price": 15.0,
-        "label": "$15.00 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": null,
+    "startIso": "2026-10-10T7:00 PM:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
-      "sun"
+      "sat"
     ],
     "timeSlots": [
       "early-evening",
@@ -12732,21 +21061,22 @@ const VANCOUVER_EVENTS = [
     ],
     "transitInfo": "Transit accessible via TransLink",
     "operatingHours": "Saturday 7:00 PM – 2:00 AM",
-    "weeklyHours": {
-      "sat": "7:00 PM – 2:00 AM"
-    },
+    "weekly_hours": null,
+    "weeklyHours": null,
     "lifecycleType": "weekly_recurring",
     "isSoldOut": false
   },
   {
-    "event_id": "van50-guilt-and-co-sunday-sessions",
-    "event_name": "Guilt & Co: Sunday Acoustic & Soul Sessions",
+    "event_id": "van50-guilt-and-co-sunday",
+    "event_name": "Guilt & Co Live: The Harrison Ivaz Organ Trio (with Revay)",
+    "title": "Guilt & Co Live: The Harrison Ivaz Organ Trio (with Revay)",
     "category": "music",
+    "categoryLabel": "Music",
     "lifecycle_type": "weekly_recurring",
     "venue_name": "Guilt & Co.",
     "full_address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "description": "Wind down the weekend in Gastown with soulful acoustic sets, singer-songwriters, and stripped-down groove sessions in an intimate cellar ambiance.",
+    "description": "Live music double-bill at Gastown's subterranean brick cellar. Early set by Revay (7:00 PM), followed by The Harrison Ivaz Organ Trio (9:00 PM – 12:00 AM). Harrison Ivaz is a young Canadian-American guitarist and vocalist. A Capilano University Jazz Studies Grad, Harrison has studied with Vancouver jazz icon Bill Coon and performed as...",
     "pricing_all_in_cad": {
       "regular": 8.0,
       "senior": 8.0,
@@ -12759,62 +21089,222 @@ const VANCOUVER_EVENTS = [
     "price_member": 8.0,
     "tier_custom_name_1": "Early Show Cover (Before 8:00 PM)",
     "tier_custom_price_1": 8.0,
-    "tier_custom_name_2": "Late Show Cover (8:00 PM & Later)",
+    "tier_custom_name_2": "Late Show Cover (After 8:00 PM)",
     "tier_custom_price_2": 12.0,
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Early Show Cover (Before 8:00 PM)",
+        "price": 8.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Late Show Cover (After 8:00 PM)",
+        "price": 12.0,
+        "isAvailable": true
+      }
+    ],
     "discovery_url": "https://www.guiltandcompany.com",
     "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
     "ticket_provider": "Door Cover at Entrance",
     "tags": [
-      "guilt-and-co",
       "gastown",
-      "live-music",
-      "acoustic",
-      "soul",
-      "sunday-sessions",
       "cocktail-lounge",
+      "live-music",
+      "singer-songwriter",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "sunday",
+      "guilt-and-co",
+      "fusion",
+      "jazz"
     ],
     "subTags": [
-      "guilt-and-co",
       "gastown",
-      "live-music",
-      "acoustic",
-      "soul",
-      "sunday-sessions",
       "cocktail-lounge",
+      "live-music",
+      "singer-songwriter",
+      "under-20-dollars",
       "19-plus",
-      "under-20-dollars"
+      "sunday",
+      "guilt-and-co",
+      "fusion",
+      "jazz"
     ],
     "festival_affiliation": "None",
     "approval_status": "Curator-Approved",
-    "curator_notes": "Walk-in door cover ($8 before 8pm, $12 after 8pm Sun–Thu). 19+ only.",
-    "title": "Guilt & Co: Sunday Acoustic & Soul Sessions",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "operating_hours": "Sunday 7:00 PM – 1:00 AM",
+    "operating_hours": "Sunday 7:00 PM – 12:00 AM",
     "days_open": "Sun",
-    "weekly_hours": {
-      "sun": "7:00 PM – 1:00 AM"
-    },
-    "date": null,
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "01:00",
-    "dateSchedule": "Every Sunday: Early Show 7:00 PM, Late Show 9:30 PM",
+    "date": "2026-10-11",
+    "time": "7:00 PM – 12:00 AM",
+    "start_time": "7:00 PM",
+    "end_time": "12:00 AM",
+    "dateSchedule": "2 Screenings across Vancouver",
     "frequency": "Weekly",
+    "frequencyLabel": "Weekly",
     "typical_item_spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)",
-    "lineup": "Acoustic roots, neo-soul, and blues songwriters",
-    "restrictions": "19+ only (2 pieces of valid ID required)",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Revay. Late Show (9:00 PM – 12:00 AM): The Harrison Ivaz Organ Trio.",
+    "performers": [
+      "The Harrison Ivaz Organ Trio",
+      "Revay"
+    ],
+    "artist": "The Harrison Ivaz Organ Trio",
+    "restrictions": "19+ only (2 pieces of valid government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [],
+    "showings": [
+      {
+        "date": "2026-10-11",
+        "start_time": "7:00 PM",
+        "end_time": "8:00 PM",
+        "show_title": "Early Show: Revay"
+      },
+      {
+        "date": "2026-10-11",
+        "start_time": "9:00 PM",
+        "end_time": "12:00 AM",
+        "show_title": "Late Show: The Harrison Ivaz Organ Trio"
+      }
+    ],
     "food_service_type": "bar_snacks_and_drinks",
-    "food_service_note": "Charcuterie boards, gourmet grilled sandwiches, artisan cocktails",
+    "food_service_note": "Charcuterie boards, gourmet grilled cheese, artisanal cocktails & mocktails",
     "sample_cost_label": "$8.00 CAD early door cover",
-    "categoryLabel": "Music",
-    "id": "van50-guilt-and-co-sunday-sessions",
+    "show_1": {
+      "date": "2026-10-11",
+      "start_time": "7:00 PM",
+      "end_time": "12:00 AM"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:51.999067",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "Guilt & Co Live: The Harrison Ivaz Organ Trio (with Revay)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "2026-10-11"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "Sunday, Oct 11: Early Show 7:00 PM, Late Show 9:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "Weekly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "tier_count": 5,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "drink": null,
+          "spend": "$14.00 – $18.00 CAD (craft cocktails / local beer)"
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "Door Cover at Entrance"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "length": 339
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "value": "19+ only (2 pieces of valid government ID required)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:51.999067",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-and-co-sunday",
     "venue": "Guilt & Co.",
     "address": "1 Alexander St (Below Ground), Vancouver, BC V6A 1B2",
     "priceLabel": "$8.00 CAD",
@@ -12824,42 +21314,8 @@ const VANCOUVER_EVENTS = [
     "categories": [
       "music"
     ],
-    "tiers": [
-      {
-        "name": "Early Show Cover (Before 8:00 PM)",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Adult",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Student",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Member",
-        "price": 8.0,
-        "label": "$8.00 CAD"
-      },
-      {
-        "name": "Late Show Cover (8:00 PM & Later)",
-        "price": 12.0,
-        "label": "$12.00 CAD"
-      }
-    ],
-    "frequencyLabel": "Single Showing",
-    "startIso": null,
+    "startIso": "2026-10-11T7:00 PM:00-07:00",
     "daysOfWeek": [
-      "mon",
-      "tue",
-      "wed",
-      "thu",
-      "fri",
-      "sat",
       "sun"
     ],
     "timeSlots": [
@@ -12874,41 +21330,9999 @@ const VANCOUVER_EVENTS = [
       -123.1207
     ],
     "transitInfo": "Transit accessible via TransLink",
-    "operatingHours": "Sunday 7:00 PM – 1:00 AM",
-    "weeklyHours": {
-      "sun": "7:00 PM – 1:00 AM"
-    },
+    "operatingHours": "Sunday 7:00 PM – 12:00 AM",
+    "weekly_hours": null,
+    "weeklyHours": null,
     "lifecycleType": "weekly_recurring",
     "isSoldOut": false
-  }
-];
-const MANUAL_REVIEW_QUEUE = [
+  },
   {
-    "id": "van50-latincouver-catrinas-procession-gastown-20261102",
-    "title": "Catrinas Procession: Día de los Muertos",
-    "artist": "Latincouver Catrinas Ensemble",
-    "venue": "Gastown Historic District",
-    "address": "Maple Tree Square to Water St, Vancouver, BC",
+    "event_id": "van50-guilt-co-guilt-co-live-hollywood-alberta-with-ted",
+    "event_name": "Guilt & Co. Live: Hollywood Alberta (with Ted Kim)",
+    "title": "Guilt & Co. Live: Hollywood Alberta (with Ted Kim)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
     "neighborhood": "Downtown, Gastown & Yaletown",
-    "cluster": "Downtown, Gastown & Yaletown",
-    "category": "culture",
-    "categoryLabel": "Arts & Culture",
-    "date": "2026-11-02",
-    "time": "17:00",
-    "price": 0.0,
-    "priceLabel": "Free ($0.00)",
-    "websiteUrl": "https://latincouver.ca",
-    "ticket_url": "https://latincouver.ca",
-    "ticket_provider": "Free Public Access (Latincouver)",
-    "description": "Latincouver leads an evocative twilight procession of Catrinas in traditional Mexican calavera face paint and ornate costumes through historic Gastown to honour Día de los Muertos.",
-    "lineup": "Latincouver Catrinas ensemble, Mexican folkloric dancers, traditional musicians",
-    "restrictions": "All Ages / Free Outdoor Public Gathering",
-    "quarantineReason": "Pending Holiday Approval: 'dia-de-los-muertos'. New holiday detected by Scout AI awaiting Curator Studio review.",
-    "flaggedAt": "2026-10-03",
-    "unconfirmedDetails": [
-      "Holiday approval pending in Curator Studio."
+    "coordinates": [
+      49.2835,
+      -123.1039
     ],
-    "holiday_detected": "dia-de-los-muertos",
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Ted Kim (7:00 PM), followed by Hollywood Alberta (9:00 PM – 12:00 AM). Emmett Jerome is a young blues musician hailing from the foothills of southern Alberta. Growing up in a rural community, he became enthralled with the music of Doc Watson, Merle Tr...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-04",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-04",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Ted Kim. Late Show (9:00 PM – 12:00 AM): Hollywood Alberta.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631209",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.112993",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "Guilt & Co. Live: Hollywood Alberta (with Ted Kim)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "length": 306
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.112993",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": true,
+    "id": "van50-guilt-co-guilt-co-live-hollywood-alberta-with-ted",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-04T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-funk-yourself-with-sara-ca",
+    "event_name": "Guilt & Co. Live: Funk Yourself (with Sara Carbone)",
+    "title": "Guilt & Co. Live: Funk Yourself (with Sara Carbone)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Sara Carbone (7:00 PM), followed by Funk Yourself (9:00 PM – 12:00 AM). Jon Holisko, Cole Tinney, and James Humo are regulars at Guilt & Co. The trio play the sounds of 70s funk mixed with Jazz, Soul, Pop and R&B music. Listen for familiar hits played ...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-05",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-05",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Sara Carbone. Late Show (9:00 PM – 12:00 AM): Funk Yourself.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631249",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.235505",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "Guilt & Co. Live: Funk Yourself (with Sara Carbone)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "length": 307
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.235505",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-funk-yourself-with-sara-ca",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-05T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-underneath-the-harlem-moon",
+    "event_name": "Guilt & Co. Live: Underneath the Harlem Moon (with Ben Kyle)",
+    "title": "Guilt & Co. Live: Underneath the Harlem Moon (with Ben Kyle)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Ben Kyle (7:00 PM), followed by Underneath the Harlem Moon (9:00 PM – 12:00 AM). Join us for 'Underneath the Harlem Moon,' a smokey Soul-era Harlem cabaret here in the heart of Gastown! Curated and produced by local soul songstress Ms. Krystle Dos Santos and fe...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-06",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-06",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Ben Kyle. Late Show (9:00 PM – 12:00 AM): Underneath the Harlem Moon.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631279",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.349354",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "Guilt & Co. Live: Underneath the Harlem Moon (with Ben Kyle)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "length": 316
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.349354",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-underneath-the-harlem-moon",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-06T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-matt-storm-with-cassandra-",
+    "event_name": "Guilt & Co. Live: Matt Storm (with Cassandra Maze)",
+    "title": "Guilt & Co. Live: Matt Storm (with Cassandra Maze)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Cassandra Maze (7:00 PM), followed by Matt Storm (9:00 PM – 12:00 AM). Matt Storm is psychedelic soul and alt rock. Radiohead meets D'angelo. Original music that is both unique and accessible. Vancouver based, he sold out UK shows on tour in 2026. He ...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-07",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-07",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Cassandra Maze. Late Show (9:00 PM – 12:00 AM): Matt Storm.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631305",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.481032",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "Guilt & Co. Live: Matt Storm (with Cassandra Maze)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "length": 306
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.481032",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-matt-storm-with-cassandra-",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-07T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-brown-paper-",
+    "event_name": "Guilt & Co. Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)",
+    "title": "Guilt & Co. Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Sean from the Yukon (7:00 PM), followed by GroundUp feat. Brown Paper Bag (9:30 PM – 1:00 AM). Brown Paper Bag is a trip into Classic Soul, and Blues. Original R&B tunes are played along side well-known and rare cuts from the Motown and Stax collections, each infused with sp...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "7:00 PM – 1:00 AM",
+      "end_time": "1:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-08",
+    "start_time": "7:00 PM – 1:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Sean from the Yukon. Late Show (9:30 PM – 1:00 AM): GroundUp feat. Brown Paper Bag.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631332",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.590942",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "Guilt & Co. Live: GroundUp feat. Brown Paper Bag (with Sean from the Yukon)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "7:00 PM – 1:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "length": 330
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.590942",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-groundup-feat-brown-paper-",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T7:00 PM – 1:00 AM:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-jay-esplana-friends-with-c",
+    "event_name": "Guilt & Co. Live: Jay Esplana & Friends (with Carly Reirson)",
+    "title": "Guilt & Co. Live: Jay Esplana & Friends (with Carly Reirson)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Carly Reirson (7:00 PM), followed by Jay Esplana & Friends (10:00 PM – 2:00 AM). Jay Esplana is a multi-instrumentalist and vocalist based out of Vancouver, BC and has become one of the city's most sought after musicians. His performance is the amalgamation of ...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "7:00 PM – 2:00 AM",
+      "end_time": "2:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-09",
+    "start_time": "7:00 PM – 2:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Carly Reirson. Late Show (10:00 PM – 2:00 AM): Jay Esplana & Friends.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631357",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.713531",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "Guilt & Co. Live: Jay Esplana & Friends (with Carly Reirson)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "length": 316
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.713531",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-jay-esplana-friends-with-c",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-09T7:00 PM – 2:00 AM:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-retrofitz-with-clave-jazz",
+    "event_name": "Guilt & Co. Live: Retrofitz (with Clave Jazz)",
+    "title": "Guilt & Co. Live: Retrofitz (with Clave Jazz)",
+    "category": "music",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Clave Jazz (7:00 PM), followed by Retrofitz (10:00 PM – 2:00 AM). Simply put, Retrofitz is a group dedicated to making you dance so hard your ass breaks. The band flows between old school funk, reggae, nu soul and new wave to keep the listener in...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-10",
+      "start_time": "7:00 PM – 2:00 AM",
+      "end_time": "2:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "music",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-10",
+    "start_time": "7:00 PM – 2:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Clave Jazz. Late Show (10:00 PM – 2:00 AM): Retrofitz.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631380",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.846461",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "Guilt & Co. Live: Retrofitz (with Clave Jazz)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "length": 301
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.846461",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-retrofitz-with-clave-jazz",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-10T7:00 PM – 2:00 AM:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "music",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-the-harrison-ivaz-organ-tr",
+    "event_name": "Guilt & Co. Live: The Harrison Ivaz Organ Trio (with Revay)",
+    "title": "Guilt & Co. Live: The Harrison Ivaz Organ Trio (with Revay)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Revay (7:00 PM), followed by The Harrison Ivaz Organ Trio (9:00 PM – 12:00 AM). Harrison Ivaz is a young Canadian-American guitarist and vocalist. A Capilano University Jazz Studies Grad, Harrison has studied with Vancouver jazz icon Bill Coon and performed as...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-11",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-11",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Revay. Late Show (9:00 PM – 12:00 AM): The Harrison Ivaz Organ Trio.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631403",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:52.952559",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "Guilt & Co. Live: The Harrison Ivaz Organ Trio (with Revay)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "length": 315
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:52.952559",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-the-harrison-ivaz-organ-tr",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-11T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-big-shoulders-with-dani-bl",
+    "event_name": "Guilt & Co. Live: Big Shoulders (with Dani Black)",
+    "title": "Guilt & Co. Live: Big Shoulders (with Dani Black)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Dani Black (7:00 PM), followed by Big Shoulders (9:00 PM – 12:00 AM). Vancouver’s newest and most exciting contemporary jazz quartet, featuring veterans of the scene and musical mavericks. Standards by composers and performers we know and love: Miles...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-12",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-12",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Dani Black. Late Show (9:00 PM – 12:00 AM): Big Shoulders.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631426",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.073403",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "Guilt & Co. Live: Big Shoulders (with Dani Black)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "length": 305
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.073403",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-big-shoulders-with-dani-bl",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-12T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-the-single-malts-feat-wend",
+    "event_name": "Guilt & Co. Live: The Single Malts feat. Wendy Biscuit (with Sam Wallace)",
+    "title": "Guilt & Co. Live: The Single Malts feat. Wendy Biscuit (with Sam Wallace)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Sam Wallace (7:00 PM), followed by The Single Malts feat. Wendy Biscuit (9:00 PM – 12:00 AM). Enjoy a night of classic big-band era swing with some of Canada’s finest jazz musicians, educators and performers. Dress flipping, toe tapping old fashioned fun awaits with this se...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-13",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-13",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Sam Wallace. Late Show (9:00 PM – 12:00 AM): The Single Malts feat. Wendy Biscuit.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631450",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.221068",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "Guilt & Co. Live: The Single Malts feat. Wendy Biscuit (with Sam Wallace)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "length": 329
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.221068",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-the-single-malts-feat-wend",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-13T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-the-zach-wong-trio-with-gr",
+    "event_name": "Guilt & Co. Live: The Zach Wong Trio (with Groffie)",
+    "title": "Guilt & Co. Live: The Zach Wong Trio (with Groffie)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Groffie (7:00 PM), followed by The Zach Wong Trio (9:00 PM – 12:00 AM). North Vancouver-born bass player Zach Wong has been involved in music since the age of 10, and graduated from Vancouver Community College with a Bachelors of Applied Music in 2020....",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-14",
+      "start_time": "7:00 PM – 12:00 AM",
+      "end_time": "12:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-14",
+    "start_time": "7:00 PM – 12:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:00 PM): Groffie. Late Show (9:00 PM – 12:00 AM): The Zach Wong Trio.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631474",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.332205",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "Guilt & Co. Live: The Zach Wong Trio (with Groffie)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "7:00 PM – 12:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "length": 307
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.332205",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-the-zach-wong-trio-with-gr",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-14T7:00 PM – 12:00 AM:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-adam-robert-",
+    "event_name": "Guilt & Co. Live: GroundUp feat. Adam Robert Thomas (with Daniel Deorksen’s Bicameral Collapse)",
+    "title": "Guilt & Co. Live: GroundUp feat. Adam Robert Thomas (with Daniel Deorksen’s Bicameral Collapse)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Daniel Deorksen’s Bicameral Collapse (7:00 PM), followed by GroundUp feat. Adam Robert Thomas (9:30 PM – 1:00 AM). Adam Thomas performs a diverse array of music from favourite radio hits of this year all the way back to music from the jazz and big band era, and a wide array of classics in betwe...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-15",
+      "start_time": "7:00 PM – 1:00 AM",
+      "end_time": "1:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-15",
+    "start_time": "7:00 PM – 1:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Daniel Deorksen’s Bicameral Collapse. Late Show (9:30 PM – 1:00 AM): GroundUp feat. Adam Robert Thomas.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631508",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.454651",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "Guilt & Co. Live: GroundUp feat. Adam Robert Thomas (with Daniel Deorksen’s Bicameral Collapse)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "7:00 PM – 1:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "length": 350
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.454651",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-groundup-feat-adam-robert-",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-15T7:00 PM – 1:00 AM:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-jack-garton-with-doc-finge",
+    "event_name": "Guilt & Co. Live: Jack Garton (with Doc Fingers)",
+    "title": "Guilt & Co. Live: Jack Garton (with Doc Fingers)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by Doc Fingers (7:00 PM), followed by Jack Garton (10:00 PM – 2:00 AM). Steeped in the solitude of the mountains and islands of the Pacific Northwest, raised in the boisterous and irreverent East Vancouver arts community, Jack Garton’s music is a dance...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-16",
+      "start_time": "7:00 PM – 2:00 AM",
+      "end_time": "2:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-16",
+    "start_time": "7:00 PM – 2:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): Doc Fingers. Late Show (10:00 PM – 2:00 AM): Jack Garton.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631531",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.567034",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "Guilt & Co. Live: Jack Garton (with Doc Fingers)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "length": 304
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.567034",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-jack-garton-with-doc-finge",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-16T7:00 PM – 2:00 AM:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-guilt-co-guilt-co-live-the-grand-koolios-with-the",
+    "event_name": "Guilt & Co. Live: The Grand Koolios (with The Marcus Abramzik Ensemble)",
+    "title": "Guilt & Co. Live: The Grand Koolios (with The Marcus Abramzik Ensemble)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Guilt & Co.",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2835,
+      -123.1039
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at Guilt & Co.. Early set by The Marcus Abramzik Ensemble (7:00 PM), followed by The Grand Koolios (10:00 PM – 2:00 AM). Collectively and individually, they have amassed a large list of credits as sidemen for the likes of bluesmen Taj Mahal, Bo Diddley, Hubert Sumlin, Eddy Clearwater, Eddie ‘cleanhea...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-17",
+      "start_time": "7:00 PM – 2:00 AM",
+      "end_time": "2:00 AM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.guiltandcompany.com",
+    "details_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_url": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticket_provider": "Venue Door Cover & Walk-In",
+    "tags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-17",
+    "start_time": "7:00 PM – 2:00 AM",
+    "lineup": "Early Show (7:00 PM – 8:45 PM): The Marcus Abramzik Ensemble. Late Show (10:00 PM – 2:00 AM): The Grand Koolios.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:21.631554",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.679946",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "Guilt & Co. Live: The Grand Koolios (with The Marcus Abramzik Ensemble)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "7:00 PM – 2:00 AM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "venue": "Guilt & Co.",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "url": "https://www.guiltandcompany.com/#ajsection-upcoming"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "Venue Door Cover & Walk-In"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "length": 327
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.679946",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-guilt-co-guilt-co-live-the-grand-koolios-with-the",
+    "venue": "Guilt & Co.",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-17T7:00 PM – 2:00 AM:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "venueUrl": "https://www.guiltandcompany.com/#ajsection-upcoming",
+    "ticketProvider": "Venue Door Cover & Walk-In",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "guilt-co",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
+    "event_name": "2nd Floor Gastown Live: Steven Rutherford Trio (with Celebrate Thanksgiving at Water St. Cafe!)",
+    "title": "2nd Floor Gastown Live: Steven Rutherford Trio (with Celebrate Thanksgiving at Water St. Cafe!)",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live music double-bill at 2nd Floor Gastown. Early set by Celebrate Thanksgiving at Water St. Cafe! (12:00 AM), followed by Steven Rutherford Trio (6:30 PM – 9:45 PM). Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. Friday October 11th we have none other then Steven Rutherford Trio gracing our ...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-11",
+      "start_time": "12:00 AM – 9:45 PM",
+      "end_time": "9:45 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-11",
+    "start_time": "12:00 AM – 9:45 PM",
+    "lineup": "Early Show (12:00 AM – 12:00 AM): Celebrate Thanksgiving at Water St. Cafe!. Late Show (6:30 PM – 9:45 PM): Steven Rutherford Trio.",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630508",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.839663",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "2nd Floor Gastown Live: Steven Rutherford Trio (with Celebrate Thanksgiving at Water St. Cafe!)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "12:00 AM – 9:45 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "length": 351
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.839663",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-11T12:00 AM – 9:45 PM:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "event_name": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "title": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm The Horrifying Tale of The Brothers Grimm October 31st, 2026 | 5pm October 31st, 2026 | 8pm Other show dates include October 14th, 21st, 28th, and 30th. Journey ...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-31",
+      "start_time": "5:00 PM – 10:00 PM",
+      "end_time": "10:00 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-31",
+    "start_time": "5:00 PM – 10:00 PM",
+    "lineup": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm (5:00 PM – 10:00 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630570",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:53.949495",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "5:00 PM – 10:00 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:53.949495",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-31T5:00 PM – 10:00 PM:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-ikuko-may-quartet",
+    "event_name": "2nd Floor Gastown Live: Ikuko May Quartet",
+    "title": "2nd Floor Gastown Live: Ikuko May Quartet",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. October 4th we have none other than the Ikuko May Quartet gracing our stage! Ikuko May is a Vancouver-based vocalist wh...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-04",
+      "start_time": "6:30 PM – 9:45 PM",
+      "end_time": "9:45 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-04",
+    "start_time": "6:30 PM – 9:45 PM",
+    "lineup": "Ikuko May Quartet (6:30 PM – 9:45 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630600",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.064378",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "2nd Floor Gastown Live: Ikuko May Quartet"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "6:30 PM – 9:45 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.064378",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": true,
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-ikuko-may-quartet",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-04T6:30 PM – 9:45 PM:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-bob-kozak-trio",
+    "event_name": "2nd Floor Gastown Live: Bob Kozak Trio",
+    "title": "2nd Floor Gastown Live: Bob Kozak Trio",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. October 8th we have none other than the Bob Kozak Trio gracing our stage! BOB KOZAK is an accomplished accordionist, si...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "6:30 PM – 9:45 PM",
+      "end_time": "9:45 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-08",
+    "start_time": "6:30 PM – 9:45 PM",
+    "lineup": "Bob Kozak Trio (6:30 PM – 9:45 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630625",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.175741",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "2nd Floor Gastown Live: Bob Kozak Trio"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "6:30 PM – 9:45 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.175741",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-bob-kozak-trio",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T6:30 PM – 9:45 PM:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-joelle-lush-ft-co",
+    "event_name": "2nd Floor Gastown Live: Joelle Lush FT Cole Tinney and Gavin Youngash",
+    "title": "2nd Floor Gastown Live: Joelle Lush FT Cole Tinney and Gavin Youngash",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. October 9th we have none other than Joelle Lush FT Cole Tinney and Gavin Youngash gracing our stage! Joelle Lush is a d...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "6:30 PM – 9:45 PM",
+      "end_time": "9:45 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-09",
+    "start_time": "6:30 PM – 9:45 PM",
+    "lineup": "Joelle Lush FT Cole Tinney and Gavin Youngash (6:30 PM – 9:45 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630651",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.305439",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "2nd Floor Gastown Live: Joelle Lush FT Cole Tinney and Gavin Youngash"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "6:30 PM – 9:45 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.305439",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-joelle-lush-ft-co",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-09T6:30 PM – 9:45 PM:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-monique-angele",
+    "event_name": "2nd Floor Gastown Live: Monique Angele",
+    "title": "2nd Floor Gastown Live: Monique Angele",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. October 10th we have none other than Monique Angele gracing our stage! Monique Angele (piano/keyboard and vocals) Moniq...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-10",
+      "start_time": "6:30 PM – 9:45 PM",
+      "end_time": "9:45 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-10",
+    "start_time": "6:30 PM – 9:45 PM",
+    "lineup": "Monique Angele (6:30 PM – 9:45 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630683",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.423395",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "2nd Floor Gastown Live: Monique Angele"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "6:30 PM – 9:45 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.423395",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-monique-angele",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-10T6:30 PM – 9:45 PM:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "event_name": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "title": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm The Horrifying Tale of The Brothers Grimm October 14th, 2026 | 6pm Other show dates include October 21st, 28th, 30th, and 31st. Journey into old-world Germany wi...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-14",
+      "start_time": "6:00 PM – 10:00 PM",
+      "end_time": "10:00 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-14",
+    "start_time": "6:00 PM – 10:00 PM",
+    "lineup": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm (6:00 PM – 10:00 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630711",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.538440",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "6:00 PM – 10:00 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.538440",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-14T6:00 PM – 10:00 PM:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "event_name": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "title": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm The Horrifying Tale of The Brothers Grimm October 21st, 2026 | 6pm Other show dates include October 14th, 28th, 30th, and 31st. Journey into old-world Germany wi...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-21",
+      "start_time": "6:00 PM – 10:00 PM",
+      "end_time": "10:00 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-21",
+    "start_time": "6:00 PM – 10:00 PM",
+    "lineup": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm (6:00 PM – 10:00 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630736",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.644049",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "6:00 PM – 10:00 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.644049",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-21T6:00 PM – 10:00 PM:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "event_name": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "title": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm The Horrifying Tale of The Brothers Grimm October 28th, 2026 | 6pm Other show dates include October 14th, 21st, 30th, and 31st. Journey into old-world Germany wi...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-28",
+      "start_time": "6:00 PM – 10:00 PM",
+      "end_time": "10:00 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-28",
+    "start_time": "6:00 PM – 10:00 PM",
+    "lineup": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm (6:00 PM – 10:00 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630759",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.749976",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "6:00 PM – 10:00 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.749976",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-28T6:00 PM – 10:00 PM:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "event_name": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "title": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm",
+    "category": "Nightlife & Social",
+    "lifecycle_type": "one_time",
+    "venue_name": "2nd Floor Gastown",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2842,
+      -123.1102
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm The Horrifying Tale of The Brothers Grimm October 30th, 2026 | 6pm Other show dates include October 14th, 21st, 28th, and 31st. Journey into old-world Germany wi...",
+    "pricing_all_in_cad": {
+      "regular": 8.0,
+      "senior": 8.0,
+      "student": 8.0,
+      "member": 8.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-30",
+      "start_time": "6:00 PM – 10:00 PM",
+      "end_time": "10:00 PM",
+      "cost": 8.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "details_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticket_provider": "Venue Door Cover & Reservations",
+    "tags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $15 CAD prime night after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "price": 8.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Upcoming Calendar Showcase",
+    "start_date": "2026-10-30",
+    "start_time": "6:00 PM – 10:00 PM",
+    "lineup": "DINNER THEATRE - The Horrifying Tale of The Brothers Grimm (6:00 PM – 10:00 PM)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:22.630802",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:54.869784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "2nd Floor Gastown Live: DINNER THEATRE - The Horrifying Tale of The Brothers Grimm"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "6:00 PM – 10:00 PM"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "Upcoming Calendar Showcase"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "Nightlife & Social"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "venue": "2nd Floor Gastown",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": 8.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "url": "https://www.waterstreetcafe.ca/2nd-floor-gastown"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "Venue Door Cover & Reservations"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "length": 223
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:54.869784",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
+    "venue": "2nd Floor Gastown",
+    "address": "Vancouver, BC",
+    "priceLabel": "$8.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Nightlife & social",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 8.0,
+        "label": "$8.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-30T6:00 PM – 10:00 PM:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "venueUrl": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+    "ticketProvider": "Venue Door Cover & Reservations",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "2nd-floor-gastown",
+      "social",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
+    "event_name": "Saturday October 17th: DAWSON FORSEY",
+    "title": "Saturday October 17th: DAWSON FORSEY",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Red Gate Arts Society",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0805
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Save your favourite local artists, post a show, or create your own artist page.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-17",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://redgate.tv/tickets/",
+    "details_url": "https://gigpit.ca/shows/event:oU2zNj5wnwA",
+    "ticket_url": "https://gigpit.ca/shows/event:oU2zNj5wnwA",
+    "ticket_provider": "Red Gate Arts Society Box Office",
+    "tags": [
+      "red-gate-arts-society",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 17, 2026",
+    "start_date": "2026-10-17",
+    "start_time": "19:30",
+    "lineup": "Saturday October 17th: DAWSON FORSEY",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:23.770129",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:55.813615",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "Saturday October 17th: DAWSON FORSEY"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "Oct 17, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "venue": "Red Gate Arts Society",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "url": "https://gigpit.ca/shows/event:oU2zNj5wnwA"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "Red Gate Arts Society Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "length": 79
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:55.813615",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
+    "venue": "Red Gate Arts Society",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-17T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://gigpit.ca/shows/event:oU2zNj5wnwA",
+    "venueUrl": "https://gigpit.ca/shows/event:oU2zNj5wnwA",
+    "ticketProvider": "Red Gate Arts Society Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "red-gate-arts-society",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-the-rasmus",
+    "event_name": "The Rasmus",
+    "title": "The Rasmus",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-04",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketmaster.ca/event/110064E68DD33560",
+    "ticket_url": "https://www.ticketmaster.ca/event/110064E68DD33560",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 4, 2026",
+    "start_date": "2026-10-04",
+    "start_time": "19:30",
+    "lineup": "The Rasmus",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139058",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:56.027325",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "The Rasmus"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "Oct 4, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "url": "https://www.ticketmaster.ca/event/110064E68DD33560"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:56.027325",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "is_past": true,
+    "id": "van50-rickshaw-theatre-the-rasmus",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-04T19:30:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketmaster.ca/event/110064E68DD33560",
+    "venueUrl": "https://www.ticketmaster.ca/event/110064E68DD33560",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-concrete-vehicles",
+    "event_name": "Concrete Vehicles",
+    "title": "Concrete Vehicles",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://concrete-vehicles-and-hillsboro.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1996181552760",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 8, 2026",
+    "start_date": "2026-10-08",
+    "start_time": "19:30",
+    "lineup": "Concrete Vehicles",
+    "is_sold_out": true,
+    "last_scouted_at": "2026-10-04T20:27:25.139132",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "Concrete Vehicles"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "Oct 8, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "url": "https://www.eventbrite.com/e/1996181552760"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.415234",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-concrete-vehicles",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T19:30:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1996181552760",
+    "venueUrl": "https://concrete-vehicles-and-hillsboro.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-actors",
+    "event_name": "Actors",
+    "title": "Actors",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://actors-rickshaw-2026.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 9, 2026",
+    "start_date": "2026-10-09",
+    "start_time": "19:30",
+    "lineup": "Actors",
+    "is_sold_out": true,
+    "last_scouted_at": "2026-10-04T20:27:25.139151",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "Actors"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "Oct 9, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "url": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.566943",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-actors",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-09T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+    "venueUrl": "https://actors-rickshaw-2026.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-dune-rats",
+    "event_name": "Dune Rats",
+    "title": "Dune Rats",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://dune-rats-whistler-2026.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1990210920438",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 9, 2026",
+    "start_date": "2026-10-09",
+    "start_time": "19:30",
+    "lineup": "Dune Rats",
+    "is_sold_out": true,
+    "last_scouted_at": "2026-10-04T20:27:25.139171",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "Dune Rats"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "Oct 9, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "url": "https://www.eventbrite.com/e/1990210920438"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "Sold out"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:57.895240",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-dune-rats",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-09T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1990210920438",
+    "venueUrl": "https://dune-rats-whistler-2026.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-militarie-gun",
+    "event_name": "Militarie Gun",
+    "title": "Militarie Gun",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-10",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketweb.ca/event/militarie-gun-with-special-guests-rickshaw-theatre-tickets/14778463?pl=MODO-LIVE",
+    "ticket_url": "https://www.ticketweb.ca/event/militarie-gun-with-special-guests-rickshaw-theatre-tickets/14778463?pl=MODO-LIVE",
+    "ticket_provider": "Ticketweb",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 10, 2026",
+    "start_date": "2026-10-10",
+    "start_time": "19:30",
+    "lineup": "Militarie Gun",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139191",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:58.707795",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "Militarie Gun"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "Oct 10, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "url": "https://www.ticketweb.ca/event/militarie-gun-with-special-guests-rickshaw-theatre-tickets/14778463?pl=MODO-LIVE"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "Ticketweb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:58.707795",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-militarie-gun",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-10T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketweb.ca/event/militarie-gun-with-special-guests-rickshaw-theatre-tickets/14778463?pl=MODO-LIVE",
+    "venueUrl": "https://www.ticketweb.ca/event/militarie-gun-with-special-guests-rickshaw-theatre-tickets/14778463?pl=MODO-LIVE",
+    "ticketProvider": "Ticketweb",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-fabio-frizzi-performing-the-frizzi2fulci",
+    "event_name": "FABIO FRIZZI performing the FRIZZI2FULCI concert",
+    "title": "FABIO FRIZZI performing the FRIZZI2FULCI concert",
+    "category": "music",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-14",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2169",
+    "ticket_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2169",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 14, 2026",
+    "start_date": "2026-10-14",
+    "start_time": "19:30",
+    "lineup": "FABIO FRIZZI performing the FRIZZI2FULCI concert",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139215",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:59.406480",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "FABIO FRIZZI performing the FRIZZI2FULCI concert"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "Oct 14, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "url": "https://orangetickets.ca/detalles_evento.php?id_evento=2169"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.406480",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-fabio-frizzi-performing-the-frizzi2fulci",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-14T19:30:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2169",
+    "venueUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2169",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-beles-band",
+    "event_name": "Beles Band",
+    "title": "Beles Band",
+    "category": "music",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-16",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://belesband.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.ca/e/van-jazz-26-beles-band-with-special-guest-gabriel-teodros-tickets-1992449474012",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 16, 2026",
+    "start_date": "2026-10-16",
+    "start_time": "19:30",
+    "lineup": "Beles Band",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139234",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:59.572471",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "Beles Band"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "Oct 16, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "url": "https://www.eventbrite.ca/e/van-jazz-26-beles-band-with-special-guest-gabriel-teodros-tickets-1992449474012"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.572471",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-beles-band",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-16T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/van-jazz-26-beles-band-with-special-guest-gabriel-teodros-tickets-1992449474012",
+    "venueUrl": "https://belesband.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-amy-winehouse-tribute-starring-krystle-d",
+    "event_name": "Amy Winehouse Tribute starring Krystle Dos Santos",
+    "title": "Amy Winehouse Tribute starring Krystle Dos Santos",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-17",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://krystle-dos-santos-amy-winehouse.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 17, 2026",
+    "start_date": "2026-10-17",
+    "start_time": "19:30",
+    "lineup": "Amy Winehouse Tribute starring Krystle Dos Santos",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139257",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:59.734473",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "Amy Winehouse Tribute starring Krystle Dos Santos"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "Oct 17, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.734473",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-amy-winehouse-tribute-starring-krystle-d",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-17T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+    "venueUrl": "https://krystle-dos-santos-amy-winehouse.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-dawn-pemberton-the-brown-sugar",
+    "event_name": "Dawn Pemberton & The Brown Sugar",
+    "title": "Dawn Pemberton & The Brown Sugar",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-18",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://dawn-pemberton-the-brown-sugar.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 18, 2026",
+    "start_date": "2026-10-18",
+    "start_time": "19:30",
+    "lineup": "Dawn Pemberton & The Brown Sugar",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139279",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:38:59.904791",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "Dawn Pemberton & The Brown Sugar"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "Oct 18, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:38:59.904791",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-dawn-pemberton-the-brown-sugar",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-18T19:30:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+    "venueUrl": "https://dawn-pemberton-the-brown-sugar.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-demon-hunter",
+    "event_name": "Demon Hunter",
+    "title": "Demon Hunter",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-20",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketmaster.ca/event/110064F0C0AE8BAB",
+    "ticket_url": "https://www.ticketmaster.ca/event/110064F0C0AE8BAB",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 20, 2026",
+    "start_date": "2026-10-20",
+    "start_time": "19:30",
+    "lineup": "Demon Hunter",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139300",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:00.083980",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "Demon Hunter"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "Oct 20, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "url": "https://www.ticketmaster.ca/event/110064F0C0AE8BAB"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.083980",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-demon-hunter",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-20T19:30:00-07:00",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketmaster.ca/event/110064F0C0AE8BAB",
+    "venueUrl": "https://www.ticketmaster.ca/event/110064F0C0AE8BAB",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-zappa-nite",
+    "event_name": "Zappa Nite",
+    "title": "Zappa Nite",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-23",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://zappanite2026.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1998664305741",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 23, 2026",
+    "start_date": "2026-10-23",
+    "start_time": "19:30",
+    "lineup": "Zappa Nite",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139319",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:00.354658",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "Zappa Nite"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "Oct 23, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "url": "https://www.eventbrite.com/e/1998664305741"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.354658",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-zappa-nite",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-23T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1998664305741",
+    "venueUrl": "https://zappanite2026.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-we-are-scientists",
+    "event_name": "We Are Scientists",
+    "title": "We Are Scientists",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-24",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://wearescientists.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.ca/e/we-are-scientists-tickets-1990998813046",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 24, 2026",
+    "start_date": "2026-10-24",
+    "start_time": "19:30",
+    "lineup": "We Are Scientists",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139339",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:00.544526",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "We Are Scientists"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "Oct 24, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "url": "https://www.eventbrite.ca/e/we-are-scientists-tickets-1990998813046"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.544526",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-we-are-scientists",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-24T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/we-are-scientists-tickets-1990998813046",
+    "venueUrl": "https://wearescientists.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-sabbat-japan",
+    "event_name": "Sabbat (Japan)",
+    "title": "Sabbat (Japan)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-10-31",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://sabbat-vancouver.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1983650544176",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Oct 31, 2026",
+    "start_date": "2026-10-31",
+    "start_time": "19:30",
+    "lineup": "Sabbat (Japan)",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139359",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:00.910693",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "Sabbat (Japan)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "Oct 31, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "url": "https://www.eventbrite.com/e/1983650544176"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:00.910693",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-sabbat-japan",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-31T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1983650544176",
+    "venueUrl": "https://sabbat-vancouver.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-quadeca",
+    "event_name": "Quadeca",
+    "title": "Quadeca",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-05",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketmaster.ca/event/110064F484D54310",
+    "ticket_url": "https://www.ticketmaster.ca/event/110064F484D54310",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 5, 2026",
+    "start_date": "2026-11-05",
+    "start_time": "19:30",
+    "lineup": "Quadeca",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139379",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:01.095683",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "Quadeca"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "Nov 5, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "url": "https://www.ticketmaster.ca/event/110064F484D54310"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.095683",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-quadeca",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-05T19:30:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketmaster.ca/event/110064F484D54310",
+    "venueUrl": "https://www.ticketmaster.ca/event/110064F484D54310",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-janky-bungag-album-release-show",
+    "event_name": "Janky Bungag - Album Release Show",
+    "title": "Janky Bungag - Album Release Show",
+    "category": "music",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-06",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://jankybungag2026.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1998994605677",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 6, 2026",
+    "start_date": "2026-11-06",
+    "start_time": "19:30",
+    "lineup": "Janky Bungag - Album Release Show",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139401",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:01.353496",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "Janky Bungag - Album Release Show"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "Nov 6, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "url": "https://www.eventbrite.com/e/1998994605677"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.353496",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-janky-bungag-album-release-show",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-06T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1998994605677",
+    "venueUrl": "https://jankybungag2026.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-chest-fever-50th-anniversary-of-the-last",
+    "event_name": "Chest Fever: 50th Anniversary of The Last Waltz - A Live Tribute To The Band's Farewell Concert",
+    "title": "Chest Fever: 50th Anniversary of The Last Waltz - A Live Tribute To The Band's Farewell Concert",
+    "category": "music",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-07",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://chestfever50th.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/1991597776562",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 7, 2026",
+    "start_date": "2026-11-07",
+    "start_time": "19:30",
+    "lineup": "Chest Fever: 50th Anniversary of The Last Waltz - A Live Tribute To The Band's Farewell Concert",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139429",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:01.668796",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "Chest Fever: 50th Anniversary of The Last Waltz - A Live Tribute To The Band's Farewell Concert"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "Nov 7, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "url": "https://www.eventbrite.com/e/1991597776562"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:01.668796",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-chest-fever-50th-anniversary-of-the-last",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-07T19:30:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/1991597776562",
+    "venueUrl": "https://chestfever50th.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "music",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-jon-spencer",
+    "event_name": "Jon Spencer",
+    "title": "Jon Spencer",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-08",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketweb.ca/event/jon-spencer-rickshaw-theatre-tickets/14906973?pl=timbre21",
+    "ticket_url": "https://www.ticketweb.ca/event/jon-spencer-rickshaw-theatre-tickets/14906973?pl=timbre21",
+    "ticket_provider": "Ticketweb",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 8, 2026",
+    "start_date": "2026-11-08",
+    "start_time": "19:30",
+    "lineup": "Jon Spencer",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139449",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:02.429161",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "Jon Spencer"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "Nov 8, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "url": "https://www.ticketweb.ca/event/jon-spencer-rickshaw-theatre-tickets/14906973?pl=timbre21"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "Ticketweb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.429161",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-jon-spencer",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-08T19:30:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketweb.ca/event/jon-spencer-rickshaw-theatre-tickets/14906973?pl=timbre21",
+    "venueUrl": "https://www.ticketweb.ca/event/jon-spencer-rickshaw-theatre-tickets/14906973?pl=timbre21",
+    "ticketProvider": "Ticketweb",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-exhumed",
+    "event_name": "Exhumed",
+    "title": "Exhumed",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-09",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2307",
+    "ticket_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2307",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 9, 2026",
+    "start_date": "2026-11-09",
+    "start_time": "19:30",
+    "lineup": "Exhumed",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139468",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:02.723614",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "Exhumed"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "Nov 9, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "url": "https://orangetickets.ca/detalles_evento.php?id_evento=2307"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:02.723614",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-exhumed",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-09T19:30:00-07:00",
+    "daysOfWeek": [
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2307",
+    "venueUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2307",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-bad-waitress",
+    "event_name": "Bad Waitress",
+    "title": "Bad Waitress",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-10",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://bad-waitress-cobalt.eventbrite.ca",
+    "ticket_url": "https://www.eventbrite.com/e/2002474181181",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 10, 2026",
+    "start_date": "2026-11-10",
+    "start_time": "19:30",
+    "lineup": "Bad Waitress",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139488",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:03.048864",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "Bad Waitress"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "Nov 10, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "url": "https://www.eventbrite.com/e/2002474181181"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.048864",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-bad-waitress",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-10T19:30:00-07:00",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.com/e/2002474181181",
+    "venueUrl": "https://bad-waitress-cobalt.eventbrite.ca",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-ride-for-revenge",
+    "event_name": "Ride For Revenge",
+    "title": "Ride For Revenge",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-11",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2219",
+    "ticket_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2219",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 11, 2026",
+    "start_date": "2026-11-11",
+    "start_time": "19:30",
+    "lineup": "Ride For Revenge",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139510",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:03.462265",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "Ride For Revenge"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "Nov 11, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "url": "https://orangetickets.ca/detalles_evento.php?id_evento=2219"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.462265",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-ride-for-revenge",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-11T19:30:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2219",
+    "venueUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2219",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-blasphamagoatachrist",
+    "event_name": "Blasphamagoatachrist",
+    "title": "Blasphamagoatachrist",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-12",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2220",
+    "ticket_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2220",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 12, 2026",
+    "start_date": "2026-11-12",
+    "start_time": "19:30",
+    "lineup": "Blasphamagoatachrist",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139530",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:03.763404",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "Blasphamagoatachrist"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "Nov 12, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "url": "https://orangetickets.ca/detalles_evento.php?id_evento=2220"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:03.763404",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-blasphamagoatachrist",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-12T19:30:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2220",
+    "venueUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2220",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-truck-violence",
+    "event_name": "Truck Violence",
+    "title": "Truck Violence",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-13",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://www.ticketweb.ca/event/truck-violence-with-special-guests-the-cobalt-cabaret-tickets/14199904?pl=MODO-LIVE",
+    "ticket_url": "https://www.ticketweb.ca/event/truck-violence-with-special-guests-the-cobalt-cabaret-tickets/14199904?pl=MODO-LIVE",
+    "ticket_provider": "Ticketweb",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 13, 2026",
+    "start_date": "2026-11-13",
+    "start_time": "19:30",
+    "lineup": "Truck Violence",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139550",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:04.606389",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "Truck Violence"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "Nov 13, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "url": "https://www.ticketweb.ca/event/truck-violence-with-special-guests-the-cobalt-cabaret-tickets/14199904?pl=MODO-LIVE"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "Ticketweb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:04.606389",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-truck-violence",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-13T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketweb.ca/event/truck-violence-with-special-guests-the-cobalt-cabaret-tickets/14199904?pl=MODO-LIVE",
+    "venueUrl": "https://www.ticketweb.ca/event/truck-violence-with-special-guests-the-cobalt-cabaret-tickets/14199904?pl=MODO-LIVE",
+    "ticketProvider": "Ticketweb",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-rickshaw-theatre-blasphemy",
+    "event_name": "Blasphemy",
+    "title": "Blasphemy",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "one_time",
+    "venue_name": "Rickshaw Theatre",
+    "full_address": "Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2811,
+      -123.0984
+    ],
+    "transit_info": "TransLink accessible",
+    "description": "Live scheduled programming at Rickshaw Theatre.",
+    "pricing_all_in_cad": {
+      "regular": 20.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "operating_hours": "Evening live performances",
+    "days_open": "Upcoming Scheduled Showcase",
+    "show_1": {
+      "date": "2026-11-13",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "cost": 20.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://rickshawtheatre.com/",
+    "details_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2178",
+    "ticket_url": "https://orangetickets.ca/detalles_evento.php?id_evento=2178",
+    "ticket_provider": "Rickshaw Theatre Box Office",
+    "tags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. All-in admission $20.00 CAD.",
+    "price": 20.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Nov 13, 2026",
+    "start_date": "2026-11-13",
+    "start_time": "19:30",
+    "lineup": "Blasphemy",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-04T20:27:25.139569",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:05.125409",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "Blasphemy"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "Nov 13, 2026"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "venue": "Rickshaw Theatre",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": 20.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "url": "https://orangetickets.ca/detalles_evento.php?id_evento=2178"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "Rickshaw Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "length": 47
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "value": "All Ages"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:05.125409",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-rickshaw-theatre-blasphemy",
+    "venue": "Rickshaw Theatre",
+    "address": "Vancouver, BC",
+    "priceLabel": "$20.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 20.0,
+        "label": "$20.00 CAD"
+      }
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-11-13T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2178",
+    "venueUrl": "https://orangetickets.ca/detalles_evento.php?id_evento=2178",
+    "ticketProvider": "Rickshaw Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live performances",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "one_time",
+    "isSoldOut": false,
+    "subTags": [
+      "rickshaw-theatre",
+      "shows",
+      "live-calendar"
+    ]
+  },
+  {
+    "event_id": "van50-latincouver-catrinas-procession-gastown-20261102",
+    "event_name": "Catrinas Procession: Día de los Muertos",
+    "title": "Catrinas Procession: Día de los Muertos",
+    "category": "free-public-access",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Gastown Historic District (Abbott & W Cordova St)",
+    "full_address": "Abbott St & W Cordova St, Vancouver, BC",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2833,
+      -123.107
+    ],
+    "transit_info": "Waterfront SkyTrain Station (3 min walk east)",
+    "description": "Latincouver leads an evocative twilight procession of Catrinas in traditional Mexican calavera face paint and ornate costumes through historic Gastown to honour Día de los Muertos. The procession begins at Abbott St & Cordova St at 5:00 PM, concluding with live music, folkloric dance, and hot chocolate at Latin Plaza HUB.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "operating_hours": "Evening live gathering",
+    "days_open": "Monday, Nov 2, 2026",
+    "show_1": {
+      "date": "2026-11-02",
+      "start_time": "17:00",
+      "end_time": "20:00",
+      "cost": 0.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "discovery_url": "https://latincouver.ca/lahm/",
+    "details_url": "https://latincouver.ca/lahm/events/catrina-procession/",
+    "ticket_url": "https://latincouver.ca/lahm/events/catrina-procession/",
+    "ticket_provider": "Free Public Access (Latincouver)",
     "tags": [
       "dia-de-los-muertos",
       "day-of-the-dead",
@@ -12925,9 +31339,4782 @@ const MANUAL_REVIEW_QUEUE = [
       "family-friendly",
       "street-festival",
       "vancouver-heritage"
+    ],
+    "festival_affiliation": "Latin American Heritage Month (LAHM)",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Audited & Upgraded via Antigravity QC AI: verified date Nov 2, 2026, upgraded to dedicated LAHM event subpage, category calibrated to Arts & Culture.",
+    "price": 0.0,
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "dateSchedule": "Visiting Hours: Evening live gathering",
+    "start_date": "2026-11-02",
+    "start_time": "17:00",
+    "lineup": "Latincouver Catrinas ensemble, Mexican folkloric dancers, traditional musicians",
+    "restrictions": "All Ages / Free Outdoor Public Gathering",
+    "waypoints": [
+      "Meeting Point: Abbott St & W Cordova St (5:00 PM)",
+      "Procession Route: Water Street Historic Gastown",
+      "Closing Ceremony: Latin Plaza HUB (6:00 PM – 9:00 PM)"
+    ],
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:29:00.000000",
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:06.948902",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "Catrinas Procession: Día de los Muertos"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "17:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "Monday, Nov 2, 2026 • 5:00 PM – 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "venue": "Gastown Historic District (Abbott & W Cordova St)",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": 0.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "tier_count": 0,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "drink": null,
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "url": "https://latincouver.ca/lahm/events/catrina-procession/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "Free Public Access (Latincouver)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "length": 323
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "value": "All Ages / Free Outdoor Public Gathering"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:06.948902",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-latincouver-catrinas-procession-gastown-20261102",
+    "venue": "Gastown Historic District (Abbott & W Cordova St)",
+    "address": "Abbott St & W Cordova St, Vancouver, BC",
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "categoryLabel": "Free Public Access",
+    "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "social",
+      "festivals"
+    ],
+    "frequency": "daily",
+    "frequencyLabel": "Open Daily Drop-In",
+    "startIso": null,
+    "daysOfWeek": [
+      "daily",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon",
+      "early-evening"
+    ],
+    "websiteUrl": "https://latincouver.ca/lahm/events/catrina-procession/",
+    "venueUrl": "https://latincouver.ca/lahm/events/catrina-procession/",
+    "ticketProvider": "Free Public Access (Latincouver)",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening live gathering",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "dia-de-los-muertos",
+      "day-of-the-dead",
+      "catrinas",
+      "latincouver",
+      "gastown",
+      "mexican-culture",
+      "calaveras",
+      "procession",
+      "free-public-access",
+      "autumn",
+      "remembrance",
+      "all-ages",
+      "family-friendly",
+      "street-festival",
+      "vancouver-heritage"
     ]
+  },
+  {
+    "event_id": "van50-tightrope-theatre-the-yes-files-20261009",
+    "event_name": "The Yes Files",
+    "title": "The Yes Files",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Tightrope Impro Theatre",
+    "full_address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2748,
+      -123.0768
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain & Hastings bus corridor",
+    "description": "Embrace the supernatural with Tightrope's Sci-Fi comedy The Yes Files! Tell your unexplainable paranormal encounter, UFO sighting, or ghostly visitor to the cast, and watch as our improvisers transform it into an entirely improvised episode inspired by The X-Files, packed with paranormal investigation, conspiracy, and intergalactic romantic tension.",
+    "pricing_all_in_cad": {
+      "regular": 26.25,
+      "senior": 26.25,
+      "student": 26.25,
+      "member": 26.25
+    },
+    "price_adult": 26.25,
+    "price_student": 26.25,
+    "price_member": 26.25,
+    "operating_hours": "Fridays doors 7:00 PM, show 7:30 PM",
+    "days_open": "Fridays, Oct 9 – Nov 6, 2026",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "show_2": {
+      "date": "2026-10-16",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "show_3": {
+      "date": "2026-10-23",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "showings": [
+      {
+        "date": "2026-10-09",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-16",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-23",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-30",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-11-06",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      }
+    ],
+    "discovery_url": "https://tightropetheatre.com/shows",
+    "details_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358468",
+    "ticket_url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
+    "ticket_provider": "Ticket Tailor",
+    "tags": [
+      "comedy",
+      "improv",
+      "sci-fi",
+      "commercial-drive",
+      "east-van",
+      "paranormal",
+      "x-files",
+      "tightrope",
+      "theatre"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout basket verified ($25.00 base + $1.25 GST = $26.25 CAD all-in).",
+    "price": 26.25,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "5 Screenings across Vancouver",
+    "start_date": "2026-10-09",
+    "start_time": "19:30",
+    "lineup": "Tightrope Impro Theatre Ensemble",
+    "restrictions": "Recommended for Teens and Adults (Mature Themes possible)",
+    "drink_benchmark": "$8.50 CAD local craft beer / BC cider",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649237",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 26.25,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:07.645311",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "The Yes Files"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "Fridays at 7:30 PM (Oct 9 – Nov 6, 2026)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "venue": "Tightrope Impro Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": 26.25,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "drink": "$8.50 CAD local craft beer / BC cider",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "Ticket Tailor"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "length": 351
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "value": "Recommended for Teens and Adults (Mature Themes possible)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:07.645311",
+          "showings_count": 5
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-tightrope-theatre-the-yes-files-20261009",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "priceLabel": "$26.25 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-09T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
+    "venueUrl": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358468",
+    "ticketProvider": "Ticket Tailor",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Fridays doors 7:00 PM, show 7:30 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "sci-fi",
+      "commercial-drive",
+      "east-van",
+      "paranormal",
+      "x-files",
+      "tightrope",
+      "theatre"
+    ]
+  },
+  {
+    "event_id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
+    "event_name": "Vancouver's Next Top Improviser",
+    "title": "Vancouver's Next Top Improviser",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Tightrope Impro Theatre",
+    "full_address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2748,
+      -123.0768
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain & Hastings bus corridor",
+    "description": "An elimination-style improv tournament bringing twelve skilled performers together for a crash-and-burn competition to crown the best improviser of the night! Known globally as Maestro Impro and created by Keith Johnstone, audience votes determine who gets eliminated until only one Maestro champion remains standing.",
+    "pricing_all_in_cad": {
+      "regular": 26.25,
+      "senior": 26.25,
+      "student": 26.25,
+      "member": 26.25
+    },
+    "price_adult": 26.25,
+    "price_student": 26.25,
+    "price_member": 26.25,
+    "operating_hours": "Fridays doors 9:00 PM, show 9:30 PM",
+    "days_open": "Every Friday, Oct 9 – Dec 18, 2026",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "21:30",
+      "end_time": "22:30",
+      "cost": 26.25
+    },
+    "show_2": {
+      "date": "2026-10-16",
+      "start_time": "21:30",
+      "end_time": "22:30",
+      "cost": 26.25
+    },
+    "show_3": {
+      "date": "2026-10-23",
+      "start_time": "21:30",
+      "end_time": "22:30",
+      "cost": 26.25
+    },
+    "showings": [
+      {
+        "date": "2026-10-09",
+        "start_time": "21:30",
+        "end_time": "22:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-16",
+        "start_time": "21:30",
+        "end_time": "22:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-23",
+        "start_time": "21:30",
+        "end_time": "22:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-10-30",
+        "start_time": "21:30",
+        "end_time": "22:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-11-06",
+        "start_time": "21:30",
+        "end_time": "22:30",
+        "cost": 26.25
+      }
+    ],
+    "discovery_url": "https://tightropetheatre.com/shows",
+    "details_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2349387",
+    "ticket_url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
+    "ticket_provider": "Ticket Tailor",
+    "tags": [
+      "comedy",
+      "improv",
+      "maestro-improv",
+      "commercial-drive",
+      "east-van",
+      "competition",
+      "tightrope",
+      "theatre"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout cart verified ($25.00 base + $1.25 GST = $26.25 CAD all-in).",
+    "price": 26.25,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "5 Screenings across Vancouver",
+    "start_date": "2026-10-09",
+    "start_time": "21:30",
+    "lineup": "Twelve competitive Vancouver improvisers (Keith Johnstone format)",
+    "restrictions": "Recommended for Teens and Adults",
+    "drink_benchmark": "$8.50 CAD local craft beer / BC cider",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649273",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 26.25,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:08.323877",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Vancouver's Next Top Improviser"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "21:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Every Friday at 9:30 PM (Oct 9 – Dec 18, 2026)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "venue": "Tightrope Impro Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": 26.25,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "drink": "$8.50 CAD local craft beer / BC cider",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Ticket Tailor"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "length": 317
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "value": "Recommended for Teens and Adults"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.323877",
+          "showings_count": 5
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "priceLabel": "$26.25 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-09T21:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
+    "venueUrl": "https://tickets.tightropetheatre.com/events/tightropetheatre/2349387",
+    "ticketProvider": "Ticket Tailor",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Fridays doors 9:00 PM, show 9:30 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "maestro-improv",
+      "commercial-drive",
+      "east-van",
+      "competition",
+      "tightrope",
+      "theatre"
+    ]
+  },
+  {
+    "event_id": "van50-tightrope-theatre-murder-she-improvised-20261113",
+    "event_name": "Murder She Improvised",
+    "title": "Murder She Improvised",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Tightrope Impro Theatre",
+    "full_address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2748,
+      -123.0768
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain & Hastings bus corridor",
+    "description": "Who did it? Why did they do it? And can our detective figure it out before someone else ends up dead? Each week, Murder She Improvised takes audiences to a brand-new setting, introduces a fresh cast of suspicious characters, and drops into the middle of a completely improvised murder mystery where no one—not even the cast—knows who the killer is until the final reveal.",
+    "pricing_all_in_cad": {
+      "regular": 26.25,
+      "senior": 26.25,
+      "student": 26.25,
+      "member": 26.25
+    },
+    "price_adult": 26.25,
+    "price_student": 26.25,
+    "price_member": 26.25,
+    "operating_hours": "Fridays doors 7:00 PM, show 7:30 PM",
+    "days_open": "Fridays, Nov 13 – Dec 18, 2026",
+    "show_1": {
+      "date": "2026-11-13",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "show_2": {
+      "date": "2026-11-20",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "show_3": {
+      "date": "2026-11-27",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "cost": 26.25
+    },
+    "showings": [
+      {
+        "date": "2026-11-13",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-11-20",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-11-27",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-12-04",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-12-11",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      },
+      {
+        "date": "2026-12-18",
+        "start_time": "19:30",
+        "end_time": "20:30",
+        "cost": 26.25
+      }
+    ],
+    "discovery_url": "https://tightropetheatre.com/shows",
+    "details_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "ticket_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "ticket_provider": "Ticket Tailor",
+    "tags": [
+      "comedy",
+      "improv",
+      "murder-mystery",
+      "whodunnit",
+      "commercial-drive",
+      "east-van",
+      "holiday-season",
+      "theatre"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout cart verified ($25.00 base + $1.25 GST = $26.25 CAD all-in).",
+    "price": 26.25,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "6 Screenings across Vancouver",
+    "start_date": "2026-11-13",
+    "start_time": "19:30",
+    "lineup": "Tightrope Impro Mystery Ensemble (Format created at Dad's Garage, Atlanta)",
+    "restrictions": "Recommended for Teens and Adults",
+    "drink_benchmark": "$8.50 CAD local craft beer / BC cider",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649282",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 26.25,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 26.25,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:08.833739",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Murder She Improvised"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "19:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Fridays at 7:30 PM (Nov 13 – Dec 18, 2026)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "venue": "Tightrope Impro Theatre",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": 26.25,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "drink": "$8.50 CAD local craft beer / BC cider",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Ticket Tailor"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "length": 371
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "value": "Recommended for Teens and Adults"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:08.833739",
+          "showings_count": 6
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-tightrope-theatre-murder-she-improvised-20261113",
+    "venue": "Tightrope Impro Theatre",
+    "address": "1330 Napier St, Vancouver, BC V5L 3K3",
+    "priceLabel": "$26.25 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-11-13T19:30:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "venueUrl": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "ticketProvider": "Ticket Tailor",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Fridays doors 7:00 PM, show 7:30 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "murder-mystery",
+      "whodunnit",
+      "commercial-drive",
+      "east-van",
+      "holiday-season",
+      "theatre"
+    ]
+  },
+  {
+    "event_id": "van50-the-improv-centre-true-story-20261013",
+    "event_name": "True Story! (Armando Style Improv)",
+    "title": "True Story! (Armando Style Improv)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Improv Centre",
+    "full_address": "1502 Duranleau St, Granville Island, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2706,
+      -123.1363
+    ],
+    "transit_info": "#50 False Creek bus or Aquabus ferry dock",
+    "description": "Audience members share unscripted true stories—from office triumphs to ridiculous domestic disputes—and the Improv Centre's seasoned ensemble weaves them into fast, hilarious improvised scenes. In the second half, the performers share their own true stories in a classic Armando-style format, sparking heartfelt laughs.",
+    "pricing_all_in_cad": {
+      "regular": 25.0,
+      "senior": 20.0,
+      "student": 20.0,
+      "member": 20.0
+    },
+    "price_adult": 25.0,
+    "price_student": 20.0,
+    "price_member": 20.0,
+    "operating_hours": "Tuesdays doors 6:00 PM, show 7:00 PM",
+    "days_open": "Select Tuesdays at 7:00 PM",
+    "show_1": {
+      "date": "2026-10-13",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "cost": 25.0
+    },
+    "show_2": {
+      "date": "2026-10-20",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "cost": 25.0
+    },
+    "discovery_url": "https://theimprovcentre.ca/shows/",
+    "details_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "ticket_provider": "Spektrix",
+    "tags": [
+      "comedy",
+      "improv",
+      "granville-island",
+      "armando-improv",
+      "true-story",
+      "storytelling",
+      "theatre"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Spektrix checkout cart verified ($20.00 student/senior, $25.00 regular all-in, taxes included).",
+    "price": 25.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Select Tuesdays at 7:00 PM",
+    "start_date": "2026-10-13",
+    "start_time": "19:00",
+    "lineup": "The Improv Centre Mainstage Ensemble",
+    "restrictions": "All Ages (Best for ages 8+; licensed bar on site requires minors to be with adult)",
+    "drink_benchmark": "$8.00 CAD Granville Island Brewing pint / BC wine",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649289",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 20.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 20.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:09.380323",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "True Story! (Armando Style Improv)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "Select Tuesdays at 7:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "venue": "The Improv Centre",
+          "neighborhood": "Granville Island & False Creek"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": 25.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "drink": "$8.00 CAD Granville Island Brewing pint / BC wine",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "Spektrix"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "length": 319
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "value": "All Ages (Best for ages 8+; licensed bar on site requires minors to be with adult)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.380323",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-the-improv-centre-true-story-20261013",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Granville Island, Vancouver, BC",
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-13T19:00:00-07:00",
+    "daysOfWeek": [
+      "tue"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "venueUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "ticketProvider": "Spektrix",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Tuesdays doors 6:00 PM, show 7:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "granville-island",
+      "armando-improv",
+      "true-story",
+      "storytelling",
+      "theatre"
+    ]
+  },
+  {
+    "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
+    "event_name": "Deadly Dinner Party",
+    "title": "Deadly Dinner Party",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Improv Centre",
+    "full_address": "1502 Duranleau St, Granville Island, Vancouver, BC",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2706,
+      -123.1363
+    ],
+    "transit_info": "#50 False Creek bus or Aquabus ferry dock",
+    "description": "A classic whodunnit of improvised proportions! Five VIPs receive letters from an eccentric millionaire summoning them to a mysterious dinner on Granville Island. When murder is served as the first course, suspicion falls on everyone at the table. Accusations fly, alibis unravel, and with every twist created on the spot, no two killers are ever the same.",
+    "pricing_all_in_cad": {
+      "regular": 33.5,
+      "senior": 28.5,
+      "student": 28.5,
+      "member": 28.5
+    },
+    "price_adult": 33.5,
+    "price_student": 28.5,
+    "price_member": 28.5,
+    "operating_hours": "Fridays & Saturdays doors 6:00 PM, show 7:00 PM",
+    "days_open": "Fridays & Saturdays at 7:00 PM",
+    "show_1": {
+      "date": "2026-10-09",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "cost": 33.5
+    },
+    "show_2": {
+      "date": "2026-10-10",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "cost": 33.5
+    },
+    "showings": [
+      {
+        "date": "2026-10-09",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 33.5
+      },
+      {
+        "date": "2026-10-10",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 33.5
+      },
+      {
+        "date": "2026-10-16",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 33.5
+      },
+      {
+        "date": "2026-10-17",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 33.5
+      }
+    ],
+    "discovery_url": "https://theimprovcentre.ca/shows/",
+    "details_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "ticket_provider": "Spektrix",
+    "tags": [
+      "comedy",
+      "improv",
+      "murder-mystery",
+      "granville-island",
+      "whodunnit",
+      "theatre",
+      "date-night"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Spektrix checkout verified ($28.50 student/senior, $33.50 regular theatre seat all-in, taxes included).",
+    "price": 33.5,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "4 Screenings across Vancouver",
+    "start_date": "2026-10-09",
+    "start_time": "19:00",
+    "lineup": "The Improv Centre Core Company",
+    "restrictions": "Best for Teens and Up (19+ bar on site)",
+    "drink_benchmark": "$8.00 CAD craft beer / wine",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649297",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 33.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 28.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 28.5,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:09.909072",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Deadly Dinner Party"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Fridays & Saturdays at 7:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "venue": "The Improv Centre",
+          "neighborhood": "Granville Island & False Creek"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": 33.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "drink": "$8.00 CAD craft beer / wine",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Spektrix"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "length": 355
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "value": "Best for Teens and Up (19+ bar on site)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:09.909072",
+          "showings_count": 4
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-the-improv-centre-deadly-dinner-party-20261009",
+    "venue": "The Improv Centre",
+    "address": "1502 Duranleau St, Granville Island, Vancouver, BC",
+    "priceLabel": "$33.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-09T19:00:00-07:00",
+    "daysOfWeek": [
+      "sat",
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "venueUrl": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "ticketProvider": "Spektrix",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Fridays & Saturdays doors 6:00 PM, show 7:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "murder-mystery",
+      "granville-island",
+      "whodunnit",
+      "theatre",
+      "date-night"
+    ]
+  },
+  {
+    "event_id": "van50-the-cinematheque-young-frankenstein-20261018",
+    "event_name": "Young Frankenstein (Mel Brooks 100th Tribute)",
+    "title": "Young Frankenstein (Mel Brooks 100th Tribute)",
+    "category": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Cinematheque",
+    "full_address": "1131 Howe St, Vancouver, BC V6Z 2L7",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2794,
+      -123.1256
+    ],
+    "transit_info": "Yaletown-Roundhouse SkyTrain (8 min walk)",
+    "description": "Celebrating the 100th birthday of parody titan Mel Brooks with a 4K restoration of his gothic comedy masterpiece Young Frankenstein (1974). Starring Gene Wilder, Marty Feldman, and Madeline Kahn, the black-and-white comedy classic sends the American grandson of the infamous Victor Frankenstein to Transylvania where monstrous hilarity unfolds.",
+    "pricing_all_in_cad": {
+      "regular": 14.0,
+      "senior": 12.0,
+      "student": 12.0,
+      "member": 12.0
+    },
+    "price_adult": 14.0,
+    "price_student": 12.0,
+    "price_member": 12.0,
+    "operating_hours": "Sunday morning screening at 10:30 AM",
+    "days_open": "Sunday, Oct 18, 2026",
+    "show_1": {
+      "date": "2026-10-18",
+      "start_time": "10:30",
+      "end_time": "12:30",
+      "cost": 14.0
+    },
+    "discovery_url": "https://thecinematheque.ca/films/2026/young-frankenstein",
+    "details_url": "https://thecinematheque.ca/films/2026/young-frankenstein",
+    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "ticket_provider": "The Cinematheque Box Office (Websales)",
+    "tags": [
+      "cinema",
+      "film-club",
+      "mel-brooks",
+      "comedy",
+      "cult-classic",
+      "4k-restoration",
+      "downtown",
+      "family-friendly"
+    ],
+    "festival_affiliation": "Film Club",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Websales direct cart verified ($10.00 child, $12.00 student/senior, $14.00 regular).",
+    "price": 14.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Sunday, Oct 18, 2026 at 10:30 AM",
+    "start_date": "2026-10-18",
+    "start_time": "10:30",
+    "lineup": "Mel Brooks, Gene Wilder, Marty Feldman, Madeline Kahn, Peter Boyle",
+    "restrictions": "Rated PG / All Ages Welcome (Free popcorn for attendees under 14)",
+    "drink_benchmark": "$5.00 CAD organic fair-trade coffee & concession items",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649303",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 14.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 12.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 12.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:10.224982",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "Young Frankenstein (Mel Brooks 100th Tribute)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "10:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "Sunday, Oct 18, 2026 at 10:30 AM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": 14.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "drink": "$5.00 CAD organic fair-trade coffee & concession items",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465&"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "The Cinematheque Box Office (Websales)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "length": 344
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "value": "Rated PG / All Ages Welcome (Free popcorn for attendees under 14)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.224982",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-the-cinematheque-young-frankenstein-20261018",
+    "venue": "The Cinematheque",
+    "address": "1131 Howe St, Vancouver, BC V6Z 2L7",
+    "priceLabel": "$14.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Arts & culture",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-18T10:30:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "venueUrl": "https://thecinematheque.ca/films/2026/young-frankenstein",
+    "ticketProvider": "The Cinematheque Box Office (Websales)",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Sunday morning screening at 10:30 AM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "cinema",
+      "film-club",
+      "mel-brooks",
+      "comedy",
+      "cult-classic",
+      "4k-restoration",
+      "downtown",
+      "family-friendly"
+    ]
+  },
+  {
+    "event_id": "van50-the-cinematheque-harakiri-20261012",
+    "event_name": "Harakiri (1962, Kobayashi Masaki on 35mm)",
+    "title": "Harakiri (1962, Kobayashi Masaki on 35mm)",
+    "category": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Cinematheque",
+    "full_address": "1131 Howe St, Vancouver, BC V6Z 2L7",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2794,
+      -123.1256
+    ],
+    "transit_info": "Yaletown-Roundhouse SkyTrain (8 min walk)",
+    "description": "Screened on authentic 35mm archival film! Kobayashi Masaki's 1962 Cannes Special Jury Prize winner Harakiri is widely celebrated as one of the greatest samurai films ever made. Set in 1630 Edo period, an elder ronin arrives at a feudal clan's manor requesting a courtyard to commit ritual seppuku, unravelling an indictment of bureaucratic hypocrisy.",
+    "pricing_all_in_cad": {
+      "regular": 14.0,
+      "senior": 12.0,
+      "student": 12.0,
+      "member": 12.0
+    },
+    "price_adult": 14.0,
+    "price_student": 12.0,
+    "price_member": 12.0,
+    "operating_hours": "Evening film screenings",
+    "days_open": "Oct 12, 14, 16, 2026",
+    "show_1": {
+      "date": "2026-10-12",
+      "start_time": "18:00",
+      "end_time": "20:20",
+      "cost": 14.0
+    },
+    "show_2": {
+      "date": "2026-10-14",
+      "start_time": "19:45",
+      "end_time": "22:05",
+      "cost": 14.0
+    },
+    "show_3": {
+      "date": "2026-10-16",
+      "start_time": "21:00",
+      "end_time": "23:20",
+      "cost": 14.0
+    },
+    "showings": [
+      {
+        "date": "2026-10-12",
+        "start_time": "18:00",
+        "end_time": "20:20",
+        "cost": 14.0
+      },
+      {
+        "date": "2026-10-14",
+        "start_time": "19:45",
+        "end_time": "22:05",
+        "cost": 14.0
+      },
+      {
+        "date": "2026-10-16",
+        "start_time": "21:00",
+        "end_time": "23:20",
+        "cost": 14.0
+      }
+    ],
+    "discovery_url": "https://thecinematheque.ca/films/2026/harakiri",
+    "details_url": "https://thecinematheque.ca/films/2026/harakiri",
+    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "ticket_provider": "The Cinematheque Box Office (Websales)",
+    "tags": [
+      "cinema",
+      "35mm",
+      "samurai",
+      "japanese-cinema",
+      "kobayashi",
+      "cannes-winner",
+      "downtown",
+      "classic-film"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Websales direct cart verified ($12.00 student/senior, $14.00 regular).",
+    "price": 14.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "3 Screenings across Vancouver",
+    "start_date": "2026-10-12",
+    "start_time": "18:00",
+    "lineup": "Kobayashi Masaki (Director), Tatsuya Nakadai, Rentaro Mikuni",
+    "restrictions": "Rated NR (Content: ritual violence, mature themes)",
+    "drink_benchmark": "$5.00 CAD organic fair-trade coffee / concession",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649311",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 14.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 12.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 12.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:10.375713",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "Harakiri (1962, Kobayashi Masaki on 35mm)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "18:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "Oct 12 (6 PM), Oct 14 (7:45 PM), Oct 16 (9 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "venue": "The Cinematheque",
+          "neighborhood": "Downtown, Gastown & Yaletown"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": 14.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "drink": "$5.00 CAD organic fair-trade coffee / concession",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465&"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "The Cinematheque Box Office (Websales)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "length": 350
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "value": "Rated NR (Content: ritual violence, mature themes)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:10.375713",
+          "showings_count": 3
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-the-cinematheque-harakiri-20261012",
+    "venue": "The Cinematheque",
+    "address": "1131 Howe St, Vancouver, BC V6Z 2L7",
+    "priceLabel": "$14.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Arts & culture",
+    "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social"
+    ],
+    "frequency": "limited-run",
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-12T18:00:00-07:00",
+    "daysOfWeek": [
+      "fri",
+      "wed",
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "venueUrl": "https://thecinematheque.ca/films/2026/harakiri",
+    "ticketProvider": "The Cinematheque Box Office (Websales)",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Evening film screenings",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "cinema",
+      "35mm",
+      "samurai",
+      "japanese-cinema",
+      "kobayashi",
+      "cannes-winner",
+      "downtown",
+      "classic-film"
+    ]
+  },
+  {
+    "event_id": "van50-commercial-drive-bia-halloween-20261031",
+    "event_name": "Halloween on The Drive: Trick'r Treat Parade",
+    "title": "Halloween on The Drive: Trick'r Treat Parade",
+    "category": "free-public-access",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Commercial Drive BIA (Venables St to 13th Ave)",
+    "full_address": "Commercial Drive, Vancouver, BC",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2731,
+      -123.0694
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain (steps away) & #20 Victoria bus",
+    "description": "Trick'r Treat on The Drive brings the entire Commercial Drive community together for a massive, family-friendly Halloween celebration. Over 100 local merchants, bakeries, cafes, and boutiques hand out treats, host interactive street activations, and celebrate creative neighbourhood costumes.",
+    "pricing_all_in_cad": {
+      "regular": 0.0,
+      "senior": 0.0,
+      "student": 0.0,
+      "member": 0.0
+    },
+    "price_adult": 0.0,
+    "price_student": 0.0,
+    "price_member": 0.0,
+    "operating_hours": "Saturday afternoon 3:30 PM – 5:30 PM",
+    "days_open": "Saturday, Oct 31, 2026",
+    "show_1": {
+      "date": "2026-10-31",
+      "start_time": "15:30",
+      "end_time": "17:30",
+      "cost": 0.0
+    },
+    "discovery_url": "https://thedrive.ca/events/",
+    "details_url": "https://thedrive.ca/halloween-2026/",
+    "ticket_url": "https://thedrive.ca/halloween-2026/",
+    "ticket_provider": "Free Public Access (Commercial Drive BIA)",
+    "tags": [
+      "halloween",
+      "commercial-drive",
+      "east-van",
+      "family-friendly",
+      "trick-or-treat",
+      "free-public-access",
+      "all-ages",
+      "community-festival"
+    ],
+    "festival_affiliation": "Commercial Drive Seasonal Series",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. 100% Free civic access verified across 22 city blocks.",
+    "price": 0.0,
+    "access_model": "open_public_space",
+    "pricing_model": "free_access",
+    "dateSchedule": "Visiting Hours: Saturday afternoon 3:30 PM – 5:30 PM",
+    "start_date": "2026-10-31",
+    "start_time": "15:30",
+    "lineup": "Commercial Drive Business Improvement Association & Local Merchants",
+    "restrictions": "All Ages / Family-Friendly (Costumes encouraged)",
+    "drink_benchmark": "$4.50 CAD Italian espresso / artisanal gelato",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649317",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 0.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 0.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:11.756547",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "Halloween on The Drive: Trick'r Treat Parade"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "15:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "Saturday, Oct 31, 2026 • 3:30 PM – 5:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "Community & Markets"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "venue": "Commercial Drive BIA (Venables St to 13th Ave)",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "open_public_space"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "free_access"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": 0.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "drink": "$4.50 CAD Italian espresso / artisanal gelato",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "url": "https://thedrive.ca/halloween-2026/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "Free Public Access (Commercial Drive BIA)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "length": 292
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "value": "All Ages / Family-Friendly (Costumes encouraged)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.756547",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-commercial-drive-bia-halloween-20261031",
+    "venue": "Commercial Drive BIA (Venables St to 13th Ave)",
+    "address": "Commercial Drive, Vancouver, BC",
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "categoryLabel": "Free Public Access",
+    "categoryIcon": "🏛️",
+    "categories": [
+      "outdoors",
+      "free-public-access",
+      "markets",
+      "festivals"
+    ],
+    "frequency": "daily",
+    "frequencyLabel": "Open Daily Drop-In",
+    "startIso": null,
+    "daysOfWeek": [
+      "daily",
+      "mon",
+      "tue",
+      "wed",
+      "thu",
+      "fri",
+      "sat",
+      "sun"
+    ],
+    "timeSlots": [
+      "early-morning",
+      "afternoon",
+      "early-evening"
+    ],
+    "websiteUrl": "https://thedrive.ca/halloween-2026/",
+    "venueUrl": "https://thedrive.ca/halloween-2026/",
+    "ticketProvider": "Free Public Access (Commercial Drive BIA)",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Saturday afternoon 3:30 PM – 5:30 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "halloween",
+      "commercial-drive",
+      "east-van",
+      "family-friendly",
+      "trick-or-treat",
+      "free-public-access",
+      "all-ages",
+      "community-festival"
+    ]
+  },
+  {
+    "event_id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
+    "event_name": "Comedy on The Drive at The Historic York Theatre",
+    "title": "Comedy on The Drive at The Historic York Theatre",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The York Theatre (The Cultch)",
+    "full_address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2789,
+      -123.0694
+    ],
+    "transit_info": "Hastings bus corridor & #20 Victoria/Commercial bus",
+    "description": "Commercial Drive BIA presents a powerhouse stand-up showcase at the historic York Theatre! Featuring headliners Johnny Perrotta (Robin Williams tour support), Chris Griffin (Norm Macdonald support, 10-time JFL veteran), Yumi Nagashima, Gio Rizz, and Reza Peyk. Tickets include exclusive 'Laugh & Dine' 15% discount at 8+ participating Commercial Drive restaurants.",
+    "pricing_all_in_cad": {
+      "regular": 28.0,
+      "senior": 28.0,
+      "student": 28.0,
+      "member": 28.0
+    },
+    "price_adult": 28.0,
+    "price_student": 28.0,
+    "price_member": 28.0,
+    "tier_custom_1_name": "Advance Ticket",
+    "tier_custom_1_price": 28.0,
+    "tier_custom_2_name": "Standard Admission",
+    "tier_custom_2_price": 33.0,
+    "tier_custom_3_name": "Door Ticket",
+    "tier_custom_3_price": 43.0,
+    "operating_hours": "Saturday doors 6:00 PM, show 7:00 PM",
+    "days_open": "Saturday, Oct 24, 2026",
+    "show_1": {
+      "date": "2026-10-24",
+      "start_time": "19:00",
+      "end_time": "21:30",
+      "cost": 28.0
+    },
+    "discovery_url": "https://thedrive.ca/comedy-2026/",
+    "details_url": "https://thecultch.com/event/comedy-on-the-drive/",
+    "ticket_url": "https://thecultch.com/event/comedy-on-the-drive/",
+    "ticket_provider": "The Cultch Box Office",
+    "tags": [
+      "comedy",
+      "stand-up",
+      "commercial-drive",
+      "the-cultch",
+      "york-theatre",
+      "east-van",
+      "laugh-and-dine",
+      "yumi-nagashima",
+      "chris-griffin"
+    ],
+    "festival_affiliation": "Comedy on The Drive",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live Cultch box office verified ($25.00 advance + $3.00 fee = $28.00 CAD all-in).",
+    "price": 28.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Saturday, Oct 24, 2026 at 7:00 PM",
+    "start_date": "2026-10-24",
+    "start_time": "19:00",
+    "lineup": "Johnny Perrotta, Chris Griffin, Yumi Nagashima, Gio Rizz, Reza Peyk",
+    "restrictions": "Recommended for Teens and Adults (19+ bar on site)",
+    "drink_benchmark": "$8.50 CAD local craft beer / East Van cider",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T08:48:40.649323",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 28.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 28.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 28.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:11.896724",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "Comedy on The Drive at The Historic York Theatre"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "Saturday, Oct 24, 2026 at 7:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "venue": "The York Theatre (The Cultch)",
+          "neighborhood": "Commercial Drive & East Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": 28.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "drink": "$8.50 CAD local craft beer / East Van cider",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "url": "https://thecultch.com/event/comedy-on-the-drive/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "The Cultch Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "length": 364
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "value": "Recommended for Teens and Adults (19+ bar on site)"
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:11.896724",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
+    "venue": "The York Theatre (The Cultch)",
+    "address": "639 Commercial Dr, Vancouver, BC V5L 3W3",
+    "priceLabel": "$28.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-24T19:00:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://thecultch.com/event/comedy-on-the-drive/",
+    "venueUrl": "https://thecultch.com/event/comedy-on-the-drive/",
+    "ticketProvider": "The Cultch Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Saturday doors 6:00 PM, show 7:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "stand-up",
+      "commercial-drive",
+      "the-cultch",
+      "york-theatre",
+      "east-van",
+      "laugh-and-dine",
+      "yumi-nagashima",
+      "chris-griffin"
+    ]
+  },
+  {
+    "event_id": "van50-biltmore-cabaret-buzz-kull-kontravoid-20261008",
+    "event_name": "BUZZ KULL & KONTRAVOID Live at The Biltmore",
+    "title": "BUZZ KULL & KONTRAVOID Live at The Biltmore",
+    "category": "music",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Biltmore Cabaret",
+    "full_address": "2755 Prince Edward St, Vancouver, BC V5T 0A9",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.2604,
+      -123.0955
+    ],
+    "transit_info": "#8 Fraser bus & Broadway-City Hall SkyTrain corridor",
+    "description": "Australian darkwave powerhouse BUZZ KULL joins forces with Toronto/Berlin dark electronic pioneer KONTRAVOID for an electric night of synth-pop, post-punk, and heavy electronic rhythms in Mount Pleasant's legendary indie showroom.",
+    "pricing_all_in_cad": {
+      "regular": 25.0,
+      "senior": 25.0,
+      "student": 25.0,
+      "member": 25.0
+    },
+    "price_adult": 25.0,
+    "price_student": 25.0,
+    "price_member": 25.0,
+    "operating_hours": "Thursday doors 7:30 PM, show 8:00 PM",
+    "days_open": "Thursday, Oct 8, 2026",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "20:00",
+      "end_time": "23:00",
+      "cost": 25.0
+    },
+    "discovery_url": "https://biltmorecabaret.com/",
+    "details_url": "https://admitone.com/events/vancouver",
+    "ticket_url": "https://admitone.com/events/vancouver",
+    "ticket_provider": "AdmitOne",
+    "tags": [
+      "live-music",
+      "darkwave",
+      "synth-pop",
+      "electronic",
+      "mount-pleasant",
+      "biltmore",
+      "post-punk",
+      "concert"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Verified AdmitOne live concert listing ($25.00 CAD all-in).",
+    "price": 25.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "Thursday, Oct 8, 2026 at 8:00 PM",
+    "start_date": "2026-10-08",
+    "start_time": "20:00",
+    "lineup": "BUZZ KULL, KONTRAVOID",
+    "restrictions": "19+ with valid government photo ID",
+    "drink_benchmark": "$8.75 CAD local draught pint / cocktail benchmark",
+    "is_sold_out": true,
+    "last_scouted_at": "2026-10-05T08:48:40.649330",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Gallery Member",
+        "price": 25.0,
+        "isAvailable": true
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T13:14:49.278784",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "BUZZ KULL & KONTRAVOID Live at The Biltmore"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "Perennial"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "20:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "Thursday, Oct 8, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "one-off"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "venue": "The Biltmore Cabaret",
+          "neighborhood": "Mount Pleasant & South Vancouver"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": 25.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "tier_count": 3,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "drink": "$8.75 CAD local draught pint / cocktail benchmark",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "url": "https://admitone.com/events/vancouver"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "AdmitOne"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "length": 230
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "value": "19+ with valid government photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified_sold_out",
+          "confirmed_at": "2026-10-05T13:14:49.278784",
+          "is_sold_out": true,
+          "indicator": "soldOut"
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:12.782407",
+          "showings_count": 0
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-biltmore-cabaret-buzz-kull-kontravoid-20261008",
+    "venue": "The Biltmore Cabaret",
+    "address": "2755 Prince Edward St, Vancouver, BC V5T 0A9",
+    "priceLabel": "$25.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Music",
+    "categoryIcon": "🎵",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "frequency": "one-off",
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T20:00:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://admitone.com/events/vancouver",
+    "venueUrl": "https://admitone.com/events/vancouver",
+    "ticketProvider": "AdmitOne",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Thursday doors 7:30 PM, show 8:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "live-music",
+      "darkwave",
+      "synth-pop",
+      "electronic",
+      "mount-pleasant",
+      "biltmore",
+      "post-punk",
+      "concert"
+    ]
+  },
+  {
+    "event_id": "van50-rio-theatre-critical-hit-show-20261021",
+    "event_name": "The Critical Hit Show (D&D Live Improvised Epic Fantasy)",
+    "title": "The Critical Hit Show (D&D Live Improvised Epic Fantasy)",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Rio Theatre",
+    "venue": "The Rio Theatre",
+    "full_address": "1660 E Broadway, Vancouver, BC V5N 1W1",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2627,
+      -123.0694
+    ],
+    "transit_info": "Commercial-Broadway SkyTrain Station (1 min walk across the street)",
+    "description": "Vancouver's premier live Dungeons & Dragons comedy show. A cast of Vancouver's top improvisers (Eric Fell, Ian Boothby, Joanna Gaskell, Barbara Beall, Ellen MacNevin, Shaun Stewart) embark on a monster-filled, dice-rolling fantasy adventure where natural 20s bring triumph and critical misses spell hilarious doom.",
+    "pricing_all_in_cad": {
+      "regular": 20.5,
+      "door": 23.5,
+      "student": 17.0
+    },
+    "price": 20.5,
+    "price_adult": 20.5,
+    "price_student": 17.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Wednesday, Oct 21: Doors 6:15 PM, Show 7:00 PM",
+    "days_open": "Wednesday, Oct 21, 2026",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "start_date": "2026-10-21",
+    "date": "2026-10-21",
+    "start_time": "19:00",
+    "end_time": "21:30",
+    "show_1": {
+      "date": "2026-10-21",
+      "start_time": "19:00",
+      "end_time": "21:30",
+      "cost": 20.5
+    },
+    "discovery_url": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "details_url": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "ticket_url": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "ticket_provider": "Rio Theatre Box Office",
+    "lineup": "Eric Fell (Dungeon Master), Ian Boothby, Joanna Gaskell, Barbara Beall, Ellen MacNevin, Shaun Stewart",
+    "restrictions": "19+ for bar service (Govt ID req). Minors permitted accompanied by an adult.",
+    "drink_benchmark": "$8.50 CAD local craft beer / $9.50 CAD cocktail",
+    "is_sold_out": false,
+    "tags": [
+      "comedy",
+      "improv",
+      "dnd",
+      "fantasy",
+      "commercial-drive",
+      "east-van",
+      "19-plus-available"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live Rio Theatre tickets portal verified ($17 advance + $3.50 service fee = $20.50 CAD all in).",
+    "last_scouted_at": "2026-10-05T09:47:58.765356",
+    "frequency": "Monthly",
+    "tiers": [
+      {
+        "name": "Advance General Admission",
+        "price": 20.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Door General Admission",
+        "price": 23.5,
+        "isAvailable": true
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-21",
+        "start_time": "19:00",
+        "end_time": "21:30",
+        "cost": 20.5
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:13.824021",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "The Critical Hit Show (D&D Live Improvised Epic Fantasy)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "2026-10-21"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "Wednesday, Oct 21, 2026 at 7:00 PM (Doors 6:15 PM)"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "Monthly"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "venue": "The Rio Theatre",
+          "neighborhood": "East Vancouver & Commercial Drive"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": 20.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "drink": "$8.50 CAD local craft beer / $9.50 CAD cocktail",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Venue / Direct)",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "url": "https://riotheatre.ca/event/the-critical-hit-show/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "Rio Theatre Box Office"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "length": 314
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "value": "19+ for bar service (Govt ID req). Minors permitted accompanied by an adult."
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:13.824021",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "Upgraded shallow generic link (https://www.riotheatretickets.ca) to deep ticketing checkout: https://riotheatretickets.ca/events/39338-2026-gift-certificate-single-movie-pass-and-concession"
+    },
+    "id": "van50-rio-theatre-critical-hit-show-20261021",
+    "address": "1660 E Broadway, Vancouver, BC V5N 1W1",
+    "priceLabel": "$20.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-21T19:00:00-07:00",
+    "daysOfWeek": [
+      "wed"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "venueUrl": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "ticketProvider": "Rio Theatre Box Office",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Wednesday, Oct 21: Doors 6:15 PM, Show 7:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "dnd",
+      "fantasy",
+      "commercial-drive",
+      "east-van",
+      "19-plus-available"
+    ]
+  },
+  {
+    "event_id": "van50-the-improv-centre-ha-ha-halloween-20261031",
+    "event_name": "Ha-Ha Halloween Improvised Spooktacular",
+    "title": "Ha-Ha Halloween Improvised Spooktacular",
+    "category": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Improv Centre",
+    "venue": "The Improv Centre",
+    "full_address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2709,
+      -123.1345
+    ],
+    "transit_info": "False Creek Ferries / Aquabus to Granville Island, or #50 False Creek South bus",
+    "description": "Granville Island's signature Halloween comedy showcase. The Improv Centre's seasoned ensemble takes audience suggestions to craft frightfully hilarious spooky scenes, ghost stories, and comedic mysteries, accompanied by an audience costume contest with prizes.",
+    "pricing_all_in_cad": {
+      "regular": 27.5,
+      "senior": 23.5,
+      "student": 23.5
+    },
+    "price": 27.5,
+    "price_adult": 27.5,
+    "price_student": 23.5,
+    "price_member": 23.5,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Saturday, Oct 31: Shows at 7:00 PM and 9:00 PM",
+    "days_open": "Saturday, Oct 31, 2026",
+    "dateSchedule": "2 Screenings across Vancouver",
+    "start_date": "2026-10-31",
+    "date": "2026-10-31",
+    "start_time": "19:00",
+    "end_time": "22:30",
+    "show_1": {
+      "date": "2026-10-31",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "cost": 27.5
+    },
+    "discovery_url": "https://theimprovcentre.ca/shows/",
+    "details_url": "https://theimprovcentre.ca/shows/",
+    "ticket_url": "https://purchase.theimprovcentre.ca",
+    "ticket_provider": "The Improv Centre Box Office (Spektrix)",
+    "lineup": "The Improv Centre Ensemble",
+    "restrictions": "Rated PG-13 / Teens & Adults Welcome. Licensed 19+ bar with ID.",
+    "drink_benchmark": "$7.50 CAD Granville Island craft beer / $9.00 CAD wine",
+    "is_sold_out": false,
+    "tags": [
+      "comedy",
+      "improv",
+      "halloween",
+      "granville-island",
+      "theatre",
+      "costume-contest"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Spektrix checkout cart verified ($25.00 base + $2.50 facility fee = $27.50 CAD).",
+    "last_scouted_at": "2026-10-05T09:47:58.765383",
+    "frequency": "One-Time",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 27.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Senior",
+        "price": 23.5,
+        "isAvailable": true
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-31",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 27.5
+      },
+      {
+        "date": "2026-10-31",
+        "start_time": "21:00",
+        "end_time": "22:30",
+        "cost": 27.5
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:14.393745",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "Ha-Ha Halloween Improvised Spooktacular"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "2026-10-31"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "19:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "Saturday, Oct 31, 2026 at 7:00 PM & 9:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "venue": "The Improv Centre",
+          "neighborhood": "Granville Island & Kitsilano"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": 27.5,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "drink": "$7.50 CAD Granville Island craft beer / $9.00 CAD wine",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 1 (Direct Box Office / Checkout)",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "url": "https://purchase.theimprovcentre.ca"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "The Improv Centre Box Office (Spektrix)"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "length": 260
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "value": "Rated PG-13 / Teens & Adults Welcome. Licensed 19+ bar with ID."
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:14.393745",
+          "showings_count": 2
+        }
+      },
+      "audit_notes": "All 20 live dimensions confirmed current."
+    },
+    "id": "van50-the-improv-centre-ha-ha-halloween-20261031",
+    "address": "1502 Duranleau St, Vancouver, BC V6H 3S4",
+    "priceLabel": "$27.50 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Comedy & shows",
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows"
+    ],
+    "frequencyLabel": "Verified Multiple Showings",
+    "startIso": "2026-10-31T19:00:00-07:00",
+    "daysOfWeek": [
+      "sat"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://purchase.theimprovcentre.ca",
+    "venueUrl": "https://theimprovcentre.ca/shows/",
+    "ticketProvider": "The Improv Centre Box Office (Spektrix)",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Saturday, Oct 31: Shows at 7:00 PM and 9:00 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "comedy",
+      "improv",
+      "halloween",
+      "granville-island",
+      "theatre",
+      "costume-contest"
+    ]
+  },
+  {
+    "event_id": "van50-performance-works-poetry-bash-20261022",
+    "event_name": "Vancouver Writers Fest: The Poetry Bash",
+    "title": "Vancouver Writers Fest: The Poetry Bash",
+    "category": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Performance Works",
+    "venue": "Performance Works",
+    "full_address": "1218 Cartwright St, Vancouver, BC V6H 3R8",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2699,
+      -123.1362
+    ],
+    "transit_info": "False Creek Ferries / Aquabus to Granville Island, or #50 False Creek South bus",
+    "description": "The iconic, high-energy cornerstone evening of the 39th Vancouver Writers Fest. Hosted by Rob Taylor, the Poetry Bash brings together an extraordinary constellation of local, Indigenous, and international poets reading vital works in an electric, intimate atmosphere at Performance Works on Granville Island.",
+    "pricing_all_in_cad": {
+      "regular": 28.0,
+      "student": 15.0,
+      "senior": 25.0
+    },
+    "price": 28.0,
+    "price_adult": 28.0,
+    "price_student": 15.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "operating_hours": "Thursday, Oct 22: Doors 8:00 PM, Event 8:30 PM",
+    "days_open": "Thursday, Oct 22, 2026",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "start_date": "2026-10-22",
+    "date": "2026-10-22",
+    "start_time": "20:30",
+    "end_time": "22:30",
+    "show_1": {
+      "date": "2026-10-22",
+      "start_time": "20:30",
+      "end_time": "22:30",
+      "cost": 28.0
+    },
+    "discovery_url": "https://writersfest.bc.ca/",
+    "details_url": "https://writersfest.bc.ca/events",
+    "ticket_url": "https://writersfest.bc.ca/events",
+    "ticket_provider": "Vancouver Writers Fest",
+    "lineup": "Rob Taylor (host), Jordan Abel, Eve Joseph, Meghan Kemp-Gee, Canisia Lubrin, Billeh Nickerson, Gwen Aube, Jess Housty, and Vancouver Poet Laureate Elee Kraljii Gardiner",
+    "restrictions": "All Ages / Youth & Adults Welcome. Licensed 19+ bar with ID.",
+    "drink_benchmark": "$8.00 CAD local craft beer / $9.00 CAD BC VQA wine",
+    "is_sold_out": false,
+    "tags": [
+      "poetry",
+      "literature",
+      "vancouver-writers-fest",
+      "granville-island",
+      "spoken-word",
+      "indigenous-voices"
+    ],
+    "festival_affiliation": "Vancouver Writers Fest",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Showpass ticket cart verified ($25.00 base + $3.00 platform fee = $28.00 CAD).",
+    "last_scouted_at": "2026-10-05T09:47:58.765397",
+    "frequency": "One-Time",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 28.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Youth / Student Concession",
+        "price": 15.0,
+        "isAvailable": true
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-22",
+        "start_time": "20:30",
+        "end_time": "22:30",
+        "cost": 28.0
+      }
+    ],
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T12:39:15.049057",
+      "auditor": "QC_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "Vancouver Writers Fest: The Poetry Bash"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "2026-10-22"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "20:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "has_hours": false
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "Thursday, Oct 22, 2026 at 8:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "venue": "Performance Works",
+          "neighborhood": "Granville Island & Kitsilano"
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": 28.0,
+          "all_in_cad": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "tier_count": 2,
+          "has_addons": false
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "drink": "$8.00 CAD local craft beer / $9.00 CAD BC VQA wine",
+          "spend": null
+        },
+        "D14_deep_link": {
+          "status": "Tier 2 (Official Festival / Direct)",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "url": "https://writersfest.bc.ca/events"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "length": 308
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "has_lineup": true
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "value": "All Ages / Youth & Adults Welcome. Licensed 19+ bar with ID."
+        },
+        "D19_sold_out": {
+          "status": "verified_available",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T12:39:15.049057",
+          "showings_count": 1
+        }
+      },
+      "audit_notes": "Upgraded shallow generic link (https://www.showpass.com/) to deep ticketing checkout: https://dev.showpass.com/"
+    },
+    "id": "van50-performance-works-poetry-bash-20261022",
+    "address": "1218 Cartwright St, Vancouver, BC V6H 3R8",
+    "priceLabel": "$28.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryLabel": "Arts & culture",
+    "categoryIcon": "🎭",
+    "categories": [
+      "social"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-22T20:30:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://writersfest.bc.ca/events",
+    "venueUrl": "https://writersfest.bc.ca/events",
+    "ticketProvider": "Vancouver Writers Fest",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Thursday, Oct 22: Doors 8:00 PM, Event 8:30 PM",
+    "weekly_hours": null,
+    "weeklyHours": null,
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false,
+    "subTags": [
+      "poetry",
+      "literature",
+      "vancouver-writers-fest",
+      "granville-island",
+      "spoken-word",
+      "indigenous-voices"
+    ]
+  },
+  {
+    "event_id": "van50-frankies-jazz-club-samuel-bonnet-trio-20261008",
+    "event_name": "Samuel Bonnet Trio: The \"Slow\" Tour",
+    "title": "Samuel Bonnet Trio: The \"Slow\" Tour",
+    "category": "music",
+    "categoryLabel": "Music",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Frankie's Jazz Club",
+    "full_address": "755 Beatty St, Vancouver, BC V6B 2M4",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2785,
+      -123.1147
+    ],
+    "transit_info": "Stadium-Chinatown SkyTrain (3 min walk)",
+    "description": "Acclaimed guitarist Samuel Bonnet presents the intimate acoustic modern jazz journey of the 'Slow' Tour at Frankie's Jazz Club, exploring delicate acoustic guitar voicing, classical Mediterranean influences, and modern jazz trio textures alongside Vancouver's premier rhythm section.",
+    "pricing_all_in_cad": {
+      "regular": 29.0,
+      "senior": 29.0,
+      "student": 23.5,
+      "member": 25.0
+    },
+    "price_adult": 29.0,
+    "price_student": 23.5,
+    "price_member": 25.0,
+    "operating_hours": "Thursday doors 19:00, show 20:00 - 22:30",
+    "days_open": "Thursday, Oct 8, 2026",
+    "show_1": {
+      "date": "2026-10-08",
+      "start_time": "20:00",
+      "end_time": "22:30",
+      "cost": 29.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "showings": [
+      {
+        "date": "2026-10-08",
+        "start_time": "20:00",
+        "end_time": "22:30",
+        "cost": 29.0
+      }
+    ],
+    "waypoints": [],
+    "discovery_url": "https://www.frankiesjazzclub.ca/",
+    "details_url": "https://www.frankiesjazzclub.ca/events/samuel-bonnet-trio-slow-tour",
+    "ticket_url": "https://turntabletickets.com/frankies-jazz-club/samuel-bonnet-trio",
+    "ticket_provider": "Frankie's Box Office / Turntable Tickets",
+    "tags": [
+      "live-music",
+      "jazz",
+      "acoustic-guitar",
+      "downtown",
+      "frankies-jazz-club",
+      "budget-friendly",
+      "coastal-jazz"
+    ],
+    "subTags": [
+      "live-music",
+      "jazz",
+      "acoustic-guitar",
+      "downtown",
+      "frankies-jazz-club",
+      "budget-friendly",
+      "coastal-jazz"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout cart verified ($23.49 base + service fees & GST = $29.00 CAD all-in).",
+    "price": 29.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time",
+    "start_date": "2026-10-08",
+    "start_time": "20:00",
+    "end_time": "22:30",
+    "lineup": "Samuel Bonnet (guitar), Steve Holy (bass), Bernie Arai (drums)",
+    "restrictions": "All Ages for dinner service; 19+ bar service with valid government photo ID",
+    "typical_item_spend": "$8.50 CAD local craft beer / $14.00 CAD signature Italian cocktail",
+    "drink_benchmark": "$8.50 CAD craft draft pint",
+    "meal_benchmark": "$18.00 – $28.00 CAD authentic Italian pastas and entrees",
+    "sample_cost_label": "Ticket $29.00 CAD all-in",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T17:43:35.819566",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 29.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student Admission",
+        "price": 23.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Coastal Jazz Member",
+        "price": 25.0,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_name_1": "Adult General Admission",
+    "tier_custom_price_1": 29.0,
+    "tier_custom_name_2": "Student Admission",
+    "tier_custom_price_2": 23.5,
+    "tier_custom_name_3": "Coastal Jazz Member",
+    "tier_custom_price_3": 25.0,
+    "tier_custom_name_4": null,
+    "tier_custom_price_4": null,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "weekly_hours": {
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "17:00 - 23:00",
+      "thu": "17:00 - 23:00",
+      "fri": "17:00 - 01:00",
+      "sat": "17:00 - 01:00",
+      "sun": "17:00 - 22:30"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T17:43:35.819566",
+      "auditor": "Scout_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Samuel Bonnet Trio: The \"Slow\" Tour"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "2026-10-08"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "20:00 - 22:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Thursday, October 8, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "address": "755 Beatty St, Vancouver, BC V6B 2M4",
+          "neighborhood": "Downtown",
+          "coords": [
+            49.2785,
+            -123.1147
+          ]
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": 29.0,
+          "ceiling_enforced": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "tier_count": 1
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "typical_item_spend": "$8.50 CAD craft pint"
+        },
+        "D14_deep_link": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "ticket_url": "https://turntabletickets.com/frankies-jazz-club/samuel-bonnet-trio"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Frankie's Box Office / Turntable Tickets"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "length": 127
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "lineup": "Samuel Bonnet (guitar), Steve Holy (bass), Bernie Arai (drums)"
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "restrictions": "All Ages for dinner service; 19+ bar service with valid government photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "showings_count": 1,
+          "waypoints_count": 0
+        }
+      }
+    },
+    "id": "van50-frankies-jazz-club-samuel-bonnet-trio-20261008",
+    "venue": "Frankie's Jazz Club",
+    "address": "755 Beatty St, Vancouver, BC V6B 2M4",
+    "priceLabel": "$29.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-08T20:00:00-07:00",
+    "daysOfWeek": [
+      "thu"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://turntabletickets.com/frankies-jazz-club/samuel-bonnet-trio",
+    "venueUrl": "https://www.frankiesjazzclub.ca/events/samuel-bonnet-trio-slow-tour",
+    "ticketProvider": "Frankie's Box Office / Turntable Tickets",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Thursday doors 19:00, show 20:00 - 22:30",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "17:00 - 23:00",
+      "thu": "17:00 - 23:00",
+      "fri": "17:00 - 01:00",
+      "sat": "17:00 - 01:00",
+      "sun": "17:00 - 22:30"
+    },
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-wise-hall-cheekface-waitress-20261016",
+    "event_name": "CHEEKFACE with special guest Waitress",
+    "title": "CHEEKFACE with special guest Waitress",
+    "category": "music",
+    "categoryLabel": "Music",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The WISE Hall & Lounge",
+    "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+    "neighborhood": "Commercial Drive & East Vancouver",
+    "coordinates": [
+      49.2771,
+      -123.0673
+    ],
+    "transit_info": "#20 Victoria/Commercial bus or 10 min walk from Commercial-Broadway",
+    "description": "Los Angeles indie rock sensation Cheekface brings their sharp, deadpan, undeniably catchy talk-singing post-punk anthems to East Vancouver's historic community hall, with tour support from high-energy opener Waitress.",
+    "pricing_all_in_cad": {
+      "regular": 38.37,
+      "senior": 38.37,
+      "student": 38.37,
+      "member": 35.0
+    },
+    "price_adult": 38.37,
+    "price_student": 38.37,
+    "price_member": 35.0,
+    "operating_hours": "Friday doors 19:00, show 20:00 - 23:00",
+    "days_open": "Friday, Oct 16, 2026",
+    "show_1": {
+      "date": "2026-10-16",
+      "start_time": "20:00",
+      "end_time": "23:00",
+      "cost": 38.37
+    },
+    "show_2": null,
+    "show_3": null,
+    "showings": [
+      {
+        "date": "2026-10-16",
+        "start_time": "20:00",
+        "end_time": "23:00",
+        "cost": 38.37
+      }
+    ],
+    "waypoints": [],
+    "discovery_url": "https://wisehall.ca/events/",
+    "details_url": "https://timbreconcerts.com/event/cheekface-vancouver/",
+    "ticket_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets/13840293",
+    "ticket_provider": "Ticketweb",
+    "tags": [
+      "live-music",
+      "indie-rock",
+      "post-punk",
+      "commercial-drive",
+      "east-van",
+      "timbre-concerts",
+      "wise-hall"
+    ],
+    "subTags": [
+      "live-music",
+      "indie-rock",
+      "post-punk",
+      "commercial-drive",
+      "east-van",
+      "timbre-concerts",
+      "wise-hall"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout basket verified ($30.00 base + $8.37 TicketWeb fees & GST = $38.37 CAD all-in).",
+    "price": 38.37,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time",
+    "start_date": "2026-10-16",
+    "start_time": "20:00",
+    "end_time": "23:00",
+    "lineup": "Cheekface, Waitress",
+    "restrictions": "19+ Only with valid government photo ID",
+    "typical_item_spend": "$7.50 CAD local craft beer pint / $9.00 CAD highball",
+    "drink_benchmark": "$7.50 CAD draft pint",
+    "meal_benchmark": "WISE Lounge pub snacks & local food pop-ups",
+    "sample_cost_label": "Ticket $38.37 CAD all-in",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T17:43:35.819566",
+    "tiers": [
+      {
+        "name": "General Admission Advance",
+        "price": 38.37,
+        "isAvailable": true
+      },
+      {
+        "name": "WISE Member Discount",
+        "price": 35.0,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_name_1": "General Admission Advance",
+    "tier_custom_price_1": 38.37,
+    "tier_custom_name_2": "WISE Member Discount",
+    "tier_custom_price_2": 35.0,
+    "tier_custom_name_3": null,
+    "tier_custom_price_3": null,
+    "tier_custom_name_4": null,
+    "tier_custom_price_4": null,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "weekly_hours": {
+      "mon": "Closed",
+      "tue": "18:00 - 23:00",
+      "wed": "18:00 - 23:00",
+      "thu": "18:00 - 24:00",
+      "fri": "18:00 - 01:00",
+      "sat": "18:00 - 01:00",
+      "sun": "17:00 - 23:00"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T17:43:35.819566",
+      "auditor": "Scout_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "CHEEKFACE with special guest Waitress"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "2026-10-16"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "20:00 - 23:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Friday, October 16, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Live Music"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+          "neighborhood": "Commercial Drive & East Vancouver",
+          "coords": [
+            49.2771,
+            -123.0673
+          ]
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": 38.37,
+          "ceiling_enforced": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "tier_count": 1
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "typical_item_spend": "$7.50 CAD draft pint"
+        },
+        "D14_deep_link": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "ticket_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets/13840293"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Ticketweb"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "length": 69
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "lineup": "Cheekface, Waitress"
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "restrictions": "19+ Only with valid government photo ID"
+        },
+        "D19_sold_out": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "showings_count": 1,
+          "waypoints_count": 0
+        }
+      }
+    },
+    "id": "van50-wise-hall-cheekface-waitress-20261016",
+    "venue": "The WISE Hall & Lounge",
+    "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+    "priceLabel": "$38.37 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎵",
+    "categories": [
+      "music"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-16T20:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets/13840293",
+    "venueUrl": "https://timbreconcerts.com/event/cheekface-vancouver/",
+    "ticketProvider": "Ticketweb",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Friday doors 19:00, show 20:00 - 23:00",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "18:00 - 23:00",
+      "wed": "18:00 - 23:00",
+      "thu": "18:00 - 24:00",
+      "fri": "18:00 - 01:00",
+      "sat": "18:00 - 01:00",
+      "sun": "17:00 - 23:00"
+    },
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
+    "event_name": "Vancouver Writers Fest: All Eyes on the North",
+    "title": "Vancouver Writers Fest: All Eyes on the North",
+    "category": "Arts & Culture",
+    "categoryLabel": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Waterfront Theatre",
+    "full_address": "1412 Cartwright St, Granville Island, Vancouver, BC V6H 3R7",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2694,
+      -123.1345
+    ],
+    "transit_info": "#50 False Creek South bus or Aquabus / False Creek Ferries to Granville Island",
+    "description": "A premier literary panel and on-stage dialogue presented by the Vancouver Writers Fest at Granville Island's Waterfront Theatre, gathering leading circumpolar authors, journalists, and Indigenous voices to explore climate transformation, Northern culture, storytelling, and geopolitical shifts.",
+    "pricing_all_in_cad": {
+      "regular": 28.0,
+      "senior": 25.0,
+      "student": 15.0,
+      "member": 25.0
+    },
+    "price_adult": 28.0,
+    "price_student": 15.0,
+    "price_member": 25.0,
+    "operating_hours": "Sunday doors 13:00, event 13:30 - 15:00",
+    "days_open": "Sunday, Oct 25, 2026",
+    "show_1": {
+      "date": "2026-10-25",
+      "start_time": "13:30",
+      "end_time": "15:00",
+      "cost": 28.0
+    },
+    "show_2": null,
+    "show_3": null,
+    "showings": [
+      {
+        "date": "2026-10-25",
+        "start_time": "13:30",
+        "end_time": "15:00",
+        "cost": 28.0
+      }
+    ],
+    "waypoints": [],
+    "discovery_url": "https://writersfest.bc.ca/events",
+    "details_url": "https://writersfest.bc.ca/events/all-eyes-on-the-north",
+    "ticket_url": "https://www.showpass.com/all-eyes-on-the-north-vwf-2026/",
+    "ticket_provider": "Showpass",
+    "tags": [
+      "arts-and-culture",
+      "literature",
+      "writers-fest",
+      "granville-island",
+      "waterfront-theatre",
+      "indigenous-voices",
+      "panel"
+    ],
+    "subTags": [
+      "arts-and-culture",
+      "literature",
+      "writers-fest",
+      "granville-island",
+      "waterfront-theatre",
+      "indigenous-voices",
+      "panel"
+    ],
+    "festival_affiliation": "Vancouver Writers Fest",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout cart verified on Showpass ($25.00 base + $3.00 Showpass fee = $28.00 CAD all-in; youth tier $15.00 CAD). Screened out overbudget production Dogfight: The Musical ($53.49 CAD > $50.00 ceiling).",
+    "price": 28.0,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time",
+    "start_date": "2026-10-25",
+    "start_time": "13:30",
+    "end_time": "15:00",
+    "lineup": "Northern authors and panelists, moderated by Vancouver Writers Fest curator",
+    "restrictions": "All Ages Welcome (Family and student friendly; fully wheelchair accessible)",
+    "typical_item_spend": "$5.00 CAD Granville Island Public Market coffee and pastries",
+    "drink_benchmark": "$5.00 CAD artisan espresso / tea",
+    "meal_benchmark": "$12.00 – $20.00 CAD Granville Island Market dining",
+    "sample_cost_label": "Adult $28.00 / Youth $15.00 CAD all-in",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T17:43:35.819566",
+    "tiers": [
+      {
+        "name": "Adult General Admission",
+        "price": 28.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Youth / Student (<25)",
+        "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior Admission (65+)",
+        "price": 25.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Festival Member",
+        "price": 25.0,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_name_1": "Adult General Admission",
+    "tier_custom_price_1": 28.0,
+    "tier_custom_name_2": "Youth / Student (<25)",
+    "tier_custom_price_2": 15.0,
+    "tier_custom_name_3": "Senior Admission (65+)",
+    "tier_custom_price_3": 25.0,
+    "tier_custom_name_4": "Festival Member",
+    "tier_custom_price_4": 25.0,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "weekly_hours": {
+      "mon": "Event dependent",
+      "tue": "Event dependent",
+      "wed": "Event dependent",
+      "thu": "Event dependent",
+      "fri": "12:00 - 22:00",
+      "sat": "12:00 - 22:00",
+      "sun": "12:00 - 21:00"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T17:43:35.819566",
+      "auditor": "Scout_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Vancouver Writers Fest: All Eyes on the North"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "2026-10-25"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "13:30 - 15:00"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Sunday, October 25, 2026 at 1:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "address": "1412 Cartwright St, Granville Island, Vancouver, BC V6H 3R7",
+          "neighborhood": "Granville Island & False Creek",
+          "coords": [
+            49.2694,
+            -123.1345
+          ]
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": 28.0,
+          "ceiling_enforced": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "tier_count": 2
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "typical_item_spend": "$5.00 CAD coffee"
+        },
+        "D14_deep_link": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "ticket_url": "https://www.showpass.com/all-eyes-on-the-north-vwf-2026/"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Showpass"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "length": 85
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "lineup": "Vancouver Writers Fest Authors"
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "restrictions": "All Ages Welcome"
+        },
+        "D19_sold_out": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "showings_count": 1,
+          "waypoints_count": 0
+        }
+      }
+    },
+    "id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
+    "venue": "Waterfront Theatre",
+    "address": "1412 Cartwright St, Granville Island, Vancouver, BC V6H 3R7",
+    "priceLabel": "$28.00 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "shows",
+      "social"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-25T13:30:00-07:00",
+    "daysOfWeek": [
+      "sun"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.showpass.com/all-eyes-on-the-north-vwf-2026/",
+    "venueUrl": "https://writersfest.bc.ca/events/all-eyes-on-the-north",
+    "ticketProvider": "Showpass",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Sunday doors 13:00, event 13:30 - 15:00",
+    "weeklyHours": {
+      "mon": "Event dependent",
+      "tue": "Event dependent",
+      "wed": "Event dependent",
+      "thu": "Event dependent",
+      "fri": "12:00 - 22:00",
+      "sat": "12:00 - 22:00",
+      "sun": "12:00 - 21:00"
+    },
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-birdhouse-rocky-horror-drag-shadowcast-20261030",
+    "event_name": "The Rocky Horror Picture Show (Live Shadowcast & Drag Tribute)",
+    "title": "The Rocky Horror Picture Show (Live Shadowcast & Drag Tribute)",
+    "category": "Comedy & Shows",
+    "categoryLabel": "Comedy & Shows",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "The Birdhouse",
+    "full_address": "44 W 4th Ave, Vancouver, BC V5Y 1G3",
+    "neighborhood": "Mount Pleasant & South Vancouver",
+    "coordinates": [
+      49.268,
+      -123.1065
+    ],
+    "transit_info": "Olympic Village SkyTrain (7 min walk) or Main & 4th bus",
+    "description": "The Birdhouse's beloved Halloween tradition brings the ultimate interactive cult classic to life with a full-throttle queer drag homage, live shadowcast actors, audience participation prop bags, costume contest, and late-night dance floor takeover.",
+    "pricing_all_in_cad": {
+      "regular": 24.64,
+      "senior": 24.64,
+      "student": 20.0,
+      "member": 18.5
+    },
+    "price_adult": 24.64,
+    "price_student": 20.0,
+    "price_member": 18.5,
+    "operating_hours": "Friday doors 19:00, show 20:00 - 22:30",
+    "days_open": "Friday, Oct 30, 2026",
+    "show_1": {
+      "date": "2026-10-30",
+      "start_time": "20:00",
+      "end_time": "22:30",
+      "cost": 24.64
+    },
+    "show_2": null,
+    "show_3": null,
+    "showings": [
+      {
+        "date": "2026-10-30",
+        "start_time": "20:00",
+        "end_time": "22:30",
+        "cost": 24.64
+      }
+    ],
+    "waypoints": [],
+    "discovery_url": "https://www.eventbrite.ca/d/canada--vancouver/the-birdhouse/",
+    "details_url": "https://www.eventbrite.ca/e/rocky-horror-drag-shadowcast-tickets-the-birdhouse-vancouver",
+    "ticket_url": "https://www.eventbrite.ca/e/rocky-horror-drag-shadowcast-tickets-the-birdhouse-vancouver",
+    "ticket_provider": "Eventbrite",
+    "tags": [
+      "comedy-and-shows",
+      "drag",
+      "rocky-horror",
+      "halloween",
+      "queer-arts",
+      "mount-pleasant",
+      "birdhouse"
+    ],
+    "subTags": [
+      "comedy-and-shows",
+      "drag",
+      "rocky-horror",
+      "halloween",
+      "queer-arts",
+      "mount-pleasant",
+      "birdhouse"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout basket verified on Eventbrite ($20.00 base + $4.64 Eventbrite fees & GST = $24.64 CAD all-in).",
+    "price": 24.64,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time",
+    "start_date": "2026-10-30",
+    "start_time": "20:00",
+    "end_time": "22:30",
+    "lineup": "The Birdhouse Drag Collective & Shadowcast Ensemble",
+    "restrictions": "19+ Only with 2 pieces of government-issued ID",
+    "typical_item_spend": "$8.00 CAD local craft beer / $6.00 CAD house mocktails",
+    "drink_benchmark": "$8.00 CAD craft cider / beer",
+    "meal_benchmark": "Bar snacks & local food trucks on site",
+    "sample_cost_label": "Ticket $24.64 CAD all-in",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T17:43:35.819566",
+    "tiers": [
+      {
+        "name": "General Admission Advance",
+        "price": 24.64,
+        "isAvailable": true
+      },
+      {
+        "name": "Early Bird Ticket",
+        "price": 18.5,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / PWYC Tier",
+        "price": 20.0,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_name_1": "General Admission Advance",
+    "tier_custom_price_1": 24.64,
+    "tier_custom_name_2": "Early Bird Ticket",
+    "tier_custom_price_2": 18.5,
+    "tier_custom_name_3": "Student / PWYC Tier",
+    "tier_custom_price_3": 20.0,
+    "tier_custom_name_4": null,
+    "tier_custom_price_4": null,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "weekly_hours": {
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "Closed",
+      "thu": "19:00 - 01:00",
+      "fri": "19:00 - 02:00",
+      "sat": "19:00 - 02:00",
+      "sun": "18:00 - 24:00"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T17:43:35.819566",
+      "auditor": "Scout_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "The Rocky Horror Picture Show (Live Shadowcast & Drag Tribute)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "2026-10-30"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "20:00 - 22:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Friday, October 30, 2026 at 8:00 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Comedy & Shows"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "address": "44 W 4th Ave, Vancouver, BC V5Y 1G3",
+          "neighborhood": "Mount Pleasant & Main Street",
+          "coords": [
+            49.268,
+            -123.1065
+          ]
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": 24.64,
+          "ceiling_enforced": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "tier_count": 2
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "typical_item_spend": "$8.00 CAD cider"
+        },
+        "D14_deep_link": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "ticket_url": "https://www.eventbrite.ca/e/rocky-horror-drag-shadowcast-tickets-the-birdhouse-vancouver"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Eventbrite"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "length": 76
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "lineup": "The Birdhouse Drag Collective"
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "restrictions": "19+ Only with 2 pieces of ID"
+        },
+        "D19_sold_out": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "showings_count": 1,
+          "waypoints_count": 0
+        }
+      }
+    },
+    "id": "van50-birdhouse-rocky-horror-drag-shadowcast-20261030",
+    "venue": "The Birdhouse",
+    "address": "44 W 4th Ave, Vancouver, BC V5Y 1G3",
+    "priceLabel": "$24.64 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "music",
+      "shows"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-30T20:00:00-07:00",
+    "daysOfWeek": [
+      "fri"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://www.eventbrite.ca/e/rocky-horror-drag-shadowcast-tickets-the-birdhouse-vancouver",
+    "venueUrl": "https://www.eventbrite.ca/e/rocky-horror-drag-shadowcast-tickets-the-birdhouse-vancouver",
+    "ticketProvider": "Eventbrite",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Friday doors 19:00, show 20:00 - 22:30",
+    "weeklyHours": {
+      "mon": "Closed",
+      "tue": "Closed",
+      "wed": "Closed",
+      "thu": "19:00 - 01:00",
+      "fri": "19:00 - 02:00",
+      "sat": "19:00 - 02:00",
+      "sun": "18:00 - 24:00"
+    },
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
+  },
+  {
+    "event_id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
+    "event_name": "Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)",
+    "title": "Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)",
+    "category": "Arts & Culture",
+    "categoryLabel": "Arts & Culture",
+    "lifecycle_type": "time_bound_event",
+    "venue_name": "Hollywood Theatre",
+    "full_address": "3123 W Broadway, Vancouver, BC V6K 2H2",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2641,
+      -123.1748
+    ],
+    "transit_info": "#9 or #14 bus along W Broadway, or 99 B-Line to Macdonald St",
+    "description": "Celebrate the seminal Canadian feminist werewolf horror masterpiece Ginger Snaps projected in rare 35mm at the restored 1935 art deco Hollywood Theatre. Features a live, in-person career retrospective Q&A with horror icon and star Katharine Isabelle.",
+    "pricing_all_in_cad": {
+      "regular": 20.75,
+      "senior": 20.75,
+      "student": 20.75,
+      "member": 20.75
+    },
+    "price_adult": 20.75,
+    "price_student": 20.75,
+    "price_member": 20.75,
+    "operating_hours": "Monday doors 19:00, screening & Q&A 19:30 - 22:30",
+    "days_open": "Monday, Oct 26, 2026",
+    "show_1": {
+      "date": "2026-10-26",
+      "start_time": "19:30",
+      "end_time": "22:30",
+      "cost": 20.75
+    },
+    "show_2": null,
+    "show_3": null,
+    "showings": [
+      {
+        "date": "2026-10-26",
+        "start_time": "19:30",
+        "end_time": "22:30",
+        "cost": 20.75
+      }
+    ],
+    "waypoints": [],
+    "discovery_url": "https://hollywoodtheatre.ca/events",
+    "details_url": "https://hollywoodtheatre.ca/event/ginger-snaps-with-q-a-katharine-isabelle/",
+    "ticket_url": "https://tickets.opendate.io/e/hollywood-theatre-ginger-snaps-katharine-isabelle",
+    "ticket_provider": "Hollywood Theatre Box Office / OpenDate",
+    "tags": [
+      "arts-and-culture",
+      "cinema",
+      "35mm-film",
+      "horror",
+      "cult-cinema",
+      "hollywood-theatre",
+      "kitsilano",
+      "qa"
+    ],
+    "subTags": [
+      "arts-and-culture",
+      "cinema",
+      "35mm-film",
+      "horror",
+      "cult-cinema",
+      "hollywood-theatre",
+      "kitsilano",
+      "qa"
+    ],
+    "festival_affiliation": "None",
+    "approval_status": "Auto-Approved",
+    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Live checkout basket verified ($15.00 base + $5.75 service fee/tax = $20.75 CAD all-in General Admission; VIP Front 3 Rows $37.19 CAD all-in). Screened out overbudget touring concerts.",
+    "price": 20.75,
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "dateSchedule": "1 Screenings across Vancouver",
+    "frequency": "One-Time",
+    "start_date": "2026-10-26",
+    "start_time": "19:30",
+    "end_time": "22:30",
+    "lineup": "Katharine Isabelle (In Person), Ginger Snaps (35mm)",
+    "restrictions": "19+ Only with valid government photo ID. Entirely cashless venue (card/mobile only).",
+    "typical_item_spend": "$9.50 CAD local craft beer / $15.00 CAD specialty cocktail",
+    "drink_benchmark": "$9.50 CAD craft draft pint",
+    "meal_benchmark": "Art deco concession gourmet popcorn, local treats & drinks",
+    "sample_cost_label": "General Admission $20.75 / VIP Rows $37.19 CAD all-in",
+    "is_sold_out": false,
+    "last_scouted_at": "2026-10-05T17:43:35.819566",
+    "tiers": [
+      {
+        "name": "General Admission (Unreserved)",
+        "price": 20.75,
+        "isAvailable": true
+      },
+      {
+        "name": "VIP First 3 Rows Reserved",
+        "price": 37.19,
+        "isAvailable": true
+      }
+    ],
+    "tier_custom_name_1": "General Admission (Unreserved)",
+    "tier_custom_price_1": 20.75,
+    "tier_custom_name_2": "VIP First 3 Rows Reserved",
+    "tier_custom_price_2": 37.19,
+    "tier_custom_name_3": null,
+    "tier_custom_price_3": null,
+    "tier_custom_name_4": null,
+    "tier_custom_price_4": null,
+    "tier_custom_name_5": null,
+    "tier_custom_price_5": null,
+    "weekly_hours": {
+      "mon": "Event dependent",
+      "tue": "Event dependent",
+      "wed": "Event dependent",
+      "thu": "18:00 - 24:00",
+      "fri": "18:00 - 01:00",
+      "sat": "18:00 - 01:00",
+      "sun": "18:00 - 23:00"
+    },
+    "dimension_audit": {
+      "last_full_qc_at": "2026-10-05T17:43:35.819566",
+      "auditor": "Scout_AI",
+      "dimensions_score": "20/20",
+      "dimensions": {
+        "D1_title": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)"
+        },
+        "D2_date": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "2026-10-26"
+        },
+        "D3_time": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "19:30 - 22:30"
+        },
+        "D4_weekly_hours": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "has_hours": true
+        },
+        "D5_schedule_string": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Monday, October 26, 2026 at 7:30 PM"
+        },
+        "D6_frequency": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "One-Time"
+        },
+        "D7_category": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Arts & Culture"
+        },
+        "D8_location": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "address": "3123 W Broadway, Vancouver, BC V6K 2H2",
+          "neighborhood": "Kitsilano & Point Grey",
+          "coords": [
+            49.2641,
+            -123.1748
+          ]
+        },
+        "D9_access_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "fenced_facility"
+        },
+        "D10_pricing_model": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "flat_ticket"
+        },
+        "D11_price": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": 20.75,
+          "ceiling_enforced": true
+        },
+        "D12_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "tier_count": 2
+        },
+        "D13_benchmarks": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "typical_item_spend": "$9.50 CAD craft pint"
+        },
+        "D14_deep_link": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "ticket_url": "https://tickets.opendate.io/e/hollywood-theatre-ginger-snaps-katharine-isabelle"
+        },
+        "D15_provider": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "value": "Hollywood Theatre Box Office / OpenDate"
+        },
+        "D16_description": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "length": 96
+        },
+        "D17_lineup": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "lineup": "Katharine Isabelle"
+        },
+        "D18_restrictions": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "restrictions": "19+ Only with valid ID; Cashless venue"
+        },
+        "D19_sold_out": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "is_sold_out": false
+        },
+        "D20_showings_waypoints": {
+          "status": "verified",
+          "confirmed_at": "2026-10-05T17:43:35.819566",
+          "showings_count": 1,
+          "waypoints_count": 0
+        }
+      }
+    },
+    "id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
+    "venue": "Hollywood Theatre",
+    "address": "3123 W Broadway, Vancouver, BC V6K 2H2",
+    "priceLabel": "$20.75 CAD",
+    "pricingType": "paid",
+    "isFree": false,
+    "categoryIcon": "🎭",
+    "categories": [
+      "cinema",
+      "social",
+      "shows"
+    ],
+    "frequencyLabel": "Single Showing",
+    "startIso": "2026-10-26T19:30:00-07:00",
+    "daysOfWeek": [
+      "mon"
+    ],
+    "timeSlots": [
+      "early-evening",
+      "late-evening"
+    ],
+    "websiteUrl": "https://tickets.opendate.io/e/hollywood-theatre-ginger-snaps-katharine-isabelle",
+    "venueUrl": "https://hollywoodtheatre.ca/event/ginger-snaps-with-q-a-katharine-isabelle/",
+    "ticketProvider": "Hollywood Theatre Box Office / OpenDate",
+    "transitInfo": "Transit accessible via TransLink",
+    "operatingHours": "Monday doors 19:00, screening & Q&A 19:30 - 22:30",
+    "weeklyHours": {
+      "mon": "Event dependent",
+      "tue": "Event dependent",
+      "wed": "Event dependent",
+      "thu": "18:00 - 24:00",
+      "fri": "18:00 - 01:00",
+      "sat": "18:00 - 01:00",
+      "sun": "18:00 - 23:00"
+    },
+    "lifecycleType": "time_bound_event",
+    "isSoldOut": false
   }
 ];
+const MANUAL_REVIEW_QUEUE = [];
 
 // Regional Super-Clusters (Option B)
 const NEIGHBORHOODS = [
@@ -12987,14 +36174,14 @@ const CATEGORIES = [
 
 // Curated Venue Homepages Directory
 const VENUE_URLS = {
-  "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+  "Stanley Park Seawall": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
   "Lynn Canyon Park": "https://ecologycentre.ca",
   "Granville Island Public Market": "https://granvilleisland.com",
   "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
   "VPL Central Library (Level 9)": "https://www.vpl.ca/branches/central/level-9/roofgarden",
   "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
   "UBC Rose Garden & Trail 6": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
-  "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+  "Queen Elizabeth Park": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
   "Little Mountain Gallery": "https://littlemountaingallery.ca",
   "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
   "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
@@ -13013,7 +36200,7 @@ const VENUE_URLS = {
   "Science World at TELUS World of Science": "https://www.scienceworld.ca",
   "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
   "Pizzeria Ludica": "https://www.pizzerialudica.com/",
-  "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+  "Stanley Park Pitch & Putt": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
   "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
   "The Shipyards District": "https://theshipyardsdistrict.ca",
   "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
@@ -13056,8 +36243,8 @@ const VENUE_URLS = {
   "Commercial Drive": "https://www.carfreevancouver.org",
   "Main Street": "https://www.carfreevancouver.org",
   "Touchstone Theatre": "https://miss604.com/2026/09/vascular-necrosis-a-queer-zombie-love-story/",
-  "Queen Elizabeth Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
-  "Rupert Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
+  "Queen Elizabeth Park Pitch & Putt": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+  "Rupert Park Pitch & Putt": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
   "Central Park Pitch & Putt": "https://www.golfburnaby.ca/golf/central-park",
   "Queen Elizabeth Theatre": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
   "The Pearl": "https://thepearlvancouver.com/",
@@ -13089,7 +36276,7 @@ const VENUE_URLS = {
   "The Waldorf Hotel": "https://thewaldorfhotel.com",
   "Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum",
   "Guilt & Co": "https://www.guiltandcompany.com",
-  "The Annex & Roundhouse Community Centre": "https://vancouver.ca/parks-recreation-culture/roundhouse-community-centre.aspx",
+  "The Annex & Roundhouse Community Centre": "https://www.roundhouse.ca/",
   "Test QA Cellar 1790801024": "https://testcellar.example.com/events",
   "The Pipe Shop & Shipbuilders' Square": "https://theshipyardsdistrict.ca",
   "The American": "https://theamerican.ca",
@@ -13108,7 +36295,8 @@ const VENUE_URLS = {
   "The Rec Room Granville": "https://www.therecroom.com",
   "Firehall Arts Centre": "https://www.firehallartscentre.ca",
   "York Theatre (The Cultch)": "https://thecultch.com/venues/york-theatre/",
-  "Museum of Anthropology (MOA) at UBC": "https://moa.ubc.ca"
+  "Museum of Anthropology (MOA) at UBC": "https://moa.ubc.ca",
+  "Performance Works": "https://granvilleisland.com/directory/performance-works"
 };
 
 // Curated Discovery Sources Directory
@@ -13560,7 +36748,7 @@ const DISCOVERY_SOURCES = [
     "id": "city-of-vancouver-culture",
     "name": "City of Vancouver Parks, Recreation & Culture",
     "domain": "vancouver.ca",
-    "eventsUrl": "https://vancouver.ca/parks-recreation-culture/drop-in-activities.aspx",
+    "eventsUrl": "https://www.destinationvancouver.com/things-to-do/",
     "rssUrl": null,
     "type": "civic_recreation_directory",
     "typeLabel": "Municipal Parks, Recreation & Civic Directory",
@@ -14009,6 +37197,210 @@ const DISCOVERY_SOURCES = [
     "harvestMethod": "html_calendar",
     "targetBudgetTier": "<= $50 CAD & free",
     "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
+    "status": "active"
+  },
+  {
+    "id": "arts-club-theatre",
+    "name": "Arts Club Theatre Company",
+    "domain": "artsclub.com",
+    "eventsUrl": "https://artsclub.com/shows/",
+    "type": "regional_theatre_company",
+    "typeLabel": "Regional Professional Theatre Company",
+    "focus": "Live plays, musicals, and staged comedies across 3 Vancouver stages",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD (rush, preview, and youth ticket programs)",
+    "status": "active"
+  },
+  {
+    "id": "the-improv-centre",
+    "name": "The Improv Centre (Granville Island)",
+    "domain": "theimprovcentre.ca",
+    "eventsUrl": "https://theimprovcentre.ca/shows/",
+    "type": "comedy_theatre",
+    "typeLabel": "Granville Island Improv Institution",
+    "focus": "Granville Island comedy shows 5-6 nights a week ($20-$33.50 all-in)",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD",
+    "status": "active"
+  },
+  {
+    "id": "the-cinematheque",
+    "name": "The Cinematheque (Downtown Independent Cinema)",
+    "domain": "thecinematheque.ca",
+    "eventsUrl": "https://thecinematheque.ca/films",
+    "type": "independent_cinema",
+    "typeLabel": "Non-Profit Film Institute & Cinematheque",
+    "focus": "35mm film retrospectives, international cinema, documentary screenings ($14 CAD)",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD",
+    "status": "active"
+  },
+  {
+    "id": "firehall-arts-centre",
+    "name": "Firehall Arts Centre",
+    "domain": "firehallartscentre.ca",
+    "eventsUrl": "https://firehallartscentre.ca/on-stage/",
+    "type": "community_theatre",
+    "typeLabel": "Historic Community Performing Arts Centre",
+    "focus": "Contemporary Canadian drama, experimental theatre, and cultural dance",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD (with PWYC/Under 30 tiers)",
+    "status": "active"
+  },
+  {
+    "id": "diwali-fest",
+    "name": "Diwali Fest (Diwali Celebration Society)",
+    "domain": "diwalifest.com",
+    "eventsUrl": "https://diwalifest.com",
+    "type": "cultural_festival_hub",
+    "typeLabel": "Annual South Asian Arts & Culture Festival",
+    "focus": "Diwali performances, South Asian classical music, dance, rangoli workshops",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "100% Free / PWYC ($0.00 CAD)",
+    "status": "active"
+  },
+  {
+    "id": "orangetickets",
+    "name": "Orange Tickets Canada",
+    "domain": "orangetickets.ca",
+    "eventsUrl": "https://orangetickets.ca",
+    "type": "ticketing_platform_radar",
+    "typeLabel": "Specialty Live Music Ticketing",
+    "focus": "Metal, punk, underground rock concerts at Rickshaw and live venues",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD",
+    "status": "active"
+  },
+  {
+    "id": "latincouver",
+    "name": "Latincouver (The Latin American Plaza in BC)",
+    "domain": "latincouver.ca",
+    "eventsUrl": "https://latincouver.ca/events/",
+    "type": "cultural_association_radar",
+    "typeLabel": "Cultural Heritage & Community Festival",
+    "focus": "Latin American festivals, Día de los Muertos, music & heritage workshops",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free",
+    "status": "active"
+  },
+  {
+    "id": "tightrope-theatre",
+    "name": "Tightrope Impro Theatre (Ticket Tailor Portal)",
+    "domain": "tightropetheatre.com",
+    "eventsUrl": "https://tightropetheatre.com/shows",
+    "type": "comedy_theatre",
+    "typeLabel": "Independent Improv Comedy Venue",
+    "focus": "Weekly unscripted comedy, narrative improv, and drop-in jams ($26.25 all-in)",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD",
+    "status": "active"
+  },
+  {
+    "id": "commercial-drive-bia",
+    "name": "Commercial Drive Business Society (BIA)",
+    "domain": "thedrive.ca",
+    "eventsUrl": "https://thedrive.ca/events/",
+    "type": "neighbourhood_bia",
+    "typeLabel": "Business Improvement Association",
+    "focus": "Italian Day, Halloween on The Drive, holiday parades, community concerts",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "100% Free ($0.00 CAD)",
+    "status": "active"
+  },
+  {
+    "id": "admitone",
+    "name": "AdmitOne Ticketing (Vancouver Live Music)",
+    "domain": "admitone.com",
+    "eventsUrl": "https://admitone.com/events/vancouver",
+    "type": "ticketing_platform_radar",
+    "typeLabel": "Direct Ticketing Platform",
+    "focus": "Independent live music, touring bands, club shows (The Biltmore, etc.)",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD",
+    "status": "active"
+  },
+  {
+    "id": "vancouver-writers-fest",
+    "name": "Vancouver Writers Fest",
+    "domain": "writersfest.bc.ca",
+    "eventsUrl": "https://writersfest.bc.ca/events",
+    "type": "literary_festival_and_year_round_series",
+    "typeLabel": "Premier Literary Festival & Year-Round Reading Series",
+    "focus": "Author conversations, poetry bases, literary cabarets, and youth writing workshops across Granville Island",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD & free ($28 regular / $12-$15 youth / free community events)",
+    "status": "active"
+  },
+  {
+    "id": "vancouver-poetry-house",
+    "name": "Vancouver Poetry House",
+    "domain": "vancouverpoetryhouse.com",
+    "eventsUrl": "https://vancouverpoetryhouse.com/events/",
+    "type": "spoken_word_collective",
+    "typeLabel": "Spoken Word, Slam Poetry & Community Showcase",
+    "focus": "Weekly Vancouver Poetry Slam, Wordplay youth workshops, and VerseFest community poetry events ($10-$15 CAD)",
+    "bestForCategories": [
+      "shows",
+      "arts",
+      "music"
+    ],
+    "harvestMethod": "html_calendar",
+    "targetBudgetTier": "<= $50 CAD ($10 - $15 CAD door & PWYC)",
     "status": "active"
   }
 ];

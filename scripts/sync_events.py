@@ -125,7 +125,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+            "websiteUrl": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
             "coordinates": [49.2988, -123.1384],
             "transitInfo": "#19 bus to Stanley Park or 5 min walk from Denman St",
             "description": "Scenic 9km coastal path offering uninterrupted views of Burrard Inlet, Lions Gate Bridge, and calm freshwater bird watching at Lost Lagoon."
@@ -322,7 +322,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T06:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+            "websiteUrl": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
             "coordinates": [49.2417, -123.1126],
             "transitInfo": "10 min walk from King Edward Canada Line station",
             "description": "Highest point in the City of Vancouver (152m above sea level) featuring dramatic sunken quarry gardens, manicured perennial flowers, footbridges, and panoramic skyline vistas. Completely free public park."
@@ -1454,7 +1454,7 @@ def get_curated_seed_catalog():
             "startIso": "2026-09-08T08:00:00-07:00",
             "endIso": None,
             "isSoldOut": False,
-            "websiteUrl": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+            "websiteUrl": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
             "coordinates": [49.2908, -123.1448],
             "transitInfo": "#19 bus to Stanley Park or 10 min walk from Denman St",
             "description": "City of Vancouver 18-hole par-three golf course nestled under towering coastal Douglas firs and weeping willows next to English Bay."
@@ -2699,15 +2699,15 @@ def get_curated_seed_catalog():
 # ==============================================================================
 
 VENUE_URLS = {
-    "Stanley Park Seawall": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "Stanley Park Seawall": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
     "Lynn Canyon Park": "https://ecologycentre.ca",
     "Granville Island Public Market": "https://granvilleisland.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com",
     "VPL Central Library (Level 9)": "https://www.vpl.ca/branches/central/level-9/roofgarden",
     "Dr. Sun Yat-Sen Public Courtyard": "https://vancouverchinesegarden.com/visit/",
     "UBC Rose Garden & Trail 6": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
-    "Queen Elizabeth Park": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "Bloedel Conservatory": "https://www.showpass.com/o/bloedel-conservatory/",
+    "Queen Elizabeth Park": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "Bloedel Conservatory": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
     "Little Mountain Gallery": "https://littlemountaingallery.ca",
     "War Memorial Gym & Thunderbird Stadium": "https://gothunderbirds.ca",
     "Chill x Studio": "https://chillxstudio.com",
@@ -2730,7 +2730,7 @@ VENUE_URLS = {
     "The Orpheum Theatre": "https://vancouvercivictheatres.com/venues/orpheum/",
     "Queen Elizabeth Theatre": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
-    "Stanley Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "Stanley Park Pitch & Putt": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
     "Vancouver Art Gallery": "https://www.vanartgallery.bc.ca",
     "The Shipyards District": "https://theshipyardsdistrict.ca",
     "Kitsilano Beach Park": "https://kitsilanoshowboat.com/",
@@ -2819,8 +2819,8 @@ PROHIBITED_GENERIC_URL_REDIRECTS = {
     "https://botanicalgarden.ubc.ca/visit": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "https://visit.ubc.ca": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
     "https://visit.ubc.ca/": "https://visit.ubc.ca/see-and-do/gardens-and-nature/ubc-rose-garden/",
-    "https://vandusengarden.org": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "https://vandusengarden.org/": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "https://vandusengarden.org": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "https://vandusengarden.org/": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
     "https://vancouverchinesegarden.com/tickets-checkout/": "https://vancouverchinesegarden.com/visit/",
     "https://vancouverchinesegarden.com/tickets-checkout": "https://vancouverchinesegarden.com/visit/",
     "https://cafeauclay.com": "https://cafeauclay.com/products/drop-in-pottery-painting",
@@ -2909,7 +2909,7 @@ def normalize_event_links(url: str, venue: str = "", item: dict = None) -> str:
 
     # Pattern-based normalization for Queen Elizabeth Park (preventing paid VanDusen confusion)
     if "vandusengarden.org" in cleaned.lower() and "queen" in venue.lower():
-        return "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx"
+        return "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park"
 
     # Pattern-based normalization for Dr. Sun Yat-Sen Public Courtyard (preventing ticket checkout confusion)
     if "vancouverchinesegarden.com/tickets-checkout" in cleaned.lower():

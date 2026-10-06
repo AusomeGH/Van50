@@ -1,0 +1,48 @@
+{
+  "target_email": "Van50.Submit@gmail.com",
+  "last_updated": "2026-10-06T02:10:35.438255+00:00",
+  "subscriptions": [
+    {
+      "venue_name": "The Rio Theatre",
+      "website": "https://riotheatre.ca",
+      "status": "Subscribed (Front Row Updates - Films & Live Shows)",
+      "subscribed_at": "2026-10-04T14:41:43.587023",
+      "method": "Browser Automated Form Submission (Gravity Forms)"
+    },
+    {
+      "venue_name": "Vancouver Civic Theatres",
+      "website": "https://vancouvercivictheatres.com",
+      "status": "Form Endpoint Identified (/umbraco/Surface/NewsletterSignup/SubmitForm)",
+      "subscribed_at": "2026-10-04T14:41:43.587031",
+      "method": "Direct Post"
+    },
+    {
+      "venue_name": "The Cultch",
+      "website": "https://thecultch.com",
+      "status": "Direct Signup Portal (https://ticketing.thecultch.com/thecultch/website/secure/signup.aspx)",
+      "subscribed_at": "2026-10-04T14:41:43.587036",
+      "method": "Ticketing Portal"
+    },
+    {
+      "venue_name": "Rickshaw Theatre",
+      "website": "https://rickshawtheatre.com",
+      "status": "Newsletter Form Active",
+      "subscribed_at": "2026-10-04T14:41:43.587044",
+      "method": "Web Form"
+    },
+    {
+      "venue_name": "The Improv Centre",
+      "website": "https://theimprovcentre.ca",
+      "status": "Spektrix Box Office Patron Account",
+      "subscribed_at": "2026-10-04T14:41:43.587051",
+      "method": "Spektrix"
+    },
+    {
+      "venue_name": "Tightrope Impro Theatre",
+      "website": "https://tightropetheatre.com/",
+      "status": "Manual Curator Subscription (https://tightropetheatre.com/)",
+      "subscribed_at": "2026-10-06T02:10:35.438226+00:00",
+      "method": "Embedded Mailchimp / Newsletter Form"
+    }
+  ]
+}

@@ -1733,6 +1733,10 @@ body.van50-accessible #curator-accessibility-btn.active {
   color: #fca5a5;
 }
 
+#curator-cards-list {
+  scroll-margin-top: 140px;
+}
+
 
 
 

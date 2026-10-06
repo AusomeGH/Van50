@@ -1,240 +1,18 @@
 {
-  "status": "idle",
-  "current_task": "Automated Python QC Engine",
-  "current_step": "Quarantine 13D Audit complete: 6 graduated to live, 22 retained with deficiency breakdowns.",
+  "status": "complete",
+  "current_task": "Hourly Status Monitor",
+  "current_step": "Idle awaiting next hourly trigger",
   "progress_percent": 100,
-  "last_updated": "2026-10-01T04:32:13.515183",
+  "last_updated": "2026-10-05T17:28:16.798140",
   "stats": {
     "confirmed": 921,
     "new_events": 133,
     "new_venues": 25,
     "new_sources": 19,
     "quarantined": 38,
-    "archived": 3
+    "archived": 13
   },
   "recent_logs": [
-    {
-      "id": "log_1790854332408",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Arts & Health HUB on Social Prescribing\" at Ballet BC Studios ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332420",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Justine A. Chambers: One hundred more (Exhibition & Virtual Panel)\" at Or Gallery ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332430",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Make and Take Collage! & First Saturday Open Studios\" at Eastside Atelier ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332444",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Meet, Make & Explore: EWMA Open Studio\" at EWMA Studio ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332456",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Pay What You Can Sunday at Vancouver Maritime Museum\" at Vancouver Maritime Museum ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332472",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"č̓əl̕təl̕ístəχʷ tə x̌pey̓əɬp Honouring Cedar\" at Scotiabank Dance Centre ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332481",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"1984:AGAIN (Theatre Terrific)\" at SFU Djavad Mowafaghian World Art Centre ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332492",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Life at OPS Screening\" at SFU Djavad Mowafaghian Cinema ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332504",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"ABC's of Ha Ha Ha Comedy Showcase!\" at LanaLou's Restaurant ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332518",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Dispatches (by Jenny Simpson)\" at SFU Djavad Mowafaghian World Art Centre ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332530",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Spirit Voices Folk Opera\" at Ukrainian Hall ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332543",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"LIVE IN HELL (by Marita Michaelis)\" at KW Production Studio ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332556",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"I Hope This Finds You: The Art of the Letter\" at Vancouver Public Library – nə́c̓aʔmat ct Strathcona Branch ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332571",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Public Disco Festival Industry Exchange: Parties Build Cities\" at The Polygon Gallery ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332581",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Official Public Disco Afterparty: DJ Hannah, Nancy Dru & Indulgent\" at Gorg-O-Mish ($35.00 CAD)"
-    },
-    {
-      "id": "log_1790854332596",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Weekly Resident Trivia Night at Granville Island Brewing\" at Granville Island Brewing Taproom ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332608",
-      "timestamp": "04:32:12",
-      "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"Echoes of Chinese Heritage\" • Reason: Adult base ticket is $46 CAD; ticketing fees unverified, triggering quarantine under the $43+ threshold constraint."
-    },
-    {
-      "id": "log_1790854332620",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Gongs in the Garden: A Sunday Slowdown\" at Dr. Sun Yat-Sen Classical Chinese Garden ($38.74 CAD)"
-    },
-    {
-      "id": "log_1790854332635",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Double Ninth Festival (Chongyang Festival 重陽節)\" at Dr. Sun Yat-Sen Classical Chinese Garden ($16.96 CAD)"
-    },
-    {
-      "id": "log_1790854332645",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Traditional Chinese Tea Tastings\" at Dr. Sun Yat-Sen Classical Chinese Garden (Free Public Access - Sat-Sun 10:30 AM, 11:45 AM, 1:00 PM)"
-    },
-    {
-      "id": "log_1790854332662",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"LMG 10th Anniversary Comedy Special\" at Little Mountain Gallery (Salazar Stage) ($20.00 CAD)"
-    },
-    {
-      "id": "log_1790854332679",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery: Free First Friday Night\" at Vancouver Art Gallery ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332695",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Bill Reid Gallery First Friday Free Drop-in\" at Bill Reid Gallery of Northwest Coast Art ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854332707",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Dark & Dirty Show\" at Little Mountain Gallery (Salazar Stage) ($25.00 CAD)"
-    },
-    {
-      "id": "log_1790854332718",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Musical Wave Indie Showcase & DJ Night\" at The Portside Pub ($20.00 CAD)"
-    },
-    {
-      "id": "log_1790854332729",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"LMG Presents: Headliner Stand-Up Series\" at Little Mountain Gallery (Salazar Stage) ($25.00 CAD)"
-    },
-    {
-      "id": "log_1790854332742",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"20/20/20 Stand-Up Comedy Showcase\" at Little Mountain Gallery (Salazar Stage) ($22.00 CAD)"
-    },
-    {
-      "id": "log_1790854332752",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Comedy Bingo!\" at Little Mountain Gallery (Raccoon Room) ($18.99 CAD)"
-    },
-    {
-      "id": "log_1790854332763",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Icons Of The Night: Y2K Edit\" at The Portside Pub ($17.87 CAD)"
-    },
-    {
-      "id": "log_1790854332774",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Angels & Demons: Halloween Party\" at The Portside Pub ($28.41 CAD)"
-    },
-    {
-      "id": "log_1790854332785",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Cherelle Jardine: Album Release Celebration\" at Chill x Studio ($25.00 CAD)"
-    },
-    {
-      "id": "log_1790854332797",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Ashwyn Singh: The Imperfect Ally Tour\" at Chill x Studio ($35.00 CAD)"
-    },
-    {
-      "id": "log_1790854332809",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Ben Albert: Live in Vancouver\" at Chill x Studio ($21.57 CAD)"
-    },
-    {
-      "id": "log_1790854332821",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Polygon Gallery & Shipyards Waterfront\" at The Polygon Gallery (Free Public Access - Wed–Sun 10:00 AM – 5:00 PM (Thursdays open until 8:00 PM; closed Mon–Tue))"
-    },
-    {
-      "id": "log_1790854332833",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Pendulum Gallery at HSBC Atrium\" at Pendulum Gallery (Free Public Access - Mon–Wed 9:00 AM – 5:00 PM; Thu–Fri 9:00 AM – 6:00 PM; Sat 9:00 AM – 5:00 PM (Closed Sundays))"
-    },
-    {
-      "id": "log_1790854332845",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Contemporary Art Gallery (CAG)\" at Contemporary Art Gallery (Free Public Access - Wed–Sun 12:00 PM – 6:00 PM (Closed Mon & Tue))"
-    },
-    {
-      "id": "log_1790854332857",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Granville Island Public Market & Courtyard\" at Granville Island Public Market (Free Public Access - Daily 9:00 AM – 6:00 PM)"
-    },
     {
       "id": "log_1790854332868",
       "timestamp": "04:32:12",
@@ -612,6 +390,228 @@
       "timestamp": "04:32:13",
       "type": "NEW_SOURCE",
       "message": "[NEW SOURCE ADDED] \"Vancouver Recreation Activity Portal\" (vanrec.ca)"
+    },
+    {
+      "id": "log_1791231251083",
+      "timestamp": "13:14:11",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: HEIST by Arun Lakra"
+    },
+    {
+      "id": "log_1791231251647",
+      "timestamp": "13:14:11",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Babes In Canyon w/ Anna Smyrk & Shelby Natasha"
+    },
+    {
+      "id": "log_1791231252452",
+      "timestamp": "13:14:12",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: SALIN (Live Soul & World Jazz)"
+    },
+    {
+      "id": "log_1791231252466",
+      "timestamp": "13:14:12",
+      "type": "CONFIRMED",
+      "message": "Schedule rolled forward to upcoming showing: Harvest Days at VanDusen Botanical Garden (2026-10-10)"
+    },
+    {
+      "id": "log_1791231253260",
+      "timestamp": "13:14:13",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Harvest Days at VanDusen Botanical Garden"
+    },
+    {
+      "id": "log_1791231255058",
+      "timestamp": "13:14:15",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: ACTORS with Sacred Skin, MØAA & DJ Evilyn 13"
+    },
+    {
+      "id": "log_1791231255926",
+      "timestamp": "13:14:15",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: The Sunday Service: Live Improv Comedy"
+    },
+    {
+      "id": "log_1791231258369",
+      "timestamp": "13:14:18",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: 00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+    },
+    {
+      "id": "log_1791231262721",
+      "timestamp": "13:14:22",
+      "type": "CONFIRMED",
+      "message": "Schedule rolled forward to upcoming showing: Sunday Jazz Vespers at St. Andrew's-Wesley (2026-10-11)"
+    },
+    {
+      "id": "log_1791231265048",
+      "timestamp": "13:14:25",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Concrete Vehicles with Hillsboro, WAIT//LESS, and LöLä"
+    },
+    {
+      "id": "log_1791231267597",
+      "timestamp": "13:14:27",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: Guilt & Co. Live: Hollywood Alberta (with Ted Kim)"
+    },
+    {
+      "id": "log_1791231271208",
+      "timestamp": "13:14:31",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: 2nd Floor Gastown Live: Ikuko May Quartet"
+    },
+    {
+      "id": "log_1791231272416",
+      "timestamp": "13:14:32",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: The Rasmus"
+    },
+    {
+      "id": "log_1791231274127",
+      "timestamp": "13:14:34",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Chad VanGaalen"
+    },
+    {
+      "id": "log_1791231274677",
+      "timestamp": "13:14:34",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Concrete Vehicles"
+    },
+    {
+      "id": "log_1791231275142",
+      "timestamp": "13:14:35",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Actors"
+    },
+    {
+      "id": "log_1791231275672",
+      "timestamp": "13:14:35",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Dune Rats"
+    },
+    {
+      "id": "log_1791231282681",
+      "timestamp": "13:14:42",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: BUZZ KULL & KONTRAVOID Live at The Biltmore"
+    },
+    {
+      "id": "log_1791231289339",
+      "timestamp": "13:14:49",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: HEIST by Arun Lakra"
+    },
+    {
+      "id": "log_1791231289815",
+      "timestamp": "13:14:49",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Babes In Canyon w/ Anna Smyrk & Shelby Natasha"
+    },
+    {
+      "id": "log_1791231290532",
+      "timestamp": "13:14:50",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: SALIN (Live Soul & World Jazz)"
+    },
+    {
+      "id": "log_1791231290546",
+      "timestamp": "13:14:50",
+      "type": "CONFIRMED",
+      "message": "Schedule rolled forward to upcoming showing: Harvest Days at VanDusen Botanical Garden (2026-10-10)"
+    },
+    {
+      "id": "log_1791231291244",
+      "timestamp": "13:14:51",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Harvest Days at VanDusen Botanical Garden"
+    },
+    {
+      "id": "log_1791231292691",
+      "timestamp": "13:14:52",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: ACTORS with Sacred Skin, MØAA & DJ Evilyn 13"
+    },
+    {
+      "id": "log_1791231293445",
+      "timestamp": "13:14:53",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: The Sunday Service: Live Improv Comedy"
+    },
+    {
+      "id": "log_1791231295009",
+      "timestamp": "13:14:55",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: 00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+    },
+    {
+      "id": "log_1791231298785",
+      "timestamp": "13:14:58",
+      "type": "CONFIRMED",
+      "message": "Schedule rolled forward to upcoming showing: Sunday Jazz Vespers at St. Andrew's-Wesley (2026-10-11)"
+    },
+    {
+      "id": "log_1791231300760",
+      "timestamp": "13:15:00",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Concrete Vehicles with Hillsboro, WAIT//LESS, and LöLä"
+    },
+    {
+      "id": "log_1791231303096",
+      "timestamp": "13:15:03",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: Guilt & Co. Live: Hollywood Alberta (with Ted Kim)"
+    },
+    {
+      "id": "log_1791231306727",
+      "timestamp": "13:15:06",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: 2nd Floor Gastown Live: Ikuko May Quartet"
+    },
+    {
+      "id": "log_1791231307874",
+      "timestamp": "13:15:07",
+      "type": "ARCHIVED",
+      "message": "Event concluded and marked past: The Rasmus"
+    },
+    {
+      "id": "log_1791231309692",
+      "timestamp": "13:15:09",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Chad VanGaalen"
+    },
+    {
+      "id": "log_1791231310284",
+      "timestamp": "13:15:10",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Concrete Vehicles"
+    },
+    {
+      "id": "log_1791231310822",
+      "timestamp": "13:15:10",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Actors"
+    },
+    {
+      "id": "log_1791231311567",
+      "timestamp": "13:15:11",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: Dune Rats"
+    },
+    {
+      "id": "log_1791231317340",
+      "timestamp": "13:15:17",
+      "type": "CONFIRMED",
+      "message": "Sold-out detected: BUZZ KULL & KONTRAVOID Live at The Biltmore"
+    },
+    {
+      "id": "log_1791246479597",
+      "timestamp": "17:27:59",
+      "type": "CONFIRMED",
+      "message": "Schedule rolled forward to upcoming showing: VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation) (2026-10-11)"
     }
   ]
 }

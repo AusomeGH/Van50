@@ -23,9 +23,12 @@ const state = {
     master: 0,
     rules: 0,
     instructions: 0,
-    discoveredVenues: 0
+    discoveredVenues: 0,
+    discoveredSources: 0
   },
   discoveredVenues: [],
+  discoveredSources: [],
+  dismissedCandidatePrompt: false,
   pendingHolidays: [],
   approvedHolidays: [],
   knownVenues: new Set(),
@@ -238,7 +241,7 @@ async function checkAuthAndInitialize(retryCount = 0) {
         if (data.knownVenues) {
           state.knownVenues = new Set(data.knownVenues.map(v => v.toLowerCase()));
         }
-        updateHeaderStats(data.pendingCount, data.rulesCount, data.masterCount, data.instructionsPendingCount || 0, data.discoveredVenuesCount || 0);
+        updateHeaderStats(data.pendingCount, data.rulesCount, data.masterCount, data.instructionsPendingCount || 0, data.discoveredVenuesCount || 0, data.discoveredSourcesCount || 0);
         loadQuarantineQueue();
         return;
       }
@@ -363,6 +366,17 @@ async function loadQuarantineQueue() {
           details_url: ev.details_url || resolvedUrl
         };
       });
+      state.userFeedbackQueue = data.userFeedbackQueue || [];
+      const userFbCountEl = document.getElementById('stat-user-feedback-count');
+      const pillUserFbCountEl = document.getElementById('pill-count-user-feedback');
+      if (userFbCountEl) userFbCountEl.textContent = state.userFeedbackQueue.length;
+      if (pillUserFbCountEl) pillUserFbCountEl.textContent = state.userFeedbackQueue.length;
+
+      state.pendingNewsletterSignups = data.pendingNewsletterSignups || [];
+      const nlCountEl = document.getElementById('stat-nl-signups-count');
+      const pillNlCountEl = document.getElementById('pill-count-nl-signups');
+      if (nlCountEl) nlCountEl.textContent = state.pendingNewsletterSignups.length;
+      if (pillNlCountEl) pillNlCountEl.textContent = state.pendingNewsletterSignups.length;
     } else if (res.status === 401 || res.status === 403) {
       handleLogout();
       return;
@@ -459,6 +473,20 @@ async function loadQuarantineQueue() {
       console.warn('Could not fetch holiday registry:', e);
     }
 
+    // Fetch Discovered Candidate Sources
+    try {
+      const srcRes = await fetch(`/api/curator/discovered_sources?_t=${t}`, {
+        headers: { 'Curator-Token': state.token },
+        cache: 'no-store'
+      });
+      if (srcRes.ok) {
+        const srcData = await srcRes.json();
+        state.discoveredSources = (srcData.discoveredSources || []).filter(s => s.status === 'pending_curator_approval' || s.status === 'pending');
+      }
+    } catch (e) {
+      console.warn('Could not fetch discovered sources:', e);
+    }
+
     updateFilterCounts();
     applyFiltersAndRender();
   } catch (err) {
@@ -466,23 +494,37 @@ async function loadQuarantineQueue() {
   }
 }
 
-function updateHeaderStats(pending, rules, master, instructions = 0, discoveredVenues = 0) {
+function updateHeaderStats(pending, rules, master, instructions = 0, discoveredVenues = 0, discoveredSources = 0) {
   state.stats.pending = pending;
   state.stats.rules = rules;
   state.stats.master = master;
   state.stats.instructions = instructions;
   state.stats.discoveredVenues = discoveredVenues;
+  state.stats.discoveredSources = discoveredSources;
 
   const elP = document.getElementById('stat-pending-count');
   const elR = document.getElementById('stat-rules-count');
   const elM = document.getElementById('stat-master-count');
   const elI = document.getElementById('stat-instructions-count');
   const elV = document.getElementById('stat-discovered-venues-count');
+  const elS = document.getElementById('stat-discovered-sources-count');
+  const elA = document.getElementById('stat-audit-count');
   if (elP) elP.textContent = pending;
   if (elR) elR.textContent = rules;
   if (elM) elM.textContent = master;
   if (elI) elI.textContent = instructions;
   if (elV) elV.textContent = discoveredVenues;
+  if (elS) elS.textContent = discoveredSources;
+  if (elA) {
+    const activeEvs = state.masterCatalogs?.events_active || [];
+    if (activeEvs.length > 0) {
+      const audited = activeEvs.filter(e => e.dimension_audit && e.dimension_audit.dimensions).length;
+      const pct = Math.round((audited / activeEvs.length) * 100);
+      elA.textContent = `${pct}%`;
+    } else {
+      elA.textContent = '100%';
+    }
+  }
 }
 
 function isDrift(item) {
@@ -505,6 +547,7 @@ function updateFilterCounts() {
   const course = all.filter(e => isCourse(e)).length;
   const newsletter = all.filter(e => e.source === 'newsletter' || (e.flagReason || '').toLowerCase().includes('newsletter')).length;
   const discVenues = (state.discoveredVenues || []).length;
+  const discSources = (state.discoveredSources || []).length;
 
   const setT = (id, count) => {
     const el = document.getElementById(id);
@@ -514,6 +557,7 @@ function updateFilterCounts() {
   setT('pill-count-feedback', feedback);
   setT('pill-count-newsletter', newsletter);
   setT('pill-count-discovered-venues', discVenues);
+  setT('pill-count-discovered-sources', discSources);
   setT('pill-count-holidays', (state.pendingHolidays || []).length);
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
@@ -526,6 +570,11 @@ function updateFilterCounts() {
   if (statP) statP.textContent = all.length;
   const statV = document.getElementById('stat-discovered-venues-count');
   if (statV) statV.textContent = discVenues;
+  const statS = document.getElementById('stat-discovered-sources-count');
+  if (statS) statS.textContent = discSources;
+
+  // Auto-prompt banner for candidate sources
+  checkAndPromptCandidateSources();
 }
 
 // Classification Helpers for Triage Filtering
@@ -562,9 +611,27 @@ function applyFiltersAndRender() {
     return;
   }
 
+  // Discovered Sources Tab
+  if (state.activeFilter === 'discovered_sources') {
+    renderDiscoveredSourcesCards();
+    return;
+  }
+
   // New Holidays Tab
   if (state.activeFilter === 'holidays') {
     renderHolidayCards();
+    return;
+  }
+
+  // User Submissions & Feedback Tab
+  if (state.activeFilter === 'user_feedback') {
+    renderUserFeedbackCards();
+    return;
+  }
+
+  // Newsletter Signups Tab
+  if (state.activeFilter === 'newsletter_signups') {
+    renderNewsletterSignupsCards();
     return;
   }
 
@@ -1524,7 +1591,48 @@ window.setModalViewMode = function(mode = 'screenshot') {
 };
 
 window.openAIInstructionModal = function(eventId, mode = 'approve') {
-  const ev = (state.quarantinedEvents || []).find(e => e.id === eventId) || (state.archivedEvents || []).find(e => e.id === eventId);
+  let ev = (state.quarantinedEvents || []).find(e => e.id === eventId) || 
+           (state.archivedEvents || []).find(e => e.id === eventId) ||
+           (state.discoveredVenues || []).find(v => v.id === eventId) ||
+           (state.discoveredSources || []).find(s => s.id === eventId);
+
+  // Cross-search master catalogs data (events, venues, festivals)
+  if (!ev && state.masterCatalogsData) {
+    for (const key of Object.keys(state.masterCatalogsData)) {
+      const found = (state.masterCatalogsData[key] || []).find(item => 
+        item.id === eventId || 
+        item.event_id === eventId || 
+        item.venue_name === eventId || 
+        item.name === eventId ||
+        item.festival_name === eventId
+      );
+      if (found) {
+        ev = {
+          id: found.id || found.event_id || found.venue_name || found.festival_name || eventId,
+          title: found.event_name || found.title || found.venue_name || found.festival_name || found.name || 'Catalog Item',
+          venue: found.venue_name || found.venue || found.location || 'Vancouver',
+          websiteUrl: found.ticket_url || found.calendar_url || found.website_url || found.schedule_url || found.url || '',
+          category: found.category || 'shows',
+          price: found.pricing_all_in_cad?.regular ?? found.price ?? 0
+        };
+        break;
+      }
+    }
+  }
+
+  // Normalize candidate venues
+  if (ev && !ev.title && ev.name) {
+    ev.title = ev.name;
+    ev.venue = ev.name;
+    ev.websiteUrl = ev.calendar_url || ev.website_url || ev.url || '';
+  }
+  // Normalize candidate sources
+  if (ev && !ev.title && ev.domain) {
+    ev.title = ev.name || ev.domain;
+    ev.venue = ev.name || ev.domain;
+    ev.websiteUrl = ev.eventsUrl || (ev.domain ? 'https://' + ev.domain : '');
+  }
+
   const modal = document.getElementById('ai-instruction-modal');
   if (!modal) return;
 
@@ -3959,6 +4067,13 @@ function setupCuratorEventListeners() {
     });
   }
 
+  const statSourcesPill = document.getElementById('stat-discovered-sources-pill');
+  if (statSourcesPill) {
+    statSourcesPill.addEventListener('click', () => {
+      switchFilterToDiscoveredSources();
+    });
+  }
+
   // Add Discovered Venue Modal Listeners
   const venueModal = document.getElementById('add-venue-modal');
   const closeVenueModalBtn = document.getElementById('btn-close-venue-modal');
@@ -5815,9 +5930,10 @@ function renderMasterCatalogList() {
           <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">${escapeHtml(ev.description || 'No description provided.')}</div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 0.76rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px;">
             <div>📅 Show 1: ${show1.date || 'Upcoming'} ${show1.start_time ? `at ${show1.start_time}` : ''} | Provider: <strong style="color: #cbd5e1;">${escapeHtml(ev.ticket_provider || 'Direct')}</strong></div>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px; align-items: center;">
               ${tags}
               ${ev.ticket_url ? `<a href="${escapeHtml(ev.ticket_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">Tickets ↗</a>` : ''}
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(ev.event_id || ev.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4);" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
             </div>
           </div>
         </div>
@@ -5837,9 +5953,10 @@ function renderMasterCatalogList() {
           </div>
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(addr)}</div>
           ${vm.description ? `<div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 2px;">${escapeHtml(vm.description)}</div>` : ''}
-          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
+          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
             ${calUrl ? `<a href="${escapeHtml(calUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Calendar Page ↗</a>` : ''}
             ${vm.website_url && vm.website_url !== calUrl ? `<a href="${escapeHtml(vm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Website ↗</a>` : ''}
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(vm.venue_name || vm.name || vm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
           </div>
         </div>
       `;
@@ -5854,9 +5971,10 @@ function renderMasterCatalogList() {
             <span style="color: #c084fc; font-size: 0.8rem; font-weight: 600;">${escapeHtml(fm.start_date || '')} to ${escapeHtml(fm.end_date || '')}</span>
           </div>
           <div style="font-size: 0.82rem; color: #94a3b8;">📍 ${escapeHtml(fm.location || 'Vancouver, BC')} • Genre: <strong style="color: #cbd5e1;">${escapeHtml(fm.description || 'General')}</strong></div>
-          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem;">
+          <div style="display: flex; gap: 12px; margin-top: 4px; font-size: 0.78rem; align-items: center;">
             ${fm.schedule_url ? `<a href="${escapeHtml(fm.schedule_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline;">📅 Schedule & Lineup ↗</a>` : ''}
             ${fm.website_url ? `<a href="${escapeHtml(fm.website_url)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #94a3b8; text-decoration: underline;">🌐 Festival Portal ↗</a>` : ''}
+            <button type="button" class="btn-curator btn-curator-ghost" onclick="openAIInstructionModal('${escapeHtml(fm.festival_name || fm.name || fm.id)}', 'instruct')" style="padding: 2px 7px; font-size: 0.72rem; color: #d8b4fe; border-color: rgba(168, 85, 247, 0.4); margin-left: auto;" title="Give comments/feedback for AI to evaluate during quarantine review">📝 Guidance</button>
           </div>
         </div>
       `;
@@ -6029,3 +6147,611 @@ window.renderMasterCatalogList = renderMasterCatalogList;
 // Section 12 (Automated Operations Stream console) removed per user request.
 
 
+
+
+// ==============================================================================
+// DISCOVERED CANDIDATE SOURCES PROMPT & RENDERING ENGINE
+// ==============================================================================
+
+function checkAndPromptCandidateSources() {
+  const container = document.getElementById('curator-candidate-sources-prompt');
+  if (!container) return;
+
+  const sources = (state.discoveredSources || []).filter(s => s.status === 'pending_curator_approval' || s.status === 'pending');
+  const count = sources.length;
+
+  if (count === 0 || state.dismissedCandidatePrompt) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.style.display = 'block';
+  container.innerHTML = `
+    <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(99, 102, 241, 0.15)); border: 1.5px solid rgba(56, 189, 248, 0.55); border-left: 6px solid #38bdf8; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <div style="font-size: 2.2rem; background: rgba(56, 189, 248, 0.15); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.3);">📡</div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <h3 style="margin: 0; font-size: 1.15rem; color: #bae6fd; font-family: var(--font-heading); font-weight: 700;">
+              ${count} New Candidate Event Sources Discovered by AI Awaiting Review!
+            </h3>
+            <span style="background: #0284c7; color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Action Recommended</span>
+          </div>
+          <p style="margin: 0; font-size: 0.88rem; color: #cbd5e1; line-height: 1.4;">
+            The Scout &amp; QC AIs automatically identified <strong>${count} potential event hubs, cultural organizers &amp; ticketing platforms</strong> during live operations. Review and enroll them into the Scout's mandatory checking schedule.
+          </p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <button type="button" class="btn-curator btn-curator-primary" onclick="switchFilterToDiscoveredSources()" style="background: #0284c7; border: 1px solid #38bdf8; color: #fff; font-weight: 600; padding: 8px 16px;">
+          🔍 Review Candidates (${count})
+        </button>
+        <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #6ee7b7; font-weight: 600; padding: 8px 14px;">
+          ⚡ Approve All (${count})
+        </button>
+        <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissCandidateSourcesPrompt()" style="color: #94a3b8; padding: 8px 10px;" title="Dismiss notification">
+          ✕
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function dismissCandidateSourcesPrompt() {
+  state.dismissedCandidatePrompt = true;
+  const container = document.getElementById('curator-candidate-sources-prompt');
+  if (container) container.style.display = 'none';
+}
+
+function switchFilterToDiscoveredSources() {
+  state.activeFilter = 'discovered_sources';
+  document.querySelectorAll('.curator-filter-pill').forEach(p => {
+    if (p.dataset.filter === 'discovered_sources') {
+      p.classList.add('active');
+    } else {
+      p.classList.remove('active');
+    }
+  });
+  applyFiltersAndRender();
+  const list = document.getElementById('curator-cards-list');
+  if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderDiscoveredSourcesCards() {
+  const container = document.getElementById('curator-cards-list');
+  const countDisplay = document.getElementById('curator-results-text');
+  if (!container) return;
+
+  const sources = (state.discoveredSources || []).filter(s => s.status === 'pending_curator_approval' || s.status === 'pending');
+  if (countDisplay) {
+    countDisplay.innerHTML = `Showing <strong>${sources.length}</strong> candidate event source(s) discovered by AI awaiting Curator approval`;
+  }
+
+  if (sources.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">📡</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+          No Candidate Sources Pending Review
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          All candidate event sources and ticketing platforms discovered by the AI have been reviewed and either enrolled into the Scout's mandatory radar or dismissed.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <strong style="color: #38bdf8; font-size: 0.95rem;">⚡ Bulk Actions:</strong>
+        <span style="color: #94a3b8; font-size: 0.85rem; margin-left: 8px;">Approve all ${sources.length} candidate sources into the Scout discovery schedule with one click.</span>
+      </div>
+      <button type="button" class="btn-curator btn-curator-ai-approve" onclick="approveAllCandidateSources()" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; color: #6ee7b7; font-weight: 600;">
+        ⚡ Approve All Candidate Sources (${sources.length})
+      </button>
+    </div>
+  ` + sources.map(s => {
+    const sId = s.id || '';
+    const domain = s.domain || '';
+    const name = s.name || domain;
+    const typeLabel = s.typeLabel || s.type || 'Event Source';
+    const focus = s.focus || 'Vancouver cultural & live events';
+    const budget = s.targetBudgetTier || '<= $50 CAD & free';
+    const yieldEst = s.potentialYield || 'Medium';
+    const discVia = s.discoveredVia || 'AI web operation';
+    const notes = s.curatorNotes || '';
+    const eventsUrl = s.eventsUrl || (domain ? `https://${domain}` : '#');
+
+    return `
+      <div class="curator-card" id="card-source-${escapeHtml(sId)}" style="border-left: 4px solid #38bdf8;">
+        <div class="curator-card-top">
+          <div>
+            <h3 class="curator-card-title" style="color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+              <span>📡</span> ${escapeHtml(name)}
+            </h3>
+            <div class="curator-card-meta">
+              <span>🌐 <strong>Domain:</strong> <a href="${escapeHtml(eventsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #7dd3fc; text-decoration: underline;">${escapeHtml(domain)}</a></span>
+              <span>🏷️ <strong>Type:</strong> ${escapeHtml(typeLabel)}</span>
+              <span>💰 <strong>Budget Fit:</strong> ${escapeHtml(budget)}</span>
+              <span>📈 <strong>Est. Yield:</strong> ${escapeHtml(yieldEst)}</span>
+              <span>🔍 <strong>Discovered Via:</strong> ${escapeHtml(discVia)}</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap;">
+            <span class="curator-badge-pill" style="background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border-color: rgba(56, 189, 248, 0.5);">
+              📡 Candidate Source
+            </span>
+            <span class="curator-badge-pill" style="background: rgba(251, 191, 36, 0.2); color: #fde047; border-color: rgba(251, 191, 36, 0.5);">
+              ⏳ Pending Approval
+            </span>
+          </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: #cbd5e1; line-height: 1.45;">
+          <div><strong>🎯 Focus / Content Scope:</strong> ${escapeHtml(focus)}</div>
+          ${notes ? `<div style="margin-top: 6px; color: #94a3b8;"><strong>📝 AI Curator Notes:</strong> ${escapeHtml(notes)}</div>` : ''}
+          <div style="margin-top: 8px; display: flex; gap: 16px; align-items: center;">
+            <a href="${escapeHtml(eventsUrl)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" style="color: #38bdf8; text-decoration: underline; font-weight: 500;">
+              Open Calendar / Ticket Page (<code>${escapeHtml(eventsUrl)}</code>) ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="curator-actions-bar">
+          <div class="curator-actions-left">
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-primary" 
+              onclick="approveCandidateSource('${escapeHtml(sId)}', '${escapeHtml(domain)}')"
+              style="background: #0284c7; border-color: #38bdf8;"
+              title="Approve this source and enroll into discovery_sources.json and Scout schedule"
+            >
+              ➕ Approve &amp; Add to Scout Radar
+            </button>
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-ai-approve" 
+              onclick="openAIInstructionModal('${escapeHtml(sId)}', 'instruct')"
+              title="Give comments or guidance for the AI when evaluating this source"
+              style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #d8b4fe;"
+            >
+              📝 Add Guidance / Notes
+            </button>
+            <button 
+              type="button" 
+              class="btn-curator btn-curator-danger" 
+              onclick="dismissCandidateSource('${escapeHtml(sId)}', '${escapeHtml(domain)}')"
+              title="Dismiss this candidate source"
+            >
+              🚫 Dismiss
+            </button>
+          </div>
+          <div>
+            <a 
+              href="${escapeHtml(eventsUrl)}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              referrerpolicy="no-referrer"
+              class="btn-curator btn-curator-ghost"
+              title="Open the source's website in a new tab"
+            >
+              🌐 Visit Site ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function approveCandidateSource(id, domain) {
+  try {
+    const res = await fetch('/api/curator/discovered_sources/approve', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ id, domain })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(data.message || 'Source approved and enrolled into Scout Radar!', 'success');
+      loadQuarantineQueue();
+    } else {
+      showToast(data.error || 'Failed to approve source', 'error');
+    }
+  } catch (err) {
+    showToast('Network error approving source', 'error');
+  }
+}
+
+async function dismissCandidateSource(id, domain) {
+  try {
+    const res = await fetch('/api/curator/discovered_sources/dismiss', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({ id, domain })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast('Candidate source dismissed', 'info');
+      loadQuarantineQueue();
+    } else {
+      showToast(data.error || 'Failed to dismiss source', 'error');
+    }
+  } catch (err) {
+    showToast('Network error dismissing source', 'error');
+  }
+}
+
+async function approveAllCandidateSources() {
+  if (!confirm('Approve all pending candidate sources and enroll them into the Scout discovery schedule?')) {
+    return;
+  }
+  try {
+    const res = await fetch('/api/curator/discovered_sources/approve_all', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Curator-Token': state.token
+      },
+      body: JSON.stringify({})
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(data.message || 'All candidate sources enrolled into Scout Radar!', 'success');
+      loadQuarantineQueue();
+    } else {
+      showToast(data.error || 'Failed to approve candidate sources', 'error');
+    }
+  } catch (err) {
+    showToast('Network error approving candidate sources', 'error');
+  }
+}
+
+function switchFilterToUserFeedback() {
+  state.activeFilter = 'user_feedback';
+  document.querySelectorAll('.curator-filter-pill').forEach(p => {
+    if (p.dataset.filter === 'user_feedback') {
+      p.classList.add('active');
+    } else {
+      p.classList.remove('active');
+    }
+  });
+  applyFiltersAndRender();
+  const list = document.getElementById('curator-cards-list');
+  if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderUserFeedbackCards() {
+  const container = document.getElementById('curator-cards-list');
+  const countDisplay = document.getElementById('curator-results-text');
+  if (!container) return;
+
+  const feedbacks = state.userFeedbackQueue || [];
+  if (countDisplay) {
+    countDisplay.innerHTML = `Showing <strong>${feedbacks.length}</strong> sandboxed community submission(s) in Quarantine`;
+  }
+
+  if (feedbacks.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">💬</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+          No Community Submissions in Quarantine
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          All user suggestions, event tips, and issue reports submitted from the public site have been reviewed.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <h4 style="color: #6ee7b7; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
+          🛡️ Sandboxed Community Submissions Queue (${feedbacks.length})
+        </h4>
+        <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
+          All user inputs are pre-sanitized, HTML-escaped, and sandboxed in Quarantine.
+        </span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      ${feedbacks.map(fb => {
+        const typeLabels = {
+          user_feedback: 'Community Feedback / Tip',
+          event_suggestion: 'Upcoming Event (≤ $50 CAD)',
+          venue_suggestion: 'Venue / Cultural Space',
+          correction: 'Issue / Sold Out Report',
+          general_comment: 'General Suggestion'
+        };
+        const typeBadge = typeLabels[fb.submission_type] || fb.submission_type || 'User Submission';
+        const dateStr = fb.submitted_at ? new Date(fb.submitted_at).toLocaleString() : 'Recently';
+        const messageText = fb.sanitized_message || fb.sanitized_comment || '';
+
+        return `
+          <div class="curator-card" id="fb-card-${fb.feedback_id}" style="background: var(--curator-surface); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px; padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="background: rgba(52, 211, 153, 0.15); color: #34d399; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3);">
+                  ${typeBadge}
+                </span>
+                <span style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
+                  🛡️ Sandboxed
+                </span>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${dateStr}</span>
+            </div>
+
+            <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff; margin: 0 0 6px 0;">
+              ${fb.sanitized_title}
+            </h3>
+
+            ${fb.sanitized_price ? `<div style="font-size: 0.82rem; color: #38bdf8; margin-bottom: 6px;"><strong>Price Note:</strong> ${fb.sanitized_price}</div>` : ''}
+
+            ${fb.sanitized_url ? `
+              <div style="font-size: 0.8rem; margin-bottom: 10px;">
+                <span style="color: var(--curator-text-muted);">Submitted Link:</span>
+                <a href="${fb.sanitized_url}" target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" style="color: #60a5fa; text-decoration: underline; word-break: break-all; margin-left: 4px;">
+                  ${fb.sanitized_url} ↗
+                </a>
+              </div>
+            ` : ''}
+
+            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; word-break: break-word; white-space: pre-wrap;">${messageText}</div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px;">
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissUserFeedback('${fb.feedback_id}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+                Dismiss
+              </button>
+              <button type="button" class="btn-curator btn-curator-primary" onclick="resolveUserFeedback('${fb.feedback_id}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
+                ✓ Mark Resolved
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+window.dismissUserFeedback = async function(feedbackId) {
+  if (!confirm('Dismiss this feedback item from quarantine?')) return;
+  try {
+    const res = await fetch('/api/curator/feedback/dismiss', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token },
+      body: JSON.stringify({ feedback_id: feedbackId })
+    });
+    if (res.ok) {
+      state.userFeedbackQueue = (state.userFeedbackQueue || []).filter(f => f.feedback_id !== feedbackId);
+      applyFiltersAndRender();
+      if (typeof showToast === 'function') showToast('Feedback dismissed from quarantine.', 'info');
+    }
+  } catch (e) {
+    if (typeof showToast === 'function') showToast('Error dismissing feedback.', 'error');
+  }
+};
+
+window.resolveUserFeedback = async function(feedbackId) {
+  try {
+    const res = await fetch('/api/curator/feedback/resolve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token },
+      body: JSON.stringify({ feedback_id: feedbackId })
+    });
+    if (res.ok) {
+      state.userFeedbackQueue = (state.userFeedbackQueue || []).filter(f => f.feedback_id !== feedbackId);
+      applyFiltersAndRender();
+      if (typeof showToast === 'function') showToast('Feedback marked as resolved.', 'success');
+    }
+  } catch (e) {
+    if (typeof showToast === 'function') showToast('Error resolving feedback.', 'error');
+  }
+};
+
+// Hook pill clicks
+document.addEventListener('DOMContentLoaded', () => {
+  const statFeedbackPill = document.getElementById('stat-user-feedback-pill');
+  if (statFeedbackPill) {
+    statFeedbackPill.addEventListener('click', switchFilterToUserFeedback);
+  }
+  const statNlPill = document.getElementById('stat-nl-signups-pill');
+  if (statNlPill) {
+    statNlPill.addEventListener('click', switchFilterToNewsletterSignups);
+  }
+});
+
+function switchFilterToNewsletterSignups() {
+  state.activeFilter = 'newsletter_signups';
+  document.querySelectorAll('.curator-filter-pill').forEach(p => {
+    if (p.dataset.filter === 'newsletter_signups') {
+      p.classList.add('active');
+    } else {
+      p.classList.remove('active');
+    }
+  });
+  applyFiltersAndRender();
+  const list = document.getElementById('curator-cards-list');
+  if (list) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderNewsletterSignupsCards() {
+  const container = document.getElementById('curator-cards-list');
+  const countDisplay = document.getElementById('curator-results-text');
+  if (!container) return;
+
+  const signups = state.pendingNewsletterSignups || [];
+  if (countDisplay) {
+    countDisplay.innerHTML = `Showing <strong>${signups.length}</strong> newsletter signup link(s) awaiting subscription`;
+  }
+
+  if (signups.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 60px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">📬</div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
+          All Discovered Newsletters Subscribed
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
+          Scout AI continuously monitors official venue pages. Whenever an un-subscribed newsletter signup portal or form is discovered, a direct signup link will be automatically staged here for manual review.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(244, 114, 182, 0.08); border: 1px solid rgba(244, 114, 182, 0.25); border-radius: 8px; padding: 12px 18px; flex-wrap: wrap; gap: 10px;">
+      <div>
+        <h4 style="color: #f472b6; font-family: var(--font-heading); margin: 0 0 4px 0; font-size: 0.95rem;">
+          📬 Discovered Venue Newsletter Portals (${signups.length})
+        </h4>
+        <span style="font-size: 0.78rem; color: var(--curator-text-muted);">
+          Scout AI identified newsletter subscription portals for these venues that are not yet in your subscription registry. Open the direct link, complete signup with Van50.Submit@gmail.com, then mark subscribed.
+        </span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      ${signups.map(su => {
+        const dateStr = su.detected_at ? new Date(su.detected_at).toLocaleString() : 'Recently';
+        const targetEmail = su.suggested_email || 'Van50.Submit@gmail.com';
+        const safeVenueName = escapeHtml(su.venue_name || 'Discovered Venue');
+        const safeMethod = escapeHtml(su.method || 'Newsletter Direct Link');
+        const safeWebsite = escapeHtml(su.website_url || '');
+        const safeSignupUrl = escapeHtml(su.signup_url || '');
+
+        return `
+          <div class="curator-card" id="nl-card-${su.id}" style="background: var(--curator-surface); border: 1px solid rgba(244, 114, 182, 0.3); border-radius: 10px; padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="background: rgba(244, 114, 182, 0.15); color: #f472b6; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(244, 114, 182, 0.3);">
+                  📬 ${safeMethod}
+                </span>
+                <span style="background: rgba(148, 163, 184, 0.12); color: #94a3b8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px;">
+                  Scout Discovered
+                </span>
+              </div>
+              <span style="font-size: 0.75rem; color: var(--curator-text-muted);">${dateStr}</span>
+            </div>
+
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: #fff; margin: 0 0 8px 0;">
+              ${safeVenueName}
+            </h3>
+
+            ${su.website_url ? `
+              <div style="font-size: 0.82rem; margin-bottom: 8px; color: var(--curator-text-muted);">
+                Official Website: 
+                <a href="${safeWebsite}" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline; margin-left: 4px;">
+                  ${safeWebsite} ↗
+                </a>
+              </div>
+            ` : ''}
+
+            <div style="background: rgba(244, 114, 182, 0.08); border: 1px solid rgba(244, 114, 182, 0.2); border-radius: 6px; padding: 10px 14px; margin-bottom: 10px;">
+              <div style="font-size: 0.8rem; color: #f9a8d4; font-weight: 600; margin-bottom: 4px;">Direct Newsletter Signup Link:</div>
+              <a href="${safeSignupUrl}" target="_blank" rel="noopener noreferrer" style="color: #fff; font-size: 0.85rem; font-family: var(--font-mono, monospace); text-decoration: underline; word-break: break-all;">
+                ${safeSignupUrl} ↗
+              </a>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 8px 14px; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+              <div style="font-size: 0.82rem; color: #cbd5e1;">
+                Use Subscription Email: <strong style="color: #38bdf8; font-family: monospace;">${targetEmail}</strong>
+              </div>
+              <button type="button" class="btn-curator btn-curator-ghost" onclick="copyCuratorEmail('${targetEmail}')" style="font-size: 0.78rem; padding: 3px 10px; border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8;">
+                📋 Copy Email
+              </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; flex-wrap: wrap; gap: 10px;">
+              <a href="${safeSignupUrl}" target="_blank" rel="noopener noreferrer" class="btn-curator btn-curator-primary" style="font-size: 0.85rem; padding: 6px 16px; background: #be185d; border: 1px solid #f472b6; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                🔗 Open Signup Page ↗
+              </a>
+
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="btn-curator btn-curator-ghost" onclick="dismissNewsletterSignup('${su.id}')" style="font-size: 0.8rem; padding: 5px 12px; color: #94a3b8;">
+                  Dismiss
+                </button>
+                <button type="button" class="btn-curator btn-curator-primary" onclick="markNewsletterSubscribed('${su.id}')" style="font-size: 0.8rem; padding: 5px 14px; background: #059669; border: 1px solid #10b981; color: #fff;">
+                  ✓ Mark Subscribed
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+window.copyCuratorEmail = function(email) {
+  navigator.clipboard.writeText(email).then(() => {
+    if (typeof showToast === 'function') showToast(`Copied ${email} to clipboard!`, 'success');
+  }).catch(() => {
+    if (typeof showToast === 'function') showToast(`Email: ${email}`, 'info');
+  });
+};
+
+window.dismissNewsletterSignup = async function(id) {
+  if (!confirm('Dismiss this newsletter signup opportunity?')) return;
+  try {
+    const res = await fetch('/api/curator/newsletter-signups/dismiss', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token },
+      body: JSON.stringify({ id })
+    });
+    if (res.ok) {
+      state.pendingNewsletterSignups = (state.pendingNewsletterSignups || []).filter(s => s.id !== id);
+      const nlCountEl = document.getElementById('stat-nl-signups-count');
+      const pillNlCountEl = document.getElementById('pill-count-nl-signups');
+      if (nlCountEl) nlCountEl.textContent = state.pendingNewsletterSignups.length;
+      if (pillNlCountEl) pillNlCountEl.textContent = state.pendingNewsletterSignups.length;
+      applyFiltersAndRender();
+      if (typeof showToast === 'function') showToast('Newsletter signup dismissed.', 'info');
+    }
+  } catch (e) {
+    if (typeof showToast === 'function') showToast('Error dismissing newsletter signup.', 'error');
+  }
+};
+
+window.markNewsletterSubscribed = async function(id) {
+  const su = (state.pendingNewsletterSignups || []).find(s => s.id === id);
+  if (!su) return;
+  try {
+    const res = await fetch('/api/curator/newsletter-signups/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token },
+      body: JSON.stringify({
+        id: su.id,
+        venue_name: su.venue_name,
+        website_url: su.website_url,
+        signup_url: su.signup_url,
+        method: su.method
+      })
+    });
+    if (res.ok) {
+      state.pendingNewsletterSignups = (state.pendingNewsletterSignups || []).filter(s => s.id !== id);
+      const nlCountEl = document.getElementById('stat-nl-signups-count');
+      const pillNlCountEl = document.getElementById('pill-count-nl-signups');
+      if (nlCountEl) nlCountEl.textContent = state.pendingNewsletterSignups.length;
+      if (pillNlCountEl) pillNlCountEl.textContent = state.pendingNewsletterSignups.length;
+      applyFiltersAndRender();
+      if (typeof showToast === 'function') showToast(`Subscribed! Added ${su.venue_name} to active subscriptions.`, 'success');
+    } else {
+      const err = await res.json().catch(() => ({}));
+      if (typeof showToast === 'function') showToast(err.error || 'Failed to record subscription', 'error');
+    }
+  } catch (e) {
+    if (typeof showToast === 'function') showToast('Error recording subscription.', 'error');
+  }
+};

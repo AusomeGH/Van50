@@ -1,8 +1,8 @@
 [
   {
     "venue_name": "Stanley Park Seawall",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park.aspx",
+    "website_url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+    "calendar_url": "https://vancouverfringe.com/shows/",
     "full_address": "Georgia St & Park Dr, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "outdoors",
@@ -23,7 +23,30 @@
     },
     "coffee_benchmark": "$3.50 – $5.50 CAD",
     "meal_benchmark": "$10.00 – $18.00 CAD",
-    "restrictions": "All Ages Welcome (Family Friendly)"
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "curatorInstructions": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+    "curatorNote": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+    "curatorLearnedRules": {
+      "venueName": "Stanley Park Seawall",
+      "category": "shows",
+      "neighborhood": "Downtown / West End",
+      "calendarUrl": "https://vancouverfringe.com/shows/",
+      "doorPrice": null,
+      "priceRange": null,
+      "pricingType": "standard",
+      "isFree": false,
+      "minimumSpend": null,
+      "priceCeiling": 50.0,
+      "scheduleDays": [],
+      "genres": [],
+      "blacklistPatterns": [],
+      "curatorGuidance": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
+      "summary": "Calendar: https://vancouverfringe.com/shows/",
+      "distilledAt": "2026-10-05T15:02:52.266500+00:00"
+    },
+    "policySummary": "Calendar: https://vancouverfringe.com/shows/",
+    "calendarUrl": "https://vancouverfringe.com/shows/",
+    "boxOfficeUrl": "https://vancouverfringe.com/shows/"
   },
   {
     "venue_name": "Lynn Canyon Park",
@@ -183,8 +206,8 @@
   },
   {
     "venue_name": "Queen Elizabeth Park",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park.aspx",
+    "website_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "calendar_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
     "full_address": "4600 Cambie St, Vancouver",
     "neighborhood": "Mount Pleasant & South Vancouver",
     "description": "outdoors",
@@ -653,7 +676,7 @@
     "venue_name": "Pizzeria Ludica",
     "website_url": "https://www.pizzerialudica.com/",
     "calendar_url": "https://www.pizzerialudica.com/",
-    "full_address": "189 Keefer Pl, Vancouver",
+    "full_address": "189 Keefer Pl, Vancouver, BC V6B 6L4",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "activities",
     "coordinates": [
@@ -677,8 +700,8 @@
   },
   {
     "venue_name": "Stanley Park Pitch & Putt",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/stanley-park-pitch-putt.aspx",
+    "website_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "calendar_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
     "full_address": "2099 Beach Ave, Vancouver",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "outdoors",
@@ -1800,8 +1823,8 @@
   },
   {
     "venue_name": "Queen Elizabeth Park Pitch & Putt",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-park-pitch-putt.aspx",
+    "website_url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
+    "calendar_url": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
     "full_address": "Queen Elizabeth Park, Cambie St & W 33rd Ave, Vancouver, BC",
     "neighborhood": "Mount Pleasant & South Vancouver",
     "description": "outdoors",
@@ -1826,8 +1849,8 @@
   },
   {
     "venue_name": "Rupert Park Pitch & Putt",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-putt.aspx",
+    "website_url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "calendar_url": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
     "full_address": "3402 Charles St, Vancouver, BC",
     "neighborhood": "Commercial Drive & East Vancouver",
     "description": "outdoors",
@@ -2640,8 +2663,8 @@
   },
   {
     "venue_name": "The Annex & Roundhouse Community Centre",
-    "website_url": "https://vancouver.ca/parks-recreation-culture/roundhouse-community-centre.aspx",
-    "calendar_url": "https://vancouver.ca/parks-recreation-culture/the-annex.aspx",
+    "website_url": "https://www.roundhouse.ca/",
+    "calendar_url": "https://vancouvercivictheatres.com/venues/annex/",
     "full_address": "823 Seymour St / 181 Roundhouse Mews, Vancouver, BC",
     "neighborhood": "Downtown / Yaletown",
     "description": "Civic arts and cultural spaces hosting community chamber music, choral concerts, jazz residencies, and experimental acoustic sets ranging from free to $30 CAD.",
@@ -3160,5 +3183,32 @@
     "access_model": "fenced_facility",
     "typical_drink_spend": "$4.50 coffee at MOA Cafe",
     "notes": "World-renowned Arthur Erickson-designed museum overlooking the Strait of Georgia."
+  },
+  {
+    "venue_name": "Performance Works",
+    "website_url": "https://granvilleisland.com/directory/performance-works",
+    "calendar_url": "https://writersfest.bc.ca/events",
+    "full_address": "1218 Cartwright St, Vancouver, BC V6H 3R8",
+    "neighborhood": "Granville Island & Kitsilano",
+    "description": "Versatile 200-seat multi-disciplinary performance venue on Granville Island featuring flexible seating, wooden floors, and atmospheric exposed timber architectural beams. Hosts theatre, dance, literary festivals, and acoustic concerts.",
+    "coordinates": [
+      49.2699,
+      -123.1362
+    ],
+    "transit_info": "False Creek Ferries / Aquabus to Granville Island, or #50 False Creek South bus",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Event Dependent",
+      "tuesday": "Event Dependent",
+      "wednesday": "Event Dependent",
+      "thursday": "Event Dependent",
+      "friday": "17:00 - 23:00",
+      "saturday": "12:00 - 23:00",
+      "sunday": "12:00 - 22:00"
+    },
+    "coffee_benchmark": "$4.50 – $6.00 CAD (Granville Island roasters)",
+    "meal_benchmark": "$14.00 – $24.00 CAD",
+    "restrictions": "All Ages / Licensed events 19+ with 2 pieces of ID",
+    "drink_benchmark": "$8.00 CAD local beer / $9.00 CAD wine"
   }
 ]

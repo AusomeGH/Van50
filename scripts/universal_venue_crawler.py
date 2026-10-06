@@ -19,6 +19,7 @@ sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from dynamic_enricher import fetch_html
 from pricing_search_engine import EventPricingSearchEngine, load_curator_learned_rules, auto_deny_and_archive_event
+from calendar_widget_engine import CalendarWidgetEngine
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -507,7 +508,7 @@ class UniversalVenueCrawler:
     @classmethod
     def crawl_venue(cls, venue_name: str, venue_meta: dict, max_candidates: int = 15) -> list:
         """Crawls a single venue's calendar and returns candidate event items."""
-        calendar_url = venue_meta.get('calendarUrl')
+        calendar_url = venue_meta.get('calendarUrl') or venue_meta.get('calendar_url') or venue_meta.get('website_url') or venue_meta.get('url')
         if not calendar_url:
             return []
 
@@ -520,6 +521,13 @@ class UniversalVenueCrawler:
         soup = BeautifulSoup(html, 'html.parser')
         raw_candidates = []
 
+        # Autonomous Scout AI Newsletter Link Detector
+        try:
+            from newsletter_signup_scout import scan_venue_for_newsletter
+            scan_venue_for_newsletter(venue_name, venue_meta)
+        except Exception:
+            pass
+
         # 0. Specialized high-fidelity parser for Vancouver Civic Theatres & Broadway Across Canada
         if venue_name == "Queen Elizabeth Theatre" or "vancouvercivictheatres.com" in calendar_url:
             civic_events = cls.parse_vancouver_civic_theatres(venue_meta)
@@ -529,20 +537,31 @@ class UniversalVenueCrawler:
                     civic_events.append(be)
             raw_candidates.extend(civic_events)
         else:
-            # 1. Try Squarespace Eventlist
-            sqs_events = cls.parse_squarespace_events(soup, calendar_url)
-            if sqs_events:
-                raw_candidates.extend(sqs_events)
-            else:
-                # 2. Try Schema.org JSON-LD
-                schema_events = cls.parse_schema_jsonld(soup, calendar_url)
+            # 1. Standard Semantic Strategy: Schema.org JSON-LD structured data
+            schema_events = cls.parse_schema_jsonld(soup, calendar_url)
+            if schema_events:
                 raw_candidates.extend(schema_events)
 
-                # 3. Try DOM Outbound Link Heuristics
-                dom_events = cls.parse_dom_links(soup, calendar_url)
-                for de in dom_events:
-                    if not any(de['title'].lower() in sc['title'].lower() for sc in raw_candidates):
-                        raw_candidates.append(de)
+            # 2. Standard CMS Strategy: Squarespace / WordPress / Webflow event collection lists
+            sqs_events = cls.parse_squarespace_events(soup, calendar_url)
+            if sqs_events:
+                for se in sqs_events:
+                    if not any(se['title'].lower() in sc['title'].lower() for sc in raw_candidates):
+                        raw_candidates.append(se)
+
+            # 3. Standard DOM Strategy: Outbound ticketing links and event card heuristics
+            dom_events = cls.parse_dom_links(soup, calendar_url)
+            for de in dom_events:
+                if not any(de['title'].lower() in sc['title'].lower() for sc in raw_candidates):
+                    raw_candidates.append(de)
+
+            # 4. LAST RESORT FALLBACK: Embedded Third-Party Calendar Widgets (Tockify, Google Calendar, etc.)
+            # ONLY invoked if standard methods found 0 events AND the page contains an embedded widget format.
+            if not raw_candidates:
+                widget_events = CalendarWidgetEngine.detect_and_extract(html, calendar_url, venue_meta)
+                if widget_events:
+                    print(f"[UNIVERSAL CRAWLER - LAST RESORT] Standard HTML extraction found 0 events. Rescued {len(widget_events)} events via embedded calendar widget for '{venue_name}'.")
+                    raw_candidates.extend(widget_events)
 
         candidates = []
         for cand in raw_candidates[:max_candidates]:
@@ -763,6 +782,12 @@ class UniversalVenueCrawler:
                 "isSoldOut": cand.get('isSoldOut', False),
                 "description": cand.get('description') or f"Live scheduled programming at {host_venue}."
             }
+
+            # Preserve rich widget fields if extracted from calendar widget engine
+            for rich_k in ['date', 'time', 'start_time', 'end_time', 'price', 'pricing_all_in_cad', 'tiers', 'lineup', 'performers', 'artist', 'showings', 'typical_item_spend', 'sample_cost_label', 'food_service_type', 'food_service_note', 'curator_notes', 'categoryLabel']:
+                if rich_k in cand and cand[rich_k] is not None:
+                    candidate_item[rich_k] = cand[rich_k]
+
             candidates.append(candidate_item)
 
         print(f"[UNIVERSAL CRAWLER] Harvested {len(candidates)} candidates from '{venue_name}'")

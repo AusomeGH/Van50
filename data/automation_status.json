@@ -1,8 +1,8 @@
 {
-  "status": "running",
-  "automationEnabled": true,
+  "status": "idle",
+  "automationEnabled": false,
   "lastRunAt": "2026-10-03T04:00:16.596732",
-  "nextRunAt": "2026-09-29T04:00:00",
+  "nextRunAt": null,
   "totalEvents": 32,
   "quarantinedCount": 4,
   "linkAudit": {
@@ -89,7 +89,7 @@
   },
   "testKey": "automation_unit_test",
   "testTimestamp": "2026-10-03T10:16:55.939426",
-  "updatedAt": "2026-10-03T10:16:55.981736",
+  "updatedAt": "2026-10-05T09:36:46.111022",
   "currentStep": null,
   "startedAt": "2026-10-01T04:00:03.590693",
   "durationSeconds": 50.01,

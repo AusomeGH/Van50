@@ -1,55 +1,38 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-04",
-    "pendingCount": 1,
+    "updatedAt": "2026-10-05T12:34:10-07:00",
+    "pendingCount": 0,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
-  "quarantinedEvents": [
+  "quarantinedEvents": [],
+  "pendingCount": 0,
+  "userFeedbackQueue": [],
+  "pendingFeedbackCount": 0,
+  "updatedAt": "2026-10-06T02:10:35.449310+00:00",
+  "pendingNewsletterSignups": [
     {
-      "id": "van50-latincouver-catrinas-procession-gastown-20261102",
-      "title": "Catrinas Procession: Día de los Muertos",
-      "artist": "Latincouver Catrinas Ensemble",
-      "venue": "Gastown Historic District",
-      "address": "Maple Tree Square to Water St, Vancouver, BC",
-      "neighborhood": "Downtown, Gastown & Yaletown",
-      "cluster": "Downtown, Gastown & Yaletown",
-      "category": "culture",
-      "categoryLabel": "Arts & Culture",
-      "date": "2026-11-02",
-      "time": "17:00",
-      "price": 0.0,
-      "priceLabel": "Free ($0.00)",
-      "websiteUrl": "https://latincouver.ca",
-      "ticket_url": "https://latincouver.ca",
-      "ticket_provider": "Free Public Access (Latincouver)",
-      "description": "Latincouver leads an evocative twilight procession of Catrinas in traditional Mexican calavera face paint and ornate costumes through historic Gastown to honour Día de los Muertos.",
-      "lineup": "Latincouver Catrinas ensemble, Mexican folkloric dancers, traditional musicians",
-      "restrictions": "All Ages / Free Outdoor Public Gathering",
-      "quarantineReason": "Pending Holiday Approval: 'dia-de-los-muertos'. New holiday detected by Scout AI awaiting Curator Studio review.",
-      "flaggedAt": "2026-10-03",
-      "unconfirmedDetails": [
-        "Holiday approval pending in Curator Studio."
-      ],
-      "holiday_detected": "dia-de-los-muertos",
-      "tags": [
-        "dia-de-los-muertos",
-        "day-of-the-dead",
-        "catrinas",
-        "latincouver",
-        "gastown",
-        "mexican-culture",
-        "calaveras",
-        "procession",
-        "free-public-access",
-        "autumn",
-        "remembrance",
-        "all-ages",
-        "family-friendly",
-        "street-festival",
-        "vancouver-heritage"
-      ]
+      "id": "nls_hollywood-theatre",
+      "venue_name": "Hollywood Theatre",
+      "website_url": "https://hollywoodtheatre.ca/",
+      "signup_url": "https://hollywoodtheatre.ca/newsletter",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-06T02:02:31.527435+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_2nd-floor-gastown",
+      "venue_name": "2nd Floor Gastown",
+      "website_url": "https://www.waterstreetcafe.ca/2nd-floor-gastown",
+      "signup_url": "https://exploretock.us1.list-manage.com/subscribe/post?u=5cbeed94ccde7dc28ed447d5d&id=618db666ae&f_id=002989e5f0",
+      "method": "Mailchimp Hosted Subscription Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-06T02:02:42.942401+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
     }
   ],
-  "pendingCount": 1
+  "pendingNewsletterCount": 2
 }

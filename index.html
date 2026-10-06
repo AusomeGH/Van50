@@ -38,7 +38,7 @@
 
   <!-- Van50 Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=7.1.0">
-  <link rel="stylesheet" href="css/components.css?v=7.4.6">
+  <link rel="stylesheet" href="css/components.css?v=7.4.7">
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
   <script data-goatcounter="https://van50.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -63,6 +63,10 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true" style="margin-right: 6px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           <span>Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
+        </button>
+        <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); color: #34d399; padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
+          <span aria-hidden="true">💡</span>
+          <span>Suggest / Report</span>
         </button>
       </div>
     </div>
@@ -430,6 +434,11 @@
       <p style="font-size: 0.74rem; color: var(--text-secondary); opacity: 0.85;">
         Single Reference Source Architecture (Verified Local Feeds • 0 Client-Side Scraping).
       </p>
+      <p style="margin-top: 10px;">
+        <button type="button" id="feedback-footer-btn" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; border-radius: 20px; padding: 5px 16px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+          💡 Suggest a Show (≤ $50 CAD) or Report an Issue
+        </button>
+      </p>
       <div id="curator-footer-container" style="margin-top: 14px; display: none;">
         <a href="curator.html" class="btn btn-review-queue-footer" id="btn-open-review-queue" aria-label="Curator Studio" title="Open Van50 Curator Studio">
           <span>Curator Studio</span>
@@ -439,6 +448,50 @@
     </div>
   </footer>
 
+  <!-- Community Feedback & Suggestions Modal (Single Open-Ended Form) -->
+  <div class="modal-overlay" id="feedback-modal" aria-hidden="true">
+    <div class="modal-box" style="text-align: left; max-width: 520px; padding: 24px;">
+      <button class="modal-close-btn" id="close-feedback-btn" aria-label="Close modal">✕</button>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 1.4rem;">💬</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0;">
+          Feedback &amp; Suggestions
+        </h3>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5;">
+        Have an event or venue recommendation (≤ $50 CAD), issue/price update, or thought to share? Enter it below. If you'd like us to follow up, feel free to include your contact email or phone number in the box.
+      </p>
+
+      <form id="community-feedback-form">
+        <!-- Invisible bot honeypot trap -->
+        <div style="display: none !important;" aria-hidden="true">
+          <input type="text" name="website_url_hp" id="feedback-hp" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <textarea 
+            id="feedback-message" 
+            name="feedback_message" 
+            rows="6" 
+            required 
+            placeholder="Type your feedback, suggestion, venue tip, or event update here...&#10;&#10;(Feel free to leave a contact email or phone number here if you'd like a reply)" 
+            maxlength="2000" 
+            style="width: 100%; padding: 12px 14px; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); color: #fff; font-size: 0.88rem; line-height: 1.5; resize: vertical; box-sizing: border-box;"></textarea>
+        </div>
+
+        <input type="hidden" id="feedback-target-event-id" value="">
+
+        <div id="feedback-alert" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;"></div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn" id="btn-cancel-feedback" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-subtle); color: var(--text-muted); cursor: pointer; padding: 8px 16px; border-radius: var(--radius-md);">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-feedback" style="background: #10b981; border: none; font-weight: 600; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-md); color: #fff;">Send Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="vendor/leaflet/leaflet.js"></script>
   <script>
@@ -446,11 +499,11 @@
       document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
     }
   </script>
-  <script src="js/data.js?v=7.4.6"></script>
+  <script src="js/data.js?v=7.4.7"></script>
   <script src="js/accessibility.js?v=1.0.0"></script>
   <script src="js/map.js?v=7.2.0"></script>
   <script src="js/roulette.js?v=7.2.0"></script>
-  <script src="js/app.js?v=7.4.6"></script>
+  <script src="js/app.js?v=7.4.7"></script>
   <script src="js/pwa-install.js?v=7.4.6"></script>
 </body>
 </html>

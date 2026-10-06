@@ -108,6 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 60000);
 });
 
+function isAddonTier(t) {
+  if (!t) return false;
+  if (typeof t === 'string') {
+    const s = t.toLowerCase().trim();
+    if (/comedy club|nightclub|jazz club|supper club|breakfast club|social club|country club/i.test(s)) return false;
+    return /\b(rental|rentals|renting|add-on|addon|add on|caddy|tasting tent|tasting pass|skate rental|shoe rental|club rental|mat rental|coat check)\b/i.test(s);
+  }
+  if (t.isAddon === true || t.is_addon === true) return true;
+  const name = String(t.name || t.tier_name || '').toLowerCase().trim();
+  if (!name) return false;
+  if (/comedy club|nightclub|jazz club|supper club|breakfast club|social club|country club/i.test(name)) return false;
+  return /\b(rental|rentals|renting|add-on|addon|add on|caddy|tasting tent|tasting pass|skate rental|shoe rental|club rental|mat rental|coat check)\b/i.test(name);
+}
+
 function resolveEventTiers(ev) {
   if (!ev) return [];
   const now = new Date();
@@ -120,7 +134,7 @@ function resolveEventTiers(ev) {
   } else {
     const syn = [];
     if (ev.tier_custom_name_1 && ev.tier_custom_name_1 !== 'null' && ev.tier_custom_price_1 != null && String(ev.tier_custom_price_1).toLowerCase() !== 'null') {
-      syn.push({ name: ev.tier_custom_name_1, price: ev.tier_custom_price_1, status: ev.tier_custom_status_1 || null });
+      syn.push({ name: ev.tier_custom_name_1, price: ev.tier_custom_price_1, status: ev.tier_custom_status_1 || null, isAddon: Boolean(ev.tier_custom_is_addon_1 || isAddonTier(ev.tier_custom_name_1)) });
     }
     if (ev.price_adult != null && String(ev.price_adult).toLowerCase() !== 'null') {
       syn.push({ name: 'Adult', price: ev.price_adult });
@@ -132,16 +146,16 @@ function resolveEventTiers(ev) {
       syn.push({ name: 'Member', price: ev.price_member });
     }
     if (ev.tier_custom_name_2 && ev.tier_custom_name_2 !== 'null' && ev.tier_custom_price_2 != null && String(ev.tier_custom_price_2).toLowerCase() !== 'null') {
-      syn.push({ name: ev.tier_custom_name_2, price: ev.tier_custom_price_2, status: ev.tier_custom_status_2 || null });
+      syn.push({ name: ev.tier_custom_name_2, price: ev.tier_custom_price_2, status: ev.tier_custom_status_2 || null, isAddon: Boolean(ev.tier_custom_is_addon_2 || isAddonTier(ev.tier_custom_name_2)) });
     }
     if (ev.tier_custom_name_3 && ev.tier_custom_name_3 !== 'null' && ev.tier_custom_price_3 != null && String(ev.tier_custom_price_3).toLowerCase() !== 'null') {
-      syn.push({ name: ev.tier_custom_name_3, price: ev.tier_custom_price_3, status: ev.tier_custom_status_3 || null });
+      syn.push({ name: ev.tier_custom_name_3, price: ev.tier_custom_price_3, status: ev.tier_custom_status_3 || null, isAddon: Boolean(ev.tier_custom_is_addon_3 || isAddonTier(ev.tier_custom_name_3)) });
     }
     if (ev.tier_custom_name_4 && ev.tier_custom_name_4 !== 'null' && ev.tier_custom_price_4 != null && String(ev.tier_custom_price_4).toLowerCase() !== 'null') {
-      syn.push({ name: ev.tier_custom_name_4, price: ev.tier_custom_price_4, status: ev.tier_custom_status_4 || null });
+      syn.push({ name: ev.tier_custom_name_4, price: ev.tier_custom_price_4, status: ev.tier_custom_status_4 || null, isAddon: Boolean(ev.tier_custom_is_addon_4 || isAddonTier(ev.tier_custom_name_4)) });
     }
     if (ev.tier_custom_name_5 && ev.tier_custom_name_5 !== 'null' && ev.tier_custom_price_5 != null && String(ev.tier_custom_price_5).toLowerCase() !== 'null') {
-      syn.push({ name: ev.tier_custom_name_5, price: ev.tier_custom_price_5, status: ev.tier_custom_status_5 || null });
+      syn.push({ name: ev.tier_custom_name_5, price: ev.tier_custom_price_5, status: ev.tier_custom_status_5 || null, isAddon: Boolean(ev.tier_custom_is_addon_5 || isAddonTier(ev.tier_custom_name_5)) });
     }
     if (syn.length === 0 && ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
       const p = ev.pricing_all_in_cad;
@@ -196,6 +210,7 @@ function resolveEventTiers(ev) {
     const isDoor = (status === 'door_only' || /door/i.test(lowerName));
     const isSoldOut = (status === 'sold_out');
     const isExpired = (status === 'expired');
+    const isAddon = Boolean(t.isAddon || t.is_addon || isAddonTier(t));
 
     const cleanName = nameStr.replace(/\s*\((sold out|ended|door only|presale ended)\)/i, '').trim();
     const label = pNum === 0 ? 'Free ($0)' : `$${pNum.toFixed(2)} CAD`;
@@ -209,7 +224,8 @@ function resolveEventTiers(ev) {
       isAvailable,
       isDoor,
       isSoldOut,
-      isExpired
+      isExpired,
+      isAddon
     };
   });
 }
@@ -375,7 +391,7 @@ function normalizeActiveEvent(item) {
   // Determine primary category for badge display
   let cat = categories[0];
   if (isCinema) cat = "cinema";
-  else if (isOutdoors && (catRaw.includes("sport") || item.access_model === "open_public_space")) cat = "outdoors";
+  else if (isOutdoors && (catRaw.includes("sport") || (item.access_model === "open_public_space" && !isSocialArts && !isMarkets && !isFest && !isMusic))) cat = "outdoors";
   else if (isFreePublic) cat = "free-public-access";
   else if (isMusic) cat = "music";
   else if (isMarkets) cat = "markets";
@@ -430,7 +446,12 @@ function normalizeActiveEvent(item) {
     subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
     dateSchedule: dateSchedule,
     startIso: (!isFreePublic && (showings[0]?.date || show1.date)) ? `${showings[0]?.date || show1.date}T${showings[0]?.start_time || show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
-    endIso: (show1.date && show1.end_time) ? `${show1.date}T${show1.end_time}:00-07:00` : null,
+    endIso: (() => {
+      const lastShow = (showings && showings.length > 0) ? showings[showings.length - 1] : show1;
+      const lDate = lastShow?.date || item.date || show1.date;
+      const lTime = lastShow?.end_time || show1.end_time || "23:59";
+      return (lDate && lTime) ? `${lDate}T${lTime}:00-07:00` : null;
+    })(),
     confirmedDates: confirmedDates,
     showings: showings,
     isSoldOut: Boolean(item.is_sold_out || item.isSoldOut),
@@ -484,15 +505,17 @@ function normalizeActiveEvent(item) {
     tier_custom_price_4: item.tier_custom_price_4 !== undefined && item.tier_custom_price_4 !== null ? Number(item.tier_custom_price_4) : null,
     tier_custom_name_5: item.tier_custom_name_5 || null,
     tier_custom_price_5: item.tier_custom_price_5 !== undefined && item.tier_custom_price_5 !== null ? Number(item.tier_custom_price_5) : null,
-    ticket_tiers: Array.isArray(item.ticket_tiers) ? item.ticket_tiers : null
+    ticket_tiers: Array.isArray(item.ticket_tiers) ? item.ticket_tiers : null,
+    tiers: Array.isArray(item.tiers) ? item.tiers : null
   };
 
   const tiers = resolveEventTiers(res);
   res.tiers = tiers;
 
-  // Recalculate dynamic effective price if active available tiers exist
+  // Recalculate dynamic effective price if active available tiers exist (excluding add-ons)
   if (!isFreePublic && tiers.length > 0) {
-    const activeTiers = tiers.filter(t => t.isAvailable && t.price <= 50);
+    const admissionTiers = tiers.filter(t => t.isAvailable && t.price <= 50 && !t.isAddon && !isAddonTier(t));
+    const activeTiers = admissionTiers.length > 0 ? admissionTiers : tiers.filter(t => t.isAvailable && t.price <= 50);
     if (activeTiers.length > 0 && !item.is_sold_out && !item.isSoldOut) {
       const minAvailable = Math.min(...activeTiers.map(t => t.price));
       res.price = minAvailable;
@@ -1826,7 +1849,12 @@ function isEventInPast(ev, now = new Date()) {
   if (ev.endIso) {
     const endDt = new Date(ev.endIso);
     if (!isNaN(endDt.getTime()) && endDt < now) {
-      return true; // The entire multi-day run, recurring series, or seasonal edition has concluded
+      // Guard: Do not expire if event has future confirmed showings
+      if (Array.isArray(ev.confirmedDates) && ev.confirmedDates.some(d => String(d).slice(0, 10) >= todayStr)) {
+        // Future showing remains, do not expire
+      } else {
+        return true; // The entire multi-day run, recurring series, or seasonal edition has concluded
+      }
     }
   }
   // Perennial drop-in and Free Public Access spots never expire by date; only if explicitly marked closed
@@ -1936,7 +1964,7 @@ function applyFiltersAndRender() {
 
     // 1. Strict Budget Cap & Slider Range (<= $50.00 CAD) with Dual-Tier Support
     const hasPaidTier = Array.isArray(ev.tiers) && ev.tiers.some(t => t.price > 0 && t.price <= 50);
-    const hasFreeTier = ev.price === 0 || ev.isFree || ev.pricingType === 'free-option' || (Array.isArray(ev.tiers) && ev.tiers.some(t => t.price === 0));
+    const hasFreeTier = ev.price === 0 || ev.isFree || ev.pricingType === 'free-option' || (Array.isArray(ev.tiers) && ev.tiers.some(t => t.price === 0 && !isAddonTier(t)));
 
     if (state.minBudget === 0 && state.maxBudget === 0) {
       // Free Outings ($0 CAD)
@@ -1945,9 +1973,19 @@ function applyFiltersAndRender() {
       // Paid Outings ($1 — $50 CAD)
       if (ev.price <= 0 && !hasPaidTier) return false;
     } else {
-      // Slider Range
-      const effectiveMin = Array.isArray(ev.tiers) && ev.tiers.length > 0 ? Math.min(ev.price, ...ev.tiers.map(t => t.price)) : ev.price;
-      const effectiveMax = hasPaidTier ? Math.max(ev.price, ...ev.tiers.map(t => t.price)) : ev.price;
+      // Slider Range: Add-ons must never define the minimum entry floor
+      const admissionTiers = Array.isArray(ev.tiers) ? ev.tiers.filter(t => !t.isAddon && !isAddonTier(t)) : [];
+      const addonTiers = Array.isArray(ev.tiers) ? ev.tiers.filter(t => t.isAddon || isAddonTier(t)) : [];
+      const maxAddon = addonTiers.length > 0 ? Math.max(...addonTiers.map(t => Number(t.price) || 0)) : 0;
+
+      const effectiveMin = (ev.price !== undefined && ev.price !== null)
+        ? (admissionTiers.length > 0 ? Math.min(ev.price, ...admissionTiers.map(t => t.price)) : ev.price)
+        : (admissionTiers.length > 0 ? Math.min(...admissionTiers.map(t => t.price)) : (ev.price || 0));
+
+      const effectiveMax = (hasPaidTier || (ev.price && ev.price > 0))
+        ? Math.max(ev.price || 0, ...(admissionTiers.length > 0 ? admissionTiers.map(t => t.price) : [ev.price || 0])) + maxAddon
+        : 0;
+
       if (effectiveMax < state.minBudget || effectiveMin > state.maxBudget) return false;
     }
 
@@ -2614,19 +2652,48 @@ function formatStandardPrice(ev) {
   const activeTiers = tiers.filter(t => t.isAvailable && t.price <= 50);
 
   // 3. Multi-tier events always evaluate and display active tier range
-  if (activeTiers.length > 1) {
-    const minP = Math.min(...activeTiers.map(t => t.price));
-    const maxP = Math.max(...activeTiers.map(t => t.price));
-    if (minP === maxP) {
-      return minP === 0 ? 'Free ($0)' : `$${minP.toFixed(2)} all-in`;
+  if (activeTiers.length > 0) {
+    const admissionTiers = activeTiers.filter(t => !t.isAddon && !isAddonTier(t));
+    const addonTiers = activeTiers.filter(t => t.isAddon || isAddonTier(t));
+
+    // Optional Add-on Handling: Add-ons must never define the minimum entry floor.
+    // Floor = Minimum Base Admission Price; Ceiling = Base Admission + Optional Add-On
+    if (addonTiers.length > 0) {
+      const baseMin = (ev.price !== undefined && ev.price !== null && ev.price > 0)
+        ? ev.price
+        : (admissionTiers.length > 0 ? Math.min(...admissionTiers.map(t => t.price)) : 0);
+      const baseMax = admissionTiers.length > 0
+        ? Math.max(...admissionTiers.map(t => t.price), (ev.price || 0))
+        : (ev.price || 0);
+      const maxAddon = Math.max(...addonTiers.map(t => t.price));
+      const combinedUpper = baseMax + maxAddon;
+
+      if (baseMin === 0 && combinedUpper === 0) {
+        return 'Free ($0)';
+      }
+      if (baseMin === 0) {
+        return `Free – $${combinedUpper.toFixed(2)} all-in`;
+      }
+      if (baseMin === combinedUpper) {
+        return `$${baseMin.toFixed(2)} all-in`;
+      }
+      return `$${baseMin.toFixed(2)} – $${combinedUpper.toFixed(2)} all-in`;
     }
-    if (minP === 0) {
-      return `Free – $${maxP.toFixed(2)} all-in`;
+
+    if (admissionTiers.length > 1) {
+      const minP = Math.min(...admissionTiers.map(t => t.price));
+      const maxP = Math.max(...admissionTiers.map(t => t.price));
+      if (minP === maxP) {
+        return minP === 0 ? 'Free ($0)' : `$${minP.toFixed(2)} all-in`;
+      }
+      if (minP === 0) {
+        return `Free – $${maxP.toFixed(2)} all-in`;
+      }
+      return `$${minP.toFixed(2)} – $${maxP.toFixed(2)} all-in`;
+    } else if (admissionTiers.length === 1) {
+      const p = admissionTiers[0].price;
+      return p === 0 ? 'Free ($0)' : `$${p.toFixed(2)} all-in`;
     }
-    return `$${minP.toFixed(2)} – $${maxP.toFixed(2)} all-in`;
-  } else if (activeTiers.length === 1) {
-    const p = activeTiers[0].price;
-    return p === 0 ? 'Free ($0)' : `$${p.toFixed(2)} all-in`;
   }
 
   // 4. If all advance tiers are unavailable, check door or sold out
@@ -3639,9 +3706,9 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
     return !isNaN(Number(t.price));
   });
 
-  // If there is only one tier or all tiers have the same price, do not render expandable tiers
+  // If there is only one tier or all tiers have the same price, do not render expandable tiers (unless an add-on is present)
   const uniquePrices = new Set(tiers.map(t => Number(t.price)));
-  if (tiers.length <= 1 || uniquePrices.size <= 1) {
+  if (tiers.length <= 1 || (uniquePrices.size <= 1 && !tiers.some(t => isAddonTier(t)))) {
     return { hasTiers: false, html: '' };
   }
 
@@ -3664,13 +3731,16 @@ function renderAdmissionTiersHtml(ev, bucketKey) {
   const hintId = `tier-hint-${bucketKey}-${ev.id}`;
 
   const listItemsHtml = dedupedTiers.map(t => {
-    const valText = t.label || (t.price === 0 ? 'Free ($0)' : `$${Number(t.price).toFixed(2)} CAD`);
-    const isFreeVal = t.price === 0 || valText.toLowerCase().includes('free');
+    const isAddon = Boolean(t.isAddon || isAddonTier(t));
+    const valText = isAddon ? `+$${Number(t.price).toFixed(2)} CAD` : (t.label || (t.price === 0 ? 'Free ($0)' : `$${Number(t.price).toFixed(2)} CAD`));
+    const isFreeVal = !isAddon && (t.price === 0 || valText.toLowerCase().includes('free'));
 
-    let statusClass = '';
+    let statusClass = isAddon ? 'tier-addon-item' : '';
     let statusBadge = '';
 
-    if (t.isSoldOut) {
+    if (isAddon) {
+      statusBadge = '<span class="tier-status-pill badge-addon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); font-size: 0.68rem; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 600;">Optional Add-On</span>';
+    } else if (t.isSoldOut) {
       statusClass = 'tier-sold-out';
       statusBadge = '<span class="tier-status-pill badge-sold-out">Sold Out</span>';
     } else if (t.isExpired) {
@@ -3937,36 +4007,88 @@ function renderSingleEventCardHtml(ev, bucketKey) {
       const cleanHoursStr = (str) => (str || '').replace(/\s*\([^)]*\)/g, '').trim();
       const activeHours = cleanHoursStr(wh[curKey] || 'Check schedule');
 
-      const rows = dayOrder.map(d => {
-        const hoursStr = cleanHoursStr(wh[d.k] || 'Hours not listed');
-        const isCurrentDay = (d.k === curKey);
-        return `
-          <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
-            <span class="day-col">${d.label}:</span>
-            <span class="hours-col">${hoursStr}</span>
+      // Determine if venue is a consistent facility offering consistent operations across days (e.g. Pitch & Putt, museums, galleries, parks)
+      // Venues with unique shows different days (e.g. live music, comedy, unique performances)
+      // or fewer than 4 operating days must NOT render a 7-day dropdown.
+      const validDays = Object.entries(wh).filter(([k, v]) => {
+        const val = String(v || '').toLowerCase();
+        return val && !val.includes('not listed') && !val.includes('closed');
+      });
+
+      const isLiveOrPerformance = (
+        ev.category === 'live_music' || 
+        ev.category === 'Live Music' || 
+        ev.category === 'comedy' || 
+        ev.category === 'Comedy & Shows' ||
+        (ev.lifecycleType || ev.lifecycle_type) === 'one_time' ||
+        (Array.isArray(ev.performers) && ev.performers.length > 0)
+      );
+
+      const isPerennialOrFacility = (
+        (ev.lifecycleType || ev.lifecycle_type) === 'perennial_drop_in' ||
+        ev.access_model === 'open_public_space' ||
+        ev.access_model === 'sports_facility' ||
+        ev.access_model === 'fenced_facility' ||
+        ev.category === 'free-public-access' ||
+        ev.category === 'outdoors' ||
+        ev.category === 'Sports & Fitness' ||
+        (ev.categories && (ev.categories.includes('outdoors') || ev.categories.includes('free-public-access')))
+      );
+
+      const isConsistentFacility = (
+        !isLiveOrPerformance &&
+        validDays.length >= 4 &&
+        isPerennialOrFacility
+      );
+
+      if (isConsistentFacility) {
+        const rows = dayOrder.map(d => {
+          const hoursStr = cleanHoursStr(wh[d.k] || 'Hours not listed');
+          const isCurrentDay = (d.k === curKey);
+          return `
+            <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
+              <span class="day-col">${d.label}:</span>
+              <span class="hours-col">${hoursStr}</span>
+            </div>
+          `;
+        }).join('');
+
+        weeklyHoursHtml = `
+          <div class="card-weekly-hours-block" id="hours-block-${ev.id}">
+            <div class="weekly-hours-summary-row" onclick="toggleWeeklyHours('${ev.id}', event)" title="Click to view/hide 7-day schedule">
+              <div class="wh-summary-left">
+                <div class="wh-active-day-box">
+                  <span class="wh-active-day-name">${activeDayLabel}:</span>
+                  <span class="wh-active-hours-val">${activeHours}</span>
+                </div>
+              </div>
+              <button type="button" class="btn-toggle-hours" id="btn-toggle-hours-${ev.id}" aria-expanded="false" aria-label="Toggle weekly schedule">
+                <span class="toggle-text">Full Week</span>
+                <span class="wh-chevron">▾</span>
+              </button>
+            </div>
+            <div class="weekly-hours-table collapsible-hours" id="hours-table-${ev.id}" style="display: none;">
+              ${rows}
+            </div>
           </div>
         `;
-      }).join('');
-
-      weeklyHoursHtml = `
-        <div class="card-weekly-hours-block" id="hours-block-${ev.id}">
-          <div class="weekly-hours-summary-row" onclick="toggleWeeklyHours('${ev.id}', event)" title="Click to view/hide 7-day schedule">
-            <div class="wh-summary-left">
-              <div class="wh-active-day-box">
-                <span class="wh-active-day-name">${activeDayLabel}:</span>
-                <span class="wh-active-hours-val">${activeHours}</span>
+      } else {
+        // For venues or events with unique shows or limited days, display only the single active day/time without a dropdown
+        if (activeHours && !activeHours.toLowerCase().includes('not listed') && !activeHours.toLowerCase().includes('check schedule')) {
+          weeklyHoursHtml = `
+            <div class="card-weekly-hours-block static-hours-block" id="hours-block-${ev.id}">
+              <div class="weekly-hours-summary-row static-schedule-row">
+                <div class="wh-summary-left">
+                  <div class="wh-active-day-box">
+                    <span class="wh-active-day-name">${activeDayLabel}:</span>
+                    <span class="wh-active-hours-val">${activeHours}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <button type="button" class="btn-toggle-hours" id="btn-toggle-hours-${ev.id}" aria-expanded="false" aria-label="Toggle weekly schedule">
-              <span class="toggle-text">Full Week</span>
-              <span class="wh-chevron">▾</span>
-            </button>
-          </div>
-          <div class="weekly-hours-table collapsible-hours" id="hours-table-${ev.id}" style="display: none;">
-            ${rows}
-          </div>
-        </div>
-      `;
+          `;
+        }
+      }
     }
 
     // Multi-Location Screenings / Upcoming Showings Block
@@ -4607,4 +4729,169 @@ function toggleAccessibilityMode() {
 window.initAccessibility = initAccessibility;
 window.setAccessibilityMode = setAccessibilityMode;
 window.toggleAccessibilityMode = toggleAccessibilityMode;
+
+// ==============================================================================
+// COMMUNITY FEEDBACK & QUARANTINED SUGGESTIONS MODAL (SINGLE OPEN-ENDED FORM)
+// ==============================================================================
+
+function openFeedbackModal(presetText = '', targetEventId = '') {
+  const modal = document.getElementById('feedback-modal');
+  if (!modal) return;
+
+  const messageInput = document.getElementById('feedback-message');
+  const targetIdInput = document.getElementById('feedback-target-event-id');
+  const alertBox = document.getElementById('feedback-alert');
+
+  if (messageInput && presetText) {
+    messageInput.value = presetText;
+  }
+  if (targetIdInput) {
+    targetIdInput.value = targetEventId || '';
+  }
+  if (alertBox) {
+    alertBox.style.display = 'none';
+    alertBox.textContent = '';
+  }
+
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  if (messageInput) {
+    messageInput.focus();
+    if (presetText) {
+      // Place cursor at the end of the prefilled text
+      messageInput.setSelectionRange(messageInput.value.length, messageInput.value.length);
+    }
+  }
+}
+
+function closeFeedbackModal() {
+  const modal = document.getElementById('feedback-modal');
+  if (!modal) return;
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  const form = document.getElementById('community-feedback-form');
+  if (form) form.reset();
+  const alertBox = document.getElementById('feedback-alert');
+  if (alertBox) {
+    alertBox.style.display = 'none';
+    alertBox.textContent = '';
+  }
+}
+
+function initCommunityFeedbackModal() {
+  const navBtn = document.getElementById('feedback-nav-btn');
+  const footerBtn = document.getElementById('feedback-footer-btn');
+  const closeBtn = document.getElementById('close-feedback-btn');
+  const cancelBtn = document.getElementById('btn-cancel-feedback');
+  const modal = document.getElementById('feedback-modal');
+  const form = document.getElementById('community-feedback-form');
+
+  if (navBtn) navBtn.addEventListener('click', () => openFeedbackModal());
+  if (footerBtn) footerBtn.addEventListener('click', () => openFeedbackModal());
+  if (closeBtn) closeBtn.addEventListener('click', closeFeedbackModal);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeFeedbackModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeFeedbackModal();
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('btn-submit-feedback');
+      const alertBox = document.getElementById('feedback-alert');
+      const messageInput = document.getElementById('feedback-message');
+      const targetIdInput = document.getElementById('feedback-target-event-id');
+      const hpInput = document.getElementById('feedback-hp');
+
+      const message = messageInput?.value?.trim() || '';
+      if (!message) {
+        if (alertBox) {
+          alertBox.style.display = 'block';
+          alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
+          alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+          alertBox.style.color = '#f87171';
+          alertBox.textContent = 'Please enter your message or suggestion.';
+        }
+        return;
+      }
+
+      const payload = {
+        message: message,
+        target_event_id: targetIdInput?.value || '',
+        hp_field: hpInput?.value || ''
+      };
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+      }
+
+      try {
+        const res = await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
+            alertBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+            alertBox.style.color = '#34d399';
+            alertBox.textContent = '✓ ' + (data.message || 'Thank you! Your feedback has been sent for review.');
+          }
+          form.reset();
+          setTimeout(() => {
+            closeFeedbackModal();
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Send Feedback';
+            }
+          }, 1800);
+        } else {
+          if (alertBox) {
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
+            alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+            alertBox.style.color = '#f87171';
+            alertBox.textContent = '⚠️ ' + (data.error || 'Failed to submit feedback.');
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Feedback';
+          }
+        }
+      } catch (err) {
+        if (alertBox) {
+          alertBox.style.display = 'block';
+          alertBox.style.background = 'rgba(239, 68, 68, 0.15)';
+          alertBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+          alertBox.style.color = '#f87171';
+          alertBox.textContent = 'Network error. Please try again.';
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Feedback';
+        }
+      }
+    });
+  }
+}
+
+// Global hook for event cards to trigger "Report Issue"
+window.reportEventIssue = function(eventId, eventTitle) {
+  openFeedbackModal(eventTitle ? `Regarding "${eventTitle}": ` : '', eventId);
+};
+
+// Initialize after DOM load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCommunityFeedbackModal);
+} else {
+  initCommunityFeedbackModal();
+}
 
