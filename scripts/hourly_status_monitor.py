@@ -226,10 +226,18 @@ def run_monitor_pass(dry_run: bool = False) -> dict:
                     # Check if event has subsequent showings to roll forward
                     showings = e.get('showings', [])
                     future_showings = []
+                    archived = e.setdefault('archived_showings', [])
+                    cur_day_str = start_time.strftime("%Y-%m-%d")
+
                     for s in showings:
                         s_date = s.get('date')
-                        if s_date and s_date > start_time.strftime("%Y-%m-%d"):
+                        if s_date and s_date >= cur_day_str:
                             future_showings.append(s)
+                        elif s_date:
+                            s_copy = dict(s)
+                            s_copy['status'] = 'concluded'
+                            s_copy['archived_at'] = now_iso
+                            archived.append(s_copy)
 
                     if future_showings:
                         # Advance to next showing
@@ -237,6 +245,7 @@ def run_monitor_pass(dry_run: bool = False) -> dict:
                         e['date'] = next_show['date']
                         e['start_time'] = next_show.get('start_time', e.get('start_time'))
                         e['end_time'] = next_show.get('end_time', e.get('end_time'))
+                        e['showings'] = future_showings
                         e['show_1'] = {
                             'date': next_show['date'],
                             'start_time': next_show.get('start_time', e.get('start_time')),
@@ -244,13 +253,16 @@ def run_monitor_pass(dry_run: bool = False) -> dict:
                             'cost': next_show.get('cost', e.get('price'))
                         }
                         e['is_past'] = False
+                        e['operational_status'] = 'scheduled'
                         rolled_count += 1
                         modified = True
                         log_monitor(f"🔄 Rolled forward schedule: '{title}' -> {e['date']} {e.get('start_time')}")
                         log_activity("CONFIRMED", f"Schedule rolled forward to upcoming showing: {title} ({e['date']})")
                     elif not orig_past:
+                        e['showings'] = []
                         e['is_past'] = True
                         e['is_sold_out'] = False
+                        e['operational_status'] = 'concluded'
                         expired_count += 1
                         modified = True
                         log_monitor(f"⌛ Marked event expired/past: '{title}' (concluded on {date_str})")

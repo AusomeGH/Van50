@@ -4101,6 +4101,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
       const nowD = new Date();
       const curTodayStr = `${nowD.getFullYear()}-${String(nowD.getMonth() + 1).padStart(2, '0')}-${String(nowD.getDate()).padStart(2, '0')}`;
+      const activeShowings = (Array.isArray(ev.showings) ? ev.showings : []).filter(s => s && s.status !== 'concluded' && (!s.date || s.date >= curTodayStr));
 
       const renderShowingRow = (s) => {
         const dStr = s.date || '';
@@ -4115,6 +4116,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
         const bookUrl = s.ticket_url || ev.websiteUrl;
         const costText = (s.cost !== undefined && s.cost !== null) ? (Number(s.cost) === 0 ? 'Free' : `$${Number(s.cost).toFixed(2)}`) : '';
+        const isSoldOut = s.status === 'sold_out' || s.is_sold_out;
+        const actionHtml = isSoldOut
+          ? `<span class="badge-showing-sold-out" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Sold Out</span>`
+          : `<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
+                ${costText ? `${costText} ↗` : 'Book ↗'}
+              </a>`;
+
         return `
           <div class="showing-row ${isShowingToday ? 'showing-today' : ''}">
             <div class="showing-time-col">
@@ -4128,51 +4136,53 @@ function renderSingleEventCardHtml(ev, bucketKey) {
               <span class="showing-address">${addrLabel}</span>
             </div>
             <div class="showing-action-col">
-              <a href="${bookUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="btn-showing-book" title="Direct ticket or info link for this date">
-                ${costText ? `${costText} ↗` : 'Book ↗'}
-              </a>
+              ${actionHtml}
             </div>
           </div>
         `;
       };
 
-      const todayIdx = ev.showings.findIndex(s => s && s.date === curTodayStr);
-      const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
-      const primaryShowing = ev.showings[primaryIdx] || {};
+      if (activeShowings.length > 1) {
+        const todayIdx = activeShowings.findIndex(s => s && s.date === curTodayStr);
+        const primaryIdx = todayIdx >= 0 ? todayIdx : 0;
+        const primaryShowing = activeShowings[primaryIdx] || {};
 
-      const dStr = primaryShowing.date || '';
-      const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
-      const primaryDateLabel = !isNaN(dObj.getTime())
-        ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-        : dStr;
-      const primaryTimeLabel = primaryShowing.start_time ? ` at ${primaryShowing.start_time}` : '';
+        const dStr = primaryShowing.date || '';
+        const dObj = new Date(dStr.length === 10 ? dStr + 'T12:00:00' : dStr);
+        const primaryDateLabel = !isNaN(dObj.getTime())
+          ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+          : dStr;
+        const primaryTimeLabel = primaryShowing.start_time ? ` at ${primaryShowing.start_time}` : '';
 
-      const allRowsHtml = ev.showings.map(renderShowingRow).join('');
+        const allRowsHtml = activeShowings.map(renderShowingRow).join('');
 
-      showingsHtml = `
-        <div class="card-showings-block" id="showings-block-${ev.id}">
-          <div class="showings-summary-row" onclick="toggleShowings('${ev.id}', event)" title="Click to view/hide all ${ev.showings.length} scheduled dates">
-            <div class="wh-summary-left">
-              <div class="wh-active-day-box">
-                <span class="wh-active-day-name">Next:</span>
-                <span class="wh-active-hours-val">${primaryDateLabel}${primaryTimeLabel}</span>
+        showingsHtml = `
+          <div class="card-showings-block" id="showings-block-${ev.id}">
+            <div class="showings-summary-row" onclick="toggleShowings('${ev.id}', event)" title="Click to view/hide all ${activeShowings.length} upcoming scheduled dates">
+              <div class="wh-summary-left">
+                <div class="wh-active-day-box">
+                  <span class="wh-active-day-name">Next:</span>
+                  <span class="wh-active-hours-val">${primaryDateLabel}${primaryTimeLabel}</span>
+                </div>
               </div>
+              <button 
+                type="button" 
+                class="btn-toggle-showings btn-toggle-hours" 
+                id="btn-toggle-showings-${ev.id}" 
+                aria-expanded="false" 
+                data-count="${activeShowings.length}"
+                aria-label="Toggle all ${activeShowings.length} upcoming showings for ${ev.title}"
+              >
+                <span class="toggle-text">All Dates (${activeShowings.length})</span>
+                <span class="wh-chevron">▾</span>
+              </button>
             </div>
-            <button 
-              type="button" 
-              class="btn-toggle-showings btn-toggle-hours" 
-              id="btn-toggle-showings-${ev.id}" 
-              aria-expanded="false" 
-              data-count="${ev.showings.length}"
-              aria-label="Toggle all ${ev.showings.length} showings for ${ev.title}"
-            >
-              <span class="toggle-text">All Dates (${ev.showings.length})</span>
-              <span class="wh-chevron">▾</span>
-            </button>
+            <div class="showings-table collapsible-showings" id="showings-table-${ev.id}" style="display: none;">
+              ${allRowsHtml}
+            </div>
           </div>
-          <div class="showings-table collapsible-showings" id="showings-table-${ev.id}" style="display: none;">
-            ${allRowsHtml}
-          </div>
+        `;
+      }
         </div>
       `;
     }

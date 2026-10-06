@@ -104,15 +104,41 @@
         - **D31**: `other_cost_label` — Name of optional ancillary add-on (e.g. Club Rental, Skate Rental, Tasting Tokens, Coat Check).
         - **D32**: `other_cost_price` — Numeric price of optional add-on.
       - **AI Clarity Directive**: The sub-components (`base`, `tax`, `fees`, `other`) provide rich display transparency to consumers, but `price_all_in` is the absolute qualifying gate. The AI must never allow component breakdowns to distract it from verifying that `price_all_in \le \$50.00 CAD`.
-    - **Data Provenance, Curator Lock & Interactive AI Appeal Protocol (D33)**:
-      - `curator_locked`: When true, autonomous scrapers must preserve curator-crafted copy and settings.
-      - **Mandatory AI Appeal Channel**: If an AI (Scout or QC) discovers live empirical truth that conflicts with a Curator Lock or Curator Instruction (e.g. ticket price raised to $58 CAD, event cancelled/postponed, venue permanently closed, or link dead 404), the AI MUST NOT blindly obey or silently fail.
-      - It records an **AI Appeal** into `manual_review_queue.json` under `aiCuratorAppeals`, citing:
-        - Target `event_id` and `instruction_id`
-        - Live empirical evidence (URL, HTTP status, live cart price)
-        - Detailed explanation of why the AI takes issue with the Curator directive
-        - AI recommendation (e.g. "Archive event: live checkout is $58 CAD which breaches the $50 ceiling")
-      - The appeal is staged in Curator Studio for the human Curator to either `Uphold`, `Revise`, or `Accept AI Recommendation`.
+    - **Pricing Models & Consumption Hybrid Standard (D10)**:
+      - Events with food, drink, or entertainment hybrids must be classified with accurate operational models:
+        - `cover_plus_consumption`: Flat cover/door charge for entertainment; food and drink purchases are optional inside (e.g. Guilt & Co., jazz lounges, board game cafes). `price_all_in` represents entry cover; drink/food benchmarks are recorded under D13.
+        - `ticket_plus_mandatory_minimum`: Ticket price plus a required minimum beverage or food purchase (e.g. comedy clubs with 2-drink minimums). The AI **MUST** sum the ticket + mandatory minimum into `price_all_in` to verify the $\le \$50$ CAD ceiling.
+        - `admission_plus_tokens`: Gate admission plus optional tasting tokens or food packages (e.g. food & beer festivals, night markets). Gate entry is `price_base`; tasting packages are tagged as add-ons in D31/D32.
+        - Standard models: `flat_ticket`, `free_access`, `tiered_admission`, `pay_what_you_can`, `donation`, `paid_drop_in`.
+    - **Granular Named Pricing Tier Slots & Anti-Laziness Guard (D12)**:
+      - To prevent LLM batch laziness, tiers are not evaluated as a generic list, but as **explicit, named dimensional slots**:
+        - `adult`: General admission / standard adult ticket floor.
+        - `student`: Dedicated student / youth discount tier.
+        - `senior`: Dedicated senior / elder (65+) discount tier.
+        - `member`: Museum, society, or patron member admission.
+        - `non_member`: General public non-member tier.
+        - `family`: Family or group admission bundle.
+        - `other_1_name` / `other_1_cost`: e.g. "Online Advance", "Early Bird", "Rush Seating".
+        - `other_2_name` / `other_2_cost`: e.g. "Door Admission", "Balcony Seating".
+        - `tier_count_verified`: Total count of distinct tiers detected on checkout page.
+      - **Tier-Fee-Addon Interaction Rule**: Tier prices represent base ticket costs. Mandatory ticketing fees and taxes apply on top. Optional rentals/add-ons remain strictly in D31/D32 and must never be conflated with entry tiers. Any active tier displayed must independently satisfy `all_in \le \$50.00 CAD`.
+    - **Showing-Level Lifecycle, Auto-Archiving & Rollover Standard (D21 & D20)**:
+      - Individual showings in `showings: [...]` maintain per-showing statuses: `active`, `sold_out`, `concluded`, `cancelled`.
+      - **Concluded Showings Archival**: Past showings (where date/end-time < Vancouver local time) are automatically excised from `showings` and preserved in `archived_showings`. They are completely hidden from the consumer app UI.
+      - **Dynamic Rollover**: The event's headline `date`, `time`, and `best_available_link` automatically advance to the earliest active showing in `showings`.
+      - **New Showing Ingestion**: When Scout AI or QC AI audits a venue and identifies newly published upcoming screening/performance dates, it appends them to `showings` with `status: "active"`.
+      - **Event-Level Lifecycle**: An event card is marked `concluded` strictly when 100% of showings have concluded; it is marked `sold_out` strictly when 100% of future showings are sold out.
+    - **Data Provenance, Curator Lock & Rich-Evidence AI Appeal Channel (D33)**:
+      - `curator_locked`: When true, autonomous scrapers must preserve curator-crafted copy and manual pricing overrides.
+      - **Mandatory AI Appeal Protocol**: If an AI discovers live empirical truth that conflicts with a Curator Lock or Curator Instruction (e.g. ticket price raised to $58 CAD, event cancelled/postponed, venue closed, link dead 404), the AI MUST NOT silently fail or overwrite the lock.
+      - It records an **AI Appeal** into `manual_review_queue.json` (`aiCuratorAppeals`) containing **explicit empirical evidence**:
+        - `evidence_source_type`: `direct_ticket_link`, `email_newsletter`, `social_post`, `venue_calendar`.
+        - `source_url`: Direct clickable link to the page where the issue was detected.
+        - `image_url` / `screenshot_path`: Visual capture (email graphic, screenshot) proving the change.
+        - `raw_snippet_quote`: Exact verbatim quote or pricing line from the source DOM or email.
+        - `detailed_rationale`: Clear explanation of the conflict between Curator directive and live reality.
+        - `ai_recommendation`: Specific actionable fix (e.g. "Archive event: checkout price $58 exceeds $50 ceiling").
+      - Staged in Curator Studio for one-click curator resolution: `Uphold Lock`, `Revise Guidance`, or `Accept AI Recommendation`.
     - **Zero Caching Wiggle Room Mandate**:
       - AIs are strictly forbidden from skipping link checks, using synthetic hash caches, or assuming past states. Every scheduled audit must actively inspect target URLs and live DOM payloads.
     - **Multi-City Federation Readiness (City50 Standard, D34–D37)**:

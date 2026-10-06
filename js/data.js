@@ -185,8 +185,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:50.903328",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -243,9 +244,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -347,6 +350,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": 0.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": "Student / Youth: $0.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -397,7 +414,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": 0.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "stanley-park-seawall-rose-garden",
@@ -599,8 +630,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:51.969348",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -657,9 +689,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -761,6 +795,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": 0.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": "Student / Youth: $0.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -811,7 +859,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": 0.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-access",
@@ -995,8 +1057,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:52.263017",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -1053,9 +1116,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -1157,6 +1222,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 29.0,
+          "student": 18.0,
+          "senior": null,
+          "member": 24.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $29.0",
+          "other_2": "Student / Youth: $18.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -1207,7 +1286,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 29.0,
+      "student": 18.0,
+      "senior": null,
+      "member": 24.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 29.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 18.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-sun-yat-sen-public-park",
@@ -1407,8 +1500,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:52.560104",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -1465,9 +1559,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -1569,6 +1665,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 16.0,
+          "student": 13.0,
+          "senior": null,
+          "member": 13.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $16.0",
+          "other_2": "Student / Youth: $13.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -1619,7 +1729,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 16.0,
+      "student": 13.0,
+      "senior": null,
+      "member": 13.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 16.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 13.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-shipyards-lonsdale-quay",
@@ -1780,8 +1904,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:54.376634",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -1838,9 +1963,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -1942,6 +2069,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -1992,7 +2133,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-granville-island-public-market",
@@ -2155,8 +2310,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:54.612945",
-          "value": "pay_per_item"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "pay_per_item",
+          "note": "Pricing model categorized as pay_per_item"
         },
         "D11_price": {
           "status": "verified",
@@ -2213,9 +2369,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -2317,6 +2475,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -2367,7 +2539,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -2536,8 +2722,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:54.965287",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -2594,9 +2781,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -2698,6 +2887,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -2748,7 +2951,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -2915,8 +3132,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:55.693382",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -2973,9 +3191,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -3077,6 +3297,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -3127,7 +3361,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-heist-arts-club",
@@ -3211,26 +3459,7 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / General Admission",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-02",
-        "start_time": "19:30",
-        "end_time": "21:30",
-        "cost": 45.68
-      },
-      {
-        "date": "2026-10-03",
-        "start_time": "19:30",
-        "end_time": "21:30",
-        "cost": 45.68
-      },
-      {
-        "date": "2026-10-04",
-        "start_time": "14:00",
-        "end_time": "16:00",
-        "cost": 45.68
-      }
-    ],
+    "showings": [],
     "tier_custom_name_4": null,
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
@@ -3317,8 +3546,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:56.347629",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -3375,9 +3605,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
-          "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "concluded",
+          "active_showings_count": 0,
+          "archived_showings_count": 3,
+          "note": "Operational status 'concluded' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -3479,12 +3711,26 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 45.68,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $45.68",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
     },
     "is_past": true,
-    "operational_status": "scheduled",
+    "operational_status": "concluded",
     "links": {
       "tier1_checkout": null,
       "tier2_event_page": null,
@@ -3530,7 +3776,46 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 45.68,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 45.68,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-02",
+        "start_time": "19:30",
+        "end_time": "21:30",
+        "cost": 45.68,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-03",
+        "start_time": "19:30",
+        "end_time": "21:30",
+        "cost": 45.68,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-04",
+        "start_time": "14:00",
+        "end_time": "16:00",
+        "cost": 45.68,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-metro-vancouver-croissant-crawl",
@@ -3622,14 +3907,7 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / General Admission",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-04",
-        "start_time": "09:00",
-        "end_time": "17:00",
-        "cost": 0
-      }
-    ],
+    "showings": [],
     "weekly_hours": null,
     "tier_custom_name_4": null,
     "tier_custom_price_4": null,
@@ -3714,8 +3992,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:57.669121",
-          "value": "pay_per_item"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "pay_per_item",
+          "note": "Pricing model categorized as pay_per_item"
         },
         "D11_price": {
           "status": "verified",
@@ -3772,9 +4051,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
-          "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "concluded",
+          "active_showings_count": 0,
+          "archived_showings_count": 1,
+          "note": "Operational status 'concluded' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -3876,11 +4157,25 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
     },
-    "operational_status": "scheduled",
+    "operational_status": "concluded",
     "links": {
       "tier1_checkout": null,
       "tier2_event_page": null,
@@ -3926,7 +4221,30 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-04",
+        "start_time": "09:00",
+        "end_time": "17:00",
+        "cost": 0,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -4104,8 +4422,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:58.236399",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -4162,9 +4481,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -4266,6 +4587,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -4316,7 +4651,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -4482,8 +4831,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:37:59.368371",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -4540,9 +4890,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -4644,6 +4996,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -4694,7 +5060,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -4862,8 +5242,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:00.267768",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -4920,9 +5301,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -5024,6 +5407,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -5074,7 +5471,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
@@ -5153,7 +5564,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-11-05",
         "start_time": "19:00",
         "end_time": "23:30",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -5242,8 +5654,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:01.102138",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -5300,9 +5713,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -5404,6 +5819,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 17.87,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $17.87",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -5454,7 +5883,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 17.87,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 17.87,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "ubc-fball-uofc",
@@ -5532,7 +5975,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-16",
         "start_time": "18:00",
         "end_time": "",
-        "cost": 17.5
+        "cost": 17.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -5623,8 +6067,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:04.913914",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -5681,9 +6126,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -5785,6 +6232,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 17.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $17.5",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -5835,7 +6296,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 17.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 17.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "ubc-mbball-twu",
@@ -5913,7 +6388,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-29",
         "start_time": "19:30",
         "end_time": "",
-        "cost": 17.5
+        "cost": 17.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -6004,8 +6480,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:06.020065",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -6062,9 +6539,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -6166,6 +6645,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 17.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $17.5",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -6216,7 +6709,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 17.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 17.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-babes-in-canyon-fox-20261008",
@@ -6291,7 +6798,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "19:00",
         "end_time": null,
-        "cost": 28.5
+        "cost": 28.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -6379,8 +6887,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:06.296740",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -6438,9 +6947,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -6542,6 +7053,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 35.99,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $35.99",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -6592,7 +7117,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 35.99,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 35.99,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-salin-fox-cabaret-20261010",
@@ -6668,7 +7207,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-10",
         "start_time": "19:30",
         "end_time": null,
-        "cost": 35.67
+        "cost": 35.67,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -6756,8 +7296,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:06.805049",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -6815,9 +7356,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -6919,6 +7462,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 44.57,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $44.57",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -6969,7 +7526,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 44.57,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 44.57,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -7047,7 +7618,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "21:00",
         "end_time": "23:30",
-        "cost": 34.5
+        "cost": 34.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -7153,8 +7725,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:07.344991",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -7211,9 +7784,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -7315,6 +7890,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 34.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $34.5",
+          "other_2": "Online Advance: $34.5",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -7365,7 +7954,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 34.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 34.5,
+      "other_name_2": "Online Advance",
+      "other_cost_2": 34.5,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
@@ -7439,7 +8042,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-22",
         "start_time": "20:00",
         "end_time": null,
-        "cost": 22.5
+        "cost": 22.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -7526,8 +8130,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:07.894295",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -7584,9 +8189,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -7688,6 +8295,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 39.35,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $39.35",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -7738,7 +8359,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 39.35,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 39.35,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
@@ -7817,7 +8452,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-12-11",
         "start_time": "20:00",
         "end_time": null,
-        "cost": 32.06
+        "cost": 32.06,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -7909,8 +8545,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:08.419317",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -7967,9 +8604,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -8071,6 +8710,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 40.03,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $40.03",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -8121,7 +8774,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 40.03,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 40.03,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-harvest-days-vandusen",
@@ -8203,46 +8870,39 @@ const VANCOUVER_EVENTS = [
     "waypoints": [],
     "showings": [
       {
-        "date": "2026-10-03",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 14.86
-      },
-      {
-        "date": "2026-10-04",
-        "start_time": "10:30",
-        "end_time": "16:30",
-        "cost": 14.86
-      },
-      {
         "date": "2026-10-10",
         "start_time": "10:30",
         "end_time": "16:30",
-        "cost": 13.27
+        "cost": 13.27,
+        "status": "active"
       },
       {
         "date": "2026-10-11",
         "start_time": "10:30",
         "end_time": "16:30",
-        "cost": 13.27
+        "cost": 13.27,
+        "status": "active"
       },
       {
         "date": "2026-10-12",
         "start_time": "10:30",
         "end_time": "16:30",
-        "cost": 13.27
+        "cost": 13.27,
+        "status": "active"
       },
       {
         "date": "2026-10-17",
         "start_time": "10:30",
         "end_time": "16:30",
-        "cost": 13.27
+        "cost": 13.27,
+        "status": "active"
       },
       {
         "date": "2026-10-18",
         "start_time": "10:30",
         "end_time": "16:30",
-        "cost": 13.27
+        "cost": 13.27,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -8354,8 +9014,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:08.886450",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -8413,9 +9074,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 5,
+          "archived_showings_count": 2,
+          "note": "Operational status 'sold_out' confirmed with 5 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -8517,6 +9180,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 14.86,
+          "student": 10.6,
+          "senior": 10.6,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $14.86",
+          "other_2": "Student / Youth: $10.6",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -8568,7 +9245,38 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 14.86,
+      "student": 10.6,
+      "senior": 10.6,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 14.86,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 10.6,
+      "tier_count_verified": 6
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-03",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 14.86,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-04",
+        "start_time": "10:30",
+        "end_time": "16:30",
+        "cost": 14.86,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-deadly-dinner-party",
@@ -8606,31 +9314,14 @@ const VANCOUVER_EVENTS = [
     },
     "showings": [
       {
-        "date": "2026-10-02",
-        "start_time": "19:00",
-        "end_time": "20:30",
-        "cost": 32.0,
-        "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
-        "instance_id": "64801",
-        "venue_name": "The Improv Centre"
-      },
-      {
-        "date": "2026-10-03",
-        "start_time": "19:00",
-        "end_time": "20:30",
-        "cost": 32.0,
-        "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/65001",
-        "instance_id": "65001",
-        "venue_name": "The Improv Centre"
-      },
-      {
         "date": "2026-10-09",
         "start_time": "19:00",
         "end_time": "20:30",
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64802",
         "instance_id": "64802",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-10",
@@ -8639,7 +9330,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/65002",
         "instance_id": "65002",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-16",
@@ -8648,7 +9340,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64803",
         "instance_id": "64803",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-17",
@@ -8657,7 +9350,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/65003",
         "instance_id": "65003",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-23",
@@ -8666,7 +9360,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64804",
         "instance_id": "64804",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-24",
@@ -8675,7 +9370,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/65004",
         "instance_id": "65004",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       },
       {
         "date": "2026-10-30",
@@ -8684,7 +9380,8 @@ const VANCOUVER_EVENTS = [
         "cost": 32.0,
         "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64805",
         "instance_id": "64805",
-        "venue_name": "The Improv Centre"
+        "venue_name": "The Improv Centre",
+        "status": "active"
       }
     ],
     "discovery_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
@@ -8853,8 +9550,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:09.532184",
-          "value": "tiered_admission"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "tiered_admission",
+          "note": "Pricing model categorized as tiered_admission"
         },
         "D11_price": {
           "status": "verified",
@@ -8911,9 +9609,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 7,
+          "archived_showings_count": 2,
+          "note": "Operational status 'scheduled' confirmed with 7 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -9015,6 +9715,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 32.0,
+          "student": 27.0,
+          "senior": 33.5,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $32.0",
+          "other_2": "Student / Youth: $27.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -9065,7 +9779,44 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 32.0,
+      "student": 27.0,
+      "senior": 33.5,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 32.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 27.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-02",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 32.0,
+        "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/64801",
+        "instance_id": "64801",
+        "venue_name": "The Improv Centre",
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-03",
+        "start_time": "19:00",
+        "end_time": "20:30",
+        "cost": 32.0,
+        "ticket_url": "https://purchase.theimprovcentre.ca/ChooseSeats/65001",
+        "instance_id": "65001",
+        "venue_name": "The Improv Centre",
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -9150,7 +9901,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-15",
         "start_time": "19:00",
         "end_time": "22:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -9248,8 +10000,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:09.975744",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -9306,9 +10059,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -9410,6 +10165,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 18.14,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $18.14",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -9460,7 +10229,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 18.14,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 18.14,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cinematheque-past-future-20261015",
@@ -9542,7 +10325,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-15",
         "start_time": "19:00",
         "end_time": "21:30",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -9636,8 +10420,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:10.262371",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -9694,9 +10479,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -9798,6 +10585,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $15.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -9848,7 +10649,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 15.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-york-comedy-on-the-drive-20261024",
@@ -9926,7 +10741,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-24",
         "start_time": "19:00",
         "end_time": "21:30",
-        "cost": 25
+        "cost": 25,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -10018,8 +10834,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:12.257669",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -10076,9 +10893,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -10180,6 +10999,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.25,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.25",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -10230,7 +11063,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.25,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.25,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-york-stripocalypse-20261016",
@@ -10311,7 +11158,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-16",
         "start_time": "20:00",
         "end_time": "22:30",
-        "cost": 25
+        "cost": 25,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -10406,8 +11254,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:12.513282",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -10464,9 +11313,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -10568,6 +11419,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.25,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.25",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -10618,7 +11483,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.25,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.25,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-rio-viff-beloved-20261001",
@@ -10688,22 +11567,11 @@ const VANCOUVER_EVENTS = [
     "meal_benchmark": "$14.00 – $22.00 CAD (festival venue neighborhoods)",
     "showings": [
       {
-        "date": "2026-10-01",
-        "start_time": "18:00",
-        "end_time": "20:00",
-        "cost": 22
-      },
-      {
-        "date": "2026-10-05",
-        "start_time": "18:00",
-        "end_time": "20:00",
-        "cost": 22
-      },
-      {
         "date": "2026-10-10",
         "start_time": "21:30",
         "end_time": "23:30",
-        "cost": 22
+        "cost": 22,
+        "status": "active"
       }
     ],
     "show_2": {
@@ -10719,9 +11587,9 @@ const VANCOUVER_EVENTS = [
       "cost": 22
     },
     "title": "VIFF 2026: The Beloved (El Ser querido)",
-    "date": "2026-10-05",
+    "date": "2026-10-10",
     "time": "18:00",
-    "start_time": "18:00",
+    "start_time": "21:30",
     "end_time": "20:00",
     "dateSchedule": "Multi-Date Run (Next: 2026-10-05 at 18:00)",
     "frequency": "One-Time",
@@ -10824,8 +11692,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:13.463993",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -10882,9 +11751,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 2,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -10986,6 +11857,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 49.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $49.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -11036,7 +11921,38 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 49.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 49.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-01",
+        "start_time": "18:00",
+        "end_time": "20:00",
+        "cost": 22,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-05",
+        "start_time": "18:00",
+        "end_time": "20:00",
+        "cost": 22,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
@@ -11124,7 +12040,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-24",
         "start_time": "19:00",
         "end_time": "23:00",
-        "cost": 20
+        "cost": 20,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -11225,8 +12142,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:13.963522",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -11283,9 +12201,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -11387,6 +12307,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 22.63,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $22.63",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -11437,7 +12371,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 22.63,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 22.63,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
@@ -11516,7 +12464,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-25",
         "start_time": "19:00",
         "end_time": "22:30",
-        "cost": 32.06
+        "cost": 32.06,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -11606,8 +12555,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:14.637801",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -11664,9 +12614,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -11768,6 +12720,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 32.06,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $32.06",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -11818,7 +12784,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 32.06,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 32.06,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-orpheum-silent-movie-mondays",
@@ -11912,7 +12892,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-26",
         "start_time": "19:30",
         "end_time": "21:30",
-        "cost": 26.78
+        "cost": 26.78,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -12015,8 +12996,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:15.188210",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -12073,9 +13055,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -12177,6 +13161,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.78,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.78",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -12227,7 +13225,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.78,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.78,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -12308,7 +13320,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-24",
         "start_time": "19:30",
         "end_time": "22:30",
-        "cost": 25
+        "cost": 25,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -12413,8 +13426,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:15.939561",
-          "value": "tiered_admission"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "tiered_admission",
+          "note": "Pricing model categorized as tiered_admission"
         },
         "D11_price": {
           "status": "verified",
@@ -12471,9 +13485,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -12575,6 +13591,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 40.0,
+          "student": 25.0,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $40.0",
+          "other_2": "Student / Youth: $25.0",
+          "tier_count_verified": 4,
+          "note": "4 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -12625,7 +13655,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 40.0,
+      "student": 25.0,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 40.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 25.0,
+      "tier_count_verified": 4
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
@@ -12707,7 +13751,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-15",
         "start_time": "19:30",
         "end_time": "21:30",
-        "cost": 21.02
+        "cost": 21.02,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -12799,8 +13844,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:16.713125",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -12857,9 +13903,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -12961,6 +14009,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 21.02,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $21.02",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -13011,7 +14073,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 21.02,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 21.02,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
@@ -13099,7 +14175,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "19:00",
         "end_time": "23:00",
-        "cost": 20
+        "cost": 20,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -13197,8 +14274,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:17.027168",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -13256,9 +14334,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -13360,6 +14440,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $20.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -13410,7 +14504,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 20.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
@@ -13492,7 +14600,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-10",
         "start_time": "18:00",
         "end_time": "22:30",
-        "cost": 36.64
+        "cost": 36.64,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -13585,8 +14694,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:17.869908",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -13643,9 +14753,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -13747,6 +14859,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 36.64,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $36.64",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -13797,7 +14923,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 36.64,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 36.64,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-fox-sunday-service-20261004",
@@ -13878,14 +15018,7 @@ const VANCOUVER_EVENTS = [
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "showings": [
-      {
-        "date": "2026-10-04",
-        "start_time": "20:00",
-        "end_time": "22:00",
-        "cost": 20
-      }
-    ],
+    "showings": [],
     "tier_custom_name_4": null,
     "tier_custom_price_4": null,
     "tier_custom_name_5": null,
@@ -13978,8 +15111,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:19.732838",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -14036,9 +15170,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
-          "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "concluded",
+          "active_showings_count": 0,
+          "archived_showings_count": 1,
+          "note": "Operational status 'concluded' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -14140,12 +15276,26 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $20.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
     },
     "is_past": true,
-    "operational_status": "scheduled",
+    "operational_status": "concluded",
     "links": {
       "tier1_checkout": "https://square.link/u/mwz50eOL",
       "tier2_event_page": null,
@@ -14191,7 +15341,30 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 20.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-04",
+        "start_time": "20:00",
+        "end_time": "22:00",
+        "cost": 20,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -14277,7 +15450,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-11",
         "start_time": "20:00",
         "end_time": "22:00",
-        "cost": 20
+        "cost": 20,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -14372,8 +15546,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:21.075398",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -14430,9 +15605,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -14534,6 +15711,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $20.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -14584,7 +15775,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 20.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
@@ -14670,7 +15875,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "22:30",
         "end_time": "02:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -14765,8 +15971,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:21.434589",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -14824,9 +16031,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -14928,6 +16137,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $15.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -14978,7 +16201,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 15.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
@@ -15066,7 +16303,8 @@ const VANCOUVER_EVENTS = [
         "date": "2027-01-22",
         "start_time": "20:00",
         "end_time": "22:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -15163,8 +16401,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:21.673801",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -15221,9 +16460,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -15325,6 +16566,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $15.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -15375,7 +16630,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 15.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cultch-palestine-comedy-20261009",
@@ -15466,7 +16735,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "19:30",
         "end_time": "22:00",
-        "cost": 20
+        "cost": 20,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -15567,8 +16837,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:21.889497",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -15625,9 +16896,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -15729,6 +17002,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $20.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -15779,7 +17066,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 20.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cinematheque-kwaidan-20261012",
@@ -15867,7 +17168,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-12",
         "start_time": "19:00",
         "end_time": "22:00",
-        "cost": 14
+        "cost": 14,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -15963,8 +17265,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:22.081256",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -16021,9 +17324,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -16125,6 +17430,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 14.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $14.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -16175,7 +17494,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 14.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 14.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cinematheque-hello-destroyer-20261027",
@@ -16268,7 +17601,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-27",
         "start_time": "19:00",
         "end_time": "21:30",
-        "cost": 0
+        "cost": 0,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -16368,8 +17702,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:22.339731",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -16426,9 +17761,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -16530,6 +17867,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -16580,7 +17931,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
@@ -16671,7 +18036,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "21:00",
         "end_time": "22:15",
-        "cost": 18.99
+        "cost": 18.99,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -16773,8 +18139,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:22.970902",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -16831,9 +18198,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -16935,6 +18304,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 18.99,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $18.99",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -16985,7 +18368,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 18.99,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 18.99,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-lmg-the-setup-20261024",
@@ -17078,7 +18475,8 @@ const VANCOUVER_EVENTS = [
         "start_time": "21:30",
         "end_time": "23:00",
         "cost": 17.96,
-        "ticket_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/"
+        "ticket_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -17181,8 +18579,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:23.561240",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -17239,9 +18638,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -17343,6 +18744,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 17.96,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $17.96",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -17393,7 +18808,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 17.96,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 17.96,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -17481,7 +18910,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 20
+        "cost": 20,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -17580,8 +19010,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:23.949951",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -17638,9 +19069,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -17742,6 +19175,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $20.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -17792,7 +19239,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 20.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
@@ -17875,7 +19336,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-18",
         "start_time": "19:30",
         "end_time": "23:00",
-        "cost": 36.5
+        "cost": 36.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -17968,8 +19430,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:24.325907",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -18026,9 +19489,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -18130,6 +19595,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 36.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $36.5",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -18180,7 +19659,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 36.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 36.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
@@ -18263,7 +19756,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "19:30",
         "end_time": "23:00",
-        "cost": 36.5
+        "cost": 36.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -18356,8 +19850,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:24.627940",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -18414,9 +19909,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -18518,6 +20015,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 36.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $36.5",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -18568,7 +20079,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 36.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 36.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-way-out-theatre-20261022",
@@ -18647,7 +20172,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-22",
         "start_time": "19:30",
         "end_time": "22:00",
-        "cost": 34.5
+        "cost": 34.5,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -18742,8 +20268,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:27.217923",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -18800,9 +20327,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -18904,6 +20433,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 34.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $34.5",
+          "other_2": "General Admission: $34.5",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -18954,7 +20497,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 34.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 34.5,
+      "other_name_2": "General Admission",
+      "other_cost_2": 34.5,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-firehall-red-demon-20261008",
@@ -19051,19 +20608,22 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "19:30",
         "end_time": "21:30",
-        "cost": 32
+        "cost": 32,
+        "status": "active"
       },
       {
         "date": "2026-10-09",
         "start_time": "19:30",
         "end_time": "21:30",
-        "cost": 32
+        "cost": 32,
+        "status": "active"
       },
       {
         "date": "2026-10-10",
         "start_time": "15:00",
         "end_time": "17:00",
-        "cost": 25
+        "cost": 25,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -19178,8 +20738,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:28.594815",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -19236,9 +20797,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 3,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 3 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -19340,6 +20903,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 32.0,
+          "student": 20.0,
+          "senior": 25.0,
+          "member": 20.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $32.0",
+          "other_2": "Student / Youth: $20.0",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -19390,7 +20967,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 32.0,
+      "student": 20.0,
+      "senior": 25.0,
+      "member": 20.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 32.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 20.0,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cinematheque-small-file-20261017",
@@ -19490,19 +21081,22 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "14:00",
         "end_time": "16:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       },
       {
         "date": "2026-10-17",
         "start_time": "19:00",
         "end_time": "21:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       },
       {
         "date": "2026-10-18",
         "start_time": "14:00",
         "end_time": "16:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -19619,8 +21213,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:28.818119",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -19677,9 +21272,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 3,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 3 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -19781,6 +21378,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": 11.0,
+          "senior": 13.0,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $15.0",
+          "other_2": "Student / Youth: $11.0",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -19831,7 +21442,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": 11.0,
+      "senior": 13.0,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 15.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 11.0,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-scout-cinematheque-pulse-20261016",
@@ -19931,13 +21556,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-16",
         "start_time": "18:30",
         "end_time": "20:30",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       },
       {
         "date": "2026-10-18",
         "start_time": "20:40",
         "end_time": "22:40",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -20059,8 +21686,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:29.135264",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -20117,9 +21745,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -20221,6 +21851,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": 11.0,
+          "senior": 13.0,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $15.0",
+          "other_2": "Student / Youth: $11.0",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -20271,7 +21915,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": 11.0,
+      "senior": 13.0,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 15.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 11.0,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-witches-harvest-market-20261024",
@@ -20346,13 +22004,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-24",
         "start_time": "11:00",
         "end_time": "17:00",
-        "cost": 6.66
+        "cost": 6.66,
+        "status": "active"
       },
       {
         "date": "2026-10-25",
         "start_time": "11:00",
         "end_time": "17:00",
-        "cost": 6.66
+        "cost": 6.66,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -20448,8 +22108,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:29.529074",
-          "value": "donation"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "donation",
+          "note": "Pricing model categorized as donation"
         },
         "D11_price": {
           "status": "verified",
@@ -20506,9 +22167,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -20610,6 +22273,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 6.66,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $6.66",
+          "other_2": "Donated Entry: $6.66",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -20660,7 +22337,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 6.66,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 6.66,
+      "other_name_2": "Donated Entry",
+      "other_cost_2": 6.66,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "eb-alistair-ogden-rio",
@@ -20736,7 +22427,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-12-04",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 35
+        "cost": 35,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -20838,8 +22530,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:29.776978",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -20896,9 +22589,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -21000,6 +22695,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 35.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $35.0",
+          "other_2": "General Admission: $35.0",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -21050,7 +22759,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 35.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 35.0,
+      "other_name_2": "General Admission",
+      "other_cost_2": 35.0,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-city-pop-city-rickshaw-20261121",
@@ -21126,7 +22849,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-11-21",
         "start_time": "19:30",
         "end_time": "23:00",
-        "cost": 36.21
+        "cost": 36.21,
+        "status": "active"
       }
     ],
     "tier_custom_name_4": null,
@@ -21223,8 +22947,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:29.939110",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -21281,9 +23006,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -21385,6 +23112,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 36.21,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $36.21",
+          "other_2": "General Admission: $36.21",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -21435,7 +23176,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 36.21,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 36.21,
+      "other_name_2": "General Admission",
+      "other_cost_2": 36.21,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "vag-first-friday",
@@ -21528,16 +23283,11 @@ const VANCOUVER_EVENTS = [
     "waypoints": [],
     "showings": [
       {
-        "date": "2026-10-02",
-        "start_time": "16:00",
-        "end_time": "20:00",
-        "cost": 0
-      },
-      {
         "date": "2026-11-06",
         "start_time": "16:00",
         "end_time": "20:00",
-        "cost": 0
+        "cost": 0,
+        "status": "active"
       }
     ],
     "food_service_type": "cafe_bistro",
@@ -21644,8 +23394,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:33.565166",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -21702,9 +23453,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 1,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -21806,6 +23559,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": 0.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": "Student / Youth: $0.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -21856,7 +23623,30 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": 0.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-02",
+        "start_time": "16:00",
+        "end_time": "20:00",
+        "cost": 0,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
@@ -21938,7 +23728,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "20:00",
         "end_time": "23:30",
-        "cost": 31.5
+        "cost": 31.5,
+        "status": "active"
       }
     ],
     "food_service_type": "bar_only",
@@ -22031,8 +23822,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:35.363406",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -22089,9 +23881,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -22193,6 +23987,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 31.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $31.5",
+          "other_2": "Advance Admission: $31.5",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -22243,7 +24051,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 31.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 31.5,
+      "other_name_2": "Advance Admission",
+      "other_cost_2": 31.5,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
@@ -22343,22 +24165,18 @@ const VANCOUVER_EVENTS = [
     "waypoints": [],
     "showings": [
       {
-        "date": "2026-10-04",
-        "start_time": "16:00",
-        "end_time": "17:15",
-        "cost": 10
-      },
-      {
         "date": "2026-10-11",
         "start_time": "16:00",
         "end_time": "17:15",
-        "cost": 10
+        "cost": 10,
+        "status": "active"
       },
       {
         "date": "2026-10-18",
         "start_time": "16:00",
         "end_time": "17:15",
-        "cost": 10
+        "cost": 10,
+        "status": "active"
       }
     ],
     "food_service_type": "no_onsite_food",
@@ -22466,8 +24284,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:35.765689",
-          "value": "donation"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "donation",
+          "note": "Pricing model categorized as donation"
         },
         "D11_price": {
           "status": "verified",
@@ -22524,9 +24343,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 1,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -22628,6 +24449,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 10.0,
+          "student": 10.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $10.0",
+          "other_2": "Student / Youth: $10.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -22679,7 +24514,30 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 10.0,
+      "student": 10.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 10.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 10.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-04",
+        "start_time": "16:00",
+        "end_time": "17:15",
+        "cost": 10,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -22783,34 +24641,25 @@ const VANCOUVER_EVENTS = [
     ],
     "showings": [
       {
-        "date": "2026-10-03",
-        "start_time": "11:00",
-        "end_time": "17:00",
-        "cost": 5
-      },
-      {
-        "date": "2026-10-04",
-        "start_time": "11:00",
-        "end_time": "17:00",
-        "cost": 5
-      },
-      {
         "date": "2026-10-10",
         "start_time": "11:00",
         "end_time": "17:00",
-        "cost": 5
+        "cost": 5,
+        "status": "active"
       },
       {
         "date": "2026-10-11",
         "start_time": "11:00",
         "end_time": "17:00",
-        "cost": 5
+        "cost": 5,
+        "status": "active"
       },
       {
         "date": "2026-10-12",
         "start_time": "11:00",
         "end_time": "17:00",
-        "cost": 5
+        "cost": 5,
+        "status": "active"
       }
     ],
     "food_service_type": "concession",
@@ -22915,8 +24764,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:36.345302",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -22973,9 +24823,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 3,
+          "archived_showings_count": 2,
+          "note": "Operational status 'scheduled' confirmed with 3 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -23077,6 +24929,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 5.0,
+          "student": 5.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $5.0",
+          "other_2": "Student / Youth: $5.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -23127,7 +24993,38 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 5.0,
+      "student": 5.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 5.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 5.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-03",
+        "start_time": "11:00",
+        "end_time": "17:00",
+        "cost": 5,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      },
+      {
+        "date": "2026-10-04",
+        "start_time": "11:00",
+        "end_time": "17:00",
+        "cost": 5,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "stanley-pitch-putt",
@@ -23309,8 +25206,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:36.846758",
-          "value": "paid_drop_in"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "paid_drop_in",
+          "note": "Pricing model categorized as paid_drop_in"
         },
         "D11_price": {
           "status": "verified",
@@ -23367,9 +25265,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -23471,6 +25371,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 19.11,
+          "student": 13.39,
+          "senior": 13.39,
+          "member": 13.39,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult 18-Holes (19-64): $19.11",
+          "other_2": "Club & Ball Rental: $2.86",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -23521,7 +25435,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 19.11,
+      "student": 13.39,
+      "senior": 13.39,
+      "member": 13.39,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult 18-Holes (19-64)",
+      "other_cost_1": 19.11,
+      "other_name_2": "Club & Ball Rental",
+      "other_cost_2": 2.86,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "qe-park-pitch-putt",
@@ -23701,8 +25629,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:37.269703",
-          "value": "paid_drop_in"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "paid_drop_in",
+          "note": "Pricing model categorized as paid_drop_in"
         },
         "D11_price": {
           "status": "verified",
@@ -23759,9 +25688,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -23863,6 +25794,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 18.27,
+          "student": 12.81,
+          "senior": 12.81,
+          "member": 12.81,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult 18-Holes (19-64): $18.27",
+          "other_2": "Club & Ball Rental: $2.86",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -23913,7 +25858,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 18.27,
+      "student": 12.81,
+      "senior": 12.81,
+      "member": 12.81,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult 18-Holes (19-64)",
+      "other_cost_1": 18.27,
+      "other_name_2": "Club & Ball Rental",
+      "other_cost_2": 2.86,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "rupert-park-pitch-putt",
@@ -24093,8 +26052,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:37.731109",
-          "value": "paid_drop_in"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "paid_drop_in",
+          "note": "Pricing model categorized as paid_drop_in"
         },
         "D11_price": {
           "status": "verified",
@@ -24151,9 +26111,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -24255,6 +26217,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 18.27,
+          "student": 12.81,
+          "senior": 12.81,
+          "member": 12.81,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult 18-Holes (19-64): $18.27",
+          "other_2": "Club & Ball Rental: $2.86",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -24305,7 +26281,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 18.27,
+      "student": 12.81,
+      "senior": 12.81,
+      "member": 12.81,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult 18-Holes (19-64)",
+      "other_cost_1": 18.27,
+      "other_name_2": "Club & Ball Rental",
+      "other_cost_2": 2.86,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "central-park-pitch-putt",
@@ -24492,8 +26482,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:38.438370",
-          "value": "paid_drop_in"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "paid_drop_in",
+          "note": "Pricing model categorized as paid_drop_in"
         },
         "D11_price": {
           "status": "verified",
@@ -24550,9 +26541,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -24654,6 +26647,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 16.28,
+          "student": 11.03,
+          "senior": 12.6,
+          "member": 11.03,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult 18-Holes: $16.28",
+          "other_2": "Junior (<=18): $11.03",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -24704,7 +26711,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 16.28,
+      "student": 11.03,
+      "senior": 12.6,
+      "member": 11.03,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult 18-Holes",
+      "other_cost_1": 16.28,
+      "other_name_2": "Junior (<=18)",
+      "other_cost_2": 11.03,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "viff-the-debut",
@@ -24777,18 +26798,12 @@ const VANCOUVER_EVENTS = [
     "meal_benchmark": "$14.00 – $22.00 CAD (festival venue neighborhoods)",
     "showings": [
       {
-        "date": "2026-10-05",
-        "start_time": "12:00",
-        "end_time": "14:19",
-        "venue": "Fifth Avenue Cinema",
-        "cost": 20.5
-      },
-      {
         "date": "2026-10-11",
         "start_time": "20:45",
         "end_time": "23:04",
         "venue": "International Village 10",
-        "cost": 20.5
+        "cost": 20.5,
+        "status": "active"
       }
     ],
     "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
@@ -24891,8 +26906,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:39.223848",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -24949,9 +26965,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 1,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -25053,6 +27071,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -25104,7 +27136,31 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": [
+      {
+        "date": "2026-10-05",
+        "start_time": "12:00",
+        "end_time": "14:19",
+        "venue": "Fifth Avenue Cinema",
+        "cost": 20.5,
+        "status": "concluded",
+        "archived_at": "2026-10-06T09:02:33.750904-07:00"
+      }
+    ]
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -25170,7 +27226,7 @@ const VANCOUVER_EVENTS = [
     "price": 15,
     "featured_exhibition": null,
     "access_model": "fenced_facility",
-    "pricing_model": "flat_ticket",
+    "pricing_model": "admission_plus_tokens",
     "weekly_hours": {
       "mon": "Closed",
       "tue": "10:00 AM – 4:30 PM",
@@ -25211,13 +27267,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "11:00",
         "end_time": "16:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       },
       {
         "date": "2026-10-18",
         "start_time": "11:00",
         "end_time": "16:00",
-        "cost": 15
+        "cost": 15,
+        "status": "active"
       }
     ],
     "food_service_type": "food_vendors",
@@ -25330,8 +27388,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:39.986410",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "admission_plus_tokens",
+          "note": "Pricing model categorized as admission_plus_tokens"
         },
         "D11_price": {
           "status": "verified",
@@ -25388,9 +27447,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -25492,6 +27553,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 15.0,
+          "student": 15.0,
+          "senior": 14.0,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "General Admission (Ages 8–64): $15.0",
+          "other_2": "Children (Ages 0–7): $0.0",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -25542,7 +27617,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 15.0,
+      "student": 15.0,
+      "senior": 14.0,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "General Admission (Ages 8–64)",
+      "other_cost_1": 15.0,
+      "other_name_2": "Children (Ages 0–7)",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
@@ -25613,7 +27702,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-23",
         "start_time": "20:00",
         "end_time": "22:30",
-        "cost": 26.5
+        "cost": 26.5,
+        "status": "active"
       }
     ],
     "holiday_detected": "halloween",
@@ -25711,8 +27801,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:40.995853",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -25769,9 +27860,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -25873,6 +27966,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.5,
+          "student": null,
+          "senior": null,
+          "member": 22.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.5",
+          "other_2": "Gallery Member: $22.0",
+          "tier_count_verified": 4,
+          "note": "4 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -25923,7 +28030,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.5,
+      "student": null,
+      "senior": null,
+      "member": 22.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.5,
+      "other_name_2": "Gallery Member",
+      "other_cost_2": 22.0,
+      "tier_count_verified": 4
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
@@ -25991,7 +28112,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-18",
         "start_time": "10:00",
         "end_time": "11:30",
-        "cost": 38.74
+        "cost": 38.74,
+        "status": "active"
       }
     ],
     "holidays": [],
@@ -26079,8 +28201,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:41.190672",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -26137,9 +28260,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -26241,6 +28366,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 38.74,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $38.74",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -26291,7 +28430,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 38.74,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 38.74,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-concrete-vehicles-20261008",
@@ -26358,7 +28511,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "20:00",
         "end_time": "23:45",
-        "cost": 24.4
+        "cost": 24.4,
+        "status": "active"
       }
     ],
     "holidays": [],
@@ -26445,8 +28599,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:41.379478",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -26504,9 +28659,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -26608,6 +28765,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 24.4,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $24.4",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -26658,7 +28829,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 24.4,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 24.4,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
@@ -26727,7 +28912,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-11-07",
         "start_time": "14:00",
         "end_time": "17:00",
-        "cost": 0.0
+        "cost": 0.0,
+        "status": "active"
       }
     ],
     "holiday_detected": "diwali",
@@ -26819,8 +29005,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:46.338536",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -26877,9 +29064,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -26981,6 +29170,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -27031,7 +29234,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-cinematheque-vampyr-live-score-20261031",
@@ -27099,7 +29316,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-31",
         "start_time": "20:00",
         "end_time": "21:45",
-        "cost": 30.0
+        "cost": 30.0,
+        "status": "active"
       }
     ],
     "holiday_detected": "halloween",
@@ -27193,8 +29411,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:46.505921",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -27251,9 +29470,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -27355,6 +29576,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 30.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $30.0",
+          "other_2": "Indigenous Peoples: $0.0",
+          "tier_count_verified": 3,
+          "note": "3 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -27405,7 +29640,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 30.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 30.0,
+      "other_name_2": "Indigenous Peoples",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 3
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-fox-bootylicious-halloween-20261030",
@@ -27470,7 +29719,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-30",
         "start_time": "22:30",
         "end_time": "02:00",
-        "cost": 24.5
+        "cost": 24.5,
+        "status": "active"
       }
     ],
     "holiday_detected": "halloween",
@@ -27558,8 +29808,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:50.336194",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -27616,9 +29867,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -27720,6 +29973,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 24.5,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $24.5",
+          "other_2": null,
+          "tier_count_verified": 2,
+          "note": "2 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -27770,7 +30037,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 24.5,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 24.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 2
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-moa-haida-eyes-curator-tour-20261008",
@@ -27841,7 +30122,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "19:00",
         "end_time": "21:00",
-        "cost": 13.0
+        "cost": 13.0,
+        "status": "active"
       }
     ],
     "holidays": [],
@@ -27946,8 +30228,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:50.493421",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -28004,9 +30287,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -28108,6 +30393,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 13.0,
+          "student": 11.5,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $13.0",
+          "other_2": "Student / Youth: $11.5",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -28158,7 +30457,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 13.0,
+      "student": 11.5,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 13.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 11.5,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-bloedel-conservatory-dome",
@@ -28332,8 +30645,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:50.736726",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -28390,9 +30704,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -28494,6 +30810,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.93,
+          "student": 6.98,
+          "senior": 7.98,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $8.93",
+          "other_2": "Student / Youth: $6.98",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -28544,7 +30874,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.93,
+      "student": 6.98,
+      "senior": 7.98,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 8.93,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 6.98,
+      "tier_count_verified": 6
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-ludica-boardgame-night",
@@ -28703,8 +31047,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:51.220284",
-          "value": "pay_per_item"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "pay_per_item",
+          "note": "Pricing model categorized as pay_per_item"
         },
         "D11_price": {
           "status": "verified",
@@ -28761,9 +31106,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -28865,6 +31212,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": 0.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": "Student / Youth: $0.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -28915,7 +31276,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": 0.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-and-co-thursday",
@@ -29028,13 +31403,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "7:00 PM",
         "end_time": "8:45 PM",
-        "show_title": "Early Show: Sean from the Yukon"
+        "show_title": "Early Show: Sean from the Yukon",
+        "status": "active"
       },
       {
         "date": "2026-10-08",
         "start_time": "9:30 PM",
         "end_time": "1:00 AM",
-        "show_title": "Late Show: GroundUp feat. Brown Paper Bag"
+        "show_title": "Late Show: GroundUp feat. Brown Paper Bag",
+        "status": "active"
       }
     ],
     "food_service_type": "bar_snacks_and_drinks",
@@ -29098,8 +31475,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:51.649819",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -29156,9 +31534,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -29260,6 +31640,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": 8.0,
+          "senior": null,
+          "member": 8.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $8.0",
+          "other_2": "Student / Youth: $8.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -29310,7 +31704,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": 8.0,
+      "senior": null,
+      "member": 8.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 8.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 8.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-and-co-friday",
@@ -29423,13 +31831,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "7:00 PM",
         "end_time": "8:45 PM",
-        "show_title": "Early Show: Carly Reirson"
+        "show_title": "Early Show: Carly Reirson",
+        "status": "active"
       },
       {
         "date": "2026-10-09",
         "start_time": "10:00 PM",
         "end_time": "2:00 AM",
-        "show_title": "Late Show: Jay Esplana & Friends"
+        "show_title": "Late Show: Jay Esplana & Friends",
+        "status": "active"
       }
     ],
     "food_service_type": "bar_snacks_and_drinks",
@@ -29493,8 +31903,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:51.762804",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -29551,9 +31962,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -29655,6 +32068,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": 8.0,
+          "senior": null,
+          "member": 8.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $8.0",
+          "other_2": "Student / Youth: $8.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -29705,7 +32132,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": 8.0,
+      "senior": null,
+      "member": 8.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 8.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 8.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-and-co-saturday",
@@ -29818,13 +32259,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-10",
         "start_time": "7:00 PM",
         "end_time": "8:45 PM",
-        "show_title": "Early Show: Clave Jazz"
+        "show_title": "Early Show: Clave Jazz",
+        "status": "active"
       },
       {
         "date": "2026-10-10",
         "start_time": "10:00 PM",
         "end_time": "2:00 AM",
-        "show_title": "Late Show: Retrofitz"
+        "show_title": "Late Show: Retrofitz",
+        "status": "active"
       }
     ],
     "food_service_type": "bar_snacks_and_drinks",
@@ -29888,8 +32331,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:51.872889",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -29946,9 +32390,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -30050,6 +32496,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": 8.0,
+          "senior": null,
+          "member": 8.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $8.0",
+          "other_2": "Student / Youth: $8.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -30100,7 +32560,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": 8.0,
+      "senior": null,
+      "member": 8.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 8.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 8.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-and-co-sunday",
@@ -30211,13 +32685,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-11",
         "start_time": "7:00 PM",
         "end_time": "8:00 PM",
-        "show_title": "Early Show: Revay"
+        "show_title": "Early Show: Revay",
+        "status": "active"
       },
       {
         "date": "2026-10-11",
         "start_time": "9:00 PM",
         "end_time": "12:00 AM",
-        "show_title": "Late Show: The Harrison Ivaz Organ Trio"
+        "show_title": "Late Show: The Harrison Ivaz Organ Trio",
+        "status": "active"
       }
     ],
     "food_service_type": "bar_snacks_and_drinks",
@@ -30281,8 +32757,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:51.999067",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -30339,9 +32816,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -30443,6 +32922,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": 8.0,
+          "senior": null,
+          "member": 8.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $8.0",
+          "other_2": "Student / Youth: $8.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -30493,7 +32986,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": 8.0,
+      "senior": null,
+      "member": 8.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 8.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 8.0,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-hollywood-alberta-with-ted",
@@ -30600,8 +33107,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.112993",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -30658,9 +33166,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -30762,6 +33272,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -30813,7 +33337,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-funk-yourself-with-sara-ca",
@@ -30920,8 +33459,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.235505",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -30978,9 +33518,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -31082,6 +33624,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -31132,7 +33688,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-underneath-the-harlem-moon",
@@ -31239,8 +33810,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.349354",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -31297,9 +33869,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -31401,6 +33975,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -31451,7 +34039,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-matt-storm-with-cassandra-",
@@ -31558,8 +34161,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.481032",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -31616,9 +34220,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -31720,6 +34326,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -31770,7 +34390,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-brown-paper-",
@@ -31877,8 +34512,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.590942",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -31935,9 +34571,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -32039,6 +34677,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -32089,7 +34741,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-jay-esplana-friends-with-c",
@@ -32196,8 +34863,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.713531",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -32254,9 +34922,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -32358,6 +35028,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -32408,7 +35092,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-retrofitz-with-clave-jazz",
@@ -32515,8 +35214,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.846461",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -32573,9 +35273,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -32677,6 +35379,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -32727,7 +35443,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-harrison-ivaz-organ-tr",
@@ -32834,8 +35565,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:52.952559",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -32892,9 +35624,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -32996,6 +35730,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -33046,7 +35794,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-big-shoulders-with-dani-bl",
@@ -33153,8 +35916,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.073403",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -33211,9 +35975,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -33315,6 +36081,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -33365,7 +36145,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-single-malts-feat-wend",
@@ -33472,8 +36267,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.221068",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -33530,9 +36326,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -33634,6 +36432,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -33684,7 +36496,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-zach-wong-trio-with-gr",
@@ -33791,8 +36618,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.332205",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -33849,9 +36677,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -33953,6 +36783,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -34003,7 +36847,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-groundup-feat-adam-robert-",
@@ -34110,8 +36969,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.454651",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -34168,9 +37028,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -34272,6 +37134,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -34322,7 +37198,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-jack-garton-with-doc-finge",
@@ -34429,8 +37320,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.567034",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -34487,9 +37379,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -34591,6 +37485,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -34641,7 +37549,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-guilt-co-guilt-co-live-the-grand-koolios-with-the",
@@ -34748,8 +37671,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.679946",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -34806,9 +37730,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -34910,6 +37836,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -34960,7 +37900,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
@@ -35067,8 +38022,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.839663",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -35125,9 +38081,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -35229,6 +38187,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -35279,7 +38251,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -35386,8 +38373,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:53.949495",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -35444,9 +38432,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -35548,6 +38538,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -35598,7 +38602,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-ikuko-may-quartet",
@@ -35705,8 +38724,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.064378",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -35763,9 +38783,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -35867,6 +38889,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -35918,7 +38954,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-bob-kozak-trio",
@@ -36025,8 +39076,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.175741",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -36083,9 +39135,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -36187,6 +39241,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -36237,7 +39305,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-joelle-lush-ft-co",
@@ -36344,8 +39427,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.305439",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -36402,9 +39486,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -36506,6 +39592,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -36556,7 +39656,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-monique-angele",
@@ -36663,8 +39778,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.423395",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -36721,9 +39837,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -36825,6 +39943,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -36875,7 +40007,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -36982,8 +40129,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.538440",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -37040,9 +40188,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -37144,6 +40294,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -37194,7 +40358,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -37301,8 +40480,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.644049",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -37359,9 +40539,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -37463,6 +40645,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -37513,7 +40709,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -37620,8 +40831,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.749976",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -37678,9 +40890,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -37782,6 +40996,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -37832,7 +41060,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-dinner-theatre-th",
@@ -37939,8 +41182,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:54.869784",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -37997,9 +41241,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -38101,6 +41347,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 8.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -38151,7 +41411,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 8.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
@@ -38258,8 +41533,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:55.813615",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -38316,9 +41592,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -38420,6 +41698,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -38470,7 +41762,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-the-rasmus",
@@ -38577,8 +41884,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:56.027325",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -38635,9 +41943,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -38739,6 +42049,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -38790,7 +42114,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-concrete-vehicles",
@@ -38897,8 +42236,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:57.415234",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -38956,9 +42296,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -39060,6 +42402,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -39110,7 +42466,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-actors",
@@ -39217,8 +42588,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:57.566943",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -39276,9 +42648,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -39380,6 +42754,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -39430,7 +42818,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-dune-rats",
@@ -39537,8 +42940,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:57.895240",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -39596,9 +43000,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -39700,6 +43106,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -39750,7 +43170,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-militarie-gun",
@@ -39857,8 +43292,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:58.707795",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -39915,9 +43351,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -40019,6 +43457,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -40069,7 +43521,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-fabio-frizzi-performing-the-frizzi2fulci",
@@ -40176,8 +43643,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:59.406480",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -40234,9 +43702,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -40338,6 +43808,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -40388,7 +43872,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-beles-band",
@@ -40495,8 +43994,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:59.572471",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -40553,9 +44053,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -40657,6 +44159,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -40707,7 +44223,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-amy-winehouse-tribute-starring-krystle-d",
@@ -40814,8 +44345,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:59.734473",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -40872,9 +44404,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -40976,6 +44510,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -41026,7 +44574,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-dawn-pemberton-the-brown-sugar",
@@ -41133,8 +44696,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:38:59.904791",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -41191,9 +44755,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -41295,6 +44861,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -41345,7 +44925,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-demon-hunter",
@@ -41452,8 +45047,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:00.083980",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -41510,9 +45106,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -41614,6 +45212,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -41664,7 +45276,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-zappa-nite",
@@ -41771,8 +45398,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:00.354658",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -41829,9 +45457,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -41933,6 +45563,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -41983,7 +45627,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-we-are-scientists",
@@ -42090,8 +45749,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:00.544526",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -42148,9 +45808,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -42252,6 +45914,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -42302,7 +45978,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-sabbat-japan",
@@ -42409,8 +46100,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:00.910693",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -42467,9 +46159,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -42571,6 +46265,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -42621,7 +46329,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-quadeca",
@@ -42728,8 +46451,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:01.095683",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -42786,9 +46510,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -42890,6 +46616,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -42940,7 +46680,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-janky-bungag-album-release-show",
@@ -43047,8 +46802,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:01.353496",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -43105,9 +46861,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -43209,6 +46967,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -43259,7 +47031,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-chest-fever-50th-anniversary-of-the-last",
@@ -43366,8 +47153,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:01.668796",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -43424,9 +47212,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -43528,6 +47318,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -43578,7 +47382,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-jon-spencer",
@@ -43685,8 +47504,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:02.429161",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -43743,9 +47563,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -43847,6 +47669,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -43897,7 +47733,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-exhumed",
@@ -44004,8 +47855,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:02.723614",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -44062,9 +47914,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -44166,6 +48020,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -44216,7 +48084,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-bad-waitress",
@@ -44323,8 +48206,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:03.048864",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -44381,9 +48265,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -44485,6 +48371,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -44535,7 +48435,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-ride-for-revenge",
@@ -44642,8 +48557,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:03.462265",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -44700,9 +48616,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -44804,6 +48722,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -44854,7 +48786,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-blasphamagoatachrist",
@@ -44961,8 +48908,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:03.763404",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -45019,9 +48967,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -45123,6 +49073,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -45173,7 +49137,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-truck-violence",
@@ -45280,8 +49259,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:04.606389",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -45338,9 +49318,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -45442,6 +49424,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -45492,7 +49488,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rickshaw-theatre-blasphemy",
@@ -45599,8 +49610,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:05.125409",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -45657,9 +49669,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -45761,6 +49775,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -45811,7 +49839,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-latincouver-catrinas-procession-gastown-20261102",
@@ -45936,8 +49979,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:06.948902",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -45994,9 +50038,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -46098,6 +50144,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": null,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": null,
+          "other_2": null,
+          "tier_count_verified": 1,
+          "note": "1 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -46148,7 +50208,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": null,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": null,
+      "other_cost_1": null,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 1
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-tightrope-theatre-the-yes-files-20261009",
@@ -46199,31 +50274,36 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-16",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-23",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-30",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-11-06",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       }
     ],
     "discovery_url": "https://tightropetheatre.com/shows",
@@ -46325,8 +50405,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:07.645311",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -46383,9 +50464,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 5,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 5 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -46487,6 +50570,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.25,
+          "student": 26.25,
+          "senior": null,
+          "member": 26.25,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.25",
+          "other_2": "Student / Youth: $26.25",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -46537,7 +50634,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.25,
+      "student": 26.25,
+      "senior": null,
+      "member": 26.25,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.25,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 26.25,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-09",
+    "archived_showings": []
   },
   {
     "event_id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
@@ -46588,31 +50700,36 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "21:30",
         "end_time": "22:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-16",
         "start_time": "21:30",
         "end_time": "22:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-23",
         "start_time": "21:30",
         "end_time": "22:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-10-30",
         "start_time": "21:30",
         "end_time": "22:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-11-06",
         "start_time": "21:30",
         "end_time": "22:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       }
     ],
     "discovery_url": "https://tightropetheatre.com/shows",
@@ -46713,8 +50830,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:08.323877",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -46771,9 +50889,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 5,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 5 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -46875,6 +50995,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.25,
+          "student": 26.25,
+          "senior": null,
+          "member": 26.25,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.25",
+          "other_2": "Student / Youth: $26.25",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -46925,7 +51059,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.25,
+      "student": 26.25,
+      "senior": null,
+      "member": 26.25,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.25,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 26.25,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-09",
+    "archived_showings": []
   },
   {
     "event_id": "van50-tightrope-theatre-murder-she-improvised-20261113",
@@ -46976,37 +51125,43 @@ const VANCOUVER_EVENTS = [
         "date": "2026-11-13",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-11-20",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-11-27",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-12-04",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-12-11",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       },
       {
         "date": "2026-12-18",
         "start_time": "19:30",
         "end_time": "20:30",
-        "cost": 26.25
+        "cost": 26.25,
+        "status": "active"
       }
     ],
     "discovery_url": "https://tightropetheatre.com/shows",
@@ -47107,8 +51262,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:08.833739",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -47165,9 +51321,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 6,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 6 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -47269,6 +51427,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 26.25,
+          "student": 26.25,
+          "senior": null,
+          "member": 26.25,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $26.25",
+          "other_2": "Student / Youth: $26.25",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -47319,7 +51491,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 26.25,
+      "student": 26.25,
+      "senior": null,
+      "member": 26.25,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 26.25,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 26.25,
+      "tier_count_verified": 5
+    },
+    "date": "2026-11-13",
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-improv-centre-true-story-20261013",
@@ -47456,8 +51643,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:09.380323",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -47514,9 +51702,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -47618,6 +51808,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 25.0,
+          "student": 20.0,
+          "senior": null,
+          "member": 20.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $25.0",
+          "other_2": "Student / Youth: $20.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -47668,7 +51872,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 25.0,
+      "student": 20.0,
+      "senior": null,
+      "member": 20.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 25.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 20.0,
+      "tier_count_verified": 5
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
@@ -47713,25 +51932,29 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 33.5
+        "cost": 33.5,
+        "status": "active"
       },
       {
         "date": "2026-10-10",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 33.5
+        "cost": 33.5,
+        "status": "active"
       },
       {
         "date": "2026-10-16",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 33.5
+        "cost": 33.5,
+        "status": "active"
       },
       {
         "date": "2026-10-17",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 33.5
+        "cost": 33.5,
+        "status": "active"
       }
     ],
     "discovery_url": "https://theimprovcentre.ca/shows/",
@@ -47831,8 +52054,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:09.909072",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -47889,9 +52113,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 4,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 4 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -47993,6 +52219,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 33.5,
+          "student": 28.5,
+          "senior": null,
+          "member": 28.5,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $33.5",
+          "other_2": "Student / Youth: $28.5",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -48043,7 +52283,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 33.5,
+      "student": 28.5,
+      "senior": null,
+      "member": 28.5,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 33.5,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 28.5,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-09",
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-cinematheque-young-frankenstein-20261018",
@@ -48175,8 +52430,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:10.224982",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -48233,9 +52489,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -48337,6 +52595,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 14.0,
+          "student": 12.0,
+          "senior": null,
+          "member": 12.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $14.0",
+          "other_2": "Student / Youth: $12.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -48387,7 +52659,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 14.0,
+      "student": 12.0,
+      "senior": null,
+      "member": 12.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 14.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 12.0,
+      "tier_count_verified": 5
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-cinematheque-harakiri-20261012",
@@ -48438,19 +52725,22 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-12",
         "start_time": "18:00",
         "end_time": "20:20",
-        "cost": 14.0
+        "cost": 14.0,
+        "status": "active"
       },
       {
         "date": "2026-10-14",
         "start_time": "19:45",
         "end_time": "22:05",
-        "cost": 14.0
+        "cost": 14.0,
+        "status": "active"
       },
       {
         "date": "2026-10-16",
         "start_time": "21:00",
         "end_time": "23:20",
-        "cost": 14.0
+        "cost": 14.0,
+        "status": "active"
       }
     ],
     "discovery_url": "https://thecinematheque.ca/films/2026/harakiri",
@@ -48551,8 +52841,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:10.375713",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -48609,9 +52900,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 3,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 3 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -48713,6 +53006,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 14.0,
+          "student": 12.0,
+          "senior": null,
+          "member": 12.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $14.0",
+          "other_2": "Student / Youth: $12.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -48763,7 +53070,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 14.0,
+      "student": 12.0,
+      "senior": null,
+      "member": 12.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 14.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 12.0,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-12",
+    "archived_showings": []
   },
   {
     "event_id": "van50-commercial-drive-bia-halloween-20261031",
@@ -48895,8 +53217,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:11.756547",
-          "value": "free_access"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "free_access",
+          "note": "Pricing model categorized as free_access"
         },
         "D11_price": {
           "status": "verified",
@@ -48953,9 +53276,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -49057,6 +53382,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 0.0,
+          "student": 0.0,
+          "senior": null,
+          "member": 0.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $0.0",
+          "other_2": "Student / Youth: $0.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -49107,7 +53446,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 0.0,
+      "student": 0.0,
+      "senior": null,
+      "member": 0.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 0.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 0.0,
+      "tier_count_verified": 5
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
@@ -49246,8 +53600,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:11.896724",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -49304,9 +53659,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -49408,6 +53765,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 28.0,
+          "student": 28.0,
+          "senior": null,
+          "member": 28.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $28.0",
+          "other_2": "Student / Youth: $28.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -49458,7 +53829,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 28.0,
+      "student": 28.0,
+      "senior": null,
+      "member": 28.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 28.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 28.0,
+      "tier_count_verified": 5
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-biltmore-cabaret-buzz-kull-kontravoid-20261008",
@@ -49590,8 +53976,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:12.782407",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -49649,9 +54036,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "sold_out",
-          "note": "Event lifecycle operational status confirmed as sold_out."
+          "active_showings_count": 0,
+          "archived_showings_count": 0,
+          "note": "Operational status 'sold_out' confirmed with 0 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -49753,6 +54142,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 25.0,
+          "student": 25.0,
+          "senior": null,
+          "member": 25.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $25.0",
+          "other_2": "Student / Youth: $25.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -49803,7 +54206,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 25.0,
+      "student": 25.0,
+      "senior": null,
+      "member": 25.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 25.0,
+      "other_name_2": "Student / Youth",
+      "other_cost_2": 25.0,
+      "tier_count_verified": 5
+    },
+    "showings": [],
+    "archived_showings": []
   },
   {
     "event_id": "van50-rio-theatre-critical-hit-show-20261021",
@@ -49883,7 +54301,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-21",
         "start_time": "19:00",
         "end_time": "21:30",
-        "cost": 20.5
+        "cost": 20.5,
+        "status": "active"
       }
     ],
     "dimension_audit": {
@@ -49939,8 +54358,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:13.824021",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -49997,9 +54417,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -50101,6 +54523,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.5,
+          "student": 17.0,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Advance General Admission: $20.5",
+          "other_2": "Door General Admission: $23.5",
+          "tier_count_verified": 4,
+          "note": "4 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -50151,7 +54587,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.5,
+      "student": 17.0,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Advance General Admission",
+      "other_cost_1": 20.5,
+      "other_name_2": "Door General Admission",
+      "other_cost_2": 23.5,
+      "tier_count_verified": 4
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-the-improv-centre-ha-ha-halloween-20261031",
@@ -50231,13 +54681,15 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-31",
         "start_time": "19:00",
         "end_time": "20:30",
-        "cost": 27.5
+        "cost": 27.5,
+        "status": "active"
       },
       {
         "date": "2026-10-31",
         "start_time": "21:00",
         "end_time": "22:30",
-        "cost": 27.5
+        "cost": 27.5,
+        "status": "active"
       }
     ],
     "dimension_audit": {
@@ -50293,8 +54745,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:14.393745",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -50351,9 +54804,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 2,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 2 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -50455,6 +54910,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 27.5,
+          "student": 23.5,
+          "senior": 23.5,
+          "member": 23.5,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $27.5",
+          "other_2": null,
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -50505,7 +54974,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 27.5,
+      "student": 23.5,
+      "senior": 23.5,
+      "member": 23.5,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 27.5,
+      "other_name_2": null,
+      "other_cost_2": null,
+      "tier_count_verified": 5
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-performance-works-poetry-bash-20261022",
@@ -50584,7 +55067,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-22",
         "start_time": "20:30",
         "end_time": "22:30",
-        "cost": 28.0
+        "cost": 28.0,
+        "status": "active"
       }
     ],
     "dimension_audit": {
@@ -50640,8 +55124,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T12:39:15.049057",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -50698,9 +55183,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -50802,6 +55289,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 28.0,
+          "student": 15.0,
+          "senior": null,
+          "member": null,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $28.0",
+          "other_2": "Youth / Student Concession: $15.0",
+          "tier_count_verified": 4,
+          "note": "4 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -50852,7 +55353,21 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 28.0,
+      "student": 15.0,
+      "senior": null,
+      "member": null,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 28.0,
+      "other_name_2": "Youth / Student Concession",
+      "other_cost_2": 15.0,
+      "tier_count_verified": 4
+    },
+    "archived_showings": []
   },
   {
     "event_id": "van50-frankies-jazz-club-samuel-bonnet-trio-20261008",
@@ -50894,7 +55409,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-08",
         "start_time": "20:00",
         "end_time": "22:30",
-        "cost": 29.0
+        "cost": 29.0,
+        "status": "active"
       }
     ],
     "waypoints": [],
@@ -51032,8 +55548,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T17:43:35.819566",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -51089,9 +55606,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -51193,6 +55712,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 29.0,
+          "student": 23.5,
+          "senior": null,
+          "member": 25.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $29.0",
+          "other_2": "Student Admission: $23.5",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -51243,7 +55776,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 29.0,
+      "student": 23.5,
+      "senior": null,
+      "member": 25.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 29.0,
+      "other_name_2": "Student Admission",
+      "other_cost_2": 23.5,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-08",
+    "archived_showings": []
   },
   {
     "event_id": "van50-wise-hall-cheekface-waitress-20261016",
@@ -51285,7 +55833,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-16",
         "start_time": "20:00",
         "end_time": "23:00",
-        "cost": 38.37
+        "cost": 38.37,
+        "status": "active"
       }
     ],
     "waypoints": [],
@@ -51418,8 +55967,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T17:43:35.819566",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -51475,9 +56025,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -51579,6 +56131,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 38.37,
+          "student": 38.37,
+          "senior": null,
+          "member": 35.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "General Admission Advance: $38.37",
+          "other_2": "WISE Member Discount: $35.0",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -51629,7 +56195,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 38.37,
+      "student": 38.37,
+      "senior": null,
+      "member": 35.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "General Admission Advance",
+      "other_cost_1": 38.37,
+      "other_name_2": "WISE Member Discount",
+      "other_cost_2": 35.0,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-16",
+    "archived_showings": []
   },
   {
     "event_id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
@@ -51671,7 +56252,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-25",
         "start_time": "13:30",
         "end_time": "15:00",
-        "cost": 28.0
+        "cost": 28.0,
+        "status": "active"
       }
     ],
     "waypoints": [],
@@ -51814,8 +56396,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T17:43:35.819566",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -51871,9 +56454,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -51975,6 +56560,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 28.0,
+          "student": 15.0,
+          "senior": 25.0,
+          "member": 25.0,
+          "non_member": null,
+          "family": null,
+          "other_1": "Adult General Admission: $28.0",
+          "other_2": "Youth / Student (<25): $15.0",
+          "tier_count_verified": 6,
+          "note": "6 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -52025,7 +56624,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 28.0,
+      "student": 15.0,
+      "senior": 25.0,
+      "member": 25.0,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "Adult General Admission",
+      "other_cost_1": 28.0,
+      "other_name_2": "Youth / Student (<25)",
+      "other_cost_2": 15.0,
+      "tier_count_verified": 6
+    },
+    "date": "2026-10-25",
+    "archived_showings": []
   },
   {
     "event_id": "van50-birdhouse-rocky-horror-drag-shadowcast-20261030",
@@ -52067,7 +56681,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-30",
         "start_time": "20:00",
         "end_time": "22:30",
-        "cost": 24.64
+        "cost": 24.64,
+        "status": "active"
       }
     ],
     "waypoints": [],
@@ -52205,8 +56820,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T17:43:35.819566",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -52262,9 +56878,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "verified",
@@ -52366,6 +56984,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 24.64,
+          "student": 20.0,
+          "senior": null,
+          "member": 18.5,
+          "non_member": null,
+          "family": null,
+          "other_1": "General Admission Advance: $24.64",
+          "other_2": "Early Bird Ticket: $18.5",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -52416,7 +57048,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 24.64,
+      "student": 20.0,
+      "senior": null,
+      "member": 18.5,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "General Admission Advance",
+      "other_cost_1": 24.64,
+      "other_name_2": "Early Bird Ticket",
+      "other_cost_2": 18.5,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-30",
+    "archived_showings": []
   },
   {
     "event_id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
@@ -52458,7 +57105,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-26",
         "start_time": "19:30",
         "end_time": "22:30",
-        "cost": 20.75
+        "cost": 20.75,
+        "status": "active"
       }
     ],
     "waypoints": [],
@@ -52593,8 +57241,9 @@ const VANCOUVER_EVENTS = [
         },
         "D10_pricing_model": {
           "status": "verified",
-          "confirmed_at": "2026-10-05T17:43:35.819566",
-          "value": "flat_ticket"
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "value": "flat_ticket",
+          "note": "Pricing model categorized as flat_ticket"
         },
         "D11_price": {
           "status": "verified",
@@ -52650,9 +57299,11 @@ const VANCOUVER_EVENTS = [
         },
         "D21_operational_status": {
           "status": "verified",
-          "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
           "value": "scheduled",
-          "note": "Event lifecycle operational status confirmed as scheduled."
+          "active_showings_count": 1,
+          "archived_showings_count": 0,
+          "note": "Operational status 'scheduled' confirmed with 1 active upcoming showings."
         },
         "D22_link_tier1_checkout": {
           "status": "not_applicable",
@@ -52754,6 +57405,20 @@ const VANCOUVER_EVENTS = [
           "confirmed_at": "2026-10-06T08:41:22.066940-07:00",
           "provider": "Destination Vancouver",
           "note": "Option C non-blocking destination guide standard enforced"
+        },
+        "D12_pricing_tiers": {
+          "status": "verified",
+          "confirmed_at": "2026-10-06T09:02:33.750904-07:00",
+          "adult": 20.75,
+          "student": 20.75,
+          "senior": null,
+          "member": 20.75,
+          "non_member": null,
+          "family": null,
+          "other_1": "General Admission (Unreserved): $20.75",
+          "other_2": "VIP First 3 Rows Reserved: $37.19",
+          "tier_count_verified": 5,
+          "note": "5 named admission tiers explicitly audited."
         }
       },
       "audit_notes": "All 37 discrete dimensions verified current on 2026-10-06."
@@ -52804,7 +57469,22 @@ const VANCOUVER_EVENTS = [
       "provider_name": "Destination Vancouver / Civic Official Guide",
       "anti_bot_rule": "Option C Non-Blocking Destination Guide Standard",
       "blocks_cloudflared_aspx": true
-    }
+    },
+    "pricing_tiers": {
+      "adult": 20.75,
+      "student": 20.75,
+      "senior": null,
+      "member": 20.75,
+      "non_member": null,
+      "family": null,
+      "other_name_1": "General Admission (Unreserved)",
+      "other_cost_1": 20.75,
+      "other_name_2": "VIP First 3 Rows Reserved",
+      "other_cost_2": 37.19,
+      "tier_count_verified": 5
+    },
+    "date": "2026-10-26",
+    "archived_showings": []
   }
 ];
 
