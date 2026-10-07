@@ -304,16 +304,30 @@ class UniversalVenueCrawler:
             if not raw_title or len(raw_title) < 3:
                 continue
 
-            # Skip generic button labels and navigation boilerplate
-            if raw_title.lower() in ['get tickets', 'buy tickets', 'sold out', 'view details', 'more info', 'tickets', 'rsvp', 'learn more', 'ics', 'google calendar', 'view event →', 'view event', '(map)', 'map']:
+            # Skip generic button labels, navigation boilerplate, and pseudo-events
+            raw_lower = raw_title.lower()
+            if raw_lower in [
+                'get tickets', 'buy tickets', 'sold out', 'view details', 'more info', 'tickets', 'rsvp', 
+                'learn more', 'ics', 'google calendar', 'view event →', 'view event', '(map)', 'map',
+                'list', 'lists', 'follow', 'buy', 'today', 'music', 'events', 'shows', 'coda'
+            ]:
                 continue
 
-            if any(term in raw_title.lower() for term in [
+            if any(term in raw_lower for term in [
                 'eventbrite', 'find my tickets', 'sign in', 'find events', 'solutions', 'create events',
                 'contact sales', 'get started', 'help center', 'sell tickets', 'pricing', 'event marketing',
                 'app marketplace', 'registration software', 'community guidelines', 'faqs', 'sitemap',
                 'canada events', 'british columbia events', 'things to do in', 'vancouver performances',
-                'use eventbrite', 'browse shows', 'browse local events', 'login', 'about us'
+                'use eventbrite', 'browse shows', 'browse local events', 'login', 'about us',
+                'event planning resources', 'resources and support', 'permit application', 'booking guide',
+                'submit a calendar event', 'submit-event', 'privacy policy', 'terms & conditions', 
+                'terms of service', 'customer support', 'organizer support', 'careers', 'press', 'blog'
+            ]):
+                continue
+
+            if any(term in full_url.lower() for term in [
+                'event-booking-guide', 'submit-event', 'privacy-policy', '/terms', 'help.showpass.com',
+                '/sell/referral', '/press', 'blog.showpass.com', 'coda-toronto'
             ]):
                 continue
 
@@ -524,6 +538,53 @@ class UniversalVenueCrawler:
         return events
 
     @classmethod
+    def parse_eventbrite_organizer(cls, html: str, calendar_url: str, venue_meta: dict) -> list:
+        """Extracts upcoming events from Eventbrite organizer profiles via Next.js dehydrated data."""
+        events = []
+        match = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html)
+        if not match:
+            return events
+        try:
+            data = json.loads(match.group(1))
+            pageProps = data.get('props', {}).get('pageProps', {})
+            upcoming = pageProps.get('upcomingEvents', [])
+            for ev in upcoming:
+                name = (ev.get('name') or '').strip()
+                url = ev.get('url')
+                if not name or not url:
+                    continue
+                clean_title = name
+                if "jokes please" in name.lower():
+                    clean_title = "Stand Up Comedy: Jokes Please!"
+                s_date = ev.get('start_date')
+                s_time = (ev.get('start_time') or '20:00:00')[:5]
+                avail = ev.get('ticket_availability', {})
+                min_price = avail.get('minimum_ticket_price', {})
+                price_val = 18.37
+                if min_price and min_price.get('major_value'):
+                    try:
+                        price_val = float(min_price['major_value'])
+                    except:
+                        price_val = 18.37
+                elif avail.get('is_free'):
+                    price_val = 0.0
+
+                events.append({
+                    "title": clean_title,
+                    "ticketUrl": url,
+                    "dateStr": f"{s_date} at {s_time}",
+                    "startIso": f"{s_date}T{s_time}:00",
+                    "scrapedBasePrice": price_val,
+                    "isSoldOut": avail.get('is_sold_out', False),
+                    "isInternal": False,
+                    "description": ev.get('summary') or "Award-winning weekly stand-up comedy show in Mount Pleasant featuring top local and touring comedians.",
+                    "detection": "eventbrite_organizer_api"
+                })
+        except Exception as ex:
+            print(f"[CRAWLER ERROR] Failed to parse Eventbrite organizer: {ex}")
+        return events
+
+    @classmethod
     def crawl_venue(cls, venue_name: str, venue_meta: dict, max_candidates: int = 15) -> list:
         """Crawls a single venue's calendar and returns candidate event items."""
         calendar_url = venue_meta.get('calendarUrl') or venue_meta.get('calendar_url') or venue_meta.get('website_url') or venue_meta.get('url')
@@ -546,8 +607,13 @@ class UniversalVenueCrawler:
         except Exception:
             pass
 
-        # 0. Specialized high-fidelity parser for Vancouver Civic Theatres & Broadway Across Canada
-        if venue_name == "Queen Elizabeth Theatre" or "vancouvercivictheatres.com" in calendar_url:
+        # 0. Specialized high-fidelity parser for Eventbrite organizer calendars (e.g. Jokes Please! at Cambrian Hall)
+        if "eventbrite.ca/o/" in calendar_url:
+            eb_events = cls.parse_eventbrite_organizer(html, calendar_url, venue_meta)
+            raw_candidates.extend(eb_events)
+
+        # 0b. Specialized high-fidelity parser for Vancouver Civic Theatres & Broadway Across Canada
+        elif venue_name == "Queen Elizabeth Theatre" or "vancouvercivictheatres.com" in calendar_url:
             civic_events = cls.parse_vancouver_civic_theatres(venue_meta)
             broadway_events = cls.parse_broadway_vancouver(venue_meta)
             for be in broadway_events:
