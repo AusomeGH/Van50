@@ -486,7 +486,7 @@ def stamp_dimension_audit(event, report):
     stamping confirmed_at timestamps across all 50 discrete dimensions of City50/Van50.
     """
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from upgrade_to_50_dimensions import build_50_dimensions_audit
+    from dimension_engine import build_50_dimensions_audit
 
     now_iso = datetime.now().isoformat()
     audit_50 = build_50_dimensions_audit(event)

@@ -203,8 +203,7 @@ def standardize_candidate_to_20_dimensions(cand: dict, target_name: str, target_
 
     # Attach D7 multi-category and 50 dimensions
     try:
-        from enrich_d7_categories import map_categories_for_event
-        from upgrade_to_50_dimensions import build_50_dimensions_audit
+        from dimension_engine import map_categories_for_event, build_50_dimensions_audit
         p_cat, all_cats = map_categories_for_event(res)
         res['primary_category'] = p_cat
         res['categories'] = all_cats

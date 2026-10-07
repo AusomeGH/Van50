@@ -1,5 +1,5 @@
 // Van50 — Vancouver Events & Outings (Strictly <= $50 CAD)
-// AUTO-GENERATED from central data/events.json on 2026-10-06T19:07:04-07:00
+// AUTO-GENERATED from central data/events.json on 2026-10-06T19:15:16-07:00
 // Single Reference Source Architecture • 0 Client-Side Scraping
 
 const VANCOUVER_EVENTS = [
@@ -11182,8 +11182,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-10T10:30:00-07:00",
     "daysOfWeek": [
-      "sat",
       "mon",
+      "sat",
       "sun"
     ],
     "timeSlots": [
@@ -11805,8 +11805,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-09T19:00:00-07:00",
     "daysOfWeek": [
-      "fri",
-      "sat"
+      "sat",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -25025,9 +25025,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-08T19:30:00-07:00",
     "daysOfWeek": [
-      "fri",
       "sat",
-      "thu"
+      "thu",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -26136,8 +26136,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-16T18:30:00-07:00",
     "daysOfWeek": [
-      "fri",
-      "sun"
+      "sun",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -29796,8 +29796,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-10T11:00:00-07:00",
     "daysOfWeek": [
-      "sat",
       "mon",
+      "sat",
       "sun"
     ],
     "timeSlots": [
@@ -63601,8 +63601,8 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-09T19:00:00-07:00",
     "daysOfWeek": [
-      "fri",
-      "sat"
+      "sat",
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
@@ -64572,9 +64572,9 @@ const VANCOUVER_EVENTS = [
     "frequencyLabel": "Verified Multiple Showings",
     "startIso": "2026-10-12T18:00:00-07:00",
     "daysOfWeek": [
-      "fri",
+      "mon",
       "wed",
-      "mon"
+      "fri"
     ],
     "timeSlots": [
       "early-evening",
