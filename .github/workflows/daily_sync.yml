@@ -1,9 +1,9 @@
 name: Daily Autonomous Event Discovery & Sync
 
 on:
-  schedule:
-    # Runs at 11:00 UTC every day (04:00 AM Vancouver / PDT)
-    - cron: '0 11 * * *'
+  # Scheduled auto-runs disabled per user request:
+  # schedule:
+  #   - cron: '0 11 * * *'
   workflow_dispatch: # Allows 1-click manual trigger from GitHub Actions tab
 
 permissions:

@@ -1,9 +1,9 @@
 name: Hourly Status & Sold-Out Monitor
 
 on:
-  schedule:
-    # Runs at 15 minutes past every hour (offset to avoid top-of-hour GitHub Actions congestion)
-    - cron: '15 * * * *'
+  # Scheduled auto-runs disabled per user request:
+  # schedule:
+  #   - cron: '15 * * * *'
   workflow_dispatch: # Allows 1-click manual trigger from GitHub Actions tab
 
 permissions:

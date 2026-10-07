@@ -1,9 +1,9 @@
 name: Gemini AI Autonomous Event Scout & Catalog Update
 
 on:
-  schedule:
-    # Runs every morning at 13:00 UTC (06:00 AM Vancouver / PDT)
-    - cron: '0 13 * * *'
+  # Scheduled auto-runs disabled per user request:
+  # schedule:
+  #   - cron: '0 13 * * *'
   workflow_dispatch: # Allows 1-click manual activation from the GitHub Actions tab anytime!
 
 permissions:
