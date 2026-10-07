@@ -91,6 +91,7 @@ def run_smoke_test(port: int = 8085) -> bool:
         def log_message(self, format, *args):
             pass  # Suppress request spam
 
+    socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("127.0.0.1", port), Handler)
     server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     server_thread.start()
@@ -108,10 +109,13 @@ def run_smoke_test(port: int = 8085) -> bool:
         "--enable-logging=stderr",
         "--v=1",
         "--disable-gpu",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-extensions",
         test_url
     ]
     try:
-        proc = subprocess.run(log_cmd, capture_output=True, text=True, timeout=8, encoding="utf-8", errors="replace")
+        proc = subprocess.run(log_cmd, capture_output=True, text=True, timeout=12, encoding="utf-8", errors="replace")
         combined_logs = proc.stderr + "\n" + proc.stdout
     except subprocess.TimeoutExpired:
         combined_logs = ""
@@ -129,6 +133,7 @@ def run_smoke_test(port: int = 8085) -> bool:
             print(f"   {err}")
         print("\n[DEPLOYMENT BLOCKED] Fix the JavaScript errors before deploying to production.")
         httpd.shutdown()
+        httpd.server_close()
         return False
 
     print("✓ [PASS] Zero JavaScript console syntax errors detected.")
@@ -140,17 +145,22 @@ def run_smoke_test(port: int = 8085) -> bool:
         "--headless=new",
         "--dump-dom",
         "--disable-gpu",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-extensions",
         test_url
     ]
     try:
-        dom_proc = subprocess.run(dom_cmd, capture_output=True, text=True, timeout=12, encoding="utf-8", errors="replace")
+        dom_proc = subprocess.run(dom_cmd, capture_output=True, text=True, timeout=25, encoding="utf-8", errors="replace")
         dom_html = dom_proc.stdout
     except Exception as ex:
         print(f"❌ [FAIL] Headless browser dump-dom failed: {ex}")
         httpd.shutdown()
+        httpd.server_close()
         return False
 
     httpd.shutdown()
+    httpd.server_close()
 
     # Verify Categories
     cat_count = dom_html.count('class="category-pill')
