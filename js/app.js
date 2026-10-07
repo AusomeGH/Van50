@@ -4389,7 +4389,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const isHappeningNow = isEventHappeningNow(ev, new Date());
 
     return `
-      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''}" id="card-${ev.id}">
+      <article class="event-card ${isSoldOut ? 'card-sold-out' : ''} ${isHappeningNow ? 'card-happening-now' : ''}" id="card-${ev.id}">
+        ${isHappeningNow ? `
+          <div class="happening-now-ribbon" title="This outing is actively underway right now!">
+            <span class="live-pulse-dot" aria-hidden="true"></span>
+            <span>Happening Now</span>
+          </div>
+        ` : ''}
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}
 
         <!-- Unified Single Header: Date & Category Badges on Left, Action Cluster on Right -->
@@ -4398,14 +4404,9 @@ function renderSingleEventCardHtml(ev, bucketKey) {
             <span class="card-date-badge ${topDate.isToday ? 'badge-today' : topDate.isTomorrow ? 'badge-tomorrow' : ''}">
               <span>${topDate.badgeText}</span>
             </span>
-            ${isHappeningNow ? `
-              <span class="badge-happening-now" title="This outing is actively underway right now!">
-                <span class="live-pulse-dot" aria-hidden="true"></span>
-                <span>Happening Now</span>
-              </span>
-            ` : ''}
             ${(() => {
               const primaryCat = (Array.isArray(ev.categories) && ev.categories.length > 0)
+
                 ? (ev.categories.includes('outdoors') && (ev.lifecycleType === 'perennial_drop_in' || ev.accessModel === 'open_public_space')
                     ? 'outdoors'
                     : (ev.categories.includes('free-public-access') && ev.category === 'free-public-access'

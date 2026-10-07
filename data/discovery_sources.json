@@ -580,7 +580,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:34.213964",
+      "last_scouted_at": "2026-10-06T17:35:47.980278",
       "last_scout_yield": 0
     },
     {
@@ -726,7 +726,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.050758",
+      "last_scouted_at": "2026-10-06T17:35:48.766042",
       "last_scout_yield": 0
     },
     {
@@ -746,7 +746,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.152833",
+      "last_scouted_at": "2026-10-06T17:35:48.874251",
       "last_scout_yield": 0
     },
     {
@@ -784,7 +784,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.334364",
+      "last_scouted_at": "2026-10-06T17:35:49.060304",
       "last_scout_yield": 0
     },
     {
@@ -840,7 +840,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.588902",
+      "last_scouted_at": "2026-10-06T17:35:49.339290",
       "last_scout_yield": 0
     },
     {
@@ -860,7 +860,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.681450",
+      "last_scouted_at": "2026-10-06T17:35:49.444941",
       "last_scout_yield": 0
     },
     {
@@ -880,7 +880,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T10:11:35.779731",
+      "last_scouted_at": "2026-10-06T17:35:49.547323",
       "last_scout_yield": 0
     },
     {

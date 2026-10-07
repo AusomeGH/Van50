@@ -507,9 +507,20 @@
       "notes": "Scout AI detected newsletter subscription form on official website.",
       "auto_subscribed_at": "2026-10-06T18:44:07.608044+00:00",
       "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
+    },
+    {
+      "id": "nls_centennial-theatre",
+      "venue_name": "Centennial Theatre",
+      "website_url": "https://www.nvrc.ca/centennial-theatre",
+      "signup_url": "https://www.nvrc.ca/news-stories-events/newsletters",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-07T00:35:17.814274+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
     }
   ],
-  "pendingNewsletterCount": 0,
+  "pendingNewsletterCount": 1,
   "aiCuratorAppeals": [],
   "pendingAppealsCount": 0
 }

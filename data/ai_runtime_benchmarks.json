@@ -7,16 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 87.3,
-      "averageDurationFormatted": "1m 27s",
-      "totalRuns": 10,
+      "averageDurationSeconds": 120.0,
+      "averageDurationFormatted": "2m 0s",
+      "totalRuns": 11,
       "lastRun": {
-        "timestamp": "2026-10-06T10:11:36.811873",
-        "durationSeconds": 449.0,
-        "durationFormatted": "7m 28s",
+        "timestamp": "2026-10-06T17:35:50.874546",
+        "durationSeconds": 447.5,
+        "durationFormatted": "7m 27s",
         "itemsProcessed": 181,
-        "newEventsIngested": 176,
-        "notes": "Scouted 181 targets with 1-at-a-time isolation. Ingested 176 new events under $50 CAD."
+        "newEventsIngested": 23,
+        "notes": "Scouted 181 targets with 1-at-a-time isolation. Ingested 23 new events under $50 CAD."
       },
       "history": [
         {
@@ -86,6 +86,13 @@
           "durationFormatted": "7m 28s",
           "itemsProcessed": 181,
           "newEventsIngested": 176
+        },
+        {
+          "timestamp": "2026-10-06T17:35:50.874485",
+          "durationSeconds": 447.5,
+          "durationFormatted": "7m 27s",
+          "itemsProcessed": 181,
+          "newEventsIngested": 23
         }
       ]
     },
