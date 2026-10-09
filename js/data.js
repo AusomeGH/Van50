@@ -7253,13 +7253,13 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Mount Pleasant",
     "description": "Dreamy, atmospheric indie pop sounds from Ruby Haunt with support from VHS Ghost.",
     "pricing_all_in_cad": {
-      "regular": 40.03
+      "regular": 32.06
     },
     "show_1": {
       "date": "2026-12-11",
       "start_time": "20:00",
-      "end_time": null,
-      "cost": 32.06
+      "end_time": "23:00",
+      "cost": 25.0
     },
     "show_2": null,
     "show_3": null,
@@ -7280,11 +7280,11 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Pass 2 (2026-09-28): Direct TicketWeb Fox Cabaret venue link retained and populated with atmospheric dream-pop genre and Mount Pleasant vibe tags.",
-    "price": 40.03,
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-09): Penetrated live Ticketweb cart. Corrected price from $40.03 to actual $32.06 CAD ($25.00 base + $7.06 Ticketweb service fee). Lineup: Ruby Haunt (headliner) + VHS Ghost (support). Doors/Show: 20:00.",
+    "price": 32.06,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 40.03,
+    "price_adult": 32.06,
     "price_student": null,
     "price_member": null,
     "tier_custom_name_1": null,
@@ -7300,11 +7300,11 @@ const VANCOUVER_EVENTS = [
     "date": "2026-12-11",
     "time": "20:00",
     "start_time": "20:00",
-    "end_time": "21:30",
-    "dateSchedule": "2026-12-11 at 20:00",
+    "end_time": "23:00",
+    "dateSchedule": "Friday, December 11, 2026 at 20:00",
     "frequency": "One-Time",
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
-    "lineup": "Featured artists and performers for Ruby Haunt with VHS Ghost",
+    "lineup": "Ruby Haunt, VHS Ghost",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
@@ -7312,8 +7312,8 @@ const VANCOUVER_EVENTS = [
       {
         "date": "2026-12-11",
         "start_time": "20:00",
-        "end_time": null,
-        "cost": 32.06,
+        "end_time": "23:00",
+        "cost": 25.0,
         "status": "active"
       }
     ],
@@ -7645,15 +7645,15 @@ const VANCOUVER_EVENTS = [
     "best_available_link": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773",
     "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 40.03,
+      "price_base": 25.0,
       "price_tax": 0.0,
-      "price_fees": 0.0,
-      "price_all_in": 40.03,
+      "price_fees": 7.06,
+      "price_all_in": 32.06,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 40.03,
+    "price_all_in": 32.06,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
