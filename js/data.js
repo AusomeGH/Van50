@@ -18686,24 +18686,25 @@ const VANCOUVER_EVENTS = [
     "venue_name": "Centennial Theatre",
     "full_address": "2300 Lonsdale Ave, North Vancouver, BC V7M 3L1",
     "neighborhood": "North Shore",
-    "description": "Matchstick Productions presents the North Shore premiere of 'The Way Out', a boundary-pushing freeski film capturing elite athletes conquering untouched backcountry terrain.",
+    "description": "Matchstick Productions presents the 34th annual freeski film premiere 'The Way Out' at Centennial Theatre, featuring elite freeskiers conquering untouched backcountry terrain.",
     "pricing_all_in_cad": {
-      "regular": 34.5
+      "regular": 29.5,
+      "vip": 49.5
     },
-    "operating_hours": null,
+    "operating_hours": "Doors 18:30, Film 19:30 – 20:40",
     "days_open": null,
     "show_1": {
       "date": "2026-10-22",
       "start_time": "19:30",
-      "end_time": "22:00",
-      "cost": 34.5
+      "end_time": "20:40",
+      "cost": 29.5
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.showpass.com/discover/?location=Vancouver",
+    "discovery_url": "https://www.showpass.com/the-way-out/",
     "details_url": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-    "ticket_url": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-    "ticket_provider": "Showpass Box Office",
+    "ticket_url": "https://www.showpass.com/the-way-out/",
+    "ticket_provider": "Showpass",
     "tags": [
       "all-ages",
       "antigravity-20d-validated",
@@ -18717,17 +18718,17 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-20D-Validated",
-    "curator_notes": "AI Quarantine Graduation (2026-10-01): General admission tier verified at $30.00 base + fees/GST = $34.50 CAD all-in checkout on Showpass. Satisfies Multi-Tier Rule (<= $50.00 CAD).",
-    "price": 34.5,
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-09): Verified live Showpass checkout basket at $29.50 CAD all-in (General Admission) and $49.50 CAD (VIP with gift bags). Direct checkout link upgraded to Showpass.",
+    "price": 29.5,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 34.5,
+    "price_adult": 29.5,
     "price_student": null,
     "price_member": null,
     "tier_custom_name_1": "General Admission",
-    "tier_custom_price_1": 34.5,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
+    "tier_custom_price_1": 29.5,
+    "tier_custom_name_2": "VIP Admit One (with Gift Bags)",
+    "tier_custom_price_2": 49.5,
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": null,
@@ -18749,8 +18750,8 @@ const VANCOUVER_EVENTS = [
       {
         "date": "2026-10-22",
         "start_time": "19:30",
-        "end_time": "22:00",
-        "cost": 34.5,
+        "end_time": "20:40",
+        "cost": 29.5,
         "status": "active"
       }
     ],
@@ -18763,7 +18764,7 @@ const VANCOUVER_EVENTS = [
     "concession_benchmark": "$3.50 cookies & snacks",
     "food_service_note": "Lobby concession (beverages & cookies)",
     "sample_cost_label": "$7.50 – $9.00 beer & wine",
-    "websiteUrl": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
+    "websiteUrl": "https://www.showpass.com/the-way-out/",
     "subTags": [
       "all-ages",
       "antigravity-20d-validated",
@@ -18783,13 +18784,13 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Arts & Culture",
     "tiers": [
       {
-        "name": "Adult General Admission",
-        "price": 34.5,
+        "name": "General Admission",
+        "price": 29.5,
         "isAvailable": true
       },
       {
-        "name": "General Admission",
-        "price": 34.5,
+        "name": "VIP Admit One (with Gift Bags)",
+        "price": 49.5,
         "isAvailable": true
       }
     ],
@@ -19074,26 +19075,26 @@ const VANCOUVER_EVENTS = [
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-      "tier2_event_page": "https://matchstickpro.com/the-way-out/",
+      "tier1_checkout": "https://www.showpass.com/the-way-out/",
+      "tier2_event_page": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
       "tier3_calendar": null,
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-      "best_tier": "tier2"
+      "best_available": "https://www.showpass.com/the-way-out/",
+      "best_tier": "tier1"
     },
-    "best_available_link": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-    "best_link_tier": "tier2",
+    "best_available_link": "https://www.showpass.com/the-way-out/",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 34.5,
+      "price_base": 29.5,
       "price_tax": 0.0,
       "price_fees": 0.0,
-      "price_all_in": 34.5,
+      "price_all_in": 29.5,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 34.5,
+    "price_all_in": 29.5,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
@@ -19103,7 +19104,7 @@ const VANCOUVER_EVENTS = [
     "geo_jurisdiction": {
       "city_id": "yvr",
       "metro_name": "Metro Vancouver",
-      "municipality": "Vancouver",
+      "municipality": "North Vancouver",
       "neighborhood": "North Shore",
       "province_state": "BC",
       "country": "CA"
@@ -19120,17 +19121,17 @@ const VANCOUVER_EVENTS = [
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 34.5,
+      "adult": 29.5,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 34.5,
-      "other_name_2": "General Admission",
-      "other_cost_2": 34.5,
-      "tier_count_verified": 3
+      "other_name_1": "General Admission",
+      "other_cost_1": 29.5,
+      "other_name_2": "VIP Admit One (with Gift Bags)",
+      "other_cost_2": 49.5,
+      "tier_count_verified": 2
     },
     "archived_showings": [],
     "environment_type": "indoor",
