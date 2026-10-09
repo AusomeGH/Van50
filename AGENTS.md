@@ -11,11 +11,10 @@
    - **All Runner & Surrogate Scripts Permanently Removed**: Standalone crawler, scraper, and runner scripts (`antigravity_qc_engine.py`, `single_event_deep_qc.py`, `single_target_scout_runner.py`, `single_item_quarantine_runner.py`, etc.) are permanently removed. The AI acts directly as the auditor and curator without script middle-men.
    - **Scout AI Persona (Constructive & Non-Adversarial)**: Scout AI is an enthusiastic, accurate cultural explorer. It is **strictly non-adversarial**. Its goal is constructive discovery: exploring venue calendars, BIAs, and discovery feeds to find eligible cultural events under $50 CAD and onboarding uncataloged physical venues without quotas.
    - **QC AI Persona (Adversarial Red-Team Defect Hunter)**: QC AI operates with a **prosecutorial red-team mandate**. It is tasked with actively finding deficiencies, hidden fee escalations, expired dates, link rot, category mismatches, and geographic leaks in the existing dataset. It assumes stored cards may be stale until proven otherwise.
-   - **Strictly Authorized Python Scripts**: Local Python scripts are strictly limited to the 4 essential infrastructure utilities:
-     1. Starting the local static web server (`curator_server.py 8080`) to allow viewing the web application.
-     2. Session authentication (`curator_auth.py`).
-     3. Serializing master JSON data to frontend JavaScript (`sync_data_js.py`).
-     4. Git production releases and smoke testing (`deploy_to_production.py`).
+   - **Strictly Authorized Python Scripts**: Local Python scripts are strictly limited to the 3 essential infrastructure utilities:
+     1. Starting the local static web server & curator API daemon (`curator_server.py 8080`).
+     2. Serializing master JSON data to frontend JavaScript (`sync_data_js.py`).
+     3. Git production releases and smoke testing (`deploy_to_production.py`).
 
 2B. **Zero Python Script Creation & Code Modifications**:
    - **Data Auditors & Curators, NOT Script Developers**: When executing Scout AI, QC AI, or Quarantine AI, the AI agents are **STRICTLY PROHIBITED from creating new Python scripts (`.py` files), scratch scripts, or editing/modifying existing Python code**.
@@ -234,6 +233,25 @@
         3. Event cards rendered ($\ge 50$).
       - If ANY check fails, deployment is immediately aborted. The live online production app is protected from broken builds.
       - When all checks pass, merges `main` into `production`, pushes to `origin/production`, and returns the local environment to `main`.
+ 
+13. **QC AI Mandatory Batch-of-1 Protocol & Fresh Subagent Isolation per Event**:
+    - **Rule 1: Strict Batch Size = 1 Event (Zero Bulk Processing)**:
+      - The QC AI must NEVER evaluate multiple events simultaneously in a single prompt or batch.
+      - Programmatic bulk invariant checks (`verify_anti_laziness_invariants()`) are release gates for `deploy_to_production.py`; they are strictly FORBIDDEN as a substitute for live cognitive event audits.
+      - Every active event in the catalog (Event #1 through Event #*N*) must undergo an isolated, individual evaluation.
+    - **Rule 2: Fresh Subagent Instance Per Event (`browser_subagent`)**:
+      - For each event in the audit sequence, Antigravity MUST instantiate a dedicated, freshly spawned `browser_subagent`.
+      - **Isolation Guarantee**: The subagent runs in its own clean execution context, creates an independent browser recording artifact (`audit_<event_id>_<timestamp>`), navigates directly to the target ticketing or venue URL, penetrates the live DOM/checkout cart, and performs adversarial extraction across all 50 dimensions.
+      - **No Inter-Event Context Pollution**: Each subagent instance starts clean, preventing assumptions from past events from biasing subsequent audits.
+    - **Rule 3: Atomic Per-Event Checkpointing & Sync**:
+      - Immediately after the dedicated subagent finishes auditing an event:
+        1. Commit all verified heals, price corrections, and link upgrades directly to `data/events.json`.
+        2. Run `py scripts/sync_data_js.py` immediately to keep `js/data.js` in lockstep.
+        3. Log findings and defects in the sequential audit ledger.
+        4. Only after syncing is complete may the agent launch the fresh subagent instance for the next event in the queue.
+    - **Rule 4: Zero Premature Halting & Zero Quota Exits**:
+      - The QC AI does NOT stop after auditing a handful of events. It sweeps sequentially through all remaining unaudited events in the catalog until 100% of events have undergone their isolated batch-of-1 audit.
+
 
 
 
