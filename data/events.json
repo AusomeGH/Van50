@@ -1456,16 +1456,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2",
       "tier2_event_page": "https://www.vanartgallery.bc.ca/visit",
       "tier3_calendar": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=187a3ed7-eeef-5c3f-6101-d9d549e099a7,5eba6500-9dc7-31f7-c5dd-8f11f36ddb83",
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://www.vanartgallery.bc.ca/visit",
-      "best_tier": "tier2"
+      "best_available": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2",
+      "best_tier": "tier1"
     },
-    "best_available_link": "https://www.vanartgallery.bc.ca/visit",
-    "best_link_tier": "tier2",
+    "best_available_link": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 29.0,
       "price_tax": 0.0,
@@ -16276,16 +16276,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572740~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
       "tier2_event_page": "https://thecinematheque.ca/films/2026/kwaidan",
       "tier3_calendar": null,
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://thecinematheque.ca/films/2026/kwaidan",
-      "best_tier": "tier2"
+      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572740~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+      "best_tier": "tier1"
     },
-    "best_available_link": "https://thecinematheque.ca/films/2026/kwaidan",
-    "best_link_tier": "tier2",
+    "best_available_link": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572740~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 14.0,
       "price_tax": 0.0,
@@ -27028,16 +27028,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork%3A%3AWScontent%3A%3AloadArticle=Load",
       "tier2_event_page": "https://tickets.ubc.ca/Online/default.asp?BOparam::WScontent::loadArticle::article_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork::WScontent::loadArticle=Load",
       "tier3_calendar": null,
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://tickets.ubc.ca/Online/default.asp?BOparam::WScontent::loadArticle::article_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork::WScontent::loadArticle=Load",
-      "best_tier": "tier2"
+      "best_available": "https://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork%3A%3AWScontent%3A%3AloadArticle=Load",
+      "best_tier": "tier1"
     },
-    "best_available_link": "https://tickets.ubc.ca/Online/default.asp?BOparam::WScontent::loadArticle::article_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork::WScontent::loadArticle=Load",
-    "best_link_tier": "tier2",
+    "best_available_link": "https://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork%3A%3AWScontent%3A%3AloadArticle=Load",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 15.0,
       "price_tax": 0.0,
@@ -31980,16 +31980,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
       "tier2_event_page": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
       "tier3_calendar": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358468",
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
       "best_available": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
-      "best_tier": "tier2"
+      "best_tier": "tier1"
     },
     "best_available_link": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025106/chk/67f69214d367c92dc44f1a3989ce6b39/",
-    "best_link_tier": "tier2",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 26.25,
       "price_tax": 0.0,
@@ -32460,16 +32460,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
       "tier2_event_page": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
       "tier3_calendar": "https://tickets.tightropetheatre.com/events/tightropetheatre/2349387",
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
       "best_available": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
-      "best_tier": "tier2"
+      "best_tier": "tier1"
     },
     "best_available_link": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025048/chk/2225a5fd273383a90e39764309c58a17/",
-    "best_link_tier": "tier2",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 26.25,
       "price_tax": 0.0,
@@ -32947,16 +32947,16 @@
     },
     "operational_status": "scheduled",
     "links": {
-      "tier1_checkout": null,
+      "tier1_checkout": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
       "tier2_event_page": null,
       "tier3_calendar": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
       "best_available": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
-      "best_tier": "tier3"
+      "best_tier": "tier1"
     },
     "best_available_link": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
-    "best_link_tier": "tier3",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 26.25,
       "price_tax": 0.0,
@@ -35590,7 +35590,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
     "date": "2026-11-22",
-    "venue": "Downtown Vancouver Plazas"
+    "venue": "Downtown Vancouver Plazas",
+    "links": {
+      "tier1_checkout": "https://www.eventbrite.ca/e/public-disco-after-dark-b2b-edition-tickets-1860462626799",
+      "tier2_event_page": "https://publicdisco.ca/events/public-disco-after-dark-b2b-edition",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.eventbrite.ca/e/public-disco-after-dark-b2b-edition-tickets-1860462626799",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://www.eventbrite.ca/e/public-disco-after-dark-b2b-edition-tickets-1860462626799",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-st-andrews-wesley-united-church-candlelit-contemplative",
@@ -35932,7 +35943,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
     "date": "2026-10-11",
-    "venue": "St. Andrew's-Wesley United Church"
+    "venue": "St. Andrew's-Wesley United Church",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://standrewswesley.com/mec-event/candlelit-contemplative-4/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://standrewswesley.com/mec-event/candlelit-contemplative-4/",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://standrewswesley.com/mec-event/candlelit-contemplative-4/",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-performance-works-barbara-kingsolver-in-conversation",
@@ -36280,7 +36302,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
     "date": "2026-10-18",
-    "venue": "Performance Works"
+    "venue": "Performance Works",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://writersfest.bc.ca/event/barbara-kingsolver/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://writersfest.bc.ca/event/barbara-kingsolver/",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://writersfest.bc.ca/event/barbara-kingsolver/",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-performance-works-malcolm-gladwell-in-conversation",
@@ -36628,7 +36661,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
     "date": "2026-11-24",
-    "venue": "Performance Works"
+    "venue": "Performance Works",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://writersfest.bc.ca/event/gladwell-2026/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://writersfest.bc.ca/event/gladwell-2026/",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://writersfest.bc.ca/event/gladwell-2026/",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-the-cambrian-hall-jokes-please-stand-up-comedy",
@@ -36977,7 +37021,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed. Active Friday residency on Eventbrite."
     },
     "date": "2026-10-09",
-    "venue": "The Cambrian Hall"
+    "venue": "The Cambrian Hall",
+    "links": {
+      "tier1_checkout": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
+      "tier2_event_page": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-the-polygon-gallery-hong-kong-made-me-x-gong-gong-gong-in-co",
@@ -37319,7 +37374,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
     "date": "2026-10-22",
-    "venue": "The Polygon Gallery"
+    "venue": "The Polygon Gallery",
+    "links": {
+      "tier1_checkout": "https://www.showpass.com/greg-girard/",
+      "tier2_event_page": "https://thepolygon.ca/event/hong-kong-made-me-x-gong-gong-gong-in-concert-at-the-pipe-shop-venue/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.showpass.com/greg-girard/",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://www.showpass.com/greg-girard/",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-diwali-fest-diwali-celebration-society-diwali-in-surrey-nov-15-2026",
@@ -37657,7 +37723,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
     "date": "2026-11-15",
-    "venue": "Diwali Fest (Diwali Celebration Society)"
+    "venue": "Diwali Fest (Diwali Celebration Society)",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-vancouver-poetry-house-vancouver-poetry-slam-ft-nate-nate-naine",
@@ -37995,7 +38072,18 @@
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
     "date": "2026-11-02",
-    "venue": "Vancouver Poetry House"
+    "venue": "Vancouver Poetry House",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://www.vancouverpoetryhouse.com/event/vancouver-poetry-slam-ft-nate-nate-nainers/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.vancouverpoetryhouse.com/event/vancouver-poetry-slam-ft-nate-nate-nainers/",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://www.vancouverpoetryhouse.com/event/vancouver-poetry-slam-ft-nate-nate-nainers/",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-the-cinematheque-young-frankenstein-20261018",
@@ -38052,7 +38140,18 @@
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T18:02:33.924367",
     "date": "2026-11-02",
-    "venue": "The Cinematheque"
+    "venue": "The Cinematheque",
+    "links": {
+      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "tier2_event_page": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-the-cinematheque-harakiri-20261012",
@@ -38109,7 +38208,18 @@
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T18:02:34.782556",
     "date": "2026-11-02",
-    "venue": "The Cinematheque"
+    "venue": "The Cinematheque",
+    "links": {
+      "tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "tier2_event_page": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-ubc-fball-uofc",
@@ -38167,7 +38277,18 @@
     "last_scouted_at": "2026-10-08T21:22:30.301372",
     "date": "2026-10-16",
     "time": "18:00",
-    "venue": "Thunderbird Stadium"
+    "venue": "Thunderbird Stadium",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://gothunderbirds.ca/tickets",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://gothunderbirds.ca/tickets",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://gothunderbirds.ca/tickets",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
@@ -38225,7 +38346,18 @@
     "last_scouted_at": "2026-10-08T21:29:01.826384",
     "date": "2026-10-25",
     "time": "13:30",
-    "venue": "Waterfront Theatre"
+    "venue": "Waterfront Theatre",
+    "links": {
+      "tier1_checkout": "https://www.showpass.com/2026-festival-89/",
+      "tier2_event_page": "https://www.showpass.com/2026-festival-89/",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.showpass.com/2026-festival-89/",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://www.showpass.com/2026-festival-89/",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
@@ -38283,7 +38415,18 @@
     "last_scouted_at": "2026-10-08T21:31:10.792260",
     "date": "2026-10-26",
     "time": "19:00",
-    "venue": "Hollywood Theatre"
+    "venue": "Hollywood Theatre",
+    "links": {
+      "tier1_checkout": null,
+      "tier2_event_page": "https://www.hollywoodtheatre.ca/events/ginger-snaps-screening-with-q-a-from-katherine-isabelle",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.hollywoodtheatre.ca/events/ginger-snaps-screening-with-q-a-from-katherine-isabelle",
+      "best_tier": "tier2"
+    },
+    "best_available_link": "https://www.hollywoodtheatre.ca/events/ginger-snaps-screening-with-q-a-from-katherine-isabelle",
+    "best_link_tier": "tier2"
   },
   {
     "event_id": "van50-vhs-2026-vhs-2026-launch-party-at-greta-bar--20261013",
@@ -39976,7 +40119,18 @@
     "last_scouted_at": "2026-10-08T21:23:03.039721",
     "date": "2026-10-29",
     "time": "19:30",
-    "venue": "War Memorial Gym"
+    "venue": "War Memorial Gym",
+    "links": {
+      "tier1_checkout": "https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9",
+      "tier2_event_page": "https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
@@ -40032,7 +40186,18 @@
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:51.496545",
     "date": "2026-11-02",
-    "venue": "The Improv Centre"
+    "venue": "The Improv Centre",
+    "links": {
+      "tier1_checkout": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+      "tier2_event_page": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -40088,7 +40253,18 @@
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:55.803553",
     "date": "2026-11-02",
-    "venue": "The Improv Centre"
+    "venue": "The Improv Centre",
+    "links": {
+      "tier1_checkout": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
+      "tier2_event_page": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-the-improv-centre-true-story-20261013",
@@ -40144,7 +40320,18 @@
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:59.873855",
     "date": "2026-11-02",
-    "venue": "The Improv Centre"
+    "venue": "The Improv Centre",
+    "links": {
+      "tier1_checkout": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+      "tier2_event_page": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+      "tier3_calendar": null,
+      "tier4_civic_destination": null,
+      "tier5_venue_home": null,
+      "best_available": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+      "best_tier": "tier1"
+    },
+    "best_available_link": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "best_link_tier": "tier1"
   },
   {
     "event_id": "van50-vhs-2026-trick-r-treat-19th-anniversary-scre-20261014",

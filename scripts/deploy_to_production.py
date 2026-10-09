@@ -21,6 +21,7 @@ import subprocess
 import http.server
 import socketserver
 import threading
+import tempfile
 from typing import Optional, Tuple
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -178,10 +179,13 @@ def run_smoke_test(port: int = 8085) -> bool:
 
     print(f"[SMOKE TEST 2/3] Launching headless browser against {test_url}...")
 
+    temp_profile = tempfile.mkdtemp(prefix="van50_smoke_chrome_")
+
     # Step A: Check for Uncaught Console Errors
     log_cmd = [
         chrome_bin,
         "--headless=new",
+        f"--user-data-dir={temp_profile}",
         "--enable-logging=stderr",
         "--v=1",
         "--virtual-time-budget=5000",
@@ -192,7 +196,7 @@ def run_smoke_test(port: int = 8085) -> bool:
         test_url
     ]
     try:
-        proc = subprocess.run(log_cmd, capture_output=True, text=True, timeout=12, encoding="utf-8", errors="replace")
+        proc = subprocess.run(log_cmd, capture_output=True, text=True, timeout=15, encoding="utf-8", errors="replace")
         combined_logs = proc.stderr + "\n" + proc.stdout
     except subprocess.TimeoutExpired:
         combined_logs = ""
@@ -209,6 +213,7 @@ def run_smoke_test(port: int = 8085) -> bool:
         for err in detected_errors:
             print(f"   {err}")
         print("\n[DEPLOYMENT BLOCKED] Fix the JavaScript errors before deploying to production.")
+        shutil.rmtree(temp_profile, ignore_errors=True)
         httpd.shutdown()
         httpd.server_close()
         return False
@@ -220,6 +225,7 @@ def run_smoke_test(port: int = 8085) -> bool:
     dom_cmd = [
         chrome_bin,
         "--headless=new",
+        f"--user-data-dir={temp_profile}",
         "--dump-dom",
         "--virtual-time-budget=5000",
         "--disable-gpu",
@@ -233,10 +239,12 @@ def run_smoke_test(port: int = 8085) -> bool:
         dom_html = dom_proc.stdout
     except Exception as ex:
         print(f"❌ [FAIL] Headless browser dump-dom failed: {ex}")
+        shutil.rmtree(temp_profile, ignore_errors=True)
         httpd.shutdown()
         httpd.server_close()
         return False
 
+    shutil.rmtree(temp_profile, ignore_errors=True)
     httpd.shutdown()
     httpd.server_close()
 
