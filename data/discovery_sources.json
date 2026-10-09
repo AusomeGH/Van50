@@ -25,7 +25,9 @@
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or box office portal. Never use VIA article URL as final card destination.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:11:59.687603",
+      "last_scout_yield": 0
     },
     {
       "id": "do604",
@@ -44,7 +46,9 @@
       "harvestMethod": "html_calendar_and_rss",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract outbound 'Buy Tickets' / 'More Info' redirect button to retrieve canonical ticketing platform (Showpass, Ticketweb, Eventbrite, Dice).",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:17.911414",
+      "last_scout_yield": 15
     },
     {
       "id": "georgia-straight",
@@ -64,7 +68,9 @@
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Parse submitted organizer contact/ticket links and resolve to official venue box office or independent ticketing site.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:37.137759",
+      "last_scout_yield": 3
     },
     {
       "id": "daily-hive-vancouver",
@@ -83,7 +89,9 @@
       "harvestMethod": "rss_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Scan weekly weekend editorial lists, extract venue and dates, and resolve to official venue pages.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:38.293735",
+      "last_scout_yield": 0
     },
     {
       "id": "miss604",
@@ -102,7 +110,9 @@
       "harvestMethod": "rss_and_blog_roundups",
       "targetBudgetTier": "Free & budget ($0 - $25 CAD)",
       "resolutionPolicy": "Extract structured bullet points from weekly 'Things to Do in Vancouver This Weekend' post published every Thursday; link directly to official host organization.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:42.181525",
+      "last_scout_yield": 0
     },
     {
       "id": "destination-vancouver",
@@ -121,7 +131,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free & civic ($0 CAD)",
       "resolutionPolicy": "High authority; use official festival domains and municipal event landing pages linked on each listing.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:53.327302",
+      "last_scout_yield": 2
     },
     {
       "id": "live-music-vancouver",
@@ -138,7 +150,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "$0 - $20 CAD door",
       "resolutionPolicy": "Extract gig date and performer, then match to venue's official ticket portal or verified door policy.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:55.583857",
+      "last_scout_yield": 0
     },
     {
       "id": "songkick-vancouver",
@@ -155,7 +169,9 @@
       "harvestMethod": "api_and_html",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract platform ticketing links (Ticketweb, Eventbrite, AXS, Showpass) and calculate all-in fees.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:57.864225",
+      "last_scout_yield": 25
     },
     {
       "id": "bandsintown-vancouver",
@@ -172,7 +188,9 @@
       "harvestMethod": "api_and_html",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Follow primary ticket provider link to obtain actual cart price and fee breakdown.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:12:58.476885",
+      "last_scout_yield": 0
     },
     {
       "id": "showpass-discover-vancouver",
@@ -191,7 +209,9 @@
       "harvestMethod": "direct_api",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Zero middleman: event is already on Showpass; query API directly for instant price verification.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:00.974352",
+      "last_scout_yield": 2
     },
     {
       "id": "eventbrite-vancouver",
@@ -211,7 +231,9 @@
       "harvestMethod": "direct_api_and_search",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Filter for free or <= $50 CAD events; verify organizer reputation against known venue whitelist.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:05.242469",
+      "last_scout_yield": 22
     },
     {
       "id": "resident-advisor-vancouver",
@@ -230,7 +252,9 @@
       "harvestMethod": "direct_graphql_api",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Query RA GraphQL API directly with Vancouver Area ID 39; filter for verified venue locations under $50 CAD total out-of-pocket.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:05.864356",
+      "last_scout_yield": 0
     },
     {
       "id": "ticketweb-vancouver",
@@ -248,7 +272,9 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract live Schema.org offers or venue event mirror; calculate exact all-in total with service fees and 5% GST; quarantine if > $50 CAD.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:08.069123",
+      "last_scout_yield": 2
     },
     {
       "id": "dice-vancouver",
@@ -266,7 +292,9 @@
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse __NEXT_DATA__ event payload; verify upfront all-in pricing with zero hidden checkout fees.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:10.020453",
+      "last_scout_yield": 17
     },
     {
       "id": "shotgun-vancouver",
@@ -284,7 +312,9 @@
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse live event state and calculate platform commission and 5% GST; enforce <= $50 cap.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:11.324537",
+      "last_scout_yield": 0
     },
     {
       "id": "spektrix-thecultch",
@@ -302,7 +332,9 @@
       "harvestMethod": "spektrix_components_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract accessible tiers (Under-30, Youth, Arts Worker, Preview) and verify with 5% GST.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:13.762537",
+      "last_scout_yield": 1
     },
     {
       "id": "tessitura-vancouver",
@@ -320,7 +352,9 @@
       "harvestMethod": "tessitura_tnew_and_schema",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Filter for accessible rush tiers (Student Rush, Under-35 Symphony Pass, previews) under $50 all-in.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:16.563763",
+      "last_scout_yield": 0
     },
     {
       "id": "tickettailor-vancouver",
@@ -339,7 +373,9 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse transparent low flat fees and calculate verified total out-of-pocket price.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:19.628403",
+      "last_scout_yield": 24
     },
     {
       "id": "zeffy-vancouver",
@@ -358,7 +394,9 @@
       "harvestMethod": "next_data_payload_and_schema",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Confirm $0 platform fee; verify 100% transparent admission for Canadian registered non-profits.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:21.494689",
+      "last_scout_yield": 25
     },
     {
       "id": "humanitix-vancouver",
@@ -376,7 +414,9 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract transparent charity booking fee and calculate all-in checkout amount.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:25.135262",
+      "last_scout_yield": 24
     },
     {
       "id": "universe-vancouver",
@@ -395,7 +435,9 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Parse embedded state or Schema.org offers; enforce <= $50 total checkout.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:26.850831",
+      "last_scout_yield": 20
     },
     {
       "id": "vtix-vancouver",
@@ -413,7 +455,9 @@
       "harvestMethod": "html_and_schema_extraction",
       "targetBudgetTier": "<= $50 CAD",
       "resolutionPolicy": "Extract Schema.org JSON-LD offers or table rates; verify exact fees and taxes.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:29.867126",
+      "last_scout_yield": 12
     },
     {
       "id": "vancouver-civic-theatres",
@@ -431,7 +475,9 @@
       "harvestMethod": "json_api_and_html",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Harvest live calendar from civic API and resolve outbound ticketing provider (Ticketmaster, VTix, AdmitOne, or box office). Strictly enforce <= $50 CAD cap.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:47.323760",
+      "last_scout_yield": 1
     },
     {
       "id": "broadway-across-canada",
@@ -448,7 +494,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Scan touring show calendar at Queen Elizabeth Theatre; resolve ticket link to Ticketmaster or Broadway box office. Flag or filter tiers > $50 CAD.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:49.665117",
+      "last_scout_yield": 2
     },
     {
       "id": "city-of-vancouver-culture",
@@ -467,7 +515,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free ($0 CAD)",
       "resolutionPolicy": "Identify free civic amenities, seawalls, outdoor fitness, pitch & putts, and park trails; verify current open hours, seasonal schedules, and maintenance closures.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:51.800404",
+      "last_scout_yield": 0
     },
     {
       "id": "vpl-events",
@@ -486,7 +536,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free ($0 CAD)",
       "resolutionPolicy": "Direct civic authority; extract free drop-in library programs, Central branch rooftop garden access, and community maker sessions.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:52.500766",
+      "last_scout_yield": 0
     },
     {
       "id": "destination-vancouver-free",
@@ -505,7 +557,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free ($0 CAD)",
       "resolutionPolicy": "Extract permanent free public destinations and verify open access hours and seasonal availability.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:53.754408",
+      "last_scout_yield": 0
     },
     {
       "id": "granville-island-daily",
@@ -525,7 +579,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free & budget ($0 - $20 CAD)",
       "resolutionPolicy": "High authority cultural district; track daily public access market hours, live busking spots, and free outdoor public space.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:54.223259",
+      "last_scout_yield": 0
     },
     {
       "id": "polygon-gallery-free",
@@ -543,7 +599,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free / By-Donation ($0 CAD)",
       "resolutionPolicy": "Direct gallery portal; verify by-donation free entry policy, current exhibitions, and weekly operating hours.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:58.305188",
+      "last_scout_yield": 0
     },
     {
       "id": "cag-vancouver",
@@ -561,7 +619,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "Free ($0 CAD)",
       "resolutionPolicy": "Direct gallery portal; verify permanent free public admission, current exhibition dates, and public access hours.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:13:59.564863",
+      "last_scout_yield": 0
     },
     {
       "id": "vancity-digest",
@@ -580,7 +640,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:47.980278",
+      "last_scouted_at": "2026-10-08T13:14:01.167459",
       "last_scout_yield": 0
     },
     {
@@ -599,7 +659,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:06.026481",
+      "last_scout_yield": 1
     },
     {
       "id": "vancouver-s-best-places-calendar",
@@ -617,7 +679,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:09.148706",
+      "last_scout_yield": 0
     },
     {
       "id": "bc-culture-days-directory",
@@ -635,7 +699,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:10.222626",
+      "last_scout_yield": 0
     },
     {
       "id": "604-now-metro-vancouver-event-calendar",
@@ -653,7 +719,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:44.088384",
+      "last_scout_yield": 14
     },
     {
       "id": "curiocity-vancouver-things-to-do",
@@ -671,7 +739,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:47.309116",
+      "last_scout_yield": 0
     },
     {
       "id": "to-do-canada-vancouver-free-events",
@@ -689,7 +759,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:48.635695",
+      "last_scout_yield": 0
     },
     {
       "id": "showhub-vancouver",
@@ -707,7 +779,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:14:57.635331",
+      "last_scout_yield": 9
     },
     {
       "id": "rhythm-changes-gig-list",
@@ -726,7 +800,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:48.766042",
+      "last_scouted_at": "2026-10-08T13:14:58.823700",
       "last_scout_yield": 0
     },
     {
@@ -746,7 +820,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:48.874251",
+      "last_scouted_at": "2026-10-08T13:15:00.273890",
       "last_scout_yield": 0
     },
     {
@@ -765,7 +839,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:00.840008",
+      "last_scout_yield": 0
     },
     {
       "id": "shop-west-4th-kitsilano-4th-avenue-bia",
@@ -784,7 +860,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:49.060304",
+      "last_scouted_at": "2026-10-08T13:15:04.488044",
       "last_scout_yield": 0
     },
     {
@@ -803,7 +879,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:06.533342",
+      "last_scout_yield": 0
     },
     {
       "id": "runvan-community-hub",
@@ -821,7 +899,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:09.490600",
+      "last_scout_yield": 0
     },
     {
       "id": "heart-of-the-city-festival-guide",
@@ -840,7 +920,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:49.339290",
+      "last_scouted_at": "2026-10-08T13:15:11.851409",
       "last_scout_yield": 0
     },
     {
@@ -860,7 +940,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:49.444941",
+      "last_scouted_at": "2026-10-08T13:15:13.700263",
       "last_scout_yield": 0
     },
     {
@@ -880,7 +960,7 @@
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
       "status": "active",
-      "last_scouted_at": "2026-10-06T17:35:49.547323",
+      "last_scouted_at": "2026-10-08T13:15:15.852341",
       "last_scout_yield": 0
     },
     {
@@ -899,7 +979,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:21.740537",
+      "last_scout_yield": 9
     },
     {
       "id": "vancouver-recreation-activity-portal",
@@ -917,7 +999,9 @@
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
       "resolutionPolicy": "Extract candidate title and venue; follow outbound link to primary ticketing or visiting info.",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:26.918138",
+      "last_scout_yield": 0
     },
     {
       "id": "arts-club-theatre",
@@ -934,7 +1018,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD (rush, preview, and youth ticket programs)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:30.969585",
+      "last_scout_yield": 0
     },
     {
       "id": "the-improv-centre",
@@ -951,7 +1037,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:32.011694",
+      "last_scout_yield": 0
     },
     {
       "id": "the-cinematheque",
@@ -968,7 +1056,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:37.368902",
+      "last_scout_yield": 0
     },
     {
       "id": "firehall-arts-centre",
@@ -985,7 +1075,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD (with PWYC/Under 30 tiers)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:15:39.257080",
+      "last_scout_yield": 0
     },
     {
       "id": "diwali-fest",
@@ -1002,7 +1094,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "100% Free / PWYC ($0.00 CAD)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:12.444775",
+      "last_scout_yield": 10
     },
     {
       "id": "orangetickets",
@@ -1019,7 +1113,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:15.238512",
+      "last_scout_yield": 25
     },
     {
       "id": "latincouver",
@@ -1036,7 +1132,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:20.744684",
+      "last_scout_yield": 0
     },
     {
       "id": "tightrope-theatre",
@@ -1053,7 +1151,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:23.129595",
+      "last_scout_yield": 0
     },
     {
       "id": "commercial-drive-bia",
@@ -1070,7 +1170,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "100% Free ($0.00 CAD)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:26.026434",
+      "last_scout_yield": 0
     },
     {
       "id": "admitone",
@@ -1087,7 +1189,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:30.490048",
+      "last_scout_yield": 23
     },
     {
       "id": "vancouver-writers-fest",
@@ -1104,7 +1208,9 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD & free ($28 regular / $12-$15 youth / free community events)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:31.454137",
+      "last_scout_yield": 0
     },
     {
       "id": "vancouver-poetry-house",
@@ -1121,7 +1227,29 @@
       ],
       "harvestMethod": "html_calendar",
       "targetBudgetTier": "<= $50 CAD ($10 - $15 CAD door & PWYC)",
-      "status": "active"
+      "status": "active",
+      "last_scouted_at": "2026-10-08T13:16:45.099734",
+      "last_scout_yield": 3
+    },
+    {
+      "id": "vancouver-horror-show",
+      "name": "Vancouver Horror Show Film Festival",
+      "domain": "vancouverhorrorshow.com",
+      "eventsUrl": "https://www.vancouverhorrorshow.com/screenings",
+      "calendarUrl": "https://vhs2026.eventive.org/schedule",
+      "type": "festival_source",
+      "typeLabel": "Annual Film Festival & Cultural Screenings",
+      "focus": "Horror, thriller, sci-fi, genre films, filmmaker Q&As, industry panels",
+      "bestForCategories": [
+        "shows",
+        "arts"
+      ],
+      "harvestMethod": "eventive_api_and_html",
+      "targetBudgetTier": "<= $50 CAD individual screenings",
+      "resolutionPolicy": "Extract screening candidates from Eventive portal and VHS website; verify individual screening ticket buckets under $50 CAD ceiling.",
+      "status": "active",
+      "last_scouted_at": "2026-10-08T21:40:55.891470-07:00",
+      "last_scout_yield": 30
     }
   ]
 }

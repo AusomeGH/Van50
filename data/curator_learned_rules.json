@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-05T17:25:11.835586-07:00",
+    "updatedAt": "2026-10-08T17:19:29-07:00",
     "description": "Rules and patterns learned from curator fixes to automatically resolve future crawls without quarantine."
   },
   "vendor_fee_formulas": {
@@ -28,13 +28,13 @@
     "Queen Elizabeth Park": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
     "Bloedel Conservatory": "https://vandusengarden.org/plan-your-visit/bloedel-conservatory/",
     "Stanley Park Pitch & Putt": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
-    "Queen Elizabeth Park Pitch & Putt": "https://par3nearme.com/course/queen-elizabeth-park-pitch-and-putt/",
-    "Rupert Park Pitch & Putt": "https://par3nearme.com/course/rupert-park-pitch-and-putt/",
+    "Queen Elizabeth Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/queen-elizabeth-pitch-and-putt.aspx",
+    "Rupert Park Pitch & Putt": "https://vancouver.ca/parks-recreation-culture/rupert-park-pitch-and-putt.aspx",
     "VanDusen Botanical Garden": "https://vandusengarden.org/",
     "Roundhouse Community Centre": "https://www.roundhouse.ca/",
     "The Annex": "https://vancouvercivictheatres.com/venues/annex/",
     "The Fox Cabaret": "https://www.foxcabaret.com/",
-    "The Biltmore Cabaret": "https://biltmorecabaret.com/",
+    "The Biltmore Cabaret": "https://admitone.com/events/vancouver/venues/biltmore-cabaret",
     "Pizzeria Ludica": "https://www.pizzerialudica.com/",
     "Rickshaw Theatre": "https://rickshawtheatre.com/events/",
     "Hollywood Theatre": "https://www.ticketmaster.ca/event/110064638F595700",
@@ -140,7 +140,7 @@
     "Pending Venue Candidate 1789951891": "https://pendingvenue.example.com",
     "Test QA Cellar 1789951891": "https://testcellar.example.com/events",
     "Dr. Sun Yat-Sen Public Chinese Garden": "https://vancouverchinesegarden.com/visit/",
-    "The Shipyards District": "https://theshipyardsdistrict.ca/",
+    "The Shipyards District": "https://theshipyards.ca/shows/special",
     "SFU Goldcorp Centre for the Arts": "https://viff.org/whats-on/",
     "Chill x Studio": "https://chillxstudio.com",
     "Kitsilano Beach Outdoor Amphitheatre": "https://kitsilanoshowboat.com/homepage/calendar/",
@@ -169,7 +169,14 @@
     "Pending Venue Candidate 1791042708": "https://pendingvenue.example.com",
     "Test QA Cellar 1791042708": "https://testcellar.example.com/events",
     "Pending Venue Candidate 1791047816": "https://pendingvenue.example.com",
-    "Test QA Cellar 1791047816": "https://testcellar.example.com/events"
+    "Test QA Cellar 1791047816": "https://testcellar.example.com/events",
+    "Dr. Sun Yat-Sen Public Park": "https://vancouverchinesegarden.com/visit/tickets/",
+    "Canada Place": "https://www.canadaplace.ca/exhibits-and-experiences",
+    "Vancouver Public Library Central Branch": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "Thunderbird Stadium": "https://www.universe.com/users/ubc-thunderbirds-9PGJNS",
+    "War Memorial Gym": "https://www.universe.com/users/ubc-thunderbirds-9PGJNS",
+    "The Rio Theatre": "https://riotheatretickets.ca",
+    "Centennial Theatre": "https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/"
   },
   "course_blacklist_patterns": [
     "pottery intensive",
@@ -188,7 +195,8 @@
     "kids",
     "children",
     "toddler",
-    "family show"
+    "family show",
+    "par3nearme.com"
   ],
   "price_override_heuristics": [
     {
@@ -385,7 +393,8 @@
     "van50-rickshaw-theatre-nekrogoblikon",
     "vancouver-institute-lectures",
     "west-end-farmers-market",
-    "wise-hall-roots-revue"
+    "wise-hall-roots-revue",
+    "van50-metro-vancouver-croissant-crawl"
   ],
   "venue_policy_rules": {
     "Pizzeria Ludica": {
@@ -1778,8 +1787,8 @@
       "calendarUrl": "",
       "summary": "AI distilled policy rules from curator comments for Inspector Suite Test Hall.",
       "curatorGuidance": "Instruction to be updated by test suite",
-      "learnedAt": "2026-10-03T17:16:52.497429+00:00",
-      "source": "Curator Studio Instruction inst_1791047812440"
+      "learnedAt": "2026-10-09T00:19:29.926169+00:00",
+      "source": "Curator Studio Instruction inst_1791505169865"
     },
     "Pending Venue Candidate 1789950841": {
       "doorPrice": null,
@@ -2408,6 +2417,20 @@
       "curatorGuidance": "The Seawall is its own thing where sometimes events occur.   It's not directly associated with the Fringe Festival.  I think you already have the Seawall down as an outing/activity",
       "learnedAt": "2026-10-05T15:02:52.298062+00:00",
       "source": "Curator Studio Instruction inst_1791212572269"
+    },
+    "Dr. Sun Yat-Sen Public Park": {
+      "venueName": "Dr. Sun Yat-Sen Classical Chinese Garden",
+      "pricingTiers": {
+        "Adult (19–64)": 16.8,
+        "Senior (65+)": 13.65,
+        "Student (with ID)": 12.6,
+        "Family Admission": 33.6,
+        "Annual Pass Holder": 0.0,
+        "Public Park Courtyard": 0.0
+      },
+      "taxIncluded": true,
+      "source": "patron_cart_checkout_screenshot",
+      "verifiedAt": "2026-10-08T22:28:28.599168+00:00"
     }
   },
   "notes": {

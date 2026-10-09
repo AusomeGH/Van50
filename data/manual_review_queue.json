@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "updatedAt": "2026-10-05T12:34:10-07:00",
+    "updatedAt": "2026-10-09",
     "pendingCount": 0,
     "description": "Events quarantined for manual user review due to unverified live checkout pricing."
   },
@@ -517,10 +517,231 @@
       "suggested_email": "Van50.Submit@gmail.com",
       "status": "pending_manual_subscription",
       "detected_at": "2026-10-07T00:35:17.814274+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website.",
+      "updated_at": "2026-10-08T12:23:50.063368+00:00"
+    },
+    {
+      "id": "nls_the-georgia-straight",
+      "venue_name": "The Georgia Straight",
+      "website_url": "https://www.straight.com/listings",
+      "signup_url": "https://newsletter.straight.com/subscribe/?utm_source=straight&utm_medium=navbar",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:12:19.427995+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_songkick-vancouver",
+      "venue_name": "Songkick Vancouver",
+      "website_url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
+      "signup_url": "https://accounts.songkick.com/signup/new?source_product=skweb&login_success_url=https%3A%2F%2Fwww.songkick.com%2Fmetro-areas%2F27377-canada-montreal&locale=en",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:12:57.185678+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_ticket-tailor-vancouver",
+      "venue_name": "Ticket Tailor (Vancouver)",
+      "website_url": "https://www.tickettailor.com/",
+      "signup_url": "https://app.tickettailor.com/sign-up",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:13:18.781068+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_zeffy-vancouver-non-profits",
+      "venue_name": "Zeffy (Vancouver Non-Profits)",
+      "website_url": "https://www.zeffy.com/",
+      "signup_url": "https://www.zeffy.com/",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:13:20.527648+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_humanitix-vancouver",
+      "venue_name": "Humanitix (Vancouver)",
+      "website_url": "https://humanitix.com/",
+      "signup_url": "https://humanitix.com/ca/sign-up",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:13:24.082711+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_universe-vancouver",
+      "venue_name": "Universe (Vancouver)",
+      "website_url": "https://www.universe.com/",
+      "signup_url": "https://www.universe.com/sign-up?redirectTo=/create",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:13:25.918389+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_broadway-across-canada-vancouver",
+      "venue_name": "Broadway Across Canada (Vancouver)",
+      "website_url": "https://vancouver.broadway.com/shows/",
+      "signup_url": "https://vancouver.broadway.com/shows/#gf_4",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:13:48.059361+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_stir-vancouver-arts-culture-hub",
+      "venue_name": "Stir - Vancouver Arts & Culture Hub",
+      "website_url": "https://www.createastir.ca",
+      "signup_url": "https://www.createastir.ca",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:03.751612+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_vancouver-s-best-places-calendar",
+      "venue_name": "Vancouver's Best Places Calendar",
+      "website_url": "https://vancouversbestplaces.com/events-calendar",
+      "signup_url": "https://vancouversbestplaces.com/events-calendar",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:09.090359+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_bc-culture-days-directory",
+      "venue_name": "BC Culture Days Directory",
+      "website_url": "https://culturedays.ca/en/events",
+      "signup_url": "http://eepurl.com/bZvM_v",
+      "method": "Mailchimp Subscription Portal",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:10.160515+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_604-now-metro-vancouver-event-calendar",
+      "venue_name": "604 Now Metro Vancouver Event Calendar",
+      "website_url": "https://604now.com/events",
+      "signup_url": "https://604now.com/events",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:13.392182+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_curiocity-vancouver-things-to-do",
+      "venue_name": "Curiocity Vancouver Things To Do",
+      "website_url": "https://curiocity.com/vancouver",
+      "signup_url": "https://curiocity.com/vancouver/#gf_5",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:47.202197+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_showhub-vancouver",
+      "venue_name": "ShowHub Vancouver",
+      "website_url": "https://showhub.ca/",
+      "signup_url": "https://showhub.ca/contact/newsletter/",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:14:50.277398+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_runvan-community-hub",
+      "venue_name": "RUNVAN Community Hub",
+      "website_url": "https://runvan.org/races/",
+      "signup_url": "https://runvan.org/subscribe",
+      "method": "Newsletter Direct Signup Link",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:15:08.233015+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_scene-in-the-dark",
+      "venue_name": "Scene in the Dark",
+      "website_url": "https://sceneinthedark.com/",
+      "signup_url": "https://sceneinthedark.com/",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:15:17.157197+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_diwali-fest-diwali-celebration-society",
+      "venue_name": "Diwali Fest (Diwali Celebration Society)",
+      "website_url": "https://diwalifest.com",
+      "signup_url": "https://diwalifest.com",
+      "method": "Embedded Mailchimp / Newsletter Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:15:43.304966+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_orange-tickets-canada",
+      "venue_name": "Orange Tickets Canada",
+      "website_url": "https://orangetickets.ca",
+      "signup_url": "https://boletosmaster.us14.list-manage.com/subscribe/post?u=3e1c077ba8da995595960a725&id=59900e1d21",
+      "method": "Mailchimp Hosted Subscription Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:16:14.088664+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_commercial-drive-business-society-bia",
+      "venue_name": "Commercial Drive Business Society (BIA)",
+      "website_url": "https://thedrive.ca/events/",
+      "signup_url": "https://thedrive.us5.list-manage.com/subscribe/post?u=d639801eb150a1f43efaca907&id=fc4e28c12f&f_id=007c27ebf0",
+      "method": "Mailchimp Hosted Subscription Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:16:25.947499+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_admitone-ticketing-vancouver-live-music",
+      "venue_name": "AdmitOne Ticketing (Vancouver Live Music)",
+      "website_url": "https://admitone.com/events/vancouver",
+      "signup_url": "https://thedebriefbybeatroute.substack.com/",
+      "method": "Substack Newsletter Portal",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:16:29.383214+00:00",
+      "notes": "Scout AI detected newsletter subscription form on official website."
+    },
+    {
+      "id": "nls_vancouver-writers-fest",
+      "venue_name": "Vancouver Writers Fest",
+      "website_url": "https://writersfest.bc.ca/events",
+      "signup_url": "https://writersfest.us12.list-manage.com/subscribe/post?u=5d8097a0589d392008bb9facf&id=cb88a98a36",
+      "method": "Mailchimp Hosted Subscription Form",
+      "suggested_email": "Van50.Submit@gmail.com",
+      "status": "pending_manual_subscription",
+      "detected_at": "2026-10-08T20:16:31.427318+00:00",
       "notes": "Scout AI detected newsletter subscription form on official website."
     }
   ],
-  "pendingNewsletterCount": 1,
+  "pendingNewsletterCount": 21,
   "aiCuratorAppeals": [],
   "pendingAppealsCount": 0
 }

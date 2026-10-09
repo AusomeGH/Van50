@@ -6,10 +6,45 @@
    - All `gemini_*.py` scripts are permanently removed and forbidden.
    - Never run or create scripts that attempt to call Gemini API endpoints or read `GEMINI_API_KEY`.
 
-2. **Antigravity AI QC & Ingestion Engine (Mandatory 100% Full-Sweep Starting at Event #1)**:
-   - **Mandatory 100% Full-Sweep Starting at Event #1**: Whenever QC AI is requested, it MUST start at Event #1 and evaluate 100% of all events in `data/events.json` sequentially **one event at a time** (Batch Size = 1 Event) through to the very last event in the catalog. Partially executed runs, stopping after a few events, or spot-checking are strictly prohibited. Every QC AI invocation sweeps the complete active catalog from beginning to end.
-   - **Single-Event Deep QC Runner**: Use `scripts/single_event_deep_qc.py` to isolate each card's evaluation, execute deterministic multi-hop link deepening to Tier 1 checkout carts (e.g. Ticketure, Eventbrite, Square, Showpass), verify out-of-pocket pricing $\le \$50$ CAD, and persist progress atomically after each event.
-   - Scripts are strictly authorized for hosting the local server (`curator_server.py 8080`), isolating single-event evaluation harnesses (`scripts/single_event_deep_qc.py`), and reading/writing final JSON files to disk.
+2. **Direct Antigravity AI Execution (100% Cognitive Auditing & Discovery)**:
+   - **Cognitive Auditing Over Script Surrogacy**: Whenever Scout AI, QC AI, or Quarantine AI is requested, the AI agent MUST evaluate venues and event cards directly using its native intelligence, real Chromium browser inspection (`browser_subagent`), deep page reading (`read_url_content`), and web search (`search_web`).
+   - **All Runner & Surrogate Scripts Permanently Removed**: Standalone crawler, scraper, and runner scripts (`antigravity_qc_engine.py`, `single_event_deep_qc.py`, `single_target_scout_runner.py`, `single_item_quarantine_runner.py`, etc.) are permanently removed. The AI acts directly as the auditor and curator without script middle-men.
+   - **Scout AI Persona (Constructive & Non-Adversarial)**: Scout AI is an enthusiastic, accurate cultural explorer. It is **strictly non-adversarial**. Its goal is constructive discovery: exploring venue calendars, BIAs, and discovery feeds to find eligible cultural events under $50 CAD and onboarding uncataloged physical venues without quotas.
+   - **QC AI Persona (Adversarial Red-Team Defect Hunter)**: QC AI operates with a **prosecutorial red-team mandate**. It is tasked with actively finding deficiencies, hidden fee escalations, expired dates, link rot, category mismatches, and geographic leaks in the existing dataset. It assumes stored cards may be stale until proven otherwise.
+   - **Strictly Authorized Python Scripts**: Local Python scripts are strictly limited to the 4 essential infrastructure utilities:
+     1. Starting the local static web server (`curator_server.py 8080`) to allow viewing the web application.
+     2. Session authentication (`curator_auth.py`).
+     3. Serializing master JSON data to frontend JavaScript (`sync_data_js.py`).
+     4. Git production releases and smoke testing (`deploy_to_production.py`).
+
+2B. **Zero Python Script Creation & Code Modifications**:
+   - **Data Auditors & Curators, NOT Script Developers**: When executing Scout AI, QC AI, or Quarantine AI, the AI agents are **STRICTLY PROHIBITED from creating new Python scripts (`.py` files), scratch scripts, or editing/modifying existing Python code**.
+   - **PreToolUse Hook Gatekeeper**: Any attempt to add or modify Python code is programmatically intercepted and requires explicit user confirmation in the IDE.
+   - **Direct Cognitive AI Auditing**: The AI's mandate is strictly cognitive: inspect the live target page, verify and extract all dimensions using AI intelligence, and commit verified values directly to the data stores (`data/events.json`, `data/manual_review_queue.json`, `data/venues.json`).
+
+2C. **The 4 Anti-Laziness Gates (Strict Cognitive Execution & Anti-Shortcut Standard)**:
+   - **Gate 1: Anti-SPA Blindness Gate (Layer 4: Mandatory Hydration & Grounded Search)**:
+     - Modern ticketing platforms (Universe, Eventive, Spektrix, Ticketmaster, Eventbrite, Showpass) are client-side Single Page Applications (SPAs) that return bare HTML shells (`<div id="root"></div>`, `<div id="loader"></div>`, `<div id="app"></div>`).
+     - **Prohibition**: The AI must NEVER evaluate raw unhydrated HTML skeletons as "empty", "missing", or "calendar drift".
+     - **Action**: When checking SPA providers, the AI must inspect the rendered DOM (via browser inspection `browser_subagent`) or verify the live URL via grounded live web search (`search_web`). A negative regex match on an unhydrated shell is strictly prohibited as a basis for quarantine.
+   - **Gate 2: Burden-of-Proof Quarantine Gate (No Avoidance Dumping)**:
+     - Quarantining an event requires **positive, verifiable proof of disqualification**:
+       1. Verified HTTP 404 / 410 dead link.
+       2. Verified price exceeding the strict $50.00 CAD ceiling.
+       3. Verified sold out or at-capacity notice on the live rendered page.
+       4. Verified non-event, multi-week course, or private buyout.
+     - **Prohibition**: An unhydrated page or a single negative string match does NOT justify quarantine. The AI must cross-reference the venue's active schedule before declaring drift.
+   - **Gate 3: Ingestion Hygiene & Entity Invariants (Geographic & String Enforcement)**:
+     - **Metro Vancouver Geographic Boundary**: Venues must be situated within Metro Vancouver (Vancouver, Burnaby, Richmond, North/West Vancouver, New Westminster, Surrey, Coquitlam, etc.). Non-Metro locations (Montreal, Toronto, Victoria, Vancouver Island, Whistler, Kelowna, Oshawa, etc.) are strictly blacklisted.
+     - **Entity Invariant**: Venues must be real physical locations. Ticketing websites, portals, or aggregators (`Songkick`, `Orange Tickets`, `VTix`, `Eventbrite`, `Do604`, `The Georgia Straight`) are strictly prohibited as `venue_name`.
+     - **URL Deep-Link Invariant**: Ticket links must be deep links to specific events or box offices; generic root/directory URLs (`admitone.com/events`, `eventbrite.ca/d/...`, `showpass.com`) are strictly rejected.
+     - **String Hygiene Invariant**: Titles containing navigation artifacts, calendar tabs, or button concatenations (`Apr 4, 2027`, `Today•Oct 18`, `GET SEASON TICKETS`, `On Sale Dec 08 - Register Now`, `MoreInfo→`, `Buy Tickets`, `Read More`) are strictly rejected.
+   - **Gate 4: Dimension Evidence & Dynamic Scoring Schema (Layer 2 & Layer 3)**:
+     - **Ban on HTTP 200 OK Sufficiency (Layer 2)**: An HTTP 200 OK status code is NEVER sufficient proof of validity. Verification requires extracting at least 3 matching factual entities from rendered page content: (1) Exact event/performer title, (2) ISO calendar date (`YYYY-MM-DD`), and (3) Exact all-in ticket price in `$ CAD`.
+     - **Ban on Canned/Fake Status Strings & 50/50 Badges (Layer 3)**: Blanket phrases like *"All dimensions verified"* or static `Score: 50/50` stamps are strictly forbidden. Dimension scores must be calculated strictly from actually verified values. An event can NEVER receive a verified date score if `date` is `null` (unless `perennial_drop_in`), and can NEVER receive a verified price score without a documented pricing source.
+   - **Layer 1 Mechanical Enforcement (`deploy_to_production.py`)**:
+     - The production deployment engine enforces these 4 Gates mechanically via `verify_anti_laziness_invariants()` prior to every release, immediately aborting if any out-of-market location, aggregator venue, missing date, or fake 50/50 score enters the catalog.
+
 
 3. **Holiday Taxonomy & Discovery Mandate**:
    - Tag events with approved holidays from `data/approved_holidays.json`.
@@ -23,19 +58,16 @@
      3. **Persist Benchmark**: Update `data/ai_runtime_benchmarks.json` with the measured duration, timestamp, items processed, and updated rolling average.
      4. **Post-Run Reporting**: Report the elapsed duration in the final summary (e.g., *"Completed in 4m 10s. Recorded duration to benchmark registry for future estimates."*).
 
-5. **Universal Embedded Calendar Widget Extraction Mandate (Last-Resort Fallback)**:
-   - When discovering or scraping events for any venue, **never write venue-specific one-off scrapers**.
-   - Standard semantic and HTML extraction strategies must **always be attempted first**:
-     1. Semantic Schema.org JSON-LD structured data.
-     2. Standard CMS event collection lists (Squarespace, WordPress, Webflow).
-     3. Standard DOM outbound ticketing links and event card elements.
-   - **Last-Resort Fallback Only**: `scripts/calendar_widget_engine.py` (`CalendarWidgetEngine`) is invoked **strictly when Strategies 1–3 find 0 events AND a third-party calendar widget format** (Tockify, Google Calendar embed, Eventbrite embed, Time.ly, DICE.fm, Bandsintown) is explicitly detected in the DOM.
-   - This prevents unnecessary external API calls on websites with standard HTML schedules while ensuring zero events are missed when venues embed their calendars via JavaScript widgets.
+5. **Dynamic Calendar Widgets Policy (Real Browser DOM Inspection Standard)**:
+   - When discovering or auditing events for venues using third-party calendar widgets (Tockify, Time.ly, Google Calendar, DICE, Eventbrite embeds, Bandsintown):
+     - **DO NOT write or execute custom Python scripts that reverse-engineer undocumented widget APIs**.
+     - Raw widget API scrapers fail silently when schemas drift and miss visual page overlays (e.g. "Sold Out", "21+ Only", "Door Cover $15", "Postponed").
+     - **Mandatory Real Browser Inspection**: Use the AI's real browser tools (`browser_subagent` / Chromium CDP) to navigate to the venue calendar. Allow client-side JavaScript to execute naturally, and inspect the rendered DOM and visual banners exactly as a human patron sees them.
 
-6. **Scout AI Single-Target (Batch Size = 1 Target) & Mandatory Full-Sweep Protocol**:
-   - **Mandatory 100% Full-Sweep Starting at Target #1**: Every time Scout AI is invoked, it MUST start at Target #1 and evaluate 100% of all registered targets (Target 1 through Target N, across both `venues.json` and `discovery_sources.json`) sequentially **one discrete target at a time** (Batch Size = 1 Target). Partially executed runs, stopping after a few targets, or skipping targets are strictly prohibited.
+6. **Scout AI Single-Target (Batch Size = 1 Target) Protocol**:
+   - **Discrete Target Execution**: Each Scout AI step evaluates one target venue or discovery source (`scripts/single_target_scout_runner.py --target "<name>"` or `--target-index <idx>`). Unattended multi-target loops are prohibited.
    - **The Natural Yield Mandate (Zero Quotas)**: NEVER assign arbitrary event quotas ("find 5 events"). Each target must be evaluated to natural exhaustion: ingest whatever genuinely qualifies under $50 CAD (whether 0, 1, 4, or 8 events). Reporting 0 events for a dark/duplicate/overbudget venue is an honest and valuable audit result; forcing filler to meet an arbitrary quota is strictly forbidden.
-   - **Atomic Checkpoint & Ledger**: Progress, newly discovered venues, and verified events are committed atomically after each target to `data/events.json`, `data/scout_target_ledger.json`, and stamped directly on the venue/source using `scripts/single_target_scout_runner.py`.
+   - **Atomic Checkpoint & Ledger**: Progress, newly discovered venues, and verified events are committed atomically after each target to `data/events.json`, `data/scout_target_ledger.json`, and stamped directly on the venue/source.
    - **Sequential Audit Ledger Table**: When reporting Scout AI results to the user, present a sequential, un-skipped Markdown Audit Table (`Target #`, `Target Name`, `Type`, `Inspected`, `Natural Yield (≤ $50)`, `Audit Status & Notes`). Target numbering MUST start at #1 and proceed continuously without gaps to the end of the registry.
 
 7. **Universal Multi-Entity Quarantine AI Protocol (Events, Venues, Festivals, Sources, Holidays, Instructions)**:
@@ -83,10 +115,23 @@
      - **Quarantine AI**: If a quarantined card has inverted add-on pricing, re-calculate the range using `Floor = Base Admission` and `Ceiling = Base Admission + Add-On` before graduating cards to `data/events.json`.
 
 10. **Dimension-by-Dimension Audit & Timestamp Protocol (The 50 Dimensions of Van50 / City50)**:
-    - **Granular Scoping Mandate**: When QC AI audits an event, it MUST NOT issue a blanket or superficial pass. It must systematically inspect each of the 50 discrete dimensions (D1 Title through D50 Civic Provider Rules) sequentially.
-    - **Dimension Audit Metadata Schema (`dimension_audit`)**:
-      - Each event in `data/events.json` maintains a structured `dimension_audit` object with `last_full_qc_at`, `auditor`, `dimensions_score` (`50/50`), and a `dimensions` map.
-      - For each dimension (D1..D50), QC AI records `confirmed_at` (ISO timestamp), `status` (`verified`, `calibrated`, `standardized`, `not_applicable`, `none_available`), and descriptive validation values or notes.
+    - **Adversarial Red-Team Defect Hunting Mandate (QC AI)**:
+      - QC AI operates with a **prosecutorial red-team mandate**. It is tasked with actively finding deficiencies, hidden fee escalations, expired dates, link rot, category mismatches, and geographic leaks in the existing catalog.
+      - It does NOT engage in passive verification or confirmation bias ("looks reasonable -> verified: true"). It treats stored cards as stale until proven otherwise.
+    - **The Dual-Phase Blind Audit Architecture**:
+      1. *Phase 1: Blind Live Extraction (Zero Prior Priming)*: The browser or reader subagent is provided **strictly with the target URL** (and zero stored values). It independently extracts: Performer, Date, Doors Time, Operating Hours (D4), Category (D7), Base Price, Checkout Fees, All-In Total (D25), Live Availability (D19), Provider (D38), Restrictions (D41), City/Postal Code (D47), Currency (D48), and Timezone (D49).
+      2. *Phase 2: Adversarial Defect Comparator*: The QC comparator diffs `[Stored Card]` against `[Blind Live Extraction]` line-by-line, recording all discrepancies in a structured `deficiencies_found` manifest.
+    - **Strict Dimension Trust Directives**:
+      - **D4 (Weekly Operating Hours)**: NEVER TRUST. Must navigate to venue `/visit`, `/hours`, or footer on every audit.
+      - **D6 (Frequency Display Label)**: NEVER TRUST. Inferred strictly from published dates + explicit cadence text (*"Weekly"*, *"Bi-weekly"*, etc.). If calendar window is short, keep cadence with note.
+      - **D7 (Category)**: NEVER TRUST. Independently derived from event content; zero inheritance from venue type; mapped to 8 canonical categories.
+      - **D10 & D11–D25 (Pricing Model & Pricing Scheme)**: NEVER TRUST. Blind cart extraction (Base + Mandatory Fees + Taxes).
+        - *Curator Reconciliation Protocol*: If live cart differs from a Curator-Approved card (`is_curator_approved: true`), do NOT silently overwrite. Generate an explicit discrepancy appeal in `D46_ai_curator_appeal` / Curator Review queue with the exact delta. Exception: If the live all-in price exceeds $50.00 CAD, mandatory safety eviction to quarantine takes precedence over all flags.
+      - **D15 & D32–D37 (Links Hierarchy)**: NEVER TRUST. Always seek higher tier links (hunt for Tier 1 direct checkout or Tier 2 dedicated event page); never settle for Tier 3 calendar or Tier 4 aggregator.
+      - **D38 (Ticket Provider)**: NEVER TRUST. Live extraction from embed / checkout vendor.
+      - **D39 (Description)**: NEVER TRUST. Live extraction from fresh DOM text.
+      - **D47–D49 (Geo Jurisdiction, Currency Standard, IANA Timezone)**: NEVER TRUST. Must independently verify Metro Vancouver boundaries, CAD currency, and America/Vancouver timezone from page address/postal code/metadata. Acts as a hard firewall against Montreal/Toronto/Seattle crawl dumps.
+      - **Trusted Invariants**: Only true physical invariants in `data/venues.json` (D8 address/GPS for verified physical establishments, D9 access model, D28 spend benchmarks, D43 environment type, D50 civic provider rules) are trusted from vetted records.
     - **Schedule & Identity Standard (D1–D6)**:
       - **D1**: `title` — Curated title of the outing or event.
       - **D2**: `date` — Headline active date (`YYYY-MM-DD`). Automatically advances to next showing on rollover.

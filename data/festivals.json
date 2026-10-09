@@ -619,5 +619,81 @@
         "cost": 0.0
       }
     ]
+  },
+  {
+    "festival_name": "Vancouver Horror Show Film Festival",
+    "website_url": "https://www.vancouverhorrorshow.com",
+    "schedule_url": "https://vhs2026.eventive.org/schedule",
+    "location": "Cineplex Cinemas International Village & Greta Bar YVR",
+    "start_date": "2026-10-13",
+    "end_date": "2026-10-18",
+    "description": "Vancouver's premier annual genre film festival showcasing international and Canadian horror, thriller, sci-fi, and dark comedy features and short films with filmmaker Q&As, industry panels, and awards.",
+    "category": "Arts & Culture",
+    "access_model": "fenced_facility",
+    "pricing_model": "flat_ticket",
+    "price": 10.0,
+    "coordinates": [
+      49.2807,
+      -123.1068
+    ],
+    "lineup": "Michael Dougherty (Trick 'r Treat 19th Anniversary), Canadian feature premieres (Encryption, Sleep No More, Crave's YAGA), 5 curated shorts programs, Table Reads, and Golden Tape Awards",
+    "restrictions": "19+ / Unrated festival screenings (Two pieces of ID required for licensed screenings)",
+    "is_sold_out": false,
+    "waypoints": [
+      {
+        "name": "Cineplex Cinemas International Village (3rd Floor)",
+        "type": "hub",
+        "coordinates": [
+          49.2807,
+          -123.1068
+        ]
+      },
+      {
+        "name": "Greta Bar YVR (Launch Party)",
+        "type": "party",
+        "coordinates": [
+          49.2825,
+          -123.1061
+        ]
+      }
+    ],
+    "showings": [
+      {
+        "date": "2026-10-13",
+        "start_time": "19:30",
+        "end_time": "22:30",
+        "cost": 50.0
+      },
+      {
+        "date": "2026-10-14",
+        "start_time": "18:30",
+        "end_time": "23:00",
+        "cost": 22.5
+      },
+      {
+        "date": "2026-10-15",
+        "start_time": "11:00",
+        "end_time": "23:15",
+        "cost": 10.0
+      },
+      {
+        "date": "2026-10-16",
+        "start_time": "11:00",
+        "end_time": "23:10",
+        "cost": 15.0
+      },
+      {
+        "date": "2026-10-17",
+        "start_time": "11:10",
+        "end_time": "23:00",
+        "cost": 15.0
+      },
+      {
+        "date": "2026-10-18",
+        "start_time": "11:00",
+        "end_time": "22:15",
+        "cost": 10.0
+      }
+    ]
   }
 ]

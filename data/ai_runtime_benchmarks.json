@@ -7,16 +7,16 @@
   "workflows": {
     "scout_ai": {
       "label": "Scout AI Discovery",
-      "averageDurationSeconds": 120.0,
-      "averageDurationFormatted": "2m 0s",
-      "totalRuns": 11,
+      "averageDurationSeconds": 128.1,
+      "averageDurationFormatted": "2m 8s",
+      "totalRuns": 15,
       "lastRun": {
-        "timestamp": "2026-10-06T17:35:50.874546",
-        "durationSeconds": 447.5,
-        "durationFormatted": "7m 27s",
-        "itemsProcessed": 181,
-        "newEventsIngested": 23,
-        "notes": "Scouted 181 targets with 1-at-a-time isolation. Ingested 23 new events under $50 CAD."
+        "timestamp": "2026-10-08T18:16:21.291501",
+        "durationSeconds": 5.2,
+        "durationFormatted": "5s",
+        "itemsProcessed": 1,
+        "newEventsIngested": 0,
+        "notes": "Scouted 1 targets with 1-at-a-time isolation. Ingested 0 new events under $50 CAD."
       },
       "history": [
         {
@@ -93,20 +93,54 @@
           "durationFormatted": "7m 27s",
           "itemsProcessed": 181,
           "newEventsIngested": 23
+        },
+        {
+          "timestamp": "2026-10-08T05:24:10.380146",
+          "durationSeconds": 309.1,
+          "durationFormatted": "5m 9s",
+          "itemsProcessed": 181,
+          "newEventsIngested": 108
+        },
+        {
+          "timestamp": "2026-10-08T13:08:26.970086",
+          "durationSeconds": 0.1,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "newEventsIngested": 0
+        },
+        {
+          "timestamp": "2026-10-08T13:16:45.208035",
+          "durationSeconds": 286.3,
+          "durationFormatted": "4m 46s",
+          "itemsProcessed": 61,
+          "newEventsIngested": 291
+        },
+        {
+          "timestamp": "2026-10-08T18:16:21.291457",
+          "durationSeconds": 5.2,
+          "durationFormatted": "5s",
+          "itemsProcessed": 1,
+          "newEventsIngested": 0
         }
-      ]
+      ],
+      "total_runs": 1,
+      "total_candidates_inspected": 30,
+      "total_events_ingested": 30,
+      "last_run_timestamp": "2026-10-08T21:41:09.885912-07:00",
+      "last_target": "Vancouver Horror Show Film Festival"
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 118.2,
-      "averageDurationFormatted": "2 minutes",
-      "totalRuns": 11,
+      "averageDurationSeconds": 145.7,
+      "averageDurationFormatted": "2m 25s",
+      "totalRuns": 19,
       "lastRun": {
-        "timestamp": "2026-10-06T18:28:08",
-        "durationSeconds": 237.0,
-        "durationFormatted": "3m 57s",
-        "itemsAudited": 344,
-        "notes": "Audited 344 events (Events 1-344) with 1-at-a-time isolation. Upgraded 0 shallow links to Tier 1 checkout carts. Flagged 2 bot-protected/anomaly links."
+        "timestamp": "2026-10-09T08:12:31",
+        "durationSeconds": 233.2,
+        "durationFormatted": "3m 53s",
+        "itemsAudited": 550,
+        "itemsProcessed": 550,
+        "notes": "Full QC pass across 550 events. Verified 240, Archived 279, Quarantined 31."
       },
       "history": [
         {
@@ -180,22 +214,64 @@
           "durationSeconds": 237.0,
           "durationFormatted": "3m 57s",
           "itemsProcessed": 344
+        },
+        {
+          "timestamp": "2026-10-08T05:29:39.618683",
+          "durationSeconds": 210.0,
+          "durationFormatted": "3m 30s",
+          "itemsAudited": 247,
+          "itemsProcessed": 247,
+          "notes": "100% full-sweep starting at Event #1 across 247 active cards. Verified 247 active, 115 direct event pages, 58 calendar listings."
+        },
+        {
+          "timestamp": "2026-10-08T06:08:59.297508",
+          "durationSeconds": 198.0,
+          "durationFormatted": "3m 18s",
+          "itemsAudited": 247,
+          "itemsProcessed": 247,
+          "notes": "100% full-sweep starting at Event #1 across 247 active cards. 2 deep links self-healed/repaired, 0 anomalies, 100% verified."
+        },
+        {
+          "timestamp": "2026-10-08T18:15:56",
+          "durationSeconds": 1.7,
+          "durationFormatted": "1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-08T19:15:40",
+          "durationSeconds": 532.7,
+          "durationFormatted": "8m 52s",
+          "itemsProcessed": 599,
+          "notes": "Full QC pass across 599 events. Verified 517, Archived 6, Quarantined 73."
+        },
+        {
+          "timestamp": "2026-10-08T21:41:51",
+          "durationSeconds": 1.2,
+          "durationFormatted": "1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-09T08:12:31",
+          "durationSeconds": 233.2,
+          "durationFormatted": "3m 53s",
+          "itemsProcessed": 550,
+          "notes": "Full QC pass across 550 events. Verified 240, Archived 279, Quarantined 31."
         }
       ]
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",
-      "averageDurationSeconds": 69.7,
-      "averageDurationFormatted": "1m 9s",
-      "totalRuns": 4,
+      "averageDurationSeconds": 7.5,
+      "averageDurationFormatted": "7s",
+      "totalRuns": 51,
       "lastRun": {
-        "timestamp": "2026-10-05T08:08:58",
-        "durationSeconds": 3.6,
-        "durationFormatted": "3s",
+        "timestamp": "2026-10-08T21:34:33",
+        "durationSeconds": 0.0,
+        "durationFormatted": "0s",
         "itemsProcessed": 1,
-        "itemsGraduated": 1,
-        "itemsArchived": 0,
-        "notes": "Processed 1 quarantined items with 1-at-a-time isolation. Graduated 1, archived 0."
+        "itemsGraduated": 0,
+        "itemsArchived": 1,
+        "notes": "Processed 1 quarantined items with 1-at-a-time isolation. Graduated 0, archived 1."
       },
       "history": [
         {
@@ -229,6 +305,382 @@
           "itemsProcessed": 1,
           "itemsGraduated": 1,
           "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T05:18:37",
+          "durationSeconds": 3.9,
+          "durationFormatted": "3s",
+          "itemsProcessed": 3,
+          "itemsGraduated": 0,
+          "itemsArchived": 3
+        },
+        {
+          "timestamp": "2026-10-08T18:03:32",
+          "durationSeconds": 58.9,
+          "durationFormatted": "58s",
+          "itemsProcessed": 55,
+          "itemsGraduated": 55,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:21:13",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:21:28",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:21:33",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:22:30",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:23:03",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:23:47",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:25:48",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:25:52",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:25:56",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:26:00",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:26:13",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:26:17",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:26:21",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:26:25",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:27:23",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:29:02",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:31:11",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 1,
+          "itemsArchived": 0
+        },
+        {
+          "timestamp": "2026-10-08T21:31:53",
+          "durationSeconds": 1.0,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:32:03",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:32:13",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:32:17",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:32:23",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:32:27",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:07",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:50",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:52",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:53",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:54",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:56",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:57",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:58",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:33:59",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:01",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:02",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:03",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:05",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:06",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:08",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:09",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:10",
+          "durationSeconds": 0.8,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:12",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:13",
+          "durationSeconds": 0.7,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:15",
+          "durationSeconds": 1.1,
+          "durationFormatted": "1s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:16",
+          "durationSeconds": 0.9,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
+        },
+        {
+          "timestamp": "2026-10-08T21:34:33",
+          "durationSeconds": 0.0,
+          "durationFormatted": "0s",
+          "itemsProcessed": 1,
+          "itemsGraduated": 0,
+          "itemsArchived": 1
         }
       ]
     }

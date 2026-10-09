@@ -77,11 +77,87 @@ def run_cmd(cmd: list, cwd: str = BASE_DIR, check: bool = True) -> Tuple[int, st
     return res.returncode, res.stdout.strip(), res.stderr.strip()
 
 
+def verify_anti_laziness_invariants() -> bool:
+    """
+    [SMOKE TEST 0/3] Enforces mechanical Anti-Laziness Invariants across data/events.json.
+    Guarantees zero out-of-market events, zero ticketing portals as venues, zero missing dates,
+    zero fake 50/50 audit scores, and zero budget cap violations.
+    """
+    import json
+    print("\n[SMOKE TEST 0/3] Enforcing Anti-Laziness Invariants on Central Catalog...")
+    events_path = os.path.join(BASE_DIR, "data", "events.json")
+    if not os.path.exists(events_path):
+        print(f"❌ [FAIL] Missing data/events.json at {events_path}")
+        return False
+
+    with open(events_path, "r", encoding="utf-8") as f:
+        events = json.load(f)
+
+    violations = []
+    out_words = ['bell centre', 'parc jean-drapeau', 'le balcon', 'th\xe9\xe2tre des muses', 'foufounes', 'place des arts', 'newspeak', 'society for arts', 'th\xe9\xe2tre beanfield', 'fairmount', 'ausgang plaza', 'mtelus', 'coda-tickets', 'bondst-event-centre', 'live in toronto', 'live in victoria', 'live in osh']
+    agg_venues = ['songkick vancouver', 'orange tickets canada', 'vtix online', 'eventbrite vancouver', 'do604', 'the georgia straight', 'ticketweb (vancouver)', 'broadway across canada (vancouver)', 'scene in the dark']
+
+    for e in events:
+        eid = e.get("event_id", "unknown")
+        title = str(e.get("title", ""))
+        venue = str(e.get("venue_name", ""))
+        disc = str(e.get("discovery_url", ""))
+        ticket = str(e.get("ticket_url", ""))
+        dt = e.get("date")
+        show1 = e.get("show_1") or {}
+        price = e.get("price", 0.0)
+        lifecycle = e.get("lifecycle_type")
+        blob = f"{eid} {title} {venue} {disc} {ticket}".lower()
+
+        # Rule 1: Budget Ceiling
+        if price > 50.0:
+            violations.append(f"[{eid}] Exceeds $50 CAD ceiling (${price})")
+
+        # Rule 2: Geofence (No Out-of-Market)
+        for ow in out_words:
+            if ow in blob:
+                violations.append(f"[{eid}] Out-of-market location: {ow}")
+                break
+
+        # Rule 3: Entity Invariant (No Ticketing Portals as Venues)
+        for av in agg_venues:
+            if av in venue.lower():
+                violations.append(f"[{eid}] Aggregator portal used as venue: {venue}")
+                break
+
+        # Rule 4: Lifecycle Invariant (No Missing Dates)
+        if not dt and not show1.get("date") and lifecycle != "perennial_drop_in":
+            violations.append(f"[{eid}] Non-perennial event lacks active date")
+
+        # Rule 5: Honest Dimension Audit (No Fake 50/50)
+        da = e.get("dimension_audit")
+        if da and da.get("dimensions_score") == "50/50":
+            d2 = da.get("dimensions", {}).get("D2_date", {})
+            if d2.get("value") is None and lifecycle != "perennial_drop_in":
+                violations.append(f"[{eid}] Fake 50/50 score with D2_date=None")
+
+    if violations:
+        print(f"❌ [FAIL] Anti-Laziness Invariant Violations Detected ({len(violations)}):")
+        for v in violations[:10]:
+            print(f"   • {v}")
+        if len(violations) > 10:
+            print(f"   ... and {len(violations) - 10} more.")
+        print("[DEPLOYMENT BLOCKED] Purge or heal lazy records before deploying.")
+        return False
+
+    print(f"✓ [PASS] All {len(events)} events strictly satisfy Anti-Laziness Invariants.")
+    return True
+
+
 def run_smoke_test(port: int = 8085) -> bool:
     """
     Spins up a temporary local test server, loads the application in headless Chrome,
     and inspects both the console error log and rendered DOM.
     """
+    # Step 0: Anti-Laziness Invariants Pre-Flight Check
+    if not verify_anti_laziness_invariants():
+        return False
+
     print("\n[SMOKE TEST 1/3] Spinning up ephemeral test server on port {}...".format(port))
     
     # Custom handler to serve BASE_DIR
@@ -108,6 +184,7 @@ def run_smoke_test(port: int = 8085) -> bool:
         "--headless=new",
         "--enable-logging=stderr",
         "--v=1",
+        "--virtual-time-budget=5000",
         "--disable-gpu",
         "--no-first-run",
         "--no-default-browser-check",
@@ -144,6 +221,7 @@ def run_smoke_test(port: int = 8085) -> bool:
         chrome_bin,
         "--headless=new",
         "--dump-dom",
+        "--virtual-time-budget=5000",
         "--disable-gpu",
         "--no-first-run",
         "--no-default-browser-check",

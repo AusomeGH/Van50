@@ -1,617 +1,617 @@
 {
-  "status": "complete",
-  "current_task": "Hourly Status Monitor",
-  "current_step": "Idle awaiting next hourly trigger",
+  "status": "idle",
+  "current_task": "Direct Antigravity AI Oversight",
+  "current_step": "Catalog stabilized: 240 active events verified directly by Antigravity AI.",
   "progress_percent": 100,
-  "last_updated": "2026-10-06T09:30:14.970786",
+  "last_updated": "2026-10-09T08:12:31.487368",
   "stats": {
-    "confirmed": 921,
-    "new_events": 133,
+    "confirmed": 2862,
+    "new_events": 136,
     "new_venues": 25,
     "new_sources": 19,
-    "quarantined": 38,
-    "archived": 14
+    "quarantined": 257,
+    "archived": 411
   },
   "recent_logs": [
     {
-      "id": "log_1790854332881",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"VPL Central Library Rooftop Garden\" at Vancouver Public Library (Central Branch) (Free Public Access - Mon–Thu 9:30 AM – 8:30 PM; Fri–Sat 10:00 AM – 5:00 PM; Sun 11:00 AM – 5:00 PM)"
+      "id": "log_1791558716227",
+      "timestamp": "08:11:56",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"COLTON'S BIRTHDAY EXTRAVAGANZA VIII: SHADOW OF THE ERDTREE E...\" • Date: 2026-10-24 at 19:30 ($20.00 CAD)"
     },
     {
-      "id": "log_1790854332893",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
+      "id": "log_1791558716860",
+      "timestamp": "08:11:56",
+      "type": "INFO",
+      "message": "Event Page Verified: 'IRON KINGDOM // SPELL // CRÜZER' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2283)"
     },
     {
-      "id": "log_1790854332903",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Lynn Canyon Suspension Bridge & Ecological Trails\" at Lynn Canyon Park (Free Public Access - Daily 7:00 AM – Dusk)"
+      "id": "log_1791558716874",
+      "timestamp": "08:11:56",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"IRON KINGDOM // SPELL // CRÜZER\" • Date: 2026-11-06 at 19:30 ($20.00 CAD)"
     },
     {
-      "id": "log_1790854332916",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Canada Place Promenade & The Canadian Trail\" at Canada Place (Free Public Access - Daily 24 Hours)"
+      "id": "log_1791558717174",
+      "timestamp": "08:11:57",
+      "type": "INFO",
+      "message": "Event Page Verified: 'EXHUMED // JARHEAD FERTILIZER // SAVAGE MASTER // MOLDER' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2307)"
     },
     {
-      "id": "log_1790854332925",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"OFF CAMPUS NIGHT @ GRETA YVR\" at GRETA Bar YVR ($0.00 CAD)"
+      "id": "log_1791558717194",
+      "timestamp": "08:11:57",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"EXHUMED // JARHEAD FERTILIZER // SAVAGE MASTER // MOLDER\" • Date: 2026-11-09 at 19:30 ($20.00 CAD)"
     },
     {
-      "id": "log_1790854332936",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Five Alarm Funk's Sweat Fest\" at Vancouver TBA Venue ($40.25 CAD)"
+      "id": "log_1791558717514",
+      "timestamp": "08:11:57",
+      "type": "INFO",
+      "message": "Event Page Verified: 'NWN Presents: Ride For Revenge & Hellwitch' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2219)"
     },
     {
-      "id": "log_1790854332947",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"THE DARK & DIRTY SHOW\" at Vancouver TBA Venue ($34.00 CAD)"
+      "id": "log_1791558717527",
+      "timestamp": "08:11:57",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"NWN Presents: Ride For Revenge & Hellwitch\" • Date: 2026-11-11 at 19:30 ($20.00 CAD)"
     },
     {
-      "id": "log_1790854332958",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"UBC JSA Navratri 2026\" at UBC Campus / Vancouver ($34.50 CAD)"
+      "id": "log_1791558717820",
+      "timestamp": "08:11:57",
+      "type": "INFO",
+      "message": "Event Page Verified: 'NWN Presents: Blasphamagoatachrist, Wrathprayer, Demoncy, Ce...' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2220)"
     },
     {
-      "id": "log_1790854332968",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"A History of Motown\" at Centennial Theatre ($40.25 CAD)"
+      "id": "log_1791558717842",
+      "timestamp": "08:11:57",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"NWN Presents: Blasphamagoatachrist, Wrathprayer, Demoncy, Ce...\" • Date: 2026-11-12 at 19:30 ($20.00 CAD)"
     },
     {
-      "id": "log_1790854332979",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Vancouver Writers Fest: Cory Doctorow on Life After AI\" at Granville Island Venues ($32.50 CAD)"
+      "id": "log_1791558718155",
+      "timestamp": "08:11:58",
+      "type": "INFO",
+      "message": "Sold-Out Stamped: 'Live Ritual - Friday the 13th Part II' verified sold out on destination page."
     },
     {
-      "id": "log_1790854332989",
-      "timestamp": "04:32:12",
+      "id": "log_1791558718171",
+      "timestamp": "08:11:58",
+      "type": "INFO",
+      "message": "Event Page Verified: 'Live Ritual - Friday the 13th Part II' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2178)"
+    },
+    {
+      "id": "log_1791558718187",
+      "timestamp": "08:11:58",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Live Ritual - Friday the 13th Part II\" • Date: 2026-11-13 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558719127",
+      "timestamp": "08:11:59",
+      "type": "INFO",
+      "message": "Event Page Verified: 'BLACK DEATH CULT / PERDURABO / DELIRIANT FRACTURE / OCCISOR' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2278)"
+    },
+    {
+      "id": "log_1791558719146",
+      "timestamp": "08:11:59",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"BLACK DEATH CULT / PERDURABO / DELIRIANT FRACTURE / OCCISOR\" • Date: 2026-11-14 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558719773",
+      "timestamp": "08:11:59",
+      "type": "INFO",
+      "message": "Event Page Verified: 'METAL CHURCH + ARMORED SAINT With LIVE KILL' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2251)"
+    },
+    {
+      "id": "log_1791558719790",
+      "timestamp": "08:11:59",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"METAL CHURCH + ARMORED SAINT With LIVE KILL\" • Date: 2026-11-15 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558720407",
+      "timestamp": "08:12:00",
+      "type": "INFO",
+      "message": "Event Page Verified: 'KORPIKLAANI // CRIMSON SHADOWS // NOMAD Live in Kelowna' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2330)"
+    },
+    {
+      "id": "log_1791558720426",
+      "timestamp": "08:12:00",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"KORPIKLAANI // CRIMSON SHADOWS // NOMAD Live in Kelowna\" • Date: 2026-11-15 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558721050",
+      "timestamp": "08:12:01",
+      "type": "INFO",
+      "message": "Event Page Verified: 'KORPIKLAANI with CRIMSON SHADOWS Live in  Victoria' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2331)"
+    },
+    {
+      "id": "log_1791558721061",
+      "timestamp": "08:12:01",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"KORPIKLAANI with CRIMSON SHADOWS Live in  Victoria\" • Date: 2026-11-17 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558721379",
+      "timestamp": "08:12:01",
+      "type": "INFO",
+      "message": "Event Page Verified: 'KORPIKLAANI with CRIMSON SHADOWS Live in Vancouver' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2332)"
+    },
+    {
+      "id": "log_1791558721396",
+      "timestamp": "08:12:01",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"KORPIKLAANI with CRIMSON SHADOWS Live in Vancouver\" • Date: 2026-11-18 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558722016",
+      "timestamp": "08:12:02",
+      "type": "INFO",
+      "message": "Event Page Verified: 'DEVIL MASTER Live in Vancouver' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2335)"
+    },
+    {
+      "id": "log_1791558722034",
+      "timestamp": "08:12:02",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"DEVIL MASTER Live in Vancouver\" • Date: 2026-11-18 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558722666",
+      "timestamp": "08:12:02",
+      "type": "INFO",
+      "message": "Event Page Verified: 'PSYCROPTIC // INFERI // COGNITIVE // SUMMONING THE LICH' confirmed matching page content (https://orangetickets.ca/detalles_evento.php?id_evento=2293)"
+    },
+    {
+      "id": "log_1791558722681",
+      "timestamp": "08:12:02",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"PSYCROPTIC // INFERI // COGNITIVE // SUMMONING THE LICH\" • Date: 2026-11-20 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558722705",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"My Account\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722724",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Book Demo\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722740",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Halloween\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722754",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Arts & Culture\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722767",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Awards\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722788",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Carnival & Fair\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722805",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Class Training & Info Session\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722825",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Club Night\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722838",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Conference\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722852",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Crafting\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722871",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Fashion\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722888",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Festival\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722906",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Fitness\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722925",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Fundraiser & Charity\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722939",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Party\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722958",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Performance\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722977",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Sports\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558722999",
+      "timestamp": "08:12:02",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Tech\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558723015",
+      "timestamp": "08:12:03",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Trade Show\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558723030",
+      "timestamp": "08:12:03",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Trivia\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558723048",
+      "timestamp": "08:12:03",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Other\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558723066",
+      "timestamp": "08:12:03",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Discover more Events\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558723086",
+      "timestamp": "08:12:03",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Pro\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558725921",
+      "timestamp": "08:12:05",
+      "type": "INFO",
+      "message": "Event Page Verified: 'Vancouver Poetry Slam ft. Nate Nate Nainers' confirmed matching page content (https://www.vancouverpoetryhouse.com/event/vancouver-poetry-slam-ft-nate-nate-nainers/)"
+    },
+    {
+      "id": "log_1791558725942",
+      "timestamp": "08:12:05",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Vancouver Poetry Slam ft. Nate Nate Nainers\" • Date: 2026-11-02 at 19:30 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558725956",
+      "timestamp": "08:12:05",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Month\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558725971",
+      "timestamp": "08:12:05",
+      "type": "ARCHIVED",
+      "message": "[ARCHIVED] \"Day\" • Reason: Show schedule ended on 2026-10-08"
+    },
+    {
+      "id": "log_1791558726284",
+      "timestamp": "08:12:06",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Young Frankenstein (Mel Brooks 100th Tribute)\" • Date: 2026-11-02 at 17:00 ($14.00 CAD)"
+    },
+    {
+      "id": "log_1791558726448",
+      "timestamp": "08:12:06",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"Harakiri (1962, Kobayashi Masaki on 35mm)\" • Date: 2026-11-02 at 17:00 ($14.00 CAD)"
+    },
+    {
+      "id": "log_1791558726472",
+      "timestamp": "08:12:06",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"TicketWeb - Tickets for Independent Concerts and more\" • Date: 2026-11-02 at 17:00 ($20.00 CAD)"
+    },
+    {
+      "id": "log_1791558728296",
+      "timestamp": "08:12:08",
+      "type": "INFO",
+      "message": "Calendar Verified: 'UBC Football vs. U of C' confirmed listed on venue calendar (https://gothunderbirds.ca/tickets)"
+    },
+    {
+      "id": "log_1791558728316",
+      "timestamp": "08:12:08",
+      "type": "CONFIRMED",
+      "message": "[CONFIRMED] \"UBC Football vs. U of C\" • Date: 2026-10-16 at 18:00 ($17.50 CAD)"
+    },
+    {
+      "id": "log_1791558729100",
+      "timestamp": "08:12:09",
       "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"The Way Out\" • Reason: Quarantined due to top tier reaching $50.00 CAD base (which exceeds $50.00 all-in with platform fees and GST). Min tier is $30 CAD base ($34.50 all-in)."
+      "message": "[QUARANTINED] \"UBC Men's Basketball vs. TWU\" • Reason: Calendar Drift: Destination venue calendar (https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9) does not list or mention 'UBC Men's Basketball vs. TWU' or artist ''."
     },
     {
-      "id": "log_1790854332999",
-      "timestamp": "04:32:12",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"An Evening with the Scots: Douglas Stuart & Damian Barr\" at Granville Island Venues ($32.50 CAD)"
-    },
-    {
-      "id": "log_1790854333009",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Polygon Gallery\" at The Polygon Gallery (Free Public Access - Wednesday – Sunday, 10:00 AM – 5:00 PM (Thursdays open late until 8:00 PM; Closed Monday & Tuesday))"
-    },
-    {
-      "id": "log_1790854333018",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Morris and Helen Belkin Art Gallery\" at Morris and Helen Belkin Art Gallery (Free Public Access - Tuesday – Friday, 10:00 AM – 5:00 PM; Saturday – Sunday, 12:00 PM – 5:00 PM (Closed Mondays))"
-    },
-    {
-      "id": "log_1790854333028",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Queen Elizabeth Park & Sunken Quarry Gardens\" at Queen Elizabeth Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
-    },
-    {
-      "id": "log_1790854333040",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Seawall open 24/7; Park grounds open 6:00 AM – 10:00 PM daily)"
-    },
-    {
-      "id": "log_1790854333051",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Pendulum Gallery\" at Pendulum Gallery (Free Public Access - Monday – Wednesday: 9:00 AM – 6:00 PM; Thursday – Friday: 9:00 AM – 9:00 PM; Saturday: 9:00 AM – 5:00 PM (Closed Sundays))"
-    },
-    {
-      "id": "log_1790854333061",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Dr. Sun Yat-Sen Public Courtyard & Park\" at Dr. Sun Yat-Sen Public Park (Free Public Access - Daily 10:00 AM – 4:30 PM)"
-    },
-    {
-      "id": "log_1790854333072",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Shipyards Commons & Waterfront Boardwalk\" at The Shipyards (Free Public Access - Daily 6:00 AM – 11:00 PM)"
-    },
-    {
-      "id": "log_1790854333081",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Bloedel Conservatory Admission\" at Bloedel Conservatory (Free Public Access - Daily from 10:00 AM)"
-    },
-    {
-      "id": "log_1790854333091",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"VanDusen Botanical Garden – October Access\" at VanDusen Botanical Garden (Free Public Access - Daily in October from 9:00 AM)"
-    },
-    {
-      "id": "log_1790854333100",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Vancouver Art Gallery – Free First Friday Night\" at Vancouver Art Gallery ($0.00 CAD)"
-    },
-    {
-      "id": "log_1790854333110",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Stanley Park Seawall & Prospect Point\" at Stanley Park (Free Public Access - Daily 6:00 AM – 10:00 PM)"
-    },
-    {
-      "id": "log_1790854333119",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Kevin Banner LIVE — Vancouver Comedy Show\" at The Main ($21.57 CAD)"
-    },
-    {
-      "id": "log_1790854333129",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Zoe Twist with House Of Glass\" at The Fox Cabaret ($22.63 CAD)"
-    },
-    {
-      "id": "log_1790854333139",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Stand Up Comedy: Jokes Please!\" at The Cambrian Hall ($18.37 CAD)"
-    },
-    {
-      "id": "log_1790854333148",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Savage Comedy at The Main\" at The Main (Backroom) ($22.62 CAD)"
-    },
-    {
-      "id": "log_1790854333158",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Chest Fever: 50th Anniversary of The Last Waltz\" at Rickshaw Theatre ($46.50 CAD)"
-    },
-    {
-      "id": "log_1790854333168",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Five Alarm Funk's Sweat Fest\" at Hollywood Theatre ($41.00 CAD)"
-    },
-    {
-      "id": "log_1790854333177",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"The Dark & Dirty Show\" at Little Mountain Gallery (Salazar Stage) ($29.25 CAD)"
-    },
-    {
-      "id": "log_1790854333187",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Centennial Theatre Presents: A History of Motown\" at Centennial Theatre ($41.00 CAD)"
-    },
-    {
-      "id": "log_1790854333197",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Back to the Jungle (Old School / Reggae / Jungle Party)\" at KW Studios ($28.74 CAD)"
-    },
-    {
-      "id": "log_1790854333208",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Violet Grohl with Suzy Clue\" at Hollywood Theatre ($35.75 CAD)"
-    },
-    {
-      "id": "log_1790854333218",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Starjunk 95 with boy 2000\" at Commodore Ballroom ($39.25 CAD)"
-    },
-    {
-      "id": "log_1790854333227",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Meltt with Old Man Canyon\" at Commodore Ballroom ($40.75 CAD)"
-    },
-    {
-      "id": "log_1790854333238",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Failure with quannnic\" at Rickshaw Theatre ($46.50 CAD)"
-    },
-    {
-      "id": "log_1790854333250",
-      "timestamp": "04:32:13",
+      "id": "log_1791558729467",
+      "timestamp": "08:12:09",
       "type": "QUARANTINED",
-      "message": "[QUARANTINED] \"LØLØ: God Forbid a Girl Goes on Tour\" • Reason: Pricing ranges between $35.00 and $45.00 CAD all-in; quarantined due to higher price band nearing the $50 cap."
+      "message": "[QUARANTINED] \"Deadly Dinner Party\" • Reason: Link Mismatch: Page at https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801 ('') does not contain details for 'Deadly Dinner Party'."
     },
     {
-      "id": "log_1790854333261",
-      "timestamp": "04:32:13",
-      "type": "NEW_EVENT",
-      "message": "[NEW EVENT ADDED] \"Halloween 2026 – The Monsters' Ball\" at The Rec Room Granville ($27.83 CAD)"
+      "id": "log_1791558730138",
+      "timestamp": "08:12:10",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"Blockbuster: Horrors & Hilarity Live Improv\" • Reason: Link Mismatch: Page at https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601 ('') does not contain details for 'Blockbuster: Horrors & Hilarity Live Improv'."
     },
     {
-      "id": "log_1790854333286",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"The Pipe Shop & Shipbuilders' Square\" (North Shore)"
+      "id": "log_1791558730846",
+      "timestamp": "08:12:10",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"True Story! (Armando Style Improv)\" • Reason: Link Mismatch: Page at https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001 ('') does not contain details for 'True Story! (Armando Style Improv)'."
     },
     {
-      "id": "log_1790854333296",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"The American\" (Mount Pleasant)"
+      "id": "log_1791558731976",
+      "timestamp": "08:12:11",
+      "type": "INFO",
+      "message": "Event Page Verified: 'Vancouver Writers Fest: All Eyes on the North' confirmed matching page content (https://www.showpass.com/2026-festival-89/)"
     },
     {
-      "id": "log_1790854333304",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"BREWHALL\" (Mount Pleasant)"
-    },
-    {
-      "id": "log_1790854333314",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Dr. Sun Yat-Sen Classical Chinese Garden\" (Chinatown)"
-    },
-    {
-      "id": "log_1790854333327",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"SFU Goldcorp Centre for the Arts\" (Gastown)"
-    },
-    {
-      "id": "log_1790854333336",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Gorg-O-Mish\" (Downtown)"
-    },
-    {
-      "id": "log_1790854333351",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Vancouver Maritime Museum\" (Kitsilano)"
-    },
-    {
-      "id": "log_1790854333361",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"2nd Floor Gastown at Water St. Café\" (Gastown)"
-    },
-    {
-      "id": "log_1790854333371",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"The Sylvia Hotel Lounge\" (West End)"
-    },
-    {
-      "id": "log_1790854333379",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Tyrant Studios\" (Downtown)"
-    },
-    {
-      "id": "log_1790854333390",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Centennial Theatre\" (North Shore)"
-    },
-    {
-      "id": "log_1790854333399",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"GRETA Bar YVR\" (Gastown)"
-    },
-    {
-      "id": "log_1790854333408",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"The Main\" (Mount Pleasant)"
-    },
-    {
-      "id": "log_1790854333417",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"Commodore Ballroom\" (Downtown)"
-    },
-    {
-      "id": "log_1790854333427",
-      "timestamp": "04:32:13",
-      "type": "NEW_VENUE",
-      "message": "[NEW VENUE ADDED] \"The Rec Room Granville\" (Downtown)"
-    },
-    {
-      "id": "log_1790854333439",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Vancouver Farmers Markets (EatLocal)\" (eatlocal.org)"
-    },
-    {
-      "id": "log_1790854333448",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Shop West 4th (Kitsilano 4th Avenue BIA)\" (shopwest4th.com)"
-    },
-    {
-      "id": "log_1790854333459",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"IQ 2000 Trivia\" (instagram.com)"
-    },
-    {
-      "id": "log_1790854333468",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"RUNVAN Community Hub\" (runvan.org)"
-    },
-    {
-      "id": "log_1790854333478",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Heart of the City Festival Guide\" (heartofthecityfestival.com)"
-    },
-    {
-      "id": "log_1790854333487",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Kitsilano Showboat Society Calendar\" (kitsilanoshowboat.com)"
-    },
-    {
-      "id": "log_1790854333496",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Car Free Days of Summer Hub\" (carfreevancouver.org)"
-    },
-    {
-      "id": "log_1790854333506",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Scene in the Dark\" (sceneinthedark.com)"
-    },
-    {
-      "id": "log_1790854333514",
-      "timestamp": "04:32:13",
-      "type": "NEW_SOURCE",
-      "message": "[NEW SOURCE ADDED] \"Vancouver Recreation Activity Portal\" (vanrec.ca)"
-    },
-    {
-      "id": "log_1791231251083",
-      "timestamp": "13:14:11",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: HEIST by Arun Lakra"
-    },
-    {
-      "id": "log_1791231251647",
-      "timestamp": "13:14:11",
+      "id": "log_1791558731991",
+      "timestamp": "08:12:11",
       "type": "CONFIRMED",
-      "message": "Sold-out detected: Babes In Canyon w/ Anna Smyrk & Shelby Natasha"
+      "message": "[CONFIRMED] \"Vancouver Writers Fest: All Eyes on the North\" • Date: 2026-10-25 at 13:30 ($28.00 CAD)"
     },
     {
-      "id": "log_1791231252452",
-      "timestamp": "13:14:12",
+      "id": "log_1791558732467",
+      "timestamp": "08:12:12",
+      "type": "INFO",
+      "message": "Calendar Verified: 'Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)' confirmed listed on venue calendar (https://www.hollywoodtheatre.ca/events/ginger-snaps-screening-with-q-a-from-katherine-isabelle)"
+    },
+    {
+      "id": "log_1791558732481",
+      "timestamp": "08:12:12",
       "type": "CONFIRMED",
-      "message": "Sold-out detected: SALIN (Live Soul & World Jazz)"
+      "message": "[CONFIRMED] \"Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)\" • Date: 2026-10-26 at 19:00 ($20.75 CAD)"
     },
     {
-      "id": "log_1791231252466",
-      "timestamp": "13:14:12",
+      "id": "log_1791558733094",
+      "timestamp": "08:12:13",
+      "type": "INFO",
+      "message": "Calendar Verified: 'VHS 2026 LAUNCH PARTY at GRETA BAR YVR' confirmed listed on venue calendar (https://vhs2026.eventive.org/schedule/6ac5d465ebe6694396c124e0)"
+    },
+    {
+      "id": "log_1791558733109",
+      "timestamp": "08:12:13",
       "type": "CONFIRMED",
-      "message": "Schedule rolled forward to upcoming showing: Harvest Days at VanDusen Botanical Garden (2026-10-10)"
+      "message": "[CONFIRMED] \"VHS 2026 LAUNCH PARTY at GRETA BAR YVR\" • Date: 2026-10-13 at 19:30 ($50.00 CAD)"
     },
     {
-      "id": "log_1791231253260",
-      "timestamp": "13:14:13",
+      "id": "log_1791558733845",
+      "timestamp": "08:12:13",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"TRICK 'R TREAT 19TH ANNIVERSARY SCREENING WITH MICHAEL DOUGHERTY\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aa0ba5c792abeccaa471f26) does not list or mention 'TRICK 'R TREAT 19TH ANNIVERSARY SCREENING WITH MICHAEL DOUGHERTY' or artist ''."
+    },
+    {
+      "id": "log_1791558734613",
+      "timestamp": "08:12:14",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"THE GLORIOUS DEAD\" BC PREMIERE & Madam\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6a95ff30cc460cb950b05ad1) does not list or mention '\"THE GLORIOUS DEAD\" BC PREMIERE & Madam' or artist ''."
+    },
+    {
+      "id": "log_1791558735269",
+      "timestamp": "08:12:15",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"WE ARE THE WEIRDOS, MISTER\" - STUDENT SHORTS PROGRAM\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf0c70e0fe10d808050059) does not list or mention '\"WE ARE THE WEIRDOS, MISTER\" - STUDENT SHORTS PROGRAM' or artist ''."
+    },
+    {
+      "id": "log_1791558735900",
+      "timestamp": "08:12:15",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"DRAG\" BC PREMIERE & The Craving\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdf0121837653741d18592) does not list or mention '\"DRAG\" BC PREMIERE & The Craving' or artist ''."
+    },
+    {
+      "id": "log_1791558736502",
+      "timestamp": "08:12:16",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"IMPOSTERS\" BC PREMIERE & Turn It Down\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdf32b44b17229827a268f) does not list or mention '\"IMPOSTERS\" BC PREMIERE & Turn It Down' or artist ''."
+    },
+    {
+      "id": "log_1791558736818",
+      "timestamp": "08:12:16",
+      "type": "INFO",
+      "message": "Calendar Verified: 'INSIDE THE CASTING ROOM: HORROR EDITION' confirmed listed on venue calendar (https://vhs2026.eventive.org/schedule/6aa70056efcfbb8960a0ded1)"
+    },
+    {
+      "id": "log_1791558736843",
+      "timestamp": "08:12:16",
       "type": "CONFIRMED",
-      "message": "Sold-out detected: Harvest Days at VanDusen Botanical Garden"
+      "message": "[CONFIRMED] \"INSIDE THE CASTING ROOM: HORROR EDITION\" • Date: 2026-10-15 at 15:00 ($20.00 CAD)"
     },
     {
-      "id": "log_1791231255058",
-      "timestamp": "13:14:15",
+      "id": "log_1791558737474",
+      "timestamp": "08:12:17",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"MOLLY, YOU IN DANGER, GIRL\" - SHORTS PROGRAM 1\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf19742a31bfdd7aef554c) does not list or mention '\"MOLLY, YOU IN DANGER, GIRL\" - SHORTS PROGRAM 1' or artist ''."
+    },
+    {
+      "id": "log_1791558738173",
+      "timestamp": "08:12:18",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"ITHAQUA\" BC PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6a9f886e02eda0286e8ea880) does not list or mention '\"ITHAQUA\" BC PREMIERE with FILMMAKER Q&A' or artist ''."
+    },
+    {
+      "id": "log_1791558738806",
+      "timestamp": "08:12:18",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"SLEEP NO MORE\" BC PREMIERE & Necrosectos\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aa6e0873e906e428e3f9971) does not list or mention '\"SLEEP NO MORE\" BC PREMIERE & Necrosectos' or artist ''."
+    },
+    {
+      "id": "log_1791558739153",
+      "timestamp": "08:12:19",
+      "type": "INFO",
+      "message": "Calendar Verified: 'THE FIRST FIVE MINUTES OF HORROR' confirmed listed on venue calendar (https://vhs2026.eventive.org/schedule/6aa6fdda73677ba99b3df6f4)"
+    },
+    {
+      "id": "log_1791558739199",
+      "timestamp": "08:12:19",
       "type": "CONFIRMED",
-      "message": "Sold-out detected: ACTORS with Sacred Skin, MØAA & DJ Evilyn 13"
+      "message": "[CONFIRMED] \"THE FIRST FIVE MINUTES OF HORROR\" • Date: 2026-10-16 at 11:00 ($20.00 CAD)"
     },
     {
-      "id": "log_1791231255926",
-      "timestamp": "13:14:15",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: The Sunday Service: Live Improv Comedy"
+      "id": "log_1791558739844",
+      "timestamp": "08:12:19",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"I SEE DEAD PEOPLE\" - SHORTS PROGRAM 2\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf4196a0c6e99b7d289963) does not list or mention '\"I SEE DEAD PEOPLE\" - SHORTS PROGRAM 2' or artist ''."
     },
     {
-      "id": "log_1791231258369",
-      "timestamp": "13:14:18",
+      "id": "log_1791558740208",
+      "timestamp": "08:12:20",
+      "type": "INFO",
+      "message": "Calendar Verified: 'INDIE HORROR DISTRIBUTION: FROM FESTIVAL BUZZ TO THEATRICAL RELEASE' confirmed listed on venue calendar (https://vhs2026.eventive.org/schedule/6aa6fedab9bd4f6f13bde0a1)"
+    },
+    {
+      "id": "log_1791558740232",
+      "timestamp": "08:12:20",
       "type": "CONFIRMED",
-      "message": "Sold-out detected: 00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+      "message": "[CONFIRMED] \"INDIE HORROR DISTRIBUTION: FROM FESTIVAL BUZZ TO THEATRICAL RELEASE\" • Date: 2026-10-16 at 15:00 ($20.00 CAD)"
     },
     {
-      "id": "log_1791231262721",
-      "timestamp": "13:14:22",
-      "type": "CONFIRMED",
-      "message": "Schedule rolled forward to upcoming showing: Sunday Jazz Vespers at St. Andrew's-Wesley (2026-10-11)"
+      "id": "log_1791558740889",
+      "timestamp": "08:12:20",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"WOULDST THOU LIKE TO LIVE DELICIOUSLY?\" - SHORTS PROGRAM 3\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf476ce3b4a37a3bdd6bcc) does not list or mention '\"WOULDST THOU LIKE TO LIVE DELICIOUSLY?\" - SHORTS PROGRAM 3' or artist ''."
     },
     {
-      "id": "log_1791231265048",
-      "timestamp": "13:14:25",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Concrete Vehicles with Hillsboro, WAIT//LESS, and LöLä"
+      "id": "log_1791558741539",
+      "timestamp": "08:12:21",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"UNHOLY NIGHT\" BC PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdf5ac615d2d2efa2ca13d) does not list or mention '\"UNHOLY NIGHT\" BC PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231267597",
-      "timestamp": "13:14:27",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: Guilt & Co. Live: Hollywood Alberta (with Ted Kim)"
+      "id": "log_1791558742183",
+      "timestamp": "08:12:22",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"TALKING TO A STRANGER\" CANADIAN PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdfa23748944783d65bad8) does not list or mention '\"TALKING TO A STRANGER\" CANADIAN PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231271208",
-      "timestamp": "13:14:31",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: 2nd Floor Gastown Live: Ikuko May Quartet"
+      "id": "log_1791558742818",
+      "timestamp": "08:12:22",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"DRAG\" SECOND SCREENING & The Craving\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6ac5e1f66afbafb9a03353ef) does not list or mention '\"DRAG\" SECOND SCREENING & The Craving' or artist ''."
     },
     {
-      "id": "log_1791231272416",
-      "timestamp": "13:14:32",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: The Rasmus"
+      "id": "log_1791558743455",
+      "timestamp": "08:12:23",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"ANCESTRAL BEASTS\" BC PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6ab12e2d5d096dfe07373cdc) does not list or mention '\"ANCESTRAL BEASTS\" BC PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231274127",
-      "timestamp": "13:14:34",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Chad VanGaalen"
+      "id": "log_1791558744100",
+      "timestamp": "08:12:24",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"ENCRYPTION\" WORLD PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aa6e1993a6c48087aca4f1c) does not list or mention '\"ENCRYPTION\" WORLD PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231274677",
-      "timestamp": "13:14:34",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Concrete Vehicles"
+      "id": "log_1791558744788",
+      "timestamp": "08:12:24",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"WE ALL GO A LITTLE MAD SOMETIMES\" - SHORTS PROGRAM 4\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf501f669844f717a83195) does not list or mention '\"WE ALL GO A LITTLE MAD SOMETIMES\" - SHORTS PROGRAM 4' or artist ''."
     },
     {
-      "id": "log_1791231275142",
-      "timestamp": "13:14:35",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Actors"
+      "id": "log_1791558745512",
+      "timestamp": "08:12:25",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"FROGMAN RETURNS\" BC PREMIERE & Ghosts in the Fog\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdf7271837653741d28360) does not list or mention '\"FROGMAN RETURNS\" BC PREMIERE & Ghosts in the Fog' or artist ''."
     },
     {
-      "id": "log_1791231275672",
-      "timestamp": "13:14:35",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Dune Rats"
+      "id": "log_1791558746191",
+      "timestamp": "08:12:26",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"YAGA\" WESTERN CANADIAN PREMIERE with SPECIAL GUESTS\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abb3a65c06a80959e601cc8) does not list or mention '\"YAGA\" WESTERN CANADIAN PREMIERE with SPECIAL GUESTS' or artist ''."
     },
     {
-      "id": "log_1791231282681",
-      "timestamp": "13:14:42",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: BUZZ KULL & KONTRAVOID Live at The Biltmore"
+      "id": "log_1791558746826",
+      "timestamp": "08:12:26",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"FRIDAY THE 69TH\" BC PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abcb1674c42ade33c13ef5c) does not list or mention '\"FRIDAY THE 69TH\" BC PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231289339",
-      "timestamp": "13:14:49",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: HEIST by Arun Lakra"
+      "id": "log_1791558747481",
+      "timestamp": "08:12:27",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"THEY ALWAYS COME AT NIGHT\" CANADIAN PREMIERE & Daddy Lazarus\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6ab1311e065bb0220f65beb7) does not list or mention '\"THEY ALWAYS COME AT NIGHT\" CANADIAN PREMIERE & Daddy Lazarus' or artist ''."
     },
     {
-      "id": "log_1791231289815",
-      "timestamp": "13:14:49",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Babes In Canyon w/ Anna Smyrk & Shelby Natasha"
+      "id": "log_1791558748068",
+      "timestamp": "08:12:28",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"IMPOSTERS\" SECOND SCREENING & Turn It Down\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6ac5e2cc03ca74113ba8e693) does not list or mention '\"IMPOSTERS\" SECOND SCREENING & Turn It Down' or artist ''."
     },
     {
-      "id": "log_1791231290532",
-      "timestamp": "13:14:50",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: SALIN (Live Soul & World Jazz)"
+      "id": "log_1791558748635",
+      "timestamp": "08:12:28",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"SOMETIMES, DEAD IS BETTER\" - SHORTS PROGRAM 5\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aaf5790dd92432e20e5298f) does not list or mention '\"SOMETIMES, DEAD IS BETTER\" - SHORTS PROGRAM 5' or artist ''."
     },
     {
-      "id": "log_1791231290546",
-      "timestamp": "13:14:50",
-      "type": "CONFIRMED",
-      "message": "Schedule rolled forward to upcoming showing: Harvest Days at VanDusen Botanical Garden (2026-10-10)"
+      "id": "log_1791558749331",
+      "timestamp": "08:12:29",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"TABLE READ SERIES\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6aa70b43733bd51ae73568bb) does not list or mention 'TABLE READ SERIES' or artist ''."
     },
     {
-      "id": "log_1791231291244",
-      "timestamp": "13:14:51",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Harvest Days at VanDusen Botanical Garden"
+      "id": "log_1791558749931",
+      "timestamp": "08:12:29",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"\"REMNANT\" CANADIAN PREMIERE with FILMMAKER Q&A\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abf0c48b73922b4e5aaa6a0) does not list or mention '\"REMNANT\" CANADIAN PREMIERE with FILMMAKER Q&A' or artist ''."
     },
     {
-      "id": "log_1791231292691",
-      "timestamp": "13:14:52",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: ACTORS with Sacred Skin, MØAA & DJ Evilyn 13"
+      "id": "log_1791558750530",
+      "timestamp": "08:12:30",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"GOLDEN TAPE AWARDS\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdfbf875282d6398af5092) does not list or mention 'GOLDEN TAPE AWARDS' or artist ''."
     },
     {
-      "id": "log_1791231293445",
-      "timestamp": "13:14:53",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: The Sunday Service: Live Improv Comedy"
-    },
-    {
-      "id": "log_1791231295009",
-      "timestamp": "13:14:55",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: 00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
-    },
-    {
-      "id": "log_1791231298785",
-      "timestamp": "13:14:58",
-      "type": "CONFIRMED",
-      "message": "Schedule rolled forward to upcoming showing: Sunday Jazz Vespers at St. Andrew's-Wesley (2026-10-11)"
-    },
-    {
-      "id": "log_1791231300760",
-      "timestamp": "13:15:00",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Concrete Vehicles with Hillsboro, WAIT//LESS, and LöLä"
-    },
-    {
-      "id": "log_1791231303096",
-      "timestamp": "13:15:03",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: Guilt & Co. Live: Hollywood Alberta (with Ted Kim)"
-    },
-    {
-      "id": "log_1791231306727",
-      "timestamp": "13:15:06",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: 2nd Floor Gastown Live: Ikuko May Quartet"
-    },
-    {
-      "id": "log_1791231307874",
-      "timestamp": "13:15:07",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: The Rasmus"
-    },
-    {
-      "id": "log_1791231309692",
-      "timestamp": "13:15:09",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Chad VanGaalen"
-    },
-    {
-      "id": "log_1791231310284",
-      "timestamp": "13:15:10",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Concrete Vehicles"
-    },
-    {
-      "id": "log_1791231310822",
-      "timestamp": "13:15:10",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Actors"
-    },
-    {
-      "id": "log_1791231311567",
-      "timestamp": "13:15:11",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: Dune Rats"
-    },
-    {
-      "id": "log_1791231317340",
-      "timestamp": "13:15:17",
-      "type": "CONFIRMED",
-      "message": "Sold-out detected: BUZZ KULL & KONTRAVOID Live at The Biltmore"
-    },
-    {
-      "id": "log_1791246479597",
-      "timestamp": "17:27:59",
-      "type": "CONFIRMED",
-      "message": "Schedule rolled forward to upcoming showing: VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation) (2026-10-11)"
-    },
-    {
-      "id": "log_1791304197369",
-      "timestamp": "09:29:57",
-      "type": "ARCHIVED",
-      "message": "Event concluded and marked past: Guilt & Co. Live: Funk Yourself (with Sara Carbone)"
+      "id": "log_1791558751143",
+      "timestamp": "08:12:31",
+      "type": "QUARANTINED",
+      "message": "[QUARANTINED] \"INSIDE \"SLiTHER\": 20 years of Vancouver's FX classic\" • Reason: Calendar Drift: Destination venue calendar (https://vhs2026.eventive.org/schedule/6abdfb4d319a452626c1eb13) does not list or mention 'INSIDE \"SLiTHER\": 20 years of Vancouver's FX classic' or artist ''."
     }
   ]
 }

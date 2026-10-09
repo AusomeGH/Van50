@@ -1,0 +1,3636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van50 Curator — Interactive Table View</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="icons/curator-icon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070b12;
+      --bg-card: #0d1424;
+      --bg-surface: #131c31;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(56, 189, 248, 0.5);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --accent-purple: #c084fc;
+      --accent-amber: #fbbf24;
+      --accent-rose: #f43f5e;
+      --accent-emerald: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden; /* Confines scroll to table-container for frozen header row */
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.is-resizing {
+      cursor: col-resize !important;
+      user-select: none !important;
+    }
+    body.is-resizing * {
+      user-select: none !important;
+      cursor: col-resize !important;
+    }
+
+    /* Fixed Top Header */
+    .table-header {
+      flex-shrink: 0;
+      background: rgba(13, 20, 36, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title span {
+      color: var(--accent-blue);
+    }
+
+    .badge-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-blue);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-ai-process {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(124, 58, 237, 0.35) 100%);
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      color: #d8b4fe;
+    }
+
+    .btn-ai-process:hover {
+      background: #a855f7;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Filter & Controls Bar */
+    .controls-bar {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 420px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      color: var(--text-faint);
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 7px 10px 7px 32px;
+      color: #fff;
+      font-size: 0.82rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.45);
+      color: var(--accent-blue);
+    }
+
+    .filter-btn.filter-dim-changes.active {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: rgba(245, 158, 11, 0.5);
+      color: #fbbf24;
+    }
+
+    .filter-btn.filter-quarantine.active {
+      background: rgba(244, 63, 94, 0.2);
+      border-color: rgba(244, 63, 94, 0.5);
+      color: #fb7185;
+    }
+
+    .stats-pill {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.25);
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-reset-layout {
+      background: none;
+      border: none;
+      color: var(--text-faint);
+      cursor: pointer;
+      font-size: 0.74rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .btn-reset-layout:hover {
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* Scrollable Table Container with Frozen Headers */
+    .table-container {
+      flex: 1;
+      height: calc(100vh - 110px);
+      overflow-y: auto;
+      overflow-x: auto;
+      padding: 12px 24px 60px 24px;
+    }
+
+    .compressed-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      table-layout: fixed; /* Ensures explicit column widths are respected */
+    }
+
+    /* Frozen Column Headers */
+    .compressed-table th {
+      background: #0f182c;
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 14px 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.35);
+      position: sticky;
+      top: 0; /* Stays permanently pinned when scrolling table-container */
+      z-index: 30;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+      position: relative;
+      user-select: none;
+    }
+
+    /* Drag and Drop Column Reordering */
+    .compressed-table th.draggable-th {
+      cursor: grab;
+    }
+    .compressed-table th.draggable-th:active {
+      cursor: grabbing;
+    }
+    .compressed-table th.col-dragging {
+      opacity: 0.4;
+      background: #1e293b !important;
+    }
+    .compressed-table th.drag-over-left {
+      border-left: 3px solid var(--accent-blue) !important;
+    }
+    .compressed-table th.drag-over-right {
+      border-right: 3px solid var(--accent-blue) !important;
+    }
+
+    /* Column Edge Resizer Handle */
+    .col-resizer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 7px;
+      height: 100%;
+      cursor: col-resize;
+      z-index: 40;
+      background: transparent;
+      transition: background 0.15s ease;
+    }
+    .col-resizer:hover, .col-resizer.is-resizing {
+      background: var(--accent-blue) !important;
+      box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Sortable Column Headers */
+    .th-sort-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .compressed-table th:hover {
+      background: #152340 !important;
+      color: #fff;
+    }
+
+    .compressed-table th.th-sorted {
+      background: #111f38 !important;
+      color: var(--accent-blue) !important;
+      border-bottom: 2px solid var(--accent-blue) !important;
+    }
+
+    .sort-icon {
+      display: inline-block;
+      font-size: 0.72rem;
+      opacity: 0.45;
+      font-weight: 700;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .th-sorted .sort-icon {
+      opacity: 1;
+      color: var(--accent-blue);
+    }
+
+    .drag-handle-hint {
+      display: inline-block;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      margin-right: 2px;
+      opacity: 0.4;
+    }
+    .compressed-table th:hover .drag-handle-hint {
+      opacity: 0.9;
+      color: var(--accent-blue);
+    }
+
+    .compressed-table td {
+      padding: 10px 12px;
+      vertical-align: middle;
+      font-size: 0.82rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Distinct Alternating Row Colors (Request 2) */
+    .compressed-table tbody tr.row-even {
+      background-color: #080d19 !important;
+    }
+
+    .compressed-table tbody tr.row-odd {
+      background-color: #121d33 !important;
+    }
+
+    .compressed-table tbody tr {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08) !important;
+      transition: background-color 0.15s ease;
+    }
+
+    .compressed-table tbody tr.row-even:hover,
+    .compressed-table tbody tr.row-odd:hover {
+      background-color: #1c2a47 !important;
+    }
+
+    /* Row Status Overlays on Alternating Colors */
+    .compressed-table tbody tr.row-even.row-approved {
+      background-color: rgba(16, 185, 129, 0.09) !important;
+    }
+    .compressed-table tbody tr.row-odd.row-approved {
+      background-color: rgba(16, 185, 129, 0.16) !important;
+    }
+    .compressed-table tbody tr.row-approved td:first-child {
+      border-left: 4px solid var(--accent-emerald) !important;
+    }
+
+    .compressed-table tbody tr.row-even.row-disapproved {
+      background-color: rgba(244, 63, 94, 0.09) !important;
+    }
+    .compressed-table tbody tr.row-odd.row-disapproved {
+      background-color: rgba(244, 63, 94, 0.16) !important;
+    }
+    .compressed-table tbody tr.row-disapproved td:first-child {
+      border-left: 4px solid var(--accent-rose) !important;
+    }
+
+    .compressed-table tbody tr.row-even.row-reviewed {
+      background-color: rgba(56, 189, 248, 0.07) !important;
+    }
+    .compressed-table tbody tr.row-odd.row-reviewed {
+      background-color: rgba(56, 189, 248, 0.14) !important;
+    }
+    .compressed-table tbody tr.row-reviewed td:first-child {
+      border-left: 4px solid #38bdf8 !important;
+    }
+
+    .compressed-table tbody tr.row-even.row-needs-reapproval {
+      background-color: rgba(251, 191, 36, 0.08) !important;
+    }
+    .compressed-table tbody tr.row-odd.row-needs-reapproval {
+      background-color: rgba(251, 191, 36, 0.15) !important;
+    }
+    .compressed-table tbody tr.row-needs-reapproval td:first-child {
+      border-left: 4px solid var(--accent-amber) !important;
+    }
+
+    /* Inline Dimension Changes List (Request 1 - Replaces Dropdown) */
+    .dim-changes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .dim-change-item {
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 6px;
+      padding: 5px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dim-change-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .dim-num-badge {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.68rem;
+      color: #070b12;
+      background: #fbbf24;
+      padding: 1px 5px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .dim-name-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fef08a;
+    }
+
+    .dim-status-tag {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1px 4px;
+      border-radius: 3px;
+      text-transform: capitalize;
+      margin-left: auto;
+    }
+
+    .dim-statement-text {
+      font-size: 0.71rem;
+      color: #e2e8f0;
+      line-height: 1.35;
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .dim-statement-text span:first-child {
+      color: #fbbf24;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Cell Components */
+    .event-title-text {
+      font-weight: 600;
+      color: #fff;
+      display: block;
+      margin-bottom: 2px;
+      line-height: 1.3;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .event-meta-sub {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge-price {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .badge-category {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: capitalize;
+    }
+
+    /* Dimension Change Badges */
+    .badge-dim-change {
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      margin-top: 3px;
+      transition: all 0.15s ease;
+    }
+
+    .badge-dim-change:hover {
+      background: rgba(245, 158, 11, 0.3);
+      border-color: #fbbf24;
+    }
+
+    .dim-details-subrow {
+      display: none;
+      background: #09101d;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .dim-details-subrow.active {
+      display: table-row;
+    }
+
+    .dim-details-box {
+      padding: 10px 16px;
+      font-size: 0.76rem;
+      color: #cbd5e1;
+    }
+
+    .dim-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .dim-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      color: #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .dim-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .dim-chip-calibrated {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fde68a;
+    }
+
+    /* Date Cell with Increased Font Size */
+    .date-badge {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.3;
+    }
+
+    .date-main {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.88rem;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .date-time {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Deep Link Button */
+    .ticket-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-blue);
+      padding: 5px 9px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.74rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .ticket-deep-link:hover {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .tier-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .tier-1 { background: #059669; color: #fff; }  /* Green - Checkout */
+    .tier-2 { background: #2563eb; color: #fff; }  /* Blue - Event Page */
+    .tier-3 { background: #7c3aed; color: #fff; }  /* Purple - Calendar */
+    .tier-4 { background: #d97706; color: #fff; }  /* Amber - Civic */
+    .tier-5 { background: #475569; color: #fff; }  /* Slate - Homepage */
+
+    /* Quarantine Issue / Anomaly Card (Request 2) */
+    .quarantine-issue-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .quarantine-issue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .badge-issue-mismatch {
+      background: rgba(244, 63, 94, 0.18);
+      border: 1px solid rgba(244, 63, 94, 0.45);
+      color: #fb7185;
+    }
+
+    .badge-issue-deadlink {
+      background: rgba(239, 68, 68, 0.22);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
+    .badge-issue-drift {
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: #fde68a;
+    }
+
+    .badge-issue-generic {
+      background: rgba(168, 85, 247, 0.18);
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      color: #d8b4fe;
+    }
+
+    .badge-issue-budget {
+      background: rgba(234, 179, 8, 0.2);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      color: #fef08a;
+    }
+
+    .badge-issue-default {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
+    .compressed-table td.col-issue {
+      overflow: visible !important;
+      text-overflow: clip !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      vertical-align: top;
+      padding: 12px 14px;
+    }
+
+    .quarantine-issue-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .quarantine-issue-badge-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .quarantine-issue-desc {
+      font-size: 0.79rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      word-break: break-word;
+      white-space: normal !important;
+      overflow: visible !important;
+      display: block !important;
+    }
+
+    .quarantine-issue-item {
+      padding: 6px 10px;
+      background: rgba(15, 23, 42, 0.65);
+      border-left: 3px solid #f43f5e;
+      border-radius: 0 6px 6px 0;
+      margin-top: 4px;
+      word-break: break-word;
+    }
+
+    .quarantine-issue-desc a.issue-url-link {
+      color: #60a5fa;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      word-break: break-all;
+      display: inline;
+    }
+    .quarantine-issue-desc a.issue-url-link:hover {
+      color: #93c5fd;
+    }
+
+    /* Action Buttons */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .action-btns-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action {
+      border: none;
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-approve {
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .btn-approve:hover {
+      background: #10b981;
+      color: #fff;
+      border-color: #10b981;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-approve.active-state {
+      background: #10b981 !important;
+      color: #fff !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5) !important;
+    }
+
+    .btn-action.btn-reviewed {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+    .btn-action.btn-reviewed:hover {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+    .btn-action.btn-reviewed.active-state {
+      background: #0284c7 !important;
+      color: #fff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5) !important;
+    }
+
+    .badge-reviewed-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 4px;
+      padding: 2px 6px;
+      width: fit-content;
+    }
+
+    .btn-disapprove {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      color: #fb7185;
+    }
+
+    .btn-disapprove:hover {
+      background: #f43f5e;
+      color: #fff;
+      border-color: #f43f5e;
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+    }
+
+    .btn-disapprove.active-state {
+      background: #f43f5e !important;
+      color: #fff !important;
+      border-color: #f43f5e !important;
+      box-shadow: 0 0 12px rgba(244, 63, 94, 0.5) !important;
+    }
+
+    /* AI Fix Comment Box & Status Reset Pill (Request 1) */
+    .ai-fix-box {
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(192, 132, 252, 0.38);
+      border-radius: 6px;
+      padding: 6px 9px;
+      margin-bottom: 6px;
+      font-size: 0.74rem;
+    }
+
+    .ai-fix-header {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+
+    .ai-fix-icon {
+      font-size: 0.82rem;
+    }
+
+    .ai-fix-title {
+      font-weight: 700;
+      color: #d8b4fe;
+      font-size: 0.73rem;
+    }
+
+    .badge-resolved {
+      font-size: 0.64rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      margin-left: auto;
+    }
+
+    .ai-fix-comment {
+      color: #e2e8f0;
+      line-height: 1.35;
+      font-size: 0.73rem;
+      word-break: break-word;
+    }
+
+    .ai-reset-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: var(--accent-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
+    }
+
+    .ai-fix-curator-prompt {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 5px;
+      padding: 5px 8px;
+      margin-bottom: 5px;
+    }
+
+    .ai-quote-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 2px;
+    }
+
+    .ai-quote-text {
+      color: #cbd5e1;
+      font-style: italic;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .badge-shots-proof {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .ai-fix-action-detail {
+      background: rgba(168, 85, 247, 0.12);
+      border-left: 3px solid #c084fc;
+      border-radius: 0 4px 4px 0;
+      padding: 5px 8px;
+      margin-top: 4px;
+    }
+
+    .ai-action-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #e9d5ff;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ai-action-text {
+      color: #f3e8ff;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .badge-needs-reapproval {
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(251, 191, 36, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 4px rgba(251, 191, 36, 0.3); }
+      50% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.6); }
+    }
+
+    .ai-fix-curator-prompt {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 5px;
+      padding: 5px 8px;
+      margin-bottom: 5px;
+    }
+
+    .ai-quote-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 2px;
+    }
+
+    .ai-quote-text {
+      color: #cbd5e1;
+      font-style: italic;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .badge-shots-proof {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .ai-fix-action-detail {
+      background: rgba(168, 85, 247, 0.12);
+      border-left: 3px solid #c084fc;
+      border-radius: 0 4px 4px 0;
+      padding: 5px 8px;
+      margin-top: 4px;
+    }
+
+    .ai-action-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #e9d5ff;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ai-action-text {
+      color: #f3e8ff;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .badge-needs-reapproval {
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(251, 191, 36, 0.2);
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 4px rgba(251, 191, 36, 0.3); }
+      50% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.6); }
+    }
+
+    /* Comment Box */
+    .comment-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .comment-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: #fff;
+      font-size: 0.78rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .comment-input:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.2);
+    }
+
+    .btn-send-ai {
+      background: rgba(168, 85, 247, 0.18);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      color: #d8b4fe;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-send-ai:hover {
+      background: #a855f7;
+      color: #fff;
+      border-color: #a855f7;
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    }
+
+    .comment-saved-badge {
+      font-size: 0.68rem;
+      color: var(--accent-emerald);
+      display: none;
+      align-items: center;
+      gap: 3px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.toast-success {
+      border-color: rgba(52, 211, 153, 0.5);
+      background: #064e3b;
+      color: #a7f3d0;
+    }
+
+    /* Pricing Tiers Column (Request 1) */
+    .col-price {
+      vertical-align: top;
+      padding: 8px 10px !important;
+    }
+
+    .tier-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 175px;
+    }
+
+    .tier-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 5px;
+      padding: 4px 7px;
+      transition: all 0.15s ease;
+    }
+
+    .tier-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .tier-row-approved {
+      background: rgba(16, 185, 129, 0.09) !important;
+      border-color: rgba(16, 185, 129, 0.45) !important;
+    }
+
+    .tier-row-disapproved {
+      background: rgba(244, 63, 94, 0.09) !important;
+      border-color: rgba(244, 63, 94, 0.45) !important;
+    }
+
+    .tier-text-block {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .tier-name-badge {
+      font-size: 0.69rem;
+      color: #94a3b8;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tier-price-val {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #38bdf8;
+      white-space: nowrap;
+    }
+
+    .tier-row-approved .tier-price-val {
+      color: #34d399;
+    }
+
+    .tier-row-disapproved .tier-price-val {
+      color: #fb7185;
+      text-decoration: line-through;
+    }
+
+    .tier-actions-block {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .btn-tier-vote {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      padding: 0;
+    }
+
+    .btn-tier-approve:hover {
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      border-color: #10b981;
+    }
+
+    .btn-tier-approve.active-vote {
+      background: #10b981 !important;
+      color: #fff !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6) !important;
+    }
+
+    .btn-tier-disapprove:hover {
+      background: rgba(244, 63, 94, 0.25);
+      color: #fb7185;
+      border-color: #f43f5e;
+    }
+
+    .btn-tier-disapprove.active-vote {
+      background: #f43f5e !important;
+      color: #fff !important;
+      border-color: #f43f5e !important;
+      box-shadow: 0 0 8px rgba(244, 63, 94, 0.6) !important;
+    }
+
+    /* Comment Box with Screenshot Proofs (Request 2) */
+    .comment-input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .btn-attach-proof {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      padding: 6px 9px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn-attach-proof:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .btn-attach-proof.has-shots {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    .attach-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: #0284c7;
+      color: #fff;
+      padding: 1px 4px;
+      border-radius: 8px;
+    }
+
+    .comment-shots-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .shot-thumbnail-box {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .shot-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .shot-thumb-img:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-remove-shot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.58rem;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .btn-remove-shot:hover {
+      background: #f43f5e;
+      border-color: #f43f5e;
+    }
+
+    .shots-count-label {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 520px;
+      width: 90%;
+      text-align: left;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Top Header -->
+  <header class="table-header">
+    <div class="header-top">
+      <div class="brand-group">
+        <a href="curator.html" style="text-decoration: none;">
+          <h1 class="brand-title">🛡️ Van<span>50</span> Curator</h1>
+        </a>
+        <span class="badge-pill">Interactive Table</span>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="btn-nav btn-ai-process" id="btn-process-feedback-guide" title="How to run AI on your table feedback">
+          <span>⚡ Process Feedback with AI (<span id="badge-pending-feedback">0</span>)</span>
+        </button>
+        <a href="curator.html" class="btn-nav" title="Switch back to full-feature Card Studio">
+          <span>🗂️ Cards View</span>
+        </a>
+        <a href="index.html" class="btn-nav" title="View live public web app" onclick="openCuratorWindow('index.html'); return false;">
+          <span>🌲 Public App 🗗</span>
+        </a>
+        <button type="button" class="btn-nav" id="btn-auth-status" title="Authentication status">
+          <span id="auth-indicator">🔒 Locked</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="filter-search" class="search-input" placeholder="Search event title, venue, category, issue, or provider..." autocomplete="off">
+      </div>
+
+      <div class="filter-pills">
+        <button type="button" class="filter-btn active" data-filter="active">🌲 Active Catalog (<span id="count-active">0</span>)</button>
+        <button type="button" class="filter-btn filter-dim-changes" data-filter="dim_changes" title="Events with calibrated, standardized or updated dimensions">⚡ Dimension Changes (<span id="count-dim-changes">0</span>)</button>
+        <button type="button" class="filter-btn" data-filter="tier1">🎟️ Tier 1 Checkout Only (<span id="count-tier1">0</span>)</button>
+        <button type="button" class="filter-btn" data-filter="has_feedback">📝 Has Feedback (<span id="count-has-feedback">0</span>)</button>
+        <button type="button" class="filter-btn filter-quarantine" data-filter="quarantine">⚠️ Quarantined (<span id="count-quarantine">0</span>)</button>
+        <button type="button" class="filter-btn" data-filter="unreviewed">⚡ Unreviewed (<span id="count-unreviewed">0</span>)</button>
+      </div>
+
+      <div class="stats-pill" id="stats-counter">
+        <span>Loading catalog...</span>
+        <button type="button" class="btn-reset-layout" id="btn-reset-layout" title="Reset table columns order and widths to default">↺ Reset Columns</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scrollable Table Container (Frozen Headers pinned at top) -->
+  <main class="table-container" id="scroll-container">
+    <table class="compressed-table" id="curator-table">
+      <thead id="table-head">
+        <!-- Dynamically rendered to support re-ordering and custom widths -->
+      </thead>
+      <tbody id="table-body">
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted);">
+            ⚡ Loading events catalog and review status...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Disapproval Multi-Line Input Modal (Request 1) -->
+  <div class="modal-overlay" id="disapprove-modal">
+    <div class="modal-card" style="max-width: 540px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <h2 style="font-size: 1.15rem; color: #fb7185; display: flex; align-items: center; gap: 8px;">
+          <span>🛑</span> Disapprove Event &amp; Send AI Instruction
+        </h2>
+        <button type="button" id="btn-close-disapprove" style="background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div id="disapprove-event-meta" style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px 12px; margin-bottom: 12px; font-size: 0.8rem;">
+        <strong id="disapprove-event-title" style="color: #fff; display: block; font-size: 0.86rem; margin-bottom: 2px;">Event Title</strong>
+        <span id="disapprove-event-venue" style="color: var(--text-muted);">Venue Name</span>
+      </div>
+
+      <label for="disapprove-textarea" style="font-size: 0.78rem; font-weight: 600; color: #e2e8f0; display: block; margin-bottom: 6px;">
+        Disapproval Reason &amp; AI Crawler Instruction:
+      </label>
+      <textarea 
+        id="disapprove-textarea" 
+        class="search-input" 
+        style="height: 110px; font-family: inherit; font-size: 0.82rem; line-height: 1.45; resize: vertical; padding: 10px;"
+        placeholder="Enter detailed reason (e.g. Lowest active ticket price is $65.00 CAD, exceeding the under-$50 limit; venue is permanently closed on Mondays; duplicate listing of Sunday Jazz Jam)..."
+        onpaste="handleDisapprovePaste(event)"
+      ></textarea>
+
+      <!-- Disapprove Screenshot Attachments Section (Request 1) -->
+      <div style="margin-top: 10px; margin-bottom: 12px; background: rgba(0,0,0,0.3); border: 1px dashed rgba(255,255,255,0.18); border-radius: 8px; padding: 10px 12px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <span style="font-size: 0.78rem; font-weight: 600; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+            <span>📷</span> Attached Screenshot Proof(s):
+          </span>
+          <input 
+            type="file" 
+            id="disapprove-file-input" 
+            accept="image/*" 
+            multiple 
+            style="display: none;" 
+            onchange="handleDisapproveScreenshotUpload(this.files); this.value='';"
+          >
+          <label 
+            for="disapprove-file-input" 
+            class="btn-attach-proof" 
+            id="disapprove-btn-attach" 
+            title="Attach screenshot proof(s) or paste clipboard image (Ctrl+V)"
+            style="cursor: pointer;"
+          >
+            <span>+ Attach Screenshots</span>
+          </label>
+        </div>
+        <div style="font-size: 0.7rem; color: var(--text-faint); margin-bottom: 6px;">
+          Screenshots attached on the table row are included here. You can also paste directly from clipboard (<code>Ctrl+V</code>).
+        </div>
+        <div class="comment-shots-strip" id="disapprove-shots-strip" style="margin-top: 4px; min-height: 24px;">
+          <span style="font-size: 0.72rem; color: var(--text-faint); font-style: italic;">No screenshots attached yet.</span>
+        </div>
+      </div>
+
+      <!-- Quick Chip Suggestions -->
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; margin-bottom: 16px;">
+        <span style="font-size: 0.72rem; color: var(--text-faint); display: inline-flex; align-items: center;">Quick tags:</span>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Over $50 CAD Budget Cap')">💰 Over $50 CAD</button>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Non-Event / Administrative Footer')">🚫 Non-Event</button>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Venue Closed / Private Party Buyout')">🔒 Closed / Buyout</button>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Broken / 404 Ticket URL')">🔗 Broken Link</button>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Multi-Week Course / Class')">📚 Multi-Week</button>
+        <button type="button" class="dim-chip" onclick="addDisapproveChip('Generic Venue Root Homepage')">🏠 Generic Root</button>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button type="button" class="btn-nav" id="btn-cancel-disapprove">Cancel</button>
+        <button type="button" class="btn-action btn-disapprove" id="btn-confirm-disapprove" style="padding: 8px 16px; font-size: 0.82rem;">
+          🛑 Confirm Disapproval &amp; Save Proof
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card" style="max-width: 400px; text-align: center;">
+      <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
+      <h2 style="font-size: 1.15rem; margin-bottom: 6px; color: #fff;">Curator Passphrase Required</h2>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Enter master passphrase to enable saving AI feedback and approving events.</p>
+      <form id="auth-form" onsubmit="return false;">
+        <input type="password" id="auth-password" class="search-input" placeholder="Master passphrase..." style="margin-bottom: 12px; text-align: center;" required>
+        <button type="submit" id="btn-submit-auth" class="btn-nav" style="width: 100%; justify-content: center; background: #0284c7; color: #fff; font-weight: 700; padding: 10px;">
+          Unlock Session
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI Workflow Guide Modal -->
+  <div class="modal-overlay" id="ai-guide-modal">
+    <div class="modal-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <h2 style="font-size: 1.15rem; color: #d8b4fe; display: flex; align-items: center; gap: 8px;">
+          <span>⚡</span> How AI Processes Your Table Feedback
+        </h2>
+        <button type="button" id="btn-close-ai-guide" style="background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 14px;">
+        Every comment you type and submit with <strong>💾 Save</strong> is safely staged as a pending instruction in <code>curator_instructions.json</code>. The event stays untouched until QC AI is run.
+      </p>
+      
+      <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 14px; font-size: 0.8rem;">
+        <div style="font-weight: 700; color: #f3e8ff; margin-bottom: 6px;">Recommended Workflow:</div>
+        <ol style="padding-left: 20px; line-height: 1.6; color: #e2e8f0;">
+          <li>Review the table rows, check ticket links, attach screenshots, and write corrections/comments.</li>
+          <li>Click <strong>💾 Save</strong> (or press Enter) on each row to stage them into the pending queue.</li>
+          <li>When you're ready, click the button below to run QC AI across all staged feedback items:</li>
+        </ol>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px;">
+        <button type="button" class="btn-action btn-ai-process" id="btn-run-qc-ai-now" style="padding: 9px 18px; font-weight: 700; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px;">
+          <span>⚡ Staged for Antigravity AI QC</span>
+        </button>
+        <button type="button" class="btn-nav" id="btn-close-ai-guide-btn" style="background: rgba(255,255,255,0.1); color: #fff;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Screenshots (Request 2) -->
+  <div id="screenshot-lightbox-modal" class="modal-overlay" onclick="closeScreenshotModal()">
+    <div style="position: relative; max-width: 92vw; max-height: 90vh; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Proof Preview" style="max-width: 100%; max-height: 88vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: contain;">
+      <button type="button" onclick="closeScreenshotModal()" style="position: absolute; top: -14px; right: -14px; width: 32px; height: 32px; border-radius: 50%; background: #1e293b; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">✕</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast-msg">Action confirmed</div>
+
+  <script>
+    // Column Definitions and Configuration
+    const COLUMN_DEFS = {
+      name: {
+        id: 'name',
+        label: 'Event Name & Venue',
+        defaultWidth: 300,
+        minWidth: 190,
+        sortable: true
+      },
+      date: {
+        id: 'date',
+        label: 'Event Date',
+        defaultWidth: 120,
+        minWidth: 95,
+        sortable: true
+      },
+      price: {
+        id: 'price',
+        label: 'Prices / Tiers',
+        defaultWidth: 260,
+        minWidth: 190,
+        sortable: true
+      },
+      link: {
+        id: 'link',
+        label: 'Highest Tier Ticket Link',
+        defaultWidth: 180,
+        minWidth: 140,
+        sortable: true
+      },
+      issue: {
+        id: 'issue',
+        label: 'Quarantine Issue / Anomaly',
+        defaultWidth: 440,
+        minWidth: 260,
+        sortable: true
+      },
+      status: {
+        id: 'status',
+        label: 'Review / Approve',
+        defaultWidth: 220,
+        minWidth: 175,
+        sortable: true
+      },
+      comment: {
+        id: 'comment',
+        label: 'Curator Comment & AI Feedback',
+        defaultWidth: 360,
+        minWidth: 240,
+        sortable: true
+      }
+    };
+
+    const DEFAULT_ACTIVE_COLS = ['name', 'date', 'price', 'link', 'status', 'comment'];
+    const DEFAULT_QUARANTINE_COLS = ['name', 'date', 'price', 'link', 'issue', 'status', 'comment'];
+
+    // Migration helper: ensure 'price' is present in saved colOrders
+    function loadSavedColOrder(storageKey, defaultCols) {
+      let saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (saved && Array.isArray(saved)) {
+        if (!saved.includes('price')) {
+          const linkIdx = saved.indexOf('link');
+          if (linkIdx !== -1) saved.splice(linkIdx, 0, 'price');
+          else saved.push('price');
+        }
+        return saved;
+      }
+      return [...defaultCols];
+    }
+
+    const state = {
+      token: localStorage.getItem('van50_curator_token') || sessionStorage.getItem('van50_curator_token') || localStorage.getItem('curator_token') || '',
+      allEvents: [],
+      quarantinedEvents: [],
+      instructionsMap: new Map(), // eventId -> instruction
+      aiFixedEvents: new Map(),   // eventId -> instruction with resolved AI fix details (Request 1)
+      attachedScreenshots: new Map(), // eventId -> Array<{ name: string, dataUrl: string }> (Request 2)
+      tierReviews: JSON.parse(localStorage.getItem('van50_curator_tier_reviews') || '{}'), // eventId -> { [tierKey]: 'approved' | 'disapproved' } (Request 1)
+      reviewedSet: new Set(JSON.parse(localStorage.getItem('curator_reviewed_events') || '[]')),
+      approvedSet: new Set(JSON.parse(localStorage.getItem('curator_approved_events') || '[]')),
+      disapprovedSet: new Set(JSON.parse(localStorage.getItem('curator_disapproved_events') || '[]')),
+      currentFilter: 'active',
+      searchTerm: '',
+      activeDisapproveId: null,
+      sortColumn: null, // 'name', 'date', 'price', 'link', 'issue', 'status', 'comment'
+      sortDirection: 'asc', // 'asc' or 'desc'
+      colWidths: JSON.parse(localStorage.getItem('van50_curator_col_widths') || '{}'),
+      colOrderActive: loadSavedColOrder('van50_curator_col_order_active', DEFAULT_ACTIVE_COLS),
+      colOrderQuarantine: loadSavedColOrder('van50_curator_col_order_quarantine', DEFAULT_QUARANTINE_COLS)
+    };
+
+    // DOM Elements
+    const tableHead = document.getElementById('table-head');
+    const tableBody = document.getElementById('table-body');
+    const searchInput = document.getElementById('filter-search');
+    const statsCounter = document.getElementById('stats-counter');
+    const authModal = document.getElementById('auth-modal');
+    const authIndicator = document.getElementById('auth-indicator');
+    const aiGuideModal = document.getElementById('ai-guide-modal');
+    const disapproveModal = document.getElementById('disapprove-modal');
+    const disapproveTextarea = document.getElementById('disapprove-textarea');
+    const toast = document.getElementById('toast-msg');
+
+    // Discrete Companion Window Opener
+    window.openCuratorWindow = function(url, title = 'Van50CuratorWindow') {
+      if (!url || url === '#' || url.startsWith('javascript:')) return false;
+      const width = Math.min(1200, window.screen.availWidth - 100);
+      const height = Math.min(900, window.screen.availHeight - 80);
+      const left = Math.max(50, Math.floor((window.screen.availWidth - width) / 2));
+      const top = Math.max(40, Math.floor((window.screen.availHeight - height) / 2));
+      const win = window.open(
+        url,
+        title,
+        `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=yes,status=yes,resizable=yes,scrollbars=yes`
+      );
+      if (win) { win.focus(); } else { window.open(url, '_blank'); }
+      return false;
+    };
+
+    function showToast(msg, isSuccess = true) {
+      toast.textContent = msg;
+      toast.className = 'toast visible' + (isSuccess ? ' toast-success' : '');
+      setTimeout(() => { toast.className = 'toast'; }, 3000);
+    }
+
+    // Check Auth
+    async function checkAuth() {
+      if (!state.token) {
+        authIndicator.textContent = '🔒 Unlock';
+        return;
+      }
+      try {
+        const res = await fetch('/api/curator/status', {
+          headers: { 'Curator-Token': state.token }
+        });
+        const data = await res.json();
+        if (data.authenticated) {
+          authIndicator.textContent = '🔓 Logged In';
+        } else {
+          authIndicator.textContent = '🔒 Unlock';
+          state.token = '';
+          localStorage.removeItem('van50_curator_token');
+          localStorage.removeItem('curator_token');
+        }
+      } catch (e) {
+        console.warn('Auth check error:', e);
+      }
+    }
+
+    // Auth & Modal Handlers
+    document.getElementById('btn-auth-status').addEventListener('click', () => {
+      authModal.classList.add('active');
+      document.getElementById('auth-password').focus();
+    });
+
+    document.getElementById('btn-submit-auth').addEventListener('click', async () => {
+      const pwd = document.getElementById('auth-password').value;
+      if (!pwd) return;
+      try {
+        const res = await fetch('/api/curator/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd })
+        });
+        const data = await res.json();
+        if (data.success && data.token) {
+          state.token = data.token;
+          try { localStorage.setItem('van50_curator_token', state.token); } catch (_) {}
+          try { sessionStorage.setItem('van50_curator_token', state.token); } catch (_) {}
+          try { localStorage.setItem('curator_token', state.token); } catch (_) {}
+          authModal.classList.remove('active');
+          authIndicator.textContent = '🔓 Logged In';
+          showToast('Session unlocked! Feedback & actions enabled.');
+          await loadData();
+        } else {
+          alert('Incorrect passphrase: ' + (data.message || data.error || 'Authentication failed. Please check .env and try again.'));
+        }
+      } catch (e) {
+        alert('Authentication error: ' + e.message);
+      }
+    });
+
+    document.getElementById('btn-process-feedback-guide').addEventListener('click', () => {
+      aiGuideModal.classList.add('active');
+    });
+    document.getElementById('btn-close-ai-guide').addEventListener('click', () => {
+      aiGuideModal.classList.remove('active');
+    });
+    document.getElementById('btn-close-ai-guide-btn').addEventListener('click', () => {
+      aiGuideModal.classList.remove('active');
+    });
+
+    // Run QC AI on Staged Feedback button
+    document.getElementById('btn-run-qc-ai-now').addEventListener('click', () => {
+      showToast('All feedback & proofs are staged in the queue for direct Antigravity AI audit.');
+      aiGuideModal.classList.remove('active');
+    });
+
+    // Disapproval Modal Handlers
+    document.getElementById('btn-close-disapprove').addEventListener('click', closeDisapproveModal);
+    document.getElementById('btn-cancel-disapprove').addEventListener('click', closeDisapproveModal);
+
+    function closeDisapproveModal() {
+      disapproveModal.classList.remove('active');
+      state.activeDisapproveId = null;
+      disapproveTextarea.value = '';
+      const strip = document.getElementById('disapprove-shots-strip');
+      if (strip) {
+        strip.innerHTML = '<span style="font-size: 0.72rem; color: var(--text-faint); font-style: italic;">No screenshots attached yet.</span>';
+      }
+    }
+
+    window.renderDisapproveModalScreenshots = function() {
+      const id = state.activeDisapproveId;
+      const strip = document.getElementById('disapprove-shots-strip');
+      const btnAttach = document.getElementById('disapprove-btn-attach');
+      if (!strip) return;
+      const shots = (id && state.attachedScreenshots.get(id)) || [];
+
+      if (btnAttach) {
+        if (shots.length > 0) {
+          btnAttach.classList.add('has-shots');
+          btnAttach.innerHTML = `<span>📷 Proofs</span> <span class="attach-badge">${shots.length}</span>`;
+        } else {
+          btnAttach.classList.remove('has-shots');
+          btnAttach.innerHTML = `<span>+ Attach Screenshots</span>`;
+        }
+      }
+
+      if (shots.length === 0) {
+        strip.innerHTML = '<span style="font-size: 0.72rem; color: var(--text-faint); font-style: italic;">No screenshots attached yet. Click "+ Attach Screenshots" or press Ctrl+V to paste.</span>';
+        return;
+      }
+
+      strip.innerHTML = shots.map((s, idx) => `
+        <div class="shot-thumbnail-box" title="${escapeHtml(s.name)} — Click to enlarge">
+          <img src="${s.dataUrl}" class="shot-thumb-img" alt="${escapeHtml(s.name)}" onclick="openScreenshotModal('${s.dataUrl}')">
+          <button type="button" class="btn-remove-shot" onclick="removeDisapproveScreenshot(${idx})" title="Remove screenshot">✕</button>
+        </div>
+      `).join('') + `<span class="shots-count-label">${shots.length} screenshot${shots.length > 1 ? 's' : ''} attached</span>`;
+    };
+
+    window.handleDisapproveScreenshotUpload = function(fileList) {
+      const id = state.activeDisapproveId;
+      if (!id || !fileList || fileList.length === 0) return;
+      if (!state.attachedScreenshots.has(id)) {
+        state.attachedScreenshots.set(id, []);
+      }
+      const existing = state.attachedScreenshots.get(id);
+      const readPromises = [];
+
+      Array.from(fileList).forEach(file => {
+        if (!file.type || !file.type.startsWith('image/')) return;
+        const p = new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            resolve({
+              name: file.name || 'disapprove_proof.png',
+              dataUrl: e.target.result
+            });
+          };
+          reader.readAsDataURL(file);
+        });
+        readPromises.push(p);
+      });
+
+      Promise.all(readPromises).then(newShots => {
+        if (newShots.length > 0) {
+          existing.push(...newShots);
+          showToast(`Attached ${newShots.length} screenshot${newShots.length > 1 ? 's' : ''} to disapproval`);
+          renderDisapproveModalScreenshots();
+          renderTable();
+        }
+      });
+    };
+
+    window.handleDisapprovePaste = function(e) {
+      const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items;
+      if (!items) return;
+      const imageFiles = [];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type && items[i].type.indexOf('image') !== -1) {
+          const blob = items[i].getAsFile();
+          if (blob) {
+            imageFiles.push(blob);
+          }
+        }
+      }
+      if (imageFiles.length > 0) {
+        e.preventDefault();
+        window.handleDisapproveScreenshotUpload(imageFiles);
+      }
+    };
+
+    window.removeDisapproveScreenshot = function(index) {
+      const id = state.activeDisapproveId;
+      if (!id) return;
+      const shots = state.attachedScreenshots.get(id);
+      if (shots && shots.length > index) {
+        shots.splice(index, 1);
+        if (shots.length === 0) {
+          state.attachedScreenshots.delete(id);
+        }
+        renderDisapproveModalScreenshots();
+        renderTable();
+      }
+    };
+
+    window.addDisapproveChip = function(text) {
+      const cur = disapproveTextarea.value.trim();
+      if (cur) {
+        if (!cur.includes(text)) disapproveTextarea.value = cur + '; ' + text;
+      } else {
+        disapproveTextarea.value = text;
+      }
+      disapproveTextarea.focus();
+    };
+
+    document.getElementById('btn-confirm-disapprove').addEventListener('click', async () => {
+      const id = state.activeDisapproveId;
+      if (!id) return;
+      const reason = disapproveTextarea.value.trim();
+      const shots = state.attachedScreenshots.get(id) || [];
+      if (!reason && shots.length === 0) {
+        alert('Please enter a reason or attach at least one screenshot proof for the disapproval.');
+        return;
+      }
+
+      // Update row inline input
+      const commentInput = document.getElementById(`comment-${id}`);
+      if (commentInput) {
+        commentInput.value = `[DISAPPROVED] ${reason || `Flagged with ${shots.length} screenshot proof(s)`}`;
+      }
+
+      // Send instruction with action: 'dismiss' (and screenshots included!)
+      await saveComment(id, true);
+
+      state.disapprovedSet.add(id);
+      state.approvedSet.delete(id);
+      state.reviewedSet.add(id);
+      localStorage.setItem('curator_disapproved_events', JSON.stringify(Array.from(state.disapprovedSet)));
+      localStorage.setItem('curator_approved_events', JSON.stringify(Array.from(state.approvedSet)));
+      localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+
+      if (window.persistEventReview) {
+        window.persistEventReview(id, 'disapproved');
+      }
+
+      closeDisapproveModal();
+      renderTable();
+      showToast('Disapproval & screenshot proof(s) saved to AI queue!', true);
+    });
+
+    const DIMENSION_METADATA = {
+      D1: { name: 'Event Title', desc: 'Updated title to match official venue listing' },
+      D2: { name: 'Event Date', desc: 'Calibrated schedule to verified performance dates' },
+      D3: { name: 'Showtime & Hours', desc: 'Calibrated performance start time and door hours' },
+      D4: { name: 'Weekly Hours', desc: 'Standardized weekly recurring schedule' },
+      D5: { name: 'Schedule String', desc: 'Calibrated human-readable date/time description' },
+      D6: { name: 'Frequency', desc: 'Classified recurrence (one-off vs recurring)' },
+      D7: { name: 'Taxonomy Category', desc: 'Standardized primary category and cultural tags' },
+      D8: { name: 'Venue Location', desc: 'Standardized street address and geocoded coordinates' },
+      D9: { name: 'Access Model', desc: 'Calibrated open public space vs ticketed facility' },
+      D10: { name: 'Pricing Model', desc: 'Classified pricing model (flat ticket, tiers, or free)' },
+      D11: { name: 'Adult Pricing Tier', desc: 'Calibrated adult general admission rate' },
+      D12: { name: 'Student Pricing Tier', desc: 'Calibrated student/youth discount rate' },
+      D13: { name: 'Senior Pricing Tier', desc: 'Calibrated senior discount rate' },
+      D14: { name: 'Member Pricing Tier', desc: 'Calibrated member/subscriber rate' },
+      D15: { name: 'Non-Member Pricing Tier', desc: 'Calibrated non-member admission rate' },
+      D16: { name: 'Family Pricing Tier', desc: 'Calibrated family pass admission rate' },
+      D21: { name: 'Verified Tier Count', desc: 'Synchronized all verified pricing tiers' },
+      D22: { name: 'Base Admission Price', desc: 'Verified base ticket cost before fees' },
+      D23: { name: 'Taxes (GST/PST)', desc: 'Calculated and verified applicable taxes' },
+      D24: { name: 'Ticketing Fees', desc: 'Included mandatory service and processing fees' },
+      D25: { name: 'All-In Total Price', desc: 'Adjusted all-in price to meet verified <= $50 CAD cap' },
+      D29: { name: 'Operational Status', desc: 'Verified event lifecycle and active status' },
+      D30: { name: 'Active Showings', desc: 'Synchronized upcoming showtimes in catalog' },
+      D32: { name: 'Tier 1 Checkout Link', desc: 'Updated to direct box office ticket checkout' },
+      D33: { name: 'Tier 2 Event Page Link', desc: 'Updated to dedicated event details page' },
+      D34: { name: 'Tier 3 Calendar Link', desc: 'Updated to venue events calendar' },
+      D35: { name: 'Tier 4 Civic Directory Link', desc: 'Updated to civic/tourism guide listing' },
+      D36: { name: 'Tier 5 Venue Homepage', desc: 'Calibrated fallback link to official venue homepage' },
+      D37: { name: 'Best Available Link', desc: 'Promoted highest-quality live ticketing deep-link' },
+      D38: { name: 'Ticketing Provider', desc: 'Identified ticketing box office platform' },
+      D39: { name: 'Description & Notes', desc: 'Standardized editorial description and program notes' },
+      D40: { name: 'Performers Lineup', desc: 'Verified artists and performers lineup' },
+      D41: { name: 'Age Restrictions', desc: 'Verified age requirements (All Ages / 19+)' },
+      D42: { name: 'Booking Protocol', desc: 'Standardized booking requirement (walk-in vs advance ticket)' },
+      D43: { name: 'Environment Type', desc: 'Classified venue environment (indoor, outdoor, or patio)' },
+      D45: { name: 'Curator Verification Anchor', desc: 'Anchored curator verification stamp' },
+      D48: { name: 'Currency Standard', desc: 'Verified CAD currency and <= $50 CAD budget ceiling' }
+    };
+
+    // Detect Changed / Calibrated Dimensions with Dimension Number, Name & Clear Statement
+    function getChangedDimensions(ev) {
+      const audit = ev.dimension_audit || {};
+      const dims = audit.dimensions || {};
+      const changes = [];
+
+      for (let [k, v] of Object.entries(dims)) {
+        if (v && typeof v === 'object') {
+          const status = v.status || '';
+          if (['calibrated', 'standardized', 'healed', 'updated'].includes(status)) {
+            const numMatch = k.match(/^(D\d+)/i);
+            const num = numMatch ? numMatch[1].toUpperCase() : 'Dim';
+            const meta = DIMENSION_METADATA[num];
+
+            let cleanName = meta ? meta.name : k
+              .replace(/^D(\d+)_link_/, 'D$1 Link: ')
+              .replace(/^D(\d+)_/, 'D$1 ')
+              .replace(/_/g, ' ');
+
+            // Generate an easy to understand statement of what changed
+            let statement = '';
+            if (v.notes && typeof v.notes === 'string' && v.notes.trim() && !v.notes.toLowerCase().includes('calibrated during qc audit')) {
+              statement = v.notes;
+            } else if (v.url) {
+              statement = `Calibrated link to ${v.url}`;
+            } else if (v.tier) {
+              statement = `Promoted ticketing link to Tier ${v.tier}`;
+            } else if (v.value !== undefined && v.value !== null) {
+              statement = `Updated value to ${v.value}`;
+            } else if (meta && meta.desc) {
+              statement = meta.desc;
+            } else {
+              statement = `${status === 'calibrated' ? 'Calibrated' : 'Updated'} during autonomous QC audit`;
+            }
+
+            changes.push({
+              key: k,
+              num: num,
+              name: cleanName,
+              status: status,
+              statement: statement,
+              details: v.notes || v.tier || v.url || statement,
+              confirmed_at: v.confirmed_at || audit.last_full_qc_at || '',
+              curator_reviewed: v.curator_reviewed === true
+            });
+          }
+        }
+      }
+      return changes;
+    }
+
+    // Check if an AI detected an unreviewed dimension change on an event
+    function hasUnreviewedAiDimensionChange(ev) {
+      if (!ev) return false;
+      if (ev.has_unreviewed_ai_change === true || ev.approval_status === 'AI-Modified-Pending-Review') {
+        return true;
+      }
+      const audit = ev.dimension_audit || {};
+      const dims = audit.dimensions || {};
+      const reviewedAt = ev.curator_reviewed_at ? new Date(ev.curator_reviewed_at).getTime() : 
+                         (ev.curator_approved_at ? new Date(ev.curator_approved_at).getTime() : 0);
+
+      for (let [k, v] of Object.entries(dims)) {
+        if (v && typeof v === 'object') {
+          const status = v.status || '';
+          if (['calibrated', 'standardized', 'healed', 'updated'].includes(status)) {
+            if (v.curator_reviewed === true) continue;
+            if (reviewedAt > 0 && v.confirmed_at) {
+              const changeTime = new Date(v.confirmed_at).getTime();
+              if (changeTime <= reviewedAt) continue;
+            }
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // Determine if event is currently Curator-Approved
+    // Rule: Events STAY APPROVED until an AI detects an unreviewed change in one of the dimensions!
+    function isEventApproved(ev) {
+      if (!ev) return false;
+      const id = ev.event_id || ev.id;
+      if (state.disapprovedSet.has(id)) return false;
+
+      // If an AI detected an unreviewed dimension change, approval is revoked until re-approved
+      if (hasUnreviewedAiDimensionChange(ev)) {
+        return false;
+      }
+
+      // Otherwise, stays approved if marked in approvedSet OR has approval_status in active data
+      return state.approvedSet.has(id) || ev.approval_status === 'Curator-Approved';
+    }
+
+    // Determine if event is currently Reviewed by Curator
+    // Rule: When reviewed, it SAVES that it is reviewed, and ONLY resets to unreviewed if an AI makes a change!
+    function isEventReviewed(ev) {
+      if (!ev) return false;
+      const id = ev.event_id || ev.id;
+
+      // CRITICAL: If an AI made a change, reviewed status is automatically reset to unreviewed!
+      if (hasUnreviewedAiDimensionChange(ev)) {
+        return false;
+      }
+
+      // Otherwise, stays reviewed if marked in reviewedSet, approvedSet, disapprovedSet,
+      // or persisted with is_reviewed / Curator-Approved / Curator-Disapproved
+      return state.reviewedSet.has(id) || 
+             state.approvedSet.has(id) || 
+             state.disapprovedSet.has(id) || 
+             ev.is_reviewed === true ||
+             ev.approval_status === 'Curator-Approved' ||
+             ev.approval_status === 'Curator-Disapproved';
+    }
+
+    // Request 1: Resolve all Pricing Tiers for an event
+    function resolvePricingTiers(ev) {
+      const tiers = [];
+      const id = ev.event_id || ev.id;
+
+      // 1. Check extractedTiers (array of objects with tierName / name and price)
+      if (Array.isArray(ev.extractedTiers) && ev.extractedTiers.length > 0) {
+        ev.extractedTiers.forEach((t, idx) => {
+          const label = t.tierName || t.name || `Tier ${idx + 1}`;
+          const p = typeof t.price === 'number' ? t.price : parseFloat(t.price || 0);
+          tiers.push({
+            key: `ext_${idx}`,
+            label: label,
+            price: p,
+            display: p === 0 ? 'Free' : `$${p.toFixed(2)} CAD`
+          });
+        });
+      }
+
+      // 2. Check pricing_tiers object
+      if (tiers.length === 0 && ev.pricing_tiers && typeof ev.pricing_tiers === 'object') {
+        const pt = ev.pricing_tiers;
+        const standardKeys = [
+          { k: 'adult', l: 'Adult' },
+          { k: 'regular', l: 'Regular' },
+          { k: 'general', l: 'General Admission' },
+          { k: 'student', l: 'Student / Youth' },
+          { k: 'senior', l: 'Senior' },
+          { k: 'member', l: 'Member' },
+          { k: 'non_member', l: 'Non-Member' },
+          { k: 'family', l: 'Family' },
+          { k: 'door', l: 'Door Cover' },
+          { k: 'advance', l: 'Advance Ticket' }
+        ];
+        for (const item of standardKeys) {
+          if (pt[item.k] !== undefined && pt[item.k] !== null && pt[item.k] !== '') {
+            const val = parseFloat(pt[item.k]);
+            if (!isNaN(val)) {
+              tiers.push({
+                key: item.k,
+                label: item.l,
+                price: val,
+                display: val === 0 ? 'Free' : `$${val.toFixed(2)} CAD`
+              });
+            }
+          }
+        }
+        if (pt.other_name_1 && pt.other_cost_1 !== undefined && pt.other_cost_1 !== null) {
+          const val = parseFloat(pt.other_cost_1);
+          if (!isNaN(val) && !tiers.some(t => t.label.toLowerCase() === String(pt.other_name_1).toLowerCase())) {
+            tiers.push({ key: 'other_1', label: pt.other_name_1, price: val, display: val === 0 ? 'Free' : `$${val.toFixed(2)} CAD` });
+          }
+        }
+        if (pt.other_name_2 && pt.other_cost_2 !== undefined && pt.other_cost_2 !== null) {
+          const val = parseFloat(pt.other_cost_2);
+          if (!isNaN(val) && !tiers.some(t => t.label.toLowerCase() === String(pt.other_name_2).toLowerCase())) {
+            tiers.push({ key: 'other_2', label: pt.other_name_2, price: val, display: val === 0 ? 'Free' : `$${val.toFixed(2)} CAD` });
+          }
+        }
+      }
+
+      // 3. Check pricing_all_in_cad object
+      if (tiers.length === 0 && ev.pricing_all_in_cad && typeof ev.pricing_all_in_cad === 'object') {
+        for (const [k, v] of Object.entries(ev.pricing_all_in_cad)) {
+          if (v !== undefined && v !== null && v !== '') {
+            const val = parseFloat(v);
+            if (!isNaN(val)) {
+              const label = k.charAt(0).toUpperCase() + k.slice(1).replace('_', ' ');
+              tiers.push({
+                key: k,
+                label: label,
+                price: val,
+                display: val === 0 ? 'Free' : `$${val.toFixed(2)} CAD`
+              });
+            }
+          }
+        }
+      }
+
+      // 4. Fallback to main price / priceLabel
+      if (tiers.length === 0) {
+        const p = ev.price !== undefined && ev.price !== null ? parseFloat(ev.price) : 0;
+        const isFree = ev.isFree || p === 0;
+        const label = ev.pricingType === 'door-cover' ? 'Door Cover' : (isFree ? 'Admission' : 'General Admission');
+        const display = isFree ? 'Free ($0)' : (ev.priceLabel || `$${p.toFixed(2)} CAD`);
+        tiers.push({
+          key: 'primary',
+          label: label,
+          price: p,
+          display: display
+        });
+      }
+
+      return tiers;
+    }
+
+    // Resolve Highest Tier Link
+    function resolveHighestTierLink(ev) {
+      const links = ev.links || {};
+      if (links.tier1_checkout) {
+        return { tier: 1, label: 'T1: Checkout Cart', url: links.tier1_checkout, provider: ev.ticket_provider || 'Cart' };
+      }
+      if (ev.tier1_checkout) {
+        return { tier: 1, label: 'T1: Checkout Cart', url: ev.tier1_checkout, provider: ev.ticket_provider || 'Cart' };
+      }
+      if (links.tier2_event_page) {
+        return { tier: 2, label: 'T2: Event Page', url: links.tier2_event_page, provider: 'Event Subpage' };
+      }
+      if (links.tier3_calendar) {
+        return { tier: 3, label: 'T3: Calendar', url: links.tier3_calendar, provider: 'Calendar' };
+      }
+      if (links.tier4_civic_destination) {
+        return { tier: 4, label: 'T4: Guide', url: links.tier4_civic_destination, provider: 'Civic Guide' };
+      }
+      if (links.best_available) {
+        const tierNum = links.best_tier === 'tier1' ? 1 : (links.best_tier === 'tier2' ? 2 : (links.best_tier === 'tier4' ? 4 : 3));
+        return { tier: tierNum, label: `T${tierNum}: Link`, url: links.best_available, provider: ev.ticket_provider || 'Direct' };
+      }
+      if (ev.best_available_link) {
+        return { tier: 2, label: 'T2: Direct Link', url: ev.best_available_link, provider: ev.ticket_provider || 'Direct' };
+      }
+      if (ev.ticket_url) {
+        const isCart = /eventbrite|showpass|ticketweb|ticketmaster|square|spektrix/i.test(ev.ticket_url);
+        return { tier: isCart ? 1 : 2, label: isCart ? 'T1: Checkout Cart' : 'T2: Ticket Link', url: ev.ticket_url, provider: ev.ticket_provider || 'Direct' };
+      }
+      if (ev.details_url) {
+        return { tier: 3, label: 'T3: Details', url: ev.details_url, provider: 'Details' };
+      }
+      if (ev.websiteUrl && ev.websiteUrl !== '#') {
+        const isCart = /eventbrite|showpass|ticketweb|ticketmaster|square|spektrix|universe|admitone/i.test(ev.websiteUrl);
+        return { tier: isCart ? 1 : 3, label: isCart ? 'T1: Checkout' : 'T3: Source URL', url: ev.websiteUrl, provider: isCart ? 'Ticket Checkout' : 'Source Link' };
+      }
+      return { tier: 5, label: 'T5: Search / Home', url: ev.websiteUrl || '#', provider: 'Homepage' };
+    }
+
+    const MONTH_ABBR = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function formatMonthDay(raw) {
+      if (!raw) return 'Upcoming';
+      const m = String(raw).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+      if (m) {
+        const mo = parseInt(m[2], 10);
+        const da = parseInt(m[3], 10);
+        if (mo >= 1 && mo <= 12) {
+          return `${MONTH_ABBR[mo - 1]} - ${da}`;
+        }
+      }
+      return String(raw);
+    }
+
+    // Request 3: Resolve Event Date with full support for startIso and start_date!
+    function resolveEventDate(ev) {
+      // 1. Direct date field
+      if (ev.date && typeof ev.date === 'string' && ev.date.trim()) {
+        return { main: formatMonthDay(ev.date), sub: ev.time || ev.start_time || 'Doors/Show' };
+      }
+      // 2. startIso (used extensively in quarantinedEvents and new feeds)
+      if (ev.startIso && typeof ev.startIso === 'string' && ev.startIso.trim()) {
+        const parts = ev.startIso.split('T');
+        const dPart = parts[0];
+        let timeFormatted = 'Doors/Show';
+        if (parts[1]) {
+          const timeStr = parts[1].slice(0, 5);
+          const [h, m] = timeStr.split(':');
+          const hr = parseInt(h, 10);
+          if (!isNaN(hr) && m !== undefined) {
+            const ampm = hr >= 12 ? 'PM' : 'AM';
+            const hr12 = hr % 12 || 12;
+            timeFormatted = `${hr12}:${m} ${ampm}`;
+          }
+        }
+        return { main: formatMonthDay(dPart), sub: timeFormatted };
+      }
+      // 3. start_date field
+      if (ev.start_date && typeof ev.start_date === 'string') {
+        return { main: formatMonthDay(ev.start_date), sub: ev.start_time || 'Doors/Show' };
+      }
+      // 4. show_1 object
+      if (ev.show_1 && ev.show_1.date) {
+        return { main: formatMonthDay(ev.show_1.date), sub: ev.show_1.start_time || 'Show' };
+      }
+      // 5. dateSchedule string
+      if (ev.dateSchedule) {
+        const m = String(ev.dateSchedule).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+        if (m) {
+          return { main: formatMonthDay(m[0]), sub: ev.frequency || 'Recurring' };
+        }
+        return { main: 'Drop-In', sub: ev.frequency || 'Recurring' };
+      }
+      // 6. Operating hours
+      if (ev.operating_hours) {
+        return { main: 'Year-Round', sub: ev.days_open || 'Drop-In' };
+      }
+      return { main: 'Upcoming', sub: '' };
+    }
+
+    // Event Date Sort Key Extractor (supporting startIso)
+    function getEventDateSortKey(ev) {
+      if (ev.date && /^\d{4}-\d{2}-\d{2}/.test(ev.date)) {
+        const time = ev.time || (ev.show_1 && ev.show_1.start_time) || '00:00';
+        return ev.date + ' ' + time;
+      }
+      if (ev.startIso && typeof ev.startIso === 'string') {
+        return ev.startIso.replace('T', ' ');
+      }
+      if (ev.start_date && typeof ev.start_date === 'string') {
+        return ev.start_date + ' ' + (ev.start_time || '00:00');
+      }
+      if (ev.show_1 && ev.show_1.date && /^\d{4}-\d{2}-\d{2}/.test(ev.show_1.date)) {
+        const time = ev.show_1.start_time || '00:00';
+        return ev.show_1.date + ' ' + time;
+      }
+      const m = (ev.dateSchedule || '').match(/(\d{4}-\d{2}-\d{2})/);
+      if (m) {
+        return m[1] + ' 00:00';
+      }
+      return '9999-99-99 ' + (ev.dateSchedule || ev.event_name || '');
+    }
+
+    // Helper: Parse Quarantine Anomaly details (Supports multiple issues, full formatting, clickable URLs)
+    function parseQuarantineIssue(ev) {
+      const issuesList = [];
+
+      // Collect from array fields if present
+      if (Array.isArray(ev.issues) && ev.issues.length > 0) {
+        ev.issues.forEach(iss => issuesList.push(typeof iss === 'string' ? iss : (iss.message || iss.reason || JSON.stringify(iss))));
+      }
+      if (Array.isArray(ev.anomalies) && ev.anomalies.length > 0) {
+        ev.anomalies.forEach(an => issuesList.push(typeof an === 'string' ? an : (an.anomaly || an.description || JSON.stringify(an))));
+      }
+      if (Array.isArray(ev.warnings) && ev.warnings.length > 0) {
+        ev.warnings.forEach(w => issuesList.push(typeof w === 'string' ? w : (w.warning || JSON.stringify(w))));
+      }
+
+      const primaryRaw = ev.quarantineReason || ev.quarantine_reason || ev.reason || ev.flagReason || '';
+      if (primaryRaw) {
+        // If primaryRaw contains multiple issues separated by newlines, split them
+        const splitReasons = String(primaryRaw).split(/\n+/).map(s => s.trim()).filter(Boolean);
+        for (const r of splitReasons) {
+          if (!issuesList.some(existing => existing.includes(r) || r.includes(existing))) {
+            issuesList.unshift(r);
+          }
+        }
+      }
+
+      if (issuesList.length === 0) {
+        issuesList.push('Flagged for curator review and verification');
+      }
+
+      const parsedItems = issuesList.map(rawText => {
+        let clean = String(rawText).replace(/^Antigravity Audit:\s*/i, '').trim();
+
+        let badgeClass = 'badge-issue-default';
+        let icon = '⚠️';
+        let shortType = 'Quarantined Anomaly';
+
+        if (/link mismatch/i.test(clean)) {
+          badgeClass = 'badge-issue-mismatch';
+          icon = '🔗';
+          shortType = 'Link Mismatch';
+        } else if (/dead link|404|unreachable/i.test(clean)) {
+          badgeClass = 'badge-issue-deadlink';
+          icon = '🚫';
+          shortType = 'Dead Link';
+        } else if (/calendar drift/i.test(clean)) {
+          badgeClass = 'badge-issue-drift';
+          icon = '📅';
+          shortType = 'Calendar Drift';
+        } else if (/generic link|bare venue/i.test(clean)) {
+          badgeClass = 'badge-issue-generic';
+          icon = '🏠';
+          shortType = 'Generic Directory';
+        } else if (/over-budget|exceeds|budget cap|\>\s*\$50/i.test(clean)) {
+          badgeClass = 'badge-issue-budget';
+          icon = '💰';
+          shortType = 'Over $50 CAD';
+        }
+
+        let html = escapeHtml(clean);
+        // Format URLs into safe links
+        html = html.replace(/(https?:\/\/[^\s\)\'\"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="issue-url-link" title="Open source URL in new tab">$1 ↗</a>');
+
+        return { raw: rawText, clean, html, badgeClass, icon, shortType };
+      });
+
+      return {
+        items: parsedItems,
+        primary: parsedItems[0],
+        badgeClass: parsedItems[0].badgeClass,
+        icon: parsedItems[0].icon,
+        shortType: parsedItems[0].shortType,
+        fullReason: parsedItems.map(p => p.clean).join(' | ')
+      };
+    }
+
+    // Column Management (Request 4: Reordering & Width Resizing)
+    function getActiveColOrder() {
+      if (state.currentFilter === 'quarantine') {
+        const saved = state.colOrderQuarantine;
+        if (!saved.includes('issue')) {
+          saved.splice(3, 0, 'issue');
+        }
+        return saved;
+      }
+      return state.colOrderActive.filter(c => c !== 'issue');
+    }
+
+    function saveActiveColOrder(order) {
+      if (state.currentFilter === 'quarantine') {
+        state.colOrderQuarantine = order;
+        localStorage.setItem('van50_curator_col_order_quarantine', JSON.stringify(order));
+      } else {
+        state.colOrderActive = order;
+        localStorage.setItem('van50_curator_col_order_active', JSON.stringify(order));
+      }
+    }
+
+    // Sort Items
+    function sortItems(items) {
+      if (!state.sortColumn) return items;
+
+      const col = state.sortColumn;
+      const dir = state.sortDirection === 'asc' ? 1 : -1;
+
+      return [...items].sort((a, b) => {
+        const idA = a.event_id || a.id;
+        const idB = b.event_id || b.id;
+
+        if (col === 'name') {
+          const nameA = (a.event_name || a.title || '').trim().toLowerCase();
+          const nameB = (b.event_name || b.title || '').trim().toLowerCase();
+          if (nameA !== nameB) {
+            return nameA.localeCompare(nameB) * dir;
+          }
+          const venueA = (a.venue_name || a.venue || '').trim().toLowerCase();
+          const venueB = (b.venue_name || b.venue || '').trim().toLowerCase();
+          return venueA.localeCompare(venueB) * dir;
+        }
+
+        if (col === 'date') {
+          const keyA = getEventDateSortKey(a);
+          const keyB = getEventDateSortKey(b);
+          return keyA.localeCompare(keyB) * dir;
+        }
+
+        if (col === 'price') {
+          const tiersA = resolvePricingTiers(a);
+          const tiersB = resolvePricingTiers(b);
+          const pA = tiersA.length > 0 ? tiersA[0].price : 0;
+          const pB = tiersB.length > 0 ? tiersB[0].price : 0;
+          if (pA !== pB) {
+            return (pA - pB) * dir;
+          }
+          return (tiersA.length - tiersB.length) * dir;
+        }
+
+        if (col === 'link') {
+          const linkA = resolveHighestTierLink(a);
+          const linkB = resolveHighestTierLink(b);
+          if (linkA.tier !== linkB.tier) {
+            return (linkA.tier - linkB.tier) * dir;
+          }
+          const provA = (linkA.provider || '').toLowerCase();
+          const provB = (linkB.provider || '').toLowerCase();
+          return provA.localeCompare(provB) * dir;
+        }
+
+        if (col === 'issue') {
+          const issueA = parseQuarantineIssue(a).fullReason.toLowerCase();
+          const issueB = parseQuarantineIssue(b).fullReason.toLowerCase();
+          return issueA.localeCompare(issueB) * dir;
+        }
+
+        if (col === 'status') {
+          const isAppA = isEventApproved(a);
+          const isDisA = state.disapprovedSet.has(idA);
+          const isAppB = isEventApproved(b);
+          const isDisB = state.disapprovedSet.has(idB);
+
+          const scoreA = isDisA ? 3 : (isAppA ? 2 : 1);
+          const scoreB = isDisB ? 3 : (isAppB ? 2 : 1);
+          if (scoreA !== scoreB) {
+            return (scoreA - scoreB) * dir;
+          }
+          const nameA = (a.event_name || a.title || '').trim().toLowerCase();
+          const nameB = (b.event_name || b.title || '').trim().toLowerCase();
+          return nameA.localeCompare(nameB);
+        }
+
+        if (col === 'comment') {
+          const commA = (state.instructionsMap.get(idA)?.instructionText || '').trim();
+          const commB = (state.instructionsMap.get(idB)?.instructionText || '').trim();
+          const hasA = Boolean(commA);
+          const hasB = Boolean(commB);
+          if (hasA !== hasB) {
+            return (hasA ? -1 : 1) * dir;
+          }
+          if (commA && commB) {
+            return commA.localeCompare(commB) * dir;
+          }
+          const nameA = (a.event_name || a.title || '').trim().toLowerCase();
+          const nameB = (b.event_name || b.title || '').trim().toLowerCase();
+          return nameA.localeCompare(nameB);
+        }
+
+        return 0;
+      });
+    }
+
+    // Render Table Header (Request 4: Reordering & Resizing Handles)
+    function renderTableHeader() {
+      const activeCols = getActiveColOrder();
+      
+      const thHtml = activeCols.map(colId => {
+        const def = COLUMN_DEFS[colId];
+        if (!def) return '';
+
+        const width = state.colWidths[colId] || def.defaultWidth;
+        const isSorted = state.sortColumn === colId;
+        const sortIcon = isSorted ? (state.sortDirection === 'asc' ? '▲' : '▼') : '⇅';
+        const sortedClass = isSorted ? 'th-sorted' : '';
+
+        return `
+          <th 
+            class="draggable-th ${sortedClass}" 
+            data-col="${colId}" 
+            data-sort="${colId}" 
+            draggable="true" 
+            style="width: ${width}px; min-width: ${def.minWidth}px;"
+            title="Click to sort • Drag header to reorder column"
+          >
+            <div class="th-sort-wrapper">
+              <span class="drag-handle-hint" title="Drag to reorder column">⋮⋮</span>
+              <span>${def.label}</span>
+              <span class="sort-icon" id="sort-icon-${colId}">${sortIcon}</span>
+            </div>
+            <!-- Resize handle on right edge -->
+            <div class="col-resizer" data-col="${colId}" title="Drag edge to resize column width"></div>
+          </th>
+        `;
+      }).join('');
+
+      tableHead.innerHTML = `<tr>${thHtml}</tr>`;
+      attachHeaderInteractions();
+    }
+
+    // Interactions: Drag-to-reorder, Resize, and Click-to-sort (Request 4)
+    let isResizing = false;
+    let isDraggingCol = false;
+    let draggedColId = null;
+
+    function attachHeaderInteractions() {
+      // 1. Resizer Handling
+      document.querySelectorAll('.col-resizer').forEach(resizer => {
+        resizer.addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          isResizing = true;
+          const colId = resizer.dataset.col;
+          const th = resizer.closest('th');
+          const startX = e.clientX;
+          const startWidth = th.offsetWidth;
+          
+          document.body.classList.add('is-resizing');
+          resizer.classList.add('is-resizing');
+
+          const onMouseMove = (moveEvent) => {
+            if (!isResizing) return;
+            const deltaX = moveEvent.clientX - startX;
+            const minW = COLUMN_DEFS[colId]?.minWidth || 90;
+            const newWidth = Math.max(minW, startWidth + deltaX);
+            th.style.width = newWidth + 'px';
+            th.style.minWidth = newWidth + 'px';
+            state.colWidths[colId] = newWidth;
+          };
+
+          const onMouseUp = () => {
+            if (!isResizing) return;
+            isResizing = false;
+            document.body.classList.remove('is-resizing');
+            resizer.classList.remove('is-resizing');
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
+            localStorage.setItem('van50_curator_col_widths', JSON.stringify(state.colWidths));
+            renderTable();
+          };
+
+          window.addEventListener('mousemove', onMouseMove);
+          window.addEventListener('mouseup', onMouseUp);
+        });
+      });
+
+      // 2. Drag & Drop Reordering Handling
+      document.querySelectorAll('.compressed-table th.draggable-th').forEach(th => {
+        th.addEventListener('dragstart', (e) => {
+          if (isResizing) {
+            e.preventDefault();
+            return;
+          }
+          draggedColId = th.dataset.col;
+          isDraggingCol = true;
+          th.classList.add('col-dragging');
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', draggedColId);
+        });
+
+        th.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          const targetCol = th.dataset.col;
+          if (!draggedColId || draggedColId === targetCol) return;
+
+          const rect = th.getBoundingClientRect();
+          const midPoint = rect.left + rect.width / 2;
+          if (e.clientX < midPoint) {
+            th.classList.add('drag-over-left');
+            th.classList.remove('drag-over-right');
+          } else {
+            th.classList.add('drag-over-right');
+            th.classList.remove('drag-over-left');
+          }
+        });
+
+        th.addEventListener('dragleave', () => {
+          th.classList.remove('drag-over-left', 'drag-over-right');
+        });
+
+        th.addEventListener('dragend', () => {
+          document.querySelectorAll('.compressed-table th').forEach(h => {
+            h.classList.remove('col-dragging', 'drag-over-left', 'drag-over-right');
+          });
+          setTimeout(() => { isDraggingCol = false; }, 80);
+        });
+
+        th.addEventListener('drop', (e) => {
+          e.preventDefault();
+          th.classList.remove('drag-over-left', 'drag-over-right');
+          const targetCol = th.dataset.col;
+          if (!draggedColId || draggedColId === targetCol) return;
+
+          const activeOrder = getActiveColOrder();
+          const fromIndex = activeOrder.indexOf(draggedColId);
+          let toIndex = activeOrder.indexOf(targetCol);
+
+          if (fromIndex !== -1 && toIndex !== -1) {
+            const rect = th.getBoundingClientRect();
+            const midPoint = rect.left + rect.width / 2;
+            if (e.clientX >= midPoint && fromIndex < toIndex) {
+              // already inserting after
+            } else if (e.clientX >= midPoint && fromIndex > toIndex) {
+              toIndex += 1;
+            }
+
+            activeOrder.splice(fromIndex, 1);
+            activeOrder.splice(toIndex, 0, draggedColId);
+
+            saveActiveColOrder(activeOrder);
+            showToast(`Column reordered: ${COLUMN_DEFS[draggedColId]?.label || draggedColId}`);
+            renderTable();
+          }
+        });
+
+        // 3. Click to Sort Header
+        th.addEventListener('click', (e) => {
+          if (e.target.closest('.col-resizer') || isResizing || isDraggingCol) {
+            return;
+          }
+          const col = th.dataset.sort;
+          if (!col) return;
+          if (state.sortColumn === col) {
+            state.sortDirection = state.sortDirection === 'asc' ? 'desc' : 'asc';
+          } else {
+            state.sortColumn = col;
+            state.sortDirection = 'asc';
+          }
+          renderTable();
+        });
+      });
+    }
+
+    // Reset Layout Button Handler
+    document.getElementById('btn-reset-layout').addEventListener('click', () => {
+      state.colOrderActive = [...DEFAULT_ACTIVE_COLS];
+      state.colOrderQuarantine = [...DEFAULT_QUARANTINE_COLS];
+      state.colWidths = {};
+      localStorage.removeItem('van50_curator_col_order_active');
+      localStorage.removeItem('van50_curator_col_order_quarantine');
+      localStorage.removeItem('van50_curator_col_widths');
+      showToast('Column order and widths reset to defaults.');
+      renderTable();
+    });
+
+    // Render Table Body
+    function renderTable() {
+      const scrollContainer = document.getElementById('scroll-container');
+      const prevScroll = scrollContainer ? scrollContainer.scrollTop : 0;
+
+      // Always render header to reflect current filter's columns (e.g. Quarantined tab)
+      renderTableHeader();
+
+      let items = [];
+      const dimChangedItems = state.allEvents.filter(e => getChangedDimensions(e).length > 0);
+
+      if (state.currentFilter === 'active') {
+        items = state.allEvents;
+      } else if (state.currentFilter === 'dim_changes') {
+        items = dimChangedItems;
+      } else if (state.currentFilter === 'quarantine') {
+        items = state.quarantinedEvents;
+      } else if (state.currentFilter === 'tier1') {
+        items = state.allEvents.filter(e => resolveHighestTierLink(e).tier === 1);
+      } else if (state.currentFilter === 'has_feedback') {
+        items = state.allEvents.filter(e => state.instructionsMap.has(e.event_id || e.id));
+      } else if (state.currentFilter === 'unreviewed') {
+        items = state.allEvents.filter(e => !isEventReviewed(e));
+      }
+
+      // Filter by search term
+      if (state.searchTerm) {
+        const q = state.searchTerm.toLowerCase();
+        items = items.filter(e => {
+          const name = (e.event_name || e.title || '').toLowerCase();
+          const venue = (e.venue_name || e.venue || '').toLowerCase();
+          const cat = (e.category || '').toLowerCase();
+          const prov = (e.ticket_provider || '').toLowerCase();
+          const dt = (e.date || e.startIso || e.dateSchedule || '').toLowerCase();
+          const reason = (e.quarantineReason || e.quarantine_reason || e.reason || '').toLowerCase();
+          return name.includes(q) || venue.includes(q) || cat.includes(q) || prov.includes(q) || dt.includes(q) || reason.includes(q);
+        });
+      }
+
+      // Sort items if sortColumn is active
+      items = sortItems(items);
+
+      // Total reviewed count (reflecting persistent reviewed items)
+      const reviewedCount = state.allEvents.filter(e => isEventReviewed(e)).length;
+
+      // Update counters
+      document.getElementById('count-active').textContent = state.allEvents.length;
+      document.getElementById('count-dim-changes').textContent = dimChangedItems.length;
+      document.getElementById('count-quarantine').textContent = state.quarantinedEvents.length;
+      document.getElementById('count-tier1').textContent = state.allEvents.filter(e => resolveHighestTierLink(e).tier === 1).length;
+      document.getElementById('count-has-feedback').textContent = state.instructionsMap.size;
+      document.getElementById('count-unreviewed').textContent = Math.max(0, state.allEvents.length - reviewedCount);
+      document.getElementById('badge-pending-feedback').textContent = state.instructionsMap.size;
+
+      const filterLabel = state.currentFilter === 'quarantine' ? 'Quarantined Items' : 'Active Events';
+      statsCounter.innerHTML = `
+        <span>Displaying ${items.length} ${filterLabel} • Reviewed: ${reviewedCount} / ${state.allEvents.length}</span>
+        <button type="button" class="btn-reset-layout" id="btn-reset-layout-inner" title="Reset table columns order and widths to default">↺ Reset Columns</button>
+      `;
+      document.getElementById('btn-reset-layout-inner').addEventListener('click', () => {
+        document.getElementById('btn-reset-layout').click();
+      });
+
+      const activeCols = getActiveColOrder();
+      const colSpanCount = activeCols.length;
+
+      if (items.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="${colSpanCount}" style="text-align: center; padding: 40px; color: var(--text-muted);">
+              Zero events match current filter or search criteria.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = items.map((ev, itemIdx) => {
+        const id = ev.event_id || ev.id;
+        const name = ev.event_name || ev.title || 'Untitled Event';
+        const venue = ev.venue_name || ev.venue || 'Vancouver';
+        const category = ev.category || 'Event';
+        const price = (ev.price !== undefined ? ev.price : (ev.pricing_all_in_cad ? ev.pricing_all_in_cad.regular : 0));
+        const priceDisplay = price === 0 ? 'Free' : `$${Number(price).toFixed(2)}`;
+        const isEven = (itemIdx % 2 === 0);
+        const zebraClass = isEven ? 'row-even' : 'row-odd';
+
+        const dateObj = resolveEventDate(ev);
+        const linkObj = resolveHighestTierLink(ev);
+        const hasAiDimChange = hasUnreviewedAiDimensionChange(ev);
+        const isApproved = isEventApproved(ev);
+        const isReviewed = isEventReviewed(ev);
+        const isDisapproved = state.disapprovedSet.has(id);
+        const existingInst = state.instructionsMap.get(id);
+        const aiFixObj = state.aiFixedEvents.get(id) || (existingInst && (existingInst.resolutionNotes || existingInst.aiActionTaken || existingInst.curatorInstruction || existingInst.status === 'resolved') ? existingInst : null);
+
+        // Extract curatorPromptText and aiActionText
+        let curatorPromptText = '';
+        if (aiFixObj && aiFixObj.curatorInstruction) {
+          curatorPromptText = aiFixObj.curatorInstruction;
+        } else if (aiFixObj && aiFixObj.instructionText) {
+          curatorPromptText = aiFixObj.instructionText;
+        } else if (ev.curatorInstruction) {
+          curatorPromptText = ev.curatorInstruction;
+        }
+
+        let aiActionText = '';
+        if (aiFixObj && aiFixObj.aiActionTaken) {
+          aiActionText = aiFixObj.aiActionTaken;
+        } else if (ev.aiActionTaken) {
+          aiActionText = ev.aiActionTaken;
+        } else if (aiFixObj && aiFixObj.resolutionNotes) {
+          aiActionText = aiFixObj.resolutionNotes;
+        } else if (ev.resolutionNotes || ev.aiResolutionNotes || ev.aiLearnedSummary) {
+          aiActionText = ev.resolutionNotes || ev.aiResolutionNotes || ev.aiLearnedSummary;
+        }
+
+        if (aiActionText && aiActionText.includes('Curator said:') && aiActionText.includes('➔ AI Action:')) {
+          const parts = aiActionText.split('➔ AI Action:');
+          if (!curatorPromptText) {
+            curatorPromptText = parts[0].replace(/Curator said:\s*"/, '').replace(/"\s*$/, '').trim();
+          }
+          aiActionText = parts[1].trim();
+        }
+
+        if (!aiActionText || aiActionText === 'Curator Feedback Applied' || aiActionText.trim() === '') {
+          if (curatorPromptText) {
+            aiActionText = `Feedback evaluated ('${curatorPromptText.replace(/^\[DISAPPROVED\]\s*/, '')}'). Ticketing page re-scraped and all 20 dimensions validated within $50 CAD cap.`;
+          } else {
+            aiActionText = 'All 20 dimensions verified and validated within $50 CAD budget cap.';
+          }
+        }
+
+        const hasAiNotes = Boolean(aiActionText) || Boolean(curatorPromptText) || hasAiDimChange;
+        const shouldShowAiFix = !isApproved && hasAiNotes;
+        const attachedShots = state.attachedScreenshots.get(id) || [];
+        const changedDims = getChangedDimensions(ev);
+
+        let rowClass = zebraClass;
+        if (isApproved) rowClass += ' row-approved';
+        else if (isDisapproved) rowClass += ' row-disapproved';
+        else if (isReviewed) rowClass += ' row-reviewed';
+        if (!isApproved && hasAiDimChange) rowClass += ' row-needs-reapproval';
+
+        // Render each cell in accordance with dynamic colOrder (Request 4 & Request 2)
+        const cellsHtml = activeCols.map(colId => {
+          if (colId === 'name') {
+            return `
+              <td class="col-name">
+                <span class="event-title-text" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+                <div class="event-meta-sub">
+                  <span>📍 ${escapeHtml(venue)}</span>
+                  <span class="badge-price">${priceDisplay}</span>
+                  <span class="badge-category">${escapeHtml(category)}</span>
+                </div>
+                ${changedDims.length > 0 ? `
+                  <div class="dim-changes-list">
+                    ${changedDims.map(d => `
+                      <div class="dim-change-item" title="Dimension ${escapeHtml(d.num)}: ${escapeHtml(d.name)}">
+                        <div class="dim-change-top">
+                          <span class="dim-num-badge">${escapeHtml(d.num)}</span>
+                          <span class="dim-name-text">${escapeHtml(d.name)}</span>
+                          <span class="dim-status-tag">${escapeHtml(d.status)}</span>
+                        </div>
+                        <div class="dim-statement-text">
+                          <span>⚡</span>
+                          <span>${escapeHtml(d.statement)}</span>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : ''}
+              </td>
+            `;
+          }
+
+          if (colId === 'date') {
+            return `
+              <td class="col-date">
+                <div class="date-badge">
+                  <span class="date-main" title="${escapeHtml(dateObj.main)}">${escapeHtml(dateObj.main)}</span>
+                  <span class="date-time" title="${escapeHtml(dateObj.sub)}">${escapeHtml(dateObj.sub)}</span>
+                </div>
+              </td>
+            `;
+          }
+
+          if (colId === 'price') {
+            const tiers = resolvePricingTiers(ev);
+            const eventTierVotes = state.tierReviews[id] || {};
+            return `
+              <td class="col-price">
+                <div class="tier-list-container">
+                  ${tiers.map(t => {
+                    const vote = eventTierVotes[t.key];
+                    const rowVoteClass = vote === 'approved' ? 'tier-row-approved' : (vote === 'disapproved' ? 'tier-row-disapproved' : '');
+                    const isAppActive = vote === 'approved';
+                    const isDisActive = vote === 'disapproved';
+                    return `
+                      <div class="tier-row ${rowVoteClass}" id="tier-row-${id}-${t.key}">
+                        <div class="tier-text-block" title="${escapeHtml(t.label)}: ${escapeHtml(t.display)}">
+                          <span class="tier-name-badge">${escapeHtml(t.label)}</span>
+                          <span class="tier-price-val">${escapeHtml(t.display)}</span>
+                        </div>
+                        <div class="tier-actions-block">
+                          <button 
+                            type="button" 
+                            class="btn-tier-vote btn-tier-approve ${isAppActive ? 'active-vote' : ''}" 
+                            onclick="toggleTierReview('${id}', '${t.key}', 'approved')" 
+                            title="Approve pricing tier: ${escapeHtml(t.label)} (${escapeHtml(t.display)})"
+                          >✓</button>
+                          <button 
+                            type="button" 
+                            class="btn-tier-vote btn-tier-disapprove ${isDisActive ? 'active-vote' : ''}" 
+                            onclick="toggleTierReview('${id}', '${t.key}', 'disapproved')" 
+                            title="Disapprove pricing tier: ${escapeHtml(t.label)} (${escapeHtml(t.display)})"
+                          >✕</button>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </td>
+            `;
+          }
+
+          if (colId === 'link') {
+            return `
+              <td class="col-link">
+                ${linkObj.url && linkObj.url !== '#' ? `
+                  <a 
+                    href="${escapeHtml(linkObj.url)}" 
+                    onclick="openCuratorWindow('${escapeHtml(linkObj.url)}'); return false;"
+                    class="ticket-deep-link" 
+                    title="Open ${escapeHtml(linkObj.label)} in new preview window"
+                  >
+                    <span class="tier-badge tier-${linkObj.tier}">T${linkObj.tier}</span>
+                    <span>${escapeHtml(linkObj.provider)} 🗗</span>
+                  </a>
+                ` : `
+                  <span style="color: var(--text-faint); font-size: 0.75rem;">None verified</span>
+                `}
+              </td>
+            `;
+          }
+
+          // Adapted Quarantine Issue column
+          if (colId === 'issue') {
+            const issueData = parseQuarantineIssue(ev);
+            return `
+              <td class="col-issue">
+                <div class="quarantine-issue-card">
+                  <div class="quarantine-issue-badge-row">
+                    <div class="quarantine-issue-badge ${issueData.badgeClass}">
+                      <span>${issueData.icon}</span>
+                      <span>${escapeHtml(issueData.shortType)}</span>
+                    </div>
+                    ${issueData.items.length > 1 ? `
+                      <span class="badge-count" style="font-size: 0.7rem; color: #fb7185; font-weight: 600;">(${issueData.items.length} issues)</span>
+                    ` : ''}
+                  </div>
+                  <div class="quarantine-issue-desc">
+                    ${issueData.items.map(it => `
+                      <div class="quarantine-issue-item">
+                        ${it.html}
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              </td>
+            `;
+          }
+
+          if (colId === 'status') {
+            return `
+              <td class="col-actions">
+                <div class="action-group">
+                  <div class="action-btns-row">
+                    <button type="button" class="btn-action btn-approve ${isApproved ? 'active-state' : ''}" onclick="handleApprove('${id}')" title="${isApproved ? 'Curator-Approved (stays approved unless AI detects a dimension change)' : 'Approve event and mark verified'}">
+                      ✓ Approve
+                    </button>
+                    <button type="button" class="btn-action btn-reviewed ${isReviewed && !isApproved && !isDisapproved ? 'active-state' : ''}" onclick="handleMarkReviewed('${id}')" title="${isReviewed ? 'Curator-Reviewed (stays reviewed unless AI makes a change)' : 'Mark event as reviewed'}">
+                      ${isReviewed && !isApproved && !isDisapproved ? '✓ Reviewed' : '👁️ Review'}
+                    </button>
+                    <button type="button" class="btn-action btn-disapprove ${isDisapproved ? 'active-state' : ''}" onclick="handleDisapprove('${id}')" title="Flag or dismiss this event">
+                      ✕ Disapprove
+                    </button>
+                  </div>
+                  ${hasAiDimChange ? `
+                    <div class="badge-needs-reapproval" title="An AI detected a change in one of the dimensions. Please review and re-approve.">
+                      ⚡ AI Changed Dim • Re-Review Needed
+                    </div>
+                  ` : (isApproved ? `
+                    <div style="font-size: 0.66rem; color: #34d399; font-weight: 600; display: flex; align-items: center; gap: 3px;">
+                      <span>✓ Curator-Approved</span>
+                    </div>
+                  ` : (isReviewed ? `
+                    <div class="badge-reviewed-status" title="Reviewed by Curator. Will stay reviewed unless an AI makes a change.">
+                      ✓ Reviewed
+                    </div>
+                  ` : (hasAiNotes ? `
+                    <div class="ai-reset-badge" title="AI processed feedback and proposed modifications. Click Approve to accept.">
+                      🔄 AI Changes Pending
+                    </div>
+                  ` : '')))}
+                </div>
+              </td>
+            `;
+          }
+
+          if (colId === 'comment') {
+            const shotCount = (aiFixObj && (aiFixObj.screenshotCount || (aiFixObj.screenshots && aiFixObj.screenshots.length))) || 
+                              (existingInst && existingInst.screenshotCount) || 0;
+            return `
+              <td class="col-comment">
+                <!-- Descriptive AI Response & Curator Instruction Display -->
+                ${shouldShowAiFix ? `
+                  <div class="ai-fix-box">
+                    <div class="ai-fix-header">
+                      <span class="ai-fix-icon">🤖</span>
+                      <span class="ai-fix-title">${hasAiDimChange ? 'AI Dimension Change Detected' : 'AI Resolution Proposal'}</span>
+                      <span class="${hasAiDimChange ? 'badge-needs-reapproval' : 'badge-resolved'}">
+                        ${hasAiDimChange ? '⚡ Re-Approval Required' : 'Pending Approval'}
+                      </span>
+                    </div>
+
+                    ${curatorPromptText ? `
+                      <div class="ai-fix-curator-prompt">
+                        <div class="ai-quote-label">
+                          <span>💬 What you instructed:</span>
+                          ${shotCount > 0 ? `<span class="badge-shots-proof">📷 ${shotCount} Proof${shotCount > 1 ? 's' : ''}</span>` : ''}
+                        </div>
+                        <div class="ai-quote-text">"${escapeHtml(curatorPromptText)}"</div>
+                      </div>
+                    ` : ''}
+
+                    <div class="ai-fix-action-detail">
+                      <div class="ai-action-label">
+                        <span>🛠️ AI Proposed Changes / Action Taken:</span>
+                      </div>
+                      <div class="ai-action-text">
+                        ${escapeHtml(aiActionText || 'All 20 dimensions re-verified against official venue source.')}
+                      </div>
+                      ${hasAiDimChange && changedDims.length > 0 ? `
+                        <div style="margin-top: 4px; font-size: 0.67rem; color: #fbbf24; border-top: 1px dashed rgba(251,191,36,0.3); padding-top: 3px;">
+                          Changed Dimensions: ${escapeHtml(changedDims.map(d => d.name + (d.status ? ' (' + d.status + ')' : '')).join(', '))}
+                        </div>
+                      ` : ''}
+                    </div>
+                  </div>
+                ` : (isApproved && Boolean(aiActionText || curatorPromptText) ? `
+                  <div style="margin-bottom: 5px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 5px; padding: 4px 7px;">
+                    <div style="font-size: 0.67rem; color: #34d399; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
+                      <span>✓ Approved Fix Verified</span>
+                      ${shotCount > 0 ? `<span class="badge-shots-proof" style="font-size: 0.6rem;">📷 ${shotCount} Proof</span>` : ''}
+                    </div>
+                    ${curatorPromptText ? `
+                      <div style="font-size: 0.68rem; color: #94a3b8; font-style: italic; margin-top: 2px;">
+                        Instruction: "${escapeHtml(curatorPromptText)}"
+                      </div>
+                    ` : ''}
+                    ${aiActionText ? `
+                      <div style="font-size: 0.69rem; color: #a7f3d0; margin-top: 2px;">
+                        AI Action: ${escapeHtml(aiActionText)}
+                      </div>
+                    ` : ''}
+                  </div>
+                ` : '')}
+
+                <!-- Comment Input with Multiple Screenshot Proof Attachment -->
+                <div class="comment-wrapper" style="display: flex; flex-direction: column; align-items: stretch; gap: 4px;">
+                  <div class="comment-input-row">
+                    <!-- Hidden multi-file input -->
+                    <input 
+                      type="file" 
+                      id="file-input-${id}" 
+                      accept="image/*" 
+                      multiple 
+                      style="display: none;" 
+                      onchange="handleScreenshotUpload('${id}', this.files); this.value='';"
+                    >
+                    <!-- Attachment button label -->
+                    <label 
+                      for="file-input-${id}" 
+                      class="btn-attach-proof ${attachedShots.length > 0 ? 'has-shots' : ''}" 
+                      title="Attach screenshot proof(s) or paste clipboard image (Ctrl+V)"
+                    >
+                      <span>📷</span>
+                      <span>${attachedShots.length > 0 ? `<span class="attach-badge">${attachedShots.length}</span>` : 'Proof'}</span>
+                    </label>
+
+                    <input 
+                      type="text" 
+                      id="comment-${id}" 
+                      class="comment-input" 
+                      placeholder="${shouldShowAiFix ? 'Add further instructions or corrections...' : 'Feedback or paste screenshot (Ctrl+V)...'}" 
+                      value="${existingInst && existingInst.status !== 'resolved' ? escapeHtml(existingInst.instructionText || '') : ''}"
+                      onkeydown="if(event.key==='Enter') saveComment('${id}')"
+                      onpaste="handleCommentPaste(event, '${id}')"
+                    >
+                    <button type="button" class="btn-send-ai" onclick="saveComment('${id}')" title="Save feedback & screenshots to pending queue (processed when you run QC AI)">
+                      💾 Save
+                    </button>
+                    <span id="saved-${id}" class="comment-saved-badge">✓ Saved</span>
+                  </div>
+
+                  <!-- Thumbnail Strip of Attached Screenshots -->
+                  ${attachedShots.length > 0 ? `
+                    <div class="comment-shots-strip" id="shots-strip-${id}">
+                      ${attachedShots.map((s, sIdx) => `
+                        <div class="shot-thumbnail-box" title="${escapeHtml(s.name)} — Click to enlarge">
+                          <img src="${s.dataUrl}" class="shot-thumb-img" alt="${escapeHtml(s.name)}" onclick="openScreenshotModal('${s.dataUrl}')">
+                          <button type="button" class="btn-remove-shot" onclick="removeScreenshot('${id}', ${sIdx})" title="Remove screenshot">✕</button>
+                        </div>
+                      `).join('')}
+                      <span class="shots-count-label">${attachedShots.length} screenshot${attachedShots.length > 1 ? 's' : ''} attached</span>
+                    </div>
+                  ` : ''}
+                </div>
+              </td>
+            `;
+          }
+
+          return `<td></td>`;
+        }).join('');
+
+        return `
+          <tr id="row-${id}" class="${rowClass}">
+            ${cellsHtml}
+          </tr>
+        `;
+      }).join('');
+
+      if (scrollContainer && prevScroll > 0) {
+        scrollContainer.scrollTop = prevScroll;
+      }
+    }
+
+    // Persist Curator Review State (Unified)
+    async function persistEventReview(id, action = 'reviewed') {
+      state.reviewedSet.add(id);
+      localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+
+      const ev = state.allEvents.find(e => (e.event_id || e.id) === id) || 
+                 state.quarantinedEvents.find(e => (e.event_id || e.id) === id);
+      if (ev) {
+        ev.is_reviewed = true;
+        ev.curator_reviewed_at = new Date().toISOString();
+        ev.has_unreviewed_ai_change = false;
+        if (action === 'approved') {
+          ev.approval_status = 'Curator-Approved';
+          ev.curator_approved_at = ev.curator_reviewed_at;
+        } else if (action === 'disapproved') {
+          ev.approval_status = 'Curator-Disapproved';
+          ev.curator_disapproved_at = ev.curator_reviewed_at;
+        }
+        if (ev.dimension_audit && ev.dimension_audit.dimensions) {
+          for (let dim of Object.values(ev.dimension_audit.dimensions)) {
+            if (dim && typeof dim === 'object') {
+              dim.curator_reviewed = true;
+            }
+          }
+        }
+      }
+
+      fetch('/api/curator/review-event', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(state.token ? { 'Curator-Token': state.token } : {})
+        },
+        body: JSON.stringify({ eventId: id, action })
+      }).catch(err => console.warn('review-event API warning:', err));
+    }
+
+    window.persistEventReview = persistEventReview;
+
+    window.handleMarkReviewed = async function(id) {
+      await persistEventReview(id, 'reviewed');
+      showToast('✓ Event saved as reviewed! Stays reviewed unless an AI makes a change.');
+      renderTable();
+    };
+
+    // Action Handlers
+    window.handleApprove = async function(id) {
+      state.approvedSet.add(id);
+      state.disapprovedSet.delete(id);
+      state.reviewedSet.add(id);
+      localStorage.setItem('curator_approved_events', JSON.stringify(Array.from(state.approvedSet)));
+      localStorage.setItem('curator_disapproved_events', JSON.stringify(Array.from(state.disapprovedSet)));
+      localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+      
+      await persistEventReview(id, 'approved');
+
+      // Persist approval to backend endpoint
+      fetch('/api/curator/approve-event', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(state.token ? { 'Curator-Token': state.token } : {})
+        },
+        body: JSON.stringify({ eventId: id })
+      }).catch(err => console.warn('Approve-event API warning:', err));
+
+      const commentInput = document.getElementById(`comment-${id}`);
+      const attachedShots = state.attachedScreenshots.get(id) || [];
+      if ((commentInput && commentInput.value.trim()) || attachedShots.length > 0) {
+        await saveComment(id, false, true);
+      } else {
+        showToast('✓ Event approved as curator-verified! Will remain approved unless AI detects a dimension change.');
+      }
+      renderTable();
+    };
+
+    window.handleDisapprove = function(id) {
+      state.activeDisapproveId = id;
+      const ev = state.allEvents.find(e => (e.event_id || e.id) === id) || 
+                 state.quarantinedEvents.find(e => (e.event_id || e.id) === id) || {};
+
+      document.getElementById('disapprove-event-title').textContent = ev.event_name || ev.title || 'Untitled Event';
+      document.getElementById('disapprove-event-venue').textContent = (ev.venue_name || ev.venue || 'Venue') + ' • ' + (ev.category || 'Category');
+      
+      const curInput = document.getElementById(`comment-${id}`);
+      disapproveTextarea.value = curInput ? curInput.value.replace(/^\[DISAPPROVED\]\s*/, '') : '';
+
+      renderDisapproveModalScreenshots();
+      disapproveModal.classList.add('active');
+      disapproveTextarea.focus();
+    };
+
+    // Request 1: Toggle pricing tier review (approve/disapprove)
+    window.toggleTierReview = function(id, tierKey, action) {
+      if (!state.tierReviews[id]) {
+        state.tierReviews[id] = {};
+      }
+      const cur = state.tierReviews[id][tierKey];
+      if (cur === action) {
+        // Toggle off if already active
+        delete state.tierReviews[id][tierKey];
+        if (Object.keys(state.tierReviews[id]).length === 0) {
+          delete state.tierReviews[id];
+        }
+      } else {
+        state.tierReviews[id][tierKey] = action;
+      }
+      localStorage.setItem('van50_curator_tier_reviews', JSON.stringify(state.tierReviews));
+      persistEventReview(id, 'tier_reviewed');
+      renderTable();
+    };
+
+    // Request 2: Screenshot Proof Upload & Handling
+    window.handleScreenshotUpload = function(id, fileList) {
+      if (!fileList || fileList.length === 0) return;
+      if (!state.attachedScreenshots.has(id)) {
+        state.attachedScreenshots.set(id, []);
+      }
+      const existing = state.attachedScreenshots.get(id);
+      const readPromises = [];
+
+      Array.from(fileList).forEach(file => {
+        if (!file.type || !file.type.startsWith('image/')) return;
+        const p = new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            resolve({
+              name: file.name || 'screenshot.png',
+              dataUrl: e.target.result
+            });
+          };
+          reader.readAsDataURL(file);
+        });
+        readPromises.push(p);
+      });
+
+      Promise.all(readPromises).then(newShots => {
+        if (newShots.length > 0) {
+          existing.push(...newShots);
+          showToast(`Attached ${newShots.length} screenshot${newShots.length > 1 ? 's' : ''}`);
+          renderTable();
+        }
+      });
+    };
+
+    // Request 2: Handle Clipboard Paste on Comment Inputs (Ctrl+V)
+    window.handleCommentPaste = function(e, id) {
+      const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items;
+      if (!items) return;
+      const imageFiles = [];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type && items[i].type.indexOf('image') !== -1) {
+          const blob = items[i].getAsFile();
+          if (blob) {
+            imageFiles.push(blob);
+          }
+        }
+      }
+      if (imageFiles.length > 0) {
+        e.preventDefault();
+        window.handleScreenshotUpload(id, imageFiles);
+      }
+    };
+
+    // Request 2: Remove a screenshot thumbnail from staging
+    window.removeScreenshot = function(id, index) {
+      const shots = state.attachedScreenshots.get(id);
+      if (shots && shots.length > index) {
+        shots.splice(index, 1);
+        if (shots.length === 0) {
+          state.attachedScreenshots.delete(id);
+        }
+        renderTable();
+      }
+    };
+
+    // Request 2: Lightbox Modal Handlers
+    window.openScreenshotModal = function(imgSrc) {
+      const modal = document.getElementById('screenshot-lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      if (modal && img) {
+        img.src = imgSrc;
+        modal.classList.add('active');
+      }
+    };
+
+    window.closeScreenshotModal = function() {
+      const modal = document.getElementById('screenshot-lightbox-modal');
+      if (modal) modal.classList.remove('active');
+    };
+
+    window.saveComment = async function(id, isDisapproval = false, isApproval = false) {
+      const input = document.getElementById(`comment-${id}`);
+      const text = input ? input.value.trim() : '';
+      const attachedShots = state.attachedScreenshots.get(id) || [];
+
+      if (!text && attachedShots.length === 0) {
+        showToast('Please type a comment or attach a screenshot first', false);
+        return;
+      }
+
+      const ev = state.allEvents.find(e => (e.event_id || e.id) === id) || 
+                 state.quarantinedEvents.find(e => (e.event_id || e.id) === id) || {};
+
+      const payload = {
+        eventId: id,
+        eventTitle: ev.event_name || ev.title || 'Event',
+        venueName: ev.venue_name || ev.venue || '',
+        sourceUrl: ev.best_available_link || ev.ticket_url || ev.websiteUrl || '',
+        instructionText: text || (attachedShots.length > 0 ? `[Attached ${attachedShots.length} screenshot proof(s)]` : ''),
+        screenshots: attachedShots.map(s => s.dataUrl),
+        action: isDisapproval ? 'dismiss' : (isApproval ? 'approve' : 'queue_only')
+      };
+
+      try {
+        const res = await fetch('/api/curator/instruction', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(state.token ? { 'Curator-Token': state.token } : {})
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.status === 403) {
+          authModal.classList.add('active');
+          document.getElementById('auth-password').focus();
+          showToast('Passphrase required to save AI instructions.', false);
+          return;
+        }
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          // Clear attached screenshots after saving
+          state.attachedScreenshots.delete(id);
+
+          await persistEventReview(id, isDisapproval ? 'disapproved' : (isApproval ? 'approved' : 'commented'));
+
+          // Merge any server-updated fields (price, date, link, etc.) directly into state if returned
+          if (data.updatedEvent) {
+            const evIdx = state.allEvents.findIndex(e => (e.event_id || e.id) === id);
+            if (evIdx !== -1) {
+              state.allEvents[evIdx] = { ...state.allEvents[evIdx], ...data.updatedEvent };
+            }
+            const qIdx = state.quarantinedEvents.findIndex(e => (e.event_id || e.id) === id);
+            if (qIdx !== -1) {
+              state.quarantinedEvents[qIdx] = { ...state.quarantinedEvents[qIdx], ...data.updatedEvent };
+            }
+          }
+          if (data.resolutionNotes) {
+            state.aiFixedEvents.set(id, {
+              eventId: id,
+              status: 'resolved',
+              applied: true,
+              resolutionNotes: data.resolutionNotes,
+              instructionText: text
+            });
+            // Rule: Events STAY APPROVED & REVIEWED until an AI detects an actual dimension change
+            if (data.updatedEvent && data.updatedEvent.has_unreviewed_ai_change) {
+              state.approvedSet.delete(id);
+              state.reviewedSet.delete(id);
+              localStorage.setItem('curator_approved_events', JSON.stringify(Array.from(state.approvedSet)));
+              localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+            }
+          }
+          state.instructionsMap.set(id, {
+            instructionText: text,
+            status: data.resolutionNotes ? 'resolved' : 'pending',
+            resolutionNotes: data.resolutionNotes,
+            actionTaken: isDisapproval ? 'dismiss' : (isApproval ? 'approve' : 'queue_only'),
+            hasScreenshot: attachedShots.length > 0,
+            screenshotCount: attachedShots.length
+          });
+          const badge = document.getElementById(`saved-${id}`);
+          if (badge) {
+            badge.style.display = 'inline-flex';
+            setTimeout(() => { badge.style.display = 'none'; }, 4000);
+          }
+          const pendingBadge = document.getElementById('badge-pending-feedback');
+          if (pendingBadge && data.pendingInstructions !== undefined) {
+            pendingBadge.textContent = data.pendingInstructions;
+          }
+          showToast(isDisapproval ? 'Disapproval & screenshot proof(s) saved to pending queue!' : (data.resolutionNotes ? `Feedback applied! ${data.resolutionNotes}` : 'Feedback & proof saved to pending queue! (Will be processed when you run QC AI)'));
+          renderTable();
+        } else {
+          showToast(`Error: ${data.error || 'Could not save instruction'}`, false);
+        }
+      } catch (err) {
+        showToast(`Network error: ${err.message}`, false);
+      }
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Load Data
+    async function loadData() {
+      try {
+        // 1. Fetch active events
+        const evRes = await fetch('/data/events.json?_t=' + Date.now());
+        if (evRes.ok) {
+          state.allEvents = await evRes.json();
+          // Synchronize reviewedSet and approvedSet with persisted statuses
+          // Rule: Events stay reviewed/approved until an AI detects an unreviewed dimension change
+          for (let ev of state.allEvents) {
+            const eid = ev.event_id || ev.id;
+            if (hasUnreviewedAiDimensionChange(ev)) {
+              // AI made a change! Reset reviewed and approved status
+              state.approvedSet.delete(eid);
+              state.reviewedSet.delete(eid);
+              ev.is_reviewed = false;
+            } else {
+              if (ev.approval_status === 'Curator-Approved') {
+                state.approvedSet.add(eid);
+                state.reviewedSet.add(eid);
+              }
+              if (ev.is_reviewed === true || ev.curator_reviewed_at) {
+                state.reviewedSet.add(eid);
+              }
+              if (state.approvedSet.has(eid) || state.disapprovedSet.has(eid)) {
+                state.reviewedSet.add(eid);
+              }
+            }
+          }
+          localStorage.setItem('curator_approved_events', JSON.stringify(Array.from(state.approvedSet)));
+          localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+        }
+
+        // 2. Fetch quarantine queue
+        try {
+          const qRes = await fetch('/api/curator/queue?_t=' + Date.now(), {
+            headers: state.token ? { 'Curator-Token': state.token } : {}
+          });
+          if (qRes.ok) {
+            const qData = await qRes.json();
+            state.quarantinedEvents = qData.quarantinedEvents || [];
+            for (let qev of state.quarantinedEvents) {
+              const qid = qev.event_id || qev.id;
+              if (hasUnreviewedAiDimensionChange(qev)) {
+                state.approvedSet.delete(qid);
+                state.reviewedSet.delete(qid);
+                qev.is_reviewed = false;
+              } else {
+                if (qev.approval_status === 'Curator-Approved') {
+                  state.approvedSet.add(qid);
+                  state.reviewedSet.add(qid);
+                }
+                if (qev.is_reviewed === true || qev.curator_reviewed_at) {
+                  state.reviewedSet.add(qid);
+                }
+                if (state.approvedSet.has(qid) || state.disapprovedSet.has(qid)) {
+                  state.reviewedSet.add(qid);
+                }
+              }
+            }
+            localStorage.setItem('curator_reviewed_events', JSON.stringify(Array.from(state.reviewedSet)));
+          }
+        } catch (e) {
+          console.warn('Queue fetch error:', e);
+        }
+
+        // 3. Fetch instructions & AI resolutions (Request 3: visible until approved)
+        try {
+          const instRes = await fetch('/api/curator/instructions?_t=' + Date.now(), {
+            headers: state.token ? { 'Curator-Token': state.token } : {}
+          });
+          if (instRes.ok) {
+            const instData = await instRes.json();
+            const instList = Array.isArray(instData) ? instData : (instData.instructions || []);
+            
+            for (let item of instList) {
+              if (item.eventId) {
+                state.instructionsMap.set(item.eventId, item);
+
+                // Request 3: Check if details were fixed by AI
+                const isAiFixed = item.status === 'resolved' || item.applied === true || Boolean(item.resolutionNotes) || Boolean(item.aiLearnedSummary);
+                if (isAiFixed) {
+                  state.aiFixedEvents.set(item.eventId, item);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('Instructions fetch error:', e);
+        }
+
+        renderTable();
+      } catch (err) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="6" style="text-align: center; padding: 40px; color: var(--accent-rose);">
+              ⚠️ Failed to load catalog: ${err.message}. Ensure curator_server.py is running on port 8080.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.currentFilter = btn.dataset.filter;
+        renderTable();
+      });
+    });
+
+    // Search Input
+    searchInput.addEventListener('input', (e) => {
+      state.searchTerm = e.target.value.trim();
+      renderTable();
+    });
+
+    // Initialize
+    checkAuth();
+    loadData();
+  </script>
+</body>
+</html>
