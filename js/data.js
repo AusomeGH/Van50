@@ -5377,12 +5377,12 @@ const VANCOUVER_EVENTS = [
       "regular": 28.41,
       "concession": 17.87
     },
-    "operating_hours": null,
+    "operating_hours": "Doors open 19:00 PT | Performance 20:00 - 22:00 PT",
     "days_open": null,
     "show_1": {
       "date": "2026-11-05",
-      "start_time": "19:00",
-      "end_time": "23:30",
+      "start_time": "20:00",
+      "end_time": "22:00",
       "cost": 25.0
     },
     "show_2": null,
@@ -5403,7 +5403,7 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Updated (2026-09-28): The event is active and verified for November 5, 2026 under $50 CAD, but the generic directory link should be replaced with the direct ticketing URL and the start time confirmed as 19:00.",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-09): Penetrated Showpass live cart. General Admission is $25.00 base + $3.41 fee = $28.41 CAD; Concession is $15.00 base + $2.87 fee = $17.87 CAD. Doors 19:00, Performance 20:00 - 22:00.",
     "price": 28.41,
     "access_model": "fenced_facility",
     "pricing_model": "tiered_admission",
@@ -5421,10 +5421,10 @@ const VANCOUVER_EVENTS = [
     "meal_benchmark": "$12.00 – $18.00 CAD (nearby Main St eateries)",
     "title": "Miesha & The Spanks with Francis Baptiste",
     "date": "2026-11-05",
-    "time": "19:00",
-    "start_time": "19:00",
-    "end_time": "23:30",
-    "dateSchedule": "2026-11-05 at 19:00",
+    "time": "20:00",
+    "start_time": "20:00",
+    "end_time": "22:00",
+    "dateSchedule": "Thursday, November 5, 2026 at 20:00 (Doors 19:00)",
     "frequency": "One-Time",
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
     "lineup": "Miesha & The Spanks, Francis Baptiste",
@@ -5434,8 +5434,8 @@ const VANCOUVER_EVENTS = [
     "showings": [
       {
         "date": "2026-11-05",
-        "start_time": "19:00",
-        "end_time": "23:30",
+        "start_time": "20:00",
+        "end_time": "22:00",
         "cost": 25.0,
         "status": "active"
       }
