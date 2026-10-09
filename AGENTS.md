@@ -252,6 +252,20 @@
     - **Rule 4: Zero Premature Halting & Zero Quota Exits**:
       - The QC AI does NOT stop after auditing a handful of events. It sweeps sequentially through all remaining unaudited events in the catalog until 100% of events have undergone their isolated batch-of-1 audit.
 
+### 14. The 10 Mechanical Invariant Gates (`deploy_to_production.py`)
+To prevent Goodhart's Law shortcuts and ensure automated builds reject any lazy or corrupted data, `scripts/deploy_to_production.py` strictly enforces 10 mechanical rules before deployment:
+1. **Rule 1: Hard Budget Ceiling**: Every event must have `price <= 50.0 CAD`.
+2. **Rule 2: Strict Geofence**: No out-of-market locations (Montreal, Toronto, Victoria, etc.) allowed in text or URLs.
+3. **Rule 3: Entity Invariant**: Ticketing portals and aggregators (Songkick, Eventbrite Vancouver, Do604, etc.) are strictly forbidden as venue names.
+4. **Rule 4: Lifecycle Invariant**: Non-perennial events must have an active `date` and `show_1.date`.
+5. **Rule 5: Honest Dimension Audit**: No fake "50/50" audit scores when `D2_date` is None or unverified.
+6. **Rule 6: Static Asset File Rejection**: No static web asset file (`.css`, `.js`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp`, `.woff`, `.woff2`, `.ttf`, `.ico`, `.map`) may ever be used as an event link or ticket URL.
+7. **Rule 7: Entity Symmetry & Non-Blank Venue**: Both `venue` and `venue_name` must be non-empty strings.
+8. **Rule 8: Schema Completeness (5-Tier Links Dict)**: Every event must contain the complete 5-tier `links` dictionary (`tier1_checkout`, `tier2_event_page`, `tier3_calendar`, `tier4_civic_destination`, `tier5_venue_home`, `best_available`, `best_tier`).
+9. **Rule 9: Aggregator Blacklist & Unhydrated Calendar Rejection**: Primary ticket links must not point to aggregators (`allevents.in`, `do604.com`, `facebook.com/events`, `eventbrite.ca/d/`) or unhydrated calendar directories (`/monthly-calendar-list`).
+10. **Rule 10: Generic Platform Marketing Title Rejection**: Event titles must not be generic ticketing platform marketing copy (e.g., "TicketWeb -", "Eventbrite -", "Showpass -", "Tickets for Independent Concerts").
+
+
 
 
 

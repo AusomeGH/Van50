@@ -137,6 +137,55 @@ def verify_anti_laziness_invariants() -> bool:
             if d2.get("value") is None and lifecycle != "perennial_drop_in":
                 violations.append(f"[{eid}] Fake 50/50 score with D2_date=None")
 
+        # Rule 6: Asset File Rejection (No static assets as event URLs)
+        asset_exts = ('.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.woff', '.woff2', '.ttf', '.ico', '.map')
+        all_event_urls = [ticket, disc, str(e.get("websiteUrl", "")), str(e.get("best_available_link", ""))]
+        if isinstance(e.get("links"), dict):
+            all_event_urls.extend(str(v) for v in e["links"].values() if v)
+        for u in all_event_urls:
+            clean_u = u.split('?')[0].split('#')[0].lower()
+            if clean_u.endswith(asset_exts):
+                violations.append(f"[{eid}] Static asset file used as event link: {u}")
+                break
+
+        # Rule 7: Entity Symmetry & Non-Blank Venue
+        raw_venue = str(e.get("venue", "")).strip()
+        raw_venue_name = str(e.get("venue_name", "")).strip()
+        if not raw_venue or not raw_venue_name:
+            violations.append(f"[{eid}] Missing venue field (venue='{raw_venue}', venue_name='{raw_venue_name}')")
+
+        # Rule 8: Schema Completeness (5-Tier Links Dict)
+        links = e.get("links")
+        if not isinstance(links, dict):
+            violations.append(f"[{eid}] Missing or non-dict 'links' schema")
+        else:
+            required_keys = {'tier1_checkout', 'tier2_event_page', 'tier3_calendar', 'tier4_civic_destination', 'tier5_venue_home', 'best_available', 'best_tier'}
+            missing = required_keys - set(links.keys())
+            if missing:
+                violations.append(f"[{eid}] 'links' dict missing keys: {missing}")
+            ba = links.get("best_available")
+            if not ba or not isinstance(ba, str) or not ba.startswith("http"):
+                violations.append(f"[{eid}] 'links.best_available' is not a valid HTTP URL: {ba}")
+            bt = links.get("best_tier")
+            if bt not in ('tier1', 'tier2', 'tier3', 'tier4', 'tier5'):
+                violations.append(f"[{eid}] Invalid 'links.best_tier': {bt}")
+
+        # Rule 9: Aggregator Blacklist & Unhydrated Calendar Rejection
+        agg_domains = ('allevents.in', 'do604.com', 'facebook.com/events', 'eventbrite.ca/d/', 'eventbrite.com/d/')
+        for agg in agg_domains:
+            if agg in ticket.lower():
+                violations.append(f"[{eid}] Blacklisted aggregator in ticket_url: {ticket}")
+                break
+        if '/monthly-calendar-list' in ticket.lower():
+            violations.append(f"[{eid}] Unhydrated calendar directory in ticket_url: {ticket}")
+
+        # Rule 10: Generic Platform Marketing Title Rejection
+        title_lower = title.lower()
+        for bad_title in ("ticketweb -", "eventbrite -", "showpass -", "tickets for independent concerts"):
+            if bad_title in title_lower:
+                violations.append(f"[{eid}] Generic platform marketing copy in title: {title}")
+                break
+
     if violations:
         print(f"❌ [FAIL] Anti-Laziness Invariant Violations Detected ({len(violations)}):")
         for v in violations[:10]:
