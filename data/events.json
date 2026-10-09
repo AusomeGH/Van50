@@ -6791,12 +6791,12 @@
     "neighborhood": "Commercial Drive",
     "description": "Psychedelic noise-pop favorites Dummy bring their motorik rhythms and layered indie rock to East Vancouver.",
     "pricing_all_in_cad": {
-      "regular": 39.35
+      "regular": 31.23
     },
     "show_1": {
       "date": "2026-10-22",
       "start_time": "20:00",
-      "end_time": null,
+      "end_time": "22:30",
       "cost": 22.5
     },
     "show_2": null,
@@ -6813,15 +6813,16 @@
       "east-van",
       "indie-rock",
       "live-band",
-      "live-music"
+      "live-music",
+      "psychedelic"
     ],
     "festival_affiliation": "None",
     "approval_status": "Auto-Approved",
-    "curator_notes": "AI Pass 2 (2026-09-28): Standardized TicketWeb ticketing attribution and applied hyper-local East Van and specific indie music genre taxonomy.",
-    "price": 39.35,
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-09): Penetrated live Ticketweb cart. Corrected price from $39.35 to actual $31.23 CAD ($22.50 base + $8.73 Ticketweb service fee). Lineup: Dummy, Golomb, worrywart. Doors 19:00, Show 20:00.",
+    "price": 31.23,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 39.35,
+    "price_adult": 31.23,
     "price_student": null,
     "price_member": null,
     "tier_custom_name_1": null,
@@ -6837,11 +6838,11 @@
     "date": "2026-10-22",
     "time": "20:00",
     "start_time": "20:00",
-    "end_time": "21:30",
-    "dateSchedule": "2026-10-22 at 20:00",
+    "end_time": "22:30",
+    "dateSchedule": "Thursday, October 22, 2026 at 20:00 (Doors 19:00)",
     "frequency": "One-Time",
     "typical_item_spend": "$13.00 – $18.00 CAD (1–2 craft pints)",
-    "lineup": "Featured artists and performers for Dummy with Golomb & worrywart",
+    "lineup": "Dummy, Golomb, worrywart",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
@@ -6849,7 +6850,7 @@
       {
         "date": "2026-10-22",
         "start_time": "20:00",
-        "end_time": null,
+        "end_time": "22:30",
         "cost": 22.5,
         "status": "active"
       }
@@ -7179,15 +7180,15 @@
     "best_available_link": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603",
     "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 39.35,
+      "price_base": 22.5,
       "price_tax": 0.0,
-      "price_fees": 0.0,
-      "price_all_in": 39.35,
+      "price_fees": 8.73,
+      "price_all_in": 31.23,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 39.35,
+    "price_all_in": 31.23,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
