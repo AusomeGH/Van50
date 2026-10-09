@@ -4901,6 +4901,65 @@
       "archivedAt": "2026-10-09T10:27:00-07:00",
       "archiveReason": "QC AI Calibration Audit: Link Mismatch Invariant: Ticketing URL points to Rickshaw Theatre ACTORS event",
       "flaggedAt": "2026-10-09"
+    },
+    {
+      "event_id": "van50-the-wise-hall-ticketweb-tickets-for-independent-concer",
+      "event_name": "TicketWeb - Tickets for Independent Concerts and more",
+      "title": "TicketWeb - Tickets for Independent Concerts and more",
+      "category": "Live Music",
+      "lifecycle_type": "time_bound_event",
+      "venue_name": "The WISE Hall",
+      "full_address": "Vancouver, BC",
+      "neighborhood": "Commercial Drive",
+      "coordinates": [
+        49.2838,
+        -123.1048
+      ],
+      "transit_info": "Waterfront SkyTrain Station (4 min walk)",
+      "description": "Cultural outing in Vancouver.",
+      "pricing_all_in_cad": {
+        "regular": 20.0,
+        "senior": 20.0,
+        "student": 20.0,
+        "member": 20.0
+      },
+      "operating_hours": "Evening live gathering",
+      "days_open": "Special Event Date",
+      "show_1": {
+        "date": "2026-11-02",
+        "start_time": "17:00",
+        "end_time": "20:00",
+        "cost": 20.0
+      },
+      "show_2": null,
+      "show_3": null,
+      "discovery_url": "https://www.ticketweb.ca",
+      "details_url": "https://www.ticketweb.ca",
+      "ticket_url": "https://i.ticketweb.com/ecom/resources/css/interact-3.63.27.min.css",
+      "ticket_provider": "Free Public Access",
+      "tags": [
+        "culture",
+        "free-public-access",
+        "all-ages",
+        "live-music"
+      ],
+      "festival_affiliation": "None",
+      "approval_status": "Auto-Approved",
+      "curator_notes": "Graduated from Quarantine AI following Curator holiday approval.",
+      "price": 20.0,
+      "access_model": "open_public_space",
+      "pricing_model": "flat_ticket",
+      "dateSchedule": "2026-11-02 at 17:00",
+      "start_date": "2026-11-02",
+      "start_time": "17:00",
+      "lineup": "TicketWeb - Tickets for Independent Concerts and more",
+      "restrictions": "All Ages / Free Outdoor Public Gathering",
+      "is_sold_out": false,
+      "last_scouted_at": "2026-10-08T18:03:25.671592",
+      "date": "2026-11-02",
+      "venue": "The WISE Hall",
+      "quarantine_reason": "QC AI Red-Team Audit: Corrupted record. Title is generic Ticketweb website title, ticket_url points to CSS stylesheet file interact-3.63.27.min.css. Not a legitimate live event.",
+      "archived_at": "2026-10-09T14:00:28.132146"
     }
   ]
 }
