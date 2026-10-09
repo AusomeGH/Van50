@@ -14460,9 +14460,9 @@ const VANCOUVER_EVENTS = [
     },
     "show_2": null,
     "show_3": null,
-    "discovery_url": "https://www.foxcabaret.com",
-    "details_url": "https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
-    "ticket_url": "https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
+    "discovery_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+    "details_url": "https://www.foxcabaret.com",
+    "ticket_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
     "ticket_provider": "Fox Cabaret Box Office / Door",
     "tags": [
       "19-plus",
@@ -28972,7 +28972,7 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://foxcabaret.com",
     "details_url": "https://www.foxcabaret.com/event/boo-tylicious/",
-    "ticket_url": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "ticket_url": "https://www.foxcabaret.com/event/boo-tylicious/",
     "ticket_provider": "Fox Cabaret Box Office",
     "tags": [
       "halloween",
@@ -29326,14 +29326,14 @@ const VANCOUVER_EVENTS = [
     "operational_status": "scheduled",
     "links": {
       "tier1_checkout": null,
-      "tier2_event_page": "https://www.foxcabaret.com/monthly-calendar-list/",
+      "tier2_event_page": "https://www.foxcabaret.com/event/boo-tylicious/",
       "tier3_calendar": null,
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://www.foxcabaret.com/monthly-calendar-list/",
+      "best_available": "https://www.foxcabaret.com/event/boo-tylicious/",
       "best_tier": "tier2"
     },
-    "best_available_link": "https://www.foxcabaret.com/monthly-calendar-list/",
+    "best_available_link": "https://www.foxcabaret.com/event/boo-tylicious/",
     "best_link_tier": "tier2",
     "pricing_breakdown": {
       "price_base": 24.5,
