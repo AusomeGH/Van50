@@ -1045,7 +1045,8 @@ const VANCOUVER_EVENTS = [
     "resolutionNotes": "Curator said: \"[DISAPPROVED] Change the name to Stanley Park\" ➔ AI Action: Title updated from 'Stanley Park' ➔ 'Stanley Park' • Event marked for dismissal and quarantined from active catalog",
     "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Change the name to Stanley Park\" ➔ AI Action: Title updated from 'Stanley Park' ➔ 'Stanley Park' • Event marked for dismissal and quarantined from active catalog",
     "aiActionTaken": "Title updated from 'Stanley Park' ➔ 'Stanley Park' • Event marked for dismissal and quarantined from active catalog",
-    "lastCuratorFeedbackAt": "2026-10-08T22:22:07.570117+00:00"
+    "lastCuratorFeedbackAt": "2026-10-08T22:22:07.570117+00:00",
+    "venue": "Stanley Park"
   },
   {
     "event_id": "van50-vancouver-art-gallery-free-access",
@@ -1555,7 +1556,8 @@ const VANCOUVER_EVENTS = [
     "websiteUrl": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2",
     "price_base": 29.0,
     "price_tax": 1.45,
-    "price_fees": 0.0
+    "price_fees": 0.0,
+    "venue": "Vancouver Art Gallery"
   },
   {
     "event_id": "van50-sun-yat-sen-public-park",
@@ -2067,7 +2069,8 @@ const VANCOUVER_EVENTS = [
         "new": "Adult: $16.80, Senior: $13.65, Student: $12.60, Family: $33.60, Pass Holder: $0.00",
         "change": "⚡ Calibrated tax-inclusive admission tiers from official checkout basket: Adult $16.80, Senior $13.65, Student $12.60, Family $33.60, Pass Holder $0.00"
       }
-    }
+    },
+    "venue": "Dr. Sun Yat-Sen Public Park"
   },
   {
     "event_id": "van50-the-shipyards-lonsdale-quay",
@@ -2540,7 +2543,8 @@ const VANCOUVER_EVENTS = [
       "verifiedAt": "2026-10-08T17:00:32.736230+00:00",
       "details": "Curator feedback applied: Updated link to https://theshipyards.ca/shows/special • Updated price to $10.00 CAD • Updated date to 2026-10-28 at 7:00 PM"
     },
-    "aiActionTaken": "Updated link to https://theshipyards.ca/shows/special • Updated date to 2026-10-28 at 7:00 PM"
+    "aiActionTaken": "Updated link to https://theshipyards.ca/shows/special • Updated date to 2026-10-28 at 7:00 PM",
+    "venue": "The Shipyards District"
   },
   {
     "event_id": "van50-granville-island-public-market",
@@ -2995,7 +2999,8 @@ const VANCOUVER_EVENTS = [
       "free_public_access",
       "markets_popups_bazaars"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Granville Island Public Market"
   },
   {
     "event_id": "van50-canada-place-promenade",
@@ -3456,7 +3461,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] I'm getting stuck behind a bot shield.  Use this website instead: https://www.canadaplace.ca/exhibits-and-experiences",
     "aiActionTaken": "Updated to https://www.canadaplace.ca/exhibits-and-experiences to bypass bot shield.",
     "resolutionNotes": "Curator said: \"[DISAPPROVED] I'm getting stuck behind a bot shield.  Use this website instead: https://www.canadaplace.ca/exhibits-and-experiences\" ➔ AI Action: Updated to https://www.canadaplace.ca/exhibits-and-experiences to bypass bot shield.",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] I'm getting stuck behind a bot shield.  Use this website instead: https://www.canadaplace.ca/exhibits-and-experiences\" ➔ AI Action: Updated to https://www.canadaplace.ca/exhibits-and-experiences to bypass bot shield."
+    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] I'm getting stuck behind a bot shield.  Use this website instead: https://www.canadaplace.ca/exhibits-and-experiences\" ➔ AI Action: Updated to https://www.canadaplace.ca/exhibits-and-experiences to bypass bot shield.",
+    "venue": "Canada Place"
   },
   {
     "event_id": "van50-polygon-gallery-lonsdale",
@@ -3916,7 +3922,8 @@ const VANCOUVER_EVENTS = [
       "visual_arts_galleries",
       "workshops_classes_crafts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "The Polygon Gallery"
   },
   {
     "event_id": "van50-vpl-central-rooftop-garden",
@@ -4388,7 +4395,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] Bad link, use https://www.vpl.ca/branches/central/level-9/roofgarden",
     "aiActionTaken": "Updated deep link to VPL Central Level 9 rooftop garden page.",
     "resolutionNotes": "Curator said: \"[DISAPPROVED] Bad link, use https://www.vpl.ca/branches/central/level-9/roofgarden\" ➔ AI Action: Updated deep link to VPL Central Level 9 rooftop garden page.",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Bad link, use https://www.vpl.ca/branches/central/level-9/roofgarden\" ➔ AI Action: Updated deep link to VPL Central Level 9 rooftop garden page."
+    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Bad link, use https://www.vpl.ca/branches/central/level-9/roofgarden\" ➔ AI Action: Updated deep link to VPL Central Level 9 rooftop garden page.",
+    "venue": "Vancouver Public Library Central Branch"
   },
   {
     "event_id": "van50-cag-contemporary-art-gallery",
@@ -4843,7 +4851,8 @@ const VANCOUVER_EVENTS = [
       "free_public_access",
       "visual_arts_galleries"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Contemporary Art Gallery (CAG)"
   },
   {
     "event_id": "van50-queen-elizabeth-park-gardens",
@@ -5352,7 +5361,8 @@ const VANCOUVER_EVENTS = [
     ],
     "category_count": 4,
     "curator_approved_at": "2026-10-08T19:33:38.973755+00:00",
-    "has_unreviewed_ai_change": false
+    "has_unreviewed_ai_change": false,
+    "venue": "Queen Elizabeth Park"
   },
   {
     "event_id": "van50-miesha-and-the-spanks-fox-20261105",
@@ -6286,7 +6296,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Fox Cabaret"
   },
   {
     "event_id": "van50-rio-burlesque-variety-20261017",
@@ -6770,7 +6781,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] See attached prices for this event.",
     "aiActionTaken": "QC AI: Event marked for dismissal and quarantined based on curator feedback.",
     "price_base": 30.0,
-    "price_fees": 4.0
+    "price_fees": 4.0,
+    "venue": "The Rio Theatre"
   },
   {
     "event_id": "van50-dummy-wise-hall-20261022",
@@ -7227,7 +7239,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "workshops_classes_crafts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "The WISE Hall"
   },
   {
     "event_id": "van50-ruby-haunt-fox-20261211",
@@ -7687,7 +7700,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Fox Cabaret"
   },
   {
     "event_id": "van50-harvest-days-vandusen",
@@ -8238,7 +8252,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/ \n\nMultiple tiers of pricing included in screen shot.   Open Several weekends according to screenshot.",
     "aiActionTaken": "Ticketing deep-link updated to 'https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/' (live HTTP 200 verified)",
     "resolutionNotes": "Curator said: \"https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/ \n\nMultiple tiers of pricing included in screen shot.   Open Several weekends according to screenshot.\" ➔ AI Action: Ticketing deep-link updated to 'https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/' (live HTTP 200 verified)",
-    "aiResolutionNotes": "Curator said: \"https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/ \n\nMultiple tiers of pricing included in screen shot.   Open Several weekends according to screenshot.\" ➔ AI Action: Ticketing deep-link updated to 'https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/' (live HTTP 200 verified)"
+    "aiResolutionNotes": "Curator said: \"https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/ \n\nMultiple tiers of pricing included in screen shot.   Open Several weekends according to screenshot.\" ➔ AI Action: Ticketing deep-link updated to 'https://www.showpass.com/vandusen-botanical-garden-admi-26sep01-1765997942498/' (live HTTP 200 verified)",
+    "venue": "VanDusen Botanical Garden"
   },
   {
     "event_id": "van50-stand-up-showcase-lmg-20261015",
@@ -8705,7 +8720,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Little Mountain Gallery"
   },
   {
     "event_id": "van50-scout-cinematheque-past-future-20261015",
@@ -9165,7 +9181,8 @@ const VANCOUVER_EVENTS = [
       "family_youth_activities",
       "films_screenings"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-scout-york-comedy-on-the-drive-20261024",
@@ -9624,7 +9641,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "York Theatre"
   },
   {
     "event_id": "van50-scout-york-stripocalypse-20261016",
@@ -10086,7 +10104,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "York Theatre"
   },
   {
     "event_id": "van50-scout-rio-viff-beloved-20261001",
@@ -10577,7 +10596,8 @@ const VANCOUVER_EVENTS = [
       "nature_parks_gardens",
       "theatre_performing_arts"
     ],
-    "category_count": 6
+    "category_count": 6,
+    "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)"
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
@@ -11072,7 +11092,8 @@ const VANCOUVER_EVENTS = [
     "aiResolutionNotes": "Curator said: \"The actual cost is $22.63 per ticket, not sure why you say 199.99 CAD\" ➔ AI Action: Updated price to $22.63 CAD",
     "lastCuratorFeedbackAt": "2026-10-08T17:00:32.448144+00:00",
     "curatorInstruction": "The actual cost is $22.63 per ticket, not sure why you say 199.99 CAD",
-    "aiActionTaken": "Updated price to $22.63 CAD"
+    "aiActionTaken": "Updated price to $22.63 CAD",
+    "venue": "The Waldorf Hotel"
   },
   {
     "event_id": "van50-olive-klug-wise-hall-20261025",
@@ -11530,7 +11551,8 @@ const VANCOUVER_EVENTS = [
       "live_music_concerts",
       "music"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "The WISE Hall"
   },
   {
     "event_id": "van50-orpheum-silent-movie-mondays",
@@ -12064,7 +12086,8 @@ const VANCOUVER_EVENTS = [
     ],
     "category_count": 6,
     "curator_approved_at": "2026-10-08T19:37:44.829730+00:00",
-    "has_unreviewed_ai_change": false
+    "has_unreviewed_ai_change": false,
+    "venue": "The Orpheum"
   },
   {
     "event_id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
@@ -12541,7 +12564,8 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts",
       "workshops_classes_crafts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Queen Elizabeth Theatre"
   },
   {
     "event_id": "van50-raagaverse-strings-annex-20261015",
@@ -13007,7 +13031,8 @@ const VANCOUVER_EVENTS = [
     "aiResolutionNotes": "Curator said: \"Prices are wrong\" ➔ AI Action: QC AI Analyzed: Instruction staged and reviewed by Quality Control.",
     "lastCuratorFeedbackAt": "2026-10-08T18:41:36.435832+00:00",
     "curatorInstruction": "Prices are wrong",
-    "aiActionTaken": "QC AI Analyzed: Instruction staged and reviewed by Quality Control."
+    "aiActionTaken": "QC AI Analyzed: Instruction staged and reviewed by Quality Control.",
+    "venue": "The Annex"
   },
   {
     "event_id": "van50-actors-rickshaw-20261009",
@@ -13479,7 +13504,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "Rickshaw Theatre"
   },
   {
     "event_id": "van50-militarie-gun-rickshaw-20261010",
@@ -13942,7 +13968,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Rickshaw Theatre"
   },
   {
     "event_id": "van50-the-sunday-service-fox-20261011",
@@ -14408,7 +14435,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Fox Cabaret"
   },
   {
     "event_id": "van50-90s-00s-dance-party-fox-20261009",
@@ -14881,7 +14909,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
     "aiActionTaken": "QC AI Auto-Hunter: Curator Replacement Link Applied: https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
     "resolutionNotes": "Curator said: \"[DISAPPROVED] https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746\" ➔ AI Action: QC AI Auto-Hunter: Curator Replacement Link Applied: https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746\" ➔ AI Action: QC AI Auto-Hunter: Curator Replacement Link Applied: https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746"
+    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746\" ➔ AI Action: QC AI Auto-Hunter: Curator Replacement Link Applied: https://allevents.in/vancouver/00s-vs-10s-party-all-2000s-and-2010s-hits-dance-party/100002001015673746",
+    "venue": "The Fox Cabaret"
   },
   {
     "event_id": "van50-phyllis-hull-one-woman-show-20270122",
@@ -15349,7 +15378,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Show Cellar"
   },
   {
     "event_id": "van50-scout-cultch-palestine-comedy-20261009",
@@ -15821,7 +15851,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "York Theatre"
   },
   {
     "event_id": "van50-scout-cinematheque-kwaidan-20261012",
@@ -16315,7 +16346,8 @@ const VANCOUVER_EVENTS = [
       "family_youth_activities",
       "films_screenings"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-scout-cinematheque-hello-destroyer-20261027",
@@ -16792,7 +16824,8 @@ const VANCOUVER_EVENTS = [
       "free_public_access",
       "theatre_performing_arts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-scout-lmg-20-20-20-comedy-20261017",
@@ -17265,7 +17298,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Little Mountain Gallery"
   },
   {
     "event_id": "van50-scout-lmg-the-setup-20261024",
@@ -17740,7 +17774,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Little Mountain Gallery"
   },
   {
     "event_id": "van50-scout-rickshaw-dangelo-tribute-20261018",
@@ -18206,7 +18241,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "Rickshaw Theatre"
   },
   {
     "event_id": "van50-scout-rickshaw-amy-winehouse-20261017",
@@ -18676,7 +18712,8 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts",
       "workshops_classes_crafts"
     ],
-    "category_count": 6
+    "category_count": 6,
+    "venue": "Rickshaw Theatre"
   },
   {
     "event_id": "van50-the-way-out-theatre-20261022",
@@ -19148,7 +19185,8 @@ const VANCOUVER_EVENTS = [
     "aiResolutionNotes": "Curator said: \"[DISAPPROVED] https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/\" ➔ AI Action: QC AI Auto-Hunter: Curator Replacement Link Applied: https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
     "lastCuratorFeedbackAt": "2026-10-08T18:41:33.644824+00:00",
     "curatorInstruction": "[DISAPPROVED] https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
-    "aiActionTaken": "QC AI Auto-Hunter: Curator Replacement Link Applied: https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/"
+    "aiActionTaken": "QC AI Auto-Hunter: Curator Replacement Link Applied: https://matchstickpro.com/events/vancouver-bc-premiere-centennial-theatre/",
+    "venue": "Centennial Theatre"
   },
   {
     "event_id": "van50-scout-firehall-red-demon-20261008",
@@ -19656,7 +19694,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Firehall Arts Centre"
   },
   {
     "event_id": "van50-scout-cinematheque-small-file-20261017",
@@ -20174,7 +20213,8 @@ const VANCOUVER_EVENTS = [
       "films_screenings",
       "literary_spoken_word_poetry"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-scout-cinematheque-pulse-20261016",
@@ -20682,7 +20722,8 @@ const VANCOUVER_EVENTS = [
       "festivals_celebrations",
       "films_screenings"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-witches-harvest-market-20261024",
@@ -21163,7 +21204,8 @@ const VANCOUVER_EVENTS = [
     "aiResolutionNotes": "Curator said: \"This is on for multiple days.\" ➔ AI Action: QC AI Analyzed: Instruction staged and reviewed by Quality Control.",
     "lastCuratorFeedbackAt": "2026-10-08T18:41:34.036046+00:00",
     "curatorInstruction": "This is on for multiple days.",
-    "aiActionTaken": "QC AI Analyzed: Instruction staged and reviewed by Quality Control."
+    "aiActionTaken": "QC AI Analyzed: Instruction staged and reviewed by Quality Control.",
+    "venue": "Croatian Cultural Centre"
   },
   {
     "event_id": "eb-alistair-ogden-rio",
@@ -21636,7 +21678,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "Not all pricing tiers were sold out, just presale",
     "aiActionTaken": "Verified ticketing source and flagged event as SOLD OUT in catalog",
     "resolutionNotes": "Curator said: \"Not all pricing tiers were sold out, just presale\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog",
-    "aiResolutionNotes": "Curator said: \"Not all pricing tiers were sold out, just presale\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog"
+    "aiResolutionNotes": "Curator said: \"Not all pricing tiers were sold out, just presale\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog",
+    "venue": "The Rio Theatre"
   },
   {
     "event_id": "van50-city-pop-city-rickshaw-20261121",
@@ -22107,7 +22150,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "I don't think its sold out, I think you had the wrong ticket provider.",
     "aiActionTaken": "Verified ticketing source and flagged event as SOLD OUT in catalog",
     "resolutionNotes": "Curator said: \"I don't think its sold out, I think you had the wrong ticket provider.\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog",
-    "aiResolutionNotes": "Curator said: \"I don't think its sold out, I think you had the wrong ticket provider.\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog"
+    "aiResolutionNotes": "Curator said: \"I don't think its sold out, I think you had the wrong ticket provider.\" ➔ AI Action: Verified ticketing source and flagged event as SOLD OUT in catalog",
+    "venue": "Rickshaw Theatre"
   },
   {
     "event_id": "vag-first-friday",
@@ -22611,7 +22655,8 @@ const VANCOUVER_EVENTS = [
       "visual_arts_galleries",
       "workshops_classes_crafts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "Vancouver Art Gallery"
   },
   {
     "event_id": "van50-dalek-wise-hall-20261009",
@@ -23077,7 +23122,8 @@ const VANCOUVER_EVENTS = [
       "live_music_concerts",
       "music"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "The WISE Hall"
   },
   {
     "event_id": "van50-st-andrews-jazz-vespers",
@@ -23589,7 +23635,8 @@ const VANCOUVER_EVENTS = [
       "live_music_concerts",
       "music"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "St. Andrew's-Wesley United Church"
   },
   {
     "event_id": "van50-burnaby-central-railway-mini-train",
@@ -24133,7 +24180,8 @@ const VANCOUVER_EVENTS = [
       "sports_fitness_recreation",
       "theatre_performing_arts"
     ],
-    "category_count": 7
+    "category_count": 7,
+    "venue": "Confederation Park"
   },
   {
     "event_id": "stanley-pitch-putt",
@@ -24607,7 +24655,8 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "sports_fitness_recreation"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Stanley Park Pitch & Putt"
   },
   {
     "event_id": "qe-park-pitch-putt",
@@ -25085,7 +25134,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] Link is broken",
     "aiActionTaken": "Replaced broken par3nearme link with official City of Vancouver park board page.",
     "resolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page.",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page."
+    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page.",
+    "venue": "Queen Elizabeth Park Pitch & Putt"
   },
   {
     "event_id": "rupert-park-pitch-putt",
@@ -25563,7 +25613,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "[DISAPPROVED] Link is broken",
     "aiActionTaken": "Replaced broken par3nearme link with official City of Vancouver park board page.",
     "resolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page.",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page."
+    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] Link is broken\" ➔ AI Action: Replaced broken par3nearme link with official City of Vancouver park board page.",
+    "venue": "Rupert Park Pitch & Putt"
   },
   {
     "event_id": "central-park-pitch-putt",
@@ -26043,7 +26094,8 @@ const VANCOUVER_EVENTS = [
       "outdoors",
       "sports_fitness_recreation"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Central Park Pitch & Putt"
   },
   {
     "event_id": "viff-the-debut",
@@ -26524,7 +26576,8 @@ const VANCOUVER_EVENTS = [
       "festivals_celebrations",
       "films_screenings"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Fifth Avenue Cinema (VIFF)"
   },
   {
     "event_id": "van50-ubc-apple-festival-20261017",
@@ -27053,7 +27106,8 @@ const VANCOUVER_EVENTS = [
     "curatorInstruction": "https://tickets.ubc.ca/Online/seatSelect.asp\nhttps://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632u0026doWork%3A%3AWScontent%3A%3AloadArticle=Loadu0026syclid=dalf3beci8ps73dfkjjg#faq_2 \n\nThere are multiple showings available across different days.   Admission also does not include the Tasting Tent, which is prompted when you buy general admission.",
     "aiActionTaken": "Ticketing deep-link updated to 'https://tickets.ubc.ca/Online/seatSelect.asp' (live HTTP 200 verified)",
     "resolutionNotes": "Curator said: \"https://tickets.ubc.ca/Online/seatSelect.asp\nhttps://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632u0026doWork%3A%3AWScontent%3A%3AloadArticle=Loadu0026syclid=dalf3beci8ps73dfkjjg#faq_2 \n\nThere are multiple showings available across different days.   Admission also does not include the Tasting Tent, which is prompted when you buy general admission.\" ➔ AI Action: Ticketing deep-link updated to 'https://tickets.ubc.ca/Online/seatSelect.asp' (live HTTP 200 verified)",
-    "aiResolutionNotes": "Curator said: \"https://tickets.ubc.ca/Online/seatSelect.asp\nhttps://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632u0026doWork%3A%3AWScontent%3A%3AloadArticle=Loadu0026syclid=dalf3beci8ps73dfkjjg#faq_2 \n\nThere are multiple showings available across different days.   Admission also does not include the Tasting Tent, which is prompted when you buy general admission.\" ➔ AI Action: Ticketing deep-link updated to 'https://tickets.ubc.ca/Online/seatSelect.asp' (live HTTP 200 verified)"
+    "aiResolutionNotes": "Curator said: \"https://tickets.ubc.ca/Online/seatSelect.asp\nhttps://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632u0026doWork%3A%3AWScontent%3A%3AloadArticle=Loadu0026syclid=dalf3beci8ps73dfkjjg#faq_2 \n\nThere are multiple showings available across different days.   Admission also does not include the Tasting Tent, which is prompted when you buy general admission.\" ➔ AI Action: Ticketing deep-link updated to 'https://tickets.ubc.ca/Online/seatSelect.asp' (live HTTP 200 verified)",
+    "venue": "UBC Botanical Garden"
   },
   {
     "event_id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
@@ -27516,7 +27570,8 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts",
       "workshops_classes_crafts"
     ],
-    "category_count": 6
+    "category_count": 6,
+    "venue": "The Rio Theatre"
   },
   {
     "event_id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
@@ -27965,7 +28020,8 @@ const VANCOUVER_EVENTS = [
       "nature_parks_gardens",
       "workshops_classes_crafts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "Dr. Sun Yat-Sen Classical Chinese Garden"
   },
   {
     "event_id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
@@ -28427,7 +28483,8 @@ const VANCOUVER_EVENTS = [
       "sports_fitness_recreation",
       "workshops_classes_crafts"
     ],
-    "category_count": 8
+    "category_count": 8,
+    "venue": "Roundhouse Community Arts & Recreation Centre"
   },
   {
     "event_id": "van50-cinematheque-vampyr-live-score-20261031",
@@ -28884,7 +28941,8 @@ const VANCOUVER_EVENTS = [
       "live_music_concerts",
       "workshops_classes_crafts"
     ],
-    "category_count": 5
+    "category_count": 5,
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-fox-bootylicious-halloween-20261030",
@@ -29335,7 +29393,8 @@ const VANCOUVER_EVENTS = [
       "music",
       "theatre_performing_arts"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "The Fox Cabaret"
   },
   {
     "event_id": "van50-bloedel-conservatory-dome",
@@ -29803,7 +29862,8 @@ const VANCOUVER_EVENTS = [
       "nature_parks_gardens",
       "outdoors"
     ],
-    "category_count": 4
+    "category_count": 4,
+    "venue": "Bloedel Conservatory"
   },
   {
     "event_id": "van50-ludica-boardgame-night",
@@ -30269,7 +30329,8 @@ const VANCOUVER_EVENTS = [
       "trivia_games_boardgames",
       "workshops_classes_crafts"
     ],
-    "category_count": 8
+    "category_count": 8,
+    "venue": "Pizzeria Ludica"
   },
   {
     "event_id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
@@ -30678,7 +30739,8 @@ const VANCOUVER_EVENTS = [
       "music"
     ],
     "category_count": 4,
-    "date": "2026-10-11"
+    "date": "2026-10-11",
+    "venue": "2nd Floor Gastown"
   },
   {
     "event_id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
@@ -31081,7 +31143,8 @@ const VANCOUVER_EVENTS = [
       "shows"
     ],
     "category_count": 2,
-    "date": "2026-10-17"
+    "date": "2026-10-17",
+    "venue": "Red Gate Arts Society"
   },
   {
     "event_id": "van50-latincouver-catrinas-procession-gastown-20261102",
@@ -31508,7 +31571,8 @@ const VANCOUVER_EVENTS = [
     "aiActionTaken": "Ticketing deep-link updated to 'https://www.latincouver.ca/events/list/' (live HTTP 200 verified)",
     "resolutionNotes": "Curator said: \"I'm unsure how active this group is in actually hosting events, they may currently be taking a break but pick back up. https://www.latincouver.ca/events/list/\" ➔ AI Action: Ticketing deep-link updated to 'https://www.latincouver.ca/events/list/' (live HTTP 200 verified)",
     "aiResolutionNotes": "Curator said: \"I'm unsure how active this group is in actually hosting events, they may currently be taking a break but pick back up. https://www.latincouver.ca/events/list/\" ➔ AI Action: Ticketing deep-link updated to 'https://www.latincouver.ca/events/list/' (live HTTP 200 verified)",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "Gastown Historic District (Abbott & W Cordova St)"
   },
   {
     "event_id": "van50-tightrope-theatre-the-yes-files-20261009",
@@ -31987,7 +32051,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "Tightrope Impro Theatre"
   },
   {
     "event_id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
@@ -32466,7 +32531,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "Tightrope Impro Theatre"
   },
   {
     "event_id": "van50-tightrope-theatre-murder-she-improvised-20261113",
@@ -32952,7 +33018,8 @@ const VANCOUVER_EVENTS = [
       "shows",
       "theatre_performing_arts"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "Tightrope Impro Theatre"
   },
   {
     "event_id": "van50-commercial-drive-bia-halloween-20261031",
@@ -33392,7 +33459,8 @@ const VANCOUVER_EVENTS = [
       "markets_popups_bazaars"
     ],
     "category_count": 6,
-    "date": "2026-10-31"
+    "date": "2026-10-31",
+    "venue": "Commercial Drive BIA (Venables St to 13th Ave)"
   },
   {
     "event_id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
@@ -33835,7 +33903,8 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts"
     ],
     "category_count": 5,
-    "date": "2026-10-24"
+    "date": "2026-10-24",
+    "venue": "The York Theatre (The Cultch)"
   },
   {
     "event_id": "van50-rio-theatre-critical-hit-show-20261021",
@@ -35175,7 +35244,8 @@ const VANCOUVER_EVENTS = [
       "live_music_concerts",
       "music"
     ],
-    "category_count": 3
+    "category_count": 3,
+    "venue": "The WISE Hall & Lounge"
   },
   {
     "event_id": "van50-public-disco-public-disco-after-dark-b2b-edition",
@@ -35522,7 +35592,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
-    "date": "2026-11-22"
+    "date": "2026-11-22",
+    "venue": "Downtown Vancouver Plazas"
   },
   {
     "event_id": "van50-st-andrews-wesley-united-church-candlelit-contemplative",
@@ -35863,7 +35934,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
-    "date": "2026-10-11"
+    "date": "2026-10-11",
+    "venue": "St. Andrew's-Wesley United Church"
   },
   {
     "event_id": "van50-performance-works-barbara-kingsolver-in-conversation",
@@ -36210,7 +36282,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
-    "date": "2026-10-18"
+    "date": "2026-10-18",
+    "venue": "Performance Works"
   },
   {
     "event_id": "van50-performance-works-malcolm-gladwell-in-conversation",
@@ -36557,7 +36630,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed."
     },
-    "date": "2026-11-24"
+    "date": "2026-11-24",
+    "venue": "Performance Works"
   },
   {
     "event_id": "van50-the-cambrian-hall-jokes-please-stand-up-comedy",
@@ -36905,7 +36979,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed. Active Friday residency on Eventbrite."
     },
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "venue": "The Cambrian Hall"
   },
   {
     "event_id": "van50-the-polygon-gallery-hong-kong-made-me-x-gong-gong-gong-in-co",
@@ -37246,7 +37321,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
-    "date": "2026-10-22"
+    "date": "2026-10-22",
+    "venue": "The Polygon Gallery"
   },
   {
     "event_id": "van50-diwali-fest-diwali-celebration-society-diwali-in-surrey-nov-15-2026",
@@ -37583,7 +37659,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
-    "date": "2026-11-15"
+    "date": "2026-11-15",
+    "venue": "Diwali Fest (Diwali Celebration Society)"
   },
   {
     "event_id": "van50-vancouver-poetry-house-vancouver-poetry-slam-ft-nate-nate-naine",
@@ -37920,7 +37997,8 @@ const VANCOUVER_EVENTS = [
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
     },
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "Vancouver Poetry House"
   },
   {
     "event_id": "van50-the-cinematheque-young-frankenstein-20261018",
@@ -37976,7 +38054,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T18:02:33.924367",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-the-cinematheque-harakiri-20261012",
@@ -38032,7 +38111,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T18:02:34.782556",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The Cinematheque"
   },
   {
     "event_id": "van50-the-wise-hall-ticketweb-tickets-for-independent-concer",
@@ -38088,7 +38168,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T18:03:25.671592",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The WISE Hall"
   },
   {
     "event_id": "van50-ubc-fball-uofc",
@@ -38145,7 +38226,8 @@ const VANCOUVER_EVENTS = [
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:22:30.301372",
     "date": "2026-10-16",
-    "time": "18:00"
+    "time": "18:00",
+    "venue": "Thunderbird Stadium"
   },
   {
     "event_id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
@@ -38202,7 +38284,8 @@ const VANCOUVER_EVENTS = [
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:29:01.826384",
     "date": "2026-10-25",
-    "time": "13:30"
+    "time": "13:30",
+    "venue": "Waterfront Theatre"
   },
   {
     "event_id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
@@ -38259,7 +38342,8 @@ const VANCOUVER_EVENTS = [
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:31:10.792260",
     "date": "2026-10-26",
-    "time": "19:00"
+    "time": "19:00",
+    "venue": "Hollywood Theatre"
   },
   {
     "event_id": "van50-vhs-2026-vhs-2026-launch-party-at-greta-bar--20261013",
@@ -38663,7 +38747,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Greta Bar YVR"
   },
   {
     "event_id": "van50-vhs-2026-inside-the-casting-room-horror-edit-20261015",
@@ -39076,7 +39161,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-the-first-five-minutes-of-horror-20261016",
@@ -39481,7 +39567,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-indie-horror-distribution-from-fest-20261016",
@@ -39891,7 +39978,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-ubc-mbball-twu",
@@ -39947,7 +40035,8 @@ const VANCOUVER_EVENTS = [
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:23:03.039721",
     "date": "2026-10-29",
-    "time": "19:30"
+    "time": "19:30",
+    "venue": "War Memorial Gym"
   },
   {
     "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
@@ -40002,7 +40091,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:51.496545",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The Improv Centre"
   },
   {
     "event_id": "van50-scout-improv-centre-blockbuster-20261008",
@@ -40057,7 +40147,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:55.803553",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The Improv Centre"
   },
   {
     "event_id": "van50-the-improv-centre-true-story-20261013",
@@ -40112,7 +40203,8 @@ const VANCOUVER_EVENTS = [
     "restrictions": "All Ages / Free Outdoor Public Gathering",
     "is_sold_out": false,
     "last_scouted_at": "2026-10-08T21:25:59.873855",
-    "date": "2026-11-02"
+    "date": "2026-11-02",
+    "venue": "The Improv Centre"
   },
   {
     "event_id": "van50-vhs-2026-trick-r-treat-19th-anniversary-scre-20261014",
@@ -40519,7 +40611,8 @@ const VANCOUVER_EVENTS = [
       "last_harness_check_at": "2026-10-08T21:41:50.637899",
       "last_harness_tool": "single_event_deep_qc",
       "harness_notes": "Link and pricing structure verified by harness."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-the-glorious-dead-bc-premiere-madam-20261014",
@@ -40923,7 +41016,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-we-are-the-weirdos-mister-student-s-20261015",
@@ -41328,7 +41422,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-drag-bc-premiere-the-craving-20261015",
@@ -41732,7 +41827,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-imposters-bc-premiere-turn-it-down-20261015",
@@ -42136,7 +42232,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-molly-you-in-danger-girl-shorts-pro-20261015",
@@ -42541,7 +42638,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-ithaqua-bc-premiere-with-filmmaker--20261015",
@@ -42945,7 +43043,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-sleep-no-more-bc-premiere-necrosect-20261015",
@@ -43349,7 +43448,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-i-see-dead-people-shorts-program-2-20261016",
@@ -43754,7 +43854,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-wouldst-thou-like-to-live-delicious-20261016",
@@ -44162,7 +44263,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-unholy-night-bc-premiere-with-filmm-20261016",
@@ -44572,7 +44674,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-talking-to-a-stranger-canadian-prem-20261016",
@@ -44976,7 +45079,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-drag-second-screening-the-craving-20261017",
@@ -45380,7 +45484,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-ancestral-beasts-bc-premiere-with-f-20261017",
@@ -45784,7 +45889,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-encryption-world-premiere-with-film-20261017",
@@ -46191,7 +46297,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-we-all-go-a-little-mad-sometimes-sh-20261017",
@@ -46596,7 +46703,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-frogman-returns-bc-premiere-ghosts--20261017",
@@ -47000,7 +47108,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-yaga-western-canadian-premiere-with-20261017",
@@ -47410,7 +47519,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-friday-the-69th-bc-premiere-with-fi-20261017",
@@ -47814,7 +47924,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-they-always-come-at-night-canadian--20261018",
@@ -48218,7 +48329,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-imposters-second-screening-turn-it--20261018",
@@ -48622,7 +48734,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-sometimes-dead-is-better-shorts-pro-20261018",
@@ -49027,7 +49140,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-table-read-series-20261018",
@@ -49436,7 +49550,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-remnant-canadian-premiere-with-film-20261018",
@@ -49840,7 +49955,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-golden-tape-awards-20261018",
@@ -50244,7 +50360,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   },
   {
     "event_id": "van50-vhs-2026-inside-slither-20-years-of-vancouve-20261018",
@@ -50648,7 +50765,8 @@ const VANCOUVER_EVENTS = [
         }
       },
       "audit_notes": "All 50 discrete live dimensions audited and confirmed on 2026-10-08."
-    }
+    },
+    "venue": "Cineplex Cinemas International Village"
   }
 ];
 
