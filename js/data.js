@@ -11184,7 +11184,7 @@ const VANCOUVER_EVENTS = [
       "date": "2026-10-25",
       "start_time": "19:30",
       "end_time": "22:30",
-      "cost": 25.0
+      "cost": 32.83
     },
     "show_2": null,
     "show_3": null,
@@ -11195,16 +11195,17 @@ const VANCOUVER_EVENTS = [
     "tags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "commercial-drive",
       "east-van",
       "indie-folk",
       "indie-rock",
       "live-band",
+      "live-cart-verified",
       "live-music"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
+    "approval_status": "Antigravity-20D-Validated",
     "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live TicketWeb event checkout ($25.00 base + $7.83 Ticketweb fee = $32.83 CAD all-in). Doors 19:00, Show 19:30.",
     "price": 32.83,
     "access_model": "fenced_facility",
@@ -11212,8 +11213,8 @@ const VANCOUVER_EVENTS = [
     "price_adult": 32.83,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
+    "tier_custom_name_1": "Advance General Admission",
+    "tier_custom_price_1": 32.83,
     "tier_custom_name_2": null,
     "tier_custom_price_2": null,
     "tier_custom_name_3": null,
@@ -11223,22 +11224,22 @@ const VANCOUVER_EVENTS = [
     "meal_benchmark": "$12.00 – $18.00 CAD (nearby Commercial Dr eateries)",
     "title": "Olive Klug with Frail Talk",
     "date": "2026-10-25",
-    "time": "19:00",
-    "start_time": "19:00",
+    "time": "19:30",
+    "start_time": "19:30",
     "end_time": "22:30",
-    "dateSchedule": "2026-10-25 at 19:00",
+    "dateSchedule": "Sun Oct 25, 2026 at 19:30 (Doors 19:00)",
     "frequency": "One-Time",
     "typical_item_spend": "$13.00 – $18.00 CAD (1–2 craft pints)",
-    "lineup": "Featured artists and performers for Olive Klug with Frail Talk",
+    "lineup": "Olive Klug, Frail Talk",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
     "showings": [
       {
         "date": "2026-10-25",
-        "start_time": "19:00",
+        "start_time": "19:30",
         "end_time": "22:30",
-        "cost": 32.06,
+        "cost": 32.83,
         "status": "active"
       }
     ],
@@ -11271,8 +11272,8 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "tiers": [
       {
-        "name": "Adult General Admission",
-        "price": 32.06,
+        "name": "Advance General Admission",
+        "price": 32.83,
         "isAvailable": true
       }
     ],
@@ -11601,14 +11602,14 @@ const VANCOUVER_EVENTS = [
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 32.06,
+      "adult": 32.83,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 32.06,
+      "other_name_1": "Advance General Admission",
+      "other_cost_1": 32.83,
       "other_name_2": null,
       "other_cost_2": null,
       "tier_count_verified": 2
