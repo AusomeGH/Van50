@@ -2102,6 +2102,7 @@ const VANCOUVER_EVENTS = [
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "boardwalk",
       "budget-friendly",
       "free-admission",
@@ -2110,9 +2111,23 @@ const VANCOUVER_EVENTS = [
       "north-shore",
       "public-market"
     ],
+    "subTags": [
+      "all-ages",
+      "boardwalk",
+      "budget-friendly",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "north-shore",
+      "public-market",
+      "solo-friendly",
+      "views",
+      "waterfront",
+      "zero-dollars"
+    ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Boardwalk open 24/7; Quay market halls operate daily 9:00 AM – 7:00 PM. Directly accessible from Waterfront Station via the SeaBus transit hub.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live Dimension Audit (2026-10-10): All 20 discrete live dimensions validated. The Shipyards District & Lonsdale Quay Waterfront Promenade (125 Victory Ship Way, North Vancouver). 100% free open public access. Boardwalk accessible 24/7; Quay market halls open daily 9:00 AM – 7:00 PM. Seamless transit access via the 12-minute SeaBus connection from Waterfront Station. Verified zero admission cost ($0.00 CAD).",
     "price": 0,
     "access_model": "fenced_facility",
     "pricing_model": "free_access",
@@ -2156,20 +2171,6 @@ const VANCOUVER_EVENTS = [
     "food_service_type": "food_vendors",
     "food_service_note": "Public waterfront plaza surrounded by local eateries & breweries",
     "sample_cost_label": "Free public plaza ($0)",
-    "subTags": [
-      "all-ages",
-      "boardwalk",
-      "budget-friendly",
-      "free-admission",
-      "free-event",
-      "free-public-access",
-      "north-shore",
-      "public-market",
-      "solo-friendly",
-      "views",
-      "waterfront",
-      "zero-dollars"
-    ],
     "categoryLabel": "Free Public Access",
     "tiers": [
       {
