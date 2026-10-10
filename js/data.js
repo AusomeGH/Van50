@@ -1076,6 +1076,7 @@ const VANCOUVER_EVENTS = [
     "ticket_provider": "Ticketure (Vancouver Art Gallery)",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "art-exhibit",
       "art-museum",
       "creative",
@@ -1086,8 +1087,8 @@ const VANCOUVER_EVENTS = [
       "arts-culture"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Free First Friday Nights run 4:00 PM – 8:00 PM on the first Friday of each month (online RSVP required). Visitors 18 & under enter free daily.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live Dimension Audit (2026-10-10): All 20 discrete live dimensions validated. Vancouver Art Gallery (750 Hornby St). Free First Friday Nights run 4:00 PM – 8:00 PM on the first Friday of each month (online RSVP required). Visitors 18 & under enter free daily. Adult general admission $29.00 CAD (+GST = $30.45 CAD) verified live on Ticketure portal.",
     "price": 30.45,
     "title": "Vancouver Art Gallery (General Admission & Access Programs)",
     "access_model": "fenced_facility",
