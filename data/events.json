@@ -26250,12 +26250,12 @@
     "event_id": "viff-the-debut",
     "event_name": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
     "category": "Arts & Culture",
-    "venue_name": "Fifth Avenue Cinema (VIFF)",
-    "full_address": "2110 Burrard Street, Vancouver, BC V6J 1P2",
-    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "venue_name": "International Village Cinemas (VIFF)",
+    "full_address": "88 W Pender St, Vancouver, BC V6B 6N9",
+    "neighborhood": "Downtown, Gastown & Yaletown",
     "description": "Based on Mieko Kawakami&#039;s acclaimed novel, All the Lovers in the Night is a tender, luminous portrait of loneliness, intimacy, and the courage to be seen.",
     "pricing_all_in_cad": {
-      "regular": 26
+      "regular": 20.5
     },
     "show_1": {
       "date": "2026-10-11",
@@ -26281,22 +26281,24 @@
     "ticket_provider": "Direct Box Office",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "art-exhibit",
+      "arts-culture",
       "cinema",
       "creative",
       "culture",
       "date-night",
       "film-festival",
       "foreign-cinema",
-      "arts-culture"
+      "live-cart-verified"
     ],
     "festival_affiliation": "VIFF",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Healed by Quarantine AI (2026-10-02): Resolved upcoming festival screenings for Oct 5 (Fifth Avenue Cinema) and Oct 11 (International Village). All-in ticket cart verified at $20.50 CAD.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified VIFF 2026 official screening schedule (viff.org/whats-on/viff26-all-the-lovers-in-the-night/). Final festival screening on Sunday, Oct 11, 2026 at 8:45 PM at International Village 10 (88 W Pender St). Screen adaptation of Mieko Kawakami novel directed by Yukiko Sode. All-in ticket $20.50 CAD.",
     "price": 20.5,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 26,
+    "price_adult": 20.5,
     "price_student": null,
     "price_member": null,
     "tier_custom_name_1": null,
@@ -26320,10 +26322,10 @@
     ],
     "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
     "date": "2026-10-11",
-    "time": "12:00",
+    "time": "20:45",
     "start_time": "20:45",
     "end_time": "23:04",
-    "dateSchedule": "2026-10-05 at 12:00 PM & 2026-10-11 at 8:45 PM",
+    "dateSchedule": "Sunday, October 11, 2026 at 8:45 PM",
     "frequency": "Festival Run",
     "typical_item_spend": "$9.50 – $16.00 CAD (popcorn & beverage)",
     "lineup": "Featured artists and performers for VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
@@ -26339,29 +26341,35 @@
     "concession_benchmark": "$5.50 – $7.50 fresh popcorn",
     "food_service_note": "Licensed cinema concessions across festival venues",
     "sample_cost_label": "$5.50 – $7.50 popcorn",
+    "coordinates": [
+      49.2808,
+      -123.1077
+    ],
     "subTags": [
       "all-ages",
+      "antigravity-20d-validated",
       "art-exhibit",
+      "chinatown",
       "cinema",
       "creative",
       "culture",
       "date-night",
+      "downtown",
       "film-festival",
       "foreign-cinema",
       "gastown",
       "japanese-film",
-      "kitsilano",
+      "live-cart-verified",
       "mieko-kawakami",
       "solo-friendly",
       "viff",
-      "visual-arts",
-      "west-side"
+      "visual-arts"
     ],
     "categoryLabel": "Arts & Culture",
     "tiers": [
       {
-        "name": "Adult General Admission",
-        "price": 26.0,
+        "name": "General Admission",
+        "price": 20.5,
         "isAvailable": true
       }
     ],
@@ -26677,7 +26685,7 @@
       "city_id": "yvr",
       "metro_name": "Metro Vancouver",
       "municipality": "Vancouver",
-      "neighborhood": "Kitsilano, Point Grey & UBC",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "province_state": "BC",
       "country": "CA"
     },
@@ -26693,14 +26701,14 @@
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 26.0,
+      "adult": 20.5,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 26.0,
+      "other_name_1": "Single Ticket",
+      "other_cost_1": 20.5,
       "other_name_2": null,
       "other_cost_2": null,
       "tier_count_verified": 2
