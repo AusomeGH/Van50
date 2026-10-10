@@ -14089,7 +14089,7 @@ const VANCOUVER_EVENTS = [
     "tags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "comedy",
@@ -14098,18 +14098,18 @@ const VANCOUVER_EVENTS = [
       "comedy-shows"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Direct 1-click Square checkout for Sunday Service Improv Co. at The Fox Cabaret.",
-    "price": 20,
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live weekly residency listing & direct 1-click Square checkout (square.link/u/qfKgyfj5) for Sunday, Oct 11, 2026 at The Fox Cabaret. Doors 19:00, show 20:00. Advance tier $15.00 CAD, Door tier $20.00 CAD all-in. Performed by Canadian Comedy Award winners The Sunday Service.",
+    "price": 15.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 20,
+    "price_adult": 15.0,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
+    "tier_custom_name_1": "Advance Online",
+    "tier_custom_price_1": 15.0,
+    "tier_custom_name_2": "General Admission (Door)",
+    "tier_custom_price_2": 20.0,
     "tier_custom_name_3": null,
     "tier_custom_price_3": null,
     "weekly_hours": null,
@@ -14120,10 +14120,10 @@ const VANCOUVER_EVENTS = [
     "time": "20:00",
     "start_time": "20:00",
     "end_time": "22:00",
-    "dateSchedule": "2026-10-11 at 20:00",
-    "frequency": "One-Time",
+    "dateSchedule": "Sun Oct 11, 2026 at 20:00 (Doors 19:00)",
+    "frequency": "Weekly (Sundays)",
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
-    "lineup": "Featured artists and performers for The Sunday Service: Live Improv Comedy",
+    "lineup": "The Sunday Service (Aaron Read, Taz VanRassel, Emmett Hall, Ryan Beil, Kevin Lee) with guest stand-ups & improvisers",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
@@ -14132,7 +14132,7 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-11",
         "start_time": "20:00",
         "end_time": "22:00",
-        "cost": 20,
+        "cost": 15.0,
         "status": "active"
       }
     ],
@@ -14147,7 +14147,7 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "comedy",
@@ -14170,7 +14170,12 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Comedy & Shows",
     "tiers": [
       {
-        "name": "Adult General Admission",
+        "name": "Advance Online",
+        "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "General Admission (Door)",
         "price": 20.0,
         "isAvailable": true
       }
@@ -14467,15 +14472,15 @@ const VANCOUVER_EVENTS = [
     "best_available_link": "https://square.link/u/qfKgyfj5",
     "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 20.0,
+      "price_base": 15.0,
       "price_tax": 0.0,
       "price_fees": 0.0,
-      "price_all_in": 20.0,
+      "price_all_in": 15.0,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 20.0,
+    "price_all_in": 15.0,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
@@ -14502,16 +14507,16 @@ const VANCOUVER_EVENTS = [
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 20.0,
+      "adult": 15.0,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 20.0,
-      "other_name_2": null,
-      "other_cost_2": null,
+      "other_name_1": "Advance Online",
+      "other_cost_1": 15.0,
+      "other_name_2": "General Admission (Door)",
+      "other_cost_2": 20.0,
       "tier_count_verified": 2
     },
     "archived_showings": [],
