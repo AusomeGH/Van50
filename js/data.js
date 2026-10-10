@@ -14557,29 +14557,30 @@ const VANCOUVER_EVENTS = [
     "discovery_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
     "details_url": "https://www.foxcabaret.com",
     "ticket_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
-    "ticket_provider": "Fox Cabaret Box Office / Door",
+    "ticket_provider": "Eventbrite / The Fox Cabaret",
     "tags": [
       "19-plus",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "dance-floor",
       "dance-party",
       "date-night",
       "dj",
+      "live-cart-verified",
       "nightlife-social"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Fox Cabaret Friday dance party. Door admission $15.00 CAD (cash/card at venue).",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified Fox Cabaret event listing and direct Eventbrite ticket checkout (1984911443560). Two-room dance party featuring DJs Bryan Sea & Roxy Motorola. General admission $15.00 CAD all-in. Event concluded / sold out.",
     "price": 15,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "price_adult": 15,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
+    "tier_custom_name_1": "General Admission",
+    "tier_custom_price_1": 15,
     "tier_custom_name_2": null,
     "tier_custom_price_2": null,
     "tier_custom_name_3": null,
@@ -14592,10 +14593,10 @@ const VANCOUVER_EVENTS = [
     "time": "22:30",
     "start_time": "22:30",
     "end_time": "02:00",
-    "dateSchedule": "2026-10-09 at 22:30",
+    "dateSchedule": "Fri Oct 9, 2026 at 22:30 – 02:00",
     "frequency": "One-Time",
     "typical_item_spend": "$20.00 – $35.00 CAD (1–2 cocktails or craft beers)",
-    "lineup": "Featured artists and performers for 00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+    "lineup": "DJ Bryan Sea and DJ Roxy Motorola",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": true,
     "waypoints": [],
@@ -14605,7 +14606,7 @@ const VANCOUVER_EVENTS = [
         "start_time": "22:30",
         "end_time": "02:00",
         "cost": 15,
-        "status": "active"
+        "status": "sold_out"
       }
     ],
     "tier_custom_name_4": null,
@@ -14618,7 +14619,7 @@ const VANCOUVER_EVENTS = [
     "sample_cost_label": "$14 – $15 cocktails (Moscow Mule, Margarita, Espresso Martini)",
     "subTags": [
       "19-plus",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "dance-floor",
@@ -14642,9 +14643,9 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Nightlife & Social",
     "tiers": [
       {
-        "name": "Adult General Admission",
+        "name": "General Admission",
         "price": 15.0,
-        "isAvailable": true
+        "isAvailable": false
       }
     ],
     "dimension_audit": {
@@ -14982,11 +14983,11 @@ const VANCOUVER_EVENTS = [
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
+      "other_name_1": "General Admission",
       "other_cost_1": 15.0,
       "other_name_2": null,
       "other_cost_2": null,
-      "tier_count_verified": 2
+      "tier_count_verified": 1
     },
     "archived_showings": [],
     "environment_type": "indoor",
