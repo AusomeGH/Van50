@@ -8748,30 +8748,31 @@
     "ticket_provider": "The Cinematheque Box Office",
     "tags": [
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "art-exhibit",
       "big-screen",
       "budget-friendly",
       "cheap-night-out",
       "cinema",
       "creative",
+      "live-cart-verified",
       "arts-culture"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "AI QC Verified (2026-10-01): Direct Cinematheque screening page verified for Oct 15 premiere ($15.00 CAD regular / $12.00 student).",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live Pelan Presents premiere screening on Thu, Oct 15, 2026 at 19:00 (doors 18:30). General admission $15.00 CAD, Senior $13.00, Student $11.00, Indigenous free. Runtime 80 min with post-screening Pelan team discussion.",
     "price": 15,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "price_adult": 15,
-    "price_student": null,
+    "price_student": 11,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
+    "tier_custom_name_1": "General Admission",
+    "tier_custom_price_1": 15.0,
+    "tier_custom_name_2": "Senior (65+)",
+    "tier_custom_price_2": 13.0,
+    "tier_custom_name_3": "Student / Youth",
+    "tier_custom_price_3": 11.0,
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$12.00 – $18.00 CAD (Davie / Downtown eateries nearby)",
@@ -8831,6 +8832,21 @@
       {
         "name": "Adult General Admission",
         "price": 15.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 13.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 11.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Peoples Admission",
+        "price": 0.0,
         "isAvailable": true
       }
     ],
@@ -9160,16 +9176,16 @@
     },
     "pricing_tiers": {
       "adult": 15.0,
-      "student": null,
-      "senior": null,
+      "student": 11.0,
+      "senior": 13.0,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
+      "other_name_1": "General Admission",
       "other_cost_1": 15.0,
-      "other_name_2": null,
-      "other_cost_2": null,
-      "tier_count_verified": 2
+      "other_name_2": "Senior (65+)",
+      "other_cost_2": 13.0,
+      "tier_count_verified": 4
     },
     "archived_showings": [],
     "environment_type": "indoor",
