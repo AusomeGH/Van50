@@ -13146,30 +13146,31 @@ const VANCOUVER_EVENTS = [
     "show_3": null,
     "discovery_url": "https://rickshawtheatre.com/show_listings/actors-4/",
     "details_url": "https://rickshawtheatre.com/show_listings/actors-4/",
-    "ticket_url": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+    "ticket_url": "https://actors-rickshaw-2026.eventbrite.ca",
     "ticket_provider": "Eventbrite (The Rickshaw Theatre)",
     "tags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "dance-floor",
       "darkwave",
       "djs",
+      "live-cart-verified",
       "live-music"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified active 2026 show listing (actors-4) and direct Eventbrite checkout ($20.00 base + fees = $25.50 CAD all-in).",
-    "price": 20,
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified Rickshaw Theatre listing (actors-4) and direct Eventbrite ticket link (https://actors-rickshaw-2026.eventbrite.ca). Advance tier $20.00 base + $5.50 fees = $25.50 CAD all-in. Doors 19:00. Event marked sold out.",
+    "price": 25.5,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 20,
+    "price_adult": 25.5,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
+    "tier_custom_name_1": "Advance General Admission",
+    "tier_custom_price_1": 25.5,
     "tier_custom_name_2": null,
     "tier_custom_price_2": null,
     "tier_custom_name_3": null,
@@ -13183,10 +13184,10 @@ const VANCOUVER_EVENTS = [
     "time": "19:00",
     "start_time": "19:00",
     "end_time": "23:00",
-    "dateSchedule": "2026-10-09 at 19:00",
+    "dateSchedule": "Fri Oct 9, 2026 at 19:00",
     "frequency": "One-Time",
     "typical_item_spend": "$18.00 – $28.00 CAD (2 beers/drinks)",
-    "lineup": "Featured artists and performers for ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+    "lineup": "ACTORS, Sacred Skin, MØAA, DJ Evilyn 13",
     "restrictions": "19+ (Two pieces of government ID required)",
     "waypoints": [],
     "showings": [
@@ -13194,8 +13195,8 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-09",
         "start_time": "19:00",
         "end_time": "23:00",
-        "cost": 20,
-        "status": "active"
+        "cost": 25.5,
+        "status": "sold_out"
       }
     ],
     "tier_custom_name_4": null,
@@ -13210,7 +13211,7 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "budget-friendly",
       "cheap-night-out",
       "dance-floor",
@@ -13235,9 +13236,9 @@ const VANCOUVER_EVENTS = [
     "categoryLabel": "Live Music",
     "tiers": [
       {
-        "name": "Adult General Admission",
-        "price": 20.0,
-        "isAvailable": true
+        "name": "Advance General Admission",
+        "price": 25.5,
+        "isAvailable": false
       }
     ],
     "dimension_audit": {
@@ -13523,26 +13524,26 @@ const VANCOUVER_EVENTS = [
     },
     "operational_status": "sold_out",
     "links": {
-      "tier1_checkout": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+      "tier1_checkout": "https://actors-rickshaw-2026.eventbrite.ca",
       "tier2_event_page": "https://rickshawtheatre.com/show_listings/actors-4/",
       "tier3_calendar": null,
       "tier4_civic_destination": null,
       "tier5_venue_home": null,
-      "best_available": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+      "best_available": "https://actors-rickshaw-2026.eventbrite.ca",
       "best_tier": "tier1"
     },
-    "best_available_link": "https://www.eventbrite.ca/e/actors-with-sacred-skin-maa-and-dj-evilyn-13-tickets-1982051235601",
+    "best_available_link": "https://actors-rickshaw-2026.eventbrite.ca",
     "best_link_tier": "tier1",
     "pricing_breakdown": {
       "price_base": 20.0,
       "price_tax": 0.0,
-      "price_fees": 0.0,
-      "price_all_in": 20.0,
+      "price_fees": 5.5,
+      "price_all_in": 25.5,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 20.0,
+    "price_all_in": 25.5,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
@@ -13569,17 +13570,17 @@ const VANCOUVER_EVENTS = [
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 20.0,
+      "adult": 25.5,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 20.0,
+      "other_name_1": "Advance General Admission",
+      "other_cost_1": 25.5,
       "other_name_2": null,
       "other_cost_2": null,
-      "tier_count_verified": 2
+      "tier_count_verified": 1
     },
     "archived_showings": [],
     "environment_type": "indoor",
