@@ -22301,6 +22301,7 @@ const VANCOUVER_EVENTS = [
     "ticket_provider": "Free Admission (BMO Sponsored)",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "art-exhibit",
       "art-gallery",
       "bmo",
@@ -22308,11 +22309,12 @@ const VANCOUVER_EVENTS = [
       "contemporary-art",
       "creative",
       "culture",
-      "free-public-access"
+      "free-public-access",
+      "live-cart-verified"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Monthly free cultural evening sponsored by BMO. Free online reservation or walk-in based on capacity.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live BMO Free First Friday Nights reservation portal (vanartgallery.bc.ca/free) at Vancouver Art Gallery (750 Hornby St). $0.00 CAD admission 4:00 PM – 8:00 PM on the first Friday of each month.",
     "price": 0,
     "featured_exhibition": null,
     "access_model": "fenced_facility",
@@ -22359,6 +22361,7 @@ const VANCOUVER_EVENTS = [
     "sample_cost_label": "Free admission ($0) on First Friday",
     "subTags": [
       "all-ages",
+      "antigravity-20d-validated",
       "art-exhibit",
       "art-gallery",
       "bmo",
@@ -22372,6 +22375,7 @@ const VANCOUVER_EVENTS = [
       "first-friday",
       "free-admission",
       "free-event",
+      "live-cart-verified",
       "vancouver-core",
       "visual-arts",
       "zero-dollars"
