@@ -34751,8 +34751,8 @@ const VANCOUVER_EVENTS = [
     "full_address": "1218 Cartwright St, Vancouver, BC V6H 3R8",
     "neighborhood": "Granville Island & Kitsilano",
     "coordinates": [
-      49.2699,
-      -123.1362
+      49.2694,
+      -123.1345
     ],
     "transit_info": "False Creek Ferries / Aquabus to Granville Island, or #50 False Creek South bus",
     "description": "The iconic, high-energy cornerstone evening of the 39th Vancouver Writers Fest. Hosted by Rob Taylor, the Poetry Bash brings together an extraordinary constellation of local, Indigenous, and international poets reading vital works in an electric, intimate atmosphere at Performance Works on Granville Island.",
@@ -34788,17 +34788,34 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$8.00 CAD local craft beer / $9.00 CAD BC VQA wine",
     "is_sold_out": false,
     "tags": [
-      "poetry",
-      "literature",
-      "vancouver-writers-fest",
+      "all-ages",
+      "antigravity-20d-validated",
+      "arts-culture",
       "granville-island",
-      "spoken-word",
       "indigenous-voices",
-      "arts-culture"
+      "literature",
+      "live-cart-verified",
+      "performance-works",
+      "poetry",
+      "spoken-word",
+      "vancouver-writers-fest"
+    ],
+    "subTags": [
+      "all-ages",
+      "antigravity-20d-validated",
+      "arts-culture",
+      "granville-island",
+      "indigenous-voices",
+      "literature",
+      "live-cart-verified",
+      "performance-works",
+      "poetry",
+      "spoken-word",
+      "vancouver-writers-fest"
     ],
     "festival_affiliation": "Vancouver Writers Fest",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Scouted via Van50 Natural Yield Scout AI. Showpass ticket cart verified ($25.00 base + $3.00 platform fee = $28.00 CAD).",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified Vancouver Writers Fest official event portal (writersfest.bc.ca) and Showpass box office. Located at Performance Works (1218 Cartwright St, Granville Island). 39th Annual Poetry Bash scheduled Thursday, Oct 22, 2026 (8:30 PM). Featuring host Rob Taylor, Jordan Abel, Canisia Lubrin, and Poet Laureate Elee Kraljii Gardiner. Showpass verified $25.00 base + $3.00 fee = $28.00 CAD all-in. Active cart verified.",
     "last_scouted_at": "2026-10-05T09:47:58.765397",
     "frequency": "One-Time",
     "tiers": [
