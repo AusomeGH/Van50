@@ -10158,60 +10158,61 @@
     "event_name": "VIFF 2026: The Beloved (El Ser querido)",
     "category": "Arts & Culture",
     "lifecycle_type": "time_bound_event",
-    "venue_name": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)",
-    "full_address": "Multiple Venues across Vancouver, BC",
-    "neighborhood": "Commercial Drive & East Vancouver",
-    "description": "VIFF 2026 official selection screening of The Beloved (El Ser querido) hosted at The Rio Theatre.",
+    "venue_name": "Vancouver Playhouse",
+    "full_address": "600 Hamilton St, Vancouver, BC V6B 2P1",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "description": "VIFF 2026 official selection screening of The Beloved (El Ser querido), directed by Rodrigo Sorogoyen, hosted at Vancouver Playhouse.",
     "pricing_all_in_cad": {
-      "regular": 49,
-      "senior": 20,
-      "student": 19
+      "regular": 23.1,
+      "senior": 21.0,
+      "student": 19.95
     },
     "show_1": {
       "date": "2026-10-10",
       "start_time": "21:30",
-      "end_time": "23:30",
-      "cost": 22
+      "end_time": "23:45",
+      "cost": 23.1
     },
     "discovery_url": "https://viff.org/whats-on/viff26-the-beloved/",
     "details_url": "https://viff.org/whats-on/viff26-the-beloved/",
-    "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/#book",
-    "ticket_provider": "VIFF Box Office",
+    "ticket_url": "https://viff.org/whats-on/viff26-the-beloved/book/2hHpecKWPq",
+    "ticket_provider": "Elevent / VIFF Box Office",
     "tags": [
       "19-plus",
       "all-ages",
-      "antigravity-13d-validated",
+      "antigravity-20d-validated",
       "art-exhibit",
       "big-screen",
       "cinema",
-      "commercial-drive",
       "creative",
+      "live-cart-verified",
+      "viff-2026",
       "arts-culture"
     ],
     "festival_affiliation": "VIFF",
-    "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified across all 13 dimensions by Antigravity on 2026-09-29.",
-    "price": 49,
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live VIFF 2026 screening at Vancouver Playhouse (600 Hamilton St) tonight, Sat Oct 10 at 21:30 (ends 23:45). Single ticket calibrated to $22.00 + $1.10 GST = $23.10 CAD all-in (Senior $21.00, Student $19.95, Indigenous free). Upgraded ticket_url to direct Elevent booking checkout.",
+    "price": 23.1,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 49,
-    "price_student": null,
-    "price_member": null,
-    "tier_custom_name_1": null,
-    "tier_custom_price_1": null,
-    "tier_custom_name_2": null,
-    "tier_custom_price_2": null,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
+    "price_adult": 23.1,
+    "price_student": 19.95,
+    "price_member": 23.1,
+    "tier_custom_name_1": "Adult General Admission",
+    "tier_custom_price_1": 23.1,
+    "tier_custom_name_2": "Senior (65+)",
+    "tier_custom_price_2": 21.0,
+    "tier_custom_name_3": "Student / Youth",
+    "tier_custom_price_3": 19.95,
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
-    "meal_benchmark": "$14.00 – $22.00 CAD (festival venue neighborhoods)",
+    "meal_benchmark": "$14.00 – $22.00 CAD (Downtown dining nearby)",
     "showings": [
       {
         "date": "2026-10-10",
         "start_time": "21:30",
-        "end_time": "23:30",
-        "cost": 22,
+        "end_time": "23:45",
+        "cost": 23.1,
         "status": "active"
       }
     ],
@@ -10219,18 +10220,18 @@
     "show_3": null,
     "title": "VIFF 2026: The Beloved (El Ser querido)",
     "date": "2026-10-10",
-    "time": "18:00",
+    "time": "21:30",
     "start_time": "21:30",
-    "end_time": "20:00",
-    "dateSchedule": "2026-10-10",
+    "end_time": "23:45",
+    "dateSchedule": "Sat Oct 10, 2026 at 21:30",
     "frequency": "One-Time",
     "typical_item_spend": "$9.50 – $16.00 CAD (popcorn & beverage)",
-    "lineup": "Featured artists and performers for VIFF 2026: The Beloved (El Ser querido)",
+    "lineup": "Director: Rodrigo Sorogoyen; Cast: Javier Cámara, Anna Castillo",
     "restrictions": "19+ (Two pieces of government ID required)",
     "is_sold_out": false,
     "waypoints": [],
-    "tier_custom_name_4": null,
-    "tier_custom_price_4": null,
+    "tier_custom_name_4": "Indigenous Access",
+    "tier_custom_price_4": 0.0,
     "tier_custom_name_5": null,
     "tier_custom_price_5": null,
     "food_service_type": "concession",
@@ -10257,7 +10258,7 @@
       "performing-arts",
       "solo-friendly",
       "stage-play",
-      "the-rio-theatre",
+      "vancouver-playhouse",
       "under-50-cad",
       "viff-2026",
       "visual-arts"
@@ -10266,7 +10267,22 @@
     "tiers": [
       {
         "name": "Adult General Admission",
-        "price": 49.0,
+        "price": 23.1,
+        "isAvailable": true
+      },
+      {
+        "name": "Senior (65+)",
+        "price": 21.0,
+        "isAvailable": true
+      },
+      {
+        "name": "Student / Youth",
+        "price": 19.95,
+        "isAvailable": true
+      },
+      {
+        "name": "Indigenous Access",
+        "price": 0.0,
         "isAvailable": true
       }
     ],
@@ -10585,7 +10601,7 @@
       "city_id": "yvr",
       "metro_name": "Metro Vancouver",
       "municipality": "Vancouver",
-      "neighborhood": "Commercial Drive & East Vancouver",
+      "neighborhood": "Downtown, Gastown & Yaletown",
       "province_state": "BC",
       "country": "CA"
     },
@@ -10601,17 +10617,17 @@
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 49.0,
-      "student": null,
-      "senior": null,
-      "member": null,
+      "adult": 23.1,
+      "student": 19.95,
+      "senior": 21.0,
+      "member": 23.1,
       "non_member": null,
       "family": null,
       "other_name_1": "Adult General Admission",
-      "other_cost_1": 49.0,
-      "other_name_2": null,
-      "other_cost_2": null,
-      "tier_count_verified": 2
+      "other_cost_1": 23.1,
+      "other_name_2": "Senior (65+)",
+      "other_cost_2": 21.0,
+      "tier_count_verified": 4
     },
     "archived_showings": [
       {
@@ -10643,7 +10659,7 @@
       "theatre_performing_arts"
     ],
     "category_count": 6,
-    "venue": "VIFF Multi-Venue (Rio Theatre, Park Theatre, Vancouver Playhouse)"
+    "venue": "Vancouver Playhouse"
   },
   {
     "event_id": "van50-tim-burton-cabaret-waldorf-20261024",
