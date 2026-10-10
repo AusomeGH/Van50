@@ -98,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFrequencyPills();
   updateSliderVisuals();
   applyFiltersAndRender();
-  initVancouverMap();
+  if (typeof initVancouverMap === 'function') {
+    initVancouverMap();
+  }
   updateReviewQueueBadge();
   loadCentralReference();
 

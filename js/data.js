@@ -11105,15 +11105,15 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Commercial Drive & East Vancouver",
     "description": "Indie-folk singer-songwriter Olive Klug performs an intimate show at East Vancouver's historic WISE Hall with special guests Frail Talk.",
     "pricing_all_in_cad": {
-      "regular": 32.06
+      "regular": 32.83
     },
     "operating_hours": null,
     "days_open": null,
     "show_1": {
       "date": "2026-10-25",
-      "start_time": "19:00",
+      "start_time": "19:30",
       "end_time": "22:30",
-      "cost": 32.06
+      "cost": 25.0
     },
     "show_2": null,
     "show_3": null,
@@ -11134,11 +11134,11 @@ const VANCOUVER_EVENTS = [
     ],
     "festival_affiliation": "None",
     "approval_status": "Antigravity-13D-Validated",
-    "curator_notes": "Verified direct TicketWeb event checkout (Event #15002713, $20 base + fees = $27.05 CAD all-in).",
-    "price": 32.06,
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live TicketWeb event checkout ($25.00 base + $7.83 Ticketweb fee = $32.83 CAD all-in). Doors 19:00, Show 19:30.",
+    "price": 32.83,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
-    "price_adult": 32.06,
+    "price_adult": 32.83,
     "price_student": null,
     "price_member": null,
     "tier_custom_name_1": null,
@@ -11495,15 +11495,15 @@ const VANCOUVER_EVENTS = [
     "best_available_link": "https://www.ticketweb.ca/event/olive-klug-with-frail-talk-the-wise-hall-tickets/15002713",
     "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 32.06,
+      "price_base": 25.0,
       "price_tax": 0.0,
-      "price_fees": 0.0,
-      "price_all_in": 32.06,
+      "price_fees": 7.83,
+      "price_all_in": 32.83,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 32.06,
+    "price_all_in": 32.83,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
