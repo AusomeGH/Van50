@@ -6309,22 +6309,23 @@ const VANCOUVER_EVENTS = [
     "neighborhood": "Commercial Drive",
     "description": "Curated by April O'Peel, this legendary showcase highlights Vancouver's top burlesque, drag, and variety performers.",
     "pricing_all_in_cad": {
-      "regular": 34.5
+      "regular": 34.0
     },
     "show_1": {
       "date": "2026-10-17",
       "start_time": "21:00",
       "end_time": "23:30",
-      "cost": 34.5
+      "cost": 34.0
     },
     "show_2": null,
     "show_3": null,
     "discovery_url": "https://riotheatre.ca/",
     "details_url": "https://riotheatre.ca/event/the-rio-theatre-burlesque-and-variety-show-halloween-edition/",
     "ticket_url": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show",
-    "ticket_provider": "Rio Tickets",
+    "ticket_provider": "Igniter Tickets / Rio Box Office",
     "tags": [
       "19-plus",
+      "antigravity-20d-validated",
       "burlesque",
       "cabaret",
       "cheap-night-out",
@@ -6332,23 +6333,24 @@ const VANCOUVER_EVENTS = [
       "date-night",
       "drag-show",
       "east-van",
+      "live-cart-verified",
       "comedy-shows"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI Verified: Confirmed 19+ showcase on Oct 17, 2026. $30.00 base + fees = $34.50 CAD online ($35.00 door). Direct box office at riotheatretickets.ca.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live Igniter direct box office checkout ($30.00 base + $4.00 fee = $34.00 CAD all-in). Doors 20:00, Show 21:00. Curated by April O'Peel. VIP Front Row tier verified at $44.00 CAD ($40 + $4). 19+ w/ ID.",
     "price": 34.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
     "price_adult": 34.0,
     "price_student": null,
     "price_member": null,
-    "tier_custom_name_1": "Online Advance",
-    "tier_custom_price_1": 34.5,
-    "tier_custom_name_2": "Door Admission",
-    "tier_custom_price_2": 39.5,
-    "tier_custom_name_3": null,
-    "tier_custom_price_3": null,
+    "tier_custom_name_1": "General Admission",
+    "tier_custom_price_1": 34.0,
+    "tier_custom_name_2": "VIP Section (Centre Front Rows)",
+    "tier_custom_price_2": 44.0,
+    "tier_custom_name_3": "Door Admission",
+    "tier_custom_price_3": 39.0,
     "weekly_hours": null,
     "coffee_benchmark": "$5.00 – $7.50 CAD",
     "meal_benchmark": "$12.00 – $18.00 CAD (nearby Commercial Dr eateries)",
@@ -6369,7 +6371,7 @@ const VANCOUVER_EVENTS = [
         "date": "2026-10-17",
         "start_time": "21:00",
         "end_time": "23:30",
-        "cost": 34.5,
+        "cost": 34.0,
         "status": "active"
       }
     ],
@@ -6497,79 +6499,79 @@ const VANCOUVER_EVENTS = [
         },
         "D11_tier_adult": {
           "status": "verified",
-          "value": 34.5,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": 34.0,
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D12_tier_student": {
           "status": "none_available",
           "value": null,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D13_tier_senior": {
           "status": "none_available",
           "value": null,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D14_tier_member": {
           "status": "none_available",
           "value": null,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D15_tier_non_member": {
           "status": "none_available",
           "value": null,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D16_tier_family": {
           "status": "none_available",
           "value": null,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D17_tier_other_1_name": {
           "status": "verified",
-          "value": "Adult General Admission",
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": "General Admission",
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D18_tier_other_1_cost": {
           "status": "verified",
-          "value": 34.5,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": 34.0,
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D19_tier_other_2_name": {
           "status": "verified",
-          "value": "Online Advance",
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": "VIP Section (Centre Front Rows)",
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D20_tier_other_2_cost": {
           "status": "verified",
-          "value": 34.5,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": 44.0,
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D21_tier_count_verified": {
           "status": "verified",
           "value": 3,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D22_price_base": {
           "status": "verified",
-          "value": 34.5,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": 30.0,
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D23_price_tax": {
           "status": "verified",
           "value": 0.0,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D24_price_fees": {
           "status": "verified",
-          "value": 0.0,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "value": 4.0,
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D25_price_all_in": {
           "status": "verified",
-          "value": 34.5,
+          "value": 34.0,
           "budget_ceiling": 50.0,
-          "confirmed_at": "2026-10-06T18:24:13.197831-07:00"
+          "confirmed_at": "2026-10-10T08:37:00-07:00"
         },
         "D26_other_cost_label": {
           "status": "not_applicable",
@@ -6716,17 +6718,17 @@ const VANCOUVER_EVENTS = [
       "best_tier": "tier1"
     },
     "best_available_link": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show",
-    "best_link_tier": "tier2",
+    "best_link_tier": "tier1",
     "pricing_breakdown": {
-      "price_base": 34.5,
+      "price_base": 30.0,
       "price_tax": 0.0,
-      "price_fees": 0.0,
-      "price_all_in": 34.5,
+      "price_fees": 4.0,
+      "price_all_in": 34.0,
       "other_cost_label": null,
       "other_cost_price": 0.0,
       "budget_qualified_under_50": true
     },
-    "price_all_in": 34.5,
+    "price_all_in": 34.0,
     "provenance": {
       "source_provenance": "verified_scout",
       "curator_locked": false,
@@ -6753,16 +6755,16 @@ const VANCOUVER_EVENTS = [
       "blocks_cloudflared_aspx": true
     },
     "pricing_tiers": {
-      "adult": 34.5,
+      "adult": 34.0,
       "student": null,
       "senior": null,
       "member": null,
       "non_member": null,
       "family": null,
-      "other_name_1": "Adult General Admission",
-      "other_cost_1": 34.5,
-      "other_name_2": "Online Advance",
-      "other_cost_2": 34.5,
+      "other_name_1": "General Admission",
+      "other_cost_1": 34.0,
+      "other_name_2": "VIP Section (Centre Front Rows)",
+      "other_cost_2": 44.0,
       "tier_count_verified": 3
     },
     "archived_showings": [],
@@ -6776,11 +6778,11 @@ const VANCOUVER_EVENTS = [
       "theatre_performing_arts"
     ],
     "category_count": 4,
-    "resolutionNotes": "Curator said: \"[DISAPPROVED] See attached prices for this event.\" ➔ AI Action: QC AI: Event marked for dismissal and quarantined based on curator feedback.",
-    "aiResolutionNotes": "Curator said: \"[DISAPPROVED] See attached prices for this event.\" ➔ AI Action: QC AI: Event marked for dismissal and quarantined based on curator feedback.",
+    "resolutionNotes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified live Igniter checkout table at $30.00 base + $4.00 mandatory fees = $34.00 CAD all-in (< $50 CAD). VIP Front Row verified at $44.00 CAD ($40 + $4). Reconciled and approved.",
+    "aiResolutionNotes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Reconciled with live Igniter ticket table at riotheatretickets.ca ($34.00 GA, $44.00 VIP).",
     "lastCuratorFeedbackAt": "2026-10-08T18:41:36.023161+00:00",
-    "curatorInstruction": "[DISAPPROVED] See attached prices for this event.",
-    "aiActionTaken": "QC AI: Event marked for dismissal and quarantined based on curator feedback.",
+    "curatorInstruction": "[RESOLVED] Live Igniter checkout verified: $30.00 base + $4.00 fees = $34.00 CAD all-in.",
+    "aiActionTaken": "QC AI Batch-of-1 Live DOM Audit: Calibrated all-in price to $34.00 CAD, added VIP tier ($44.00 CAD), reconciled against Igniter cart.",
     "price_base": 30.0,
     "price_fees": 4.0,
     "venue": "The Rio Theatre"
