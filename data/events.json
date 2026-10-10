@@ -37264,17 +37264,33 @@
     "ticket_url": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
     "ticket_provider": "Eventbrite",
     "tags": [
-      "the-cambrian-hall",
+      "19-plus-available",
+      "antigravity-20d-validated",
       "comedy",
-      "stand-up",
+      "comedy-shows",
       "jokes-please",
+      "live-cart-verified",
       "mount-pleasant",
       "shows",
-      "comedy-shows"
+      "stand-up",
+      "the-cambrian-hall"
+    ],
+    "subTags": [
+      "19-plus-available",
+      "antigravity-20d-validated",
+      "comedy",
+      "comedy-shows",
+      "jokes-please",
+      "live-cart-verified",
+      "mount-pleasant",
+      "shows",
+      "stand-up",
+      "the-cambrian-hall",
+      "weekly-residency"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Official weekly Mount Pleasant residency of award-winning stand-up comedy show Jokes Please! at The Cambrian Hall. Verified advance checkout on Eventbrite at $18.37 CAD all-in.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified Jokes Please! official Eventbrite organizer portal (eventbrite.ca/o/jokes-please-31441829869). Weekly Friday night residency at The Cambrian Hall (215 E 17th Ave, Mount Pleasant). Doors 7:30 PM, show 8:00 PM. Verified advance ticket rate: $15.00 base + $3.37 Eventbrite fee = $18.37 CAD all-in. Active cart verified.",
     "last_scouted_at": "2026-10-06T19:07:03.752775",
     "dimension_audit": {
       "last_full_qc_at": "2026-10-06T19:07:03.752775",
