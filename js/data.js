@@ -22803,16 +22803,18 @@ const VANCOUVER_EVENTS = [
     "tags": [
       "19-plus",
       "all-ages",
+      "antigravity-20d-validated",
       "commercial-drive",
       "east-van",
       "experimental",
       "hip-hop",
+      "live-cart-verified",
       "live-music",
       "music"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Verified direct TicketWeb event checkout (Event #14198554, $25 base + fees = $33.56 CAD all-in).",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified TicketWeb event checkout (ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554) presented by Modo Live at The WISE Hall (1882 Adanac St). $25.00 CAD base + $6.50 fees = $31.50 CAD advance ($35.00 door). Concluded on Oct 9, 2026.",
     "price": 31.5,
     "featured_exhibition": null,
     "access_model": "fenced_facility",
@@ -22850,7 +22852,7 @@ const VANCOUVER_EVENTS = [
         "start_time": "20:00",
         "end_time": "23:30",
         "cost": 31.5,
-        "status": "active"
+        "status": "concluded"
       }
     ],
     "food_service_type": "bar_only",
@@ -22862,14 +22864,17 @@ const VANCOUVER_EVENTS = [
     "subTags": [
       "19-plus",
       "all-ages",
+      "antigravity-20d-validated",
       "commercial-drive",
       "east-van",
       "experimental",
       "hip-hop",
+      "live-cart-verified",
       "live-music",
       "music",
       "noise",
       "solo-friendly",
+      "under-50-cad",
       "wise-hall"
     ],
     "categoryLabel": "Live Music",
@@ -23227,7 +23232,16 @@ const VANCOUVER_EVENTS = [
       "other_cost_2": 31.5,
       "tier_count_verified": 3
     },
-    "archived_showings": [],
+    "archived_showings": [
+      {
+        "date": "2026-10-09",
+        "start_time": "20:00",
+        "end_time": "23:30",
+        "cost": 31.5,
+        "status": "concluded",
+        "archived_at": "2026-10-10T09:20:00-07:00"
+      }
+    ],
     "environment_type": "indoor",
     "booking_protocol": "advance_ticket_required",
     "primary_category": "music",
