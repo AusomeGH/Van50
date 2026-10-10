@@ -30569,11 +30569,11 @@
     "category": "Nightlife & Social",
     "lifecycle_type": "one_time",
     "venue_name": "2nd Floor Gastown",
-    "full_address": "Vancouver, BC",
+    "full_address": "300 Water St (2nd Floor), Vancouver, BC V6B 1B6",
     "neighborhood": "Downtown, Gastown & Yaletown",
     "coordinates": [
       49.2842,
-      -123.1102
+      -123.1091
     ],
     "transit_info": "TransLink accessible",
     "description": "Live music double-bill at 2nd Floor Gastown. Early set by Celebrate Thanksgiving at Water St. Cafe! (12:00 AM), followed by Steven Rutherford Trio (6:30 PM – 9:45 PM). Get ready for another amazing night of music featuring some of Vancouvers best at 2nd Floor Gastown. Friday October 11th we have none other then Steven Rutherford Trio gracing our ...",
@@ -30599,13 +30599,31 @@
     "ticket_provider": "Venue Door Cover & Reservations",
     "tags": [
       "2nd-floor-gastown",
-      "social",
+      "antigravity-20d-validated",
+      "gastown",
+      "jazz",
       "live-calendar",
-      "nightlife-social"
+      "live-cart-verified",
+      "live-music",
+      "nightlife-social",
+      "social"
+    ],
+    "subTags": [
+      "19-plus",
+      "2nd-floor-gastown",
+      "antigravity-20d-validated",
+      "cocktails",
+      "gastown",
+      "jazz",
+      "live-calendar",
+      "live-cart-verified",
+      "live-music",
+      "nightlife",
+      "social"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Walk-in door cover ($8 CAD before 8:00 PM, $12 CAD late show after 8:00 PM; 100% directly supports musicians). 19+ only.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified 2nd Floor Gastown / Water St. Cafe live portal (waterstreetcafe.ca/2nd-floor-gastown). Located at 300 Water St across from the Gastown Steam Clock. Steven Rutherford Trio live performance (Sunday, Oct 11, 2026, 6:30 PM – 9:45 PM). Artist reservation fee / cover $8.00–$12.00 CAD (100% directly supports musicians). 19+ only. Status: Active.",
     "price": 8.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
