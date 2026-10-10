@@ -29174,19 +29174,21 @@
     "ticket_url": "https://www.foxcabaret.com/event/boo-tylicious/",
     "ticket_provider": "Fox Cabaret Box Office",
     "tags": [
-      "halloween",
-      "fox-cabaret",
-      "dance-party",
-      "throwback",
-      "90s-music",
       "2000s-music",
-      "mount-pleasant",
+      "90s-music",
+      "antigravity-20d-validated",
+      "dance-party",
+      "fox-cabaret",
+      "halloween",
+      "live-cart-verified",
       "main-street",
-      "nightlife-social"
+      "mount-pleasant",
+      "nightlife-social",
+      "throwback"
     ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "Verified online tier $20.00 + Eventbrite fees = $24.50 CAD all-in. Door $30.00 cash.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified Fox Cabaret official event listing (foxcabaret.com/event/boo-tylicious/). 12th annual Halloween dance party scheduled Friday, Oct 30, 2026 (10:30 PM – 2:00 AM). Advance online tickets $20.00 + $4.50 fees = $24.50 CAD all-in (door admission $30.00 cash). 19+ with ID. Active tickets on sale, not sold out.",
     "price": 20.0,
     "access_model": "fenced_facility",
     "pricing_model": "flat_ticket",
@@ -29195,7 +29197,7 @@
     "frequency": "One-Time Party",
     "lineup": "Resident Fox Cabaret Throwback DJs",
     "restrictions": "19+ with two pieces of valid government photo ID",
-    "is_sold_out": true,
+    "is_sold_out": false,
     "waypoints": [],
     "showings": [
       {
@@ -29210,20 +29212,26 @@
     "holidays": [
       "halloween"
     ],
+    "coordinates": [
+      49.2638,
+      -123.1010
+    ],
     "subTags": [
-      "halloween",
-      "fox-cabaret",
-      "dance-party",
-      "throwback",
-      "90s-music",
-      "2000s-music",
-      "mount-pleasant",
-      "main-street",
-      "nightlife",
-      "dj",
-      "costume-contest",
       "19-plus",
-      "holiday-event"
+      "2000s-music",
+      "90s-music",
+      "antigravity-20d-validated",
+      "costume-contest",
+      "dance-party",
+      "dj",
+      "fox-cabaret",
+      "halloween",
+      "holiday-event",
+      "live-cart-verified",
+      "main-street",
+      "mount-pleasant",
+      "nightlife",
+      "throwback"
     ],
     "typical_drink_spend": "$8.00 – $14.00 CAD (Fox Cabaret draft pint & mixed cocktails)",
     "typical_item_spend": "$8.00 – $16.00 CAD (Bar beverages)",
