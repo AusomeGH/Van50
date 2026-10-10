@@ -26777,18 +26777,20 @@ const VANCOUVER_EVENTS = [
     "ticket_provider": "UBC Tickets",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "apples",
       "autumn",
       "botanical-garden",
       "budget-friendly",
       "cheap-night-out",
+      "community-markets",
       "family-friendly",
       "festival",
-      "community-markets"
+      "live-cart-verified"
     ],
     "festival_affiliation": "UBC Apple Festival",
-    "approval_status": "Curator-Approved",
-    "curator_notes": "Healed and graduated by Quarantine AI (2026-10-02): Live inventory verified active on UBC Tickets ($15.00 CAD GA, $14.00 CAD Senior, Kids 0–7 Free). Not sold out.",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live DOM Audit (2026-10-10): Verified 35th Annual UBC Apple Festival official portal (botanicalgarden.ubc.ca/apple-festival/) and active UBC Tickets checkout. Scheduled Saturday–Sunday, Oct 17–18, 2026 (11:00 AM – 4:00 PM). General admission $15.00 CAD, Seniors $14.00 CAD, Children 0–7 Free (booking required). Tasting tent add-on $12.00 CAD. Status: Active, not sold out.",
     "price": 15,
     "featured_exhibition": null,
     "access_model": "fenced_facility",
@@ -26826,7 +26828,7 @@ const VANCOUVER_EVENTS = [
     "typical_item_spend": "$15.00 – $25.00 CAD (Apple tasting bag + cider & snack)",
     "lineup": "Friends of the Garden, Local Apple Growers, Live Stage Ensembles",
     "restrictions": "All Ages / Family Friendly (Children 7 & under free with mandatory ticket; No pets allowed except certified guide/service dogs)",
-    "is_sold_out": true,
+    "is_sold_out": false,
     "waypoints": [],
     "showings": [
       {
@@ -26855,6 +26857,7 @@ const VANCOUVER_EVENTS = [
     ],
     "subTags": [
       "all-ages",
+      "antigravity-20d-validated",
       "apples",
       "autumn",
       "botanical-garden",
@@ -26865,6 +26868,7 @@ const VANCOUVER_EVENTS = [
       "food",
       "fresh-air",
       "kitsilano",
+      "live-cart-verified",
       "markets",
       "nature-walk",
       "outdoors",
