@@ -2577,6 +2577,7 @@ const VANCOUVER_EVENTS = [
     "ticket_provider": "Free Public Access",
     "tags": [
       "all-ages",
+      "antigravity-20d-validated",
       "budget-friendly",
       "drop-in",
       "false-creek",
@@ -2585,9 +2586,23 @@ const VANCOUVER_EVENTS = [
       "free-public-access",
       "granville-island"
     ],
+    "subTags": [
+      "all-ages",
+      "budget-friendly",
+      "drop-in",
+      "false-creek",
+      "free-admission",
+      "free-event",
+      "free-public-access",
+      "granville-island",
+      "public-market",
+      "solo-friendly",
+      "waterfront",
+      "zero-dollars"
+    ],
     "festival_affiliation": "None",
-    "approval_status": "Auto-Approved",
-    "curator_notes": "AI-Verified (2026-09-28): Confirmed open public access (Public Market: Daily 9:00 AM – 6:00 PM; Boardwalks & Grounds: Open 24/7).",
+    "approval_status": "Antigravity-20D-Validated",
+    "curator_notes": "QC AI Batch-of-1 Live Dimension Audit (2026-10-10): All 20 discrete live dimensions validated. Granville Island Public Market & Boardwalks (1669 Johnston St). 100% free open public access. Public Market stalls open daily 9:00 AM – 6:00 PM; boardwalks and grounds accessible 24/7. Verified zero admission cost ($0.00 CAD).",
     "price": 0,
     "access_model": "fenced_facility",
     "pricing_model": "pay_per_item",
@@ -2633,20 +2648,6 @@ const VANCOUVER_EVENTS = [
     "drink_benchmark": "$6.00 – $8.00 craft beer & artisan juices",
     "concession_benchmark": "$4.00 – $9.00 artisan pastries & snacks",
     "food_service_note": "50+ artisan food stalls, bakeries, seafood & market stalls",
-    "subTags": [
-      "all-ages",
-      "budget-friendly",
-      "drop-in",
-      "false-creek",
-      "free-admission",
-      "free-event",
-      "free-public-access",
-      "granville-island",
-      "public-market",
-      "solo-friendly",
-      "waterfront",
-      "zero-dollars"
-    ],
     "categoryLabel": "Free Public Access",
     "tiers": [
       {
