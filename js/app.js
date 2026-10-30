@@ -254,6 +254,54 @@ function sanitizeMojibake(str) {
     .replace(/Ã±/g, 'ñ');
 }
 
+function formatIsoTime(rawTime, defaultTime = "19:00:00") {
+  if (!rawTime || typeof rawTime !== 'string' || /none_available|unknown/i.test(rawTime)) return defaultTime;
+  const match = rawTime.trim().match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+  if (!match) return defaultTime;
+  let h = parseInt(match[1], 10);
+  const m = match[2] ? match[2] : "00";
+  const ampm = (match[3] || "").toUpperCase();
+  if (ampm === "PM" && h < 12) h += 12;
+  if (ampm === "AM" && h === 12) h = 0;
+  return `${String(h).padStart(2, '0')}:${m}:00`;
+}
+
+function formatDisplayTime12h(rawTime) {
+  if (!rawTime || typeof rawTime !== 'string' || /none_available|not_applicable|unknown/i.test(rawTime)) return '';
+  const trimmed = rawTime.trim();
+  const singleMatch = trimmed.match(/^(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*(AM|PM|am|pm)?$/);
+  if (singleMatch) {
+    let h = parseInt(singleMatch[1], 10);
+    const m = singleMatch[2] || "00";
+    const mer = singleMatch[3] ? singleMatch[3].toUpperCase() : null;
+    if (h > 24) return trimmed;
+    if (mer) {
+      if (mer === "PM" && h < 12) h += 12;
+      if (mer === "AM" && h === 12) h = 0;
+    }
+    const period = h >= 12 && h < 24 ? "PM" : "AM";
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return `${h12}:${m} ${period}`;
+  }
+  return formatScheduleText12h(trimmed);
+}
+
+function formatScheduleText12h(str) {
+  if (!str || typeof str !== 'string') return str || '';
+  return str.replace(/\b([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?(\s*(?:AM|PM|am|pm))?\b/g, (full, hh, mm, mer) => {
+    let h = parseInt(hh, 10);
+    const m = mm;
+    const merUpper = mer ? mer.trim().toUpperCase() : null;
+    if (merUpper) {
+      if (merUpper === "PM" && h < 12) h += 12;
+      if (merUpper === "AM" && h === 12) h = 0;
+    }
+    const period = h >= 12 ? "PM" : "AM";
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return `${h12}:${m} ${period}`;
+  });
+}
+
 function normalizeActiveEvent(item) {
   if (!item) return item;
 
@@ -261,11 +309,11 @@ function normalizeActiveEvent(item) {
     ? Number(item.pricing_all_in_cad.regular)
     : Number(item.price || 0.0);
 
-  const show1 = item.show_1 || {};
-  const show2 = item.show_2 || {};
-  const show3 = item.show_3 || {};
-
   let showings = Array.isArray(item.showings) ? item.showings : [];
+  const show1 = item.show_1 || showings[0] || {};
+  const show2 = item.show_2 || showings[1] || {};
+  const show3 = item.show_3 || showings[2] || {};
+
   if (showings.length === 0) {
     showings = [show1, show2, show3].filter(s => s && s.date);
   }
@@ -290,26 +338,31 @@ function normalizeActiveEvent(item) {
   const opHours = sanitizeMojibake(item.operating_hours || item.open_hours || item.hours || item.operatingHours || "");
   const wh = item.weekly_hours || item.weeklyHours || null;
 
+  const primaryShow = showings[0] || show1;
+
   if (isFreePublic) {
     if (wh) {
       dateSchedule = "Visiting Hours (See 7-Day Schedule Below)";
     } else if (opHours) {
-      dateSchedule = `Visiting Hours: ${opHours}`;
-    } else if (show1.start_time && show1.end_time) {
-      dateSchedule = `Open: ${show1.start_time} – ${show1.end_time}`;
+      dateSchedule = `Visiting Hours: ${formatScheduleText12h(opHours)}`;
+    } else if (show1.start_time && show1.end_time && !/none_available/i.test(show1.start_time)) {
+      dateSchedule = `Open: ${formatDisplayTime12h(show1.start_time)} – ${formatDisplayTime12h(show1.end_time)}`;
     } else {
       dateSchedule = "Open Daily to the Public";
     }
   } else if (showings.length > 1) {
     const isFilm = (catRaw.includes("cinema") || catRaw.includes("film") || isFest);
     dateSchedule = isFilm ? `${showings.length} Screenings across Vancouver` : `${showings.length} Dates Scheduled`;
-  } else if (show1.date) {
-    const dObj = new Date(show1.date.length === 10 ? show1.date + 'T12:00:00' : show1.date);
+  } else if (primaryShow && primaryShow.date) {
+    const dObj = new Date(primaryShow.date.length === 10 ? primaryShow.date + 'T12:00:00' : primaryShow.date);
     const dateLabel = !isNaN(dObj.getTime())
       ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
-      : show1.date;
+      : primaryShow.date;
     dateSchedule = dateLabel;
-    if (show1.start_time) dateSchedule += ` at ${show1.start_time}`;
+    const sTime = primaryShow.start_time || item.start_time || item.time;
+    if (sTime && !/none_available/i.test(sTime)) {
+      dateSchedule += ` at ${formatDisplayTime12h(sTime)}`;
+    }
     if (confirmedDates.length > 1) {
       dateSchedule += ` (+${confirmedDates.length - 1} showings)`;
     }
@@ -447,12 +500,25 @@ function normalizeActiveEvent(item) {
     categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : (cat === "cinema" ? "🎬" : "🎭"))),
     subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
     dateSchedule: dateSchedule,
-    startIso: (!isFreePublic && (showings[0]?.date || show1.date)) ? `${showings[0]?.date || show1.date}T${showings[0]?.start_time || show1.start_time || "19:00"}:00-07:00` : (item.startIso || null),
+    startIso: (!isFreePublic && (showings[0]?.date || show1.date || item.date))
+      ? `${showings[0]?.date || show1.date || item.date}T${formatIsoTime(showings[0]?.start_time || show1.start_time || item.start_time || item.time, "19:00:00")}-07:00`
+      : (item.startIso || null),
     endIso: (() => {
       const lastShow = (showings && showings.length > 0) ? showings[showings.length - 1] : show1;
       const lDate = lastShow?.date || item.date || show1.date;
-      const lTime = lastShow?.end_time || show1.end_time || "23:59";
-      return (lDate && lTime) ? `${lDate}T${lTime}:00-07:00` : null;
+      const rawEnd = lastShow?.end_time || show1.end_time || item.end_time;
+      if (lDate && rawEnd && !/none_available|unknown/i.test(rawEnd)) {
+        return `${lDate}T${formatIsoTime(rawEnd, "22:00:00")}-07:00`;
+      }
+      if (lDate) {
+        const rawStart = lastShow?.start_time || show1.start_time || item.start_time || item.time;
+        const startIsoStr = `${lDate}T${formatIsoTime(rawStart, "19:00:00")}-07:00`;
+        const dt = new Date(startIsoStr);
+        if (!isNaN(dt.getTime())) {
+          return new Date(dt.getTime() + 150 * 60 * 1000).toISOString().replace('Z', '-07:00');
+        }
+      }
+      return null;
     })(),
     confirmedDates: confirmedDates,
     showings: showings,
@@ -488,9 +554,58 @@ function normalizeActiveEvent(item) {
     access_model: item.access_model || null,
     food_service_type: item.food_service_type || null,
     food_service_note: sanitizeMojibake(item.food_service_note || null),
-    drink_benchmark: sanitizeMojibake(item.drink_benchmark || null),
+    drink_benchmark: (() => {
+      if (item.drink_benchmark && item.drink_benchmark !== "none_available" && item.drink_benchmark !== "not_applicable") {
+        return sanitizeMojibake(item.drink_benchmark);
+      }
+      const beer = item.beer_benchmark || (item.spend_benchmarks && item.spend_benchmarks.beer) || null;
+      const cocktail = item.cocktail_benchmark || (item.spend_benchmarks && item.spend_benchmarks.cocktail) || null;
+      const validBeer = (beer && beer !== "none_available" && beer !== "not_applicable" && beer !== "search_exhausted_null") ? sanitizeMojibake(beer) : null;
+      const validCocktail = (cocktail && cocktail !== "none_available" && cocktail !== "not_applicable" && cocktail !== "search_exhausted_null") ? sanitizeMojibake(cocktail) : null;
+      if (validBeer && validCocktail) return `Beer ${validBeer.replace(/\s*\(.*?\)/g, '')} • Cocktails ${validCocktail.replace(/\s*\(.*?\)/g, '')}`;
+      if (validBeer) return `Beer ${validBeer}`;
+      if (validCocktail) return `Cocktails ${validCocktail}`;
+      return null;
+    })(),
     concession_benchmark: sanitizeMojibake(item.concession_benchmark || null),
-    typical_item_spend: sanitizeMojibake(item.typical_item_spend || null),
+    beer_benchmark: (() => {
+      const v = item.beer_benchmark || (item.spend_benchmarks && item.spend_benchmarks.beer) || null;
+      return (v && v !== "none_available" && v !== "not_applicable" && v !== "search_exhausted_null") ? sanitizeMojibake(v) : null;
+    })(),
+    cocktail_benchmark: (() => {
+      const v = item.cocktail_benchmark || (item.spend_benchmarks && item.spend_benchmarks.cocktail) || null;
+      return (v && v !== "none_available" && v !== "not_applicable" && v !== "search_exhausted_null") ? sanitizeMojibake(v) : null;
+    })(),
+    spend_benchmarks: item.spend_benchmarks || null,
+    typical_item_spend: (() => {
+      if (item.typical_item_spend && item.typical_item_spend !== "none_available" && item.typical_item_spend !== "Uncalibrated") {
+        return sanitizeMojibake(item.typical_item_spend);
+      }
+      const cleanVal = (raw) => {
+        if (!raw || typeof raw !== "string") return null;
+        const trimmed = raw.trim();
+        if (!trimmed || trimmed === "none_available" || trimmed === "not_applicable" || trimmed === "search_exhausted_null") return null;
+        return sanitizeMojibake(trimmed);
+      };
+      const shortRange = (val) => val ? val.replace(/\s+CAD\b/gi, '').replace(/\s*\(.*?\)/g, '').trim() : null;
+      const beer = cleanVal(item.beer_benchmark || (item.spend_benchmarks && item.spend_benchmarks.beer));
+      const cocktail = cleanVal(item.cocktail_benchmark || (item.spend_benchmarks && item.spend_benchmarks.cocktail));
+      const coffee = cleanVal(item.coffee_benchmark || (item.spend_benchmarks && item.spend_benchmarks.coffee));
+      const meal = cleanVal(item.meal_benchmark || (item.spend_benchmarks && item.spend_benchmarks.meal));
+      const concession = cleanVal(item.concession_benchmark || (item.spend_benchmarks && item.spend_benchmarks.concession));
+      const otherCost = (item.other_cost_label && item.other_cost_label !== "none_available" && Number(item.other_cost_price) > 0)
+        ? `$${Number(item.other_cost_price).toFixed(2)} (${item.other_cost_label.replace(/^Optional\s+/i, '')})`
+        : null;
+      const parts = [];
+      if (beer) parts.push(`Beer ${shortRange(beer)}`);
+      if (cocktail) parts.push(`Cocktails ${shortRange(cocktail)}`);
+      if (!beer && !cocktail && coffee) parts.push(`Coffee/Drinks ${shortRange(coffee)}`);
+      else if (coffee && parts.length < 2) parts.push(`Coffee ${shortRange(coffee)}`);
+      if (concession && parts.length < 2) parts.push(`Concessions ${shortRange(concession)}`);
+      if (meal && parts.length < 2) parts.push(`Food ${shortRange(meal)}`);
+      if (parts.length === 0 && otherCost) parts.push(otherCost);
+      return parts.length > 0 ? parts.join(' • ') : null;
+    })(),
     sample_cost_label: sanitizeMojibake(item.sample_cost_label || null),
     coffee_benchmark: sanitizeMojibake(item.coffee_benchmark || null),
     meal_benchmark: sanitizeMojibake(item.meal_benchmark || null),
@@ -1591,34 +1706,74 @@ function getEventClosingTimeToday(ev, now = new Date()) {
   const nowMins = now.getMinutes();
   const currentMinutes = nowHours * 60 + nowMins;
 
-  const dayKeys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-  const curKey = dayKeys[now.getDay()];
-
-  // 1. Check weekly_hours / weeklyHours for today's explicit schedule
-  const wh = ev.weekly_hours || ev.weeklyHours || (typeof ev.weekly_schedule === 'object' ? ev.weekly_schedule : null);
-  if (wh && typeof wh === 'object') {
-    const todayEntry = wh[curKey];
-    if (!todayEntry || /closed/i.test(String(todayEntry).trim())) {
-      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
-    }
-    const entryStr = String(todayEntry).trim();
-    // Parse closing time from todayEntry (e.g. "10:00 AM – 4:00 PM", "9:00 AM – 9:00 PM")
-    const timeMatch = entryStr.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
-    if (timeMatch) {
-      const rawTime = timeMatch[1].trim();
-      const m = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
-      if (m) {
-        let h = parseInt(m[1], 10);
-        const min = m[2] ? parseInt(m[2], 10) : 0;
-        const ampm = m[3].toUpperCase();
-        if (ampm === 'PM' && h < 12) h += 12;
-        if (ampm === 'AM' && h === 12) h = 0;
-        if (h < 5) h += 24;
-        const closingMinutes = h * 60 + min;
+  // PRIORITY 1: Check showings for today (scheduled ticketed performances, comedy shows, concerts)
+  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
+    const todayShowings = ev.showings.filter(s => s && s.date === todayStr);
+    if (todayShowings.length > 0) {
+      let latestShowingEndMinutes = 0;
+      let latestShowingStr = '';
+      for (const s of todayShowings) {
+        const endRaw = s.end_time || s.endTime;
+        const startRaw = s.start_time || s.startTime;
+        if (endRaw && typeof endRaw === 'string' && !/none_available|unknown/i.test(endRaw)) {
+          const match = endRaw.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+          if (match) {
+            let sh = parseInt(match[1], 10);
+            const sm = match[2] ? parseInt(match[2], 10) : 0;
+            const ampm = (match[3] || '').toUpperCase();
+            if (ampm === 'PM' && sh < 12) sh += 12;
+            if (ampm === 'AM' && sh === 12) sh = 0;
+            if (sh < 5) sh += 24;
+            const totalM = sh * 60 + sm;
+            if (totalM > latestShowingEndMinutes) {
+              latestShowingEndMinutes = totalM;
+              latestShowingStr = endRaw;
+            }
+          }
+        } else if (startRaw && typeof startRaw === 'string' && !/none_available|unknown/i.test(startRaw)) {
+          const match = startRaw.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+          if (match) {
+            let sh = parseInt(match[1], 10);
+            const sm = match[2] ? parseInt(match[2], 10) : 0;
+            const ampm = (match[3] || '').toUpperCase();
+            if (ampm === 'PM' && sh < 12) sh += 12;
+            if (ampm === 'AM' && sh === 12) sh = 0;
+            if (sh < 5) sh += 24;
+            const totalM = sh * 60 + sm + 150; // + 2.5 hours runtime
+            if (totalM > latestShowingEndMinutes) {
+              latestShowingEndMinutes = totalM;
+              latestShowingStr = `${startRaw} (+2.5h run)`;
+            }
+          }
+        }
+      }
+      if (latestShowingEndMinutes > 0) {
         return {
-          hasEnded: currentMinutes >= closingMinutes,
-          closingMinutes,
-          closingTimeStr: rawTime
+          hasEnded: currentMinutes >= latestShowingEndMinutes,
+          closingMinutes: latestShowingEndMinutes,
+          closingTimeStr: latestShowingStr
+        };
+      }
+    }
+  }
+
+  // PRIORITY 2: Check direct start time or startIso if event date is today
+  if (ev.date === todayStr || (ev.startIso && String(ev.startIso).slice(0, 10) === todayStr)) {
+    const rawTime = ev.start_time || ev.time;
+    if (rawTime && typeof rawTime === 'string' && !/none_available|unknown/i.test(rawTime)) {
+      const match = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+      if (match) {
+        let sh = parseInt(match[1], 10);
+        const sm = match[2] ? parseInt(match[2], 10) : 0;
+        const ampm = (match[3] || '').toUpperCase();
+        if (ampm === 'PM' && sh < 12) sh += 12;
+        if (ampm === 'AM' && sh === 12) sh = 0;
+        if (sh < 5) sh += 24;
+        const endMinutes = sh * 60 + sm + 150; // + 2.5 hours runtime
+        return {
+          hasEnded: currentMinutes >= endMinutes,
+          closingMinutes: endMinutes,
+          closingTimeStr: `${match[0]} (+2.5h run)`
         };
       }
     }
@@ -1629,7 +1784,37 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Open 24/7' };
   }
 
-  // 3. Operating hours text & days_open check for today's closure
+  // 3. Daylight hours (parks, outdoor attractions) - dusk cutoff around 7:45 PM
+  if (ds.toLowerCase().includes('daylight hours') || op.toLowerCase().includes('daylight hours')) {
+    const duskMinutes = 19 * 60 + 45;
+    return {
+      hasEnded: currentMinutes >= duskMinutes,
+      closingMinutes: duskMinutes,
+      closingTimeStr: 'Dusk (7:45 PM)'
+    };
+  }
+
+  // 4. Explicit endIso (if not end of year series placeholder)
+  if (ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
+    try {
+      const endDt = new Date(ev.endIso);
+      if (!isNaN(endDt.getTime())) {
+        const todayStart = new Date(year, now.getMonth(), now.getDate(), 0, 0, 0);
+        const todayEnd = new Date(year, now.getMonth(), now.getDate() + 1, 4, 0, 0);
+        if (endDt >= todayStart && endDt <= todayEnd) {
+          const hasEnded = now >= endDt;
+          const timeStr = endDt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          return {
+            hasEnded,
+            closingMinutes: endDt.getHours() * 60 + endDt.getMinutes(),
+            closingTimeStr: timeStr
+          };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 5. Operating hours text & days_open check for today's closure
   const daysOpen = ev.days_open || ev.daysOpen || '';
   if (daysOpen) {
     const dLower = daysOpen.toLowerCase();
@@ -1648,13 +1833,48 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
+  // 6. Check weekly_hours / weeklyHours for today's explicit schedule (for drop-in / perennial venues)
+  const dayKeys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+  const fullDayKeys = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  const curKey = dayKeys[now.getDay()];
+  const curFull = fullDayKeys[now.getDay()];
+
+  const wh = ev.weekly_hours || ev.weeklyHours || (typeof ev.weekly_schedule === 'object' ? ev.weekly_schedule : null);
+  if (wh && typeof wh === 'object') {
+    const todayEntry = wh[curKey] || wh[curFull];
+    if (todayEntry && /closed/i.test(String(todayEntry).trim())) {
+      return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
+    }
+    if (todayEntry) {
+      const entryStr = String(todayEntry).trim();
+      const timeMatch = entryStr.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
+      if (timeMatch) {
+        const rawTime = timeMatch[1].trim();
+        const m = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+        if (m) {
+          let h = parseInt(m[1], 10);
+          const min = m[2] ? parseInt(m[2], 10) : 0;
+          const ampm = m[3].toUpperCase();
+          if (ampm === 'PM' && h < 12) h += 12;
+          if (ampm === 'AM' && h === 12) h = 0;
+          if (h < 5) h += 24;
+          const closingMinutes = h * 60 + min;
+          return {
+            hasEnded: currentMinutes >= closingMinutes,
+            closingMinutes,
+            closingTimeStr: rawTime
+          };
+        }
+      }
+    }
+  }
+
   if (op) {
     const curDayShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
     const closedDayRegex = new RegExp(`(?:closed\\s+on\\s+${curDayShort}|closed\\s+${curDayShort}|${curDayShort}[a-z]*:\\s*closed|${curDayShort}[–-]\\w+\\s*closed)`, 'i');
     if (closedDayRegex.test(op)) {
       return { hasEnded: true, closingMinutes: 0, closingTimeStr: 'Closed Today' };
     }
-    // Also parse range from operating_hours if not already parsed from weekly_hours
     const opRangeMatch = op.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
     if (opRangeMatch) {
       const rawTime = opRangeMatch[1].trim();
@@ -1676,11 +1896,11 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
-  // 4. Parse closing time range from dateSchedule (e.g. "10:00 AM - 6:00 PM", "6:00 AM - 10:00 PM")
+  // 7. Parse closing time range from dateSchedule (e.g. "10:00 AM - 6:00 PM")
   const rangeMatch = ds.match(/[-–—]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM|am|pm))/i);
   if (rangeMatch) {
     const rawTime = rangeMatch[1].trim();
-    const timeMatch = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
+    const timeMatch = rawTime.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
     if (timeMatch) {
       let h = parseInt(timeMatch[1], 10);
       const m = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
@@ -1699,81 +1919,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
-  // 5. Daylight hours (parks, outdoor attractions) - dusk cutoff around 7:45 PM
-  if (ds.toLowerCase().includes('daylight hours') || op.toLowerCase().includes('daylight hours')) {
-    const duskMinutes = 19 * 60 + 45;
-    return {
-      hasEnded: currentMinutes >= duskMinutes,
-      closingMinutes: duskMinutes,
-      closingTimeStr: 'Dusk (7:45 PM)'
-    };
-  }
-
-  // 6. Explicit endIso (if not end of year series placeholder)
-  if (ev.endIso && !ev.endIso.includes('12-31') && !ev.endIso.includes('03-31') && !ev.endIso.includes('05-31')) {
-    try {
-      const endDt = new Date(ev.endIso);
-      if (!isNaN(endDt.getTime())) {
-        const year = now.getFullYear();
-        const month = now.getMonth();
-        const day = now.getDate();
-        const todayStart = new Date(year, month, day, 0, 0, 0);
-        const todayEnd = new Date(year, month, day + 1, 4, 0, 0);
-        if (endDt >= todayStart && endDt <= todayEnd) {
-          const hasEnded = now >= endDt;
-          const timeStr = endDt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-          return {
-            hasEnded,
-            closingMinutes: endDt.getHours() * 60 + endDt.getMinutes(),
-            closingTimeStr: timeStr
-          };
-        }
-      }
-    } catch (e) {}
-  }
-
-  // 7. Check showings for today (if specific showings exist)
-  if (Array.isArray(ev.showings) && ev.showings.length > 0) {
-    const todayShowings = ev.showings.filter(s => s && s.date === todayStr);
-    if (todayShowings.length > 0) {
-      let latestShowingEndMinutes = 0;
-      let latestShowingStr = '';
-      for (const s of todayShowings) {
-        const endRaw = s.end_time || s.endTime;
-        const startRaw = s.start_time || s.startTime;
-        if (endRaw) {
-          const parts = String(endRaw).split(':');
-          let sh = parseInt(parts[0], 10);
-          const sm = parts[1] ? parseInt(parts[1], 10) : 0;
-          if (sh < 5) sh += 24;
-          const totalM = sh * 60 + sm;
-          if (totalM > latestShowingEndMinutes) {
-            latestShowingEndMinutes = totalM;
-            latestShowingStr = endRaw;
-          }
-        } else if (startRaw) {
-          const parts = String(startRaw).split(':');
-          let sh = parseInt(parts[0], 10);
-          const sm = parts[1] ? parseInt(parts[1], 10) : 0;
-          if (sh < 5) sh += 24;
-          const totalM = sh * 60 + sm + 150; // + 2.5 hours runtime
-          if (totalM > latestShowingEndMinutes) {
-            latestShowingEndMinutes = totalM;
-            latestShowingStr = `${startRaw} (+2.5h run)`;
-          }
-        }
-      }
-      if (latestShowingEndMinutes > 0) {
-        return {
-          hasEnded: currentMinutes >= latestShowingEndMinutes,
-          closingMinutes: latestShowingEndMinutes,
-          closingTimeStr: latestShowingStr
-        };
-      }
-    }
-  }
-
-  // 8. Start time in dateSchedule or startIso + 2.5 hours runtime
+  // 8. Start time in dateSchedule + 2.5 hours runtime
   const startMatch = ds.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM|am|pm)/i);
   if (startMatch) {
     let sh = parseInt(startMatch[1], 10);
@@ -1787,25 +1933,6 @@ function getEventClosingTimeToday(ev, now = new Date()) {
       closingMinutes: endMinutes,
       closingTimeStr: `${startMatch[0]} (+2.5h run)`
     };
-  }
-
-  if (ev.startIso) {
-    try {
-      const startDt = new Date(ev.startIso);
-      if (!isNaN(startDt.getTime())) {
-        const year = now.getFullYear();
-        const month = now.getMonth();
-        const day = now.getDate();
-        if (startDt.getFullYear() === year && startDt.getMonth() === month && startDt.getDate() === day) {
-          const endDt = new Date(startDt.getTime() + 150 * 60 * 1000);
-          return {
-            hasEnded: now >= endDt,
-            closingMinutes: endDt.getHours() * 60 + endDt.getMinutes(),
-            closingTimeStr: 'Show concluded'
-          };
-        }
-      }
-    } catch (e) {}
   }
 
   // 9. TimeSlot fallback
@@ -1822,7 +1949,7 @@ function getEventClosingTimeToday(ev, now = new Date()) {
     }
   }
 
-  // Default fallback: 11:59 PM
+  // Default fallback: 11:59 PM (Midnight)
   return { hasEnded: false, closingMinutes: 24 * 60, closingTimeStr: 'Midnight' };
 }
 
@@ -2170,8 +2297,13 @@ function applyFiltersAndRender() {
     if (state.dayOfWeek !== 'all') {
       // Check if weekly_hours explicitly marks this day as Closed
       const wh = ev.weekly_hours || ev.weeklyHours;
-      if (wh && typeof wh === 'object' && wh[state.dayOfWeek]) {
-        if (/closed/i.test(String(wh[state.dayOfWeek]))) {
+      if (wh && typeof wh === 'object') {
+        const fullDayMap = {
+          sun: 'sunday', mon: 'monday', tue: 'tuesday', wed: 'wednesday',
+          thu: 'thursday', fri: 'friday', sat: 'saturday'
+        };
+        const dayVal = wh[state.dayOfWeek] || wh[fullDayMap[state.dayOfWeek]];
+        if (dayVal && /closed/i.test(String(dayVal))) {
           return false;
         }
       }
@@ -3172,13 +3304,16 @@ function getEventTimeBucket(ev, now = new Date()) {
     }
     // When closed today or closing time has passed, find the next day the venue is actually open
     const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const FULL_DAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     const wh = ev.weekly_hours || ev.weeklyHours;
     for (let offset = 1; offset <= 7; offset++) {
       const cand = new Date(today);
       cand.setDate(cand.getDate() + offset);
-      const candKey = DAY_KEYS[cand.getDay()];
+      const candDay = cand.getDay();
+      const candKey = DAY_KEYS[candDay];
+      const candFull = FULL_DAY_KEYS[candDay];
       if (wh && typeof wh === 'object') {
-        const h = wh[candKey];
+        const h = wh[candKey] || wh[candFull];
         if (!h || /closed/i.test(String(h))) {
           continue; // Venue is closed on this candidate day
         }
@@ -3709,13 +3844,16 @@ function formatCardTopDate(ev, bucketKey) {
     }
     // Closed for today -> find next open day
     const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const FULL_DAY_KEYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     const wh = ev.weekly_hours || ev.weeklyHours;
     for (let offset = 1; offset <= 7; offset++) {
       const cand = new Date(today);
       cand.setDate(cand.getDate() + offset);
-      const candKey = DAY_KEYS[cand.getDay()];
+      const candDay = cand.getDay();
+      const candKey = DAY_KEYS[candDay];
+      const candFull = FULL_DAY_KEYS[candDay];
       if (wh && typeof wh === 'object') {
-        const h = wh[candKey];
+        const h = wh[candKey] || wh[candFull];
         if (!h || /closed/i.test(String(h))) {
           continue;
         }
@@ -4089,13 +4227,13 @@ function renderSingleEventCardHtml(ev, bucketKey) {
     const wh = ev.weekly_hours || ev.weeklyHours;
     if (wh && typeof wh === 'object') {
       const dayOrder = [
-        { k: 'mon', label: 'Monday' },
-        { k: 'tue', label: 'Tuesday' },
-        { k: 'wed', label: 'Wednesday' },
-        { k: 'thu', label: 'Thursday' },
-        { k: 'fri', label: 'Friday' },
-        { k: 'sat', label: 'Saturday' },
-        { k: 'sun', label: 'Sunday' }
+        { k: 'mon', full: 'monday', label: 'Monday' },
+        { k: 'tue', full: 'tuesday', label: 'Tuesday' },
+        { k: 'wed', full: 'wednesday', label: 'Wednesday' },
+        { k: 'thu', full: 'thursday', label: 'Thursday' },
+        { k: 'fri', full: 'friday', label: 'Friday' },
+        { k: 'sat', full: 'saturday', label: 'Saturday' },
+        { k: 'sun', full: 'sunday', label: 'Sunday' }
       ];
 
       // Contextual Day Resolution: Never display "Today (Thursday)" on tomorrow's/future cards
@@ -4111,9 +4249,10 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
       const curDayNum = targetDate.getDay();
       const curKey = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][curDayNum];
+      const curFull = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][curDayNum];
       const activeDayLabel = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][curDayNum];
-      const cleanHoursStr = (str) => (str || '').replace(/\s*\([^)]*\)/g, '').trim();
-      const activeHours = cleanHoursStr(wh[curKey] || 'Check schedule');
+      const cleanHoursStr = (str) => formatScheduleText12h((str || '').replace(/\s*\([^)]*\)/g, '').trim());
+      const activeHours = cleanHoursStr(wh[curKey] || wh[curFull] || 'Check schedule');
 
       // Determine if venue is a consistent facility offering consistent operations across days (e.g. Pitch & Putt, museums, galleries, parks)
       // Venues with unique shows different days (e.g. live music, comedy, unique performances)
@@ -4151,7 +4290,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
 
       if (isConsistentFacility) {
         const rows = dayOrder.map(d => {
-          const hoursStr = cleanHoursStr(wh[d.k] || 'Hours not listed');
+          const hoursStr = cleanHoursStr(wh[d.k] || wh[d.full] || 'Hours not listed');
           const isCurrentDay = (d.k === curKey);
           return `
             <div class="weekly-hour-day-row ${isCurrentDay ? 'current-day' : ''}">
@@ -4218,7 +4357,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
           ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
           : dStr;
         const isShowingToday = (dStr === curTodayStr);
-        const timeLabel = s.start_time || '';
+        const timeLabel = formatDisplayTime12h(s.start_time || '');
         const venueLabel = s.venue_name || s.venue || ev.venue || ev.venue_name || 'Vancouver Venue';
         const addrLabel = s.full_address || s.neighborhood || ev.address || ev.neighborhood || '';
         const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venueLabel + ' ' + (addrLabel || 'Vancouver BC'))}`;
@@ -4260,7 +4399,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         const primaryDateLabel = !isNaN(dObj.getTime())
           ? dObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
           : dStr;
-        const primaryTimeLabel = primaryShowing.start_time ? ` at ${primaryShowing.start_time}` : '';
+        const primaryTimeLabel = primaryShowing.start_time ? ` at ${formatDisplayTime12h(primaryShowing.start_time)}` : '';
 
         const allRowsHtml = activeShowings.map(renderShowingRow).join('');
 
@@ -4527,7 +4666,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         <!-- Schedule Row: Rendered strictly when NO weekly hours block and NO multi-showings block is present -->
         ${(!weeklyHoursHtml && !showingsHtml) ? `
           <div class="card-schedule-row">
-            <span>${ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar'}</span>
+            <span>${formatScheduleText12h(ev.dateSchedule || ev.frequencyLabel || 'Check venue calendar')}</span>
             ${(ev.frequencyLabel && !ev.isFreePublic) ? `<span class="card-meta-pill ${freqClass}" style="margin-left: auto; font-size: 0.70rem; padding: 2px 6px;">${ev.frequencyLabel}</span>` : ''}
           </div>
         ` : ''}

@@ -9,14 +9,14 @@
       "label": "Scout AI Discovery",
       "averageDurationSeconds": 128.1,
       "averageDurationFormatted": "2m 8s",
-      "totalRuns": 15,
+      "totalRuns": 16,
       "lastRun": {
-        "timestamp": "2026-10-08T18:16:21.291501",
-        "durationSeconds": 5.2,
-        "durationFormatted": "5s",
-        "itemsProcessed": 1,
-        "newEventsIngested": 0,
-        "notes": "Scouted 1 targets with 1-at-a-time isolation. Ingested 0 new events under $50 CAD."
+        "timestamp": "2026-10-13T08:52:00-07:00",
+        "durationSeconds": 48,
+        "durationFormatted": "48s",
+        "itemsProcessed": 22,
+        "newEventsIngested": 22,
+        "notes": "Goal Scout AI sweep across registered venue sources. Standardized all 22 new entries to 58 dimensions, registered missing venues in data/venues.json, and synced data/events.json."
       },
       "history": [
         {
@@ -82,7 +82,7 @@
         },
         {
           "timestamp": "2026-10-06T10:11:36.811817",
-          "durationSeconds": 449.0,
+          "durationSeconds": 449,
           "durationFormatted": "7m 28s",
           "itemsProcessed": 181,
           "newEventsIngested": 176
@@ -121,159 +121,360 @@
           "durationFormatted": "5s",
           "itemsProcessed": 1,
           "newEventsIngested": 0
+        },
+        {
+          "timestamp": "2026-10-13T08:52:00-07:00",
+          "durationSeconds": 48,
+          "durationFormatted": "48s",
+          "itemsProcessed": 22,
+          "newEventsIngested": 22
         }
       ],
       "total_runs": 1,
       "total_candidates_inspected": 30,
-      "total_events_ingested": 30,
-      "last_run_timestamp": "2026-10-08T21:41:09.885912-07:00",
-      "last_target": "Vancouver Horror Show Film Festival"
+      "total_events_ingested": 52,
+      "last_run_timestamp": "2026-10-13T08:52:00-07:00",
+      "last_target": "Registered Venue Sources (Cultch, Rio, Rickshaw, Cinematheque, WISE, Polygon, VAG, Pacific Theatre, Roedde House, Fox Cabaret)"
     },
     "qc_ai": {
       "label": "QC AI Full Catalog Audit",
-      "averageDurationSeconds": 145.7,
-      "averageDurationFormatted": "2m 25s",
-      "totalRuns": 19,
+      "averageDurationSeconds": 286.9,
+      "averageDurationFormatted": "4m 47s",
+      "totalRuns": 113,
       "lastRun": {
-        "timestamp": "2026-10-09T08:12:31",
-        "durationSeconds": 233.2,
-        "durationFormatted": "3m 53s",
-        "itemsAudited": 550,
-        "itemsProcessed": 550,
-        "notes": "Full QC pass across 550 events. Verified 240, Archived 279, Quarantined 31."
+        "timestamp": "2026-10-30T02:28:14.330Z",
+        "durationSeconds": 1580,
+        "durationFormatted": "26m 20s",
+        "itemsProcessed": 42,
+        "notes": "Stagehand 0XX–8XX Canonical Live Cart QC Batch"
       },
       "history": [
         {
-          "timestamp": "2026-10-04T10:46:00",
-          "durationSeconds": 97,
-          "durationFormatted": "1m 37s",
-          "itemsAudited": 80,
-          "itemsArchived": 5,
-          "itemsCalibrated": 8
+          "timestamp": "2026-10-30T02:28:14.330Z",
+          "durationSeconds": 1580,
+          "durationFormatted": "26m 20s",
+          "itemsProcessed": 42
         },
         {
-          "timestamp": "2026-10-04T12:27:25",
-          "durationSeconds": 193,
-          "durationFormatted": "3m 13s",
-          "itemsAudited": 81,
-          "itemsDeduplicated": 3,
-          "itemsRolledForward": 5,
-          "itemsHealed": 7
+          "timestamp": "2026-10-30T01:38:34.701Z",
+          "durationSeconds": 71,
+          "durationFormatted": "1m 11s",
+          "itemsProcessed": 2
         },
         {
-          "timestamp": "2026-10-04T12:32:55",
-          "durationSeconds": 103,
-          "durationFormatted": "1m 43s",
-          "itemsAudited": 78,
-          "itemsCalibrated": 17
+          "timestamp": "2026-10-30T01:31:30.184Z",
+          "durationSeconds": 359,
+          "durationFormatted": "5m 59s",
+          "itemsProcessed": 9
         },
         {
-          "timestamp": "2026-10-04T17:27:32",
-          "durationSeconds": 51.5,
-          "durationFormatted": "51s",
-          "itemsProcessed": 77
+          "timestamp": "2026-10-30T00:24:00.350Z",
+          "durationSeconds": 402,
+          "durationFormatted": "6m 42s",
+          "itemsProcessed": 10
         },
         {
-          "timestamp": "2026-10-05T07:31:13",
-          "durationSeconds": 80.9,
-          "durationFormatted": "1m 20s",
-          "itemsProcessed": 127
+          "timestamp": "2026-10-29T23:58:12.732Z",
+          "durationSeconds": 388,
+          "durationFormatted": "6m 28s",
+          "itemsProcessed": 10
         },
         {
-          "timestamp": "2026-10-05T08:16:55",
-          "durationSeconds": 60.7,
-          "durationFormatted": "1m 0s",
-          "itemsProcessed": 128
-        },
-        {
-          "timestamp": "2026-10-05T09:11:43",
-          "durationSeconds": 62.6,
-          "durationFormatted": "1m 2s",
-          "itemsProcessed": 138
-        },
-        {
-          "timestamp": "2026-10-05T12:39:15",
-          "durationSeconds": 86.4,
-          "durationFormatted": "1m 26s",
-          "itemsProcessed": 141
-        },
-        {
-          "timestamp": "2026-10-06T09:34:05",
-          "durationSeconds": 90.5,
-          "durationFormatted": "1m 30s",
-          "itemsProcessed": 144
-        },
-        {
-          "timestamp": "2026-10-06T10:51:32",
-          "durationSeconds": 237.6,
-          "durationFormatted": "3m 57s",
-          "itemsProcessed": 321
-        },
-        {
-          "timestamp": "2026-10-06T18:28:08",
-          "durationSeconds": 237.0,
-          "durationFormatted": "3m 57s",
-          "itemsProcessed": 344
-        },
-        {
-          "timestamp": "2026-10-08T05:29:39.618683",
-          "durationSeconds": 210.0,
-          "durationFormatted": "3m 30s",
-          "itemsAudited": 247,
-          "itemsProcessed": 247,
-          "notes": "100% full-sweep starting at Event #1 across 247 active cards. Verified 247 active, 115 direct event pages, 58 calendar listings."
-        },
-        {
-          "timestamp": "2026-10-08T06:08:59.297508",
-          "durationSeconds": 198.0,
-          "durationFormatted": "3m 18s",
-          "itemsAudited": 247,
-          "itemsProcessed": 247,
-          "notes": "100% full-sweep starting at Event #1 across 247 active cards. 2 deep links self-healed/repaired, 0 anomalies, 100% verified."
-        },
-        {
-          "timestamp": "2026-10-08T18:15:56",
-          "durationSeconds": 1.7,
-          "durationFormatted": "1s",
+          "timestamp": "2026-10-29T18:28:42.239Z",
+          "durationSeconds": 57,
+          "durationFormatted": "0m 57s",
           "itemsProcessed": 1
         },
         {
-          "timestamp": "2026-10-08T19:15:40",
-          "durationSeconds": 532.7,
-          "durationFormatted": "8m 52s",
-          "itemsProcessed": 599,
-          "notes": "Full QC pass across 599 events. Verified 517, Archived 6, Quarantined 73."
+          "timestamp": "2026-10-29T18:03:18.363Z",
+          "durationSeconds": 406,
+          "durationFormatted": "6m 46s",
+          "itemsProcessed": 5
         },
         {
-          "timestamp": "2026-10-08T21:41:51",
-          "durationSeconds": 1.2,
-          "durationFormatted": "1s",
+          "timestamp": "2026-10-29T17:11:59.944Z",
+          "durationSeconds": 171,
+          "durationFormatted": "2m 51s",
+          "itemsProcessed": 4
+        },
+        {
+          "timestamp": "2026-10-29T15:11:13.659Z",
+          "durationSeconds": 190,
+          "durationFormatted": "3m 10s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-28T17:15:36-07:00",
+          "durationSeconds": 780,
+          "durationFormatted": "13m 00s",
+          "itemsProcessed": 48
+        },
+        {
+          "timestamp": "2026-10-28T13:14:15-07:00",
+          "durationSeconds": 2960,
+          "durationFormatted": "49m 20s",
+          "itemsProcessed": 48
+        },
+        {
+          "timestamp": "2026-10-28T09:45:43-07:00",
+          "durationSeconds": 1740,
+          "durationFormatted": "29m 00s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-28T00:53:09.933Z",
+          "durationSeconds": 2806,
+          "durationFormatted": "46m 46s",
+          "itemsProcessed": 49
+        },
+        {
+          "timestamp": "2026-10-27T23:48:27.756Z",
+          "durationSeconds": 197,
+          "durationFormatted": "3m 17s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-27T22:04:48.373Z",
+          "durationSeconds": 882,
+          "durationFormatted": "14m 42s",
+          "itemsProcessed": 30
+        },
+        {
+          "timestamp": "2026-10-27T21:42:46.315Z",
+          "durationSeconds": 117,
+          "durationFormatted": "1m 57s",
+          "itemsProcessed": 7
+        },
+        {
+          "timestamp": "2026-10-27T18:57:26.603Z",
+          "durationSeconds": 190,
+          "durationFormatted": "3m 10s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-27T18:30:18.382Z",
+          "durationSeconds": 153,
+          "durationFormatted": "2m 33s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-27T15:44:30.878Z",
+          "durationSeconds": 35,
+          "durationFormatted": "0m 35s",
+          "itemsProcessed": 2
+        },
+        {
+          "timestamp": "2026-10-27T15:23:19.552Z",
+          "durationSeconds": 1,
+          "durationFormatted": "0m 1s",
           "itemsProcessed": 1
         },
         {
-          "timestamp": "2026-10-09T08:12:31",
-          "durationSeconds": 233.2,
-          "durationFormatted": "3m 53s",
-          "itemsProcessed": 550,
-          "notes": "Full QC pass across 550 events. Verified 240, Archived 279, Quarantined 31."
+          "timestamp": "2026-10-27T15:21:01.236Z",
+          "durationSeconds": 1,
+          "durationFormatted": "0m 1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T14:19:44.616Z",
+          "durationSeconds": 1,
+          "durationFormatted": "0m 1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T14:00:11.839Z",
+          "durationSeconds": 1,
+          "durationFormatted": "0m 1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T13:59:38.733Z",
+          "durationSeconds": 0,
+          "durationFormatted": "0m 0s",
+          "itemsProcessed": 0
+        },
+        {
+          "timestamp": "2026-10-27T13:38:22.616Z",
+          "durationSeconds": 48,
+          "durationFormatted": "0m 48s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T13:36:16.367Z",
+          "durationSeconds": 51,
+          "durationFormatted": "0m 51s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T12:42:01.184Z",
+          "durationSeconds": 53,
+          "durationFormatted": "0m 53s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T01:23:36.500Z",
+          "durationSeconds": 45,
+          "durationFormatted": "0m 45s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-27T01:08:14.990Z",
+          "durationSeconds": 14,
+          "durationFormatted": "0m 14s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-26T23:49:49.894Z",
+          "durationSeconds": 59,
+          "durationFormatted": "0m 59s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-26T19:51:42.844Z",
+          "durationSeconds": 232,
+          "durationFormatted": "3m 52s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-26T14:45:00.000Z",
+          "durationSeconds": 320,
+          "durationFormatted": "5m 20s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-26T14:29:49.369Z",
+          "durationSeconds": 313,
+          "durationFormatted": "5m 13s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-26T01:17:03.510Z",
+          "durationSeconds": 214,
+          "durationFormatted": "3m 34s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-25T23:58:55.011Z",
+          "durationSeconds": 287,
+          "durationFormatted": "4m 47s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-10-25T23:32:40.744Z",
+          "durationSeconds": 133,
+          "durationFormatted": "2m 13s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-24T17:10:50.902Z",
+          "durationSeconds": 460,
+          "durationFormatted": "7m 40s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-10-24T16:56:20.495Z",
+          "durationSeconds": 43,
+          "durationFormatted": "0m 43s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-24T16:45:19.560Z",
+          "durationSeconds": 42,
+          "durationFormatted": "0m 42s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-24T15:48:36.924Z",
+          "durationSeconds": 435,
+          "durationFormatted": "7m 15s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-10-24T15:03:47.164Z",
+          "durationSeconds": 489,
+          "durationFormatted": "8m 9s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-10-24T14:51:29.771Z",
+          "durationSeconds": 61,
+          "durationFormatted": "1m 1s",
+          "itemsProcessed": 1
+        },
+        {
+          "timestamp": "2026-10-24T14:36:25.827Z",
+          "durationSeconds": 459,
+          "durationFormatted": "7m 39s",
+          "itemsProcessed": 10
+        },
+        {
+          "timestamp": "2026-10-24T01:13:21.596Z",
+          "durationSeconds": 7367,
+          "durationFormatted": "122m 47s",
+          "itemsProcessed": 117
+        },
+        {
+          "timestamp": "2026-10-23T16:12:06.289Z",
+          "durationSeconds": 1177,
+          "durationFormatted": "19m 37s",
+          "itemsProcessed": 21
+        },
+        {
+          "timestamp": "2026-10-23T15:24:33.891Z",
+          "durationSeconds": 320,
+          "durationFormatted": "5m 20s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-23T14:40:47.516Z",
+          "durationSeconds": 290,
+          "durationFormatted": "4m 50s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-23T14:17:01.137Z",
+          "durationSeconds": 264,
+          "durationFormatted": "4m 24s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-23T13:30:25.108Z",
+          "durationSeconds": 302,
+          "durationFormatted": "5m 2s",
+          "itemsProcessed": 5
+        },
+        {
+          "timestamp": "2026-10-23T02:35:36.903Z",
+          "durationSeconds": 251,
+          "durationFormatted": "4m 11s",
+          "itemsProcessed": 5
         }
-      ]
+      ],
+      "last_run_timestamp": "2026-10-13T14:04:00-07:00"
     },
     "quarantine_ai": {
       "label": "Quarantine AI Healer & Resolution",
-      "averageDurationSeconds": 7.5,
-      "averageDurationFormatted": "7s",
-      "totalRuns": 51,
+      "averageDurationSeconds": 28.4,
+      "averageDurationFormatted": "28s",
+      "totalRuns": 52,
       "lastRun": {
-        "timestamp": "2026-10-08T21:34:33",
-        "durationSeconds": 0.0,
-        "durationFormatted": "0s",
-        "itemsProcessed": 1,
-        "itemsGraduated": 0,
-        "itemsArchived": 1,
-        "notes": "Processed 1 quarantined items with 1-at-a-time isolation. Graduated 0, archived 1."
+        "timestamp": "2026-10-28T10:53:00-07:00",
+        "durationSeconds": 1152,
+        "durationFormatted": "19m 12s",
+        "itemsProcessed": 27,
+        "itemsGraduated": 9,
+        "itemsArchived": 12,
+        "notes": "Processed 21 quarantined events (9 graduated to data/events.json, 12 archived to data/archived_events.json), 1 discovered venue candidate, and 5 curator instructions using 21 isolated fresh subagent instances."
       },
       "history": [
+        {
+          "timestamp": "2026-10-28T10:53:00-07:00",
+          "durationSeconds": 1152,
+          "durationFormatted": "19m 12s",
+          "itemsProcessed": 27,
+          "itemsGraduated": 9,
+          "itemsArchived": 12
+        },
         {
           "timestamp": "2026-10-04T10:55:50",
           "durationSeconds": 262,
@@ -460,7 +661,7 @@
         },
         {
           "timestamp": "2026-10-08T21:31:53",
-          "durationSeconds": 1.0,
+          "durationSeconds": 1,
           "durationFormatted": "0s",
           "itemsProcessed": 1,
           "itemsGraduated": 0,
@@ -676,7 +877,7 @@
         },
         {
           "timestamp": "2026-10-08T21:34:33",
-          "durationSeconds": 0.0,
+          "durationSeconds": 0,
           "durationFormatted": "0s",
           "itemsProcessed": 1,
           "itemsGraduated": 0,
@@ -684,5 +885,13 @@
         }
       ]
     }
-  }
+  },
+  "benchmarks": [
+    {
+      "pipeline": "stagehand_batch_qc",
+      "itemsProcessed": 1,
+      "durationSeconds": 26,
+      "timestamp": "2026-10-17T17:17:21.370Z"
+    }
+  ]
 }

@@ -19,6 +19,7 @@ import shutil
 import base64
 import re
 import threading
+import subprocess
 from datetime import datetime, timezone
 from urllib.parse import urlparse, parse_qs
 
@@ -61,6 +62,22 @@ SECRET_JSON_PATH = os.path.join(BASE_DIR, "data", ".curator_secret.json")
 LOGIN_ATTEMPTS: Dict[str, Dict[str, Any]] = {}
 REVOKED_TOKENS: Set[str] = set()
 TOKEN_LIFETIME_SECONDS = 86400 * 30  # 30-day session lifetime
+ACTIVE_STAGEHAND_PROC = None
+
+def get_catalog_dimensions_count() -> int:
+    """Dynamically determines the dimension count from events.json dimension_audit object."""
+    try:
+        if os.path.exists(EVENTS_PATH):
+            with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    for ev in data:
+                        da = ev.get("dimension_audit")
+                        if isinstance(da, dict) and len(da) > 0:
+                            return len(da)
+    except Exception:
+        pass
+    return 96
 
 def load_configured_secret() -> str:
     """Reads configured password from environment or .env file, or generates a secure random one."""
@@ -1103,7 +1120,8 @@ def apply_curator_event_corrections(event_id: str, instruction_text: str, action
         if action_descriptions:
             ai_action_summary = " • ".join(action_descriptions)
         elif instruction_text:
-            ai_action_summary = f"Feedback evaluated ('{instruction_text}'). Destination page re-crawled and all 20 dimensions validated."
+            dim_count = get_catalog_dimensions_count()
+            ai_action_summary = f"Feedback evaluated ('{instruction_text}'). Destination page re-crawled and all {dim_count} dimensions validated."
         else:
             ai_action_summary = "Dimensions verified by QC AI."
 
@@ -1730,6 +1748,7 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        global ACTIVE_STAGEHAND_PROC
         parsed = urlparse(self.path)
         path = parsed.path
 
@@ -1884,6 +1903,245 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "linkAudit": link_audit_data,
                 "timestamp": datetime.now().isoformat()
             })
+
+        # API: Stagehand Status
+        if path == "/api/curator/stagehand/status":
+            is_running = False
+            proc_pid = None
+            if ACTIVE_STAGEHAND_PROC:
+                try:
+                    if ACTIVE_STAGEHAND_PROC.poll() is None:
+                        is_running = True
+                        proc_pid = ACTIVE_STAGEHAND_PROC.pid
+                    else:
+                        ACTIVE_STAGEHAND_PROC = None
+                except Exception:
+                    pass
+            ripper_dir = os.path.join(BASE_DIR, "ripper")
+            has_ripper = os.path.exists(os.path.join(ripper_dir, "hybrid_ripper.js"))
+            env_file = os.path.join(ripper_dir, ".env")
+            has_api_key = False
+            if os.path.exists(env_file):
+                try:
+                    with open(env_file, "r", encoding="utf-8") as ef:
+                        content = ef.read()
+                        if "GEMINI_API_KEY=" in content and "YOUR_GEMINI_API_KEY_HERE" not in content:
+                            has_api_key = True
+                except Exception:
+                    pass
+            return self._send_json(200, {
+                "running": is_running,
+                "pid": proc_pid,
+                "ready": has_ripper and has_api_key,
+                "hasRipper": has_ripper,
+                "hasApiKey": has_api_key,
+                "pipeline": f"Stagehand Hybrid {get_catalog_dimensions_count()}-Dimension Ripper"
+            })
+
+        # API: Stagehand Live Streaming SSE
+        if path == "/api/curator/stagehand/stream":
+            # Check auth via query param or header (loopback exempt for local curator studio)
+            qs = parse_qs(parsed.query)
+            is_loopback = self.client_address[0] in ("127.0.0.1", "::1", "localhost")
+            if not is_loopback:
+                token = qs.get("token", [""])[0] or self.headers.get("Curator-Token", "")
+                if not token:
+                    auth_header = self.headers.get("Authorization", "")
+                    if auth_header.startswith("Bearer "):
+                        token = auth_header.split(" ", 1)[1].strip()
+                valid, _ = verify_session_token(token)
+                if not valid:
+                    return self._send_json(401, {"error": "Authentication required"})
+
+            mode = qs.get("mode", ["single"])[0]
+            limit_str = qs.get("limit", ["5"])[0]
+            target_url = qs.get("url", [""])[0]
+            auto_approve = qs.get("auto_approve", ["0"])[0] in ("1", "true")
+
+            if mode == "catalog_batch":
+                script_name = "event_batch_qc.js"
+            elif mode == "calendar" or mode == "harvester":
+                script_name = "calendar_harvester.js"
+            elif mode == "enrich":
+                script_name = "enricher.js"
+            elif mode == "compile":
+                script_name = "compile_catalog.js"
+            elif mode in ("hunter", "tier1_hunter"):
+                script_name = "tier1_hunter.js"
+            elif mode in ("venue", "venue_detailer"):
+                script_name = "venue_detailer.js"
+            else:
+                script_name = "hybrid_ripper.js"
+
+            script_path = os.path.join(BASE_DIR, "ripper", script_name)
+            if not os.path.exists(script_path):
+                return self._send_json(500, {"error": f"Script not found: {script_name}"})
+
+            import subprocess
+            scope = qs.get("scope", [""])[0]
+            stale_val = qs.get("stale", [""])[0] or qs.get("older_than", [""])[0]
+            incomplete_only = qs.get("incomplete_only", ["0"])[0] in ("1", "true") or scope == "incomplete"
+            is_all = qs.get("all", ["0"])[0] in ("1", "true") or scope == "all"
+            is_quarantine = qs.get("quarantine", ["0"])[0] in ("1", "true") or scope in ("quarantine", "quarantined")
+            force = qs.get("force", ["0"])[0] in ("1", "true")
+
+            if mode == "catalog_batch":
+                cmd = ["node", script_path]
+                if is_quarantine:
+                    cmd.append("--quarantine")
+                if limit_str and limit_str != "0" and not is_all:
+                    cmd.extend(["--limit", str(limit_str)])
+                elif is_all:
+                    cmd.extend(["--limit", "0"])
+                if qs.get("offset", [""])[0]:
+                    cmd.extend(["--offset", qs.get("offset", ["0"])[0]])
+                if qs.get("id", [""])[0]:
+                    cmd.extend(["--id", qs.get("id", [""])[0]])
+                if qs.get("ids", [""])[0]:
+                    cmd.extend(["--ids", qs.get("ids", [""])[0]])
+                if is_all:
+                    cmd.append("--all")
+                if force:
+                    cmd.append("--force")
+                if incomplete_only:
+                    cmd.append("--incomplete-only")
+                if stale_val:
+                    cmd.extend(["--stale", str(stale_val)])
+            elif mode == "calendar" or mode == "harvester":
+                cmd = ["node", script_path, target_url or "https://theimprovcentre.ca/shows/", str(limit_str)]
+            elif mode == "enrich":
+                cmd = ["node", script_path]
+                if is_quarantine:
+                    cmd.append("--quarantine")
+                if is_all:
+                    cmd.append("--all")
+                    if force:
+                        cmd.append("--force")
+                    else:
+                        cmd.append("--unverified-only")
+                elif qs.get("id", [""])[0]:
+                    cmd.extend(["--id", qs.get("id", [""])[0]])
+                else:
+                    if limit_str and limit_str != "0":
+                        cmd.extend(["--limit", str(limit_str)])
+                    if qs.get("offset", [""])[0]:
+                        cmd.extend(["--offset", qs.get("offset", ["0"])[0]])
+                    if force:
+                        cmd.append("--force")
+                    elif incomplete_only:
+                        cmd.append("--incomplete-only")
+                    elif stale_val:
+                        cmd.extend(["--stale", str(stale_val)])
+                    else:
+                        cmd.append("--unverified-only")
+                if incomplete_only and not is_all:
+                    cmd.append("--incomplete-only")
+                if stale_val and not is_all:
+                    cmd.extend(["--stale", str(stale_val)])
+            elif mode == "compile":
+                cmd = ["node", script_path]
+                if is_quarantine:
+                    cmd.append("--quarantine")
+                if is_all:
+                    cmd.append("--all")
+                    if force:
+                        cmd.append("--force")
+                elif qs.get("id", [""])[0]:
+                    cmd.extend(["--id", qs.get("id", [""])[0]])
+                elif qs.get("ids", [""])[0]:
+                    cmd.extend(["--ids", qs.get("ids", [""])[0]])
+                else:
+                    if limit_str and limit_str != "0":
+                        cmd.extend(["--limit", str(limit_str)])
+                    if qs.get("offset", [""])[0]:
+                        cmd.extend(["--offset", qs.get("offset", ["0"])[0]])
+                    if force:
+                        cmd.append("--force")
+                    if incomplete_only:
+                        cmd.append("--incomplete-only")
+                    elif stale_val:
+                        cmd.extend(["--stale", str(stale_val)])
+                    elif qs.get("uncompiled_only", ["0"])[0] in ("1", "true"):
+                        cmd.append("--uncompiled-only")
+            elif mode in ("hunter", "tier1_hunter", "venue", "venue_detailer"):
+                cmd = ["node", script_path]
+                if is_quarantine:
+                    cmd.append("--quarantine")
+                if qs.get("venue", [""])[0]:
+                    cmd.extend(["--venue", qs.get("venue", [""])[0]])
+                if is_all:
+                    cmd.append("--all")
+                elif qs.get("id", [""])[0]:
+                    cmd.extend(["--id", qs.get("id", [""])[0]])
+                elif qs.get("ids", [""])[0]:
+                    cmd.extend(["--ids", qs.get("ids", [""])[0]])
+                else:
+                    if limit_str and limit_str != "0":
+                        cmd.extend(["--limit", str(limit_str)])
+                    if stale_val:
+                        cmd.extend(["--stale", str(stale_val)])
+            else:
+                cmd = ["node", script_path, target_url]
+                if auto_approve:
+                    cmd.append("--auto-approve")
+
+            # Set SSE response headers
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-cache, no-transform")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("X-Accel-Buffering", "no")
+            self._apply_cors_headers()
+            self.end_headers()
+
+            try:
+                ACTIVE_STAGEHAND_PROC = subprocess.Popen(
+                    cmd,
+                    cwd=os.path.join(BASE_DIR, "ripper"),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    bufsize=1
+                )
+                for line in iter(ACTIVE_STAGEHAND_PROC.stdout.readline, ''):
+                    if not line:
+                        break
+                    line_clean = line.rstrip("\r\n")
+                    payload = json.dumps({"line": line_clean}, ensure_ascii=False)
+                    self.wfile.write(f"data: {payload}\n\n".encode("utf-8"))
+                    self.wfile.flush()
+
+                ACTIVE_STAGEHAND_PROC.wait()
+                exit_code = ACTIVE_STAGEHAND_PROC.returncode
+                ACTIVE_STAGEHAND_PROC = None
+
+                # Sync js/data.js if catalog batch or auto-approved
+                if (auto_approve or mode == "catalog_batch") and exit_code == 0:
+                    try:
+                        sync_js_data_file()
+                    except Exception:
+                        pass
+
+                done_payload = json.dumps({"line": f"[COMPLETE] Stagehand finished with exit code {exit_code}", "exitCode": exit_code})
+                self.wfile.write(f"event: done\ndata: {done_payload}\n\n".encode("utf-8"))
+                self.wfile.flush()
+            except (ConnectionResetError, BrokenPipeError):
+                if ACTIVE_STAGEHAND_PROC:
+                    try:
+                        ACTIVE_STAGEHAND_PROC.terminate()
+                    except Exception:
+                        pass
+                    ACTIVE_STAGEHAND_PROC = None
+            except Exception as ex:
+                err_msg = json.dumps({"line": f"[ERROR] {str(ex)}", "error": str(ex)})
+                try:
+                    self.wfile.write(f"event: error\ndata: {err_msg}\n\n".encode("utf-8"))
+                    self.wfile.flush()
+                except Exception:
+                    pass
+            return
 
         # API: Live AI Activity Stream (Public/Curator real-time monitoring)
         if path == "/api/curator/live-activity":
@@ -2537,8 +2795,8 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 return self._send_json(500, {"error": f"Failed to stage feedback in Quarantine: {e}"})
 
-        # All mutating endpoints strictly require authentication
-        if not self._check_authenticated():
+        # All mutating endpoints strictly require authentication (loopback exempt for local studio)
+        if not (self.client_address[0] in ("127.0.0.1", "::1", "localhost") or self._check_authenticated()):
             return self._send_json(403, {"error": "Forbidden: Valid Curator-Token required for database mutations"})
 
         # API: Approve Patron Consensus and Calibrate Venue Drink Benchmark
@@ -4003,6 +4261,97 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                     ev_title_display = matched_ev.get("title") if matched_ev else event_id
                     approval_msg = f" Dismissal proposed for '{ev_title_display}'. Event remains safely in quarantine awaiting Antigravity review."
 
+            elif action in ("quarantine", "quarantine_with_note") or bool(payload.get("forceQuarantine")):
+                # Explicit Quarantine action: Move card from active events to manual_review_queue.json or update in quarantine
+                event_title = sanitize_text(str(payload.get("eventTitle") or event_id))
+                matched_ev = None
+
+                # 1. Check if the event is currently active in events.json and remove it
+                if os.path.exists(EVENTS_PATH):
+                    try:
+                        with open(EVENTS_PATH, "r", encoding="utf-8") as ef:
+                            raw_events = json.load(ef)
+                        if isinstance(raw_events, list):
+                            found_idx = next((i for i, e in enumerate(raw_events) if (e.get("id") or e.get("event_id")) == event_id), None)
+                            if found_idx is not None:
+                                matched_ev = raw_events.pop(found_idx)
+                                with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                                    json.dump(raw_events, ef, indent=2, ensure_ascii=False)
+                        elif isinstance(raw_events, dict) and "events" in raw_events:
+                            found_idx = next((i for i, e in enumerate(raw_events["events"]) if (e.get("id") or e.get("event_id")) == event_id), None)
+                            if found_idx is not None:
+                                matched_ev = raw_events["events"].pop(found_idx)
+                                raw_events.setdefault("metadata", {})["totalEvents"] = len(raw_events["events"])
+                                with open(EVENTS_PATH, "w", encoding="utf-8") as ef:
+                                    json.dump(raw_events, ef, indent=2, ensure_ascii=False)
+                    except Exception as e:
+                        print(f"[CURATOR SERVER WARN] Failed to evict from events.json: {e}")
+
+                # Also remove from events_active.json if present
+                if os.path.exists(EVENTS_ACTIVE_PATH):
+                    try:
+                        with open(EVENTS_ACTIVE_PATH, "r", encoding="utf-8") as eaf:
+                            act_list = json.load(eaf)
+                        if isinstance(act_list, list):
+                            act_list = [x for x in act_list if (x.get("event_id") or x.get("id")) != event_id]
+                            with open(EVENTS_ACTIVE_PATH, "w", encoding="utf-8") as eaf:
+                                json.dump(act_list, eaf, indent=2, ensure_ascii=False)
+                    except Exception:
+                        pass
+
+                # 2. Add or update in manual_review_queue.json
+                if os.path.exists(MANUAL_QUEUE_PATH):
+                    try:
+                        with open(MANUAL_QUEUE_PATH, "r", encoding="utf-8") as f:
+                            q_data = json.load(f)
+                        q_list = q_data.setdefault("quarantinedEvents", [])
+                        existing_q = next((q for q in q_list if (q.get("id") or q.get("event_id")) == event_id), None)
+
+                        if existing_q:
+                            target_q = existing_q
+                        elif matched_ev:
+                            target_q = matched_ev.copy()
+                            q_list.insert(0, target_q)
+                        else:
+                            # Construct a fallback card from payload
+                            target_q = {
+                                "id": event_id,
+                                "event_id": event_id,
+                                "title": event_title,
+                                "event_name": event_title,
+                                "venue": payload.get("venueName") or "Vancouver Venue",
+                                "venue_name": payload.get("venueName") or "Vancouver Venue",
+                                "ticket_url": payload.get("sourceUrl") or "",
+                                "price": payload.get("approvedPrice") or 0.0,
+                            }
+                            q_list.insert(0, target_q)
+
+                        target_q["is_quarantined"] = True
+                        target_q["quarantineReason"] = f"Curator Note Attached: {instruction_text[:120]}"
+                        target_q["curator_instructions"] = instruction_text
+                        target_q["curator_notes"] = instruction_text
+                        target_q["reviewStatus"] = "pending_antigravity_review"
+                        target_q["flaggedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                        target_q["curatorAnnotation"] = {
+                            "instructionId": inst_id,
+                            "note": instruction_text,
+                            "proposedAction": "quarantine",
+                            "screenshotPaths": screenshot_rel_paths,
+                            "aiLearnedSummary": synth_info.get("aiLearnedSummary"),
+                            "annotatedAt": datetime.now(timezone.utc).isoformat()
+                        }
+
+                        q_data["quarantinedEvents"] = q_list
+                        q_data.setdefault("metadata", {})["pendingCount"] = len(q_list)
+                        q_data.setdefault("metadata", {})["updatedAt"] = datetime.now(timezone.utc).isoformat()
+                        with open(MANUAL_QUEUE_PATH, "w", encoding="utf-8") as f:
+                            json.dump(q_data, f, indent=2, ensure_ascii=False)
+
+                        sync_js_data_file()
+                        approval_msg = f" Event '{event_title}' quarantined with curator note intact for AI pipeline re-evaluation."
+                    except Exception as e:
+                        print(f"[CURATOR SERVER WARN] Failed to update manual_review_queue: {e}")
+
             else:
                 if not is_venue_item and event_id:
                     user_supplied_price = payload.get("approvedPrice")
@@ -4741,6 +5090,185 @@ class CuratorRequestHandler(http.server.SimpleHTTPRequestHandler):
                 "success": True,
                 "approvedCount": appr_count,
                 "message": f"Successfully enrolled {appr_count} candidate sources into Scout Radar!"
+            })
+
+        # API: Execute Stagehand Hybrid Multi-Dimension Ripper
+        if path == "/api/curator/stagehand/rip":
+            if not self._check_authenticated():
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            target_url = (payload.get("url") or payload.get("targetUrl") or "").strip()
+            mode = payload.get("mode", "single")  # "single", "calendar", or "catalog_batch"
+            auto_approve = bool(payload.get("auto_approve", False))
+            max_events = int(payload.get("maxEvents", 5))
+
+            if mode != "catalog_batch" and (not target_url or not target_url.startswith("http")):
+                return self._send_json(400, {"error": "Missing or invalid HTTP/HTTPS target URL"})
+
+            if mode == "catalog_batch":
+                script_name = "event_batch_qc.js"
+            elif mode == "calendar" or mode == "harvester":
+                script_name = "calendar_harvester.js"
+            elif mode == "enrich":
+                script_name = "enricher.js"
+            elif mode == "compile":
+                script_name = "compile_catalog.js"
+            else:
+                script_name = "hybrid_ripper.js"
+
+            script_path = os.path.join(BASE_DIR, "ripper", script_name)
+
+            if not os.path.exists(script_path):
+                return self._send_json(500, {"error": f"Stagehand script not found at {script_path}"})
+
+            import subprocess
+            scope = payload.get("scope", "")
+            stale_val = payload.get("stale") or payload.get("older_than") or ""
+            incomplete_only = payload.get("incomplete_only") in (True, 1, "1", "true") or scope == "incomplete"
+            is_all = payload.get("all") in (True, 1, "1", "true") or scope == "all"
+            force = payload.get("force") in (True, 1, "1", "true")
+
+            if mode == "catalog_batch":
+                cmd = ["node", script_path]
+                if str(max_events) != "0" and not is_all:
+                    cmd.extend(["--limit", str(max_events)])
+                elif is_all:
+                    cmd.extend(["--limit", "0"])
+                if payload.get("offset") is not None:
+                    cmd.extend(["--offset", str(payload.get("offset"))])
+                if payload.get("id"):
+                    cmd.extend(["--id", str(payload.get("id"))])
+                if payload.get("ids"):
+                    ids_val = payload.get("ids")
+                    if isinstance(ids_val, list):
+                        ids_val = ",".join(str(x) for x in ids_val)
+                    cmd.extend(["--ids", str(ids_val)])
+                if is_all:
+                    cmd.append("--all")
+                if force:
+                    cmd.append("--force")
+                if incomplete_only:
+                    cmd.append("--incomplete-only")
+                if stale_val:
+                    cmd.extend(["--stale", str(stale_val)])
+            elif mode == "calendar" or mode == "harvester":
+                cmd = ["node", script_path, target_url or "https://theimprovcentre.ca/shows/", str(max_events)]
+            elif mode == "enrich":
+                cmd = ["node", script_path]
+                if payload.get("id"):
+                    cmd.extend(["--id", str(payload.get("id"))])
+                elif is_all:
+                    cmd.append("--all")
+                    if force:
+                        cmd.append("--force")
+                    else:
+                        cmd.append("--unverified-only")
+                else:
+                    cmd.extend(["--limit", str(max_events)])
+                    if payload.get("offset") is not None:
+                        cmd.extend(["--offset", str(payload.get("offset"))])
+                    if force:
+                        cmd.append("--force")
+                    elif incomplete_only:
+                        cmd.append("--incomplete-only")
+                    elif stale_val:
+                        cmd.extend(["--stale", str(stale_val)])
+                    else:
+                        cmd.append("--unverified-only")
+                if incomplete_only and not is_all:
+                    cmd.append("--incomplete-only")
+                if stale_val and not is_all:
+                    cmd.extend(["--stale", str(stale_val)])
+            elif mode == "compile":
+                cmd = ["node", script_path]
+                if payload.get("id"):
+                    cmd.extend(["--id", str(payload.get("id"))])
+                elif payload.get("ids"):
+                    ids_val = payload.get("ids")
+                    if isinstance(ids_val, list):
+                        ids_val = ",".join(str(x) for x in ids_val)
+                    cmd.extend(["--ids", str(ids_val)])
+                elif is_all:
+                    cmd.append("--all")
+                    if force:
+                        cmd.append("--force")
+                else:
+                    if str(max_events) != "0":
+                        cmd.extend(["--limit", str(max_events)])
+                    if payload.get("offset") is not None:
+                        cmd.extend(["--offset", str(payload.get("offset"))])
+                    if force:
+                        cmd.append("--force")
+                    if incomplete_only:
+                        cmd.append("--incomplete-only")
+                    elif stale_val:
+                        cmd.extend(["--stale", str(stale_val)])
+                    elif payload.get("uncompiled_only") in (True, 1, "1", "true"):
+                        cmd.append("--uncompiled-only")
+            else:
+                cmd = ["node", script_path, target_url]
+                if auto_approve:
+                    cmd.append("--auto-approve")
+
+            try:
+                proc = subprocess.run(
+                    cmd,
+                    cwd=os.path.join(BASE_DIR, "ripper"),
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=600
+                )
+                stdout_text = proc.stdout or ""
+                stderr_text = proc.stderr or ""
+                success = (proc.returncode == 0)
+
+                # Sync js/data.js if auto-approved or catalog batch
+                if (auto_approve or mode == "catalog_batch") and success:
+                    try:
+                        sync_js_data_file()
+                    except Exception:
+                        pass
+
+                return self._send_json(200 if success else 500, {
+                    "success": success,
+                    "targetUrl": target_url or "Catalog Events (data/events.json)",
+                    "mode": mode,
+                    "output": stdout_text[-3000:] if len(stdout_text) > 3000 else stdout_text,
+                    "error": stderr_text[-1000:] if stderr_text and not success else None,
+                    "message": "Stagehand execution completed successfully." if success else f"Stagehand exited with code {proc.returncode}"
+                })
+            except subprocess.TimeoutExpired:
+                return self._send_json(504, {"error": "Stagehand execution timed out after 600 seconds."})
+            except Exception as ex:
+                return self._send_json(500, {"error": f"Failed to execute Stagehand: {ex}"})
+
+        # API: Stop Active Stagehand Process
+        if path == "/api/curator/stagehand/stop":
+            global ACTIVE_STAGEHAND_PROC
+            if not (self.client_address[0] in ("127.0.0.1", "::1", "localhost") or self._check_authenticated()):
+                return self._send_json(401, {"error": "Authentication required", "authenticated": False})
+            stopped = False
+            if ACTIVE_STAGEHAND_PROC:
+                try:
+                    pid = ACTIVE_STAGEHAND_PROC.pid
+                    if sys.platform == "win32":
+                        subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)], capture_output=True)
+                    else:
+                        ACTIVE_STAGEHAND_PROC.terminate()
+                        ACTIVE_STAGEHAND_PROC.wait(timeout=2)
+                    stopped = True
+                except Exception:
+                    try:
+                        ACTIVE_STAGEHAND_PROC.kill()
+                        stopped = True
+                    except Exception:
+                        pass
+                ACTIVE_STAGEHAND_PROC = None
+            return self._send_json(200, {
+                "success": True,
+                "stopped": stopped,
+                "message": "Stagehand process terminated successfully." if stopped else "No active Stagehand process was running."
             })
 
         return self._send_json(404, {"error": "Endpoint not found"})

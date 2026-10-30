@@ -1,747 +1,998 @@
 {
   "metadata": {
-    "version": "1.0.0",
-    "updatedAt": "2026-10-09",
-    "pendingCount": 0,
-    "description": "Events quarantined for manual user review due to unverified live checkout pricing."
+    "version": "1.3.0",
+    "updatedAt": "2026-10-28T17:50:00.000Z",
+    "pendingCount": 1,
+    "description": "Events quarantined by Antigravity Quarantine AI for failing mandatory publication gates. Cleared after 1-at-a-time isolated subagent evaluation on 2026-10-28."
   },
-  "quarantinedEvents": [],
-  "pendingCount": 0,
-  "userFeedbackQueue": [],
-  "pendingFeedbackCount": 0,
-  "updatedAt": "2026-10-06T18:44:07.608067+00:00",
-  "pendingNewsletterSignups": [
+  "quarantinedEvents": [
     {
-      "id": "nls_hollywood-theatre",
-      "venue_name": "Hollywood Theatre",
-      "website_url": "https://hollywoodtheatre.ca/",
-      "signup_url": "https://hollywoodtheatre.ca/newsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T02:02:31.527435+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "updated_at": "2026-10-06T17:07:21.040624+00:00",
-      "auto_subscribed_at": "2026-10-06T18:42:47.131193+00:00",
-      "auto_subscribe_result": "Subscribed directly via OpenDate API"
-    },
-    {
-      "id": "nls_the-cambrian-hall",
-      "venue_name": "The Cambrian Hall",
-      "website_url": "https://www.eventbrite.ca/o/jokes-please-16562107853",
-      "signup_url": "https://www.eventbrite.ca/signin/signup?referrer=%2Fmytickets",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T16:38:43.504870+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "updated_at": "2026-10-06T17:08:36.343312+00:00",
-      "auto_subscribed_at": "2026-10-06T18:42:47.669809+00:00",
-      "auto_subscribe_result": "Eventbrite ticketing follower link. Patron account login required for following."
-    },
-    {
-      "id": "nls_lynn-canyon-park",
-      "venue_name": "Lynn Canyon Park",
-      "website_url": "https://ecologycentre.ca",
-      "signup_url": "https://lynncanyonecologycentre.us7.list-manage.com/subscribe/post?u=b9971eb21190f74a77239515d&id=c1ceddd596",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:00:26.251012+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "updated_at": "2026-10-06T17:04:15.329832+00:00",
-      "auto_subscribed_at": "2026-10-06T18:42:51.824208+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_scotiabank-field-at-nat-bailey-stadium",
-      "venue_name": "Scotiabank Field at Nat Bailey Stadium",
-      "website_url": "https://www.milb.com/vancouver",
-      "signup_url": "https://www.milb.com/vancouver/fans/newsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:04:49.689943+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:52.362198+00:00",
-      "auto_subscribe_result": "Vancouver Canadians MiLB fan subscription portal."
-    },
-    {
-      "id": "nls_the-shipyards-district",
-      "venue_name": "The Shipyards District",
-      "website_url": "https://theshipyardsdistrict.ca",
-      "signup_url": "https://lowerlonsdalebia.us16.list-manage.com/subscribe/post?u=15be5d7310a8dc2cd0c415310&id=5126ae5bcc",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:11.204824+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:55.804317+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_john-hendry-park-trout-lake",
-      "venue_name": "John Hendry Park (Trout Lake)",
-      "website_url": "https://eatlocal.org/markets/trout-lake/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:20.557871+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:56.343326+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_kitsilano-community-centre-plaza",
-      "venue_name": "Kitsilano Community Centre Plaza",
-      "website_url": "https://eatlocal.org/markets/kitsilano/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:22.073519+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:56.883288+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_riley-park-plaza-nat-bailey-stadium",
-      "venue_name": "Riley Park Plaza (Nat Bailey Stadium)",
-      "website_url": "https://eatlocal.org/markets/riley-park/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:39.981443+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:57.430877+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_nelson-park-west-end",
-      "venue_name": "Nelson Park (West End)",
-      "website_url": "https://eatlocal.org/markets/west-end/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:41.749617+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:57.971937+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_dude-chilling-park-guelph-park",
-      "venue_name": "Dude Chilling Park (Guelph Park)",
-      "website_url": "https://eatlocal.org/markets/mount-pleasant/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:43.171013+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:58.507892+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_vancouver-art-gallery-plaza-north",
-      "venue_name": "Vancouver Art Gallery Plaza (North)",
-      "website_url": "https://eatlocal.org/markets/downtown/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:44.499144+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:59.047964+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_concord-community-park-false-creek",
-      "venue_name": "Concord Community Park (False Creek)",
-      "website_url": "https://eatlocal.org/markets/false-creek/",
-      "signup_url": "https://www.zeffy.com/en-CA/newsletter-form/sign-up-for-our-newsletter-1058",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:05:45.930262+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:42:59.583685+00:00",
-      "auto_subscribe_result": "Vancouver Farmers Market Zeffy Newsletter portal staged. Covered under VFM direct subscription."
-    },
-    {
-      "id": "nls_lanalou-s",
-      "venue_name": "LanaLou's",
-      "website_url": "https://do604.com/venues/lanalou-s",
-      "signup_url": "https://do604.com/p/newsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:06:06.131907+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:00.123191+00:00",
-      "auto_subscribe_result": "Do604 Vancouver cultural newsletter portal."
-    },
-    {
-      "id": "nls_café-au-clay-studios",
-      "venue_name": "Café au Clay Studios",
-      "website_url": "https://cafeauclay.com",
-      "signup_url": "https://cafeauclay.com/contact#contact_form",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscription_attempted",
-      "detected_at": "2026-10-06T17:06:18.417706+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:01.603885+00:00",
-      "auto_subscribe_result": "No email/newsletter form detected on page."
-    },
-    {
-      "id": "nls_claymates-ceramics-studio",
-      "venue_name": "Claymates Ceramics Studio",
-      "website_url": "https://claymatesceramicsstudio.com",
-      "signup_url": "https://claymatesceramicsstudio.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:06:32.521770+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:04.037467+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.claymatesceramicsstudio.com/ (HTTP 403)"
-    },
-    {
-      "id": "nls_the-shipyards-waterfront",
-      "venue_name": "The Shipyards Waterfront",
-      "website_url": "https://theshipyardsdistrict.ca",
-      "signup_url": "https://lowerlonsdalebia.us16.list-manage.com/subscribe/post?u=15be5d7310a8dc2cd0c415310&id=5126ae5bcc",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:07:19.026087+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:07.233579+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_the-waldorf",
-      "venue_name": "The Waldorf",
-      "website_url": "https://atthewaldorf.com",
-      "signup_url": "https://atthewaldorf.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:07:26.497375+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:09.168625+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.atthewaldorf.com/ (HTTP 403)"
-    },
-    {
-      "id": "nls_the-cobalt",
-      "venue_name": "The Cobalt",
-      "website_url": "https://thecobalt.ca",
-      "signup_url": "https://thecobalt.ca",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:07:28.896935+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:11.387337+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.thecobalt.ca/ (HTTP 403)"
-    },
-    {
-      "id": "nls_queen-elizabeth-theatre",
-      "venue_name": "Queen Elizabeth Theatre",
-      "website_url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
-      "signup_url": "https://theater.guide/venue/queen-elizabeth-theatre-vancouver/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:07:53.956724+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:15.178108+00:00",
-      "auto_subscribe_result": "Form submitted to https://theater.guide/venue/queen-elizabeth-theatre-vancouve (HTTP 200)"
-    },
-    {
-      "id": "nls_the-pearl",
-      "venue_name": "The Pearl",
-      "website_url": "https://thepearlvancouver.com/",
-      "signup_url": "https://thepearlvancouver.com/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:08:28.996903+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:17.148615+00:00",
-      "auto_subscribe_result": "Form submitted to https://thepearlvancouver.com/ (HTTP 200)"
-    },
-    {
-      "id": "nls_bill-reid-gallery-of-northwest-coast-art",
-      "venue_name": "Bill Reid Gallery of Northwest Coast Art",
-      "website_url": "https://www.billreidgallery.ca/",
-      "signup_url": "https://signup-can.keela.co/BRGNewsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:08:31.668287+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:17.686207+00:00",
-      "auto_subscribe_result": "Keela CRM Newsletter portal for Bill Reid Gallery."
-    },
-    {
-      "id": "nls_burnaby-art-gallery",
-      "venue_name": "Burnaby Art Gallery",
-      "website_url": "https://www.burnaby.ca/recreation-and-arts/arts-and-culture-facilities/burnaby-art-gallery",
-      "signup_url": "https://www.burnaby.ca/our-city/whats-new/sign-up-for-enewsletters",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:08:33.432842+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:19.624870+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.burnaby.ca/antibot (HTTP 200)"
-    },
-    {
-      "id": "nls_ubc-botanical-garden",
-      "venue_name": "UBC Botanical Garden",
-      "website_url": "https://botanicalgarden.ubc.ca/",
-      "signup_url": "https://botanicalgarden.ubc.ca/#gf_1",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:08:35.574654+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:23.132101+00:00",
-      "auto_subscribe_result": "Form submitted to https://botanicalgarden.ubc.ca/#gf_1 (HTTP 200)"
-    },
-    {
-      "id": "nls_the-china-cloud-studios",
-      "venue_name": "The China Cloud Studios",
-      "website_url": "https://do604.com/events/comedy",
-      "signup_url": "https://do604.com/p/newsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:08:41.838425+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:23.667335+00:00",
-      "auto_subscribe_result": "Do604 Vancouver cultural newsletter portal."
-    },
-    {
-      "id": "nls_fox-cabaret",
-      "venue_name": "Fox Cabaret",
-      "website_url": "https://www.foxcabaret.com",
-      "signup_url": "https://www.foxcabaret.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:09:16.417338+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:25.185674+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.foxcabaret.com/ (HTTP 403)"
-    },
-    {
-      "id": "nls_the-show-cellar",
-      "venue_name": "The Show Cellar",
-      "website_url": "https://theshowcellar.com",
-      "signup_url": "https://theshowcellar.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:09:17.578771+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:27.011536+00:00",
-      "auto_subscribe_result": "Form submitted to https://www.theshowcellar.com/ (HTTP 403)"
-    },
-    {
-      "id": "nls_trout-lake-community-centre",
-      "venue_name": "Trout Lake Community Centre",
-      "website_url": "https://troutlakecc.com",
-      "signup_url": "https://troutlakecc.com/#gf_1",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:09:32.043948+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:29.028241+00:00",
-      "auto_subscribe_result": "Form submitted to https://troutlakecc.com/#gf_1 (HTTP 200)"
-    },
-    {
-      "id": "nls_contemporary-art-gallery-cag",
-      "venue_name": "Contemporary Art Gallery (CAG)",
-      "website_url": "https://www.contemporaryartgallery.ca",
-      "signup_url": "https://contemporaryartgallery.us16.list-manage.com/subscribe/post?u=319856e7a55f4801e96e860d9&id=ed2cd35d2b",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:09:35.352562+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:32.670307+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_lanalou-s-rock-n-roll-eatery",
-      "venue_name": "LanaLou's Rock 'n' Roll Eatery",
-      "website_url": "https://do604.com/venues/lanalou-s",
-      "signup_url": "https://do604.com/p/newsletter",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:09:36.585567+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:33.206275+00:00",
-      "auto_subscribe_result": "Do604 Vancouver cultural newsletter portal."
-    },
-    {
-      "id": "nls_st-andrew-s-wesley-united-church",
-      "venue_name": "St. Andrew's-Wesley United Church",
-      "website_url": "https://standrewswesley.com/",
-      "signup_url": "https://eepurl.com/gS1Ef9",
-      "method": "Mailchimp Subscription Portal",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:11.657570+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:37.358435+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_the-annex-roundhouse-community-centre",
-      "venue_name": "The Annex & Roundhouse Community Centre",
-      "website_url": "https://www.roundhouse.ca/",
-      "signup_url": "https://vancouvercivictheatres.com/sign-up",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:15.098973+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:40.220542+00:00",
-      "auto_subscribe_result": "Form submitted to https://vancouvercivictheatres.us13.list-manage.com/subscrib (HTTP 200)"
-    },
-    {
-      "id": "nls_the-pipe-shop-shipbuilders-square",
-      "venue_name": "The Pipe Shop & Shipbuilders' Square",
-      "website_url": "https://theshipyardsdistrict.ca",
-      "signup_url": "https://lowerlonsdalebia.us16.list-manage.com/subscribe/post?u=15be5d7310a8dc2cd0c415310&id=5126ae5bcc",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:20.238298+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:44.200465+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_brewhall",
-      "venue_name": "BREWHALL",
-      "website_url": "https://brewhall.com",
-      "signup_url": "https://tapandbarrel.us3.list-manage.com/subscribe/post?u=43e5873ad83850afd92621fcb&id=128df7a978",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:38.562324+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:50.344162+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_dr-sun-yat-sen-classical-chinese-garden",
-      "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden",
-      "website_url": "https://vancouverchinesegarden.com",
-      "signup_url": "https://vancouverchinesegarden.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:38.911315+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:55.076746+00:00",
-      "auto_subscribe_result": "Form submitted to https://vancouverchinesegarden.com/ (HTTP 200)"
-    },
-    {
-      "id": "nls_vancouver-maritime-museum",
-      "venue_name": "Vancouver Maritime Museum",
-      "website_url": "https://vanmaritime.com",
-      "signup_url": "https://vanmaritime.com/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:45.551339+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:43:56.961057+00:00",
-      "auto_subscribe_result": "Form submitted to https://vanmaritime.com/ (HTTP 200)"
-    },
-    {
-      "id": "nls_the-sylvia-hotel-lounge",
-      "venue_name": "The Sylvia Hotel Lounge",
-      "website_url": "https://sylviahotel.com/",
-      "signup_url": "https://sylviahotel.com/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:10:51.523552+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:44:01.562921+00:00",
-      "auto_subscribe_result": "Form submitted to https://sylviahotel.com/ (HTTP 200)"
-    },
-    {
-      "id": "nls_firehall-arts-centre",
-      "venue_name": "Firehall Arts Centre",
-      "website_url": "https://www.firehallartscentre.ca",
-      "signup_url": "https://purchase.firehallartscentre.ca/Signup",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscription_attempted",
-      "detected_at": "2026-10-06T17:11:19.807945+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:44:03.301316+00:00",
-      "auto_subscribe_result": "No email/newsletter form detected on page."
-    },
-    {
-      "id": "nls_performance-works",
-      "venue_name": "Performance Works",
-      "website_url": "https://granvilleisland.com/directory/performance-works",
-      "signup_url": "https://writersfest.us12.list-manage.com/subscribe/post?u=5d8097a0589d392008bb9facf&id=cb88a98a36",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "subscribed",
-      "detected_at": "2026-10-06T17:11:28.779210+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "auto_subscribed_at": "2026-10-06T18:44:07.608044+00:00",
-      "auto_subscribe_result": "Mailchimp form submitted. Bot challenge / confirmation dispatched."
-    },
-    {
-      "id": "nls_centennial-theatre",
-      "venue_name": "Centennial Theatre",
-      "website_url": "https://www.nvrc.ca/centennial-theatre",
-      "signup_url": "https://www.nvrc.ca/news-stories-events/newsletters",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-07T00:35:17.814274+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website.",
-      "updated_at": "2026-10-08T12:23:50.063368+00:00"
-    },
-    {
-      "id": "nls_the-georgia-straight",
-      "venue_name": "The Georgia Straight",
-      "website_url": "https://www.straight.com/listings",
-      "signup_url": "https://newsletter.straight.com/subscribe/?utm_source=straight&utm_medium=navbar",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:12:19.427995+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_songkick-vancouver",
-      "venue_name": "Songkick Vancouver",
-      "website_url": "https://www.songkick.com/metro-areas/27377-canada-vancouver",
-      "signup_url": "https://accounts.songkick.com/signup/new?source_product=skweb&login_success_url=https%3A%2F%2Fwww.songkick.com%2Fmetro-areas%2F27377-canada-montreal&locale=en",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:12:57.185678+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_ticket-tailor-vancouver",
-      "venue_name": "Ticket Tailor (Vancouver)",
-      "website_url": "https://www.tickettailor.com/",
-      "signup_url": "https://app.tickettailor.com/sign-up",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:13:18.781068+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_zeffy-vancouver-non-profits",
-      "venue_name": "Zeffy (Vancouver Non-Profits)",
-      "website_url": "https://www.zeffy.com/",
-      "signup_url": "https://www.zeffy.com/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:13:20.527648+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_humanitix-vancouver",
-      "venue_name": "Humanitix (Vancouver)",
-      "website_url": "https://humanitix.com/",
-      "signup_url": "https://humanitix.com/ca/sign-up",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:13:24.082711+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_universe-vancouver",
-      "venue_name": "Universe (Vancouver)",
-      "website_url": "https://www.universe.com/",
-      "signup_url": "https://www.universe.com/sign-up?redirectTo=/create",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:13:25.918389+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_broadway-across-canada-vancouver",
-      "venue_name": "Broadway Across Canada (Vancouver)",
-      "website_url": "https://vancouver.broadway.com/shows/",
-      "signup_url": "https://vancouver.broadway.com/shows/#gf_4",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:13:48.059361+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_stir-vancouver-arts-culture-hub",
-      "venue_name": "Stir - Vancouver Arts & Culture Hub",
-      "website_url": "https://www.createastir.ca",
-      "signup_url": "https://www.createastir.ca",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:03.751612+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_vancouver-s-best-places-calendar",
-      "venue_name": "Vancouver's Best Places Calendar",
-      "website_url": "https://vancouversbestplaces.com/events-calendar",
-      "signup_url": "https://vancouversbestplaces.com/events-calendar",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:09.090359+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_bc-culture-days-directory",
-      "venue_name": "BC Culture Days Directory",
-      "website_url": "https://culturedays.ca/en/events",
-      "signup_url": "http://eepurl.com/bZvM_v",
-      "method": "Mailchimp Subscription Portal",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:10.160515+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_604-now-metro-vancouver-event-calendar",
-      "venue_name": "604 Now Metro Vancouver Event Calendar",
-      "website_url": "https://604now.com/events",
-      "signup_url": "https://604now.com/events",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:13.392182+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_curiocity-vancouver-things-to-do",
-      "venue_name": "Curiocity Vancouver Things To Do",
-      "website_url": "https://curiocity.com/vancouver",
-      "signup_url": "https://curiocity.com/vancouver/#gf_5",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:47.202197+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_showhub-vancouver",
-      "venue_name": "ShowHub Vancouver",
-      "website_url": "https://showhub.ca/",
-      "signup_url": "https://showhub.ca/contact/newsletter/",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:14:50.277398+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_runvan-community-hub",
-      "venue_name": "RUNVAN Community Hub",
-      "website_url": "https://runvan.org/races/",
-      "signup_url": "https://runvan.org/subscribe",
-      "method": "Newsletter Direct Signup Link",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:15:08.233015+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_scene-in-the-dark",
-      "venue_name": "Scene in the Dark",
-      "website_url": "https://sceneinthedark.com/",
-      "signup_url": "https://sceneinthedark.com/",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:15:17.157197+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_diwali-fest-diwali-celebration-society",
-      "venue_name": "Diwali Fest (Diwali Celebration Society)",
-      "website_url": "https://diwalifest.com",
-      "signup_url": "https://diwalifest.com",
-      "method": "Embedded Mailchimp / Newsletter Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:15:43.304966+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_orange-tickets-canada",
-      "venue_name": "Orange Tickets Canada",
-      "website_url": "https://orangetickets.ca",
-      "signup_url": "https://boletosmaster.us14.list-manage.com/subscribe/post?u=3e1c077ba8da995595960a725&id=59900e1d21",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:16:14.088664+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_commercial-drive-business-society-bia",
-      "venue_name": "Commercial Drive Business Society (BIA)",
-      "website_url": "https://thedrive.ca/events/",
-      "signup_url": "https://thedrive.us5.list-manage.com/subscribe/post?u=d639801eb150a1f43efaca907&id=fc4e28c12f&f_id=007c27ebf0",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:16:25.947499+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_admitone-ticketing-vancouver-live-music",
-      "venue_name": "AdmitOne Ticketing (Vancouver Live Music)",
-      "website_url": "https://admitone.com/events/vancouver",
-      "signup_url": "https://thedebriefbybeatroute.substack.com/",
-      "method": "Substack Newsletter Portal",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:16:29.383214+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
-    },
-    {
-      "id": "nls_vancouver-writers-fest",
-      "venue_name": "Vancouver Writers Fest",
-      "website_url": "https://writersfest.bc.ca/events",
-      "signup_url": "https://writersfest.us12.list-manage.com/subscribe/post?u=5d8097a0589d392008bb9facf&id=cb88a98a36",
-      "method": "Mailchimp Hosted Subscription Form",
-      "suggested_email": "Van50.Submit@gmail.com",
-      "status": "pending_manual_subscription",
-      "detected_at": "2026-10-08T20:16:31.427318+00:00",
-      "notes": "Scout AI detected newsletter subscription form on official website."
+      "id": "search-exhausted-nul-vancouver-horror-show-film-fes",
+      "event_id": "search-exhausted-nul-vancouver-horror-show-film-fes",
+      "Event_Num_Perm": "Event_Num_Perm_000000244",
+      "Event_Num_Card": "Event_Num_Card_000000180",
+      "event_archetype": "festival",
+      "archetype": "festival",
+      "title": "Vancouver Horror Show Film Festival",
+      "event_name": "Vancouver Horror Show Film Festival",
+      "artist": null,
+      "lineup": null,
+      "venue": "search_exhausted_null",
+      "venue_name": "search_exhausted_null",
+      "venue_type": "standard",
+      "address": null,
+      "full_address": null,
+      "neighborhood": null,
+      "coordinates": null,
+      "date": null,
+      "time": null,
+      "start_time": null,
+      "doors_time": null,
+      "end_time": null,
+      "startIso": null,
+      "dateSchedule": null,
+      "frequency": null,
+      "frequencyLabel": null,
+      "showings": [],
+      "show_1": null,
+      "show_2": null,
+      "show_3": null,
+      "category": "shows",
+      "categories": [
+        "shows"
+      ],
+      "categoryLabel": "SHOWS",
+      "tags": null,
+      "subTags": null,
+      "price": 0,
+      "price_base": 0,
+      "price_fee": 0,
+      "price_tax": 0,
+      "price_read": 0,
+      "price_calculated": 0,
+      "price_delta": 0,
+      "price_all_in": 0,
+      "priceLabel": "Free ($0)",
+      "pricingType": "free",
+      "isFree": true,
+      "is_sold_out": false,
+      "isSoldOut": false,
+      "operational_status": "available",
+      "booking_protocol": "online_reservation",
+      "ticket_url": "https://vhs2026.eventive.org/welcome",
+      "details_url": null,
+      "links": {
+        "tier1_checkout": "https://vhs2026.eventive.org/welcome",
+        "tier2_event_page": null,
+        "tier3_calendar": null,
+        "tier4_civic_destination": null,
+        "tier5_venue_home": null,
+        "best_available": "https://vhs2026.eventive.org/welcome",
+        "best_tier": "tier1"
+      },
+      "ticket_provider": "Direct Box Office",
+      "description": "This independent genre celebration spotlights emerging horror filmmakers and chilling cinematic storytelling across community screenings and panel discussions. Local genre fans can connect with creators and experience bold new independent horror cinema on the big screen.",
+      "restrictions": "All Ages",
+      "transitInfo": null,
+      "transit_info": null,
+      "waypoints": [],
+      "coffee_benchmark": null,
+      "beer_benchmark": null,
+      "cocktail_benchmark": null,
+      "meal_benchmark": null,
+      "concession_benchmark": null,
+      "spend_benchmarks": {
+        "beer": null,
+        "cocktail": null,
+        "coffee": null,
+        "meal": null
+      },
+      "drink_benchmark": null,
+      "typical_item_spend": null,
+      "access_model": null,
+      "environment_type": null,
+      "weekly_hours": null,
+      "venue_grounding": {
+        "is_grounded": false,
+        "trust_weight": 0.4,
+        "source": "fallback_default",
+        "last_grounded_at": "2026-10-30T16:09:56.963Z"
+      },
+      "last_grounded_at": "2026-10-30T16:09:56.963Z",
+      "access_parking": null,
+      "access_seating": null,
+      "payment_methods": null,
+      "water_refill_station": null,
+      "step_free_entrance": null,
+      "elevator_lift": null,
+      "accessible_washrooms": null,
+      "sensory_calibrations": null,
+      "hearing_loop": null,
+      "service_animals": null,
+      "outside_food_policy": null,
+      "coat_check": null,
+      "on_site_fnb": null,
+      "festival_hub_directory": null,
+      "festival_pass_type": null,
+      "rush_seating_rules": null,
+      "central_box_office": null,
+      "volunteer_ticket_exchange": null,
+      "lifecycle_type": "time_bound_event",
+      "approval_status": "Verified-137D",
+      "budget_qualified_under_50": true,
+      "curator_notes": null,
+      "curator_instructions": null,
+      "proof_keyframes": {
+        "cart": "data/proof_keyframes/search-exhausted-nul-vancouver-horror-show-film-fes_cart.png",
+        "schedule": null,
+        "venue": null
+      },
+      "dimension_audit": {
+        "D001_event_name": {
+          "status": "verified",
+          "value": "Vancouver Horror Show Film Festival",
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T01:31:48.254Z"
+        },
+        "D002_event_num_perm": {
+          "status": "verified",
+          "value": "Event_Num_Perm_000000244",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D003_event_num_card": {
+          "status": "verified",
+          "value": "Event_Num_Card_000000180",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D004_category": {
+          "status": "verified",
+          "value": "shows",
+          "categories": [
+            "shows"
+          ],
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T01:31:48.254Z"
+        },
+        "D005_tags": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "subTags": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T01:31:48.254Z"
+        },
+        "D006_lifecycle_type": {
+          "status": "verified",
+          "value": "time_bound_event",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D007_event_archetype": {
+          "status": "verified",
+          "value": "festival",
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D008_restrictions": {
+          "status": "verified",
+          "value": "All Ages",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D101_tier1_checkout": {
+          "status": "verified",
+          "value": "https://vhs2026.eventive.org/welcome",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D102_tier2_event_page": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T01:22:26.054Z"
+        },
+        "D103_tier3_calendar": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D104_tier4_civic_destination": {
+          "status": "not_applicable",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D105_tier5_venue_home": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D106_best_available_link": {
+          "status": "verified",
+          "value": "https://vhs2026.eventive.org/welcome",
+          "best_tier": "Tier 1: Checkout Cart",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D107_operational_status": {
+          "status": "verified",
+          "value": "available",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D108_geo_jurisdiction": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "in_market": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D109_currency_standard": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D110_iana_timezone": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D201_tier1_name": {
+          "status": "verified",
+          "value": "General Admission",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D202_tier1_price_base": {
+          "status": "verified",
+          "value": 0,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D203_tier1_price_fee": {
+          "status": "verified",
+          "value": 0,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D204_tier1_price_tax": {
+          "status": "verified",
+          "value": 0,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D205_tier1_price_read": {
+          "status": "verified",
+          "value": 0,
+          "quote": "Alternate Pricing available",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D205_tier1_price_calculated": {
+          "status": "verified",
+          "value": 0,
+          "formula": "base($0) + fee($0) + tax($0) + other($0)",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D205_tier1_discrepancy_delta": {
+          "status": "verified_reconciled",
+          "delta": 0,
+          "note": "Exact match",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D205_tier1_price_all_in": {
+          "status": "verified",
+          "value": 0,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D206_tier2_name": {
+          "status": "verified",
+          "value": "Alternate Pricing",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D207_tier2_price_base": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D208_tier2_price_fee": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D209_tier2_price_tax": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D210_tier2_price_read": {
+          "status": "none_available",
+          "value": null,
+          "quote": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D210_tier2_price_calculated": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D210_tier2_discrepancy_delta": {
+          "status": "none_available",
+          "delta": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D210_tier2_price_all_in": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D211_tier3_name": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D212_tier3_price_base": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D213_tier3_price_fee": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D214_tier3_price_tax": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D215_tier3_price_read": {
+          "status": "none_available",
+          "value": null,
+          "quote": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D215_tier3_price_calculated": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D215_tier3_discrepancy_delta": {
+          "status": "none_available",
+          "delta": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D215_tier3_price_all_in": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D216_tier_count_verified": {
+          "status": "verified",
+          "count": 2,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D217_pricing_model": {
+          "status": "verified",
+          "value": "free_access",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D218_budget_qualified_under_50": {
+          "status": "verified",
+          "qualified": true,
+          "total": 0,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D219_other_cost_label": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D221_ticket_provider": {
+          "status": "verified",
+          "value": "Direct Box Office",
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D222_booking_protocol": {
+          "status": "verified",
+          "value": "online_reservation",
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D301_lineup": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T01:22:26.054Z"
+        },
+        "D302_artist": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T01:22:26.054Z"
+        },
+        "D303_date": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D304_showings_slots": {
+          "status": "none_available",
+          "slot_count": 0,
+          "showings": [],
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D305_doors_time": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T01:22:26.054Z"
+        },
+        "D306_start_time": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T01:22:26.054Z"
+        },
+        "D307_end_time": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "stagehand_box_office",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D308_dateSchedule": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D309_frequencyLabel": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D310_synopsis": {
+          "status": "verified",
+          "value": "This independent genre celebration spotlights emerging horror filmmakers and chilling cinematic storytelling across community screenings and panel discussions. Local genre fans can connect with creators and experience bold new independent horror cinema on the big screen.",
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T01:31:48.254Z"
+        },
+        "D311_festival_affiliation": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "schedule_harvester",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D401_venue_name": {
+          "status": "verified",
+          "value": "search_exhausted_null",
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D402_full_address": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D403_coordinates": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "fallback_default",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D404_neighborhood": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D405_access_model": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D406_environment_type": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D407_weekly_hours": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D408_transit_waypoints": {
+          "status": "search_exhausted_null",
+          "transit": null,
+          "waypoints": [],
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D501_step_free_entrance": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D502_elevator_lift": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D503_accessible_washrooms": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D504_sensory_calibrations": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D505_hearing_loop": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D506_service_animals": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D601_on_site_fnb": {
+          "status": "none_available",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D602_coffee_benchmark": {
+          "status": "none_available",
+          "value": "none_available",
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D603_beer_benchmark": {
+          "status": "none_available",
+          "value": "none_available",
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D604_meal_benchmark": {
+          "status": "none_available",
+          "value": "none_available",
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D605_outside_food_policy": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D606_coat_check": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D607_payment_methods": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D608_water_refill_station": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D711_film_runtime": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D712_film_language_subtitles": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D713_projection_format": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D714_print_condition_notes": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D715_concession_alcohol": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D716_festival_pass_rules": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D717_seat_reservation_type": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "cinema"
+        },
+        "D721_stage_seating_layout": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "live_stage"
+        },
+        "D722_intermission_details": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "live_stage"
+        },
+        "D723_sound_curfew_time": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "live_stage"
+        },
+        "D724_earplug_availability": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "live_stage"
+        },
+        "D725_stage_sightlines": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "live_stage"
+        },
+        "D731_materials_provided": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D732_take_home_outcome": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D733_workshop_capacity_cap": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D734_registration_cutoff": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D735_prerequisite_skill_level": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D736_instructor_credentials": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "workshop"
+        },
+        "D741_table_cover_fee": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D742_minimum_fnb_spend": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D743_table_time_limit": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D744_game_library_size": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D745_rules_teacher_present": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D746_tournament_prizes": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "social_gaming"
+        },
+        "D751_trail_terrain_surface": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "civic_park"
+        },
+        "D752_pet_leash_policy": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "civic_park"
+        },
+        "D753_seasonal_washrooms": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "civic_park"
+        },
+        "D754_equipment_rentals": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "civic_park"
+        },
+        "D755_picnic_shelter_rules": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "civic_park"
+        },
+        "D761_exhibition_run_dates": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "museum_gallery"
+        },
+        "D762_special_exhibit_surcharge": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "museum_gallery"
+        },
+        "D763_docent_tour_schedule": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "museum_gallery"
+        },
+        "D764_bag_check_rules": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "museum_gallery"
+        },
+        "D771_digital_waiver_required": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "active_rec"
+        },
+        "D772_required_safety_gear": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "active_rec"
+        },
+        "D773_locker_availability": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "active_rec"
+        },
+        "D774_physical_intensity_level": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "active_rec"
+        },
+        "D775_rainout_policy": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "active_rec"
+        },
+        "D781_location_reveal_protocol": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "roving_series"
+        },
+        "D782_byo_seating_policy": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "roving_series"
+        },
+        "D783_open_mic_signup_protocol": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "roving_series"
+        },
+        "D784_organizer_channel": {
+          "status": "not_applicable",
+          "value": null,
+          "archetype_required": "roving_series"
+        },
+        "D791_festival_hub_directory": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D792_festival_pass_type": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D793_rush_seating_rules": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D794_central_box_office": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D795_volunteer_ticket_exchange": {
+          "status": "search_exhausted_null",
+          "value": null,
+          "source_tool": "ai_semantic_enricher",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D801_srsa_compliance": {
+          "status": "verified",
+          "compliant": true,
+          "single_publisher": "ripper/compile_catalog.js",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D802_multi_layer_provenance": {
+          "status": "verified",
+          "sources": {
+            "schedules": "layer_schedules",
+            "box_office": "stagehand_layer_box_office",
+            "editorial": "ai_semantic_enricher",
+            "venue": "venue_master_registry"
+          },
+          "conflicts_detected": [
+            "category disagreement across layers (shows vs arts)"
+          ],
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D803_spa_hydration_provenance": {
+          "status": "verified",
+          "method": "stagehand_live_cart",
+          "audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D804_active_showings": {
+          "status": "verified",
+          "count": 0,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D805_archived_showings": {
+          "status": "verified",
+          "count": 0,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D806_curator_lock": {
+          "status": "verified",
+          "locked": false,
+          "ai_curator_appeal": false,
+          "curator_note": null,
+          "source_tool": "compiler_ai",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D807_proof_keyframes": {
+          "status": "verified",
+          "cart": "data/proof_keyframes/search-exhausted-nul-vancouver-horror-show-film-fes_cart.png",
+          "schedule": null,
+          "venue": null,
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        },
+        "D808_timestamp_lockstep": {
+          "status": "verified",
+          "last_pulse_qc_at": "2026-10-30T01:29:42.094Z",
+          "last_content_qc_at": "2026-10-30T01:22:26.054Z",
+          "last_full_qc_at": "2026-10-30T16:09:56.963Z",
+          "last_qc_audited_at": "2026-10-30T01:29:42.094Z"
+        },
+        "D809_civic_provider_rules": {
+          "status": "search_exhausted_null",
+          "rules": null,
+          "value": null,
+          "source_tool": "venue_master_registry",
+          "audited_at": "2026-10-30T16:09:56.963Z"
+        }
+      },
+      "last_qc_audited_at": "2026-10-30T01:29:42.094Z",
+      "last_pulse_qc_at": "2026-10-30T01:29:42.094Z",
+      "last_content_qc_at": "2026-10-30T01:22:26.054Z",
+      "last_full_qc_at": "2026-10-30T16:09:56.963Z",
+      "all_tiers": [
+        {
+          "name": "General Admission",
+          "price": 0,
+          "price_base": 0,
+          "price_fee": 0,
+          "price_tax": 0,
+          "price_read": 0,
+          "price_calculated": 0,
+          "price_delta": 0,
+          "label": "Free ($0)",
+          "isAvailable": true
+        },
+        {
+          "name": "Alternate Pricing",
+          "price": 0,
+          "price_base": 0,
+          "price_fee": 0,
+          "price_tax": 0,
+          "price_read": 0,
+          "price_calculated": 0,
+          "price_delta": 0,
+          "label": "Free ($0)",
+          "isAvailable": true
+        }
+      ],
+      "tiers": [
+        {
+          "name": "General Admission",
+          "price": 0,
+          "price_base": 0,
+          "price_fee": 0,
+          "price_tax": 0,
+          "price_read": 0,
+          "price_calculated": 0,
+          "price_delta": 0,
+          "label": "Free ($0)",
+          "isAvailable": true
+        },
+        {
+          "name": "Alternate Pricing",
+          "price": 0,
+          "price_base": 0,
+          "price_fee": 0,
+          "price_tax": 0,
+          "price_read": 0,
+          "price_calculated": 0,
+          "price_delta": 0,
+          "label": "Free ($0)",
+          "isAvailable": true
+        }
+      ],
+      "quarantineReason": "missing_schedule_date",
+      "reviewStatus": "quarantined_schedule"
     }
-  ],
-  "pendingNewsletterCount": 21,
-  "aiCuratorAppeals": [],
-  "pendingAppealsCount": 0
+  ]
 }

@@ -1,0 +1,3143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van50 Pipeline — Clustered Dimension Evidence Matrix (0XX – 8XX Standard)</title>
+  <style>
+    @page {
+      size: letter landscape;
+      margin: 8mm 10mm 8mm 10mm;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-size: 7.5pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-size: 8pt;
+      line-height: 1.3;
+    }
+
+    .header {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-title h1 {
+      font-size: 14pt;
+      margin: 0 0 2px 0;
+      color: #0f172a;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .header-title p {
+      margin: 0;
+      color: #475569;
+      font-size: 8pt;
+    }
+
+    .meta-box {
+      text-align: right;
+      font-size: 7.5pt;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    .meta-box strong {
+      color: #0f172a;
+    }
+
+    .pipeline-overview-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .overview-panel {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 5px 7px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      padding-bottom: 2px;
+      border-bottom: 1.5px solid #cbd5e1;
+    }
+
+    .panel-title {
+      font-size: 7.2pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .panel-subtitle {
+      font-size: 5.8pt;
+      color: #64748b;
+      font-style: italic;
+    }
+
+    .point-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2px;
+    }
+
+    .point-list li {
+      font-size: 6.4pt;
+      line-height: 1.25;
+      color: #334155;
+    }
+
+    .point-list li strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .point-list code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 5.6pt;
+      background: #e2e8f0;
+      padding: 0.5px 2.5px;
+      border-radius: 2px;
+    }
+
+    .script-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 5.6pt;
+      color: #475569;
+      background: #e2e8f0;
+      padding: 0.5px 3px;
+      border-radius: 2px;
+      margin-right: 2px;
+    }
+
+    .badge-s1a { background: #e0e7ff; color: #3730a3; }
+    .badge-s1b { background: #cffafe; color: #155e75; }
+    .badge-s2  { background: #dcfce7; color: #166534; }
+    .badge-s3  { background: #fef3c7; color: #92400e; }
+    .badge-s4  { background: #f3e8ff; color: #6b21a8; }
+    .badge-s5  { background: #e2e8f0; color: #334155; }
+
+    .badge {
+      display: inline-block;
+      font-weight: 700;
+      padding: 0.5px 3.5px;
+      border-radius: 3px;
+      font-size: 6pt;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 7.5pt;
+    }
+
+    thead th {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: left;
+      padding: 5px 6px;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border: 1px solid #0f172a;
+    }
+
+    thead th.center, td.center {
+      text-align: center;
+    }
+
+        col.col-dim     { width: 14%; }
+    col.col-desc    { width: 23%; }
+    col.col-scope   { width: 5.5%; }
+    col.col-stage   { width: 3.4%; }
+    col.col-file    { width: 3.8%; }
+
+    thead th.group-stage {
+      background: #1e293b;
+      color: #94a3b8;
+      font-size: 6.5pt;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+      padding: 3px 4px;
+      letter-spacing: 0.05em;
+    }
+
+    thead th.group-file {
+      background: #064e3b;
+      color: #a7f3d0;
+      font-size: 6.5pt;
+      text-align: center;
+      border-bottom: 1px solid #047857;
+      padding: 3px 4px;
+      letter-spacing: 0.05em;
+    }
+
+    thead th.sub-file {
+      background: #065f46;
+      color: #ffffff;
+      font-size: 5.8pt;
+      padding: 3px 2px;
+      line-height: 1.15;
+    }
+
+    thead th.sub-stage {
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 5.8pt;
+      padding: 3px 2px;
+      line-height: 1.15;
+    }
+
+    .file-tag {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 5.6pt;
+      padding: 1px 3.5px;
+      border-radius: 2.5px;
+      margin: 1px 1.5px 1px 0;
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+    .file-master  { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 700; }
+    .file-venue   { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; font-weight: 700; }
+    .file-layer   { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .file-archive { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .file-proof   { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight: 600; }
+    .file-js      { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+
+    tbody tr {
+      page-break-inside: avoid;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    tbody td {
+      padding: 3.5px 5px;
+      border: 1px solid #e2e8f0;
+      vertical-align: middle;
+      font-size: 7pt;
+      line-height: 1.25;
+    }
+
+    .dim-name {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .dim-key {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 6pt;
+      color: #64748b;
+      display: block;
+    }
+
+    .check {
+      color: #059669;
+      font-size: 10pt;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .dash {
+      color: #cbd5e1;
+      font-size: 9pt;
+    }
+
+    .scope-pill {
+      display: inline-block;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 5.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .scope-universal { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .scope-archetype { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .scope-venue     { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+
+    .cluster-divider td {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 7.5pt;
+      padding: 4px 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .cluster-0xx { background: #0f172a; }
+    .cluster-1xx { background: #1e3a8a; }
+    .cluster-2xx { background: #065f46; }
+    .cluster-3xx { background: #854d0e; }
+    .cluster-4xx { background: #581c87; }
+    .cluster-5xx { background: #155e75; }
+    .cluster-6xx { background: #9a3412; }
+    .cluster-7xx { background: #4c1d95; }
+    .cluster-8xx { background: #334155; }
+
+    .archetype-subhead td {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      font-size: 6.5pt;
+      padding: 3px 6px;
+      font-style: italic;
+      border-top: 1px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .footer {
+      margin-top: 8px;
+      padding-top: 4px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 6.5pt;
+      color: #64748b;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+      font-size: 7pt;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media print {
+      body { margin: 0; padding: 0; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-title">
+      <h1>Van50 Pipeline — Clustered Dimension Evidence Matrix (0XX – 8XX Standard)</h1>
+      <p>Autonomous 6-Stage Discovery & Verification Pipeline • Archetype-Aware Cultural Events & Outings ≤ $50 CAD</p>
+    </div>
+    <div class="meta-box">
+      <div><strong>Architecture:</strong> Clustered Multi-Stage Pipeline (100% Native Cognitive AI)</div>
+      <div><strong>Taxonomy:</strong> 11 Cultural Archetypes • 9 Clustered Dimension Families</div>
+      <div><strong>Status:</strong> Architectural Proposal Specification • D001 Event Name Standard</div>
+    </div>
+  </div>
+
+  <div class="pipeline-overview-grid">
+    <!-- PANEL 1: PIPELINE STAGES -->
+    <div class="overview-panel">
+      <div class="panel-header">
+        <span class="panel-title">Pipeline Audit Stages (6-Stage Autonomous Flow)</span>
+        <span class="panel-subtitle">Discovery, link upgrading, cart verification, enrichment &amp; publishing</span>
+      </div>
+      <ul class="point-list">
+        <li>
+          <span class="badge badge-s1a">1A</span> <span class="script-tag">calendar_harvester.js</span>
+          <strong>Schedule Harvester</strong> — Discovers candidate events, performance dates, curtain times, and recurrence rules from venue calendars, platform feeds &amp; discovery sources into <code>layer_schedules.json</code>.
+        </li>
+        <li>
+          <span class="badge badge-s1b">1B</span> <span class="script-tag">tier1_hunter.js</span>
+          <strong>Link Tier Hunter</strong> — Automatically inspects interactive ticketing buttons, embeds, and redirects to locate direct Tier 1 checkout carts (<code>candidate_tier1_url</code>) rather than generic calendar hubs.
+        </li>
+        <li>
+          <span class="badge badge-s2">2</span> <span class="script-tag">event_batch_qc.js</span>
+          <strong>Live Box Office QC</strong> — Headless Chromium agent (Stagehand); navigates live carts, increments quantities, verifies fees + 5% GST (enforcing ≤ $50 CAD cap), and captures cart keyframes into <code>layer_box_office.json</code>.
+        </li>
+        <li>
+          <span class="badge badge-s3">3</span> <span class="script-tag">enricher.js</span>
+          <strong>Semantic Enricher</strong> — Cognitive NLP agent; normalizes production titles, extracts performer lineups, classifies 11 cultural archetypes, extracts age limits, and crafts concise synopses into <code>layer_editorial.json</code>.
+        </li>
+        <li>
+          <span class="badge badge-s4">4</span> <span class="script-tag">venue_detailer.js</span>
+          <strong>Venue Detailer</strong> — Facility grounding AI; verifies physical Metro Vancouver street addresses, geocodes GPS coordinates, maps transit waypoints, environment type, and physical accessibility amenities into <code>data/venues.json</code> (Venue Detailer Facility DB).
+        </li>
+        <li>
+          <span class="badge badge-s5">5</span> <span class="script-tag">compile_catalog.js</span>
+          <strong>Compiler AI Publisher</strong> — Sole authorized publisher; arbitrates multi-layer evidence, enforces budget &amp; geographic invariants, auto-rolls recurring showings, assigns permanent IDs, publishes to <code>events.json</code>, and syncs <code>data.js</code>.
+        </li>
+      </ul>
+    </div>
+
+    <!-- PANEL 2: STORAGE FILES & LAYERS -->
+    <div class="overview-panel">
+      <div class="panel-header">
+        <span class="panel-title">Storage Architecture &amp; Persistence Files</span>
+        <span class="panel-subtitle">Staging layers, core master registries, evidence proofs &amp; web export</span>
+      </div>
+      <ul class="point-list">
+        <li>
+          <span class="file-tag file-layer">layer_schedules.json</span>
+          <strong>Harvested Schedules</strong> — Intermediate staging layer for raw event schedules, multi-day showings, door/curtain times, and recurrence rules discovered by Stage 1A.
+        </li>
+        <li>
+          <span class="file-tag file-layer">layer_box_office.json</span>
+          <strong>Box Office Evidence</strong> — Intermediate staging layer for live verified cart prices, base fares, itemized fees, taxes, booking protocols, and cart proof paths from Stage 2.
+        </li>
+        <li>
+          <span class="file-tag file-layer">layer_editorial.json</span>
+          <strong>Editorial Metadata</strong> — Intermediate staging layer for normalized titles, performer lineups, archetype tags, age limits, and editorial blurbs from Stage 3.
+        </li>
+        <li>
+          <span class="file-tag file-venue">venues.json (Venue Detailer DB)</span>
+          <strong>Venue Detailer Facility Database</strong> — Explicit physical facility ground-truth database maintained by the Venue Detailer AI; stores civic street addresses, GPS pins, operating hours, spend benchmarks, and transit access.
+        </li>
+        <li>
+          <span class="file-tag file-master">events.json</span>
+          <strong>Master Catalog</strong> — Master active catalog published exclusively by Compiler AI; contains verified cultural events meeting all budget (≤ $50 CAD) and quality criteria.
+        </li>
+        <li>
+          <span class="file-tag file-archive">manual_review_queue.json</span>
+          <strong>Quarantine Queue</strong> — Triage review queue holding candidate cards that fail fatal dealbreaker gates, exceed price ceiling, or await curator policy decisions.
+        </li>
+        <li>
+          <span class="file-tag file-archive">archived_events.json</span>
+          <strong>Lifetime Event Archive</strong> — Permanent historical archive preserving concluded, cancelled, sold-out, or expired events with immutable registration IDs (<code>Event_Num_Perm</code>).
+        </li>
+        <li>
+          <span class="file-tag file-proof">proofs/*.webp</span>
+          <strong>Visual Proof Anchors</strong> — High-resolution keyframe captures of checkout carts, hero headers, and venue signage serving as immutable visual proof.
+        </li>
+        <li>
+          <span class="file-tag file-js">data.js</span>
+          <strong>Frontend Web Export</strong> — Serialized JavaScript dataset synced from <code>events.json</code> by Compiler AI for instant zero-dependency client-side web application loading.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <table>
+    <colgroup>
+      <col class="col-dim">
+      <col class="col-desc">
+      <col class="col-scope">
+      <!-- 6 Stage Columns -->
+      <col class="col-stage">
+      <col class="col-stage">
+      <col class="col-stage">
+      <col class="col-stage">
+      <col class="col-stage">
+      <col class="col-stage">
+      <!-- 9 File Storage Columns -->
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+      <col class="col-file">
+    </colgroup>
+    <thead>
+      <tr>
+        <th rowspan="2" style="vertical-align: middle;">Cluster &amp; Dimension Key</th>
+        <th rowspan="2" style="vertical-align: middle;">Brief Description &amp; Verification Rule</th>
+        <th rowspan="2" class="center" style="vertical-align: middle;">Scope</th>
+        <th colspan="6" class="group-stage">PIPELINE AUDIT STAGES</th>
+        <th colspan="9" class="group-file">STORAGE FILES (WHERE PERSISTED)</th>
+      </tr>
+      <tr>
+        <!-- Stages -->
+        <th class="center sub-stage" title="Stage 1A: Schedule Harvester">1A<br>Harv</th>
+        <th class="center sub-stage" title="Stage 1B: Link Tier Hunter">1B<br>Hunt</th>
+        <th class="center sub-stage" title="Stage 2: Live Box Office QC">2<br>BoxOff</th>
+        <th class="center sub-stage" title="Stage 3: Semantic Enricher">3<br>Enrich</th>
+        <th class="center sub-stage" title="Stage 4: Venue Detailer AI Grounder">4<br>Detail</th>
+        <th class="center sub-stage" title="Stage 5: Compiler AI Publisher">5<br>Comp</th>
+        <!-- Files -->
+        <th class="center sub-file" title="data/layers/layer_schedules.json">Sched<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/layers/layer_box_office.json">BoxOff<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/layers/layer_editorial.json">Edit<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/venues.json (Venue Detailer DB)">Venue<br><span style="opacity:0.75; font-size:4.5pt;">Detailer</span></th>
+        <th class="center sub-file" title="data/events.json (Master Catalog)">Events<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/manual_review_queue.json">Queue<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/archived_events.json">Archive<br><span style="opacity:0.75; font-size:4.5pt;">.json</span></th>
+        <th class="center sub-file" title="data/proofs/*.webp">Proofs<br><span style="opacity:0.75; font-size:4.5pt;">.webp</span></th>
+        <th class="center sub-file" title="js/data.js (Frontend Export)">data.js<br><span style="opacity:0.75; font-size:4.5pt;">sync</span></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- CLUSTER 0XX -->
+      <tr class="cluster-divider cluster-0xx">
+        <td colspan="18">Cluster 0XX: Core Identity, Taxonomy &amp; Cultural Classification</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D001: Event Name &amp; Title</span><span class="dim-key">title / event_name</span></td>
+        <td>Official production / performance name stripped of button, tab, and navigation artifacts.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D002: Permanent Event Number (Single-Use)</span><span class="dim-key">Event_Num_Perm</span></td>
+        <td>Unique, immutable lifetime 9-digit registration ID (e.g. Event_Num_Perm_000000142). Never re-used; persists into archive.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D003: Catalog Card Slot Number (Re-used)</span><span class="dim-key">Event_Num_Card</span></td>
+        <td>Active publication display slot identifier (e.g. Event_Num_Card_000000012). Dynamically re-used as concluding events roll off.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D004: Primary Cultural Category</span><span class="dim-key">category / categoryLabel</span></td>
+        <td>Standard top-level category: music, comedy, theatre, cinema, outdoors, markets, free-access.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D005: Sub-Taxonomy &amp; Tags</span><span class="dim-key">categories / tags</span></td>
+        <td>Multi-label classification array capturing hybrid genres (e.g. ['theatre', 'comedy', 'improv']).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D006: Lifecycle Classification</span><span class="dim-key">lifecycle_type</span></td>
+        <td>Operational cadence: one_time (dated show), perennial_drop_in (standing facility), roving_series.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D007: Cultural Archetype Profile</span><span class="dim-key">event_archetype</span></td>
+        <td>Assigns 1 of 11 archetypes (Cinema, Stage, Workshop, Gaming, Civic, Exhibit, Sports, etc.) to trigger 7XX blocks.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D008: Age Policy &amp; Legal Restriction</span><span class="dim-key">restrictions / age_policy</span></td>
+        <td>Legal patron entry requirement: 19+ w/ 2 IDs, All Ages / Family Friendly, or Youth Specific.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+
+      <!-- CLUSTER 1XX -->
+      <tr class="cluster-divider cluster-1xx">
+        <td colspan="18">Cluster 1XX: Access, Boundaries &amp; Link Hierarchy</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D101: Tier 1 Link: Checkout Cart</span><span class="dim-key">tier1_checkout / candidate_tier1_url</span></td>
+        <td>Direct interactive checkout URL, dynamic seat picker, or purchase cart modal.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D102: Tier 2 Link: Event Page</span><span class="dim-key">tier2_event_page / details_url</span></td>
+        <td>Dedicated event description / production landing page on venue domain.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D103: Tier 3 Link: Calendar Link</span><span class="dim-key">tier3_calendar / calendar_url</span></td>
+        <td>Venue seasonal calendar or monthly schedule overview URL.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D104: Tier 4 Link: Civic Guide</span><span class="dim-key">tier4_civic_destination</span></td>
+        <td>Destination Vancouver, BIA, or municipal tourism guide listing URL.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D105: Tier 5 Link: Venue Home</span><span class="dim-key">tier5_venue_home / websiteUrl</span></td>
+        <td>Root physical venue homepage URL from master registry.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D106: Best Available Link &amp; Tier</span><span class="dim-key">best_available_link / best_tier</span></td>
+        <td>Highest verified link tier resolved (Tier 1 Cart > Tier 2 Page > Tier 3 Calendar).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D107: Real-Time Inventory Status</span><span class="dim-key">operational_status / is_sold_out</span></td>
+        <td>Real-time ticket inventory state: available, sold_out, or off_sale.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D108: Geographic Boundary</span><span class="dim-key">geo_jurisdiction / in_market</span></td>
+        <td>Strict physical location verification within Metro Vancouver boundaries (excludes Toronto, Victoria, etc.).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D109: Currency Standard</span><span class="dim-key">currency_standard</span></td>
+        <td>Strict Canadian Dollar standard (CAD exclusively; foreign currency rejected).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D110: IANA Timezone</span><span class="dim-key">iana_timezone</span></td>
+        <td>Pacific Timezone enforcement (strictly America/Vancouver).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- CLUSTER 2XX -->
+      <tr class="cluster-divider cluster-2xx">
+        <td colspan="18">Cluster 2XX: Interactive Box Office &amp; Multi-Tier Compound Cart</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D201: Tier 1 Option Label</span><span class="dim-key">tier1_name</span></td>
+        <td>Primary / General Admission ticket label e.g. "Adult (19-64)", "General Admission".</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D202: Tier 1 Base Ticket Price</span><span class="dim-key">tier1_price_base / price_base</span></td>
+        <td>Face-value ticket admission price in CAD before platform fees or taxes.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D203: Tier 1 Platform Service Fees</span><span class="dim-key">tier1_price_fee / price_fee</span></td>
+        <td>Itemized platform service, ticketing, facility, or processing surcharge.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D204: Tier 1 Tax</span><span class="dim-key">tier1_price_tax / price_tax</span></td>
+        <td>Itemized 5% GST or tax-inclusive calculated amount in CAD.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D205: Tier 1 All-In Final Cost</span><span class="dim-key">tier1_price_all_in / price_all_in</span></td>
+        <td>Final out-of-pocket cart cost. Dual-entry read vs calculated reconciliation.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D206: Tier 1 Availability State</span><span class="dim-key">tier1_status</span></td>
+        <td>Individual tier inventory state: available, sold_out, waitlist, or ended_presale.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D207: Tier 2 Option Label</span><span class="dim-key">tier2_name</span></td>
+        <td>Secondary concession label e.g. "Senior (65+)", "Student", "Early Bird".</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D208: Tier 2 Base Ticket Price</span><span class="dim-key">tier2_price_base</span></td>
+        <td>Face-value ticket base price for secondary admission tier.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D209: Tier 2 Platform Service Fees</span><span class="dim-key">tier2_price_fee</span></td>
+        <td>Itemized service fee for secondary tier (extracted directly in cart).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D210: Tier 2 Tax</span><span class="dim-key">tier2_price_tax</span></td>
+        <td>Itemized tax amount for secondary tier (if isolated in live cart).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D211: Tier 2 All-In Final Cost</span><span class="dim-key">tier2_price_all_in</span></td>
+        <td>Total out-of-pocket CAD cost for secondary admission tier.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D212: Tier 2 Availability State</span><span class="dim-key">tier2_status</span></td>
+        <td>Secondary tier availability flag: available, sold_out, ended_early_bird.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D213: Tier 3 Option Label</span><span class="dim-key">tier3_name</span></td>
+        <td>Tertiary tier label e.g. "Youth (13-18)", "Door Rate", "Front Row".</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D214: Tier 3 Base Ticket Price</span><span class="dim-key">tier3_price_base</span></td>
+        <td>Face-value ticket base price for tertiary admission tier.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D215: Tier 3 Platform Service Fees</span><span class="dim-key">tier3_price_fee</span></td>
+        <td>Itemized service fee for tertiary tier (extracted directly in cart).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D216: Tier 3 Tax</span><span class="dim-key">tier3_price_tax</span></td>
+        <td>Itemized tax amount for tertiary tier.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D217: Tier 3 All-In Final Cost</span><span class="dim-key">tier3_price_all_in</span></td>
+        <td>Total out-of-pocket CAD cost for tertiary admission tier.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D218: Tier 3 Availability State</span><span class="dim-key">tier3_status</span></td>
+        <td>Tertiary tier status: available, sold_out, door_only.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D219: Verified Tier Count</span><span class="dim-key">tier_count_verified</span></td>
+        <td>Total number of unique admission pricing tiers discovered in cart.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D220: Pricing Model</span><span class="dim-key">pricing_model</span></td>
+        <td>Model: flat_ticket, free_access, sliding_scale, donation, pay_per_item.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D221: Mandatory Surcharges / Hidden Costs</span><span class="dim-key">other_cost_label / other_cost_price</span></td>
+        <td>Mandatory surcharge (mandatory coat check, society membership fee). Defaults to $0.00.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D222: Budget Ceiling Cap</span><span class="dim-key">budget_qualified_under_50</span></td>
+        <td>Strict validation that primary all-in admission is ≤ $50.00 CAD total.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- CLUSTER 3XX -->
+      <tr class="cluster-divider cluster-3xx">
+        <td colspan="18">Cluster 3XX: Temporal Reality, Showtimes &amp; Calendar</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D301: Event Date ISO</span><span class="dim-key">date / startIso</span></td>
+        <td>ISO calendar date (YYYY-MM-DD) of the upcoming showing. Null only for perennial facilities.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D302: Doors Open Time</span><span class="dim-key">doors_time</span></td>
+        <td>Venue door access time (e.g. "7:00 PM") prior to performance start.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D303: Curtain / Showtime</span><span class="dim-key">time / start_time</span></td>
+        <td>Official start time of the performance, screening, or presentation.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D304: Curfew / End Time</span><span class="dim-key">end_time</span></td>
+        <td>Show conclusion, intermission limit, or venue curfew time.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D305: Multi-Showing Slots</span><span class="dim-key">showings / showings_slots</span></td>
+        <td>Array of up to 5 multi-night showing slots with date, time, and ticket deep-links.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D306: Schedule Display String</span><span class="dim-key">dateSchedule</span></td>
+        <td>Unified patron schedule string e.g. "Thu Oct 24, 2026 • 8:00 PM".</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D307: Frequency Display Label</span><span class="dim-key">frequency / frequencyLabel</span></td>
+        <td>Lifecycle recurrence label ("One-Time Event" vs "Weekly Drop-in" vs "Annual Festival").</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D308: Live Operational Pulse</span><span class="dim-key">happening_now</span></td>
+        <td>Dynamic flag indicating show is actively underway right now (current time between curtain & curfew).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+
+      <!-- CLUSTER 4XX -->
+      <tr class="cluster-divider cluster-4xx">
+        <td colspan="18">Cluster 4XX: Venue Physical Constants &amp; Geographic Anchors (Stage 4)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D401: Physical Venue Name</span><span class="dim-key">venue / venue_name</span></td>
+        <td>Brick-and-mortar host facility name matched against registry. Aggregator names forbidden.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D402: Civic Street Address</span><span class="dim-key">address / full_address</span></td>
+        <td>Exact physical street address with municipality and postal code.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D403: GPS Coordinates Pin</span><span class="dim-key">coordinates [lat, lng]</span></td>
+        <td>Precise latitude and longitude map pin coordinates for direct navigation.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D404: 7-Day Operating Hours</span><span class="dim-key">weekly_hours</span></td>
+        <td>Monday–Sunday daily operating opening and closing schedule for consistent facilities.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D405: Venue Access Model</span><span class="dim-key">access_model</span></td>
+        <td>Physical access boundary: fenced_facility vs open_public_space vs sports_facility.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D406: Transit Line Connections</span><span class="dim-key">transit_info</span></td>
+        <td>Bus and SkyTrain routes connecting directly to venue (e.g. "#20 Victoria or 8 min walk from Skytrain").</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D407: District Landmark Waypoints</span><span class="dim-key">waypoints</span></td>
+        <td>Array of named sub-locations and landmarks for sprawling parks (Stanley Park, Granville Island).</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+
+      <!-- CLUSTER 5XX -->
+      <tr class="cluster-divider cluster-5xx">
+        <td colspan="18">Cluster 5XX: Physical &amp; Sensory Accessibility (Stage 4)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D501: Wheelchair Entrance &amp; Doors</span><span class="dim-key">access_entrance</span></td>
+        <td>Step-free street access, ramp gradient, and automated push-button door mechanics.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D502: Accessible Seating &amp; Sightlines</span><span class="dim-key">access_seating</span></td>
+        <td>Dedicated wheelchair positions, companion seating, and armrest-free chair availability.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D503: Accessible Washroom Facilities</span><span class="dim-key">access_washrooms</span></td>
+        <td>Wheelchair-accessible stalls, grab bar positioning, and single-stall gender-neutral availability.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D504: Multi-Level Elevator Navigation</span><span class="dim-key">access_elevator</span></td>
+        <td>Elevator access between lobby, performance halls, and restrooms (or ground-floor level facility).</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D505: Accessible Parking Proximity</span><span class="dim-key">access_parking</span></td>
+        <td>Designated disabled parking stalls in on-site lot or adjacent street spaces.</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D506: Sensory &amp; Language Inclusivity</span><span class="dim-key">sensory_accommodations</span></td>
+        <td>ASL interpretation, relaxed performance sessions, assistive listening devices, audio descriptions.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D507: Accessibility Classification</span><span class="dim-key">access_status</span></td>
+        <td>Composite status: accessible (full wheelchair), partially_accessible, or inaccessible.</td>
+        <td class="center">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D601: Bar / Alcoholic Drink Benchmark</span><span class="dim-key">beer_benchmark / bar_benchmark</span></td>
+        <td><span class="file-tag file-venue">venues.json (Venue Detailer DB)</span><span class="file-tag file-master">events.json</span></td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D602: Concession Snack Benchmark</span><span class="dim-key">concession_benchmark</span></td>
+        <td>Popcorn, fountain drinks, candy, and movie concession prices (e.g. "$4.50 – $6.50 CAD").</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D603: Coffee &amp; Cafe Benchmark</span><span class="dim-key">coffee_benchmark</span></td>
+        <td>In-venue or immediate neighborhood coffee price calibration (e.g. "$4.00 – $5.50 CAD").</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D604: Nearby Meal Benchmark</span><span class="dim-key">meal_benchmark</span></td>
+        <td>Immediate walking radius casual meal calibration (e.g. "$14.00 – $22.00 CAD").</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D605: Food Service &amp; Outside F&B Policy</span><span class="dim-key">food_service_policy</span></td>
+        <td>Policy: "Full kitchen menu", "Outside snacks allowed", "Food trucks on site", or "No outside F&B".</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D606: Algorithmic Outing Spend</span><span class="dim-key">typical_item_spend</span></td>
+        <td>Synthesized out-of-pocket spend estimator pill (e.g. "$28 – $36 CAD with drink/snack").</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D607: Accepted Payment Methods</span><span class="dim-key">payment_methods</span></td>
+        <td>Payment policy: Cash Only vs Debit/Credit/Tap vs $1 Debit Surcharge. (Critical for DIY &amp; markets).</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D608: Free Drinking Water Access</span><span class="dim-key">water_refill_station</span></td>
+        <td>Availability of free tap water fountain or patron refill station (vs bottled-only purchase).</td>
+        <td class="center"><span class="scope-pill scope-venue">Venue Ref</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+
+      <!-- CLUSTER 7XX -->
+      <tr class="cluster-divider cluster-7xx">
+        <td colspan="18">Cluster 7XX: Specialized Cultural Archetype Modules (Triggered by Archetype D007)</td>
+      </tr>
+
+      <!-- Archetype A: Cinema -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 710–719: Cinema, Film Festivals &amp; Screenings (Archetype A)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D711: Critical Ratings Array</span><span class="dim-key">ratings [{ source, score }]</span></td>
+        <td>Rotten Tomatoes score %, Letterboxd ⭐ rating, and IMDb score.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D712: Critical Review Pull-Quote</span><span class="dim-key">review_quote</span></td>
+        <td>1-sentence verified critical press quote from reputable cultural publication (Optional).</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D713: Thematic Film Buzzwords</span><span class="dim-key">buzzwords []</span></td>
+        <td>Non-spoiler genre and trope pills e.g. ["35mm", "Q&amp;A After", "Indie", "Vancouver-Shot"].</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D714: Content Advisory &amp; Sensory Warnings</span><span class="dim-key">content_advisory</span></td>
+        <td>Audience warnings: strobe lighting, theatrical haze, loud audio, mature themes.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema/Stage</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D715: Film Runtime in Minutes</span><span class="dim-key">film_runtime_minutes</span></td>
+        <td>Total running time in minutes (e.g. "98 mins", "142 mins") for transit and evening planning.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D716: Audio Language &amp; Subtitles</span><span class="dim-key">language_subtitles</span></td>
+        <td>Audio presentation e.g. "Japanese with English subtitles" or "English with Open Captions".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D717: Projection Format</span><span class="dim-key">projection_format</span></td>
+        <td>Exhibition format: 35mm film print, 70mm, 4K digital DCP, or 16mm archival reel.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Cinema</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype B: Live Stage -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 720–729: Live Stage, Comedy, Theatre &amp; Concerts (Archetype B)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D721: Performer Lineup Differentiation</span><span class="dim-key">lineup / artist</span></td>
+        <td>Structured array of participating artists, comedians, or musicians separating headliner from openers.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Stage/Music</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D722: Seating Configuration</span><span class="dim-key">seating_configuration</span></td>
+        <td>Layout: GA Standing Floor vs Assigned Theatre Rows vs First-Come Cabaret Tables.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Stage/Music</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D723: Intermission Structure</span><span class="dim-key">intermission_structure</span></td>
+        <td>Show format: "One 15-minute intermission" vs "90 minutes straight through with no intermission".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Theatre/Stage</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D724: Sound Curfew &amp; Set Times</span><span class="dim-key">curfew_set_times</span></td>
+        <td>Headliner set time (e.g. "10:00 PM") and strict venue sound/noise curfew limit ("11:00 PM").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Live Music</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D725: Sound Accommodations &amp; Earplugs</span><span class="dim-key">sound_accommodations</span></td>
+        <td>Free earplugs offered at door, or certified sensory-friendly low-volume performance.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Live Music</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype C: Workshops -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 730–739: Interactive Workshops, Talks &amp; Classes (Archetype C)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D731: Supply &amp; Materials Fee</span><span class="dim-key">materials_fee / materials_included</span></td>
+        <td>Itemized fee for clay, paint, canvas, or craft kit (or "All supplies included" notice).</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D732: Take-Home Outcome &amp; Firing</span><span class="dim-key">take_home_outcome</span></td>
+        <td>Outcome: "Take home today" vs "+$10 studio firing fee, pick up in 2–3 weeks".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D733: Hard Capacity Cap</span><span class="dim-key">capacity_cap</span></td>
+        <td>Strictly limited participant headcount (e.g. "Strictly capped at 12 participants").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D734: Registration Cutoff Protocol</span><span class="dim-key">registration_cutoff</span></td>
+        <td>Cutoff rule: "Advance registration closes 24h prior" vs "Walk-ins permitted if space allows".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D735: Patron Preparation ("What to Bring")</span><span class="dim-key">patron_requirements</span></td>
+        <td>Preparation notice: "Bring laptop with Python", "Wear clothes you can get paint on".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D736: Experience Level Required</span><span class="dim-key">skill_level</span></td>
+        <td>Prerequisite level: "No experience needed / beginner-friendly" vs "Intermediate".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Workshop</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype D: Social Gaming -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 740–749: Participatory Socials, Trivia &amp; Board Games (Archetype D)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D741: Table / Game Library Cover Fee</span><span class="dim-key">table_cover</span></td>
+        <td>Direct admission/game library cover fee ($5–$10 CAD) for game access.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Gaming/Trivia</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D742: Mandatory Minimum F&amp;B Spend</span><span class="dim-key">minimum_spend</span></td>
+        <td>Mandatory food and beverage consumption minimum (e.g. "$15 minimum spend per table").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Gaming/Trivia</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D743: Team Size &amp; Solo Matching</span><span class="dim-key">team_size_limit / solo_matching</span></td>
+        <td>Team parameters: "Teams of 2 to 6; solo players welcome and matched at door".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Gaming/Trivia</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D744: Prizes &amp; Incentive Structure</span><span class="dim-key">trivia_prizes</span></td>
+        <td>Incentive: "$50 venue gift card", "Novelty trophy &amp; round of drinks", or "Bragging rights".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Gaming/Trivia</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D745: Beginner Lesson Included</span><span class="dim-key">beginner_lesson_included</span></td>
+        <td>Introductory lesson (e.g. "30-min salsa lesson included before open social dance floor").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Social Dance</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype E: Civic Grounds -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 750–759: Civic Grounds, Parks &amp; Perennial Drop-Ins (Archetype E)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D751: Weather Contingency Standard</span><span class="dim-key">weather_dependency</span></td>
+        <td>Operation standard: rain_or_shine vs weather_dependent (cancellation risk in rain).</td>
+        <td class="center"><span class="scope-pill scope-archetype">Outdoors</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D752: Trail Terrain &amp; Mobility Level</span><span class="dim-key">trail_terrain</span></td>
+        <td>Path reality: Paved flat seawall (wheelchair/stroller friendly) vs forest dirt trail w/ 200 stairs.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Outdoors</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D753: Dog &amp; Pet Policy</span><span class="dim-key">pet_policy</span></td>
+        <td>Pet status: On-leash only, designated off-leash park area, or strictly no pets permitted.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Outdoors</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D754: Seasonal Public Washroom Status</span><span class="dim-key">seasonal_washrooms</span></td>
+        <td>Restroom accessibility: Open year-round vs closes at dusk / closes winter Oct–April.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Outdoors</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D755: Facility Rentals &amp; Gear</span><span class="dim-key">equipment_rentals</span></td>
+        <td>Mandatory or optional on-site equipment costs (golf club hire, pitch &amp; putt balls, lockers).</td>
+        <td class="center"><span class="scope-pill scope-archetype">Civic Facility</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype F: Museums -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 760–769: Museums, Galleries &amp; Heritage Exhibitions (Archetype F)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D761: Exhibition Run Window</span><span class="dim-key">exhibit_run_dates</span></td>
+        <td>Start date and closing date for featured exhibit (e.g. "On view Oct 12 – Jan 15").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Museum</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D762: Special Feature Exhibition Surcharge</span><span class="dim-key">special_exhibition_tier</span></td>
+        <td>Free/GA covers main collection, but touring hall requires secondary surcharge (≤ $50).</td>
+        <td class="center"><span class="scope-pill scope-archetype">Museum</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D763: Complimentary Docent Tour Times</span><span class="dim-key">docent_tours</span></td>
+        <td>Free guided docent tour times included with general admission (e.g. "Saturdays at 2:00 PM").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Museum</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D764: Coat &amp; Bag Check Policy</span><span class="dim-key">bag_check_policy</span></td>
+        <td>Gallery rules: Backpacks prohibited in exhibition rooms; free coat check vs $2 locker.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Museum</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype G: Active Recreation -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 770–779: Active Recreation, Fitness &amp; Sports (Archetype G)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D771: Mandatory Liability Waiver</span><span class="dim-key">waiver_required</span></td>
+        <td>Mandatory digital waiver signing prior to ice, court, or field access.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Active Rec</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D772: Mandatory Safety Gear &amp; Helmets</span><span class="dim-key">safety_gear_rules</span></td>
+        <td>Mandatory safety equipment: Helmets required on ice for under 18, lifejackets provided.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Active Rec</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D773: Required Footwear &amp; Dress Code</span><span class="dim-key">dress_code_requirements</span></td>
+        <td>Required gear: non-marking gym shoes, ice skates, athletic apparel.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Active Rec</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D774: Locker &amp; Changing Facilities</span><span class="dim-key">locker_facilities</span></td>
+        <td>Changing amenities: Secure lockers available (bring padlock vs $1 coin return), showers.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Active Rec</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D775: Pace &amp; Fitness Intensity</span><span class="dim-key">recreation_pace</span></td>
+        <td>Intensity level: "Casual 15 km/h no-drop social ride" vs "5:00/km tempo training run".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Active Rec</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype H: Roving Collectives -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 780–789: Roving &amp; Nomadic Community Collectives (Archetype H)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D781: Parent Series Organizer</span><span class="dim-key">series_organizer / organizer</span></td>
+        <td>Parent organizing brand (e.g. "Vancouver Poetry House", "Granville Island Busker Series").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Roving</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D782: Rotating Edition Venue</span><span class="dim-key">edition_venue</span></td>
+        <td>Branch / physical venue hosting this specific week's edition (e.g. "Café Deux Soleils Edition").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Roving</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D783: Roving Patron Note</span><span class="dim-key">roving_note</span></td>
+        <td>Pop-up directions: "Enter through back alley door; look for purple lantern".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Roving</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D784: Open Mic / Performer Signup</span><span class="dim-key">signup_protocol</span></td>
+        <td>Signup rule: "Signup sheet at 7:00 PM at door, first 12 performers, 5-minute time limit".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Roving</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- Archetype I: Festivals -->
+      <tr class="archetype-subhead">
+        <td colspan="18">Profile 790–799: Festivals &amp; Umbrella Multi-Venue Series (Archetype I)</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D791: Festival Umbrella Affiliation</span><span class="dim-key">festival_affiliation</span></td>
+        <td>Festival umbrella identity (e.g. "VIFF 2026", "Vancouver Fringe Festival", "DOXA").</td>
+        <td class="center"><span class="scope-pill scope-archetype">Festival</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D792: Multi-Venue Screening Map</span><span class="dim-key">festival_showings_locations</span></td>
+        <td>Array of showings paired with disparate physical venues across Vancouver.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Festival</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D793: Festival Pass &amp; Membership Rules</span><span class="dim-key">festival_pass_rules</span></td>
+        <td>Mandatory festival society membership (e.g. "$10 Fringe button") and festival pass redemption rules.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Festival</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D794: Rush Seating / Standby Protocol</span><span class="dim-key">rush_seating_rules</span></td>
+        <td>Rush queue rules: "Advance tickets off-sale; rush queue opens 30 mins before showtime cash only".</td>
+        <td class="center"><span class="scope-pill scope-archetype">Festival</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D795: Volunteer Admission Exchange</span><span class="dim-key">volunteer_exchange</span></td>
+        <td>Volunteer ticket policy: Free performance ticket earned per 4-hour volunteer usher/box office shift.</td>
+        <td class="center"><span class="scope-pill scope-archetype">Festival</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+      <!-- CLUSTER 8XX -->
+      <tr class="cluster-divider cluster-8xx">
+        <td colspan="18">Cluster 8XX: Governance, Media, Seasonality &amp; Proof Provenance</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D801: Editorial Patron Synopsis</span><span class="dim-key">description</span></td>
+        <td>Engaging 2–3 sentence patron summary synthesized from live program facts.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D802: Approved Holiday Match</span><span class="dim-key">holiday_tag</span></td>
+        <td>Approved holiday tag matched against data/approved_holidays.json (e.g. "halloween", "christmas").</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D803: Promotional Hero Artwork</span><span class="dim-key">image_url / poster_url</span></td>
+        <td>Clean promotional artwork, movie poster, or production still URL.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D804: Ticketing Engine Platform</span><span class="dim-key">ticket_provider</span></td>
+        <td>Ticketing portal provider (Showpass, Eventbrite, Spektrix, Universe, Direct).</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D805: Booking &amp; Door Admission Protocol</span><span class="dim-key">admission_policy / booking_protocol</span></td>
+        <td>Admission rule: "Online reservation recommended", "PWYC at door", "Drop-in anytime".</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D806: Active vs Concluded Reconciliation</span><span class="dim-key">active_showings / archived_showings</span></td>
+        <td>Dynamic count of remaining bookable future dates vs past concluded dates rolled into archive.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D807: Multi-Layer Provenance Trail</span><span class="dim-key">data_provenance</span></td>
+        <td>Provenance audit trail attributing each fact to Harvester, Stagehand, Enricher, or Venue Registry.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D808: Visual Cart Keyframe Proof</span><span class="dim-key">proof_keyframes.cart</span></td>
+        <td>High-resolution capture of the live checkout modal with incremented quantity displaying base, fees, GST.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D809: Curator Lock &amp; Appeals Gate</span><span class="dim-key">curator_lock / ai_curator_appeal</span></td>
+        <td>Human curator protection lock preventing AI overwrite, and over-budget triage appeal trigger.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+      <tr>
+        <td><span class="dim-name">D810: Last QC Verification Timestamp</span><span class="dim-key">last_qc_audited_at / last_full_qc_at</span></td>
+        <td>ISO 8601 timestamp of live examination updated in lockstep across root and nested dimension audit.</td>
+        <td class="center"><span class="scope-pill scope-universal">Universal</span></td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center check">✓</td>
+        <td class="center check">✓</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+        <td class="center dash">-</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="footer" style="flex-direction: column; gap: 5px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div><strong>Van50 Agent Operating Rules</strong> • 100% Native Cognitive Execution • Zero External Gemini APIs</div>
+      <div><strong>Architecture:</strong> Single Publisher Multi-Layer Reconciliation (`ripper/compile_catalog.js`)</div>
+    </div>
+    <div class="legend" style="flex-wrap: wrap; gap: 5px 14px; font-size: 6.8pt;">
+      <div class="legend-item"><span class="check">✓</span> Audited / Verified / Stored</div>
+      <div class="legend-item"><span class="dash">-</span> Not in scope / Not persisted in file</div>
+      <div class="legend-item"><span class="scope-pill scope-universal">Universal</span> All cards</div>
+      <div class="legend-item"><span class="scope-pill scope-archetype">Archetype</span> Conditional on D007 archetype</div>
+      <div class="legend-item"><span class="scope-pill scope-venue">Venue Ref</span> Physical Facility DB Constant</div>
+      <div class="legend-item" style="color: #94a3b8;"><strong>Stages (1A–5):</strong> 1A Harv • 1B Hunt • 2 BoxOff • 3 Enrich • 4 Detail • 5 Comp</div>
+      <div class="legend-item" style="color: #047857;"><strong>Files:</strong> Sched (`layer_schedules`) • BoxOff (`layer_box_office`) • Edit (`layer_editorial`) • Venue Detailer (`venues.json`) • Events (`events.json`) • Queue (`review_queue`) • Archive (`archived_ev`) • Proofs (`*.webp`) • data.js (`js/data.js`)</div>
+    </div>
+  </div>
+    <div class="legend" style="flex-wrap: wrap; gap: 6px 14px;">
+      <div class="legend-item"><span class="check">✓</span> Audited / Verified at stage</div>
+      <div class="legend-item"><span class="dash">-</span> Not in scope for stage</div>
+      <div class="legend-item"><span class="scope-pill scope-universal">Universal</span> Mandatory for all cards</div>
+      <div class="legend-item"><span class="scope-pill scope-archetype">Archetype</span> Conditional on D007 archetype</div>
+      <div class="legend-item"><span class="scope-pill scope-venue">Venue Ref</span> Physical Facility DB Constant</div>
+      <div class="legend-item"><span class="file-tag file-layer">layer_*.json</span> Specialist Layer Intermediate Store</div>
+      <div class="legend-item"><span class="file-tag file-venue">venues.json (Venue Detailer DB)</span> Master Physical Facility Database</div>
+      <div class="legend-item"><span class="file-tag file-master">events.json</span> Master Active Published Catalog</div>
+      <div class="legend-item"><span class="file-tag file-master">manual_review_queue.json</span> Triage / Quarantine &amp; Appeals Queue</div>
+      <div class="legend-item"><span class="file-tag file-archive">archived_events.json</span> Concluded Permanent Event Archive</div>
+      <div class="legend-item"><span class="file-tag file-proof">data/proofs/*.webp</span> Photographic Visual Keyframes</div>
+      <div class="legend-item"><span class="file-tag file-js">js/data.js</span> Frontend Production Bundle</div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -26,7 +26,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- Styles -->
-  <link rel="stylesheet" href="css/curator.css?v=1.1.0">
+  <link rel="stylesheet" href="css/curator.css?v=1.1.1">
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
 
@@ -64,16 +70,12 @@
           <span>💬 User Submissions:</span>
           <span class="stat-val" id="stat-user-feedback-count" style="color: #6ee7b7;">0</span>
         </div>
-        <div class="stat-pill clickable-pill" title="Venues with newsletter signup links discovered by Scout AI that need manual subscription" id="stat-nl-signups-pill" style="cursor: pointer; border: 1px solid rgba(244, 114, 182, 0.35);">
-          <span>📬 Signups:</span>
-          <span class="stat-val" id="stat-nl-signups-count" style="color: #f472b6;">0</span>
-        </div>
         <div class="stat-pill clickable-pill" id="stat-master-pill" style="cursor: pointer;" title="Click to inspect and search Master Catalogs (events, venues, festivals, ticketing, discovery)">
           <span>✅ Master Catalogs:</span>
           <span class="stat-val" id="stat-master-count">0</span>
         </div>
-        <div class="stat-pill" id="stat-audit-pill" title="Coverage of 20-Dimension verified audit timestamps across active events">
-          <span>🩺 20-Dim QC:</span>
+        <div class="stat-pill" id="stat-audit-pill" title="Coverage of Multi-Dimension verified audit timestamps across active events">
+          <span>🩺 <span class="dyn-dim-pill">QC Dimension Coverage</span>:</span>
           <span class="stat-val" id="stat-audit-count" style="color: #10b981; font-weight: 700;">100%</span>
         </div>
       </div>
@@ -83,18 +85,37 @@
           <span class="automation-dot" id="automation-dot">🟢</span>
           <span class="automation-label" id="automation-label">Daily Sync: 04:00 AM</span>
         </div>
-        <button type="button" class="btn-curator btn-curator-ghost" id="btn-fetch-newsletters" style="border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;" title="Fetch unread emails from designated Gmail newsletter inbox and dropped files">
-          <span id="btn-newsletters-icon">📧</span>
-          <span id="btn-newsletters-text">Fetch Newsletters</span>
+        <!-- Global Main Page Stop Run Button (Request 2) -->
+        <button type="button" class="btn-curator btn-main-stop-run" id="btn-curator-stop-run" title="Immediately stop any active scan or worker process occurring in background">
+          <span id="curator-stop-indicator" class="main-stop-dot"></span>
+          <span id="curator-stop-label">🛑 Stop Run</span>
+        </button>
+        <!-- Autonomous AI & Scraper Pipeline Actions -->
+        <button type="button" class="btn-curator" id="btn-nav-harvest" style="border: 1px solid rgba(168, 85, 247, 0.45); background: rgba(168, 85, 247, 0.15); color: #d8b4fe; font-weight: 600;" title="Run Calendar Harvester: Extracts venue schedules into layer_schedules.json">
+          <span>📅 Harvest</span>
+        </button>
+        <button type="button" class="btn-curator" id="btn-nav-qc" style="border: 1px solid rgba(56, 189, 248, 0.45); background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-weight: 600;" title="Run Stagehand: Penetrates live cart, reveals fees &amp; GST">
+          <span>⚡ Stagehand</span>
+        </button>
+        <button type="button" class="btn-curator" id="btn-nav-enrich" style="border: 1px solid rgba(251, 191, 36, 0.45); background: rgba(251, 191, 36, 0.15); color: #fbbf24; font-weight: 600;" title="Run AI Semantic Enricher: Normalizes titles, synopses &amp; categories">
+          <span>✍️ Enrich</span>
+          <span id="badge-nav-unenriched-count" style="display: none; background: rgba(0,0,0,0.35); font-size: 0.72rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.25);">0</span>
+        </button>
+        <button type="button" class="btn-curator btn-curator-primary" id="btn-nav-compile" style="background: linear-gradient(135deg, #059669, #0284c7); border: 1px solid #10b981; color: #fff; font-weight: 700; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);" title="Run Compiler AI: Arbitrate layers, check math invariants, auto-roll showings, publish events.json &amp; sync js/data.js">
+          <span>🏛️ Compile &amp; Publish</span>
+          <span id="badge-nav-uncompiled-count" style="display: none; background: rgba(0,0,0,0.35); font-size: 0.72rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.25);">0</span>
         </button>
         <button type="button" class="btn-curator btn-curator-danger" id="btn-restart-system" title="Restart all background services, clear browser &amp; service worker caches, unregister service workers, reset stuck automation, and reload fresh catalog">
           <span id="btn-restart-icon">🔄</span>
-          <span id="btn-restart-text">Restart All &amp; Clear Caches</span>
+          <span id="btn-restart-text">Clear Caches</span>
         </button>
         <button type="button" class="btn-curator btn-curator-ghost btn-accessibility" id="curator-accessibility-btn" aria-label="Toggle Accessibility Mode" aria-pressed="false" title="Toggle Accessible Mode (High contrast, enhanced legibility)">
           <span aria-hidden="true">♿</span>
           <span class="access-label">Accessibility</span>
         </button>
+        <a href="curator-agy.html" class="btn-curator btn-curator-ghost" style="border: 1px solid rgba(236, 72, 153, 0.55); background: rgba(236, 72, 153, 0.14); color: #f472b6; font-weight: 700;" title="Switch to the twin Antigravity Engine Curator Studio (Non-AI Loop + 1-Event Antigravity Workers)">
+          <span>🚀 Antigravity Engine UI ↗</span>
+        </a>
         <a href="curator-table.html" class="btn-curator btn-curator-ghost" style="border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8;" title="Open high-density compressed table view">
           <span>📊 Compressed Table ↗</span>
         </a>
@@ -111,8 +132,50 @@
   <!-- Main Workspace -->
   <main class="curator-container" style="flex: 1;">
     
-    <!-- Automatic Candidate Sources Prompt Banner -->
-    <div id="curator-candidate-sources-prompt" class="curator-candidate-prompt-banner" style="display: none; margin-bottom: 20px;"></div>
+    <!-- Autonomous Multi-Layer Pipeline Command Bar -->
+    <section class="curator-pipeline-section" style="margin-bottom: 20px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 12px; padding: 16px 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+        <div style="flex: 1; min-width: 280px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.25rem;">☁️</span>
+            <h3 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.08rem; font-weight: 700; color: #fff; letter-spacing: -0.2px;">
+              Autonomous Multi-Layer Pipeline
+            </h3>
+            <span class="curator-badge" style="background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 999px;">
+              Zero Antigravity Dependency • Unattended Cloud Ready
+            </span>
+          </div>
+          <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: #94a3b8; line-height: 1.4;">
+            Trigger individual specialist stores or arbitrate and publish live catalog. Runs headless in cloud container/cron with computer off.
+          </p>
+        </div>
+
+        <!-- 4 Pipeline Action Buttons -->
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <!-- 1. Harvest Schedules -->
+          <button type="button" class="btn-curator" id="btn-pipeline-harvest" style="background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.45); color: #d8b4fe; font-weight: 600; padding: 7px 14px;" title="Run Calendar Harvester: Extracts venue schedules and showings into data/layers/layer_schedules.json">
+            <span>📅 Harvest Schedules</span>
+          </button>
+
+          <!-- 2. Stagehand -->
+          <button type="button" class="btn-curator" id="btn-pipeline-qc" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-weight: 600; padding: 7px 14px;" title="Run Stagehand: Penetrates live cart, reveals fees & GST, outputs to data/layers/layer_box_office.json">
+            <span>⚡ Stagehand</span>
+          </button>
+
+          <!-- 3. AI Semantic Enricher -->
+          <button type="button" class="btn-curator" id="btn-pipeline-enrich" style="background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.45); color: #fbbf24; font-weight: 600; padding: 7px 14px;" title="Run AI Semantic Enricher: Normalizes titles, synopses, and categories into data/layers/layer_editorial.json">
+            <span>✍️ AI Enricher</span>
+            <span id="badge-pipeline-unenriched-count" style="display: none; background: rgba(0,0,0,0.35); font-size: 0.72rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.25);">0</span>
+          </button>
+
+          <!-- 4. Compile & Publish Catalog -->
+          <button type="button" class="btn-curator btn-curator-primary" id="btn-pipeline-compile" style="background: linear-gradient(135deg, #059669, #0284c7); border: 1px solid #10b981; color: #fff; font-weight: 700; padding: 7px 18px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);" title="Run Compiler AI: Arbitrate candidate layers, check dual-entry math, enforce $50 budget ceiling, auto-roll next showings, publish events.json & sync js/data.js">
+            <span>🏛️ Compile &amp; Publish Live</span>
+            <span id="badge-pipeline-uncompiled-count" style="display: none; background: rgba(0,0,0,0.35); font-size: 0.72rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; border: 1px solid rgba(255,255,255,0.25);">0</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
     <!-- Controls Section -->
     <section class="curator-controls-section">
@@ -121,12 +184,10 @@
         <div class="curator-pills-group" id="filter-pills-group">
           <button type="button" class="curator-filter-pill active" data-filter="all">All Quarantined (<span id="pill-count-all">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="feedback" style="border: 1px solid rgba(192, 132, 252, 0.5); color: #d8b4fe;" title="Items with curator feedback notes or uploaded screenshots">📝 Has Feedback (<span id="pill-count-feedback">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="newsletter">📧 Newsletters (<span id="pill-count-newsletter">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_venues">🏛️ Discovered Venues (<span id="pill-count-discovered-venues">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="holidays" style="border: 1px solid rgba(251, 146, 60, 0.5); color: #fed7aa;" title="Pending holiday categories discovered by AI awaiting curator approval">🎉 New Holidays (<span id="pill-count-holidays">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="discovered_sources" style="border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc;" title="Candidate event sources and ticketing platforms discovered by AI awaiting curator approval">📡 Discovered Sources (<span id="pill-count-discovered-sources">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="user_feedback" style="border: 1px solid rgba(52, 211, 153, 0.5); color: #6ee7b7;" title="Community suggestions and corrections quarantined for review">💬 User Submissions (<span id="pill-count-user-feedback">0</span>)</button>
-          <button type="button" class="curator-filter-pill" data-filter="newsletter_signups" style="border: 1px solid rgba(244, 114, 182, 0.5); color: #f472b6;" title="Direct links to newsletters found by Scout that need manual subscription">📬 Newsletter Signups (<span id="pill-count-nl-signups">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="unhandled">⚡ Needs Action (<span id="pill-count-unhandled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="handled">📋 Rule Queued (<span id="pill-count-handled">0</span>)</button>
           <button type="button" class="curator-filter-pill" data-filter="drift">⚠️ Page Drift (<span id="pill-count-drift">0</span>)</button>
@@ -1076,6 +1137,470 @@
     </div>
   </div>
 
+  <!-- Stagehand Hybrid Multi-Dimension Ripper Modal -->
+  <div class="curator-modal-overlay" id="stagehand-ripper-modal">
+    <div class="curator-modal-card manager-modal-card" style="max-width: 920px;">
+      <button type="button" class="curator-modal-close-btn" id="btn-close-stagehand-modal" aria-label="Close modal">✕</button>
+
+      <div class="curator-modal-header" style="margin-bottom: 12px; padding-right: 28px;">
+        <div class="curator-modal-icon" style="font-size: 2rem; margin-bottom: 4px;">⚡</div>
+        <h2 class="curator-modal-title" style="font-size: 1.25rem;">Stagehand Hybrid <span class="dyn-dim-label">Multi-Dimension</span> Ripper</h2>
+        <p class="curator-modal-desc" style="font-size: 0.82rem;">Autonomous AI browser automation with Google Gemini 3.8 Flash. Penetrates live checkout carts, reveals platform fees &amp; GST, auto-hydrates venue constants from registry, and populates 100% of the <span class="dyn-dim-count">96</span>-dimension evidence matrix.</p>
+      </div>
+
+      <!-- 1-Click Catalog-Wide Batch Section -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 14px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="flex: 1; min-width: 280px;">
+            <div style="font-weight: 700; color: #38bdf8; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+              <span>⚡ 1-Click Catalog-Wide Stagehand QC</span>
+              <span class="curator-badge curator-badge-verified" style="background: rgba(56,189,248,0.2); color: #38bdf8; font-size: 0.72rem;">Zero AI Laziness</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">
+              Sequentially spins up an isolated, fresh Stagehand Chromium instance for every event card (1-by-1) to penetrate the live checkout cart, capture photographic proof keyframes, verify fees &amp; GST, and populate all <span class="dyn-dim-count">96</span> dimensions.
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button type="button" class="btn-curator btn-curator-primary" id="btn-audit-all-events" style="background: linear-gradient(135deg, #0284c7, #2563eb); border-color: #38bdf8; font-weight: 700; padding: 8px 20px; white-space: nowrap; box-shadow: 0 4px 14px rgba(2,132,199,0.35);">
+              <span>🚀 Audit All Catalog Events (1-by-1)</span>
+            </button>
+          </div>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center; margin-top: 10px; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap;">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="chk-stagehand-unverified-only" checked style="accent-color: #38bdf8;">
+            <span>Unverified / Stale events only (Skip already verified with proof)</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="chk-stagehand-auto-approve" checked style="accent-color: #38bdf8;">
+            <span>Auto-commit verified cards to data/events.json</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Single / Custom URL Extraction Section -->
+      <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
+        <div style="font-weight: 600; color: #d8b4fe; font-size: 0.85rem; margin-bottom: 8px;">🎯 Single Target or Custom Calendar Drill</div>
+        <div style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px;">
+            <label class="curator-label" for="stagehand-url-input" style="font-size: 0.78rem; color: #d8b4fe;">Target Calendar or Event URL</label>
+            <input type="url" id="stagehand-url-input" class="curator-input" style="width: 100%; border-color: rgba(168, 85, 247, 0.35);" placeholder="https://littlemountaingallery.ca/schedule/ or direct ticket link">
+          </div>
+          <div style="width: 170px;">
+            <label class="curator-label" for="stagehand-mode-select" style="font-size: 0.78rem; color: #d8b4fe;">Extraction Mode</label>
+            <select id="stagehand-mode-select" class="curator-input" style="width: 100%;">
+              <option value="single">Single Event / Cart Drill</option>
+              <option value="calendar">Venue Calendar Wide Scan</option>
+              <option value="catalog_batch">Catalog Batch QC (Custom Limit)</option>
+              <option value="enrich">✍️ AI Semantic Enricher</option>
+              <option value="compile">🏛️ Compile &amp; Publish Catalog</option>
+            </select>
+          </div>
+          <div style="width: 110px;" id="stagehand-limit-wrapper">
+            <label class="curator-label" for="stagehand-limit-input" style="font-size: 0.78rem; color: #d8b4fe;">Max Events</label>
+            <input type="number" id="stagehand-limit-input" class="curator-input" style="width: 100%;" min="1" max="25" value="5">
+          </div>
+          <button type="button" class="btn-curator btn-curator-primary" id="btn-run-stagehand" style="background: #a855f7; border-color: #9333ea; padding: 7px 18px; font-weight: 600; white-space: nowrap;">
+            <span>🚀 Run Custom Target</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Execution Output & Status -->
+      <div id="stagehand-status-panel" style="display: none; margin-bottom: 14px; padding: 12px; border-radius: 8px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span id="stagehand-spinner" style="display: inline-block;">⚙️</span>
+            <span id="stagehand-status-text" style="font-weight: 600; font-size: 0.9rem; color: #c084fc;">Stagehand is analyzing...</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="stagehand-timer" style="font-size: 0.8rem; color: #94a3b8; font-family: monospace;">0s</span>
+            <button type="button" id="btn-stop-stagehand" class="btn-curator btn-curator-ghost" style="color: #f87171; border-color: rgba(248,113,113,0.4); padding: 3px 10px; font-size: 0.75rem; display: none;">
+              ⏹️ Stop / Pause
+            </button>
+          </div>
+        </div>
+        <pre id="stagehand-console-output" style="max-height: 280px; overflow-y: auto; background: #000; color: #a7f3d0; padding: 10px; border-radius: 6px; font-size: 0.75rem; font-family: monospace; white-space: pre-wrap; margin: 0;"></pre>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <span style="font-size: 0.8rem; color: #94a3b8;">Hybrid Architecture: Stagehand (Cart/Lineup) + Venue Registry + Invariant Engine</span>
+        <button type="button" class="btn-curator btn-curator-ghost" id="btn-close-stagehand-bottom">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Autonomous Pipeline Execution Stream Modal with Status Box, Time Estimate & Side-by-Side Card Comparison -->
+  <div class="curator-modal-overlay" id="pipeline-stream-modal">
+    <div class="curator-modal-card" style="width: 100%; max-width: 100%; height: 100%; max-height: 100%; box-sizing: border-box; overflow: hidden; background: #0b1120; border: none; padding: 10px 16px 14px 16px; display: flex; flex-direction: column;">
+      <!-- Slim Modal Header with Inline Tech Pill & Controls -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <h2 style="font-size: 1.15rem; color: #38bdf8; margin: 0; display: flex; align-items: center; gap: 6px;" id="pipeline-modal-title">
+            Autonomous Pipeline Execution
+          </h2>
+          <div id="pipeline-scan-tech-pill" class="tech-pill tech-pill-stagehand" style="font-size: 0.68rem; padding: 2px 7px;">
+            [Stagehand]
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" class="curator-modal-close-btn" id="btn-close-pipeline-modal" style="position: static; font-size: 0.82rem; font-weight: 700; padding: 6px 14px; border-radius: 6px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.22); color: #f1f5f9; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.15s ease;" aria-label="Return to Curator">
+            <span style="font-size: 1rem; line-height: 1;">✕</span>
+            <span>Return to Curator</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main 2-Column Split Layout: Controls/Logs (Left) vs. Card Comparison (Right) -->
+      <div class="pipeline-modal-grid" id="pipeline-modal-grid" style="width: 100%;">
+        <!-- LEFT COLUMN: Keep existing scan window controls, tracker, status box & logs intact -->
+        <div class="pipeline-modal-left-col">
+          <!-- Interactive Scan Configuration & Trigger Controls (Optimized Space) -->
+          <div id="pipeline-modal-controls" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+            <!-- Top Control Bar: Status Info + Primary Action Button (Button is ALWAYS Visible) -->
+            <div id="pipeline-top-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px;">
+              <!-- 1. Stage Status Column (standardized uniform height & typography) -->
+              <div style="flex: 1; min-width: 0; display: flex; align-items: center;">
+                <div id="pipeline-last-scanned-tracker" style="display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-height: 34px;">
+                  <span id="pipeline-last-scanned-label" style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #94a3b8; white-space: nowrap; flex-shrink: 0;">Stage Status:</span>
+                  <div id="pipeline-last-scanned-text" style="font-weight: 700; color: #38bdf8; font-size: 0.76rem; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">Ready</div>
+                  <button type="button" class="btn-limit-chip" id="btn-quick-continue-last" onclick="continueFromLastScanned()" style="display: none; height: 24px; padding: 0 8px; font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 600; cursor: pointer; white-space: nowrap; align-items: center;">
+                    Continue from Next Card ➔
+                  </button>
+                </div>
+                <div id="pipeline-harvester-status-info" style="display: none;"></div>
+              </div>
+
+              <!-- Action Trigger Buttons (ALWAYS visible in top bar!) -->
+              <div id="pipeline-action-buttons-group" style="display: flex; align-items: center; gap: 8px; margin-left: auto; align-self: center;">
+                <button type="button" id="btn-trigger-pipeline-run" class="btn-curator btn-curator-primary" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); border-color: #38bdf8; color: #fff; font-weight: 800; padding: 6px 16px; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45); cursor: pointer; border-radius: 6px;">
+                  <span id="btn-trigger-pipeline-label">Run Scan Now</span>
+                </button>
+                <button type="button" id="btn-stop-pipeline-top" class="btn-curator" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); border-color: #f87171; color: #fff; font-weight: 700; padding: 6px 16px; font-size: 0.82rem; display: none; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); cursor: pointer; border-radius: 6px;">
+                  <span>Stop Scan</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dedicated Schedule Harvester Venue Feeds Selector (Dropdown Selection, Default: All Feeds) -->
+            <div id="pipeline-harvester-venue-feed-wrapper" style="display: none; background: rgba(192, 132, 252, 0.08); border: 1px solid rgba(192, 132, 252, 0.32); border-radius: 8px; padding: 10px 12px; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <label style="font-size: 0.74rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 6px;">
+                  <span>🏛️</span> Target Venue Feed:
+                </label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span id="pipeline-harvester-feed-count-badge" style="font-size: 0.68rem; color: #d8b4fe; background: rgba(192, 132, 252, 0.18); border: 1px solid rgba(192, 132, 252, 0.35); border-radius: 12px; padding: 1px 8px; font-weight: 600;">
+                    All Feeds Mode
+                  </span>
+                  <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: #94a3b8; font-size: 0.72rem;">
+                    <input type="checkbox" id="pipeline-harvester-auto-approve" checked style="accent-color: #c084fc;">
+                    <span>Auto-commit</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Search Venue Feeds by Name, Source, or Neighborhood -->
+              <div style="position: relative; display: flex; align-items: center;">
+                <input type="text" id="pipeline-search-venue-feed" class="curator-input" style="width: 100%; font-size: 0.76rem; padding: 5px 28px 5px 26px; background: #0b1120; border: 1px solid rgba(192, 132, 252, 0.4); color: #f8fafc; border-radius: 6px;" placeholder="🔍 Search venue feed by name, source, or neighborhood..." oninput="onSearchVenueFeedInput(this.value)">
+                <span style="position: absolute; left: 8px; font-size: 0.74rem; color: #c084fc; pointer-events: none;">🔍</span>
+                <button type="button" id="btn-clear-venue-search" onclick="clearVenueFeedSearch()" style="position: absolute; right: 8px; background: none; border: none; color: #94a3b8; font-size: 0.75rem; cursor: pointer; display: none; padding: 2px 4px;" title="Clear search">✕</button>
+              </div>
+
+              <!-- Drop-Down Selection for Particular Venue Feeds -->
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <select id="pipeline-select-venue-feed" class="curator-input" style="flex: 1; font-size: 0.78rem; padding: 6px 10px; background: #0b1120; border: 1px solid rgba(192, 132, 252, 0.45); color: #f8fafc; border-radius: 6px; cursor: pointer;" onchange="onVenueFeedSelected(this.value)">
+                  <option value="all" selected>🌐 All Venue Feeds (Default — Crawl all venue calendars)</option>
+                </select>
+                <button type="button" class="btn-limit-chip" id="btn-reset-venue-feed" onclick="resetVenueFeedToAll()" style="padding: 4px 10px; font-size: 0.7rem; color: #c084fc; border-color: rgba(192, 132, 252, 0.4); display: none;" title="Reset selection to All Venue Feeds">
+                  ↺ All Feeds
+                </button>
+              </div>
+
+              <!-- Active Feed URL details & custom URL override -->
+              <div id="pipeline-harvester-url-row" style="display: flex; align-items: center; gap: 8px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 5px; padding: 5px 8px;">
+                <span style="font-size: 0.7rem; color: #c084fc; font-weight: 700; white-space: nowrap;">URL:</span>
+                <span id="pipeline-harvester-url-display" style="font-size: 0.74rem; font-family: monospace; color: #cbd5e1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;">
+                  Crawling all active venue calendars sequentially
+                </span>
+                <input type="url" id="pipeline-harvester-custom-url" class="curator-input" style="display: none; flex: 1; font-size: 0.74rem; padding: 3px 8px; background: #0b1120; border: 1px solid rgba(192, 132, 252, 0.5); color: #f8fafc; border-radius: 4px;" placeholder="https://venue.com/events/" oninput="onHarvesterCustomUrlInput(this.value)">
+                <button type="button" id="btn-harvester-custom-url-toggle" class="btn-limit-chip" onclick="toggleHarvesterCustomUrl()" style="font-size: 0.66rem; color: #94a3b8; padding: 2px 7px;" title="Switch to custom URL entry">
+                  Custom URL
+                </button>
+              </div>
+
+              <!-- Dedicated Stage 1A Harvest Event Cap Selector -->
+              <div id="pipeline-harvester-batch-row" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 6px; padding: 6px 10px;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #c084fc; display: flex; align-items: center; gap: 5px;">
+                  <span>🎯</span> Harvest Event Cap:
+                </span>
+                <div class="pipeline-batch-size-selector" style="display: flex; align-items: center; gap: 4px;">
+                  <button type="button" class="btn-limit-chip active" id="chip-harvester-batch-5" onclick="setPipelineBatchSize(5)">5</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-10" onclick="setPipelineBatchSize(10)">10</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-25" onclick="setPipelineBatchSize(25)">25</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-50" onclick="setPipelineBatchSize(50)">50</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-all" onclick="setPipelineBatchSize('all')">All</button>
+                  <button type="button" class="btn-limit-chip" id="chip-harvester-batch-custom" onclick="promptCustomBatchSize()" title="Enter custom count">#</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target URL Input Wrapper (for Single Ticket URL scans like Stagehand QC) -->
+            <div id="pipeline-target-wrapper" style="display: none; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 7px 10px; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <label style="font-size: 0.72rem; font-weight: 700; color: #38bdf8; white-space: nowrap;">Single Target Ticket URL:</label>
+              <input type="url" id="pipeline-input-url" class="curator-input" style="flex: 1; min-width: 250px; font-size: 0.76rem; padding: 4px 8px; background: #0b1120; border: 1px solid rgba(56, 189, 248, 0.4); color: #f8fafc; border-radius: 4px;" placeholder="Paste single ticket/checkout URL to audit, or leave empty for catalog batch">
+              <button type="button" class="btn-limit-chip" onclick="document.getElementById('pipeline-input-url').value=''" style="font-size: 0.68rem; color: #94a3b8;">Clear</button>
+            </div>
+
+            <!-- Target Scan Scope Selection (Pills Row with Auto-Commit) -->
+            <div id="pipeline-scope-selector-section" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 6px;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8;">
+                  Scope:
+                </span>
+                <div style="display: flex; gap: 5px; flex-wrap: wrap;" id="pipeline-scope-selector-grid">
+                  <button type="button" class="pipeline-scope-pill active" data-scope="unscanned" id="scope-card-unscanned" onclick="setPipelineScope('unscanned')">
+                    <span class="scope-radio-dot">●</span> <span id="scope-pill-unscanned-label">Unscanned Only</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="incomplete" id="scope-card-incomplete" onclick="setPipelineScope('incomplete')" title="Target events missing any scan layer (Box Office, Harvester, Editorial, or Compiler)">
+                    <span class="scope-radio-dot">○</span> <span id="scope-pill-incomplete-label">Incomplete Scans</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="stale" id="scope-card-stale" onclick="setPipelineScope('stale')" title="Target events not audited within selected time window (24h, 48h, 1w, etc.)">
+                    <span class="scope-radio-dot">○</span> <span id="scope-pill-stale-label">Stale (&gt;24h)</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="range" id="scope-card-range" onclick="setPipelineScope('range')">
+                    <span class="scope-radio-dot">○</span> <span>Card Range</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="single_card" id="scope-card-single_card" onclick="setPipelineScope('single_card')">
+                    <span class="scope-radio-dot">○</span> <span id="scope-pill-single-label">Single Card</span>
+                  </button>
+                  <button type="button" class="pipeline-scope-pill" data-scope="all" id="scope-card-all" onclick="setPipelineScope('all')" title="Force re-scan of ALL events across catalog even if already verified">
+                    <span class="scope-radio-dot">○</span> <span id="scope-pill-all-label">Re-scan All</span>
+                  </button>
+                </div>
+              </div>
+              <label style="display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: #94a3b8; font-size: 0.72rem;">
+                <input type="checkbox" id="pipeline-input-auto-approve" checked style="accent-color: #38bdf8;">
+                <span>Auto-commit</span>
+              </label>
+            </div>
+
+            <!-- Stale Elapsed Time Selection (Appears when Stale scope is active) -->
+            <div id="pipeline-stale-wrapper" style="display: none; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 6px; padding: 6px 10px; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 0.72rem; font-weight: 700; color: #fbbf24; white-space: nowrap;">⏱️ Staleness Threshold:</span>
+              <select id="pipeline-stale-duration" class="curator-input" style="font-size: 0.74rem; padding: 3px 8px; background: #0b1120; border: 1px solid rgba(245, 158, 11, 0.5); color: #f8fafc; border-radius: 4px;" onchange="onStaleDurationChange(this.value)">
+                <option value="24h" selected>&gt; 24 Hours</option>
+                <option value="48h">&gt; 48 Hours</option>
+                <option value="1w">&gt; 1 Week (7 Days)</option>
+                <option value="1m">&gt; 1 Month (30 Days)</option>
+              </select>
+              <span id="pipeline-stale-count-badge" style="font-size: 0.72rem; color: #fde68a; font-weight: 600;">(Calculating...)</span>
+              <div style="display: flex; gap: 4px; margin-left: auto;">
+                <button type="button" class="btn-limit-chip" onclick="setQuickStaleDuration('24h')">24h</button>
+                <button type="button" class="btn-limit-chip" onclick="setQuickStaleDuration('48h')">48h</button>
+                <button type="button" class="btn-limit-chip" onclick="setQuickStaleDuration('1w')">1 Week</button>
+                <button type="button" class="btn-limit-chip" onclick="setQuickStaleDuration('1m')">1 Month</button>
+              </div>
+            </div>
+
+            <!-- Card Range Inputs (Start Number & Stop Number) -->
+            <div id="pipeline-range-wrapper" style="background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 5px 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Start #:</label>
+                <input type="number" id="pipeline-card-start" class="curator-input" style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200" value="1" oninput="onStartNumberInput()">
+              </div>
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1;">Stop #:</label>
+                <input type="number" id="pipeline-card-stop" class="curator-input" style="width: 54px; font-size: 0.76rem; padding: 2px 4px; text-align: center;" min="1" max="200" value="5" oninput="onStopNumberInput()">
+              </div>
+              <div id="pipeline-range-count-badge" style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
+                (5 Cards Selected: #1 to #5)
+              </div>
+              <div style="display: flex; gap: 4px; margin-left: auto;">
+                <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(5)" title="Scan 5 cards from start">+5</button>
+                <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(10)" title="Scan 10 cards from start">+10</button>
+                <button type="button" class="btn-limit-chip" onclick="setQuickRangeIncrement(25)" title="Scan 25 cards from start">+25</button>
+                <button type="button" class="btn-limit-chip" onclick="setFullCatalogRange()" title="Scan entire catalog from #1 to end">All (1–156)</button>
+              </div>
+            </div>
+
+            <!-- Select Specific Event Card by Name or Live Autopopulating Search -->
+            <div id="pipeline-single-card-wrapper" style="background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 8px 10px; display: none; flex-direction: column; gap: 8px; position: relative;">
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <label style="font-size: 0.72rem; font-weight: 600; color: #cbd5e1; white-space: nowrap;">Event Card:</label>
+                <select id="pipeline-select-card-name" class="curator-input" style="flex: 1; font-size: 0.76rem; padding: 4px 6px; background: #0f172a; color: #e2e8f0; cursor: pointer;" onchange="onCardNameSelected(this.value)">
+                  <option value="">-- Choose an event card from catalog --</option>
+                </select>
+                <button type="button" class="btn-limit-chip" id="btn-clear-card-select" onclick="clearSelectedCardName()" style="padding: 3px 8px; font-size: 0.7rem; display: none;">
+                  Clear
+                </button>
+              </div>
+              <div style="position: relative;">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <label style="font-size: 0.72rem; color: #38bdf8; font-weight: 600; white-space: nowrap; display: flex; align-items: center; gap: 4px;">
+                    <span>🔍</span> Search Card:
+                  </label>
+                  <div style="position: relative; flex: 1; display: flex; align-items: center;">
+                    <input type="text" id="pipeline-custom-card-ids" class="curator-input" style="width: 100%; font-size: 0.76rem; padding: 4px 26px 4px 8px; background: #0b1120; border-color: rgba(56, 189, 248, 0.35); color: #f8fafc;" placeholder="Search card by title, venue, artist, or #..." oninput="onCustomCardSearchInput(this.value)" onfocus="onCustomCardSearchFocus()" autocomplete="off">
+                    <button type="button" id="btn-clear-custom-cards" onclick="clearCustomCardSearch()" style="position: absolute; right: 6px; background: transparent; border: none; color: #94a3b8; font-size: 0.82rem; cursor: pointer; display: none; padding: 0 4px;" title="Clear search">✕</button>
+                  </div>
+                </div>
+                <!-- Autopopulating Suggestions Dropdown Menu -->
+                <div id="pipeline-card-search-results" style="display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 240px; overflow-y: auto; background: #0b1222; border: 1px solid rgba(56, 189, 248, 0.45); border-radius: 6px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(56, 189, 248, 0.2); z-index: 1000; padding: 4px 0;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compact Live Status Box -->
+          <div id="pipeline-status-box" style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 8px; padding: 8px 12px; flex-shrink: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 200px;">
+                <span id="pipeline-spinner" class="pipeline-loader-ring stopped"></span>
+                <div style="overflow: hidden;">
+                  <div id="pipeline-status-text" style="font-weight: 700; font-size: 0.84rem; color: #38bdf8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ready to scan</div>
+                  <div id="pipeline-status-subtext" style="font-size: 0.72rem; color: #94a3b8; margin-top: 1px; display: none;">Establishing stream...</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="pipeline-timer" style="font-family: monospace; font-size: 0.76rem; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">Elapsed: 0s</span>
+                <button type="button" id="btn-stop-pipeline" class="btn-limit-chip" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fca5a5; font-weight: 700; padding: 2px 8px; font-size: 0.74rem; display: none; cursor: pointer;">
+                  Stop Scan
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Countdown & Progress Metrics -->
+            <div id="pipeline-active-metrics" style="display: none; margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; flex-wrap: wrap; gap: 4px;">
+                <div id="pipeline-eta" style="font-weight: 700; color: #fbbf24; display: flex; align-items: center; gap: 5px;">
+                  <span>Est. Remaining:</span> <span id="pipeline-eta-value">~Calculating...</span>
+                </div>
+                <div id="pipeline-item-progress" style="color: #cbd5e1; font-size: 0.74rem; font-family: monospace;">
+                  Standing by
+                </div>
+              </div>
+
+              <!-- Animated Gradient Progress Bar -->
+              <div style="height: 5px; width: 100%; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; margin-top: 6px; border: 1px solid rgba(255,255,255,0.05);">
+                <div id="pipeline-progress-bar" style="width: 5%; height: 100%; background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #a855f7 100%); border-radius: 999px; transition: width 0.4s ease;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dedicated AI Timeout & Issue Notification Banner (Hidden until a timeout/issue occurs) -->
+          <div id="pipeline-timeout-alert-box" style="display: none; background: rgba(127, 29, 29, 0.35); border: 1.5px solid rgba(248, 113, 113, 0.65); border-radius: 8px; padding: 8px 12px; flex-shrink: 0; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
+              <div style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 800; color: #fca5a5;">
+                <span>🚨</span>
+                <span id="pipeline-timeout-alert-title">AI Worker Timeouts / Issues Detected (0 Events)</span>
+              </div>
+              <button type="button" class="btn-limit-chip" onclick="const box = document.getElementById('pipeline-timeout-alert-box'); if (box) box.style.display = 'none';" style="font-size: 0.66rem; padding: 1px 7px; color: #fecaca; border-color: rgba(248, 113, 113, 0.4);">
+                Dismiss
+              </button>
+            </div>
+            <div id="pipeline-timeout-alert-list" style="max-height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; font-size: 0.73rem;"></div>
+          </div>
+
+          <!-- Dedicated Full-Height Terminal Log Panel extending to bottom of AI Window (Request 2) -->
+          <div id="pipeline-live-diff-panel" style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.4); flex: 1 1 0; display: flex; flex-direction: column; min-height: 140px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.74rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 5px;">
+                  <span>📟</span> Live Terminal Log
+                </span>
+                <span id="pipeline-diff-counter-badge" style="font-size: 0.66rem; font-weight: 700; background: rgba(56, 189, 248, 0.18); color: #38bdf8; padding: 1px 7px; border-radius: 999px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                  0 Finished
+                </span>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button type="button" class="btn-limit-chip" onclick="clearPipelineTerminal()" style="font-size: 0.66rem; padding: 1px 7px;">Clear Log</button>
+              </div>
+            </div>
+
+            <!-- Terminal Output stretching to bottom -->
+            <pre id="pipeline-console-output" style="flex: 1 1 0; height: 100%; min-height: 110px; max-height: none; overflow-y: auto; background: #000; color: #a7f3d0; padding: 10px 12px; font-size: 0.72rem; font-family: monospace; white-space: pre-wrap; margin: 0; line-height: 1.45; border: none;"></pre>
+            
+            <!-- Hidden tbody for backward-compatibility with diff row registration -->
+            <table style="display: none;"><tbody id="pipeline-diff-tbody"></tbody></table>
+          </div>
+        </div>
+
+        <!-- DRAGGABLE RESIZER BETWEEN TERMINAL AND YIELD COMPARISON -->
+        <div class="pipeline-main-resizer" id="pipeline-main-resizer" title="Click and drag to resize Terminal vs Yield columns"></div>
+
+        <!-- RIGHT COLUMN: Side-by-side card yield inspection (Before vs. After) -->
+        <div class="pipeline-modal-right-col" id="pipeline-modal-right-col">
+          <!-- Comparison Header Toolbar (Card picker, prev/next, status pill) -->
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <div>
+                <div style="font-size: 0.84rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+                  <span>📋</span> <span id="pipeline-comparison-header-title">AI Card Yield Comparison (Before vs. After)</span>
+                </div>
+                <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 1px;" id="pipeline-comparison-header-desc">
+                  Baseline state before scan vs. only information obtained by this particular AI run.
+                </div>
+              </div>
+              <button type="button" class="btn-limit-chip" id="btn-comp-filter-inscope" onclick="toggleComparisonInScopeFilter()" style="padding: 2px 9px; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.18); color: #94a3b8;" title="Toggle between showing all 0XX–8XX dimensions vs only dimensions modified by this pipeline step">
+                <span id="btn-comp-filter-icon">🎯</span>
+                <span id="btn-comp-filter-label">Show Step Dimensions Only</span>
+                <span id="btn-comp-filter-count" style="font-size: 0.62rem; padding: 1px 6px; border-radius: 9999px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; margin-left: 2px; font-weight: 800;">(0)</span>
+              </button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div id="pipeline-comparison-nav-toolbar" style="display: flex; align-items: center; gap: 6px;">
+                <button type="button" class="btn-limit-chip" id="btn-comp-prev-card" onclick="stepComparisonCard(-1)" title="Previous audited card" disabled style="padding: 2px 7px; font-size: 0.7rem;">◀ Prev</button>
+                <select id="pipeline-comparison-card-select" class="curator-input" style="font-size: 0.72rem; padding: 2px 6px; max-width: 220px; background: #0f172a; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);" onchange="onComparisonCardSelectChange(this.value)">
+                  <option value="">Awaiting scan...</option>
+                </select>
+                <button type="button" class="btn-limit-chip" id="btn-comp-next-card" onclick="stepComparisonCard(1)" title="Next audited card" disabled style="padding: 2px 7px; font-size: 0.7rem;">Next ▶</button>
+              </div>
+              <span id="pipeline-comp-status-pill" class="diff-badge-status nodrift" style="font-size: 0.66rem; padding: 2px 8px;">
+                Standing by
+              </span>
+            </div>
+          </div>
+
+          <!-- Active AI Target Dimensions Highlight Banner (Request 4) -->
+          <div id="pipeline-scope-highlight-banner" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 6px 12px; margin-top: 8px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; flex-wrap: wrap; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="font-weight: 700; color: #38bdf8; display: inline-flex; align-items: center; gap: 4px;">
+                <span>🎯</span> Target Dimensions Checked by This AI:
+              </span>
+              <span id="pipeline-scope-target-dims-text" style="color: #f8fafc; font-weight: 600;">
+                D1, D7, D12, D13, D15, D35, Proof Keyframe
+              </span>
+            </div>
+            <span id="pipeline-scope-accent-pill" style="color: #38bdf8; font-size: 0.66rem; font-weight: 700; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); padding: 1px 7px; border-radius: 999px;">
+              Highlighted with Blue Accent Below
+            </span>
+          </div>
+
+          <!-- 3-Column Comparative Dimension Table Container -->
+          <div class="pipeline-comparison-cards-row" id="pipeline-comparison-cards-row" style="display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; width: 100%; overflow-y: auto; overflow-x: auto;">
+            <div id="pipeline-comp-table-container" class="pipeline-3col-table-container" style="flex: 1 1 0; min-height: 0; overflow-y: auto; overflow-x: auto;">
+              <!-- Dynamically populated with 3-Column Comparative Table -->
+            </div>
+            <!-- Dedicated Harvester 3-Region Comparison Container -->
+            <div id="pipeline-harvester-comparison-view" style="display: none; width: 100%; flex: 1 1 0; min-height: 0; overflow-y: auto;"></div>
+            <!-- Hidden mirror elements to ensure zero breakage for legacy references -->
+            <div id="pipeline-comp-card-before" style="display: none;"></div>
+            <div id="pipeline-comp-resizer" style="display: none;"></div>
+            <div id="pipeline-comp-card-after" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Screenshots -->
+  <div id="screenshot-lightbox-modal" class="curator-modal-overlay" onclick="closeScreenshotModal()" style="display: none;">
+    <div style="position: relative; max-width: 92vw; max-height: 90vh; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="Proof Preview" style="max-width: 100%; max-height: 88vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: contain;">
+      <button type="button" onclick="closeScreenshotModal()" style="position: absolute; top: -14px; right: -14px; width: 32px; height: 32px; border-radius: 50%; background: #1e293b; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">✕</button>
+    </div>
+  </div>
 
   <!-- Toast Feedback -->
   <div class="curator-toast" id="curator-toast"></div>
@@ -1119,13 +1644,13 @@
       if (link && link.href) {
         const href = link.getAttribute('href') || '';
         // Skip local links within Curator Studio
-        if (href === 'curator.html' || href === 'curator-table.html' || href === 'index.html') return;
+        if (href === 'curator.html' || href === 'curator-agy.html' || href === 'curator-table.html' || href === 'index.html') return;
         if (href.startsWith('http://127.0.0.1:8080/curator') || href.startsWith('http://localhost:8080/curator')) return;
         e.preventDefault();
         openCuratorWindow(link.href);
       }
     });
   </script>
-  <script src="js/curator.js?v=1.3.0"></script>
+  <script src="js/curator.js?v=1.3.9"></script>
 </body>
 </html>

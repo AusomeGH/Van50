@@ -95,8 +95,9 @@ def verify_anti_laziness_invariants() -> bool:
         events = json.load(f)
 
     violations = []
-    out_words = ['bell centre', 'parc jean-drapeau', 'le balcon', 'th\xe9\xe2tre des muses', 'foufounes', 'place des arts', 'newspeak', 'society for arts', 'th\xe9\xe2tre beanfield', 'fairmount', 'ausgang plaza', 'mtelus', 'coda-tickets', 'bondst-event-centre', 'live in toronto', 'live in victoria', 'live in osh']
-    agg_venues = ['songkick vancouver', 'orange tickets canada', 'vtix online', 'eventbrite vancouver', 'do604', 'the georgia straight', 'ticketweb (vancouver)', 'broadway across canada (vancouver)', 'scene in the dark']
+    # Out-of-market geographic region indicators (provinces, non-Metro BC, out-of-market metros)
+    out_region_tokens = (', on', ', qc', ', ab', 'toronto', 'montreal', 'calgary', 'edmonton', 'ottawa', 'victoria, bc', 'whistler')
+    agg_portal_tokens = ('songkick', 'orange tickets', 'vtix', 'eventbrite', 'do604', 'the georgia straight', 'ticketweb', 'broadway across canada', 'admitone', 'dice.fm', 'universe.com', 'livenation')
 
     for e in events:
         eid = e.get("event_id", "unknown")
@@ -106,7 +107,13 @@ def verify_anti_laziness_invariants() -> bool:
         ticket = str(e.get("ticket_url", ""))
         dt = e.get("date")
         show1 = e.get("show_1") or {}
-        price = e.get("price", 0.0)
+        price = e.get("price_all_in")
+        if not isinstance(price, (int, float)):
+            raw_p = e.get("price", 0.0)
+            if isinstance(raw_p, (int, float)):
+                price = raw_p
+            else:
+                price = 0.0
         lifecycle = e.get("lifecycle_type")
         blob = f"{eid} {title} {venue} {disc} {ticket}".lower()
 
@@ -114,28 +121,47 @@ def verify_anti_laziness_invariants() -> bool:
         if price > 50.0:
             violations.append(f"[{eid}] Exceeds $50 CAD ceiling (${price})")
 
-        # Rule 2: Geofence (No Out-of-Market)
-        for ow in out_words:
-            if ow in blob:
-                violations.append(f"[{eid}] Out-of-market location: {ow}")
+        # Rule 2: Geofence & Boundary Invariant (Deterministic Numerical GPS Bounding Box & Out-of-Market Rejection)
+        coords = e.get("coordinates")
+        if isinstance(coords, (list, tuple)) and len(coords) == 2:
+            try:
+                lat, lng = float(coords[0]), float(coords[1])
+                # Metro Vancouver roughly: 49.0 <= lat <= 49.5 and -123.4 <= lng <= -122.4
+                if not (49.0 <= lat <= 49.5 and -123.4 <= lng <= -122.4):
+                    violations.append(f"[{eid}] Coordinates [{lat}, {lng}] outside Metro Vancouver bounding box")
+            except (ValueError, TypeError):
+                violations.append(f"[{eid}] Malformed numerical coordinates: {coords}")
+
+        for ort in out_region_tokens:
+            if ort in blob:
+                violations.append(f"[{eid}] Out-of-market geographic indicator detected: '{ort}'")
                 break
 
-        # Rule 3: Entity Invariant (No Ticketing Portals as Venues)
-        for av in agg_venues:
-            if av in venue.lower():
+        # Rule 3: Entity Invariant (No Ticketing Portals as Venues & Physical Civic Street Address Required)
+        venue_lower = venue.lower()
+        for apt in agg_portal_tokens:
+            if apt in venue_lower:
                 violations.append(f"[{eid}] Aggregator portal used as venue: {venue}")
                 break
+
+        venue_addr = str(e.get("full_address") or e.get("address") or "").strip()
+        if not venue_addr:
+            violations.append(f"[{eid}] Missing physical civic street address for venue: '{venue}'")
 
         # Rule 4: Lifecycle Invariant (No Missing Dates)
         if not dt and not show1.get("date") and lifecycle != "perennial_drop_in":
             violations.append(f"[{eid}] Non-perennial event lacks active date")
 
-        # Rule 5: Honest Dimension Audit (No Fake 50/50)
+        # Rule 5: Honest Dimension Audit (No Fake Perfect Score)
         da = e.get("dimension_audit")
-        if da and da.get("dimensions_score") == "50/50":
-            d2 = da.get("dimensions", {}).get("D2_date", {})
-            if d2.get("value") is None and lifecycle != "perennial_drop_in":
-                violations.append(f"[{eid}] Fake 50/50 score with D2_date=None")
+        if da and da.get("dimensions_score"):
+            score_str = str(da.get("dimensions_score")).strip()
+            parts = score_str.split("/")
+            if len(parts) == 2 and parts[0] == parts[1] and parts[0].isdigit():
+                dims = da.get("dimensions") if isinstance(da.get("dimensions"), dict) else da
+                d2 = dims.get("D2_date", {}) or dims.get("D303_date", {})
+                if (not d2 or d2.get("value") is None) and lifecycle != "perennial_drop_in":
+                    violations.append(f"[{eid}] Fake {score_str} score with D2_date=None")
 
         # Rule 6: Asset File Rejection (No static assets as event URLs)
         asset_exts = ('.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.woff', '.woff2', '.ttf', '.ico', '.map')
@@ -184,6 +210,48 @@ def verify_anti_laziness_invariants() -> bool:
         for bad_title in ("ticketweb -", "eventbrite -", "showpass -", "tickets for independent concerts"):
             if bad_title in title_lower:
                 violations.append(f"[{eid}] Generic platform marketing copy in title: {title}")
+                break
+
+        # Rule 11: Root Timestamp & Proof Image Integrity (Anti-Half-Update)
+        proof = e.get("proof_image")
+        root_pulse = e.get("last_pulse_qc_at")
+        root_qc = e.get("last_qc_audited_at")
+        nested_pulse = da.get("last_pulse_qc_at") if da else None
+        if proof and (not root_pulse or not root_qc):
+            violations.append(f"[{eid}] Has proof_image '{proof}' but root last_pulse_qc_at or last_qc_audited_at is null")
+        if nested_pulse and not root_pulse:
+            violations.append(f"[{eid}] Has nested dimension_audit.last_pulse_qc_at but root last_pulse_qc_at is null")
+
+        # Rule 12: Ephemeral Checkout Session URLs & Widget Token Rejection (Anti-Session Hash)
+        import re
+        from urllib.parse import urlparse
+        ephemeral_patterns = (
+            r'/chk/[a-f0-9]{16,}',       # Ticket Tailor CSRF/session hash
+            r'widget=true',               # Bare iframe widget parameter
+            r'session_id=',               # Generic session parameters
+            r'[?&](fbclid|gclid|_gl)=',   # Tracking click identifiers
+        )
+        for u in all_event_urls:
+            for pat in ephemeral_patterns:
+                if re.search(pat, u, re.IGNORECASE):
+                    violations.append(f"[{eid}] Ephemeral session/widget parameter in URL: {u}")
+                    break
+
+        # Rule 13: URL Deep-Link Invariant (No Bare Root Domains as Ticket URLs)
+        ticket_url_clean = str(ticket).strip()
+        if ticket_url_clean and ticket_url_clean.startswith("http"):
+            parsed_u = urlparse(ticket_url_clean)
+            path_clean = parsed_u.path.strip('/')
+            # Check major ticketing portals dropping users on homepages
+            major_ticket_portals = ('showpass.com', 'ticketmaster.ca', 'ticketmaster.com', 'admitone.com', 'ticketweb.ca', 'eventbrite.ca', 'eventbrite.com')
+            if any(portal in parsed_u.netloc.lower() for portal in major_ticket_portals) and not path_clean:
+                violations.append(f"[{eid}] Bare root domain used as ticket_url instead of deep link: {ticket}")
+
+        # Rule 14: String Hygiene (Button Concatenations & Navigation Tabs in Title)
+        bad_title_artifacts = (r'\bbuy tickets\b', r'\bmoreinfo[→>]*\b', r'\bregister now\b', r'\bget season tickets\b', r'\bclick here\b')
+        for bta in bad_title_artifacts:
+            if re.search(bta, title, re.IGNORECASE):
+                violations.append(f"[{eid}] Button/navigation artifact in title: '{title}'")
                 break
 
     if violations:

@@ -1,0 +1,1900 @@
+{
+  "tier_id": "tier1_pulse",
+  "tier_name": "Pulse QC (Daily - 14 Volatile Dims)",
+  "sla_hours": 24,
+  "last_updated": "2026-10-14T13:15:00-07:00",
+  "cursor": {
+    "last_card_number": 70,
+    "last_perm_id": "Event_Num_Perm_000000070",
+    "last_card_id": "Event_Num_Card_000000070",
+    "last_event_id": "van50-commercial-drive-bia-halloween-20261031",
+    "last_event_title": "Halloween on The Drive: Trick'r Treat Parade",
+    "last_scanned_at": "2026-10-14T13:15:00-07:00",
+    "next_card_number": 71,
+    "next_perm_id": "Event_Num_Perm_000000071",
+    "next_card_id": "Event_Num_Card_000000071",
+    "next_event_id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
+    "next_event_title": "Comedy on The Drive at The Historic York Theatre"
+  },
+  "events": {
+    "van50-commercial-drive-bia-halloween-20261031": {
+      "Event_Num_Perm": "Event_Num_Perm_000000070",
+      "Event_Num_Card": "Event_Num_Card_000000070",
+      "title": "Halloween on The Drive: Trick'r Treat Parade",
+      "venue": "Commercial Drive BIA (Venables St to 13th Ave)",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:15:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:15:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_70_1792008865416.webp",
+            "verbatim_quote": "Costumes on. Candy bags ready. Let’s trick-or-treat! Halloween on The Drive returns with participating businesses from Venables to E 13th Ave handing out treats to little ghosts, goblins, superheroes and more."
+          },
+          "input_payload": {
+            "target_url": "https://thedrive.ca/halloween-2026/",
+            "event_title": "Halloween on The Drive: Trick'r Treat Parade",
+            "venue_name": "Commercial Drive BIA (Venables St to 13th Ave)"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://thedrive.ca/halloween-2026/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Free Public Community Access",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Free Public Access (Commercial Drive BIA)",
+            "D35_startIso": "2026-10-31"
+          }
+        }
+      ]
+    },
+    "van50-tightrope-theatre-murder-she-improvised-20261113": {
+      "Event_Num_Perm": "Event_Num_Perm_000000069",
+      "Event_Num_Card": "Event_Num_Card_000000069",
+      "title": "Murder She Improvised",
+      "venue": "Tightrope Impro Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:13:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:13:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_69_1792008753235.webp",
+            "verbatim_quote": "General Admission $35.00 + $1.75 GST"
+          },
+          "input_payload": {
+            "target_url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025117/chk/58d4fa8741f93364872e3aaed65963df/",
+            "event_title": "Murder She Improvised",
+            "venue_name": "Tightrope Impro Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025117/chk/58d4fa8741f93364872e3aaed65963df/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 35.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 1.75,
+            "D15_tier1_price_all_in": 36.75,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Ticket Tailor",
+            "D35_startIso": "2026-11-13"
+          }
+        }
+      ]
+    },
+    "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000068",
+      "Event_Num_Card": "Event_Num_Card_000000068",
+      "title": "Vancouver's Next Top Improviser",
+      "venue": "Tightrope Impro Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:11:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:11:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_68_1792008686311.webp",
+            "verbatim_quote": "General Admission $25.00 + $1.25 GST"
+          },
+          "input_payload": {
+            "target_url": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025049/chk/5411b9d334137484a15aa27a7a347479/",
+            "event_title": "Vancouver's Next Top Improviser",
+            "venue_name": "Tightrope Impro Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025049/chk/5411b9d334137484a15aa27a7a347479/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 25.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 1.25,
+            "D15_tier1_price_all_in": 26.25,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Ticket Tailor",
+            "D35_startIso": "2026-10-16"
+          }
+        }
+      ]
+    },
+    "van50-tightrope-theatre-the-yes-files-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000067",
+      "Event_Num_Card": "Event_Num_Card_000000067",
+      "title": "The Yes Files",
+      "venue": "Tightrope Impro Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:10:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:10:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_67_1792008589258.webp",
+            "verbatim_quote": "General Admission $25.00 + $1.25 GST"
+          },
+          "input_payload": {
+            "target_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358468",
+            "event_title": "The Yes Files",
+            "venue_name": "Tightrope Impro Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.tightropetheatre.com/checkout/view-event/id/9025107/chk/db6021873a58454c60bffa143420ee78/?widget=true&ref=event_page_widget&minimal=true&show_logo=false&bg_fill=true&disable_custom_colors=true&color_background=0b0a0a&color_text=f5f5f5&color_button_bg=f5f5f5&color_button_text=0b0a0a&color_header_bg=0b0a0a&color_header_text=f5f5f5&disable-widget=true#top",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 25.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 1.25,
+            "D15_tier1_price_all_in": 26.25,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Ticket Tailor",
+            "D35_startIso": "2026-10-16"
+          }
+        }
+      ]
+    },
+    "van50-latincouver-catrinas-procession-gastown-20261102": {
+      "Event_Num_Perm": "Event_Num_Perm_000000066",
+      "Event_Num_Card": "Event_Num_Card_000000066",
+      "title": "Catrinas Procession: Día de los Muertos",
+      "venue": "Gastown Historic District (Abbott & W Cordova St)",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:08:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:08:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_66_1792008506041.webp",
+            "verbatim_quote": "The Catrinas Procession at Granville Island is a living tribute to the rich cultural heritage of Mexico’s Día de los Muertos. Rooted in pre-Hispanic traditions and popularized by artist José Guadalupe Posada..."
+          },
+          "input_payload": {
+            "target_url": "https://latincouver.ca/lahm/events/catrina-procession/",
+            "event_title": "Catrinas Procession: Día de los Muertos",
+            "venue_name": "Gastown Historic District (Abbott & W Cordova St)"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://latincouver.ca/lahm/events/catrina-procession/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Civic Street Procession",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Latincouver / Free Civic",
+            "D35_startIso": "2026-11-02"
+          }
+        }
+      ]
+    },
+    "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey": {
+      "Event_Num_Perm": "Event_Num_Perm_000000065",
+      "Event_Num_Card": "Event_Num_Card_000000065",
+      "title": "Dawson Forsey Single Release Show w/ Runner, Joe Abbott",
+      "venue": "Red Gate Arts Society",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:07:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:07:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_65_1792008420138.webp",
+            "verbatim_quote": "Early Bird Sales ended $15.00 +$0.80 credit card processing fee Bought before September 18th General Admission $20.00 +$0.96 credit card processing fee"
+          },
+          "input_payload": {
+            "target_url": "https://gigpit.ca/shows/event:oU2zNj5wnwA/tickets",
+            "event_title": "Dawson Forsey Single Release Show w/ Runner, Joe Abbott",
+            "venue_name": "Red Gate Arts Society"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://gigpit.ca/shows/event:oU2zNj5wnwA/tickets",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 0.96,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 20.96,
+            "D16_tier2_name": "Early Bird (Concluded)",
+            "D17_tier2_price_base": 15.00,
+            "D18_tier2_price_fee": 0.80,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 15.80,
+            "D26_tier_count_verified": 2,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Gigpit / Red Gate",
+            "D35_startIso": "2026-10-17"
+          }
+        }
+      ]
+    },
+    "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford": {
+      "Event_Num_Perm": "Event_Num_Perm_000000064",
+      "Event_Num_Card": "Event_Num_Card_000000064",
+      "title": "2nd Floor Gastown Live Music Series",
+      "venue": "2nd Floor Gastown",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-15T05:15:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-15T05:15:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_64_1792008324357.webp",
+            "verbatim_quote": "Reservation Fee is non refundable and does not go towards the bill. This is a charge for the artists."
+          },
+          "input_payload": {
+            "target_url": "https://www.exploretock.com/waterstcafe/",
+            "event_title": "2nd Floor Gastown Live Music Series",
+            "venue_name": "2nd Floor Gastown"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.exploretock.com/waterstcafe/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Live Music Artist Cover",
+            "D12_tier1_price_base": 12.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.60,
+            "D15_tier1_price_all_in": 12.60,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Tock",
+            "D35_startIso": "2026-10-15"
+          }
+        }
+      ]
+    },
+    "van50-ludica-boardgame-night": {
+      "Event_Num_Perm": "Event_Num_Perm_000000063",
+      "Event_Num_Card": "Event_Num_Card_000000063",
+      "title": "Pizzeria Ludica: 1,200+ Board Game Night",
+      "venue": "Pizzeria Ludica",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T13:04:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T13:04:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_63_1792007535942.webp",
+            "verbatim_quote": "At Pizzeria Ludica Vancouver, we combine amazing food with one of Vancouver’s largest board game libraries... With free access to 1,000+ board games, our friendly staff will help you find the perfect match for your group."
+          },
+          "input_payload": {
+            "target_url": "https://tables.toasttab.com/restaurants/86f12d2e-d90d-4510-9dc2-35ff0e1f7350/findTime",
+            "event_title": "Pizzeria Ludica: 1,200+ Board Game Night",
+            "venue_name": "Pizzeria Ludica"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tables.toasttab.com/restaurants/86f12d2e-d90d-4510-9dc2-35ff0e1f7350/findTime",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Board Game Library Admission (Free with Dining)",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D16_tier2_name": null,
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D26_tier_count_verified": 1,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Toast Tab",
+            "D35_startIso": null
+          }
+        }
+      ]
+    },
+    "van50-bloedel-conservatory-dome": {
+      "Event_Num_Perm": "Event_Num_Perm_000000062",
+      "Event_Num_Card": "Event_Num_Card_000000062",
+      "title": "Bloedel Conservatory: Tropical Rainforest Dome",
+      "venue": "Bloedel Conservatory",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T12:51:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T12:51:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/fa367dfe-4503-4eac-be63-7ed5dd6a8b0b/pulse_card_62_1792007424201.webp",
+            "verbatim_quote": "Bloedel Conservatory is a domed lush paradise located in Queen Elizabeth Park atop the City of Vancouver’s highest point. Tropical birds, koi fish and over 500 exotic plants and flowers thrive within our temperature-controlled environment!"
+          },
+          "input_payload": {
+            "target_url": "https://www.showpass.com/bloedel-conservatory-admission-october-2026/",
+            "event_title": "Bloedel Conservatory: Tropical Rainforest Dome",
+            "venue_name": "Bloedel Conservatory"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/bloedel-conservatory-admission-october-2026/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult (19-64)",
+            "D12_tier1_price_base": 7.63,
+            "D13_tier1_price_fee": 0.87,
+            "D14_tier1_price_tax": 0.05,
+            "D15_tier1_price_all_in": 8.55,
+            "D16_tier2_name": "Senior (65+ years)",
+            "D17_tier2_price_base": 6.10,
+            "D18_tier2_price_fee": 0.69,
+            "D19_tier2_price_tax": 0.04,
+            "D20_tier2_price_all_in": 6.83,
+            "D26_tier_count_verified": 4,
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Showpass",
+            "D35_startIso": null
+          }
+        }
+      ]
+    },
+    "van50-fox-bootylicious-halloween-20261030": {
+      "Event_Num_Perm": "Event_Num_Perm_000000061",
+      "Event_Num_Card": "Event_Num_Card_000000061",
+      "title": "Halloween Friday at The Fox: BOO-tylicious",
+      "venue": "The Fox Cabaret",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T12:20:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T12:20:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_61_1792005560967.webp",
+            "verbatim_quote": "General Admission CA$20.00 Subtotal CA$20.00 Fees CA$3.21 GST/HST CA$1.16 Total CA$24.37"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
+            "event_title": "Halloween Friday at The Fox: BOO-tylicious",
+            "venue_name": "The Fox Cabaret"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 3.21,
+            "D14_tier1_price_tax": 1.16,
+            "D15_tier1_price_all_in": 24.37,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-cinematheque-vampyr-live-score-20261031": {
+      "Event_Num_Perm": "Event_Num_Perm_000000060",
+      "Event_Num_Card": "Event_Num_Card_000000060",
+      "title": "Vampyr × Applied Silence [Live Score]",
+      "venue": "The Cinematheque",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T12:18:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T12:18:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_60_1792005461494.webp",
+            "verbatim_quote": "Admission General (18+) - $30.00, Total: $30.00"
+          },
+          "input_payload": {
+            "target_url": "https://thecinematheque.ca/films/2026/vampyr",
+            "event_title": "Vampyr × Applied Silence [Live Score]",
+            "venue_name": "The Cinematheque"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572799~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Admission General (18+)",
+            "D12_tier1_price_base": 30.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 30.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-roundhouse-diwali-in-vancouver-mehfil-20261107": {
+      "Event_Num_Perm": "Event_Num_Perm_000000059",
+      "Event_Num_Card": "Event_Num_Card_000000059",
+      "title": "Diwali in Vancouver: Mehfil at Roundhouse",
+      "venue": "Roundhouse Community Arts & Recreation Centre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T12:16:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T12:16:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_59_1792005339767.webp",
+            "verbatim_quote": "Please note that event attendance is free but requires pre-registration due to venue capacity (please use the form on this page)."
+          },
+          "input_payload": {
+            "target_url": "https://diwalifest.ca/events/diwali-in-vancouver-2026/",
+            "event_title": "Diwali in Vancouver: Mehfil at Roundhouse",
+            "venue_name": "Roundhouse Community Arts & Recreation Centre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://diwalifest.ca/events/diwali-in-vancouver-2026/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Free Admission (Pre-Registration Required)",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018": {
+      "Event_Num_Perm": "Event_Num_Perm_000000058",
+      "Event_Num_Card": "Event_Num_Card_000000058",
+      "title": "Gongs in the Garden: A Sunday Slowdown",
+      "venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:58:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:58:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_58_1792000606677.webp",
+            "verbatim_quote": "1 x EARLY BIRD: Individual Experience - $40 CA$40.00 Subtotal CA$40.00 Fees CA$4.06 Total CA$44.06 Price includes tax"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258",
+            "event_title": "Gongs in the Garden: A Sunday Slowdown",
+            "venue_name": "Dr. Sun Yat-Sen Classical Chinese Garden"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "EARLY BIRD: Individual Experience",
+            "D12_tier1_price_base": 40.00,
+            "D13_tier1_price_fee": 4.06,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 44.06,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-rio-paul-anthony-talent-time-halloween-20261023": {
+      "Event_Num_Perm": "Event_Num_Perm_000000057",
+      "Event_Num_Card": "Event_Num_Card_000000057",
+      "title": "Paul Anthony's Talent Time: Halloween Special",
+      "venue": "The Rio Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:55:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:55:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_57_1792000548130.webp",
+            "verbatim_quote": "No upcoming showtimes available."
+          },
+          "input_payload": {
+            "target_url": "https://riotheatre.ca/event/paul-anthonys-talent-time/",
+            "event_title": "Paul Anthony's Talent Time: Halloween Special",
+            "venue_name": "The Rio Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://riotheatre.ca/event/paul-anthonys-talent-time/",
+            "D7_operational_status": "quarantined",
+            "D11_tier1_name": "Adult General Admission",
+            "D12_tier1_price_base": 26.50,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 26.50,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-ubc-apple-festival-20261017": {
+      "Event_Num_Perm": "Event_Num_Perm_000000056",
+      "Event_Num_Card": "Event_Num_Card_000000056",
+      "title": "UBC Apple Festival (35th Annual)",
+      "venue": "UBC Botanical Garden",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:54:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:54:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_56_1792000447323.webp",
+            "verbatim_quote": "Welcome to the 35th Annual Apple Festival at UBC Botanical Garden. October 17-18 | 11AM - 4PM | 6804 SW Marine Drive"
+          },
+          "input_payload": {
+            "target_url": "https://botanicalgarden.ubc.ca/apple-festival/",
+            "event_title": "UBC Apple Festival (35th Annual)",
+            "venue_name": "UBC Botanical Garden"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork%3A%3AWScontent%3A%3AloadArticle=Load",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission (Ages 8–64)",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D16_tier2_name": "Senior (Ages 65+)",
+            "D17_tier2_price_base": 14.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 14.00,
+            "D21_tier3_name": "Apple Tasting Tent Add-On",
+            "D22_tier3_price_base": 12.00,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 12.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "viff-the-debut": {
+      "Event_Num_Perm": "Event_Num_Perm_000000055",
+      "Event_Num_Card": "Event_Num_Card_000000055",
+      "title": "VIFF: \"All the Lovers in the Night\" (Special Presentation • Mieko Kawakami Adaptation)",
+      "venue": "International Village Cinemas (VIFF)",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:53:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:53:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_55_1792000364117.webp",
+            "verbatim_quote": "This event has passed."
+          },
+          "input_payload": {
+            "target_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/",
+            "event_title": "VIFF: \"All the Lovers in the Night\"",
+            "venue_name": "International Village Cinemas (VIFF)"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "Single Film Admission",
+            "D12_tier1_price_base": 20.50,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 20.50,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "central-park-pitch-putt": {
+      "Event_Num_Perm": "Event_Num_Perm_000000054",
+      "Event_Num_Card": "Event_Num_Card_000000054",
+      "title": "Central Park Pitch & Putt: 18-Hole Round",
+      "venue": "Central Park Pitch & Putt",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:52:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:52:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_54_1792000284886.webp",
+            "verbatim_quote": "Central Park Pitch & Putt 18-Hole Round. Adult: $15.50 + 5% GST = $16.28 CAD. Senior (65+): $12.00 + GST = $12.60 CAD. Junior (<=18): $10.50 + GST = $11.03 CAD."
+          },
+          "input_payload": {
+            "target_url": "https://www.golfburnaby.ca/golf/central-park",
+            "event_title": "Central Park Pitch & Putt: 18-Hole Round",
+            "venue_name": "Central Park Pitch & Putt"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.golfburnaby.ca/golf/central-park",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult 18-Holes",
+            "D12_tier1_price_base": 15.50,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.78,
+            "D15_tier1_price_all_in": 16.28,
+            "D16_tier2_name": "Senior (65+)",
+            "D17_tier2_price_base": 12.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.60,
+            "D20_tier2_price_all_in": 12.60,
+            "D21_tier3_name": "Junior (<=18)",
+            "D22_tier3_price_base": 10.50,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.53,
+            "D25_tier3_price_all_in": 11.03,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "rupert-park-pitch-putt": {
+      "Event_Num_Perm": "Event_Num_Perm_000000053",
+      "Event_Num_Card": "Event_Num_Card_000000053",
+      "title": "Rupert Park Pitch & Putt: 18-Hole Round",
+      "venue": "Rupert Park Pitch & Putt",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:50:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:50:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_53_1792000165944.webp",
+            "verbatim_quote": "Rupert Park Pitch & Putt is a par 3 course in Vancouver's east side. 3402 Charles St, Vancouver, BC. Regular Adult rate: $18.27 CAD tax incl. Senior/Junior $12.81 CAD. Club & ball rental $2.86 CAD."
+          },
+          "input_payload": {
+            "target_url": "https://www.hellobc.com/listings/rupert-park-pitch-putt/",
+            "event_title": "Rupert Park Pitch & Putt: 18-Hole Round",
+            "venue_name": "Rupert Park Pitch & Putt"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.hellobc.com/listings/rupert-park-pitch-putt/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult 18-Holes (19-64)",
+            "D12_tier1_price_base": 18.27,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 18.27,
+            "D16_tier2_name": "Senior (65+) / Junior (<=18)",
+            "D17_tier2_price_base": 12.81,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 12.81,
+            "D21_tier3_name": "Club & Ball Rental",
+            "D22_tier3_price_base": 2.86,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 2.86,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "qe-park-pitch-putt": {
+      "Event_Num_Perm": "Event_Num_Perm_000000052",
+      "Event_Num_Card": "Event_Num_Card_000000052",
+      "title": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
+      "venue": "Queen Elizabeth Park Pitch & Putt",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:45:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:45:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_52_1791999660220.webp",
+            "verbatim_quote": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round. Regular Adult rate: $18.27 CAD tax incl. Senior/Junior $12.81 CAD. Club & ball rental $2.86 CAD."
+          },
+          "input_payload": {
+            "target_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+            "event_title": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
+            "venue_name": "Queen Elizabeth Park Pitch & Putt"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult 18-Holes (19-64)",
+            "D12_tier1_price_base": 18.27,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 18.27,
+            "D16_tier2_name": "Senior (65+) / Junior (<=18)",
+            "D17_tier2_price_base": 12.81,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 12.81,
+            "D21_tier3_name": "Club & Ball Rental",
+            "D22_tier3_price_base": 2.86,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 2.86,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "stanley-pitch-putt": {
+      "Event_Num_Perm": "Event_Num_Perm_000000051",
+      "Event_Num_Card": "Event_Num_Card_000000051",
+      "title": "Stanley Park Pitch & Putt: 18-Hole Round",
+      "venue": "Stanley Park Pitch & Putt",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:40:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:40:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_51_1791999558129.webp",
+            "verbatim_quote": "Stanley Park Pitch & Putt: 18-Hole Round. Regular Adult rate: $19.11 CAD tax incl. Club & ball rental $2.86 CAD."
+          },
+          "input_payload": {
+            "target_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+            "event_title": "Stanley Park Pitch & Putt: 18-Hole Round",
+            "venue_name": "Stanley Park Pitch & Putt"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult 18-Holes (19-64)",
+            "D12_tier1_price_base": 19.11,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 19.11,
+            "D16_tier2_name": "Senior (65+) / Junior (<=18)",
+            "D17_tier2_price_base": 13.39,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 13.39,
+            "D21_tier3_name": "Club & Ball Rental",
+            "D22_tier3_price_base": 2.86,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 2.86,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-burnaby-central-railway-mini-train": {
+      "Event_Num_Perm": "Event_Num_Perm_000000050",
+      "Event_Num_Card": "Event_Num_Card_000000050",
+      "title": "Burnaby Central Railway Miniature Train Rides",
+      "venue": "Confederation Park",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:38:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:38:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_50_1791999467150.webp",
+            "verbatim_quote": "Burnaby Central Railway is open Saturdays, Sundays and Stat holidays, Easter to Canadian Thanksgiving. 2026 Closing day: Thanksgiving, October 12, 2026"
+          },
+          "input_payload": {
+            "target_url": "https://bcsme.org/tickets",
+            "event_title": "Burnaby Central Railway Miniature Train Rides",
+            "venue_name": "Confederation Park"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://bcsme.org/tickets",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "Single Train Ride (Ages 3+)",
+            "D12_tier1_price_base": 5.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 5.00,
+            "D16_tier2_name": "Children Under 3",
+            "D17_tier2_price_base": 0.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 0.00,
+            "D21_tier3_name": "10-Ride Pass",
+            "D22_tier3_price_base": 45.00,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 45.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-st-andrews-jazz-vespers": {
+      "Event_Num_Perm": "Event_Num_Perm_000000049",
+      "Event_Num_Card": "Event_Num_Card_000000049",
+      "title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
+      "venue": "St. Andrew's-Wesley United Church",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:37:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:37:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_49_1791999358486.webp",
+            "verbatim_quote": "JO49 is a contemporary big band with a dynamic ensemble of 17 musicians. Refusing traditional big band elements with innovative arrangements, our music features, a diverse instrumentation of brass, woodwinds, and rhythm."
+          },
+          "input_payload": {
+            "target_url": "https://standrewswesley.com/events/jazz-orchestra-of-the-49th-parallel/",
+            "event_title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
+            "venue_name": "St. Andrew's-Wesley United Church"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://standrewswesley.com/events/jazz-orchestra-of-the-49th-parallel/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission / Free Drop-In",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D16_tier2_name": "Voluntary Offering / Suggested Donation",
+            "D17_tier2_price_base": 10.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 10.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-dalek-wise-hall-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000048",
+      "Event_Num_Card": "Event_Num_Card_000000048",
+      "title": "dälek (with Infidelity & DarkGable)",
+      "venue": "The WISE Hall",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:35:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:35:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_48_1791999293516.webp",
+            "verbatim_quote": "TICKET SALES TERMINATED. Tickets are currently unavailable on TicketWeb. Fri, 9 October. Doors open 8:00 PM PDT. Friday, October 9th 2026"
+          },
+          "input_payload": {
+            "target_url": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+            "event_title": "dälek (with Infidelity & DarkGable)",
+            "venue_name": "The WISE Hall"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "Advance Admission",
+            "D12_tier1_price_base": 31.50,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 31.50,
+            "D16_tier2_name": "Door Admission",
+            "D17_tier2_price_base": 35.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 35.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "vag-first-friday": {
+      "Event_Num_Perm": "Event_Num_Perm_000000047",
+      "Event_Num_Card": "Event_Num_Card_000000047",
+      "title": "Vancouver Art Gallery: Free First Friday Nights",
+      "venue": "Vancouver Art Gallery",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:34:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:34:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_47_1791999228810.webp",
+            "verbatim_quote": "Free First Friday Nights presented by BMO Planning to visit the Gallery on the first Friday of the month between 4 and 8 PM? Tickets will be released one month in advance of the event."
+          },
+          "input_payload": {
+            "target_url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=be6b11cf-2c60-c247-f0d9-afd637dfeabf",
+            "event_title": "Vancouver Art Gallery: Free First Friday Nights",
+            "venue_name": "Vancouver Art Gallery"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=be6b11cf-2c60-c247-f0d9-afd637dfeabf",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Public Free Admission",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D16_tier2_name": "none_available",
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-city-pop-city-rickshaw-20261121": {
+      "Event_Num_Perm": "Event_Num_Perm_000000046",
+      "Event_Num_Card": "Event_Num_Card_000000046",
+      "title": "City Pop City Ft. Chen Baker & Technodelic",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:32:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:32:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_46_1791999109736.webp",
+            "verbatim_quote": "City Pop Lights Ft. Chen Baker & Technodelic • Saturday, November 21, 2026 • General Admission CA$36.21"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/city-pop-city-ft-chen-baker-technodelic-tickets-1999628932967",
+            "event_title": "City Pop City Ft. Chen Baker & Technodelic",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/city-pop-city-ft-chen-baker-technodelic-tickets-1999628932967",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 30.00,
+            "D13_tier1_price_fee": 6.21,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 36.21,
+            "D16_tier2_name": "none_available",
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "eb-alistair-ogden-rio": {
+      "Event_Num_Perm": "Event_Num_Perm_000000045",
+      "Event_Num_Card": "Event_Num_Card_000000045",
+      "title": "Alistair Ogden Live at The Rio Theatre",
+      "venue": "The Rio Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:30:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:30:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_45_1791998987166.webp",
+            "verbatim_quote": "General Admission CA$35.00 incl. CA$3.39 Fee. Sales end on Dec 4, 2026"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+            "event_title": "Alistair Ogden Live at The Rio Theatre",
+            "venue_name": "The Rio Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 31.61,
+            "D13_tier1_price_fee": 3.39,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 35.00,
+            "D16_tier2_name": "none_available",
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-witches-harvest-market-20261024": {
+      "Event_Num_Perm": "Event_Num_Perm_000000044",
+      "Event_Num_Card": "Event_Num_Card_000000044",
+      "title": "Nightshade Market: Witches Harvest (Samhain Artisan Market)",
+      "venue": "Croatian Cultural Centre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:28:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:28:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_44_1791998867893.webp",
+            "verbatim_quote": "Nightshade Market : Witches Harvest A Samhain Artisan Market • October 24th & 25th, 2026 • Croatian Cultural Centre • $6.66"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572",
+            "event_title": "Nightshade Market: Witches Harvest (Samhain Artisan Market)",
+            "venue_name": "Croatian Cultural Centre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult General Admission",
+            "D12_tier1_price_base": 5.00,
+            "D13_tier1_price_fee": 1.66,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 6.66,
+            "D16_tier2_name": "none_available",
+            "D17_tier2_price_base": null,
+            "D18_tier2_price_fee": null,
+            "D19_tier2_price_tax": null,
+            "D20_tier2_price_all_in": null,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-scout-cinematheque-pulse-20261016": {
+      "Event_Num_Perm": "Event_Num_Perm_000000043",
+      "Event_Num_Card": "Event_Num_Card_000000043",
+      "title": "Forbidden Rooms: Pulse (Kairo)",
+      "venue": "The Cinematheque",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:27:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:27:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_43_1791998783824.webp",
+            "verbatim_quote": "Pulse 10/16/2026 6:30 PM Type Admission - General (18+) Total: $15.00"
+          },
+          "input_payload": {
+            "target_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572752~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "event_title": "Forbidden Rooms: Pulse (Kairo)",
+            "venue_name": "The Cinematheque"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572752~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General (18+)",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D16_tier2_name": "Senior (65+)",
+            "D17_tier2_price_base": 13.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 13.00,
+            "D21_tier3_name": "Student",
+            "D22_tier3_price_base": 11.00,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 11.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-scout-cinematheque-small-file-20261017": {
+      "Event_Num_Perm": "Event_Num_Perm_000000042",
+      "Event_Num_Card": "Event_Num_Card_000000042",
+      "title": "Small File Media Festival: Curated Screenings",
+      "venue": "The Cinematheque",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:25:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:25:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_42_1791998708856.webp",
+            "verbatim_quote": "Admission - General (18+) - $15.00"
+          },
+          "input_payload": {
+            "target_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572812~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "event_title": "Small File Media Festival: Curated Screenings",
+            "venue_name": "The Cinematheque"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572812~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General (18+)",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D16_tier2_name": "Senior (65+)",
+            "D17_tier2_price_base": 13.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 13.00,
+            "D21_tier3_name": "Student",
+            "D22_tier3_price_base": 11.00,
+            "D23_tier3_price_fee": 0.00,
+            "D24_tier3_price_tax": 0.00,
+            "D25_tier3_price_all_in": 11.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-scout-firehall-red-demon-20261008": {
+      "Event_Num_Perm": "Event_Num_Perm_000000041",
+      "Event_Num_Card": "Event_Num_Card_000000041",
+      "title": "Red Demon (Firehall Arts Centre & rice & beans theatre)",
+      "venue": "Firehall Arts Centre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T10:24:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T10:24:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/8e4f2f94-3248-4f97-b53d-c29846fcc985/pulse_card_41_1791998614727.webp",
+            "verbatim_quote": "Oct 8 – Oct 18 | Firehall Theatre"
+          },
+          "input_payload": {
+            "target_url": "https://purchase.firehallartscentre.ca/EventAvailability?EventId=9401",
+            "event_title": "Red Demon (Firehall Arts Centre & rice & beans theatre)",
+            "venue_name": "Firehall Arts Centre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://purchase.firehallartscentre.ca/EventAvailability?EventId=9401",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Adult General Admission",
+            "D12_tier1_price_base": 32.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 32.00,
+            "D16_tier2_name": "Student / Youth",
+            "D17_tier2_price_base": 20.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 20.00,
+            "D28_budget_qualified_under_50": true
+          }
+        }
+      ]
+    },
+    "van50-queen-elizabeth-theatre-vancouver-opera-tosca": {
+      "Event_Num_Perm": "Event_Num_Perm_000000026",
+      "Event_Num_Card": "Event_Num_Card_000000026",
+      "title": "Vancouver Opera: Tosca (Opening Night)",
+      "venue": "Queen Elizabeth Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T13:59:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T13:59:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000026_pulse_20261013_1359.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000026_pulse_20261013_1359.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_26_1791925065.webp",
+            "verbatim_quote": "Vancouver Opera: Tosca • Lucky Dip $40.00 • Student Rush $25.00"
+          },
+          "input_payload": {
+            "target_url": "https://www.vancouveropera.ca/whats-on/tosca/",
+            "event_title": "Vancouver Opera: Tosca (Opening Night)",
+            "venue_name": "Queen Elizabeth Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.vancouveropera.ca/TheatreManager/1/online?performance=2404",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Student Rush",
+            "D12_tier1_price_base": 25.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 25.00,
+            "D16_tier2_name": "Lucky Dip",
+            "D17_tier2_price_base": 40.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 40.00,
+            "D28_budget_qualified_under_50": true
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-raagaverse-strings-annex-20261015": {
+      "Event_Num_Perm": "Event_Num_Perm_000000027",
+      "Event_Num_Card": "Event_Num_Card_000000027",
+      "title": "Raagaverse + Strings",
+      "venue": "The Annex",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:00:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:00:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000027_pulse_20261013_1400.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000027_pulse_20261013_1400.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_27_1791925117745.webp",
+            "verbatim_quote": "Raagaverse + Strings • Concession $18.00 + $3.02 fee = $21.02 CAD • GA $30.00 + $3.68 fee = $33.68 CAD"
+          },
+          "input_payload": {
+            "target_url": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
+            "event_title": "Raagaverse + Strings",
+            "venue_name": "The Annex"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/raagaverse-strings/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Concession / Low Income",
+            "D12_tier1_price_base": 18.00,
+            "D13_tier1_price_fee": 3.02,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 21.02,
+            "D16_tier2_name": "General Admission",
+            "D17_tier2_price_base": 30.00,
+            "D18_tier2_price_fee": 3.68,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 33.68,
+            "D28_budget_qualified_under_50": true
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-actors-rickshaw-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000028",
+      "Event_Num_Card": "Event_Num_Card_000000028",
+      "title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:01:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:01:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000028_pulse_20261013_1401.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000028_pulse_20261013_1401.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_28_1791925241430.webp",
+            "verbatim_quote": "OCTOBER 9TH, 2026 • FRIDAY OCTOBER 9TH • DOORS: 7:00PM"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/actors-4/",
+            "event_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://actors-rickshaw-2026.eventbrite.ca",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "Advance General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 5.50,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 25.50,
+            "D28_budget_qualified_under_50": true
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "operational_status",
+                "previous": "active",
+                "current": "archived",
+                "reason": "Temporal Gate 1: Performance concluded on Friday, Oct 9, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-militarie-gun-rickshaw-20261010": {
+      "Event_Num_Perm": "Event_Num_Perm_000000029",
+      "Event_Num_Card": "Event_Num_Card_000000029",
+      "title": "Militarie Gun: 20 Songs for $20 Tour",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:02:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:02:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000029_pulse_20261013_1402.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000029_pulse_20261013_1402.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_29_1791925310.webp",
+            "verbatim_quote": "OCTOBER 10TH, 2026 • DOORS: 6:00PM"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+            "event_title": "Militarie Gun: 20 Songs for $20 Tour",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 16.64,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 36.64,
+            "D28_budget_qualified_under_50": true
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "showing_status",
+                "previous": "active",
+                "current": "completed",
+                "reason": "Performance concluded on Saturday, Oct 10, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-the-sunday-service-fox-20261011": {
+      "Event_Num_Perm": "Event_Num_Perm_000000030",
+      "Event_Num_Card": "Event_Num_Card_000000030",
+      "title": "The Sunday Service: Live Improv Comedy",
+      "venue": "The Fox Cabaret",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:03:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:03:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000030_pulse_20261013_1403.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000030_pulse_20261013_1403.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_30_1791925370.webp",
+            "verbatim_quote": "Sunday, October 11, 2026 • Doors 7:00pm, Show 8:00pm"
+          },
+          "input_payload": {
+            "target_url": "https://thesundayservice.ca",
+            "event_title": "The Sunday Service: Live Improv Comedy",
+            "venue_name": "The Fox Cabaret"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://square.link/u/qfKgyfj5",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "Advance Online",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D16_tier2_name": "General Admission (Door)",
+            "D17_tier2_price_base": 20.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 20.00,
+            "D28_budget_qualified_under_50": true
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "showing_status",
+                "previous": "active",
+                "current": "completed",
+                "reason": "Performance concluded on Sunday, Oct 11, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-90s-00s-dance-party-fox-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000031",
+      "Event_Num_Card": "Event_Num_Card_000000031",
+      "title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+      "venue": "The Fox Cabaret",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T18:18:17-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T18:18:17-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000031_pulse_20261013_1818.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000031_pulse_20261013_1818.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_pulse_card_31_1791940659728.webp",
+            "verbatim_quote": "Sales ended • Friday, July 18, 2026 at 10:30 PM"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+            "event_title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+            "venue_name": "The Fox Cabaret"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+            "D7_operational_status": "archived",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-07-18"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-phyllis-hull-one-woman-show-20270122": {
+      "Event_Num_Perm": "Event_Num_Perm_000000032",
+      "Event_Num_Card": "Event_Num_Card_000000032",
+      "title": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+      "venue": "The Show Cellar",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T19:08:53-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T19:08:53-07:00",
+          "status": "FAIL_QUARANTINED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000032_pulse_20261013_1908.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000032_pulse_20261013_1908.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_pulse_card_32_1791941046153.webp",
+            "verbatim_quote": "Something went wrong • Event not found (HTTP 404)"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/phyllis-hulls-one-woman-show-hullo-its-me-youre-looking-for-tickets-1980838186337",
+            "event_title": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+            "venue_name": "The Show Cellar"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": null,
+            "D7_operational_status": "archived",
+            "D28_budget_qualified_under_50": true,
+            "quarantine_reason": "Eventbrite link returned HTTP 404. Venue official calendar (theshowcellar.com/shows) confirmed show is no longer listed."
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "operational_status",
+                "previous": "scheduled",
+                "current": "archived",
+                "reason": "HTTP 404 dead link on Eventbrite, show delisted"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-scout-cultch-palestine-comedy-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000033",
+      "Event_Num_Card": "Event_Num_Card_000000033",
+      "title": "Palestine Comedy Club Showcase",
+      "venue": "York Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:47:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:47:30-07:00",
+          "status": "CONCLUDED",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/palestine_comedy_club_404_1791992854549.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/palestine_comedy_club_404_1791992854549.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_33_1791992841419.webp",
+            "verbatim_quote": "Oops! That page can’t be found."
+          },
+          "input_payload": {
+            "target_url": "https://thecultch.com/event/palestine-comedy-club/",
+            "event_title": "Palestine Comedy Club Showcase",
+            "venue_name": "York Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": null,
+            "D7_operational_status": "concluded",
+            "D28_budget_qualified_under_50": true,
+            "quarantine_reason": "Event run (Oct 9-10, 2026) has concluded. URL returns 404 with no active performances."
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "operational_status",
+                "previous": "scheduled",
+                "current": "concluded",
+                "reason": "Oct 9-10 show dates passed, event concluded"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-scout-cinematheque-kwaidan-20261012": {
+      "Event_Num_Perm": "Event_Num_Perm_000000034",
+      "Event_Num_Card": "Event_Num_Card_000000034",
+      "title": "Forbidden Rooms: Kwaidan (1964)",
+      "venue": "The Cinematheque",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:48:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:48:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/kwaidan_film_page_1791992886673.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/kwaidan_film_page_1791992886673.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_34_1791992870016.webp",
+            "verbatim_quote": "Kwaidan • Oct 20, Oct 30, Nov 1 • $14 GA / $12 Senior & Student"
+          },
+          "input_payload": {
+            "target_url": "https://thecinematheque.ca/films/2026/kwaidan",
+            "event_title": "Forbidden Rooms: Kwaidan (1964)",
+            "venue_name": "The Cinematheque"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572740~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 14.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 14.00,
+            "D16_tier2_name": "Senior / Student",
+            "D17_tier2_price_base": 12.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 12.00,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-20"
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "date_iso",
+                "previous": "2026-10-12",
+                "current": "2026-10-20",
+                "reason": "Oct 12 screening concluded; rolled forward to active next showing on Oct 20, 2026 7:00 PM"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-scout-cinematheque-hello-destroyer-20261027": {
+      "Event_Num_Perm": "Event_Num_Perm_000000035",
+      "Event_Num_Card": "Event_Num_Card_000000035",
+      "title": "Hello Destroyer (Free Public Screening)",
+      "venue": "The Cinematheque",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:48:50-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:48:50-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/hello_destroyer_ticketing_1791992933961.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/hello_destroyer_ticketing_1791992933961.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_35_1791992923218.webp",
+            "verbatim_quote": "Tuesday, Oct 27, 2026 7:00 PM - Admission Free - $0.00"
+          },
+          "input_payload": {
+            "target_url": "https://thecinematheque.ca/films/2026/hello-destroyer",
+            "event_title": "Hello Destroyer (Free Public Screening)",
+            "venue_name": "The Cinematheque"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572803~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Admission Free",
+            "D12_tier1_price_base": 0.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 0.00,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-27"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-scout-lmg-20-20-20-comedy-20261017": {
+      "Event_Num_Perm": "Event_Num_Perm_000000036",
+      "Event_Num_Card": "Event_Num_Card_000000036",
+      "title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+      "venue": "Little Mountain Gallery",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:49:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:49:30-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/showpass_tickets_modal_1791992882794.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/showpass_tickets_modal_1791992882794.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_36_1791992953687.webp",
+            "verbatim_quote": "Low Cost $15.00 + $3.99 CAD • General Admission $25.00 + $4.25 CAD"
+          },
+          "input_payload": {
+            "target_url": "https://www.showpass.com/202020-15/",
+            "event_title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+            "venue_name": "Little Mountain Gallery"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/202020-15/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Low Cost",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 3.99,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 18.99,
+            "D16_tier2_name": "General Admission",
+            "D17_tier2_price_base": 25.00,
+            "D18_tier2_price_fee": 4.25,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 29.25,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-17"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-scout-lmg-the-setup-20261024": {
+      "Event_Num_Perm": "Event_Num_Perm_000000037",
+      "Event_Num_Card": "Event_Num_Card_000000037",
+      "title": "The Setup at Little Mountain Gallery",
+      "venue": "Little Mountain Gallery",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:50:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:50:30-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/setup_lmg_cart_updated_1791993055363.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/setup_lmg_cart_updated_1791993055363.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_37_1791993006823.webp",
+            "verbatim_quote": "General Admission: $20.00 base + $4.12 fees = $24.12 CAD all-in"
+          },
+          "input_payload": {
+            "target_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
+            "event_title": "The Setup at Little Mountain Gallery",
+            "venue_name": "Little Mountain Gallery"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 4.12,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 24.12,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-24"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-scout-rickshaw-dangelo-tribute-20261018": {
+      "Event_Num_Perm": "Event_Num_Perm_000000038",
+      "Event_Num_Card": "Event_Num_Card_000000038",
+      "title": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:51:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:51:30-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/eventbrite_dawn_pemberton_tickets_1791993090357.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/eventbrite_dawn_pemberton_tickets_1791993090357.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_38_1791993070377.webp",
+            "verbatim_quote": "General Admission 1 x General Admission CA$30.00 Subtotal CA$30.00 Fees CA$6.21 Total CA$36.21 incl. CA$6.21 Fee"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+            "event_title": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 30.00,
+            "D13_tier1_price_fee": 6.21,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 36.21,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-18"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-scout-rickshaw-amy-winehouse-20261017": {
+      "Event_Num_Perm": "Event_Num_Perm_000000039",
+      "Event_Num_Card": "Event_Num_Card_000000039",
+      "title": "Amy Winehouse Tribute with Krystle Dos Santos",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:52:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:52:30-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/amy_winehouse_checkout_cart_1791993177361.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/amy_winehouse_checkout_cart_1791993177361.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_39_1791993134682.webp",
+            "verbatim_quote": "General Admission CA$30.00 + Fees CA$6.21 = Total CA$36.21"
+          },
+          "input_payload": {
+            "target_url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+            "event_title": "Amy Winehouse Tribute with Krystle Dos Santos",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 30.00,
+            "D13_tier1_price_fee": 6.21,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 36.21,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-17"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-the-way-out-theatre-20261022": {
+      "Event_Num_Perm": "Event_Num_Perm_000000040",
+      "Event_Num_Card": "Event_Num_Card_000000040",
+      "title": "The Way Out – Matchstick Productions Ski Film Premiere",
+      "venue": "Centennial Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-14T08:53:30-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-14T08:53:30-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/the_way_out_checkout_1791993303307.png",
+            "screenshot_url": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/the_way_out_checkout_1791993303307.png",
+            "subagent_recording": "file:///C:/Users/Micro/.gemini/antigravity-ide/brain/c3883d69-d006-4e24-9da2-b25a259ce24e/qc_card_40_1791993192276.webp",
+            "verbatim_quote": "Admit One $29.50 CAD • VIP Admit One $49.50 CAD"
+          },
+          "input_payload": {
+            "target_url": "https://www.showpass.com/the-way-out/",
+            "event_title": "The Way Out – Matchstick Productions Ski Film Premiere",
+            "venue_name": "Centennial Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/the-way-out/",
+            "D7_operational_status": "scheduled",
+            "D11_tier1_name": "Admit One",
+            "D12_tier1_price_base": 29.50,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 29.50,
+            "D16_tier2_name": "VIP Admit One",
+            "D17_tier2_price_base": 49.50,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 49.50,
+            "D28_budget_qualified_under_50": true,
+            "D35_date_iso": "2026-10-22"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    }
+  }
+}

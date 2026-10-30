@@ -1,11 +1,29 @@
 import json
 
-with open("data/events.json", "r", encoding="utf-8") as f:
+with open("data/events.json", "r", encoding="utf-8-sig") as f:
     events = json.load(f)
+
+# Maintain Dual Numbering invariant: Event_Num_Perm and Event_Num_Card
+updated_events = False
+for idx, ev in enumerate(events):
+    card_num = idx + 1
+    perm_id = f"Event_Num_Perm_{card_num:09d}"
+    card_id = f"Event_Num_Card_{card_num:09d}"
+    if ev.get("Event_Num_Perm") != perm_id:
+        ev["Event_Num_Perm"] = perm_id
+        updated_events = True
+    if ev.get("Event_Num_Card") != card_id:
+        ev["Event_Num_Card"] = card_id
+        updated_events = True
+
+
+if updated_events:
+    with open("data/events.json", "w", encoding="utf-8") as f:
+        json.dump(events, f, indent=2, ensure_ascii=False)
 
 quarantined = []
 try:
-    with open("data/manual_review_queue.json", "r", encoding="utf-8") as f:
+    with open("data/manual_review_queue.json", "r", encoding="utf-8-sig") as f:
         q = json.load(f)
         quarantined = q.get("items", []) if isinstance(q, dict) else (q if isinstance(q, list) else [])
 except Exception:

@@ -10150,5 +10150,2481 @@
     "discovery_url": "https://www.vancouverpoetryhouse.com/events/today/",
     "archive_reason": "Antigravity Audit: Show schedule ended on 2026-10-08",
     "archived_at": "2026-10-09"
+  },
+  {
+    "id": "the-improv-centre-deadly-dinner-party-2026-09-24",
+    "event_id": "the-improv-centre-deadly-dinner-party-2026-09-24",
+    "title": "Deadly Dinner Party",
+    "event_name": "Deadly Dinner Party",
+    "artist": "",
+    "lineup": [
+      "Deadly Dinner Party"
+    ],
+    "venue": "The Improv Centre",
+    "venue_name": "The Improv Centre",
+    "address": "1502 Duranleau St, Vancouver",
+    "full_address": "1502 Duranleau St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2706,
+      -123.1363
+    ],
+    "date": "2026-09-24",
+    "time": "7:00 PM",
+    "start_time": "7:00 PM",
+    "doors_time": "6:00 PM",
+    "end_time": null,
+    "startIso": "2026-09-24T20:00:00-07:00",
+    "dateSchedule": "2026-09-24 • 7:00 PM",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-09-24",
+        "start_time": "7:00 PM",
+        "doors_time": "6:00 PM",
+        "end_time": null,
+        "status": "concluded"
+      }
+    ],
+    "category": "comedy",
+    "categories": [
+      "comedy"
+    ],
+    "categoryLabel": "COMEDY",
+    "tags": [
+      "comedy"
+    ],
+    "subTags": [
+      "comedy"
+    ],
+    "price": 0,
+    "price_base": 0,
+    "price_fee": 0,
+    "price_tax": 0,
+    "price_read": 0,
+    "price_calculated": 0,
+    "price_delta": 0,
+    "price_all_in": 0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "ticket_url": "https://theimprovcentre.ca/shows/",
+    "details_url": "https://theimprovcentre.ca/shows/",
+    "websiteUrl": "https://theimprovcentre.ca/shows/",
+    "ticket_provider": "Spektrix",
+    "description": "Fridays & Saturdays | Doors 6pm | Show 7pm | Rated 🌶️🌶️🌶️",
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "transitInfo": "#50 False Creek Bus or Aquabus ferry dock",
+    "waypoints": [],
+    "curator_notes": null,
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "beer_benchmark": "$7.50 – $10.00 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "access_model": "fenced_facility",
+    "environment_type": "indoor",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Stagehand-58D-Verified",
+    "budget_qualified_under_50": true,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/the-improv-centre-deadly-dinner-party-2026-09-24_cart.png"
+    },
+    "dimension_audit": {
+      "D1_tier1_checkout": {
+        "status": "verified",
+        "value": "https://theimprovcentre.ca/shows/",
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": "Direct ticket checkout URL accessed via Stagehand browser"
+      },
+      "D2_tier2_event_page": {
+        "status": "verified",
+        "value": "https://theimprovcentre.ca/shows/",
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": "https://theimprovcentre.ca/shows/"
+      },
+      "D3_tier3_calendar": {
+        "status": "verified",
+        "value": "https://theimprovcentre.ca",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D4_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D5_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://theimprovcentre.ca",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D6_best_available_link": {
+        "status": "verified",
+        "value": "1-2635",
+        "best_tier": "Tier 1: Checkout Cart",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D7_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D8_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D9_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D10_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D11_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D12_tier1_price_base": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D13_tier1_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D14_tier1_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D15_tier1_price_read": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": "$0.00 CAD"
+      },
+      "D15_tier1_price_calculated": {
+        "status": "verified",
+        "value": 0,
+        "formula": "base($0) + fee($0) + tax($0)",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D15_tier1_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D15_tier1_price_all_in": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": "$0.00 CAD"
+      },
+      "D16_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D17_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D18_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D19_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D20_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": null
+      },
+      "D20_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D20_tier2_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D20_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": null
+      },
+      "D21_tier3_name": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D22_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D23_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D24_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D25_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": null
+      },
+      "D25_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D25_tier3_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D25_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z",
+        "evidence_quote": null
+      },
+      "D26_tier_count_verified": {
+        "status": "verified",
+        "count": 1,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D27_pricing_model": {
+        "status": "verified",
+        "value": "free_access",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D28_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "all_in_total": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D29_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D30_other_cost_price": {
+        "status": "none_available",
+        "value": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D31_ticket_provider": {
+        "status": "verified",
+        "value": "Spektrix",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D32_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D33_title": {
+        "status": "verified",
+        "value": "Deadly Dinner Party",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D34_lineup": {
+        "status": "verified",
+        "value": [
+          "Deadly Dinner Party"
+        ],
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D35_date": {
+        "status": "verified",
+        "value": "2026-09-24",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D35_showings": {
+        "status": "verified",
+        "showings": [
+          {
+            "slot": 1,
+            "date": "2026-09-24",
+            "start_time": "7:00 PM",
+            "doors_time": "6:00 PM",
+            "end_time": null,
+            "status": "concluded"
+          }
+        ],
+        "slot_count": 1,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D36_doors_time": {
+        "status": "verified",
+        "value": "6:00 PM",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D37_start_time": {
+        "status": "verified",
+        "value": "7:00 PM",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D38_end_time": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D39_dateSchedule": {
+        "status": "verified",
+        "value": "2026-09-24 • 7:00 PM",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D40_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D41_category": {
+        "status": "verified",
+        "value": "comedy",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D42_restrictions": {
+        "status": "verified",
+        "value": "All Ages Welcome (Family Friendly)",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D43_venue_name": {
+        "status": "verified",
+        "value": "The Improv Centre",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D44_full_address": {
+        "status": "verified",
+        "value": "1502 Duranleau St, Vancouver",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D45_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2706,
+          -123.1363
+        ],
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D46_access_model": {
+        "status": "verified",
+        "value": "fenced_facility",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D47_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D48_weekly_hours": {
+        "status": "verified",
+        "value": {
+          "monday": "Closed",
+          "tuesday": "17:00 - 00:00",
+          "wednesday": "17:00 - 00:00",
+          "thursday": "17:00 - 01:00",
+          "friday": "16:00 - 02:00",
+          "saturday": "16:00 - 02:00",
+          "sunday": "17:00 - 00:00"
+        },
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D49_spend_benchmarks": {
+        "status": "verified",
+        "value": {
+          "coffee": "$4.50 – $6.50 CAD",
+          "beer": "$7.50 – $10.00 CAD",
+          "meal": "$16.00 – $26.00 CAD"
+        },
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D50_transit_info": {
+        "status": "verified",
+        "value": "#50 False Creek Bus or Aquabus ferry dock",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D51_description": {
+        "status": "verified",
+        "value": "Fridays & Saturdays | Doors 6pm | Show 7pm | Rated 🌶️🌶️🌶️",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D52_festival_affiliation": {
+        "status": "verified",
+        "value": "None",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D53_active_showings": {
+        "status": "verified",
+        "count": 0,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D54_archived_showings": {
+        "status": "verified",
+        "count": 1,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D55_civic_provider_rules": {
+        "status": "verified",
+        "rules": "standard_admission",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D56_data_provenance": {
+        "status": "verified",
+        "pipeline": "stagehand_hybrid_ripper",
+        "model": "google/gemini-3.8-flash",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D57_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      },
+      "D58_last_qc_audited_at": {
+        "status": "verified",
+        "value": "2026-10-19T14:50:56.474Z",
+        "audited_at": "2026-10-19T14:50:56.474Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-19T14:50:56.474Z",
+    "last_pulse_qc_at": "2026-10-19T14:50:56.474Z",
+    "last_content_qc_at": "2026-10-19T14:50:56.474Z",
+    "last_full_qc_at": "2026-10-19T14:50:56.474Z",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_delta": 0,
+        "label": "Free ($0)",
+        "isAvailable": true
+      }
+    ],
+    "quarantineReason": "stagehand_hybrid_curator_review",
+    "reviewStatus": "pending_curator_review",
+    "staged_by": "stagehand_hybrid_ripper",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-10-19T10:49:50.905622"
+  },
+  {
+    "id": "van50-scout-wise-cheekface-20261016",
+    "event_id": "van50-scout-wise-cheekface-20261016",
+    "title": "Cheekface with Waitress",
+    "event_name": "Cheekface with Waitress",
+    "artist": "Cheekface with Waitress",
+    "lineup": [
+      "Cheekface with Waitress"
+    ],
+    "venue": "The WISE Hall",
+    "venue_name": "The WISE Hall",
+    "address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+    "full_address": "1882 Adanac St, Vancouver, BC V5L 2E2",
+    "neighborhood": "Commercial Drive",
+    "coordinates": [
+      49.2731,
+      -123.0694
+    ],
+    "date": null,
+    "time": null,
+    "start_time": null,
+    "doors_time": null,
+    "end_time": null,
+    "startIso": null,
+    "dateSchedule": "Schedule Pending Verification",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [],
+    "category": "arts",
+    "categories": [
+      "arts"
+    ],
+    "categoryLabel": "ARTS",
+    "tags": [
+      "budget-friendly",
+      "one-time-event",
+      "vancouver",
+      "arts"
+    ],
+    "subTags": [
+      "budget-friendly",
+      "one-time-event",
+      "vancouver",
+      "arts"
+    ],
+    "price": null,
+    "price_base": 0,
+    "price_fee": 0,
+    "price_tax": 0,
+    "price_read": 0,
+    "price_calculated": 0,
+    "price_delta": 0,
+    "price_all_in": null,
+    "priceLabel": "Pending Box Office QC",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "ticket_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+    "details_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+    "websiteUrl": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+    "ticket_provider": "Direct Box Office",
+    "description": "Cheekface with Waitress at The WISE Hall. Presented live at The WISE Hall.",
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "waypoints": [],
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "access_model": "fenced_facility",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "17:00 - 00:00",
+      "wednesday": "17:00 - 00:00",
+      "thursday": "17:00 - 01:00",
+      "friday": "16:00 - 02:00",
+      "saturday": "16:00 - 02:00",
+      "sunday": "17:00 - 00:00"
+    },
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Seed-Pending-Audit",
+    "budget_qualified_under_50": true,
+    "proof_keyframes": {
+      "cart": null
+    },
+    "dimension_audit": {
+      "D1_tier1_checkout": {
+        "status": "verified",
+        "value": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D2_tier2_event_page": {
+        "status": "verified",
+        "value": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D3_tier3_calendar": {
+        "status": "verified",
+        "value": "https://www.ticketweb.ca/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D4_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D5_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://modo-live.com/",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D6_best_available_link": {
+        "status": "verified",
+        "value": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+        "best_tier": "Tier 1: Checkout Cart",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D7_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D8_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D9_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D10_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D11_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D12_tier1_price_base": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D13_tier1_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D14_tier1_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D15_tier1_price_read": {
+        "status": "verified",
+        "value": 0,
+        "quote": "$0.00 CAD",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D15_tier1_price_calculated": {
+        "status": "verified",
+        "value": 0,
+        "formula": "base($0) + fee($0) + tax($0) + other($0)",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D15_tier1_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "note": "Exact match",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D15_tier1_price_all_in": {
+        "status": "verified",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D16_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D17_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D18_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D19_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D20_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D20_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D20_tier2_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D20_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D21_tier3_name": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D22_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D23_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D24_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D25_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "quote": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D25_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D25_tier3_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D25_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D26_tier_count_verified": {
+        "status": "verified",
+        "count": 1,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D27_pricing_model": {
+        "status": "verified",
+        "value": "standard",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D28_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "total": null,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D29_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D30_other_cost_price": {
+        "status": "verified",
+        "value": 0,
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D31_ticket_provider": {
+        "status": "verified",
+        "value": "Direct Box Office",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D32_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D33_title": {
+        "status": "verified",
+        "value": "Cheekface with Waitress",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D34_lineup": {
+        "status": "verified",
+        "value": [
+          "Cheekface with Waitress"
+        ],
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D35_date": {
+        "status": "verified",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D35_showings_slots": {
+        "status": "verified",
+        "slot_count": 0,
+        "showings": [],
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D36_doors_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D37_start_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D38_end_time": {
+        "status": "none_available",
+        "value": null,
+        "source_tool": "none_available",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D39_dateSchedule": {
+        "status": "verified",
+        "value": "Schedule Pending Verification",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D40_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D41_category": {
+        "status": "verified",
+        "value": "arts",
+        "categories": [
+          "arts"
+        ],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D42_restrictions": {
+        "status": "verified",
+        "value": "All Ages Welcome (Family Friendly)",
+        "source_tool": "stagehand_box_office",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D43_venue_name": {
+        "status": "verified",
+        "value": "The WISE Hall",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D44_full_address": {
+        "status": "verified",
+        "value": "1882 Adanac St, Vancouver, BC V5L 2E2",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D45_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2731,
+          -123.0694
+        ],
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D46_access_model": {
+        "status": "verified",
+        "value": "fenced_facility",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D47_environment_type": {
+        "status": "verified",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D48_weekly_hours": {
+        "status": "verified",
+        "value": {
+          "monday": "Closed",
+          "tuesday": "17:00 - 00:00",
+          "wednesday": "17:00 - 00:00",
+          "thursday": "17:00 - 01:00",
+          "friday": "16:00 - 02:00",
+          "saturday": "16:00 - 02:00",
+          "sunday": "17:00 - 00:00"
+        },
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D49_spend_benchmarks": {
+        "status": "verified",
+        "value": {
+          "coffee": "$4.50 – $6.50 CAD",
+          "meal": "$16.00 – $26.00 CAD"
+        },
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D50_transit_info": {
+        "status": "verified",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D50_waypoints": {
+        "status": "verified",
+        "value": [],
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D51_description": {
+        "status": "verified",
+        "value": "Cheekface with Waitress at The WISE Hall. Presented live at The WISE Hall.",
+        "source_tool": "ai_semantic_enricher",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D52_festival_affiliation": {
+        "status": "verified",
+        "value": "None",
+        "source_tool": "schedule_harvester",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D53_active_showings": {
+        "status": "verified",
+        "count": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D54_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D55_civic_provider_rules": {
+        "status": "verified",
+        "rules": "standard_admission",
+        "source_tool": "venue_master_registry",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D56_data_provenance": {
+        "status": "verified",
+        "sources": {
+          "schedules": "seed",
+          "box_office": "unverified",
+          "editorial": "unverified",
+          "venue": "venue_master_registry"
+        },
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D57_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      },
+      "D58_last_qc_audited_at": {
+        "status": "verified",
+        "value": "2026-10-19T15:57:01.739Z",
+        "source_tool": "compiler_ai",
+        "audited_at": "2026-10-19T15:57:01.739Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-19T15:57:01.739Z",
+    "last_pulse_qc_at": null,
+    "last_content_qc_at": null,
+    "last_full_qc_at": "2026-10-19T15:57:01.739Z",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": null,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "price_read": 0,
+        "price_calculated": 0,
+        "price_delta": 0,
+        "label": "Pending Box Office QC",
+        "isAvailable": true
+      }
+    ],
+    "quarantineReason": "fatal_dead_link",
+    "reviewStatus": "quarantined_fatal",
+    "quarantinedAt": "2026-10-20T14:04:48.442Z",
+    "audit_error": "Page content contains dead indicator: \"cannot be located\"",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-10-20T08:41:50.699092"
+  },
+  {
+    "id": "little-mountain-gall-bloodfeud-stand-up-vs-improv",
+    "event_id": "little-mountain-gall-bloodfeud-stand-up-vs-improv",
+    "title": "Bloodfeud: Stand-up vs Improv",
+    "event_name": "Bloodfeud: Stand-up vs Improv",
+    "artist": "",
+    "lineup": [],
+    "venue": "Little Mountain Gallery",
+    "venue_name": "Little Mountain Gallery",
+    "address": "110 Water St, Vancouver",
+    "full_address": "110 Water St, Vancouver",
+    "neighborhood": "Downtown, Gastown & Yaletown",
+    "coordinates": [
+      49.2838,
+      -123.1072
+    ],
+    "date": "Tonight",
+    "time": "7:00 pm",
+    "start_time": "7:00 pm",
+    "doors_time": "none_available",
+    "end_time": "none_available",
+    "startIso": "TonightT20:00:00-07:00",
+    "dateSchedule": "Tonight • 7:00 pm",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "category": "music",
+    "categories": [
+      "comedy"
+    ],
+    "categoryLabel": "COMEDY",
+    "price": 0,
+    "price_base": 0,
+    "price_fee": 0,
+    "price_tax": 0,
+    "price_all_in": 0,
+    "priceLabel": "Free ($0)",
+    "pricingType": "free",
+    "isFree": true,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "ticket_url": "0-353",
+    "details_url": "https://littlemountaingallery.ca/schedule/",
+    "websiteUrl": "0-353",
+    "ticket_provider": "Direct Box Office",
+    "description": "Little Mountain Gallery is Vancouver's home for comedy shows — stand-up, improv, sketch, and more, every week in Gastown. Located at 110 Water Street, we host local favourites and touring headliners year-round. Browse the full schedule below and grab tickets online.",
+    "restrictions": "none_available",
+    "transitInfo": "4 min walk from Waterfront SkyTrain station",
+    "coffee_benchmark": "$4.50 – $6.50 CAD",
+    "beer_benchmark": "$7.50 – $10.00 CAD",
+    "meal_benchmark": "$16.00 – $26.00 CAD",
+    "access_model": "fenced_facility",
+    "environment_type": "indoor",
+    "weekly_hours": {
+      "monday": "Closed",
+      "tuesday": "10:00 - 17:00",
+      "wednesday": "10:00 - 17:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 17:00",
+      "saturday": "10:00 - 17:00",
+      "sunday": "11:00 - 17:00"
+    },
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Curator-Approved",
+    "budget_qualified_under_50": true,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/little-mountain-gall-bloodfeud-stand-up-vs-improv_cart.png"
+    },
+    "dimension_audit": {
+      "D1_tier1_checkout": {
+        "status": "verified",
+        "value": "0-353",
+        "audited_at": "2026-10-17T17:03:36.123Z",
+        "evidence_quote": "Direct ticket checkout URL accessed via Stagehand browser"
+      },
+      "D2_tier2_event_page": {
+        "status": "verified",
+        "value": "https://littlemountaingallery.ca/schedule/",
+        "audited_at": "2026-10-17T17:03:36.123Z",
+        "evidence_quote": "https://littlemountaingallery.ca/schedule/"
+      },
+      "D3_tier3_calendar": {
+        "status": "verified",
+        "value": "https://littlemountaingallery.ca",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D4_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D5_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://littlemountaingallery.ca",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D6_best_available_link": {
+        "status": "verified",
+        "value": "0-353",
+        "best_tier": "Tier 1: Checkout Cart",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D7_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D8_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D9_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D10_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D11_tier1_name": {
+        "status": "verified",
+        "value": "General Admission",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D12_tier1_price_base": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D13_tier1_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D14_tier1_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D15_tier1_price_all_in": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z",
+        "evidence_quote": "$0.00 CAD"
+      },
+      "D16_tier2_name": {
+        "status": "none_available",
+        "value": "none_available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D17_tier2_price_base": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D18_tier2_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D19_tier2_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D20_tier2_price_all_in": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z",
+        "evidence_quote": null
+      },
+      "D21_tier3_name": {
+        "status": "none_available",
+        "value": "none_available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D22_tier3_price_base": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D23_tier3_price_fee": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D24_tier3_price_tax": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D25_tier3_price_all_in": {
+        "status": "verified",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z",
+        "evidence_quote": null
+      },
+      "D26_tier_count_verified": {
+        "status": "verified",
+        "count": 3,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D27_pricing_model": {
+        "status": "verified",
+        "value": "standard",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D28_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "all_in_total": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D29_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D30_other_cost_price": {
+        "status": "none_available",
+        "value": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D31_ticket_provider": {
+        "status": "verified",
+        "value": "Direct Box Office",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D32_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D33_title": {
+        "status": "verified",
+        "value": "Bloodfeud: Stand-up vs Improv",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D34_lineup": {
+        "status": "verified",
+        "value": [],
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D35_date": {
+        "status": "verified",
+        "value": "Tonight",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D36_doors_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D37_start_time": {
+        "status": "verified",
+        "value": "7:00 pm",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D38_end_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D39_dateSchedule": {
+        "status": "verified",
+        "value": "Tonight 7:00 pm",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D40_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D41_category": {
+        "status": "verified",
+        "value": "comedy",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D42_restrictions": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D43_venue_name": {
+        "status": "verified",
+        "value": "Little Mountain Gallery",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D44_full_address": {
+        "status": "verified",
+        "value": "110 Water St, Vancouver",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D45_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2838,
+          -123.1072
+        ],
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D46_access_model": {
+        "status": "verified",
+        "value": "fenced_facility",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D47_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D48_weekly_hours": {
+        "status": "verified",
+        "value": {
+          "monday": "Closed",
+          "tuesday": "10:00 - 17:00",
+          "wednesday": "10:00 - 17:00",
+          "thursday": "10:00 - 20:00",
+          "friday": "10:00 - 17:00",
+          "saturday": "10:00 - 17:00",
+          "sunday": "11:00 - 17:00"
+        },
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D49_spend_benchmarks": {
+        "status": "verified",
+        "value": {
+          "coffee": "$4.50 – $6.50 CAD",
+          "beer": "$7.50 – $10.00 CAD",
+          "meal": "$16.00 – $26.00 CAD"
+        },
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D50_transit_info": {
+        "status": "verified",
+        "value": "4 min walk from Waterfront SkyTrain station",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D51_description": {
+        "status": "verified",
+        "value": "Little Mountain Gallery is Vancouver's home for comedy shows — stand-up, improv, sketch, and more, every week in Gastown. Located at 110 Water Street, we host local favourites and touring headliners year-round. Browse the full schedule below and grab tickets online.",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D52_festival_affiliation": {
+        "status": "verified",
+        "value": "None",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D53_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D54_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D55_civic_provider_rules": {
+        "status": "verified",
+        "rules": "standard_admission",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D56_data_provenance": {
+        "status": "verified",
+        "pipeline": "stagehand_hybrid_ripper",
+        "model": "google/gemini-3.8-flash",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D57_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      },
+      "D58_last_qc_audited_at": {
+        "status": "verified",
+        "value": "2026-10-17T17:03:36.123Z",
+        "audited_at": "2026-10-17T17:03:36.123Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-17T17:03:36.123Z",
+    "last_pulse_qc_at": "2026-10-17T17:03:36.123Z",
+    "last_content_qc_at": "2026-10-17T17:03:36.123Z",
+    "last_full_qc_at": "2026-10-17T17:03:36.123Z",
+    "tiers": [
+      {
+        "name": "General Admission",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "label": "$0.00 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "none_available",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "label": "$0.00 CAD",
+        "isAvailable": true
+      },
+      {
+        "name": "none_available",
+        "price": 0,
+        "price_base": 0,
+        "price_fee": 0,
+        "price_tax": 0,
+        "label": "$0.00 CAD",
+        "isAvailable": true
+      }
+    ],
+    "quarantineReason": "stagehand_hybrid_curator_review",
+    "reviewStatus": "pending_antigravity_review",
+    "staged_by": "stagehand_hybrid_ripper",
+    "attemptedPrice": 0,
+    "curatorAnnotation": {
+      "instructionId": "inst_1792345564571",
+      "note": "https://littlemountaingallery.ca/shows/bloodfeud-stand-up-vs-improv-5/",
+      "proposedAction": "review",
+      "userSuppliedPrice": null,
+      "screenshotPaths": [],
+      "aiLearnedSummary": "Instruction recorded: https://littlemountaingallery.ca/shows/bloodfeud-stand-up-vs-improv-5/",
+      "extractedTiers": [],
+      "annotatedAt": "2026-10-18T17:46:04.915341+00:00"
+    },
+    "is_reviewed": true,
+    "curator_reviewed_at": "2026-10-18T17:46:05.535536+00:00",
+    "has_unreviewed_ai_change": false,
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-10-20T08:44:06.655171"
+  },
+  {
+    "id": "kitsilano-showboat-event",
+    "event_id": "kitsilano-showboat-event",
+    "title": "Event",
+    "event_name": "Event",
+    "artist": null,
+    "lineup": [],
+    "venue": "Kitsilano Beach Outdoor Amphitheatre",
+    "venue_name": "Kitsilano Beach Outdoor Amphitheatre",
+    "address": "2300 Cornwall Ave, Vancouver",
+    "full_address": "2300 Cornwall Ave, Vancouver",
+    "neighborhood": "Kitsilano, Point Grey & UBC",
+    "coordinates": [
+      49.2742,
+      -123.1558
+    ],
+    "date": "none_available",
+    "time": "none_available",
+    "start_time": "none_available",
+    "doors_time": "none_available",
+    "end_time": "none_available",
+    "startIso": "none_availableT20:00:00-07:00",
+    "dateSchedule": "none_available • none_available",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "none_available",
+        "start_time": "none_available",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "category": "free-public-access",
+    "categories": [
+      "free-public-access"
+    ],
+    "categoryLabel": "FREE-PUBLIC-ACCESS",
+    "tags": [
+      "free-public-access"
+    ],
+    "subTags": [
+      "free-public-access"
+    ],
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_tax": null,
+    "price_read": null,
+    "price_calculated": null,
+    "price_delta": 0,
+    "price_all_in": null,
+    "priceLabel": "Pending Box Office QC",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "ticket_url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "details_url": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "websiteUrl": "https://kitsilanoshowboat.com/homepage/calendar/",
+    "ticket_provider": "none_available",
+    "description": "",
+    "restrictions": "All Ages Welcome (Family Friendly)",
+    "transitInfo": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+    "waypoints": [],
+    "curator_notes": null,
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "beer_benchmark": "$7.50 – $10.00 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "access_model": "open_public_space",
+    "environment_type": "indoor",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Seed-Pending-Audit",
+    "budget_qualified_under_50": false,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/kitsilano-showboat-none-available_cart.png"
+    },
+    "dimension_audit": {
+      "D1_tier1_checkout": {
+        "status": "verified",
+        "value": "https://kitsilanoshowboat.com/homepage/calendar/",
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "Direct ticket checkout URL accessed via Stagehand browser"
+      },
+      "D2_tier2_event_page": {
+        "status": "verified",
+        "value": "https://kitsilanoshowboat.com/homepage/calendar/",
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "https://kitsilanoshowboat.com/homepage/calendar/"
+      },
+      "D3_tier3_calendar": {
+        "status": "verified",
+        "value": "https://kitsilanoshowboat.com",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D4_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D5_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://kitsilanoshowboat.com",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D6_best_available_link": {
+        "status": "verified",
+        "value": "https://kitsilanoshowboat.com/homepage/calendar/",
+        "best_tier": "Tier 1: Checkout Cart",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D7_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D8_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D9_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D10_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D11_tier1_name": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D12_tier1_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D13_tier1_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D14_tier1_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D15_tier1_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D15_tier1_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "formula": "base($none) + fee($none) + tax($none)",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D15_tier1_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D15_tier1_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D16_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D17_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D18_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D19_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D20_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D20_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D20_tier2_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D20_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D21_tier3_name": {
+        "status": "none_available",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D22_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D23_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D24_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D25_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D25_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D25_tier3_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D25_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z",
+        "evidence_quote": "none_available"
+      },
+      "D26_tier_count_verified": {
+        "status": "verified",
+        "count": 3,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D27_pricing_model": {
+        "status": "verified",
+        "value": "unverified",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D28_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "all_in_total": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D29_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D30_other_cost_price": {
+        "status": "none_available",
+        "value": 0,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D31_ticket_provider": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D32_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D33_title": {
+        "status": "none_available",
+        "value": "Event",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D34_lineup": {
+        "status": "none_available",
+        "value": [],
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D35_date": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D35_showings": {
+        "status": "verified",
+        "showings": [
+          {
+            "slot": 1,
+            "date": "none_available",
+            "start_time": "none_available",
+            "doors_time": "none_available",
+            "end_time": "none_available",
+            "status": "upcoming"
+          }
+        ],
+        "slot_count": 1,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D36_doors_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D37_start_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D38_end_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D39_dateSchedule": {
+        "status": "verified",
+        "value": "none_available • none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D40_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D41_category": {
+        "status": "verified",
+        "value": "free-public-access",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D42_restrictions": {
+        "status": "verified",
+        "value": "All Ages Welcome (Family Friendly)",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D43_venue_name": {
+        "status": "verified",
+        "value": "Kitsilano Beach Outdoor Amphitheatre",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D44_full_address": {
+        "status": "verified",
+        "value": "2300 Cornwall Ave, Vancouver",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D45_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2742,
+          -123.1558
+        ],
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D46_access_model": {
+        "status": "verified",
+        "value": "open_public_space",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D47_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D48_weekly_hours": {
+        "status": "verified",
+        "value": {
+          "monday": "06:00 - 22:00",
+          "tuesday": "06:00 - 22:00",
+          "wednesday": "06:00 - 22:00",
+          "thursday": "06:00 - 22:00",
+          "friday": "06:00 - 22:00",
+          "saturday": "06:00 - 22:00",
+          "sunday": "06:00 - 22:00"
+        },
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D49_spend_benchmarks": {
+        "status": "verified",
+        "value": {
+          "coffee": "$3.50 – $5.50 CAD",
+          "beer": "$7.50 – $10.00 CAD",
+          "meal": "$10.00 – $18.00 CAD"
+        },
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D50_transit_info": {
+        "status": "verified",
+        "value": "#2 Burrard or #4 / #7 bus from Downtown Vancouver",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D51_description": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D52_festival_affiliation": {
+        "status": "verified",
+        "value": "None",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D53_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D54_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D55_civic_provider_rules": {
+        "status": "verified",
+        "rules": "standard_admission",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D56_data_provenance": {
+        "status": "verified",
+        "pipeline": "stagehand_hybrid_ripper",
+        "model": "google/gemini-3.8-flash",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D57_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      },
+      "D58_last_qc_audited_at": {
+        "status": "verified",
+        "value": "2026-10-21T14:59:53.659Z",
+        "audited_at": "2026-10-21T14:59:53.659Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-21T14:59:53.659Z",
+    "last_pulse_qc_at": "2026-10-21T14:59:53.659Z",
+    "last_content_qc_at": "2026-10-21T14:59:53.659Z",
+    "last_full_qc_at": "2026-10-21T14:59:53.659Z",
+    "tiers": [
+      {
+        "name": "none_available",
+        "price": null,
+        "price_base": null,
+        "price_fee": null,
+        "price_tax": null,
+        "price_read": null,
+        "price_calculated": null,
+        "price_delta": 0,
+        "label": "Unpriced",
+        "isAvailable": true
+      }
+    ],
+    "quarantineReason": "budget_breach_over_50",
+    "reviewStatus": "pending_curator_review",
+    "staged_by": "stagehand_hybrid_ripper",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-10-21T11:13:10.845346"
+  },
+  {
+    "id": "granville-island-host-an-event",
+    "event_id": "granville-island-host-an-event",
+    "title": "Host an Event",
+    "event_name": "Host an Event",
+    "artist": null,
+    "lineup": [],
+    "venue": "Granville Island Public Market",
+    "venue_name": "Granville Island Public Market",
+    "address": "1689 Johnston St, Vancouver",
+    "full_address": "1689 Johnston St, Vancouver",
+    "neighborhood": "Granville Island & False Creek",
+    "coordinates": [
+      49.2718,
+      -123.1342
+    ],
+    "date": "none_available",
+    "time": "none_available",
+    "start_time": "none_available",
+    "doors_time": "none_available",
+    "end_time": "none_available",
+    "startIso": "none_availableT20:00:00-07:00",
+    "dateSchedule": "none_available • none_available",
+    "frequency": "One-Off",
+    "frequencyLabel": "One-Time Event",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "none_available",
+        "start_time": "none_available",
+        "doors_time": "none_available",
+        "end_time": "none_available",
+        "status": "upcoming"
+      }
+    ],
+    "category": "social",
+    "categories": [
+      "social"
+    ],
+    "categoryLabel": "SOCIAL",
+    "tags": [
+      "social"
+    ],
+    "subTags": [
+      "social"
+    ],
+    "price": null,
+    "price_base": null,
+    "price_fee": null,
+    "price_tax": null,
+    "price_read": null,
+    "price_calculated": null,
+    "price_delta": 0,
+    "price_all_in": null,
+    "priceLabel": "Pending Box Office QC",
+    "pricingType": "paid",
+    "isFree": false,
+    "is_sold_out": false,
+    "isSoldOut": false,
+    "ticket_url": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+    "details_url": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+    "websiteUrl": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+    "ticket_provider": "none_available",
+    "description": "Granville Island is a vibrant cultural district located in the unceded, ancestral, traditional territories of the xʷməθkwəy̓ əm (Musqueam), Skwxwú7mesh (Squamish) and Səl̓ílwətaʔ/Selilwitulh (Tsleil-Waututh) First Nations. Located in the centre of Vancouver, minutes from downtown and surrounded by ocean, cityscape and mountain views. Granville Island attracts millions of visitors each year, provides a haven for locals and tourists from around the world, and provides an ideal location for photographers, filmmakers, and event organizers.",
+    "restrictions": "19+ (Two pieces of government ID required)",
+    "transitInfo": "#50 False Creek bus or False Creek Aquabus ferry docks",
+    "waypoints": [],
+    "curator_notes": null,
+    "coffee_benchmark": "$3.50 – $5.50 CAD",
+    "beer_benchmark": "$7.50 – $10.00 CAD",
+    "meal_benchmark": "$10.00 – $18.00 CAD",
+    "access_model": "open_public_space",
+    "environment_type": "indoor",
+    "weekly_hours": {
+      "monday": "06:00 - 22:00",
+      "tuesday": "06:00 - 22:00",
+      "wednesday": "06:00 - 22:00",
+      "thursday": "06:00 - 22:00",
+      "friday": "06:00 - 22:00",
+      "saturday": "06:00 - 22:00",
+      "sunday": "06:00 - 22:00"
+    },
+    "lifecycle_type": "time_bound_event",
+    "approval_status": "Seed-Pending-Audit",
+    "budget_qualified_under_50": false,
+    "proof_keyframes": {
+      "cart": "data/proof_keyframes/granville-island-host-an-event_cart.png"
+    },
+    "dimension_audit": {
+      "D1_tier1_checkout": {
+        "status": "verified",
+        "value": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": "Direct ticket checkout URL accessed via Stagehand browser"
+      },
+      "D2_tier2_event_page": {
+        "status": "verified",
+        "value": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/"
+      },
+      "D3_tier3_calendar": {
+        "status": "verified",
+        "value": "https://granvilleisland.com",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D4_tier4_civic_destination": {
+        "status": "not_applicable",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D5_tier5_venue_home": {
+        "status": "verified",
+        "value": "https://granvilleisland.com",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D6_best_available_link": {
+        "status": "verified",
+        "value": "https://admin.granvilleisland.com/events-filming-venue-bookings/how-to-maps-and-forms/",
+        "best_tier": "Tier 1: Checkout Cart",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D7_operational_status": {
+        "status": "verified",
+        "value": "available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D8_geo_jurisdiction": {
+        "status": "verified",
+        "value": "Metro Vancouver (British Columbia)",
+        "in_market": true,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D9_currency_standard": {
+        "status": "verified",
+        "value": "CAD",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D10_iana_timezone": {
+        "status": "verified",
+        "value": "America/Vancouver",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D11_tier1_name": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D12_tier1_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D13_tier1_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D14_tier1_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D15_tier1_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": "Unverified"
+      },
+      "D15_tier1_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "formula": "base($none) + fee($none) + tax($none)",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D15_tier1_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D15_tier1_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": "Unverified"
+      },
+      "D16_tier2_name": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D17_tier2_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D18_tier2_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D19_tier2_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D20_tier2_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": null
+      },
+      "D20_tier2_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D20_tier2_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D20_tier2_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": null
+      },
+      "D21_tier3_name": {
+        "status": "none_available",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D22_tier3_price_base": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D23_tier3_price_fee": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D24_tier3_price_tax": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D25_tier3_price_read": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": null
+      },
+      "D25_tier3_price_calculated": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D25_tier3_discrepancy_delta": {
+        "status": "verified_reconciled",
+        "delta": 0,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D25_tier3_price_all_in": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z",
+        "evidence_quote": null
+      },
+      "D26_tier_count_verified": {
+        "status": "verified",
+        "count": 3,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D27_pricing_model": {
+        "status": "verified",
+        "value": "unverified",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D28_budget_qualified_under_50": {
+        "status": "verified",
+        "qualified": true,
+        "all_in_total": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D29_other_cost_label": {
+        "status": "none_available",
+        "value": null,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D30_other_cost_price": {
+        "status": "none_available",
+        "value": 0,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D31_ticket_provider": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D32_booking_protocol": {
+        "status": "verified",
+        "value": "online_reservation",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D33_title": {
+        "status": "verified",
+        "value": "Host an Event",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D34_lineup": {
+        "status": "none_available",
+        "value": [],
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D35_date": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D35_showings": {
+        "status": "verified",
+        "showings": [
+          {
+            "slot": 1,
+            "date": "none_available",
+            "start_time": "none_available",
+            "doors_time": "none_available",
+            "end_time": "none_available",
+            "status": "upcoming"
+          }
+        ],
+        "slot_count": 1,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D36_doors_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D37_start_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D38_end_time": {
+        "status": "verified",
+        "value": "none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D39_dateSchedule": {
+        "status": "verified",
+        "value": "none_available • none_available",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D40_frequencyLabel": {
+        "status": "verified",
+        "value": "One-Time Event",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D41_category": {
+        "status": "verified",
+        "value": "social",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D42_restrictions": {
+        "status": "verified",
+        "value": "19+ (Two pieces of government ID required)",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D43_venue_name": {
+        "status": "verified",
+        "value": "Granville Island Public Market",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D44_full_address": {
+        "status": "verified",
+        "value": "1689 Johnston St, Vancouver",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D45_coordinates": {
+        "status": "verified",
+        "value": [
+          49.2718,
+          -123.1342
+        ],
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D46_access_model": {
+        "status": "verified",
+        "value": "open_public_space",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D47_environment_type": {
+        "status": "verified",
+        "value": "indoor",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D48_weekly_hours": {
+        "status": "verified",
+        "value": {
+          "monday": "06:00 - 22:00",
+          "tuesday": "06:00 - 22:00",
+          "wednesday": "06:00 - 22:00",
+          "thursday": "06:00 - 22:00",
+          "friday": "06:00 - 22:00",
+          "saturday": "06:00 - 22:00",
+          "sunday": "06:00 - 22:00"
+        },
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D49_spend_benchmarks": {
+        "status": "verified",
+        "value": {
+          "coffee": "$3.50 – $5.50 CAD",
+          "beer": "$7.50 – $10.00 CAD",
+          "meal": "$10.00 – $18.00 CAD"
+        },
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D50_transit_info": {
+        "status": "verified",
+        "value": "#50 False Creek bus or False Creek Aquabus ferry docks",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D51_description": {
+        "status": "verified",
+        "value": "Granville Island is a vibrant cultural district located in the unceded, ancestral, traditional territories of the xʷməθkwəy̓ əm (Musqueam), Skwxwú7mesh (Squamish) and Səl̓ílwətaʔ/Selilwitulh (Tsleil-Waututh) First Nations. Located in the centre of Vancouver, minutes from downtown and surrounded by ocean, cityscape and mountain views. Granville Island attracts millions of visitors each year, provides a haven for locals and tourists from around the world, and provides an ideal location for photographers, filmmakers, and event organizers.",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D52_festival_affiliation": {
+        "status": "verified",
+        "value": "None",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D53_active_showings": {
+        "status": "verified",
+        "count": 1,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D54_archived_showings": {
+        "status": "verified",
+        "count": 0,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D55_civic_provider_rules": {
+        "status": "verified",
+        "rules": "standard_admission",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D56_data_provenance": {
+        "status": "verified",
+        "pipeline": "stagehand_hybrid_ripper",
+        "model": "google/gemini-3.8-flash",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D57_curator_lock": {
+        "status": "verified",
+        "locked": false,
+        "ai_curator_appeal": false,
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      },
+      "D58_last_qc_audited_at": {
+        "status": "verified",
+        "value": "2026-10-21T14:58:59.327Z",
+        "audited_at": "2026-10-21T14:58:59.327Z"
+      }
+    },
+    "last_qc_audited_at": "2026-10-21T14:58:59.327Z",
+    "last_pulse_qc_at": "2026-10-21T14:58:59.327Z",
+    "last_content_qc_at": "2026-10-21T14:58:59.327Z",
+    "last_full_qc_at": "2026-10-21T14:58:59.327Z",
+    "tiers": [
+      {
+        "name": "none_available",
+        "price": null,
+        "price_base": null,
+        "price_fee": null,
+        "price_tax": null,
+        "price_read": null,
+        "price_calculated": null,
+        "price_delta": 0,
+        "label": "Unpriced",
+        "isAvailable": true
+      }
+    ],
+    "quarantineReason": "budget_breach_over_50",
+    "reviewStatus": "pending_curator_review",
+    "staged_by": "stagehand_hybrid_ripper",
+    "archivedReason": "Dismissed by curator",
+    "archivedAt": "2026-10-21T11:13:15.831276"
   }
 ]

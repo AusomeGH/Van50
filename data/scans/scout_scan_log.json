@@ -1,0 +1,13 @@
+{
+  "tier_id": "tier0_scout",
+  "tier_name": "Scout AI Discovery",
+  "cadence_sla_hours": 168,
+  "last_updated": "2026-10-13T16:40:00-07:00",
+  "cursor": {
+    "last_target_number": 181,
+    "last_target_name": "Fox Cabaret / Cultch / Rio / Cinematheque / WISE / Polygon / VAG / Pacific Theatre",
+    "last_scanned_at": "2026-10-13T08:52:00-07:00",
+    "new_events_found": 22
+  },
+  "events": {}
+}

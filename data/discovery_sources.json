@@ -1250,6 +1250,28 @@
       "status": "active",
       "last_scouted_at": "2026-10-08T21:40:55.891470-07:00",
       "last_scout_yield": 30
+    },
+    {
+      "id": "testy-canary-feed",
+      "name": "TESTY Canary Zero-Information Control Feed",
+      "domain": "127.0.0.1:8080",
+      "eventsUrl": "http://127.0.0.1:8080/test_harness/index.html",
+      "calendarUrl": "http://127.0.0.1:8080/test_harness/index.html",
+      "type": "canary_test_feed",
+      "typeLabel": "Canary Quality Control Test Feed (Negative Control)",
+      "focus": "Negative control testing for fallback defaults, hardcoded values, and synthetic hallucinations across all 9 archetypes",
+      "bestForCategories": [
+        "shows",
+        "arts",
+        "movies",
+        "activities"
+      ],
+      "harvestMethod": "html_calendar",
+      "targetBudgetTier": "Zero-information testing",
+      "resolutionPolicy": "Extract 9 testy archetype events and verify that pipeline assigns honest nulls without default fallbacks.",
+      "status": "active",
+      "last_scouted_at": null,
+      "last_scout_yield": 9
     }
   ]
 }

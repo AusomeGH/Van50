@@ -1,0 +1,1311 @@
+[
+  {
+    "id": "van50-pendulum-gallery",
+    "seed_title": "Pendulum Gallery (Kinetic Art & Exhibitions)",
+    "seed_venue": "Pendulum Gallery (RBC Place Atrium)",
+    "seed_url": "https://www.pendulumgallery.bc.ca/exhibition-current/",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.pendulumgallery.bc.ca/exhibition-current/"
+  },
+  {
+    "id": "stanley-park-seawall-rose-garden",
+    "seed_title": "Stanley Park Seawall & Rose Garden Promenade",
+    "seed_venue": "Stanley Park",
+    "seed_url": "https://www.destinationvancouver.com/things-to-do/listings/stanley-park",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "van50-vancouver-art-gallery-free-access",
+    "seed_title": "Vancouver Art Gallery (General Admission & Access Programs)",
+    "seed_venue": "Vancouver Art Gallery",
+    "seed_url": "https://www.vanartgallery.bc.ca/visit/",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2",
+    "tier1_url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2"
+  },
+  {
+    "id": "van50-sun-yat-sen-public-park",
+    "seed_title": "Dr. Sun Yat-Sen Public Courtyard & Chinese Garden",
+    "seed_venue": "Dr. Sun Yat-Sen Public Park",
+    "seed_url": "https://vancouverchinesegarden.com/visit/",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://vancouverchinesegarden.com/visit/"
+  },
+  {
+    "id": "van50-the-shipyards-lonsdale-quay",
+    "seed_title": "The Shipyards & Lonsdale Quay Waterfront Promenade",
+    "seed_venue": "The Shipyards District",
+    "seed_url": "https://www.cnv.org/Parks-Recreation/The-Shipyards",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.cnv.org/Parks-Recreation/The-Shipyards"
+  },
+  {
+    "id": "van50-granville-island-public-market",
+    "seed_title": "Granville Island Public Market & Boardwalks",
+    "seed_venue": "Granville Island Public Market",
+    "seed_url": "https://granvilleisland.com/public-market",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://granvilleisland.com/public-market"
+  },
+  {
+    "id": "van50-canada-place-promenade",
+    "seed_title": "Canada Place Promenade & The Canadian Trail",
+    "seed_venue": "Canada Place",
+    "seed_url": "https://www.canadaplace.ca/exhibits-and-experiences",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "van50-polygon-gallery-lonsdale",
+    "seed_title": "The Polygon Gallery Admission by Donation",
+    "seed_venue": "The Polygon Gallery",
+    "seed_url": "https://thepolygon.ca/visit/",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://thepolygon.ca/visit/"
+  },
+  {
+    "id": "van50-vpl-central-rooftop-garden",
+    "seed_title": "Vancouver Public Library Central Branch Rooftop Garden & Civic Galleries",
+    "seed_venue": "VPL Central Library (Level 9)",
+    "seed_url": "https://www.vpl.ca/branches/central/level-9/roofgarden",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "van50-cag-contemporary-art-gallery",
+    "seed_title": "Contemporary Art Gallery (CAG) Public Exhibitions",
+    "seed_venue": "Contemporary Art Gallery (CAG)",
+    "seed_url": "https://cagvancouver.org/visit",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://cagvancouver.org/visit"
+  },
+  {
+    "id": "van50-queen-elizabeth-park-gardens",
+    "seed_title": "Queen Elizabeth Park & Quarry Gardens",
+    "seed_venue": "Queen Elizabeth Park",
+    "seed_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park"
+  },
+  {
+    "id": "van50-miesha-and-the-spanks-fox-20261105",
+    "seed_title": "Miesha & The Spanks with Francis Baptiste",
+    "seed_venue": "Fox Cabaret",
+    "seed_url": "https://www.showpass.com/miesha-and-the-spanks-2026/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-salin-fox-cabaret-20261010",
+    "seed_title": "SALIN with DJ Keith McCafferty (Burning Hearts Soul Club)",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.ticketweb.ca/event/salin-with-special-guests-the-fox-cabaret-tickets/15004443",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-rio-burlesque-variety-20261017",
+    "seed_title": "The Rio Theatre Burlesque & Variety Show",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatretickets.ca/events/45131-the-rio-theatre-burlesque-variety-show",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-dummy-wise-hall-20261022",
+    "seed_title": "Dummy with Golomb & worrywart",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.ticketweb.ca/event/dummy-golomb-worrywart-the-wise-hall-tickets/15030603",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-ruby-haunt-fox-20261211",
+    "seed_title": "Ruby Haunt with VHS Ghost",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.ticketweb.ca/event/ruby-haunt-with-vhs-ghost-the-fox-cabaret-tickets/14965773",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-harvest-days-vandusen",
+    "seed_title": "Harvest Days at VanDusen Botanical Garden",
+    "seed_venue": "VanDusen Botanical Garden",
+    "seed_url": "https://www.showpass.com/vandusen-botanical-garden-october-2026/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-stand-up-showcase-lmg-20261015",
+    "seed_title": "Stand-Up Showcase at Little Mountain Gallery",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://www.showpass.com/stand-up-showcase-96/",
+    "details_url": "https://littlemountaingallery.ca/shows/stand-up-showcase-92/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cinematheque-past-future-20261015",
+    "seed_title": "Past Future Continuous (Vancouver Premiere)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca/films/2026/past-future-continuous",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-york-comedy-on-the-drive-20261024",
+    "seed_title": "Comedy on the Drive",
+    "seed_venue": "York Theatre",
+    "seed_url": "https://thecultch.com/event/comedy-on-the-drive/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-york-stripocalypse-20261016",
+    "seed_title": "Stripocalypse: Rise of the Auntie Heroes",
+    "seed_venue": "York Theatre",
+    "seed_url": "https://thecultch.com/event/stripocalypse-rise-of-the-auntie-heroes/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-rio-viff-beloved-20261001",
+    "seed_title": "VIFF 2026: The Beloved (El Ser querido)",
+    "seed_venue": "Vancouver Playhouse",
+    "seed_url": "https://viff.org/whats-on/viff26-the-beloved/book/2hHpecKWPq",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-tim-burton-cabaret-waldorf-20261024",
+    "seed_title": "Tim Burton's Funeral – A Naturally Freaky Cabaret",
+    "seed_venue": "The Waldorf Hotel",
+    "seed_url": "https://www.eventbrite.ca/e/tim-burtons-funeral-a-naturally-freaky-cabaret-tickets-1997329967700",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-olive-klug-wise-hall-20261025",
+    "seed_title": "Olive Klug with Frail Talk",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.ticketweb.ca/event/olive-klug-with-frail-talk-the-wise-hall-tickets/15002713",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-orpheum-silent-movie-mondays",
+    "seed_title": "Silent Movie Mondays: Dr. Jekyll and Mr. Hyde",
+    "seed_venue": "The Orpheum",
+    "seed_url": "https://www.ticketmaster.ca/event/110064F0A03D65BD",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-queen-elizabeth-theatre-vancouver-opera-tosca",
+    "seed_title": "Vancouver Opera: Tosca (Opening Night)",
+    "seed_venue": "Queen Elizabeth Theatre",
+    "seed_url": "https://secure.vancouveropera.ca/tosca/oct-24",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-raagaverse-strings-annex-20261015",
+    "seed_title": "Raagaverse + Strings",
+    "seed_venue": "The Annex",
+    "seed_url": "https://www.showpass.com/raagaverse-strings/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-actors-rickshaw-20261009",
+    "seed_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+    "seed_venue": "Rickshaw Theatre",
+    "seed_url": "https://actors-rickshaw-2026.eventbrite.ca",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-militarie-gun-rickshaw-20261010",
+    "seed_title": "Militarie Gun: 20 Songs for $20 Tour",
+    "seed_venue": "Rickshaw Theatre",
+    "seed_url": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-sunday-service-fox-20261011",
+    "seed_title": "The Sunday Service: Live Improv Comedy",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://square.link/u/qfKgyfj5",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-90s-00s-dance-party-fox-20261009",
+    "seed_title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.eventbrite.com/e/1984911443560?aff=oddtdtcreator",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-phyllis-hull-one-woman-show-20270122",
+    "seed_title": "Phyllis Hull's One-Woman Show: Hullo! It's me you're looking for!",
+    "seed_venue": "The Show Cellar",
+    "seed_url": "https://www.eventbrite.ca/e/phyllis-hulls-one-woman-show-hullo-its-me-youre-looking-for-tickets-1999722215979",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cultch-palestine-comedy-20261009",
+    "seed_title": "Palestine Comedy Club Showcase",
+    "seed_venue": "York Theatre",
+    "seed_url": "https://thecultch.com/event/palestine-comedy-club/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cinematheque-kwaidan-20261012",
+    "seed_title": "Forbidden Rooms: Kwaidan (1964)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572740~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cinematheque-hello-destroyer-20261027",
+    "seed_title": "Hello Destroyer (Free Public Screening)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572803~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-lmg-20-20-20-comedy-20261017",
+    "seed_title": "20/20/20 Vancouver Stand-Up Comedy Showcase",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://www.showpass.com/202020-15/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-lmg-the-setup-20261024",
+    "seed_title": "The Setup at Little Mountain Gallery",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://www.showpass.com/the-setup-at-little-mountain-gallery-6/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-rickshaw-dangelo-tribute-20261018",
+    "seed_title": "Dawn Pemberton & The Brown Sugar: The Music of D'Angelo",
+    "seed_venue": "Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/van-jazz-26-dawn-pemberton-the-brown-sugar-tickets-1992452849107",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-rickshaw-amy-winehouse-20261017",
+    "seed_title": "Amy Winehouse Tribute with Krystle Dos Santos",
+    "seed_venue": "Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/van-jazz-26-amy-winehouse-tribute-starring-krystle-dos-santos-tickets-1992451509099",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-way-out-theatre-20261022",
+    "seed_title": "The Way Out – Matchstick Productions Ski Film Premiere",
+    "seed_venue": "Centennial Theatre",
+    "seed_url": "https://www.showpass.com/the-way-out/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-firehall-red-demon-20261008",
+    "seed_title": "Red Demon (Firehall Arts Centre & rice & beans theatre)",
+    "seed_venue": "Firehall Arts Centre",
+    "seed_url": "https://purchase.firehallartscentre.ca/EventAvailability?EventId=9401",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cinematheque-small-file-20261017",
+    "seed_title": "Small File Media Festival: Curated Screenings",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572812~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cinematheque-pulse-20261016",
+    "seed_title": "Forbidden Rooms: Pulse (Kairo)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572752~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-witches-harvest-market-20261024",
+    "seed_title": "Nightshade Market: Witches Harvest (Samhain Artisan Market)",
+    "seed_venue": "Croatian Cultural Centre",
+    "seed_url": "https://www.eventbrite.ca/e/nightshade-market-witches-harvest-a-samhain-artisan-market-tickets-1999339602572",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "eb-alistair-ogden-rio",
+    "seed_title": "Alistair Ogden Live at The Rio Theatre",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/alistair-ogden-live-at-the-rio-theatre-tickets-1987403826344",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-city-pop-city-rickshaw-20261121",
+    "seed_title": "City Pop City Ft. Chen Baker & Technodelic",
+    "seed_venue": "Rickshaw Theatre",
+    "seed_url": "https://rickshawtheatre.com/show_listings/city-pop-city/",
+    "lifecycle_type": "time_bound_event",
+    "ticket_url": "https://www.eventbrite.ca/e/city-pop-lights-ft-chen-baker-technodelic-tickets-1999628932967",
+    "tier1_url": "https://www.eventbrite.ca/e/city-pop-lights-ft-chen-baker-technodelic-tickets-1999628932967",
+    "details_url": "https://rickshawtheatre.com/show_listings/city-pop-city/",
+    "candidate_tier1_url": "https://www.eventbrite.ca/e/city-pop-lights-ft-chen-baker-technodelic-tickets-1999628932967"
+  },
+  {
+    "id": "vag-first-friday",
+    "seed_title": "Vancouver Art Gallery: Free First Friday Nights",
+    "seed_venue": "Vancouver Art Gallery",
+    "seed_url": "https://tickets.vanartgallery.bc.ca/events/f301c77c-bd64-ff9b-78dc-1ea8a59b70a2?tg=be6b11cf-2c60-c247-f0d9-afd637dfeabf",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-dalek-wise-hall-20261009",
+    "seed_title": "dälek (with Infidelity & DarkGable) [EXPIRED / PAST EVENT]",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.ticketweb.ca/event/dlek-with-infidelity-and-darkgable-the-wise-hall-tickets/14198554",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-st-andrews-jazz-vespers",
+    "seed_title": "Sunday Jazz Vespers at St. Andrew's-Wesley",
+    "seed_venue": "St. Andrew's-Wesley United Church",
+    "seed_url": "https://standrewswesley.com/events/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-burnaby-central-railway-mini-train",
+    "seed_title": "Burnaby Central Railway Miniature Train Rides",
+    "seed_venue": "Confederation Park",
+    "seed_url": "https://bcsme.org/tickets",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "stanley-pitch-putt",
+    "seed_title": "Stanley Park Pitch & Putt: 18-Hole Round",
+    "seed_venue": "Stanley Park Pitch & Putt",
+    "seed_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://stanleyparkvan.com/stanley-park-van-sport-facility-pitch-putt-golf-course.html"
+  },
+  {
+    "id": "qe-park-pitch-putt",
+    "seed_title": "Queen Elizabeth Park Pitch & Putt: 18-Hole Round",
+    "seed_venue": "Queen Elizabeth Park Pitch & Putt",
+    "seed_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.destinationvancouver.com/things-to-do/listings/queen-elizabeth-park"
+  },
+  {
+    "id": "rupert-park-pitch-putt",
+    "seed_title": "Rupert Park Pitch & Putt: 18-Hole Round",
+    "seed_venue": "Rupert Park Pitch & Putt",
+    "seed_url": "https://www.hellobc.com/listings/rupert-park-pitch-putt/",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "central-park-pitch-putt",
+    "seed_title": "Central Park Pitch & Putt: 18-Hole Round",
+    "seed_venue": "Central Park Pitch & Putt",
+    "seed_url": "https://www.golfburnaby.ca/golf/central-park",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.golfburnaby.ca/golf/central-park"
+  },
+  {
+    "id": "viff-the-debut",
+    "seed_title": "VIFF: \"All the Lovers in the Night\" (Special Presentation — Mieko Kawakami Adaptation) [STANDBY ONLY]",
+    "seed_venue": "International Village Cinemas (VIFF)",
+    "seed_url": "https://viff.org/whats-on/viff26-all-the-lovers-in-the-night/#book",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-ubc-apple-festival-20261017",
+    "seed_title": "UBC Apple Festival (35th Annual)",
+    "seed_venue": "UBC Botanical Garden",
+    "seed_url": "https://tickets.ubc.ca/Online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Aarticle_id=BC9A0934-520D-4F05-AA74-6F052D276632&doWork%3A%3AWScontent%3A%3AloadArticle=Load",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-rio-paul-anthony-talent-time-halloween-20261023",
+    "seed_title": "Paul Anthony's Talent Time [NO UPCOMING SHOWTIMES LISTED]",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatre.ca/event/paul-anthonys-talent-time/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-dr-sun-yat-sen-gongs-in-the-garden-20261018",
+    "seed_title": "Gongs in the Garden: A Sunday Slowdown",
+    "seed_venue": "Dr. Sun Yat-Sen Classical Chinese Garden",
+    "seed_url": "https://www.eventbrite.ca/e/gongs-in-the-garden-a-sunday-slowdown-tickets-1999457517258",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-roundhouse-diwali-in-vancouver-mehfil-20261107",
+    "seed_title": "Diwali in Vancouver: Mehfil at Roundhouse",
+    "seed_venue": "Roundhouse Community Arts & Recreation Centre",
+    "seed_url": "https://diwalifest.ca/events/diwali-in-vancouver-2026/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-cinematheque-vampyr-live-score-20261031",
+    "seed_title": "Vampyr × Applied Silence [Live Score]",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca/films/2026/vampyr",
+    "lifecycle_type": "time_bound_event",
+    "ticket_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572799~c720b4d8-2524-4617-94b4-09d7b2ffa465&",
+    "tier1_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572799~c720b4d8-2524-4617-94b4-09d7b2ffa465&"
+  },
+  {
+    "id": "van50-fox-bootylicious-halloween-20261030",
+    "seed_title": "Halloween Friday at The Fox: BOO-tylicious",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-bloedel-conservatory-dome",
+    "seed_title": "Bloedel Conservatory: Tropical Rainforest Dome",
+    "seed_venue": "Bloedel Conservatory",
+    "seed_url": "https://vandusengarden.org/explore/bloedel-conservatory/",
+    "lifecycle_type": "perennial_drop_in",
+    "ticket_url": "https://www.showpass.com/bloedel-conservatory-admission-october-2026/",
+    "tier1_url": "https://www.showpass.com/bloedel-conservatory-admission-october-2026/"
+  },
+  {
+    "id": "van50-ludica-boardgame-night",
+    "seed_title": "Pizzeria Ludica: 1,200+ Board Game Night",
+    "seed_venue": "Pizzeria Ludica",
+    "seed_url": "https://tables.toasttab.com/restaurants/86f12d2e-d90d-4510-9dc2-35ff0e1f7350/findTime",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "van50-2nd-floor-gastown-2nd-floor-gastown-live-steven-rutherford",
+    "seed_title": "2nd Floor Gastown Live Music Series",
+    "seed_venue": "2nd Floor Gastown",
+    "seed_url": "https://www.exploretock.com/waterstcafe/",
+    "lifecycle_type": "perennial_drop_in"
+  },
+  {
+    "id": "van50-red-gate-arts-society-saturday-october-17th-dawson-forsey",
+    "seed_title": "Dawson Forsey Single Release Show w/ Runner, Joe Abbott",
+    "seed_venue": "Red Gate Arts Society",
+    "seed_url": "https://gigpit.ca/shows/event:oU2zNj5wnwA/tickets",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-latincouver-catrinas-procession-gastown-20261102",
+    "seed_title": "Catrinas Procession: Día de los Muertos",
+    "seed_venue": "Gastown Historic District (Abbott & W Cordova St)",
+    "seed_url": "https://latincouver.ca/lahm/events/catrina-procession/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-tightrope-theatre-the-yes-files-20261009",
+    "seed_title": "The Yes Files",
+    "seed_venue": "Tightrope Impro Theatre",
+    "seed_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358468",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-tightrope-theatre-vancouvers-next-top-improviser-20261009",
+    "seed_title": "Vancouver's Next Top Improviser",
+    "seed_venue": "Tightrope Impro Theatre",
+    "seed_url": "https://tickets.tightropetheatre.com/events/tightropetheatre",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-tightrope-theatre-murder-she-improvised-20261113",
+    "seed_title": "Murder She Improvised",
+    "seed_venue": "Tightrope Impro Theatre",
+    "seed_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "lifecycle_type": "time_bound_event",
+    "ticket_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478",
+    "tier1_url": "https://tickets.tightropetheatre.com/events/tightropetheatre/2358478"
+  },
+  {
+    "id": "van50-commercial-drive-bia-halloween-20261031",
+    "seed_title": "Halloween on The Drive: Trick'r Treat Parade",
+    "seed_venue": "Commercial Drive BIA (Venables St to 13th Ave)",
+    "seed_url": "https://thedrive.ca/halloween-2026/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-commercial-drive-the-cultch-comedy-on-the-drive-20261024",
+    "seed_title": "Comedy on The Drive at The Historic York Theatre",
+    "seed_venue": "The York Theatre (The Cultch)",
+    "seed_url": "https://thecultch.com/ticket/comedy-on-the-drive",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-rio-theatre-critical-hit-show-20261021",
+    "seed_title": "The Critical Hit Show (D&D Live Improvised Epic Fantasy)",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatre.ca/event/the-critical-hit-show/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-performance-works-poetry-bash-20261022",
+    "seed_title": "Vancouver Writers Fest: The Poetry Bash",
+    "seed_venue": "Performance Works",
+    "seed_url": "https://writersfest.bc.ca/festival-event-2026/49-poetry-bash",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-wise-hall-cheekface-waitress-20261016",
+    "seed_title": "CHEEKFACE with special guest Waitress",
+    "seed_venue": "The WISE Hall & Lounge",
+    "seed_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets/13840293",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-public-disco-public-disco-after-dark-b2b-edition",
+    "seed_title": "Public Disco After Dark: B2B Edition",
+    "seed_venue": "The Birdhouse",
+    "seed_url": "https://www.eventbrite.ca/e/public-disco-after-dark-b2b-edition-tickets-1860462626799",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-st-andrews-wesley-united-church-candlelit-contemplative",
+    "seed_title": "Candlelit Contemplative",
+    "seed_venue": "St. Andrew's-Wesley United Church",
+    "seed_url": "https://standrewswesley.com/events/candlelit-contemplative-2/candlelit-contemplative-4/",
+    "lifecycle_type": "time_bound_event",
+    "ticket_url": "https://standrewswesley.com/events/candlelit-contemplative-2/candlelit-contemplative-4/"
+  },
+  {
+    "id": "van50-performance-works-barbara-kingsolver-in-conversation",
+    "seed_title": "Barbara Kingsolver in Conversation",
+    "seed_venue": "The Orpheum Theatre",
+    "seed_url": "https://writersfest.bc.ca/event/barbara-kingsolver/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-performance-works-malcolm-gladwell-in-conversation",
+    "seed_title": "Malcolm Gladwell in Conversation",
+    "seed_venue": "Vancouver Playhouse",
+    "seed_url": "https://writersfest.bc.ca/event/gladwell-2026",
+    "lifecycle_type": "time_bound_event",
+    "ticket_url": "https://writersfest.bc.ca/event/gladwell-2026"
+  },
+  {
+    "id": "van50-the-cambrian-hall-jokes-please-stand-up-comedy",
+    "seed_title": "Stand Up Comedy: Jokes Please!",
+    "seed_venue": "The Cambrian Hall",
+    "seed_url": "https://www.eventbrite.ca/e/stand-up-comedy-jokes-please-friday-in-mount-pleasant-comedy-show-tickets-1717268258589",
+    "lifecycle_type": "recurring_drop_in"
+  },
+  {
+    "id": "van50-the-polygon-gallery-hong-kong-made-me-x-gong-gong-gong-in-co",
+    "seed_title": "Hong Kong Made Me x Gong Gong Gong in Concert",
+    "seed_venue": "The Pipe Shop Venue",
+    "seed_url": "https://www.showpass.com/greg-girard/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-diwali-fest-diwali-celebration-society-diwali-in-surrey-nov-15-2026",
+    "seed_title": "Diwali Downtown Surrey Celebration",
+    "seed_venue": "Surrey City Hall (Surrey Civic Plaza)",
+    "seed_url": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vancouver-poetry-house-vancouver-poetry-slam-ft-nate-nate-naine",
+    "seed_title": "Vancouver Poetry Slam ft. Nate Nate Nainers",
+    "seed_venue": "Enabling Arts",
+    "seed_url": "https://www.zeffy.com/en-CA/ticketing/vancouver-poetry-slam-ft-nate-nate-nainers",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-cinematheque-young-frankenstein-20261018",
+    "seed_title": "Young Frankenstein (Mel Brooks 100th Tribute)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572844~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-cinematheque-harakiri-20261012",
+    "seed_title": "Harakiri (1962, Kobayashi Masaki on 35mm)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://tickets.thecinematheque.ca/websales/pages/ticketsearchcriteria.aspx?evtinfo=572716~c720b4d8-2524-4617-94b4-09d7b2ffa465",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-ubc-fball-uofc",
+    "seed_title": "UBC Football vs. U of C",
+    "seed_venue": "Thunderbird Stadium",
+    "seed_url": "https://gothunderbirds.ca/tickets",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-waterfront-theatre-all-eyes-on-the-north-20261025",
+    "seed_title": "Vancouver Writers Fest: All Eyes on the North",
+    "seed_venue": "Waterfront Theatre",
+    "seed_url": "https://www.showpass.com/2026-festival-89/",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-hollywood-theatre-ginger-snaps-qa-20261026",
+    "seed_title": "Ginger Snaps (35mm Screening + Live Q&A with Katharine Isabelle)",
+    "seed_venue": "Hollywood Theatre",
+    "seed_url": "https://www.hollywoodtheatre.ca/events/ginger-snaps-screening-with-q-a-from-katherine-isabelle",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-vhs-2026-launch-party-at-greta-bar--20261013",
+    "seed_title": "Vancouver Horror Show 2026 Launch Party at GRETA Bar",
+    "seed_venue": "Greta Bar YVR",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6ac5d465ebe6694396c124e0",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-inside-the-casting-room-horror-edit-20261015",
+    "seed_title": "Inside the Casting Room: Horror Edition (Industry Masterclass)",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa70056efcfbb8960a0ded1",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-vhs-2026-the-first-five-minutes-of-horror-20261016",
+    "seed_title": "The First Five Minutes of Horror (Directors & Creators Panel)",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa6fdda73677ba99b3df6f4",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-indie-horror-distribution-from-fest-20261016",
+    "seed_title": "Indie Horror Distribution: From Festival Buzz to Theatrical Release",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa6fedab9bd4f6f13bde0a1",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-ubc-mbball-twu",
+    "seed_title": "UBC Men's Basketball vs. TWU",
+    "seed_venue": "War Memorial Gym",
+    "seed_url": "https://www.universe.com/events/ubc-thunderbirds-basketball-vs-twu-spartans-home-opener-tickets-L6X7T9",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-improv-centre-deadly-dinner-party-20261009",
+    "seed_title": "Deadly Dinner Party",
+    "seed_venue": "The Improv Centre",
+    "seed_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=10801",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-improv-centre-blockbuster-20261008",
+    "seed_title": "Blockbuster: Horrors & Hilarity Live Improv",
+    "seed_venue": "The Improv Centre",
+    "seed_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=11601",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-the-improv-centre-true-story-20261013",
+    "seed_title": "True Story! (Armando Style Improv)",
+    "seed_venue": "The Improv Centre",
+    "seed_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=5001",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-trick-r-treat-19th-anniversary-scre-20261014",
+    "seed_title": "Trick 'r Treat 19th Anniversary Screening with Michael Dougherty",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa0ba5c792abeccaa471f26",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-the-glorious-dead-bc-premiere-madam-20261014",
+    "seed_title": "The Glorious Dead (BC Premiere) & Madam",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6a95ff30cc460cb950b05ad1",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-we-are-the-weirdos-mister-student-s-20261015",
+    "seed_title": "We Are the Weirdos, Mister: Student Shorts Program",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf0c70e0fe10d808050059",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-drag-bc-premiere-the-craving-20261015",
+    "seed_title": "Drag (BC Premiere) & The Craving",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdf0121837653741d18592",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-imposters-bc-premiere-turn-it-down-20261015",
+    "seed_title": "Imposters (BC Premiere) & Turn It Down",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdf32b44b17229827a268f",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-molly-you-in-danger-girl-shorts-pro-20261015",
+    "seed_title": "Molly, You in Danger, Girl: Shorts Program 1",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf19742a31bfdd7aef554c",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-ithaqua-bc-premiere-with-filmmaker--20261015",
+    "seed_title": "Ithaqua (BC Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6a9f886e02eda0286e8ea880",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-sleep-no-more-bc-premiere-necrosect-20261015",
+    "seed_title": "Sleep No More (BC Premiere) & Necrosectos",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa6e0873e906e428e3f9971",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-i-see-dead-people-shorts-program-2-20261016",
+    "seed_title": "I See Dead People: Shorts Program 2",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf4196a0c6e99b7d289963",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-wouldst-thou-like-to-live-delicious-20261016",
+    "seed_title": "Wouldst Thou Like to Live Deliciously?: Shorts Program 3",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf476ce3b4a37a3bdd6bcc",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-unholy-night-bc-premiere-with-filmm-20261016",
+    "seed_title": "Unholy Night (BC Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdf5ac615d2d2efa2ca13d",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-talking-to-a-stranger-canadian-prem-20261016",
+    "seed_title": "Talking to a Stranger (Canadian Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdfa23748944783d65bad8",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-drag-second-screening-the-craving-20261017",
+    "seed_title": "Drag (Second Screening) & The Craving",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6ac5e1f66afbafb9a03353ef",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-ancestral-beasts-bc-premiere-with-f-20261017",
+    "seed_title": "Ancestral Beasts (BC Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6ab12e2d5d096dfe07373cdc",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-encryption-world-premiere-with-film-20261017",
+    "seed_title": "Encryption (World Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa6e1993a6c48087aca4f1c",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-we-all-go-a-little-mad-sometimes-sh-20261017",
+    "seed_title": "We All Go a Little Mad Sometimes: Shorts Program 4",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf501f669844f717a83195",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-frogman-returns-bc-premiere-ghosts--20261017",
+    "seed_title": "Frogman Returns (BC Premiere) & Ghosts in the Fog",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdf7271837653741d28360",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-yaga-western-canadian-premiere-with-20261017",
+    "seed_title": "YAGA (Western Canadian Premiere) with Special Guests",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abb3a65c06a80959e601cc8",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-friday-the-69th-bc-premiere-with-fi-20261017",
+    "seed_title": "Friday the 69th (BC Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abcb1674c42ade33c13ef5c",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-they-always-come-at-night-canadian--20261018",
+    "seed_title": "They Always Come at Night (Canadian Premiere) & Daddy Lazarus",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6ab1311e065bb0220f65beb7",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-imposters-second-screening-turn-it--20261018",
+    "seed_title": "Imposters (Second Screening) & Turn It Down",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6ac5e2cc03ca74113ba8e693",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-sometimes-dead-is-better-shorts-pro-20261018",
+    "seed_title": "Sometimes Dead Is Better: Shorts Program 5",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aaf5790dd92432e20e5298f",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-table-read-series-20261018",
+    "seed_title": "Table Read Series: Live Script Readings",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6aa70b43733bd51ae73568bb",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-remnant-canadian-premiere-with-film-20261018",
+    "seed_title": "Remnant (Canadian Premiere) with Filmmaker Q&A",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abf0c48b73922b4e5aaa6a0",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-golden-tape-awards-20261018",
+    "seed_title": "Golden Tape Awards: VHS 2026 Ceremony",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdfbf875282d6398af5092",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-vhs-2026-inside-slither-20-years-of-vancouve-20261018",
+    "seed_title": "Inside Slither: 20 Years of Vancouver's FX Classic (Closing Night)",
+    "seed_venue": "Cineplex Cinemas International Village",
+    "seed_url": "https://vhs2026.eventive.org/schedule/6abdfb4d319a452626c1eb13",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-cultch-stripocalypse-auntie-heroes-20261017",
+    "seed_title": "Stripocalypse: Rise of the Auntie Heroes",
+    "seed_venue": "York Theatre (The Cultch)",
+    "seed_url": "https://thecultch.com/ticket/stripocalypse-rise-of-the-auntie-heroes",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-rio-justin-mcelroy-best-place-on-earth-20261109",
+    "seed_title": "Justin McElroy: Searching for the Best Place on Earth",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatretickets.ca/events/45456-justin-mcelroy-searching-for-the-best-place-on-earth",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-firehall-red-demon-canadian-premiere-20261016",
+    "seed_title": "Red Demon (Canadian Premiere)",
+    "seed_venue": "Firehall Arts Centre",
+    "seed_url": "https://purchase.firehallartscentre.ca/ChooseSeats/18207",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-fox-faust-stephen-hamm-live-score-20261031",
+    "seed_title": "Faust (1926) with Live Score by Stephen Hamm Theremin Man",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.foxcabaret.com/faust",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-lmg-laugh-gallery-graham-clark-20261022",
+    "seed_title": "The Laugh Gallery with Graham Clark",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://www.showpass.com/the-laugh-gallery-with-graham-clark-131/",
+    "lifecycle_type": "recurring_show"
+  },
+  {
+    "id": "van50-scout-guilt-groundup-dani-black-soul-20261019",
+    "seed_title": "GroundUp Live Soul & R&B Sessions: Dani Black",
+    "seed_venue": "Guilt & Co.",
+    "seed_url": "https://www.guiltandcompany.com",
+    "lifecycle_type": "recurring_show"
+  },
+  {
+    "id": "van50-scout-frankies-mimosa-vanjazz-20261015",
+    "seed_title": "Mimosa (VanJazz Festival Feature Quintet)",
+    "seed_venue": "Frankie's Jazz Club",
+    "seed_url": "https://frankiesjazzclub.turntabletickets.com/shows/4154/2026-10-15",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-viff-changeling-4k-sam-wiebe-20261019",
+    "seed_title": "The Changeling (1980, 4K Restoration) with Author Sam Wiebe",
+    "seed_venue": "VIFF Centre (Seymour Atrium)",
+    "seed_url": "https://viff.org/whats-on/the-changeling/book/bEn6AKVkBl",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-improv-deadly-dinner-party-20261022",
+    "seed_title": "Deadly Dinner Party: An Improvised Murder Mystery",
+    "seed_venue": "The Improv Centre",
+    "seed_url": "https://theimprovcentre.ca",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-biltmore-spy-live-podcast-20261016",
+    "seed_title": "Stop Podcasting Yourself LIVE with Dave Shumka & Graham Clark",
+    "seed_venue": "The Biltmore Cabaret",
+    "seed_url": "https://admitone.com/events/vancouver/pro/other/biltmore-cabaret/stop-podcasting-yourself/stop-podcasting-yourself-live/6a8dc65bef1dc07dc35345d3",
+    "lifecycle_type": "time_bound_event"
+  },
+  {
+    "id": "van50-scout-tightrope-the-yes-files-20261023",
+    "seed_title": "The Yes Files (X-Files Inspired Improv Comedy)",
+    "seed_venue": "Tightrope Impro Theatre",
+    "seed_url": "https://tightropetheatre.com",
+    "lifecycle_type": "recurring_show"
+  },
+  {
+    "id": "van50-scout-cultch-the-effect-20261015",
+    "seed_title": "The Effect",
+    "seed_venue": "The Cultch",
+    "seed_url": "https://tickets.thecultch.com",
+    "lifecycle_type": "dated_run"
+  },
+  {
+    "id": "van50-scout-cultch-dirt-tentacle-tribe-20261104",
+    "seed_title": "DIRT by Tentacle Tribe",
+    "seed_venue": "The Cultch",
+    "seed_url": "https://tickets.thecultch.com",
+    "lifecycle_type": "dated_run"
+  },
+  {
+    "id": "van50-scout-cultch-keith-pedro-20261120",
+    "seed_title": "Keith Pedro Live in Vancouver",
+    "seed_venue": "The Cultch",
+    "seed_url": "https://tickets.thecultch.com",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rio-cereal-party-halloween-20261024",
+    "seed_title": "Saturday Morning Cereal Party: Halloween Edition",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatretickets.ca",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rio-rocky-horror-20261023",
+    "seed_title": "Rockytober: The Rocky Horror Picture Show",
+    "seed_venue": "The Rio Theatre",
+    "seed_url": "https://riotheatretickets.ca",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rickshaw-fabio-frizzi-20261014",
+    "seed_title": "Fabio Frizzi: Frizzi2Fulci Live Concert",
+    "seed_venue": "The Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/fabio-frizzi-live-at-the-rickshaw-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rickshaw-beles-band-20261016",
+    "seed_title": "Beles Band & Gabriel Teodros",
+    "seed_venue": "The Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/van-jazz-26-beles-band-with-special-guest-gabriel-teodros-tickets-1992449474012",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rickshaw-zappa-nite-20261023",
+    "seed_title": "Zappa Nite: Annual Frank Zappa Tribute",
+    "seed_venue": "The Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/zappa-nite-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-rickshaw-jon-spencer-20261108",
+    "seed_title": "Jon Spencer: Genre Is Death",
+    "seed_venue": "The Rickshaw Theatre",
+    "seed_url": "https://www.eventbrite.ca/e/jon-spencer-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-cinematheque-trouble-every-day-20261024",
+    "seed_title": "Forbidden Rooms: Trouble Every Day (35mm)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-cinematheque-daughters-of-darkness-20261025",
+    "seed_title": "Forbidden Rooms: Daughters of Darkness (4K)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-cinematheque-dim-morgan-fisher-20261028",
+    "seed_title": "DIM Cinema: Five Films by Morgan Fisher",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-cinematheque-begotten-20261029",
+    "seed_title": "Forbidden Rooms: Begotten (35mm)",
+    "seed_venue": "The Cinematheque",
+    "seed_url": "https://thecinematheque.ca/films/2026/begotten",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-wise-cheekface-20261016",
+    "seed_title": "Cheekface with Waitress",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.ticketweb.ca/event/cheekface-the-wise-hall-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-wise-midnight-witch-ball-20261030",
+    "seed_title": "Midnight Witch Halloween Ball",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.ticketweb.ca/event/midnight-witch-halloween-the-wise-hall-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-wise-nirvana-unplugged-20261128",
+    "seed_title": "11th Annual Nirvana Unplugged Tribute",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://www.showpass.com/nirvana-unplugged-wise-hall/",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-polygon-greg-girard-20261017",
+    "seed_title": "Greg Girard: Photographs 1972–2026",
+    "seed_venue": "The Polygon Gallery",
+    "seed_url": "https://thepolygon.ca",
+    "lifecycle_type": "exhibition"
+  },
+  {
+    "id": "van50-scout-vag-emily-carr-forest-20261020",
+    "seed_title": "That Green Ideal: Emily Carr and the Forest",
+    "seed_venue": "Vancouver Art Gallery",
+    "seed_url": "https://tickets.vanartgallery.bc.ca",
+    "lifecycle_type": "exhibition"
+  },
+  {
+    "id": "van50-scout-pacific-theatre-son-of-a-preacherman-20261021",
+    "seed_title": "Son of a Preacherman by Ins Choi",
+    "seed_venue": "Pacific Theatre",
+    "seed_url": "https://pacifictheatre.org/tickets/",
+    "lifecycle_type": "dated_run"
+  },
+  {
+    "id": "van50-scout-roedde-house-sounds-of-sinatra-20261126",
+    "seed_title": "Jazz in the Parlour: Sounds of Sinatra with Lesley Branton Duo",
+    "seed_venue": "Roedde House Museum",
+    "seed_url": "https://www.roeddehouse.org/tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-scout-fox-sunday-service-improv-20261018",
+    "seed_title": "The Sunday Service Improv",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.eventbrite.ca/e/the-sunday-service-tickets",
+    "lifecycle_type": "recurring_show"
+  },
+  {
+    "id": "van50-scout-fox-slice-up-your-life-halloween-20261031",
+    "seed_title": "Halloween At The Fox: Slice Up Your Life",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.eventbrite.ca/e/halloween-at-the-fox-tickets",
+    "lifecycle_type": "single_evening"
+  },
+  {
+    "id": "van50-roundhouse-pottery-wheel-drop-in",
+    "seed_title": "Roundhouse Pottery Studio: Beginner Wheel & Glazing Workshop",
+    "seed_venue": "The Annex & Roundhouse Community Centre",
+    "seed_url": "https://roundhouse.ca/recreation/pottery",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-tightrope-improv-drop-in-class",
+    "seed_title": "Tightrope Theatre: Beginner Improv & Stagecraft Drop-In Class",
+    "seed_venue": "Tightrope Impro Theatre",
+    "seed_url": "https://www.tightropetheatre.com/classes",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-cag-community-linocut-workshop",
+    "seed_title": "Contemporary Art Gallery: Hands-On Linocut & Printmaking Workshop",
+    "seed_venue": "Contemporary Art Gallery (CAG)",
+    "seed_url": "https://www.contemporaryartgallery.ca/learning-events",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-fox-cabaret-sunday-trivia",
+    "seed_title": "Fox Cabaret Sunday Night Pop Culture Trivia Challenge",
+    "seed_venue": "The Fox Cabaret",
+    "seed_url": "https://www.foxcabaret.com",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "social_gaming"
+  },
+  {
+    "id": "van50-rain-city-games-tabletop-social",
+    "seed_title": "Rain City Games: Sunday Tabletop & Board Game Community Social",
+    "seed_venue": "Pizzeria Ludica",
+    "seed_url": "https://www.ludica.ca",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "social_gaming"
+  },
+  {
+    "id": "van50-rec-room-granville-arcade-social",
+    "seed_title": "The Rec Room Granville: Arcade Gaming & Pinball Social",
+    "seed_venue": "The Rec Room Granville",
+    "seed_url": "https://www.therecroom.com/granville/events",
+    "lifecycle_type": "perennial_drop_in",
+    "event_archetype": "social_gaming",
+    "ticket_url": "https://www.therecroom.com/granville/games"
+  },
+  {
+    "id": "van50-bill-reid-gallery-indigenous-art",
+    "seed_title": "Bill Reid Gallery: Northwest Coast Indigenous Art & Carving Exhibition",
+    "seed_venue": "Bill Reid Gallery of Northwest Coast Art",
+    "seed_url": "https://www.billreidgallery.ca/blogs/exhibitions-page/every-river-has-a-mouth",
+    "lifecycle_type": "perennial_drop_in",
+    "event_archetype": "museum_gallery",
+    "ticket_url": "https://www.billreidgallery.ca/pages/hours-admissions"
+  },
+  {
+    "id": "van50-kits-beach-recreation-courts",
+    "seed_title": "Kitsilano Beach Public Tennis & Outdoor Recreation Courts",
+    "seed_venue": "Kitsilano Beach Park",
+    "seed_url": "https://www.destinationvancouver.com/things-to-do/listings/kitsilano-beach",
+    "lifecycle_type": "perennial_drop_in",
+    "event_archetype": "active_rec",
+    "ticket_url": "https://www.destinationvancouver.com/things-to-do/listings/kitsilano-beach"
+  },
+  {
+    "id": "van50-secret-comedy-club-popup",
+    "seed_title": "Secret Comedy Club Vancouver: Underground Stand-up Pop-up",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://littlemountaingallery.ca",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-wise-lounge-open-mic",
+    "seed_title": "The WISE Lounge: Weekly Acoustic Open Mic & Songwriter Showcase",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://wisehall.ca",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-sunset-cinema-popup",
+    "seed_title": "Sunset Cinema Vancouver: Outdoor Community BYO-Blanket Pop-Up",
+    "seed_venue": "Stanley Park Seawall",
+    "seed_url": "https://stanleyparkvan.com/",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-east-van-makers-popup",
+    "seed_title": "East Van Makers Collective: Weekend Artisan Craft & Design Pop-Up",
+    "seed_venue": "The Cultch",
+    "seed_url": "https://thecultch.com",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-commercial-drive-street-poetry",
+    "seed_title": "Commercial Drive Open Stage: Street Poetry & Acoustic Jam",
+    "seed_venue": "The WISE Hall",
+    "seed_url": "https://wisehall.ca",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-the-american-pinball-arcade-social",
+    "seed_title": "The American: Community Pinball Night & Classic Arcade Social",
+    "seed_venue": "The American",
+    "seed_url": "https://www.theamerican.bar/upcoming-events",
+    "lifecycle_type": "perennial_drop_in",
+    "event_archetype": "social_gaming",
+    "ticket_url": "https://www.theamerican.bar/upcoming-events"
+  },
+  {
+    "id": "van50-testy-canary-cinema",
+    "seed_title": "TESTY Cinema Movie Screening",
+    "seed_venue": "TESTVENUE Cinema Movie Theatre",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_cinema.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "cinema"
+  },
+  {
+    "id": "van50-testy-canary-live-stage",
+    "seed_title": "TESTY Live Stage Performance",
+    "seed_venue": "TESTVENUE Live Stage Playhouse",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_live_stage.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "live_stage"
+  },
+  {
+    "id": "van50-testy-canary-workshop",
+    "seed_title": "TESTY Workshop Ceramic Class",
+    "seed_venue": "TESTVENUE Studio & Workshop Space",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_workshop.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "workshop"
+  },
+  {
+    "id": "van50-testy-canary-social-gaming",
+    "seed_title": "TESTY Social Gaming Drop-In",
+    "seed_venue": "TESTVENUE Board Game Lounge",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_social_gaming.html",
+    "lifecycle_type": "recurring_drop_in",
+    "event_archetype": "social_gaming"
+  },
+  {
+    "id": "van50-testy-canary-civic-park",
+    "seed_title": "TESTY Civic Park Walking Tour",
+    "seed_venue": "TESTVENUE Public Waterfront Park",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_civic_park.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "civic_park"
+  },
+  {
+    "id": "van50-testy-canary-museum-gallery",
+    "seed_title": "TESTY Museum Gallery Exhibition",
+    "seed_venue": "TESTVENUE Modern Art Gallery",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_museum_gallery.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "museum_gallery"
+  },
+  {
+    "id": "van50-testy-canary-active-rec",
+    "seed_title": "TESTY Active Rec Pitch & Putt Session",
+    "seed_venue": "TESTVENUE Pitch & Putt Recreation Course",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_active_rec.html",
+    "lifecycle_type": "recurring_drop_in",
+    "event_archetype": "active_rec"
+  },
+  {
+    "id": "van50-testy-canary-roving-series",
+    "seed_title": "TESTY Roving Series Pop-Up",
+    "seed_venue": "TESTVENUE Secret Roving Location",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_roving_series.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "roving_series"
+  },
+  {
+    "id": "van50-testy-canary-festival",
+    "seed_title": "TESTY Festival Cultural Celebration",
+    "seed_venue": "TESTVENUE Cultural Community Festival Hub",
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/testy_festival.html",
+    "lifecycle_type": "time_bound_event",
+    "event_archetype": "festival"
+  },
+  {
+    "id": "van50-testy-canary-other",
+    "seed_title": "Other Testcase Event",
+    "seed_venue": null,
+    "seed_url": "http://127.0.0.1:8080/test_harness/shows/other_testcase_event.html",
+    "lifecycle_type": null,
+    "event_archetype": null
+  },
+  {
+    "id": "little-mountain-gall-jack-grady-live-2026-10-30",
+    "seed_title": "Jack Grady Live",
+    "seed_venue": "Little Mountain Gallery",
+    "seed_url": "https://www.showpass.com/jack-grady-live/",
+    "tier1_url": "https://www.showpass.com/jack-grady-live/",
+    "lifecycle_type": "time_bound_event"
+  }
+]

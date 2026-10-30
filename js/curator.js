@@ -10,6 +10,50 @@ if (_tokenParam) {
   } catch (e) {}
 }
 
+function getCatalogDimensionsCount() {
+  if (typeof FULL_CATALOG_DIMENSIONS !== 'undefined' && Array.isArray(FULL_CATALOG_DIMENSIONS) && FULL_CATALOG_DIMENSIONS.length >= 96) {
+    return FULL_CATALOG_DIMENSIONS.length;
+  }
+  if (typeof window !== 'undefined' && window.FULL_CATALOG_DIMENSIONS && Array.isArray(window.FULL_CATALOG_DIMENSIONS) && window.FULL_CATALOG_DIMENSIONS.length >= 96) {
+    return window.FULL_CATALOG_DIMENSIONS.length;
+  }
+  const events = (typeof state !== 'undefined' && state?.allEvents) || (window?.state?.allEvents) || (typeof state !== 'undefined' && state?.masterCatalogsData?.events_active) || [];
+  if (Array.isArray(events) && events.length > 0) {
+    for (const ev of events) {
+      if (ev?.dimension_audit && typeof ev.dimension_audit === 'object') {
+        const count = Object.keys(ev.dimension_audit).length;
+        if (count > 0) return count;
+      }
+    }
+  }
+  return 96;
+}
+window.getCatalogDimensionsCount = getCatalogDimensionsCount;
+
+function isVerifiedApprovalStatus(status) {
+  if (!status || typeof status !== 'string') return false;
+  const s = status.trim();
+  return /^(Stagehand-\d+D-Verified|Verified-\d+D|Stagehand-Verified|Verified|Curator-Approved)$/i.test(s) || (s.includes('Verified') && !s.includes('Quarantine'));
+}
+window.isVerifiedApprovalStatus = isVerifiedApprovalStatus;
+
+function syncDynamicDimensionCounts() {
+  const count = getCatalogDimensionsCount();
+  document.querySelectorAll('.dyn-dim-count').forEach(el => {
+    el.textContent = count;
+  });
+  document.querySelectorAll('.dyn-dim-label').forEach(el => {
+    el.textContent = `${count}-Dimension`;
+  });
+  document.querySelectorAll('.dyn-dim-pill').forEach(el => {
+    el.textContent = `${count}-Dim QC`;
+  });
+  document.querySelectorAll('.dyn-dim-suffix').forEach(el => {
+    el.textContent = `${count}D`;
+  });
+}
+window.syncDynamicDimensionCounts = syncDynamicDimensionCounts;
+
 const state = {
   token: sessionStorage.getItem('van50_curator_token') || localStorage.getItem('van50_curator_token') || _tokenParam || null,
   quarantinedEvents: [],
@@ -114,6 +158,29 @@ function getVenueExternalUrl(v) {
     }
   }
   return '';
+}
+
+function getEventCardNumber(ev, fallbackIndex = null) {
+  if (!ev) return fallbackIndex != null ? (fallbackIndex + 1) : '?';
+  if (ev.Event_Num_Card) {
+    const m = String(ev.Event_Num_Card).match(/\d+/);
+    if (m) return parseInt(m[0], 10);
+  }
+  if (ev.cardNumber != null) return ev.cardNumber;
+  if (ev.card_slot != null) return ev.card_slot;
+  if (ev.cardIndex != null) return ev.cardIndex;
+  
+  const allEvs = (state.allEvents && state.allEvents.length > 0) 
+    ? state.allEvents 
+    : (state.masterCatalogsData?.events_active || []);
+  if (allEvs && allEvs.length > 0) {
+    const evId = ev.id || ev.event_id;
+    const evTitle = (ev.title || ev.event_name || '').toLowerCase().trim();
+    const idx = allEvs.findIndex(e => (e.id || e.event_id) === evId || (e.title || e.event_name || '').toLowerCase().trim() === evTitle);
+    if (idx >= 0) return idx + 1;
+  }
+  
+  return fallbackIndex != null ? (fallbackIndex + 1) : '?';
 }
 
 function loadSavedInstructionDrafts() {
@@ -410,6 +477,7 @@ async function loadQuarantineQueue() {
     }
 
     // Hydrate any existing queued instructions onto the quarantined events
+    let instMap = new Map();
     try {
       const instRes = await fetch(`/api/curator/instructions?_t=${t}`, {
         headers: { 'Curator-Token': state.token },
@@ -418,7 +486,6 @@ async function loadQuarantineQueue() {
       if (instRes.ok) {
         const instData = await instRes.json();
         const instructions = instData.instructions || [];
-        const instMap = new Map();
         for (const inst of instructions) {
           if (inst.eventId && inst.status === 'pending') {
             instMap.set(inst.eventId, inst);
@@ -489,6 +556,9 @@ async function loadQuarantineQueue() {
 
     updateFilterCounts();
     applyFiltersAndRender();
+    if (typeof window.loadLayersAndEvents === 'function') {
+      window.loadLayersAndEvents();
+    }
   } catch (err) {
     showToast('Failed to load quarantine queue', 'error');
   }
@@ -635,8 +705,10 @@ function applyFiltersAndRender() {
     return;
   }
 
-  // Strict Budget Cap: Curator strictly triages candidates that may meet criteria; >$50 are completely filtered out
-  let list = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
+  // Strict Budget Cap: Curator strictly triages candidates that may meet criteria; >$50 are filtered out unless searching
+  let list = state.searchQuery
+    ? (state.quarantinedEvents || [])
+    : (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
 
   // 1. Tab Filter
   if (state.activeFilter === 'feedback' || state.activeFilter === 'has_feedback') {
@@ -672,17 +744,39 @@ function applyFiltersAndRender() {
     });
   }
 
-  // 3. Search Query
+  // 3. Search Query (Typo-Tolerant & Multi-field)
   if (state.searchQuery) {
     const q = state.searchQuery.toLowerCase();
+    const tokens = q.split(/\s+/).filter(t => t.length > 0);
     list = list.filter(e => {
-      return (
-        (e.title || '').toLowerCase().includes(q) ||
-        (e.venue || '').toLowerCase().includes(q) ||
-        (e.neighborhood || '').toLowerCase().includes(q) ||
-        (e.flagReason || '').toLowerCase().includes(q) ||
-        (e.provider || '').toLowerCase().includes(q)
-      );
+      const title = (e.title || e.event_name || '').toLowerCase();
+      const venue = (e.venue || e.venue_name || '').toLowerCase();
+      const neighborhood = (e.neighborhood || '').toLowerCase();
+      const flag = (e.flagReason || e.quarantineReason || '').toLowerCase();
+      const prov = (e.provider || e.semanticProvider || '').toLowerCase();
+      const artist = (e.artist || '').toLowerCase();
+      const lineup = Array.isArray(e.lineup) ? e.lineup.join(' ').toLowerCase() : '';
+      const id = (e.id || e.event_id || '').toLowerCase();
+      const hay = `${title} ${venue} ${neighborhood} ${flag} ${prov} ${artist} ${lineup} ${id}`;
+
+      return tokens.every(tok => {
+        if (hay.includes(tok)) return true;
+        // 1-char edit distance tolerance for words >= 4 chars
+        if (tok.length >= 4) {
+          const hayWords = hay.split(/\s+/);
+          return hayWords.some(w => {
+            if (Math.abs(w.length - tok.length) > 1) return false;
+            let diff = 0;
+            const minLen = Math.min(w.length, tok.length);
+            for (let i = 0; i < minLen; i++) {
+              if (w[i] !== tok[i]) diff++;
+              if (diff > 1) return false;
+            }
+            return true;
+          });
+        }
+        return false;
+      });
     });
   }
 
@@ -713,20 +807,36 @@ function applyFiltersAndRender() {
 // 4. CARD RENDERING & QUICK-EDIT INTERFACE
 // ==============================================================================
 
+function formatScheduleText12h(str) {
+  if (!str || typeof str !== 'string') return str || '';
+  return str.replace(/\b([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?(\s*(?:AM|PM|am|pm))?\b/g, (full, hh, mm, mer) => {
+    let h = parseInt(hh, 10);
+    const m = mm;
+    const merUpper = mer ? mer.trim().toUpperCase() : null;
+    if (merUpper) {
+      if (merUpper === "PM" && h < 12) h += 12;
+      if (merUpper === "AM" && h === 12) h = 0;
+    }
+    const period = h >= 12 ? "PM" : "AM";
+    const h12 = h % 12 === 0 ? 12 : h % 12;
+    return `${h12}:${m} ${period}`;
+  });
+}
+
 function formatCuratorDate(ev) {
   if (ev.dateSchedule) {
-    return ev.dateSchedule;
+    return formatScheduleText12h(ev.dateSchedule);
   }
   if (ev.startIso) {
     try {
       const d = new Date(ev.startIso);
       const dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
-      const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
       return `${dateStr} • ${timeStr}`;
     } catch (e) {}
   }
   if (ev.frequencyLabel) {
-    return ev.frequencyLabel;
+    return formatScheduleText12h(ev.frequencyLabel);
   }
   if (ev.daysOfWeek && ev.daysOfWeek.length > 0) {
     const dows = ev.daysOfWeek.map(d => d.toUpperCase()).join(', ');
@@ -1108,12 +1218,13 @@ function renderCards(items) {
     return;
   }
 
-  container.innerHTML = items.map(ev => {
+  container.innerHTML = items.map((ev, index) => {
+    const cardNum = getEventCardNumber(ev, index);
     const attemptedPrice = parseFloat(ev.attemptedPrice || ev.price || 0.0);
     const isBudgetExceeded = attemptedPrice > 50.0;
     const isAutoDenied = ev.reviewStatus === 'denied_auto_budget';
     const hasDrift = isDrift(ev);
-    const flagDateStr = ev.flaggedAt ? new Date(ev.flaggedAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Recently';
+    const flagDateStr = ev.flaggedAt ? new Date(ev.flaggedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : 'Recently';
     const isHandled = Boolean(ev.dealtWith || ev.queuedInstruction);
     const curatorDateStr = formatCuratorDate(ev);
     const diagnosticsHtml = generateCuratorDiagnostics(ev);
@@ -1123,10 +1234,13 @@ function renderCards(items) {
 
     return `
       <div class="curator-card ${isHandled ? 'curator-card-handled' : ''}" id="card-${ev.id}" data-event-id="${ev.id}">
-        <!-- Top Title & Metadata -->
+        <!-- Top Title & Metadata with Card Number (Request 1) -->
         <div class="curator-card-top">
           <div>
-            <h3 class="curator-card-title">${escapeHtml(ev.title)}</h3>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+              <span class="badge-card-number" title="Catalog Card #${cardNum}">Card #${cardNum}</span>
+              <h3 class="curator-card-title" style="margin: 0;">${escapeHtml(ev.title)}</h3>
+            </div>
             <div class="curator-card-meta">
               <span>📍 <strong>${escapeHtml(ev.venue)}</strong></span>
               <span>🏷️ <strong>Category:</strong> ${escapeHtml(ev.categoryLabel || ev.category || 'Event')}</span>
@@ -1235,7 +1349,7 @@ function renderCards(items) {
             ${renderCardScreenshotThumbnails(inst)}
             ${renderCardAiLearnedSummary(ev, inst)}
             <div class="curator-handled-meta" style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-              <span>🕒 Queued ${inst.createdAt ? new Date(inst.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'recently'}</span>
+              <span>🕒 Queued ${inst.createdAt ? new Date(inst.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : 'recently'}</span>
               ${inst.approvedPrice ? `<span style="color: #34d399; font-weight: 600;">💰 Target Price: $${Number(inst.approvedPrice).toFixed(2)} CAD</span>` : ''}
               <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
                 <button type="button" class="btn-curator-edit-inst" onclick="openAIInstructionModal('${ev.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); color: #e9d5ff; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='rgba(168, 85, 247, 0.35)'" onmouseout="this.style.background='rgba(168, 85, 247, 0.18)'">✏️ Edit Notes / Proof</button>
@@ -5907,7 +6021,8 @@ function renderMasterCatalogList() {
   }
 
   if (currentTab === 'events_active') {
-    container.innerHTML = list.map(ev => {
+    container.innerHTML = list.map((ev, index) => {
+      const cardNum = getEventCardNumber(ev, index);
       const p = ev.pricing_all_in_cad?.regular ?? ev.price ?? 0;
       const priceBadge = p === 0 ? '<span style="color: #4ade80; font-weight: 700;">Free ($0)</span>' : `<span style="color: #38bdf8; font-weight: 700;">$${Number(p).toFixed(2)} CAD</span>`;
       const show1 = ev.show_1 || {};
@@ -5919,7 +6034,10 @@ function renderMasterCatalogList() {
         <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
             <div>
-              <strong style="color: #f8fafc; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span class="badge-card-number" title="Catalog Card #${cardNum}">Card #${cardNum}</span>
+                <strong style="color: #f8fafc; font-size: 0.96rem;">${escapeHtml(ev.event_name || ev.title || 'Event')}</strong>
+              </div>
               <div style="color: #38bdf8; font-size: 0.84rem; margin-top: 2px;">📍 ${escapeHtml(ev.venue_name || ev.venue || '')} • <span style="color: #94a3b8;">${escapeHtml(ev.neighborhood || '')}</span></div>
             </div>
             <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
@@ -6755,3 +6873,9093 @@ window.markNewsletterSubscribed = async function(id) {
     if (typeof showToast === 'function') showToast('Error recording subscription.', 'error');
   }
 };
+
+// ==============================================================================
+// 12. STAGEHAND HYBRID MULTI-DIMENSION RIPPER UI INTEGRATION
+// ==============================================================================
+
+function initStagehandRipperUI() {
+  const openBtn = document.getElementById('btn-open-stagehand');
+  const modal = document.getElementById('stagehand-ripper-modal');
+  const closeBtn = document.getElementById('btn-close-stagehand-modal');
+  const closeBottomBtn = document.getElementById('btn-close-stagehand-bottom');
+  const runBtn = document.getElementById('btn-run-stagehand');
+  const auditAllBtn = document.getElementById('btn-audit-all-events');
+  const stopBtn = document.getElementById('btn-stop-stagehand');
+  const urlInput = document.getElementById('stagehand-url-input');
+  const modeSelect = document.getElementById('stagehand-mode-select');
+  const limitWrapper = document.getElementById('stagehand-limit-wrapper');
+  const limitInput = document.getElementById('stagehand-limit-input');
+  const unverifiedOnlyChk = document.getElementById('chk-stagehand-unverified-only');
+  const autoApproveChk = document.getElementById('chk-stagehand-auto-approve');
+  const statusPanel = document.getElementById('stagehand-status-panel');
+  const statusText = document.getElementById('stagehand-status-text');
+  const consoleOutput = document.getElementById('stagehand-console-output');
+  const timerEl = document.getElementById('stagehand-timer');
+  const spinnerEl = document.getElementById('stagehand-spinner');
+
+  if (!modal) return;
+
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      if (urlInput) urlInput.focus();
+    });
+  }
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (closeBottomBtn) closeBottomBtn.addEventListener('click', closeModal);
+
+  if (modeSelect && limitWrapper) {
+    const updateModeUI = () => {
+      const mode = modeSelect.value;
+      const isBatch = mode === 'catalog_batch';
+      const isCal = mode === 'calendar';
+      const isEnrich = mode === 'enrich';
+      const isCompile = mode === 'compile';
+
+      limitWrapper.style.display = (isBatch || isCal || isEnrich) ? 'block' : 'none';
+      if (urlInput) {
+        if (isBatch || isEnrich || isCompile) {
+          urlInput.placeholder = isCompile 
+            ? 'Merges seeds, schedules, box office & editorial layers automatically' 
+            : isEnrich 
+            ? 'Enriches seeds/events automatically to layer_editorial.json' 
+            : 'Targets data/events.json automatically (URL optional)';
+          urlInput.required = false;
+        } else {
+          urlInput.placeholder = 'https://littlemountaingallery.ca/schedule/ or direct ticket link';
+          urlInput.required = true;
+        }
+      }
+    };
+    modeSelect.addEventListener('change', updateModeUI);
+    updateModeUI();
+  }
+
+  let activeEventSource = null;
+  let timerInterval = null;
+  let isExecuting = false;
+
+  const setExecutionState = (running, initialStatus = '') => {
+    isExecuting = running;
+    if (typeof updateMainStopButtonState === 'function') {
+      updateMainStopButtonState(running);
+    }
+    if (runBtn) {
+      runBtn.disabled = running;
+      runBtn.style.opacity = running ? '0.6' : '1';
+      runBtn.innerHTML = running ? '<span>⏳ Running...</span>' : '<span>🚀 Run Custom Target</span>';
+    }
+    if (auditAllBtn) {
+      auditAllBtn.disabled = running;
+      auditAllBtn.style.opacity = running ? '0.6' : '1';
+      auditAllBtn.innerHTML = running ? '<span>⏳ Auditing All Events...</span>' : '<span>🚀 Audit All Catalog Events (1-by-1)</span>';
+    }
+    if (stopBtn) {
+      stopBtn.style.display = running ? 'inline-block' : 'none';
+    }
+    if (statusPanel && running) {
+      statusPanel.style.display = 'block';
+    }
+    if (spinnerEl) {
+      spinnerEl.style.animation = running ? 'spin 1.5s linear infinite' : 'none';
+    }
+    if (statusText && initialStatus) {
+      statusText.textContent = initialStatus;
+      statusText.style.color = '#c084fc';
+    }
+  };
+
+  // Autonomous Multi-Layer Pipeline Execution Stream Elements
+  const pipelineModal = document.getElementById('pipeline-stream-modal');
+  const btnClosePipelineModal = document.getElementById('btn-close-pipeline-modal');
+  const btnClosePipelineBottom = document.getElementById('btn-close-pipeline-bottom');
+  const pipelineModalTitle = document.getElementById('pipeline-modal-title');
+  const pipelineModalDesc = document.getElementById('pipeline-modal-desc');
+  const pipelineStatusText = document.getElementById('pipeline-status-text');
+  const pipelineStatusSubtext = document.getElementById('pipeline-status-subtext');
+  const pipelineConsoleOutput = document.getElementById('pipeline-console-output');
+  const pipelineTimer = document.getElementById('pipeline-timer');
+  const pipelineSpinner = document.getElementById('pipeline-spinner');
+  const btnStopPipeline = document.getElementById('btn-stop-pipeline');
+  const btnStopPipelineTop = document.getElementById('btn-stop-pipeline-top');
+  const pipelineEtaValue = document.getElementById('pipeline-eta-value');
+  const pipelineItemProgress = document.getElementById('pipeline-item-progress');
+  const pipelineProgressBar = document.getElementById('pipeline-progress-bar');
+
+  // Main Page Global Stop Run Button (Request 2)
+  const updateMainStopButtonState = (isRunning) => {
+    const btn = document.getElementById('btn-curator-stop-run');
+    const label = document.getElementById('curator-stop-label');
+    const indicator = document.getElementById('curator-stop-indicator');
+    if (!btn) return;
+    if (isRunning) {
+      btn.classList.add('is-running');
+      if (label) label.textContent = '🛑 Stop Active Scan';
+      btn.title = 'Active scan running! Click to halt immediately.';
+    } else {
+      btn.classList.remove('is-running');
+      if (label) label.textContent = '🛑 Stop Run';
+      btn.title = 'Immediately stop any active scan or worker process occurring in background';
+    }
+  };
+
+  const btnMainStopRun = document.getElementById('btn-curator-stop-run');
+  if (btnMainStopRun) {
+    btnMainStopRun.addEventListener('click', () => {
+      stopActiveStagehand();
+    });
+  }
+
+  // Determine unscanned / unverified events from catalog & quarantine
+  const calculateUnscannedEvents = () => {
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const quarantined = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+
+    const isUnscanned = (e) =>
+      !e.proof_keyframes?.cart || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status);
+
+    const unscanned = [];
+    events.forEach((ev, idx) => {
+      if (isUnscanned(ev)) {
+        unscanned.push({
+          id: ev.id || ev.event_id,
+          title: ev.title || ev.event_name || 'Event',
+          venue: ev.venue || ev.venue_name || '',
+          cardIndex: idx + 1,
+          isQuarantined: false
+        });
+      }
+    });
+
+    quarantined.forEach((qEv, qIdx) => {
+      if (isUnscanned(qEv)) {
+        unscanned.push({
+          id: qEv.id || qEv.event_id,
+          title: qEv.title || qEv.event_name || 'Quarantined Event',
+          venue: qEv.venue || qEv.venue_name || '',
+          cardIndex: `Q${qIdx + 1}`,
+          isQuarantined: true
+        });
+      }
+    });
+
+    return unscanned;
+  };
+
+  // Determine uncompiled / pending publication events from catalog, layers & quarantine
+  const calculateUncompiledEvents = () => {
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const quarantined = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+    if ((!events || events.length === 0) && (!quarantined || quarantined.length === 0)) return [];
+
+    const eventsMap = new Map();
+    events.forEach((e, idx) => {
+      const id = e.id || e.event_id;
+      if (id) eventsMap.set(id, { ...e, cardIndex: idx + 1 });
+    });
+
+    const seeds = state.layerSeeds || [];
+    const schedules = state.layerSchedules || [];
+    const boxOffices = state.layerBoxOffices || [];
+    const editorials = state.layerEditorials || [];
+
+    const uncompiled = [];
+    const checkedIds = new Set();
+
+    // 1. Check all seeds
+    seeds.forEach(s => {
+      const id = s.id || s.event_id;
+      if (!id || checkedIds.has(id)) return;
+      checkedIds.add(id);
+
+      const ex = eventsMap.get(id);
+      if (!ex) {
+        uncompiled.push({ id, title: s.seed_title || 'Seed Event', venue: s.seed_venue || '', cardIndex: 'New Seed', reason: 'Unpublished seed candidate' });
+        return;
+      }
+      if (!ex.last_full_qc_at) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: ex.cardIndex, reason: 'Never compiled' });
+        return;
+      }
+
+      const lastCompile = new Date(ex.last_full_qc_at).getTime();
+      const sched = schedules.find(x => (x.id || x.event_id) === id);
+      const box = boxOffices.find(x => (x.id || x.event_id) === id);
+      const edit = editorials.find(x => (x.id || x.event_id) === id);
+
+      if (sched && sched.audited_at && new Date(sched.audited_at).getTime() > lastCompile) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: ex.cardIndex, reason: 'New schedule layer update' });
+      } else if (box && box.audited_at && new Date(box.audited_at).getTime() > lastCompile) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: ex.cardIndex, reason: 'New box office layer update' });
+      } else if (edit && edit.enriched_at && new Date(edit.enriched_at).getTime() > lastCompile) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: ex.cardIndex, reason: 'New editorial layer update' });
+      } else if (ex.curator_reviewed_at && new Date(ex.curator_reviewed_at).getTime() > lastCompile) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: ex.cardIndex, reason: 'Curator review pending compile' });
+      }
+    });
+
+    // 2. Check catalog events not in seeds
+    events.forEach((ex, idx) => {
+      const id = ex.id || ex.event_id;
+      if (!id || checkedIds.has(id)) return;
+      checkedIds.add(id);
+
+      if (!ex.last_full_qc_at) {
+        uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: idx + 1, reason: 'Never compiled' });
+      } else {
+        const lastCompile = new Date(ex.last_full_qc_at).getTime();
+        if (ex.curator_reviewed_at && new Date(ex.curator_reviewed_at).getTime() > lastCompile) {
+          uncompiled.push({ id, title: ex.title || ex.event_name, venue: ex.venue || ex.venue_name, cardIndex: idx + 1, reason: 'Curator review pending compile' });
+        }
+      }
+    });
+
+    // 3. Check quarantined events awaiting graduation review
+    quarantined.forEach((qEv, qIdx) => {
+      const id = qEv.id || qEv.event_id;
+      if (!id || checkedIds.has(id)) return;
+      checkedIds.add(id);
+
+      if (!qEv.last_full_qc_at) {
+        uncompiled.push({
+          id,
+          title: qEv.title || qEv.event_name || 'Quarantined Event',
+          venue: qEv.venue || qEv.venue_name || '',
+          cardIndex: `Q${qIdx + 1}`,
+          isQuarantined: true,
+          reason: 'Quarantined card awaiting compiler evaluation'
+        });
+      } else {
+        const lastCompile = new Date(qEv.last_full_qc_at).getTime();
+        const sched = schedules.find(x => (x.id || x.event_id) === id);
+        const box = boxOffices.find(x => (x.id || x.event_id) === id);
+        const edit = editorials.find(x => (x.id || x.event_id) === id);
+
+        if (sched && sched.audited_at && new Date(sched.audited_at).getTime() > lastCompile) {
+          uncompiled.push({ id, title: qEv.title || qEv.event_name, venue: qEv.venue || qEv.venue_name, cardIndex: `Q${qIdx + 1}`, isQuarantined: true, reason: 'New schedule layer update' });
+        } else if (box && box.audited_at && new Date(box.audited_at).getTime() > lastCompile) {
+          uncompiled.push({ id, title: qEv.title || qEv.event_name, venue: qEv.venue || qEv.venue_name, cardIndex: `Q${qIdx + 1}`, isQuarantined: true, reason: 'New box office layer update' });
+        } else if (edit && edit.enriched_at && new Date(edit.enriched_at).getTime() > lastCompile) {
+          uncompiled.push({ id, title: qEv.title || qEv.event_name, venue: qEv.venue || qEv.venue_name, cardIndex: `Q${qIdx + 1}`, isQuarantined: true, reason: 'New editorial layer update' });
+        } else if (qEv.curator_reviewed_at && new Date(qEv.curator_reviewed_at).getTime() > lastCompile) {
+          uncompiled.push({ id, title: qEv.title || qEv.event_name, venue: qEv.venue || qEv.venue_name, cardIndex: `Q${qIdx + 1}`, isQuarantined: true, reason: 'Curator review pending compile' });
+        }
+      }
+    });
+
+    return uncompiled;
+  };
+
+  const updateUncompiledBadges = () => {
+    const uncompiled = calculateUncompiledEvents();
+    const count = uncompiled.length;
+    const badgeNav = document.getElementById('badge-nav-uncompiled-count');
+    const badgePipeline = document.getElementById('badge-pipeline-uncompiled-count');
+    if (badgeNav) {
+      badgeNav.textContent = `${count} Pending`;
+      badgeNav.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    if (badgePipeline) {
+      badgePipeline.textContent = `${count} Pending`;
+      badgePipeline.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    const unscannedLabel = document.getElementById('scope-pill-unscanned-label');
+    if (unscannedLabel && currentPipelineScanKey === 'compile') {
+      unscannedLabel.textContent = `Uncompiled Only (${count})`;
+    }
+  };
+
+  // Determine unenriched events pending AI semantic enrichment
+  const calculateUnenrichedEvents = () => {
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const quarantined = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+    if ((!events || events.length === 0) && (!quarantined || quarantined.length === 0)) return [];
+
+    const editorials = state.layerEditorials || [];
+    const editMap = new Map();
+    editorials.forEach(e => {
+      const id = e.id || e.event_id;
+      if (id) editMap.set(id, e);
+    });
+
+    const isStaleOrUnenriched = (entry) => {
+      if (!entry) return true;
+      if (!entry.clean_title || entry.clean_title === "Cultural Event" || entry.clean_title === "Cultural Performance") return true;
+      if (/^(?:general admission|admission|tickets|ticket checkout|tickets on sale|buy tickets)$/i.test((entry.clean_title || "").trim())) return true;
+      if (!entry.source_engine || entry.source_engine === "heuristic_rules" || entry.source_engine === "unverified") return true;
+      if (typeof entry.description === "string" && (
+        entry.description.includes("Cultural Event at Metro Vancouver") ||
+        entry.description.includes("A cultural exhibition and artistic showcase featuring") ||
+        entry.description.includes("Designed for accessible cultural enjoyment under $50 CAD")
+      )) return true;
+      if (!entry.category || !entry.description) return true;
+      return false;
+    };
+
+    const unenriched = [];
+    events.forEach((ev, idx) => {
+      const id = ev.id || ev.event_id;
+      if (!id) return;
+      const edit = editMap.get(id);
+      if (isStaleOrUnenriched(edit)) {
+        unenriched.push({
+          id,
+          title: ev.title || ev.event_name || 'Event',
+          venue: ev.venue || ev.venue_name || '',
+          cardIndex: idx + 1,
+          isQuarantined: false
+        });
+      }
+    });
+
+    quarantined.forEach((qEv, qIdx) => {
+      const id = qEv.id || qEv.event_id;
+      if (!id) return;
+      const edit = editMap.get(id);
+      if (isStaleOrUnenriched(edit)) {
+        unenriched.push({
+          id,
+          title: qEv.title || qEv.event_name || 'Quarantined Event',
+          venue: qEv.venue || qEv.venue_name || '',
+          cardIndex: `Q${qIdx + 1}`,
+          isQuarantined: true
+        });
+      }
+    });
+
+    return unenriched;
+  };
+
+  const updateUnenrichedBadges = () => {
+    const unenriched = calculateUnenrichedEvents();
+    const count = unenriched.length;
+    const badgeNav = document.getElementById('badge-nav-unenriched-count');
+    const badgePipeline = document.getElementById('badge-pipeline-unenriched-count');
+    if (badgeNav) {
+      badgeNav.textContent = `${count} Pending`;
+      badgeNav.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    if (badgePipeline) {
+      badgePipeline.textContent = `${count} Pending`;
+      badgePipeline.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    const unscannedLabel = document.getElementById('scope-pill-unscanned-label');
+    if (unscannedLabel && currentPipelineScanKey === 'enrich') {
+      unscannedLabel.textContent = `Unenriched Only (${count})`;
+    }
+  };
+
+  // Determine events that haven't undergone all scans (incomplete pipeline coverage)
+  const calculateIncompleteEvents = () => {
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const quarantined = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+
+    const isScanIncomplete = (e) => {
+      const missingCart = !e.proof_keyframes?.cart || !e.last_pulse_qc_at || !isVerifiedApprovalStatus(e.approval_status);
+      const missingEditorial = !e.description || (!e.artist && !e.lineup) || e.title === "Cultural Event" || !e.last_content_qc_at;
+      const missingSchedule = !e.dateSchedule && !e.date && (!e.showings || e.showings.length === 0);
+      const missingFullQC = !e.last_full_qc_at;
+      return missingCart || missingEditorial || missingSchedule || missingFullQC;
+    };
+
+    const incomplete = [];
+    events.forEach((ev, idx) => {
+      if (isScanIncomplete(ev)) {
+        incomplete.push({
+          id: ev.id || ev.event_id,
+          title: ev.title || ev.event_name || 'Event',
+          venue: ev.venue || ev.venue_name || '',
+          cardIndex: idx + 1,
+          isQuarantined: false
+        });
+      }
+    });
+
+    quarantined.forEach((qEv, qIdx) => {
+      if (isScanIncomplete(qEv)) {
+        incomplete.push({
+          id: qEv.id || qEv.event_id,
+          title: qEv.title || qEv.event_name || 'Quarantined Event',
+          venue: qEv.venue || qEv.venue_name || '',
+          cardIndex: `Q${qIdx + 1}`,
+          isQuarantined: true
+        });
+      }
+    });
+
+    return incomplete;
+  };
+
+  // Determine events that haven't been scanned within specified duration (staleness)
+  const calculateStaleEvents = (durationStr = '24h') => {
+    const parseDurationMs = (str) => {
+      if (!str) return 24 * 3600 * 1000;
+      const match = String(str).trim().match(/^(\d+(?:\.\d+)?)\s*(h|hr|hrs|hour|hours|d|day|days|w|wk|wks|week|weeks|m|mo|mon|month|months)$/i);
+      if (!match) return 24 * 3600 * 1000;
+      const val = parseFloat(match[1]);
+      const unit = match[2].toLowerCase();
+      if (unit.startsWith("h")) return val * 3600 * 1000;
+      if (unit.startsWith("d")) return val * 24 * 3600 * 1000;
+      if (unit.startsWith("w")) return val * 7 * 24 * 3600 * 1000;
+      if (unit.startsWith("m")) return val * 30 * 24 * 3600 * 1000;
+      return 24 * 3600 * 1000;
+    };
+
+    const durationMs = parseDurationMs(durationStr);
+    const now = Date.now();
+    const events = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const quarantined = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+
+    const isStale = (e) => {
+      const ts = e.last_pulse_qc_at || e.last_content_qc_at || e.last_full_qc_at || e.last_qc_audited_at || e.audited_at || e.enriched_at;
+      if (!ts) return true;
+      const t = new Date(ts).getTime();
+      if (isNaN(t)) return true;
+      return (now - t) >= durationMs;
+    };
+
+    const staleList = [];
+    events.forEach((ev, idx) => {
+      if (isStale(ev)) {
+        staleList.push({
+          id: ev.id || ev.event_id,
+          title: ev.title || ev.event_name || 'Event',
+          venue: ev.venue || ev.venue_name || '',
+          cardIndex: idx + 1,
+          isQuarantined: false
+        });
+      }
+    });
+
+    quarantined.forEach((qEv, qIdx) => {
+      if (isStale(qEv)) {
+        staleList.push({
+          id: qEv.id || qEv.event_id,
+          title: qEv.title || qEv.event_name || 'Quarantined Event',
+          venue: qEv.venue || qEv.venue_name || '',
+          cardIndex: `Q${qIdx + 1}`,
+          isQuarantined: true
+        });
+      }
+    });
+
+    return staleList;
+  };
+
+  window.calculateIncompleteEvents = calculateIncompleteEvents;
+  window.calculateStaleEvents = calculateStaleEvents;
+
+  window.loadLayersAndEvents = async () => {
+    try {
+      const [evRes, seedsRes, schedRes, boxRes, editRes] = await Promise.allSettled([
+        fetch('/data/events.json?_t=' + Date.now()),
+        fetch('/data/layers/seeds.json?_t=' + Date.now()),
+        fetch('/data/layers/layer_schedules.json?_t=' + Date.now()),
+        fetch('/data/layers/layer_box_office.json?_t=' + Date.now()),
+        fetch('/data/layers/layer_editorial.json?_t=' + Date.now())
+      ]);
+      if (evRes.status === 'fulfilled' && evRes.value.ok) {
+        state.allEvents = await evRes.value.json();
+      }
+      state.layerSeeds = (seedsRes.status === 'fulfilled' && seedsRes.value.ok) ? await seedsRes.value.json() : [];
+      state.layerSchedules = (schedRes.status === 'fulfilled' && schedRes.value.ok) ? await schedRes.value.json() : [];
+      state.layerBoxOffices = (boxRes.status === 'fulfilled' && boxRes.value.ok) ? await boxRes.value.json() : [];
+      state.layerEditorials = (editRes.status === 'fulfilled' && editRes.value.ok) ? await editRes.value.json() : [];
+      updateUncompiledBadges();
+      updateUnenrichedBadges();
+      populateCardNameDropdown();
+      if (typeof window.updateCatalogStalenessDashboard === 'function') {
+        window.updateCatalogStalenessDashboard();
+      }
+    } catch (e) {
+      console.warn('Could not load layers or catalog events for compilation status:', e);
+    }
+  };
+
+  window.clearPipelineTerminal = function() {
+    const el = document.getElementById('pipeline-console-output');
+    if (el) el.textContent = '';
+  };
+
+  // Live Stream Output View Switcher (Table / Split / Terminal) (Request 3)
+  window.setPipelineStreamView = function(view) {
+    const diffPanel = document.getElementById('pipeline-live-diff-panel');
+    const diffContainer = document.getElementById('pipeline-diff-table-container');
+    const consoleOutput = document.getElementById('pipeline-console-output');
+    const btnTable = document.getElementById('btn-view-diff-table');
+    const btnSplit = document.getElementById('btn-view-diff-split');
+    const btnConsole = document.getElementById('btn-view-diff-console');
+
+    [btnTable, btnSplit, btnConsole].forEach(b => { if (b) b.classList.remove('active'); });
+
+    if (view === 'table') {
+      if (btnTable) btnTable.classList.add('active');
+      if (diffPanel) diffPanel.style.display = 'block';
+      if (diffContainer) diffContainer.style.maxHeight = '240px';
+      if (consoleOutput) consoleOutput.style.display = 'none';
+    } else if (view === 'split') {
+      if (btnSplit) btnSplit.classList.add('active');
+      if (diffPanel) diffPanel.style.display = 'block';
+      if (diffContainer) diffContainer.style.maxHeight = '155px';
+      if (consoleOutput) {
+        consoleOutput.style.display = 'block';
+        consoleOutput.style.maxHeight = '135px';
+      }
+    } else if (view === 'console') {
+      if (btnConsole) btnConsole.classList.add('active');
+      if (diffPanel) diffPanel.style.display = 'none';
+      if (consoleOutput) {
+        consoleOutput.style.display = 'block';
+        consoleOutput.style.maxHeight = '240px';
+      }
+    }
+  };
+
+  // Side-by-Side AI Card Yield Comparison System
+  let pipelineAuditedCardsHistory = [];
+  let pipelineCurrentCompId = null;
+  let pipelineCompFilterInScopeOnly = false;
+  let pipelineLastCompBefore = null;
+  let pipelineLastCompAfter = null;
+  let pipelineLastCompIsStreaming = false;
+
+  const AI_SCAN_TARGET_DIMENSIONS = {
+    hunter: {
+      name: 'Tier 1 Link Hunter',
+      shortDims: 'D101, D102, D106 (Direct Checkout Cart URL Upgrade)',
+      isTarget: {
+        d33_title: false,
+        d43_location: false,
+        d35_date: false,
+        d36_time: false,
+        d15_allin: false,
+        d12_base: false,
+        d13_fee: false,
+        d7_inventory: false,
+        d1_checkout: true,
+        d41_category: false,
+        d34_lineup: false,
+        d42_age: false,
+        d51_desc: false,
+        proof: false
+      }
+    },
+    qc: {
+      name: 'Stagehand Box Office QC',
+      shortDims: 'D1, D7, D12, D13, D15, D35, Proof Keyframe',
+      isTarget: {
+        d33_title: false,
+        d43_location: false,
+        d35_date: true,
+        d36_time: false,
+        d15_allin: true,
+        d12_base: true,
+        d13_fee: true,
+        d7_inventory: true,
+        d1_checkout: true,
+        d41_category: false,
+        d34_lineup: false,
+        d42_age: false,
+        d51_desc: false,
+        proof: true
+      }
+    },
+    enrich: {
+      name: 'AI Semantic Enricher',
+      shortDims: 'D33, D34, D36, D37, D41, D42, D51',
+      isTarget: {
+        d33_title: true,
+        d43_location: false,
+        d35_date: false,
+        d36_time: true,
+        d15_allin: false,
+        d12_base: false,
+        d13_fee: false,
+        d7_inventory: false,
+        d1_checkout: false,
+        d41_category: true,
+        d34_lineup: true,
+        d42_age: true,
+        d51_desc: true,
+        proof: false
+      }
+    },
+    venue: {
+      name: 'Venue Detailer AI',
+      shortDims: 'D43, D44, D45, D46, D47, D49, D50 (Physical Facility & Spend Benchmarks)',
+      isTarget: {
+        d33_title: false,
+        d43_location: true,
+        d35_date: false,
+        d36_time: false,
+        d15_allin: false,
+        d12_base: false,
+        d13_fee: false,
+        d7_inventory: false,
+        d1_checkout: false,
+        d41_category: false,
+        d34_lineup: false,
+        d42_age: false,
+        d51_desc: false,
+        proof: false
+      }
+    },
+    harvest: {
+      name: 'Schedule Harvester',
+      shortDims: 'D35, D36, D37, D1',
+      isTarget: {
+        d33_title: false,
+        d43_location: false,
+        d35_date: true,
+        d36_time: true,
+        d15_allin: false,
+        d12_base: false,
+        d13_fee: false,
+        d7_inventory: false,
+        d1_checkout: true,
+        d41_category: false,
+        d34_lineup: false,
+        d42_age: false,
+        d51_desc: false,
+        proof: false
+      }
+    },
+    compile: {
+      name: 'Live Compiler & Publisher',
+      get shortDims() { return `All ${getCatalogDimensionsCount()} Dimensions Reconciled`; },
+      isTarget: {
+        d33_title: true,
+        d43_location: true,
+        d35_date: true,
+        d36_time: true,
+        d15_allin: true,
+        d12_base: true,
+        d13_fee: true,
+        d7_inventory: true,
+        d1_checkout: true,
+        d41_category: true,
+        d34_lineup: true,
+        d42_age: true,
+        d51_desc: true,
+        proof: true
+      }
+    }
+  };
+
+  function updateComparisonTargetDimensionsBanner(scanKey) {
+    const banner = document.getElementById('pipeline-scope-highlight-banner');
+    const textEl = document.getElementById('pipeline-scope-target-dims-text');
+    const pill = document.getElementById('pipeline-scope-accent-pill');
+    if (textEl) {
+      const cfg = AI_SCAN_TARGET_DIMENSIONS[scanKey] || AI_SCAN_TARGET_DIMENSIONS.qc;
+      textEl.textContent = `${cfg.shortDims} (${cfg.name})`;
+    }
+    if (pill) {
+      if (scanKey === 'enrich') {
+        pill.textContent = 'Highlighted with Amber Accent Below';
+        pill.style.color = '#fbbf24';
+        pill.style.background = 'rgba(251, 191, 36, 0.15)';
+        pill.style.borderColor = 'rgba(251, 191, 36, 0.35)';
+      } else if (scanKey === 'compile') {
+        pill.textContent = `All ${getCatalogDimensionsCount()} Dimensions In-Scope (Emerald)`;
+        pill.style.color = '#34d399';
+        pill.style.background = 'rgba(16, 185, 129, 0.15)';
+        pill.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+      } else {
+        pill.textContent = 'Highlighted with Blue Accent Below';
+        pill.style.color = '#38bdf8';
+        pill.style.background = 'rgba(56, 189, 248, 0.15)';
+        pill.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+      }
+    }
+  }
+
+  function updateComparisonStatusPill(text, type = 'nodrift') {
+    const pill = document.getElementById('pipeline-comp-status-pill');
+    if (!pill) return;
+    pill.textContent = text;
+    pill.className = `diff-badge-status ${type}`;
+  }
+
+  function renderYieldCardHtml(cardData, isAfter, agentMode, scanKey = currentPipelineScanKey) {
+    if (!cardData) {
+      return `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #64748b; padding: 20px;">
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">${isAfter ? '🤖' : '📋'}</div>
+          <div style="font-weight: 700; color: #94a3b8; font-size: 0.88rem; margin-bottom: 4px;">
+            ${isAfter ? 'Awaiting AI Execution' : 'No Event Selected'}
+          </div>
+          <p style="font-size: 0.74rem; color: #64748b; max-width: 240px; margin: 0; line-height: 1.4;">
+            ${isAfter 
+              ? 'Click <strong>Run Scan Now</strong> to begin. Only information newly obtained by this run will appear here. Empty fields indicate untouched dimensions.'
+              : 'Select an event card or start a scan to inspect its baseline state before the AI executes.'}
+          </p>
+        </div>
+      `;
+    }
+
+    const scanCfg = AI_SCAN_TARGET_DIMENSIONS[scanKey] || AI_SCAN_TARGET_DIMENSIONS.qc;
+    const targets = scanCfg.isTarget;
+    const scanName = scanCfg.name;
+
+    let cardIdx = (cardData?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(cardData.id)?.cardIndex) 
+      || cardData?.cardIndex;
+    const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    if (!cardIdx && (cardData?.id || cardData?.event_id) && allEvs) {
+      const found = allEvs.findIndex(e => (e.id || e.event_id) === (cardData.id || cardData.event_id));
+      if (found !== -1) cardIdx = found + 1;
+    }
+    if (!cardIdx) cardIdx = '?';
+    const isCompile = (scanKey === 'compile');
+    const title = isAfter ? (cardData.afterTitle || cardData.title || cardData.event_name || null) : (cardData.title || cardData.event_name || 'Event');
+    const venue = isAfter ? (cardData.afterVenue || cardData.venue || cardData.venue_name || null) : (cardData.venue || cardData.venue_name || '');
+    const neighborhood = isAfter ? null : (cardData.neighborhood || '');
+    
+    const dateVal = isAfter ? (cardData.afterDate || (isCompile ? (cardData.date || cardData.dateSchedule) : null)) : (cardData.date || cardData.dateSchedule || null);
+    const timeVal = isAfter ? (cardData.afterTime || (isCompile ? (cardData.time || cardData.start_time || cardData.doors_time) : null)) : (cardData.time || cardData.start_time || cardData.doors_time || null);
+    
+    const priceVal = isAfter ? (cardData.afterPrice || (isCompile ? (cardData.priceLabel || (cardData.price != null ? `$${Number(cardData.price).toFixed(2)} CAD` : null)) : null)) : (cardData.priceLabel || (cardData.price != null ? `$${Number(cardData.price).toFixed(2)} CAD` : null));
+    const baseVal = isAfter ? (cardData.afterBase ?? (isCompile ? (cardData.price_base ?? null) : null)) : (cardData.price_base ?? null);
+    const feeVal = isAfter ? (cardData.afterFee ?? (isCompile ? (cardData.price_fee ?? null) : null)) : (cardData.price_fee ?? null);
+    const isSoldOut = isAfter ? (cardData.afterInventory ? cardData.afterInventory.includes('SOLD OUT') : (isCompile && cardData.is_sold_out != null ? Boolean(cardData.is_sold_out || cardData.isSoldOut) : null)) : (cardData.is_sold_out != null ? Boolean(cardData.is_sold_out || cardData.isSoldOut) : null);
+    const ticketUrl = isAfter ? (cardData.afterTicketUrl || (isCompile ? (cardData.ticket_url || cardData.details_url) : null)) : (cardData.ticket_url || cardData.details_url || null);
+
+    const categoryVal = isAfter ? (cardData.afterCategory || (isCompile ? cardData.category : null)) : (cardData.category || null);
+    const artistVal = isAfter ? (cardData.afterArtist || (isCompile ? (cardData.artist || (cardData.lineup && cardData.lineup.length ? cardData.lineup.join(', ') : null)) : null)) : (cardData.artist || (cardData.lineup && cardData.lineup.length ? cardData.lineup.join(', ') : null));
+    const ageVal = isAfter ? (cardData.afterAge || (isCompile ? (cardData.restrictions || null) : null)) : (cardData.restrictions || null);
+    const descVal = isAfter ? (cardData.afterDescription || (isCompile ? (cardData.description || null) : null)) : (cardData.description || null);
+
+    const proofUrl = isAfter 
+      ? (cardData.proofKeyframeUrl || (cardData.hasProof && cardData.id ? `data/proofs/${cardData.id}_cart.webp` : null) || (isCompile ? (cardData.proof_keyframes?.cart || null) : null))
+      : (cardData.proof_keyframes?.cart || null);
+
+    const isVenueScan = (scanKey === 'venue');
+    const addressVal = isAfter ? (cardData.afterAddress || cardData.full_address || cardData.address || null) : (cardData.full_address || cardData.address || null);
+    let gpsVal = null;
+    if (cardData.coordinates) {
+      if (Array.isArray(cardData.coordinates)) gpsVal = `${cardData.coordinates[0]}, ${cardData.coordinates[1]}`;
+      else if (typeof cardData.coordinates === 'object') gpsVal = `${cardData.coordinates.lat || cardData.coordinates.latitude}, ${cardData.coordinates.lng || cardData.coordinates.longitude}`;
+    } else if (cardData.lat && cardData.lng) {
+      gpsVal = `${cardData.lat}, ${cardData.lng}`;
+    }
+    const accessVal = isAfter ? (cardData.afterAccess || cardData.access_model || null) : (cardData.access_model || null);
+    const envVal = isAfter ? (cardData.afterEnv || cardData.environment_type || null) : (cardData.environment_type || null);
+    let spendVal = cardData.typical_item_spend || null;
+    if (!spendVal && cardData.spend_benchmarks) {
+      if (typeof cardData.spend_benchmarks === 'object') {
+        spendVal = `Beer ${cardData.spend_benchmarks.beer || '$8'} • Meal ${cardData.spend_benchmarks.meal || '$16'}`;
+      } else {
+        spendVal = String(cardData.spend_benchmarks);
+      }
+    }
+    const transitVal = isAfter ? (cardData.afterTransit || cardData.transit_info || null) : (cardData.transit_info || null);
+    const venueTypeVal = isAfter ? (cardData.afterVenueType || cardData.venue_type || null) : (cardData.venue_type || null);
+    const stepFreeVal = isAfter ? (cardData.afterStepFree || cardData.step_free_entrance || cardData.accessibility?.step_free || null) : (cardData.step_free_entrance || cardData.accessibility?.step_free || null);
+    const elevatorVal = isAfter ? (cardData.afterElevator || cardData.elevator_lift || cardData.accessibility?.elevator || null) : (cardData.elevator_lift || cardData.accessibility?.elevator || null);
+    const washroomVal = isAfter ? (cardData.afterWashrooms || cardData.accessible_washrooms || cardData.accessibility?.washrooms || null) : (cardData.accessible_washrooms || cardData.accessibility?.washrooms || null);
+    const parkingVal = isAfter ? (cardData.afterParking || cardData.access_parking || null) : (cardData.access_parking || null);
+    const foodPolicyVal = isAfter ? (cardData.afterFoodPolicy || cardData.outside_food_policy || null) : (cardData.outside_food_policy || null);
+    const waterVal = isAfter ? (cardData.afterWater || cardData.water_refill_station || null) : (cardData.water_refill_station || null);
+    const paymentVal = isAfter ? (cardData.afterPayment || cardData.payment_methods || null) : (cardData.payment_methods || null);
+    const coatCheckVal = isAfter ? (cardData.afterCoatCheck || cardData.coat_check || null) : (cardData.coat_check || null);
+    const concessionVal = isAfter ? (cardData.afterConcession || cardData.concession_benchmark || null) : (cardData.concession_benchmark || null);
+
+    const emptyScopeMsg = (inScope, note = '') => {
+      if (!inScope) return `<span class="yield-empty-field out-of-scope">— (Not in scope for ${escapeHtml(scanName)})</span>`;
+      return `<span class="yield-empty-field in-scope">— (In scope: ${note || 'awaiting extraction'})</span>`;
+    };
+
+    return `
+      <!-- Card Top Badge Bar -->
+      <div class="yield-card-badge-bar ${isAfter ? 'after' : 'before'}">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="font-weight: 800;">${isAfter ? '✨ AFTER AI RUN' : '📸 BEFORE AI RUN'}</span>
+          <span class="badge-card-number">${escapeHtml(String(cardIdx).startsWith('Q') ? `QUARANTINED #${cardIdx}` : `Card #${cardIdx}`)}</span>
+        </div>
+        <span class="yield-status-pill ${isAfter ? 'agent' : 'baseline'}" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; ${isAfter ? 'background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);' : 'background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);'}">
+          ${isAfter ? (agentMode ? escapeHtml(agentMode) : 'This Run\'s Yield') : 'Baseline Card'}
+        </span>
+      </div>
+
+      <!-- Section 1: D33 Event Name & D43/D44 Location (Request 3 & 4) -->
+      <div class="yield-section-box ${targets.d33_title ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span class="dim-label-prefix">D001</span> Event Name &amp; <span class="dim-label-prefix">D401</span> Physical Venue</span>
+          ${targets.d33_title 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="font-weight: 700; font-size: 0.88rem; color: #fff; line-height: 1.3;">
+          <span class="dim-label-prefix">D001 Name:</span>
+          ${title ? `${escapeHtml(title)} ${isAfter ? '<span class="yield-highlight-tag">+ Verified</span>' : ''}` : emptyScopeMsg(targets.d33_title, 'unscraped title')}
+        </div>
+        <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
+          <span><span class="dim-label-prefix">D401 Venue:</span> 📍 <strong>${venue ? escapeHtml(venue) : emptyScopeMsg(targets.d43_location, 'unregistered venue')}</strong></span>
+          ${neighborhood ? `<span style="color: #64748b;">• ${escapeHtml(neighborhood)}</span>` : ''}
+          ${isAfter && venue ? '<span class="yield-highlight-tag">+ Confirmed</span>' : ''}
+        </div>
+      </div>
+
+      <!-- Section 1B: D402–D408, D501–D506, D601–D608 Venue Ground Truth & Amenities (Target for Venue Detailer) -->
+      <div class="yield-section-box ${(targets.d43_location || isVenueScan) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}" style="${isVenueScan ? 'border-color: rgba(6, 182, 212, 0.45); background: rgba(6, 182, 212, 0.05);' : ''}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>🏛️</span> <span class="dim-label-prefix">D402–D408, D501–D506, D601–D608</span> Venue Ground Truth &amp; Amenities</span>
+          ${(targets.d43_location || isVenueScan) 
+            ? `<span class="yield-target-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="font-size: 0.72rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <span><span class="dim-label-prefix">D402 Address:</span> <strong>${addressVal ? escapeHtml(addressVal) : emptyScopeMsg(targets.d43_location, 'pending address grounding')}</strong></span>
+            ${venueTypeVal ? `<span style="font-size: 0.65rem; background: rgba(6, 182, 212, 0.18); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4); padding: 1px 7px; border-radius: 4px; font-weight: 700;">🏛️ ${escapeHtml(venueTypeVal.replace(/_/g, ' ').toUpperCase())}</span>` : ''}
+            ${isAfter && addressVal ? '<span class="yield-highlight-tag" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4);">+ Grounded</span>' : ''}
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <span><span class="dim-label-prefix">D403 GPS:</span> <span style="font-family: monospace; color: #38bdf8;">${gpsVal ? escapeHtml(gpsVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+            <span><span class="dim-label-prefix">D405 Access:</span> <span style="color: #cbd5e1;">${accessVal ? escapeHtml(accessVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+            <span><span class="dim-label-prefix">D406 Env:</span> <span style="color: #cbd5e1;">${envVal ? escapeHtml(envVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></span>
+          </div>
+          <div><span class="dim-label-prefix">D601–D604 Spend:</span> <span style="color: #34d399;">${spendVal ? escapeHtml(spendVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span> ${concessionVal ? `<span style="color: #fbbf24; margin-left: 6px;">• Concession ${escapeHtml(concessionVal)}</span>` : ''}</div>
+          <div><span class="dim-label-prefix">D408 Transit:</span> <span style="color: #94a3b8;">${transitVal ? escapeHtml(transitVal) : (targets.d43_location ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</span></div>
+          ${(stepFreeVal || washroomVal || elevatorVal || parkingVal) ? `
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; padding-top: 3px; border-top: 1px dashed rgba(255,255,255,0.08); font-size: 0.68rem; color: #94a3b8;">
+              <span style="color: #38bdf8; font-weight: 700;">♿ Access:</span>
+              ${stepFreeVal ? `<span>Entrance: <strong style="color: #e2e8f0;">${escapeHtml(stepFreeVal)}</strong></span>` : ''}
+              ${washroomVal ? `<span>• Washrooms: <strong style="color: #e2e8f0;">${escapeHtml(washroomVal)}</strong></span>` : ''}
+              ${elevatorVal && !elevatorVal.includes('not_applicable') ? `<span>• Lift: <strong style="color: #e2e8f0;">${escapeHtml(elevatorVal)}</strong></span>` : ''}
+              ${parkingVal ? `<span>• Parking: <strong style="color: #e2e8f0;">${escapeHtml(parkingVal)}</strong></span>` : ''}
+            </div>
+          ` : ''}
+          ${(foodPolicyVal || waterVal || paymentVal || coatCheckVal) ? `
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1px; font-size: 0.68rem; color: #94a3b8;">
+              <span style="color: #34d399; font-weight: 700;">☕ Policy &amp; F&amp;B:</span>
+              ${foodPolicyVal ? `<span>Outside Food: <strong style="color: #e2e8f0;">${escapeHtml(foodPolicyVal)}</strong></span>` : ''}
+              ${waterVal ? `<span>• Water: <strong style="color: #e2e8f0;">${escapeHtml(waterVal)}</strong></span>` : ''}
+              ${paymentVal ? `<span>• Payment: <strong style="color: #e2e8f0;">${escapeHtml(paymentVal)}</strong></span>` : ''}
+              ${coatCheckVal && !coatCheckVal.includes('not_applicable') ? `<span>• Coat Check: <strong style="color: #e2e8f0;">${escapeHtml(coatCheckVal)}</strong></span>` : ''}
+            </div>
+          ` : ''}
+        </div>
+      </div>
+
+      <!-- Section 2: D35 Event Schedule & D36/D37 Showtime (Request 3 & 4) -->
+      <div class="yield-section-box ${(targets.d35_date || targets.d36_time) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>📅</span> <span class="dim-label-prefix">D35</span> Schedule &amp; <span class="dim-label-prefix">D36/D37</span> Showtime</span>
+          ${(targets.d35_date || targets.d36_time) 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <div>
+            <span class="dim-label-prefix">D35 Date:</span>
+            ${dateVal ? `<strong style="color: #38bdf8;">${escapeHtml(dateVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d35_date, 'pending calendar harvest')}
+          </div>
+          <div>
+            <span class="dim-label-prefix">D36/D37 Showtime &amp; Doors:</span>
+            ${timeVal ? `<strong style="color: #cbd5e1;">${escapeHtml(timeVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d36_time, 'pending doors/curtain check')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: D11–D15 Box Office, Fees & D7 Inventory (Request 3 & 4) -->
+      <div class="yield-section-box ${(targets.d15_allin || targets.d1_checkout) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}" style="${isAfter && priceVal ? 'border-color: rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.05);' : ''}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>🎫</span> <span class="dim-label-prefix">D11–D15</span> Box Office &amp; <span class="dim-label-prefix">D7</span> Inventory</span>
+          ${(targets.d15_allin || targets.d1_checkout) 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px;">
+          <div>
+            <span class="dim-label-prefix">D15 All-In Price:</span>
+            ${priceVal ? `<span style="font-size: 1.05rem; font-weight: 800; color: #34d399; margin-left: 4px;">${escapeHtml(priceVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Live Cart Verified</span>' : ''}` : emptyScopeMsg(targets.d15_allin, 'awaiting live cart')}
+          </div>
+          <div>
+            <span class="dim-label-prefix">D7 Status:</span>
+            ${isSoldOut !== null ? `
+              <span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; ${isSoldOut ? 'background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);' : 'background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);'}">
+                ${isSoldOut ? 'SOLD OUT ⚠️' : 'AVAILABLE 🎟️'}
+              </span>
+            ` : emptyScopeMsg(targets.d7_inventory, 'awaiting cart')}
+          </div>
+        </div>
+        <div style="font-size: 0.7rem; color: #94a3b8; display: flex; gap: 12px; flex-wrap: wrap;">
+          <span><span class="dim-label-prefix">D12 Base:</span> <strong>${baseVal != null ? `$${Number(baseVal).toFixed(2)}` : (targets.d12_base ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</strong></span>
+          <span><span class="dim-label-prefix">D13 Fee:</span> <strong>${feeVal != null ? `$${Number(feeVal).toFixed(2)}` : (targets.d13_fee ? '<span class="yield-empty-field in-scope">—</span>' : '<span class="yield-empty-field out-of-scope">—</span>')}</strong></span>
+        </div>
+        <div style="margin-top: 5px; font-size: 0.7rem; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          <span class="dim-label-prefix">D1 Live Cart URL:</span>
+          ${ticketUrl ? `
+            <a href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }" style="display: inline-flex; align-items: center; gap: 5px; text-decoration: none;" title="Open Tier 1 live cart URL">
+              <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 4px; font-weight: 800; font-size: 0.68rem; text-decoration: underline;">Tier 1 ↗</span>
+              <span style="color: #38bdf8; text-decoration: underline; word-break: break-all; font-size: 0.7rem;">${ticketUrl.length > 40 ? escapeHtml(ticketUrl.slice(0, 38)) + '...' : escapeHtml(ticketUrl)}</span>
+            </a>
+            ${isAfter ? '<span class="yield-highlight-tag">+ Link Verified</span>' : ''}
+          ` : emptyScopeMsg(targets.d1_checkout, 'awaiting deep link')}
+        </div>
+      </div>
+
+      <!-- Section 4: D41 Category & D34 Artist / Lineup (Request 3 & 4) -->
+      <div class="yield-section-box ${(targets.d41_category || targets.d34_lineup) ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>🏷️</span> <span class="dim-label-prefix">D41</span> Category &amp; <span class="dim-label-prefix">D34</span> Lineup</span>
+          ${(targets.d41_category || targets.d34_lineup) 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <div>
+            <span class="dim-label-prefix">D41 Category:</span>
+            ${categoryVal ? `<span style="font-weight: 700; color: #d8b4fe; background: rgba(168, 85, 247, 0.15); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.3);">${escapeHtml(categoryVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Categorized</span>' : ''}` : emptyScopeMsg(targets.d41_category, 'awaiting NLP taxonomy')}
+          </div>
+          <div>
+            <span class="dim-label-prefix">D34 Lineup:</span>
+            ${artistVal ? `<strong style="color: #cbd5e1;">${escapeHtml(artistVal)}</strong> ${isAfter ? '<span class="yield-highlight-tag">+ Verified</span>' : ''}` : emptyScopeMsg(targets.d34_lineup, 'awaiting roster extraction')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: D42 Age Policy & Restrictions (Request 3 & 4) -->
+      <div class="yield-section-box ${targets.d42_age ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>🔞</span> <span class="dim-label-prefix">D42</span> Age Policy &amp; Restrictions</span>
+          ${targets.d42_age 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div>
+          <span class="dim-label-prefix">D42 Age Policy:</span>
+          ${ageVal ? `<span style="color: #e2e8f0;">${escapeHtml(ageVal)}</span> ${isAfter ? '<span class="yield-highlight-tag">+ Extracted</span>' : ''}` : emptyScopeMsg(targets.d42_age, 'awaiting 19+ ID check')}
+        </div>
+      </div>
+
+      <!-- Section 6: D51 Program Description & Synopsis (Request 3 & 4) -->
+      <div class="yield-section-box ${targets.d51_desc ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>📝</span> <span class="dim-label-prefix">D51</span> Description &amp; Synopsis</span>
+          ${targets.d51_desc 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        <div style="color: #cbd5e1; font-size: 0.72rem; line-height: 1.4; max-height: 60px; overflow-y: auto;">
+          <span class="dim-label-prefix">D51 Synopsis:</span>
+          ${descVal ? `${escapeHtml(descVal)} ${isAfter ? '<span class="yield-highlight-tag">+ Enriched</span>' : ''}` : emptyScopeMsg(targets.d51_desc, 'awaiting AI synopsis')}
+        </div>
+      </div>
+
+      <!-- Section 7: Photographic Proof Keyframe (Request 3 & 4) -->
+      <div class="yield-section-box ${targets.proof ? 'yield-target-dim' : 'yield-dim-out-of-scope'}">
+        <div class="yield-section-header">
+          <span class="yield-section-title"><span>📸</span> Visual Proof Keyframe</span>
+          ${targets.proof 
+            ? `<span class="yield-target-tag">🎯 Target for ${escapeHtml(scanName)}</span>` 
+            : `<span class="yield-out-scope-tag">Out of scope for this AI</span>`}
+        </div>
+        ${proofUrl ? `
+          <div style="position: relative; margin-top: 4px;">
+            <img src="${escapeHtml(proofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')" title="Click to open full-resolution proof">
+            <div style="font-size: 0.64rem; color: #38bdf8; margin-top: 2px; text-align: center; cursor: pointer;" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')">
+              🔍 Click image to enlarge full proof
+            </div>
+          </div>
+        ` : emptyScopeMsg(targets.proof, 'awaiting browser screenshot')}
+      </div>
+    `;
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // 3-COLUMN COMPARATIVE DIMENSION TABLE SYSTEM (Multi-Dimension Matrix Coverage)
+  // ─────────────────────────────────────────────────────────────────────────────
+  function classifyUrlTier(url) {
+    if (!url || typeof url !== 'string' || !url.startsWith('http')) return null;
+    try {
+      const parsed = new URL(url);
+      const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
+      const path = parsed.pathname.toLowerCase().replace(/\/+$/, '');
+      const search = parsed.search.toLowerCase();
+      const hash = parsed.hash.toLowerCase();
+      const full = (path + search + hash).toLowerCase();
+
+      // Tier 1: Checkout Cart / Dynamic Seat Picker / Dedicated Ticketing System
+      const isCartDomain = /^(showpass\.com|eventbrite\.(ca|com)|ticketweb\.(ca|com)|universe\.com|admitone\.com|vtixonline\.com|tockify\.com|sidedooraccess\.com|dice\.fm|tickit\.ca|zaui\.net|ticketmaster\.(ca|com)|ticketscene\.ca|eventfinda\.(ca|com))$/i.test(host) || host.includes('.zaui.net');
+      const isCartPath = /(\/checkout|\/cart|\/choose-?seats|\/buy-?tickets?|\/purchase|\/order|\/tickets|\/booking|\/register|\/boxoffice)/i.test(full);
+      const hasCartParams = /(\?|&|#)(cart|checkout|order|ticket|event_id|activity)=/i.test(full);
+      
+      if (isCartDomain && (path.length > 1 || search.length > 1 || hash.length > 1)) {
+        return 'Tier 1 (Checkout Cart)';
+      }
+      if (isCartPath || hasCartParams) {
+        return 'Tier 1 (Checkout Cart)';
+      }
+
+      // Tier 4: Civic Destination Guides / Park Board / Tourism Portals
+      const isCivicGuide = /^(destinationvancouver\.com|stanleyparkvan\.com|vancouver\.ca|bcparks\.ca|metrovancouver\.org|tourismvancouver\.com)$/i.test(host);
+      if (isCivicGuide) {
+        return 'Tier 4 (Civic Guide)';
+      }
+
+      // Tier 3: Calendar / Shows Overview / Schedule / Listings
+      const isCalendarPath = /^\/(calendar|shows|events|schedule|whats-on|exhibitions|listings|upcoming|programming|all-events)$/i.test(path);
+      if (isCalendarPath) {
+        return 'Tier 3 (Calendar)';
+      }
+
+      // Tier 5: Venue Home (Root domain or generic homepage)
+      if (!path || path === '' || path === '/' || /^\/(home|index(\.html|\.php)?|en|default(\.aspx)?)$/i.test(path)) {
+        return 'Tier 5 (Venue Home)';
+      }
+
+      // Tier 2: Dedicated Event Details Page (Deep link on venue or promoter site)
+      if (path.length > 1) {
+        return 'Tier 2 (Event Page)';
+      }
+
+      return 'Tier 5 (Venue Home)';
+    } catch (_) {
+      return 'Tier 5 (Venue Home)';
+    }
+  }
+
+  // ── Helper to resolve venue links from catalogs if absent on card ───────────
+  function lookupVenueUrls(venueName) {
+    if (!venueName) return { calendar_url: null, website_url: null };
+    try {
+      const vMaster = (state?.masterCatalogsData?.venues_master) || (window?.state?.masterCatalogsData?.venues_master) || [];
+      if (Array.isArray(vMaster)) {
+        const found = vMaster.find(v => (v.name && v.name.toLowerCase() === venueName.toLowerCase()) || (v.id && v.id.toLowerCase() === venueName.toLowerCase()));
+        if (found) {
+          return {
+            calendar_url: found.calendar_url || found.events_url || null,
+            website_url: found.website_url || found.website || found.url || null
+          };
+        }
+      }
+      const vFeeds = (state?.cachedVenueFeeds) || (window?.state?.cachedVenueFeeds) || [];
+      if (Array.isArray(vFeeds)) {
+        const found = vFeeds.find(v => (v.name && v.name.toLowerCase() === venueName.toLowerCase()));
+        if (found) {
+          return {
+            calendar_url: found.calendar_url || found.url || null,
+            website_url: found.website_url || found.url || null
+          };
+        }
+      }
+    } catch (_) {}
+    return { calendar_url: null, website_url: null };
+  }
+
+  // ── Helper to extract specific tier URL from card / audit ───────────────────
+  function extractTierUrl(card, tierCode, isAfter) {
+    if (!card) return null;
+    const audit = card.dimension_audit || card.dimensions || {};
+    const venueUrls = lookupVenueUrls(card.venue_name || card.venue);
+
+    if (tierCode === 'D101' || tierCode === 'D1') {
+      return (isAfter && card.afterTicketUrl) ||
+             audit.D101_tier1_checkout?.verified_value ||
+             audit.d101_checkout?.verified_value ||
+             audit.D1_tier1_checkout?.verified_value ||
+             card.candidate_tier1_url ||
+             card.tier1_url ||
+             (classifyUrlTier(card.ticket_url) === 'Tier 1 (Checkout Cart)' ? card.ticket_url : null) ||
+             (card.ticket_url && !card.details_url ? card.ticket_url : null);
+    }
+    if (tierCode === 'D102' || tierCode === 'D2') {
+      return (isAfter && card.afterDetailsUrl) ||
+             audit.D102_tier2_event_page?.verified_value ||
+             audit.d102_event_page?.verified_value ||
+             audit.D2_tier2_event_page?.verified_value ||
+             card.details_url ||
+             card.event_page_url ||
+             (classifyUrlTier(card.ticket_url) === 'Tier 2 (Event Page)' ? card.ticket_url : null);
+    }
+    if (tierCode === 'D103' || tierCode === 'D3') {
+      return audit.D103_tier3_calendar?.verified_value ||
+             audit.d103_calendar?.verified_value ||
+             audit.D3_tier3_calendar?.verified_value ||
+             card.calendar_url ||
+             card.venue_calendar_url ||
+             venueUrls.calendar_url ||
+             (classifyUrlTier(card.ticket_url) === 'Tier 3 (Calendar)' ? card.ticket_url : null);
+    }
+    if (tierCode === 'D104' || tierCode === 'D4') {
+      return audit.D104_tier4_civic_destination?.verified_value ||
+             audit.d104_civic?.verified_value ||
+             audit.D4_tier4_civic_destination?.verified_value ||
+             card.civic_destination_url ||
+             (classifyUrlTier(card.ticket_url) === 'Tier 4 (Civic Guide)' ? card.ticket_url : null);
+    }
+    if (tierCode === 'D105' || tierCode === 'D5') {
+      return audit.D105_tier5_venue_home?.verified_value ||
+             audit.d105_venue_home?.verified_value ||
+             audit.D5_tier5_venue_home?.verified_value ||
+             card.websiteUrl ||
+             card.venue_url ||
+             venueUrls.website_url ||
+             (classifyUrlTier(card.ticket_url) === 'Tier 5 (Venue Home)' ? card.ticket_url : null);
+    }
+    if (tierCode === 'D106' || tierCode === 'D6') {
+      return (isAfter && card.afterTicketUrl) ||
+             card.ticket_url ||
+             card.candidate_tier1_url ||
+             card.details_url ||
+             card.calendar_url ||
+             card.websiteUrl ||
+             venueUrls.calendar_url ||
+             venueUrls.website_url ||
+             null;
+    }
+    return null;
+  }
+
+  // ── Helper to render clickable tier badge + destination link ────────────────
+  function renderTierHyperlink(url, tierName, fallbackText = 'none_available', themeColor = '#38bdf8') {
+    if (!url || typeof url !== 'string' || !url.startsWith('http')) {
+      const isNone = fallbackText === 'none_available';
+      const isNa = fallbackText === 'not_applicable';
+      return `<span class="yield-empty-field out-of-scope">${escapeHtml(fallbackText)}</span>`;
+    }
+    let displayUrl = url.replace(/^https?:\/\/(www\.)?/, '');
+    if (displayUrl.length > 36) displayUrl = displayUrl.slice(0, 34) + '...';
+
+    const openFn = `onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }"`;
+
+    return `
+      <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" ${openFn}
+         style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; max-width: 100%; vertical-align: middle;"
+         title="Open ${escapeHtml(tierName)}: ${escapeHtml(url)}">
+        <span style="display: inline-flex; align-items: center; gap: 3px; font-weight: 800; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px; background: rgba(56, 189, 248, 0.14); color: ${themeColor}; border: 1px solid ${themeColor}44; text-decoration: underline; white-space: nowrap; cursor: pointer;">
+          ${escapeHtml(tierName)} ↗
+        </span>
+        <span style="color: #94a3b8; font-size: 0.72rem; text-decoration: underline; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;">
+          ${escapeHtml(displayUrl)}
+        </span>
+      </a>
+    `;
+  }
+
+  const FULL_CATALOG_DIMENSIONS = [
+    // =========================================================================
+    // CLUSTER 0XX: CORE EVENT IDENTITY, TAXONOMY & CULTURAL CLASSIFICATION
+    // =========================================================================
+    {
+      code: 'D001',
+      name: 'Event Name & Title',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd001_title',
+      legacyKeys: ['d33_title'],
+      getValue: (card, isAfter) => card?.afterTitle || card?.title || card?.event_name || null,
+      badge: '+ Clean Title'
+    },
+    {
+      code: 'D002',
+      name: 'Permanent Lifetime Event ID',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd002_perm_id',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        if (card?.event_num_perm) return `<span class="dim-pill-archetype">${escapeHtml(card.event_num_perm)}</span>`;
+        if (card?.Event_Num_Perm) return `<span class="dim-pill-archetype">${escapeHtml(card.Event_Num_Perm)}</span>`;
+        if (card?.id) return `<span class="dim-pill-archetype">Event_Num_Perm_${String(card.id).replace(/\D/g, '').slice(0, 9).padStart(9, '0')}</span>`;
+        return null;
+      },
+      badge: '+ Immutable ID'
+    },
+    {
+      code: 'D003',
+      name: 'Catalog Card Slot Number',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd003_card_id',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        if (card?.event_num_card) return `<span class="dim-pill-archetype">${escapeHtml(card.event_num_card)}</span>`;
+        if (card?.Event_Num_Card) return `<span class="dim-pill-archetype">${escapeHtml(card.Event_Num_Card)}</span>`;
+        if (card?.cardIndex) return `<span class="dim-pill-archetype">Event_Num_Card_${String(card.cardIndex).padStart(9, '0')}</span>`;
+        return null;
+      },
+      badge: '+ Slot Assigned'
+    },
+    {
+      code: 'D004',
+      name: 'Primary Cultural Category',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd004_category',
+      legacyKeys: ['d41_category'],
+      getValue: (card, isAfter) => {
+        const cat = card?.afterCategory || card?.category || (Array.isArray(card?.categories) ? card.categories[0] : null);
+        if (!cat) return null;
+        return `<span class="dim-pill-cat">${escapeHtml(cat.toUpperCase())}</span>`;
+      },
+      badge: '+ Classified'
+    },
+    {
+      code: 'D005',
+      name: 'Cultural Tags & Sub-Genres',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd005_tags',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        const tags = card?.tags || card?.subTags || card?.categories;
+        if (Array.isArray(tags) && tags.length > 0) {
+          return tags.slice(0, 4).map(t => `<span class="dim-pill-tag">${escapeHtml(String(t))}</span>`).join(' ');
+        }
+        if (typeof tags === 'string' && tags) return escapeHtml(tags);
+        return null;
+      },
+      badge: '+ Tagged'
+    },
+    {
+      code: 'D006',
+      name: 'Lifecycle Classification',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd006_lifecycle',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        const type = card?.lifecycle_type || (card?.isPerennial ? 'perennial_drop_in' : 'time_bound_event');
+        return type === 'perennial_drop_in' ? '🔄 Perennial Drop-In' : '📅 Time-Bound Performance';
+      },
+      badge: '+ Validated'
+    },
+    {
+      code: 'D007',
+      name: 'Cultural Archetype Profile',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd007_archetype',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        const arch = card?.event_archetype || card?.archetype || 'standard_event';
+        return `<span class="dim-pill-archetype">${escapeHtml(arch.replace(/_/g, ' '))}</span>`;
+      },
+      badge: '+ Archetype'
+    },
+    {
+      code: 'D008',
+      name: 'Age & Entry Restrictions',
+      cluster: '0XX',
+      clusterName: 'Cluster 0XX: Core Identity & Cultural Taxonomy',
+      clusterClass: 'cluster-0xx',
+      category: 'Core Identity',
+      key: 'd008_restrictions',
+      legacyKeys: ['d42_age'],
+      getValue: (card, isAfter) => card?.afterRestrictions || card?.afterAge || card?.restrictions || card?.age_policy || 'All Ages / Family Friendly',
+      badge: '+ Age Verified'
+    },
+
+    // =========================================================================
+    // CLUSTER 1XX: DISCOVERY, ACCESS & DEEP-LINK HIERARCHY
+    // =========================================================================
+    {
+      code: 'D101',
+      name: 'Tier 1: Checkout Cart URL',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd101_checkout',
+      legacyKeys: ['d1_checkout'],
+      getValue: (card, isAfter) => {
+        const url = extractTierUrl(card, 'D101', isAfter);
+        return renderTierHyperlink(url, 'Tier 1 (Cart)', 'none_available', '#38bdf8');
+      },
+      badge: '+ Link Verified'
+    },
+    {
+      code: 'D102',
+      name: 'Tier 2: Event Details Page',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd102_event_page',
+      legacyKeys: ['d2_event_page'],
+      getValue: (card, isAfter) => {
+        const url = extractTierUrl(card, 'D102', isAfter);
+        return renderTierHyperlink(url, 'Tier 2 (Event Page)', 'none_available', '#c4b5fd');
+      },
+      badge: '+ Harvested'
+    },
+    {
+      code: 'D103',
+      name: 'Tier 3: Venue Calendar URL',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd103_calendar',
+      legacyKeys: ['d3_calendar'],
+      getValue: (card, isAfter) => {
+        const url = extractTierUrl(card, 'D103', isAfter);
+        return renderTierHyperlink(url, 'Tier 3 (Calendar)', 'none_available', '#6ee7b7');
+      },
+      badge: '+ Calendar'
+    },
+    {
+      code: 'D104',
+      name: 'Tier 4: Civic Destination URL',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd104_civic',
+      legacyKeys: ['d4_civic'],
+      getValue: (card, isAfter) => {
+        const url = extractTierUrl(card, 'D104', isAfter);
+        return renderTierHyperlink(url, 'Tier 4 (Civic Guide)', (card?.isPerennial ? 'none_available' : 'not_applicable'), '#fde68a');
+      },
+      badge: '+ Civic'
+    },
+    {
+      code: 'D105',
+      name: 'Tier 5: Venue Home Domain',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd105_venue_home',
+      legacyKeys: ['d5_venue_home'],
+      getValue: (card, isAfter) => {
+        const url = extractTierUrl(card, 'D105', isAfter);
+        return renderTierHyperlink(url, 'Tier 5 (Venue Home)', 'none_available', '#cbd5e1');
+      },
+      badge: '+ Domain'
+    },
+    {
+      code: 'D106',
+      name: 'Best Available Link & Tier',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd106_best_link',
+      legacyKeys: ['d6_tier'],
+      getValue: (card, isAfter) => {
+        const bestUrl = extractTierUrl(card, 'D106', isAfter);
+        if (!bestUrl) return '<span class="yield-empty-field out-of-scope">none_available</span>';
+        let tierLabel = 'Tier 1 (Checkout Cart)';
+        if (typeof classifyUrlTier === 'function') {
+          tierLabel = classifyUrlTier(bestUrl);
+        } else if (card?.best_tier) {
+          tierLabel = card.best_tier;
+        } else if (extractTierUrl(card, 'D101', isAfter) === bestUrl) {
+          tierLabel = 'Tier 1 (Checkout Cart)';
+        } else if (extractTierUrl(card, 'D102', isAfter) === bestUrl) {
+          tierLabel = 'Tier 2 (Event Page)';
+        } else if (extractTierUrl(card, 'D103', isAfter) === bestUrl) {
+          tierLabel = 'Tier 3 (Calendar)';
+        } else if (extractTierUrl(card, 'D104', isAfter) === bestUrl) {
+          tierLabel = 'Tier 4 (Civic Guide)';
+        } else if (extractTierUrl(card, 'D105', isAfter) === bestUrl) {
+          tierLabel = 'Tier 5 (Venue Home)';
+        }
+        let themeColor = '#38bdf8';
+        if (tierLabel.includes('Tier 2')) themeColor = '#c4b5fd';
+        else if (tierLabel.includes('Tier 3')) themeColor = '#6ee7b7';
+        else if (tierLabel.includes('Tier 4')) themeColor = '#fde68a';
+        else if (tierLabel.includes('Tier 5')) themeColor = '#cbd5e1';
+        return renderTierHyperlink(bestUrl, tierLabel, 'none_available', themeColor);
+      },
+      badge: '+ Promoted'
+    },
+    {
+      code: 'D107',
+      name: 'Operational & Inventory Status',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd107_inventory',
+      legacyKeys: ['d7_inventory'],
+      getValue: (card, isAfter) => {
+        const isSoldOut = isAfter 
+          ? (card?.afterInventory ? card.afterInventory.includes('SOLD OUT') : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null))
+          : (card?.is_sold_out != null ? Boolean(card.is_sold_out || card.isSoldOut) : null);
+        if (isSoldOut === null) return card?.id ? '<span style="color: #34d399; font-weight: 700;">AVAILABLE 🎟️</span>' : null;
+        return isSoldOut 
+          ? '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);">SOLD OUT ⚠️</span>'
+          : '<span style="font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">AVAILABLE 🎟️</span>';
+      },
+      badge: '+ Inventory'
+    },
+    {
+      code: 'D108',
+      name: 'Geographic Jurisdiction (Metro Van)',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd108_geo',
+      legacyKeys: ['d8_geo'],
+      getValue: (card, isAfter) => '✅ Metro Vancouver (In-Market BC)',
+      badge: '+ In-Market'
+    },
+    {
+      code: 'D109',
+      name: 'Currency Standard (CAD Strictly)',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd109_currency',
+      legacyKeys: ['d9_currency'],
+      getValue: (card, isAfter) => 'CAD ($ Canadian Strictly)',
+      badge: '+ Currency'
+    },
+    {
+      code: 'D110',
+      name: 'IANA Timezone Standard',
+      cluster: '1XX',
+      clusterName: 'Cluster 1XX: Discovery, Access & Link Hierarchy',
+      clusterClass: 'cluster-1xx',
+      category: 'Access & Boundaries',
+      key: 'd110_timezone',
+      legacyKeys: ['d10_timezone'],
+      getValue: (card, isAfter) => 'America/Vancouver (Pacific Time)',
+      badge: '+ Timezone'
+    },
+
+    // =========================================================================
+    // CLUSTER 2XX: INTERACTIVE MULTI-TIER BOX OFFICE & CHECKOUT AUDIT
+    // =========================================================================
+    {
+      code: 'D201',
+      name: 'Tier 1: Option Name (Primary)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd201_tier1_name',
+      legacyKeys: ['d11_tier1_name'],
+      getValue: (card, isAfter) => card?.tier1_name || card?.afterTier1Name || (card?.price === 0 ? 'Free Admission' : 'General Admission'),
+      badge: '+ Tier 1 GA'
+    },
+    {
+      code: 'D202',
+      name: 'Tier 1 Base Ticket Price',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd202_tier1_base',
+      legacyKeys: ['d12_base'],
+      getValue: (card, isAfter) => {
+        const val = isAfter ? (card?.afterBase ?? card?.price_base ?? null) : (card?.price_base ?? null);
+        return val != null ? `<strong>$${Number(val).toFixed(2)} CAD</strong>` : (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : null);
+      },
+      badge: '+ Base Verified'
+    },
+    {
+      code: 'D203',
+      name: 'Tier 1 Platform Service Fee',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd203_tier1_fee',
+      legacyKeys: ['d13_fee'],
+      getValue: (card, isAfter) => {
+        const val = isAfter ? (card?.afterFee ?? card?.price_fee ?? null) : (card?.price_fee ?? null);
+        return val != null ? `<strong>$${Number(val).toFixed(2)} CAD</strong>` : '$0.00 CAD (Direct Box Office / Included)';
+      },
+      badge: '+ Fee Audited'
+    },
+    {
+      code: 'D204',
+      name: 'Tier 1 Tax (5% GST / Inclusive)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd204_tier1_tax',
+      legacyKeys: ['d14_tax'],
+      getValue: (card, isAfter) => {
+        const val = card?.price_tax ?? null;
+        return val != null ? `$${Number(val).toFixed(2)} CAD` : (card?.price != null || card?.afterPrice ? '5% GST Included in Total' : null);
+      },
+      badge: '+ Tax Audited'
+    },
+    {
+      code: 'D205',
+      name: 'Tier 1 All-In Final Checkout Cost',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd205_tier1_allin',
+      legacyKeys: ['d15_allin'],
+      getValue: (card, isAfter) => {
+        const val = isAfter ? (card?.afterPrice || (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : card?.priceLabel || null)) : (card?.priceLabel || (card?.price != null ? `$${Number(card.price).toFixed(2)} CAD` : null));
+        return val ? `<span style="font-size: 0.95rem; font-weight: 800; color: #34d399;">${escapeHtml(val)}</span>` : null;
+      },
+      badge: '+ Live Total'
+    },
+    {
+      code: 'D206',
+      name: 'Tier 2 Option Name (Secondary)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd206_tier2_name',
+      legacyKeys: ['d16_tier2_name'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier2_name || card?.dimension_audit?.D206_tier2_name?.value || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]?.name);
+        if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 2'
+    },
+    {
+      code: 'D207',
+      name: 'Tier 2 Base Ticket Price',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd207_tier2_base',
+      legacyKeys: ['d17_tier2_base'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier2_price_base ?? card?.dimension_audit?.D207_tier2_price_base?.value ?? card?.dimension_audit?.D17_tier2_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_base);
+        if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 2 Base'
+    },
+    {
+      code: 'D208',
+      name: 'Tier 2 Platform Service Fee',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd208_tier2_fee',
+      legacyKeys: ['d18_tier2_fee'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier2_price_fee ?? card?.dimension_audit?.D208_tier2_price_fee?.value ?? card?.dimension_audit?.D18_tier2_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_fee);
+        if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 2 Fee'
+    },
+    {
+      code: 'D209',
+      name: 'Tier 2 Tax (5% GST / Inclusive)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd209_tier2_tax',
+      legacyKeys: ['d19_tier2_tax'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier2_price_tax ?? card?.dimension_audit?.D209_tier2_price_tax?.value ?? card?.dimension_audit?.D19_tier2_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price_tax);
+        if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 2 Tax'
+    },
+    {
+      code: 'D210',
+      name: 'Tier 2 All-In Final Cost',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd210_tier2_allin',
+      legacyKeys: ['d20_tier2_allin'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier2_price_all_in ?? card?.tier2_price_read ?? card?.dimension_audit?.D210_tier2_price_all_in?.value ?? card?.dimension_audit?.D20_tier2_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[1]?.price);
+        if (val != null && !isNaN(Number(val))) {
+          return `<span style="font-size: 0.9rem; font-weight: 800; color: #38bdf8;">$${Number(val).toFixed(2)} CAD</span>`;
+        }
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 2 Total'
+    },
+    {
+      code: 'D211',
+      name: 'Tier 3 Option Name (Tertiary)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd211_tier3_name',
+      legacyKeys: ['d21_tier3_name'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier3_name || card?.dimension_audit?.D211_tier3_name?.value || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]?.name);
+        if (val && val !== 'none_available') return `<strong>${escapeHtml(val)}</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 3'
+    },
+    {
+      code: 'D212',
+      name: 'Tier 3 Base Ticket Price',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd212_tier3_base',
+      legacyKeys: ['d22_tier3_base'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier3_price_base ?? card?.dimension_audit?.D212_tier3_price_base?.value ?? card?.dimension_audit?.D22_tier3_price_base?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_base);
+        if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 3 Base'
+    },
+    {
+      code: 'D213',
+      name: 'Tier 3 Platform Service Fee',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd213_tier3_fee',
+      legacyKeys: ['d23_tier3_fee'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier3_price_fee ?? card?.dimension_audit?.D213_tier3_price_fee?.value ?? card?.dimension_audit?.D23_tier3_price_fee?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_fee);
+        if (val != null && !isNaN(Number(val))) return `<strong>$${Number(val).toFixed(2)} CAD</strong>`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 3 Fee'
+    },
+    {
+      code: 'D214',
+      name: 'Tier 3 Tax (5% GST / Inclusive)',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd214_tier3_tax',
+      legacyKeys: ['d24_tier3_tax'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier3_price_tax ?? card?.dimension_audit?.D214_tier3_price_tax?.value ?? card?.dimension_audit?.D24_tier3_price_tax?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price_tax);
+        if (val != null && !isNaN(Number(val))) return `$${Number(val).toFixed(2)} CAD`;
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 3 Tax'
+    },
+    {
+      code: 'D215',
+      name: 'Tier 3 All-In Final Cost',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd215_tier3_allin',
+      legacyKeys: ['d25_tier3_allin'],
+      getValue: (card, isAfter) => {
+        const val = card?.tier3_price_all_in ?? card?.tier3_price_read ?? card?.dimension_audit?.D215_tier3_price_all_in?.value ?? card?.dimension_audit?.D25_tier3_price_all_in?.value ?? (card?.admission_tiers && card.admission_tiers[2]?.price);
+        if (val != null && !isNaN(Number(val))) {
+          return `<span style="font-size: 0.9rem; font-weight: 800; color: #a78bfa;">$${Number(val).toFixed(2)} CAD</span>`;
+        }
+        return card?.id ? '<span style="color: #64748b; font-style: italic;">none_available</span>' : null;
+      },
+      badge: '+ Tier 3 Total'
+    },
+    {
+      code: 'D216',
+      name: 'Verified Ticket Tier Count',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd216_tier_count',
+      legacyKeys: ['d26_tier_count'],
+      getValue: (card, isAfter) => {
+        let count = 0;
+        if (card?.tier1_name || card?.price != null || card?.afterPrice) count++;
+        const t2 = card?.tier2_name || card?.dimension_audit?.D16_tier2_name?.value || (card?.admission_tiers && card.admission_tiers[1]);
+        if (t2 && t2 !== 'none_available') count++;
+        const t3 = card?.tier3_name || card?.dimension_audit?.D21_tier3_name?.value || (card?.admission_tiers && card.admission_tiers[2]);
+        if (t3 && t3 !== 'none_available') count++;
+        if (card?.dimension_audit?.D26_tier_count_verified?.count != null) count = card.dimension_audit.D26_tier_count_verified.count;
+        else if (card?.admission_tiers && card.admission_tiers.length > 0) count = card.admission_tiers.length;
+        return card?.id ? `<span style="font-weight: 700; color: #38bdf8;">${count} Tier${count === 1 ? '' : 's'} Verified</span>` : null;
+      },
+      badge: '+ Tier Count'
+    },
+    {
+      code: 'D217',
+      name: 'Pricing Model Classification',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd217_pricing_model',
+      legacyKeys: ['d27_pricing_model'],
+      getValue: (card, isAfter) => card?.pricing_model || ((card?.price === 0 || card?.price_all_in === 0) ? 'free_access' : 'fixed_tier'),
+      badge: '+ Model'
+    },
+    {
+      code: 'D218',
+      name: 'Budget Ceiling Compliance',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd218_budget_qualified',
+      legacyKeys: ['d28_budget'],
+      getValue: (card, isAfter) => {
+        const p = isAfter 
+          ? (card?.afterPrice ? parseFloat(card.afterPrice.replace(/[^0-9.]/g, '')) : (card?.price != null ? Number(card.price) : null))
+          : (card?.price != null ? Number(card.price) : null);
+        if (p === null) return card?.id ? '✅ Verified (≤ $50.00 CAD)' : null;
+        return p <= 50.00 
+          ? '<span style="color: #34d399; font-weight: 700;">✅ Qualified Under $50 CAD</span>'
+          : '<span style="color: #fca5a5; font-weight: 700;">❌ Exceeds $50 Budget Ceiling</span>';
+      },
+      badge: '+ ≤ $50 Certified'
+    },
+    {
+      code: 'D219',
+      name: 'Mandatory Ancillary Cost Label',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd219_other_cost_label',
+      legacyKeys: ['d29_other_label'],
+      getValue: (card, isAfter) => card?.other_cost_label || 'none_available',
+      badge: '+ Ancillary'
+    },
+    {
+      code: 'D220',
+      name: 'Mandatory Ancillary Cost Amount',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd220_other_cost_price',
+      legacyKeys: ['d30_other_price'],
+      getValue: (card, isAfter) => card?.other_cost_price ? `$${parseFloat(card.other_cost_price).toFixed(2)} CAD` : '$0.00 CAD',
+      badge: '+ Surcharge'
+    },
+    {
+      code: 'D221',
+      name: 'Ticket Platform Provider',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd221_ticket_provider',
+      legacyKeys: ['d31_provider'],
+      getValue: (card, isAfter) => {
+        const url = isAfter ? (card?.afterTicketUrl || card?.ticket_url) : card?.ticket_url;
+        if (card?.ticket_provider) return escapeHtml(card.ticket_provider);
+        if (!url) return null;
+        try {
+          return new URL(url).hostname.replace('www.', '');
+        } catch (e) {
+          return 'Direct Box Office';
+        }
+      },
+      badge: '+ Provider Grounded'
+    },
+    {
+      code: 'D222',
+      name: 'Patron Booking Protocol',
+      cluster: '2XX',
+      clusterName: 'Cluster 2XX: Multi-Tier Box Office & Checkout Audit',
+      clusterClass: 'cluster-2xx',
+      category: 'Box Office Pricing',
+      key: 'd222_booking_protocol',
+      legacyKeys: ['d32_booking_protocol'],
+      getValue: (card, isAfter) => card?.booking_protocol || (card?.isPerennial ? 'drop_in' : 'online_reservation'),
+      badge: '+ Protocol'
+    },
+
+    // =========================================================================
+    // CLUSTER 3XX: PERFORMANCE, SCHEDULE & CONTENT REALITY
+    // =========================================================================
+    {
+      code: 'D301',
+      name: 'Performer Lineup & Cast',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd301_lineup',
+      legacyKeys: ['d34_lineup'],
+      getValue: (card, isAfter) => {
+        const a = isAfter ? (card?.afterArtist || card?.artist || (card?.lineup && card.lineup.length ? card.lineup.join(', ') : null)) : (card?.artist || (card?.lineup && card.lineup.length ? card.lineup.join(', ') : null));
+        return a ? escapeHtml(a) : (Array.isArray(card?.lineup) ? card.lineup.join(', ') : null);
+      },
+      badge: '+ Lineup Extracted'
+    },
+    {
+      code: 'D302',
+      name: 'Headlining Artist / Troupe',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd302_artist',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.artist || card?.headliner || (Array.isArray(card?.lineup) ? card.lineup[0] : null),
+      badge: '+ Artist'
+    },
+    {
+      code: 'D303',
+      name: 'Event Calendar Date (ISO 8601)',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd303_date',
+      legacyKeys: ['d35_date'],
+      getValue: (card, isAfter) => {
+        const d = isAfter ? (card?.afterDate || card?.startIso || card?.date || card?.dateSchedule || null) : (card?.startIso || card?.date || card?.dateSchedule || null);
+        return d ? `<span style="color: #38bdf8; font-weight: 700;">${escapeHtml(d)}</span>` : (card?.isPerennial ? 'perennial_drop_in' : null);
+      },
+      badge: '+ Date Confirmed'
+    },
+    {
+      code: 'D304',
+      name: 'Active Showing Slots Count',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd304_showings',
+      legacyKeys: [],
+      getValue: (card, isAfter) => {
+        if (Array.isArray(card?.showings) && card.showings.length > 0) {
+          const active = card.showings.filter(s => s.status !== 'concluded').length;
+          return `<span style="color: #38bdf8; font-weight: 700;">${card.showings.length} Slots</span> (${active} Active Upcoming)`;
+        }
+        return card?.startIso ? '1 Active Slot' : (card?.isPerennial ? 'Recurring Residency' : null);
+      },
+      badge: '+ Showings'
+    },
+    {
+      code: 'D305',
+      name: 'Doors Open Time',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd305_doors',
+      legacyKeys: ['d36_doors'],
+      getValue: (card, isAfter) => {
+        const t = isAfter ? (card?.afterDoorsTime || card?.doors_time || null) : (card?.doors_time || null);
+        return t ? escapeHtml(t) : null;
+      },
+      badge: '+ Doors Extracted'
+    },
+    {
+      code: 'D306',
+      name: 'Curtain Call / Showtime',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd306_showtime',
+      legacyKeys: ['d37_showtime'],
+      getValue: (card, isAfter) => {
+        const t = isAfter ? (card?.afterTime || card?.time || card?.start_time || null) : (card?.time || card?.start_time || null);
+        return t ? `<strong style="color: #cbd5e1;">${escapeHtml(t)}</strong>` : null;
+      },
+      badge: '+ Showtime Verified'
+    },
+    {
+      code: 'D307',
+      name: 'Conclusion / Curfew Time',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd307_curfew',
+      legacyKeys: ['d38_curfew'],
+      getValue: (card, isAfter) => {
+        const t = isAfter ? (card?.afterEndTime || card?.end_time || null) : (card?.end_time || null);
+        return t ? escapeHtml(t) : null;
+      },
+      badge: '+ Curfew Checked'
+    },
+    {
+      code: 'D308',
+      name: 'Schedule Display String',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd308_dateschedule',
+      legacyKeys: ['d39_recurrence'],
+      getValue: (card, isAfter) => {
+        const r = card?.dateSchedule || card?.frequencyLabel || null;
+        return r ? escapeHtml(r) : null;
+      },
+      badge: '+ Recurrence Parsed'
+    },
+    {
+      code: 'D309',
+      name: 'Frequency / Recurrence Pattern',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd309_frequency',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.frequencyLabel || (card?.isPerennial ? 'Weekly Recurring Residency' : 'Single Performance Run'),
+      badge: '+ Frequency'
+    },
+    {
+      code: 'D310',
+      name: 'Editorial Synopsis & Overview',
+      cluster: '3XX',
+      clusterName: 'Cluster 3XX: Performance, Schedule & Content Reality',
+      clusterClass: 'cluster-3xx',
+      category: 'Temporal & Content',
+      key: 'd310_synopsis',
+      legacyKeys: ['d51_desc'],
+      getValue: (card, isAfter) => {
+        const d = isAfter ? (card?.afterDescription || card?.afterDesc || card?.description || null) : (card?.description || null);
+        if (!d) return null;
+        return `<div style="max-height: 52px; overflow-y: auto; line-height: 1.35; color: #cbd5e1; font-size: 0.72rem;">${escapeHtml(d)}</div>`;
+      },
+      badge: '+ Synopsis Enriched'
+    },
+
+    // =========================================================================
+    // CLUSTER 4XX: PHYSICAL VENUE GEOGRAPHY & PHYSICAL CONSTANTS
+    // =========================================================================
+    {
+      code: 'D401',
+      name: 'Physical Venue Name',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd401_venue_name',
+      legacyKeys: ['d43_location', 'd43_venue'],
+      getValue: (card, isAfter) => {
+        const v = isAfter ? (card?.afterVenue || card?.venue || card?.venue_name || card?.name || null) : (card?.venue || card?.venue_name || card?.name || null);
+        return v ? `📍 <strong>${escapeHtml(v)}</strong>` : null;
+      },
+      badge: '+ Venue Confirmed'
+    },
+    {
+      code: 'D402',
+      name: 'Civic Street Address',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd402_address',
+      legacyKeys: ['d44_address'],
+      getValue: (card, isAfter) => {
+        const a = card?.afterAddress || card?.full_address || card?.address || (card?.neighborhood ? `${card.neighborhood}, Vancouver, BC` : (card?.venue || card?.venue_name ? `${card.venue || card.venue_name}, Vancouver, BC` : null));
+        return a ? escapeHtml(a) : null;
+      },
+      badge: '+ Address Grounded'
+    },
+    {
+      code: 'D403',
+      name: 'Geocoded Coordinates (Lat / Lng)',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd403_gps',
+      legacyKeys: ['d45_gps', 'd46_coords', 'd403_coords'],
+      getValue: (card, isAfter) => {
+        if (card?.coordinates) {
+          const lat = card.coordinates.lat || card.coordinates[0];
+          const lng = card.coordinates.lng || card.coordinates[1];
+          if (lat && lng) return `<span style="font-family: monospace; font-size: 0.7rem; color: #38bdf8;">${Number(lat).toFixed(4)}, ${Number(lng).toFixed(4)}</span>`;
+        }
+        if (card?.lat && card?.lng) {
+          return `<span style="font-family: monospace; font-size: 0.7rem; color: #38bdf8;">${Number(card.lat).toFixed(4)}, ${Number(card.lng).toFixed(4)}</span>`;
+        }
+        return (card?.venue || card?.venue_name) ? 'Metro Vancouver GPS' : null;
+      },
+      badge: '+ Geo Grounded'
+    },
+    {
+      code: 'D404',
+      name: 'Neighborhood / Civic District',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd404_neighborhood',
+      legacyKeys: ['d404_hood', 'd45_hood'],
+      getValue: (card, isAfter) => card?.neighborhood || card?.district || (card?.venue ? 'Metro Vancouver' : null),
+      badge: '+ District'
+    },
+    {
+      code: 'D405',
+      name: 'Venue Access Model',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd405_access_model',
+      legacyKeys: ['d46_access', 'd405_access'],
+      getValue: (card, isAfter) => card?.afterAccess || card?.access_model || (card?.price === 0 ? 'Public Open Drop-In' : 'Ticketed Admission / Box Office'),
+      badge: '+ Access Model'
+    },
+    {
+      code: 'D406',
+      name: 'Environment Type (Indoor / Outdoor)',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd406_environment_type',
+      legacyKeys: ['d47_env', 'd48_env', 'd406_env'],
+      getValue: (card, isAfter) => card?.afterEnv || card?.environment_type || 'Indoor',
+      badge: '+ Environment'
+    },
+    {
+      code: 'D407',
+      name: 'Weekly Operating Hours',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd407_weekly_hours',
+      legacyKeys: ['d48_hours', 'd50_hours', 'd407_hours'],
+      getValue: (card, isAfter) => {
+        if (!card?.weekly_hours) return 'search_exhausted_null';
+        if (typeof card.weekly_hours === 'object') return Object.entries(card.weekly_hours).slice(0, 3).map(([k, v]) => `${k}: ${v}`).join(' • ');
+        return String(card.weekly_hours);
+      },
+      badge: '+ Hours'
+    },
+    {
+      code: 'D408',
+      name: 'Transit Access & Waypoints',
+      cluster: '4XX',
+      clusterName: 'Cluster 4XX: Physical Venue Geography & Physical Constants',
+      clusterClass: 'cluster-4xx',
+      category: 'Physical Constants',
+      key: 'd408_transit_waypoints',
+      legacyKeys: ['d50_transit', 'd47_transit', 'd408_transit'],
+      getValue: (card, isAfter) => card?.afterTransit || card?.transit_info || (card?.venue || card?.venue_name ? 'TransLink Metro Vancouver transit accessible' : null),
+      badge: '+ Transit Verified'
+    },
+
+    // =========================================================================
+    // CLUSTER 5XX: ACCESSIBILITY & INCLUSION STANDARDS
+    // =========================================================================
+    {
+      code: 'D501',
+      name: 'Step-Free Physical Entrance',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd501_entrance',
+      legacyKeys: ['d501_step_free', 'd49_a11y'],
+      getValue: (card, isAfter) => card?.step_free_entrance ?? card?.accessibility?.step_free ?? 'search_exhausted_null',
+      badge: '+ Step-Free'
+    },
+    {
+      code: 'D502',
+      name: 'Elevator / Lift Access',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd502_elevator',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.elevator_lift ?? card?.accessibility?.elevator ?? 'search_exhausted_null',
+      badge: '+ Elevator'
+    },
+    {
+      code: 'D503',
+      name: 'Accessible Washroom Facilities',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd503_washrooms',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.accessible_washrooms ?? card?.accessibility?.washrooms ?? 'search_exhausted_null',
+      badge: '+ Washrooms'
+    },
+    {
+      code: 'D504',
+      name: 'Sensory Calibration & Low Stimulation',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd504_sensory',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.sensory_calibrations ?? card?.accessibility?.sensory ?? 'Standard Audio/Lighting',
+      badge: '+ Sensory'
+    },
+    {
+      code: 'D505',
+      name: 'Hearing Loop / Assistive Audio',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd505_hearing_loop',
+      legacyKeys: ['d505_hearing'],
+      getValue: (card, isAfter) => card?.hearing_loop ?? card?.accessibility?.hearing_loop ?? 'search_exhausted_null',
+      badge: '+ Hearing Loop'
+    },
+    {
+      code: 'D506',
+      name: 'Certified Service Animals Policy',
+      cluster: '5XX',
+      clusterName: 'Cluster 5XX: Accessibility & Inclusion Standards',
+      clusterClass: 'cluster-5xx',
+      category: 'Accessibility',
+      key: 'd506_service_animals',
+      legacyKeys: ['d506_animals'],
+      getValue: (card, isAfter) => card?.service_animals ?? card?.accessibility?.service_animals ?? 'Welcome with Certification',
+      badge: '+ Service Animals'
+    },
+
+    // =========================================================================
+    // CLUSTER 6XX: ON-SITE SPEND BENCHMARKS & ANCILLARY AMENITIES
+    // =========================================================================
+    {
+      code: 'D601',
+      name: 'On-Site F&B Facilities',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd601_on_site_fnb',
+      legacyKeys: ['d49_spend', 'd601_fnb', 'd53_drink', 'd54_spend'],
+      getValue: (card, isAfter) => card?.on_site_fnb || (card?.venue ? 'Concessions / Licensed Bar available' : null),
+      badge: '+ F&B'
+    },
+    {
+      code: 'D602',
+      name: 'Coffee Spend Benchmark ($ CAD)',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd602_coffee_benchmark',
+      legacyKeys: ['d602_coffee'],
+      getValue: (card, isAfter) => card?.coffee_benchmark || card?.spend_benchmarks?.coffee || 'search_exhausted_null',
+      badge: '+ Coffee'
+    },
+    {
+      code: 'D603',
+      name: 'Craft Beer Spend Benchmark ($ CAD)',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd603_beer_benchmark',
+      legacyKeys: ['d603_beer'],
+      getValue: (card, isAfter) => card?.beer_benchmark || card?.spend_benchmarks?.beer || '$7.50–$9.50 CAD',
+      badge: '+ Beer'
+    },
+    {
+      code: 'D604',
+      name: 'Meal / Entree Benchmark ($ CAD)',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd604_meal_benchmark',
+      legacyKeys: ['d604_meal'],
+      getValue: (card, isAfter) => card?.meal_benchmark || card?.spend_benchmarks?.meal || '$14.00–$18.00 CAD',
+      badge: '+ Meal'
+    },
+    {
+      code: 'D605',
+      name: 'Outside Food & Drink Policy',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd605_outside_food_policy',
+      legacyKeys: ['d605_outside_food'],
+      getValue: (card, isAfter) => card?.outside_food_policy || 'Water Bottles Only / No Outside F&B',
+      badge: '+ Policy'
+    },
+    {
+      code: 'D606',
+      name: 'Coat Check Availability & Fee',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd606_coat_check',
+      legacyKeys: ['d606_coat'],
+      getValue: (card, isAfter) => card?.coat_check || 'search_exhausted_null',
+      badge: '+ Coat Check'
+    },
+    {
+      code: 'D607',
+      name: 'Payment Methods (Cash / Card / Tap)',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd607_payment_methods',
+      legacyKeys: ['d607_payment'],
+      getValue: (card, isAfter) => card?.payment_methods || 'Credit, Debit & Contactless Tap',
+      badge: '+ Payment'
+    },
+    {
+      code: 'D608',
+      name: 'Free Water Refill Station',
+      cluster: '6XX',
+      clusterName: 'Cluster 6XX: On-Site Spend Benchmarks & Amenities',
+      clusterClass: 'cluster-6xx',
+      category: 'Spend Benchmarks',
+      key: 'd608_water_refill',
+      legacyKeys: ['d608_water'],
+      getValue: (card, isAfter) => card?.water_refill_station || 'search_exhausted_null',
+      badge: '+ Water'
+    },
+
+    // =========================================================================
+    // CLUSTER 7XX: CULTURAL ARCHETYPE CUSTOM PROFILES
+    // =========================================================================
+    {
+      code: 'D711',
+      name: 'Cinema: Film Runtime (Mins)',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd711_film_runtime',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.film_runtime_minutes ? `${card.archetypeProfile.film_runtime_minutes} mins` : 'not_applicable',
+      badge: '+ Runtime'
+    },
+    {
+      code: 'D712',
+      name: 'Cinema: Language & Subtitles',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd712_film_language',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.film_language_subtitles || 'not_applicable',
+      badge: '+ Subtitles'
+    },
+    {
+      code: 'D713',
+      name: 'Cinema: Projection Format (35mm/DCP)',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd713_projection_format',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.projection_format || 'not_applicable',
+      badge: '+ Format'
+    },
+    {
+      code: 'D721',
+      name: 'Live Stage: Seating Configuration',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd721_stage_seating',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.stage_seating_layout || 'not_applicable',
+      badge: '+ Seating'
+    },
+    {
+      code: 'D722',
+      name: 'Live Stage: Intermission Details',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd722_intermission',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.intermission_details || 'not_applicable',
+      badge: '+ Intermission'
+    },
+    {
+      code: 'D731',
+      name: 'Workshop: Materials & Supplies Provided',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd731_workshop_materials',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.materials_provided || 'not_applicable',
+      badge: '+ Materials'
+    },
+    {
+      code: 'D733',
+      name: 'Workshop: Maximum Participant Cap',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd733_workshop_capacity',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.workshop_capacity_cap || 'not_applicable',
+      badge: '+ Capacity'
+    },
+    {
+      code: 'D741',
+      name: 'Social Gaming: Table Cover / Pass',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd741_game_table_cover',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.table_cover_fee || 'not_applicable',
+      badge: '+ Table Cover'
+    },
+    {
+      code: 'D744',
+      name: 'Social Gaming: Library Size & Rules Teacher',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd744_game_library',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.game_library_size ? `${card.archetypeProfile.game_library_size} titles` : 'not_applicable',
+      badge: '+ Library'
+    },
+    {
+      code: 'D751',
+      name: 'Civic Park: Surface & Terrain',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd751_park_terrain',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.trail_terrain_surface || 'not_applicable',
+      badge: '+ Terrain'
+    },
+    {
+      code: 'D752',
+      name: 'Civic Park: Dog & Leash Policy',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd752_pet_leash',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.pet_leash_policy || 'not_applicable',
+      badge: '+ Leash'
+    },
+    {
+      code: 'D761',
+      name: 'Museum: Exhibition Run Schedule',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd761_museum_dates',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.exhibition_run_dates || 'not_applicable',
+      badge: '+ Exhibits'
+    },
+    {
+      code: 'D764',
+      name: 'Museum: Bag & Backpack Policy',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd764_bag_rules',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.bag_check_rules || 'not_applicable',
+      badge: '+ Bag Policy'
+    },
+    {
+      code: 'D771',
+      name: 'Active Rec: Digital Safety Waiver',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd771_rec_waiver',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.digital_waiver_required ? 'Required Online' : 'not_applicable',
+      badge: '+ Waiver'
+    },
+    {
+      code: 'D781',
+      name: 'Roving: Secret Location Dispatch',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd781_roving_reveal',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.archetypeProfile?.location_reveal_protocol || 'not_applicable',
+      badge: '+ Secret Location'
+    },
+    {
+      code: 'D791',
+      name: 'Festival: Affiliation & Hub Directory',
+      cluster: '7XX',
+      clusterName: 'Cluster 7XX: Cultural Archetype Custom Profiles',
+      clusterClass: 'cluster-7xx',
+      category: 'Archetype Profile',
+      key: 'd791_festival_hub',
+      legacyKeys: ['d52_festival'],
+      getValue: (card, isAfter) => card?.festival_affiliation || card?.archetypeProfile?.festival_hub_directory || 'Independent / Non-Festival',
+      badge: '+ Festival Hub'
+    },
+
+    // =========================================================================
+    // CLUSTER 8XX: GOVERNANCE, PIPELINE PROVENANCE & VISUAL PROOF
+    // =========================================================================
+    {
+      code: 'D801',
+      name: 'SRSA Single Publisher Invariant',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd801_srsa_compliance',
+      legacyKeys: [],
+      getValue: (card, isAfter) => '✅ Compliant: ripper/compile_catalog.js exclusive publisher',
+      badge: '+ SRSA Compliant'
+    },
+    {
+      code: 'D802',
+      name: 'Multi-Layer Sourcing Provenance',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd802_multi_layer_provenance',
+      legacyKeys: ['d56_provenance'],
+      getValue: (card, isAfter) => card?.data_provenance || card?.source || (isAfter ? 'Live Antigravity Ingestion' : 'Master Layer Database'),
+      badge: '+ Provenance'
+    },
+    {
+      code: 'D803',
+      name: 'SPA Hydration & Extraction Method',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd803_spa_hydration',
+      legacyKeys: [],
+      getValue: (card, isAfter) => 'Chromium Dynamic DOM Hydration',
+      badge: '+ Hydrated'
+    },
+    {
+      code: 'D804',
+      name: 'Active Future Showings Count',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd804_active_showings',
+      legacyKeys: [],
+      getValue: (card, isAfter) => Array.isArray(card?.showings) ? `${card.showings.filter(s => s.status !== 'concluded').length} Active Upcoming` : '1 Showing',
+      badge: '+ Active Slots'
+    },
+    {
+      code: 'D805',
+      name: 'Archived Concluded Showings Count',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd805_archived_showings',
+      legacyKeys: [],
+      getValue: (card, isAfter) => Array.isArray(card?.showings) ? `${card.showings.filter(s => s.status === 'concluded').length} Concluded` : '0 Concluded',
+      badge: '+ Archived'
+    },
+    {
+      code: 'D806',
+      name: 'Curator Override Lock & Appeal Flag',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd806_curator_lock',
+      legacyKeys: [],
+      getValue: (card, isAfter) => card?.curator_lock ? '🔒 Locked by Curator' : (card?.ai_curator_appeal ? '⚠️ AI Curator Appeal Active' : 'Normal Catalog State'),
+      badge: '+ Governance'
+    },
+    {
+      code: 'D807',
+      name: 'Visual Proof Keyframe Anchor',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd807_proof_keyframes',
+      legacyKeys: ['proof'],
+      getValue: (card, isAfter) => {
+        const proofUrl = isAfter 
+          ? (card?.proofKeyframeUrl || card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.hasProof && card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.hasProof && card?.id ? `data/proofs/${card.id}_cart.webp` : null) || null)
+          : (card?.proof_keyframes?.cart || card?.proof_keyframes?.schedule || (card?.id ? `data/proof_keyframes/${card.id}_cart.png` : null) || (card?.id ? `data/proofs/${card.id}_cart.webp` : null));
+        if (!proofUrl) return null;
+        return `
+          <div style="position: relative; max-width: 180px;">
+            <img src="${escapeHtml(proofUrl)}" class="yield-proof-thumb" alt="Proof Keyframe" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')" title="Click to enlarge proof">
+            <div style="font-size: 0.62rem; color: #38bdf8; margin-top: 2px; cursor: pointer;" onclick="openScreenshotModal('${escapeHtml(proofUrl)}')">
+              🔍 Click to enlarge
+            </div>
+          </div>
+        `;
+      },
+      badge: '+ Live Proof'
+    },
+    {
+      code: 'D808',
+      name: 'Audited Timestamp Lockstep',
+      cluster: '8XX',
+      clusterName: 'Cluster 8XX: Governance, Pipeline Provenance & Visual Proof',
+      clusterClass: 'cluster-8xx',
+      category: 'Provenance & Proof',
+      key: 'd808_timestamp_lockstep',
+      legacyKeys: ['d58_audit_ts'],
+      getValue: (card, isAfter) => {
+        if (isAfter) {
+          return card?.last_grounded_at || card?.last_qc_audited_at || new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+        }
+        return card?.last_grounded_at || card?.last_qc_audited_at || card?.last_pulse_qc_at || (card?.id || card?.venue_name ? 'Baseline' : null);
+      },
+      badge: '+ Timestamped'
+    }
+  ];
+
+  window.FULL_CATALOG_DIMENSIONS = FULL_CATALOG_DIMENSIONS;
+  syncDynamicDimensionCounts();
+
+  function isDimInScopeForScan(dimOrKey, scanKey = currentPipelineScanKey) {
+    if (scanKey === 'compile') return true; // Scan 5: Live Compiler reconciles ALL dimensions!
+    
+    const scanMap = {
+      harvest: {
+        d001_title: true, d33_title: true,
+        d002_perm_id: true,
+        d004_category: true, d41_category: true,
+        d005_tags: true,
+        d006_lifecycle: true,
+        d007_archetype: true,
+        d101_checkout: true, d1_checkout: true,
+        d102_event_page: true, d2_event_page: true,
+        d103_calendar: true, d3_calendar: true,
+        d106_best_link: true, d6_tier: true,
+        d301_lineup: true, d34_lineup: true,
+        d302_artist: true,
+        d303_date: true, d35_date: true,
+        d304_showings: true,
+        d305_doors: true, d36_doors: true,
+        d306_showtime: true, d37_showtime: true,
+        d307_curfew: true, d38_curfew: true,
+        d308_dateschedule: true, d39_recurrence: true,
+        d309_frequency: true,
+        d401_venue_name: true, d43_location: true,
+        d807_proof_keyframes: true, proof: true
+      },
+      hunter: {
+        d101_checkout: true, d1_checkout: true,
+        d102_event_page: true, d2_event_page: true,
+        d106_best_link: true, d6_tier: true,
+        d108_geo: true, d8_geo: true,
+        d221_ticket_provider: true, d31_provider: true,
+        d803_spa_hydration: true,
+        d808_timestamp_lockstep: true, d58_audit_ts: true
+      },
+      qc: {
+        d008_restrictions: true, d42_age: true,
+        d101_checkout: true, d1_checkout: true,
+        d106_best_link: true, d6_tier: true,
+        d107_inventory: true, d7_inventory: true,
+        d108_geo: true, d8_geo: true,
+        d109_currency: true, d9_currency: true,
+        d201_tier1_name: true, d11_tier1_name: true,
+        d202_tier1_base: true, d12_base: true,
+        d203_tier1_fee: true, d13_fee: true,
+        d204_tier1_tax: true, d14_tax: true,
+        d205_tier1_allin: true, d15_allin: true,
+        d206_tier2_name: true, d16_tier2_name: true,
+        d207_tier2_base: true, d17_tier2_base: true,
+        d208_tier2_fee: true, d18_tier2_fee: true,
+        d209_tier2_tax: true, d19_tier2_tax: true,
+        d210_tier2_allin: true, d20_tier2_allin: true,
+        d211_tier3_name: true, d21_tier3_name: true,
+        d212_tier3_base: true, d22_tier3_base: true,
+        d213_tier3_fee: true, d23_tier3_fee: true,
+        d214_tier3_tax: true, d24_tier3_tax: true,
+        d215_tier3_allin: true, d25_tier3_allin: true,
+        d216_tier_count: true, d26_tier_count: true,
+        d217_pricing_model: true, d27_pricing_model: true,
+        d218_budget_qualified: true, d28_budget: true,
+        d219_other_cost_label: true, d29_other_label: true,
+        d220_other_cost_price: true, d30_other_price: true,
+        d221_ticket_provider: true, d31_provider: true,
+        d222_booking_protocol: true, d32_booking_protocol: true,
+        d303_date: true, d35_date: true,
+        d307_curfew: true, d38_curfew: true,
+        d803_spa_hydration: true,
+        d807_proof_keyframes: true, proof: true,
+        d808_timestamp_lockstep: true, d58_audit_ts: true
+      },
+      enrich: {
+        d001_title: true, d33_title: true,
+        d004_category: true, d41_category: true,
+        d005_tags: true,
+        d006_lifecycle: true,
+        d007_archetype: true,
+        d008_restrictions: true, d42_age: true,
+        d301_lineup: true, d34_lineup: true,
+        d302_artist: true,
+        d305_doors: true, d36_doors: true,
+        d306_showtime: true, d37_showtime: true,
+        d308_dateschedule: true, d39_recurrence: true,
+        d309_frequency: true,
+        d310_synopsis: true, d51_desc: true,
+        d711_film_runtime: true,
+        d712_film_language: true,
+        d713_projection_format: true,
+        d721_stage_seating: true,
+        d722_intermission: true,
+        d731_workshop_materials: true,
+        d733_workshop_capacity: true,
+        d741_game_table_cover: true,
+        d744_game_library: true,
+        d751_park_terrain: true,
+        d752_pet_leash: true,
+        d761_museum_dates: true,
+        d764_bag_rules: true,
+        d771_rec_waiver: true,
+        d781_roving_reveal: true,
+        d791_festival_hub: true, d52_festival: true,
+        d802_multi_layer_provenance: true, d56_provenance: true
+      },
+      venue: {
+        d103_calendar: true, d3_calendar: true,
+        d104_civic: true, d4_civic: true,
+        d105_venue_home: true, d5_venue_home: true,
+        d108_geo: true, d8_geo: true,
+        d401_venue_name: true, d43_location: true, d43_venue: true,
+        d402_address: true, d44_address: true,
+        d403_gps: true, d403_coords: true, d45_gps: true, d46_coords: true,
+        d404_neighborhood: true, d404_hood: true, d45_hood: true,
+        d405_access_model: true, d405_access: true, d46_access: true,
+        d406_environment_type: true, d406_env: true, d47_env: true, d48_env: true,
+        d407_weekly_hours: true, d407_hours: true, d48_hours: true, d50_hours: true,
+        d408_transit_waypoints: true, d408_transit: true, d50_transit: true, d47_transit: true,
+        d501_entrance: true, d501_step_free: true, d49_a11y: true,
+        d502_elevator: true,
+        d503_washrooms: true,
+        d504_sensory: true,
+        d505_hearing_loop: true, d505_hearing: true,
+        d506_service_animals: true, d506_animals: true,
+        d601_on_site_fnb: true, d601_fnb: true, d49_spend: true, d53_drink: true, d54_spend: true,
+        d602_coffee_benchmark: true, d602_coffee: true,
+        d603_beer_benchmark: true, d603_beer: true,
+        d604_meal_benchmark: true, d604_meal: true,
+        d605_outside_food_policy: true, d605_outside_food: true,
+        d606_coat_check: true, d606_coat: true,
+        d607_payment_methods: true, d607_payment: true,
+        d608_water_refill: true, d608_water: true,
+        d807_proof_keyframes: true, proof: true,
+        d808_timestamp_lockstep: true, d58_audit_ts: true
+      }
+    };
+
+    const map = scanMap[scanKey] || scanMap.qc;
+    if (typeof dimOrKey === 'string') {
+      return Boolean(map[dimOrKey]);
+    }
+    if (dimOrKey && typeof dimOrKey === 'object') {
+      if (map[dimOrKey.key]) return true;
+      if (dimOrKey.code && map[dimOrKey.code.toLowerCase()]) return true;
+      if (Array.isArray(dimOrKey.legacyKeys)) {
+        for (const lk of dimOrKey.legacyKeys) {
+          if (map[lk]) return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function updateComparisonFilterButtonUI(scanKey = currentPipelineScanKey) {
+    const btn = document.getElementById('btn-toggle-comp-inscope-filter');
+    const labelEl = document.getElementById('comp-inscope-filter-label');
+    if (!btn) return;
+    if (scanKey === 'compile') {
+      btn.style.background = 'rgba(148, 163, 184, 0.12)';
+      btn.style.color = '#cbd5e1';
+      btn.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+      if (labelEl) labelEl.textContent = `All ${getCatalogDimensionsCount()}D`;
+      return;
+    }
+    if (pipelineCompFilterInScopeOnly) {
+      btn.style.background = 'rgba(56, 189, 248, 0.15)';
+      btn.style.color = '#38bdf8';
+      btn.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+      if (labelEl) labelEl.textContent = 'In-Scope Only';
+    } else {
+      btn.style.background = 'rgba(148, 163, 184, 0.12)';
+      btn.style.color = '#cbd5e1';
+      btn.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+      if (labelEl) labelEl.textContent = `All ${getCatalogDimensionsCount()}D`;
+    }
+  }
+
+  window.toggleComparisonInScopeFilter = function() {
+    pipelineCompFilterInScopeOnly = !pipelineCompFilterInScopeOnly;
+    updateComparisonFilterButtonUI(currentPipelineScanKey);
+    if (typeof renderComparisonCards === 'function') {
+      renderComparisonCards(pipelineLastCompAfter, pipelineLastCompBefore, pipelineLastCompIsStreaming);
+    }
+  };
+
+  function generate3ColComparisonTableHtml(before, after, isStreaming, scanKey = currentPipelineScanKey, agentLabel = 'AI Agent') {
+    const scanCfg = AI_SCAN_TARGET_DIMENSIONS[scanKey] || AI_SCAN_TARGET_DIMENSIONS.qc;
+    const scanName = scanCfg.name;
+
+    let cardIdx = (after?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(after.id)?.cardIndex) 
+      || after?.cardIndex 
+      || (before?.id && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function' && pipelineInitialSnapshots.get(before.id)?.cardIndex) 
+      || before?.cardIndex;
+    const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const targetId = after?.id || after?.event_id || before?.id || before?.event_id;
+    if (!cardIdx && targetId) {
+      const found = allEvs.findIndex(e => (e.id || e.event_id) === targetId);
+      if (found !== -1) {
+        cardIdx = found + 1;
+      } else {
+        const qFound = qEvs.findIndex(e => (e.id || e.event_id) === targetId);
+        if (qFound !== -1) cardIdx = `Q${qFound + 1}`;
+      }
+    }
+    if (!cardIdx) cardIdx = '?';
+    const isVenueStage = (scanKey === 'venue');
+    const badgeLabel = isVenueStage
+      ? `Venue #${cardIdx}`
+      : (String(cardIdx).startsWith('Q') ? `QUARANTINED #${cardIdx}` : `Card #${cardIdx}`);
+
+    const totalDimsCount = FULL_CATALOG_DIMENSIONS.length;
+    const inScopeDimsCount = FULL_CATALOG_DIMENSIONS.filter(d => isDimInScopeForScan(d.key, scanKey)).length;
+
+    const btnFilter = document.getElementById('btn-toggle-comp-inscope-filter');
+    const labelEl = document.getElementById('comp-inscope-filter-label');
+    if (btnFilter && labelEl) {
+      if (scanKey === 'compile') {
+        labelEl.textContent = `All ${totalDimsCount}D`;
+      } else if (pipelineCompFilterInScopeOnly) {
+        labelEl.textContent = `In-Scope (${inScopeDimsCount}/${totalDimsCount}D)`;
+      } else {
+        labelEl.textContent = `All ${totalDimsCount}D`;
+      }
+    }
+
+    const filteredDims = (pipelineCompFilterInScopeOnly && scanKey !== 'compile')
+      ? FULL_CATALOG_DIMENSIONS.filter(dim => isDimInScopeForScan(dim.key, scanKey))
+      : FULL_CATALOG_DIMENSIONS;
+
+    const rowsHtml = filteredDims.map(dim => {
+      const inScope = isDimInScopeForScan(dim.key, scanKey);
+      const beforeVal = dim.getValue(before, false);
+      const afterVal = dim.getValue(after, true);
+
+      // Determine if after is filled or streaming
+      const isStreamingThisDim = isStreaming && inScope && (!afterVal || (dim.key === 'proof' && !after?.proofKeyframeUrl && !after?.hasProof));
+      const hasAfterYield = Boolean(afterVal);
+
+      let rowClass = inScope ? `row-in-scope scan-${scanKey}` : 'row-out-of-scope';
+
+      // Column 1 content: Dimension Label ("Example D33 Event Name")
+      let dimDisplayName = escapeHtml(dim.name);
+      if (dim.code >= 'D101' && dim.code <= 'D106') {
+        const tierTargetUrl = extractTierUrl(after, dim.code, true) || extractTierUrl(before, dim.code, false);
+        if (tierTargetUrl) {
+          const openFn = `onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }"`;
+          if (dim.code === 'D101') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 1 Cart: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Tier 1 ↗</a>: Checkout Cart URL`;
+          } else if (dim.code === 'D102') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 2 Event Page: ${escapeHtml(tierTargetUrl)}" style="color: #c4b5fd; text-decoration: underline; font-weight: 800;">Tier 2 ↗</a>: Event Details Page`;
+          } else if (dim.code === 'D103') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 3 Calendar: ${escapeHtml(tierTargetUrl)}" style="color: #6ee7b7; text-decoration: underline; font-weight: 800;">Tier 3 ↗</a>: Venue Calendar URL`;
+          } else if (dim.code === 'D104') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 4 Civic Guide: ${escapeHtml(tierTargetUrl)}" style="color: #fde68a; text-decoration: underline; font-weight: 800;">Tier 4 ↗</a>: Civic Destination URL`;
+          } else if (dim.code === 'D105') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Tier 5 Venue Home: ${escapeHtml(tierTargetUrl)}" style="color: #cbd5e1; text-decoration: underline; font-weight: 800;">Tier 5 ↗</a>: Venue Home Domain`;
+          } else if (dim.code === 'D106') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Best Available Link &amp; Tier ↗</a>`;
+          }
+        }
+      } else if (dim.code === 'D1' || dim.code === 'D6') {
+        const tierTargetUrl = extractTierUrl(after, dim.code, true) || extractTierUrl(before, dim.code, false);
+        if (tierTargetUrl) {
+          const openFn = `onclick="event.stopPropagation(); if (window.openCuratorWindow) { window.openCuratorWindow(this.href); return false; }"`;
+          if (dim.code === 'D1') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Live Cart: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Tier 1 ↗</a>: Live Checkout Cart URL`;
+          } else if (dim.code === 'D6') {
+            dimDisplayName = `<a href="${escapeHtml(tierTargetUrl)}" target="_blank" rel="noopener noreferrer" ${openFn} class="tier-col1-link" title="Open Best Available Link: ${escapeHtml(tierTargetUrl)}" style="color: #38bdf8; text-decoration: underline; font-weight: 800;">Best Available Tier ↗</a>`;
+          }
+        }
+      }
+
+      const col1Html = `
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <div style="flex: 1 1 auto; min-width: 0; padding-right: 4px;">
+            <span class="dim-code-badge ${inScope ? `target theme-${scanKey}` : 'neutral'}">${escapeHtml(dim.code)}</span>
+            <span class="dim-name-text">${dimDisplayName}</span>
+          </div>
+          <div style="flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap;">
+            ${inScope 
+              ? `<span class="yield-target-tag" style="white-space: nowrap;">🎯 In-Scope</span>` 
+              : `<span class="yield-out-scope-tag" style="white-space: nowrap;">Out of Scope</span>`}
+          </div>
+        </div>
+        <div style="font-size: 0.65rem; color: #64748b; margin-top: 4px; font-weight: 500;">
+          ${escapeHtml(dim.category)}
+        </div>
+      `;
+
+      // Column 2 content: Before AI Run (Baseline)
+      const col2Html = beforeVal 
+        ? `<div class="comp-val-wrapper">${beforeVal}</div>`
+        : `<span class="yield-empty-field out-of-scope">—</span>`;
+
+      // Column 3 content: After AI Run
+      let col3Html = '';
+      const isNoneAvailable = typeof afterVal === 'string' && (afterVal.includes('none_available') || afterVal.includes('not_applicable'));
+
+      if (hasAfterYield) {
+        let badgeText = dim.badge || '+ Verified';
+        let badgeStyle = '';
+        if (isNoneAvailable) {
+          badgeText = 'Not Offered';
+          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.25);';
+        } else if (dim.key === 'd6_tier') {
+          badgeText = (afterVal && beforeVal && afterVal !== beforeVal) ? '+ Promoted' : '+ Verified Tier';
+        } else if (beforeVal && afterVal && beforeVal === afterVal) {
+          badgeText = '+ Retained';
+          badgeStyle = 'background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25);';
+        }
+
+        const badgeHtml = inScope ? `<span class="yield-highlight-tag" ${badgeStyle ? `style="${badgeStyle}"` : ''}>${escapeHtml(badgeText)}</span>` : '';
+        col3Html = `
+          <div class="comp-val-wrapper" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <div>${afterVal}</div>
+            <div>${badgeHtml}</div>
+          </div>
+        `;
+      } else if (isStreamingThisDim) {
+        col3Html = `
+          <div style="display: flex; align-items: center; gap: 6px; color: #38bdf8;">
+            <span class="pipeline-loader-ring" style="width: 14px; height: 14px; border-width: 2px;"></span>
+            <span style="font-size: 0.72rem; font-style: italic; color: #38bdf8;">Extracting live dimension...</span>
+          </div>
+        `;
+      } else if (inScope) {
+        if (isStreaming) {
+          col3Html = `<span class="yield-empty-field in-scope">— (In scope: extracting...)</span>`;
+        } else {
+          col3Html = beforeVal 
+            ? `<div class="comp-val-wrapper" style="opacity: 0.9; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                 <div>${beforeVal}</div>
+                 <span class="yield-highlight-tag" style="background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.25);">+ Retained</span>
+               </div>`
+            : `<span class="yield-empty-field out-of-scope">— (Unchanged / None found)</span>`;
+        }
+      } else {
+        col3Html = `<span class="yield-empty-field out-of-scope">— (Untouched: not in scope for ${escapeHtml(scanName)})</span>`;
+      }
+
+      return `
+        <tr class="${rowClass}">
+          <td class="comp-td-dim">${col1Html}</td>
+          <td class="comp-td-before">${col2Html}</td>
+          <td class="comp-td-after">${col3Html}</td>
+        </tr>
+      `;
+    }).join('');
+
+    return `
+      <table class="pipeline-3col-comp-table">
+        <thead>
+          <tr>
+            <th class="comp-td-dim">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="color: #38bdf8; font-weight: 800;">DIMENSION LABEL</span>
+                <span onclick="toggleComparisonInScopeFilter()" title="Click to toggle between In-Scope dimensions only vs. All ${totalDimsCount} Dimensions" style="cursor: pointer; font-size: 0.65rem; color: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? '#38bdf8' : '#94a3b8'}; font-family: monospace; background: ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(56, 189, 248, 0.18)' : 'rgba(255,255,255,0.08)'}; border: 1px solid ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? 'rgba(56, 189, 248, 0.4)' : 'transparent'}; padding: 1px 6px; border-radius: 4px;">
+                  ${(pipelineCompFilterInScopeOnly && scanKey !== 'compile') ? `🎯 ${inScopeDimsCount} OF ${totalDimsCount}D IN-SCOPE` : `📋 ALL ${totalDimsCount}D MATRIX`}
+                </span>
+              </div>
+            </th>
+            <th class="comp-td-before">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="color: #94a3b8; font-weight: 800;">📸 BEFORE AI RUN (Baseline)</span>
+                <span class="badge-card-number">${escapeHtml(badgeLabel)}</span>
+              </div>
+            </th>
+            <th class="comp-td-after">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="color: #34d399; font-weight: 800;">✨ AFTER AI RUN (${escapeHtml(agentLabel)})</span>
+                <span class="yield-status-pill agent" style="font-size: 0.64rem; padding: 1px 7px; border-radius: 999px; font-weight: 700; background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">
+                  ${isStreaming ? '⚡ Live Ingestion' : (after ? 'Audited Yield' : 'Awaiting Run')}
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function renderComparisonCards(ctx, before, isStreaming) {
+    pipelineLastCompAfter = ctx;
+    pipelineLastCompBefore = before;
+    pipelineLastCompIsStreaming = Boolean(isStreaming);
+
+    const beforeContainer = document.getElementById('pipeline-comp-card-before');
+    const afterContainer = document.getElementById('pipeline-comp-card-after');
+    const tableContainer = document.getElementById('pipeline-comp-table-container');
+    const harvesterView = document.getElementById('pipeline-harvester-comparison-view');
+    if (harvesterView) harvesterView.style.display = 'none';
+    if (tableContainer) tableContainer.style.display = 'block';
+
+    const preset = SCAN_PRESETS[currentPipelineScanKey] || SCAN_PRESETS.qc;
+    const agentLabel = preset ? preset.techPillText : 'AI Agent';
+
+    updateComparisonTargetDimensionsBanner(currentPipelineScanKey);
+
+    if (!before && ctx && ctx.id) {
+      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      before = pipelineInitialSnapshots.get(ctx.id) || (allEvs ? allEvs.find(e => (e.id || e.event_id) === ctx.id) : null);
+    }
+
+    // Populate legacy containers (for tests or background checks)
+    if (beforeContainer) {
+      beforeContainer.style.display = 'none';
+      beforeContainer.innerHTML = renderYieldCardHtml(before, false, null, currentPipelineScanKey);
+    }
+    if (afterContainer) {
+      afterContainer.style.display = 'none';
+      if (isStreaming && (!ctx || (!ctx.afterPrice && !ctx.afterTitle && !ctx.hasProof && !ctx.afterCategory && !ctx.afterDescription))) {
+        afterContainer.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #38bdf8; padding: 20px;">
+            <span class="pipeline-loader-ring" style="width: 32px; height: 32px; margin-bottom: 12px; border-width: 3px;"></span>
+            <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: #38bdf8;">
+              ${escapeHtml(agentLabel)} Auditing...
+            </div>
+            <p style="font-size: 0.74rem; color: #94a3b8; max-width: 260px; margin: 0; line-height: 1.45;">
+              Extracting live operational reality from page DOM. Only dimensions newly verified will populate here.
+            </p>
+          </div>
+        `;
+      } else {
+        afterContainer.innerHTML = renderYieldCardHtml(ctx, true, agentLabel, currentPipelineScanKey);
+      }
+    }
+
+    // Populate 3-Column Comparative Dimension Table
+    if (tableContainer) {
+      tableContainer.style.display = 'block';
+      tableContainer.innerHTML = generate3ColComparisonTableHtml(before, ctx, isStreaming, currentPipelineScanKey, agentLabel);
+    }
+  }
+
+  function updateComparisonCardDropdown() {
+    const sel = document.getElementById('pipeline-comparison-card-select');
+    const btnPrev = document.getElementById('btn-comp-prev-card');
+    const btnNext = document.getElementById('btn-comp-next-card');
+    if (!sel) return;
+
+    if (currentPipelineScanKey === 'venue' && pipelineAuditedCardsHistory.length === 0) {
+      let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+      if (Array.isArray(venues) && venues.length > 0) {
+        if (!pipelineCurrentCompId || !String(pipelineCurrentCompId).startsWith('venue:')) {
+          pipelineCurrentCompId = 'venue:0';
+        }
+        sel.innerHTML = venues.map((v, idx) => {
+          const vid = `venue:${idx}`;
+          const vName = v.venue_name || v.name || 'Venue';
+          const hood = v.neighborhood ? ` (${v.neighborhood})` : '';
+          return `<option value="${vid}" ${vid === pipelineCurrentCompId ? 'selected' : ''}>Venue #${idx + 1}: ${escapeHtml(vName.slice(0, 26))}${escapeHtml(hood)}</option>`;
+        }).join('');
+        const curIdx = parseInt(String(pipelineCurrentCompId).replace('venue:', ''), 10) || 0;
+        if (btnPrev) btnPrev.disabled = (curIdx <= 0);
+        if (btnNext) btnNext.disabled = (curIdx >= venues.length - 1);
+        return;
+      }
+    }
+
+    if (pipelineAuditedCardsHistory.length === 0) {
+      sel.innerHTML = '<option value="">Awaiting scan...</option>';
+      if (btnPrev) btnPrev.disabled = true;
+      if (btnNext) btnNext.disabled = true;
+      return;
+    }
+
+    const prefixLabel = currentPipelineScanKey === 'venue' ? 'Venue #' : '#';
+    sel.innerHTML = pipelineAuditedCardsHistory.map((item, idx) => `
+      <option value="${escapeHtml(item.id || String(idx))}" ${item.id === pipelineCurrentCompId ? 'selected' : ''}>
+        ${prefixLabel}${escapeHtml(String(item.cardIndex))}: ${escapeHtml((item.title || 'Event').slice(0, 24))}
+      </option>
+    `).join('');
+
+    const currentIdx = pipelineAuditedCardsHistory.findIndex(x => x.id === pipelineCurrentCompId);
+    if (btnPrev) btnPrev.disabled = (currentIdx <= 0);
+    if (btnNext) btnNext.disabled = (currentIdx < 0 || currentIdx >= pipelineAuditedCardsHistory.length - 1);
+  }
+
+  window.onComparisonCardSelectChange = function(eventId) {
+    if (!eventId) return;
+    showComparisonCardById(eventId);
+  };
+
+  window.stepComparisonCard = function(delta) {
+    if (currentPipelineScanKey === 'venue' && pipelineAuditedCardsHistory.length === 0) {
+      let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+      if (Array.isArray(venues) && venues.length > 0) {
+        const curIdx = parseInt(String(pipelineCurrentCompId || 'venue:0').replace('venue:', ''), 10) || 0;
+        const nextIdx = Math.max(0, Math.min(venues.length - 1, curIdx + delta));
+        showComparisonCardById(`venue:${nextIdx}`);
+        return;
+      }
+    }
+    if (pipelineAuditedCardsHistory.length === 0) return;
+    let currentIdx = pipelineAuditedCardsHistory.findIndex(x => x.id === pipelineCurrentCompId);
+    if (currentIdx === -1) currentIdx = pipelineAuditedCardsHistory.length - 1;
+    const nextIdx = Math.max(0, Math.min(pipelineAuditedCardsHistory.length - 1, currentIdx + delta));
+    const target = pipelineAuditedCardsHistory[nextIdx];
+    if (target) {
+      showComparisonCardById(target.id);
+    }
+  };
+
+  window.showComparisonCardById = function(eventId) {
+    pipelineCurrentCompId = eventId;
+    if (String(eventId).startsWith('venue:')) {
+      const vIdx = parseInt(String(eventId).replace('venue:', ''), 10) || 0;
+      let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+      const v = venues && venues[vIdx];
+      if (v) {
+        const vName = v.venue_name || v.name || 'Venue';
+        const pseudoVenueCard = {
+          cardIndex: vIdx + 1,
+          id: `venue:${vIdx}`,
+          title: vName,
+          venue: vName,
+          venue_name: vName,
+          address: v.full_address || v.address || '',
+          full_address: v.full_address || v.address || '',
+          neighborhood: v.neighborhood || '',
+          coordinates: v.coordinates || null,
+          transit_info: v.transit_info || '',
+          environment_type: v.environment_type || '',
+          access_model: v.access_model || '',
+          accessibility_notes: v.accessibility_notes || '',
+          operating_hours_summary: v.operating_hours_summary || '',
+          drink_benchmark: v.drink_benchmark || '',
+          typical_item_spend: v.typical_item_spend || '',
+          dimension_audit: v.dimension_audit || {}
+        };
+        const isGrounded = Boolean((v.full_address && (v.coordinates || v.transit_info)) || v.last_grounded_at);
+        renderComparisonCards(isGrounded ? pseudoVenueCard : null, pseudoVenueCard, false);
+        updateComparisonCardDropdown();
+        updateComparisonStatusPill(`Venue #${vIdx + 1}: ${vName} ${isGrounded ? 'Grounded ✅' : 'Baseline'}`, isGrounded ? 'updated' : 'nodrift');
+      }
+      return;
+    }
+    const item = pipelineAuditedCardsHistory.find(x => x.id === eventId);
+    if (item) {
+      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+      const fresh = allEvs.find(e => (e.id || e.event_id) === eventId) || qEvs.find(e => (e.id || e.event_id) === eventId);
+      if (fresh) {
+        if (!item.ctx.afterDate) item.ctx.afterDate = fresh.date || fresh.dateSchedule;
+        if (!item.ctx.afterTime) item.ctx.afterTime = fresh.time || fresh.start_time || fresh.doors_time;
+        if (!item.ctx.afterPrice || item.ctx.afterPrice === 'Pending Box Office QC') item.ctx.afterPrice = fresh.priceLabel || (fresh.price != null ? `$${Number(fresh.price).toFixed(2)} CAD` : null);
+        if (item.ctx.afterBase === undefined && fresh.price_base != null) item.ctx.afterBase = fresh.price_base;
+        if (item.ctx.afterFee === undefined && fresh.price_fee != null) item.ctx.afterFee = fresh.price_fee;
+        if (!item.ctx.afterInventory) item.ctx.afterInventory = fresh.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
+        if (!item.ctx.afterTicketUrl) item.ctx.afterTicketUrl = fresh.ticket_url || fresh.details_url;
+        if (!item.ctx.afterTitle) item.ctx.afterTitle = fresh.title || fresh.event_name;
+        if (!item.ctx.afterVenue) item.ctx.afterVenue = fresh.venue || fresh.venue_name;
+        if (!item.ctx.afterCategory) item.ctx.afterCategory = fresh.category;
+        if (item.ctx.afterArtist === undefined && fresh.artist) item.ctx.afterArtist = fresh.artist;
+        if (!item.ctx.afterAge && fresh.restrictions) item.ctx.afterAge = fresh.restrictions;
+        if (!item.ctx.afterDescription && fresh.description) item.ctx.afterDescription = fresh.description;
+        if (fresh.proof_keyframes?.cart && !item.ctx.proofKeyframeUrl) {
+          item.ctx.hasProof = true;
+          item.ctx.proofKeyframeUrl = fresh.proof_keyframes.cart;
+        }
+      }
+      renderComparisonCards(item.ctx, item.before, false);
+      updateComparisonCardDropdown();
+      updateComparisonStatusPill(`Card #${item.cardIndex} Inspected ✅`, 'updated');
+      const selectCard = document.getElementById('pipeline-select-card-name');
+      if (selectCard) selectCard.value = eventId;
+      const searchInput = document.getElementById('pipeline-custom-card-ids');
+      if (searchInput && item.title) {
+        searchInput.value = `#${item.cardIndex}: ${item.title}`;
+      }
+    } else {
+      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+      const ev = allEvs.find(e => (e.id || e.event_id) === eventId) || qEvs.find(e => (e.id || e.event_id) === eventId);
+      if (ev) {
+        renderComparisonCards(null, ev, false);
+        updateComparisonStatusPill(`Baseline Preview`, 'nodrift');
+        const selectCard = document.getElementById('pipeline-select-card-name');
+        if (selectCard) selectCard.value = eventId;
+      }
+    }
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // SCHEDULE HARVESTER SPLIT-SCREEN SYSTEM (Before: Sources & Events / After: New Events)
+  // ─────────────────────────────────────────────────────────────────────────────
+  let harvesterPreRunEvents = null;
+  let harvesterDiscoveredEvents = [];
+  let harvesterPreRunSourcesMap = new Map();
+
+  function getEventDataSource(ev) {
+    if (!ev) return 'Direct Box Office / Local Catalog';
+    if (ev.source_feed) return ev.source_feed;
+    if (ev.data_source) return ev.data_source;
+    if (ev.discovery_source) return ev.discovery_source;
+
+    const url = ev.ticket_url || ev.details_url || ev.websiteUrl || '';
+    let domain = '';
+    if (url) {
+      try {
+        domain = new URL(url).hostname.replace(/^www\./i, '').toLowerCase();
+      } catch (_) {}
+    }
+
+    if (domain.includes('eventbrite.')) return 'Eventbrite';
+    if (domain.includes('showpass.com')) return 'Showpass';
+    if (domain.includes('ticketmaster.')) return 'Ticketmaster';
+    if (domain.includes('universe.com')) return 'Universe';
+    if (domain.includes('ticketweb.')) return 'TicketWeb';
+    if (domain.includes('showclix.com')) return 'ShowClix';
+    if (domain.includes('vancouverisawesome.com')) return 'Vancouver Is Awesome';
+    if (domain.includes('do604.com')) return 'Do604';
+    if (domain.includes('straight.com')) return 'The Georgia Straight';
+    if (domain.includes('destinationvancouver.com')) return 'Destination Vancouver';
+    if (domain.includes('vancouver.ca')) return 'City of Vancouver';
+
+    const venue = (ev.venue_name || ev.venue || '').trim();
+    if (venue) return venue;
+
+    if (ev.ticket_provider && ev.ticket_provider !== 'Direct Box Office') {
+      return ev.ticket_provider;
+    }
+
+    if (domain) return domain;
+    return 'Direct Box Office / Local Catalog';
+  }
+
+  function captureHarvesterPreRunBaseline() {
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    harvesterPreRunEvents = events.map((ev, idx) => ({
+      id: ev.id || ev.event_id || `ev-${idx}`,
+      title: ev.title || ev.event_name || 'Event',
+      venue: ev.venue || ev.venue_name || 'Vancouver Venue',
+      date: ev.date || ev.dateSchedule || 'No date set',
+      time: ev.time || ev.doors_time || ev.start_time || '',
+      source: getEventDataSource(ev),
+      priceLabel: ev.priceLabel || (ev.price != null ? `$${Number(ev.price).toFixed(2)} CAD` : 'Free ($0)'),
+      ticket_url: ev.ticket_url || ev.details_url || ev.websiteUrl || ''
+    }));
+
+    harvesterPreRunSourcesMap = new Map();
+    harvesterPreRunEvents.forEach(ev => {
+      const src = ev.source || 'Direct Box Office / Local Catalog';
+      if (!harvesterPreRunSourcesMap.has(src)) harvesterPreRunSourcesMap.set(src, []);
+      harvesterPreRunSourcesMap.get(src).push(ev);
+    });
+  }
+
+  window.toggleHarvesterSourceGroup = function(sourceId) {
+    const el = document.getElementById(sourceId);
+    const icon = document.getElementById(sourceId + '-icon');
+    if (!el) return;
+    if (el.style.display === 'none') {
+      el.style.display = 'flex';
+      if (icon) icon.textContent = '▼';
+    } else {
+      el.style.display = 'none';
+      if (icon) icon.textContent = '▶';
+    }
+  };
+
+  window.toggleAllHarvesterSources = function(expand) {
+    document.querySelectorAll('.harvester-source-events-list').forEach(el => {
+      el.style.display = expand ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.harvester-toggle-icon').forEach(icon => {
+      icon.textContent = expand ? '▼' : '▶';
+    });
+  };
+
+  window.filterHarvesterBeforeSources = function(query) {
+    const q = (query || '').toLowerCase().trim();
+    const groups = document.querySelectorAll('.harvester-source-group');
+    groups.forEach(group => {
+      const srcName = (group.dataset.sourceName || '').toLowerCase();
+      const eventRows = group.querySelectorAll('.harvester-event-row');
+      let matchedEventsCount = 0;
+      eventRows.forEach(row => {
+        const rowText = (row.textContent || '').toLowerCase();
+        if (!q || srcName.includes(q) || rowText.includes(q)) {
+          row.style.display = 'flex';
+          matchedEventsCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      const listEl = group.querySelector('.harvester-source-events-list');
+      const iconEl = group.querySelector('.harvester-toggle-icon');
+      if (!q || matchedEventsCount > 0 || srcName.includes(q)) {
+        group.style.display = 'block';
+        if (q && listEl) {
+          listEl.style.display = 'flex';
+          if (iconEl) iconEl.textContent = '▼';
+        }
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  };
+
+  function getHarvestedEventSource(ev) {
+    if (ev.source && ev.source !== 'Direct Box Office / Local Catalog' && ev.source !== 'Discovered Venue Feeds') {
+      return ev.source;
+    }
+    if (ev.venue && ev.venue !== 'Vancouver Venue') {
+      return ev.venue;
+    }
+    if (ev.url) {
+      try {
+        const u = new URL(ev.url);
+        const host = u.hostname.replace(/^www\./i, '');
+        if (host.includes('eventbrite')) return 'Eventbrite';
+        if (host.includes('showpass')) return 'Showpass';
+        if (host.includes('ticketmaster')) return 'Ticketmaster';
+        if (host.includes('theimprovcentre')) return 'The Improv Centre';
+        if (host.includes('riotheatre')) return 'Rio Theatre';
+        if (host.includes('rickshawtheatre')) return 'Rickshaw Theatre';
+        return host;
+      } catch (_) {}
+    }
+    return ev.venue || 'Discovered Venue Feeds';
+  }
+
+  window.toggleHarvesterNewSourceGroup = function(sourceId) {
+    const el = document.getElementById(sourceId);
+    const icon = document.getElementById(sourceId + '-icon');
+    if (!el) return;
+    if (el.style.display === 'none') {
+      el.style.display = 'flex';
+      if (icon) icon.textContent = '▼';
+    } else {
+      el.style.display = 'none';
+      if (icon) icon.textContent = '▶';
+    }
+  };
+
+  window.toggleAllHarvesterNewSources = function(expand) {
+    document.querySelectorAll('.harvester-new-source-events-list').forEach(el => {
+      el.style.display = expand ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.harvester-new-toggle-icon').forEach(icon => {
+      icon.textContent = expand ? '▼' : '▶';
+    });
+  };
+
+  window.filterHarvesterAfterSources = function(query) {
+    const q = (query || '').toLowerCase().trim();
+    const groups = document.querySelectorAll('.harvester-new-source-group');
+    groups.forEach(group => {
+      const srcName = (group.dataset.sourceName || '').toLowerCase();
+      const eventRows = group.querySelectorAll('.harvester-new-event-row');
+      let matchedEventsCount = 0;
+      eventRows.forEach(row => {
+        const rowText = (row.textContent || '').toLowerCase();
+        if (!q || srcName.includes(q) || rowText.includes(q)) {
+          row.style.display = 'flex';
+          matchedEventsCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      const listEl = group.querySelector('.harvester-new-source-events-list');
+      const iconEl = group.querySelector('.harvester-new-toggle-icon');
+      if (!q || matchedEventsCount > 0 || srcName.includes(q)) {
+        group.style.display = 'block';
+        if (q && listEl) {
+          listEl.style.display = 'flex';
+          if (iconEl) iconEl.textContent = '▼';
+        }
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  };
+
+  function renderHarvesterComparisonView(isFinished = false, newEvents = [], isStreaming = false) {
+    const harvesterView = document.getElementById('pipeline-harvester-comparison-view');
+    const tableContainer = document.getElementById('pipeline-comp-table-container');
+    const beforeContainer = document.getElementById('pipeline-comp-card-before');
+    const afterContainer = document.getElementById('pipeline-comp-card-after');
+    if (!harvesterView) return;
+
+    if (tableContainer) tableContainer.style.display = 'none';
+    if (beforeContainer) beforeContainer.style.display = 'none';
+    if (afterContainer) afterContainer.style.display = 'none';
+    harvesterView.style.display = 'block';
+
+    if (!harvesterPreRunEvents) {
+      captureHarvesterPreRunBaseline();
+    }
+
+    const prevFilterBefore = document.getElementById('harvester-filter-before')?.value || '';
+    const prevFilterAfter = document.getElementById('harvester-filter-after')?.value || '';
+
+    const totalEvents = harvesterPreRunEvents ? harvesterPreRunEvents.length : 0;
+    const sortedSources = Array.from(harvesterPreRunSourcesMap.entries())
+      .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+    const totalSources = sortedSources.length;
+
+    // Update banner text
+    const textEl = document.getElementById('pipeline-scope-target-dims-text');
+    if (textEl) textEl.textContent = 'Target: Venue Calendars & Ticket Feeds • Ingests discrete dated deep links into layer_schedules.json';
+
+    // Group newEvents by source
+    const newSourcesMap = new Map();
+    (newEvents || []).forEach(ev => {
+      const src = getHarvestedEventSource(ev);
+      if (!newSourcesMap.has(src)) newSourcesMap.set(src, []);
+      newSourcesMap.get(src).push(ev);
+    });
+    const sortedNewSources = Array.from(newSourcesMap.entries())
+      .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+    const totalNewSources = sortedNewSources.length;
+    const newEventsCount = (newEvents || []).length;
+
+    // Render 3 Regions: Top Region (Two Columns: Before Run vs After Run Sources) + Bottom Region (Single Column: Real-Time Stream Cards)
+    harvesterView.innerHTML = `
+      <div id="pipeline-harvester-3region-container" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+        <!-- TOP REGION: TWO COLUMNS -->
+        <div id="harvester-top-region" style="display: flex; gap: 12px; width: 100%; align-items: stretch;">
+          <!-- TOP-LEFT: BEFORE RUN (Prior Data Sources & Events) -->
+          <div id="harvester-top-left-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div class="yield-card-badge-bar before" style="color: #c084fc; border-color: rgba(192, 132, 252, 0.25);">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-weight: 800;">📸 BEFORE RUN • PRIOR DATA SOURCES</span>
+                <span class="badge-card-number" style="background: rgba(192, 132, 252, 0.15); color: #d8b4fe; border: 1px solid rgba(192, 132, 252, 0.35);">
+                  ${totalSources} Sources (${totalEvents} Events)
+                </span>
+              </div>
+              <span class="yield-status-pill baseline" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">
+                Baseline Catalog
+              </span>
+            </div>
+
+            <!-- Search Filter & Quick Expand/Collapse Tools -->
+            <div style="display: flex; gap: 6px; align-items: center; margin: 4px 0;">
+              <input type="text" id="harvester-filter-before" placeholder="Search data source, event name, or date..." 
+                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(192,132,252,0.25); border-radius: 4px; color: #fff;"
+                     oninput="filterHarvesterBeforeSources(this.value)">
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #c084fc; cursor: pointer;" title="Expand all source lists">Expand All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #94a3b8; cursor: pointer;" title="Collapse all source lists">Collapse All</button>
+            </div>
+
+            <!-- Scrollable Accordion of Data Sources with Event Names & Dates -->
+            <div id="harvester-before-sources-list" style="flex: 1; max-height: 380px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px;">
+              ${sortedSources.map(([sourceName, evs], sIdx) => {
+                const safeId = 'hsrc-' + sIdx;
+                const isExpanded = sIdx < 2;
+                return `
+                  <div class="harvester-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(192, 132, 252, 0.18); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
+                    <div onclick="toggleHarvesterSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(192, 132, 252, 0.08); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.76rem;">🏛️</span>
+                        <span style="font-weight: 700; color: #f1f5f9; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(192, 132, 252, 0.2); color: #d8b4fe; padding: 1px 7px; border-radius: 999px;">
+                          ${evs.length} ${evs.length === 1 ? 'event' : 'events'}
+                        </span>
+                        <span id="${safeId}-icon" class="harvester-toggle-icon" style="font-size: 0.65rem; color: #94a3b8;">${isExpanded ? '▼' : '▶'}</span>
+                      </div>
+                    </div>
+                    <div id="${safeId}" class="harvester-source-events-list" style="padding: 6px 10px; display: ${isExpanded ? 'flex' : 'none'}; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
+                      ${evs.map(e => {
+                        const rawDate = e.date || e.dateSchedule || '';
+                        const isPending = !rawDate || /pending|verification|tbd|schedule/i.test(rawDate);
+                        const dateSnippet = isPending ? '' : `
+                          <span style="color: #38bdf8; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
+                            📅 ${escapeHtml(rawDate)}${e.time ? ' • ' + escapeHtml(e.time) : ''}
+                          </span>
+                        `;
+                        const linkUrl = e.ticket_url || e.url || e.calendar_url || e.details_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
+                        return `
+                          <div class="harvester-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
+                            <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
+                               style="color: #e2e8f0; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
+                               onmouseover="this.style.color='#c084fc'; this.style.textDecoration='underline';"
+                               onmouseout="this.style.color='#e2e8f0'; this.style.textDecoration='none';"
+                               title="Open ${escapeHtml(e.title || 'Event')} in new window">
+                              ${escapeHtml(e.title)} <span style="font-size: 0.62rem; color: #a855f7; opacity: 0.85;">↗</span>
+                            </a>
+                            ${dateSnippet}
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- TOP-RIGHT: AFTER RUN (Consists ONLY of the New Events Grouped by Source) -->
+          <div id="harvester-top-right-col" class="yield-card" style="flex: 1 1 50%; min-width: 0; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div class="yield-card-badge-bar after" style="color: #4ade80; border-color: rgba(52, 211, 153, 0.3);">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-weight: 800;">✨ AFTER RUN • NEW DATA SOURCES &amp; EVENTS</span>
+                <span class="badge-card-number" style="background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4);">
+                  +${newEventsCount} New Events (${totalNewSources} Sources)
+                </span>
+              </div>
+              <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(168, 85, 247, 0.2)' : 'rgba(16, 185, 129, 0.2)'}; color: ${isStreaming ? '#d8b4fe' : '#34d399'}; border: 1px solid ${isStreaming ? 'rgba(168, 85, 247, 0.4)' : 'rgba(16, 185, 129, 0.4)'};">
+                ${isStreaming ? 'Crawling...' : (isFinished ? 'Harvested' : 'Awaiting Run')}
+              </span>
+            </div>
+
+            <!-- Search Filter & Quick Tools for New Events -->
+            <div style="display: flex; gap: 6px; align-items: center; margin: 4px 0;">
+              <input type="text" id="harvester-filter-after" placeholder="Filter newly harvested events or sources..." 
+                     style="flex: 1; font-size: 0.72rem; padding: 4px 8px; background: rgba(0,0,0,0.5); border: 1px solid rgba(52,211,153,0.3); border-radius: 4px; color: #fff;"
+                     oninput="filterHarvesterAfterSources(this.value)">
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(true)" style="padding: 2px 7px; font-size: 0.66rem; color: #34d399; cursor: pointer;" title="Expand all new source lists">Expand All</button>
+              <button type="button" class="btn-limit-chip" onclick="toggleAllHarvesterNewSources(false)" style="padding: 2px 7px; font-size: 0.66rem; color: #94a3b8; cursor: pointer;" title="Collapse all new source lists">Collapse All</button>
+            </div>
+
+            <!-- Scrollable Accordion of New Data Sources with Newly Harvested Events -->
+            <div id="harvester-after-sources-list" style="flex: 1; max-height: 380px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 6px;">
+              ${newEventsCount === 0 ? `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 240px; text-align: center; color: #94a3b8; padding: 20px;">
+                  ${isStreaming ? `
+                    <span class="pipeline-loader-ring" style="width: 28px; height: 28px; margin-bottom: 10px; border-width: 2.5px; border-color: #34d399 transparent #34d399 transparent;"></span>
+                    <div style="font-weight: 700; color: #34d399; font-size: 0.86rem; margin-bottom: 4px;">Crawling Venue Feeds...</div>
+                    <p style="font-size: 0.72rem; color: #cbd5e1; max-width: 240px; margin: 0; line-height: 1.4;">
+                      Newly harvested events will appear here grouped by source as candidate links are verified.
+                    </p>
+                  ` : (isFinished ? `
+                    <div style="font-size: 2rem; margin-bottom: 6px;">✅</div>
+                    <div style="font-weight: 700; color: #34d399; font-size: 0.86rem; margin-bottom: 4px;">All Calendar Events Up to Date</div>
+                    <p style="font-size: 0.72rem; color: #94a3b8; max-width: 240px; margin: 0; line-height: 1.4;">
+                      No uncataloged new showings were found. All candidate links on target feeds already exist in the baseline catalog.
+                    </p>
+                  ` : `
+                    <div style="font-size: 2rem; margin-bottom: 6px;">📅</div>
+                    <div style="font-weight: 700; color: #d8b4fe; font-size: 0.86rem; margin-bottom: 4px;">Awaiting Harvester Execution</div>
+                    <p style="font-size: 0.72rem; color: #94a3b8; max-width: 240px; margin: 0; line-height: 1.4;">
+                      Click <strong>Run Harvester Now</strong> to begin. Newly discovered events will be organized here by venue/source.
+                    </p>
+                  `)}
+                </div>
+              ` : sortedNewSources.map(([sourceName, evs], sIdx) => {
+                const safeId = 'hnewsrc-' + sIdx;
+                return `
+                  <div class="harvester-new-source-group" data-source-name="${escapeHtml(sourceName)}" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 6px; overflow: hidden; flex-shrink: 0;">
+                    <div onclick="toggleHarvesterNewSourceGroup('${safeId}')" style="padding: 6px 10px; background: rgba(16, 185, 129, 0.09); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none;">
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.76rem;">✨</span>
+                        <span style="font-weight: 700; color: #f1f5f9; font-size: 0.76rem;">${escapeHtml(sourceName)}</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.66rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ade80; padding: 1px 7px; border-radius: 999px;">
+                          +${evs.length} ${evs.length === 1 ? 'new event' : 'new events'}
+                        </span>
+                        <span id="${safeId}-icon" class="harvester-new-toggle-icon" style="font-size: 0.65rem; color: #94a3b8;">▼</span>
+                      </div>
+                    </div>
+                    <div id="${safeId}" class="harvester-new-source-events-list" style="padding: 6px 10px; display: flex; flex-direction: column; gap: 5px; font-size: 0.72rem; background: rgba(0, 0, 0, 0.2);">
+                      ${evs.map(e => {
+                        const linkUrl = e.url || e.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((e.title || '') + ' ' + (e.venue || sourceName) + ' Vancouver')}`;
+                        return `
+                          <div class="harvester-new-event-row" style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding-bottom: 3px; flex-shrink: 0;">
+                            <a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" 
+                               style="color: #4ade80; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 0.15s ease;"
+                               onmouseover="this.style.color='#86efac'; this.style.textDecoration='underline';"
+                               onmouseout="this.style.color='#4ade80'; this.style.textDecoration='none';"
+                               title="Open ${escapeHtml(e.title || 'Event')} in new window">
+                              ${escapeHtml(e.title)} <span style="font-size: 0.62rem; color: #34d399;">↗</span>
+                            </a>
+                            <span style="color: #38bdf8; font-family: monospace; font-size: 0.66rem; white-space: nowrap; margin-left: 6px; flex-shrink: 0;">
+                              📅 ${escapeHtml(e.date || 'TBD')}${e.time ? ' • ' + escapeHtml(e.time) : ''}
+                            </span>
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTTOM REGION: SINGLE COLUMN (Live Updating Stream of Discrete Event Cards) -->
+        <div id="harvester-bottom-region" class="yield-card" style="width: 100%; background: #090d16; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div class="yield-card-badge-bar" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); margin-bottom: 2px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-weight: 800;">⚡ LIVE DISCOVERY STREAM (DISCRETE EVENT CARDS)</span>
+              <span class="badge-card-number" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35);">
+                ${newEventsCount} Event${newEventsCount === 1 ? '' : 's'} Processed
+              </span>
+            </div>
+            <span class="yield-status-pill agent" style="background: ${isStreaming ? 'rgba(56, 189, 248, 0.2)' : (isFinished ? 'rgba(34, 197, 94, 0.2)' : 'rgba(148, 163, 184, 0.15)')}; color: ${isStreaming ? '#38bdf8' : (isFinished ? '#4ade80' : '#94a3b8')}; border: 1px solid ${isStreaming ? 'rgba(56, 189, 248, 0.4)' : (isFinished ? 'rgba(34, 197, 94, 0.4)' : 'rgba(148, 163, 184, 0.3)')};">
+              ${isStreaming ? '✨ Streaming Live' : (isFinished ? '✅ Harvest Complete' : '💤 Awaiting Start')}
+            </span>
+          </div>
+
+          <!-- Real-Time Cards List Updating Each Time An Event is Processed -->
+          <div id="harvester-bottom-cards-feed" style="max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px;">
+            ${newEventsCount === 0 ? `
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; text-align: center; color: #94a3b8; padding: 16px;">
+                ${isStreaming ? `
+                  <span class="pipeline-loader-ring" style="width: 30px; height: 30px; margin-bottom: 10px; border-width: 3px; border-color: #38bdf8 transparent #38bdf8 transparent;"></span>
+                  <div style="font-weight: 700; color: #38bdf8; font-size: 0.88rem; margin-bottom: 3px;">Harvester Active &amp; Crawling...</div>
+                  <p style="font-size: 0.74rem; color: #cbd5e1; max-width: 320px; margin: 0; line-height: 1.45;">
+                    Discrete event cards will appear here immediately in real-time as each candidate calendar link is fetched and verified.
+                  </p>
+                ` : (isFinished ? `
+                  <div style="font-size: 1.8rem; margin-bottom: 4px;">🏁</div>
+                  <div style="font-weight: 700; color: #34d399; font-size: 0.88rem; margin-bottom: 2px;">Crawl Finished (No New Events)</div>
+                  <p style="font-size: 0.74rem; color: #94a3b8; margin: 0;">All discovered calendar dates were already in the active catalog.</p>
+                ` : `
+                  <div style="font-size: 1.8rem; margin-bottom: 4px;">⚡</div>
+                  <div style="font-weight: 700; color: #cbd5e1; font-size: 0.88rem; margin-bottom: 2px;">Live Event Cards Stream</div>
+                  <p style="font-size: 0.74rem; color: #94a3b8; max-width: 340px; margin: 0; line-height: 1.45;">
+                    As each event link is processed, its verified title, date, time, venue, price, and ticket URL will appear here live so you don't have to wait for the run to complete.
+                  </p>
+                `)}
+              </div>
+            ` : (newEvents || []).map((ev, idx) => {
+              const evUrl = ev.url || ev.ticket_url || `https://www.google.com/search?q=${encodeURIComponent((ev.title || '') + ' ' + (ev.venue || '') + ' Vancouver')}`;
+              return `
+                <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.32); border-radius: 6px; padding: 9px 12px; display: flex; flex-direction: column; gap: 4px; transition: transform 0.15s ease;">
+                  <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
+                    <a href="${escapeHtml(evUrl)}" target="_blank" rel="noopener noreferrer" 
+                       style="font-weight: 700; font-size: 0.82rem; color: #fff; text-decoration: none; cursor: pointer; flex: 1; transition: color 0.15s ease;"
+                       onmouseover="this.style.color='#4ade80'; this.style.textDecoration='underline';"
+                       onmouseout="this.style.color='#fff'; this.style.textDecoration='none';"
+                       title="Open ${escapeHtml(ev.title || 'Event')} in new window">
+                      #${idx + 1}. ${escapeHtml(ev.title || 'Event')} <span style="font-size: 0.68rem; color: #34d399;">↗</span>
+                    </a>
+                    <span style="font-size: 0.64rem; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 7px; border-radius: 999px; white-space: nowrap;">✨ New Event</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 10px; font-size: 0.72rem; flex-wrap: wrap;">
+                    <span style="color: #38bdf8; font-weight: 600;">📅 ${escapeHtml(ev.date || 'TBD')}</span>
+                    ${ev.time ? `<span style="color: #94a3b8;">⏰ ${escapeHtml(ev.time)}</span>` : ''}
+                    <span style="color: #cbd5e1;">📍 ${escapeHtml(ev.venue || 'Vancouver Venue')}</span>
+                    ${ev.price ? `<span style="color: #34d399; font-weight: 700;">💰 ${escapeHtml(ev.price)}</span>` : ''}
+                  </div>
+                  ${ev.url ? `
+                    <div style="margin-top: 2px;">
+                      <a href="${escapeHtml(ev.url)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #c084fc; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;"
+                         onmouseover="this.style.textDecoration='underline';"
+                         onmouseout="this.style.textDecoration='none';">
+                        🔗 View Ticket Page ↗
+                      </a>
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Restore filter text if previously typed
+    if (prevFilterBefore) {
+      const fb = document.getElementById('harvester-filter-before');
+      if (fb) {
+        fb.value = prevFilterBefore;
+        window.filterHarvesterBeforeSources(prevFilterBefore);
+      }
+    }
+    if (prevFilterAfter) {
+      const fa = document.getElementById('harvester-filter-after');
+      if (fa) {
+        fa.value = prevFilterAfter;
+        window.filterHarvesterAfterSources(prevFilterAfter);
+      }
+    }
+  }
+
+  function finalizeHarvesterRun(isSuccess = true) {
+    if (currentPipelineScanKey !== 'harvest') return;
+
+    fetch('/data/events.json?_t=' + Date.now())
+      .then(res => res.json())
+      .then(freshEvents => {
+        const preRunIds = new Set((harvesterPreRunEvents || []).map(e => e.id || e.event_id));
+        const newlyAdded = (freshEvents || []).filter(e => !preRunIds.has(e.id || e.event_id));
+
+        const mergedNew = [...newlyAdded.map(e => ({
+          id: e.id || e.event_id,
+          title: e.title || e.event_name,
+          date: e.date || e.dateSchedule,
+          time: e.time || e.doors_time,
+          venue: e.venue || e.venue_name,
+          price: e.priceLabel,
+          url: e.ticket_url || e.details_url
+        }))];
+
+        (harvesterDiscoveredEvents || []).forEach(dev => {
+          if (!mergedNew.some(m => m.id === dev.id || (m.title === dev.title && m.date === dev.date))) {
+            mergedNew.push(dev);
+          }
+        });
+
+        renderHarvesterComparisonView(true, mergedNew, false);
+        updateComparisonStatusPill(
+          isSuccess 
+            ? `${mergedNew.length} New Events Harvested ✅` 
+            : `${mergedNew.length} Events Harvested (Halted)`, 
+          'updated'
+        );
+
+        const batchLimit = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 9999 : (Number(pipelineBatchSize) || 5);
+        const discoveredIds = mergedNew.map(x => x.id).filter(Boolean).slice(0, batchLimit);
+        if (discoveredIds.length > 0) {
+          pipelineTestDiscoveredIds = discoveredIds;
+          pipelineTestDiscoveredEvents = mergedNew.filter(x => x.id && discoveredIds.includes(x.id)).slice(0, batchLimit);
+        } else if (pipelineTestDiscoveredIds.length === 0 && Array.isArray(freshEvents) && freshEvents.length > 0) {
+          const picked = freshEvents.slice(0, batchLimit);
+          pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+          pipelineTestDiscoveredEvents = picked.map(e => ({
+            id: e.id || e.event_id,
+            title: e.title || e.event_name || 'Event',
+            date: e.date || e.dateSchedule || '',
+            venue: e.venue || e.venue_name || '',
+            price: e.priceLabel || '',
+            url: e.ticket_url || e.details_url || ''
+          }));
+        }
+        pipelineTestStageStatuses.harvest = isSuccess 
+          ? `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)` 
+          : `⚠️ Halted (${pipelineTestDiscoveredIds.length} Harvested)`;
+        savePipelineBatchState();
+        if (typeof renderPipelineTestEventsList === 'function') renderPipelineTestEventsList();
+        if (typeof updatePipelineTestStepperUI === 'function') updatePipelineTestStepperUI();
+      })
+      .catch(() => {
+        renderHarvesterComparisonView(true, harvesterDiscoveredEvents || [], false);
+        updateComparisonStatusPill(
+          `${(harvesterDiscoveredEvents || []).length} New Events Harvested ✅`, 
+          'updated'
+        );
+        const batchLimit = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 9999 : (Number(pipelineBatchSize) || 5);
+        const discoveredIds = (harvesterDiscoveredEvents || []).map(x => x.id).filter(Boolean).slice(0, batchLimit);
+        if (discoveredIds.length > 0) {
+          pipelineTestDiscoveredIds = discoveredIds;
+          pipelineTestDiscoveredEvents = (harvesterDiscoveredEvents || []).slice(0, batchLimit);
+        }
+        pipelineTestStageStatuses.harvest = `✅ Complete (${pipelineTestDiscoveredIds.length} Harvested)`;
+        savePipelineBatchState();
+        if (typeof renderPipelineTestEventsList === 'function') renderPipelineTestEventsList();
+        if (typeof updatePipelineTestStepperUI === 'function') updatePipelineTestStepperUI();
+      });
+  }
+
+  function initColumnResizers() {
+    // 1. Main resizer between Left Col (terminal/controls) and Right Col (yield)
+    const mainResizer = document.getElementById('pipeline-main-resizer');
+    const leftCol = document.querySelector('.pipeline-modal-left-col');
+    const modalGrid = document.querySelector('.pipeline-modal-grid') || (mainResizer ? mainResizer.parentElement : null);
+
+    if (mainResizer && leftCol && modalGrid && !mainResizer._resizerInit) {
+      mainResizer._resizerInit = true;
+      let isDragging = false;
+      let startX = 0;
+      let startWidth = 0;
+
+      mainResizer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX;
+        startWidth = leftCol.getBoundingClientRect().width;
+        mainResizer.classList.add('is-resizing');
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+
+        const onMouseMove = (ev) => {
+          if (!isDragging) return;
+          const deltaX = ev.clientX - startX;
+          const gridWidth = modalGrid.getBoundingClientRect().width;
+          const newWidth = Math.max(280, Math.min(gridWidth - 320, startWidth + deltaX));
+          const pct = (newWidth / gridWidth) * 100;
+          leftCol.style.flex = `0 0 ${pct}%`;
+          leftCol.style.maxWidth = `${pct}%`;
+        };
+
+        const onMouseUp = () => {
+          isDragging = false;
+          mainResizer.classList.remove('is-resizing');
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        };
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      });
+    }
+
+    // 2. Comparison resizer between Before card and After card
+    const compResizer = document.getElementById('pipeline-comp-resizer');
+    const beforeCard = document.getElementById('pipeline-comp-card-before');
+    const cardsRow = document.getElementById('pipeline-comparison-cards-row') || (compResizer ? compResizer.parentElement : null);
+
+    if (compResizer && beforeCard && cardsRow && !compResizer._resizerInit) {
+      compResizer._resizerInit = true;
+      let isDragging = false;
+      let startX = 0;
+      let startWidth = 0;
+
+      compResizer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX;
+        startWidth = beforeCard.getBoundingClientRect().width;
+        compResizer.classList.add('is-resizing');
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+
+        const onMouseMove = (ev) => {
+          if (!isDragging) return;
+          const deltaX = ev.clientX - startX;
+          const rowWidth = cardsRow.getBoundingClientRect().width;
+          const newWidth = Math.max(180, Math.min(rowWidth - 180, startWidth + deltaX));
+          const pct = (newWidth / rowWidth) * 100;
+          beforeCard.style.flex = `0 0 ${pct}%`;
+          beforeCard.style.maxWidth = `${pct}%`;
+        };
+
+        const onMouseUp = () => {
+          isDragging = false;
+          compResizer.classList.remove('is-resizing');
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        };
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      });
+    }
+  }
+
+  let pipelineInitialSnapshots = new Map();
+  let pipelineProcessedCount = 0;
+  let pipelineTotalTargets = 0;
+  let pipelineCurrentTargetIndex = 0;
+
+  function addEventDiffRow(ctx) {
+    if (!ctx || ctx._diffCommitted) return;
+    ctx._diffCommitted = true;
+
+    const emptyRow = document.getElementById('pipeline-diff-empty-row');
+    if (emptyRow) emptyRow.remove();
+
+    const tbody = document.getElementById('pipeline-diff-tbody');
+    if (!tbody) return;
+
+    const eventId = ctx?.id;
+    const before = (eventId && pipelineInitialSnapshots && typeof pipelineInitialSnapshots.get === 'function') 
+      ? pipelineInitialSnapshots.get(eventId) 
+      : null;
+    const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const cardNum = before?.cardIndex || ctx?.cardIndex || (eventId && allEvs ? (allEvs.findIndex(e => (e.id || e.event_id) === eventId) + 1) : null) || '?';
+    ctx.cardIndex = cardNum;
+
+    const title = ctx.title || ctx.afterTitle || (before && before.title) || 'Event';
+    const venue = ctx.venue || ctx.afterVenue || (before && before.venue) || '';
+
+    const changes = [];
+
+    // 1. Title change
+    if (ctx.afterTitle && (!before || ctx.afterTitle !== before.title)) {
+      changes.push({
+        field: 'Title',
+        before: before ? before.title : 'Raw Scraped Title',
+        after: ctx.afterTitle
+      });
+    }
+
+    // 2. Price change
+    if (ctx.afterPrice != null) {
+      const beforePriceStr = before ? (before.priceLabel || `$${Number(before.price || 0).toFixed(2)} CAD`) : 'Unpriced';
+      const afterPriceStr = ctx.afterPrice;
+      if (!before || beforePriceStr !== afterPriceStr || (ctx.afterFee && ctx.afterFee > 0)) {
+        changes.push({
+          field: 'Price',
+          before: beforePriceStr,
+          after: `${afterPriceStr}${ctx.afterFee > 0 ? ` (+$${ctx.afterFee} fee)` : ''}`
+        });
+      }
+    }
+
+    // 3. Category change
+    if (ctx.afterCategory && (!before || ctx.afterCategory !== before.category)) {
+      changes.push({
+        field: 'Category',
+        before: (before && before.category) || 'None',
+        after: ctx.afterCategory
+      });
+    }
+
+    // 4. Artist change
+    if (ctx.afterArtist !== undefined && (!before || ctx.afterArtist !== before.artist)) {
+      changes.push({
+        field: 'Artist / Lineup',
+        before: (before && before.artist) || 'None',
+        after: ctx.afterArtist || 'General / None'
+      });
+    }
+
+    // 5. Restrictions change
+    if (ctx.afterAge && (!before || ctx.afterAge !== before.restrictions)) {
+      changes.push({
+        field: 'Age Policy',
+        before: (before && before.restrictions) || 'Unspecified',
+        after: ctx.afterAge
+      });
+    }
+
+    // 6. Synopsis / Description change
+    if (ctx.afterDescription && (!before || ctx.afterDescription !== before.description)) {
+      changes.push({
+        field: 'Synopsis',
+        before: (before && before.description) ? (before.description.length > 36 ? before.description.slice(0, 36) + '...' : before.description) : 'None',
+        after: ctx.afterDescription.length > 36 ? ctx.afterDescription.slice(0, 36) + '...' : ctx.afterDescription
+      });
+    }
+
+    // 6. Inventory change
+    if (ctx.afterInventory) {
+      const isSoldOut = ctx.afterInventory.includes('SOLD OUT');
+      if (!before || isSoldOut !== before.is_sold_out) {
+        changes.push({
+          field: 'Inventory',
+          before: before && before.is_sold_out ? 'Sold Out' : 'Available',
+          after: isSoldOut ? 'Sold Out ⚠️' : 'Available 🎟️'
+        });
+      }
+    }
+
+    // 7. Visual Proof
+    if (ctx.hasProof) {
+      changes.push({
+        field: 'Visual Proof',
+        before: (before && before.proof_keyframes && before.proof_keyframes.cart) ? 'Previous' : 'None',
+        after: 'Captured 📸'
+      });
+    }
+
+    // If compiling with no other changes, note publication invariant
+    if (changes.length === 0 && ctx.isReconciled) {
+      changes.push({
+        field: 'Published Invariant',
+        before: before ? (before.approval_status || 'Seed') : 'Seed',
+        after: `Verified-${getCatalogDimensionsCount()}D Live ✅`
+      });
+    }
+
+    let statusHtml = '';
+    if (changes.length > 0) {
+      statusHtml = `<span class="diff-badge-status updated">Updated (${changes.length}) ✅</span>`;
+    } else {
+      statusHtml = `<span class="diff-badge-status nodrift">No Drift ⚪</span>`;
+    }
+
+    let changesHtml = '';
+    if (changes.length > 0) {
+      changesHtml = changes.map(c => `
+        <div class="diff-change-item">
+          <span class="diff-prop-tag">${escapeHtml(c.field)}</span>
+          <span class="diff-val-before" title="Previous: ${escapeHtml(c.before)}">${escapeHtml(c.before)}</span>
+          <span class="diff-arrow">➔</span>
+          <span class="diff-val-after" title="Verified: ${escapeHtml(c.after)}">${escapeHtml(c.after)}</span>
+        </div>
+      `).join('');
+    } else {
+      changesHtml = `<span style="color: #94a3b8; font-style: italic; font-size: 0.72rem;">All factual dimensions verified identical against live reality.</span>`;
+    }
+
+    const historyKey = ctx.id || String(cardNum);
+    const existingHistoryIdx = pipelineAuditedCardsHistory.findIndex(x => x.id === historyKey);
+
+    let tr = tbody.querySelector(`tr[data-diff-event-id="${CSS.escape ? CSS.escape(historyKey) : historyKey.replace(/"/g, '\\"')}"]`);
+    const isNewRow = !tr;
+    if (!tr) {
+      tr = document.createElement('tr');
+      tr.className = 'diff-row newly-added';
+      tr.setAttribute('data-diff-event-id', historyKey);
+      tr.style.cursor = 'pointer';
+      tr.title = 'Click to inspect side-by-side card yield on the right';
+      tr.addEventListener('click', () => {
+        showComparisonCardById(historyKey);
+      });
+    }
+    tr.innerHTML = `
+      <td style="font-weight: 700; color: #38bdf8;">#${escapeHtml(String(cardNum))}</td>
+      <td>
+        <div style="font-weight: 600; color: #fff; line-height: 1.25;">${escapeHtml(title)}</div>
+        <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px;">${escapeHtml(venue)}</div>
+      </td>
+      <td>${changesHtml}</td>
+      <td style="text-align: center;">${statusHtml}</td>
+    `;
+
+    if (isNewRow) {
+      tbody.insertBefore(tr, tbody.firstChild);
+    }
+
+    // Register into Side-by-Side Comparison History (upsert to prevent duplicate cards)
+    const historyItem = {
+      id: historyKey,
+      cardIndex: cardNum,
+      title: title,
+      ctx: { ...ctx },
+      before: before ? { ...before } : null
+    };
+    if (existingHistoryIdx >= 0) {
+      pipelineAuditedCardsHistory[existingHistoryIdx] = historyItem;
+    } else {
+      pipelineAuditedCardsHistory.push(historyItem);
+    }
+    showComparisonCardById(historyItem.id);
+
+    pipelineProcessedCount = pipelineAuditedCardsHistory.length;
+    const badge = document.getElementById('pipeline-diff-counter-badge');
+    if (badge) {
+      badge.textContent = pipelineTotalTargets > 0
+        ? `${pipelineProcessedCount} of ${pipelineTotalTargets} Processed`
+        : `${pipelineProcessedCount} Processed`;
+    }
+  }
+
+  const BENCHMARKS = {
+    catalog_batch: 48,
+    single: 45,
+    calendar: 25,
+    harvester: 25,
+    enrich: 1.8,
+    compile: 3
+  };
+
+  const formatDuration = (sec) => {
+    sec = Math.max(0, Math.round(sec));
+    if (sec >= 60) {
+      const mins = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${mins}m ${s < 10 ? '0' : ''}${s}s`;
+    }
+    return `${sec}s`;
+  };
+
+  const closePipelineModal = () => {
+    document.body.style.overflow = '';
+    if (pipelineModal) {
+      pipelineModal.classList.remove('active');
+      pipelineModal.style.display = 'none';
+    }
+    if (activeEventSource) {
+      activeEventSource.close();
+      activeEventSource = null;
+    }
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    setExecutionState(false);
+    if (btnStopPipeline) btnStopPipeline.style.display = 'none';
+    if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    if (btnTrigger) btnTrigger.style.display = 'inline-flex';
+    const metricsBox = document.getElementById('pipeline-active-metrics');
+    if (metricsBox) metricsBox.style.display = 'none';
+    if (pipelineStatusSubtext) pipelineStatusSubtext.style.display = 'none';
+  };
+
+  if (btnClosePipelineModal) btnClosePipelineModal.addEventListener('click', closePipelineModal);
+  if (btnClosePipelineBottom) btnClosePipelineBottom.addEventListener('click', closePipelineModal);
+  if (pipelineModal) {
+    pipelineModal.addEventListener('click', (e) => {
+      if (e.target === pipelineModal) closePipelineModal();
+    });
+  }
+
+  const stopActiveStagehand = async () => {
+    if (activeEventSource) {
+      activeEventSource.close();
+      activeEventSource = null;
+    }
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+    if (pipelineConsoleOutput) {
+      pipelineConsoleOutput.textContent += '\n[ABORT] Stopping active pipeline worker subagent...\n';
+      pipelineConsoleOutput.scrollTop = pipelineConsoleOutput.scrollHeight;
+    }
+    if (consoleOutput) {
+      consoleOutput.textContent += '\n[ABORT] Stopping active Stagehand browser subagent...\n';
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+    try {
+      await fetch('/api/curator/stagehand/stop', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Curator-Token': state.token || ''
+        }
+      });
+    } catch (e) {}
+    setExecutionState(false);
+    if (btnStopPipeline) btnStopPipeline.style.display = 'none';
+    if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    if (btnTrigger) btnTrigger.style.display = 'inline-flex';
+    if (pipelineSpinner) {
+      pipelineSpinner.style.animation = 'none';
+      pipelineSpinner.textContent = '⏹️';
+    }
+    if (pipelineStatusText) {
+      pipelineStatusText.textContent = '⏹️ Execution stopped by user.';
+      pipelineStatusText.style.color = '#fbbf24';
+    }
+    if (pipelineStatusSubtext) {
+      pipelineStatusSubtext.textContent = 'Pipeline worker terminated cleanly.';
+    }
+    if (pipelineEtaValue) {
+      pipelineEtaValue.textContent = 'Cancelled';
+    }
+    if (typeof showToast === 'function') showToast('Pipeline execution stopped.', 'info');
+    if (typeof finalizeHarvesterRun === 'function') finalizeHarvesterRun(false);
+  };
+
+  if (stopBtn) stopBtn.addEventListener('click', stopActiveStagehand);
+  if (btnStopPipeline) btnStopPipeline.addEventListener('click', stopActiveStagehand);
+  if (btnStopPipelineTop) btnStopPipelineTop.addEventListener('click', stopActiveStagehand);
+
+  // -------------------------------------------------------------
+  // Autonomous Multi-Scan Configuration & Launcher
+  // -------------------------------------------------------------
+  let currentPipelineScanKey = 'qc';
+  let currentPipelineScope = 'unscanned';
+  let currentBatchSize = 5;
+
+  const SCAN_PRESETS = {
+    harvest: {
+      key: 'harvest',
+      mode: 'calendar',
+      title: '<span>📅</span> 1. Schedule Harvester',
+      techPillText: '[Stagehand Calendar Harvester]',
+      techPillClass: 'tech-pill-stagehand',
+      shortDesc: 'Automated Stagehand headless crawler ingests physical venue calendars, ticket feeds, and client-side JS widgets into layer_schedules.json.',
+      btnLabel: 'Harvest All Venue Feeds',
+      btnColor: 'linear-gradient(135deg, #7e22ce 0%, #a855f7 100%)',
+      btnBorder: '#c084fc',
+      urlPlaceholder: 'https://theimprovcentre.ca/shows/ (or choose from venue feeds dropdown)',
+      defaultLimit: 10,
+      showUrl: false,
+      initialStatus: 'Crawling venue schedules and dated showings into layer_schedules.json...'
+    },
+    hunter: {
+      key: 'hunter',
+      mode: 'tier1_hunter',
+      title: '<span>🏹</span> 1B. Tier 1 Link Hunter',
+      techPillText: '[Tier 1 Hunter]',
+      techPillClass: 'tech-pill-stagehand',
+      shortDesc: 'Automated Tier 1 Deep Link Hunter inspects venue ticketing buttons, embeds, and candidate leads to upgrade generic links to direct checkout carts.',
+      btnLabel: 'Run Tier 1 Hunter',
+      btnColor: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
+      btnBorder: '#14b8a6',
+      urlPlaceholder: 'Inspects discovered and stale event cards for direct checkout URLs',
+      defaultLimit: 10,
+      showUrl: false,
+      initialStatus: 'Upgrading candidate links & resolving direct checkout carts...'
+    },
+    qc: {
+      key: 'qc',
+      mode: 'catalog_batch',
+      title: '<span>⚡</span> 2. Stagehand',
+      techPillText: '[Stagehand]',
+      techPillClass: 'tech-pill-stagehand',
+      shortDesc: 'Autonomous Stagehand Chromium AI agent penetrates live checkout cart modals, extracts fees & 5% GST, and enforces the strict ≤ $50.00 CAD ceiling.',
+      btnLabel: 'Run Stagehand',
+      btnColor: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
+      btnBorder: '#38bdf8',
+      urlPlaceholder: 'Leave blank to audit all catalog events sequentially, or paste single ticket URL',
+      defaultLimit: 5,
+      showUrl: true,
+      initialStatus: 'Penetrating checkout carts & validating fees into layer_box_office.json...'
+    },
+    enrich: {
+      key: 'enrich',
+      mode: 'enrich',
+      title: '<span>✍️</span> 3. AI Semantic Enricher',
+      techPillText: '[Cognitive NLP Worker]',
+      techPillClass: 'tech-pill-llm',
+      shortDesc: 'Deterministic Cognitive NLP Engine normalizes scraped headlines, structures artist lineups, generates 2-sentence visitor synopses, and assigns categories.',
+      btnLabel: 'Run AI Enricher',
+      btnColor: 'linear-gradient(135deg, #d97706 0%, #fbbf24 100%)',
+      btnBorder: '#fbbf24',
+      urlPlaceholder: 'Processes event records directly from catalog layers',
+      defaultLimit: 20,
+      showUrl: false,
+      initialStatus: 'Sanitizing event titles, synopses & categories into layer_editorial.json...'
+    },
+    venue: {
+      key: 'venue',
+      mode: 'venue_detailer',
+      title: '<span>🏛️</span> 4. Venue Detailer & Maps Grounding',
+      techPillText: '[Venue Detailer AI]',
+      techPillClass: 'tech-pill-llm',
+      shortDesc: 'Google Maps Grounding & Physical Facility Auditor verifies street addresses, GPS coordinates, transit waypoints, accessibility (5XX), and drink/spend benchmarks (6XX) in venues.json.',
+      btnLabel: 'Ground Venue Facilities',
+      btnColor: 'linear-gradient(135deg, #0891b2 0%, #06b6d4 100%)',
+      btnBorder: '#22d3ee',
+      urlPlaceholder: 'Select all venues or a specific physical venue to ground into venues.json',
+      defaultLimit: 10,
+      showUrl: false,
+      initialStatus: 'Grounding physical venue addresses, GPS coordinates & amenities into venues.json...'
+    },
+    compile: {
+      key: 'compile',
+      mode: 'compile',
+      title: '<span>🏛️</span> 5. Compiler & Live Publisher',
+      techPillText: '[Compiler AI Arbitrator]',
+      techPillClass: 'tech-pill-agent',
+      shortDesc: `AI Arbitrator combines and synthesizes specialist layers (Stagehand Box Office, Harvester Schedules, Semantic Enricher, and Master Venues) according to the ${getCatalogDimensionsCount()}-Dimension Arbitration Matrix, validates financial invariants (base + fee + tax = all_in ≤ $50), and publishes master cards live to js/data.js.`,
+      btnLabel: 'Compile & Publish Live',
+      btnColor: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+      btnBorder: '#34d399',
+      urlPlaceholder: 'Leave empty for catalog cards, or enter specific calendar/ticket URL',
+      defaultLimit: 5,
+      showUrl: false,
+      initialStatus: 'Arbitrating layers, checking invariants & publishing master data live...'
+    },
+    master: {
+      key: 'master',
+      mode: 'master',
+      title: '<span>🚀</span> Antigravity Master Pipeline (1-by-1 Loop)',
+      techPillText: '[Antigravity 1-Event Workers]',
+      techPillClass: 'tech-pill-agent',
+      shortDesc: 'Deterministic non-AI controller loop that runs Box Office QC → Semantic Enricher → Compiler AI Arbitrator sequentially by spawning a fresh, disposable Antigravity CLI worker for each single event (zero Super-AI or Worker-AI laziness).',
+      btnLabel: 'Run Master Pipeline (1-by-1)',
+      btnColor: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
+      btnBorder: '#f472b6',
+      urlPlaceholder: 'Leave empty to run across selected scope',
+      defaultLimit: 5,
+      showUrl: false,
+      initialStatus: 'Spawning fresh 1-event Antigravity workers across Box Office, Enricher & Compiler...'
+    }
+  };
+
+  // -------------------------------------------------------------
+  // 5-STAGE / 6-STEP END-TO-END PIPELINE CONTROLLER
+  // -------------------------------------------------------------
+  let isPipelineTestMode = true;
+  let isPipelineAutoChaining = false;
+  let pipelineBatchSize = 5;
+  window.pipelineBatchSize = 5;
+  let pipelineTestStageKey = 'harvest';
+  let pipelineTestDiscoveredIds = [];
+  let pipelineTestDiscoveredEvents = [];
+  let pipelineTestStageStatuses = {
+    harvest: 'Pending',
+    hunter: 'Pending',
+    qc: 'Pending',
+    enrich: 'Pending',
+    venue: 'Pending',
+    compile: 'Pending'
+  };
+  let pipelineStepperCompact = false;
+  let pipelineStaleFilterCategory = null;
+  let pipelineQuarantinedRunActive = false;
+  let pipelineVenueDetailerNeedsCompile = false;
+  let pipelineLastVenuesGroundedCount = 0;
+  let pipelineLastCompiledCardIds = [];
+  let pipelineLastQuarantinedCardIds = [];
+  let currentPreviewModalTab = 'compiled';
+  let autoPipelineModalScope = 'discover_and_stale';
+  let autoPipelineModalBatchSize = 5;
+  let cachedDetailerVenues = null;
+
+  const PIPELINE_TEST_ORDER = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];
+
+  function savePipelineBatchState() {
+    try {
+      sessionStorage.setItem('van50_pipeline_batch_state', JSON.stringify({
+        batchSize: pipelineBatchSize,
+        stageKey: pipelineTestStageKey,
+        discoveredIds: pipelineTestDiscoveredIds,
+        discoveredEvents: pipelineTestDiscoveredEvents,
+        stageStatuses: pipelineTestStageStatuses,
+        updatedAt: Date.now()
+      }));
+    } catch (_) {}
+  }
+
+  function loadPipelineBatchState() {
+    try {
+      const raw = sessionStorage.getItem('van50_pipeline_batch_state');
+      if (!raw) return false;
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        if (parsed.batchSize) {
+          pipelineBatchSize = parsed.batchSize;
+          window.pipelineBatchSize = parsed.batchSize;
+        }
+        if (parsed.stageKey && PIPELINE_TEST_ORDER.includes(parsed.stageKey)) pipelineTestStageKey = parsed.stageKey;
+        if (Array.isArray(parsed.discoveredIds)) pipelineTestDiscoveredIds = parsed.discoveredIds;
+        if (Array.isArray(parsed.discoveredEvents)) pipelineTestDiscoveredEvents = parsed.discoveredEvents;
+        if (parsed.stageStatuses && typeof parsed.stageStatuses === 'object') {
+          pipelineTestStageStatuses = { ...pipelineTestStageStatuses, ...parsed.stageStatuses };
+        }
+        return true;
+      }
+    } catch (_) {}
+    return false;
+  }
+
+  window.setPipelineBatchSize = function(size) {
+    pipelineBatchSize = size;
+    window.pipelineBatchSize = size;
+    window.selectedAutoModalBatchSize = size;
+    const chips = ['1', '5', '10', '25', '50', 'all', 'custom'];
+    const isCustomNum = typeof size === 'number' && ![1, 5, 10, 25, 50].includes(size);
+    chips.forEach(c => {
+      const isActive = (c === String(size)) || (c === 'custom' && isCustomNum);
+      const el = document.getElementById(`chip-batch-${c}`);
+      if (el) el.classList.toggle('active', isActive);
+      const elH = document.getElementById(`chip-harvester-batch-${c}`);
+      if (elH) elH.classList.toggle('active', isActive);
+      const elModal = document.getElementById(`modal-chip-batch-${c}`);
+      if (elModal) elModal.classList.toggle('active', String(size) === c);
+    });
+    const chipCustom = document.getElementById('chip-batch-custom');
+    if (chipCustom) chipCustom.textContent = isCustomNum ? `#${size}` : '#';
+    const chipCustomH = document.getElementById('chip-harvester-batch-custom');
+    if (chipCustomH) chipCustomH.textContent = isCustomNum ? `#${size}` : '#';
+
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const startInput = document.getElementById('pipeline-card-start');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const totalEvents = events.length || 156;
+    if (stopInput && startInput) {
+      const start = parseInt(startInput.value, 10) || 1;
+      if (size === 'all') {
+        stopInput.value = totalEvents;
+      } else if (typeof size === 'number') {
+        stopInput.value = Math.min(totalEvents, start + size - 1);
+      }
+    }
+
+    // Re-populate pipelineTestDiscoveredIds according to current active filter/scope
+    let targetPool = events;
+    if (pipelineQuarantinedRunActive || currentPipelineScope === 'quarantined') {
+      targetPool = qEvents;
+    } else if (pipelineStaleFilterCategory && pipelineStaleFilterCategory !== 'all_stale') {
+      const matched = events.filter(e => classifyEventStaleness(e) === pipelineStaleFilterCategory);
+      if (matched.length > 0) targetPool = matched;
+    } else {
+      const outOfDate = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+      if (outOfDate.length > 0) targetPool = outOfDate;
+    }
+    const bLimit = (size !== 'all' && typeof size === 'number') ? size : targetPool.length;
+    const picked = targetPool.slice(0, bLimit);
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Event',
+      date: e.date || e.dateSchedule || '',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || '',
+      url: e.ticket_url || e.details_url || ''
+    }));
+
+    const batchPillLabel = document.getElementById('scope-pill-batch5-label');
+    if (batchPillLabel) {
+      batchPillLabel.textContent = `🧪 ${size === 'all' ? pipelineTestDiscoveredIds.length : (pipelineTestDiscoveredIds.length || size)} Events`;
+    }
+    const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
+    if (autoStaleLabel && !isExecuting) {
+      autoStaleLabel.textContent = `⚡ Auto-Run Out-of-Date (${size === 'all' ? 'All' : (pipelineTestDiscoveredIds.length || size)})`;
+    }
+
+    savePipelineBatchState();
+    updatePipelineTestStepperUI();
+    renderPipelineTestEventsList();
+    if (typeof window.updateAutoPipelineFlowPreview === 'function') {
+      window.updateAutoPipelineFlowPreview();
+    }
+
+    const activeStage = currentPipelineScanKey || pipelineTestStageKey || 'harvest';
+    const displayCount = (size === 'all') ? 'All' : (pipelineTestDiscoveredIds.length || size);
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const titleEl = document.getElementById('pipeline-modal-title');
+    const descEl = document.getElementById('pipeline-scan-desc-short');
+
+    if (activeStage === 'harvest') {
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Harvest ${size === 'all' ? 'All' : size} Events`;
+      if (titleEl) titleEl.innerHTML = `🧪 Stage 1A: Schedule Harvester (${size === 'all' ? 'All' : size} Events)`;
+      if (descEl) descEl.textContent = `Step 1 of 6 (Stage 1A): Crawler visits venue feeds to discover discrete event links, capped at ${size === 'all' ? 'all' : size} events.`;
+    } else if (activeStage === 'hunter') {
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Hunt ${displayCount} Direct Links`;
+      if (titleEl) titleEl.innerHTML = `🧪 Stage 1B: Tier 1 Link Hunter (${displayCount} Events)`;
+    } else if (activeStage === 'qc') {
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Run Stagehand QC (${displayCount})`;
+      if (titleEl) titleEl.innerHTML = `🧪 Stage 2: Stagehand AI QC (${displayCount} Events)`;
+    } else if (activeStage === 'enrich') {
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Enrich ${displayCount} with AI`;
+      if (titleEl) titleEl.innerHTML = `🧪 Stage 3: AI Semantic Enricher (${displayCount} Events)`;
+    } else if (activeStage === 'compile') {
+      if (typeof window.setCompilePublishButtonLabel === 'function') {
+        window.setCompilePublishButtonLabel(displayCount);
+      } else if (btnLabelEl) {
+        btnLabelEl.textContent = `🚀 Compile & Publish (${displayCount})`;
+      }
+      if (titleEl) titleEl.innerHTML = `🧪 Stage 5: Compiler & Publisher (${displayCount} Events)`;
+    }
+    if (activeStage !== 'harvest' && activeStage !== 'venue' && typeof window.setPipelineScope === 'function') {
+      if (currentPipelineScope === 'quarantined') {
+        window.setPipelineScope('quarantined');
+      } else if (currentPipelineScope === 'stale' || currentPipelineScope === 'unscanned' || currentPipelineScope === 'incomplete' || currentPipelineScope === 'range') {
+        window.setPipelineScope(currentPipelineScope);
+      } else {
+        window.setPipelineScope('batch5');
+      }
+    }
+
+    if (typeof showToast === 'function') {
+      showToast(`Batch size set to: ${size === 'all' ? 'All Events' : size + ' Events'} (${pipelineTestDiscoveredIds.length} targeted)`, 'info');
+    }
+  };
+
+  window.promptCustomBatchSize = function() {
+    const current = typeof pipelineBatchSize === 'number' ? pipelineBatchSize : '15';
+    const input = prompt('Enter custom batch size (number of events to process):', String(current));
+    if (input !== null) {
+      const parsed = parseInt(input.trim(), 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        window.setPipelineBatchSize(parsed);
+      } else if (typeof showToast === 'function') {
+        showToast('Invalid batch size entered.', 'warning');
+      }
+    }
+  };
+
+  function classifyEventStaleness(ev) {
+    if (!ev) return 'never';
+    const timestamps = [
+      ev.last_full_qc_at,
+      ev.last_pulse_qc_at,
+      ev.last_content_qc_at,
+      ev.last_qc_audited_at,
+      ev.last_qc_at,
+      ev.audit_timestamp,
+      ev.last_verified,
+      ev.dimension_audit?.audited_at,
+      ev.dimension_audit?.D808_timestamp_lockstep
+    ].filter(Boolean);
+    if (timestamps.length === 0) return 'never';
+    const parsedTimes = timestamps.map(t => new Date(t).getTime()).filter(t => !isNaN(t));
+    if (parsedTimes.length === 0) return 'never';
+    const mostRecentTime = Math.max(...parsedTimes);
+    const diffHours = (Date.now() - mostRecentTime) / (1000 * 60 * 60);
+    if (diffHours < 24) return 'fresh';
+    if (diffHours < 24 * 7) return 'day';
+    if (diffHours < 24 * 30) return 'week';
+    return 'month';
+  }
+
+  window.updateCatalogStalenessDashboard = function() {
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const counts = { fresh: 0, day: 0, week: 0, month: 0, never: 0 };
+
+    (events || []).forEach(ev => {
+      const cat = classifyEventStaleness(ev);
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+
+    const setEl = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = String(val);
+    };
+    setEl('stale-count-fresh', counts.fresh);
+    setEl('stale-count-day', counts.day);
+    setEl('stale-count-week', counts.week);
+    setEl('stale-count-month', counts.month);
+    setEl('stale-count-never', counts.never);
+  };
+
+  window.selectStaleFilter = function(filterKey) {
+    pipelineStaleFilterCategory = filterKey;
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+
+    const chips = ['fresh', 'day', 'week', 'month', 'never'];
+    chips.forEach(c => {
+      const el = document.getElementById(`stale-chip-${c}`);
+      if (el) el.classList.toggle('active', c === filterKey);
+    });
+    const btnAll = document.getElementById('btn-select-all-stale');
+    if (btnAll) btnAll.classList.toggle('active', filterKey === 'all_stale');
+
+    if (filterKey === 'quarantined') {
+      pipelineQuarantinedRunActive = true;
+      currentPipelineScope = 'quarantined';
+      const cap = pipelineBatchSize === 'all' ? qEvents.length : (Number(pipelineBatchSize) || 5);
+      const picked = qEvents.slice(0, cap);
+      pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+      pipelineTestDiscoveredEvents = picked.map(e => ({
+        id: e.id || e.event_id,
+        title: e.title || e.event_name || 'Quarantined Event',
+        date: e.date || e.dateSchedule || '',
+        venue: e.venue || e.venue_name || '',
+        price: e.priceLabel || '',
+        url: e.ticket_url || e.details_url || ''
+      }));
+      isPipelineTestMode = true;
+      pipelineTestStageStatuses.harvest = 'Skipped ⏭️';
+      renderPipelineTestEventsList();
+      const targetStage = (!pipelineTestStageKey || pipelineTestStageKey === 'harvest') ? 'hunter' : pipelineTestStageKey;
+      openPipelineTestStage(targetStage, false);
+      if (typeof showToast === 'function') {
+        showToast(`Loaded ${pipelineTestDiscoveredIds.length} quarantined card(s) into batch queue (Stage 1A skipped).`, 'info');
+      }
+      return;
+    }
+
+    pipelineQuarantinedRunActive = false;
+    let selectedEvents = [];
+    if (filterKey === 'all_stale') {
+      selectedEvents = events.filter(e => {
+        const cat = classifyEventStaleness(e);
+        return cat === 'day' || cat === 'week' || cat === 'month' || cat === 'never';
+      });
+    } else {
+      selectedEvents = events.filter(e => classifyEventStaleness(e) === filterKey);
+    }
+
+    const summaryEl = document.getElementById('stale-selection-summary');
+    if (summaryEl) {
+      const labelMap = {
+        fresh: 'Fresh (<24h)',
+        day: 'Out-of-Date (>24h)',
+        week: 'Out-of-Date (>1w)',
+        month: 'Stale (>1m)',
+        never: 'Never Audited',
+        all_stale: 'All Out-of-Date'
+      };
+      summaryEl.innerHTML = `Selected <strong>${selectedEvents.length}</strong> ${labelMap[filterKey] || filterKey} events`;
+    }
+
+    if (selectedEvents.length > 0) {
+      const bLimit = (pipelineBatchSize !== 'all' && typeof pipelineBatchSize === 'number') ? pipelineBatchSize : selectedEvents.length;
+      const picked = selectedEvents.slice(0, bLimit);
+      pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+      pipelineTestDiscoveredEvents = picked.map(e => ({
+        id: e.id || e.event_id,
+        title: e.title || e.event_name || 'Event',
+        date: e.date || e.dateSchedule || '',
+        venue: e.venue || e.venue_name || '',
+        price: e.priceLabel || '',
+        url: e.ticket_url || e.details_url || ''
+      }));
+      isPipelineTestMode = true;
+      currentPipelineScope = 'batch5';
+      pipelineTestStageStatuses.harvest = 'Skipped ⏭️';
+      const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
+      if (autoStaleLabel && !isExecuting) {
+        autoStaleLabel.textContent = `⚡ Auto-Run Out-of-Date (${pipelineTestDiscoveredIds.length})`;
+      }
+      renderPipelineTestEventsList();
+      // Always advance off Stage 1A (Harvester / Venue Discovery) onto Stage 1B (Hunter) when targeting existing catalog events
+      const targetStage = (!pipelineTestStageKey || pipelineTestStageKey === 'harvest') ? 'hunter' : pipelineTestStageKey;
+      openPipelineTestStage(targetStage, false);
+      if (typeof showToast === 'function') {
+        showToast(`Targeted ${pipelineTestDiscoveredIds.length} ${filterKey} events for Stage 1B ➔ 5 (Venue Discovery skipped).`, 'info');
+      }
+    } else if (typeof showToast === 'function') {
+      showToast(`No events found for ${filterKey} filter.`, 'info');
+    }
+  };
+
+  window.selectAllOutOfDateEvents = function() {
+    window.selectStaleFilter('all_stale');
+  };
+
+  window.autoRunOutOfDateStages1BTo4 = function(evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    window.selectStaleFilter(pipelineStaleFilterCategory || 'all_stale');
+    if (!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) {
+      const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const outOfDate = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+      const bLimit = (pipelineBatchSize !== 'all' && typeof pipelineBatchSize === 'number') ? pipelineBatchSize : 5;
+      const picked = (outOfDate.length > 0 ? outOfDate : events).slice(0, bLimit);
+      pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+      pipelineTestDiscoveredEvents = picked.map(e => ({
+        id: e.id || e.event_id,
+        title: e.title || e.event_name || 'Event',
+        date: e.date || e.dateSchedule || '',
+        venue: e.venue || e.venue_name || '',
+        price: e.priceLabel || '',
+        url: e.ticket_url || e.details_url || ''
+      }));
+    }
+    if (pipelineTestDiscoveredIds.length === 0) {
+      if (typeof showToast === 'function') showToast('No out-of-date events matched to refresh!', 'info');
+      return;
+    }
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    pipelineQuarantinedRunActive = false;
+    currentPipelineScope = 'batch5';
+    window.pipelineAutoChainingStages = ['hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestStageStatuses = {
+      harvest: 'Skipped ⏭️',
+      hunter: 'Running ⚡',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+    const autoStaleBtn = document.getElementById('btn-stepper-auto-stale');
+    if (autoStaleBtn) {
+      autoStaleBtn.classList.add('is-running');
+      const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
+      if (autoStaleLabel) autoStaleLabel.textContent = `⚡ Running Out-of-Date (${pipelineTestDiscoveredIds.length})...`;
+    }
+    if (typeof showToast === 'function') {
+      showToast(`🚀 Auto-Running ${pipelineTestDiscoveredIds.length} Out-of-Date Events through Stages 1B ➔ 5 (Skipping 1A Venue Discovery)!`, 'info');
+    }
+    openPipelineTestStage('hunter', true);
+  };
+
+  window.autoRunQuarantinedStages1BTo4 = function(evt) {
+    if (evt) evt.stopPropagation();
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A scan is currently active. Please wait or stop before starting a new run.', 'warning');
+      return;
+    }
+    window.selectStaleFilter('quarantined');
+    if (pipelineTestDiscoveredIds.length === 0) {
+      if (typeof showToast === 'function') showToast('Quarantine queue is empty!', 'info');
+      return;
+    }
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    pipelineQuarantinedRunActive = true;
+    currentPipelineScope = 'quarantined';
+    window.pipelineAutoChainingStages = ['hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestStageStatuses = {
+      harvest: 'Skipped ⏭️',
+      hunter: 'Running ⚡',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+    const autoQBtn = document.getElementById('btn-stepper-auto-quarantined');
+    if (autoQBtn) {
+      autoQBtn.classList.add('is-running');
+      const autoQLabel = document.getElementById('btn-stepper-auto-quarantined-label');
+      if (autoQLabel) autoQLabel.textContent = `🛡️ Running Quarantined (${pipelineTestDiscoveredIds.length})...`;
+    }
+    if (typeof showToast === 'function') {
+      showToast(`🛡️ Auto-Running ${pipelineTestDiscoveredIds.length} Quarantined Items through Stages 1B ➔ 5!`, 'info');
+    }
+    openPipelineTestStage('hunter', true);
+  };
+
+  function updatePipelineTestStepperUI() {
+    const bar = document.getElementById('pipeline-test-stepper-bar');
+    if (bar) {
+      bar.style.display = 'flex';
+      bar.classList.toggle('compact-stepper', Boolean(pipelineStepperCompact));
+    }
+    const stalenessBar = document.getElementById('pipeline-staleness-dashboard-bar');
+    if (stalenessBar) {
+      stalenessBar.style.display = 'flex';
+      window.updateCatalogStalenessDashboard();
+    }
+
+    // Keep batch size buttons highlighted with current pipelineBatchSize
+    const chips = ['1', '5', '10', '25', '50', 'all', 'custom'];
+    const isCustomNum = typeof pipelineBatchSize === 'number' && ![1, 5, 10, 25, 50].includes(pipelineBatchSize);
+    chips.forEach(c => {
+      const isActive = (c === String(pipelineBatchSize)) || (c === 'custom' && isCustomNum);
+      const el = document.getElementById(`chip-batch-${c}`);
+      if (el) el.classList.toggle('active', isActive);
+      const elH = document.getElementById(`chip-harvester-batch-${c}`);
+      if (elH) elH.classList.toggle('active', isActive);
+    });
+
+    const currentStage = pipelineTestStageKey || currentPipelineScanKey || 'harvest';
+    const idx = PIPELINE_TEST_ORDER.indexOf(currentStage);
+    const stepNumBadge = document.getElementById('pipeline-test-step-counter');
+    if (stepNumBadge) {
+      stepNumBadge.textContent = `STEP ${idx + 1} OF ${PIPELINE_TEST_ORDER.length}`;
+    }
+
+    PIPELINE_TEST_ORDER.forEach((key, i) => {
+      const stepEl = document.getElementById(`test-step-${key}`);
+      const statusEl = document.getElementById(`test-step-status-${key}`);
+      const status = pipelineTestStageStatuses[key] || (i < idx ? 'Complete ✅' : (i === idx ? 'Active' : 'Awaiting'));
+      if (stepEl) {
+        stepEl.classList.toggle('active', key === currentStage);
+        stepEl.classList.toggle('active-step', key === currentStage);
+        stepEl.classList.toggle('completed', status.includes('Complete'));
+        stepEl.classList.toggle('completed-step', status.includes('Complete'));
+      }
+      if (statusEl) {
+        statusEl.textContent = status;
+        statusEl.className = 'test-step-status';
+        if (status.includes('Running')) statusEl.classList.add('status-running');
+        else if (status.includes('Complete')) statusEl.classList.add('status-complete');
+        else if (status.includes('Halted') || status.includes('Error')) statusEl.classList.add('status-halted');
+        else if (status.includes('Skipped')) statusEl.classList.add('status-skipped');
+      }
+    });
+
+    const titleLabel = document.getElementById('test-stepper-current-label');
+    if (titleLabel) {
+      const isCompileDone = (pipelineTestStageStatuses['compile'] || '').includes('Complete');
+      if (isCompileDone) {
+        titleLabel.innerHTML = '🎉 <strong style="color: #34d399;">Pipeline Run Complete:</strong> All Stages Finished (100%)';
+      } else if (currentStage === 'harvest') {
+        titleLabel.textContent = 'Stage 1A: Schedule Harvester (Venue Feeds)';
+      } else if (currentStage === 'hunter') {
+        titleLabel.textContent = 'Stage 1B: Tier 1 Link Hunter (Direct Checkout URLs)';
+      } else if (currentStage === 'qc') {
+        titleLabel.textContent = 'Stage 2: Stagehand Box Office QC (Cart & Fees)';
+      } else if (currentStage === 'enrich') {
+        titleLabel.textContent = 'Stage 3: AI Semantic Enricher (Normalizing Content)';
+      } else if (currentStage === 'venue') {
+        titleLabel.textContent = 'Stage 4: Venue Detailer (Physical Facilities & Amenities)';
+      } else if (currentStage === 'compile') {
+        titleLabel.textContent = 'Stage 5: Compiler & Publisher (Final Stage)';
+      }
+    }
+
+    const prevBtn = document.getElementById('btn-stepper-prev') || document.getElementById('btn-test-prev-stage');
+    const nextBtn = document.getElementById('btn-stepper-next') || document.getElementById('btn-test-next-stage');
+    if (prevBtn) prevBtn.disabled = (idx <= 0 || isExecuting);
+    if (nextBtn) nextBtn.disabled = (idx >= PIPELINE_TEST_ORDER.length - 1 || isExecuting);
+  }
+
+  window.togglePipelineStepperCompact = function() {
+    pipelineStepperCompact = !pipelineStepperCompact;
+    const bar = document.getElementById('pipeline-test-stepper-bar');
+    const btn = document.getElementById('btn-toggle-stepper-size');
+    if (bar) bar.classList.toggle('compact-stepper', pipelineStepperCompact);
+    if (btn) btn.textContent = pipelineStepperCompact ? '↕ Expand' : '↕ Compact';
+  };
+
+  window.selectedAutoPipelineScope = 'stale';
+  window.selectedAutoModalBatchSize = 5;
+
+  window.parseCustomCardSpec = function(inputStr) {
+    if (!inputStr || !inputStr.trim()) return [];
+    const raw = inputStr.trim();
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const allKnown = [...events, ...qEvents];
+
+    if (/^\d+$/.test(raw)) {
+      const count = parseInt(raw, 10);
+      if (count > 0) return events.slice(0, count);
+    }
+
+    const rangeMatch = raw.match(/^#?(\d+)\s*[-–—]\s*#?(\d+)$/);
+    if (rangeMatch) {
+      const start = parseInt(rangeMatch[1], 10);
+      const end = parseInt(rangeMatch[2], 10);
+      const minIdx = Math.max(1, Math.min(start, end));
+      const maxIdx = Math.max(start, end);
+      return events.slice(minIdx - 1, maxIdx);
+    }
+
+    const tokens = raw.split(/[,;\s]+/).map(t => t.trim()).filter(Boolean);
+    const matched = [];
+    const seenIds = new Set();
+
+    tokens.forEach(tok => {
+      const numMatch = tok.match(/^#?(\d+)$/);
+      if (numMatch) {
+        const idx = parseInt(numMatch[1], 10) - 1;
+        if (idx >= 0 && idx < events.length) {
+          const ev = events[idx];
+          const eid = ev.id || ev.event_id;
+          if (eid && !seenIds.has(eid)) {
+            seenIds.add(eid);
+            matched.push(ev);
+          }
+          return;
+        }
+      }
+      const found = allKnown.find(e =>
+        (e.id && e.id.toLowerCase() === tok.toLowerCase()) ||
+        (e.event_id && e.event_id.toLowerCase() === tok.toLowerCase()) ||
+        (e.Event_Num_Perm && e.Event_Num_Perm.toLowerCase() === tok.toLowerCase()) ||
+        (e.Event_Num_Card && e.Event_Num_Card.toLowerCase() === tok.toLowerCase()) ||
+        (e.id && e.id.toLowerCase().includes(tok.toLowerCase()))
+      );
+      if (found) {
+        const fid = found.id || found.event_id;
+        if (fid && !seenIds.has(fid)) {
+          seenIds.add(fid);
+          matched.push(found);
+        }
+      }
+    });
+    return matched;
+  };
+
+  window.handleAutoPipelineCustomIdsInput = function(val) {
+    const hintEl = document.getElementById('auto-custom-ids-hint');
+    if (!val || !val.trim()) {
+      if (hintEl) hintEl.style.display = 'none';
+      window.updateAutoPipelineFlowPreview();
+      return;
+    }
+    const matched = window.parseCustomCardSpec(val);
+    if (hintEl) {
+      hintEl.style.display = 'block';
+      if (matched.length > 0) {
+        hintEl.style.color = '#38bdf8';
+        hintEl.textContent = `✓ ${matched.length} event${matched.length === 1 ? '' : 's'} matched`;
+      } else {
+        hintEl.style.color = '#f87171';
+        hintEl.textContent = 'No matching events found. Enter card # (e.g. 1-10) or event ID.';
+      }
+    }
+    window.updateAutoPipelineFlowPreview();
+  };
+
+  window.handleAutoModalCustomBatchInput = function(val) {
+    if (!val || !val.trim()) return;
+    const num = parseInt(val.trim(), 10);
+    if (!isNaN(num) && num > 0) {
+      window.setAutoModalBatchSize(num, true);
+    }
+  };
+
+  window.openAutoPipelineOptionsModal = function(evt) {
+    if (evt) evt.stopPropagation();
+    window.updateCatalogStalenessDashboard();
+    const modal = document.getElementById('auto-pipeline-options-modal');
+    if (!modal) return;
+
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const staleEvents = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+    const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+
+    const badgeStale = document.getElementById('badge-count-stale');
+    if (badgeStale) badgeStale.textContent = `Recommended • ${staleEvents.length} Cards`;
+    const badgeQuarantined = document.getElementById('badge-count-quarantined');
+    if (badgeQuarantined) badgeQuarantined.textContent = `Review Queue • ${qEvents.length} Cards`;
+    const badgeUnverified = document.getElementById('badge-count-unverified');
+    if (badgeUnverified) badgeUnverified.textContent = `${unverifiedEvents.length} Cards Need Cart QC`;
+    const badgeAll = document.getElementById('badge-count-all');
+    if (badgeAll) badgeAll.textContent = `${events.length} Total Cards`;
+
+    const initialBatch = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
+    window.selectAutoPipelineScope(window.selectedAutoPipelineScope || 'stale', true);
+    window.setAutoModalBatchSize(initialBatch);
+
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    window.updateAutoPipelineFlowPreview();
+  };
+
+  window.closeAutoPipelineOptionsModal = function() {
+    const modal = document.getElementById('auto-pipeline-options-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('active');
+    }
+  };
+
+  window.selectAutoPipelineScope = function(scopeKey, preserveBatchSize = true) {
+    window.selectedAutoPipelineScope = scopeKey;
+    autoPipelineModalScope = scopeKey;
+    ['stale', 'quarantined', 'harvest', 'unverified', 'all', 'custom'].forEach(key => {
+      const card = document.getElementById(`opt-scope-${key}`);
+      if (card) card.classList.toggle('selected', key === scopeKey);
+    });
+
+    const customInputs = document.getElementById('opt-custom-inputs');
+    if (customInputs) {
+      customInputs.style.display = (scopeKey === 'custom') ? 'flex' : 'none';
+      if (scopeKey === 'custom') {
+        setTimeout(() => {
+          const inp = document.getElementById('auto-pipeline-custom-ids');
+          if (inp) inp.focus();
+        }, 50);
+      }
+    }
+
+    if (!preserveBatchSize && !window.selectedAutoModalBatchSize) {
+      window.setAutoModalBatchSize(5);
+    } else {
+      window.updateAutoPipelineFlowPreview();
+    }
+  };
+
+  window.setAutoModalBatchSize = function(size, isFromCustomInput = false) {
+    window.selectedAutoModalBatchSize = size;
+    autoPipelineModalBatchSize = size;
+    ['1', '5', '10', '25', '50', 'all'].forEach(chipKey => {
+      const chip = document.getElementById(`modal-chip-batch-${chipKey}`);
+      if (chip) chip.classList.toggle('active', String(size) === chipKey);
+    });
+
+    const customInput = document.getElementById('auto-modal-custom-batch-input');
+    const customWrapper = document.getElementById('modal-custom-batch-wrapper');
+    const isCustomNum = typeof size === 'number' && ![5, 10, 25, 50].includes(size);
+
+    if (customWrapper) {
+      if (isCustomNum) {
+        customWrapper.style.borderColor = '#38bdf8';
+        customWrapper.style.background = 'rgba(56, 189, 248, 0.16)';
+        customWrapper.style.boxShadow = '0 0 10px rgba(56, 189, 248, 0.3)';
+      } else {
+        customWrapper.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        customWrapper.style.background = 'rgba(0, 0, 0, 0.5)';
+        customWrapper.style.boxShadow = 'none';
+      }
+    }
+
+    if (customInput && !isFromCustomInput) {
+      if (isCustomNum) {
+        customInput.value = size;
+      } else if ([5, 10, 25, 50, 'all'].includes(size)) {
+        customInput.value = '';
+      }
+    }
+
+    window.setPipelineBatchSize(size);
+    window.updateAutoPipelineFlowPreview();
+  };
+
+  window.promptAutoModalCustomBatchSize = function() {
+    const customInput = document.getElementById('auto-modal-custom-batch-input');
+    if (customInput) {
+      customInput.focus();
+      customInput.select();
+      return;
+    }
+    const current = typeof window.selectedAutoModalBatchSize === 'number' ? window.selectedAutoModalBatchSize : '15';
+    const input = prompt('Enter custom batch size (number of events to process):', String(current));
+    if (input !== null) {
+      const parsed = parseInt(input.trim(), 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        window.setAutoModalBatchSize(parsed);
+      }
+    }
+  };
+
+  window.updateAutoPipelineFlowPreview = function() {
+    const scope = window.selectedAutoPipelineScope || 'stale';
+    const batchSize = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const staleEvents = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+    const unverifiedEvents = events.filter(e => !e.proof_keyframe_cart || e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE');
+
+    let targetCount = 0;
+    let scopeTitle = '';
+    let stages = [];
+
+    if (scope === 'stale') {
+      targetCount = staleEvents.length || events.length;
+      scopeTitle = 'Out-of-Date Events';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'quarantined') {
+      targetCount = qEvents.length;
+      scopeTitle = 'Quarantined Items';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'harvest') {
+      targetCount = 0;
+      scopeTitle = 'Venue Feed Events';
+      stages = [
+        { num: '1A', name: 'Schedule Harvester', color: '#a855f7' },
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'unverified') {
+      targetCount = unverifiedEvents.length || events.length;
+      scopeTitle = 'Unverified Events';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'all') {
+      targetCount = events.length;
+      scopeTitle = 'Catalog Events';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    } else if (scope === 'custom') {
+      const customInput = document.getElementById('auto-pipeline-custom-ids');
+      const customVal = customInput ? customInput.value.trim() : '';
+      const matched = window.parseCustomCardSpec(customVal);
+      targetCount = matched.length > 0 ? matched.length : (typeof batchSize === 'number' ? batchSize : 5);
+      scopeTitle = 'Custom Selected Events';
+      stages = [
+        { num: '1B', name: 'Tier 1 Hunter', color: '#c084fc' },
+        { num: '02', name: 'Stagehand Box Office QC', color: '#38bdf8' },
+        { num: '03', name: 'AI Enricher', color: '#fbbf24' },
+        { num: '04', name: 'Venue Detailer', color: '#60a5fa' },
+        { num: '05', name: 'Compiler & Publisher', color: '#34d399' }
+      ];
+    }
+
+    const effectiveCount = (batchSize === 'all')
+      ? (scope === 'harvest' ? 'All Feeds' : targetCount)
+      : (scope === 'harvest' ? batchSize : Math.min(typeof batchSize === 'number' ? batchSize : targetCount, targetCount || (typeof batchSize === 'number' ? batchSize : 5)));
+
+    const chipAll = document.getElementById('modal-chip-batch-all');
+    if (chipAll) {
+      if (scope === 'stale') chipAll.textContent = `All Qualifying (${targetCount})`;
+      else if (scope === 'quarantined') chipAll.textContent = `All Quarantined (${targetCount})`;
+      else if (scope === 'unverified') chipAll.textContent = `All Qualifying (${targetCount})`;
+      else if (scope === 'all') chipAll.textContent = `All Catalog (${targetCount})`;
+      else if (scope === 'harvest') chipAll.textContent = 'All Feeds';
+      else chipAll.textContent = 'All Qualifying';
+    }
+
+    const batchNote = document.getElementById('auto-modal-batch-note');
+    if (batchNote) {
+      if (batchSize === 'all') {
+        batchNote.textContent = scope === 'harvest'
+          ? 'Auto-aligned: Crawling all official venue calendar feeds'
+          : `Auto-aligned: Processing all ${targetCount} ${scopeTitle}`;
+      } else if (batchSize === 5) {
+        batchNote.textContent = 'Quick spot-check (~3–4 mins)';
+      } else if (batchSize === 10) {
+        batchNote.textContent = 'Sample batch (~7–8 mins)';
+      } else if (batchSize === 25) {
+        batchNote.textContent = 'Medium batch (~18–20 mins)';
+      } else if (batchSize === 50) {
+        batchNote.textContent = 'Deep batch (~35–40 mins)';
+      } else {
+        batchNote.textContent = `Custom batch: ${batchSize} events`;
+      }
+    }
+
+    const summaryEl = document.getElementById('auto-modal-target-summary');
+    if (summaryEl) {
+      summaryEl.textContent = scope === 'harvest'
+        ? 'Harvests official venue calendar feeds'
+        : `${targetCount} matching events found in catalog`;
+    }
+
+    const stagesContainer = document.getElementById('auto-modal-flow-stages');
+    if (stagesContainer) {
+      stagesContainer.innerHTML = stages.map((st, i) => `
+        <div style="display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.4); border: 1px solid ${st.color}55; border-radius: 6px; padding: 3px 8px;">
+          <span style="font-weight: 800; color: ${st.color}; font-size: 0.72rem;">${st.num}</span>
+          <span style="color: #f1f5f9; font-weight: 600;">${st.name}</span>
+        </div>
+        ${i < stages.length - 1 ? '<span style="color: #64748b; font-weight: 700;">➔</span>' : ''}
+      `).join('');
+    }
+
+    const numEventsForEst = (typeof effectiveCount === 'number')
+      ? effectiveCount
+      : (scope === 'harvest' ? 5 : (typeof targetCount === 'number' ? targetCount : 5));
+    const estSeconds = (scope === 'harvest' ? 30 : 0) + (numEventsForEst * 46);
+    const minutes = Math.floor(estSeconds / 60);
+    const seconds = estSeconds % 60;
+    const etaStr = minutes > 0 ? `~${minutes}m ${seconds > 0 ? seconds + 's' : ''}` : `~${seconds}s`;
+
+    const etaEl = document.getElementById('auto-modal-flow-eta');
+    if (etaEl) etaEl.textContent = `Est. Runtime: ${etaStr} (${numEventsForEst} events)`;
+
+    const launchBtn = document.getElementById('btn-launch-configured-pipeline');
+    if (launchBtn) {
+      if (scope === 'harvest') {
+        const hCountDisp = (batchSize === 'all') ? 'All Venue Feeds' : `${batchSize} Discovered Events`;
+        launchBtn.innerHTML = `<span>🚀 Start Auto-Pipeline Run (${hCountDisp})</span>`;
+      } else {
+        const countDisplay = (batchSize === 'all') ? `All ${targetCount}` : `${effectiveCount}`;
+        launchBtn.innerHTML = `<span>🚀 Start Auto-Pipeline Run (${countDisplay} ${scopeTitle})</span>`;
+      }
+    }
+  };
+
+  window.executeConfiguredAutoPipeline = function() {
+    const scope = window.selectedAutoPipelineScope || autoPipelineModalScope || 'stale';
+    const batchSize = window.selectedAutoModalBatchSize || pipelineBatchSize || 5;
+
+    window.closeAutoPipelineOptionsModal();
+
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('A pipeline scan is currently active. Please wait or stop before launching a new one.', 'warning');
+      return;
+    }
+
+    window.setPipelineBatchSize(batchSize);
+
+    if (scope === 'harvest') {
+      window.startEntirePipelineBatchRun();
+      return;
+    }
+
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const staleEvents = events.filter(e => classifyEventStaleness(e) !== 'fresh');
+    const unverifiedEvents = events.filter(e => {
+      const isFree = e.price === 0 || e.isFree || e.pricingType === 'free' || e.access_model === 'open_public_space';
+      if (isFree) return e.pricing_model === 'UNVERIFIED_POLICY_ESTIMATE';
+      return !e.proof_keyframe_cart && !e.proof_keyframes?.cart;
+    });
+
+    let targetEvents = [];
+    if (scope === 'stale') {
+      targetEvents = staleEvents.length > 0 ? staleEvents : events;
+      pipelineQuarantinedRunActive = false;
+      currentPipelineScope = 'batch5';
+    } else if (scope === 'quarantined') {
+      targetEvents = qEvents;
+      pipelineQuarantinedRunActive = true;
+      currentPipelineScope = 'quarantined';
+    } else if (scope === 'unverified') {
+      targetEvents = unverifiedEvents.length > 0 ? unverifiedEvents : events;
+      pipelineQuarantinedRunActive = false;
+      currentPipelineScope = 'batch5';
+    } else if (scope === 'all') {
+      targetEvents = events;
+      pipelineQuarantinedRunActive = false;
+      currentPipelineScope = 'batch5';
+    } else if (scope === 'custom') {
+      const customInput = document.getElementById('auto-pipeline-custom-ids');
+      const customVal = customInput ? customInput.value.trim() : '';
+      const matched = window.parseCustomCardSpec(customVal);
+      targetEvents = matched.length > 0 ? matched : events.slice(0, typeof batchSize === 'number' ? batchSize : 5);
+      pipelineQuarantinedRunActive = false;
+      currentPipelineScope = 'batch5';
+    }
+
+    const bLimit = (batchSize !== 'all' && typeof batchSize === 'number') ? batchSize : targetEvents.length;
+    const picked = targetEvents.slice(0, bLimit);
+    pipelineTestDiscoveredIds = picked.map(e => e.id || e.event_id).filter(Boolean);
+    pipelineTestDiscoveredEvents = picked.map(e => ({
+      id: e.id || e.event_id,
+      title: e.title || e.event_name || 'Event',
+      date: e.date || e.dateSchedule || '',
+      venue: e.venue || e.venue_name || '',
+      price: e.priceLabel || '',
+      url: e.ticket_url || e.details_url || ''
+    }));
+
+    if (pipelineTestDiscoveredIds.length === 0 && scope !== 'quarantined') {
+      const fallbackPicked = events.slice(0, typeof batchSize === 'number' ? batchSize : 5);
+      pipelineTestDiscoveredIds = fallbackPicked.map(e => e.id || e.event_id).filter(Boolean);
+      pipelineTestDiscoveredEvents = fallbackPicked.map(e => ({
+        id: e.id || e.event_id,
+        title: e.title || e.event_name || 'Event',
+        date: e.date || e.dateSchedule || '',
+        venue: e.venue || e.venue_name || '',
+        price: e.priceLabel || '',
+        url: e.ticket_url || e.details_url || ''
+      }));
+    }
+
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    window.pipelineAutoChainingStages = ['hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestStageKey = 'hunter';
+    currentPipelineScanKey = 'hunter';
+
+    pipelineTestStageStatuses = {
+      harvest: 'Skipped ⏭️',
+      hunter: 'Running ⚡',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+
+    const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+    if (summaryBanner) summaryBanner.style.display = 'none';
+    savePipelineBatchState();
+    if (typeof showToast === 'function') {
+      showToast(`🚀 Auto-Running Pipeline on ${pipelineTestDiscoveredIds.length} Target Events (Stages 1B ➔ 5, skipping Venue Discovery)!`, 'info');
+    }
+    openPipelineTestStage('hunter', true);
+  };
+
+  window.startEntirePipelineBatchRun = function(evt) {
+    if (evt) evt.stopPropagation();
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = true;
+    pipelineQuarantinedRunActive = false;
+    window.pipelineAutoChainingStages = ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];
+    pipelineTestDiscoveredIds = [];
+    pipelineTestDiscoveredEvents = [];
+    pipelineTestStageStatuses = {
+      harvest: 'Running ⚡',
+      hunter: 'Queued ⏳',
+      qc: 'Queued ⏳',
+      enrich: 'Queued ⏳',
+      venue: 'Queued ⏳',
+      compile: 'Queued ⏳'
+    };
+    const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+    if (summaryBanner) summaryBanner.style.display = 'none';
+    savePipelineBatchState();
+    openPipelineTestStage('harvest', true);
+  };
+
+  window.startFiveEventPipelineTest = function(evt) {
+    if (evt) evt.stopPropagation();
+    isPipelineTestMode = true;
+    isPipelineAutoChaining = false;
+    pipelineQuarantinedRunActive = false;
+    loadPipelineBatchState();
+    openPipelineTestStage(pipelineTestStageKey || 'harvest', false);
+  };
+
+  window.stepPipelineTestStage = function(delta) {
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('Please wait for the active stage to finish or stop it first.', 'warning');
+      return;
+    }
+    const idx = PIPELINE_TEST_ORDER.indexOf(pipelineTestStageKey);
+    const nextIdx = Math.max(0, Math.min(PIPELINE_TEST_ORDER.length - 1, idx + delta));
+    const targetStage = PIPELINE_TEST_ORDER[nextIdx];
+    if (targetStage) {
+      openPipelineTestStage(targetStage, false);
+    }
+  };
+
+  window.switchPipelineTestStage = function(stageKey) {
+    if (!PIPELINE_TEST_ORDER.includes(stageKey)) return;
+    if (isExecuting) {
+      if (typeof showToast === 'function') showToast('Switching view while stage is running...', 'info');
+    }
+    // Never cancel isPipelineAutoChaining when the user clicks a stage pill to inspect progress
+    openPipelineTestStage(stageKey, false);
+  };
+
+  window.openPipelineTestStage = function(stageKey, autoTriggerRun = false) {
+    if (!PIPELINE_TEST_ORDER.includes(stageKey)) stageKey = 'harvest';
+    pipelineTestStageKey = stageKey;
+    isPipelineTestMode = true;
+    if (autoTriggerRun) {
+      pipelineTestStageStatuses[stageKey] = 'Running ⚡';
+      window.activePipelineRunningStageKey = stageKey;
+    }
+    savePipelineBatchState();
+
+    window.openScanModal(stageKey);
+    updatePipelineTestStepperUI();
+    updateStageNavButtons();
+    renderPipelineTestEventsList();
+
+    if (autoTriggerRun) {
+      setTimeout(() => {
+        const preset = SCAN_PRESETS[stageKey] || SCAN_PRESETS.qc;
+        const batchCap = (pipelineBatchSize === 'all' || pipelineBatchSize === 0) ? 0 : (Number(pipelineBatchSize) || 5);
+        if ((!pipelineTestDiscoveredIds || pipelineTestDiscoveredIds.length === 0) && stageKey !== 'harvest') {
+          if (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) {
+            pipelineTestDiscoveredIds = (batchCap > 0 ? harvesterDiscoveredEvents.slice(0, batchCap) : harvesterDiscoveredEvents).map(e => e.id).filter(Boolean);
+          } else if (pipelineAuditedCardsHistory && pipelineAuditedCardsHistory.length > 0) {
+            pipelineTestDiscoveredIds = pipelineAuditedCardsHistory.map(x => x.id).filter(Boolean);
+          }
+        }
+        const idsStr = (pipelineTestDiscoveredIds || []).join(',');
+
+        if (stageKey === 'harvest') {
+          runPipelineAction({
+            mode: 'calendar',
+            title: `🧪 Stage 1A: Schedule Harvester (${pipelineBatchSize === 'all' ? 'All' : batchCap} Events)`,
+            initialStatus: `Crawling venue feeds to discover ${pipelineBatchSize === 'all' ? 'all' : batchCap} discrete events...`,
+            limit: batchCap,
+            url: 'all',
+            all: true,
+            autoApprove: true
+          });
+        } else if (stageKey === 'hunter') {
+          runPipelineAction({
+            mode: 'tier1_hunter',
+            title: `🏹 Stage 1B: Tier 1 Link Hunter (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            initialStatus: 'Upgrading candidate links & resolving direct checkout carts...',
+            ids: idsStr,
+            limit: pipelineTestDiscoveredIds.length || batchCap,
+            quarantine: pipelineQuarantinedRunActive,
+            force: true,
+            autoApprove: true
+          });
+        } else if (stageKey === 'qc') {
+          runPipelineAction({
+            mode: 'catalog_batch',
+            title: `⚡ Stage 2: Stagehand Box Office QC (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            initialStatus: 'Penetrating checkout carts & validating fees into layer_box_office.json...',
+            ids: idsStr,
+            limit: pipelineTestDiscoveredIds.length || batchCap,
+            force: true,
+            autoApprove: true
+          });
+        } else if (stageKey === 'enrich') {
+          runPipelineAction({
+            mode: 'enrich',
+            title: `✍️ Stage 3: AI Semantic Enricher (${pipelineTestDiscoveredIds.length || batchCap} Events)`,
+            initialStatus: 'Sanitizing event titles, synopses & categories into layer_editorial.json...',
+            ids: idsStr,
+            limit: pipelineTestDiscoveredIds.length || batchCap,
+            force: true,
+            autoApprove: true
+          });
+        } else if (stageKey === 'venue') {
+          const targetVenues = window.getVenuesForNewEvents ? window.getVenuesForNewEvents() : [];
+          const vParam = idsStr ? '' : (targetVenues.length === 1 ? targetVenues[0] : 'all');
+          runPipelineAction({
+            mode: 'venue_detailer',
+            title: `🏛️ Stage 4: Venue Detailer (${pipelineTestDiscoveredIds.length || targetVenues.length || batchCap || 'Catalog'} Events)`,
+            initialStatus: 'Grounding physical venue addresses, GPS coordinates & amenities into venues.json...',
+            ids: idsStr,
+            venue: vParam,
+            limit: pipelineTestDiscoveredIds.length || batchCap || 10,
+            quarantine: pipelineQuarantinedRunActive,
+            force: true,
+            autoApprove: true
+          });
+        } else if (stageKey === 'compile') {
+          runPipelineAction({
+            mode: 'compile',
+            title: `🏛️ Stage 5: Compiler & Publisher (${pipelineTestDiscoveredIds.length || 'All'} Events)`,
+            initialStatus: 'Arbitrating specialist layers, checking math & publishing master data live...',
+            ids: idsStr,
+            limit: pipelineTestDiscoveredIds.length || 0,
+            all: pipelineTestDiscoveredIds.length === 0,
+            force: true,
+            autoApprove: true
+          });
+        }
+      }, 250);
+    }
+  };
+
+  window.renderPipelineTestEventsList = function() {
+    const cardEl = document.getElementById('pipeline-test-events-card');
+    const chipsEl = document.getElementById('pipeline-test-events-chips');
+    const titleEl = document.getElementById('pipeline-test-events-title');
+    if (!cardEl || !chipsEl) return;
+
+    if (!pipelineTestDiscoveredEvents || pipelineTestDiscoveredEvents.length === 0) {
+      cardEl.style.display = 'none';
+      return;
+    }
+
+    cardEl.style.display = 'block';
+    if (titleEl) {
+      titleEl.textContent = `${pipelineQuarantinedRunActive ? 'Quarantined' : 'Tracked'} Pipeline Batch Events (${pipelineTestDiscoveredEvents.length}):`;
+    }
+    chipsEl.innerHTML = pipelineTestDiscoveredEvents.map((ev, i) => `
+      <span onclick="if (window.showComparisonCardById) window.showComparisonCardById('${escapeHtml(ev.id || '')}')" style="cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.4); color: #a7f3d0; font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px;">
+        <strong style="color: #34d399;">#${i + 1}</strong> ${escapeHtml((ev.title || 'Event').slice(0, 32))}
+        ${ev.venue ? `<span style="color: #6ee7b7; font-weight: 500;">(${escapeHtml(ev.venue.slice(0, 18))})</span>` : ''}
+      </span>
+    `).join('');
+  };
+
+  // Venue Detailer Selector & Scope Functions
+  async function loadVenueDetailerVenuesList() {
+    if (cachedDetailerVenues && cachedDetailerVenues.length > 0) return cachedDetailerVenues;
+    let rawVenues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+    if (!rawVenues || rawVenues.length === 0) {
+      try {
+        const res = await fetch('/data/venues.json?_t=' + Date.now());
+        if (res.ok) {
+          rawVenues = await res.json();
+          if (state.masterCatalogsData) state.masterCatalogsData.venues_master = rawVenues;
+        }
+      } catch (_) {}
+    }
+    cachedDetailerVenues = Array.isArray(rawVenues) ? rawVenues : [];
+    return cachedDetailerVenues;
+  }
+
+  window.getVenuesForNewEvents = function() {
+    const names = new Set();
+    (pipelineTestDiscoveredEvents || []).forEach(ev => {
+      const v = (ev.venue || ev.venue_name || '').trim();
+      if (v) names.add(v);
+    });
+    if (names.size === 0 && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+      const combined = [...allEvs, ...qEvs];
+      pipelineTestDiscoveredIds.forEach(id => {
+        const found = combined.find(e => (e.id || e.event_id) === id);
+        const v = found ? (found.venue || found.venue_name || '').trim() : '';
+        if (v) names.add(v);
+      });
+    }
+    return Array.from(names);
+  };
+
+  window.populateVenueDetailerDropdown = async function(filterQuery = '') {
+    const select = document.getElementById('pipeline-select-venue-detailer');
+    if (!select) return;
+    const venues = await loadVenueDetailerVenuesList();
+    const q = (filterQuery || '').trim().toLowerCase();
+    const currentVal = select.value || 'new_events';
+    const newEventVenues = window.getVenuesForNewEvents();
+
+    let filtered = [...venues].sort((a, b) => (a.venue_name || a.name || '').localeCompare(b.venue_name || b.name || ''));
+    if (q) {
+      filtered = filtered.filter(v => {
+        const name = (v.venue_name || v.name || '').toLowerCase();
+        const addr = (v.full_address || v.address || '').toLowerCase();
+        const hood = (v.neighborhood || '').toLowerCase();
+        return name.includes(q) || addr.includes(q) || hood.includes(q);
+      });
+    }
+
+    let html = '';
+    html += `<option value="new_events" ${currentVal === 'new_events' ? 'selected' : ''}>✨ Venues for Newly Discovered Events (${newEventVenues.length} venues)</option>`;
+    html += `<option value="ungrounded" ${currentVal === 'ungrounded' ? 'selected' : ''}>🔍 Ungrounded / Incomplete Venues Only</option>`;
+    html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌐 All Physical Venues (${venues.length} facilities in venues.json)</option>`;
+
+    if (filtered.length > 0) {
+      html += `<optgroup label="Physical Venues (${filtered.length}${q ? ' matching' : ''})">`;
+      filtered.forEach(v => {
+        const name = (v.venue_name || v.name || 'Venue').trim();
+        const hood = v.neighborhood ? ` — ${v.neighborhood}` : '';
+        const isSel = currentVal === name ? 'selected' : '';
+        html += `<option value="${escapeHtml(name)}" ${isSel}>🏛️ ${escapeHtml(name)}${escapeHtml(hood)}</option>`;
+      });
+      html += `</optgroup>`;
+    }
+    select.innerHTML = html;
+
+    if (q && filtered.length > 0) {
+      const topName = (filtered[0].venue_name || filtered[0].name || '').trim();
+      if (topName) {
+        select.value = topName;
+        window.onVenueDetailerSelected(topName);
+      }
+    }
+  };
+
+  window.onSearchVenueDetailerInput = function(val) {
+    const clearBtn = document.getElementById('btn-clear-venue-detailer-search');
+    if (clearBtn) clearBtn.style.display = (val && val.trim()) ? 'inline-block' : 'none';
+    window.populateVenueDetailerDropdown(val);
+  };
+
+  window.clearVenueDetailerSearch = function() {
+    const input = document.getElementById('pipeline-search-venue-detailer');
+    if (input) input.value = '';
+    const clearBtn = document.getElementById('btn-clear-venue-detailer-search');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.populateVenueDetailerDropdown('');
+  };
+
+  window.setVenueDetailerScope = function(scopeVal) {
+    const select = document.getElementById('pipeline-select-venue-detailer');
+    if (select) select.value = scopeVal;
+    window.onVenueDetailerSelected(scopeVal);
+  };
+
+  window.resetVenueDetailerToAll = function() {
+    window.setVenueDetailerScope('all');
+  };
+
+  window.onVenueDetailerSelected = function(val) {
+    const chipNew = document.getElementById('chip-venue-scope-new');
+    const chipUngrounded = document.getElementById('chip-venue-scope-ungrounded');
+    const chipAll = document.getElementById('chip-venue-scope-all');
+    const badge = document.getElementById('pipeline-venue-detailer-count-badge');
+    const displayEl = document.getElementById('pipeline-venue-detailer-target-display');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+
+    if (chipNew) chipNew.classList.toggle('active', val === 'new_events');
+    if (chipUngrounded) chipUngrounded.classList.toggle('active', val === 'ungrounded');
+    if (chipAll) chipAll.classList.toggle('active', val === 'all');
+
+    const newVenues = window.getVenuesForNewEvents();
+    if (val === 'new_events') {
+      if (badge) badge.textContent = `New Event Venues (${newVenues.length})`;
+      if (displayEl) {
+        displayEl.innerHTML = newVenues.length > 0
+          ? `✨ Grounding <strong>${newVenues.length} venue(s)</strong> from newly discovered events: ${escapeHtml(newVenues.join(', '))}`
+          : `✨ No newly discovered event venues in current session — will ground ungrounded venues in <code>venues.json</code>.`;
+      }
+      if (btnLabelEl) btnLabelEl.textContent = newVenues.length > 0 ? `Ground ${newVenues.length} New Event Venue(s)` : 'Ground Pending Venues';
+    } else if (val === 'ungrounded') {
+      if (badge) badge.textContent = 'Ungrounded Only';
+      if (displayEl) displayEl.innerHTML = '🔍 Grounding only venues missing street address, GPS coordinates, or 5XX/6XX benchmarks in <code>venues.json</code>.';
+      if (btnLabelEl) btnLabelEl.textContent = 'Ground Ungrounded Venues';
+    } else if (val === 'all') {
+      if (badge) badge.textContent = 'All Venues Mode';
+      if (displayEl) displayEl.innerHTML = '🌐 Grounding all physical venues in <code>venues.json</code> with Google Maps &amp; facility benchmarks.';
+      if (btnLabelEl) btnLabelEl.textContent = 'Ground All Venues';
+    } else {
+      if (badge) badge.textContent = 'Single Venue';
+      if (displayEl) displayEl.innerHTML = `🏛️ Targeting single physical venue: <strong>${escapeHtml(val)}</strong> into <code>venues.json</code>.`;
+      if (btnLabelEl) btnLabelEl.textContent = `Ground ${val}`;
+      let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+      if (Array.isArray(venues)) {
+        const vIdx = venues.findIndex(v => (v.venue_name || v.name) === val);
+        if (vIdx !== -1 && typeof window.showComparisonCardById === 'function') {
+          window.showComparisonCardById(`venue:${vIdx}`);
+        }
+      }
+    }
+  };
+
+  window.runCanaryTestFeed = function() {
+    const select = document.getElementById('pipeline-select-venue-feed');
+    const canaryUrl = 'https://theimprovcentre.ca/shows/';
+    if (select) {
+      select.value = canaryUrl;
+      window.onVenueFeedSelected(canaryUrl);
+    }
+    window.setPipelineBatchSize(5);
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    if (btnTrigger) btnTrigger.click();
+  };
+
+  function updateStageNavButtons() {
+    const idx = PIPELINE_TEST_ORDER.indexOf(currentPipelineScanKey);
+    const prevBtn = document.getElementById('btn-comp-stage-prev');
+    const nextBtn = document.getElementById('btn-comp-stage-next');
+    const advanceBtn = document.getElementById('btn-comp-advance-run-next');
+    const advanceLabel = document.getElementById('btn-comp-advance-label');
+
+    PIPELINE_TEST_ORDER.forEach(k => {
+      const pill = document.getElementById(`comp-stage-pill-${k}`);
+      if (pill) {
+        const active = k === currentPipelineScanKey;
+        pill.style.background = active ? 'rgba(56, 189, 248, 0.22)' : 'rgba(30, 41, 59, 0.7)';
+        pill.style.color = active ? '#38bdf8' : '#94a3b8';
+        pill.style.borderColor = active ? 'rgba(56, 189, 248, 0.5)' : 'rgba(148, 163, 184, 0.25)';
+      }
+    });
+
+    if (prevBtn) {
+      prevBtn.disabled = (idx <= 0);
+      if (idx > 0) {
+        const prevKey = PIPELINE_TEST_ORDER[idx - 1];
+        const prevPreset = SCAN_PRESETS[prevKey];
+        const prevTitle = prevPreset ? prevPreset.title.replace(/<[^>]+>/g, '').replace(/^🧪\s*/, '').trim() : prevKey;
+        prevBtn.textContent = `◀ Previous Stage: ${prevTitle}`;
+      } else {
+        prevBtn.textContent = '◀ First Stage';
+      }
+    }
+    if (nextBtn) {
+      nextBtn.disabled = (idx < 0 || idx >= PIPELINE_TEST_ORDER.length - 1);
+      if (idx >= 0 && idx < PIPELINE_TEST_ORDER.length - 1) {
+        const nextKey = PIPELINE_TEST_ORDER[idx + 1];
+        const nextPreset = SCAN_PRESETS[nextKey];
+        const nextTitle = nextPreset ? nextPreset.title.replace(/<[^>]+>/g, '').replace(/^🧪\s*/, '').trim() : nextKey;
+        nextBtn.textContent = `Next Stage: ${nextTitle} ▶`;
+      } else {
+        nextBtn.textContent = 'Final Stage ▶';
+      }
+    }
+
+    if (advanceBtn && advanceLabel) {
+      if (idx >= 0 && idx < PIPELINE_TEST_ORDER.length - 1) {
+        const nextKey = PIPELINE_TEST_ORDER[idx + 1];
+        const nextPreset = SCAN_PRESETS[nextKey];
+        advanceBtn.style.display = 'inline-flex';
+        advanceLabel.textContent = `Run Next: ${nextPreset ? nextPreset.title.replace(/<[^>]+>/g, '').trim() : nextKey}`;
+      } else {
+        advanceBtn.style.display = 'none';
+      }
+    }
+  }
+
+  window.switchPipelineDisplayOnly = function(stageKey) {
+    window.switchPipelineTestStage(stageKey);
+  };
+
+  window.navigatePipelineDisplayStage = function(delta) {
+    window.stepPipelineTestStage(delta);
+  };
+
+  window.advanceToNextPipelineStage = function() {
+    const idx = PIPELINE_TEST_ORDER.indexOf(currentPipelineScanKey);
+    if (idx >= 0 && idx < PIPELINE_TEST_ORDER.length - 1) {
+      const nextKey = PIPELINE_TEST_ORDER[idx + 1];
+      openPipelineTestStage(nextKey, true);
+    }
+  };
+
+  window.runCompilerFromVenuePrompt = function() {
+    const banner = document.getElementById('venue-compiler-update-prompt-banner');
+    if (banner) banner.style.display = 'none';
+    openPipelineTestStage('compile', true);
+  };
+
+  window.dismissVenueCompilerPrompt = function() {
+    const banner = document.getElementById('venue-compiler-update-prompt-banner');
+    if (banner) banner.style.display = 'none';
+  };
+
+  window.updateCompilerPreviewBanner = function(passedCountOverride, failedCountOverride) {
+    const banner = document.getElementById('compiler-new-cards-preview-banner');
+    const titleEl = document.getElementById('compiler-preview-banner-title');
+    const descEl = document.getElementById('compiler-preview-banner-desc');
+    const passedBadge = document.getElementById('compiled-cards-passed-count');
+    const failedBadge = document.getElementById('compiled-cards-failed-count');
+    if (!banner) return;
+
+    const passedMap = window.pipelineCompiledPassedMap instanceof Map ? window.pipelineCompiledPassedMap : new Map();
+    const failedMap = window.pipelineCompiledFailedMap instanceof Map ? window.pipelineCompiledFailedMap : new Map();
+    const compCount = passedCountOverride !== undefined
+      ? passedCountOverride
+      : (passedMap.size || pipelineLastCompiledCardIds.length || pipelineAuditedCardsHistory.length);
+    const qCount = failedCountOverride !== undefined
+      ? failedCountOverride
+      : (failedMap.size || (state.quarantinedEvents || []).length);
+
+    if (passedBadge) passedBadge.textContent = String(compCount);
+    if (failedBadge) failedBadge.textContent = String(qCount);
+    banner.style.display = 'flex';
+    if (titleEl) {
+      titleEl.textContent = `🎉 Compiler Finished! ${compCount} Active Card(s) Published & ${qCount} in Quarantine`;
+    }
+    if (descEl) {
+      descEl.textContent = 'Preview the newly compiled cards or inspect quarantined cards and leave AI instructions.';
+    }
+  };
+
+  window.previewNewlyCompiledCards = function(initialTab = 'compiled') {
+    const modal = document.getElementById('pipeline-new-cards-preview-modal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    const normalizedTab = (initialTab === 'failed' || initialTab === 'quarantined') ? 'quarantined' : 'compiled';
+    window.switchPreviewModalTab(normalizedTab);
+  };
+
+  window.switchPreviewModalTab = function(tab) {
+    const normalizedTab = (tab === 'failed' || tab === 'quarantined') ? 'quarantined' : 'compiled';
+    currentPreviewModalTab = normalizedTab;
+    const tabComp = document.getElementById('preview-tab-compiled') || document.getElementById('preview-tab-passed');
+    const tabQuar = document.getElementById('preview-tab-quarantined') || document.getElementById('preview-tab-failed');
+    const grid = document.getElementById('pipeline-new-cards-preview-grid') || document.getElementById('pipeline-new-cards-preview-container');
+    const compBadge = document.getElementById('preview-tab-compiled-count') || document.getElementById('modal-tab-passed-count');
+    const quarBadge = document.getElementById('preview-tab-quarantined-count') || document.getElementById('modal-tab-failed-count');
+
+    const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+    const archEvs = Array.isArray(state.archivedEvents) ? state.archivedEvents : [];
+    const passedMap = window.pipelineCompiledPassedMap instanceof Map ? window.pipelineCompiledPassedMap : new Map();
+    const failedMap = window.pipelineCompiledFailedMap instanceof Map ? window.pipelineCompiledFailedMap : new Map();
+
+    const targetIds = new Set();
+    passedMap.forEach((_, id) => { if (id) targetIds.add(id); });
+    failedMap.forEach((_, id) => { if (id) targetIds.add(id); });
+    (pipelineLastCompiledCardIds || []).forEach(id => { if (id) targetIds.add(id); });
+    (window.pipelineLastCompiledIds || []).forEach(id => { if (id) targetIds.add(id); });
+    (pipelineAuditedCardsHistory || []).forEach(x => { if (x && x.id) targetIds.add(x.id); });
+
+    let compiledCards = [];
+    let failedCards = [];
+    if (targetIds.size > 0) {
+      targetIds.forEach(id => {
+        const qFound = qEvs.find(e => (e.id || e.event_id) === id);
+        const liveFound = allEvs.find(e => (e.id || e.event_id) === id);
+        const archFound = archEvs.find(e => (e.id || e.event_id) === id);
+        const fSnap = failedMap.get(id);
+        const pSnap = passedMap.get(id);
+        if (fSnap || qFound || (!liveFound && archFound)) {
+          failedCards.push(qFound || archFound || fSnap);
+        } else if (liveFound || pSnap) {
+          compiledCards.push(liveFound || pSnap);
+        }
+      });
+    } else {
+      compiledCards = allEvs.slice(0, 12);
+      failedCards = qEvs;
+    }
+
+    if (compBadge) compBadge.textContent = String(compiledCards.length);
+    if (quarBadge) quarBadge.textContent = String(failedCards.length);
+
+    if (tabComp) {
+      tabComp.style.background = normalizedTab === 'compiled' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(30, 41, 59, 0.6)';
+      tabComp.style.color = normalizedTab === 'compiled' ? '#34d399' : '#94a3b8';
+    }
+    if (tabQuar) {
+      tabQuar.style.background = normalizedTab === 'quarantined' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(30, 41, 59, 0.6)';
+      tabQuar.style.color = normalizedTab === 'quarantined' ? '#f87171' : '#94a3b8';
+    }
+
+    if (!grid) return;
+    const list = normalizedTab === 'compiled' ? compiledCards : failedCards;
+    if (!list || list.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #94a3b8;">No ${normalizedTab} cards to display.</div>`;
+      return;
+    }
+
+    const synthesizeFullCardForPreview = (rawCard) => {
+      if (!rawCard) return {};
+      const cid = rawCard.id || rawCard.event_id || '';
+      const mData = state.masterCatalogsData || {};
+      const schedLayer = Array.isArray(mData.layer_schedules) ? mData.layer_schedules.find(x => (x.id || x.event_id) === cid) : null;
+      const boxLayer = Array.isArray(mData.layer_box_office) ? mData.layer_box_office.find(x => (x.id || x.event_id) === cid) : null;
+      const editLayer = Array.isArray(mData.layer_editorial) ? mData.layer_editorial.find(x => (x.id || x.event_id) === cid) : null;
+      const seedLayer = Array.isArray(mData.seeds_raw) ? mData.seeds_raw.find(x => (x.id || x.event_id) === cid) : null;
+
+      const venueNameRaw = rawCard.venue || rawCard.venue_name || editLayer?.venue_name || schedLayer?.venue_name || seedLayer?.venue_name || 'Vancouver Venue';
+      const vLow = String(venueNameRaw).toLowerCase().trim();
+      const vMasterList = Array.isArray(mData.venues_master) ? mData.venues_master : (Array.isArray(state.cachedVenueFeeds) ? state.cachedVenueFeeds : []);
+      const matchedVenue = vMasterList.find(v => {
+        const vn = String(v.venue_name || v.name || '').toLowerCase().trim();
+        return vn && (vn === vLow || vn.includes(vLow) || vLow.includes(vn));
+      }) || {};
+
+      const dAudit = rawCard.dimension_audit || {};
+      const dVal = (k) => (dAudit[k] && typeof dAudit[k] === 'object') ? dAudit[k].value : dAudit[k];
+      const cleanBenchmark = (v) => (v && typeof v === 'string' && !/^(none_available|not_applicable|search_exhausted_null|null|undefined)$/i.test(v.trim())) ? v.trim() : null;
+
+      const title = rawCard.title || rawCard.event_name || editLayer?.clean_title || editLayer?.title || schedLayer?.title || seedLayer?.title || dVal('D001_event_name') || dVal('D001_title') || cid || 'Event';
+      const venue = rawCard.venue || rawCard.venue_name || matchedVenue.venue_name || matchedVenue.name || venueNameRaw;
+      const address = rawCard.full_address || rawCard.address || matchedVenue.full_address || matchedVenue.address || dVal('D402_full_address') || 'Vancouver, BC';
+      const neighborhood = rawCard.neighborhood || matchedVenue.neighborhood || dVal('D404_neighborhood') || '';
+      const category = rawCard.category || editLayer?.category || (Array.isArray(editLayer?.categories) ? editLayer.categories[0] : null) || dVal('D004_category') || seedLayer?.category || 'Shows & Arts';
+      const archetype = rawCard.event_archetype || rawCard.archetype || editLayer?.event_archetype || dVal('D007_event_archetype') || dVal('D002_event_archetype') || null;
+      const lifecycle = rawCard.lifecycle_type || rawCard.lifecycleType || editLayer?.lifecycle_type || dVal('D006_lifecycle_type') || seedLayer?.lifecycle_type || 'time_bound_event';
+      const isPerennial = lifecycle === 'perennial_drop_in' || rawCard.access_model === 'open_public_space' || matchedVenue.access_model === 'open_public_space';
+
+      const rawLineup = rawCard.lineup || editLayer?.lineup || schedLayer?.lineup || dVal('D301_lineup') || null;
+      const artist = rawCard.artist || editLayer?.artist || schedLayer?.artist || dVal('D302_artist') || (Array.isArray(rawLineup) && rawLineup.length > 0 ? rawLineup.join(', ') : (typeof rawLineup === 'string' ? rawLineup : null));
+
+      const showings = (Array.isArray(rawCard.showings) && rawCard.showings.length > 0)
+        ? rawCard.showings
+        : (Array.isArray(schedLayer?.showings) && schedLayer.showings.length > 0 ? schedLayer.showings : (dAudit.D304_showings_slots?.showings || []));
+      const primaryShow = showings[0] || rawCard.show_1 || {};
+      const date = rawCard.date || primaryShow.date || schedLayer?.date || dVal('D303_date') || seedLayer?.date || null;
+      const startTime = rawCard.start_time || rawCard.time || primaryShow.start_time || schedLayer?.start_time || dVal('D306_start_time') || null;
+      const doorsTime = rawCard.doors_time || primaryShow.doors_time || schedLayer?.doors_time || dVal('D305_doors_time') || null;
+      const endTime = rawCard.end_time || primaryShow.end_time || boxLayer?.end_time || schedLayer?.end_time || dVal('D307_end_time') || null;
+      const dateSchedule = rawCard.dateSchedule || dVal('D308_dateSchedule') || (isPerennial ? 'Open Daily to the Public' : (date ? `${date}${startTime ? ` at ${startTime}` : ''}` : 'Check Venue Schedule'));
+      const frequencyLabel = rawCard.frequencyLabel || dVal('D309_frequencyLabel') || (isPerennial ? 'Open Daily Drop-In' : (showings.length > 1 ? `${showings.length} Verified Showings` : 'Single Showing'));
+      const weeklyHours = rawCard.weekly_hours || rawCard.weeklyHours || matchedVenue.weekly_hours || dVal('D407_weekly_hours') || null;
+
+      const priceNum = rawCard.price != null ? Number(rawCard.price)
+        : (rawCard.price_all_in != null ? Number(rawCard.price_all_in)
+        : (boxLayer?.tier1_price_all_in != null ? Number(boxLayer.tier1_price_all_in)
+        : (boxLayer?.price_all_in != null ? Number(boxLayer.price_all_in)
+        : (dVal('D205_tier1_price_all_in') != null ? Number(dVal('D205_tier1_price_all_in'))
+        : (isPerennial ? 0 : null)))));
+      const isFree = Boolean(rawCard.isFree || rawCard.pricingType === 'free' || priceNum === 0);
+      const priceBase = rawCard.price_base ?? boxLayer?.tier1_price_base ?? dVal('D202_tier1_price_base') ?? priceNum;
+      const priceFee = rawCard.price_fee ?? boxLayer?.tier1_price_fee ?? dVal('D203_tier1_price_fee') ?? 0;
+      const priceTax = rawCard.price_tax ?? boxLayer?.tier1_price_tax ?? dVal('D204_tier1_price_tax') ?? 0;
+      const priceLabel = rawCard.priceLabel || (isFree ? 'Free ($0)' : (priceNum != null && !isNaN(priceNum) ? `$${priceNum.toFixed(2)} all-in` : 'Pending Box Office QC'));
+      const isSoldOut = Boolean(rawCard.is_sold_out || rawCard.isSoldOut || boxLayer?.is_sold_out || dVal('D107_operational_status') === 'sold_out');
+      const ticketProvider = rawCard.ticket_provider || boxLayer?.ticket_provider || schedLayer?.ticket_provider || dVal('D221_ticket_provider') || (isFree ? 'Free Public Access' : 'Direct');
+
+      let tiers = Array.isArray(rawCard.tiers) && rawCard.tiers.length > 0 ? rawCard.tiers : (Array.isArray(rawCard.all_tiers) && rawCard.all_tiers.length > 0 ? rawCard.all_tiers : (Array.isArray(boxLayer?.all_tiers) ? boxLayer.all_tiers : []));
+      if (tiers.length === 0 && priceNum != null && !isNaN(priceNum)) {
+        tiers = [{
+          name: boxLayer?.tier1_name || dVal('D201_tier1_name') || 'General Admission',
+          price: priceNum,
+          price_base: priceBase,
+          price_fee: priceFee,
+          price_tax: priceTax,
+          label: isFree ? 'Free ($0)' : `$${priceNum.toFixed(2)} CAD`,
+          isAvailable: !isSoldOut
+        }];
+        const t2Name = boxLayer?.tier2_name || dVal('D206_tier2_name');
+        const t2Price = boxLayer?.tier2_price_all_in ?? boxLayer?.tier2_price_read ?? dVal('D210_tier2_price_all_in');
+        if (t2Name && t2Price != null && !isNaN(Number(t2Price))) {
+          tiers.push({
+            name: t2Name,
+            price: Number(t2Price),
+            price_base: boxLayer?.tier2_price_base ?? dVal('D207_tier2_price_base') ?? Number(t2Price),
+            price_fee: boxLayer?.tier2_price_fee ?? dVal('D208_tier2_price_fee') ?? 0,
+            price_tax: boxLayer?.tier2_price_tax ?? dVal('D209_tier2_price_tax') ?? 0,
+            label: `$${Number(t2Price).toFixed(2)} CAD`,
+            isAvailable: true
+          });
+        }
+        const t3Name = boxLayer?.tier3_name || dVal('D211_tier3_name');
+        const t3Price = boxLayer?.tier3_price_all_in ?? boxLayer?.tier3_price_read ?? dVal('D215_tier3_price_all_in');
+        if (t3Name && t3Price != null && !isNaN(Number(t3Price))) {
+          tiers.push({
+            name: t3Name,
+            price: Number(t3Price),
+            price_base: boxLayer?.tier3_price_base ?? dVal('D212_tier3_price_base') ?? Number(t3Price),
+            price_fee: boxLayer?.tier3_price_fee ?? dVal('D213_tier3_price_fee') ?? 0,
+            price_tax: boxLayer?.tier3_price_tax ?? dVal('D214_tier3_price_tax') ?? 0,
+            label: `$${Number(t3Price).toFixed(2)} CAD`,
+            isAvailable: true
+          });
+        }
+      }
+
+      const description = rawCard.description || rawCard.synopsis || editLayer?.synopsis || editLayer?.description || dVal('D310_synopsis') || dVal('D51_description') || '';
+      const restrictions = rawCard.restrictions || editLayer?.restrictions || boxLayer?.restrictions || dVal('D008_restrictions') || matchedVenue.restrictions || 'All Ages';
+      const accessModel = rawCard.access_model || matchedVenue.access_model || dVal('D405_access_model') || null;
+      const envType = rawCard.environment_type || matchedVenue.environment_type || dVal('D406_environment_type') || null;
+      const transitInfo = rawCard.transit_info || rawCard.transitInfo || matchedVenue.transit_info || dAudit.D408_transit_waypoints?.transit || null;
+
+      const beerBench = cleanBenchmark(rawCard.beer_benchmark || matchedVenue.beer_benchmark || matchedVenue.spend_benchmarks?.beer || dVal('D603_beer_benchmark'));
+      const cocktailBench = cleanBenchmark(rawCard.cocktail_benchmark || matchedVenue.cocktail_benchmark || matchedVenue.spend_benchmarks?.cocktail);
+      const coffeeBench = cleanBenchmark(rawCard.coffee_benchmark || matchedVenue.coffee_benchmark || matchedVenue.spend_benchmarks?.coffee || dVal('D602_coffee_benchmark'));
+      const mealBench = cleanBenchmark(rawCard.meal_benchmark || matchedVenue.meal_benchmark || matchedVenue.spend_benchmarks?.meal || dVal('D604_meal_benchmark'));
+      const concessionBench = cleanBenchmark(rawCard.concession_benchmark || matchedVenue.concession_benchmark || matchedVenue.spend_benchmarks?.concession);
+
+      let typicalSpend = cleanBenchmark(rawCard.typical_item_spend);
+      if (!typicalSpend) {
+        const shortR = (val) => val ? val.replace(/\s+CAD\b/gi, '').replace(/\s*\(.*?\)/g, '').trim() : null;
+        const parts = [];
+        if (beerBench) parts.push(`Beer ${shortR(beerBench)}`);
+        if (cocktailBench) parts.push(`Cocktails ${shortR(cocktailBench)}`);
+        if (!beerBench && !cocktailBench && coffeeBench) parts.push(`Coffee/Drinks ${shortR(coffeeBench)}`);
+        else if (coffeeBench && parts.length < 2) parts.push(`Coffee ${shortR(coffeeBench)}`);
+        if (concessionBench && parts.length < 2) parts.push(`Concessions ${shortR(concessionBench)}`);
+        if (mealBench && parts.length < 2) parts.push(`Food ${shortR(mealBench)}`);
+        if (parts.length > 0) typicalSpend = parts.join(' • ');
+      }
+
+      const stepFree = cleanBenchmark(rawCard.step_free_entrance || matchedVenue.step_free_entrance || dVal('D501_step_free_entrance'));
+      const washrooms = cleanBenchmark(rawCard.accessible_washrooms || matchedVenue.accessible_washrooms || dVal('D503_accessible_washrooms'));
+      const outsideFood = cleanBenchmark(rawCard.outside_food_policy || matchedVenue.outside_food_policy || dVal('D605_outside_food_policy'));
+      const paymentMethods = cleanBenchmark(rawCard.payment_methods || matchedVenue.payment_methods || dVal('D607_payment_methods'));
+      const waterRefill = cleanBenchmark(rawCard.water_refill_station || matchedVenue.water_refill_station || dVal('D608_water_refill_station'));
+
+      const linksObj = rawCard.links || {};
+      const t1Url = linksObj.tier1_checkout || dVal('D101_tier1_checkout') || boxLayer?.ticket_url || seedLayer?.tier1_url || null;
+      const t2Url = linksObj.tier2_event_page || dVal('D102_tier2_event_page') || rawCard.details_url || schedLayer?.details_url || seedLayer?.source_url || null;
+      const t3Url = linksObj.tier3_calendar || dVal('D103_tier3_calendar') || matchedVenue.calendar_url || null;
+      const t4Url = linksObj.tier4_civic_destination || dVal('D104_tier4_civic_destination') || matchedVenue.civic_destination_url || null;
+      const t5Url = linksObj.tier5_venue_home || dVal('D105_tier5_venue_home') || matchedVenue.website_url || rawCard.venueUrl || null;
+      const bestUrl = rawCard.ticket_url || linksObj.best_available || dVal('D106_best_available_link') || t1Url || t2Url || t3Url || t4Url || t5Url || rawCard.source_url || '#';
+      const proofImg = rawCard.proof_keyframes?.cart || boxLayer?.proof_keyframe || rawCard.proof_keyframes?.schedule || schedLayer?.proof_keyframe || rawCard.proof_image || null;
+
+      return {
+        ...rawCard,
+        id: cid,
+        title,
+        venue,
+        address,
+        neighborhood,
+        category,
+        archetype,
+        isPerennial,
+        artist,
+        showings,
+        date,
+        startTime,
+        doorsTime,
+        endTime,
+        dateSchedule,
+        frequencyLabel,
+        weeklyHours,
+        priceNum,
+        isFree,
+        priceLabel,
+        isSoldOut,
+        ticketProvider,
+        tiers,
+        description,
+        restrictions,
+        accessModel,
+        envType,
+        transitInfo,
+        typicalSpend,
+        stepFree,
+        washrooms,
+        outsideFood,
+        paymentMethods,
+        waterRefill,
+        links: {
+          tier1_checkout: t1Url,
+          tier2_event_page: t2Url,
+          tier3_calendar: t3Url,
+          tier4_civic_destination: t4Url,
+          tier5_venue_home: t5Url,
+          best_available: bestUrl
+        },
+        bestUrl,
+        proofImg
+      };
+    };
+
+    if (list.length === 1) {
+      grid.style.gridTemplateColumns = '1fr';
+      grid.style.maxWidth = '780px';
+      grid.style.margin = '0 auto';
+    } else {
+      grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))';
+      grid.style.maxWidth = '100%';
+      grid.style.margin = '0';
+    }
+
+    grid.innerHTML = list.map((rawCard, idx) => {
+      const c = synthesizeFullCardForPreview(rawCard);
+      const isFailed = normalizedTab === 'quarantined' || Boolean(rawCard.quarantineReason || rawCard.is_quarantined || (rawCard.reviewStatus && String(rawCard.reviewStatus).includes('quarantin')));
+      const eid = c.id || '';
+      const qReason = rawCard.quarantineReason || rawCard.archiveReason || 'Fatal Invariant Failure';
+      const qError = rawCard.audit_error || rawCard.quarantineReason || 'Failed compiler verification checks';
+      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${c.venue}, ${c.address || 'Vancouver, BC'}`)}`;
+      const venueSiteUrl = c.links.tier5_venue_home || c.links.tier3_calendar || gmapsUrl;
+
+      let topDateText = c.dateSchedule || 'Upcoming';
+      if (c.isPerennial) {
+        topDateText = 'Open Daily';
+      } else if (c.date && /^\d{4}-\d{2}-\d{2}$/.test(c.date)) {
+        const dt = new Date(c.date + 'T12:00:00');
+        if (!isNaN(dt.getTime())) {
+          topDateText = dt.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+        }
+      }
+
+      const tiersRowsHtml = (Array.isArray(c.tiers) && c.tiers.length > 0) ? c.tiers.map((t, tIdx) => {
+        const tPrice = t.price != null ? Number(t.price) : 0;
+        const tBase = t.price_base != null ? Number(t.price_base) : tPrice;
+        const tFee = t.price_fee != null ? Number(t.price_fee) : 0;
+        const tTax = t.price_tax != null ? Number(t.price_tax) : 0;
+        const ledgerStr = (tPrice > 0 && (tFee > 0 || tTax > 0))
+          ? `Base $${tBase.toFixed(2)} + Fee $${tFee.toFixed(2)} + Tax $${tTax.toFixed(2)}`
+          : (tPrice === 0 ? 'No admission fee' : `Flat/All-in $${tPrice.toFixed(2)}`);
+        return `
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.74rem; padding: 4px 8px; background: rgba(15, 23, 42, 0.7); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06);">
+            <div>
+              <strong style="color: #f8fafc;">Tier ${tIdx + 1}: ${escapeHtml(t.name || 'General Admission')}</strong>
+              <span style="color: #94a3b8; font-size: 0.67rem; margin-left: 6px;">(${escapeHtml(ledgerStr)})</span>
+            </div>
+            <span style="font-weight: 800; color: ${tPrice > 50 ? '#f87171' : '#34d399'};">${tPrice === 0 ? 'Free ($0)' : `$${tPrice.toFixed(2)} CAD`}</span>
+          </div>
+        `;
+      }).join('') : '';
+
+      const linkTiers = [
+        { label: 'Tier 1 Cart', url: c.links.tier1_checkout, color: '#34d399' },
+        { label: 'Tier 2 Event', url: c.links.tier2_event_page, color: '#38bdf8' },
+        { label: 'Tier 3 Calendar', url: c.links.tier3_calendar, color: '#a78bfa' },
+        { label: 'Tier 4 Civic', url: c.links.tier4_civic_destination, color: '#fbbf24' },
+        { label: 'Tier 5 Venue', url: c.links.tier5_venue_home, color: '#94a3b8' }
+      ].filter(lt => lt.url && String(lt.url).startsWith('http'));
+
+      return `
+        <div style="background: rgba(15, 23, 42, 0.96); border: 1px solid ${isFailed ? 'rgba(239, 68, 68, 0.5)' : 'rgba(16, 185, 129, 0.45)'}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
+          ${isFailed ? `
+            <div style="background: rgba(239, 68, 68, 0.14); border: 1px solid rgba(239, 68, 68, 0.45); border-radius: 10px; padding: 9px 12px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.7rem; font-weight: 800; color: #f87171; text-transform: uppercase;">🛡️ Quarantined #${idx + 1} • ${escapeHtml(qReason)}</span>
+                <span style="font-size: 0.65rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 999px;">Simulated Published Card Preview Below ▾</span>
+              </div>
+              <div style="font-size: 0.78rem; color: #fca5a5; font-weight: 600;">${escapeHtml(qError)}</div>
+            </div>
+          ` : `
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <span style="font-size: 0.7rem; font-weight: 800; color: #34d399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 8px; border-radius: 999px;">✨ Published Card #${idx + 1} • Live in Van50 Catalog</span>
+              <span style="font-size: 0.68rem; color: #94a3b8; font-family: monospace;">ID: ${escapeHtml(eid)}</span>
+            </div>
+          `}
+
+          <article style="background: linear-gradient(180deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.98) 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 15px 16px; display: flex; flex-direction: column; gap: 10px; position: relative;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 0.72rem; font-weight: 800; color: #f8fafc; background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.45); padding: 2px 9px; border-radius: 999px;">📅 ${escapeHtml(topDateText)}</span>
+                <span style="font-size: 0.7rem; font-weight: 800; color: #d8b4fe; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); padding: 2px 9px; border-radius: 999px; text-transform: uppercase;">🏷️ ${escapeHtml(String(c.category))}</span>
+                ${c.archetype ? `<span style="font-size: 0.65rem; font-weight: 700; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 999px;">${escapeHtml(String(c.archetype).replace(/_/g, ' '))}</span>` : ''}
+              </div>
+              <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 7px; border-radius: 6px;">♿ ${escapeHtml(c.stepFree ? (c.stepFree.length > 22 ? c.stepFree.slice(0, 20) + '…' : c.stepFree) : 'Accessible')}</span>
+            </div>
+
+            <h3 style="margin: 0; font-size: 1.12rem; font-weight: 800; line-height: 1.3;">
+              <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="color: #f8fafc; text-decoration: none; border-bottom: 1px dashed rgba(56, 189, 248, 0.4);">${escapeHtml(c.title)}</a>
+            </h3>
+
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              ${c.artist ? `<span style="font-size: 0.75rem; background: rgba(139, 92, 246, 0.14); border: 1px solid rgba(139, 92, 246, 0.35); color: #ddd6fe; padding: 2px 8px; border-radius: 6px; font-weight: 600;">🎤 Featuring: <strong>${escapeHtml(c.artist)}</strong></span>` : ''}
+              <span style="font-size: 0.69rem; font-weight: 700; color: #fcd34d; background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 7px; border-radius: 6px;">🔞 ${escapeHtml(c.restrictions)}</span>
+              ${c.accessModel ? `<span style="font-size: 0.69rem; color: #cbd5e1; background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 6px;">🚪 ${escapeHtml(String(c.accessModel).replace(/_/g, ' '))}</span>` : ''}
+            </div>
+
+            <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 9px 11px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <a href="${escapeHtml(gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-weight: 800; font-size: 0.85rem; text-decoration: underline;">📍 ${escapeHtml(c.venue)}</a>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  ${c.neighborhood ? `<span style="font-size: 0.68rem; font-weight: 700; color: #e2e8f0; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">${escapeHtml(c.neighborhood)}</span>` : ''}
+                  <a href="${escapeHtml(venueSiteUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.68rem; color: #94a3b8; text-decoration: underline;">Venue Site ↗</a>
+                </div>
+              </div>
+              <div style="font-size: 0.74rem; color: #cbd5e1;">${escapeHtml(c.address)}</div>
+              ${c.transitInfo ? `<div style="font-size: 0.7rem; color: #94a3b8;">🚏 ${escapeHtml(c.transitInfo)}</div>` : ''}
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 7px 11px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; font-size: 0.78rem;">
+              <span style="color: #f1f5f9; font-weight: 700;">🗓️ ${escapeHtml(c.dateSchedule)}${c.doorsTime ? ` (Doors ${escapeHtml(c.doorsTime)})` : ''}</span>
+              <span style="font-size: 0.68rem; font-weight: 700; color: #38bdf8;">${escapeHtml(c.frequencyLabel)}</span>
+            </div>
+
+            <div style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.55; background: rgba(15, 23, 42, 0.45); border-left: 3px solid #38bdf8; padding: 9px 11px; border-radius: 4px;">
+              ${c.description ? escapeHtml(c.description) : `<span style="color: #64748b; font-style: italic;">Live outing at ${escapeHtml(c.venue)}.</span>`}
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 5px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 8px 11px; font-size: 0.74rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                <span><strong style="color: #34d399;">🍺 Expected On-Site Spend:</strong> ${c.typicalSpend ? escapeHtml(c.typicalSpend) : '<span style="color: #64748b;">Uncalibrated / No on-site F&amp;B</span>'}</span>
+                ${c.paymentMethods ? `<span style="font-size: 0.67rem; color: #94a3b8;">💳 ${escapeHtml(c.paymentMethods)}</span>` : ''}
+              </div>
+              ${(c.stepFree || c.washrooms || c.outsideFood || c.waterRefill) ? `
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.68rem; color: #94a3b8; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px;">
+                  ${c.stepFree ? `<span>♿ <strong>Entrance:</strong> ${escapeHtml(c.stepFree)}</span>` : ''}
+                  ${c.washrooms ? `<span>🚻 <strong>Washrooms:</strong> ${escapeHtml(c.washrooms)}</span>` : ''}
+                  ${c.outsideFood ? `<span>🥡 <strong>Outside Food:</strong> ${escapeHtml(c.outsideFood)}</span>` : ''}
+                  ${c.waterRefill ? `<span>🚰 <strong>Water:</strong> ${escapeHtml(c.waterRefill)}</span>` : ''}
+                </div>
+              ` : ''}
+            </div>
+
+            <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; gap: 8px;">
+              ${tiersRowsHtml ? `
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="font-size: 0.67rem; font-weight: 800; color: #94a3b8; text-transform: uppercase;">🎫 Verified Admission Tiers (${c.tiers.length}) • Provider: ${escapeHtml(c.ticketProvider)}</div>
+                  ${tiersRowsHtml}
+                </div>
+              ` : ''}
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column;">
+                  <span style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-weight: 700;">Headline All-In Price</span>
+                  <span style="font-size: 1.18rem; font-weight: 900; color: ${c.priceNum != null && c.priceNum > 50 ? '#f87171' : '#34d399'};">${escapeHtml(c.priceLabel)}</span>
+                </div>
+                <a href="${escapeHtml(c.bestUrl)}" target="_blank" rel="noopener noreferrer" style="background: ${c.isSoldOut ? 'rgba(239, 68, 68, 0.25)' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)'}; border: 1px solid ${c.isSoldOut ? 'rgba(239, 68, 68, 0.5)' : '#34d399'}; color: #fff; font-weight: 800; font-size: 0.8rem; padding: 8px 15px; border-radius: 8px; text-decoration: none;">
+                  ${c.isSoldOut ? 'Sold Out (Waitlist) ↗' : 'Get Tickets / Details ↗'}
+                </a>
+              </div>
+            </div>
+          </article>
+
+          ${linkTiers.length > 0 ? `
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 0.67rem;">
+              <span style="color: #94a3b8; font-weight: 700;">🔗 Verified Links:</span>
+              ${linkTiers.map(lt => `<a href="${escapeHtml(lt.url)}" target="_blank" rel="noopener noreferrer" style="color: ${lt.color}; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); padding: 2px 7px; border-radius: 4px; text-decoration: underline; font-weight: 700;">${escapeHtml(lt.label)} ↗</a>`).join('')}
+            </div>
+          ` : ''}
+
+          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px;">
+            <button type="button" onclick="window.closeCompiledCardsPreviewModal(); window.showComparisonCardById('${escapeHtml(eid)}');" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.73rem; font-weight: 700; padding: 5px 12px; border-radius: 6px; cursor: pointer;">🔍 Inspect ${getCatalogDimensionsCount()}D Matrix</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  };
+
+  window.closeCompiledCardsPreviewModal = function() {
+    const modal = document.getElementById('pipeline-new-cards-preview-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('active');
+    }
+  };
+
+  window.dismissCompilerPreviewBanner = function() {
+    const banner = document.getElementById('compiler-new-cards-preview-banner');
+    if (banner) banner.style.display = 'none';
+  };
+
+  window.filterTableToCompiledCards = function() {
+    window.closeCompiledCardsPreviewModal();
+    if (pipelineModal) {
+      pipelineModal.style.display = 'none';
+      pipelineModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  let cachedVenueFeeds = null;
+
+  async function loadVenueFeedsList() {
+    if (cachedVenueFeeds && cachedVenueFeeds.length > 0) return cachedVenueFeeds;
+    const feeds = [];
+    const seenUrls = new Set();
+
+    // 1. Physical Venues from master or /data/venues.json
+    let rawVenues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || [];
+    if (!rawVenues || rawVenues.length === 0) {
+      try {
+        const res = await fetch('/data/venues.json?_t=' + Date.now());
+        if (res.ok) {
+          rawVenues = await res.json();
+          if (state.masterCatalogsData) state.masterCatalogsData.venues_master = rawVenues;
+        }
+      } catch (_) {}
+    }
+
+    if (Array.isArray(rawVenues)) {
+      rawVenues.forEach(v => {
+        const name = (v.venue_name || v.name || '').trim();
+        const url = (v.calendar_url || v.calendarUrl || v.website_url || v.websiteUrl || '').trim();
+        if (name && url && url.startsWith('http') && !seenUrls.has(url)) {
+          seenUrls.add(url);
+          let domain = '';
+          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) {}
+          feeds.push({
+            name,
+            url,
+            domain,
+            neighborhood: v.neighborhood || '',
+            type: 'venue'
+          });
+        }
+      });
+    }
+
+    // 2. Discovery sources (Do604, VIA, Straight, etc.)
+    let rawSources = (state.masterCatalogsData && state.masterCatalogsData.discovery_sources) || [];
+    if (!rawSources || rawSources.length === 0) {
+      try {
+        const res = await fetch('/data/discovery_sources.json?_t=' + Date.now());
+        if (res.ok) {
+          const sData = await res.json();
+          rawSources = sData.sources || (Array.isArray(sData) ? sData : []);
+          if (state.masterCatalogsData) state.masterCatalogsData.discovery_sources = rawSources;
+        }
+      } catch (_) {}
+    }
+
+    if (Array.isArray(rawSources)) {
+      rawSources.forEach(s => {
+        const name = (s.name || s.id || '').trim();
+        const url = (s.eventsUrl || s.calendarUrl || s.url || '').trim();
+        if (name && url && url.startsWith('http') && !seenUrls.has(url)) {
+          seenUrls.add(url);
+          let domain = '';
+          try { domain = new URL(url).hostname.replace(/^www\./i, ''); } catch (_) {}
+          feeds.push({
+            name,
+            url,
+            domain: s.domain || domain,
+            type: 'source'
+          });
+        }
+      });
+    }
+
+    // Fallbacks if offline
+    if (feeds.length === 0) {
+      const fallbacks = [
+        { name: "The Improv Centre", url: "https://theimprovcentre.ca/shows/", domain: "theimprovcentre.ca", type: 'venue' },
+        { name: "Little Mountain Gallery", url: "https://littlemountaingallery.ca/schedule/", domain: "littlemountaingallery.ca", type: 'venue' },
+        { name: "The Rio Theatre", url: "https://riotheatre.ca/calendar/", domain: "riotheatre.ca", type: 'venue' },
+        { name: "The Cultch", url: "https://thecultch.com/events/", domain: "thecultch.com", type: 'venue' },
+        { name: "Tightrope Impro Theatre", url: "https://tightropetheatre.com/shows/", domain: "tightropetheatre.com", type: 'venue' },
+        { name: "Rickshaw Theatre", url: "https://rickshawtheatre.com/events/", domain: "rickshawtheatre.com", type: 'venue' },
+        { name: "Fox Cabaret", url: "https://www.foxcabaret.com/", domain: "foxcabaret.com", type: 'venue' },
+        { name: "VIFF Centre", url: "https://viff.org/whats-on/", domain: "viff.org", type: 'venue' },
+        { name: "Firehall Arts Centre", url: "https://firehallartscentre.ca/", domain: "firehallartscentre.ca", type: 'venue' },
+        { name: "Do604", url: "https://do604.com/events", domain: "do604.com", type: 'source' },
+        { name: "The Georgia Straight", url: "https://www.straight.com/listings", domain: "straight.com", type: 'source' },
+        { name: "Vancouver Is Awesome", url: "https://www.vancouverisawesome.com/events", domain: "vancouverisawesome.com", type: 'source' }
+      ];
+      fallbacks.forEach(f => feeds.push(f));
+    }
+
+    cachedVenueFeeds = feeds;
+    return feeds;
+  }
+
+  window.populateVenueFeedsDropdown = async function(filterQuery = '') {
+    const select = document.getElementById('pipeline-select-venue-feed');
+    if (!select) return;
+
+    const feeds = await loadVenueFeedsList();
+    const q = (filterQuery || '').trim().toLowerCase();
+    const currentVal = select.value || 'all';
+
+    let venueFeeds = feeds.filter(f => f.type === 'venue').sort((a, b) => a.name.localeCompare(b.name));
+    let sourceFeeds = feeds.filter(f => f.type === 'source').sort((a, b) => a.name.localeCompare(b.name));
+
+    if (q) {
+      venueFeeds = venueFeeds.filter(v =>
+        (v.name && v.name.toLowerCase().includes(q)) ||
+        (v.domain && v.domain.toLowerCase().includes(q)) ||
+        (v.neighborhood && v.neighborhood.toLowerCase().includes(q)) ||
+        (v.url && v.url.toLowerCase().includes(q))
+      );
+      sourceFeeds = sourceFeeds.filter(s =>
+        (s.name && s.name.toLowerCase().includes(q)) ||
+        (s.domain && s.domain.toLowerCase().includes(q)) ||
+        (s.url && s.url.toLowerCase().includes(q))
+      );
+    }
+
+    const totalMatches = venueFeeds.length + sourceFeeds.length;
+    let html = '';
+
+    if (!q) {
+      html += `<option value="all" ${currentVal === 'all' ? 'selected' : ''}>🌐 All Venue Feeds (Default — Crawl entire catalog directory: ${feeds.filter(f => f.type === 'venue').length} feeds)</option>`;
+    } else {
+      html += `<option value="all">🌐 All Venue Feeds (Clear search to crawl all)</option>`;
+    }
+
+    if (venueFeeds.length > 0) {
+      html += `<optgroup label="Physical Venue Feeds (${venueFeeds.length}${q ? ' matching' : ''})">`;
+      venueFeeds.forEach(v => {
+        const sub = v.domain || v.neighborhood || '';
+        const isSel = (currentVal === v.url) ? 'selected' : '';
+        html += `<option value="${escapeHtml(v.url)}" data-name="${escapeHtml(v.name)}" ${isSel}>${escapeHtml(v.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
+      });
+      html += `</optgroup>`;
+    }
+
+    if (sourceFeeds.length > 0) {
+      html += `<optgroup label="Discovery Portals & Aggregators (${sourceFeeds.length}${q ? ' matching' : ''})">`;
+      sourceFeeds.forEach(s => {
+        const sub = s.domain || '';
+        const isSel = (currentVal === s.url) ? 'selected' : '';
+        html += `<option value="${escapeHtml(s.url)}" data-name="${escapeHtml(s.name)}" ${isSel}>${escapeHtml(s.name)}${sub ? ` — ${escapeHtml(sub)}` : ''}</option>`;
+      });
+      html += `</optgroup>`;
+    }
+
+    if (q && totalMatches === 0) {
+      html += `<option value="" disabled selected>⚠️ No venue feeds matching "${escapeHtml(q)}"</option>`;
+    }
+
+    html += `<option value="custom" ${currentVal === 'custom' ? 'selected' : ''}>✏️ Enter Custom Calendar URL...</option>`;
+
+    select.innerHTML = html;
+
+    // When searching, auto-select the best match immediately
+    if (q && totalMatches > 0) {
+      const topMatch = venueFeeds[0] || sourceFeeds[0];
+      if (topMatch) {
+        select.value = topMatch.url;
+        window.onVenueFeedSelected(topMatch.url);
+      }
+    }
+
+    const badge = document.getElementById('pipeline-harvester-feed-count-badge');
+    if (badge) {
+      if (q) {
+        badge.textContent = `${totalMatches} Match${totalMatches === 1 ? '' : 'es'}`;
+        badge.style.background = 'rgba(56, 189, 248, 0.18)';
+        badge.style.color = '#38bdf8';
+      } else {
+        badge.textContent = currentVal === 'all' ? `All Feeds (${feeds.filter(f => f.type === 'venue').length})` : 'Single Feed';
+      }
+    }
+  };
+
+  window.onSearchVenueFeedInput = function(val) {
+    const clearBtn = document.getElementById('btn-clear-venue-search');
+    if (clearBtn) clearBtn.style.display = (val && val.trim()) ? 'inline-block' : 'none';
+    window.populateVenueFeedsDropdown(val);
+  };
+
+  window.clearVenueFeedSearch = function() {
+    const input = document.getElementById('pipeline-search-venue-feed');
+    if (input) input.value = '';
+    const clearBtn = document.getElementById('btn-clear-venue-search');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.populateVenueFeedsDropdown('').then(() => {
+      window.resetVenueFeedToAll();
+    });
+  };
+
+  window.onVenueFeedSelected = function(val) {
+    const select = document.getElementById('pipeline-select-venue-feed');
+    const badge = document.getElementById('pipeline-harvester-feed-count-badge');
+    const resetBtn = document.getElementById('btn-reset-venue-feed');
+    const displayEl = document.getElementById('pipeline-harvester-url-display');
+    const customInput = document.getElementById('pipeline-harvester-custom-url');
+    const customToggleBtn = document.getElementById('btn-harvester-custom-url-toggle');
+    const hintEl = document.getElementById('pipeline-scope-hint');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const inputUrl = document.getElementById('pipeline-input-url');
+
+    const effectiveCount = (pipelineBatchSize === 'all') ? 'All' : (typeof pipelineBatchSize === 'number' ? pipelineBatchSize : 5);
+
+    if (!val || val === 'all') {
+      if (select) select.value = 'all';
+      if (badge) {
+        badge.textContent = `${effectiveCount}-Event Batch Mode`;
+        badge.style.background = 'rgba(192, 132, 252, 0.18)';
+        badge.style.color = '#d8b4fe';
+      }
+      if (resetBtn) resetBtn.style.display = 'none';
+      if (displayEl) {
+        displayEl.style.display = 'block';
+        displayEl.textContent = `Crawling venue calendars (capped at ${effectiveCount} events) into layer_schedules.json`;
+      }
+      if (customInput) {
+        customInput.style.display = 'none';
+        customInput.value = '';
+      }
+      if (inputUrl) inputUrl.value = 'all';
+      if (customToggleBtn) customToggleBtn.textContent = 'Custom URL';
+      if (hintEl) {
+        hintEl.innerHTML = `<span>Targeting <strong>active venue calendars</strong> sequentially to harvest ${effectiveCount} candidate event links into <code>layer_schedules.json</code>.</span>`;
+      }
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Harvest ${effectiveCount} Events`;
+    } else if (val === 'custom') {
+      if (badge) {
+        badge.textContent = 'Custom URL';
+        badge.style.background = 'rgba(251, 191, 36, 0.18)';
+        badge.style.color = '#fbbf24';
+      }
+      if (resetBtn) resetBtn.style.display = 'inline-block';
+      if (displayEl) displayEl.style.display = 'none';
+      if (customInput) {
+        customInput.style.display = 'block';
+        customInput.focus();
+      }
+      if (customToggleBtn) customToggleBtn.textContent = 'Dropdown';
+      const typedUrl = (customInput && customInput.value.trim()) || '';
+      if (inputUrl) inputUrl.value = typedUrl;
+      if (hintEl) {
+        hintEl.innerHTML = typedUrl
+          ? `<span>Targeting custom URL: <strong>${escapeHtml(typedUrl)}</strong> into <code>layer_schedules.json</code>.</span>`
+          : '<span>Enter a custom venue calendar or ticket portal URL to crawl into <code>layer_schedules.json</code>.</span>';
+      }
+      if (btnLabelEl) btnLabelEl.textContent = '🚀 Harvest Custom URL';
+    } else {
+      const opt = select && select.selectedOptions && select.selectedOptions[0];
+      const venueName = (opt && opt.dataset.name) || (opt ? opt.textContent.split('—')[0].trim() : 'Venue');
+      if (badge) {
+        badge.textContent = 'Single Venue';
+        badge.style.background = 'rgba(56, 189, 248, 0.18)';
+        badge.style.color = '#38bdf8';
+      }
+      if (resetBtn) resetBtn.style.display = 'inline-block';
+      if (displayEl) {
+        displayEl.style.display = 'block';
+        displayEl.textContent = val;
+      }
+      if (customInput) {
+        customInput.style.display = 'none';
+        customInput.value = val;
+      }
+      if (inputUrl) inputUrl.value = val;
+      if (customToggleBtn) customToggleBtn.textContent = 'Custom URL';
+      if (hintEl) {
+        hintEl.innerHTML = `<span>Targeting <strong>${escapeHtml(venueName)}</strong> (<code>${escapeHtml(val)}</code>) to harvest upcoming dated showings into <code>layer_schedules.json</code>.</span>`;
+      }
+      if (btnLabelEl) btnLabelEl.textContent = `🚀 Harvest ${venueName} (${effectiveCount})`;
+    }
+  };
+
+  window.resetVenueFeedToAll = function() {
+    const searchInput = document.getElementById('pipeline-search-venue-feed');
+    if (searchInput) searchInput.value = '';
+    const clearBtn = document.getElementById('btn-clear-venue-search');
+    if (clearBtn) clearBtn.style.display = 'none';
+    const select = document.getElementById('pipeline-select-venue-feed');
+    if (select) select.value = 'all';
+    window.onVenueFeedSelected('all');
+  };
+
+  window.toggleHarvesterCustomUrl = function() {
+    const select = document.getElementById('pipeline-select-venue-feed');
+    const customInput = document.getElementById('pipeline-harvester-custom-url');
+    if (customInput && customInput.style.display !== 'none') {
+      window.onVenueFeedSelected('all');
+    } else {
+      if (select) select.value = 'custom';
+      window.onVenueFeedSelected('custom');
+    }
+  };
+
+  window.onHarvesterCustomUrlInput = function(val) {
+    const hintEl = document.getElementById('pipeline-scope-hint');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const inputUrl = document.getElementById('pipeline-input-url');
+    const trimmed = (val || '').trim();
+    if (inputUrl) inputUrl.value = trimmed;
+    if (hintEl) {
+      hintEl.innerHTML = trimmed
+        ? `<span>Targeting custom URL: <strong>${escapeHtml(trimmed)}</strong> into <code>layer_schedules.json</code>.</span>`
+        : '<span>Enter a custom venue calendar or ticket portal URL to crawl into <code>layer_schedules.json</code>.</span>';
+    }
+    if (btnLabelEl) btnLabelEl.textContent = trimmed ? 'Harvest Custom URL' : 'Enter URL to Harvest';
+  };
+
+  function populateCardNameDropdown() {
+    const select = document.getElementById('pipeline-select-card-name');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    if (!select || !events) return;
+    const prevVal = select.value || (pipelineCurrentCompId || null);
+    select.innerHTML = `<option value="">-- Choose a specific event card from catalog (${events.length} cards) --</option>`;
+    events.forEach((e, idx) => {
+      const cardNum = idx + 1;
+      const name = e.title || e.event_name || 'Event';
+      const venue = e.venue || e.venue_name || '';
+      const opt = document.createElement('option');
+      opt.value = e.id || e.event_id || '';
+      opt.dataset.cardIdx = cardNum;
+      opt.textContent = `Card #${cardNum}: ${name}${venue ? ` — ${venue}` : ''}`;
+      select.appendChild(opt);
+    });
+
+    if (state.quarantinedEvents && state.quarantinedEvents.length > 0) {
+      const qGroup = document.createElement('optgroup');
+      qGroup.label = `⚠️ Quarantined Review Queue (${state.quarantinedEvents.length} items)`;
+      state.quarantinedEvents.forEach((qe, qIdx) => {
+        const cardNum = `Q${qIdx + 1}`;
+        const name = qe.title || qe.event_name || 'Event';
+        const venue = qe.venue || qe.venue_name || '';
+        const opt = document.createElement('option');
+        opt.value = qe.id || qe.event_id || '';
+        opt.dataset.cardIdx = cardNum;
+        opt.dataset.isQuarantined = 'true';
+        opt.textContent = `[QUARANTINED #${cardNum}] ${name}${venue ? ` — ${venue}` : ''}`;
+        qGroup.appendChild(opt);
+      });
+      select.appendChild(qGroup);
+    }
+
+    if (prevVal && Array.from(select.options).some(o => o.value === prevVal)) {
+      select.value = prevVal;
+    }
+  }
+
+  window.onStartNumberInput = function() {
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    let start = parseInt(startInput ? startInput.value : '1', 10);
+    if (isNaN(start) || start < 1) start = 1;
+    if (start > totalEvents) start = totalEvents;
+
+    const newStop = Math.min(totalEvents, start + currentBatchSize - 1);
+    if (stopInput) stopInput.value = newStop;
+
+    window.setPipelineScope('range');
+    window.updateRangeDetails();
+  };
+
+  window.onStopNumberInput = function() {
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    let start = parseInt(startInput ? startInput.value : '1', 10);
+    if (isNaN(start) || start < 1) start = 1;
+    let stop = parseInt(stopInput ? stopInput.value : '1', 10);
+    if (isNaN(stop) || stop < 1) stop = 1;
+    if (stop > totalEvents) stop = totalEvents;
+
+    if (stop >= start) {
+      currentBatchSize = stop - start + 1;
+    }
+
+    window.updateRangeDetails();
+  };
+
+  window.updateRangeDetails = function() {
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const badge = document.getElementById('pipeline-range-count-badge');
+    const hint = document.getElementById('pipeline-scope-hint');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    let start = parseInt(startInput ? startInput.value : '1', 10) || 1;
+    let stop = parseInt(stopInput ? stopInput.value : '1', 10) || 1;
+
+    if (start < 1) start = 1;
+    if (start > totalEvents) start = totalEvents;
+    if (stop < start) stop = start;
+    if (stop > totalEvents) stop = totalEvents;
+
+    const count = stop - start + 1;
+    if (badge) {
+      badge.textContent = `(${count} Card${count > 1 ? 's' : ''} Selected: #${start} to #${stop})`;
+    }
+    if (hint && currentPipelineScope === 'range') {
+      hint.innerHTML = `<span>Targeting Card Range: <strong>#${start} through #${stop}</strong> (${count} total event card${count > 1 ? 's' : ''} sequentially).</span>`;
+    }
+    if (btnLabelEl && currentPipelineScope === 'range') {
+      if (currentPipelineScanKey === 'compile') {
+        btnLabelEl.textContent = `Compile & Publish Cards #${start}–#${stop} (${count})`;
+      } else if (currentPipelineScanKey === 'enrich') {
+        btnLabelEl.textContent = `Enrich Cards #${start}–#${stop} (${count})`;
+      } else {
+        btnLabelEl.textContent = `Run Scan on Cards #${start}–#${stop} (${count})`;
+      }
+    }
+  };
+
+  window.setQuickRangeIncrement = function(n) {
+    currentBatchSize = n;
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    let start = parseInt(startInput ? startInput.value : '1', 10);
+    if (isNaN(start) || start < 1) start = 1;
+    let stop = Math.min(totalEvents, start + n - 1);
+    if (stopInput) stopInput.value = stop;
+
+    window.setPipelineScope('range');
+    window.updateRangeDetails();
+  };
+
+  window.setFullCatalogRange = function() {
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    if (startInput) startInput.value = 1;
+    if (stopInput) stopInput.value = totalEvents;
+    currentBatchSize = totalEvents;
+
+    window.setPipelineScope('range');
+    window.updateRangeDetails();
+  };
+
+  // -------------------------------------------------------------
+  // Single Card Live Autopopulating Search & Selection
+  // -------------------------------------------------------------
+  let searchHighlightIndex = -1;
+
+  window.onCardNameSelected = function(val) {
+    const clearBtn = document.getElementById('btn-clear-card-select');
+    if (clearBtn) clearBtn.style.display = val ? 'inline-block' : 'none';
+    window.setPipelineScope('single_card');
+
+    if (val) {
+      const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+
+      let foundIdx = allEvs ? allEvs.findIndex(e => (e.id || e.event_id) === val) : -1;
+      let card = foundIdx !== -1 ? allEvs[foundIdx] : null;
+      let isQuarantined = false;
+      let cardNum = '?';
+
+      if (card) {
+        cardNum = foundIdx + 1;
+      } else {
+        const qIdx = qEvs ? qEvs.findIndex(e => (e.id || e.event_id) === val) : -1;
+        if (qIdx !== -1) {
+          card = qEvs[qIdx];
+          isQuarantined = true;
+          cardNum = `Q${qIdx + 1}`;
+        }
+      }
+
+      const select = document.getElementById('pipeline-select-card-name');
+      if (select) {
+        let matchingOpt = Array.from(select.options).find(o => o.value === val);
+        if (!matchingOpt && card) {
+          matchingOpt = document.createElement('option');
+          matchingOpt.value = val;
+          matchingOpt.dataset.cardIdx = cardNum;
+          matchingOpt.dataset.isQuarantined = isQuarantined ? 'true' : 'false';
+          matchingOpt.textContent = `${isQuarantined ? `[QUARANTINED #${cardNum}]` : `Card #${cardNum}`}: ${card.event_name || card.title || 'Event'}`;
+          select.appendChild(matchingOpt);
+        }
+        if (matchingOpt) {
+          select.value = val;
+        }
+      }
+
+      // Keep search box synchronized with the chosen card and store dataset.selectedId
+      const searchInput = document.getElementById('pipeline-custom-card-ids');
+      if (searchInput && card) {
+        searchInput.dataset.selectedId = val;
+        searchInput.dataset.isQuarantined = isQuarantined ? 'true' : 'false';
+        searchInput.dataset.cardNum = String(cardNum);
+        searchInput.value = `${isQuarantined ? `#${cardNum}` : `Card #${cardNum}`}: ${card.title || card.event_name || 'Event'}${isQuarantined ? ' [QUARANTINED]' : ''}`;
+      }
+      const clearSearchBtn = document.getElementById('btn-clear-custom-cards');
+      if (clearSearchBtn) clearSearchBtn.style.display = 'inline-block';
+
+      if (card && typeof renderComparisonCards === 'function') {
+        renderComparisonCards(null, card, false);
+        updateComparisonStatusPill(isQuarantined ? `Targeting Quarantined #${cardNum}` : `Targeting Card #${cardNum}`, 'nodrift');
+      }
+    }
+  };
+
+  window.clearSelectedCardName = function() {
+    const select = document.getElementById('pipeline-select-card-name');
+    if (select) select.value = '';
+    const clearBtn = document.getElementById('btn-clear-card-select');
+    if (clearBtn) clearBtn.style.display = 'none';
+
+    const searchInput = document.getElementById('pipeline-custom-card-ids');
+    if (searchInput) {
+      searchInput.value = '';
+      delete searchInput.dataset.selectedId;
+      delete searchInput.dataset.isQuarantined;
+      delete searchInput.dataset.cardNum;
+    }
+    const clearSearchBtn = document.getElementById('btn-clear-custom-cards');
+    if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+
+    const resultsContainer = document.getElementById('pipeline-card-search-results');
+    if (resultsContainer) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = '';
+    }
+
+    window.setPipelineScope('single_card');
+  };
+
+  window.parseCardNumbersToIds = function(str) {
+    if (!str) return [];
+    const customInput = document.getElementById('pipeline-custom-card-ids');
+    if (customInput && customInput.dataset.selectedId) {
+      if (!str || str.trim() === customInput.value.trim() || str.trim() === customInput.dataset.selectedId) {
+        return [customInput.dataset.selectedId];
+      }
+    }
+
+    const allEvs = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+    const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+
+    // Direct ID match first
+    const directQ = qEvs.find(e => (e.id || e.event_id) === str.trim());
+    if (directQ) return [directQ.id || directQ.event_id];
+
+    const directActive = allEvs.find(e => (e.id || e.event_id) === str.trim());
+    if (directActive) return [directActive.id || directActive.event_id];
+
+    // Single quarantined card match like #Q5, Q5, #Q-5, Q-5: ...
+    const qMatch = str.match(/#?q-?(\d+)/i);
+    if (qMatch) {
+      const qNum = parseInt(qMatch[1], 10);
+      if (qEvs && qNum >= 1 && qNum <= qEvs.length) {
+        const qev = qEvs[qNum - 1];
+        if (qev) return [qev.id || qev.event_id];
+      }
+    }
+
+    const parts = str.split(/[,;\s]+/).map(s => s.trim()).filter(Boolean);
+    const resolvedIds = [];
+
+    parts.forEach(part => {
+      // Quarantined #Q5 or Q-5
+      const partQ = part.match(/^#?q-?(\d+)/i);
+      if (partQ) {
+        const qIdx = parseInt(partQ[1], 10);
+        if (qEvs && qIdx >= 1 && qIdx <= qEvs.length) {
+          const ev = qEvs[qIdx - 1];
+          if (ev) resolvedIds.push(ev.id || ev.event_id);
+        }
+        return;
+      }
+
+      // Active range e.g. 1-5
+      if (part.includes('-') && /^\d+-\d+$/.test(part)) {
+        const [startStr, endStr] = part.split('-');
+        const start = parseInt(startStr, 10);
+        const end = parseInt(endStr, 10);
+        if (!isNaN(start) && !isNaN(end)) {
+          for (let i = Math.min(start, end); i <= Math.max(start, end); i++) {
+            if (allEvs && i >= 1 && i <= allEvs.length) {
+              const ev = allEvs[i - 1];
+              if (ev) resolvedIds.push(ev.id || ev.event_id);
+            }
+          }
+        }
+        return;
+      }
+
+      // Active card number e.g. #5 or 5
+      const numMatch = part.match(/^#?(\d+)$/);
+      if (numMatch) {
+        const num = parseInt(numMatch[1], 10);
+        if (allEvs && num >= 1 && num <= allEvs.length) {
+          const ev = allEvs[num - 1];
+          if (ev) resolvedIds.push(ev.id || ev.event_id);
+        }
+        return;
+      }
+
+      // Direct ID match in part
+      const found = allEvs.find(e => (e.id || e.event_id) === part) ||
+                    qEvs.find(e => (e.id || e.event_id) === part);
+      if (found) {
+        resolvedIds.push(found.id || found.event_id);
+      }
+    });
+
+    const uniqueIds = Array.from(new Set(resolvedIds));
+    if (uniqueIds.length > 0) return uniqueIds;
+
+    // Fallback: search title match across active and quarantined
+    const lower = str.toLowerCase();
+    const titleMatch = [...qEvs, ...allEvs].find(e => {
+      const t = (e.title || e.event_name || '').toLowerCase();
+      return t && (t === lower || lower.includes(t) || t.includes(lower));
+    });
+    if (titleMatch) {
+      return [titleMatch.id || titleMatch.event_id];
+    }
+    return [];
+  };
+
+  window.onCustomCardSearchInput = function(rawVal) {
+    const val = (rawVal || '').trim();
+    const resultsContainer = document.getElementById('pipeline-card-search-results');
+    const clearBtn = document.getElementById('btn-clear-custom-cards');
+
+    if (clearBtn) clearBtn.style.display = val ? 'inline-block' : 'none';
+
+    if (!resultsContainer) return;
+    if (!val) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = '';
+      return;
+    }
+
+    const activeEvents = (state.allEvents && state.allEvents.length > 0)
+      ? state.allEvents
+      : (state.masterCatalogsData?.events_active || []);
+
+    const quarantinedEvents = (state.quarantinedEvents && state.quarantinedEvents.length > 0)
+      ? state.quarantinedEvents
+      : (state.masterCatalogsData?.quarantined_events || []);
+
+    const allCards = [];
+    const seenIds = new Set();
+
+    activeEvents.forEach((ev, idx) => {
+      const id = ev.id || ev.event_id;
+      if (id && !seenIds.has(id)) {
+        seenIds.add(id);
+        allCards.push({ card: ev, cardNum: idx + 1, isQuarantined: false });
+      }
+    });
+
+    quarantinedEvents.forEach((qEv, idx) => {
+      const id = qEv.id || qEv.event_id;
+      if (id && !seenIds.has(id)) {
+        seenIds.add(id);
+        allCards.push({ card: qEv, cardNum: `Q-${idx + 1}`, isQuarantined: true });
+      }
+    });
+
+    if (allCards.length === 0) {
+      resultsContainer.innerHTML = `<div style="padding: 10px 14px; color: #94a3b8; font-size: 0.74rem; text-align: center;">No catalog events loaded.</div>`;
+      resultsContainer.style.display = 'block';
+      return;
+    }
+
+    const q = val.toLowerCase();
+    const numMatch = q.match(/^#?(?:q-?)?(\d+)$/i);
+    const targetNum = numMatch ? parseInt(numMatch[1], 10) : null;
+    const isTargetingQ = /^#?q/i.test(q);
+
+    const matches = [];
+    allCards.forEach((item) => {
+      const ev = item.card;
+      const cardNum = item.cardNum;
+      const isQuarantined = item.isQuarantined;
+      const title = (ev.title || ev.event_name || '').toLowerCase();
+      const venue = (ev.venue || ev.venue_name || '').toLowerCase();
+      const neighborhood = (ev.neighborhood || '').toLowerCase();
+      const category = (ev.category || '').toLowerCase();
+      const artist = (ev.artist || '').toLowerCase();
+      const lineupStr = Array.isArray(ev.lineup) ? ev.lineup.join(' ').toLowerCase() : '';
+      const id = (ev.id || ev.event_id || '').toLowerCase();
+      const reason = (ev.quarantineReason || ev.flagReason || '').toLowerCase();
+
+      let score = 0;
+      if (targetNum !== null) {
+        if (isQuarantined && isTargetingQ && cardNum === `Q-${targetNum}`) {
+          score = 1000;
+        } else if (!isQuarantined && !isTargetingQ && cardNum === targetNum) {
+          score = 1000;
+        }
+      }
+      if (score === 0) {
+        if (title.startsWith(q)) {
+          score = 500;
+        } else if (title.includes(q)) {
+          score = 250;
+        } else if (venue.includes(q)) {
+          score = 150;
+        } else if (artist.includes(q) || lineupStr.includes(q)) {
+          score = 120;
+        } else if (neighborhood.includes(q)) {
+          score = 80;
+        } else if (category.includes(q)) {
+          score = 60;
+        } else if (id.includes(q)) {
+          score = 40;
+        } else if (isQuarantined && (reason.includes(q) || q === 'quarantine' || q === 'quarantined')) {
+          score = 90;
+        }
+      }
+
+      if (score > 0) {
+        matches.push({ card: ev, cardNum, isQuarantined, score });
+      }
+    });
+
+    matches.sort((a, b) => b.score - a.score || (String(a.cardNum).localeCompare(String(b.cardNum))));
+
+    if (matches.length === 0) {
+      resultsContainer.innerHTML = `
+        <div style="padding: 12px 14px; color: #94a3b8; font-size: 0.74rem; text-align: center;">
+          No cards matching "<strong>${escapeHtml(val)}</strong>" in active or quarantined catalogs.
+        </div>
+      `;
+      resultsContainer.style.display = 'block';
+      return;
+    }
+
+    searchHighlightIndex = -1;
+    const topMatches = matches.slice(0, 15);
+    resultsContainer.innerHTML = topMatches.map((m, i) => {
+      const c = m.card;
+      const title = c.title || c.event_name || 'Event';
+      const venue = c.venue || c.venue_name || '';
+      const price = c.priceLabel || (c.price != null ? `$${Number(c.price).toFixed(2)} CAD` : 'Free ($0)');
+      const cat = (c.category || 'General').toUpperCase();
+      const eid = c.id || c.event_id || '';
+
+      return `
+        <div class="search-card-result-item" data-idx="${i}" data-eid="${escapeHtml(eid)}" onclick="selectCardFromSearch('${escapeHtml(eid)}')" onmouseenter="this.style.background='rgba(56, 189, 248, 0.15)'" onmouseleave="if (searchHighlightIndex !== ${i}) this.style.background='transparent'" style="display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.15s ease;">
+          <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+            <span style="font-weight: 800; font-size: 0.7rem; color: ${m.isQuarantined ? '#f87171' : '#38bdf8'}; background: ${m.isQuarantined ? 'rgba(239, 68, 68, 0.15)' : 'rgba(56, 189, 248, 0.15)'}; border: 1px solid ${m.isQuarantined ? 'rgba(239, 68, 68, 0.3)' : 'rgba(56, 189, 248, 0.3)'}; padding: 2px 6px; border-radius: 4px; white-space: nowrap;">
+              #${m.cardNum}
+            </span>
+            ${m.isQuarantined ? `
+              <span style="font-size: 0.62rem; font-weight: 700; color: #fb7185; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); padding: 1px 4px; border-radius: 3px; white-space: nowrap;">
+                QUARANTINED
+              </span>
+            ` : ''}
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-weight: 600; font-size: 0.76rem; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${escapeHtml(title)}
+              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; margin-top: 1px;">
+                <span>📍 ${escapeHtml(venue)}</span>
+                ${c.neighborhood ? `<span style="color: #64748b;">• ${escapeHtml(c.neighborhood)}</span>` : ''}
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; margin-left: 10px; flex-shrink: 0;">
+            <span style="font-size: 0.64rem; font-weight: 700; color: #d8b4fe; background: rgba(168, 85, 247, 0.12); padding: 1px 5px; border-radius: 3px; border: 1px solid rgba(168, 85, 247, 0.25);">
+              ${escapeHtml(cat)}
+            </span>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #34d399;">
+              ${escapeHtml(price)}
+            </span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if (matches.length > 15) {
+      resultsContainer.innerHTML += `
+        <div style="padding: 5px 12px; font-size: 0.66rem; color: #64748b; text-align: center; background: rgba(0, 0, 0, 0.25);">
+          Showing top 15 of ${matches.length} matching cards. Type more to refine.
+        </div>
+      `;
+    }
+
+    resultsContainer.style.display = 'block';
+  };
+
+  window.onCustomCardSearchFocus = function() {
+    const input = document.getElementById('pipeline-custom-card-ids');
+    if (input && input.value.trim()) {
+      window.onCustomCardSearchInput(input.value);
+    }
+  };
+
+  window.onCustomCardIdsInput = window.onCustomCardSearchInput;
+
+  window.selectCardFromSearch = function(eventId) {
+    if (!eventId) return;
+    const resultsContainer = document.getElementById('pipeline-card-search-results');
+    if (resultsContainer) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = '';
+    }
+    if (window.onCardNameSelected) {
+      window.onCardNameSelected(eventId);
+    }
+  };
+
+  window.clearCustomCardSearch = function() {
+    const searchInput = document.getElementById('pipeline-custom-card-ids');
+    if (searchInput) {
+      searchInput.value = '';
+      delete searchInput.dataset.selectedId;
+      delete searchInput.dataset.isQuarantined;
+      delete searchInput.dataset.cardNum;
+    }
+    const clearBtn = document.getElementById('btn-clear-custom-cards');
+    if (clearBtn) clearBtn.style.display = 'none';
+    const resultsContainer = document.getElementById('pipeline-card-search-results');
+    if (resultsContainer) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = '';
+    }
+    window.clearSelectedCardName();
+  };
+
+  window.clearCustomCardIds = window.clearCustomCardSearch;
+
+  // Close search popover when clicking outside
+  document.addEventListener('click', function(e) {
+    const wrapper = document.getElementById('pipeline-single-card-wrapper');
+    const results = document.getElementById('pipeline-card-search-results');
+    if (results && results.style.display !== 'none') {
+      if (!wrapper || !wrapper.contains(e.target)) {
+        results.style.display = 'none';
+      }
+    }
+  });
+
+  // Keyboard navigation for search input (Down, Up, Enter, Escape)
+  document.addEventListener('keydown', function(e) {
+    const results = document.getElementById('pipeline-card-search-results');
+    if (!results || results.style.display === 'none') return;
+    const items = results.querySelectorAll('.search-card-result-item');
+    if (!items || items.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      searchHighlightIndex = Math.min(items.length - 1, searchHighlightIndex + 1);
+      highlightSearchItem(items, searchHighlightIndex);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      searchHighlightIndex = Math.max(0, searchHighlightIndex - 1);
+      highlightSearchItem(items, searchHighlightIndex);
+    } else if (e.key === 'Enter') {
+      if (searchHighlightIndex >= 0 && searchHighlightIndex < items.length) {
+        e.preventDefault();
+        const eid = items[searchHighlightIndex].dataset.eid;
+        if (eid) window.selectCardFromSearch(eid);
+      }
+    } else if (e.key === 'Escape') {
+      results.style.display = 'none';
+    }
+  });
+
+  function highlightSearchItem(items, idx) {
+    items.forEach((item, i) => {
+      if (i === idx) {
+        item.style.background = 'rgba(56, 189, 248, 0.25)';
+        item.scrollIntoView({ block: 'nearest' });
+      } else {
+        item.style.background = 'transparent';
+      }
+    });
+  }
+
+  window.continueFromLastScanned = function() {
+    window.setPipelineScope('range');
+  };
+
+  window.onStaleDurationChange = function(val) {
+    if (currentPipelineScope === 'stale') {
+      window.setPipelineScope('stale');
+    }
+  };
+
+  window.setQuickStaleDuration = function(val) {
+    const select = document.getElementById('pipeline-stale-duration');
+    if (select) select.value = val;
+    window.setPipelineScope('stale');
+  };
+
+  window.setPipelineScope = function(scope) {
+    currentPipelineScope = scope;
+    const cards = ['unscanned', 'incomplete', 'stale', 'quarantined', 'batch5', 'range', 'single_card', 'all'];
+    cards.forEach(c => {
+      const el = document.getElementById(`scope-card-${c}`);
+      if (!el) return;
+      const dot = el.querySelector('.scope-radio-dot');
+      const titleSpan = el.querySelector('span:last-child');
+      if (c === scope) {
+        el.classList.add('active');
+        if (dot) {
+          dot.textContent = '●';
+          dot.style.color = '#38bdf8';
+        }
+        if (titleSpan) titleSpan.style.color = '#38bdf8';
+      } else {
+        el.classList.remove('active');
+        if (dot) {
+          dot.textContent = '○';
+          dot.style.color = '#94a3b8';
+        }
+        if (titleSpan) titleSpan.style.color = '#e2e8f0';
+      }
+    });
+
+    const hintEl = document.getElementById('pipeline-scope-hint');
+    const rangeWrapper = document.getElementById('pipeline-range-wrapper');
+    const singleCardWrapper = document.getElementById('pipeline-single-card-wrapper');
+    const staleWrapper = document.getElementById('pipeline-stale-wrapper');
+    const testCardEl = document.getElementById('pipeline-test-events-card');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const preset = SCAN_PRESETS[currentPipelineScanKey] || SCAN_PRESETS.qc;
+    const bCap = (pipelineBatchSize === 'all') ? 0 : (typeof pipelineBatchSize === 'number' ? pipelineBatchSize : 5);
+
+    if (testCardEl && (scope !== 'batch5' || preset.key === 'harvest')) {
+      testCardEl.style.display = 'none';
+    }
+    if (staleWrapper) {
+      staleWrapper.style.display = (scope === 'stale') ? 'flex' : 'none';
+    }
+
+    if (scope === 'unscanned') {
+      if (rangeWrapper) rangeWrapper.style.display = 'flex';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      if (hintEl) {
+        if (preset.key === 'compile') {
+          const uncompiled = calculateUncompiledEvents();
+          hintEl.innerHTML = uncompiled.length > 0
+            ? `<span>Targeting <strong>${uncompiled.length} events</strong> (including quarantined cards) awaiting compilation and live publishing.</span>`
+            : `<span>All catalog and quarantined events are compiled and published. Ready to re-verify on demand.</span>`;
+        } else if (preset.key === 'enrich') {
+          const unenriched = calculateUnenrichedEvents();
+          hintEl.innerHTML = unenriched.length > 0
+            ? `<span>Targeting <strong>${unenriched.length} events</strong> (including quarantined cards) pending AI semantic enrichment in layer_editorial.json.</span>`
+            : `<span>All catalog and quarantined events have clean, verified editorial enrichment.</span>`;
+        } else if (preset.key === 'harvest') {
+          hintEl.innerHTML = '<span>Crawling all registered venue calendars and discovery feeds into <code>layer_schedules.json</code>.</span>';
+        } else {
+          const unscanned = calculateUnscannedEvents();
+          hintEl.innerHTML = unscanned.length > 0
+            ? `<span>Targeting <strong>${unscanned.length} events</strong> (including quarantined cards) awaiting Stagehand cart audit & fee verification.</span>`
+            : `<span>All catalog and quarantined events have verified box office data.</span>`;
+        }
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'compile') {
+          const uncompiled = calculateUncompiledEvents();
+          const cCount = bCap > 0 ? Math.min(bCap, uncompiled.length || bCap) : (uncompiled.length || 'All');
+          btnLabelEl.textContent = `🚀 Compile & Publish (${cCount})`;
+        } else if (preset.key === 'enrich') {
+          const unenriched = calculateUnenrichedEvents();
+          const targetCount = bCap > 0 ? Math.min(bCap, unenriched.length || bCap) : (unenriched.length || 'All');
+          btnLabelEl.textContent = `🚀 Enrich ${targetCount} with AI`;
+        } else if (preset.key === 'harvest') {
+          const hCount = (pipelineBatchSize === 'all') ? 'All' : (typeof pipelineBatchSize === 'number' ? pipelineBatchSize : 5);
+          btnLabelEl.textContent = `🚀 Harvest ${hCount} Events`;
+        } else if (preset.key === 'hunter') {
+          const hCount = bCap > 0 ? bCap : 'All';
+          btnLabelEl.textContent = `🚀 Hunt ${hCount} Direct Links`;
+        } else {
+          const unscanned = calculateUnscannedEvents();
+          const qcCount = bCap > 0 ? Math.min(bCap, unscanned.length || bCap) : (unscanned.length || 'All');
+          btnLabelEl.textContent = `🚀 Run Stagehand QC (${qcCount})`;
+        }
+      }
+    } else if (scope === 'incomplete') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      const incompleteList = calculateIncompleteEvents();
+      const totalIncomplete = incompleteList.length;
+      const count = bCap > 0 ? Math.min(bCap, totalIncomplete || bCap) : totalIncomplete;
+      if (hintEl) {
+        hintEl.innerHTML = `<span>Targeting <strong>${count} of ${totalIncomplete} incomplete events</strong> (missing cart proof keyframe, schedule showings, editorial synopsis, or compiler release).</span>`;
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${count} Incomplete)`;
+        else if (preset.key === 'enrich') btnLabelEl.textContent = `🚀 Enrich ${count} Incomplete Cards`;
+        else if (preset.key === 'hunter') btnLabelEl.textContent = `🚀 Hunt ${count} Direct Links (Incomplete)`;
+        else if (preset.key === 'harvest') btnLabelEl.textContent = `🚀 Harvest Schedules (${count} Incomplete)`;
+        else btnLabelEl.textContent = `🚀 Run Stagehand QC (${count} Incomplete)`;
+      }
+    } else if (scope === 'stale') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      const durationSelect = document.getElementById('pipeline-stale-duration');
+      const durationVal = durationSelect ? durationSelect.value : '24h';
+      const durationLabel = durationSelect && durationSelect.selectedOptions[0] ? durationSelect.selectedOptions[0].textContent : `> ${durationVal}`;
+      const staleList = calculateStaleEvents(durationVal);
+      const totalStale = staleList.length;
+      const count = bCap > 0 ? Math.min(bCap, totalStale || bCap) : totalStale;
+      const countBadge = document.getElementById('pipeline-stale-count-badge');
+      if (countBadge) countBadge.textContent = `(${totalStale} Cards Stale in Catalog • Running ${count})`;
+      if (hintEl) {
+        hintEl.innerHTML = `<span>Targeting <strong>${count} of ${totalStale} events</strong> whose last audit timestamp is older than ${durationLabel} (or never audited).</span>`;
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${count} Stale)`;
+        else if (preset.key === 'enrich') btnLabelEl.textContent = `🚀 Enrich ${count} Stale Cards (${durationVal})`;
+        else if (preset.key === 'hunter') btnLabelEl.textContent = `🚀 Hunt ${count} Direct Links (${durationVal})`;
+        else if (preset.key === 'harvest') btnLabelEl.textContent = `🚀 Harvest Feeds for ${count} Stale Cards`;
+        else btnLabelEl.textContent = `🚀 Run Stagehand QC (${count} Stale > ${durationVal})`;
+      }
+    } else if (scope === 'quarantined') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      const totalQ = (state.quarantinedEvents && state.quarantinedEvents.length) || 0;
+      const qCount = bCap > 0 ? Math.min(bCap, totalQ || bCap) : totalQ;
+      const qPillLabel = document.getElementById('scope-pill-quarantined-label');
+      if (qPillLabel) qPillLabel.innerHTML = `Quarantined (<span id="scope-count-quarantined">${totalQ}</span>)`;
+      if (hintEl) {
+        hintEl.innerHTML = `<span>Targeting <strong>${qCount} of ${totalQ} Quarantined Items</strong> in <code>data/manual_review_queue.json</code> through <strong>Stage 1B ➔ Stage 5</strong>.</span>`;
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'hunter') btnLabelEl.textContent = `🚀 Hunt ${qCount} Quarantined Links`;
+        else if (preset.key === 'qc') btnLabelEl.textContent = `🚀 Run Stagehand QC (${qCount} Quarantined)`;
+        else if (preset.key === 'enrich') btnLabelEl.textContent = `🚀 Enrich ${qCount} Quarantined Cards`;
+        else if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${qCount} Quarantined)`;
+        else btnLabelEl.textContent = `🚀 Run Scan (${qCount} Quarantined)`;
+      }
+    } else if (scope === 'batch5') {
+      const batchPillLabel = document.getElementById('scope-pill-batch5-label');
+      if (preset.key === 'harvest') {
+        if (testCardEl) testCardEl.style.display = 'none';
+      } else if (isPipelineTestMode && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+        if (rangeWrapper) rangeWrapper.style.display = 'none';
+        if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+        const count = pipelineTestDiscoveredIds.length;
+        if (batchPillLabel) batchPillLabel.textContent = `🧪 ${count} Pipeline Events`;
+        window.renderPipelineTestEventsList();
+        if (hintEl) {
+          hintEl.innerHTML = `<span>Targeting <strong>${count} Pipeline Events</strong> in exact sequence (1 → ${count}).</span>`;
+        }
+        if (btnLabelEl) {
+          if (preset.key === 'qc') btnLabelEl.textContent = `🚀 Run Stagehand QC (${count})`;
+          else if (preset.key === 'enrich') btnLabelEl.textContent = `🚀 Enrich ${count} with AI`;
+          else if (preset.key === 'hunter') btnLabelEl.textContent = `🚀 Hunt ${count} Direct Links`;
+          else if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${count})`;
+          else btnLabelEl.textContent = `🚀 Run Scan (${count})`;
+        }
+      } else {
+        if (rangeWrapper) rangeWrapper.style.display = 'flex';
+        if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+        if (testCardEl) testCardEl.style.display = 'none';
+        const count = bCap > 0 ? bCap : 5;
+        if (batchPillLabel) batchPillLabel.textContent = `${count} Events`;
+        const startInput = document.getElementById('pipeline-card-start');
+        const stopInput = document.getElementById('pipeline-card-stop');
+        let startVal = parseInt(startInput ? startInput.value : '1', 10) || 1;
+        let stopVal = startVal + count - 1;
+        if (stopInput) stopInput.value = stopVal;
+        window.updateRangeDetails();
+        if (hintEl) {
+          hintEl.innerHTML = `<span>Targeting <strong>${count} Event Cards (#${startVal} to #${stopVal})</strong>.</span>`;
+        }
+        if (btnLabelEl) {
+          if (preset.key === 'qc') btnLabelEl.textContent = `🚀 Run Stagehand QC (${count})`;
+          else if (preset.key === 'enrich') btnLabelEl.textContent = `🚀 Enrich ${count} with AI`;
+          else if (preset.key === 'hunter') btnLabelEl.textContent = `🚀 Hunt ${count} Direct Links`;
+          else if (preset.key === 'compile') btnLabelEl.textContent = `🚀 Compile & Publish (${count})`;
+          else btnLabelEl.textContent = `🚀 Run Scan (${count})`;
+        }
+      }
+    } else if (scope === 'range') {
+      if (rangeWrapper) rangeWrapper.style.display = 'flex';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      window.updateRangeDetails();
+    } else if (scope === 'single_card') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'block';
+      const select = document.getElementById('pipeline-select-card-name');
+      const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      if (select && select.value) {
+        const card = events.find(e => (e.event_id || e.id) === select.value);
+        const opt = select.selectedOptions && select.selectedOptions[0];
+        const cardNum = opt ? opt.dataset.cardIdx : null;
+        const cardTitle = card ? (card.title || card.event_name || 'Event') : `Card #${cardNum}`;
+        if (hintEl) hintEl.innerHTML = `<span>Targeting Single Card: <strong>Card #${cardNum}: ${escapeHtml(cardTitle)}</strong>.</span>`;
+        if (btnLabelEl) {
+          if (preset.key === 'compile') btnLabelEl.textContent = `Compile & Publish Card #${cardNum} Only`;
+          else if (preset.key === 'enrich') btnLabelEl.textContent = `Enrich Card #${cardNum} Only`;
+          else if (preset.key === 'harvest') btnLabelEl.textContent = `Harvest Card #${cardNum} Schedule`;
+          else if (preset.key === 'qc') btnLabelEl.textContent = `Run Stagehand on Card #${cardNum} Only`;
+          else btnLabelEl.textContent = `Run Scan on Card #${cardNum} Only`;
+        }
+      } else {
+        if (hintEl) hintEl.innerHTML = '<span>Please choose an event card from the dropdown above.</span>';
+        if (btnLabelEl) btnLabelEl.textContent = 'Select Card to Scan';
+      }
+    } else if (scope === 'all') {
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+      const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+      const total = events.length || 156;
+      if (hintEl) {
+        if (preset.key === 'compile') {
+          hintEl.innerHTML = `<span>Reconciling and publishing entire catalog (all ${total} events) live to events.json & js/data.js.</span>`;
+        } else if (preset.key === 'enrich') {
+          hintEl.innerHTML = `<span>Enriching entire catalog (all ${total} events) into layer_editorial.json.</span>`;
+        } else if (preset.key === 'harvest') {
+          hintEl.innerHTML = `<span>Harvesting schedules for all ${total} catalog venue feeds sequentially into layer_schedules.json.</span>`;
+        } else {
+          hintEl.innerHTML = '<span>Targeting all catalog events sequentially from #1 to end in isolated sessions.</span>';
+        }
+      }
+      if (btnLabelEl) {
+        if (preset.key === 'compile') btnLabelEl.textContent = `Compile & Publish All (${total} Cards)`;
+        else if (preset.key === 'enrich') btnLabelEl.textContent = `Enrich All (${total} Cards)`;
+        else if (preset.key === 'harvest') btnLabelEl.textContent = `Harvest All (${total} Feeds)`;
+        else if (preset.key === 'qc') btnLabelEl.textContent = `Run Stagehand (All ${total} Cards)`;
+        else btnLabelEl.textContent = `Run Full Scan (All ${total} Cards)`;
+      }
+    }
+  };
+
+  window.openScanModal = function(scanKey, evt, targetCardId) {
+    if (evt) evt.stopPropagation();
+    const preset = SCAN_PRESETS[scanKey] || SCAN_PRESETS.qc;
+    currentPipelineScanKey = preset.key;
+
+    const titleEl = document.getElementById('pipeline-modal-title');
+    const techPillEl = document.getElementById('pipeline-scan-tech-pill');
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+    const inputUrl = document.getElementById('pipeline-input-url');
+    const targetWrapper = document.getElementById('pipeline-target-wrapper');
+    const startInput = document.getElementById('pipeline-card-start');
+    const stopInput = document.getElementById('pipeline-card-stop');
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    const totalEvents = events.length || 156;
+
+    if (titleEl) titleEl.innerHTML = preset.title;
+    if (techPillEl) {
+      techPillEl.textContent = preset.techPillText;
+      techPillEl.className = `tech-pill ${preset.techPillClass}`;
+    }
+    if (btnLabelEl) btnLabelEl.textContent = preset.btnLabel;
+    if (btnTrigger) {
+      btnTrigger.style.background = preset.btnColor;
+      btnTrigger.style.borderColor = preset.btnBorder;
+    }
+    if (inputUrl) {
+      inputUrl.placeholder = preset.urlPlaceholder;
+      inputUrl.value = '';
+    }
+    if (startInput) {
+      startInput.max = totalEvents;
+      startInput.value = 1;
+    }
+    if (stopInput) {
+      stopInput.max = totalEvents;
+      stopInput.value = Math.min(totalEvents, preset.defaultLimit || 5);
+    }
+
+    if (targetWrapper) targetWrapper.style.display = preset.showUrl ? 'block' : 'none';
+
+    populateCardNameDropdown();
+
+    const isCardAuditScan = (preset.key === 'hunter' || preset.key === 'qc' || preset.key === 'enrich' || preset.key === 'compile');
+    const trackerEl = document.getElementById('pipeline-last-scanned-tracker');
+    const harvesterInfoEl = document.getElementById('pipeline-harvester-status-info');
+    const harvesterFeedWrapper = document.getElementById('pipeline-harvester-venue-feed-wrapper');
+    const venueDetailerWrapper = document.getElementById('pipeline-venue-detailer-selector-wrapper');
+    const scopeSection = document.getElementById('pipeline-scope-selector-section');
+    const rangeWrapper = document.getElementById('pipeline-range-wrapper');
+    const singleCardWrapper = document.getElementById('pipeline-single-card-wrapper');
+
+    if (PIPELINE_TEST_ORDER.includes(preset.key)) {
+      pipelineTestStageKey = preset.key;
+    }
+    updatePipelineTestStepperUI();
+    updateStageNavButtons();
+    updateComparisonFilterButtonUI(preset.key);
+
+    const unscannedLabel = document.getElementById('scope-pill-unscanned-label');
+    if (unscannedLabel) {
+      if (preset.key === 'compile') {
+        const uncompiled = calculateUncompiledEvents();
+        unscannedLabel.textContent = `Uncompiled Only (${uncompiled.length})`;
+      } else if (preset.key === 'enrich') {
+        const unenriched = calculateUnenrichedEvents();
+        unscannedLabel.textContent = `Unenriched Only (${unenriched.length})`;
+      } else {
+        const unscanned = calculateUnscannedEvents();
+        unscannedLabel.textContent = `Unscanned Only (${unscanned.length})`;
+      }
+    }
+
+    const trackerLabel = document.getElementById('pipeline-last-scanned-label');
+    if (trackerLabel) trackerLabel.textContent = 'Stage Status:';
+
+    if (preset.key === 'harvest') {
+      const feeds = (cachedVenueFeeds && cachedVenueFeeds.length > 0)
+        ? cachedVenueFeeds
+        : ((state.masterCatalogsData && state.masterCatalogsData.venues_master) || Object.values(state.venuesData || {}));
+      const totalFeeds = (feeds && feeds.length) ? feeds.length : 155;
+      const isHarvestComplete = (typeof pipelineTestStageStatuses !== 'undefined' && (pipelineTestStageStatuses['harvest'] || '').includes('Complete'));
+      const processedFeeds = isHarvestComplete ? totalFeeds : ((typeof harvesterDiscoveredEvents !== 'undefined' && harvesterDiscoveredEvents && harvesterDiscoveredEvents.length > 0) ? harvesterDiscoveredEvents.length : 0);
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        trackerStatus.innerHTML = `<span style="color: #c084fc; font-weight: 700;">${processedFeeds}/${totalFeeds} events Feeds Pending Harvesting</span>`;
+      }
+    } else if (preset.key === 'hunter') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        const tier1Count = state.allEvents ? state.allEvents.filter(e => typeof resolveHighestTierLink === 'function' && resolveHighestTierLink(e).tier === 1).length : 0;
+        const pendingHunter = Math.max(0, totalEvents - tier1Count);
+        if (pendingHunter > 0) {
+          trackerStatus.innerHTML = `<span style="color: #14b8a6; font-weight: 700;">${tier1Count}/${totalEvents} Processed</span> • <span style="color: #94a3b8;">${pendingHunter} pending Tier 1 checkout upgrade</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">${totalEvents}/${totalEvents} Processed • All direct checkout links verified!</span>`;
+        }
+      }
+    } else if (preset.key === 'venue') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+        const totalVenues = (venues && venues.length) || 159;
+        const groundedCount = venues && venues.length
+          ? venues.filter(v => (v.full_address && (v.coordinates || v.transit_info)) || v.last_grounded_at).length
+          : totalVenues;
+        const pendingCount = Math.max(0, totalVenues - groundedCount);
+        if (pendingCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Processed</span> • <span style="color: #94a3b8;">${pendingCount} pending grounding</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #06b6d4; font-weight: 700;">${groundedCount}/${totalVenues} Processed</span>`;
+        }
+      }
+    } else if (preset.key === 'compile') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        const totalCatalogEvents = (state.allEvents ? state.allEvents.length : 0) + (state.quarantinedEvents ? state.quarantinedEvents.length : 0) || totalEvents;
+        const uncompiled = calculateUncompiledEvents();
+        const uncompiledCount = uncompiled.length;
+        const compiledCount = Math.max(0, totalCatalogEvents - uncompiledCount);
+        const activePublishedCount = state.allEvents ? state.allEvents.length : 0;
+        const qCount = (state.quarantinedEvents || []).length;
+        trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${compiledCount}/${totalCatalogEvents} Compiled</span> &nbsp;&nbsp; <span style="color: #34d399; font-weight: 700;">${activePublishedCount}/${totalCatalogEvents} Published</span>, <span style="color: #f87171; font-weight: 700;">${qCount}/${totalCatalogEvents} Quarantined</span>`;
+      }
+    } else if (preset.key === 'enrich') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        const unenriched = calculateUnenrichedEvents();
+        const unenrichedCount = unenriched.length;
+        const enrichedCount = Math.max(0, totalEvents - unenrichedCount);
+        if (unenrichedCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #fbbf24; font-weight: 700;">${unenrichedCount} events pending AI enrichment</span> • <span style="color: #94a3b8;">${enrichedCount} verified</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">All events enriched!</span>`;
+        }
+      }
+    } else if (preset.key === 'qc') {
+      const trackerStatus = document.getElementById('pipeline-last-scanned-text');
+      if (trackerStatus) {
+        const unscanned = calculateUnscannedEvents();
+        const unscannedCount = unscanned.length;
+        const scannedCount = Math.max(0, totalEvents - unscannedCount);
+        if (unscannedCount > 0) {
+          trackerStatus.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">${unscannedCount} events pending Stagehand QC</span> • <span style="color: #94a3b8;">${scannedCount} verified</span>`;
+        } else {
+          trackerStatus.innerHTML = `<span style="color: #34d399; font-weight: 700;">All events verified!</span>`;
+        }
+      }
+    }
+
+    if (preset.key === 'harvest') {
+      // SCHEDULE HARVESTER: Venue feeds selection (default: all venue feeds).
+      if (trackerEl) trackerEl.style.display = 'flex';
+      if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
+      if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'flex';
+      if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'none';
+      if (targetWrapper) targetWrapper.style.display = 'none';
+      if (scopeSection) scopeSection.style.display = 'none';
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+
+      if (typeof window.populateVenueFeedsDropdown === 'function') {
+        window.populateVenueFeedsDropdown().then(() => {
+          window.onVenueFeedSelected('all');
+        });
+      }
+    } else if (preset.key === 'venue') {
+      // VENUE DETAILER: Physical venue selector
+      if (trackerEl) trackerEl.style.display = 'flex';
+      if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
+      if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'none';
+      if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'flex';
+      if (targetWrapper) targetWrapper.style.display = 'none';
+      if (scopeSection) scopeSection.style.display = 'none';
+      if (rangeWrapper) rangeWrapper.style.display = 'none';
+      if (singleCardWrapper) singleCardWrapper.style.display = 'none';
+
+      if (typeof window.populateVenueDetailerDropdown === 'function') {
+        window.populateVenueDetailerDropdown().then(() => {
+          window.onVenueDetailerSelected('new_events');
+          if (typeof window.showComparisonCardById === 'function') {
+            const batchVenues = window.getVenuesForNewEvents ? window.getVenuesForNewEvents() : [];
+            let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+            let targetVIdx = 0;
+            if (batchVenues.length > 0 && Array.isArray(venues)) {
+              const foundIdx = venues.findIndex(v => (v.venue_name || v.name || '').toLowerCase() === batchVenues[0].toLowerCase());
+              if (foundIdx >= 0) targetVIdx = foundIdx;
+            }
+            window.showComparisonCardById(`venue:${targetVIdx}`);
+          }
+        });
+      }
+    } else {
+      // CARD AUDIT SCANS (Hunter, QC, Enricher, Compiler): Show card ranges & card selection
+      if (harvesterFeedWrapper) harvesterFeedWrapper.style.display = 'none';
+      if (venueDetailerWrapper) venueDetailerWrapper.style.display = 'none';
+      if (harvesterInfoEl) harvesterInfoEl.style.display = 'none';
+      if (trackerEl) trackerEl.style.display = 'flex';
+      if (targetWrapper) targetWrapper.style.display = preset.showUrl ? 'flex' : 'none';
+      if (scopeSection) scopeSection.style.display = 'block';
+
+      if (targetCardId) {
+        const select = document.getElementById('pipeline-select-card-name');
+        if (select) select.value = targetCardId;
+        window.setPipelineScope('single_card');
+        window.onCardNameSelected(targetCardId);
+      } else if (pipelineQuarantinedRunActive || currentPipelineScope === 'quarantined') {
+        window.setPipelineScope('quarantined');
+      } else if (isPipelineTestMode && pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+        window.setPipelineScope('batch5');
+      } else {
+        window.setPipelineScope('unscanned');
+        window.updateRangeDetails();
+      }
+    }
+
+    if (!isExecuting) {
+      if (pipelineStatusText) {
+        pipelineStatusText.textContent = `Ready to run • Select scope and click Run Scan Now`;
+        pipelineStatusText.style.color = '#38bdf8';
+      }
+      const metricsBox = document.getElementById('pipeline-active-metrics');
+      if (metricsBox) metricsBox.style.display = 'none';
+      if (pipelineStatusSubtext) pipelineStatusSubtext.style.display = 'none';
+      if (pipelineTimer) pipelineTimer.textContent = 'Elapsed: 0s';
+      if (pipelineProgressBar) {
+        pipelineProgressBar.style.width = '0%';
+        pipelineProgressBar.style.background = preset.btnColor;
+      }
+      if (pipelineSpinner) {
+        pipelineSpinner.style.animation = 'none';
+      }
+      if (btnStopPipeline) btnStopPipeline.style.display = 'none';
+      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
+      if (btnTrigger) btnTrigger.style.display = 'inline-flex';
+    }
+
+    // Initialize side-by-side comparison view
+    pipelineAuditedCardsHistory = [];
+    pipelineCurrentCompId = null;
+    if (typeof updateComparisonCardDropdown === 'function') updateComparisonCardDropdown();
+    if (typeof updateComparisonStatusPill === 'function') updateComparisonStatusPill('Awaiting Run', 'nodrift');
+
+    let initialCard = null;
+    const selectCardNameEl = document.getElementById('pipeline-select-card-name');
+    if (selectCardNameEl && selectCardNameEl.value) {
+      initialCard = events ? events.find(e => (e.id || e.event_id) === selectCardNameEl.value) : null;
+    }
+    if (!initialCard && events && events.length > 0) {
+      if (preset.key === 'enrich') {
+        const unenriched = calculateUnenrichedEvents();
+        if (unenriched.length > 0) {
+          initialCard = events.find(e => (e.id || e.event_id) === unenriched[0].id) || events[0];
+        } else {
+          initialCard = events[0];
+        }
+      } else {
+        const startVal = parseInt(document.getElementById('pipeline-card-start')?.value || '1', 10);
+        const idx = Math.max(0, Math.min(events.length - 1, startVal - 1));
+        initialCard = events[idx];
+      }
+    }
+    if (preset.key === 'harvest') {
+      const titleEl = document.getElementById('pipeline-comparison-header-title');
+      const descEl = document.getElementById('pipeline-comparison-header-desc');
+      const navToolbar = document.getElementById('pipeline-comparison-nav-toolbar');
+      if (titleEl) titleEl.textContent = 'Venue Schedule Harvest Comparison (Before vs. After)';
+      if (descEl) descEl.textContent = 'Baseline events per data source prior to crawl vs. newly harvested event schedule deep links.';
+      if (navToolbar) navToolbar.style.display = 'none';
+
+      renderHarvesterComparisonView(false, harvesterDiscoveredEvents, false);
+    } else if (preset.key === 'venue') {
+      const titleEl = document.getElementById('pipeline-comparison-header-title');
+      const descEl = document.getElementById('pipeline-comparison-header-desc');
+      const navToolbar = document.getElementById('pipeline-comparison-nav-toolbar');
+      if (titleEl) titleEl.textContent = 'AI Venue Yield Comparison (Before vs. After)';
+      if (descEl) descEl.textContent = 'Baseline facility state before grounding vs. authoritative civic address, GPS, and transit waypoints.';
+      if (navToolbar) navToolbar.style.display = 'flex';
+    } else {
+      const titleEl = document.getElementById('pipeline-comparison-header-title');
+      const descEl = document.getElementById('pipeline-comparison-header-desc');
+      const navToolbar = document.getElementById('pipeline-comparison-nav-toolbar');
+      if (titleEl) titleEl.textContent = 'AI Card Yield Comparison (Before vs. After)';
+      if (descEl) descEl.textContent = 'Baseline state before scan vs. only information obtained by this particular AI run.';
+      if (navToolbar) navToolbar.style.display = 'flex';
+
+      if (typeof renderComparisonCards === 'function') {
+        if (initialCard) {
+          renderComparisonCards(null, initialCard, false);
+        } else {
+          renderComparisonCards(null, null, false);
+        }
+      }
+    }
+
+    if (pipelineModal) {
+      pipelineModal.style.display = 'flex';
+      pipelineModal.classList.add('active');
+      if (typeof initColumnResizers === 'function') initColumnResizers();
+    }
+  };
+
+  const runPipelineAction = (params) => {
+    if (isExecuting) {
+      if (pipelineModal) {
+        pipelineModal.style.display = 'flex';
+        pipelineModal.classList.add('active');
+        if (typeof initColumnResizers === 'function') initColumnResizers();
+      }
+      if (btnStopPipeline) btnStopPipeline.style.display = 'inline-block';
+      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'inline-flex';
+
+      fetch('/api/curator/stagehand/stop', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Curator-Token': state.token || '' },
+        body: JSON.stringify({})
+      }).then(r => r.json()).then(data => {
+        if (!data.stopped) {
+          console.log('[STAGEHAND] Auto-cleared stale execution state. Proceeding with requested scan.');
+          setExecutionState(false);
+          if (activeEventSource) {
+            activeEventSource.close();
+            activeEventSource = null;
+          }
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+          runPipelineAction(params);
+        } else {
+          if (typeof showToast === 'function') {
+            showToast('Previous active pipeline task was halted. Click Run to start your scan.', 'info');
+          }
+          setExecutionState(false);
+          if (activeEventSource) {
+            activeEventSource.close();
+            activeEventSource = null;
+          }
+        }
+      }).catch(() => {
+        if (typeof showToast === 'function') {
+          showToast('A pipeline task is active. Status modal opened — click "Stop Scan" to cancel.', 'warning');
+        }
+      });
+      return;
+    }
+
+    const { mode, url, limit, offset, id, ids, venue, quarantine, uncompiledOnly, all, force, autoApprove, title, desc, initialStatus, scope, incompleteOnly, stale } = params;
+
+    const modeToStageKey = {
+      calendar: 'harvest',
+      harvester: 'harvest',
+      tier1_hunter: 'hunter',
+      catalog_batch: 'qc',
+      enrich: 'enrich',
+      venue_detailer: 'venue',
+      compile: 'compile'
+    };
+    const activeStageKey = modeToStageKey[mode] || currentPipelineScanKey || 'qc';
+    currentPipelineScanKey = activeStageKey;
+    window.activePipelineRunningStageKey = activeStageKey;
+    if (PIPELINE_TEST_ORDER.includes(activeStageKey)) {
+      pipelineTestStageKey = activeStageKey;
+      pipelineTestStageStatuses[activeStageKey] = 'Running ⚡';
+      updatePipelineTestStepperUI();
+      updateStageNavButtons();
+    }
+
+    document.body.style.overflow = 'hidden';
+    if (pipelineModal) {
+      pipelineModal.style.display = 'flex';
+      pipelineModal.classList.add('active');
+    }
+
+    if (pipelineModalTitle) pipelineModalTitle.innerHTML = title || '<span>⚡</span> Autonomous Pipeline Execution';
+    if (pipelineModalDesc) pipelineModalDesc.textContent = desc || 'Standalone cloud worker executing headless Chromium automation with live stream output.';
+
+    if (pipelineStatusText) {
+      pipelineStatusText.textContent = initialStatus || 'Initializing cloud pipeline worker...';
+      pipelineStatusText.style.color = '#c084fc';
+    }
+    if (pipelineStatusSubtext) {
+      pipelineStatusSubtext.textContent = 'Establishing server-sent events stream...';
+      pipelineStatusSubtext.style.display = 'block';
+    }
+    if (pipelineConsoleOutput) pipelineConsoleOutput.textContent = '';
+    if (pipelineTimer) pipelineTimer.textContent = '⏱️ 0s';
+    if (btnStopPipeline) btnStopPipeline.style.display = 'inline-block';
+    if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'inline-flex';
+    const btnTrigger = document.getElementById('btn-trigger-pipeline-run');
+    if (btnTrigger) btnTrigger.style.display = 'none';
+
+    if (pipelineSpinner) {
+      pipelineSpinner.style.animation = 'spin 1.5s linear infinite';
+      pipelineSpinner.textContent = '⚙️';
+    }
+    if (pipelineProgressBar) {
+      pipelineProgressBar.style.width = '4%';
+      pipelineProgressBar.style.background = 'linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #a855f7 100%)';
+    }
+    const metricsBox = document.getElementById('pipeline-active-metrics');
+    if (metricsBox) metricsBox.style.display = 'block';
+
+    // Snapshot catalog events before run for live diffing (Request 3)
+    pipelineInitialSnapshots = new Map();
+    const events = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+    if (events) {
+      events.forEach((ev, idx) => {
+        const eid = ev.id || ev.event_id;
+        if (eid) {
+          pipelineInitialSnapshots.set(eid, {
+            cardIndex: idx + 1,
+            id: eid,
+            title: ev.title || ev.event_name || '',
+            venue: ev.venue || ev.venue_name || '',
+            neighborhood: ev.neighborhood || '',
+            date: ev.date || ev.dateSchedule || '',
+            dateSchedule: ev.dateSchedule || ev.date || '',
+            time: ev.time || '',
+            ticket_url: ev.ticket_url || ev.details_url || '',
+            price: ev.price != null ? ev.price : null,
+            priceLabel: ev.priceLabel || (ev.price != null ? `$${Number(ev.price).toFixed(2)} CAD` : 'Unpriced'),
+            price_base: ev.price_base,
+            price_fee: ev.price_fee,
+            category: ev.category || '',
+            artist: ev.artist || '',
+            lineup: ev.lineup ? [...ev.lineup] : null,
+            description: ev.description || '',
+            restrictions: ev.restrictions || '',
+            approval_status: ev.approval_status || 'Seed-Pending-Audit',
+            is_sold_out: Boolean(ev.is_sold_out || ev.isSoldOut),
+            proof_keyframes: ev.proof_keyframes ? { ...ev.proof_keyframes } : null
+          });
+        }
+      });
+    }
+
+    if (mode === 'calendar' || mode === 'harvester') {
+      captureHarvesterPreRunBaseline();
+      harvesterDiscoveredEvents = [];
+      renderHarvesterComparisonView(false, [], true);
+    }
+
+    pipelineProcessedCount = 0;
+    pipelineTotalTargets = (limit !== undefined && limit !== null && Number(limit) > 0) 
+      ? Number(limit) 
+      : (id ? 1 : (ids ? (Array.isArray(ids) ? ids.length : String(ids).split(',').filter(Boolean).length) : (mode === 'enrich' ? 20 : (mode === 'catalog_batch' ? 5 : 0))));
+    pipelineCurrentTargetIndex = 0;
+    const diffTbody = document.getElementById('pipeline-diff-tbody');
+    if (diffTbody) {
+      diffTbody.innerHTML = `
+        <tr id="pipeline-diff-empty-row">
+          <td colspan="4" style="text-align: center; padding: 20px 10px; color: #64748b; font-style: italic;">
+            Standing by... As each event card finishes, live before/after changes will appear here in real-time.
+          </td>
+        </tr>
+      `;
+    }
+    const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+    if (counterBadge) counterBadge.textContent = pipelineTotalTargets > 0 ? `0 of ${pipelineTotalTargets} Processed` : '0 Processed';
+
+    // Reset AI Timeout & Error Alert Box for the new run
+    let pipelineTimeoutEvents = [];
+    const timeoutAlertBox = document.getElementById('pipeline-timeout-alert-box');
+    const timeoutAlertList = document.getElementById('pipeline-timeout-alert-list');
+    const timeoutAlertTitle = document.getElementById('pipeline-timeout-alert-title');
+    if (timeoutAlertBox) timeoutAlertBox.style.display = 'none';
+    if (timeoutAlertList) timeoutAlertList.innerHTML = '';
+    if (timeoutAlertTitle) timeoutAlertTitle.textContent = 'AI Worker Timeouts / Issues Detected (0 Events)';
+
+    let estimatedTotal = 30;
+    if (mode === 'enrich') {
+      const items = limit || 20;
+      estimatedTotal = Math.max(5, Math.round(items * 1.8));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} events (0%) • ~1.8s / item`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+    } else if (mode === 'catalog_batch') {
+      const items = limit > 0 ? limit : 5;
+      estimatedTotal = Math.max(15, Math.round(items * 48));
+      if (pipelineItemProgress) pipelineItemProgress.textContent = `0 of ${items} events (0%) • ~48s / event`;
+      if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(estimatedTotal)}`;
+    } else if (mode === 'calendar' || mode === 'harvester') {
+      estimatedTotal = 25;
+      if (pipelineItemProgress) pipelineItemProgress.textContent = 'Crawling venue schedules...';
+      if (pipelineEtaValue) pipelineEtaValue.textContent = '~25s';
+    } else if (mode === 'compile') {
+      window.pipelineCompiledPassedMap = new Map();
+      window.pipelineCompiledFailedMap = new Map();
+      estimatedTotal = 3;
+      if (pipelineItemProgress) pipelineItemProgress.textContent = 'Arbitrating layers & checking math...';
+      if (pipelineEtaValue) pipelineEtaValue.textContent = '~3s';
+    } else {
+      estimatedTotal = 45;
+      if (pipelineItemProgress) pipelineItemProgress.textContent = 'Penetrating cart & discovering fees...';
+      if (pipelineEtaValue) pipelineEtaValue.textContent = '~45s';
+    }
+
+    setExecutionState(true, initialStatus || 'Spinning up isolated Chromium instance...');
+
+    let elapsed = 0;
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      elapsed++;
+      if (pipelineTimer) pipelineTimer.textContent = `⏱️ ${elapsed}s`;
+      if (timerEl) timerEl.textContent = `${elapsed}s`;
+
+      const remaining = Math.max(0, estimatedTotal - elapsed);
+      if (pipelineEtaValue) {
+        if (remaining > 0) {
+          pipelineEtaValue.textContent = `~${formatDuration(remaining)}`;
+        } else {
+          pipelineEtaValue.textContent = 'Finalizing... (~few seconds)';
+        }
+      }
+    }, 1000);
+
+    const isAllRun = (all === '1' || all === 1 || all === true || scope === 'all' || currentPipelineScope === 'all');
+    const safeId = isAllRun ? '' : (id || '');
+    const safeIds = isAllRun ? '' : (ids ? (Array.isArray(ids) ? ids.join(',') : String(ids)) : '');
+
+    let effectiveMode = mode;
+    let effectiveUrl = url || '';
+
+    if (window.VAN50_ENGINE === 'antigravity') {
+      const modalModelSelectEl = document.getElementById('pipeline-modal-agy-model-select');
+      const modelSelectEl = document.getElementById('agy-model-select');
+      const selectedModel = (modalModelSelectEl && modalModelSelectEl.value)
+        ? modalModelSelectEl.value
+        : ((modelSelectEl && modelSelectEl.value) ? modelSelectEl.value : 'gemini-3.8-flash-low');
+      if (modelSelectEl && modelSelectEl.value !== selectedModel) modelSelectEl.value = selectedModel;
+      if (modalModelSelectEl && modalModelSelectEl.value !== selectedModel) modalModelSelectEl.value = selectedModel;
+      const stepMap = {
+        calendar: 'harvest',
+        harvester: 'harvest',
+        catalog_batch: 'qc',
+        enrich: 'enrich',
+        venue_detailer: 'venue',
+        compile: 'compile',
+        master: 'master',
+        tier1_hunter: 'hunter',
+        single: 'single'
+      };
+      const stepKey = stepMap[mode] || mode || 'enrich';
+      const agyParams = new URLSearchParams({
+        scope: scope || currentPipelineScope || '',
+        limit: String(limit !== undefined ? limit : 0),
+        offset: offset !== undefined ? String(offset) : '',
+        id: safeId,
+        ids: safeIds,
+        venue: venue || '',
+        quarantine: (quarantine === '1' || quarantine === 1 || quarantine === true) ? '1' : '0',
+        target_url: url || '',
+        all: (all === '1' || all === 1 || all === true) ? '1' : '0',
+        force: (force === '1' || force === 1 || force === true) ? '1' : '0',
+        uncompiled_only: uncompiledOnly ? '1' : '0',
+        incomplete_only: incompleteOnly ? '1' : '0',
+        stale: stale || '',
+        model: selectedModel
+      });
+      effectiveMode = 'agy_pipeline';
+      effectiveUrl = `agy://${stepKey}?${agyParams.toString()}`;
+    }
+
+    const query = new URLSearchParams({
+      mode: effectiveMode,
+      scope: scope || currentPipelineScope || '',
+      limit: String(limit !== undefined ? limit : 0),
+      offset: offset !== undefined ? String(offset) : '',
+      id: safeId,
+      ids: safeIds,
+      venue: venue || '',
+      quarantine: (quarantine === '1' || quarantine === 1 || quarantine === true) ? '1' : '0',
+      url: effectiveUrl,
+      all: (all === '1' || all === 1 || all === true) ? '1' : '0',
+      force: (force === '1' || force === 1 || force === true) ? '1' : '0',
+      uncompiled_only: uncompiledOnly ? '1' : '0',
+      incomplete_only: incompleteOnly ? '1' : '0',
+      stale: stale || '',
+      auto_approve: autoApprove ? '1' : '0',
+      token: state.token || ''
+    });
+
+    const streamUrl = `/api/curator/stagehand/stream?${query.toString()}`;
+    const es = new EventSource(streamUrl);
+    activeEventSource = es;
+
+    let currentEventContext = null;
+
+    es.onmessage = (event) => {
+      try {
+        const payload = JSON.parse(event.data);
+        const line = payload.line !== undefined ? payload.line : event.data;
+        if (pipelineConsoleOutput) {
+          pipelineConsoleOutput.textContent += `${line}\n`;
+          pipelineConsoleOutput.scrollTop = pipelineConsoleOutput.scrollHeight;
+        }
+        if (consoleOutput) {
+          consoleOutput.textContent += `${line}\n`;
+          consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        if (typeof line === 'string') {
+          // Detect structured AI Worker Timeout / Issue lines:
+          // 🚨 [AI TIMEOUT/ERROR] Event: "<title>" [<eventId>] | Stage: <stage> | Model: <model> | Elapsed: <elapsed> | Cause: <cause>
+          const timeoutMatch = line.match(/🚨\s*\[AI TIMEOUT\/ERROR\]\s*Event:\s*"([^"]+)"\s*\[([^\]]+)\]\s*\|\s*Stage:\s*([^|]+)\|\s*Model:\s*([^|]+)\|\s*Elapsed:\s*([^|]+)\|\s*Cause:\s*(.+)/i);
+          if (timeoutMatch) {
+            const evTitle = timeoutMatch[1].trim();
+            const evId = timeoutMatch[2].trim();
+            const stageName = timeoutMatch[3].trim();
+            const modelName = timeoutMatch[4].trim();
+            const elapsedStr = timeoutMatch[5].trim();
+            const causeStr = timeoutMatch[6].trim();
+            const dedupKey = `${evId}::${stageName}`;
+            if (!pipelineTimeoutEvents.some(t => `${t.eventId}::${t.stage}` === dedupKey)) {
+              pipelineTimeoutEvents.push({
+                eventTitle: evTitle,
+                eventId: evId,
+                stage: stageName,
+                model: modelName,
+                elapsed: elapsedStr,
+                cause: causeStr
+              });
+              if (timeoutAlertBox) timeoutAlertBox.style.display = 'block';
+              if (timeoutAlertTitle) {
+                timeoutAlertTitle.textContent = `AI Worker Timeouts / Issues Detected (${pipelineTimeoutEvents.length} Event${pipelineTimeoutEvents.length === 1 ? '' : 's'})`;
+              }
+              if (timeoutAlertList) {
+                const row = document.createElement('div');
+                row.style.cssText = 'background: rgba(0,0,0,0.45); border: 1px solid rgba(248,113,113,0.4); border-radius: 6px; padding: 5px 8px; color: #fecaca; line-height: 1.35;';
+                row.innerHTML = `
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap;">
+                    <strong style="color: #fff;">${escapeHtml(evTitle)} <code style="font-size: 0.68rem; color: #fca5a5;">[${escapeHtml(evId)}]</code></strong>
+                    <span style="font-size: 0.68rem; color: #fde68a; font-family: monospace;">${escapeHtml(stageName)} • ${escapeHtml(modelName)} (${escapeHtml(elapsedStr)})</span>
+                  </div>
+                  <div style="color: #fca5a5; margin-top: 2px;"><strong>Cause:</strong> ${escapeHtml(causeStr)}</div>
+                `;
+                timeoutAlertList.appendChild(row);
+              }
+              if (pipelineStatusSubtext) {
+                pipelineStatusSubtext.style.display = 'block';
+                pipelineStatusSubtext.style.color = '#fca5a5';
+                pipelineStatusSubtext.textContent = `🚨 Timeout/Issue on "${evTitle}": ${causeStr}`;
+              }
+              if (typeof showToast === 'function') {
+                showToast(`🚨 AI Timeout/Issue on "${evTitle}": ${causeStr}`, 'error');
+              }
+            }
+          }
+
+          const allEvs = (state.allEvents && state.allEvents.length > 0) ? state.allEvents : (state.masterCatalogsData?.events_active || []);
+          const qEvs = (state.quarantinedEvents && state.quarantinedEvents.length > 0) ? state.quarantinedEvents : (state.masterCatalogsData?.quarantined_events || []);
+
+          const targetQueueMatch = line.match(/(?:🎯\s*Targets Queued for Audit:\s*|Target Queue\s*\(\s*|Enriching\s*)(\d+)\s*(?:events?|candidate)/i);
+          if (targetQueueMatch) {
+            pipelineTotalTargets = parseInt(targetQueueMatch[1], 10);
+            const badge = document.getElementById('pipeline-diff-counter-badge');
+            if (badge && pipelineProcessedCount === 0) {
+              badge.textContent = `0 of ${pipelineTotalTargets} Processed`;
+            }
+            if (pipelineItemProgress) {
+              pipelineItemProgress.textContent = `0 of ${pipelineTotalTargets} events (0%)`;
+            }
+          }
+
+          // Pattern 0: Venue Feed Progress Log: 🏛️ [5/120] Venue Feed: The Rickshaw Theatre
+          const venueFeedMatch = line.match(/🏛️\s*\[(\d+)\/(\d+)\]\s*Venue Feed:\s*(.+)/i);
+          if (venueFeedMatch) {
+            const currentVenueIdx = parseInt(venueFeedMatch[1], 10);
+            const totalVenues = parseInt(venueFeedMatch[2], 10);
+            const venueName = venueFeedMatch[3].trim();
+            if (pipelineStatusSubtext) {
+              pipelineStatusSubtext.style.display = 'block';
+              pipelineStatusSubtext.textContent = `🏛️ Venue ${currentVenueIdx} of ${totalVenues}: ${venueName}`;
+            }
+            const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+            if (counterBadge && currentPipelineScanKey === 'harvest') {
+              const count = (harvesterDiscoveredEvents && harvesterDiscoveredEvents.length) || 0;
+              counterBadge.textContent = `${count} Discovered • Venue ${currentVenueIdx}/${totalVenues}`;
+            }
+          } else {
+            // Pattern 1: Discrete Event Candidate Link: Processing [1/4]: https://...
+            const progressMatch = line.match(/(?:⚡|📌|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]/i) ||
+                                   line.match(/\[(\d+)\/(\d+)\]\s*(?:⚡|📌|✍️)?\s*Processing/i);
+            if (progressMatch) {
+              const current = parseInt(progressMatch[1], 10);
+              const total = parseInt(progressMatch[2], 10);
+              pipelineTotalTargets = total;
+              pipelineCurrentTargetIndex = current;
+              const pct = Math.min(96, Math.max(8, Math.round(((current - 0.4) / total) * 100)));
+              if (pipelineProgressBar) pipelineProgressBar.style.width = `${pct}%`;
+              const unitTime = BENCHMARKS[mode] || 10;
+              if (pipelineItemProgress) {
+                pipelineItemProgress.textContent = `Event ${current} of ${total} (${pct}%) • ~${Math.round(unitTime)}s / event`;
+              }
+              const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+              if (counterBadge && pipelineProcessedCount === 0) {
+                counterBadge.textContent = `0 of ${total} Processed`;
+              }
+              const remainingItems = Math.max(1, total - current + 1);
+              const recalibratedSec = Math.round(remainingItems * unitTime);
+              estimatedTotal = elapsed + recalibratedSec;
+              if (pipelineEtaValue) pipelineEtaValue.textContent = `~${formatDuration(recalibratedSec)}`;
+
+              if (currentPipelineScanKey === 'harvest') {
+                if (pipelineStatusText) {
+                  pipelineStatusText.textContent = `Harvesting [${current} of ${total}] candidate links...`;
+                  pipelineStatusText.style.color = '#38bdf8';
+                }
+                if (counterBadge) {
+                  counterBadge.textContent = `${harvesterDiscoveredEvents.length} Discovered • [${current} of ${total} Links Scanned]`;
+                }
+              }
+            }
+          }
+
+          // Real-Time Event Extraction & Diff Parsing (Request 3)
+          const itemStartMatch = line.match(/(?:📌|⚡|✍️)?\s*Processing\s*\[(\d+)\/(\d+)\]:\s*(.+)/i) ||
+                                 line.match(/\[(\d+)\/(\d+)\]\s*(?:✍️|📌|⚡)?\s*Processing:\s*(.+)/i);
+          if (itemStartMatch && currentPipelineScanKey !== 'harvest') {
+            if (currentEventContext) {
+              addEventDiffRow(currentEventContext);
+            }
+            const batchItemIdx = parseInt(itemStartMatch[1], 10);
+            const batchTotal = parseInt(itemStartMatch[2], 10);
+            pipelineTotalTargets = batchTotal;
+            pipelineCurrentTargetIndex = batchItemIdx;
+            let itemTitle = itemStartMatch[3].trim();
+            let directId = null;
+            const idSuffixMatch = itemTitle.match(/\[([a-z0-9\-_]+)\]$/i);
+            if (idSuffixMatch) {
+              directId = idSuffixMatch[1];
+              itemTitle = itemTitle.replace(/\[[a-z0-9\-_]+\]$/i, '').trim();
+            }
+            let itemVenue = '';
+            const venueSuffixMatch = itemTitle.match(/^(.+?)\s*\(([^)]+)\)$/);
+            if (venueSuffixMatch) {
+              itemTitle = venueSuffixMatch[1].trim();
+              itemVenue = venueSuffixMatch[2].trim();
+            }
+
+            if (pipelineStatusText) {
+              pipelineStatusText.textContent = `Auditing [${batchItemIdx} of ${batchTotal}]: ${itemTitle}`;
+              pipelineStatusText.style.color = '#38bdf8';
+            }
+            if (pipelineStatusSubtext) {
+              pipelineStatusSubtext.textContent = `Event ${batchItemIdx} of ${batchTotal} in progress...`;
+            }
+            const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+            if (counterBadge) {
+              counterBadge.textContent = `${pipelineProcessedCount} of ${batchTotal} Processed`;
+            }
+
+            let matchedEv = null;
+            let isQuarantinedMatched = false;
+
+            if (directId) {
+              matchedEv = allEvs.find(e => (e.id || e.event_id) === directId);
+              if (!matchedEv) {
+                matchedEv = qEvs.find(e => (e.id || e.event_id) === directId);
+                if (matchedEv) isQuarantinedMatched = true;
+              }
+            }
+            if (!matchedEv && itemTitle) {
+              matchedEv = allEvs.find(e => (e.title || e.event_name || '').toLowerCase() === itemTitle.toLowerCase());
+              if (!matchedEv) {
+                matchedEv = qEvs.find(e => (e.title || e.event_name || '').toLowerCase() === itemTitle.toLowerCase());
+                if (matchedEv) isQuarantinedMatched = true;
+              }
+            }
+            if (!matchedEv && allEvs && batchItemIdx >= 1 && batchItemIdx <= allEvs.length && currentPipelineScope !== 'single_card') {
+              matchedEv = allEvs[batchItemIdx - 1];
+            }
+            const matchedId = directId || (matchedEv ? (matchedEv.id || matchedEv.event_id) : null);
+
+            // Calculate true catalog card index, NOT batch index [1/1]
+            let realCardIdx = batchItemIdx;
+            if (matchedEv) {
+              if (isQuarantinedMatched) {
+                const qIdx = qEvs.findIndex(e => (e.id || e.event_id) === (matchedEv.id || matchedEv.event_id));
+                realCardIdx = qIdx !== -1 ? `Q${qIdx + 1}` : 'Q';
+              } else {
+                const foundIdx = allEvs.findIndex(e => (e.id || e.event_id) === (matchedEv.id || matchedEv.event_id));
+                if (foundIdx !== -1) realCardIdx = foundIdx + 1;
+              }
+            }
+
+            const resolvedVenue = itemVenue || (matchedEv ? (matchedEv.venue || matchedEv.venue_name || '') : '');
+            currentEventContext = {
+              cardIndex: realCardIdx,
+              isQuarantined: isQuarantinedMatched,
+              id: matchedId,
+              title: itemTitle,
+              venue: resolvedVenue,
+              afterVenue: resolvedVenue
+            };
+
+            // Keep the scope card dropdown synchronized to the card being audited!
+            if (matchedId) {
+              const selectCard = document.getElementById('pipeline-select-card-name');
+              if (selectCard) selectCard.value = matchedId;
+            }
+
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, matchedEv, true);
+              updateComparisonStatusPill(isQuarantinedMatched ? `Auditing Quarantined #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...` : `Auditing Card #${realCardIdx} [${batchItemIdx} of ${pipelineTotalTargets || batchTotal}]...`, 'updated');
+            }
+          }
+
+          // Pattern 1c: Harvested Event Discovery
+          if (currentPipelineScanKey === 'harvest') {
+            const harvestEventMatch = line.match(/✨\s*HARVESTED EVENT:\s*"([^"]+)"\s*\|\s*Date:\s*([^\|]+?)(?:\s*\|\s*Time:\s*([^\|]+?))?\s*\|\s*Venue:\s*([^\|\[]+?)(?:\s*\|\s*Price:\s*([^\|]+?))?(?:\s*\|\s*URL:\s*([^\[]+?))?\s*\[([^\]]+)\]/i);
+            if (harvestEventMatch) {
+              const hTitle = harvestEventMatch[1].trim();
+              let hDate = harvestEventMatch[2].trim();
+              let hTime = (harvestEventMatch[3] || '').trim();
+              if (!hTime && hDate.includes('•')) {
+                const parts = hDate.split('•');
+                hDate = parts[0].trim();
+                hTime = parts[1].trim();
+              }
+              const hVenue = harvestEventMatch[4].trim();
+              const hPrice = (harvestEventMatch[5] || '').trim();
+              const hUrl = (harvestEventMatch[6] || '').trim();
+              const hId = harvestEventMatch[7].trim();
+              if (!harvesterDiscoveredEvents.some(x => x.id === hId || (x.title === hTitle && x.date === hDate))) {
+                harvesterDiscoveredEvents.push({
+                  id: hId,
+                  title: hTitle,
+                  date: hDate,
+                  time: hTime,
+                  venue: hVenue,
+                  price: hPrice,
+                  url: hUrl
+                });
+                // Live real-time update: update 3-region view immediately as each event is processed!
+                renderHarvesterComparisonView(false, harvesterDiscoveredEvents, true);
+              }
+            }
+          }
+
+          // Pattern 1d: Venue Detailer Grounding Progress
+          const venueGroundingStart = line.match(/\[(\d+)\/(\d+)\]\s*Grounding:\s*"([^"]+)"/i);
+          if (venueGroundingStart && currentPipelineScanKey === 'venue') {
+            const vIdx = parseInt(venueGroundingStart[1], 10);
+            const vTotal = parseInt(venueGroundingStart[2], 10);
+            const vName = venueGroundingStart[3].trim();
+            pipelineTotalTargets = vTotal;
+            pipelineCurrentTargetIndex = vIdx;
+            if (pipelineStatusText) {
+              pipelineStatusText.textContent = `🏛️ Grounding Venue [${vIdx} of ${vTotal}]: ${vName}`;
+              pipelineStatusText.style.color = '#06b6d4';
+            }
+            let venues = (state.masterCatalogsData && state.masterCatalogsData.venues_master) || (state.venuesData ? Object.values(state.venuesData) : []);
+            const foundVIdx = Array.isArray(venues) ? venues.findIndex(v => (v.venue_name || v.name) === vName) : -1;
+            const beforeVenue = foundVIdx !== -1 ? venues[foundVIdx] : { venue_name: vName, name: vName };
+            currentEventContext = {
+              cardIndex: foundVIdx !== -1 ? foundVIdx + 1 : vIdx,
+              id: `venue:${foundVIdx !== -1 ? foundVIdx : vIdx - 1}`,
+              title: vName,
+              venue: vName,
+              venue_name: vName,
+              afterVenue: vName
+            };
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, beforeVenue, true);
+              updateComparisonStatusPill(`Grounding Venue #${currentEventContext.cardIndex}: ${vName}...`, 'updated');
+            }
+          }
+
+          const venueGroundedDone = line.match(/✅\s*Grounded\s*"([^"]+)"\s*->\s*([^(]+?)(?:\s*\(([-0-9.]+),\s*([-0-9.]+)\))?$/i);
+          if (venueGroundedDone && currentPipelineScanKey === 'venue') {
+            const vName = venueGroundedDone[1].trim();
+            const vAddr = venueGroundedDone[2].trim();
+            const lat = venueGroundedDone[3] ? parseFloat(venueGroundedDone[3]) : null;
+            const lng = venueGroundedDone[4] ? parseFloat(venueGroundedDone[4]) : null;
+            pipelineLastVenuesGroundedCount++;
+            pipelineVenueDetailerNeedsCompile = true;
+            if (currentEventContext) {
+              currentEventContext.address = vAddr;
+              currentEventContext.full_address = vAddr;
+              if (lat !== null && lng !== null) {
+                currentEventContext.coordinates = { lat, lng };
+              }
+              addEventDiffRow(currentEventContext);
+              currentEventContext = null;
+            }
+          }
+
+          const compileMatch = line.match(/(?:\[(\d+)\/(\d+)\]\s*)?🏛️\s*Reconciled:\s*"([^"]+)"\s*\(([^)]+)\)\s*(?:\[([^\]]+)\])?\s*\|\s*Total:\s*(.+)/i);
+          if (compileMatch) {
+            const batchItemIdx = compileMatch[1] ? parseInt(compileMatch[1], 10) : 1;
+            const compTitle = compileMatch[3].trim();
+            const compVenue = compileMatch[4].trim();
+            const directId = compileMatch[5] ? compileMatch[5].trim() : null;
+            const compPrice = compileMatch[6].trim();
+            let matchedEv = null;
+            if (directId && allEvs) {
+              matchedEv = allEvs.find(e => (e.id || e.event_id) === directId);
+            }
+            if (!matchedEv && allEvs) {
+              matchedEv = allEvs.find(e => (e.title || e.event_name || '').toLowerCase() === compTitle.toLowerCase());
+            }
+            let realCardIdx = batchItemIdx;
+            if (matchedEv && allEvs) {
+              const foundIdx = allEvs.findIndex(e => (e.id || e.event_id) === (matchedEv.id || matchedEv.event_id));
+              if (foundIdx !== -1) realCardIdx = foundIdx + 1;
+            }
+            const matchedId = directId || (matchedEv ? (matchedEv.id || matchedEv.event_id) : null);
+            if (matchedId) {
+              const selectCard = document.getElementById('pipeline-select-card-name');
+              if (selectCard) selectCard.value = matchedId;
+            }
+            const compileCtx = {
+              cardIndex: realCardIdx,
+              id: matchedId,
+              title: compTitle,
+              afterTitle: compTitle,
+              venue: compVenue,
+              afterVenue: compVenue,
+              afterPrice: compPrice,
+              afterBase: matchedEv ? matchedEv.price_base : null,
+              afterFee: matchedEv ? matchedEv.price_fee : null,
+              afterDate: matchedEv ? (matchedEv.date || matchedEv.dateSchedule) : null,
+              afterTime: matchedEv ? (matchedEv.time || matchedEv.start_time || matchedEv.doors_time) : null,
+              afterInventory: matchedEv ? (matchedEv.is_sold_out ? 'SOLD OUT' : 'AVAILABLE') : 'AVAILABLE',
+              afterTicketUrl: matchedEv ? (matchedEv.ticket_url || matchedEv.details_url) : null,
+              afterCategory: matchedEv ? matchedEv.category : null,
+              afterArtist: matchedEv ? (matchedEv.artist || (matchedEv.lineup && matchedEv.lineup.length ? matchedEv.lineup.join(', ') : null)) : null,
+              afterAge: matchedEv ? matchedEv.restrictions : null,
+              afterDescription: matchedEv ? matchedEv.description : null,
+              hasProof: matchedEv && matchedEv.proof_keyframes?.cart ? true : false,
+              proofKeyframeUrl: matchedEv?.proof_keyframes?.cart || null,
+              isReconciled: true
+            };
+            if (currentEventContext && currentEventContext.id === matchedId) {
+              Object.assign(currentEventContext, compileCtx);
+            } else {
+              currentEventContext = compileCtx;
+            }
+            addEventDiffRow(compileCtx);
+            const beforeSnap = matchedId ? pipelineInitialSnapshots.get(matchedId) : matchedEv;
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(compileCtx, beforeSnap, false);
+            }
+          }
+
+          const compilerOutcomeMatch = line.match(/^(?:✅|🛡️|📦)\s*\[Compiler Outcome:\s*(PASSED|QUARANTINED|ARCHIVED)\]\s*"([^"]+)"\s*\(([^)]*)\)\s*\[([^\]]+)\](?:\s*\|\s*(.+))?$/i);
+          if (compilerOutcomeMatch) {
+            const outcomeType = compilerOutcomeMatch[1].toUpperCase();
+            const outTitle = compilerOutcomeMatch[2].trim();
+            const outVenue = compilerOutcomeMatch[3].trim();
+            const outId = compilerOutcomeMatch[4].trim();
+            const outExtra = (compilerOutcomeMatch[5] || '').trim();
+            if (!window.pipelineCompiledPassedMap) window.pipelineCompiledPassedMap = new Map();
+            if (!window.pipelineCompiledFailedMap) window.pipelineCompiledFailedMap = new Map();
+            const existingObj = allEvs.find(e => (e.id || e.event_id) === outId) ||
+              qEvs.find(e => (e.id || e.event_id) === outId) ||
+              pipelineInitialSnapshots.get(outId) ||
+              {};
+            if (outcomeType === 'PASSED') {
+              const priceMatch = outExtra.match(/Price:\s*(.+)$/i);
+              window.pipelineCompiledPassedMap.set(outId, {
+                ...existingObj,
+                id: outId,
+                title: outTitle || existingObj.title,
+                venue: outVenue || existingObj.venue || existingObj.venue_name,
+                priceLabel: priceMatch ? priceMatch[1].trim() : (existingObj.priceLabel || '$0.00 CAD'),
+                is_quarantined: false
+              });
+              window.pipelineCompiledFailedMap.delete(outId);
+            } else {
+              const reasonMatch = outExtra.match(/Reason:\s*([^|]+)/i);
+              const detailMatch = outExtra.match(/Detail:\s*(.+)$/i);
+              window.pipelineCompiledFailedMap.set(outId, {
+                ...existingObj,
+                id: outId,
+                title: outTitle || existingObj.title,
+                venue: outVenue || existingObj.venue || existingObj.venue_name,
+                quarantineReason: reasonMatch ? reasonMatch[1].trim() : 'verification_failed',
+                audit_error: detailMatch ? detailMatch[1].trim() : outExtra,
+                is_quarantined: true
+              });
+              window.pipelineCompiledPassedMap.delete(outId);
+            }
+          }
+
+          const enrichMatch = line.match(/✨\s*Title:\s*"([^"]+)"\s*\|\s*Category:\s*\[([^\]]+)\]\s*\|\s*Artist:\s*(?:None(?:\s*\([^)]*\))?|"([^"]+)"|([^|]+?))\s*\|\s*Age:\s*\[([^\]]+)\]/i);
+          if (enrichMatch && currentEventContext) {
+            currentEventContext.afterTitle = enrichMatch[1].trim();
+            currentEventContext.afterCategory = enrichMatch[2].trim();
+            if (enrichMatch[3]) {
+              currentEventContext.afterArtist = enrichMatch[3].trim();
+            } else if (enrichMatch[4] && !enrichMatch[4].trim().toLowerCase().startsWith('none')) {
+              currentEventContext.afterArtist = enrichMatch[4].trim();
+            } else {
+              currentEventContext.afterArtist = 'None (General / Recreation)';
+            }
+            if (enrichMatch[5]) {
+              currentEventContext.afterAge = enrichMatch[5].trim();
+            }
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          const synopsisMatch = line.match(/📝\s*Synopsis:\s*"([^"]+)"/i);
+          if (synopsisMatch && currentEventContext) {
+            currentEventContext.afterDescription = synopsisMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          const priceMatch = line.match(/(?:💰\s*)?Price:\s*([^(]+?)\s*\(Base:\s*\$?([0-9.]+|null),\s*Fees:\s*\$?([0-9.]+|null)\)/i) ||
+                             line.match(/(?:💰\s*)?Price:\s*(\$[0-9.]+\s*CAD|Free\s*(?:\(\$0\))?|\$[0-9.]+)/i);
+          if (priceMatch && currentEventContext) {
+            currentEventContext.afterPrice = priceMatch[1].trim();
+            if (priceMatch[2] !== undefined && priceMatch[2] !== 'null') currentEventContext.afterBase = parseFloat(priceMatch[2]);
+            if (priceMatch[3] !== undefined && priceMatch[3] !== 'null') currentEventContext.afterFee = parseFloat(priceMatch[3]);
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          // Date & Schedule
+          const dateMatch = line.match(/^\s*(?:📅\s*)?Date:\s*(.+)$/i);
+          if (dateMatch && currentEventContext) {
+            currentEventContext.afterDate = dateMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          // Showtime & Doors
+          const timeMatch = line.match(/^\s*(?:Showtime|Doors|Time):\s*(.+)$/i);
+          if (timeMatch && currentEventContext) {
+            currentEventContext.afterTime = timeMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          const invMatch = line.match(/Inventory:\s*(SOLD OUT|AVAILABLE)/i);
+          if (invMatch && currentEventContext) {
+            currentEventContext.afterInventory = invMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          if (line.includes('🛒 Navigating to checkout cart:') && currentEventContext) {
+            const urlMatch = line.match(/🛒\s*Navigating to checkout cart:\s*([^\s]+)/i);
+            if (urlMatch) currentEventContext.afterTicketUrl = urlMatch[1].trim();
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          if (line.includes('Proof keyframe captured:') && currentEventContext) {
+            currentEventContext.hasProof = true;
+            const shotMatch = line.match(/Proof keyframe captured:\s*([^\s]+(?:\.webp|\.png))/i);
+            if (shotMatch) {
+              currentEventContext.proofKeyframeUrl = `data/proof_keyframes/${shotMatch[1].trim()}`;
+            }
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, null, true);
+            }
+          }
+
+          // Summary table row fallback
+          const summaryRowMatch = line.match(/^\|\s*(\d+)\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/);
+          if (summaryRowMatch && !line.includes('Event ID') && !line.includes('---')) {
+            const rowCardIdx = parseInt(summaryRowMatch[1], 10);
+            const rowEventId = summaryRowMatch[2].trim();
+            const rowVenue = summaryRowMatch[3].trim();
+            const rowPrice = summaryRowMatch[4].trim();
+            const rowStatus = summaryRowMatch[5].trim();
+            const rowHasProof = summaryRowMatch[6].includes('YES');
+
+            let matchedEv = allEvs.find(e => (e.id || e.event_id) === rowEventId);
+            let isQuarantined = false;
+            if (!matchedEv) {
+              matchedEv = qEvs.find(e => (e.id || e.event_id) === rowEventId);
+              if (matchedEv) isQuarantined = true;
+            }
+
+            // Calculate real card index
+            let realCardIdx = rowCardIdx;
+            if (matchedEv) {
+              if (isQuarantined) {
+                const qIdx = qEvs.findIndex(e => (e.id || e.event_id) === (matchedEv.id || matchedEv.event_id));
+                realCardIdx = qIdx !== -1 ? `Q${qIdx + 1}` : 'Q';
+              } else {
+                const foundIdx = allEvs.findIndex(e => (e.id || e.event_id) === (matchedEv.id || matchedEv.event_id));
+                if (foundIdx !== -1) realCardIdx = foundIdx + 1;
+              }
+            }
+
+            const rowBefore = rowEventId ? pipelineInitialSnapshots.get(rowEventId) : matchedEv;
+            
+            // If currentEventContext matches this event, use it as baseline so we don't discard live-extracted data!
+            const baseCtx = (currentEventContext && currentEventContext.id === rowEventId) ? currentEventContext : {};
+
+            const rowCtx = {
+              cardIndex: realCardIdx,
+              isQuarantined: isQuarantined,
+              id: rowEventId,
+              title: baseCtx.title || (matchedEv ? (matchedEv.title || matchedEv.event_name) : 'Event'),
+              venue: baseCtx.venue || rowVenue || (matchedEv ? (matchedEv.venue || matchedEv.venue_name) : ''),
+              afterTitle: baseCtx.afterTitle || (matchedEv ? (matchedEv.title || matchedEv.event_name) : null),
+              afterVenue: baseCtx.afterVenue || rowVenue || (matchedEv ? (matchedEv.venue || matchedEv.venue_name) : null),
+              afterPrice: rowPrice !== 'N/A' ? rowPrice : (baseCtx.afterPrice || (matchedEv ? matchedEv.priceLabel : null)),
+              afterBase: baseCtx.afterBase !== undefined ? baseCtx.afterBase : (matchedEv ? matchedEv.price_base : null),
+              afterFee: baseCtx.afterFee !== undefined ? baseCtx.afterFee : (matchedEv ? matchedEv.price_fee : null),
+              afterInventory: rowStatus.includes('SOLD') ? 'SOLD OUT' : (baseCtx.afterInventory || 'AVAILABLE'),
+              afterTicketUrl: baseCtx.afterTicketUrl || (matchedEv ? (matchedEv.ticket_url || matchedEv.details_url) : null),
+              afterDate: baseCtx.afterDate || (matchedEv ? (matchedEv.date || matchedEv.dateSchedule) : null),
+              afterTime: baseCtx.afterTime || (matchedEv ? (matchedEv.time || matchedEv.doors_time) : null),
+              hasProof: rowHasProof || Boolean(baseCtx.hasProof),
+              proofKeyframeUrl: baseCtx.proofKeyframeUrl || (rowHasProof && rowEventId ? `data/proof_keyframes/${rowEventId}_cart.png` : null)
+            };
+            addEventDiffRow(rowCtx);
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(rowCtx, rowBefore, false);
+            }
+          }
+
+          const commitMatch = line.match(/Committed updated event\s*\(([^)]+)\)/i);
+          if (commitMatch && currentEventContext) {
+            currentEventContext.id = commitMatch[1].trim();
+            const beforeSnap = currentEventContext.id ? pipelineInitialSnapshots.get(currentEventContext.id) : null;
+            const freshEv = allEvs.find(e => (e.id || e.event_id) === currentEventContext.id) || qEvs.find(e => (e.id || e.event_id) === currentEventContext.id);
+            if (freshEv) {
+              if (!currentEventContext.afterPrice) currentEventContext.afterPrice = freshEv.priceLabel;
+              if (currentEventContext.afterBase === undefined) currentEventContext.afterBase = freshEv.price_base;
+              if (currentEventContext.afterFee === undefined) currentEventContext.afterFee = freshEv.price_fee;
+              if (!currentEventContext.afterInventory) currentEventContext.afterInventory = freshEv.is_sold_out ? 'SOLD OUT' : 'AVAILABLE';
+              if (!currentEventContext.afterDate) currentEventContext.afterDate = freshEv.date || freshEv.dateSchedule;
+              if (!currentEventContext.afterTime) currentEventContext.afterTime = freshEv.time || freshEv.doors_time;
+              if (!currentEventContext.afterTicketUrl) currentEventContext.afterTicketUrl = freshEv.ticket_url || freshEv.details_url;
+              if (!currentEventContext.afterVenue) currentEventContext.afterVenue = freshEv.venue || freshEv.venue_name;
+              if (!currentEventContext.afterTitle) currentEventContext.afterTitle = freshEv.title || freshEv.event_name;
+              if (!currentEventContext.afterCategory) currentEventContext.afterCategory = freshEv.category;
+              if (currentEventContext.afterArtist === undefined && freshEv.artist) currentEventContext.afterArtist = freshEv.artist;
+              if (!currentEventContext.afterAge && freshEv.restrictions) currentEventContext.afterAge = freshEv.restrictions;
+              if (!currentEventContext.afterDescription && freshEv.description) currentEventContext.afterDescription = freshEv.description;
+              if (freshEv.proof_keyframes?.cart) {
+                currentEventContext.hasProof = true;
+                currentEventContext.proofKeyframeUrl = freshEv.proof_keyframes.cart;
+              }
+            }
+            addEventDiffRow(currentEventContext);
+            if (typeof renderComparisonCards === 'function') {
+              renderComparisonCards(currentEventContext, beforeSnap, false);
+            }
+            currentEventContext = null;
+          }
+
+          if (pipelineStatusText) {
+            if (line.includes('📌 Processing [')) {
+              pipelineStatusText.textContent = line.replace('📌 ', '');
+              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Active target inspection in progress...';
+              pipelineStatusText.style.color = '#38bdf8';
+            } else if (line.includes('🛒 Navigating to checkout cart:')) {
+              pipelineStatusText.textContent = '🛒 Penetrating checkout cart modal...';
+              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Extracting base ticket price, service fees & 5% GST...';
+              pipelineStatusText.style.color = '#a855f7';
+            } else if (line.includes('📸 Proof keyframe captured:')) {
+              pipelineStatusText.textContent = '📸 Proof keyframe captured!';
+              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Visual keyframe evidence saved & linked.';
+              pipelineStatusText.style.color = '#34d399';
+            } else if (line.includes('💾 Committed updated event')) {
+              pipelineStatusText.textContent = `💾 Committed ${getCatalogDimensionsCount()}D verified card to events.json`;
+              pipelineStatusText.style.color = '#34d399';
+            } else if (line.includes('🏁 BATCH QC AUDIT COMPLETE')) {
+              pipelineStatusText.textContent = '🏁 Batch QC Audit Complete!';
+              pipelineStatusText.style.color = '#10b981';
+            } else if (line.includes('✍️ AI SEMANTIC ENRICHER PIPELINE') || line.includes('✍️ Processing:')) {
+              pipelineStatusText.textContent = '✍️ AI Semantic Enricher running...';
+              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Normalizing title, synopsis & category tags...';
+              pipelineStatusText.style.color = '#fbbf24';
+            } else if (line.includes('COMPILER AI ARBITRATOR')) {
+              pipelineStatusText.textContent = '🏛️ Compiler AI arbitrating layers & checking math...';
+              if (pipelineStatusSubtext) pipelineStatusSubtext.textContent = 'Enforcing $50 CAD budget ceiling & auto-rolling showings...';
+              pipelineStatusText.style.color = '#38bdf8';
+            } else if (line.includes('Saved') && line.includes('compiled active cards')) {
+              pipelineStatusText.textContent = '💾 Catalog compiled! Checking invariants...';
+              pipelineStatusText.style.color = '#34d399';
+            } else if (line.includes('Synced compiled events to js/data.js')) {
+              pipelineStatusText.textContent = '🚀 Master catalog published & live in js/data.js!';
+              pipelineStatusText.style.color = '#10b981';
+            } else if (line.includes('Saved') && line.includes('layer_editorial.json')) {
+              pipelineStatusText.textContent = '✍️ Editorial enrichment saved to layer_editorial.json!';
+              pipelineStatusText.style.color = '#34d399';
+            }
+          }
+        }
+      } catch (err) {
+        console.error('[SSE PROCESS ERROR]', err);
+      }
+    };
+
+    function playStageCompleteChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume().catch(() => {});
+        }
+        // Pleasant ascending bell arpeggio chime: C5 (523.25), E5 (659.25), G5 (783.99), C6 (1046.50)
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        const now = ctx.currentTime;
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.11);
+          
+          gain.gain.setValueAtTime(0, now + idx * 0.11);
+          gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.11 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.11 + 0.65);
+          
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          
+          osc.start(now + idx * 0.11);
+          osc.stop(now + idx * 0.11 + 0.7);
+        });
+      } catch (err) {
+        console.warn('Audio chime playback omitted:', err);
+      }
+    }
+
+    es.addEventListener('done', (event) => {
+      es.close();
+      activeEventSource = null;
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      setExecutionState(false);
+
+      if (currentEventContext) {
+        addEventDiffRow(currentEventContext);
+        currentEventContext = null;
+      }
+
+      if (btnStopPipeline) btnStopPipeline.style.display = 'none';
+      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
+      const btnTriggerEl = document.getElementById('btn-trigger-pipeline-run');
+      if (btnTriggerEl) btnTriggerEl.style.display = 'inline-flex';
+
+      if (pipelineSpinner) pipelineSpinner.style.animation = 'none';
+      if (pipelineProgressBar) pipelineProgressBar.style.width = '100%';
+
+      let exitCode = 0;
+      try {
+        const data = JSON.parse(event.data);
+        exitCode = data.exitCode || 0;
+      } catch (e) {}
+
+      if (exitCode === 0) {
+        playStageCompleteChime();
+        const finishedStageKey = activeStageKey || window.activePipelineRunningStageKey || currentPipelineScanKey;
+        currentPipelineScanKey = finishedStageKey;
+        pipelineTestStageKey = finishedStageKey;
+
+        if (finishedStageKey === 'harvest') {
+          if (typeof finalizeHarvesterRun === 'function') finalizeHarvesterRun(true);
+        }
+
+        if (PIPELINE_TEST_ORDER.includes(finishedStageKey)) {
+          pipelineTestStageStatuses[finishedStageKey] = `✅ Complete (${pipelineProcessedCount || pipelineTotalTargets || 'Done'})`;
+          savePipelineBatchState();
+          updatePipelineTestStepperUI();
+          updateStageNavButtons();
+        }
+
+        if (finishedStageKey === 'venue' && pipelineVenueDetailerNeedsCompile && !isPipelineAutoChaining) {
+          const promptBanner = document.getElementById('venue-compiler-update-prompt-banner');
+          const promptTitle = document.getElementById('venue-compiler-prompt-title');
+          if (promptBanner) promptBanner.style.display = 'flex';
+          if (promptTitle) promptTitle.textContent = `🏛️ ${pipelineLastVenuesGroundedCount || 1} Venue(s) Grounded in venues.json — Run Stage 5 Compiler to Sync Cards!`;
+        }
+
+        if (finishedStageKey === 'compile') {
+          pipelineVenueDetailerNeedsCompile = false;
+          const promptBanner = document.getElementById('venue-compiler-update-prompt-banner');
+          if (promptBanner) promptBanner.style.display = 'none';
+          const passedMap = window.pipelineCompiledPassedMap instanceof Map ? window.pipelineCompiledPassedMap : new Map();
+          const failedMap = window.pipelineCompiledFailedMap instanceof Map ? window.pipelineCompiledFailedMap : new Map();
+          const outcomeIds = [...passedMap.keys(), ...failedMap.keys()];
+          pipelineLastCompiledCardIds = outcomeIds.length > 0
+            ? outcomeIds
+            : (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0
+                ? [...pipelineTestDiscoveredIds]
+                : pipelineAuditedCardsHistory.map(x => x.id).filter(Boolean));
+          window.pipelineLastCompiledIds = [...pipelineLastCompiledCardIds];
+          if (typeof window.updateCompilerPreviewBanner === 'function') {
+            window.updateCompilerPreviewBanner(passedMap.size, failedMap.size);
+          }
+        }
+
+        const lastAudited = pipelineAuditedCardsHistory[pipelineAuditedCardsHistory.length - 1];
+        if (lastAudited && lastAudited.id) {
+          const selectCard = document.getElementById('pipeline-select-card-name');
+          if (selectCard) selectCard.value = lastAudited.id;
+          pipelineCurrentCompId = lastAudited.id;
+          updateComparisonCardDropdown();
+          showComparisonCardById(lastAudited.id);
+        } else if (currentEventContext && currentEventContext.id) {
+          addEventDiffRow(currentEventContext);
+          showComparisonCardById(currentEventContext.id);
+        } else if (pipelineAuditedCardsHistory.length === 0) {
+          const afterContainer = document.getElementById('pipeline-comp-card-after');
+          if (afterContainer && currentPipelineScanKey !== 'harvest') {
+            afterContainer.innerHTML = `
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 380px; text-align: center; color: #34d399; padding: 20px;">
+                <div style="font-size: 2.2rem; margin-bottom: 8px;">✅</div>
+                <div style="font-weight: 700; color: #34d399; font-size: 0.95rem; margin-bottom: 6px;">
+                  All In-Scope Events Verified
+                </div>
+                <p style="font-size: 0.74rem; color: #94a3b8; max-width: 280px; margin: 0; line-height: 1.45;">
+                  All target events already have verified data in the layer. Zero un-enriched or drift cards detected.
+                </p>
+                <p style="font-size: 0.72rem; color: #64748b; margin-top: 10px;">
+                  To re-evaluate or inspect a specific event, switch <strong>Scope</strong> to <strong>Single Card</strong>.
+                </p>
+              </div>
+            `;
+          }
+        }
+        if (pipelineSpinner) pipelineSpinner.textContent = '✅';
+        if (pipelineStatusText) {
+          pipelineStatusText.textContent = `✅ Pipeline Execution Complete! (${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Events Audited)`;
+          pipelineStatusText.style.color = '#34d399';
+        }
+        if (pipelineStatusSubtext) {
+          pipelineStatusSubtext.textContent = `All ${pipelineProcessedCount} targeted event operations finished cleanly.`;
+        }
+        if (pipelineProgressBar) {
+          pipelineProgressBar.style.width = '100%';
+          pipelineProgressBar.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+        }
+        if (pipelineEtaValue) {
+          pipelineEtaValue.textContent = '0s (Finished)';
+        }
+        if (pipelineItemProgress) {
+          pipelineItemProgress.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} events processed (100%) in ${elapsed}s`;
+        }
+        const counterBadge = document.getElementById('pipeline-diff-counter-badge');
+        if (counterBadge) {
+          counterBadge.textContent = `${pipelineProcessedCount} of ${pipelineTotalTargets || pipelineProcessedCount} Processed`;
+        }
+        if (pipelineConsoleOutput) {
+          pipelineConsoleOutput.textContent += '\n[SUCCESS] Pipeline execution completed.\n';
+          pipelineConsoleOutput.scrollTop = pipelineConsoleOutput.scrollHeight;
+        }
+        if (pipelineTimeoutEvents.length > 0) {
+          const names = pipelineTimeoutEvents.map(t => `"${t.eventTitle}" (${t.cause})`).slice(0, 3).join('; ');
+          if (pipelineStatusText) {
+            pipelineStatusText.textContent = `⚠️ Pipeline Complete with ${pipelineTimeoutEvents.length} Timeout/Issue(s) (${pipelineProcessedCount} Audited)`;
+            pipelineStatusText.style.color = '#fbbf24';
+          }
+          if (pipelineStatusSubtext) {
+            pipelineStatusSubtext.style.display = 'block';
+            pipelineStatusSubtext.style.color = '#fca5a5';
+            pipelineStatusSubtext.textContent = `Timed-out/Errored Events: ${names}`;
+          }
+          if (typeof showToast === 'function') {
+            showToast(`⚠️ Completed with ${pipelineTimeoutEvents.length} AI timeout(s): ${names}`, 'error');
+          }
+        } else {
+          if (typeof showToast === 'function') showToast('Pipeline execution complete! Data committed.', 'success');
+        }
+        if (typeof loadQuarantineQueue === 'function') loadQuarantineQueue();
+        if (typeof loadCuratorDashboard === 'function') loadCuratorDashboard();
+        if (typeof window.loadLayersAndEvents === 'function') window.loadLayersAndEvents();
+
+        // Auto-chain to next stage if full pipeline batch mode is active
+        if (isPipelineAutoChaining) {
+          const chainOrder = window.pipelineAutoChainingStages || ['harvest', 'hunter', 'qc', 'enrich', 'venue', 'compile'];
+          const curIdx = chainOrder.indexOf(finishedStageKey);
+          if (curIdx >= 0 && curIdx < chainOrder.length - 1) {
+            const nextStageKey = chainOrder[curIdx + 1];
+            pipelineTestStageStatuses[nextStageKey] = 'Running ⚡';
+            window.activePipelineRunningStageKey = nextStageKey;
+            updatePipelineTestStepperUI();
+            savePipelineBatchState();
+            if (pipelineStatusText) {
+              pipelineStatusText.textContent = `Stage ${curIdx + 1} Complete! Advancing to ${nextStageKey.toUpperCase()} in 1s...`;
+              pipelineStatusText.style.color = '#38bdf8';
+            }
+            setTimeout(() => {
+              if (isPipelineAutoChaining) {
+                openPipelineTestStage(nextStageKey, true);
+              }
+            }, 900);
+          } else {
+            isPipelineAutoChaining = false;
+            window.activePipelineRunningStageKey = null;
+            const autoBtn = document.getElementById('btn-stepper-auto-pipeline');
+            if (autoBtn) {
+              autoBtn.classList.remove('is-running');
+              const autoLabel = document.getElementById('btn-stepper-auto-label');
+              if (autoLabel) autoLabel.textContent = '🚀 Auto-Run All (1A ➔ 5)';
+            }
+            const autoStaleBtn = document.getElementById('btn-stepper-auto-stale');
+            if (autoStaleBtn) {
+              autoStaleBtn.classList.remove('is-running');
+              const autoStaleLabel = document.getElementById('btn-stepper-auto-stale-label');
+              if (autoStaleLabel) autoStaleLabel.textContent = '⚡ Auto-Run Out-of-Date (1B ➔ 5)';
+            }
+            const autoQBtn = document.getElementById('btn-stepper-auto-quarantined');
+            if (autoQBtn) {
+              autoQBtn.classList.remove('is-running');
+              const autoQLabel = document.getElementById('btn-stepper-auto-quarantined-label');
+              if (autoQLabel) autoQLabel.textContent = '🛡️ Run Quarantined (1B ➔ 5)';
+            }
+            const summaryBanner = document.getElementById('pipeline-completion-summary-banner');
+            if (summaryBanner) summaryBanner.style.display = 'block';
+          }
+        }
+      } else {
+        isPipelineAutoChaining = false;
+        window.activePipelineRunningStageKey = null;
+        const failedStageKey = activeStageKey || currentPipelineScanKey;
+        if (PIPELINE_TEST_ORDER.includes(failedStageKey)) {
+          pipelineTestStageStatuses[failedStageKey] = `❌ Error (${exitCode})`;
+          updatePipelineTestStepperUI();
+        }
+        if (currentPipelineScanKey === 'harvest') {
+          if (typeof finalizeHarvesterRun === 'function') finalizeHarvesterRun(false);
+        }
+        if (pipelineSpinner) pipelineSpinner.textContent = '❌';
+        if (pipelineStatusText) {
+          pipelineStatusText.textContent = `❌ Pipeline exited with code ${exitCode}`;
+          pipelineStatusText.style.color = '#f87171';
+        }
+        if (pipelineProgressBar) {
+          pipelineProgressBar.style.background = '#f87171';
+        }
+        if (typeof showToast === 'function') showToast(`Pipeline exited with code ${exitCode}`, 'error');
+      }
+    });
+
+    es.addEventListener('error', (event) => {
+      es.close();
+      activeEventSource = null;
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      setExecutionState(false);
+
+      if (currentPipelineScanKey === 'harvest') {
+        if (typeof finalizeHarvesterRun === 'function') finalizeHarvesterRun(false);
+      }
+
+      if (currentEventContext) {
+        addEventDiffRow(currentEventContext);
+        currentEventContext = null;
+      }
+
+      if (btnStopPipeline) btnStopPipeline.style.display = 'none';
+      if (btnStopPipelineTop) btnStopPipelineTop.style.display = 'none';
+      const btnTriggerEl = document.getElementById('btn-trigger-pipeline-run');
+      if (btnTriggerEl) btnTriggerEl.style.display = 'inline-flex';
+
+      if (pipelineSpinner) pipelineSpinner.style.animation = 'none';
+      if (pipelineStatusText) {
+        pipelineStatusText.textContent = '⚠️ Stream connection closed.';
+        pipelineStatusText.style.color = '#94a3b8';
+      }
+      if (typeof loadQuarantineQueue === 'function') loadQuarantineQueue();
+      if (typeof window.loadLayersAndEvents === 'function') window.loadLayersAndEvents();
+    });
+  };
+
+  // Wire Trigger Launcher Button in Modal
+  const btnTriggerPipelineRun = document.getElementById('btn-trigger-pipeline-run');
+  if (btnTriggerPipelineRun) {
+    btnTriggerPipelineRun.addEventListener('click', () => {
+      if (isExecuting) {
+        if (confirm('A pipeline task is currently marked active. Would you like to stop it and start a new scan?')) {
+          stopActiveStagehand().then(() => {
+            setTimeout(() => { btnTriggerPipelineRun.click(); }, 300);
+          });
+        }
+        return;
+      }
+
+      const preset = SCAN_PRESETS[currentPipelineScanKey] || SCAN_PRESETS.qc;
+      const inputUrl = document.getElementById('pipeline-input-url');
+      const chkAutoApprove = document.getElementById('pipeline-input-auto-approve');
+      const startInput = document.getElementById('pipeline-card-start');
+      const stopInput = document.getElementById('pipeline-card-stop');
+      const selectCard = document.getElementById('pipeline-select-card-name');
+
+      let url = (inputUrl && inputUrl.value.trim()) || '';
+      let autoApprove = chkAutoApprove ? chkAutoApprove.checked : true;
+
+      let allParam = false;
+      let limitVal = 0;
+      let offsetVal = 0;
+      let idVal = '';
+      let idsVal = '';
+      let venueVal = '';
+      let forceVal = false;
+      let uncompiledOnly = false;
+      let incompleteOnly = false;
+      let staleVal = '';
+
+      if (preset.key === 'harvest') {
+        const feedSelect = document.getElementById('pipeline-select-venue-feed');
+        const customFeedInput = document.getElementById('pipeline-harvester-custom-url');
+        const chkHarvesterApprove = document.getElementById('pipeline-harvester-auto-approve');
+        const feedVal = feedSelect ? feedSelect.value : 'all';
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 5);
+
+        if (feedVal === 'all') {
+          url = 'all';
+          allParam = true;
+          limitVal = batchCap;
+        } else if (feedVal === 'custom') {
+          url = (customFeedInput && customFeedInput.value.trim()) || '';
+          if (!url) {
+            alert('Please enter a custom venue calendar URL to harvest.');
+            if (customFeedInput) customFeedInput.focus();
+            return;
+          }
+          allParam = false;
+          limitVal = batchCap;
+        } else {
+          url = feedVal;
+          allParam = false;
+          limitVal = batchCap;
+        }
+        autoApprove = chkHarvesterApprove ? chkHarvesterApprove.checked : true;
+      } else if (preset.key === 'venue') {
+        const vSelect = document.getElementById('pipeline-select-venue-detailer');
+        const selVal = vSelect ? vSelect.value : 'new_events';
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 10);
+        if (selVal === 'new_events') {
+          const newV = window.getVenuesForNewEvents ? window.getVenuesForNewEvents() : [];
+          venueVal = newV.length === 1 ? newV[0] : 'all';
+          limitVal = newV.length || batchCap;
+          forceVal = false;
+        } else if (selVal === 'ungrounded') {
+          venueVal = 'all';
+          limitVal = batchCap;
+          forceVal = false;
+        } else if (selVal === 'all') {
+          venueVal = 'all';
+          allParam = true;
+          limitVal = 0;
+          forceVal = true;
+        } else {
+          venueVal = selVal;
+          limitVal = 1;
+          forceVal = true;
+        }
+      } else if (currentPipelineScope === 'batch5') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 5);
+        if (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0) {
+          idsVal = pipelineTestDiscoveredIds.join(',');
+          limitVal = (window.pipelineBatchSize === 'all') ? 0 : pipelineTestDiscoveredIds.length;
+          offsetVal = 0;
+          allParam = (window.pipelineBatchSize === 'all');
+          forceVal = true;
+        } else {
+          const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
+          offsetVal = Math.max(0, start - 1);
+          limitVal = batchCap;
+          allParam = (window.pipelineBatchSize === 'all');
+          forceVal = true;
+        }
+      } else if (currentPipelineScope === 'quarantined') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 0);
+        const qEvents = state.quarantinedEvents || [];
+        let qIds = (pipelineTestDiscoveredIds && pipelineTestDiscoveredIds.length > 0)
+          ? [...pipelineTestDiscoveredIds]
+          : qEvents.map(e => e.id || e.event_id).filter(Boolean);
+        if (batchCap > 0 && qIds.length > batchCap) qIds = qIds.slice(0, batchCap);
+        idsVal = qIds.join(',');
+        limitVal = batchCap;
+        offsetVal = 0;
+        allParam = true;
+        forceVal = true;
+        pipelineQuarantinedRunActive = true;
+      } else if (currentPipelineScope === 'single_card') {
+        const customInput = document.getElementById('pipeline-custom-card-ids');
+        if (customInput && customInput.dataset.selectedId) {
+          idVal = customInput.dataset.selectedId;
+        } else if (window.parseCardNumbersToIds && customInput && customInput.value.trim()) {
+          const parsed = window.parseCardNumbersToIds(customInput.value.trim());
+          if (parsed.length === 1) idVal = parsed[0];
+          else if (parsed.length > 1) idsVal = parsed.join(',');
+        }
+        if (!idVal && !idsVal) {
+          idVal = (selectCard && selectCard.value) || '';
+        }
+        if (!idVal && !idsVal) {
+          alert('Please select an event card from the dropdown first.');
+          return;
+        }
+        offsetVal = 0;
+        limitVal = idsVal ? idsVal.split(',').length : 1;
+        allParam = false;
+        forceVal = true;
+      } else if (currentPipelineScope === 'range') {
+        const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
+        const stop = parseInt(stopInput ? stopInput.value : '1', 10) || start;
+        offsetVal = Math.max(0, start - 1);
+        limitVal = Math.max(1, stop - start + 1);
+        allParam = false;
+        forceVal = true;
+      } else if (currentPipelineScope === 'all') {
+        idVal = '';
+        offsetVal = 0;
+        limitVal = 0;
+        allParam = true;
+        forceVal = true;
+      } else if (currentPipelineScope === 'incomplete') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 0);
+        idVal = '';
+        offsetVal = 0;
+        limitVal = batchCap;
+        allParam = false;
+        forceVal = false;
+        incompleteOnly = true;
+      } else if (currentPipelineScope === 'stale') {
+        const batchCap = (window.pipelineBatchSize === 'all' || window.pipelineBatchSize === 0)
+          ? 0
+          : (Number(window.pipelineBatchSize) || 0);
+        idVal = '';
+        offsetVal = 0;
+        limitVal = batchCap;
+        allParam = false;
+        forceVal = true;
+        const durationSelect = document.getElementById('pipeline-stale-duration');
+        staleVal = durationSelect ? durationSelect.value : '24h';
+      } else if (currentPipelineScope === 'unscanned') {
+        idVal = '';
+        const start = parseInt(startInput ? startInput.value : '1', 10) || 1;
+        const stop = parseInt(stopInput ? stopInput.value : '1', 10) || start;
+        offsetVal = Math.max(0, start - 1);
+        limitVal = Math.max(1, stop - start + 1);
+        allParam = false;
+        forceVal = false;
+        uncompiledOnly = true;
+      }
+
+      const btnLabelEl = document.getElementById('btn-trigger-pipeline-label');
+      const actionTitle = ((preset.key === 'harvest' || preset.key === 'venue') && btnLabelEl)
+        ? btnLabelEl.textContent.trim()
+        : preset.btnLabel;
+
+      runPipelineAction({
+        mode: preset.mode,
+        title: actionTitle,
+        initialStatus: preset.initialStatus,
+        limit: limitVal,
+        offset: offsetVal,
+        id: idVal,
+        ids: idsVal,
+        venue: venueVal,
+        quarantine: pipelineQuarantinedRunActive,
+        uncompiledOnly: uncompiledOnly,
+        incompleteOnly: incompleteOnly,
+        stale: staleVal,
+        scope: currentPipelineScope,
+        url: url,
+        all: allParam,
+        force: forceVal,
+        autoApprove: autoApprove
+      });
+    });
+  }
+
+  // Wire Top Header Nav Pipeline Action Buttons (Open scan modal with preset)
+  const navHarvestBtn = document.getElementById('btn-nav-harvest');
+  const navQcBtn = document.getElementById('btn-nav-qc');
+  const navEnrichBtn = document.getElementById('btn-nav-enrich');
+  const navVenueBtn = document.getElementById('btn-nav-venue');
+  const navCompileBtn = document.getElementById('btn-nav-compile');
+  const navMasterBtn = document.getElementById('btn-nav-master');
+
+  if (navHarvestBtn) navHarvestBtn.addEventListener('click', (e) => openScanModal('harvest', e));
+  if (navQcBtn) navQcBtn.addEventListener('click', (e) => openScanModal('qc', e));
+  if (navEnrichBtn) navEnrichBtn.addEventListener('click', (e) => openScanModal('enrich', e));
+  if (navVenueBtn) navVenueBtn.addEventListener('click', (e) => openScanModal('venue', e));
+  if (navCompileBtn) navCompileBtn.addEventListener('click', (e) => openScanModal('compile', e));
+  if (navMasterBtn) navMasterBtn.addEventListener('click', (e) => openScanModal('master', e));
+
+  // Wire 5-Stage Autonomous Pipeline Action Bar & Scan Guide Cards
+  const pipelineHarvestBtn = document.getElementById('btn-pipeline-harvest');
+  const pipelineQcBtn = document.getElementById('btn-pipeline-qc');
+  const pipelineEnrichBtn = document.getElementById('btn-pipeline-enrich');
+  const pipelineVenueBtn = document.getElementById('btn-pipeline-venue');
+  const pipelineCompileBtn = document.getElementById('btn-pipeline-compile');
+  const pipelineMasterBtn = document.getElementById('btn-pipeline-master');
+
+  if (pipelineHarvestBtn) pipelineHarvestBtn.addEventListener('click', (e) => openScanModal('harvest', e));
+  if (pipelineQcBtn) pipelineQcBtn.addEventListener('click', (e) => openScanModal('qc', e));
+  if (pipelineEnrichBtn) pipelineEnrichBtn.addEventListener('click', (e) => openScanModal('enrich', e));
+  if (pipelineVenueBtn) pipelineVenueBtn.addEventListener('click', (e) => openScanModal('venue', e));
+  if (pipelineCompileBtn) pipelineCompileBtn.addEventListener('click', (e) => openScanModal('compile', e));
+  if (pipelineMasterBtn) pipelineMasterBtn.addEventListener('click', (e) => openScanModal('master', e));
+
+  // Wire Expandable 5-Stage "Autonomous AI Scans & Pipeline Architecture" Panel Header Toggle
+  const scansPanel = document.getElementById('ai-scans-dropdown-panel');
+  if (scansPanel) {
+    const header = scansPanel.querySelector('.scans-guide-header');
+    if (header && !header._toggleWired) {
+      header._toggleWired = true;
+      header.addEventListener('click', (e) => {
+        if (e.target.closest('select, button, input, label, a')) return;
+        scansPanel.classList.toggle('collapsed');
+      });
+    }
+  }
+
+  // Wire 5-Stage Scan Guide Cards (.scan-guide-card)
+  document.querySelectorAll('.scan-guide-card[data-scan-stage]').forEach(card => {
+    if (card._stageWired) return;
+    card._stageWired = true;
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button, a, input, select')) return;
+      const stageKey = card.getAttribute('data-scan-stage');
+      if (stageKey) openScanModal(stageKey, e);
+    });
+  });
+
+  // 1-Click Catalog-Wide Stagehand QC Button inside Modal
+  if (auditAllBtn) {
+    auditAllBtn.addEventListener('click', () => {
+      const unverifiedOnly = unverifiedOnlyChk ? unverifiedOnlyChk.checked : true;
+      const autoApprove = autoApproveChk ? autoApproveChk.checked : true;
+
+      runPipelineAction({
+        mode: 'catalog_batch',
+        limit: 0,
+        url: '',
+        all: !unverifiedOnly,
+        autoApprove: autoApprove,
+        title: '<span>⚡</span> Stagehand Catalog-Wide QC',
+        desc: 'Sequentially auditing catalog cards with live Chromium subagent instances (1-by-1)',
+        initialStatus: unverifiedOnly
+          ? 'Stagehand Batch QC: Auditing all unverified catalog events (1-by-1)...'
+          : 'Stagehand Batch QC: Auditing entire catalog from start to finish (1-by-1)...'
+      });
+    });
+  }
+
+  // Custom Target / Calendar Drill Run Button
+  if (runBtn) {
+    runBtn.addEventListener('click', () => {
+      const mode = modeSelect ? modeSelect.value : 'single';
+      const url = (urlInput ? urlInput.value : '').trim();
+
+      if (mode !== 'catalog_batch' && mode !== 'enrich' && mode !== 'compile' && (!url || !url.startsWith('http'))) {
+        if (typeof showToast === 'function') showToast('Please enter a valid HTTP/HTTPS calendar or ticket URL', 'error');
+        if (urlInput) urlInput.focus();
+        return;
+      }
+
+      const maxEvents = limitInput ? parseInt(limitInput.value, 10) || 5 : 5;
+      const autoApprove = autoApproveChk ? autoApproveChk.checked : true;
+
+      runPipelineAction({
+        mode: mode,
+        limit: maxEvents,
+        url: url,
+        all: false,
+        autoApprove: autoApprove,
+        title: mode === 'catalog_batch'
+          ? '<span>⚡</span> Stagehand Batch QC Drill'
+          : mode === 'calendar'
+          ? '<span>📅</span> Calendar Schedule Scan'
+          : mode === 'enrich'
+          ? '<span>✍️</span> AI Semantic Enricher'
+          : mode === 'compile'
+          ? '<span>🏛️</span> Compiler AI & Publish'
+          : '<span>⚡</span> Single Event / Cart Drill',
+        desc: `Target: ${url || 'Catalog Store'} (Limit: ${maxEvents})`,
+        initialStatus: mode === 'catalog_batch'
+          ? `Stagehand Browser launching: Batch QC on ${maxEvents} catalog events...`
+          : mode === 'calendar'
+          ? 'Stagehand Browser launching: Harvesting calendar links...'
+          : mode === 'enrich'
+          ? `AI Enricher launching: Enriching up to ${maxEvents} events...`
+          : mode === 'compile'
+          ? 'Compiler AI launching: Arbitrating layers & publishing live catalog...'
+          : 'Stagehand Browser launching: Penetrating cart...'
+      });
+    });
+  }
+
+  // Kick off initial loading of layers and uncompiled badges
+  if (typeof window.loadLayersAndEvents === 'function') {
+    window.loadLayersAndEvents();
+  }
+}
+
+window.openScreenshotModal = function(url) {
+  if (!url) return;
+  const lightbox = document.getElementById('screenshot-lightbox-modal');
+  const img = document.getElementById('lightbox-img');
+  if (lightbox && img) {
+    img.src = url;
+    lightbox.style.display = 'flex';
+    lightbox.classList.add('active');
+  } else {
+    window.open(url, '_blank');
+  }
+};
+
+window.closeScreenshotModal = function() {
+  const lightbox = document.getElementById('screenshot-lightbox-modal');
+  if (lightbox) {
+    lightbox.style.display = 'none';
+    lightbox.classList.remove('active');
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStagehandRipperUI);
+} else {
+  initStagehandRipperUI();
+}

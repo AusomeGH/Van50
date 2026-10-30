@@ -1,0 +1,221 @@
+{
+  "tier_id": "tier2_content",
+  "tier_name": "Content QC (Weekly - 14 Dynamic Content Dims)",
+  "sla_hours": 168,
+  "last_updated": "2026-10-13T16:40:00-07:00",
+  "cursor": {
+    "last_card_number": 30,
+    "last_perm_id": "Event_Num_Perm_000000030",
+    "last_card_id": "Event_Num_Card_000000030",
+    "last_event_id": "van50-the-sunday-service-fox-20261011",
+    "last_event_title": "The Sunday Service: Live Improv Comedy",
+    "last_scanned_at": "2026-10-13T14:03:00-07:00",
+    "next_card_number": 31,
+    "next_perm_id": "Event_Num_Perm_000000031",
+    "next_card_id": "Event_Num_Card_000000031",
+    "next_event_id": "van50-90s-00s-dance-party-fox-20261009",
+    "next_event_title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+  },
+  "events": {
+    "van50-queen-elizabeth-theatre-vancouver-opera-tosca": {
+      "Event_Num_Perm": "Event_Num_Perm_000000026",
+      "Event_Num_Card": "Event_Num_Card_000000026",
+      "title": "Vancouver Opera: Tosca (Opening Night)",
+      "venue": "Queen Elizabeth Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T13:59:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T13:59:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000026_content_20261013_1359.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000026_content_20261013_1359.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_26_1791925065.webp",
+            "verbatim_quote": "Vancouver Opera presents Giacomo Puccini's Tosca • Conductor: Jacques Lacombe • Vancouver Opera Orchestra and Chorus"
+          },
+          "input_payload": {
+            "target_url": "https://www.vancouveropera.ca/whats-on/tosca/",
+            "event_title": "Vancouver Opera: Tosca (Opening Night)",
+            "venue_name": "Queen Elizabeth Theatre"
+          },
+          "extracted_payload": {
+            "D33_title": "Vancouver Opera: Tosca (Opening Night)",
+            "D34_lineup": "Vancouver Opera Orchestra & Chorus, Conductor Jacques Lacombe, Director Leslie Swackhamer",
+            "D35_date_iso": "2026-10-24",
+            "D36_doors_time": "18:30",
+            "D37_showtime": "19:30",
+            "D38_curfew_time": "22:15",
+            "D41_category": "theatre_performing_arts",
+            "D42_restrictions": "All Ages Welcome (recommended 12+)"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-raagaverse-strings-annex-20261015": {
+      "Event_Num_Perm": "Event_Num_Perm_000000027",
+      "Event_Num_Card": "Event_Num_Card_000000027",
+      "title": "Raagaverse + Strings",
+      "venue": "The Annex",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:00:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:00:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000027_content_20261013_1400.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000027_content_20261013_1400.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_27_1791925117745.webp",
+            "verbatim_quote": "Shruti Ramani (vocals), Noah Franche-Nolan (piano), James Meger (bass), Trent Otter (drums), String Quartet"
+          },
+          "input_payload": {
+            "target_url": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
+            "event_title": "Raagaverse + Strings",
+            "venue_name": "The Annex"
+          },
+          "extracted_payload": {
+            "D33_title": "Raagaverse + Strings",
+            "D34_lineup": "Shruti Ramani, Noah Franche-Nolan, James Meger, Trent Otter, Meredith Bates, Joshua Zubot, Parmela Attariwala, Marina Hasselberg",
+            "D35_date_iso": "2026-10-15",
+            "D36_doors_time": "18:30",
+            "D37_showtime": "19:30",
+            "D38_curfew_time": "21:30",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "All Ages Welcome (Family Friendly)"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-actors-rickshaw-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000028",
+      "Event_Num_Card": "Event_Num_Card_000000028",
+      "title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:01:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:01:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000028_content_20261013_1401.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000028_content_20261013_1401.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_28_1791925241430.webp",
+            "verbatim_quote": "ACTORS / SACRED SKIN, MØAA, DJ EVILYN 13 • 19+ Only"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/actors-4/",
+            "event_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D33_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+            "D34_lineup": "ACTORS, Sacred Skin, MØAA, DJ Evilyn 13",
+            "D35_date_iso": "2026-10-09",
+            "D36_doors_time": "19:00",
+            "D37_showtime": "19:00",
+            "D38_curfew_time": "23:00",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "19+ (Two pieces of government ID required)"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-militarie-gun-rickshaw-20261010": {
+      "Event_Num_Perm": "Event_Num_Perm_000000029",
+      "Event_Num_Card": "Event_Num_Card_000000029",
+      "title": "Militarie Gun: 20 Songs for $20 Tour",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:02:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:02:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000029_content_20261013_1402.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000029_content_20261013_1402.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_29_1791925310.webp",
+            "verbatim_quote": "Militarie Gun, Softcult, Shady Nasty, Dazy • 19+ w/ ID"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+            "event_title": "Militarie Gun: 20 Songs for $20 Tour",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D33_title": "Militarie Gun: 20 Songs for $20 Tour",
+            "D34_lineup": "Militarie Gun, Softcult, Shady Nasty, Dazy",
+            "D35_date_iso": "2026-10-10",
+            "D36_doors_time": "18:00",
+            "D37_showtime": "18:00",
+            "D38_curfew_time": "22:30",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "19+ (Two pieces of government ID required)"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-the-sunday-service-fox-20261011": {
+      "Event_Num_Perm": "Event_Num_Perm_000000030",
+      "Event_Num_Card": "Event_Num_Card_000000030",
+      "title": "The Sunday Service: Live Improv Comedy",
+      "venue": "The Fox Cabaret",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:03:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:03:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000030_content_20261013_1403.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000030_content_20261013_1403.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_30_1791925370.webp",
+            "verbatim_quote": "The Sunday Service • Aaron Read, Taz VanRassel, Emmett Hall, Ryan Beil, Kevin Lee • 19+"
+          },
+          "input_payload": {
+            "target_url": "https://thesundayservice.ca",
+            "event_title": "The Sunday Service: Live Improv Comedy",
+            "venue_name": "The Fox Cabaret"
+          },
+          "extracted_payload": {
+            "D33_title": "The Sunday Service: Live Improv Comedy",
+            "D34_lineup": "The Sunday Service (Aaron Read, Taz VanRassel, Emmett Hall, Ryan Beil, Kevin Lee) with guest stand-ups & improvisers",
+            "D35_date_iso": "2026-10-11",
+            "D36_doors_time": "19:00",
+            "D37_showtime": "20:00",
+            "D38_curfew_time": "22:00",
+            "D41_category": "comedy_standup_improv",
+            "D42_restrictions": "19+ (Two pieces of government ID required)"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "tier_id": "tier3_full",
+  "tier_name": "Full 58D Facility Audit (Monthly - All 58 Dimensions)",
+  "sla_hours": 720,
+  "last_updated": "2026-10-13T16:40:00-07:00",
+  "cursor": {
+    "last_card_number": 30,
+    "last_perm_id": "Event_Num_Perm_000000030",
+    "last_card_id": "Event_Num_Card_000000030",
+    "last_event_id": "van50-the-sunday-service-fox-20261011",
+    "last_event_title": "The Sunday Service: Live Improv Comedy",
+    "last_scanned_at": "2026-10-13T14:03:00-07:00",
+    "next_card_number": 31,
+    "next_perm_id": "Event_Num_Perm_000000031",
+    "next_card_id": "Event_Num_Card_000000031",
+    "next_event_id": "van50-90s-00s-dance-party-fox-20261009",
+    "next_event_title": "00s vs 10s Party: All 2000s & 2010s Hits Dance Party"
+  },
+  "events": {
+    "van50-queen-elizabeth-theatre-vancouver-opera-tosca": {
+      "Event_Num_Perm": "Event_Num_Perm_000000026",
+      "Event_Num_Card": "Event_Num_Card_000000026",
+      "title": "Vancouver Opera: Tosca (Opening Night)",
+      "venue": "Queen Elizabeth Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T13:59:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T13:59:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000026_pulse_20261013_1359.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000026_pulse_20261013_1359.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_26_1791925065.webp",
+            "verbatim_quote": "Queen Elizabeth Theatre • 630 Hamilton St, Vancouver, BC V6B 5N6 • Stadium Seating"
+          },
+          "input_payload": {
+            "target_url": "https://www.vancouveropera.ca/whats-on/tosca/",
+            "event_title": "Vancouver Opera: Tosca (Opening Night)",
+            "venue_name": "Queen Elizabeth Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://tickets.vancouveropera.ca/TheatreManager/1/online?performance=2404",
+            "D2_tier2_event_page": "https://www.vancouveropera.ca/whats-on/tosca/",
+            "D3_tier3_calendar": "https://vancouvercivictheatres.com/events/",
+            "D4_tier4_civic_destination": "https://vancouvercivictheatres.com/venues/queen-elizabeth-theatre/",
+            "D6_best_tier": "tier1",
+            "D7_operational_status": "scheduled",
+            "D8_geo_jurisdiction": "Vancouver (Metro Vancouver Invariant Valid)",
+            "D9_currency_standard": "CAD",
+            "D10_iana_timezone": "America/Vancouver",
+            "D11_tier1_name": "Student Rush",
+            "D12_tier1_price_base": 25.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 25.00,
+            "D16_tier2_name": "Lucky Dip",
+            "D17_tier2_price_base": 40.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 40.00,
+            "D26_tier_count_verified": 2,
+            "D27_pricing_model": "tiered_rush_access",
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "TheatreManager / Vancouver Opera Box Office",
+            "D32_booking_protocol": "online_and_box_office",
+            "D33_title": "Vancouver Opera: Tosca (Opening Night)",
+            "D34_lineup": "Vancouver Opera Orchestra & Chorus, Conductor Jacques Lacombe, Director Leslie Swackhamer",
+            "D35_date_iso": "2026-10-24",
+            "D36_doors_time": "18:30",
+            "D37_showtime": "19:30",
+            "D38_curfew_time": "22:15",
+            "D39_dateSchedule": "2026-10-24 19:30",
+            "D40_frequencyLabel": "Opening Night Performance",
+            "D41_category": "theatre_performing_arts",
+            "D42_restrictions": "All Ages Welcome (recommended 12+)",
+            "D43_venue_name": "Queen Elizabeth Theatre",
+            "D44_civic_address": "630 Hamilton St, Vancouver, BC V6B 5N6",
+            "D45_coordinates": { "lat": 49.2801, "lng": -123.1128 },
+            "D46_access_model": "fenced_theatre",
+            "D47_environment_type": "indoor",
+            "D48_weekly_hours": "Box office opens 2 hours before curtain on show days",
+            "D49_spend_benchmarks": { "craft_beer_cad": 11.50, "cocktail_cad": 14.50 },
+            "D50_transit_waypoints": "Stadium-Chinatown SkyTrain Station (Expo Line, 3 min walk)",
+            "D51_description": "Vancouver Opera launches its 2026-2027 season with Puccini's explosive masterpiece of passion, jealousy, and betrayal.",
+            "D52_festival_affiliation": "None",
+            "D53_active_showings": 1,
+            "D54_archived_showings": 0,
+            "D55_civic_provider_rules": "City of Vancouver Civic Theatres standard bag check and metal detection",
+            "D56_data_provenance": "Chromium Subagent live verification",
+            "D57_curator_lock": false,
+            "D58_last_qc_audited_at": "2026-10-13T13:59:00-07:00"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-raagaverse-strings-annex-20261015": {
+      "Event_Num_Perm": "Event_Num_Perm_000000027",
+      "Event_Num_Card": "Event_Num_Card_000000027",
+      "title": "Raagaverse + Strings",
+      "venue": "The Annex",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:00:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:00:00-07:00",
+          "status": "PASS",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000027_pulse_20261013_1400.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000027_pulse_20261013_1400.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_27_1791925117745.webp",
+            "verbatim_quote": "The Annex • 823 Seymour St, Vancouver, BC V6B 3L4 • Intimate Civic Black Box"
+          },
+          "input_payload": {
+            "target_url": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
+            "event_title": "Raagaverse + Strings",
+            "venue_name": "The Annex"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.showpass.com/raagaverse-strings/",
+            "D2_tier2_event_page": "https://vancouvercivictheatres.com/events/raagaverse-plus-strings-oct-15-2026/",
+            "D3_tier3_calendar": "https://vancouvercivictheatres.com/events/",
+            "D4_tier4_civic_destination": "https://vancouvercivictheatres.com/venues/annex/",
+            "D6_best_tier": "tier1",
+            "D7_operational_status": "scheduled",
+            "D8_geo_jurisdiction": "Vancouver (Metro Vancouver Invariant Valid)",
+            "D9_currency_standard": "CAD",
+            "D10_iana_timezone": "America/Vancouver",
+            "D11_tier1_name": "Concession / Low Income",
+            "D12_tier1_price_base": 18.00,
+            "D13_tier1_price_fee": 3.02,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 21.02,
+            "D16_tier2_name": "General Admission",
+            "D17_tier2_price_base": 30.00,
+            "D18_tier2_price_fee": 3.68,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 33.68,
+            "D26_tier_count_verified": 2,
+            "D27_pricing_model": "tiered_admission",
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Showpass",
+            "D32_booking_protocol": "online_showpass",
+            "D33_title": "Raagaverse + Strings",
+            "D34_lineup": "Shruti Ramani, Noah Franche-Nolan, James Meger, Trent Otter, Meredith Bates, Joshua Zubot, Parmela Attariwala, Marina Hasselberg",
+            "D35_date_iso": "2026-10-15",
+            "D36_doors_time": "18:30",
+            "D37_showtime": "19:30",
+            "D38_curfew_time": "21:30",
+            "D39_dateSchedule": "2026-10-15 19:30",
+            "D40_frequencyLabel": "Single Concert",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "All Ages Welcome (Family Friendly)",
+            "D43_venue_name": "The Annex",
+            "D44_civic_address": "823 Seymour St, Vancouver, BC V6B 3L4",
+            "D45_coordinates": { "lat": 49.2808, "lng": -123.1189 },
+            "D46_access_model": "fenced_blackbox",
+            "D47_environment_type": "indoor",
+            "D48_weekly_hours": "Open 1 hour prior to ticketed performances",
+            "D49_spend_benchmarks": { "craft_beer_cad": 9.50, "cocktail_cad": 12.00 },
+            "D50_transit_waypoints": "Vancouver City Centre Station (Canada Line, 4 min walk)",
+            "D51_description": "Indo-jazz ensemble Raagaverse blends ancient Hindustani ragas with contemporary jazz and a chamber string quartet.",
+            "D52_festival_affiliation": "None",
+            "D53_active_showings": 1,
+            "D54_archived_showings": 0,
+            "D55_civic_provider_rules": "Vancouver Civic Theatres venue rules",
+            "D56_data_provenance": "Chromium Subagent live verification",
+            "D57_curator_lock": false,
+            "D58_last_qc_audited_at": "2026-10-13T14:00:00-07:00"
+          },
+          "diff_delta": {
+            "detected_changes_count": 0,
+            "discrepancies": []
+          }
+        }
+      ]
+    },
+    "van50-actors-rickshaw-20261009": {
+      "Event_Num_Perm": "Event_Num_Perm_000000028",
+      "Event_Num_Card": "Event_Num_Card_000000028",
+      "title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:01:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:01:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000028_pulse_20261013_1401.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000028_pulse_20261013_1401.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_28_1791925241430.webp",
+            "verbatim_quote": "Rickshaw Theatre • 254 E Hastings St, Vancouver, BC V6A 1P1 • Historic East Van Venue"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/actors-4/",
+            "event_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://actors-rickshaw-2026.eventbrite.ca",
+            "D2_tier2_event_page": "https://rickshawtheatre.com/show_listings/actors-4/",
+            "D3_tier3_calendar": "https://rickshawtheatre.com/show_listings/",
+            "D4_tier4_civic_destination": "https://rickshawtheatre.com/",
+            "D6_best_tier": "tier1",
+            "D7_operational_status": "archived",
+            "D8_geo_jurisdiction": "Vancouver (Metro Vancouver Invariant Valid)",
+            "D9_currency_standard": "CAD",
+            "D10_iana_timezone": "America/Vancouver",
+            "D11_tier1_name": "Advance General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 5.50,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 25.50,
+            "D26_tier_count_verified": 1,
+            "D27_pricing_model": "advance_and_door",
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Eventbrite",
+            "D32_booking_protocol": "online_eventbrite",
+            "D33_title": "ACTORS with Sacred Skin, MØAA & DJ Evilyn 13",
+            "D34_lineup": "ACTORS, Sacred Skin, MØAA, DJ Evilyn 13",
+            "D35_date_iso": "2026-10-09",
+            "D36_doors_time": "19:00",
+            "D37_showtime": "19:00",
+            "D38_curfew_time": "23:00",
+            "D39_dateSchedule": "2026-10-09 19:00",
+            "D40_frequencyLabel": "Special Show",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "19+ (Two pieces of government ID required)",
+            "D43_venue_name": "Rickshaw Theatre",
+            "D44_civic_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+            "D45_coordinates": { "lat": 49.2813, "lng": -123.0984 },
+            "D46_access_model": "fenced_commercial",
+            "D47_environment_type": "indoor",
+            "D48_weekly_hours": "Open show nights only, doors typically 7:00 PM or 8:00 PM",
+            "D49_spend_benchmarks": { "craft_beer_cad": 8.50, "cocktail_cad": 11.00 },
+            "D50_transit_waypoints": "Hastings & Main bus stop (#14, #16, #20, 2 min walk)",
+            "D51_description": "Vancouver post-punk legends ACTORS return to the Rickshaw stage with darkwave acts Sacred Skin and MOAA.",
+            "D52_festival_affiliation": "None",
+            "D53_active_showings": 0,
+            "D54_archived_showings": 1,
+            "D55_civic_provider_rules": "Rickshaw Theatre house policy, 19+ only",
+            "D56_data_provenance": "Chromium Subagent live verification",
+            "D57_curator_lock": false,
+            "D58_last_qc_audited_at": "2026-10-13T14:01:00-07:00"
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "operational_status",
+                "previous": "active",
+                "current": "archived",
+                "reason": "Temporal Gate 1: Performance concluded on Friday, Oct 9, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-militarie-gun-rickshaw-20261010": {
+      "Event_Num_Perm": "Event_Num_Perm_000000029",
+      "Event_Num_Card": "Event_Num_Card_000000029",
+      "title": "Militarie Gun: 20 Songs for $20 Tour",
+      "venue": "Rickshaw Theatre",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:02:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:02:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000029_pulse_20261013_1402.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000029_pulse_20261013_1402.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_29_1791925310.webp",
+            "verbatim_quote": "Rickshaw Theatre • 254 E Hastings St, Vancouver, BC V6A 1P1 • 19+ Only"
+          },
+          "input_payload": {
+            "target_url": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+            "event_title": "Militarie Gun: 20 Songs for $20 Tour",
+            "venue_name": "Rickshaw Theatre"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://www.ticketweb.ca/event/militarie-gun-with-softcult-shady-rickshaw-theatre-tickets/14778463",
+            "D2_tier2_event_page": "https://rickshawtheatre.com/show_listings/militarie-gun-20-songs-for-20-tour/",
+            "D3_tier3_calendar": "https://rickshawtheatre.com/show_listings/",
+            "D4_tier4_civic_destination": "https://rickshawtheatre.com/",
+            "D6_best_tier": "tier1",
+            "D7_operational_status": "archived",
+            "D8_geo_jurisdiction": "Vancouver (Metro Vancouver Invariant Valid)",
+            "D9_currency_standard": "CAD",
+            "D10_iana_timezone": "America/Vancouver",
+            "D11_tier1_name": "General Admission",
+            "D12_tier1_price_base": 20.00,
+            "D13_tier1_price_fee": 16.64,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 36.64,
+            "D26_tier_count_verified": 1,
+            "D27_pricing_model": "advance_ticketweb",
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Ticketweb",
+            "D32_booking_protocol": "online_ticketweb",
+            "D33_title": "Militarie Gun: 20 Songs for $20 Tour",
+            "D34_lineup": "Militarie Gun, Softcult, Shady Nasty, Dazy",
+            "D35_date_iso": "2026-10-10",
+            "D36_doors_time": "18:00",
+            "D37_showtime": "18:00",
+            "D38_curfew_time": "22:30",
+            "D39_dateSchedule": "2026-10-10 18:00",
+            "D40_frequencyLabel": "Single Tour Stop",
+            "D41_category": "live_music_concerts",
+            "D42_restrictions": "19+ (Two pieces of government ID required)",
+            "D43_venue_name": "Rickshaw Theatre",
+            "D44_civic_address": "254 E Hastings St, Vancouver, BC V6A 1P1",
+            "D45_coordinates": { "lat": 49.2813, "lng": -123.0984 },
+            "D46_access_model": "fenced_commercial",
+            "D47_environment_type": "indoor",
+            "D48_weekly_hours": "Open show nights only",
+            "D49_spend_benchmarks": { "craft_beer_cad": 8.50, "cocktail_cad": 11.00 },
+            "D50_transit_waypoints": "Hastings & Main bus stop (2 min walk)",
+            "D51_description": "Militarie Gun brings the 20 Songs for $20 Tour to Rickshaw Theatre with Softcult, Shady Nasty, and Dazy.",
+            "D52_festival_affiliation": "None",
+            "D53_active_showings": 0,
+            "D54_archived_showings": 1,
+            "D55_civic_provider_rules": "Rickshaw Theatre house policy, 19+ only",
+            "D56_data_provenance": "Chromium Subagent live verification",
+            "D57_curator_lock": false,
+            "D58_last_qc_audited_at": "2026-10-13T14:02:00-07:00"
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "showing_status",
+                "previous": "active",
+                "current": "completed",
+                "reason": "Performance concluded on Saturday, Oct 10, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "van50-the-sunday-service-fox-20261011": {
+      "Event_Num_Perm": "Event_Num_Perm_000000030",
+      "Event_Num_Card": "Event_Num_Card_000000030",
+      "title": "The Sunday Service: Live Improv Comedy",
+      "venue": "The Fox Cabaret",
+      "total_scans_recorded": 1,
+      "latest_scanned_at": "2026-10-13T14:03:00-07:00",
+      "scan_history": [
+        {
+          "scan_number": 1,
+          "scanned_at": "2026-10-13T14:03:00-07:00",
+          "status": "PASS_ARCHIVED",
+          "proof": {
+            "screenshot_file": "data/curator_screenshots/Perm_000000030_pulse_20261013_1403.png",
+            "screenshot_url": "file:///c:/Users/Micro/.gemini/antigravity-ide/scratch/van50/data/curator_screenshots/Perm_000000030_pulse_20261013_1403.png",
+            "subagent_recording": "file:///c:/Users/Micro/.gemini/antigravity-ide/brain/be7a7157-16e6-4aaa-85ae-a3ca5af560a3/qc_event_30_1791925370.webp",
+            "verbatim_quote": "The Fox Cabaret • 2321 Main St, Vancouver, BC V5T 3C9 • Main Street Cultural Hub"
+          },
+          "input_payload": {
+            "target_url": "https://thesundayservice.ca",
+            "event_title": "The Sunday Service: Live Improv Comedy",
+            "venue_name": "The Fox Cabaret"
+          },
+          "extracted_payload": {
+            "D1_tier1_checkout": "https://square.link/u/qfKgyfj5",
+            "D2_tier2_event_page": "https://thesundayservice.ca",
+            "D3_tier3_calendar": "https://foxcabaret.com/calendar/",
+            "D4_tier4_civic_destination": "https://foxcabaret.com/",
+            "D6_best_tier": "tier1",
+            "D7_operational_status": "archived",
+            "D8_geo_jurisdiction": "Vancouver (Metro Vancouver Invariant Valid)",
+            "D9_currency_standard": "CAD",
+            "D10_iana_timezone": "America/Vancouver",
+            "D11_tier1_name": "Advance Online",
+            "D12_tier1_price_base": 15.00,
+            "D13_tier1_price_fee": 0.00,
+            "D14_tier1_price_tax": 0.00,
+            "D15_tier1_price_all_in": 15.00,
+            "D16_tier2_name": "General Admission (Door)",
+            "D17_tier2_price_base": 20.00,
+            "D18_tier2_price_fee": 0.00,
+            "D19_tier2_price_tax": 0.00,
+            "D20_tier2_price_all_in": 20.00,
+            "D26_tier_count_verified": 2,
+            "D27_pricing_model": "advance_and_door",
+            "D28_budget_qualified_under_50": true,
+            "D31_ticket_provider": "Square",
+            "D32_booking_protocol": "online_square",
+            "D33_title": "The Sunday Service: Live Improv Comedy",
+            "D34_lineup": "The Sunday Service (Aaron Read, Taz VanRassel, Emmett Hall, Ryan Beil, Kevin Lee) with guest stand-ups & improvisers",
+            "D35_date_iso": "2026-10-11",
+            "D36_doors_time": "19:00",
+            "D37_showtime": "20:00",
+            "D38_curfew_time": "22:00",
+            "D39_dateSchedule": "2026-10-11 20:00",
+            "D40_frequencyLabel": "Weekly Sunday Comedy",
+            "D41_category": "comedy_standup_improv",
+            "D42_restrictions": "19+ (Two pieces of government ID required)",
+            "D43_venue_name": "The Fox Cabaret",
+            "D44_civic_address": "2321 Main St, Vancouver, BC V5T 3C9",
+            "D45_coordinates": { "lat": 49.2638, "lng": -123.1009 },
+            "D46_access_model": "fenced_commercial",
+            "D47_environment_type": "indoor",
+            "D48_weekly_hours": "Thu–Sun 7:00 PM – 2:00 AM",
+            "D49_spend_benchmarks": { "craft_beer_cad": 8.00, "cocktail_cad": 12.00 },
+            "D50_transit_waypoints": "Main & 7th / Broadway bus stop (#3, #9, #99 B-Line, 3 min walk)",
+            "D51_description": "Vancouver's premier long-running improv comedy collective performing every Sunday evening at The Fox Cabaret.",
+            "D52_festival_affiliation": "None",
+            "D53_active_showings": 0,
+            "D54_archived_showings": 1,
+            "D55_civic_provider_rules": "Fox Cabaret house policy, 19+ only",
+            "D56_data_provenance": "Chromium Subagent live verification",
+            "D57_curator_lock": false,
+            "D58_last_qc_audited_at": "2026-10-13T14:03:00-07:00"
+          },
+          "diff_delta": {
+            "detected_changes_count": 1,
+            "discrepancies": [
+              {
+                "field": "showing_status",
+                "previous": "active",
+                "current": "completed",
+                "reason": "Performance concluded on Sunday, Oct 11, 2026"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
