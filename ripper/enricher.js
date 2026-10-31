@@ -712,6 +712,7 @@ Requirements:
 8. "description": Exactly 2 evocative sentences written for patrons based strictly on real facts. CRITICAL MANDATE: When the event is a specific show/event (comedy, concert, play, screening, performance, etc.), the description MUST be about the show itself (comedic style, jokes, music genre, plot, themes, performance) and NOT about the venue, room, bar, or venue history. Only describe the venue/grounds when the event is an outdoor park, beach, garden, or perennial drop-in venue visit.
 9. "restrictions": "All Ages", "19+ w/ ID", "16+", or "All Ages / Family Friendly".
 10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window. Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride"] or null.
+11. "is_religious": Boolean. Set true ONLY if the event's actual activity involves prayer, worship, liturgy, mass, devotional chanting, scripture, or a faith service. Never set true simply because a secular show is hosted in a church/temple hall or celebrates a secular holiday like Christmas or Diwali.
 
 Respond ONLY with a valid JSON object matching these keys.`;
 
@@ -1131,6 +1132,12 @@ export async function runEnricher(options = {}) {
       return undefined;
     })();
 
+    const inferredIsReligious = (() => {
+      if (typeof aiResult?.is_religious === "boolean") return aiResult.is_religious;
+      const contentText = `${cleanTitle || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
+      return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+    })();
+
     const editorialEntry = {
       id: eventId,
       event_id: eventId,
@@ -1148,6 +1155,7 @@ export async function runEnricher(options = {}) {
       frequencyLabel: resolvedFrequencyLabel,
       dateSchedule: resolvedDateSchedule,
       holiday_affiliation: inferredHoliday,
+      is_religious: inferredIsReligious,
       curator_instructions: curatorInfo.eventInstructionText || item.curator_instructions || null,
       curator_notes: activeCuratorNote || item.curator_notes || null,
       source_engine: aiResult ? (useAgy ? "antigravity_1event_worker" : "gemini_flash_cognitive") : "deterministic_cognitive_nlp",

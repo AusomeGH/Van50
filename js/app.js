@@ -68,7 +68,7 @@ window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
   },
   "christmas": {
     id: "christmas",
-    label: "Christmas & Winter Holidays",
+    label: "Winter Holidays & Christmas",
     icon: "🎄",
     datesLabel: "Nov 15 – Dec 30",
     shortDesc: "Festive light displays, winter craft markets, holiday concerts, and seasonal theatre.",
@@ -758,6 +758,27 @@ function normalizeActiveEvent(item) {
     }
   }
 
+  // Option 1: Content-based Religious / Spiritual detection (never triggered by church/temple venue building alone)
+  const isReligious = (() => {
+    if (item.is_religious === true || item.isReligious === true) return true;
+    if (item.is_religious === false || item.isReligious === false) return false;
+    const contentText = `${evTitle} ${(Array.isArray(item.tags) ? item.tags.join(" ") : "")} ${item.description || ""}`.toLowerCase();
+    return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+  })();
+  if (isReligious) {
+    themeBadges.push({
+      key: 'religious:religious',
+      type: 'religious',
+      id: 'religious',
+      label: 'Religious / Spiritual',
+      fullLabel: 'Religious / Spiritual',
+      icon: '🕯️'
+    });
+    for (const t of ['religious', 'spiritual', 'religious:religious']) {
+      if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+    }
+  }
+
   const res = {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
     title: evTitle,
@@ -808,6 +829,7 @@ function normalizeActiveEvent(item) {
     isFestivalOrHoliday: Boolean(isFest || isHoliday),
     festivalAffiliation: rawFestivalAff || null,
     holidayAffiliation: rawHolidayAff || null,
+    isReligious: isReligious,
     themeBadges: themeBadges,
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     venueUrl: item.details_url || item.websiteUrl || "#",
@@ -1632,6 +1654,7 @@ function eventMatchesThemeKey(ev, themeKey) {
   if (!ev || !themeKey) return false;
   if (Array.isArray(ev.themeBadges) && ev.themeBadges.some(b => b.key === themeKey)) return true;
   const [type, slug] = String(themeKey).split(':');
+  if (type === 'religious' && (ev.isReligious || ev.is_religious)) return true;
   if (type === 'holiday' && ev.holidayAffiliation && String(ev.holidayAffiliation).toLowerCase() === slug) return true;
   if (type === 'festival' && ev.festivalAffiliation) {
     const fSlug = String(ev.festivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -1648,6 +1671,8 @@ function getActiveThemeGroups(catalog) {
     if (!ev || isEventInPast(ev, now) || isAwaitingSchedule(ev) || parseFloat(ev.price || 0) > 50) return;
     if (Array.isArray(ev.themeBadges)) {
       ev.themeBadges.forEach(b => {
+        // Option 1: Keep the top banner strictly for Festivals & Holidays; religious badges appear on cards only
+        if (!b || b.type === 'religious') return;
         if (!groupsMap.has(b.key)) {
           groupsMap.set(b.key, { ...b, count: 0 });
         }
@@ -1735,7 +1760,6 @@ function renderFestivalSpotlight() {
               aria-expanded="${isItemExpanded}"
               title="${isItemExpanded ? 'Hide description' : 'Click to expand description'}"
             >
-              <span class="theme-item-icon">${isExcluded ? '🚫' : g.icon}</span>
               <strong class="theme-item-name">${meta.label}</strong>
               <span class="theme-item-chevron">${isItemExpanded ? '▴' : '▾'}</span>
             </button>

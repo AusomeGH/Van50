@@ -3310,10 +3310,11 @@
 .festival-compact-header-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .festival-compact-header-row .festival-spotlight-title {
@@ -3322,6 +3323,8 @@
   margin: 0;
   color: #ffffff;
   letter-spacing: -0.01em;
+  text-align: center;
+  width: 100%;
 }
 
 .festival-active-items-list {
@@ -3336,6 +3339,7 @@
   border-radius: 10px;
   padding: 7px 11px;
   transition: all 0.18s ease;
+  text-align: center;
 }
 
 .festival-theme-item-row:hover {
@@ -3362,8 +3366,10 @@
 }
 
 .theme-item-name-toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 6px;
   padding: 0;
   margin-bottom: 5px;
@@ -3371,7 +3377,7 @@
   border: none;
   color: #ffffff;
   font-size: 0.90rem;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   transition: color 0.15s ease;
 }
@@ -3394,6 +3400,7 @@
 .theme-item-subrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
 }

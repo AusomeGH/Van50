@@ -1466,7 +1466,15 @@ export async function compileCatalog(options = {}) {
       return null;
     })();
 
-    // Auto-inject canonical Festival & Holiday tags into tags and subTags for user filtering and search
+    // Option 1 Religious/Spiritual Detection (Content-based only; never triggered by church/temple venue building alone)
+    const isExplicitlyReligious = (() => {
+      if (sched.is_religious === true || edit.is_religious === true || existing.is_religious === true || seed.is_religious === true) return true;
+      if (sched.is_religious === false || edit.is_religious === false) return false;
+      const contentText = `${cleanTitle || ""} ${(tags || []).join(" ")} ${(subTags || []).join(" ")} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
+      return /\b(?:prayer|prayers|worship\s*service|worship\s*night|liturgy|liturgical|eucharist|holy\s*mass|christmas\s*mass|midnight\s*mass|vespers|evensong|sermon|scripture|bible\s*study|gospel\s*service|devotional\s*chanting|chanting,\s*singing,\s*and\s*prayer|candlelit\s*contemplative|taiz[eé]|shabbat\s*service|torah\s*service|synagogue\s*service|puja|kirtan|satsang|arti|aarti|jummah|tarawih|gurdwara\s*diwan|interfaith\s*service|sacred\s*chant)\b/i.test(contentText);
+    })();
+
+    // Auto-inject canonical Festival, Holiday & Religious tags into tags and subTags for user filtering and search
     if (resolvedFestivalAffiliation) {
       const festSlug = String(resolvedFestivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       for (const ft of ["festival", festSlug, `festival:${festSlug}`]) {
@@ -1480,6 +1488,12 @@ export async function compileCatalog(options = {}) {
       for (const ht of ["holiday", holSlug, `holiday:${holSlug}`]) {
         if (ht && !tags.some((t) => String(t).toLowerCase() === ht)) tags.push(ht);
         if (ht && !subTags.some((t) => String(t).toLowerCase() === ht)) subTags.push(ht);
+      }
+    }
+    if (isExplicitlyReligious) {
+      for (const rt of ["religious", "spiritual", "religious:religious"]) {
+        if (rt && !tags.some((t) => String(t).toLowerCase() === rt)) tags.push(rt);
+        if (rt && !subTags.some((t) => String(t).toLowerCase() === rt)) subTags.push(rt);
       }
     }
 
@@ -1818,6 +1832,8 @@ export async function compileCatalog(options = {}) {
       festivalAffiliation: resolvedFestivalAffiliation || null,
       holiday_affiliation: resolvedHolidayAffiliation || null,
       holidayAffiliation: resolvedHolidayAffiliation || null,
+      is_religious: isExplicitlyReligious,
+      isReligious: isExplicitlyReligious,
       price: finalAllInPrice,
       price_base: tier1Base,
       price_fee: tier1Fee,
