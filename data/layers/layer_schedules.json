@@ -1397,76 +1397,6 @@
     "best_tier": "tier2"
   },
   {
-    "id": "van50-the-improv-centre-deadly-dinner-party-20261009",
-    "event_id": "van50-the-improv-centre-deadly-dinner-party-20261009",
-    "title": "Deadly Dinner Party",
-    "venue_name": "The Improv Centre",
-    "ticket_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=%2010801",
-    "details_url": "https://theimprovcentre.ca/shows/",
-    "candidate_tier1_url": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=%2010801",
-    "links": {
-      "tier1_checkout": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=%2010801",
-      "tier2_event_page": "https://theimprovcentre.ca/shows/",
-      "tier3_calendar": "https://theimprovcentre.ca/shows/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://theimprovcentre.ca",
-      "best_available": "https://purchase.theimprovcentre.ca/EventAvailability?EventId=%2010801",
-      "best_tier": "tier1"
-    },
-    "audited_at": "2026-10-28T00:06:18.756Z",
-    "source_tool": "tier1_hunter_ai",
-    "candidate_tier1_source": "in_page_anchor_traversal",
-    "candidate_tier1_staged_at": "2026-10-30T01:57:47.552Z",
-    "step1b_audited_at": "2026-10-30T01:57:47.554Z",
-    "best_tier": "tier1"
-  },
-  {
-    "id": "little-mountain-gall-jack-grady-live-2026-10-30",
-    "event_id": "little-mountain-gall-jack-grady-live-2026-10-30",
-    "title": "Jack Grady Live",
-    "venue": "Little Mountain Gallery",
-    "date": "2026-10-30",
-    "dateSchedule": "2026-10-30 • 7:00 PM",
-    "time": "7:00 PM",
-    "ticket_url": "https://www.showpass.com/jack-grady-live/",
-    "details_url": "https://www.showpass.com/jack-grady-live/",
-    "source_url": "https://www.showpass.com/jack-grady-live/",
-    "description": "Jack Grady is a comedy magician whose chaotic, unpredictable style blends sharp wit with impossible magic. Presented in the Salazar Stage at Little Mountain Gallery, this high-energy performance delivers an unforgettable and hilarious live act.",
-    "artist": "Jack Grady",
-    "lineup": [
-      "Jack Grady"
-    ],
-    "category": "comedy",
-    "restrictions": "All Ages",
-    "price": 28.22,
-    "price_base": 25,
-    "price_fee": 3.22,
-    "price_all_in": 28.22,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "2026-10-30",
-        "start_time": "7:00 PM",
-        "doors_time": "6:30 PM",
-        "end_time": "8:15 PM",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-10-30T01:20:36.770Z",
-    "step1b_audited_at": "2026-10-30T01:57:48.920Z",
-    "candidate_tier1_url": "https://www.showpass.com/jack-grady-live/",
-    "links": {
-      "tier1_checkout": "https://www.showpass.com/jack-grady-live/",
-      "tier2_event_page": "https://www.showpass.com/jack-grady-live/",
-      "tier3_calendar": "https://www.showpass.com/o/little-mountain-gallery/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.showpass.com/o/little-mountain-gallery/",
-      "best_available": "https://www.showpass.com/jack-grady-live/",
-      "best_tier": "tier1"
-    },
-    "best_tier": "tier1"
-  },
-  {
     "id": "vancouver-horror-sho-vancouver-horror-show-film-fes-2026",
     "event_id": "vancouver-horror-sho-vancouver-horror-show-film-fes-2026",
     "title": "Vancouver Horror Show Film Festival 2026",
@@ -2161,39 +2091,6 @@
     "best_tier": "tier3"
   },
   {
-    "id": "search-exhausted-nul-vancouver-horror-show-film-fes",
-    "event_id": "search-exhausted-nul-vancouver-horror-show-film-fes",
-    "title": "Vancouver Horror Show Film Festival 2026",
-    "venue": "search_exhausted_null",
-    "date": "none_available",
-    "dateSchedule": "none_available • none_available",
-    "time": "none_available",
-    "ticket_url": "https://vhs2026.eventive.org/welcome",
-    "details_url": "https://vhs2026.eventive.org/welcome",
-    "source_url": "https://vhs2026.eventive.org/welcome",
-    "description": "Vancouver Horror Show Film Festival 2026 brings together independent horror filmmakers, emerging artists, and local cinema fans. The festival showcases community screenings, panels, and special events across Vancouver.",
-    "artist": null,
-    "lineup": [],
-    "category": "shows",
-    "restrictions": null,
-    "price": null,
-    "price_base": null,
-    "price_fee": null,
-    "price_all_in": null,
-    "showings": [
-      {
-        "slot": 1,
-        "date": "none_available",
-        "start_time": "none_available",
-        "doors_time": "none_available",
-        "end_time": "none_available",
-        "status": "upcoming"
-      }
-    ],
-    "audited_at": "2026-10-30T01:22:26.054Z",
-    "step1b_audited_at": "2026-10-30T01:25:27.519Z"
-  },
-  {
     "id": "van50-canada-place-promenade",
     "event_id": "van50-canada-place-promenade",
     "title": "Canada Place Promenade & The Canadian Trail",
@@ -2392,31 +2289,6 @@
     "audited_at": "2026-10-30T01:59:42.398Z",
     "source_tool": "tier1_hunter_ai",
     "best_tier": "tier3"
-  },
-  {
-    "id": "van50-fox-bootylicious-halloween-20261030",
-    "event_id": "van50-fox-bootylicious-halloween-20261030",
-    "title": "Halloween at The Fox: BOO-tylicious",
-    "venue_name": "Fox Cabaret",
-    "ticket_url": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-    "details_url": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-    "dead_urls": [],
-    "candidate_tier1_url": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-    "candidate_tier1_source": null,
-    "candidate_tier1_staged_at": null,
-    "links": {
-      "tier1_checkout": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-      "tier2_event_page": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-      "tier3_calendar": "https://www.foxcabaret.com/",
-      "tier4_civic_destination": null,
-      "tier5_venue_home": "https://www.foxcabaret.com",
-      "best_available": "https://www.eventbrite.com/e/halloween-friday-at-the-fox-boo-tylicious-all-throwback-hits-tickets-2001076578915",
-      "best_tier": "tier1"
-    },
-    "step1b_audited_at": "2026-10-30T01:59:42.926Z",
-    "audited_at": "2026-10-30T01:59:42.926Z",
-    "source_tool": "tier1_hunter_ai",
-    "best_tier": "tier1"
   },
   {
     "id": "van50-cinematheque-vampyr-live-score-20261031",
@@ -2673,6 +2545,23 @@
     "event_id": "van50-diwali-fest-diwali-celebration-society-diwali-in-surrey-nov-15-2026",
     "title": "Diwali Downtown Surrey Celebration",
     "venue_name": "Surrey City Hall (Surrey Civic Plaza)",
+    "date": "2026-11-15",
+    "time": "2:00 PM",
+    "start_time": "2:00 PM",
+    "end_time": "5:00 PM",
+    "dateSchedule": "2026-11-15 • 2:00 PM",
+    "festival_affiliation": "Diwali Fest (Festival of Lights)",
+    "holiday_affiliation": "diwali",
+    "showings": [
+      {
+        "slot": 1,
+        "date": "2026-11-15",
+        "start_time": "2:00 PM",
+        "doors_time": null,
+        "end_time": "5:00 PM",
+        "status": "upcoming"
+      }
+    ],
     "ticket_url": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
     "details_url": "https://diwalifest.ca/events/diwali-in-surrey-nov-15-2026/",
     "dead_urls": [],

@@ -3287,24 +3287,414 @@
 }
 
 /* ==============================================================================
-   Festival Spotlight & Dynamic Banner
+   Festival Spotlight & Dynamic Banner (Compact Default + Expandable Drawer)
    ============================================================================== */
 .festival-spotlight-section {
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .festival-spotlight-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 22px 26px;
-  background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.9));
+  gap: 20px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.82), rgba(15, 23, 42, 0.92));
   border: 1.5px solid rgba(245, 158, 11, 0.45);
   border-radius: var(--radius-xl, 16px);
-  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   transition: all var(--transition-normal, 0.25s ease);
+}
+
+.festival-compact-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.festival-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.festival-compact-header-row .festival-spotlight-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.festival-active-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.festival-theme-item-row {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 8px 12px;
+  transition: all 0.18s ease;
+}
+
+.festival-theme-item-row:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.festival-theme-item-row.item-row-selected {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.18);
+}
+
+.festival-theme-item-row.item-row-excluded {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.35);
+  opacity: 0.78;
+}
+
+.festival-theme-item-row.item-row-excluded .theme-item-name,
+.festival-theme-item-row.item-row-excluded .theme-item-short-desc {
+  text-decoration: line-through;
+  color: #fca5a5;
+}
+
+.festival-theme-item-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.festival-theme-item-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 320px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.theme-item-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.88rem;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.theme-item-dates-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 1px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.theme-item-short-desc {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.festival-theme-item-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.btn-theme-item-expand,
+.btn-theme-item-include,
+.btn-theme-item-exclude {
+  font-size: 0.74rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-theme-item-expand {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.btn-theme-item-expand:hover,
+.btn-theme-item-expand.expanded {
+  background: rgba(56, 189, 248, 0.24);
+  color: #ffffff;
+}
+
+.btn-theme-item-include {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.btn-theme-item-include:hover {
+  background: rgba(16, 185, 129, 0.26);
+  color: #ffffff;
+}
+
+.btn-theme-item-include.active {
+  background: #10b981;
+  color: #06281e;
+  border-color: #10b981;
+}
+
+.btn-theme-item-exclude {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.btn-theme-item-exclude:hover {
+  background: rgba(239, 68, 68, 0.24);
+  color: #ffffff;
+}
+
+.btn-theme-item-exclude.active {
+  background: rgba(239, 68, 68, 0.32);
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.festival-theme-item-drawer {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-item-long-desc {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+  margin: 0 0 6px 0;
+}
+
+.theme-item-meta-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.festival-compact-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.festival-short-summary {
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.btn-festival-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 9999px;
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-festival-expand:hover {
+  background: rgba(56, 189, 248, 0.22);
+  color: #fff;
+}
+
+.festival-expandable-drawer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeInDown 0.18s ease-out;
+}
+
+/* Interactive Theme Filter & Exclude Chips Row inside Banner */
+.festival-theme-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.theme-chips-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 2px;
+}
+
+.theme-chip-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.theme-chip-pill:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.theme-chip-pill.theme-chip-active {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+
+.theme-chip-pill.theme-chip-excluded {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(239, 68, 68, 0.45);
+  opacity: 0.85;
+}
+
+.theme-chip-pill.theme-chip-excluded .theme-chip-name {
+  text-decoration: line-through;
+  color: #fca5a5;
+}
+
+.theme-chip-main-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.theme-chip-count {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.theme-chip-exclude-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px 3px 6px;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.theme-chip-exclude-btn:hover {
+  background: rgba(239, 68, 68, 0.35);
+  color: #fff;
+}
+
+/* Interactive Theme Badge Pill on Individual Event Cards */
+.card-theme-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  color: #fde047;
+  font-size: 0.72rem;
+  font-weight: 700;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.card-theme-badge-pill.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+
+.card-theme-badge-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 7px;
+  height: 100%;
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.card-theme-badge-main:hover {
+  filter: brightness(1.2);
+}
+
+.card-theme-badge-exclude {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  height: 100%;
+  font-size: 0.62rem;
+  color: #cbd5e1;
+  background: rgba(0, 0, 0, 0.22);
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.card-theme-badge-exclude:hover {
+  background: rgba(239, 68, 68, 0.45);
+  color: #fff;
+}
+
+.active-tag-pill.excluded-tag-pill {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.active-tag-pill.excluded-tag-pill .tag-label {
+  color: #fca5a5;
 }
 
 .festival-spotlight-card.festival-muted {
@@ -3341,6 +3731,7 @@
 
 .festival-spotlight-left {
   flex: 1;
+  width: 100%;
   min-width: 280px;
 }
 

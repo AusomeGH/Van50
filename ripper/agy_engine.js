@@ -341,6 +341,7 @@ Requirements:
 7. "weekly_recurring_day": If lifecycle_type is "weekly_recurring_residency", return the day name ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", or "Sunday"); otherwise null.
 8. "description": Exactly 2 evocative sentences written for patrons based strictly on the real facts provided. CRITICAL MANDATE: When the event is a specific show/event (comedy, concert, play, screening, performance, etc.), the description MUST be about the show itself (comedic style, music genre, plot, themes, performance) and NOT generic boilerplate about the venue or room. Only describe the venue/grounds when the event is an outdoor park, beach, garden, or perennial drop-in visit. If there are no real facts about the show, return null.
 9. "restrictions": "All Ages", "19+ w/ ID", "16+", or "All Ages / Family Friendly".
+10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window (e.g. horror/thriller/murder-mystery/costume in October -> "halloween"; festive/winter market/solstice/carol in Nov-Dec -> "christmas"). Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride"] or null.
 
 Respond ONLY with a valid JSON object matching these exact keys (no markdown commentary):
 {
@@ -352,7 +353,8 @@ Respond ONLY with a valid JSON object matching these exact keys (no markdown com
   "lifecycle_type": "time_bound_event",
   "weekly_recurring_day": null,
   "description": "Two evocative sentences about the event.",
-  "restrictions": "All Ages"
+  "restrictions": "All Ages",
+  "holiday_affiliation": null
 }`;
 
   const evId = eventCard.id || eventCard.event_id || "unknown_event";

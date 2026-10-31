@@ -382,6 +382,9 @@ export async function compileCatalog(options = {}) {
   quarantinedEventsPool.forEach((q) => quarantinedMap.set(q.id || q.event_id, q));
 
   const learnedRules = loadJson(path.join(DATA_DIR, "curator_learned_rules.json"), {});
+  const festivalsRegistry = loadJson(path.join(DATA_DIR, "festivals.json"), []);
+  const holidaysRegistryDoc = loadJson(path.join(DATA_DIR, "approved_holidays.json"), { approvedHolidays: [] });
+  const approvedHolidaysList = Array.isArray(holidaysRegistryDoc.approvedHolidays) ? holidaysRegistryDoc.approvedHolidays : [];
   const archivedDoc = loadJson(ARCHIVED_PATH, { archivedEvents: [] });
   const archivedEventsList = Array.isArray(archivedDoc) ? archivedDoc : (archivedDoc.archivedEvents || []);
   const archivedIds = new Set([
@@ -461,12 +464,13 @@ export async function compileCatalog(options = {}) {
     return null;
   }
 
-  // Combined pool of all potential seeds and quarantined cards
-  const combinedAll = [...seeds];
-  const seenIds = new Set(seeds.map((s) => s.id || s.event_id));
+  // Combined pool of all potential non-archived seeds and quarantined cards
+  const activeOrUnarchivedSeeds = seeds.filter((s) => !archivedIds.has(s.id || s.event_id));
+  const combinedAll = [...activeOrUnarchivedSeeds];
+  const seenIds = new Set(activeOrUnarchivedSeeds.map((s) => s.id || s.event_id));
   quarantinedEventsPool.forEach((q) => {
     const id = q.id || q.event_id;
-    if (!seenIds.has(id)) {
+    if (!seenIds.has(id) && !archivedIds.has(id)) {
       q._isFromQuarantine = true;
       combinedAll.push(q);
       seenIds.add(id);
@@ -528,6 +532,7 @@ export async function compileCatalog(options = {}) {
   } else if (uncompiledOnly) {
     const uncompiledSeeds = seeds.filter((s) => {
       const id = s.id || s.event_id;
+      if (archivedIds.has(id) || quarantinedMap.has(id)) return false;
       const ex = existingMap.get(id);
       if (!ex || !ex.last_full_qc_at) return true;
       const sched = schedules.find((x) => (x.id || x.event_id) === id);
@@ -594,17 +599,7 @@ export async function compileCatalog(options = {}) {
   } else if (offset > 0 || limit > 0) {
     targetSeeds = combinedAll.slice(offset, limit > 0 ? offset + limit : undefined);
   } else {
-    const combinedAll = [...seeds];
-    const seen = new Set(seeds.map((s) => s.id || s.event_id));
-    quarantinedEventsPool.forEach((q) => {
-      const id = q.id || q.event_id;
-      if (!seen.has(id)) {
-        q._isFromQuarantine = true;
-        combinedAll.push(q);
-        seen.add(id);
-      }
-    });
-    targetSeeds = combinedAll;
+    targetSeeds = [...combinedAll];
   }
 
   const modeLabel = targetId
@@ -694,7 +689,12 @@ export async function compileCatalog(options = {}) {
         existing.dimension_audit?.D806_curator_lock?.locked === true ||
         existing.dimension_audit?.D806_curator_lock?.value === true
       );
-      if ((existingAuditTs > 0 && existingAuditTs > maxLayerTs) || isCuratorLocked) {
+      const isMissingRequiredFields = Boolean(
+        !existing.dimension_audit?.D009_holiday_affiliation ||
+        (existing.lifecycle_type === "time_bound_event" && !existing.date) ||
+        (existing.event_archetype === "festival" && existing.dimension_audit?.D791_festival_hub_directory?.status !== "verified")
+      );
+      if (!isMissingRequiredFields && ((existingAuditTs > 0 && existingAuditTs > maxLayerTs) || isCuratorLocked)) {
         console.log(`🔒 [Compiler Freshness Guard] Preserving directly audited/locked card: "${existing.title}" [${eventId}] (audited_at: ${existing.last_qc_audited_at})`);
         if (existing.start_time) existing.start_time = formatTime12h(existing.start_time);
         if (existing.time) existing.time = formatTime12h(existing.time);
@@ -791,10 +791,22 @@ export async function compileCatalog(options = {}) {
     }
 
     // 3. AI ARBITRATION: Lifecycle & Showings (5 Slots)
+    const explicitFallbackDate = extractFallbackDate(eventId, seedUrl || existing.ticket_url || box.ticket_url, seed, existing);
+    const hasExplicitTimeBoundDate = Boolean(
+      (sched.date && sched.date !== "none_available" && sched.date !== "TBD") ||
+      (box.date && box.date !== "none_available" && box.date !== "TBD") ||
+      explicitFallbackDate
+    );
+    const isExplicitTimeBound =
+      seedLifecycle === "time_bound_event" ||
+      sched.lifecycle_type === "time_bound_event" ||
+      edit.lifecycle_type === "time_bound_event" ||
+      hasExplicitTimeBoundDate;
+
     const isPerennial =
       (seedLifecycle === "perennial_drop_in" ||
         sched.lifecycle_type === "perennial_drop_in" ||
-        venue.access_model === "open_public_space") &&
+        (venue.access_model === "open_public_space" && !isExplicitTimeBound)) &&
       Boolean(venue.weekly_hours || venue.grounding_source === "known_physical_ground_truth");
 
     // Weekly Recurrence Resolution: Prioritize AI-verified lifecycle_type & weekly_recurring_day from Stage 3 Enricher;
@@ -1169,13 +1181,13 @@ export async function compileCatalog(options = {}) {
       : (rawCategory ? [rawCategory] : (isPerennial ? ["free-public-access"] : []));
 
     // D005: Do not infer fake tags if not explicitly provided by organizer/page
-    const tags = (Array.isArray(edit.tags) && edit.tags.length > 0)
-      ? edit.tags
+    let tags = (Array.isArray(edit.tags) && edit.tags.length > 0)
+      ? [...edit.tags]
       : [];
 
-    const subTags = (Array.isArray(edit.subTags) && edit.subTags.length > 0)
-      ? edit.subTags
-      : tags;
+    let subTags = (Array.isArray(edit.subTags) && edit.subTags.length > 0)
+      ? [...edit.subTags]
+      : [...tags];
 
     let description = edit.description || sched.description || box.description || null;
     if (description && (description.trim().length < 15 || description.trim() === `${cleanTitle} at ${venue.venue_name}.` || isCannedOrSyntheticDesc(description, cleanTitle))) {
@@ -1353,10 +1365,134 @@ export async function compileCatalog(options = {}) {
       ? (seed.event_archetype || existing.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }) || edit.event_archetype || edit.archetype)
       : (edit.event_archetype || edit.archetype || seed.event_archetype || classifyArchetype(cleanTitle, categories[0] || null, venue.venue_name, null, { description, lifecycle_type: resolvedLifecycle }))
     ) || null;
+
+    // Ground Festival & Holiday Affiliations against data/festivals.json and data/approved_holidays.json
+    const combinedAffiliationText = `${cleanTitle || ""} ${eventId || ""} ${sched.festival_affiliation || ""} ${edit.festival_affiliation || ""} ${(tags || []).join(" ")} ${(subTags || []).join(" ")}`.toLowerCase();
+    const matchedFestival = Array.isArray(festivalsRegistry)
+      ? festivalsRegistry.find((f) => {
+          if (!f || !f.festival_name) return false;
+          // Date window guard: if both the event and festival have ISO dates, never affiliate an event outside the festival's run window
+          if (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate) && f.start_date && f.end_date) {
+            if (heroDate < f.start_date || heroDate > f.end_date) return false;
+          }
+          const fName = f.festival_name.toLowerCase();
+          if (combinedAffiliationText.includes(fName)) return true;
+          if (fName.includes("diwali") && /\bdiwali\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("writers fest") && /\bwriters\s*fest\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("viff") && /\bviff\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("fringe") && /\bfringe\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("horror show") && /\bvancouver\s*horror\s*show|vhs2026\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("heart of the city") && /\bheart\s*of\s*the\s*city\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("muertos") && /\b(?:muertos|day\s*of\s*the\s*dead)\b/i.test(combinedAffiliationText)) return true;
+          if (fName.includes("small file") && /\bsmall\s*file\b/i.test(combinedAffiliationText)) return true;
+          return false;
+        }) || null
+      : null;
+
+    const resolvedFestivalAffiliation =
+      (sched.festival_affiliation && sched.festival_affiliation !== "None")
+        ? sched.festival_affiliation
+        : (edit.festival_affiliation && edit.festival_affiliation !== "None")
+          ? edit.festival_affiliation
+          : matchedFestival
+            ? matchedFestival.festival_name
+            : null;
+
+    const resolvedHolidayAffiliation = (() => {
+      const explicit = sched.holiday_affiliation || edit.holiday_affiliation || existing.holiday_affiliation || seed.holiday_affiliation;
+      if (explicit && explicit !== "None" && explicit !== "none_available") return explicit;
+
+      // Option A: Holiday matching scans both title/tags AND full description/synopsis, plus expanded seasonal vibe keywords
+      const fullHolidayText = `${combinedAffiliationText} ${description || ""} ${edit.description || ""} ${sched.description || ""}`.toLowerCase();
+      const eventMmdd = (heroDate && /^\d{4}-\d{2}-\d{2}$/.test(heroDate)) ? heroDate.slice(5, 10) : null;
+      const inSeason = (startMmdd, endMmdd) => {
+        if (!eventMmdd) return false;
+        if (startMmdd <= endMmdd) return eventMmdd >= startMmdd && eventMmdd <= endMmdd;
+        return eventMmdd >= startMmdd || eventMmdd <= endMmdd;
+      };
+
+      // 1. Unconditional explicit holiday matches (in title, tags, or synopsis)
+      if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(fullHolidayText)) return "diwali";
+      if (/\b(?:muertos|day\s*of\s*the\s*dead|ofrenda|calavera|catrina|sugar\s*skull)\b/i.test(fullHolidayText)) return "dia-de-los-muertos";
+      if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(fullHolidayText)) return "halloween";
+      if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullHolidayText)) return "christmas";
+      if (/\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullHolidayText)) return "new-years";
+      if (/\b(?:lunar\s*new\s*year|chinese\s*new\s*year|spring\s*festival|tet\s*festival)\b/i.test(fullHolidayText)) return "lunar-new-year";
+      if (/\b(?:thanksgiving|friendsgiving)\b/i.test(fullHolidayText)) return "thanksgiving";
+      if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullHolidayText)) return "valentines-day";
+      if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullHolidayText)) return "st-patricks-day";
+      if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullHolidayText)) return "easter";
+      if (/\b(?:canada\s*day)\b/i.test(fullHolidayText)) return "canada-day";
+      if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullHolidayText)) return "pride";
+
+      // 2. Expanded Vibe & Genre Keywords within each holiday's Seasonal Window (Option A)
+      if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder\s*mystery|deadly\s*dinner|unexplained|paranormal|x[- ]files|yes\s*files|seance|séance|rocky\s*horror|nosferatu|frankenstein|dracula|evil\s*dead|exorcist|dark\s*cabaret|freak\s*show)\b/i.test(fullHolidayText)) {
+        return "halloween";
+      }
+      if (inSeason("10-20", "11-06") && /\b(?:marigold|altar|ancestors)\b/i.test(fullHolidayText)) {
+        return "dia-de-los-muertos";
+      }
+      if (inSeason("10-15", "11-20") && /\b(?:festival\s*of\s*lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(fullHolidayText)) {
+        return "diwali";
+      }
+      if (inSeason("10-01", "10-16") && /\b(?:harvest\s*dinner|turkey\s*dinner|autumn\s*harvest|gratitude\s*feast)\b/i.test(fullHolidayText)) {
+        return "thanksgiving";
+      }
+      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|vandusen\s*festival\s*of\s*lights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party|deck\s*the\s*halls|jingle)\b/i.test(fullHolidayText)) {
+        return "christmas";
+      }
+      if (inSeason("12-26", "01-03") && /\b(?:countdown|midnight\s*toast|champagne\s*toast|ball\s*drop|first\s*day|ring\s*in\s*the\s*new)\b/i.test(fullHolidayText)) {
+        return "new-years";
+      }
+      if (inSeason("01-18", "02-28") && /\b(?:lion\s*dance|dragon\s*dance|year\s*of\s*the|red\s*envelope|lantern\s*festival|chinatown\s*parade|dumpling\s*fest)\b/i.test(fullHolidayText)) {
+        return "lunar-new-year";
+      }
+      if (inSeason("02-01", "02-16") && /\b(?:date\s*night|rom[- ]com|romance|love\s*songs?|speed\s*dating|singles\s*mixer|cupid|heartbreak|lovers)\b/i.test(fullHolidayText)) {
+        return "valentines-day";
+      }
+      if (inSeason("03-10", "03-19") && /\b(?:celtic|irish\s*music|ceili|céilí|fiddle|guinness|shamrock|blarney|leprechaun)\b/i.test(fullHolidayText)) {
+        return "st-patricks-day";
+      }
+      if (inSeason("03-20", "04-25") && /\b(?:spring\s*equinox|bunny|spring\s*market)\b/i.test(fullHolidayText)) {
+        return "easter";
+      }
+      if (inSeason("07-20", "08-10") && /\b(?:pride|queer\s*arts|drag\s*extravaganza|dyke\s*march|trans\s*march)\b/i.test(fullHolidayText)) {
+        return "pride";
+      }
+
+      for (const h of approvedHolidaysList) {
+        if (h && h.id && combinedAffiliationText.includes(h.id.toLowerCase())) return h.id;
+      }
+      return null;
+    })();
+
+    // Auto-inject canonical Festival & Holiday tags into tags and subTags for user filtering and search
+    if (resolvedFestivalAffiliation) {
+      const festSlug = String(resolvedFestivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      for (const ft of ["festival", festSlug, `festival:${festSlug}`]) {
+        if (ft && !tags.some((t) => String(t).toLowerCase() === ft)) tags.push(ft);
+        if (ft && !subTags.some((t) => String(t).toLowerCase() === ft)) subTags.push(ft);
+      }
+      if (!categories.includes("festivals")) categories.push("festivals");
+    }
+    if (resolvedHolidayAffiliation) {
+      const holSlug = String(resolvedHolidayAffiliation).toLowerCase().trim();
+      for (const ht of ["holiday", holSlug, `holiday:${holSlug}`]) {
+        if (ht && !tags.some((t) => String(t).toLowerCase() === ht)) tags.push(ht);
+        if (ht && !subTags.some((t) => String(t).toLowerCase() === ht)) subTags.push(ht);
+      }
+    }
+
     const archetypeProfile = generateArchetypeProfile(archetype, cleanTitle, venue.venue_name, categories[0] || null, venue, {
       description,
       lineup,
-      artist
+      artist,
+      matchedFestival,
+      festival_hub_directory: edit.festival_hub_directory || existing.festival_hub_directory || null,
+      festival_pass_type: edit.festival_pass_type || existing.festival_pass_type || null,
+      rush_seating_rules: edit.rush_seating_rules || existing.rush_seating_rules || null,
+      central_box_office: edit.central_box_office || existing.central_box_office || null,
+      volunteer_ticket_exchange: edit.volunteer_ticket_exchange || existing.volunteer_ticket_exchange || null,
     });
 
     // Epistemic Precedence Hierarchy (Rule 2E):
@@ -1461,6 +1597,7 @@ export async function compileCatalog(options = {}) {
       D006_lifecycle_type: { status: resolvedLifecycle ? "verified" : "search_exhausted_null", value: resolvedLifecycle, source_tool: "compiler_ai", audited_at: nowIso },
       D007_event_archetype: { status: archetype ? "verified" : "search_exhausted_null", value: archetype || null, source_tool: "ai_semantic_enricher", audited_at: nowIso },
       D008_restrictions: { status: resolvedRestrictions ? "verified" : "search_exhausted_null", value: resolvedRestrictions, source_tool: "stagehand_box_office", audited_at: nowIso },
+      D009_holiday_affiliation: { status: resolvedHolidayAffiliation ? "verified" : "none_available", value: resolvedHolidayAffiliation || null, source_tool: "ai_semantic_enricher", audited_at: nowIso },
 
       // Cluster 1XX: Discovery, Access & Deep-Link Hierarchy
       D101_tier1_checkout: { status: tier1Final ? "verified" : "none_available", value: tier1Final, source_tool: "stagehand_box_office", audited_at: box.audited_at || (tier1Final ? nowIso : null) },
@@ -1520,7 +1657,7 @@ export async function compileCatalog(options = {}) {
       D308_dateSchedule: { status: (heroDate || isPerennial) ? "verified" : "search_exhausted_null", value: (heroDate || isPerennial) ? dateSchedule : null, source_tool: "compiler_ai", audited_at: nowIso },
       D309_frequencyLabel: { status: frequencyLabel ? "verified" : "search_exhausted_null", value: frequencyLabel || null, source_tool: "compiler_ai", audited_at: nowIso },
       D310_synopsis: { status: description ? "verified" : "search_exhausted_null", value: description, source_tool: "ai_semantic_enricher", audited_at: edit.audited_at || nowIso },
-      D311_festival_affiliation: { status: (sched.festival_affiliation && sched.festival_affiliation !== "None") ? "verified" : "none_available", value: (sched.festival_affiliation && sched.festival_affiliation !== "None") ? sched.festival_affiliation : null, source_tool: "schedule_harvester", audited_at: nowIso },
+      D311_festival_affiliation: { status: resolvedFestivalAffiliation ? "verified" : "none_available", value: resolvedFestivalAffiliation || null, source_tool: matchedFestival ? "festival_master_registry" : "schedule_harvester", audited_at: nowIso },
 
       // Cluster 4XX: Physical Venue Geography & Constants
       D401_venue_name: { status: venue.venue_name ? "verified" : "search_exhausted_null", value: venue.venue_name, source_tool: "venue_master_registry", audited_at: nowIso },
@@ -1677,6 +1814,10 @@ export async function compileCatalog(options = {}) {
       categoryLabel: (categories && categories.length > 0 && categories[0]) ? categories[0].toUpperCase() : null,
       tags: (tags && tags.length > 0) ? tags : null,
       subTags: (subTags && subTags.length > 0) ? subTags : null,
+      festival_affiliation: resolvedFestivalAffiliation || null,
+      festivalAffiliation: resolvedFestivalAffiliation || null,
+      holiday_affiliation: resolvedHolidayAffiliation || null,
+      holidayAffiliation: resolvedHolidayAffiliation || null,
       price: finalAllInPrice,
       price_base: tier1Base,
       price_fee: tier1Fee,

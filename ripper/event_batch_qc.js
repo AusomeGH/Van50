@@ -1544,6 +1544,19 @@ export async function runEventBatchQC(options = {}) {
   console.log(`================================================================\n`);
   printAntigravityTimeoutSummary("Stage 2: Stagehand Box Office QC");
 
+  if (auditResults.length > 0 && !options.skipCompile && !options.dryRun) {
+    try {
+      const auditedIds = auditResults.map((r) => r.eventId).filter(Boolean);
+      if (auditedIds.length > 0) {
+        console.log(`⚡ [Auto-Publish] Compiling & publishing ${auditedIds.length} QC-audited event(s) to master catalog...`);
+        const { compileCatalog } = await import("./compile_catalog.js");
+        await compileCatalog({ ids: auditedIds });
+      }
+    } catch (compErr) {
+      console.warn(`⚠️ [Auto-Publish] Compiler invocation warning: ${compErr.message}`);
+    }
+  }
+
   return auditResults;
 }
 

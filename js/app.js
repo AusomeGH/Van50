@@ -36,12 +36,208 @@ window.CATEGORIES = window.CATEGORIES || [
   { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
   { id: "music", label: "Music", icon: "🎵" },
   { id: "shows", label: "Comedy & Stage", icon: "🎭" },
-  { id: "festivals", label: "Festivals", icon: "🎪" },
+  { id: "festivals", label: "Festivals & Holidays", icon: "🎉" },
   { id: "markets", label: "Markets", icon: "🧺" },
   { id: "outdoors", label: "Outdoors", icon: "🌲" },
   { id: "cinema", label: "Cinema", icon: "🎬" },
   { id: "social", label: "Social & Arts", icon: "🎨" }
 ];
+
+window.HOLIDAY_REGISTRY = window.HOLIDAY_REGISTRY || {
+  "halloween": {
+    id: "halloween",
+    label: "Halloween",
+    icon: "🎃",
+    datesLabel: "Oct 1 – Nov 2",
+    shortDesc: "Spooky screenings, horror cinema, murder mysteries, and costume nights across Vancouver.",
+    longDesc: "Celebrate Halloween season across Metro Vancouver with cult horror film screenings with live scores, improvised murder mysteries, paranormal comedy shows, and late-night costume parties—all verified under $50 CAD.",
+    venues: "The Cinematheque, Fox Cabaret, The Improv Centre & Tightrope Theatre",
+    keywords: "halloween hallowe'en spooky haunted costume party trick or treat horror vampyr vampire zombie ghost"
+  },
+  "diwali": {
+    id: "diwali",
+    label: "Diwali Festival of Lights",
+    icon: "🪔",
+    datesLabel: "Nov 5 – 15, 2026",
+    shortDesc: "South Asian music, dance, rangoli art, and Festival of Lights community celebrations.",
+    longDesc: "Experience the annual Diwali Festival of Lights across Metro Vancouver with classical and contemporary South Asian music, bhangra and kathak dance showcases, rangoli art installations, and vibrant community markets.",
+    venues: "Roundhouse Community Centre & Surrey Civic Plaza",
+    officialUrl: "https://www.diwalifest.ca",
+    officialLabel: "Official Diwali Fest Schedule ↗",
+    keywords: "diwali deepavali festival of lights mehfil rangoli south asian bhangra bollywood"
+  },
+  "christmas": {
+    id: "christmas",
+    label: "Christmas & Winter Holidays",
+    icon: "🎄",
+    datesLabel: "Nov 15 – Dec 30",
+    shortDesc: "Festive light displays, winter craft markets, holiday concerts, and seasonal theatre.",
+    longDesc: "Celebrate the winter holiday season across Metro Vancouver with botanical garden light displays, indie artisan craft markets, festive choir and jazz concerts, ugly sweater comedy nights, and holiday cinema under $50 CAD.",
+    venues: "Metro Vancouver Theatres, Markets & Botanical Gardens",
+    keywords: "christmas xmas keithmas holiday winter festive yule nutcracker hanukkah solstice"
+  },
+  "dia-de-los-muertos": {
+    id: "dia-de-los-muertos",
+    label: "Día de los Muertos (Day of the Dead)",
+    icon: "💀",
+    datesLabel: "Oct 31 – Nov 2",
+    shortDesc: "Traditional Mexican markets, Catrinas processions, ofrendas, folkloric music, and art.",
+    longDesc: "Honour loved ones during Día de los Muertos with community altars (ofrendas), twilight Catrinas processions, traditional Mexican artisan markets, mariachi music, and cultural performances across Granville Island and Gastown.",
+    venues: "Granville Island & Gastown Historic District",
+    officialUrl: "https://latincouver.ca",
+    officialLabel: "Latincouver Event Guide ↗",
+    keywords: "dia de los muertos day of the dead ofrenda calavera catrina"
+  },
+  "new-years": {
+    id: "new-years",
+    label: "New Year's Eve / Day",
+    icon: "🎉",
+    datesLabel: "Dec 31 – Jan 1",
+    shortDesc: "New Year's Eve countdown parties, comedy galas, live music, and Polar Bear Swim.",
+    longDesc: "Ring in the New Year with countdown dance parties, NYE stand-up comedy galas, live concerts, and Vancouver's iconic New Year's Day Polar Bear Swim at English Bay.",
+    venues: "Downtown Vancouver, East Van & English Bay",
+    keywords: "new years eve nye countdown midnight toast polar bear swim"
+  },
+  "lunar-new-year": {
+    id: "lunar-new-year",
+    label: "Lunar New Year",
+    icon: "🧧",
+    datesLabel: "Jan – Feb",
+    shortDesc: "Chinatown lion dances, lantern installations, cultural markets, and festive performances.",
+    longDesc: "Welcome the Lunar New Year across historic Chinatown and Metro Vancouver with traditional lion and dragon dances, lantern light installations, festive markets, and multidisciplinary cultural showcases.",
+    venues: "Historic Chinatown, Dr. Sun Yat-Sen Garden & Metro Vancouver",
+    keywords: "lunar new year chinese new year spring festival lion dance"
+  },
+  "thanksgiving": {
+    id: "thanksgiving",
+    label: "Thanksgiving",
+    icon: "🦃",
+    datesLabel: "Early October",
+    shortDesc: "Autumn harvest markets, long-weekend outings, and seasonal comedy & music.",
+    longDesc: "Enjoy Canadian Thanksgiving long-weekend outings across Metro Vancouver, featuring autumn harvest markets, scenic fall foliage strolls, and festive comedy and live music showcases.",
+    venues: "Metro Vancouver Parks, Markets & Stages",
+    keywords: "thanksgiving friendsgiving harvest"
+  },
+  "valentines-day": {
+    id: "valentines-day",
+    label: "Valentine's Day",
+    icon: "💘",
+    datesLabel: "Feb 1 – 15",
+    shortDesc: "Date-night concerts, rom-com screenings, burlesque, and Galentine's comedy shows.",
+    longDesc: "Celebrate Valentine's Day, Galentine's, or Anti-Valentine's across Vancouver with candlelit jazz, cult romance film screenings, burlesque cabarets, and relationship-themed improv and stand-up comedy.",
+    venues: "Rio Theatre, Fox Cabaret, The Improv Centre & Local Lounges",
+    keywords: "valentines day galentines romance date night"
+  },
+  "st-patricks-day": {
+    id: "st-patricks-day",
+    label: "St. Patrick's Day",
+    icon: "☘️",
+    datesLabel: "Mar 10 – 18",
+    shortDesc: "Celtic live music, Irish dance, fiddle sessions, and St. Paddy's celebrations.",
+    longDesc: "Raise a glass for St. Patrick's Day with high-energy Celtic folk bands, traditional Irish fiddle and céilí dancing, and festive live music nights across Vancouver.",
+    venues: "Gastown, Commercial Drive & Downtown Stages",
+    keywords: "st patricks day paddys irish celtic"
+  },
+  "easter": {
+    id: "easter",
+    label: "Easter & Spring",
+    icon: "🐣",
+    datesLabel: "Spring Long Weekend",
+    shortDesc: "Spring garden blooms, artisan markets, and long-weekend cultural outings.",
+    longDesc: "Enjoy the Easter and spring season across Metro Vancouver with botanical garden blooms, family-friendly park activities, spring artisan markets, and long-weekend live shows.",
+    venues: "Metro Vancouver Gardens, Parks & Markets",
+    keywords: "easter spring equinox"
+  },
+  "canada-day": {
+    id: "canada-day",
+    label: "Canada Day",
+    icon: "🍁",
+    datesLabel: "July 1",
+    shortDesc: "Waterfront festivals, free outdoor concerts, and community celebrations.",
+    longDesc: "Explore Canada Day community events across Canada Place, Granville Island, and local neighbourhood parks featuring free outdoor stages, multicultural performances, and waterfront celebrations.",
+    venues: "Canada Place, Granville Island & Community Parks",
+    keywords: "canada day july 1"
+  },
+  "pride": {
+    id: "pride",
+    label: "Pride Festival",
+    icon: "🌈",
+    datesLabel: "Late July – Early Aug",
+    shortDesc: "Queer arts, drag showcases, parade celebrations, and community stages.",
+    longDesc: "Celebrate Vancouver Pride with 2SLGBTQIA+ cabaret, drag showcases, queer film screenings, outdoor community stages, and parade festivities across the West End, Davie Village, and Downtown.",
+    venues: "Davie Village, West End & Concord Pacific Place",
+    keywords: "pride festival queer lgbtq drag"
+  }
+};
+
+window.FESTIVAL_REGISTRY = window.FESTIVAL_REGISTRY || {
+  "diwali-fest": {
+    id: "diwali-fest",
+    label: "Diwali Fest (Festival of Lights)",
+    icon: "🪔",
+    datesLabel: "Nov 5 – 15, 2026",
+    shortDesc: "Free & low-cost South Asian music, dance, rangoli art, and community markets.",
+    longDesc: "Celebrate the 22nd annual Diwali Fest (Festival of Lights) across Metro Vancouver! Experience classical and contemporary South Asian music, bhangra and kathak dance showcases, intimate Mehfil concerts, rangoli art installations, and vibrant community celebrations at Roundhouse Community Centre and Surrey Civic Plaza.",
+    venues: "Roundhouse Community Centre & Surrey Civic Plaza",
+    officialUrl: "https://www.diwalifest.ca",
+    officialLabel: "Official Diwali Fest Schedule ↗"
+  },
+  "downtown-eastside-heart-of-the-city-festival": {
+    id: "downtown-eastside-heart-of-the-city-festival",
+    label: "DTES Heart of the City Festival",
+    icon: "❤️",
+    datesLabel: "Oct 30 – Nov 7, 2026",
+    shortDesc: "100+ free & PWYC community concerts, theatre, poetry, and visual arts across the DTES.",
+    longDesc: "Community-led multi-arts festival featuring over 100 free or pay-what-you-can concerts, readings, art displays, films, and theatre pieces celebrating the artists, history, and living culture of Vancouver's Downtown Eastside.",
+    venues: "30+ Venues across Vancouver's Downtown Eastside",
+    officialUrl: "https://www.heartofthecityfestival.com/",
+    officialLabel: "Official Heart of the City Guide ↗"
+  },
+  "vancouver-fringe-festival": {
+    id: "vancouver-fringe-festival",
+    label: "Vancouver Fringe Festival",
+    icon: "🎪",
+    datesLabel: "Sept 10 – 20, 2026",
+    shortDesc: "Uncurated indie theatre, comedy, and solo shows across Granville Island & East Van ($15–$18).",
+    longDesc: "Vancouver's iconic uncurated independent theatre celebration across Granville Island and East Van! Individual show tickets are $15.00 – $18.00 CAD all-in, with 100% of base ticket proceeds going directly to performing artists.",
+    venues: "Granville Island (Waterfront Theatre, Performance Works, Revue Stage) & East Van",
+    officialUrl: "https://vancouverfringe.com/shows/",
+    officialLabel: "Official Fringe Program ↗"
+  },
+  "vancouver-international-film-festival": {
+    id: "vancouver-international-film-festival",
+    label: "Vancouver International Film Festival (VIFF)",
+    icon: "🎬",
+    datesLabel: "Sept 24 – Oct 4, 2026",
+    shortDesc: "World cinema, auteur premieres, and live-scored screenings across Vancouver.",
+    longDesc: "Western Canada's premier celebration of world cinema, award-winning auteur features, and international film premieres across VIFF Centre, The Cinematheque, and the Rio Theatre.",
+    venues: "VIFF Centre, The Cinematheque & Rio Theatre",
+    officialUrl: "https://viff.org",
+    officialLabel: "Official VIFF Program ↗"
+  },
+  "vancouver-writers-fest": {
+    id: "vancouver-writers-fest",
+    label: "Vancouver Writers Fest",
+    icon: "📚",
+    datesLabel: "Oct 19 – 25, 2026",
+    shortDesc: "Acclaimed Canadian and international authors, poets, and literary conversations on Granville Island.",
+    longDesc: "Premier annual literary festival bringing together acclaimed Canadian and international authors, poets, and thinkers for readings, panels, and conversations across Granville Island.",
+    venues: "Granville Island Theatres",
+    officialUrl: "https://writersfest.bc.ca/",
+    officialLabel: "Official Writers Fest Schedule ↗"
+  },
+  "vancouver-horror-show-film-festival": {
+    id: "vancouver-horror-show-film-festival",
+    label: "Vancouver Horror Show Film Festival",
+    icon: "🩸",
+    datesLabel: "Oct 13 – 18, 2026",
+    shortDesc: "Indie horror, thriller, sci-fi, and dark comedy features and shorts with filmmaker Q&As.",
+    longDesc: "Vancouver's premier annual genre film festival showcasing international and Canadian horror, thriller, sci-fi, and dark comedy features and short films with filmmaker Q&As, table reads, and awards.",
+    venues: "Cineplex International Village & Greta Bar YVR",
+    officialUrl: "https://www.vancouverhorrorshow.com",
+    officialLabel: "Official VHS Schedule ↗"
+  }
+};
 
 // Privacy-Preserving Anonymous Event Tracking (GoatCounter - 0 PII, Cookieless)
 window.trackAnonymousEvent = function(path, title) {
@@ -64,6 +260,10 @@ const state = {
   maxBudget: 50,
   hideDaily: false,
   hideFestivalEvents: false,
+  festivalDetailsExpanded: false,
+  expandedThemes: new Set(),
+  selectedThemeFilter: null,
+  excludedThemes: new Set(),
   accessibleMode: false,
   accessibleOnly: false,
   category: 'all',
@@ -325,14 +525,50 @@ function normalizeActiveEvent(item) {
   const isFreePublic = catRaw.includes("public access") || catRaw.includes("free public") || catRaw === "free-public-access" || item.lifecycle_type === "perennial_drop_in" || item.lifecycleType === "perennial_drop_in";
 
   const evTitle = sanitizeMojibake(item.event_name || item.title || "Event");
-  const hasFestivalAffiliation = Boolean(item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "");
+  const rawFestivalAff = (item.festival_affiliation && item.festival_affiliation !== "None" && item.festival_affiliation !== "none_available")
+    ? item.festival_affiliation
+    : ((item.festivalAffiliation && item.festivalAffiliation !== "None" && item.festivalAffiliation !== "none_available") ? item.festivalAffiliation : null);
+  const hasFestivalAffiliation = Boolean(rawFestivalAff);
+
+  const rawHolidayAff = (() => {
+    const explicit = item.holiday_affiliation || item.holidayAffiliation || (item.dimension_audit && (item.dimension_audit.D008_holiday_affiliation?.value || item.dimension_audit.D009_holiday_affiliation?.value));
+    if (explicit && explicit !== "None" && explicit !== "none_available") return String(explicit).toLowerCase().trim();
+    const checkText = `${evTitle} ${(Array.isArray(item.tags) ? item.tags.join(" ") : "")} ${item.description || ""}`.toLowerCase();
+    const primaryDateStr = confirmedDates[0] || item.date || null;
+    const eventMmdd = (primaryDateStr && /^\d{4}-\d{2}-\d{2}$/.test(primaryDateStr)) ? primaryDateStr.slice(5, 10) : null;
+    const inSeason = (startMmdd, endMmdd) => {
+      if (!eventMmdd) return false;
+      if (startMmdd <= endMmdd) return eventMmdd >= startMmdd && eventMmdd <= endMmdd;
+      return eventMmdd >= startMmdd || eventMmdd <= endMmdd;
+    };
+    if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(checkText)) return "diwali";
+    if (/\b(?:muertos|day of the dead|ofrenda|calavera|catrina|sugar skull)\b/i.test(checkText)) return "dia-de-los-muertos";
+    if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(checkText)) return "halloween";
+    if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(checkText)) return "christmas";
+    if (/\b(?:new year'?s|nye|hogmanay|polar bear swim)\b/i.test(checkText)) return "new-years";
+    if (/\b(?:lunar new year|chinese new year|spring festival|tet festival)\b/i.test(checkText)) return "lunar-new-year";
+    if (/\b(?:thanksgiving|friendsgiving)\b/i.test(checkText)) return "thanksgiving";
+    if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(checkText)) return "valentines-day";
+    if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s day)\b/i.test(checkText)) return "st-patricks-day";
+    if (/\b(?:easter|egg hunt|good friday|ostara)\b/i.test(checkText)) return "easter";
+    if (/\b(?:canada day)\b/i.test(checkText)) return "canada-day";
+    if (/\b(?:pride festival|vancouver pride|pride parade|queer pride)\b/i.test(checkText)) return "pride";
+    if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder mystery|deadly dinner|unexplained|paranormal|x[- ]files|yes files|seance|séance|rocky horror|nosferatu|frankenstein|dracula|evil dead|exorcist|dark cabaret|freak show)\b/i.test(checkText)) return "halloween";
+    if (inSeason("10-15", "11-20") && /\b(?:festival of lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(checkText)) return "diwali";
+    if (inSeason("11-12", "12-30") && /\b(?:holiday market|winter market|craft market|winter solstice|festive|ugly sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar express|canyon lights|bright nights|winter wonderland|holiday special|holiday show|holiday concert|holiday party)\b/i.test(checkText)) return "christmas";
+    return null;
+  })();
+  const hasHolidayAffiliation = Boolean(rawHolidayAff);
+
   const isFest = Boolean(
     hasFestivalAffiliation ||
+    item.event_archetype === "festival" ||
+    item.archetype === "festival" ||
     catRaw.includes("festival") ||
-    evTitle.toLowerCase().includes("viff") ||
-    evTitle.toLowerCase().includes("festival") ||
-    (Array.isArray(item.tags) && item.tags.some(t => String(t).toLowerCase().includes("festival") || String(t).toLowerCase().includes("viff")))
+    /\b(viff|diwali|fringe)\b/i.test(evTitle) ||
+    (Array.isArray(item.tags) && item.tags.some(t => /\b(festival|viff|diwali|fringe)\b/i.test(String(t))))
   );
+  const isHoliday = hasHolidayAffiliation;
 
   let dateSchedule = "Upcoming";
   const opHours = sanitizeMojibake(item.operating_hours || item.open_hours || item.hours || item.operatingHours || "");
@@ -437,7 +673,7 @@ function normalizeActiveEvent(item) {
   if (isShows && !categories.includes("shows")) categories.push("shows");
   if (isMarkets && !categories.includes("markets")) categories.push("markets");
   if (isSocialArts && !categories.includes("social")) categories.push("social");
-  if (isFest && !categories.includes("festivals")) categories.push("festivals");
+  if ((isFest || isHoliday) && !categories.includes("festivals")) categories.push("festivals");
 
   if (categories.length === 0) {
     categories.push(isFreePublic ? "free-public-access" : "shows");
@@ -479,6 +715,49 @@ function normalizeActiveEvent(item) {
 
   const finalPrice = isFreePublic ? 0.0 : price;
 
+  // Build normalized subTags and structured Festival/Holiday theme badges
+  const baseSubTags = Array.isArray(item.tags) ? [...item.tags] : (Array.isArray(item.subTags) ? [...item.subTags] : []);
+  const themeBadges = [];
+  if (rawFestivalAff) {
+    const festShort = String(rawFestivalAff).replace(/\s*\(.*?\)\s*/g, '').trim();
+    const festSlug = festShort.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const festIcon = /diwali/i.test(rawFestivalAff) ? '🪔' : (/viff|film/i.test(rawFestivalAff) ? '🎬' : '🎪');
+    themeBadges.push({
+      key: `festival:${festSlug}`,
+      type: 'festival',
+      id: festSlug,
+      label: festShort,
+      fullLabel: rawFestivalAff,
+      icon: festIcon
+    });
+    for (const t of ['festival', festSlug, `festival:${festSlug}`]) {
+      if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+    }
+  }
+  if (rawHolidayAff) {
+    const holMeta = (window.HOLIDAY_REGISTRY && window.HOLIDAY_REGISTRY[rawHolidayAff]) || {
+      id: rawHolidayAff,
+      label: rawHolidayAff.charAt(0).toUpperCase() + rawHolidayAff.slice(1),
+      icon: '🎉',
+      keywords: rawHolidayAff
+    };
+    // Avoid duplicate badge if Diwali Fest is already added as festival:diwali-fest, but still tag both
+    const alreadyCoveredByFestival = themeBadges.some(b => b.id.includes(rawHolidayAff) || rawHolidayAff.includes(b.id));
+    if (!alreadyCoveredByFestival) {
+      themeBadges.push({
+        key: `holiday:${rawHolidayAff}`,
+        type: 'holiday',
+        id: rawHolidayAff,
+        label: holMeta.label,
+        fullLabel: holMeta.label,
+        icon: holMeta.icon
+      });
+    }
+    for (const t of ['holiday', rawHolidayAff, `holiday:${rawHolidayAff}`]) {
+      if (t && !baseSubTags.some(x => String(x).toLowerCase() === t)) baseSubTags.push(t);
+    }
+  }
+
   const res = {
     id: item.event_id || item.id || `ev-${Math.random().toString(36).substring(2, 9)}`,
     title: evTitle,
@@ -498,7 +777,7 @@ function normalizeActiveEvent(item) {
     categories: categories,
     categoryLabel: isFreePublic ? "Free Public Access" : (item.category || "Shows & Arts"),
     categoryIcon: isFreePublic ? "🏛️" : (cat === "outdoors" ? "🌊" : (cat === "music" ? "🎵" : (cat === "cinema" ? "🎬" : "🎭"))),
-    subTags: Array.isArray(item.tags) ? item.tags : (item.subTags || []),
+    subTags: baseSubTags,
     dateSchedule: dateSchedule,
     startIso: (!isFreePublic && (showings[0]?.date || show1.date || item.date))
       ? `${showings[0]?.date || show1.date || item.date}T${formatIsoTime(showings[0]?.start_time || show1.start_time || item.start_time || item.time, "19:00:00")}-07:00`
@@ -525,7 +804,11 @@ function normalizeActiveEvent(item) {
     isSoldOut: Boolean(item.is_sold_out || item.isSoldOut),
     is_sold_out: Boolean(item.is_sold_out || item.isSoldOut),
     isFestival: isFest,
-    festivalAffiliation: (hasFestivalAffiliation ? item.festival_affiliation : (isFest ? (item.festival_affiliation || "VIFF") : null)),
+    isHoliday: isHoliday,
+    isFestivalOrHoliday: Boolean(isFest || isHoliday),
+    festivalAffiliation: rawFestivalAff || null,
+    holidayAffiliation: rawHolidayAff || null,
+    themeBadges: themeBadges,
     websiteUrl: item.ticket_url || item.details_url || item.discovery_url || item.websiteUrl || "#",
     venueUrl: item.details_url || item.websiteUrl || "#",
     ticketProvider: item.ticket_provider || item.ticketProvider || (isFreePublic ? "Free Public Access" : "Direct"),
@@ -1342,114 +1625,275 @@ function clearActiveQuickButtons() {
 }
 
 // ==============================================================================
-// 1.5 FESTIVAL SPOTLIGHT & TOGGLE ENGINE
+// 1.5 FESTIVAL & HOLIDAY SPOTLIGHT, TAG CHIPS & EXPANDABLE DETAILS ENGINE
 // ==============================================================================
+
+function eventMatchesThemeKey(ev, themeKey) {
+  if (!ev || !themeKey) return false;
+  if (Array.isArray(ev.themeBadges) && ev.themeBadges.some(b => b.key === themeKey)) return true;
+  const [type, slug] = String(themeKey).split(':');
+  if (type === 'holiday' && ev.holidayAffiliation && String(ev.holidayAffiliation).toLowerCase() === slug) return true;
+  if (type === 'festival' && ev.festivalAffiliation) {
+    const fSlug = String(ev.festivalAffiliation).toLowerCase().replace(/\s*\(.*?\)\s*/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    if (fSlug === slug || fSlug.includes(slug)) return true;
+  }
+  if (Array.isArray(ev.subTags) && ev.subTags.some(t => String(t).toLowerCase() === themeKey || String(t).toLowerCase() === slug)) return true;
+  return false;
+}
+
+function getActiveThemeGroups(catalog) {
+  const now = new Date();
+  const groupsMap = new Map();
+  (catalog || []).forEach(ev => {
+    if (!ev || isEventInPast(ev, now) || isAwaitingSchedule(ev) || parseFloat(ev.price || 0) > 50) return;
+    if (Array.isArray(ev.themeBadges)) {
+      ev.themeBadges.forEach(b => {
+        if (!groupsMap.has(b.key)) {
+          groupsMap.set(b.key, { ...b, count: 0 });
+        }
+        groupsMap.get(b.key).count++;
+      });
+    }
+  });
+  return Array.from(groupsMap.values());
+}
+
+function getThemeMetadata(g) {
+  if (!g) return { label: 'Seasonal Celebration', datesLabel: 'Upcoming', shortDesc: 'Curated seasonal events under $50 CAD.', longDesc: 'Explore verified festival and holiday events across Metro Vancouver under $50 CAD.', venues: 'Metro Vancouver' };
+  const rawId = String(g.id || '').toLowerCase();
+  if (g.type === 'festival' && window.FESTIVAL_REGISTRY) {
+    const exact = window.FESTIVAL_REGISTRY[rawId] || Object.values(window.FESTIVAL_REGISTRY).find(f => rawId.includes(f.id) || f.id.includes(rawId));
+    if (exact) return exact;
+  }
+  if (g.type === 'holiday' && window.HOLIDAY_REGISTRY) {
+    const exact = window.HOLIDAY_REGISTRY[rawId] || Object.values(window.HOLIDAY_REGISTRY).find(h => rawId.includes(h.id) || h.id.includes(rawId));
+    if (exact) return exact;
+  }
+  if (window.HOLIDAY_REGISTRY && window.HOLIDAY_REGISTRY[rawId]) return window.HOLIDAY_REGISTRY[rawId];
+  if (window.FESTIVAL_REGISTRY && window.FESTIVAL_REGISTRY[rawId]) return window.FESTIVAL_REGISTRY[rawId];
+  return {
+    id: rawId,
+    label: g.fullLabel || g.label || 'Festival & Holiday',
+    icon: g.icon || '🎉',
+    datesLabel: 'Current Season',
+    shortDesc: `Verified ${g.fullLabel || g.label} events across Metro Vancouver under $50 CAD.`,
+    longDesc: `Explore curated ${g.fullLabel || g.label} performances, screenings, and cultural gatherings across Metro Vancouver—all verified under $50 CAD all-in.`,
+    venues: 'Metro Vancouver Venues'
+  };
+}
 
 function renderFestivalSpotlight() {
   const container = document.getElementById('festival-spotlight-container');
   if (!container) return;
 
   const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const todayStr = `${year}-${month}-${day}`;
-
-  const activeFestivalEvents = (window.currentActiveCatalog || ALL_EVENTS).filter(e => e && !isEventInPast(e, now) && (
-    (e.id && (e.id.startsWith('fest-') || e.id.startsWith('viff-') || e.id.includes('viff'))) ||
+  const baseCatalog = window.currentActiveCatalog || ALL_EVENTS;
+  const activeFestivalAndHolidayEvents = baseCatalog.filter(e => e && !isEventInPast(e, now) && !isAwaitingSchedule(e) && parseFloat(e.price || 0) <= 50 && (
+    e.isFestivalOrHoliday ||
     e.isFestival ||
+    e.isHoliday ||
     Boolean(e.festivalAffiliation) ||
-    Boolean(e.festival_affiliation) ||
-    (e.subTags && e.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('viff'))) ||
-    (e.title && (e.title.toLowerCase().includes('festival') || e.title.toLowerCase().includes('viff') || e.title.toLowerCase().includes('fringe'))) ||
+    Boolean(e.holidayAffiliation) ||
     (Array.isArray(e.categories) && e.categories.includes('festivals'))
   ));
 
   const isHidden = state.hideFestivalEvents === true;
-  const festCount = activeFestivalEvents.length;
+  const festCount = activeFestivalAndHolidayEvents.length;
+  const themeGroups = getActiveThemeGroups(baseCatalog);
 
+  if (themeGroups.length === 0 && festCount === 0) {
+    container.style.display = 'none';
+    return;
+  }
   container.style.display = 'block';
 
-  // Dynamic content based on current active / upcoming festival in Vancouver
-  const isFringeActive = todayStr <= '2026-09-20';
+  const hasFestivals = themeGroups.some(g => g.type === 'festival');
+  const hasHolidays = themeGroups.some(g => g.type === 'holiday');
 
-  const badgeStatus = isHidden 
-    ? '🎪 FESTIVALS HIDDEN' 
-    : (isFringeActive ? '🎪 LIVE FESTIVAL SPOTLIGHT' : '🎪 UPCOMING FESTIVAL SPOTLIGHT');
+  const badgeStatus = isHidden
+    ? '🎉 FESTIVALS & HOLIDAYS HIDDEN'
+    : (hasFestivals && hasHolidays ? '🎉 ACTIVE SPOTLIGHT' : (hasFestivals ? '🎪 ACTIVE FESTIVALS' : '🎃 ACTIVE HOLIDAYS'));
 
-  const datesBadge = isFringeActive ? 'Sept 10 – 20, 2026' : 'Sept 24 – Oct 04, 2026';
-  const venueBadge = isFringeActive ? 'Granville Island & East Van' : 'VIFF Centre, The Cinematheque & Rio Theatre';
-  const festTitle = isFringeActive ? 'Vancouver Fringe Festival 2026' : 'Vancouver International Film Festival (VIFF 2026)';
-  
-  const festBlurb = isFringeActive ? `
-    <strong class="festival-dates-lead">📅 September 10 – 20, 2026:</strong> Vancouver's iconic uncurated independent theatre celebration is live across Granville Island and East Van! Individual show tickets are <strong>$15.00 – $18.00 CAD all-in</strong> ($12 – $15 artist base price + $3 ticketing fee; 100% of base profits go directly to artists). <strong>No festival membership is required</strong>—simply buy your show tickets and enjoy! <em>Note: Tickets are not sold at venue doors; purchase online or at the central Fringe Box Office.</em>
-  ` : `
-    <strong class="festival-dates-lead">📅 September 24 – October 4, 2026:</strong> Western Canada's premier celebration of world cinema, award-winning auteur features, and Cannes Grand Prix winners across VIFF Centre, The Cinematheque, and the Rio Theatre! Single festival screening tickets are <strong>$18.00 CAD + $2.00 VIFF society membership ($20.90 CAD all-in checkout)</strong>.
-  `;
+  let bannerTitle = 'Current Festivals and Holidays';
+  if (themeGroups.length === 1) {
+    const singleMeta = getThemeMetadata(themeGroups[0]);
+    bannerTitle = `${themeGroups[0].icon} ${singleMeta.label}`;
+  } else if (hasFestivals && !hasHolidays) {
+    bannerTitle = 'Current Festivals';
+  } else if (!hasFestivals && hasHolidays) {
+    bannerTitle = 'Current Holidays & Seasonal Events';
+  }
 
-  const programLink = isFringeActive ? 'https://vancouverfringe.com/shows/' : 'https://viff.org';
-  const programLabel = isFringeActive ? 'Official Fringe Program & Tickets ↗' : 'Official VIFF Program & Tickets ↗';
-  const secondaryLink = isFringeActive ? 'https://www.vancouverfringe.com/how-to-fringe/' : 'https://thecinematheque.ca';
-  const secondaryLabel = isFringeActive ? 'How to Fringe Guide ↗' : 'Cinematheque VIFF Screenings ↗';
-  const countLabel = isFringeActive 
-    ? `${festCount} Curated Fringe Productions in Van50` 
-    : `${festCount || 3} Curated VIFF Feature Screenings under $50 CAD in Van50`;
+  const isHighlightingAll = state.category === 'festivals' && !state.selectedThemeFilter;
+
+  const activeItemsListHtml = (!isHidden && themeGroups.length > 0) ? `
+    <div class="festival-active-items-list" role="region" aria-label="Active festivals and holidays">
+      ${themeGroups.map(g => {
+        const meta = getThemeMetadata(g);
+        const isSelected = state.selectedThemeFilter === g.key;
+        const isExcluded = state.excludedThemes && state.excludedThemes.has(g.key);
+        const isItemExpanded = state.expandedThemes && state.expandedThemes.has(g.key);
+        return `
+          <div class="festival-theme-item-row ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}">
+            <div class="festival-theme-item-main">
+              <div class="festival-theme-item-info">
+                <span class="theme-item-title-badge">
+                  <span class="theme-item-icon">${isExcluded ? '🚫' : g.icon}</span>
+                  <strong class="theme-item-name">${meta.label}</strong>
+                </span>
+                ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
+                <span class="theme-item-short-desc">${meta.shortDesc}</span>
+              </div>
+              <div class="festival-theme-item-actions">
+                <button
+                  type="button"
+                  class="btn-theme-item-expand ${isItemExpanded ? 'expanded' : ''}"
+                  onclick="toggleThemeItemExpand('${g.key}', event)"
+                  aria-expanded="${isItemExpanded}"
+                  title="${isItemExpanded ? 'Hide longer description' : 'Expand longer description, venues & official links'}"
+                >${isItemExpanded ? 'Less ▴' : 'Details ▾'}</button>
+                <button
+                  type="button"
+                  class="btn-theme-item-include ${isSelected ? 'active' : ''}"
+                  onclick="toggleThemeFilter('${g.key}', event)"
+                  title="${isSelected ? `Showing only ${meta.label} events. Click to show all outings` : `Filter catalog to show only ${meta.label} events (${g.count})`}"
+                >${isSelected ? `✓ Included (${g.count})` : `Include (${g.count})`}</button>
+                <button
+                  type="button"
+                  class="btn-theme-item-exclude ${isExcluded ? 'active' : ''}"
+                  onclick="toggleExcludeTheme('${g.key}', event)"
+                  title="${isExcluded ? `Currently excluded. Click to restore ${meta.label} events` : `Exclude (hide) ${meta.label} events from listings & map`}"
+                >${isExcluded ? '👁️ Excluded' : '✕ Exclude'}</button>
+              </div>
+            </div>
+            ${isItemExpanded ? `
+              <div class="festival-theme-item-drawer">
+                <p class="theme-item-long-desc">${meta.longDesc}</p>
+                <div class="theme-item-meta-links">
+                  ${meta.venues ? `<span class="festival-venue-badge">📍 ${meta.venues}</span>` : ''}
+                  ${meta.officialUrl ? `
+                    <a href="${meta.officialUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-primary">
+                      ${meta.officialLabel || 'Official Schedule ↗'}
+                    </a>
+                  ` : ''}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('')}
+    </div>
+  ` : '';
 
   container.innerHTML = `
-    <div class="festival-spotlight-card ${isHidden ? 'festival-muted festival-collapsed' : ''}">
+    <div class="festival-spotlight-card festival-compact-banner ${isHidden ? 'festival-muted festival-collapsed' : ''}">
       <div class="festival-spotlight-left">
-        <div class="festival-badge-row">
-          <span class="festival-status-badge">${badgeStatus}</span>
-          <span class="festival-dates-badge">${datesBadge}</span>
-          <span class="festival-venue-badge">${venueBadge}</span>
-        </div>
-        <h2 class="festival-spotlight-title">${festTitle} ${isHidden ? '<span class="festival-hidden-tag">(Events &amp; blurb hidden from listings &amp; map)</span>' : ''}</h2>
-        ${!isHidden ? `
-        <p class="festival-spotlight-blurb">
-          ${festBlurb}
-        </p>
-        <div class="festival-links-row">
-          <a href="${programLink}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-primary" title="Browse full festival program on official site">
-            ${programLabel}
-          </a>
-          <a href="${secondaryLink}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-secondary" style="color: var(--accent-primary); text-decoration: underline; font-size: 0.85rem; margin-left: 8px;" title="${secondaryLabel}">
-            ${secondaryLabel}
-          </a>
-          <span class="festival-stats-chip">${countLabel}</span>
-        </div>
-        ` : ''}
-      </div>
-      <div class="festival-spotlight-right">
-        ${!isHidden ? `
-        <button 
-          type="button" 
-          class="btn-festival-display ${state.category === 'festivals' ? 'active' : ''}" 
-          id="btn-display-festival"
-          onclick="displayFestivalEvents()"
-          title="${state.category === 'festivals' ? 'Showing festival events. Click to show all outings' : 'Filter outings to display only festival events'}"
-        >
-          <span class="toggle-icon">${state.category === 'festivals' ? '✓' : '🎪'}</span>
-          <span class="toggle-label">${state.category === 'festivals' ? `Showing Festival Events (${festCount || 3})` : `Display Festival Events (${festCount || 3})`}</span>
-        </button>
-        ` : ''}
+        <div class="festival-compact-header-row">
+          <div class="festival-header-title-group">
+            <span class="festival-status-badge">${badgeStatus}</span>
+            <h2 class="festival-spotlight-title">${bannerTitle} ${isHidden ? '<span class="festival-hidden-tag">(Hidden from listings &amp; map)</span>' : ''}</h2>
+          </div>
+          <div class="festival-spotlight-right">
+            ${!isHidden ? `
+            <button 
+              type="button" 
+              class="btn-festival-display ${isHighlightingAll ? 'active' : ''}" 
+              id="btn-display-festival"
+              onclick="displayFestivalEvents()"
+              title="${isHighlightingAll ? 'Showing all festival & holiday events. Click to show all outings' : 'Filter outings to display all festival & holiday events'}"
+            >
+              <span class="toggle-icon">${isHighlightingAll ? '✓' : '🎉'}</span>
+              <span class="toggle-label">${isHighlightingAll ? `Showing All (${festCount})` : `Highlight All (${festCount})`}</span>
+            </button>
+            ` : ''}
 
-        <button 
-          type="button" 
-          class="btn-festival-toggle ${isHidden ? 'fest-hidden' : ''}" 
-          id="btn-toggle-festival"
-          onclick="toggleHideFestivalEvents()"
-          aria-pressed="${isHidden}"
-          title="${isHidden ? 'Show festival events and blurb in listing and map' : 'Hide festival events and blurb from listing and map'}"
-        >
-          <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
-          <span class="toggle-label">${isHidden ? `Unhide Festival Events (${festCount || 3})` : 'Hide Festival Events'}</span>
-        </button>
+            <button 
+              type="button" 
+              class="btn-festival-toggle ${isHidden ? 'fest-hidden' : ''}" 
+              id="btn-toggle-festival"
+              onclick="toggleHideFestivalEvents()"
+              aria-pressed="${isHidden}"
+              title="${isHidden ? 'Show festival & holiday events in listing and map' : 'Hide all festival & holiday events from listing and map'}"
+            >
+              <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
+              <span class="toggle-label">${isHidden ? `Unhide Events (${festCount})` : 'Hide All'}</span>
+            </button>
+          </div>
+        </div>
+        ${activeItemsListHtml}
       </div>
     </div>
   `;
 }
 
+function toggleThemeItemExpand(themeKey, evObj) {
+  if (evObj) {
+    evObj.preventDefault();
+    evObj.stopPropagation();
+  }
+  if (!themeKey) return;
+  if (!state.expandedThemes) state.expandedThemes = new Set();
+  if (state.expandedThemes.has(themeKey)) {
+    state.expandedThemes.delete(themeKey);
+  } else {
+    state.expandedThemes.add(themeKey);
+  }
+  renderFestivalSpotlight();
+}
+
+function toggleFestivalDetailsDrawer() {
+  state.festivalDetailsExpanded = !state.festivalDetailsExpanded;
+  renderFestivalSpotlight();
+}
+
+function toggleThemeFilter(themeKey, evObj) {
+  if (evObj) {
+    evObj.preventDefault();
+    evObj.stopPropagation();
+  }
+  if (!themeKey) return;
+  if (state.excludedThemes && state.excludedThemes.has(themeKey)) {
+    state.excludedThemes.delete(themeKey);
+  }
+  if (state.selectedThemeFilter === themeKey) {
+    state.selectedThemeFilter = null;
+  } else {
+    state.selectedThemeFilter = themeKey;
+    state.hideFestivalEvents = false;
+  }
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+}
+
+function toggleExcludeTheme(themeKey, evObj) {
+  if (evObj) {
+    evObj.preventDefault();
+    evObj.stopPropagation();
+  }
+  if (!themeKey) return;
+  if (!state.excludedThemes) state.excludedThemes = new Set();
+  if (state.excludedThemes.has(themeKey)) {
+    state.excludedThemes.delete(themeKey);
+  } else {
+    state.excludedThemes.add(themeKey);
+    if (state.selectedThemeFilter === themeKey) {
+      state.selectedThemeFilter = null;
+    }
+  }
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+}
+
+function clearThemeFilters() {
+  state.selectedThemeFilter = null;
+  if (state.excludedThemes) state.excludedThemes.clear();
+  state.hideFestivalEvents = false;
+  renderFestivalSpotlight();
+  applyFiltersAndRender();
+}
+
 function displayFestivalEvents() {
+  state.selectedThemeFilter = null;
   if (state.category === 'festivals') {
     state.category = 'all';
   } else {
@@ -1470,6 +1914,13 @@ function displayFestivalEvents() {
 
 function toggleHideFestivalEvents() {
   state.hideFestivalEvents = !state.hideFestivalEvents;
+  if (state.hideFestivalEvents) {
+    state.selectedThemeFilter = null;
+    if (state.category === 'festivals') {
+      state.category = 'all';
+      renderCategoryPills();
+    }
+  }
   renderFestivalSpotlight();
   applyFiltersAndRender();
   if (typeof invalidateVancouverMap === 'function') {
@@ -1478,6 +1929,11 @@ function toggleHideFestivalEvents() {
 }
 window.displayFestivalEvents = displayFestivalEvents;
 window.toggleHideFestivalEvents = toggleHideFestivalEvents;
+window.toggleFestivalDetailsDrawer = toggleFestivalDetailsDrawer;
+window.toggleThemeItemExpand = toggleThemeItemExpand;
+window.toggleThemeFilter = toggleThemeFilter;
+window.toggleExcludeTheme = toggleExcludeTheme;
+window.clearThemeFilters = clearThemeFilters;
 window.renderFestivalSpotlight = renderFestivalSpotlight;
 
 // ==============================================================================
@@ -2182,9 +2638,34 @@ function applyFiltersAndRender() {
       return ev.venue === state.selectedVenue;
     }
 
-    // Festival Toggle Guard (Hide Festival Events toggle)
+    // Festival & Holiday Toggle Guard (Hide Festival & Holiday Events toggle)
     if (state.hideFestivalEvents) {
-      if ((ev.id && ev.id.startsWith('fest-')) || ev.isFestival || (ev.subTags && ev.subTags.includes('festival')) || (ev.title && ev.title.toLowerCase().includes('fringe'))) {
+      if (
+        (ev.id && ev.id.startsWith('fest-')) ||
+        ev.isFestivalOrHoliday ||
+        ev.isFestival ||
+        ev.isHoliday ||
+        Boolean(ev.festivalAffiliation) ||
+        Boolean(ev.holidayAffiliation) ||
+        (ev.subTags && ev.subTags.some(t => t === 'festival' || t === 'holiday')) ||
+        (ev.title && ev.title.toLowerCase().includes('fringe'))
+      ) {
+        return false;
+      }
+    }
+
+    // Specific Excluded Festival / Holiday Themes
+    if (state.excludedThemes && state.excludedThemes.size > 0) {
+      for (const excludedKey of state.excludedThemes) {
+        if (eventMatchesThemeKey(ev, excludedKey)) {
+          return false;
+        }
+      }
+    }
+
+    // Specific Highlighted Festival / Holiday Theme Filter
+    if (state.selectedThemeFilter) {
+      if (!eventMatchesThemeKey(ev, state.selectedThemeFilter)) {
         return false;
       }
     }
@@ -2275,12 +2756,18 @@ function applyFiltersAndRender() {
         (state.category === 'festivals' && (
           evCats.includes('festivals') ||
           evCats.includes('festival') ||
+          ev.event_archetype === 'festival' ||
+          ev.archetype === 'festival' ||
+          Boolean(ev.isFestivalOrHoliday) ||
           Boolean(ev.isFestival) ||
+          Boolean(ev.isHoliday) ||
           Boolean(ev.festivalAffiliation) ||
           Boolean(ev.festival_affiliation) ||
-          (ev.id && (ev.id.startsWith('fest-') || ev.id.startsWith('viff-') || ev.id.includes('viff'))) ||
-          (ev.title && (ev.title.toLowerCase().includes('festival') || ev.title.toLowerCase().includes('fringe') || ev.title.toLowerCase().includes('viff'))) ||
-          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('viff')))
+          Boolean(ev.holidayAffiliation) ||
+          Boolean(ev.holiday_affiliation) ||
+          (ev.id && (ev.id.startsWith('fest-') || ev.id.startsWith('viff-') || ev.id.includes('viff') || ev.id.includes('diwali'))) ||
+          (ev.title && (ev.title.toLowerCase().includes('festival') || ev.title.toLowerCase().includes('fringe') || ev.title.toLowerCase().includes('viff') || ev.title.toLowerCase().includes('diwali'))) ||
+          (ev.subTags && ev.subTags.some(t => t.toLowerCase().includes('festival') || t.toLowerCase().includes('holiday') || t.toLowerCase().includes('viff') || t.toLowerCase().includes('diwali')))
         )) ||
         (state.category === 'social' && (
           evCats.includes('crafts') || 
@@ -2411,7 +2898,7 @@ function applyFiltersAndRender() {
     }
   }
 
-  // Update Results Counter (with internal ended events tracker & active tag indicator)
+  // Update Results Counter (with internal ended events tracker & active tag/theme indicator)
   const countBar = document.getElementById('results-count');
   if (countBar) {
     const tagBadgeHtml = state.selectedTag ? `
@@ -2421,6 +2908,32 @@ function applyFiltersAndRender() {
         <button type="button" class="btn-clear-tag" onclick="clearSelectedTag()" aria-label="Clear hashtag filter">✕</button>
       </div>
     ` : '';
+
+    const themeGroups = getActiveThemeGroups(activeCatalog);
+    const activeThemeObj = state.selectedThemeFilter
+      ? (themeGroups.find(g => g.key === state.selectedThemeFilter) || { key: state.selectedThemeFilter, label: state.selectedThemeFilter.split(':')[1] || state.selectedThemeFilter, icon: '🎉' })
+      : null;
+
+    const themeFilterPillHtml = activeThemeObj ? `
+      <div class="active-tag-pill" title="Filtered to ${activeThemeObj.label}. Click ✕ to clear.">
+        <span class="tag-label">Theme:</span>
+        <span>${activeThemeObj.icon || '🎉'} ${activeThemeObj.label}</span>
+        <button type="button" class="btn-clear-tag" onclick="toggleThemeFilter('${activeThemeObj.key}')" aria-label="Clear theme filter">✕</button>
+      </div>
+    ` : '';
+
+    const excludedPillsHtml = (state.excludedThemes && state.excludedThemes.size > 0)
+      ? Array.from(state.excludedThemes).map(exKey => {
+          const exObj = themeGroups.find(g => g.key === exKey) || { key: exKey, label: exKey.split(':')[1] || exKey };
+          return `
+            <div class="active-tag-pill excluded-tag-pill" title="Excluding ${exObj.label}. Click ✕ to restore.">
+              <span class="tag-label">Hidden:</span>
+              <span>🚫 ${exObj.label}</span>
+              <button type="button" class="btn-clear-tag" onclick="toggleExcludeTheme('${exKey}', event)" aria-label="Restore ${exObj.label}">✕</button>
+            </div>
+          `;
+        }).join('')
+      : '';
 
     // Check for cross-category matches if current category yields 0
     let crossCategoryBannerHtml = '';
@@ -2441,7 +2954,11 @@ function applyFiltersAndRender() {
       <div class="results-count-text">
         Showing <strong>${filtered.length}</strong> active outings under $50 CAD
       </div>
-      ${tagBadgeHtml}
+      <div style="display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        ${tagBadgeHtml}
+        ${themeFilterPillHtml}
+        ${excludedPillsHtml}
+      </div>
       ${crossCategoryBannerHtml}
     `;
   }
@@ -2641,7 +3158,12 @@ function matchesGoogleSearch(ev, parsed) {
   const access = typeof window.getVenueAccessibility === 'function' ? window.getVenueAccessibility(ev.venue) : null;
   const accessNorm = access ? normalizeSearchText(`${access.status} ${access.label} ${access.summary} ${access.entrance} ${access.seating} ${access.washroom} wheelchair accessibility disability accessible elevator step free`) : '';
 
-  const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${customTiersNorm} ${tiersListNorm} ${extraAliases} ${accessNorm}`;
+  const festivalNorm = normalizeSearchText(ev.festivalAffiliation || '');
+  const holId = ev.holidayAffiliation ? String(ev.holidayAffiliation).toLowerCase().trim() : '';
+  const holMeta = (holId && window.HOLIDAY_REGISTRY && window.HOLIDAY_REGISTRY[holId]) ? window.HOLIDAY_REGISTRY[holId] : null;
+  const holidayNorm = normalizeSearchText(`${holId} ${holMeta ? `${holMeta.label} ${holMeta.keywords || ''}` : ''} ${ev.isHoliday ? 'holiday' : ''} ${ev.isFestival ? 'festival' : ''}`);
+
+  const allContent = `${titleNorm} ${venueNorm} ${descNorm} ${artistNorm} ${orgNorm} ${tagsNorm} ${catNorm} ${catLabelNorm} ${addrNorm} ${neighNorm} ${venueAliasesNorm} ${performersNorm} ${daysNorm} ${customTiersNorm} ${tiersListNorm} ${extraAliases} ${accessNorm} ${festivalNorm} ${holidayNorm}`;
   const docTokens = allContent.split(' ').filter(tok => tok.length > 0);
   const docStems = docTokens.map(stemWord);
 
@@ -2665,6 +3187,22 @@ function matchesGoogleSearch(ev, parsed) {
       }
     } else if (prefix === 'cat' || prefix === 'category' || prefix === 'c') {
       if (!catNorm.includes(valNorm) && !catLabelNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'holiday' || prefix === 'h') {
+      if (valNorm === 'any' || valNorm === 'all' || valNorm === 'true') {
+        if (!ev.isHoliday && !ev.holidayAffiliation) return [false, 0];
+      } else if (!holidayNorm.includes(valNorm) && !tagsNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'festival' || prefix === 'fest' || prefix === 'f') {
+      if (valNorm === 'any' || valNorm === 'all' || valNorm === 'true') {
+        if (!ev.isFestival && !ev.festivalAffiliation) return [false, 0];
+      } else if (!festivalNorm.includes(valNorm) && !tagsNorm.includes(valNorm) && !titleNorm.includes(valNorm)) {
+        return [false, 0];
+      }
+    } else if (prefix === 'tag' || prefix === 't') {
+      if (!tagsNorm.includes(valNorm) && !holidayNorm.includes(valNorm) && !festivalNorm.includes(valNorm)) {
         return [false, 0];
       }
     } else if (prefix === 'area' || prefix === 'neighborhood' || prefix === 'near' || prefix === 'n') {
@@ -2842,6 +3380,9 @@ function resetAllFilters() {
   state.minBudget = 0;
   state.maxBudget = 50;
   state.hideDaily = false;
+  state.hideFestivalEvents = false;
+  state.selectedThemeFilter = null;
+  if (state.excludedThemes) state.excludedThemes.clear();
   state.category = 'all';
   state.frequency = 'all';
   state.dayOfWeek = 'all';
@@ -2858,6 +3399,7 @@ function resetAllFilters() {
   if (minSlider) minSlider.value = 0;
   if (maxSlider) maxSlider.value = 50;
   
+  renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
   renderTimePills();
@@ -4569,6 +5111,29 @@ function renderSingleEventCardHtml(ev, bucketKey) {
                 </button>
               `;
             })()}
+            ${(Array.isArray(ev.themeBadges) && ev.themeBadges.length > 0) ? ev.themeBadges.map(tb => {
+              const isSelected = state.selectedThemeFilter === tb.key;
+              return `
+                <div class="card-theme-badge-pill ${isSelected ? 'active' : ''}">
+                  <button
+                    type="button"
+                    class="card-theme-badge-main"
+                    onclick="toggleThemeFilter('${tb.key}', event)"
+                    title="${isSelected ? `Showing only ${tb.label}. Click to clear` : `Click to filter by ${tb.label}`}"
+                  >
+                    <span>${tb.icon}</span>
+                    <span>${tb.label}</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="card-theme-badge-exclude"
+                    onclick="toggleExcludeTheme('${tb.key}', event)"
+                    title="Filter out (hide) ${tb.label} events"
+                    aria-label="Hide ${tb.label} events"
+                  >✕</button>
+                </div>
+              `;
+            }).join('') : ''}
           </div>
 
           <!-- Top Right: Action Cluster (Accessibility, Share, Save) -->
@@ -4717,7 +5282,11 @@ function resetAllFilters() {
   state.timeSlot = 'all';
   state.selectedNeighborhoods = new Set(window.NEIGHBORHOODS);
   state.hideDaily = false;
+  state.hideFestivalEvents = false;
+  state.selectedThemeFilter = null;
+  if (state.excludedThemes) state.excludedThemes.clear();
   state.selectedTag = null;
+  state.selectedVenue = null;
   state.searchQuery = '';
 
   const searchInput = document.getElementById('search-input');
@@ -4744,6 +5313,7 @@ function resetAllFilters() {
   const chkAccess = document.getElementById('chk-accessible-only');
   if (chkAccess) chkAccess.checked = false;
 
+  renderFestivalSpotlight();
   renderCategoryPills();
   renderDayPills();
   renderTimePills();

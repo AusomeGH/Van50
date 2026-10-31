@@ -536,8 +536,9 @@
       "name": "search_exhausted_null",
       "websiteUrl": "https://vhs2026.eventive.org/welcome",
       "source": "Stagehand Hybrid Ripper",
-      "status": "pending",
-      "discoveredAt": "2026-10-30T01:22:22.635Z"
+      "status": "dismissed",
+      "discoveredAt": "2026-10-30T01:22:22.635Z",
+      "dismissedAt": "2026-10-30T16:40:35.084742+00:00"
     }
   ]
 }

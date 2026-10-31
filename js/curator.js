@@ -525,19 +525,26 @@ async function loadQuarantineQueue() {
       console.warn('Could not fetch discovered venues:', e);
     }
 
-    // Fetch Holidays Registry
+    // Fetch Holidays & Festivals Registries
     try {
-      const holRes = await fetch(`/api/curator/holidays?_t=${t}`, {
-        headers: { 'Curator-Token': state.token },
-        cache: 'no-store'
-      });
-      if (holRes.ok) {
-        const holData = await holRes.json();
+      const [holRes, festRes] = await Promise.allSettled([
+        fetch(`/api/curator/holidays?_t=${t}`, {
+          headers: { 'Curator-Token': state.token },
+          cache: 'no-store'
+        }),
+        fetch(`/data/festivals.json?_t=${t}`, { cache: 'no-store' })
+      ]);
+      if (holRes.status === 'fulfilled' && holRes.value.ok) {
+        const holData = await holRes.value.json();
         state.pendingHolidays = holData.pendingHolidays || [];
         state.approvedHolidays = holData.approvedHolidays || [];
       }
+      if (festRes.status === 'fulfilled' && festRes.value.ok) {
+        const festData = await festRes.value.json();
+        state.festivals = Array.isArray(festData) ? festData : (festData.festivals || []);
+      }
     } catch (e) {
-      console.warn('Could not fetch holiday registry:', e);
+      console.warn('Could not fetch holiday/festival registry:', e);
     }
 
     // Fetch Discovered Candidate Sources
@@ -564,6 +571,27 @@ async function loadQuarantineQueue() {
   }
 }
 
+function getPendingFestivalsAndHolidays() {
+  const pendingHolidays = state.pendingHolidays || [];
+  const allQuarantined = (state.quarantinedEvents || []).filter(e => !isOverBudget(e));
+  const quarantinedFestivals = allQuarantined.filter(e =>
+    e.event_archetype === 'festival' ||
+    e.archetype === 'festival' ||
+    e.isFestival ||
+    Boolean(e.festival_affiliation && e.festival_affiliation !== 'None') ||
+    Boolean(e.festivalAffiliation && e.festivalAffiliation !== 'None') ||
+    (e.title && e.title.toLowerCase().includes('festival'))
+  );
+  const fests = state.festivals || state.masterCatalogsData?.festivals || [];
+  const unapprovedFests = fests.filter(f => f && (f.status === 'pending' || f.approvalStatus === 'pending' || f.status === 'pending_curator_approval'));
+  return {
+    pendingHolidays,
+    quarantinedFestivals,
+    unapprovedFests,
+    total: pendingHolidays.length + quarantinedFestivals.length + unapprovedFests.length
+  };
+}
+
 function updateHeaderStats(pending, rules, master, instructions = 0, discoveredVenues = 0, discoveredSources = 0) {
   state.stats.pending = pending;
   state.stats.rules = rules;
@@ -586,14 +614,7 @@ function updateHeaderStats(pending, rules, master, instructions = 0, discoveredV
   if (elV) elV.textContent = discoveredVenues;
   if (elS) elS.textContent = discoveredSources;
   if (elA) {
-    const activeEvs = state.masterCatalogs?.events_active || [];
-    if (activeEvs.length > 0) {
-      const audited = activeEvs.filter(e => e.dimension_audit && e.dimension_audit.dimensions).length;
-      const pct = Math.round((audited / activeEvs.length) * 100);
-      elA.textContent = `${pct}%`;
-    } else {
-      elA.textContent = '100%';
-    }
+    elA.textContent = getPendingFestivalsAndHolidays().total;
   }
 }
 
@@ -623,12 +644,13 @@ function updateFilterCounts() {
     const el = document.getElementById(id);
     if (el) el.textContent = count;
   };
+  const pendingFestHolCount = getPendingFestivalsAndHolidays().total;
   setT('pill-count-all', all.length);
   setT('pill-count-feedback', feedback);
   setT('pill-count-newsletter', newsletter);
   setT('pill-count-discovered-venues', discVenues);
   setT('pill-count-discovered-sources', discSources);
-  setT('pill-count-holidays', (state.pendingHolidays || []).length);
+  setT('pill-count-holidays', pendingFestHolCount);
   setT('pill-count-unhandled', unhandled);
   setT('pill-count-handled', handled);
   setT('pill-count-drift', drift);
@@ -642,6 +664,8 @@ function updateFilterCounts() {
   if (statV) statV.textContent = discVenues;
   const statS = document.getElementById('stat-discovered-sources-count');
   if (statS) statS.textContent = discSources;
+  const statA = document.getElementById('stat-audit-count');
+  if (statA) statA.textContent = pendingFestHolCount;
 
   // Auto-prompt banner for candidate sources
   checkAndPromptCandidateSources();
@@ -4169,6 +4193,36 @@ function setupCuratorEventListeners() {
     }
   });
 
+  // Quarantined Events Stat Pill Hook (Top-left pill)
+  const statQuarantinedPill = document.getElementById('stat-quarantined-pill') || (document.getElementById('stat-pending-count') ? document.getElementById('stat-pending-count').closest('.stat-pill') : null);
+  if (statQuarantinedPill) {
+    statQuarantinedPill.style.cursor = 'pointer';
+    statQuarantinedPill.addEventListener('click', () => {
+      document.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      const pill = document.querySelector('.curator-filter-pill[data-filter="all"]');
+      if (pill) pill.classList.add('active');
+      state.activeFilter = 'all';
+      applyFiltersAndRender();
+      const targetSection = document.querySelector('.curator-controls-section') || document.getElementById('curator-cards-list');
+      if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // Festivals / Holidays Awaiting Approval Stat Pill Hook (Top-right pill)
+  const statAuditPill = document.getElementById('stat-audit-pill');
+  if (statAuditPill) {
+    statAuditPill.style.cursor = 'pointer';
+    statAuditPill.addEventListener('click', () => {
+      document.querySelectorAll('.curator-filter-pill').forEach(p => p.classList.remove('active'));
+      const pill = document.querySelector('.curator-filter-pill[data-filter="holidays"]');
+      if (pill) pill.classList.add('active');
+      state.activeFilter = 'holidays';
+      applyFiltersAndRender();
+      const targetSection = document.querySelector('.curator-controls-section') || document.getElementById('curator-cards-list');
+      if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   // Discovered Venues Stat Pill Hook
   const statVenuesPill = document.getElementById('stat-discovered-venues-pill');
   if (statVenuesPill) {
@@ -4581,28 +4635,42 @@ function renderHolidayCards() {
   const countDisplay = document.getElementById('curator-results-text');
   if (!container) return;
 
-  const pending = state.pendingHolidays || [];
+  const { pendingHolidays: pending, quarantinedFestivals, unapprovedFests, total } = getPendingFestivalsAndHolidays();
   const approved = state.approvedHolidays || [];
+  const approvedFestivals = (state.festivals || state.masterCatalogsData?.festivals || []).filter(
+    f => f && f.status !== 'pending' && f.approvalStatus !== 'pending' && f.status !== 'pending_curator_approval'
+  );
 
   if (countDisplay) {
-    countDisplay.innerHTML = `Showing <strong>${pending.length}</strong> candidate holiday(s) discovered by AI awaiting curator approval`;
+    countDisplay.innerHTML = `Showing <strong>${total}</strong> festival(s) &amp; holiday(s) awaiting curator approval`;
   }
 
   let html = '';
 
-  if (pending.length === 0) {
+  if (quarantinedFestivals.length > 0) {
+    html += `
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; color: #fdba74; margin: 0 0 12px 0;">
+          🎪 Quarantined Festival Events Awaiting Review (${quarantinedFestivals.length})
+        </h4>
+        ${quarantinedFestivals.map((ev, idx) => renderEventCard(ev, idx)).join('')}
+      </div>
+    `;
+  }
+
+  if (total === 0) {
     html += `
       <div style="text-align: center; padding: 48px 20px; background: var(--curator-surface); border: 1px solid var(--curator-border); border-radius: 12px; margin-bottom: 24px;">
         <div style="font-size: 2.5rem; margin-bottom: 12px;">🎉</div>
         <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #fff; margin-bottom: 6px;">
-          No Pending Holidays Awaiting Review
+          No Pending Festivals or Holidays Awaiting Approval
         </h3>
         <p style="font-size: 0.88rem; color: var(--curator-text-muted); max-width: 520px; margin: 0 auto; line-height: 1.5;">
-          All holidays discovered by the AI scouts are verified and registered in the system.
+          All festivals and holidays discovered by the AI scouts are verified and registered in the system.
         </p>
       </div>
     `;
-  } else {
+  } else if (pending.length > 0) {
     html += pending.map(h => {
       const defaultLabel = h.label || h.id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
       const defaultIcon = h.icon || '🎉';
@@ -4673,6 +4741,26 @@ function renderHolidayCards() {
             <div style="overflow: hidden;">
               <div style="color: #fff; font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(ah.label || ah.id)}</div>
               <div style="color: #94a3b8; font-size: 0.75rem; font-family: monospace;">tag: "${escapeHtml(ah.id)}"</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: #e2e8f0; margin: 0; display: flex; align-items: center; gap: 8px;">
+          <span>🎪</span> Approved Festivals Registry (${approvedFestivals.length})
+        </h4>
+        <span style="font-size: 0.78rem; color: #94a3b8;">Registered Metro Vancouver cultural festivals in data/festivals.json</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;">
+        ${approvedFestivals.map(af => `
+          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.4rem;">🎪</span>
+            <div style="overflow: hidden;">
+              <div style="color: #fff; font-weight: 600; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(af.festival_name || af.name || 'Festival')}</div>
+              <div style="color: #94a3b8; font-size: 0.75rem;">${escapeHtml(af.start_date || 'TBA')} – ${escapeHtml(af.end_date || 'TBA')}</div>
             </div>
           </div>
         `).join('')}
@@ -7077,13 +7165,22 @@ function initStagehandRipperUI() {
     const boxOffices = state.layerBoxOffices || [];
     const editorials = state.layerEditorials || [];
 
+    const archivedList = (state.archivedEvents && state.archivedEvents.length > 0)
+      ? state.archivedEvents
+      : (state.masterCatalogsData?.events_archive || []);
+    const archivedIds = new Set([
+      ...archivedList.map(a => a.id || a.event_id),
+      ...(state.learnedArchivedIds || [])
+    ].filter(Boolean));
+    const quarantinedIds = new Set(quarantined.map(q => q.id || q.event_id).filter(Boolean));
+
     const uncompiled = [];
     const checkedIds = new Set();
 
-    // 1. Check all seeds
+    // 1. Check all non-archived seeds
     seeds.forEach(s => {
       const id = s.id || s.event_id;
-      if (!id || checkedIds.has(id)) return;
+      if (!id || checkedIds.has(id) || archivedIds.has(id) || quarantinedIds.has(id)) return;
       checkedIds.add(id);
 
       const ex = eventsMap.get(id);
@@ -7377,15 +7474,25 @@ function initStagehandRipperUI() {
 
   window.loadLayersAndEvents = async () => {
     try {
-      const [evRes, seedsRes, schedRes, boxRes, editRes] = await Promise.allSettled([
+      const [evRes, seedsRes, schedRes, boxRes, editRes, archRes, rulesRes] = await Promise.allSettled([
         fetch('/data/events.json?_t=' + Date.now()),
         fetch('/data/layers/seeds.json?_t=' + Date.now()),
         fetch('/data/layers/layer_schedules.json?_t=' + Date.now()),
         fetch('/data/layers/layer_box_office.json?_t=' + Date.now()),
-        fetch('/data/layers/layer_editorial.json?_t=' + Date.now())
+        fetch('/data/layers/layer_editorial.json?_t=' + Date.now()),
+        fetch('/data/archived_events.json?_t=' + Date.now()),
+        fetch('/data/curator_learned_rules.json?_t=' + Date.now())
       ]);
       if (evRes.status === 'fulfilled' && evRes.value.ok) {
         state.allEvents = await evRes.value.json();
+      }
+      if (archRes.status === 'fulfilled' && archRes.value.ok) {
+        const archData = await archRes.value.json();
+        state.archivedEvents = Array.isArray(archData) ? archData : (archData.archivedEvents || []);
+      }
+      if (rulesRes.status === 'fulfilled' && rulesRes.value.ok) {
+        const rulesData = await rulesRes.value.json();
+        state.learnedArchivedIds = Array.isArray(rulesData.archived_event_ids) ? rulesData.archived_event_ids : [];
       }
       state.layerSeeds = (seedsRes.status === 'fulfilled' && seedsRes.value.ok) ? await seedsRes.value.json() : [];
       state.layerSchedules = (schedRes.status === 'fulfilled' && schedRes.value.ok) ? await schedRes.value.json() : [];

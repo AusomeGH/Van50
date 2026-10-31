@@ -268,13 +268,15 @@ export function generateArchetypeProfile(archetype, title, venue, category, venu
       profile.organizer_channel = extra.organizer_channel || null;
       break;
 
-    case "festival":
-      profile.festival_hub_directory = extra.festival_hub_directory || null;
-      profile.festival_pass_type = extra.festival_pass_type || null;
-      profile.rush_seating_rules = extra.rush_seating_rules || null;
-      profile.central_box_office = extra.central_box_office || null;
-      profile.volunteer_ticket_exchange = extra.volunteer_ticket_exchange || null;
+    case "festival": {
+      const mf = extra.matchedFestival || null;
+      profile.festival_hub_directory = extra.festival_hub_directory || (mf && (mf.schedule_url || mf.website_url)) || null;
+      profile.festival_pass_type = extra.festival_pass_type || (mf ? (mf.pricing_model === "free_access" || mf.price === 0 ? "Free Public Festival Admission (No Pass Required)" : `Single Event Tickets & Festival Passes ($${Number(mf.price || 0).toFixed(2)} CAD)`) : null);
+      profile.rush_seating_rules = extra.rush_seating_rules || (mf ? (mf.access_model === "open_public_space" ? "Open public plaza/venue access — arrive early for front-row stage viewing" : "Standby rush line opens 15–30 mins prior to showtime subject to capacity") : null);
+      profile.central_box_office = extra.central_box_office || (mf && (mf.location || mf.website_url)) || null;
+      profile.volunteer_ticket_exchange = extra.volunteer_ticket_exchange || (mf ? `Official ${mf.festival_name} Volunteer & Community Access Program` : null);
       break;
+    }
 
     default:
       break;
@@ -709,6 +711,7 @@ Requirements:
 7. "weekly_recurring_day": If lifecycle_type is "weekly_recurring_residency", the day name ("Monday".."Sunday"), else null.
 8. "description": Exactly 2 evocative sentences written for patrons based strictly on real facts. CRITICAL MANDATE: When the event is a specific show/event (comedy, concert, play, screening, performance, etc.), the description MUST be about the show itself (comedic style, jokes, music genre, plot, themes, performance) and NOT about the venue, room, bar, or venue history. Only describe the venue/grounds when the event is an outdoor park, beach, garden, or perennial drop-in venue visit.
 9. "restrictions": "All Ages", "19+ w/ ID", "16+", or "All Ages / Family Friendly".
+10. "holiday_affiliation": Generously infer if the event fits the theme, genre, vibe, or celebration of an upcoming holiday within its seasonal window. Strictly one of ["halloween", "dia-de-los-muertos", "diwali", "thanksgiving", "christmas", "new-years", "lunar-new-year", "valentines-day", "st-patricks-day", "easter", "canada-day", "pride"] or null.
 
 Respond ONLY with a valid JSON object matching these keys.`;
 
@@ -787,14 +790,22 @@ export async function runEnricher(options = {}) {
   });
 
   // Determine source pool:
-  // Combined pool: active events + quarantined events + uncompiled seeds
+  // Combined pool: active events + quarantined events + uncompiled non-archived seeds
+  const archivedDoc = loadJson(path.join(DATA_DIR, "archived_events.json"), { archivedEvents: [] });
+  const archivedList = Array.isArray(archivedDoc) ? archivedDoc : (archivedDoc.archivedEvents || []);
+  const learnedRules = loadJson(path.join(DATA_DIR, "curator_learned_rules.json"), {});
+  const archivedIds = new Set([
+    ...archivedList.map((a) => a.id || a.event_id),
+    ...(Array.isArray(learnedRules.archived_event_ids) ? learnedRules.archived_event_ids : []),
+  ].filter(Boolean));
+
   const sourcePool = [...events];
   const existingIds = new Set(events.map((e) => e.id || e.event_id));
 
   // Include quarantined events so their editorial content is fine-tuned
   quarantined.forEach((q) => {
     const qId = q.id || q.event_id;
-    if (qId && !existingIds.has(qId)) {
+    if (qId && !existingIds.has(qId) && !archivedIds.has(qId)) {
       q._isFromQuarantine = true;
       sourcePool.push(q);
       existingIds.add(qId);
@@ -803,7 +814,7 @@ export async function runEnricher(options = {}) {
 
   seeds.forEach((s) => {
     const sId = s.id || s.event_id;
-    if (sId && !existingIds.has(sId)) {
+    if (sId && !existingIds.has(sId) && !archivedIds.has(sId)) {
       sourcePool.push(s);
       existingIds.add(sId);
     }
@@ -811,7 +822,7 @@ export async function runEnricher(options = {}) {
 
   schedules.forEach((sc) => {
     const scId = sc.id || sc.event_id;
-    if (scId && !existingIds.has(scId)) {
+    if (scId && !existingIds.has(scId) && !archivedIds.has(scId)) {
       sourcePool.push(sc);
       existingIds.add(scId);
     }
@@ -902,7 +913,10 @@ export async function runEnricher(options = {}) {
       return isUnenriched(q);
     });
     const unenrichedSeeds = seeds
-      .filter((s) => !existingIds.has(s.id || s.event_id))
+      .filter((s) => {
+        const sId = s.id || s.event_id;
+        return !existingIds.has(sId) && !archivedIds.has(sId);
+      })
       .filter(isUnenriched);
 
     const interleaved = [];
@@ -1086,6 +1100,37 @@ export async function runEnricher(options = {}) {
         : (hasHeroDate ? (item.frequencyLabel || ev.frequencyLabel || "One-off") : null);
     const resolvedDateSchedule = (hasHeroDate || isPerennial) ? (item.dateSchedule || ev.dateSchedule || sched.dateSchedule || (item.start_time ? `Show ${item.start_time}` : null)) : null;
 
+    const inferredHoliday = (() => {
+      if (aiResult?.holiday_affiliation && aiResult.holiday_affiliation !== "None" && aiResult.holiday_affiliation !== "null") {
+        return aiResult.holiday_affiliation;
+      }
+      const explicit = item.holiday_affiliation || ev.holiday_affiliation || sched.holiday_affiliation;
+      if (explicit && explicit !== "None" && explicit !== "none_available") return explicit;
+      const fullText = `${cleanTitle || ""} ${eventId || ""} ${description || ""} ${rawDesc || ""}`.toLowerCase();
+      const rawDate = item.date || ev.date || sched.date || null;
+      const mmdd = (rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate)) ? rawDate.slice(5, 10) : null;
+      const inSeason = (s, e) => {
+        if (!mmdd) return false;
+        return s <= e ? (mmdd >= s && mmdd <= e) : (mmdd >= s || mmdd <= e);
+      };
+      if (/\b(?:diwali|deepavali|bandi\s*chhor)\b/i.test(fullText)) return "diwali";
+      if (/\b(?:muertos|day\s*of\s*the\s*dead|ofrenda|calavera|catrina|sugar\s*skull)\b/i.test(fullText)) return "dia-de-los-muertos";
+      if (/\b(?:halloween|hallowe'en|trick[- ]or[- ]treat|jack[- ]o'?[- ]lantern|samhain|boo[- ]?tylicious)\b/i.test(fullText)) return "halloween";
+      if (/\b(?:christmas|xmas|keithmas|yule|yuletide|santa|krampus|nutcracker|hanukkah|chanukah|kwanzaa|scrooge|grinch)\b/i.test(fullText)) return "christmas";
+      if (/\b(?:new\s*year'?s|nye|hogmanay|polar\s*bear\s*swim)\b/i.test(fullText)) return "new-years";
+      if (/\b(?:lunar\s*new\s*year|chinese\s*new\s*year|spring\s*festival|tet\s*festival)\b/i.test(fullText)) return "lunar-new-year";
+      if (/\b(?:thanksgiving|friendsgiving)\b/i.test(fullText)) return "thanksgiving";
+      if (/\b(?:valentine'?s|galentine'?s|anti[- ]valentine)\b/i.test(fullText)) return "valentines-day";
+      if (/\b(?:st\.?\s*patrick'?s|st\.?\s*paddy'?s|paddy'?s\s*day)\b/i.test(fullText)) return "st-patricks-day";
+      if (/\b(?:easter|egg\s*hunt|good\s*friday|ostara)\b/i.test(fullText)) return "easter";
+      if (/\b(?:canada\s*day)\b/i.test(fullText)) return "canada-day";
+      if (/\b(?:pride\s*festival|vancouver\s*pride|pride\s*parade|queer\s*pride)\b/i.test(fullText)) return "pride";
+      if (inSeason("10-01", "11-03") && /\b(?:haunted|spooky|horror|slasher|thriller|costume|masquerade|zombie|vampire|vampyr|witch|witches|ghost|goth|gothic|occult|macabre|monster|pumpkin|fright|scream|creepy|murder\s*mystery|deadly\s*dinner|unexplained|paranormal|x[- ]files|yes\s*files|seance|séance|rocky\s*horror|nosferatu|frankenstein|dracula|evil\s*dead|exorcist|dark\s*cabaret|freak\s*show)\b/i.test(fullText)) return "halloween";
+      if (inSeason("10-15", "11-20") && /\b(?:festival\s*of\s*lights|rangoli|bhangra|bollywood|garba|dandiya|mehfil|diya)\b/i.test(fullText)) return "diwali";
+      if (inSeason("11-12", "12-30") && /\b(?:holiday\s*market|winter\s*market|craft\s*market|winter\s*solstice|festive|ugly\s*sweater|carol|carols|caroling|menorah|gingerbread|mistletoe|polar\s*express|canyon\s*lights|bright\s*nights|winter\s*wonderland|holiday\s*special|holiday\s*show|holiday\s*concert|holiday\s*party)\b/i.test(fullText)) return "christmas";
+      return undefined;
+    })();
+
     const editorialEntry = {
       id: eventId,
       event_id: eventId,
@@ -1102,6 +1147,7 @@ export async function runEnricher(options = {}) {
       restrictions: restrictions,
       frequencyLabel: resolvedFrequencyLabel,
       dateSchedule: resolvedDateSchedule,
+      holiday_affiliation: inferredHoliday,
       curator_instructions: curatorInfo.eventInstructionText || item.curator_instructions || null,
       curator_notes: activeCuratorNote || item.curator_notes || null,
       source_engine: aiResult ? (useAgy ? "antigravity_1event_worker" : "gemini_flash_cognitive") : "deterministic_cognitive_nlp",
@@ -1130,11 +1176,24 @@ export async function runEnricher(options = {}) {
   }
 
   fs.writeFileSync(EDITORIAL_PATH, JSON.stringify(editorialLayer, null, 2), "utf-8");
-  console.log(`\n💾 Saved ${enrichedCount} enriched entries to data/layers/layer_editorial.json [Awaiting Compiler publication]`);
+  console.log(`\n💾 Saved ${enrichedCount} enriched entries to data/layers/layer_editorial.json`);
   if (useAgy) {
     printAntigravityTimeoutSummary("Stage 3A: Semantic Enricher");
   }
   console.log(`================================================================\n`);
+
+  if (enrichedCount > 0 && !options.skipCompile && !options.dryRun) {
+    try {
+      const enrichedIds = targets.map((t) => t.id || t.event_id).filter(Boolean);
+      if (enrichedIds.length > 0) {
+        console.log(`⚡ [Auto-Publish] Compiling & publishing ${enrichedIds.length} enriched event(s) to master catalog...`);
+        const { compileCatalog } = await import("./compile_catalog.js");
+        await compileCatalog({ ids: enrichedIds });
+      }
+    } catch (compErr) {
+      console.warn(`⚠️ [Auto-Publish] Compiler invocation warning: ${compErr.message}`);
+    }
+  }
 
   return { success: true, count: enrichedCount };
 }

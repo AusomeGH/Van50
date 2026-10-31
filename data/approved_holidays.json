@@ -1,81 +1,141 @@
 {
   "metadata": {
-    "version": "1.0.0",
-    "updatedAt": "2026-10-05",
-    "description": "Van50 Registry of Approved Holidays and Pending AI Discoveries"
+    "version": "1.1.0",
+    "updatedAt": "2026-10-31",
+    "description": "Van50 Registry of Approved Holidays and Seasonal Themes with 1-line and expandable descriptions"
   },
   "approvedHolidays": [
     {
       "id": "halloween",
       "label": "Halloween",
       "icon": "🎃",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "thanksgiving",
-      "label": "Thanksgiving",
-      "icon": "🦃",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "christmas",
-      "label": "Christmas & Winter Holidays",
-      "icon": "🎄",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "new-years",
-      "label": "New Year's Eve / Day",
-      "icon": "🎉",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "lunar-new-year",
-      "label": "Lunar New Year",
-      "icon": "🧧",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "valentines-day",
-      "label": "Valentine's Day",
-      "icon": "💘",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "st-patricks-day",
-      "label": "St. Patrick's Day",
-      "icon": "☘️",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "easter",
-      "label": "Easter & Spring",
-      "icon": "🐣",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "canada-day",
-      "label": "Canada Day",
-      "icon": "🍁",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "pride",
-      "label": "Pride Festival",
-      "icon": "🌈",
-      "approvedAt": "2026-10-03"
-    },
-    {
-      "id": "diwali",
-      "label": "Diwali Festival of Lights",
-      "icon": "🪔",
+      "window_start": "10-01",
+      "window_end": "11-03",
+      "dates_label": "Oct 1 – Nov 2",
+      "short_description": "Spooky screenings, horror cinema, murder mysteries, and costume nights across Vancouver.",
+      "long_description": "Celebrate Halloween season across Metro Vancouver with cult horror film screenings, live film scores, improvised murder mysteries, paranormal comedy shows, and late-night costume parties—all verified under $50 CAD.",
       "approvedAt": "2026-10-03"
     },
     {
       "id": "dia-de-los-muertos",
       "label": "Día de los Muertos / Day of the Dead",
       "icon": "💀",
+      "window_start": "10-20",
+      "window_end": "11-06",
+      "dates_label": "Oct 31 – Nov 2",
+      "short_description": "Traditional Mexican markets, Catrinas processions, ofrendas, folkloric music, and art.",
+      "long_description": "Honour loved ones during Día de los Muertos with community altars (ofrendas), twilight Catrinas processions, traditional Mexican artisan markets, mariachi music, and cultural performances across Granville Island and Gastown.",
       "approvedAt": "2026-10-05"
+    },
+    {
+      "id": "diwali",
+      "label": "Diwali Festival of Lights",
+      "icon": "🪔",
+      "window_start": "10-15",
+      "window_end": "11-20",
+      "dates_label": "Nov 5 – 15",
+      "short_description": "South Asian music, dance, rangoli art, and Festival of Lights celebrations.",
+      "long_description": "Experience the annual Diwali Festival of Lights across Metro Vancouver with classical and contemporary South Asian music, bhangra and kathak dance showcases, rangoli art installations, and community markets.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "thanksgiving",
+      "label": "Thanksgiving",
+      "icon": "🦃",
+      "window_start": "10-01",
+      "window_end": "10-16",
+      "dates_label": "Early October",
+      "short_description": "Autumn harvest markets, long-weekend outings, and seasonal comedy & music.",
+      "long_description": "Enjoy Canadian Thanksgiving long-weekend outings across Metro Vancouver, featuring autumn harvest markets, scenic fall foliage strolls, and festive comedy and live music showcases.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "christmas",
+      "label": "Christmas & Winter Holidays",
+      "icon": "🎄",
+      "window_start": "11-12",
+      "window_end": "12-30",
+      "dates_label": "Nov 15 – Dec 30",
+      "short_description": "Festive light displays, winter craft markets, holiday concerts, and seasonal theatre.",
+      "long_description": "Celebrate the winter holiday season across Metro Vancouver with botanical garden light displays, indie artisan craft markets, festive choir and jazz concerts, ugly sweater comedy nights, and holiday cinema under $50 CAD.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "new-years",
+      "label": "New Year's Eve / Day",
+      "icon": "🎉",
+      "window_start": "12-26",
+      "window_end": "01-03",
+      "dates_label": "Dec 31 – Jan 1",
+      "short_description": "New Year's Eve countdown parties, comedy galas, live music, and Polar Bear Swim.",
+      "long_description": "Ring in the New Year with countdown dance parties, NYE stand-up comedy galas, live concerts, and Vancouver's iconic New Year's Day Polar Bear Swim at English Bay.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "lunar-new-year",
+      "label": "Lunar New Year",
+      "icon": "🧧",
+      "window_start": "01-18",
+      "window_end": "02-28",
+      "dates_label": "Jan – Feb",
+      "short_description": "Chinatown lion dances, lantern installations, cultural markets, and festive performances.",
+      "long_description": "Welcome the Lunar New Year across historic Chinatown and Metro Vancouver with traditional lion and dragon dances, lantern light installations, festive markets, and multidisciplinary cultural showcases.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "valentines-day",
+      "label": "Valentine's Day",
+      "icon": "💘",
+      "window_start": "02-01",
+      "window_end": "02-16",
+      "dates_label": "Feb 1 – 15",
+      "short_description": "Date-night concerts, rom-com screenings, burlesque, and Galentine's comedy shows.",
+      "long_description": "Celebrate Valentine's Day, Galentine's, or Anti-Valentine's across Vancouver with candlelit jazz, cult romance film screenings, burlesque cabarets, and relationship-themed improv and stand-up comedy.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "st-patricks-day",
+      "label": "St. Patrick's Day",
+      "icon": "☘️",
+      "window_start": "03-10",
+      "window_end": "03-19",
+      "dates_label": "Mar 10 – 18",
+      "short_description": "Celtic live music, Irish dance, fiddle sessions, and St. Paddy's pub celebrations.",
+      "long_description": "Raise a glass for St. Patrick's Day with high-energy Celtic folk bands, traditional Irish fiddle and céilí dancing, and festive live music nights across Vancouver.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "easter",
+      "label": "Easter & Spring",
+      "icon": "🐣",
+      "window_start": "03-20",
+      "window_end": "04-25",
+      "dates_label": "Spring Long Weekend",
+      "short_description": "Spring garden blooms, artisan markets, and long-weekend cultural outings.",
+      "long_description": "Enjoy the Easter and spring season across Metro Vancouver with botanical garden blooms, family-friendly park activities, spring artisan markets, and long-weekend live shows.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "canada-day",
+      "label": "Canada Day",
+      "icon": "🍁",
+      "window_start": "06-28",
+      "window_end": "07-03",
+      "dates_label": "July 1",
+      "short_description": "Waterfront festivals, free outdoor concerts, and community celebrations.",
+      "long_description": "Explore Canada Day community events across Canada Place, Granville Island, and local neighbourhood parks featuring free outdoor stages, multicultural performances, and waterfront celebrations.",
+      "approvedAt": "2026-10-03"
+    },
+    {
+      "id": "pride",
+      "label": "Pride Festival",
+      "icon": "🌈",
+      "window_start": "07-20",
+      "window_end": "08-10",
+      "dates_label": "Late July – Early Aug",
+      "short_description": "Queer arts, drag showcases, parade celebrations, and community stages.",
+      "long_description": "Celebrate Vancouver Pride with 2SLGBTQIA+ cabaret, drag showcases, queer film screenings, outdoor community stages, and parade festivities across the West End, Davie Village, and Downtown.",
+      "approvedAt": "2026-10-03"
     }
   ],
   "pendingHolidays": []
