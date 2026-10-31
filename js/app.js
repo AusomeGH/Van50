@@ -1919,15 +1919,15 @@ window.renderFestivalSpotlight = renderFestivalSpotlight;
 
 if (typeof CATEGORIES === 'undefined') {
   window.CATEGORIES = [
-    { id: "all", label: "All", icon: "✨" },
-    { id: "free-public-access", label: "Free Public Access", icon: "🏛️" },
-    { id: "music", label: "Music", icon: "🎵" },
-    { id: "shows", label: "Comedy & Stage", icon: "🎭" },
-    { id: "festivals", label: "Festivals", icon: "🎪" },
-    { id: "markets", label: "Markets", icon: "🧺" },
-    { id: "outdoors", label: "Outdoors", icon: "🌲" },
-    { id: "cinema", label: "Cinema", icon: "🎬" },
-    { id: "social", label: "Social & Arts", icon: "🎨" }
+    { id: "all", label: "All", shortLabel: "All", icon: "✨" },
+    { id: "music", label: "Music", shortLabel: "Music", icon: "🎵" },
+    { id: "shows", label: "Comedy & Stage", shortLabel: "Comedy & Stage", icon: "🎭" },
+    { id: "outdoors", label: "Outdoors", shortLabel: "Outdoors", icon: "🌲" },
+    { id: "cinema", label: "Cinema", shortLabel: "Cinema", icon: "🎬" },
+    { id: "social", label: "Social & Arts", shortLabel: "Social & Arts", icon: "🎨" },
+    { id: "festivals", label: "Festivals", shortLabel: "Festivals", icon: "🎪" },
+    { id: "markets", label: "Markets", shortLabel: "Markets", icon: "🧺" },
+    { id: "free-public-access", label: "Free Public Access", shortLabel: "Free Access", icon: "🏛️" }
   ];
 }
 
@@ -1935,11 +1935,22 @@ function renderCategoryPills() {
   const container = document.getElementById('categories-bar');
   if (!container || typeof CATEGORIES === 'undefined') return;
 
+  const PRIMARY_VISIBLE_COUNT = 5;
+  const extraCategories = CATEGORIES.slice(PRIMARY_VISIBLE_COUNT);
+  const activeInExtra = extraCategories.some(c => c.id === state.category);
+  const isExpanded = Boolean(state.categoriesExpanded || activeInExtra);
+
+  container.className = `categories-bar categories-grid ${isExpanded ? 'expanded' : 'collapsed'}`;
   container.innerHTML = '';
-  CATEGORIES.forEach(cat => {
+
+  CATEGORIES.forEach((cat, idx) => {
+    const isExtra = idx >= PRIMARY_VISIBLE_COUNT;
     const pill = document.createElement('button');
-    pill.className = `category-pill ${state.category === cat.id ? 'active' : ''}`;
-    pill.innerHTML = `<span>${cat.icon}</span> <span>${cat.label}</span>`;
+    pill.type = 'button';
+    pill.className = `category-pill ${state.category === cat.id ? 'active' : ''}${isExtra ? ' category-pill-extra' : ''}`;
+    const displayLabel = cat.shortLabel || (cat.label === 'Free Public Access' ? 'Free Access' : cat.label);
+    pill.innerHTML = `<span class="cat-pill-icon" aria-hidden="true">${cat.icon}</span><span class="cat-pill-label">${displayLabel}</span>`;
+    pill.title = cat.label;
     pill.setAttribute('data-goatcounter-click', 'category-' + cat.id);
     pill.setAttribute('data-goatcounter-title', 'Category: ' + cat.label);
     pill.setAttribute('data-goatcounter-no-session', '1');
@@ -1953,6 +1964,21 @@ function renderCategoryPills() {
     });
     container.appendChild(pill);
   });
+
+  if (extraCategories.length > 0) {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = `category-grid-toggle ${isExpanded ? 'expanded' : ''}`;
+    toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    toggleBtn.innerHTML = isExpanded
+      ? `<span class="cat-pill-label">Fewer Types</span><span class="cat-toggle-chevron" aria-hidden="true">▴</span>`
+      : `<span class="cat-pill-label">More Types (+${extraCategories.length})</span><span class="cat-toggle-chevron" aria-hidden="true">▾</span>`;
+    toggleBtn.addEventListener('click', () => {
+      state.categoriesExpanded = !isExpanded;
+      renderCategoryPills();
+    });
+    container.appendChild(toggleBtn);
+  }
 }
 
 function filterByCategory(catId) {
@@ -5053,7 +5079,7 @@ function renderSingleEventCardHtml(ev, bucketKey) {
         ${isHappeningNow ? `
           <div class="happening-now-ribbon" title="This outing is actively underway right now!">
             <span class="live-pulse-dot" aria-hidden="true"></span>
-            <span>Happening Now</span>
+            <span>Now</span>
           </div>
         ` : ''}
         ${isSoldOut ? '<div class="sold-out-ribbon">SOLD OUT</div>' : ''}

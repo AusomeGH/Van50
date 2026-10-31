@@ -26,31 +26,55 @@
   gap: 12px;
   flex-wrap: wrap;
   min-width: 0;
+  width: 100%;
 }
 
-.categories-bar {
-  display: flex;
-  align-items: center;
+.categories-bar,
+.categories-bar.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
-  flex-wrap: wrap;
+  width: 100%;
   min-width: 0;
 }
 
-.category-pill {
+.categories-bar.collapsed .category-pill-extra {
+  display: none;
+}
+
+.category-pill,
+.category-grid-toggle {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 7px 14px;
-  border-radius: var(--radius-full);
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  font-size: 0.84rem;
+  font-size: 0.80rem;
   font-weight: 600;
   transition: all var(--transition-fast);
   cursor: pointer;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.cat-pill-icon {
   flex-shrink: 0;
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
+.cat-pill-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .category-pill:hover {
@@ -64,6 +88,30 @@
   border-color: var(--accent-primary);
   color: #fff;
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.category-grid-toggle {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px dashed rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.category-grid-toggle:hover {
+  background: rgba(56, 189, 248, 0.16);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.category-grid-toggle.expanded {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #cbd5e1;
+}
+
+.cat-toggle-chevron {
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
 .view-switch {
@@ -858,16 +906,16 @@
   box-shadow: none;
 }
 
-/* Diagonal Top-Left "Happening Now" Corner Ribbon Badge */
+/* Diagonal Top-Left "Now" Corner Ribbon Badge */
 .happening-now-ribbon {
   position: absolute;
-  top: 14px;
-  left: -35px;
-  width: 132px;
+  top: 11px;
+  left: -38px;
+  width: 118px;
   text-align: center;
   background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
   color: #ffffff;
-  font-size: 0.58rem;
+  font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   padding: 3px 0;
@@ -5196,6 +5244,14 @@ body.van50-accessible .card-ticket-link {
 /* ==============================================================================
    MOBILE & CROSS-BROWSER RESPONSIVE OPTIMIZATIONS
    ============================================================================== */
+@media (max-width: 900px) {
+  .categories-bar,
+  .categories-bar.categories-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+}
+
 @media (max-width: 768px) {
   .filters-hub {
     padding: 12px 14px;
@@ -5207,26 +5263,20 @@ body.van50-accessible .card-ticket-link {
     width: 100%;
   }
 
-  /* Horizontal touch-swipe ribbon for category pills on mobile/tablet */
-  .categories-bar {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    width: 100%;
-    padding-bottom: 2px;
-    scroll-snap-type: x proximity;
+  .category-pill,
+  .category-grid-toggle {
+    height: 34px;
+    padding: 0 7px;
+    font-size: 0.75rem;
+    gap: 4px;
   }
+}
 
-  .categories-bar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .category-pill {
-    scroll-snap-align: start;
-    padding: 6px 12px;
-    font-size: 0.80rem;
+@media (max-width: 380px) {
+  .categories-bar,
+  .categories-bar.categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
   }
 }
 
