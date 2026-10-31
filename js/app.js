@@ -1710,23 +1710,16 @@ function renderFestivalSpotlight() {
   const hasFestivals = themeGroups.some(g => g.type === 'festival');
   const hasHolidays = themeGroups.some(g => g.type === 'holiday');
 
-  const badgeStatus = isHidden
-    ? '🎉 FESTIVALS & HOLIDAYS HIDDEN'
-    : (hasFestivals && hasHolidays ? '🎉 ACTIVE SPOTLIGHT' : (hasFestivals ? '🎪 ACTIVE FESTIVALS' : '🎃 ACTIVE HOLIDAYS'));
-
   let bannerTitle = 'Current Festivals and Holidays';
   if (themeGroups.length === 1) {
-    const singleMeta = getThemeMetadata(themeGroups[0]);
-    bannerTitle = `${themeGroups[0].icon} ${singleMeta.label}`;
+    bannerTitle = hasFestivals ? 'Current Festival' : 'Current Holiday';
   } else if (hasFestivals && !hasHolidays) {
     bannerTitle = 'Current Festivals';
   } else if (!hasFestivals && hasHolidays) {
-    bannerTitle = 'Current Holidays & Seasonal Events';
+    bannerTitle = 'Current Holidays';
   }
 
-  const isHighlightingAll = state.category === 'festivals' && !state.selectedThemeFilter;
-
-  const activeItemsListHtml = (!isHidden && themeGroups.length > 0) ? `
+  const activeItemsListHtml = themeGroups.length > 0 ? `
     <div class="festival-active-items-list" role="region" aria-label="Active festivals and holidays">
       ${themeGroups.map(g => {
         const meta = getThemeMetadata(g);
@@ -1735,23 +1728,20 @@ function renderFestivalSpotlight() {
         const isItemExpanded = state.expandedThemes && state.expandedThemes.has(g.key);
         return `
           <div class="festival-theme-item-row ${isSelected ? 'item-row-selected' : ''} ${isExcluded ? 'item-row-excluded' : ''}">
-            <div class="festival-theme-item-main">
-              <div class="festival-theme-item-info">
-                <span class="theme-item-title-badge">
-                  <span class="theme-item-icon">${isExcluded ? '🚫' : g.icon}</span>
-                  <strong class="theme-item-name">${meta.label}</strong>
-                </span>
-                ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
-                <span class="theme-item-short-desc">${meta.shortDesc}</span>
-              </div>
+            <button
+              type="button"
+              class="theme-item-name-toggle ${isItemExpanded ? 'expanded' : ''}"
+              onclick="toggleThemeItemExpand('${g.key}', event)"
+              aria-expanded="${isItemExpanded}"
+              title="${isItemExpanded ? 'Hide description' : 'Click to expand description'}"
+            >
+              <span class="theme-item-icon">${isExcluded ? '🚫' : g.icon}</span>
+              <strong class="theme-item-name">${meta.label}</strong>
+              <span class="theme-item-chevron">${isItemExpanded ? '▴' : '▾'}</span>
+            </button>
+            <div class="theme-item-subrow">
+              ${meta.datesLabel ? `<span class="theme-item-dates-pill">${meta.datesLabel}</span>` : ''}
               <div class="festival-theme-item-actions">
-                <button
-                  type="button"
-                  class="btn-theme-item-expand ${isItemExpanded ? 'expanded' : ''}"
-                  onclick="toggleThemeItemExpand('${g.key}', event)"
-                  aria-expanded="${isItemExpanded}"
-                  title="${isItemExpanded ? 'Hide longer description' : 'Expand longer description, venues & official links'}"
-                >${isItemExpanded ? 'Less ▴' : 'Details ▾'}</button>
                 <button
                   type="button"
                   class="btn-theme-item-include ${isSelected ? 'active' : ''}"
@@ -1768,15 +1758,7 @@ function renderFestivalSpotlight() {
             </div>
             ${isItemExpanded ? `
               <div class="festival-theme-item-drawer">
-                <p class="theme-item-long-desc">${meta.longDesc}</p>
-                <div class="theme-item-meta-links">
-                  ${meta.venues ? `<span class="festival-venue-badge">📍 ${meta.venues}</span>` : ''}
-                  ${meta.officialUrl ? `
-                    <a href="${meta.officialUrl}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="festival-link-primary">
-                      ${meta.officialLabel || 'Official Schedule ↗'}
-                    </a>
-                  ` : ''}
-                </div>
+                <p class="theme-item-short-desc">${meta.shortDesc}</p>
               </div>
             ` : ''}
           </div>
@@ -1786,39 +1768,10 @@ function renderFestivalSpotlight() {
   ` : '';
 
   container.innerHTML = `
-    <div class="festival-spotlight-card festival-compact-banner ${isHidden ? 'festival-muted festival-collapsed' : ''}">
+    <div class="festival-spotlight-card festival-compact-banner">
       <div class="festival-spotlight-left">
         <div class="festival-compact-header-row">
-          <div class="festival-header-title-group">
-            <span class="festival-status-badge">${badgeStatus}</span>
-            <h2 class="festival-spotlight-title">${bannerTitle} ${isHidden ? '<span class="festival-hidden-tag">(Hidden from listings &amp; map)</span>' : ''}</h2>
-          </div>
-          <div class="festival-spotlight-right">
-            ${!isHidden ? `
-            <button 
-              type="button" 
-              class="btn-festival-display ${isHighlightingAll ? 'active' : ''}" 
-              id="btn-display-festival"
-              onclick="displayFestivalEvents()"
-              title="${isHighlightingAll ? 'Showing all festival & holiday events. Click to show all outings' : 'Filter outings to display all festival & holiday events'}"
-            >
-              <span class="toggle-icon">${isHighlightingAll ? '✓' : '🎉'}</span>
-              <span class="toggle-label">${isHighlightingAll ? `Showing All (${festCount})` : `Highlight All (${festCount})`}</span>
-            </button>
-            ` : ''}
-
-            <button 
-              type="button" 
-              class="btn-festival-toggle ${isHidden ? 'fest-hidden' : ''}" 
-              id="btn-toggle-festival"
-              onclick="toggleHideFestivalEvents()"
-              aria-pressed="${isHidden}"
-              title="${isHidden ? 'Show festival & holiday events in listing and map' : 'Hide all festival & holiday events from listing and map'}"
-            >
-              <span class="toggle-icon">${isHidden ? '👁️' : '🙈'}</span>
-              <span class="toggle-label">${isHidden ? `Unhide Events (${festCount})` : 'Hide All'}</span>
-            </button>
-          </div>
+          <h2 class="festival-spotlight-title">${bannerTitle}</h2>
         </div>
         ${activeItemsListHtml}
       </div>

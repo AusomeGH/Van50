@@ -3297,8 +3297,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 14px 20px;
+  gap: 14px;
+  padding: 12px 14px;
   background: linear-gradient(135deg, rgba(30, 27, 75, 0.82), rgba(15, 23, 42, 0.92));
   border: 1.5px solid rgba(245, 158, 11, 0.45);
   border-radius: var(--radius-xl, 16px);
@@ -3311,20 +3311,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-
-.festival-header-title-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  margin-bottom: 8px;
 }
 
 .festival-compact-header-row .festival-spotlight-title {
-  font-size: 1.12rem;
+  font-size: 1.02rem;
   font-weight: 800;
   margin: 0;
   color: #ffffff;
@@ -3334,14 +3327,14 @@
 .festival-active-items-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .festival-theme-item-row {
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  padding: 8px 12px;
+  padding: 7px 11px;
   transition: all 0.18s ease;
 }
 
@@ -3368,30 +3361,41 @@
   color: #fca5a5;
 }
 
-.festival-theme-item-main {
-  display: flex;
+.theme-item-name-toggle {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin-bottom: 5px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.90rem;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease;
 }
 
-.festival-theme-item-info {
+.theme-item-name-toggle:hover {
+  color: #fde047;
+}
+
+.theme-item-chevron {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-left: 2px;
+}
+
+.theme-item-name-toggle:hover .theme-item-chevron,
+.theme-item-name-toggle.expanded .theme-item-chevron {
+  color: #38bdf8;
+}
+
+.theme-item-subrow {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1 1 320px;
-  min-width: 0;
   flex-wrap: wrap;
-}
-
-.theme-item-title-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.88rem;
-  color: #ffffff;
-  white-space: nowrap;
 }
 
 .theme-item-dates-pill {
@@ -3400,15 +3404,16 @@
   color: #fbbf24;
   background: rgba(245, 158, 11, 0.14);
   border: 1px solid rgba(245, 158, 11, 0.35);
-  padding: 1px 8px;
+  padding: 2px 9px;
   border-radius: 9999px;
   white-space: nowrap;
 }
 
 .theme-item-short-desc {
-  font-size: 0.82rem;
+  font-size: 0.81rem;
   color: #cbd5e1;
-  line-height: 1.35;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .festival-theme-item-actions {
@@ -3419,28 +3424,15 @@
   flex-wrap: wrap;
 }
 
-.btn-theme-item-expand,
 .btn-theme-item-include,
 .btn-theme-item-exclude {
-  font-size: 0.74rem;
+  font-size: 0.73rem;
   font-weight: 700;
   border-radius: 9999px;
-  padding: 3px 10px;
+  padding: 2px 10px;
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
-}
-
-.btn-theme-item-expand {
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-}
-
-.btn-theme-item-expand:hover,
-.btn-theme-item-expand.expanded {
-  background: rgba(56, 189, 248, 0.24);
-  color: #ffffff;
 }
 
 .btn-theme-item-include {
@@ -3478,23 +3470,9 @@
 }
 
 .festival-theme-item-drawer {
-  margin-top: 8px;
-  padding-top: 8px;
+  margin-top: 6px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.theme-item-long-desc {
-  font-size: 0.82rem;
-  color: #e2e8f0;
-  line-height: 1.45;
-  margin: 0 0 6px 0;
-}
-
-.theme-item-meta-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .festival-compact-summary-row {
