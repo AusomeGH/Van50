@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Van50 — Vancouver Events & Outings ($50 or Less)</title>
   <meta name="description" content="Discover authentic, affordable Vancouver events, comedy, indie cinema, music, trivia, and scenic outings strictly under $50.00 CAD total out-of-pocket per person.">
   <meta name="theme-color" content="#080c14">
@@ -36,8 +36,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="no-referrer">
 
-  <link rel="stylesheet" href="css/style.css?v=7.1.0">
-  <link rel="stylesheet" href="css/components.css?v=7.5.0">
+  <link rel="stylesheet" href="css/style.css?v=7.2.0">
+  <link rel="stylesheet" href="css/components.css?v=7.6.0">
 
 
   <!-- Privacy-First Anonymous Usage Analytics (Cookieless, 0 PII) -->
@@ -60,13 +60,13 @@
           <span class="access-label">Accessibility</span>
         </button>
         <button class="btn btn-itinerary" id="itinerary-btn" aria-label="View Saved Events">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true" style="margin-right: 6px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          <span>Saved Events</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#f43f5e" aria-hidden="true" style="margin-right: 4px; vertical-align: -2px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="nav-btn-label">Saved Events</span>
           <span class="itinerary-count-badge" id="itinerary-count">0</span>
         </button>
         <button class="btn btn-feedback" id="feedback-nav-btn" aria-label="Suggest Show or Report Issue" title="Suggest an upcoming event or venue (≤ $50 CAD) or report an issue" style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); color: #34d399; padding: 7px 13px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; cursor: pointer;">
           <span aria-hidden="true">💡</span>
-          <span>Suggest / Report</span>
+          <span class="nav-btn-label">Suggest / Report</span>
         </button>
       </div>
     </div>
@@ -95,7 +95,7 @@
           type="text" 
           id="search-input" 
           class="search-input" 
-          placeholder='Search events, venues, holidays, or operators (e.g. halloween, -halloween, diwali, price:<20)...'
+          placeholder="Search events, venues, or tags..."
           aria-label="Search events"
           autocomplete="off"
           spellcheck="false"
